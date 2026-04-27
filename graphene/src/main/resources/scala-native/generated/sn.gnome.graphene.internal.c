@@ -1,3 +1,5 @@
+// This file was generated using sn-bindgen 0.4.3+6-e972956a-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
+
 #include <string.h>
 #include "graphene.h"
 

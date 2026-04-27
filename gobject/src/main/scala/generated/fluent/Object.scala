@@ -101,6 +101,24 @@ class Object(raw: Ptr[GObject]):
     ).asInstanceOf
   )
 
+  inline def connect(signal_spec: String | CString, args: Any*)(using
+      Zone
+  ): Object = new Object(
+    g_object_connect(
+      this.raw.asInstanceOf,
+      __sn_extract_string(signal_spec).asInstanceOf[Ptr[gchar]],
+      args*
+    ).asInstanceOf
+  )
+
+  inline def disconnect(signal_spec: String | CString, args: Any*)(using
+      Zone
+  ): Unit = g_object_disconnect(
+    this.raw.asInstanceOf,
+    __sn_extract_string(signal_spec).asInstanceOf[Ptr[gchar]],
+    args*
+  )
+
   def dupData(
       key: String | CString,
       dup_func: GDuplicateFunc,
@@ -126,6 +144,14 @@ class Object(raw: Ptr[GObject]):
   def forceFloating(): Unit = g_object_force_floating(this.raw.asInstanceOf)
 
   def freezeNotify(): Unit = g_object_freeze_notify(this.raw.asInstanceOf)
+
+  inline def get(first_property_name: String | CString, args: Any*)(using
+      Zone
+  ): Unit = g_object_get(
+    this.raw.asInstanceOf,
+    __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
+    args*
+  )
 
   def getData(key: String | CString)(using Zone): Ptr[Byte] = g_object_get_data(
     this.raw.asInstanceOf,
@@ -189,6 +215,14 @@ class Object(raw: Ptr[GObject]):
   // Method replace_qdata contains an OUT parameter, which is not supported yet
 
   def runDispose(): Unit = g_object_run_dispose(this.raw.asInstanceOf)
+
+  inline def set(first_property_name: String | CString, args: Any*)(using
+      Zone
+  ): Unit = g_object_set(
+    this.raw.asInstanceOf,
+    __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
+    args*
+  )
 
   def setData(key: String | CString, data: Ptr[Byte])(using Zone): Unit =
     g_object_set_data(
@@ -277,6 +311,17 @@ class Object(raw: Ptr[GObject]):
 end Object
 
 object Object:
+  inline def apply(
+      object_type: GType,
+      first_property_name: String | CString,
+      args: Any*
+  )(using Zone): Object = new Object(
+    g_object_new(
+      object_type,
+      __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
+      args*
+    ).asInstanceOf
+  )
   def valist(
       object_type: GType,
       first_property_name: String | CString,

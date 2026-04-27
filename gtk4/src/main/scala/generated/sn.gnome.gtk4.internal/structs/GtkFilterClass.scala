@@ -1,0 +1,57 @@
+package sn.gnome.gtk4.internal
+
+// This file was generated using sn-bindgen 0.4.3+6-e972956a-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
+
+import _root_.scala.scalanative.unsafe.*
+import _root_.scala.scalanative.unsigned.*
+import _root_.scala.scalanative.libc.*
+import _root_.scala.scalanative.*
+
+opaque type GtkFilterClass = CStruct11[_root_.sn.gnome.gobject.internal.GObjectClass, CFuncPtr2[Ptr[GtkFilter], _root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gboolean], CFuncPtr1[Ptr[GtkFilter], GtkFilterMatch], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit]]
+
+object GtkFilterClass:
+  given _tag: Tag[GtkFilterClass] = Tag.materializeCStruct11Tag[_root_.sn.gnome.gobject.internal.GObjectClass, CFuncPtr2[Ptr[GtkFilter], _root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gboolean], CFuncPtr1[Ptr[GtkFilter], GtkFilterMatch], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit]]
+  
+  export fields.*
+  private[internal] object fields:
+    extension (struct: GtkFilterClass)
+      inline def parent_class : _root_.sn.gnome.gobject.internal.GObjectClass = struct._1
+      inline def parent_class_=(value: _root_.sn.gnome.gobject.internal.GObjectClass): Unit = (!struct.at1 = value)
+      inline def `match` : CFuncPtr2[Ptr[GtkFilter], _root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gboolean] = struct._2
+      inline def match_=(value: CFuncPtr2[Ptr[GtkFilter], _root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gboolean]): Unit = (!struct.at2 = value)
+      inline def get_strictness : CFuncPtr1[Ptr[GtkFilter], GtkFilterMatch] = struct._3
+      inline def get_strictness_=(value: CFuncPtr1[Ptr[GtkFilter], GtkFilterMatch]): Unit = (!struct.at3 = value)
+      inline def _gtk_reserved1 : CFuncPtr0[Unit] = struct._4
+      inline def _gtk_reserved1_=(value: CFuncPtr0[Unit]): Unit = (!struct.at4 = value)
+      inline def _gtk_reserved2 : CFuncPtr0[Unit] = struct._5
+      inline def _gtk_reserved2_=(value: CFuncPtr0[Unit]): Unit = (!struct.at5 = value)
+      inline def _gtk_reserved3 : CFuncPtr0[Unit] = struct._6
+      inline def _gtk_reserved3_=(value: CFuncPtr0[Unit]): Unit = (!struct.at6 = value)
+      inline def _gtk_reserved4 : CFuncPtr0[Unit] = struct._7
+      inline def _gtk_reserved4_=(value: CFuncPtr0[Unit]): Unit = (!struct.at7 = value)
+      inline def _gtk_reserved5 : CFuncPtr0[Unit] = struct._8
+      inline def _gtk_reserved5_=(value: CFuncPtr0[Unit]): Unit = (!struct.at8 = value)
+      inline def _gtk_reserved6 : CFuncPtr0[Unit] = struct._9
+      inline def _gtk_reserved6_=(value: CFuncPtr0[Unit]): Unit = (!struct.at9 = value)
+      inline def _gtk_reserved7 : CFuncPtr0[Unit] = struct._10
+      inline def _gtk_reserved7_=(value: CFuncPtr0[Unit]): Unit = (!struct.at10 = value)
+      inline def _gtk_reserved8 : CFuncPtr0[Unit] = struct._11
+      inline def _gtk_reserved8_=(value: CFuncPtr0[Unit]): Unit = (!struct.at11 = value)
+    end extension
+  
+  // Allocates GtkFilterClass on the heap – fields are not initalised or zeroed out
+  def apply()(using Zone): Ptr[GtkFilterClass] = scala.scalanative.unsafe.alloc[GtkFilterClass](1)
+  def apply(parent_class : _root_.sn.gnome.gobject.internal.GObjectClass, `match` : CFuncPtr2[Ptr[GtkFilter], _root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gboolean], get_strictness : CFuncPtr1[Ptr[GtkFilter], GtkFilterMatch], _gtk_reserved1 : CFuncPtr0[Unit], _gtk_reserved2 : CFuncPtr0[Unit], _gtk_reserved3 : CFuncPtr0[Unit], _gtk_reserved4 : CFuncPtr0[Unit], _gtk_reserved5 : CFuncPtr0[Unit], _gtk_reserved6 : CFuncPtr0[Unit], _gtk_reserved7 : CFuncPtr0[Unit], _gtk_reserved8 : CFuncPtr0[Unit])(using Zone): Ptr[GtkFilterClass] =
+    val ____ptr = apply()
+    (!____ptr).parent_class = parent_class
+    (!____ptr).`match` = `match`
+    (!____ptr).get_strictness = get_strictness
+    (!____ptr)._gtk_reserved1 = _gtk_reserved1
+    (!____ptr)._gtk_reserved2 = _gtk_reserved2
+    (!____ptr)._gtk_reserved3 = _gtk_reserved3
+    (!____ptr)._gtk_reserved4 = _gtk_reserved4
+    (!____ptr)._gtk_reserved5 = _gtk_reserved5
+    (!____ptr)._gtk_reserved6 = _gtk_reserved6
+    (!____ptr)._gtk_reserved7 = _gtk_reserved7
+    (!____ptr)._gtk_reserved8 = _gtk_reserved8
+    ____ptr

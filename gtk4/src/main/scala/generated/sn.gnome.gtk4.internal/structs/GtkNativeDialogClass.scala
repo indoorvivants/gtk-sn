@@ -1,0 +1,51 @@
+package sn.gnome.gtk4.internal
+
+// This file was generated using sn-bindgen 0.4.3+6-e972956a-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
+
+import _root_.scala.scalanative.unsafe.*
+import _root_.scala.scalanative.unsigned.*
+import _root_.scala.scalanative.libc.*
+import _root_.scala.scalanative.*
+
+/**
+ * GtkNativeDialogClass: : class handler for the `GtkNativeDialog::response` signal
+*/
+opaque type GtkNativeDialogClass = CStruct8[_root_.sn.gnome.gobject.internal.GObjectClass, CFuncPtr2[Ptr[GtkNativeDialog], CInt, Unit], CFuncPtr1[Ptr[GtkNativeDialog], Unit], CFuncPtr1[Ptr[GtkNativeDialog], Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit]]
+
+object GtkNativeDialogClass:
+  given _tag: Tag[GtkNativeDialogClass] = Tag.materializeCStruct8Tag[_root_.sn.gnome.gobject.internal.GObjectClass, CFuncPtr2[Ptr[GtkNativeDialog], CInt, Unit], CFuncPtr1[Ptr[GtkNativeDialog], Unit], CFuncPtr1[Ptr[GtkNativeDialog], Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit]]
+  
+  export fields.*
+  private[internal] object fields:
+    extension (struct: GtkNativeDialogClass)
+      inline def parent_class : _root_.sn.gnome.gobject.internal.GObjectClass = struct._1
+      inline def parent_class_=(value: _root_.sn.gnome.gobject.internal.GObjectClass): Unit = (!struct.at1 = value)
+      inline def response : CFuncPtr2[Ptr[GtkNativeDialog], CInt, Unit] = struct._2
+      inline def response_=(value: CFuncPtr2[Ptr[GtkNativeDialog], CInt, Unit]): Unit = (!struct.at2 = value)
+      inline def show : CFuncPtr1[Ptr[GtkNativeDialog], Unit] = struct._3
+      inline def show_=(value: CFuncPtr1[Ptr[GtkNativeDialog], Unit]): Unit = (!struct.at3 = value)
+      inline def hide : CFuncPtr1[Ptr[GtkNativeDialog], Unit] = struct._4
+      inline def hide_=(value: CFuncPtr1[Ptr[GtkNativeDialog], Unit]): Unit = (!struct.at4 = value)
+      inline def _gtk_reserved1 : CFuncPtr0[Unit] = struct._5
+      inline def _gtk_reserved1_=(value: CFuncPtr0[Unit]): Unit = (!struct.at5 = value)
+      inline def _gtk_reserved2 : CFuncPtr0[Unit] = struct._6
+      inline def _gtk_reserved2_=(value: CFuncPtr0[Unit]): Unit = (!struct.at6 = value)
+      inline def _gtk_reserved3 : CFuncPtr0[Unit] = struct._7
+      inline def _gtk_reserved3_=(value: CFuncPtr0[Unit]): Unit = (!struct.at7 = value)
+      inline def _gtk_reserved4 : CFuncPtr0[Unit] = struct._8
+      inline def _gtk_reserved4_=(value: CFuncPtr0[Unit]): Unit = (!struct.at8 = value)
+    end extension
+  
+  // Allocates GtkNativeDialogClass on the heap – fields are not initalised or zeroed out
+  def apply()(using Zone): Ptr[GtkNativeDialogClass] = scala.scalanative.unsafe.alloc[GtkNativeDialogClass](1)
+  def apply(parent_class : _root_.sn.gnome.gobject.internal.GObjectClass, response : CFuncPtr2[Ptr[GtkNativeDialog], CInt, Unit], show : CFuncPtr1[Ptr[GtkNativeDialog], Unit], hide : CFuncPtr1[Ptr[GtkNativeDialog], Unit], _gtk_reserved1 : CFuncPtr0[Unit], _gtk_reserved2 : CFuncPtr0[Unit], _gtk_reserved3 : CFuncPtr0[Unit], _gtk_reserved4 : CFuncPtr0[Unit])(using Zone): Ptr[GtkNativeDialogClass] =
+    val ____ptr = apply()
+    (!____ptr).parent_class = parent_class
+    (!____ptr).response = response
+    (!____ptr).show = show
+    (!____ptr).hide = hide
+    (!____ptr)._gtk_reserved1 = _gtk_reserved1
+    (!____ptr)._gtk_reserved2 = _gtk_reserved2
+    (!____ptr)._gtk_reserved3 = _gtk_reserved3
+    (!____ptr)._gtk_reserved4 = _gtk_reserved4
+    ____ptr

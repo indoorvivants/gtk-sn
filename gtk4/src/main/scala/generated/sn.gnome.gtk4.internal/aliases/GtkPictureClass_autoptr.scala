@@ -1,0 +1,15 @@
+package sn.gnome.gtk4.internal
+
+// This file was generated using sn-bindgen 0.4.3+6-e972956a-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
+
+import _root_.scala.scalanative.unsafe.*
+import _root_.scala.scalanative.unsigned.*
+import _root_.scala.scalanative.libc.*
+import _root_.scala.scalanative.*
+
+opaque type GtkPictureClass_autoptr = Ptr[GtkPictureClass]
+object GtkPictureClass_autoptr:
+  given _tag: Tag[GtkPictureClass_autoptr] = Tag.Ptr[GtkPictureClass](GtkPictureClass._tag)
+  inline def apply(inline o: Ptr[GtkPictureClass]): GtkPictureClass_autoptr = o
+  extension (v: GtkPictureClass_autoptr)
+    inline def value: Ptr[GtkPictureClass] = v

@@ -19,17 +19,28 @@ def renderParameters(
     val (paramSpecs, arguments) = params
       .map:
         case param: Parameter =>
-          val paramType = renderType(
-            param.tpe.getOrElse(
-              break(
-                s"$methodLabel, param: ${param.name}: type is empty"
+          val (paraName, vararg) =
+            (Option
+              .when(param.name.contains("...")):
+                "args" -> TypeMapping("Any*").withMassageIntoUnsafe(
+                  Massage.Splat("args")
+                )
+              )
+              .unzip
+
+          val paramType = vararg.getOrElse(
+            renderType(
+              param.tpe.getOrElse(
+                break(
+                  s"$methodLabel, param: ${param.name}: type is empty"
+                )
               )
             )
           )
 
           coll.addAll(paramType.effects)
 
-          val paramName = escape(param.name.get)
+          val paramName = escape(paraName.getOrElse(param.name.get))
 
           val parameter = paramName + " : " + paramType.scalaRepr
 

@@ -75,6 +75,14 @@ def filterDefinitions(
 
     method.foreach: meth =>
       check(
+        meth.identifier.startsWith("g_data_input_stream_read_byte"),
+        s"Method ${meth.name} is not rendered – there are conflicting versions of it in DataInputStream and BufferedInputStream"
+      )
+      check(
+        meth.identifier.startsWith("g_settings_backend"),
+        "GSettingsBackend methods are not rendered"
+      )
+      check(
         hasArray(meth),
         s"Method ${meth.name} contains an array parameter, which is not supported yet"
       )
