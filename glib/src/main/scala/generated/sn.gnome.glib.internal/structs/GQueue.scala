@@ -1,0 +1,36 @@
+package sn.gnome.glib.internal
+
+// This file was generated using sn-bindgen 0.4.3+6-e972956a-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
+
+import _root_.scala.scalanative.unsafe.*
+import _root_.scala.scalanative.unsigned.*
+import _root_.scala.scalanative.libc.*
+import _root_.scala.scalanative.*
+
+/**
+ * GQueue: : a pointer to the first element of the queue : a pointer to the last element of the queue : the number of elements in the queue
+*/
+opaque type GQueue = CStruct3[Ptr[Byte], Ptr[Byte], guint]
+
+object GQueue:
+  given _tag: Tag[GQueue] = Tag.materializeCStruct3Tag[Ptr[Byte], Ptr[Byte], guint]
+  
+  export fields.*
+  private[internal] object fields:
+    extension (struct: GQueue)
+      inline def head : Ptr[GList] = struct._1.asInstanceOf[Ptr[GList]]
+      inline def head_=(value: Ptr[GList]): Unit = (!struct.at1 = value.asInstanceOf[Ptr[Byte]])
+      inline def tail : Ptr[GList] = struct._2.asInstanceOf[Ptr[GList]]
+      inline def tail_=(value: Ptr[GList]): Unit = (!struct.at2 = value.asInstanceOf[Ptr[Byte]])
+      inline def length : guint = struct._3
+      inline def length_=(value: guint): Unit = (!struct.at3 = value)
+    end extension
+  
+  // Allocates GQueue on the heap – fields are not initalised or zeroed out
+  def apply()(using Zone): Ptr[GQueue] = scala.scalanative.unsafe.alloc[GQueue](1)
+  def apply(head : Ptr[GList], tail : Ptr[GList], length : guint)(using Zone): Ptr[GQueue] =
+    val ____ptr = apply()
+    (!____ptr).head = head
+    (!____ptr).tail = tail
+    (!____ptr).length = length
+    ____ptr

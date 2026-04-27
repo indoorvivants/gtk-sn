@@ -13,6 +13,27 @@ def renderClassMethod(cls: AugmentedClass, meth: Method)(using
     val camelName = camelify(meth.name)
     val cMethod = meth.identifier
 
+    val methods = summon[GlobalKnowledge].classMethods
+    val allParents = (cls.parent.toSeq ++ cls.implements.map(_.name))
+
+    def sig(meth: Method) =
+      val params =
+        meth.parameters.collect:
+          case p: Parameter => p.name.getOrElse("<noname>")
+      s"${meth.name}(${params.mkString(", ")})${meth.returnType}"
+
+    val thisMethodSig = sig(meth)
+
+    val isOverride = allParents
+      .exists(clsName =>
+        methods.get(clsName).exists(_.exists((_, m) => sig(m) == thisMethodSig))
+      )
+
+    val isVararg = meth.parameters
+      .collect:
+        case p: Parameter if p.name.contains("...") => p
+      .nonEmpty
+
     if meth.isThrowing then coll.add(importGResultEffect)
 
     val renderedParameters =
@@ -24,8 +45,6 @@ def renderClassMethod(cls: AugmentedClass, meth: Method)(using
       ),
       position = TypePosition.ReturnType
     )
-    if meth.name == "get_etag" then
-      scribe.info(s"Return type: $returnType")
 
     coll.addAll(returnType.effects)
 
@@ -54,8 +73,12 @@ def renderClassMethod(cls: AugmentedClass, meth: Method)(using
       if meth.isThrowing then s"GResult.wrap(__errorPtr => $massagedBody)"
       else massagedBody
 
+    val over = if isOverride then "override " else ""
+
+    val inlining = if isVararg then "inline " else ""
+
     line(
-      s"def ${escape(camelName)}(${serialisedParams})$requiresZone: ${returnTypeRepr} = $finalBody"
+      s"${over}${inlining}def ${escape(camelName)}(${serialisedParams})$requiresZone: ${returnTypeRepr} = $finalBody"
     )
     emptyLine()
 

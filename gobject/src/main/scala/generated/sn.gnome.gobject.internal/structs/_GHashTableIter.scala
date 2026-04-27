@@ -1,0 +1,42 @@
+package sn.gnome.gobject.internal
+
+// This file was generated using sn-bindgen 0.4.3: https://sn-bindgen.indoorvivants.com/
+
+import _root_.scala.scalanative.unsafe.*
+import _root_.scala.scalanative.unsigned.*
+import _root_.scala.scalanative.libc.*
+import _root_.scala.scalanative.*
+
+opaque type _GHashTableIter = CStruct6[_root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gpointer, CInt, _root_.sn.gnome.glib.internal.gboolean, _root_.sn.gnome.glib.internal.gpointer]
+
+object _GHashTableIter:
+  given _tag: Tag[_GHashTableIter] = Tag.materializeCStruct6Tag[_root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gpointer, CInt, _root_.sn.gnome.glib.internal.gboolean, _root_.sn.gnome.glib.internal.gpointer]
+  
+  export fields.*
+  private[internal] object fields:
+    extension (struct: _GHashTableIter)
+      inline def dummy1 : _root_.sn.gnome.glib.internal.gpointer = struct._1
+      inline def dummy1_=(value: _root_.sn.gnome.glib.internal.gpointer): Unit = (!struct.at1 = value)
+      inline def dummy2 : _root_.sn.gnome.glib.internal.gpointer = struct._2
+      inline def dummy2_=(value: _root_.sn.gnome.glib.internal.gpointer): Unit = (!struct.at2 = value)
+      inline def dummy3 : _root_.sn.gnome.glib.internal.gpointer = struct._3
+      inline def dummy3_=(value: _root_.sn.gnome.glib.internal.gpointer): Unit = (!struct.at3 = value)
+      inline def dummy4 : CInt = struct._4
+      inline def dummy4_=(value: CInt): Unit = (!struct.at4 = value)
+      inline def dummy5 : _root_.sn.gnome.glib.internal.gboolean = struct._5
+      inline def dummy5_=(value: _root_.sn.gnome.glib.internal.gboolean): Unit = (!struct.at5 = value)
+      inline def dummy6 : _root_.sn.gnome.glib.internal.gpointer = struct._6
+      inline def dummy6_=(value: _root_.sn.gnome.glib.internal.gpointer): Unit = (!struct.at6 = value)
+    end extension
+  
+  // Allocates _GHashTableIter on the heap – fields are not initalised or zeroed out
+  def apply()(using Zone): Ptr[_GHashTableIter] = scala.scalanative.unsafe.alloc[_GHashTableIter](1)
+  def apply(dummy1 : _root_.sn.gnome.glib.internal.gpointer, dummy2 : _root_.sn.gnome.glib.internal.gpointer, dummy3 : _root_.sn.gnome.glib.internal.gpointer, dummy4 : CInt, dummy5 : _root_.sn.gnome.glib.internal.gboolean, dummy6 : _root_.sn.gnome.glib.internal.gpointer)(using Zone): Ptr[_GHashTableIter] =
+    val ____ptr = apply()
+    (!____ptr).dummy1 = dummy1
+    (!____ptr).dummy2 = dummy2
+    (!____ptr).dummy3 = dummy3
+    (!____ptr).dummy4 = dummy4
+    (!____ptr).dummy5 = dummy5
+    (!____ptr).dummy6 = dummy6
+    ____ptr

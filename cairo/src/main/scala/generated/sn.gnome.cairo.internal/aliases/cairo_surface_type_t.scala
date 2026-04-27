@@ -1,0 +1,18 @@
+package sn.gnome.cairo.internal
+
+// This file was generated using sn-bindgen 0.4.3+6-e972956a-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
+
+import _root_.scala.scalanative.unsafe.*
+import _root_.scala.scalanative.unsigned.*
+import _root_.scala.scalanative.libc.*
+import _root_.scala.scalanative.*
+
+/**
+ * cairo_surface_type_t: _SURFACE_TYPE_IMAGE: The surface is of type image, since 1.2 _SURFACE_TYPE_PDF: The surface is of type pdf, since 1.2 _SURFACE_TYPE_PS: The surface is of type ps, since 1.2 _SURFACE_TYPE_XLIB: The surface is of type xlib, since 1.2 _SURFACE_TYPE_XCB: The surface is of type xcb, since 1.2 _SURFACE_TYPE_GLITZ: The surface is of type glitz, since 1.2, deprecated 1.18 (glitz support have been removed, this surface type will never be set by cairo) _SURFACE_TYPE_QUARTZ: The surface is of type quartz, since 1.2 _SURFACE_TYPE_WIN32: The surface is of type win32, since 1.2 _SURFACE_TYPE_BEOS: The surface is of type beos, since 1.2, deprecated 1.18 (beos support have been removed, this surface type will never be set by cairo) _SURFACE_TYPE_DIRECTFB: The surface is of type directfb, since 1.2, deprecated 1.18 (directfb support have been removed, this surface type will never be set by cairo) _SURFACE_TYPE_SVG: The surface is of type svg, since 1.2 _SURFACE_TYPE_OS2: The surface is of type os2, since 1.4, deprecated 1.18 (os2 support have been removed, this surface type will never be set by cairo) _SURFACE_TYPE_WIN32_PRINTING: The surface is a win32 printing surface, since 1.6 _SURFACE_TYPE_QUARTZ_IMAGE: The surface is of type quartz_image, since 1.6 _SURFACE_TYPE_SCRIPT: The surface is of type script, since 1.10 _SURFACE_TYPE_QT: The surface is of type Qt, since 1.10, deprecated 1.18 (Ot support have been removed, this surface type will never be set by cairo) _SURFACE_TYPE_RECORDING: The surface is of type recording, since 1.10 _SURFACE_TYPE_VG: The surface is a OpenVG surface, since 1.10, deprecated 1.18 (OpenVG support have been removed, this surface type will never be set by cairo) _SURFACE_TYPE_GL: The surface is of type OpenGL, since 1.10, deprecated 1.18 (OpenGL support have been removed, this surface type will never be set by cairo) _SURFACE_TYPE_DRM: The surface is of type Direct Render Manager, since 1.10, deprecated 1.18 (DRM support have been removed, this surface type will never be set by cairo) _SURFACE_TYPE_TEE: The surface is of type 'tee' (a multiplexing surface), since 1.10 _SURFACE_TYPE_XML: The surface is of type XML (for debugging), since 1.10 _SURFACE_TYPE_SKIA: The surface is of type Skia, since 1.10, deprecated 1.18 (Skia support have been removed, this surface type will never be set by cairo) _SURFACE_TYPE_SUBSURFACE: The surface is a subsurface created with cairo_surface_create_for_rectangle(), since 1.10 _SURFACE_TYPE_COGL: This surface is of type Cogl, since 1.12, deprecated 1.18 (Cogl support have been removed, this surface type will never be set by cairo)
+*/
+type cairo_surface_type_t = _cairo_surface_type
+object cairo_surface_type_t:
+  given _tag: Tag[cairo_surface_type_t] = _cairo_surface_type._tag
+  inline def apply(inline o: _cairo_surface_type): cairo_surface_type_t = o
+  extension (v: cairo_surface_type_t)
+    inline def value: _cairo_surface_type = v

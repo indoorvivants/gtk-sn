@@ -12,7 +12,7 @@ def renderClassConstructor(cls: AugmentedClass, constructor: Constructor)(using
   WithEffects.collect: coll =>
     val cConstructor = constructor.identifier
     val sanitisedName = constructor.name match
-      case "new" => "apply"
+      case "new"        => "apply"
       case s"new_$rest" =>
         camelify(rest)
       case other =>
@@ -25,6 +25,11 @@ def renderClassConstructor(cls: AugmentedClass, constructor: Constructor)(using
           s"constructor: ${constructor.name}"
         )
       )
+
+    val isVararg = constructor.parameters
+      .collect:
+        case p: Parameter if p.name.contains("...") => p
+      .nonEmpty
 
     val isThrowing = constructor.isThrowing
 
@@ -51,11 +56,13 @@ def renderClassConstructor(cls: AugmentedClass, constructor: Constructor)(using
       if isThrowing then s"GResult.wrap(__errorPtr => $body)"
       else body
 
-    val returnType = 
+    val returnType =
       if isThrowing then s"GResult[${cls.name}]" else cls.name
 
+    val inlining = if isVararg then "inline " else ""
+
     line(
-      s"def ${escape(sanitisedName)}($serialisedParams)$requiresZone: ${returnType} = $finalBody"
+      s"${inlining}def ${escape(sanitisedName)}($serialisedParams)$requiresZone: ${returnType} = $finalBody"
     )
 
 end renderClassConstructor

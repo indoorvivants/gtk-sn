@@ -28,8 +28,14 @@ def renderType(
   val importUnsigned =
     Effect.RequiresImport("_root_.scala.scalanative.unsigned", "*")
 
+  val importUnsafe =
+    Effect.RequiresImport("_root_.scala.scalanative.unsafe", "*")
+
   def importGlib(name: String) =
     Effect.RequiresImport(policy.namespaceToInternalPackage("glib"), name)
+
+  def importGio(name: String) =
+    Effect.RequiresImport(policy.namespaceToInternalPackage("gio"), name)
 
   def requiresStringExtractor(mapping: TypeMapping) =
     mapping
@@ -78,14 +84,37 @@ def renderType(
         )
 
     def whenFull(name: String, cName: String)(result: String) =
-      Option
+      val found = Option
         .when(typeName.contains(name) && typeValue.trim == cName)(
           TypeMapping(result)
         )
+      if typeName.contains(name) then
+        if typeValue.trim == cName then Some(TypeMapping(result))
+        else
+          scribe.info(
+            s"whenFull($name) did not match cName: expected ${cName}, got ${typeValue}"
+          )
+          None
+      else None
+    end whenFull
 
     def unsignedAlias(glib: String, sn: String) =
       whenTypeValue(glib)(sn)
         .map(_.withEffect(importUnsigned))
+        .map(_.withMassageFromUnsafe(Massage.Field("value")))
+        .map(_.withMassageIntoUnsafe(Massage.Apply(glib)))
+        .map(
+          _.withEffect(
+            Effect.RequiresImport(
+              policy.namespaceToInternalPackage("glib"),
+              glib
+            )
+          )
+        )
+
+    def unsafeAlias(glib: String, sn: String) =
+      whenTypeValue(glib)(sn)
+        .map(_.withEffect(importUnsafe))
         .map(_.withMassageFromUnsafe(Massage.Field("value")))
         .map(_.withMassageIntoUnsafe(Massage.Apply(glib)))
         .map(
@@ -144,6 +173,13 @@ def renderType(
           _.withEffect(Effect.RequiresZone)
         )
         .map(stringTypeWrap),
+      whenTypeValue("const guint8*")("Ptr[guint8]")
+        .map(
+          _.withEffect(importGlib("guint8"))
+            .withMassageIntoUnsafe(
+              Massage.Cast("Ptr[guint8]")
+            )
+        ),
       whenTypeValue("guchar*")("Ptr[UByte]")
         .map(
           _.withEffect(
@@ -179,20 +215,21 @@ def renderType(
           )
         )
         .map(stringTypeWrap),
-      whenTypeValue("gfloat")("Float"),
       glibAlias("gint", "gint")("Int"),
+      glibAlias("gdouble", "gdouble")("Double"),
+      glibAlias("gfloat", "gfloat")("Float"),
       whenTypeValue("gint*")("Ptr[Int]").map(
         _.withMassageFromUnsafe(Massage.InferredCast).withMassageIntoUnsafe(
           Massage.InferredCast
         )
       ),
       whenTypeValue("int")("Int"),
-      whenTypeValue("goffset")("Long").map(
+      whenTypeValue("goffset")("gint64").map(
         _.withMassageFromUnsafe(Massage.InferredCast)
           .withMassageIntoUnsafe(
-            Massage.Apply("gint64"),
             Massage.Apply("goffset")
           )
+          .withEffect(importGlib("goffset"))
       ),
       whenTypeValue("gboolean")("Boolean").map(
         _.withMassageFromUnsafe(Massage.Field("value.!=(0)"))
@@ -226,12 +263,16 @@ def renderType(
           .withEffect(importUnsigned)
       ),
       unsignedAlias("guint32", "UInt"),
-      unsignedAlias("guint64", "ULong"),
-      unsignedAlias("gint32", "Int"),
-      unsignedAlias("gint64", "Long"),
-      unsignedAlias("gulong", "ULong"),
+      unsignedAlias("guint64", "CUnsignedLongInt"),
+      unsignedAlias("gint32", "CInt"),
+      unsignedAlias("gint16", "CShort"),
+      unsafeAlias("gint64", "CLongInt"),
+      unsignedAlias("gulong", "CUnsignedLongInt"),
       unsignedAlias("gsize", "CUnsignedLongInt"),
       unsignedAlias("gssize", "CLongInt"),
+      whenTypeValue("uid_t")("uid_t").map(
+        _.withEffect(importGio("uid_t"))
+      ),
       glibAlias("gchar", "char")("Byte").map(
         _.withMassageIntoUnsafe(Massage.InferredCast)
       ),
@@ -298,6 +339,10 @@ def renderType(
           .withMassageIntoUnsafe(Massage.InferredCast)
       else if elementType.typeValue.endsWith("guchar") then
         TypeMapping(s"Ptr[UByte]", effects = renderedElementType.effects)
+          .withMassageIntoUnsafe(Massage.InferredCast)
+          .withMassageFromUnsafe(Massage.InferredCast)
+      else if elementType.typeValue.endsWith("guint8") then
+        TypeMapping(s"Ptr[guint8]", effects = renderedElementType.effects)
           .withMassageIntoUnsafe(Massage.InferredCast)
           .withMassageFromUnsafe(Massage.InferredCast)
       else if elementType.typeValue.endsWith("gint") then

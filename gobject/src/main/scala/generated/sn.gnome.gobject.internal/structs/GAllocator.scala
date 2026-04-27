@@ -1,0 +1,13 @@
+package sn.gnome.gobject.internal
+
+// This file was generated using sn-bindgen 0.4.3: https://sn-bindgen.indoorvivants.com/
+
+import _root_.scala.scalanative.unsafe.*
+import _root_.scala.scalanative.unsigned.*
+import _root_.scala.scalanative.libc.*
+import _root_.scala.scalanative.*
+
+opaque type GAllocator = CStruct0
+
+object GAllocator:
+  given _tag: Tag[GAllocator] = Tag.materializeCStruct0Tag

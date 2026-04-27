@@ -54,6 +54,33 @@ case class GlobalKnowledge(
 
   given NamingPolicy = policy
 
+  lazy val classMethods =
+    val b = Map.newBuilder[String, Map[String, Method]]
+
+    @tailrec
+    def go(repos: Seq[AugmentedRepository], visited: Set[String]): Unit =
+      repos match
+        case Nil                => ()
+        case repository :: rest =>
+          repository.namespace.foreach: ns =>
+            ns.classes.foreach: cls =>
+              val cl = Map.newBuilder[String, Method]
+              cls.methods.foreach: m =>
+                cl += (m.name -> m)
+              b += ((ns.name
+                .map(_ + ".")
+                .getOrElse("") + cls.name) -> cl.result)
+          val deps =
+            repository.dependencies.filterNot(visited.contains).map(reader(_))
+
+          go(rest ++ deps, visited + repository.id)
+    end go
+
+    go(Seq(repository), Set.empty)
+
+    b.result()
+  end classMethods
+
   lazy val names =
     @tailrec
     def go(

@@ -1,0 +1,48 @@
+package sn.gnome.glib.internal
+
+// This file was generated using sn-bindgen 0.4.3+6-e972956a-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
+
+import _root_.scala.scalanative.unsafe.*
+import _root_.scala.scalanative.unsigned.*
+import _root_.scala.scalanative.libc.*
+import _root_.scala.scalanative.*
+
+opaque type _GIOFuncs = CStruct8[CFuncPtr5[Ptr[Byte], Ptr[gchar], gsize, Ptr[gsize], Ptr[Ptr[GError]], GIOStatus], CFuncPtr5[Ptr[Byte], Ptr[gchar], gsize, Ptr[gsize], Ptr[Ptr[GError]], GIOStatus], CFuncPtr4[Ptr[Byte], gint64, GSeekType, Ptr[Ptr[GError]], GIOStatus], CFuncPtr2[Ptr[Byte], Ptr[Ptr[GError]], GIOStatus], CFuncPtr2[Ptr[Byte], GIOCondition, Ptr[Byte]], CFuncPtr1[Ptr[Byte], Unit], CFuncPtr3[Ptr[Byte], GIOFlags, Ptr[Ptr[GError]], GIOStatus], CFuncPtr1[Ptr[Byte], GIOFlags]]
+
+object _GIOFuncs:
+  given _tag: Tag[_GIOFuncs] = Tag.materializeCStruct8Tag[CFuncPtr5[Ptr[Byte], Ptr[gchar], gsize, Ptr[gsize], Ptr[Ptr[GError]], GIOStatus], CFuncPtr5[Ptr[Byte], Ptr[gchar], gsize, Ptr[gsize], Ptr[Ptr[GError]], GIOStatus], CFuncPtr4[Ptr[Byte], gint64, GSeekType, Ptr[Ptr[GError]], GIOStatus], CFuncPtr2[Ptr[Byte], Ptr[Ptr[GError]], GIOStatus], CFuncPtr2[Ptr[Byte], GIOCondition, Ptr[Byte]], CFuncPtr1[Ptr[Byte], Unit], CFuncPtr3[Ptr[Byte], GIOFlags, Ptr[Ptr[GError]], GIOStatus], CFuncPtr1[Ptr[Byte], GIOFlags]]
+  
+  export fields.*
+  private[internal] object fields:
+    extension (struct: _GIOFuncs)
+      inline def io_read : CFuncPtr5[Ptr[GIOChannel], Ptr[gchar], gsize, Ptr[gsize], Ptr[Ptr[GError]], GIOStatus] = struct._1.asInstanceOf[CFuncPtr5[Ptr[GIOChannel], Ptr[gchar], gsize, Ptr[gsize], Ptr[Ptr[GError]], GIOStatus]]
+      inline def io_read_=(value: CFuncPtr5[Ptr[GIOChannel], Ptr[gchar], gsize, Ptr[gsize], Ptr[Ptr[GError]], GIOStatus]): Unit = (!struct.at1 = value.asInstanceOf[CFuncPtr5[Ptr[Byte], Ptr[gchar], gsize, Ptr[gsize], Ptr[Ptr[GError]], GIOStatus]])
+      inline def io_write : CFuncPtr5[Ptr[GIOChannel], Ptr[gchar], gsize, Ptr[gsize], Ptr[Ptr[GError]], GIOStatus] = struct._2.asInstanceOf[CFuncPtr5[Ptr[GIOChannel], Ptr[gchar], gsize, Ptr[gsize], Ptr[Ptr[GError]], GIOStatus]]
+      inline def io_write_=(value: CFuncPtr5[Ptr[GIOChannel], Ptr[gchar], gsize, Ptr[gsize], Ptr[Ptr[GError]], GIOStatus]): Unit = (!struct.at2 = value.asInstanceOf[CFuncPtr5[Ptr[Byte], Ptr[gchar], gsize, Ptr[gsize], Ptr[Ptr[GError]], GIOStatus]])
+      inline def io_seek : CFuncPtr4[Ptr[GIOChannel], gint64, GSeekType, Ptr[Ptr[GError]], GIOStatus] = struct._3.asInstanceOf[CFuncPtr4[Ptr[GIOChannel], gint64, GSeekType, Ptr[Ptr[GError]], GIOStatus]]
+      inline def io_seek_=(value: CFuncPtr4[Ptr[GIOChannel], gint64, GSeekType, Ptr[Ptr[GError]], GIOStatus]): Unit = (!struct.at3 = value.asInstanceOf[CFuncPtr4[Ptr[Byte], gint64, GSeekType, Ptr[Ptr[GError]], GIOStatus]])
+      inline def io_close : CFuncPtr2[Ptr[GIOChannel], Ptr[Ptr[GError]], GIOStatus] = struct._4.asInstanceOf[CFuncPtr2[Ptr[GIOChannel], Ptr[Ptr[GError]], GIOStatus]]
+      inline def io_close_=(value: CFuncPtr2[Ptr[GIOChannel], Ptr[Ptr[GError]], GIOStatus]): Unit = (!struct.at4 = value.asInstanceOf[CFuncPtr2[Ptr[Byte], Ptr[Ptr[GError]], GIOStatus]])
+      inline def io_create_watch : CFuncPtr2[Ptr[GIOChannel], GIOCondition, Ptr[GSource]] = struct._5.asInstanceOf[CFuncPtr2[Ptr[GIOChannel], GIOCondition, Ptr[GSource]]]
+      inline def io_create_watch_=(value: CFuncPtr2[Ptr[GIOChannel], GIOCondition, Ptr[GSource]]): Unit = (!struct.at5 = value.asInstanceOf[CFuncPtr2[Ptr[Byte], GIOCondition, Ptr[Byte]]])
+      inline def io_free : CFuncPtr1[Ptr[GIOChannel], Unit] = struct._6.asInstanceOf[CFuncPtr1[Ptr[GIOChannel], Unit]]
+      inline def io_free_=(value: CFuncPtr1[Ptr[GIOChannel], Unit]): Unit = (!struct.at6 = value.asInstanceOf[CFuncPtr1[Ptr[Byte], Unit]])
+      inline def io_set_flags : CFuncPtr3[Ptr[GIOChannel], GIOFlags, Ptr[Ptr[GError]], GIOStatus] = struct._7.asInstanceOf[CFuncPtr3[Ptr[GIOChannel], GIOFlags, Ptr[Ptr[GError]], GIOStatus]]
+      inline def io_set_flags_=(value: CFuncPtr3[Ptr[GIOChannel], GIOFlags, Ptr[Ptr[GError]], GIOStatus]): Unit = (!struct.at7 = value.asInstanceOf[CFuncPtr3[Ptr[Byte], GIOFlags, Ptr[Ptr[GError]], GIOStatus]])
+      inline def io_get_flags : CFuncPtr1[Ptr[GIOChannel], GIOFlags] = struct._8.asInstanceOf[CFuncPtr1[Ptr[GIOChannel], GIOFlags]]
+      inline def io_get_flags_=(value: CFuncPtr1[Ptr[GIOChannel], GIOFlags]): Unit = (!struct.at8 = value.asInstanceOf[CFuncPtr1[Ptr[Byte], GIOFlags]])
+    end extension
+  
+  // Allocates _GIOFuncs on the heap – fields are not initalised or zeroed out
+  def apply()(using Zone): Ptr[_GIOFuncs] = scala.scalanative.unsafe.alloc[_GIOFuncs](1)
+  def apply(io_read : CFuncPtr5[Ptr[GIOChannel], Ptr[gchar], gsize, Ptr[gsize], Ptr[Ptr[GError]], GIOStatus], io_write : CFuncPtr5[Ptr[GIOChannel], Ptr[gchar], gsize, Ptr[gsize], Ptr[Ptr[GError]], GIOStatus], io_seek : CFuncPtr4[Ptr[GIOChannel], gint64, GSeekType, Ptr[Ptr[GError]], GIOStatus], io_close : CFuncPtr2[Ptr[GIOChannel], Ptr[Ptr[GError]], GIOStatus], io_create_watch : CFuncPtr2[Ptr[GIOChannel], GIOCondition, Ptr[GSource]], io_free : CFuncPtr1[Ptr[GIOChannel], Unit], io_set_flags : CFuncPtr3[Ptr[GIOChannel], GIOFlags, Ptr[Ptr[GError]], GIOStatus], io_get_flags : CFuncPtr1[Ptr[GIOChannel], GIOFlags])(using Zone): Ptr[_GIOFuncs] =
+    val ____ptr = apply()
+    (!____ptr).io_read = io_read
+    (!____ptr).io_write = io_write
+    (!____ptr).io_seek = io_seek
+    (!____ptr).io_close = io_close
+    (!____ptr).io_create_watch = io_create_watch
+    (!____ptr).io_free = io_free
+    (!____ptr).io_set_flags = io_set_flags
+    (!____ptr).io_get_flags = io_get_flags
+    ____ptr

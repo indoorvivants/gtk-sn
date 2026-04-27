@@ -1,0 +1,66 @@
+package sn.gnome.gtk4.internal
+
+// This file was generated using sn-bindgen 0.4.3+6-e972956a-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
+
+import _root_.scala.scalanative.unsafe.*
+import _root_.scala.scalanative.unsigned.*
+import _root_.scala.scalanative.libc.*
+import _root_.scala.scalanative.*
+
+opaque type GtkPrintOperationPreviewIface = CStruct14[_root_.sn.gnome.gobject.internal.GTypeInterface, CFuncPtr2[Ptr[GtkPrintOperationPreview], Ptr[GtkPrintContext], Unit], CFuncPtr3[Ptr[GtkPrintOperationPreview], Ptr[GtkPrintContext], Ptr[GtkPageSetup], Unit], CFuncPtr2[Ptr[GtkPrintOperationPreview], CInt, Unit], CFuncPtr2[Ptr[GtkPrintOperationPreview], CInt, _root_.sn.gnome.glib.internal.gboolean], CFuncPtr1[Ptr[GtkPrintOperationPreview], Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit]]
+
+object GtkPrintOperationPreviewIface:
+  given _tag: Tag[GtkPrintOperationPreviewIface] = Tag.materializeCStruct14Tag[_root_.sn.gnome.gobject.internal.GTypeInterface, CFuncPtr2[Ptr[GtkPrintOperationPreview], Ptr[GtkPrintContext], Unit], CFuncPtr3[Ptr[GtkPrintOperationPreview], Ptr[GtkPrintContext], Ptr[GtkPageSetup], Unit], CFuncPtr2[Ptr[GtkPrintOperationPreview], CInt, Unit], CFuncPtr2[Ptr[GtkPrintOperationPreview], CInt, _root_.sn.gnome.glib.internal.gboolean], CFuncPtr1[Ptr[GtkPrintOperationPreview], Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit]]
+  
+  export fields.*
+  private[internal] object fields:
+    extension (struct: GtkPrintOperationPreviewIface)
+      inline def g_iface : _root_.sn.gnome.gobject.internal.GTypeInterface = struct._1
+      inline def g_iface_=(value: _root_.sn.gnome.gobject.internal.GTypeInterface): Unit = (!struct.at1 = value)
+      inline def ready : CFuncPtr2[Ptr[GtkPrintOperationPreview], Ptr[GtkPrintContext], Unit] = struct._2
+      inline def ready_=(value: CFuncPtr2[Ptr[GtkPrintOperationPreview], Ptr[GtkPrintContext], Unit]): Unit = (!struct.at2 = value)
+      inline def got_page_size : CFuncPtr3[Ptr[GtkPrintOperationPreview], Ptr[GtkPrintContext], Ptr[GtkPageSetup], Unit] = struct._3
+      inline def got_page_size_=(value: CFuncPtr3[Ptr[GtkPrintOperationPreview], Ptr[GtkPrintContext], Ptr[GtkPageSetup], Unit]): Unit = (!struct.at3 = value)
+      inline def render_page : CFuncPtr2[Ptr[GtkPrintOperationPreview], CInt, Unit] = struct._4
+      inline def render_page_=(value: CFuncPtr2[Ptr[GtkPrintOperationPreview], CInt, Unit]): Unit = (!struct.at4 = value)
+      inline def is_selected : CFuncPtr2[Ptr[GtkPrintOperationPreview], CInt, _root_.sn.gnome.glib.internal.gboolean] = struct._5
+      inline def is_selected_=(value: CFuncPtr2[Ptr[GtkPrintOperationPreview], CInt, _root_.sn.gnome.glib.internal.gboolean]): Unit = (!struct.at5 = value)
+      inline def end_preview : CFuncPtr1[Ptr[GtkPrintOperationPreview], Unit] = struct._6
+      inline def end_preview_=(value: CFuncPtr1[Ptr[GtkPrintOperationPreview], Unit]): Unit = (!struct.at6 = value)
+      inline def _gtk_reserved1 : CFuncPtr0[Unit] = struct._7
+      inline def _gtk_reserved1_=(value: CFuncPtr0[Unit]): Unit = (!struct.at7 = value)
+      inline def _gtk_reserved2 : CFuncPtr0[Unit] = struct._8
+      inline def _gtk_reserved2_=(value: CFuncPtr0[Unit]): Unit = (!struct.at8 = value)
+      inline def _gtk_reserved3 : CFuncPtr0[Unit] = struct._9
+      inline def _gtk_reserved3_=(value: CFuncPtr0[Unit]): Unit = (!struct.at9 = value)
+      inline def _gtk_reserved4 : CFuncPtr0[Unit] = struct._10
+      inline def _gtk_reserved4_=(value: CFuncPtr0[Unit]): Unit = (!struct.at10 = value)
+      inline def _gtk_reserved5 : CFuncPtr0[Unit] = struct._11
+      inline def _gtk_reserved5_=(value: CFuncPtr0[Unit]): Unit = (!struct.at11 = value)
+      inline def _gtk_reserved6 : CFuncPtr0[Unit] = struct._12
+      inline def _gtk_reserved6_=(value: CFuncPtr0[Unit]): Unit = (!struct.at12 = value)
+      inline def _gtk_reserved7 : CFuncPtr0[Unit] = struct._13
+      inline def _gtk_reserved7_=(value: CFuncPtr0[Unit]): Unit = (!struct.at13 = value)
+      inline def _gtk_reserved8 : CFuncPtr0[Unit] = struct._14
+      inline def _gtk_reserved8_=(value: CFuncPtr0[Unit]): Unit = (!struct.at14 = value)
+    end extension
+  
+  // Allocates GtkPrintOperationPreviewIface on the heap – fields are not initalised or zeroed out
+  def apply()(using Zone): Ptr[GtkPrintOperationPreviewIface] = scala.scalanative.unsafe.alloc[GtkPrintOperationPreviewIface](1)
+  def apply(g_iface : _root_.sn.gnome.gobject.internal.GTypeInterface, ready : CFuncPtr2[Ptr[GtkPrintOperationPreview], Ptr[GtkPrintContext], Unit], got_page_size : CFuncPtr3[Ptr[GtkPrintOperationPreview], Ptr[GtkPrintContext], Ptr[GtkPageSetup], Unit], render_page : CFuncPtr2[Ptr[GtkPrintOperationPreview], CInt, Unit], is_selected : CFuncPtr2[Ptr[GtkPrintOperationPreview], CInt, _root_.sn.gnome.glib.internal.gboolean], end_preview : CFuncPtr1[Ptr[GtkPrintOperationPreview], Unit], _gtk_reserved1 : CFuncPtr0[Unit], _gtk_reserved2 : CFuncPtr0[Unit], _gtk_reserved3 : CFuncPtr0[Unit], _gtk_reserved4 : CFuncPtr0[Unit], _gtk_reserved5 : CFuncPtr0[Unit], _gtk_reserved6 : CFuncPtr0[Unit], _gtk_reserved7 : CFuncPtr0[Unit], _gtk_reserved8 : CFuncPtr0[Unit])(using Zone): Ptr[GtkPrintOperationPreviewIface] =
+    val ____ptr = apply()
+    (!____ptr).g_iface = g_iface
+    (!____ptr).ready = ready
+    (!____ptr).got_page_size = got_page_size
+    (!____ptr).render_page = render_page
+    (!____ptr).is_selected = is_selected
+    (!____ptr).end_preview = end_preview
+    (!____ptr)._gtk_reserved1 = _gtk_reserved1
+    (!____ptr)._gtk_reserved2 = _gtk_reserved2
+    (!____ptr)._gtk_reserved3 = _gtk_reserved3
+    (!____ptr)._gtk_reserved4 = _gtk_reserved4
+    (!____ptr)._gtk_reserved5 = _gtk_reserved5
+    (!____ptr)._gtk_reserved6 = _gtk_reserved6
+    (!____ptr)._gtk_reserved7 = _gtk_reserved7
+    (!____ptr)._gtk_reserved8 = _gtk_reserved8
+    ____ptr

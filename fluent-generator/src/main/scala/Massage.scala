@@ -19,6 +19,7 @@ enum Massage:
   case InferredCast
   case New(cls: String)
   case Compare(reference: String, ifTrue: String, ifFalse: String)
+  case Splat(what: String)
 
   def render(around: String) =
     this match
@@ -28,4 +29,5 @@ enum Massage:
       case InferredCast          => s"$around.asInstanceOf"
       case New(what)             => s"new $what($around)"
       case Compare(ref, tr, fls) => s"(if $around == $ref then $tr else $fls)"
+      case Splat(what)           => s"$what*"
 end Massage

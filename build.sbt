@@ -23,11 +23,11 @@ inThisBuild(
 )
 
 organization := "com.indoorvivants.gnome"
-sonatypeProfileName := "com.indoorvivants"
+// sonatypeProfileName := "com.indoorvivants"
 
 val publishing = Seq(
-  organization := "com.indoorvivants.gnome",
-  sonatypeProfileName := "com.indoorvivants"
+  organization := "com.indoorvivants.gnome"
+  // sonatypeProfileName := "com.indoorvivants"
 )
 
 lazy val root = project
@@ -60,12 +60,18 @@ lazy val root = project
       (ThisBuild / baseDirectory).value / "Dockerfile"
     ),
     docker / imageNames := Seq(ImageName("scala-native-gtk/generator:latest")),
-    generateRawBindings := {
+    generateRawBindings := Def.inputTask {
       import sys.process.*
+      import complete.DefaultParsers.*
+      val args: Seq[String] = spaceDelimited("<arg>").parsed
+      val env =
+        args.headOption.map(r => s"-e PROJECT_TO_GENERATE=${r} ").getOrElse(" ")
+
       val imageId = docker.value
       val cwd = (ThisBuild / baseDirectory).value
-      val cmd = s"""docker run --rm -v $cwd:/source/tmp $imageId""".!!
-    },
+      val cmd =
+        s"""docker run $env --rm -v $cwd:/source/tmp $imageId""".!!
+    }.evaluated,
     generateIntrospectionSchema := {
       val rncURL =
         "https://gitlab.gnome.org/GNOME/gobject-introspection/-/raw/main/docs/gir-1.2.rnc"
@@ -108,7 +114,7 @@ lazy val adwaita = project
         "pango"
       ) {
         val headerPath = findHeader("libadwaita-1", _ / "adwaita.h")
-        Binding(headerPath, "adwaita")
+        Binding(headerPath, bindingPackage("adwaita"))
           .withClangFlags(
             pkgConfig("libadwaita-1", "cflags") :+ "-fsigned-char"
           )
@@ -137,7 +143,10 @@ lazy val gio = project
           .withNoLocation(true)
           .addExcludedSystemPath(headerPath.toPath.getParent())
           .withMultiFile(true)
-      }
+
+      },
+    girModuleName := "gio-2.0",
+    withFluentBindings
   )
 
 lazy val glib = project
@@ -206,7 +215,7 @@ lazy val gobject =
             .addCImport("glib-object.h")
             .withNoLocation(true)
             .withMultiFile(true)
-            .addExcludedSystemPath(headerPath.toPath.getParent()),
+            .addExcludedSystemPath(headerPath.toPath.getParent())
         },
       girModuleName := "gobject-2.0",
       withFluentBindings
@@ -255,8 +264,8 @@ lazy val gdkpixbuf =
             .withMultiFile(true)
             .addExcludedSystemPath(headerPath.toPath.getParent())
         },
-      girModuleName := "gdkpixbuf-2.0"
-      // withFluentBindings
+      girModuleName := "gdkpixbuf-2.0",
+      withFluentBindings
     )
 
 lazy val cairo =
@@ -442,7 +451,7 @@ def pkgConfiguredSimple: Project => Project = { proj =>
         )
       ),
       resolvers ++= Resolver.sonatypeOssRepos("snapshots"),
-      scalaVersion := "3.3.4"
+      scalaVersion := "3.3.7"
     )
 }
 
@@ -485,7 +494,7 @@ def buildWithDependencies(deps: String*)(bb: Binding) = {
     case "cairo" =>
       List("*/cairo/*")
     case "harfbuzz" => List("*/harfbuzz/*")
-    case "gtk4" =>
+    case "gtk4"     =>
       List(
         "*/gtk-4.0/gdk/*",
         "*/gtk-4.0/gsk/*",
@@ -509,7 +518,7 @@ def bindingPackage(name: String) = s"sn.gnome.$name.internal"
 lazy val `fluent-generator` = project
   .in(file("fluent-generator"))
   .dependsOn(`gir-schema`)
-  .settings(scalaVersion := "3.3.3")
+  .settings(scalaVersion := "3.3.7")
   .settings(
     libraryDependencies += "com.outr" %%% "scribe" % "3.13.0",
     libraryDependencies += "com.indoorvivants" %%% "rendition" % "0.0.3+4-818d0ad8-SNAPSHOT",
@@ -521,12 +530,13 @@ lazy val `fluent-generator` = project
 
 lazy val girModuleName = settingKey[String]("")
 
-lazy val generateRawBindings = taskKey[Unit]("")
+lazy val generateRawBindings = inputKey[Unit]("")
 lazy val generateFluentBindings = inputKey[Unit]("")
 lazy val generateIntrospectionSchema = inputKey[Unit]("")
 
 val withFluentBindings = Seq(
   generateFluentBindings := Def.inputTaskDyn {
+
     val girModule = girModuleName.value
     val girFiles = (ThisBuild / baseDirectory).value / "gir-files"
     val out =
