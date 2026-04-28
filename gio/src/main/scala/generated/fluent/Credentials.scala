@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.Credentials
 import sn.gnome.gio.internal.GCredentials
 import sn.gnome.gio.internal.GCredentialsType
+import sn.gnome.gio.internal.pid_t
 import sn.gnome.gio.internal.uid_t
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gboolean
@@ -21,9 +22,7 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
   def getNative(native_type: GCredentialsType): Ptr[Byte] =
     g_credentials_get_native(this.raw.asInstanceOf, native_type).value
 
-  def getUnixPid(): GResult[
-    Any /* failed to render type: name=`Some(gint)`: typeValue=`pid_t` */
-  ] = GResult.wrap(__errorPtr =>
+  def getUnixPid(): GResult[pid_t] = GResult.wrap(__errorPtr =>
     g_credentials_get_unix_pid(this.raw.asInstanceOf, __errorPtr)
   )
 

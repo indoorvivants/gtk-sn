@@ -52,16 +52,16 @@ def filterDefinitions(
     def check(b: Boolean, msg: String) =
       if b then break(Some(msg))
 
-    check(
-      all(
-        isNamespace("gobject"),
-        isClass("SignalGroup"),
-        isMethod(
-          "connect_closure"
-        )
-      ),
-      "Method connectClosure is not rendered: for some reason g_signal_group_connect_closure is absent from raw bindings"
-    )
+    // check(
+    //   all(
+    //     isNamespace("gobject"),
+    //     isClass("SignalGroup"),
+    //     isMethod(
+    //       "connect_closure"
+    //     )
+    //   ),
+    //   "Method connectClosure is not rendered: for some reason g_signal_group_connect_closure is absent from raw bindings"
+    // )
 
     def weirdClass(name: String) =
       check(isClass(name), s"Class $name is weird")
@@ -73,7 +73,15 @@ def filterDefinitions(
     weirdClass("DesktopAppInfo")
     weirdClass("ThreadedResolver")
 
+    def weirdMethod(cName: String, msg: String) =
+      method.foreach: meth =>
+        check(meth.identifier == cName, s"Method ${meth.name} is weird: $msg")
+
     method.foreach: meth =>
+      weirdMethod(
+        "pango_font_get_hb_font",
+        "refers to HarfBuzz.font_t as gconstpointer"
+      )
       check(
         meth.identifier.startsWith("g_data_input_stream_read_byte"),
         s"Method ${meth.name} is not rendered – there are conflicting versions of it in DataInputStream and BufferedInputStream"

@@ -11,13 +11,17 @@ import sn.gnome.gdkpixbuf.internal.GdkInterpType
 import sn.gnome.gdkpixbuf.internal.GdkPixbuf
 import sn.gnome.gdkpixbuf.internal.GdkPixbufDestroyNotify
 import sn.gnome.gdkpixbuf.internal.GdkPixbufRotation
+import sn.gnome.gdkpixbuf.internal.GdkPixbufSaveFunc
 import sn.gnome.gio.fluent.AsyncResult
 import sn.gnome.gio.fluent.Cancellable
 import sn.gnome.gio.fluent.Icon
 import sn.gnome.gio.fluent.InputStream
 import sn.gnome.gio.fluent.LoadableIcon
+import sn.gnome.gio.fluent.OutputStream
+import sn.gnome.gio.internal.GAsyncReadyCallback
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.GBytes
+import sn.gnome.glib.internal.GError
 import sn.gnome.glib.internal.GHashTable
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gchar
@@ -260,11 +264,71 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     gboolean(gint((if pixelate == true then 1 else 0)))
   )
 
+  inline def save(
+      filename: String | CString,
+      `type`: String | CString,
+      error: Ptr[Ptr[GError]],
+      args: Any*
+  )(using Zone): Boolean = gdk_pixbuf_save(
+    this.raw.asInstanceOf,
+    __sn_extract_string(filename),
+    __sn_extract_string(`type`),
+    error,
+    args*
+  ).value.!=(0)
+
   // Method save_to_buffer contains an array parameter, which is not supported yet
 
   // Method save_to_bufferv contains an array parameter, which is not supported yet
 
+  inline def saveToCallback(
+      save_func: GdkPixbufSaveFunc,
+      user_data: Ptr[Byte],
+      `type`: String | CString,
+      error: Ptr[Ptr[GError]],
+      args: Any*
+  )(using Zone): Boolean = gdk_pixbuf_save_to_callback(
+    this.raw.asInstanceOf,
+    save_func,
+    gpointer(user_data),
+    __sn_extract_string(`type`),
+    error,
+    args*
+  ).value.!=(0)
+
   // Method save_to_callbackv contains an array parameter, which is not supported yet
+
+  inline def saveToStream(
+      stream: OutputStream,
+      `type`: String | CString,
+      cancellable: Cancellable,
+      error: Ptr[Ptr[GError]],
+      args: Any*
+  )(using Zone): Boolean = gdk_pixbuf_save_to_stream(
+    this.raw.asInstanceOf,
+    stream.getUnsafeRawPointer().asInstanceOf,
+    __sn_extract_string(`type`),
+    cancellable.getUnsafeRawPointer().asInstanceOf,
+    error,
+    args*
+  ).value.!=(0)
+
+  inline def saveToStreamAsync(
+      stream: OutputStream,
+      `type`: String | CString,
+      cancellable: Cancellable,
+      callback: GAsyncReadyCallback,
+      user_data: Ptr[Byte],
+      args: Any*
+  )(using Zone): Unit = gdk_pixbuf_save_to_stream_async(
+    this.raw.asInstanceOf,
+    stream.getUnsafeRawPointer().asInstanceOf,
+    __sn_extract_string(`type`).asInstanceOf[Ptr[gchar]],
+    cancellable.getUnsafeRawPointer().asInstanceOf,
+    callback,
+    gpointer(user_data),
+    args*
+  )
 
   // Method save_to_streamv contains an array parameter, which is not supported yet
 

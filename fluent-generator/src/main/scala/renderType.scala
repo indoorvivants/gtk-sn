@@ -218,6 +218,9 @@ def renderType(
       glibAlias("gint", "gint")("Int"),
       glibAlias("gdouble", "gdouble")("Double"),
       glibAlias("gfloat", "gfloat")("Float"),
+      whenFull("gfloat", "float")("Float").map(
+        _.withMassageIntoUnsafe(Massage.InferredCast)
+      ),
       whenTypeValue("gint*")("Ptr[Int]").map(
         _.withMassageFromUnsafe(Massage.InferredCast).withMassageIntoUnsafe(
           Massage.InferredCast
@@ -244,6 +247,14 @@ def renderType(
       whenTypeValue("va_list")("CVarArgList"),
       glibAlias("gpointer", "gpointer")("Ptr[Byte]"),
       glibAlias("goffset", "goffset")("Long"),
+      whenTypeValue("gunichar")("CUnsignedInt").map(
+        _.withMassageFromUnsafe(Massage.Field("value"))
+          .withMassageIntoUnsafe(
+            Massage.Apply("guint32"),
+            Massage.Apply("gunichar")
+          )
+          .withEffect(importGlib("gunichar"), importGlib("guint32"))
+      ),
       whenTypeValue("gpointer")("Ptr[Byte]").map(
         _.withMassageIntoUnsafe(Massage.Apply("gpointer"))
           .withMassageFromUnsafe(Massage.Field("value"))
@@ -272,6 +283,9 @@ def renderType(
       unsignedAlias("gssize", "CLongInt"),
       whenTypeValue("uid_t")("uid_t").map(
         _.withEffect(importGio("uid_t"))
+      ),
+      whenTypeValue("pid_t")("pid_t").map(
+        _.withEffect(importGio("pid_t"))
       ),
       glibAlias("gchar", "char")("Byte").map(
         _.withMassageIntoUnsafe(Massage.InferredCast)

@@ -20,7 +20,7 @@ def renderClassMethod(cls: AugmentedClass, meth: Method)(using
       val params =
         meth.parameters.collect:
           case p: Parameter => p.name.getOrElse("<noname>")
-      s"${meth.name}(${params.mkString(", ")})${meth.returnType}"
+      s"${meth.name}(${params.mkString(", ")})"
 
     val thisMethodSig = sig(meth)
 

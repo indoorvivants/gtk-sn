@@ -4,10 +4,13 @@ import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gchar
+import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GCallback
+import sn.gnome.gobject.internal.GClosure
 import sn.gnome.gobject.internal.GClosureNotify
 import sn.gnome.gobject.internal.GConnectFlags
 import sn.gnome.gobject.internal.GSignalGroup
@@ -40,7 +43,16 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     gpointer(data)
   )
 
-  // Method connectClosure is not rendered: for some reason g_signal_group_connect_closure is absent from raw bindings
+  def connectClosure(
+      detailed_signal: String | CString,
+      closure: Ptr[GClosure],
+      after: Boolean
+  )(using Zone): Unit = g_signal_group_connect_closure(
+    this.raw.asInstanceOf,
+    __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
+    closure,
+    gboolean(gint((if after == true then 1 else 0)))
+  )
 
   def connectData(
       detailed_signal: String | CString,
