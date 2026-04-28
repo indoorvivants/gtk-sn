@@ -224,11 +224,11 @@ lazy val gobject =
 lazy val pango =
   project
     .in(file("pango"))
-    .dependsOn(glib, cairo, gobject, harfbuzz)
+    .dependsOn(glib, cairo, gobject, harfbuzz, gio)
     .configure(pkgConfigured("pango"))
     .settings(
       bindgenBindings +=
-        buildWithDependencies("glib", "cairo", "gobject", "harfbuzz") {
+        buildWithDependencies("gio", "glib", "cairo", "gobject", "harfbuzz") {
           val headerPath = findHeader("pango", _ / "pango" / "pango.h")
           Binding(
             headerPath,
@@ -240,7 +240,8 @@ lazy val pango =
             .withMultiFile(true)
             .addExcludedSystemPath(headerPath.toPath.getParent())
         },
-      girModuleName := "pango-1.0"
+      girModuleName := "pango-1.0",
+      withFluentBindings
     )
 
 lazy val gdkpixbuf =
