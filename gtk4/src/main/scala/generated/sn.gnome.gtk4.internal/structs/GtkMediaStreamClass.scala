@@ -1,16 +1,16 @@
 package sn.gnome.gtk4.internal
 
-// This file was generated using sn-bindgen 0.4.3+6-e972956a-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
+// This file was generated using sn-bindgen 0.4.4: https://sn-bindgen.indoorvivants.com/
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
-opaque type GtkMediaStreamClass = CStruct15[_root_.sn.gnome.gobject.internal.GObjectClass, CFuncPtr1[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gboolean], CFuncPtr1[Ptr[GtkMediaStream], Unit], CFuncPtr2[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gint64, Unit], CFuncPtr3[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gboolean, Double, Unit], CFuncPtr2[Ptr[GtkMediaStream], Ptr[GdkSurface], Unit], CFuncPtr2[Ptr[GtkMediaStream], Ptr[GdkSurface], Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit]]
+opaque type GtkMediaStreamClass = CStruct15[_root_.sn.gnome.gobject.internal.GObjectClass, CFuncPtr1[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gboolean], CFuncPtr1[Ptr[GtkMediaStream], Unit], CFuncPtr2[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gint64, Unit], CFuncPtr3[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gboolean, Double, Unit], CFuncPtr2[Ptr[GtkMediaStream], Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface], Unit], CFuncPtr2[Ptr[GtkMediaStream], Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface], Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit]]
 
 object GtkMediaStreamClass:
-  given _tag: Tag[GtkMediaStreamClass] = Tag.materializeCStruct15Tag[_root_.sn.gnome.gobject.internal.GObjectClass, CFuncPtr1[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gboolean], CFuncPtr1[Ptr[GtkMediaStream], Unit], CFuncPtr2[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gint64, Unit], CFuncPtr3[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gboolean, Double, Unit], CFuncPtr2[Ptr[GtkMediaStream], Ptr[GdkSurface], Unit], CFuncPtr2[Ptr[GtkMediaStream], Ptr[GdkSurface], Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit]]
+  given _tag: Tag[GtkMediaStreamClass] = Tag.materializeCStruct15Tag[_root_.sn.gnome.gobject.internal.GObjectClass, CFuncPtr1[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gboolean], CFuncPtr1[Ptr[GtkMediaStream], Unit], CFuncPtr2[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gint64, Unit], CFuncPtr3[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gboolean, Double, Unit], CFuncPtr2[Ptr[GtkMediaStream], Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface], Unit], CFuncPtr2[Ptr[GtkMediaStream], Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface], Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit]]
   
   export fields.*
   private[internal] object fields:
@@ -25,10 +25,10 @@ object GtkMediaStreamClass:
       inline def seek_=(value: CFuncPtr2[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gint64, Unit]): Unit = (!struct.at4 = value)
       inline def update_audio : CFuncPtr3[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gboolean, Double, Unit] = struct._5
       inline def update_audio_=(value: CFuncPtr3[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gboolean, Double, Unit]): Unit = (!struct.at5 = value)
-      inline def realize : CFuncPtr2[Ptr[GtkMediaStream], Ptr[GdkSurface], Unit] = struct._6
-      inline def realize_=(value: CFuncPtr2[Ptr[GtkMediaStream], Ptr[GdkSurface], Unit]): Unit = (!struct.at6 = value)
-      inline def unrealize : CFuncPtr2[Ptr[GtkMediaStream], Ptr[GdkSurface], Unit] = struct._7
-      inline def unrealize_=(value: CFuncPtr2[Ptr[GtkMediaStream], Ptr[GdkSurface], Unit]): Unit = (!struct.at7 = value)
+      inline def realize : CFuncPtr2[Ptr[GtkMediaStream], Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface], Unit] = struct._6
+      inline def realize_=(value: CFuncPtr2[Ptr[GtkMediaStream], Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface], Unit]): Unit = (!struct.at6 = value)
+      inline def unrealize : CFuncPtr2[Ptr[GtkMediaStream], Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface], Unit] = struct._7
+      inline def unrealize_=(value: CFuncPtr2[Ptr[GtkMediaStream], Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface], Unit]): Unit = (!struct.at7 = value)
       inline def _gtk_reserved1 : CFuncPtr0[Unit] = struct._8
       inline def _gtk_reserved1_=(value: CFuncPtr0[Unit]): Unit = (!struct.at8 = value)
       inline def _gtk_reserved2 : CFuncPtr0[Unit] = struct._9
@@ -49,7 +49,7 @@ object GtkMediaStreamClass:
   
   // Allocates GtkMediaStreamClass on the heap – fields are not initalised or zeroed out
   def apply()(using Zone): Ptr[GtkMediaStreamClass] = scala.scalanative.unsafe.alloc[GtkMediaStreamClass](1)
-  def apply(parent_class : _root_.sn.gnome.gobject.internal.GObjectClass, play : CFuncPtr1[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gboolean], pause : CFuncPtr1[Ptr[GtkMediaStream], Unit], seek : CFuncPtr2[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gint64, Unit], update_audio : CFuncPtr3[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gboolean, Double, Unit], realize : CFuncPtr2[Ptr[GtkMediaStream], Ptr[GdkSurface], Unit], unrealize : CFuncPtr2[Ptr[GtkMediaStream], Ptr[GdkSurface], Unit], _gtk_reserved1 : CFuncPtr0[Unit], _gtk_reserved2 : CFuncPtr0[Unit], _gtk_reserved3 : CFuncPtr0[Unit], _gtk_reserved4 : CFuncPtr0[Unit], _gtk_reserved5 : CFuncPtr0[Unit], _gtk_reserved6 : CFuncPtr0[Unit], _gtk_reserved7 : CFuncPtr0[Unit], _gtk_reserved8 : CFuncPtr0[Unit])(using Zone): Ptr[GtkMediaStreamClass] =
+  def apply(parent_class : _root_.sn.gnome.gobject.internal.GObjectClass, play : CFuncPtr1[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gboolean], pause : CFuncPtr1[Ptr[GtkMediaStream], Unit], seek : CFuncPtr2[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gint64, Unit], update_audio : CFuncPtr3[Ptr[GtkMediaStream], _root_.sn.gnome.glib.internal.gboolean, Double, Unit], realize : CFuncPtr2[Ptr[GtkMediaStream], Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface], Unit], unrealize : CFuncPtr2[Ptr[GtkMediaStream], Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface], Unit], _gtk_reserved1 : CFuncPtr0[Unit], _gtk_reserved2 : CFuncPtr0[Unit], _gtk_reserved3 : CFuncPtr0[Unit], _gtk_reserved4 : CFuncPtr0[Unit], _gtk_reserved5 : CFuncPtr0[Unit], _gtk_reserved6 : CFuncPtr0[Unit], _gtk_reserved7 : CFuncPtr0[Unit], _gtk_reserved8 : CFuncPtr0[Unit])(using Zone): Ptr[GtkMediaStreamClass] =
     val ____ptr = apply()
     (!____ptr).parent_class = parent_class
     (!____ptr).play = play

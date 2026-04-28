@@ -1,6 +1,6 @@
 package sn.gnome.gtk4.internal
 
-// This file was generated using sn-bindgen 0.4.3+6-e972956a-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
+// This file was generated using sn-bindgen 0.4.4: https://sn-bindgen.indoorvivants.com/
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
@@ -611,7 +611,7 @@ import _root_.scala.scalanative.*
 
 @extern def _gtk_cell_layout_buildable_custom_tag_start(buildable : Ptr[GtkBuildable], builder : Ptr[GtkBuilder], child : Ptr[_root_.sn.gnome.gobject.internal.GObject], tagname : CString, parser : Ptr[GtkBuildableParser], data : Ptr[_root_.sn.gnome.glib.internal.gpointer]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def _gtk_cell_renderer_calc_offset(cell : Ptr[GtkCellRenderer], cell_area : Ptr[GdkRectangle], direction : GtkTextDirection, width : CInt, height : CInt, x_offset : Ptr[CInt], y_offset : Ptr[CInt]): Unit = extern
+@extern def _gtk_cell_renderer_calc_offset(cell : Ptr[GtkCellRenderer], cell_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], direction : GtkTextDirection, width : CInt, height : CInt, x_offset : Ptr[CInt], y_offset : Ptr[CInt]): Unit = extern
 
 @extern def _gtk_recent_manager_sync(): Unit = extern
 
@@ -4191,7 +4191,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_about_dialog_get_license_type(about : Ptr[GtkAboutDialog]): GtkLicense = extern
 
-@extern def gtk_about_dialog_get_logo(about : Ptr[GtkAboutDialog]): Ptr[GdkPaintable] = extern
+@extern def gtk_about_dialog_get_logo(about : Ptr[GtkAboutDialog]): Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable] = extern
 
 @extern def gtk_about_dialog_get_logo_icon_name(about : Ptr[GtkAboutDialog]): CString = extern
 
@@ -4227,7 +4227,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_about_dialog_set_license_type(about : Ptr[GtkAboutDialog], license_type : GtkLicense): Unit = extern
 
-@extern def gtk_about_dialog_set_logo(about : Ptr[GtkAboutDialog], logo : Ptr[GdkPaintable]): Unit = extern
+@extern def gtk_about_dialog_set_logo(about : Ptr[GtkAboutDialog], logo : Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]): Unit = extern
 
 @extern def gtk_about_dialog_set_logo_icon_name(about : Ptr[GtkAboutDialog], icon_name : CString): Unit = extern
 
@@ -4245,21 +4245,21 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_about_dialog_set_wrap_license(about : Ptr[GtkAboutDialog], wrap_license : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
-@extern def gtk_accelerator_get_default_mod_mask(): GdkModifierType = extern
+@extern def gtk_accelerator_get_default_mod_mask(): _root_.sn.gnome.gdk4.internal.GdkModifierType = extern
 
-@extern def gtk_accelerator_get_label(accelerator_key : _root_.sn.gnome.glib.internal.guint, accelerator_mods : GdkModifierType): CString = extern
+@extern def gtk_accelerator_get_label(accelerator_key : _root_.sn.gnome.glib.internal.guint, accelerator_mods : _root_.sn.gnome.gdk4.internal.GdkModifierType): CString = extern
 
-@extern def gtk_accelerator_get_label_with_keycode(display : Ptr[GdkDisplay], accelerator_key : _root_.sn.gnome.glib.internal.guint, keycode : _root_.sn.gnome.glib.internal.guint, accelerator_mods : GdkModifierType): CString = extern
+@extern def gtk_accelerator_get_label_with_keycode(display : Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay], accelerator_key : _root_.sn.gnome.glib.internal.guint, keycode : _root_.sn.gnome.glib.internal.guint, accelerator_mods : _root_.sn.gnome.gdk4.internal.GdkModifierType): CString = extern
 
-@extern def gtk_accelerator_name(accelerator_key : _root_.sn.gnome.glib.internal.guint, accelerator_mods : GdkModifierType): CString = extern
+@extern def gtk_accelerator_name(accelerator_key : _root_.sn.gnome.glib.internal.guint, accelerator_mods : _root_.sn.gnome.gdk4.internal.GdkModifierType): CString = extern
 
-@extern def gtk_accelerator_name_with_keycode(display : Ptr[GdkDisplay], accelerator_key : _root_.sn.gnome.glib.internal.guint, keycode : _root_.sn.gnome.glib.internal.guint, accelerator_mods : GdkModifierType): CString = extern
+@extern def gtk_accelerator_name_with_keycode(display : Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay], accelerator_key : _root_.sn.gnome.glib.internal.guint, keycode : _root_.sn.gnome.glib.internal.guint, accelerator_mods : _root_.sn.gnome.gdk4.internal.GdkModifierType): CString = extern
 
-@extern def gtk_accelerator_parse(accelerator : CString, accelerator_key : Ptr[_root_.sn.gnome.glib.internal.guint], accelerator_mods : Ptr[GdkModifierType]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_accelerator_parse(accelerator : CString, accelerator_key : Ptr[_root_.sn.gnome.glib.internal.guint], accelerator_mods : Ptr[_root_.sn.gnome.gdk4.internal.GdkModifierType]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_accelerator_parse_with_keycode(accelerator : CString, display : Ptr[GdkDisplay], accelerator_key : Ptr[_root_.sn.gnome.glib.internal.guint], accelerator_codes : Ptr[Ptr[_root_.sn.gnome.glib.internal.guint]], accelerator_mods : Ptr[GdkModifierType]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_accelerator_parse_with_keycode(accelerator : CString, display : Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay], accelerator_key : Ptr[_root_.sn.gnome.glib.internal.guint], accelerator_codes : Ptr[Ptr[_root_.sn.gnome.glib.internal.guint]], accelerator_mods : Ptr[_root_.sn.gnome.gdk4.internal.GdkModifierType]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_accelerator_valid(keyval : _root_.sn.gnome.glib.internal.guint, modifiers : GdkModifierType): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_accelerator_valid(keyval : _root_.sn.gnome.glib.internal.guint, modifiers : _root_.sn.gnome.gdk4.internal.GdkModifierType): _root_.sn.gnome.glib.internal.gboolean = extern
 
 @extern def gtk_accessible_announce(self : Ptr[GtkAccessible], message : CString, priority : GtkAccessibleAnnouncementPriority): Unit = extern
 
@@ -4677,7 +4677,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_assistant_update_buttons_state(assistant : Ptr[GtkAssistant]): Unit = extern
 
-@extern def gtk_at_context_create(accessible_role : GtkAccessibleRole, accessible : Ptr[GtkAccessible], display : Ptr[GdkDisplay]): Ptr[GtkATContext] = extern
+@extern def gtk_at_context_create(accessible_role : GtkAccessibleRole, accessible : Ptr[GtkAccessible], display : Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]): Ptr[GtkATContext] = extern
 
 @extern def gtk_at_context_get_accessible(self : Ptr[GtkATContext]): Ptr[GtkAccessible] = extern
 
@@ -5036,9 +5036,9 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_cclosure_expression_new(value_type : _root_.sn.gnome.gobject.internal.GType, marshal : _root_.sn.gnome.gobject.internal.GClosureMarshal, n_params : _root_.sn.gnome.glib.internal.guint, params : Ptr[Ptr[GtkExpression]], callback_func : _root_.sn.gnome.gobject.internal.GCallback, user_data : _root_.sn.gnome.glib.internal.gpointer, user_destroy : _root_.sn.gnome.gobject.internal.GClosureNotify): Ptr[GtkExpression] = extern
 
-@extern def gtk_cell_area_activate(area : Ptr[GtkCellArea], context : Ptr[GtkCellAreaContext], widget : Ptr[GtkWidget], cell_area : Ptr[GdkRectangle], flags : GtkCellRendererState, edit_only : _root_.sn.gnome.glib.internal.gboolean): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_cell_area_activate(area : Ptr[GtkCellArea], context : Ptr[GtkCellAreaContext], widget : Ptr[GtkWidget], cell_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], flags : GtkCellRendererState, edit_only : _root_.sn.gnome.glib.internal.gboolean): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_cell_area_activate_cell(area : Ptr[GtkCellArea], widget : Ptr[GtkWidget], renderer : Ptr[GtkCellRenderer], event : Ptr[GdkEvent], cell_area : Ptr[GdkRectangle], flags : GtkCellRendererState): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_cell_area_activate_cell(area : Ptr[GtkCellArea], widget : Ptr[GtkWidget], renderer : Ptr[GtkCellRenderer], event : Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent], cell_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], flags : GtkCellRendererState): _root_.sn.gnome.glib.internal.gboolean = extern
 
 @extern def gtk_cell_area_add(area : Ptr[GtkCellArea], renderer : Ptr[GtkCellRenderer]): Unit = extern
 
@@ -5110,17 +5110,17 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_cell_area_create_context(area : Ptr[GtkCellArea]): Ptr[GtkCellAreaContext] = extern
 
-@extern def gtk_cell_area_event(area : Ptr[GtkCellArea], context : Ptr[GtkCellAreaContext], widget : Ptr[GtkWidget], event : Ptr[GdkEvent], cell_area : Ptr[GdkRectangle], flags : GtkCellRendererState): CInt = extern
+@extern def gtk_cell_area_event(area : Ptr[GtkCellArea], context : Ptr[GtkCellAreaContext], widget : Ptr[GtkWidget], event : Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent], cell_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], flags : GtkCellRendererState): CInt = extern
 
 @extern def gtk_cell_area_focus(area : Ptr[GtkCellArea], direction : GtkDirectionType): _root_.sn.gnome.glib.internal.gboolean = extern
 
 @extern def gtk_cell_area_foreach(area : Ptr[GtkCellArea], callback : GtkCellCallback, callback_data : _root_.sn.gnome.glib.internal.gpointer): Unit = extern
 
-@extern def gtk_cell_area_foreach_alloc(area : Ptr[GtkCellArea], context : Ptr[GtkCellAreaContext], widget : Ptr[GtkWidget], cell_area : Ptr[GdkRectangle], background_area : Ptr[GdkRectangle], callback : GtkCellAllocCallback, callback_data : _root_.sn.gnome.glib.internal.gpointer): Unit = extern
+@extern def gtk_cell_area_foreach_alloc(area : Ptr[GtkCellArea], context : Ptr[GtkCellAreaContext], widget : Ptr[GtkWidget], cell_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], background_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], callback : GtkCellAllocCallback, callback_data : _root_.sn.gnome.glib.internal.gpointer): Unit = extern
 
-@extern def gtk_cell_area_get_cell_allocation(area : Ptr[GtkCellArea], context : Ptr[GtkCellAreaContext], widget : Ptr[GtkWidget], renderer : Ptr[GtkCellRenderer], cell_area : Ptr[GdkRectangle], allocation : Ptr[GdkRectangle]): Unit = extern
+@extern def gtk_cell_area_get_cell_allocation(area : Ptr[GtkCellArea], context : Ptr[GtkCellAreaContext], widget : Ptr[GtkWidget], renderer : Ptr[GtkCellRenderer], cell_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], allocation : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
-@extern def gtk_cell_area_get_cell_at_position(area : Ptr[GtkCellArea], context : Ptr[GtkCellAreaContext], widget : Ptr[GtkWidget], cell_area : Ptr[GdkRectangle], x : CInt, y : CInt, alloc_area : Ptr[GdkRectangle]): Ptr[GtkCellRenderer] = extern
+@extern def gtk_cell_area_get_cell_at_position(area : Ptr[GtkCellArea], context : Ptr[GtkCellAreaContext], widget : Ptr[GtkWidget], cell_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], x : CInt, y : CInt, alloc_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Ptr[GtkCellRenderer] = extern
 
 @extern def gtk_cell_area_get_current_path_string(area : Ptr[GtkCellArea]): CString = extern
 
@@ -5148,7 +5148,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_cell_area_has_renderer(area : Ptr[GtkCellArea], renderer : Ptr[GtkCellRenderer]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_cell_area_inner_cell_area(area : Ptr[GtkCellArea], widget : Ptr[GtkWidget], cell_area : Ptr[GdkRectangle], inner_area : Ptr[GdkRectangle]): Unit = extern
+@extern def gtk_cell_area_inner_cell_area(area : Ptr[GtkCellArea], widget : Ptr[GtkWidget], cell_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], inner_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
 @extern def gtk_cell_area_is_activatable(area : Ptr[GtkCellArea]): _root_.sn.gnome.glib.internal.gboolean = extern
 
@@ -5162,7 +5162,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_cell_area_set_focus_cell(area : Ptr[GtkCellArea], renderer : Ptr[GtkCellRenderer]): Unit = extern
 
-@extern def gtk_cell_area_snapshot(area : Ptr[GtkCellArea], context : Ptr[GtkCellAreaContext], widget : Ptr[GtkWidget], snapshot : Ptr[GtkSnapshot], background_area : Ptr[GdkRectangle], cell_area : Ptr[GdkRectangle], flags : GtkCellRendererState, paint_focus : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
+@extern def gtk_cell_area_snapshot(area : Ptr[GtkCellArea], context : Ptr[GtkCellAreaContext], widget : Ptr[GtkWidget], snapshot : Ptr[GtkSnapshot], background_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], cell_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], flags : GtkCellRendererState, paint_focus : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
 @extern def gtk_cell_area_stop_editing(area : Ptr[GtkCellArea], canceled : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
@@ -5172,7 +5172,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_cell_editable_remove_widget(cell_editable : Ptr[GtkCellEditable]): Unit = extern
 
-@extern def gtk_cell_editable_start_editing(cell_editable : Ptr[GtkCellEditable], event : Ptr[GdkEvent]): Unit = extern
+@extern def gtk_cell_editable_start_editing(cell_editable : Ptr[GtkCellEditable], event : Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]): Unit = extern
 
 @extern def gtk_cell_layout_add_attribute(cell_layout : Ptr[GtkCellLayout], cell : Ptr[GtkCellRenderer], attribute : CString, column : CInt): Unit = extern
 
@@ -5202,13 +5202,13 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_cell_renderer_accel_new(): Ptr[GtkCellRenderer] = extern
 
-@extern def gtk_cell_renderer_activate(cell : Ptr[GtkCellRenderer], event : Ptr[GdkEvent], widget : Ptr[GtkWidget], path : CString, background_area : Ptr[GdkRectangle], cell_area : Ptr[GdkRectangle], flags : GtkCellRendererState): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_cell_renderer_activate(cell : Ptr[GtkCellRenderer], event : Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent], widget : Ptr[GtkWidget], path : CString, background_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], cell_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], flags : GtkCellRendererState): _root_.sn.gnome.glib.internal.gboolean = extern
 
 @extern def gtk_cell_renderer_combo_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
 @extern def gtk_cell_renderer_combo_new(): Ptr[GtkCellRenderer] = extern
 
-@extern def gtk_cell_renderer_get_aligned_area(cell : Ptr[GtkCellRenderer], widget : Ptr[GtkWidget], flags : GtkCellRendererState, cell_area : Ptr[GdkRectangle], aligned_area : Ptr[GdkRectangle]): Unit = extern
+@extern def gtk_cell_renderer_get_aligned_area(cell : Ptr[GtkCellRenderer], widget : Ptr[GtkWidget], flags : GtkCellRendererState, cell_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], aligned_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
 @extern def gtk_cell_renderer_get_alignment(cell : Ptr[GtkCellRenderer], xalign : Ptr[Float], yalign : Ptr[Float]): Unit = extern
 
@@ -5266,7 +5266,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_cell_renderer_set_visible(cell : Ptr[GtkCellRenderer], visible : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
-@extern def gtk_cell_renderer_snapshot(cell : Ptr[GtkCellRenderer], snapshot : Ptr[GtkSnapshot], widget : Ptr[GtkWidget], background_area : Ptr[GdkRectangle], cell_area : Ptr[GdkRectangle], flags : GtkCellRendererState): Unit = extern
+@extern def gtk_cell_renderer_snapshot(cell : Ptr[GtkCellRenderer], snapshot : Ptr[GtkSnapshot], widget : Ptr[GtkWidget], background_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], cell_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], flags : GtkCellRendererState): Unit = extern
 
 @extern def gtk_cell_renderer_spin_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
@@ -5276,7 +5276,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_cell_renderer_spinner_new(): Ptr[GtkCellRenderer] = extern
 
-@extern def gtk_cell_renderer_start_editing(cell : Ptr[GtkCellRenderer], event : Ptr[GdkEvent], widget : Ptr[GtkWidget], path : CString, background_area : Ptr[GdkRectangle], cell_area : Ptr[GdkRectangle], flags : GtkCellRendererState): Ptr[GtkCellEditable] = extern
+@extern def gtk_cell_renderer_start_editing(cell : Ptr[GtkCellRenderer], event : Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent], widget : Ptr[GtkWidget], path : CString, background_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], cell_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], flags : GtkCellRendererState): Ptr[GtkCellEditable] = extern
 
 @extern def gtk_cell_renderer_state_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
@@ -5322,7 +5322,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_cell_view_new_with_text(text : CString): Ptr[GtkWidget] = extern
 
-@extern def gtk_cell_view_new_with_texture(texture : Ptr[GdkTexture]): Ptr[GtkWidget] = extern
+@extern def gtk_cell_view_new_with_texture(texture : Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]): Ptr[GtkWidget] = extern
 
 @extern def gtk_cell_view_set_displayed_row(cell_view : Ptr[GtkCellView], path : Ptr[GtkTreePath]): Unit = extern
 
@@ -5430,25 +5430,25 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_color_button_new(): Ptr[GtkWidget] = extern
 
-@extern def gtk_color_button_new_with_rgba(rgba : Ptr[GdkRGBA]): Ptr[GtkWidget] = extern
+@extern def gtk_color_button_new_with_rgba(rgba : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]): Ptr[GtkWidget] = extern
 
 @extern def gtk_color_button_set_modal(button : Ptr[GtkColorButton], modal : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
 @extern def gtk_color_button_set_title(button : Ptr[GtkColorButton], title : CString): Unit = extern
 
-@extern def gtk_color_chooser_add_palette(chooser : Ptr[GtkColorChooser], orientation : GtkOrientation, colors_per_line : CInt, n_colors : CInt, colors : Ptr[GdkRGBA]): Unit = extern
+@extern def gtk_color_chooser_add_palette(chooser : Ptr[GtkColorChooser], orientation : GtkOrientation, colors_per_line : CInt, n_colors : CInt, colors : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]): Unit = extern
 
 @extern def gtk_color_chooser_dialog_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
 @extern def gtk_color_chooser_dialog_new(title : CString, parent : Ptr[GtkWindow]): Ptr[GtkWidget] = extern
 
-@extern def gtk_color_chooser_get_rgba(chooser : Ptr[GtkColorChooser], color : Ptr[GdkRGBA]): Unit = extern
+@extern def gtk_color_chooser_get_rgba(chooser : Ptr[GtkColorChooser], color : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]): Unit = extern
 
 @extern def gtk_color_chooser_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
 @extern def gtk_color_chooser_get_use_alpha(chooser : Ptr[GtkColorChooser]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_color_chooser_set_rgba(chooser : Ptr[GtkColorChooser], color : Ptr[GdkRGBA]): Unit = extern
+@extern def gtk_color_chooser_set_rgba(chooser : Ptr[GtkColorChooser], color : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]): Unit = extern
 
 @extern def gtk_color_chooser_set_use_alpha(chooser : Ptr[GtkColorChooser], use_alpha : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
@@ -5458,7 +5458,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_color_dialog_button_get_dialog(self : Ptr[GtkColorDialogButton]): Ptr[GtkColorDialog] = extern
 
-@extern def gtk_color_dialog_button_get_rgba(self : Ptr[GtkColorDialogButton]): Ptr[GdkRGBA] = extern
+@extern def gtk_color_dialog_button_get_rgba(self : Ptr[GtkColorDialogButton]): Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA] = extern
 
 @extern def gtk_color_dialog_button_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
@@ -5466,11 +5466,11 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_color_dialog_button_set_dialog(self : Ptr[GtkColorDialogButton], dialog : Ptr[GtkColorDialog]): Unit = extern
 
-@extern def gtk_color_dialog_button_set_rgba(self : Ptr[GtkColorDialogButton], color : Ptr[GdkRGBA]): Unit = extern
+@extern def gtk_color_dialog_button_set_rgba(self : Ptr[GtkColorDialogButton], color : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]): Unit = extern
 
-@extern def gtk_color_dialog_choose_rgba(self : Ptr[GtkColorDialog], parent : Ptr[GtkWindow], initial_color : Ptr[GdkRGBA], cancellable : Ptr[_root_.sn.gnome.gio.internal.GCancellable], callback : _root_.sn.gnome.gio.internal.GAsyncReadyCallback, user_data : _root_.sn.gnome.glib.internal.gpointer): Unit = extern
+@extern def gtk_color_dialog_choose_rgba(self : Ptr[GtkColorDialog], parent : Ptr[GtkWindow], initial_color : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA], cancellable : Ptr[_root_.sn.gnome.gio.internal.GCancellable], callback : _root_.sn.gnome.gio.internal.GAsyncReadyCallback, user_data : _root_.sn.gnome.glib.internal.gpointer): Unit = extern
 
-@extern def gtk_color_dialog_choose_rgba_finish(self : Ptr[GtkColorDialog], result : Ptr[_root_.sn.gnome.gio.internal.GAsyncResult], error : Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]): Ptr[GdkRGBA] = extern
+@extern def gtk_color_dialog_choose_rgba_finish(self : Ptr[GtkColorDialog], result : Ptr[_root_.sn.gnome.gio.internal.GAsyncResult], error : Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]): Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA] = extern
 
 @extern def gtk_color_dialog_get_modal(self : Ptr[GtkColorDialog]): _root_.sn.gnome.glib.internal.gboolean = extern
 
@@ -5674,7 +5674,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_combo_box_popup(combo_box : Ptr[GtkComboBox]): Unit = extern
 
-@extern def gtk_combo_box_popup_for_device(combo_box : Ptr[GtkComboBox], device : Ptr[GdkDevice]): Unit = extern
+@extern def gtk_combo_box_popup_for_device(combo_box : Ptr[GtkComboBox], device : Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]): Unit = extern
 
 @extern def gtk_combo_box_set_active(combo_box : Ptr[GtkComboBox], `index_` : CInt): Unit = extern
 
@@ -5956,31 +5956,31 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_drag_icon_get_child(self : Ptr[GtkDragIcon]): Ptr[GtkWidget] = extern
 
-@extern def gtk_drag_icon_get_for_drag(drag : Ptr[GdkDrag]): Ptr[GtkWidget] = extern
+@extern def gtk_drag_icon_get_for_drag(drag : Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]): Ptr[GtkWidget] = extern
 
 @extern def gtk_drag_icon_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
 @extern def gtk_drag_icon_set_child(self : Ptr[GtkDragIcon], child : Ptr[GtkWidget]): Unit = extern
 
-@extern def gtk_drag_icon_set_from_paintable(drag : Ptr[GdkDrag], paintable : Ptr[GdkPaintable], hot_x : CInt, hot_y : CInt): Unit = extern
+@extern def gtk_drag_icon_set_from_paintable(drag : Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag], paintable : Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable], hot_x : CInt, hot_y : CInt): Unit = extern
 
 @extern def gtk_drag_source_drag_cancel(source : Ptr[GtkDragSource]): Unit = extern
 
-@extern def gtk_drag_source_get_actions(source : Ptr[GtkDragSource]): GdkDragAction = extern
+@extern def gtk_drag_source_get_actions(source : Ptr[GtkDragSource]): _root_.sn.gnome.gdk4.internal.GdkDragAction = extern
 
-@extern def gtk_drag_source_get_content(source : Ptr[GtkDragSource]): Ptr[GdkContentProvider] = extern
+@extern def gtk_drag_source_get_content(source : Ptr[GtkDragSource]): Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider] = extern
 
-@extern def gtk_drag_source_get_drag(source : Ptr[GtkDragSource]): Ptr[GdkDrag] = extern
+@extern def gtk_drag_source_get_drag(source : Ptr[GtkDragSource]): Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag] = extern
 
 @extern def gtk_drag_source_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
 @extern def gtk_drag_source_new(): Ptr[GtkDragSource] = extern
 
-@extern def gtk_drag_source_set_actions(source : Ptr[GtkDragSource], actions : GdkDragAction): Unit = extern
+@extern def gtk_drag_source_set_actions(source : Ptr[GtkDragSource], actions : _root_.sn.gnome.gdk4.internal.GdkDragAction): Unit = extern
 
-@extern def gtk_drag_source_set_content(source : Ptr[GtkDragSource], content : Ptr[GdkContentProvider]): Unit = extern
+@extern def gtk_drag_source_set_content(source : Ptr[GtkDragSource], content : Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]): Unit = extern
 
-@extern def gtk_drag_source_set_icon(source : Ptr[GtkDragSource], paintable : Ptr[GdkPaintable], hot_x : CInt, hot_y : CInt): Unit = extern
+@extern def gtk_drag_source_set_icon(source : Ptr[GtkDragSource], paintable : Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable], hot_x : CInt, hot_y : CInt): Unit = extern
 
 @extern def gtk_drawing_area_get_content_height(self : Ptr[GtkDrawingArea]): CInt = extern
 
@@ -5998,7 +5998,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_drop_controller_motion_contains_pointer(self : Ptr[GtkDropControllerMotion]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_drop_controller_motion_get_drop(self : Ptr[GtkDropControllerMotion]): Ptr[GdkDrop] = extern
+@extern def gtk_drop_controller_motion_get_drop(self : Ptr[GtkDropControllerMotion]): Ptr[_root_.sn.gnome.gdk4.internal.GdkDrop] = extern
 
 @extern def gtk_drop_controller_motion_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
@@ -6050,27 +6050,27 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_drop_down_set_show_arrow(self : Ptr[GtkDropDown], show_arrow : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
-@extern def gtk_drop_target_async_get_actions(self : Ptr[GtkDropTargetAsync]): GdkDragAction = extern
+@extern def gtk_drop_target_async_get_actions(self : Ptr[GtkDropTargetAsync]): _root_.sn.gnome.gdk4.internal.GdkDragAction = extern
 
-@extern def gtk_drop_target_async_get_formats(self : Ptr[GtkDropTargetAsync]): Ptr[GdkContentFormats] = extern
+@extern def gtk_drop_target_async_get_formats(self : Ptr[GtkDropTargetAsync]): Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats] = extern
 
 @extern def gtk_drop_target_async_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
-@extern def gtk_drop_target_async_new(formats : Ptr[GdkContentFormats], actions : GdkDragAction): Ptr[GtkDropTargetAsync] = extern
+@extern def gtk_drop_target_async_new(formats : Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats], actions : _root_.sn.gnome.gdk4.internal.GdkDragAction): Ptr[GtkDropTargetAsync] = extern
 
-@extern def gtk_drop_target_async_reject_drop(self : Ptr[GtkDropTargetAsync], drop : Ptr[GdkDrop]): Unit = extern
+@extern def gtk_drop_target_async_reject_drop(self : Ptr[GtkDropTargetAsync], drop : Ptr[_root_.sn.gnome.gdk4.internal.GdkDrop]): Unit = extern
 
-@extern def gtk_drop_target_async_set_actions(self : Ptr[GtkDropTargetAsync], actions : GdkDragAction): Unit = extern
+@extern def gtk_drop_target_async_set_actions(self : Ptr[GtkDropTargetAsync], actions : _root_.sn.gnome.gdk4.internal.GdkDragAction): Unit = extern
 
-@extern def gtk_drop_target_async_set_formats(self : Ptr[GtkDropTargetAsync], formats : Ptr[GdkContentFormats]): Unit = extern
+@extern def gtk_drop_target_async_set_formats(self : Ptr[GtkDropTargetAsync], formats : Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]): Unit = extern
 
-@extern def gtk_drop_target_get_actions(self : Ptr[GtkDropTarget]): GdkDragAction = extern
+@extern def gtk_drop_target_get_actions(self : Ptr[GtkDropTarget]): _root_.sn.gnome.gdk4.internal.GdkDragAction = extern
 
-@extern def gtk_drop_target_get_current_drop(self : Ptr[GtkDropTarget]): Ptr[GdkDrop] = extern
+@extern def gtk_drop_target_get_current_drop(self : Ptr[GtkDropTarget]): Ptr[_root_.sn.gnome.gdk4.internal.GdkDrop] = extern
 
-@extern def gtk_drop_target_get_drop(self : Ptr[GtkDropTarget]): Ptr[GdkDrop] = extern
+@extern def gtk_drop_target_get_drop(self : Ptr[GtkDropTarget]): Ptr[_root_.sn.gnome.gdk4.internal.GdkDrop] = extern
 
-@extern def gtk_drop_target_get_formats(self : Ptr[GtkDropTarget]): Ptr[GdkContentFormats] = extern
+@extern def gtk_drop_target_get_formats(self : Ptr[GtkDropTarget]): Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats] = extern
 
 @extern def gtk_drop_target_get_gtypes(self : Ptr[GtkDropTarget], n_types : Ptr[_root_.sn.gnome.glib.internal.gsize]): Ptr[_root_.sn.gnome.gobject.internal.GType] = extern
 
@@ -6080,11 +6080,11 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_drop_target_get_value(self : Ptr[GtkDropTarget]): Ptr[_root_.sn.gnome.gobject.internal.GValue] = extern
 
-@extern def gtk_drop_target_new(`type` : _root_.sn.gnome.gobject.internal.GType, actions : GdkDragAction): Ptr[GtkDropTarget] = extern
+@extern def gtk_drop_target_new(`type` : _root_.sn.gnome.gobject.internal.GType, actions : _root_.sn.gnome.gdk4.internal.GdkDragAction): Ptr[GtkDropTarget] = extern
 
 @extern def gtk_drop_target_reject(self : Ptr[GtkDropTarget]): Unit = extern
 
-@extern def gtk_drop_target_set_actions(self : Ptr[GtkDropTarget], actions : GdkDragAction): Unit = extern
+@extern def gtk_drop_target_set_actions(self : Ptr[GtkDropTarget], actions : _root_.sn.gnome.gdk4.internal.GdkDragAction): Unit = extern
 
 @extern def gtk_drop_target_set_gtypes(self : Ptr[GtkDropTarget], types : Ptr[_root_.sn.gnome.gobject.internal.GType], n_types : _root_.sn.gnome.glib.internal.gsize): Unit = extern
 
@@ -6254,7 +6254,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_entry_get_icon_activatable(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_entry_get_icon_area(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition, icon_area : Ptr[GdkRectangle]): Unit = extern
+@extern def gtk_entry_get_icon_area(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition, icon_area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
 @extern def gtk_entry_get_icon_at_pos(entry : Ptr[GtkEntry], x : CInt, y : CInt): CInt = extern
 
@@ -6262,7 +6262,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_entry_get_icon_name(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition): CString = extern
 
-@extern def gtk_entry_get_icon_paintable(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition): Ptr[GdkPaintable] = extern
+@extern def gtk_entry_get_icon_paintable(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition): Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable] = extern
 
 @extern def gtk_entry_get_icon_sensitive(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition): _root_.sn.gnome.glib.internal.gboolean = extern
 
@@ -6324,13 +6324,13 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_entry_set_icon_activatable(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition, activatable : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
-@extern def gtk_entry_set_icon_drag_source(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition, provider : Ptr[GdkContentProvider], actions : GdkDragAction): Unit = extern
+@extern def gtk_entry_set_icon_drag_source(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition, provider : Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider], actions : _root_.sn.gnome.gdk4.internal.GdkDragAction): Unit = extern
 
 @extern def gtk_entry_set_icon_from_gicon(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition, icon : Ptr[_root_.sn.gnome.gio.internal.GIcon]): Unit = extern
 
 @extern def gtk_entry_set_icon_from_icon_name(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition, icon_name : CString): Unit = extern
 
-@extern def gtk_entry_set_icon_from_paintable(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition, paintable : Ptr[GdkPaintable]): Unit = extern
+@extern def gtk_entry_set_icon_from_paintable(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition, paintable : Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]): Unit = extern
 
 @extern def gtk_entry_set_icon_sensitive(entry : Ptr[GtkEntry], icon_pos : GtkEntryIconPosition, sensitive : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
@@ -6368,11 +6368,11 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_event_controller_focus_new(): Ptr[GtkEventController] = extern
 
-@extern def gtk_event_controller_get_current_event(controller : Ptr[GtkEventController]): Ptr[GdkEvent] = extern
+@extern def gtk_event_controller_get_current_event(controller : Ptr[GtkEventController]): Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent] = extern
 
-@extern def gtk_event_controller_get_current_event_device(controller : Ptr[GtkEventController]): Ptr[GdkDevice] = extern
+@extern def gtk_event_controller_get_current_event_device(controller : Ptr[GtkEventController]): Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice] = extern
 
-@extern def gtk_event_controller_get_current_event_state(controller : Ptr[GtkEventController]): GdkModifierType = extern
+@extern def gtk_event_controller_get_current_event_state(controller : Ptr[GtkEventController]): _root_.sn.gnome.gdk4.internal.GdkModifierType = extern
 
 @extern def gtk_event_controller_get_current_event_time(controller : Ptr[GtkEventController]): _root_.sn.gnome.glib.internal.guint32 = extern
 
@@ -6418,7 +6418,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_event_controller_scroll_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
-@extern def gtk_event_controller_scroll_get_unit(scroll : Ptr[GtkEventControllerScroll]): GdkScrollUnit = extern
+@extern def gtk_event_controller_scroll_get_unit(scroll : Ptr[GtkEventControllerScroll]): _root_.sn.gnome.gdk4.internal.GdkScrollUnit = extern
 
 @extern def gtk_event_controller_scroll_new(flags : GtkEventControllerScrollFlags): Ptr[GtkEventController] = extern
 
@@ -6710,15 +6710,15 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_fixed_get_child_position(fixed : Ptr[GtkFixed], widget : Ptr[GtkWidget], x : Ptr[Double], y : Ptr[Double]): Unit = extern
 
-@extern def gtk_fixed_get_child_transform(fixed : Ptr[GtkFixed], widget : Ptr[GtkWidget]): Ptr[GskTransform] = extern
+@extern def gtk_fixed_get_child_transform(fixed : Ptr[GtkFixed], widget : Ptr[GtkWidget]): Ptr[_root_.sn.gnome.gsk4.internal.GskTransform] = extern
 
 @extern def gtk_fixed_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
-@extern def gtk_fixed_layout_child_get_transform(child : Ptr[GtkFixedLayoutChild]): Ptr[GskTransform] = extern
+@extern def gtk_fixed_layout_child_get_transform(child : Ptr[GtkFixedLayoutChild]): Ptr[_root_.sn.gnome.gsk4.internal.GskTransform] = extern
 
 @extern def gtk_fixed_layout_child_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
-@extern def gtk_fixed_layout_child_set_transform(child : Ptr[GtkFixedLayoutChild], transform : Ptr[GskTransform]): Unit = extern
+@extern def gtk_fixed_layout_child_set_transform(child : Ptr[GtkFixedLayoutChild], transform : Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]): Unit = extern
 
 @extern def gtk_fixed_layout_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
@@ -6732,7 +6732,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_fixed_remove(fixed : Ptr[GtkFixed], widget : Ptr[GtkWidget]): Unit = extern
 
-@extern def gtk_fixed_set_child_transform(fixed : Ptr[GtkFixed], widget : Ptr[GtkWidget], transform : Ptr[GskTransform]): Unit = extern
+@extern def gtk_fixed_set_child_transform(fixed : Ptr[GtkFixed], widget : Ptr[GtkWidget], transform : Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]): Unit = extern
 
 @extern def gtk_flatten_list_model_get_model(self : Ptr[GtkFlattenListModel]): Ptr[_root_.sn.gnome.gio.internal.GListModel] = extern
 
@@ -7008,21 +7008,21 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_gesture_drag_new(): Ptr[GtkGesture] = extern
 
-@extern def gtk_gesture_get_bounding_box(gesture : Ptr[GtkGesture], rect : Ptr[GdkRectangle]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_gesture_get_bounding_box(gesture : Ptr[GtkGesture], rect : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): _root_.sn.gnome.glib.internal.gboolean = extern
 
 @extern def gtk_gesture_get_bounding_box_center(gesture : Ptr[GtkGesture], x : Ptr[Double], y : Ptr[Double]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_gesture_get_device(gesture : Ptr[GtkGesture]): Ptr[GdkDevice] = extern
+@extern def gtk_gesture_get_device(gesture : Ptr[GtkGesture]): Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice] = extern
 
 @extern def gtk_gesture_get_group(gesture : Ptr[GtkGesture]): Ptr[_root_.sn.gnome.glib.internal.GList] = extern
 
-@extern def gtk_gesture_get_last_event(gesture : Ptr[GtkGesture], sequence : Ptr[GdkEventSequence]): Ptr[GdkEvent] = extern
+@extern def gtk_gesture_get_last_event(gesture : Ptr[GtkGesture], sequence : Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]): Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent] = extern
 
-@extern def gtk_gesture_get_last_updated_sequence(gesture : Ptr[GtkGesture]): Ptr[GdkEventSequence] = extern
+@extern def gtk_gesture_get_last_updated_sequence(gesture : Ptr[GtkGesture]): Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence] = extern
 
-@extern def gtk_gesture_get_point(gesture : Ptr[GtkGesture], sequence : Ptr[GdkEventSequence], x : Ptr[Double], y : Ptr[Double]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_gesture_get_point(gesture : Ptr[GtkGesture], sequence : Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence], x : Ptr[Double], y : Ptr[Double]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_gesture_get_sequence_state(gesture : Ptr[GtkGesture], sequence : Ptr[GdkEventSequence]): GtkEventSequenceState = extern
+@extern def gtk_gesture_get_sequence_state(gesture : Ptr[GtkGesture], sequence : Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]): GtkEventSequenceState = extern
 
 @extern def gtk_gesture_get_sequences(gesture : Ptr[GtkGesture]): Ptr[_root_.sn.gnome.glib.internal.GList] = extern
 
@@ -7030,7 +7030,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_gesture_group(group_gesture : Ptr[GtkGesture], gesture : Ptr[GtkGesture]): Unit = extern
 
-@extern def gtk_gesture_handles_sequence(gesture : Ptr[GtkGesture], sequence : Ptr[GdkEventSequence]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_gesture_handles_sequence(gesture : Ptr[GtkGesture], sequence : Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]): _root_.sn.gnome.glib.internal.gboolean = extern
 
 @extern def gtk_gesture_is_active(gesture : Ptr[GtkGesture]): _root_.sn.gnome.glib.internal.gboolean = extern
 
@@ -7060,7 +7060,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_gesture_rotate_new(): Ptr[GtkGesture] = extern
 
-@extern def gtk_gesture_set_sequence_state(gesture : Ptr[GtkGesture], sequence : Ptr[GdkEventSequence], state : GtkEventSequenceState): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_gesture_set_sequence_state(gesture : Ptr[GtkGesture], sequence : Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence], state : GtkEventSequenceState): _root_.sn.gnome.glib.internal.gboolean = extern
 
 @extern def gtk_gesture_set_state(gesture : Ptr[GtkGesture], state : GtkEventSequenceState): _root_.sn.gnome.glib.internal.gboolean = extern
 
@@ -7068,7 +7068,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_gesture_single_get_current_button(gesture : Ptr[GtkGestureSingle]): _root_.sn.gnome.glib.internal.guint = extern
 
-@extern def gtk_gesture_single_get_current_sequence(gesture : Ptr[GtkGestureSingle]): Ptr[GdkEventSequence] = extern
+@extern def gtk_gesture_single_get_current_sequence(gesture : Ptr[GtkGestureSingle]): Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence] = extern
 
 @extern def gtk_gesture_single_get_exclusive(gesture : Ptr[GtkGestureSingle]): _root_.sn.gnome.glib.internal.gboolean = extern
 
@@ -7082,13 +7082,13 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_gesture_single_set_touch_only(gesture : Ptr[GtkGestureSingle], touch_only : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
-@extern def gtk_gesture_stylus_get_axes(gesture : Ptr[GtkGestureStylus], axes : Ptr[GdkAxisUse], values : Ptr[Ptr[Double]]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_gesture_stylus_get_axes(gesture : Ptr[GtkGestureStylus], axes : Ptr[_root_.sn.gnome.gdk4.internal.GdkAxisUse], values : Ptr[Ptr[Double]]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_gesture_stylus_get_axis(gesture : Ptr[GtkGestureStylus], axis : GdkAxisUse, value : Ptr[Double]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_gesture_stylus_get_axis(gesture : Ptr[GtkGestureStylus], axis : _root_.sn.gnome.gdk4.internal.GdkAxisUse, value : Ptr[Double]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_gesture_stylus_get_backlog(gesture : Ptr[GtkGestureStylus], backlog : Ptr[Ptr[GdkTimeCoord]], n_elems : Ptr[_root_.sn.gnome.glib.internal.guint]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_gesture_stylus_get_backlog(gesture : Ptr[GtkGestureStylus], backlog : Ptr[Ptr[_root_.sn.gnome.gdk4.internal.GdkTimeCoord]], n_elems : Ptr[_root_.sn.gnome.glib.internal.guint]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_gesture_stylus_get_device_tool(gesture : Ptr[GtkGestureStylus]): Ptr[GdkDeviceTool] = extern
+@extern def gtk_gesture_stylus_get_device_tool(gesture : Ptr[GtkGestureStylus]): Ptr[_root_.sn.gnome.gdk4.internal.GdkDeviceTool] = extern
 
 @extern def gtk_gesture_stylus_get_stylus_only(gesture : Ptr[GtkGestureStylus]): _root_.sn.gnome.glib.internal.gboolean = extern
 
@@ -7130,13 +7130,13 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_gl_area_attach_buffers(area : Ptr[GtkGLArea]): Unit = extern
 
-@extern def gtk_gl_area_get_allowed_apis(area : Ptr[GtkGLArea]): GdkGLAPI = extern
+@extern def gtk_gl_area_get_allowed_apis(area : Ptr[GtkGLArea]): _root_.sn.gnome.gdk4.internal.GdkGLAPI = extern
 
-@extern def gtk_gl_area_get_api(area : Ptr[GtkGLArea]): GdkGLAPI = extern
+@extern def gtk_gl_area_get_api(area : Ptr[GtkGLArea]): _root_.sn.gnome.gdk4.internal.GdkGLAPI = extern
 
 @extern def gtk_gl_area_get_auto_render(area : Ptr[GtkGLArea]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_gl_area_get_context(area : Ptr[GtkGLArea]): Ptr[GdkGLContext] = extern
+@extern def gtk_gl_area_get_context(area : Ptr[GtkGLArea]): Ptr[_root_.sn.gnome.gdk4.internal.GdkGLContext] = extern
 
 @extern def gtk_gl_area_get_error(area : Ptr[GtkGLArea]): Ptr[_root_.sn.gnome.glib.internal.GError] = extern
 
@@ -7156,7 +7156,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_gl_area_queue_render(area : Ptr[GtkGLArea]): Unit = extern
 
-@extern def gtk_gl_area_set_allowed_apis(area : Ptr[GtkGLArea], apis : GdkGLAPI): Unit = extern
+@extern def gtk_gl_area_set_allowed_apis(area : Ptr[GtkGLArea], apis : _root_.sn.gnome.gdk4.internal.GdkGLAPI): Unit = extern
 
 @extern def gtk_gl_area_set_auto_render(area : Ptr[GtkGLArea], auto_render : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
@@ -7358,9 +7358,9 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_icon_theme_error_quark(): _root_.sn.gnome.glib.internal.GQuark = extern
 
-@extern def gtk_icon_theme_get_display(self : Ptr[GtkIconTheme]): Ptr[GdkDisplay] = extern
+@extern def gtk_icon_theme_get_display(self : Ptr[GtkIconTheme]): Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay] = extern
 
-@extern def gtk_icon_theme_get_for_display(display : Ptr[GdkDisplay]): Ptr[GtkIconTheme] = extern
+@extern def gtk_icon_theme_get_for_display(display : Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]): Ptr[GtkIconTheme] = extern
 
 @extern def gtk_icon_theme_get_icon_names(self : Ptr[GtkIconTheme]): Ptr[CString] = extern
 
@@ -7390,17 +7390,17 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_icon_theme_set_theme_name(self : Ptr[GtkIconTheme], theme_name : CString): Unit = extern
 
-@extern def gtk_icon_view_create_drag_icon(icon_view : Ptr[GtkIconView], path : Ptr[GtkTreePath]): Ptr[GdkPaintable] = extern
+@extern def gtk_icon_view_create_drag_icon(icon_view : Ptr[GtkIconView], path : Ptr[GtkTreePath]): Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable] = extern
 
 @extern def gtk_icon_view_drop_position_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
-@extern def gtk_icon_view_enable_model_drag_dest(icon_view : Ptr[GtkIconView], formats : Ptr[GdkContentFormats], actions : GdkDragAction): Unit = extern
+@extern def gtk_icon_view_enable_model_drag_dest(icon_view : Ptr[GtkIconView], formats : Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats], actions : _root_.sn.gnome.gdk4.internal.GdkDragAction): Unit = extern
 
-@extern def gtk_icon_view_enable_model_drag_source(icon_view : Ptr[GtkIconView], start_button_mask : GdkModifierType, formats : Ptr[GdkContentFormats], actions : GdkDragAction): Unit = extern
+@extern def gtk_icon_view_enable_model_drag_source(icon_view : Ptr[GtkIconView], start_button_mask : _root_.sn.gnome.gdk4.internal.GdkModifierType, formats : Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats], actions : _root_.sn.gnome.gdk4.internal.GdkDragAction): Unit = extern
 
 @extern def gtk_icon_view_get_activate_on_single_click(icon_view : Ptr[GtkIconView]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_icon_view_get_cell_rect(icon_view : Ptr[GtkIconView], path : Ptr[GtkTreePath], cell : Ptr[GtkCellRenderer], rect : Ptr[GdkRectangle]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_icon_view_get_cell_rect(icon_view : Ptr[GtkIconView], path : Ptr[GtkTreePath], cell : Ptr[GtkCellRenderer], rect : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): _root_.sn.gnome.glib.internal.gboolean = extern
 
 @extern def gtk_icon_view_get_column_spacing(icon_view : Ptr[GtkIconView]): CInt = extern
 
@@ -7520,13 +7520,13 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_icon_view_unset_model_drag_source(icon_view : Ptr[GtkIconView]): Unit = extern
 
-@extern def gtk_im_context_activate_osk(context : Ptr[GtkIMContext], event : Ptr[GdkEvent]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_im_context_activate_osk(context : Ptr[GtkIMContext], event : Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]): _root_.sn.gnome.glib.internal.gboolean = extern
 
 @extern def gtk_im_context_delete_surrounding(context : Ptr[GtkIMContext], offset : CInt, n_chars : CInt): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_im_context_filter_key(context : Ptr[GtkIMContext], press : _root_.sn.gnome.glib.internal.gboolean, surface : Ptr[GdkSurface], device : Ptr[GdkDevice], time : _root_.sn.gnome.glib.internal.guint32, keycode : _root_.sn.gnome.glib.internal.guint, state : GdkModifierType, group : CInt): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_im_context_filter_key(context : Ptr[GtkIMContext], press : _root_.sn.gnome.glib.internal.gboolean, surface : Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface], device : Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice], time : _root_.sn.gnome.glib.internal.guint32, keycode : _root_.sn.gnome.glib.internal.guint, state : _root_.sn.gnome.gdk4.internal.GdkModifierType, group : CInt): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_im_context_filter_keypress(context : Ptr[GtkIMContext], event : Ptr[GdkEvent]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_im_context_filter_keypress(context : Ptr[GtkIMContext], event : Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]): _root_.sn.gnome.glib.internal.gboolean = extern
 
 @extern def gtk_im_context_focus_in(context : Ptr[GtkIMContext]): Unit = extern
 
@@ -7544,7 +7544,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_im_context_set_client_widget(context : Ptr[GtkIMContext], widget : Ptr[GtkWidget]): Unit = extern
 
-@extern def gtk_im_context_set_cursor_location(context : Ptr[GtkIMContext], area : Ptr[GdkRectangle]): Unit = extern
+@extern def gtk_im_context_set_cursor_location(context : Ptr[GtkIMContext], area : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
 @extern def gtk_im_context_set_surrounding(context : Ptr[GtkIMContext], text : CString, len : CInt, cursor_index : CInt): Unit = extern
 
@@ -7576,7 +7576,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_image_get_icon_size(image : Ptr[GtkImage]): GtkIconSize = extern
 
-@extern def gtk_image_get_paintable(image : Ptr[GtkImage]): Ptr[GdkPaintable] = extern
+@extern def gtk_image_get_paintable(image : Ptr[GtkImage]): Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable] = extern
 
 @extern def gtk_image_get_pixel_size(image : Ptr[GtkImage]): CInt = extern
 
@@ -7592,7 +7592,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_image_new_from_icon_name(icon_name : CString): Ptr[GtkWidget] = extern
 
-@extern def gtk_image_new_from_paintable(paintable : Ptr[GdkPaintable]): Ptr[GtkWidget] = extern
+@extern def gtk_image_new_from_paintable(paintable : Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]): Ptr[GtkWidget] = extern
 
 @extern def gtk_image_new_from_pixbuf(pixbuf : Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]): Ptr[GtkWidget] = extern
 
@@ -7604,7 +7604,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_image_set_from_icon_name(image : Ptr[GtkImage], icon_name : CString): Unit = extern
 
-@extern def gtk_image_set_from_paintable(image : Ptr[GtkImage], paintable : Ptr[GdkPaintable]): Unit = extern
+@extern def gtk_image_set_from_paintable(image : Ptr[GtkImage], paintable : Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]): Unit = extern
 
 @extern def gtk_image_set_from_pixbuf(image : Ptr[GtkImage], pixbuf : Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]): Unit = extern
 
@@ -7714,14 +7714,14 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_keyval_trigger_get_keyval(self : Ptr[GtkKeyvalTrigger]): _root_.sn.gnome.glib.internal.guint = extern
 
-@extern def gtk_keyval_trigger_get_modifiers(self : Ptr[GtkKeyvalTrigger]): GdkModifierType = extern
+@extern def gtk_keyval_trigger_get_modifiers(self : Ptr[GtkKeyvalTrigger]): _root_.sn.gnome.gdk4.internal.GdkModifierType = extern
 
 @extern def gtk_keyval_trigger_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
 /**
  * GtkKeyvalTrigger:
 */
-@extern def gtk_keyval_trigger_new(keyval : _root_.sn.gnome.glib.internal.guint, modifiers : GdkModifierType): Ptr[GtkShortcutTrigger] = extern
+@extern def gtk_keyval_trigger_new(keyval : _root_.sn.gnome.glib.internal.guint, modifiers : _root_.sn.gnome.gdk4.internal.GdkModifierType): Ptr[GtkShortcutTrigger] = extern
 
 @extern def gtk_label_get_attributes(self : Ptr[GtkLabel]): Ptr[_root_.sn.gnome.pango.internal.PangoAttrList] = extern
 
@@ -8219,7 +8219,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_media_stream_prepared(self : Ptr[GtkMediaStream], has_audio : _root_.sn.gnome.glib.internal.gboolean, has_video : _root_.sn.gnome.glib.internal.gboolean, seekable : _root_.sn.gnome.glib.internal.gboolean, duration : _root_.sn.gnome.glib.internal.gint64): Unit = extern
 
-@extern def gtk_media_stream_realize(self : Ptr[GtkMediaStream], surface : Ptr[GdkSurface]): Unit = extern
+@extern def gtk_media_stream_realize(self : Ptr[GtkMediaStream], surface : Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]): Unit = extern
 
 @extern def gtk_media_stream_seek(self : Ptr[GtkMediaStream], timestamp : _root_.sn.gnome.glib.internal.gint64): Unit = extern
 
@@ -8243,7 +8243,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_media_stream_unprepared(self : Ptr[GtkMediaStream]): Unit = extern
 
-@extern def gtk_media_stream_unrealize(self : Ptr[GtkMediaStream], surface : Ptr[GdkSurface]): Unit = extern
+@extern def gtk_media_stream_unrealize(self : Ptr[GtkMediaStream], surface : Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]): Unit = extern
 
 @extern def gtk_media_stream_update(self : Ptr[GtkMediaStream], timestamp : _root_.sn.gnome.glib.internal.gint64): Unit = extern
 
@@ -8337,7 +8337,7 @@ import _root_.scala.scalanative.*
 */
 @extern def gtk_mnemonic_trigger_new(keyval : _root_.sn.gnome.glib.internal.guint): Ptr[GtkShortcutTrigger] = extern
 
-@extern def gtk_mount_operation_get_display(op : Ptr[GtkMountOperation]): Ptr[GdkDisplay] = extern
+@extern def gtk_mount_operation_get_display(op : Ptr[GtkMountOperation]): Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay] = extern
 
 @extern def gtk_mount_operation_get_parent(op : Ptr[GtkMountOperation]): Ptr[GtkWindow] = extern
 
@@ -8347,7 +8347,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_mount_operation_new(parent : Ptr[GtkWindow]): Ptr[_root_.sn.gnome.gio.internal.GMountOperation] = extern
 
-@extern def gtk_mount_operation_set_display(op : Ptr[GtkMountOperation], display : Ptr[GdkDisplay]): Unit = extern
+@extern def gtk_mount_operation_set_display(op : Ptr[GtkMountOperation], display : Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]): Unit = extern
 
 @extern def gtk_mount_operation_set_parent(op : Ptr[GtkMountOperation], parent : Ptr[GtkWindow]): Unit = extern
 
@@ -8406,11 +8406,11 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_native_dialog_show(self : Ptr[GtkNativeDialog]): Unit = extern
 
-@extern def gtk_native_get_for_surface(surface : Ptr[GdkSurface]): Ptr[GtkNative] = extern
+@extern def gtk_native_get_for_surface(surface : Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]): Ptr[GtkNative] = extern
 
-@extern def gtk_native_get_renderer(self : Ptr[GtkNative]): Ptr[GskRenderer] = extern
+@extern def gtk_native_get_renderer(self : Ptr[GtkNative]): Ptr[_root_.sn.gnome.gsk4.internal.GskRenderer] = extern
 
-@extern def gtk_native_get_surface(self : Ptr[GtkNative]): Ptr[GdkSurface] = extern
+@extern def gtk_native_get_surface(self : Ptr[GtkNative]): Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface] = extern
 
 @extern def gtk_native_get_surface_transform(self : Ptr[GtkNative], x : Ptr[Double], y : Ptr[Double]): Unit = extern
 
@@ -8637,7 +8637,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_pad_controller_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
-@extern def gtk_pad_controller_new(group : Ptr[_root_.sn.gnome.gio.internal.GActionGroup], pad : Ptr[GdkDevice]): Ptr[GtkPadController] = extern
+@extern def gtk_pad_controller_new(group : Ptr[_root_.sn.gnome.gio.internal.GActionGroup], pad : Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]): Ptr[GtkPadController] = extern
 
 @extern def gtk_pad_controller_set_action(controller : Ptr[GtkPadController], `type` : GtkPadActionType, index : CInt, mode : CInt, label : CString, action_name : CString): Unit = extern
 
@@ -8825,7 +8825,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_picture_get_keep_aspect_ratio(self : Ptr[GtkPicture]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_picture_get_paintable(self : Ptr[GtkPicture]): Ptr[GdkPaintable] = extern
+@extern def gtk_picture_get_paintable(self : Ptr[GtkPicture]): Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable] = extern
 
 @extern def gtk_picture_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
@@ -8835,7 +8835,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_picture_new_for_filename(filename : CString): Ptr[GtkWidget] = extern
 
-@extern def gtk_picture_new_for_paintable(paintable : Ptr[GdkPaintable]): Ptr[GtkWidget] = extern
+@extern def gtk_picture_new_for_paintable(paintable : Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]): Ptr[GtkWidget] = extern
 
 @extern def gtk_picture_new_for_pixbuf(pixbuf : Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]): Ptr[GtkWidget] = extern
 
@@ -8853,7 +8853,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_picture_set_keep_aspect_ratio(self : Ptr[GtkPicture], keep_aspect_ratio : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
-@extern def gtk_picture_set_paintable(self : Ptr[GtkPicture], paintable : Ptr[GdkPaintable]): Unit = extern
+@extern def gtk_picture_set_paintable(self : Ptr[GtkPicture], paintable : Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]): Unit = extern
 
 @extern def gtk_picture_set_pixbuf(self : Ptr[GtkPicture], pixbuf : Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]): Unit = extern
 
@@ -8873,7 +8873,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_popover_get_offset(popover : Ptr[GtkPopover], x_offset : Ptr[CInt], y_offset : Ptr[CInt]): Unit = extern
 
-@extern def gtk_popover_get_pointing_to(popover : Ptr[GtkPopover], rect : Ptr[GdkRectangle]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_popover_get_pointing_to(popover : Ptr[GtkPopover], rect : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): _root_.sn.gnome.glib.internal.gboolean = extern
 
 @extern def gtk_popover_get_position(popover : Ptr[GtkPopover]): GtkPositionType = extern
 
@@ -8933,7 +8933,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_popover_set_offset(popover : Ptr[GtkPopover], x_offset : CInt, y_offset : CInt): Unit = extern
 
-@extern def gtk_popover_set_pointing_to(popover : Ptr[GtkPopover], rect : Ptr[GdkRectangle]): Unit = extern
+@extern def gtk_popover_set_pointing_to(popover : Ptr[GtkPopover], rect : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
 @extern def gtk_popover_set_position(popover : Ptr[GtkPopover], position : GtkPositionType): Unit = extern
 
@@ -9305,7 +9305,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_range_get_inverted(range : Ptr[GtkRange]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_range_get_range_rect(range : Ptr[GtkRange], range_rect : Ptr[GdkRectangle]): Unit = extern
+@extern def gtk_range_get_range_rect(range : Ptr[GtkRange], range_rect : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
 @extern def gtk_range_get_restrict_to_fill_level(range : Ptr[GtkRange]): _root_.sn.gnome.glib.internal.gboolean = extern
 
@@ -9435,7 +9435,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_render_handle(context : Ptr[GtkStyleContext], cr : Ptr[_root_.sn.gnome.cairo.internal.cairo_t], x : Double, y : Double, width : Double, height : Double): Unit = extern
 
-@extern def gtk_render_icon(context : Ptr[GtkStyleContext], cr : Ptr[_root_.sn.gnome.cairo.internal.cairo_t], texture : Ptr[GdkTexture], x : Double, y : Double): Unit = extern
+@extern def gtk_render_icon(context : Ptr[GtkStyleContext], cr : Ptr[_root_.sn.gnome.cairo.internal.cairo_t], texture : Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture], x : Double, y : Double): Unit = extern
 
 @extern def gtk_render_layout(context : Ptr[GtkStyleContext], cr : Ptr[_root_.sn.gnome.cairo.internal.cairo_t], x : Double, y : Double, layout : Ptr[_root_.sn.gnome.pango.internal.PangoLayout]): Unit = extern
 
@@ -9479,7 +9479,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_rgb_to_hsv(r : Float, g : Float, b : Float, h : Ptr[Float], s : Ptr[Float], v : Ptr[Float]): Unit = extern
 
-@extern def gtk_root_get_display(self : Ptr[GtkRoot]): Ptr[GdkDisplay] = extern
+@extern def gtk_root_get_display(self : Ptr[GtkRoot]): Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay] = extern
 
 @extern def gtk_root_get_focus(self : Ptr[GtkRoot]): Ptr[GtkWidget] = extern
 
@@ -9757,7 +9757,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_settings_get_default(): Ptr[GtkSettings] = extern
 
-@extern def gtk_settings_get_for_display(display : Ptr[GdkDisplay]): Ptr[GtkSettings] = extern
+@extern def gtk_settings_get_for_display(display : Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]): Ptr[GtkSettings] = extern
 
 @extern def gtk_settings_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
@@ -9777,7 +9777,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_shortcut_controller_add_shortcut(self : Ptr[GtkShortcutController], shortcut : Ptr[GtkShortcut]): Unit = extern
 
-@extern def gtk_shortcut_controller_get_mnemonics_modifiers(self : Ptr[GtkShortcutController]): GdkModifierType = extern
+@extern def gtk_shortcut_controller_get_mnemonics_modifiers(self : Ptr[GtkShortcutController]): _root_.sn.gnome.gdk4.internal.GdkModifierType = extern
 
 @extern def gtk_shortcut_controller_get_scope(self : Ptr[GtkShortcutController]): GtkShortcutScope = extern
 
@@ -9789,7 +9789,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_shortcut_controller_remove_shortcut(self : Ptr[GtkShortcutController], shortcut : Ptr[GtkShortcut]): Unit = extern
 
-@extern def gtk_shortcut_controller_set_mnemonics_modifiers(self : Ptr[GtkShortcutController], modifiers : GdkModifierType): Unit = extern
+@extern def gtk_shortcut_controller_set_mnemonics_modifiers(self : Ptr[GtkShortcutController], modifiers : _root_.sn.gnome.gdk4.internal.GdkModifierType): Unit = extern
 
 @extern def gtk_shortcut_controller_set_scope(self : Ptr[GtkShortcutController], scope : GtkShortcutScope): Unit = extern
 
@@ -9839,13 +9839,13 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_shortcut_trigger_print(self : Ptr[GtkShortcutTrigger], string : Ptr[_root_.sn.gnome.glib.internal.GString]): Unit = extern
 
-@extern def gtk_shortcut_trigger_print_label(self : Ptr[GtkShortcutTrigger], display : Ptr[GdkDisplay], string : Ptr[_root_.sn.gnome.glib.internal.GString]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_shortcut_trigger_print_label(self : Ptr[GtkShortcutTrigger], display : Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay], string : Ptr[_root_.sn.gnome.glib.internal.GString]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_shortcut_trigger_to_label(self : Ptr[GtkShortcutTrigger], display : Ptr[GdkDisplay]): CString = extern
+@extern def gtk_shortcut_trigger_to_label(self : Ptr[GtkShortcutTrigger], display : Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]): CString = extern
 
 @extern def gtk_shortcut_trigger_to_string(self : Ptr[GtkShortcutTrigger]): CString = extern
 
-@extern def gtk_shortcut_trigger_trigger(self : Ptr[GtkShortcutTrigger], event : Ptr[GdkEvent], enable_mnemonics : _root_.sn.gnome.glib.internal.gboolean): GdkKeyMatch = extern
+@extern def gtk_shortcut_trigger_trigger(self : Ptr[GtkShortcutTrigger], event : Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent], enable_mnemonics : _root_.sn.gnome.glib.internal.gboolean): _root_.sn.gnome.gdk4.internal.GdkKeyMatch = extern
 
 @extern def gtk_shortcut_type_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
@@ -9940,41 +9940,41 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_slice_list_model_set_size(self : Ptr[GtkSliceListModel], size : _root_.sn.gnome.glib.internal.guint): Unit = extern
 
-@extern def gtk_snapshot_append_border(snapshot : Ptr[GtkSnapshot], outline : Ptr[GskRoundedRect], border_width : CArray[Float, Nat._4], border_color : CArray[GdkRGBA, Nat._4]): Unit = extern
+@extern def gtk_snapshot_append_border(snapshot : Ptr[GtkSnapshot], outline : Ptr[_root_.sn.gnome.gsk4.internal.GskRoundedRect], border_width : CArray[Float, Nat._4], border_color : CArray[_root_.sn.gnome.gdk4.internal.GdkRGBA, Nat._4]): Unit = extern
 
 @extern def gtk_snapshot_append_cairo(snapshot : Ptr[GtkSnapshot], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]): Ptr[_root_.sn.gnome.cairo.internal.cairo_t] = extern
 
-@extern def gtk_snapshot_append_color(snapshot : Ptr[GtkSnapshot], color : Ptr[GdkRGBA], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]): Unit = extern
+@extern def gtk_snapshot_append_color(snapshot : Ptr[GtkSnapshot], color : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]): Unit = extern
 
-@extern def gtk_snapshot_append_conic_gradient(snapshot : Ptr[GtkSnapshot], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t], center : Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t], rotation : Float, stops : Ptr[GskColorStop], n_stops : _root_.sn.gnome.glib.internal.gsize): Unit = extern
+@extern def gtk_snapshot_append_conic_gradient(snapshot : Ptr[GtkSnapshot], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t], center : Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t], rotation : Float, stops : Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop], n_stops : _root_.sn.gnome.glib.internal.gsize): Unit = extern
 
-@extern def gtk_snapshot_append_fill(snapshot : Ptr[GtkSnapshot], path : Ptr[GskPath], fill_rule : GskFillRule, color : Ptr[GdkRGBA]): Unit = extern
+@extern def gtk_snapshot_append_fill(snapshot : Ptr[GtkSnapshot], path : Ptr[_root_.sn.gnome.gsk4.internal.GskPath], fill_rule : _root_.sn.gnome.gsk4.internal.GskFillRule, color : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]): Unit = extern
 
-@extern def gtk_snapshot_append_inset_shadow(snapshot : Ptr[GtkSnapshot], outline : Ptr[GskRoundedRect], color : Ptr[GdkRGBA], dx : Float, dy : Float, spread : Float, blur_radius : Float): Unit = extern
+@extern def gtk_snapshot_append_inset_shadow(snapshot : Ptr[GtkSnapshot], outline : Ptr[_root_.sn.gnome.gsk4.internal.GskRoundedRect], color : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA], dx : Float, dy : Float, spread : Float, blur_radius : Float): Unit = extern
 
-@extern def gtk_snapshot_append_layout(snapshot : Ptr[GtkSnapshot], layout : Ptr[_root_.sn.gnome.pango.internal.PangoLayout], color : Ptr[GdkRGBA]): Unit = extern
+@extern def gtk_snapshot_append_layout(snapshot : Ptr[GtkSnapshot], layout : Ptr[_root_.sn.gnome.pango.internal.PangoLayout], color : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]): Unit = extern
 
-@extern def gtk_snapshot_append_linear_gradient(snapshot : Ptr[GtkSnapshot], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t], start_point : Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t], end_point : Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t], stops : Ptr[GskColorStop], n_stops : _root_.sn.gnome.glib.internal.gsize): Unit = extern
+@extern def gtk_snapshot_append_linear_gradient(snapshot : Ptr[GtkSnapshot], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t], start_point : Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t], end_point : Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t], stops : Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop], n_stops : _root_.sn.gnome.glib.internal.gsize): Unit = extern
 
-@extern def gtk_snapshot_append_node(snapshot : Ptr[GtkSnapshot], node : Ptr[GskRenderNode]): Unit = extern
+@extern def gtk_snapshot_append_node(snapshot : Ptr[GtkSnapshot], node : Ptr[_root_.sn.gnome.gsk4.internal.GskRenderNode]): Unit = extern
 
-@extern def gtk_snapshot_append_outset_shadow(snapshot : Ptr[GtkSnapshot], outline : Ptr[GskRoundedRect], color : Ptr[GdkRGBA], dx : Float, dy : Float, spread : Float, blur_radius : Float): Unit = extern
+@extern def gtk_snapshot_append_outset_shadow(snapshot : Ptr[GtkSnapshot], outline : Ptr[_root_.sn.gnome.gsk4.internal.GskRoundedRect], color : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA], dx : Float, dy : Float, spread : Float, blur_radius : Float): Unit = extern
 
-@extern def gtk_snapshot_append_radial_gradient(snapshot : Ptr[GtkSnapshot], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t], center : Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t], hradius : Float, vradius : Float, start : Float, end : Float, stops : Ptr[GskColorStop], n_stops : _root_.sn.gnome.glib.internal.gsize): Unit = extern
+@extern def gtk_snapshot_append_radial_gradient(snapshot : Ptr[GtkSnapshot], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t], center : Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t], hradius : Float, vradius : Float, start : Float, end : Float, stops : Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop], n_stops : _root_.sn.gnome.glib.internal.gsize): Unit = extern
 
-@extern def gtk_snapshot_append_repeating_linear_gradient(snapshot : Ptr[GtkSnapshot], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t], start_point : Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t], end_point : Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t], stops : Ptr[GskColorStop], n_stops : _root_.sn.gnome.glib.internal.gsize): Unit = extern
+@extern def gtk_snapshot_append_repeating_linear_gradient(snapshot : Ptr[GtkSnapshot], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t], start_point : Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t], end_point : Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t], stops : Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop], n_stops : _root_.sn.gnome.glib.internal.gsize): Unit = extern
 
-@extern def gtk_snapshot_append_repeating_radial_gradient(snapshot : Ptr[GtkSnapshot], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t], center : Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t], hradius : Float, vradius : Float, start : Float, end : Float, stops : Ptr[GskColorStop], n_stops : _root_.sn.gnome.glib.internal.gsize): Unit = extern
+@extern def gtk_snapshot_append_repeating_radial_gradient(snapshot : Ptr[GtkSnapshot], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t], center : Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t], hradius : Float, vradius : Float, start : Float, end : Float, stops : Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop], n_stops : _root_.sn.gnome.glib.internal.gsize): Unit = extern
 
-@extern def gtk_snapshot_append_scaled_texture(snapshot : Ptr[GtkSnapshot], texture : Ptr[GdkTexture], filter : GskScalingFilter, bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]): Unit = extern
+@extern def gtk_snapshot_append_scaled_texture(snapshot : Ptr[GtkSnapshot], texture : Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture], filter : _root_.sn.gnome.gsk4.internal.GskScalingFilter, bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]): Unit = extern
 
-@extern def gtk_snapshot_append_stroke(snapshot : Ptr[GtkSnapshot], path : Ptr[GskPath], stroke : Ptr[GskStroke], color : Ptr[GdkRGBA]): Unit = extern
+@extern def gtk_snapshot_append_stroke(snapshot : Ptr[GtkSnapshot], path : Ptr[_root_.sn.gnome.gsk4.internal.GskPath], stroke : Ptr[_root_.sn.gnome.gsk4.internal.GskStroke], color : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]): Unit = extern
 
-@extern def gtk_snapshot_append_texture(snapshot : Ptr[GtkSnapshot], texture : Ptr[GdkTexture], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]): Unit = extern
+@extern def gtk_snapshot_append_texture(snapshot : Ptr[GtkSnapshot], texture : Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]): Unit = extern
 
-@extern def gtk_snapshot_free_to_node(snapshot : Ptr[GtkSnapshot]): Ptr[GskRenderNode] = extern
+@extern def gtk_snapshot_free_to_node(snapshot : Ptr[GtkSnapshot]): Ptr[_root_.sn.gnome.gsk4.internal.GskRenderNode] = extern
 
-@extern def gtk_snapshot_free_to_paintable(snapshot : Ptr[GtkSnapshot], size : Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]): Ptr[GdkPaintable] = extern
+@extern def gtk_snapshot_free_to_paintable(snapshot : Ptr[GtkSnapshot], size : Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]): Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable] = extern
 
 @extern def gtk_snapshot_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
@@ -9986,7 +9986,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_snapshot_pop(snapshot : Ptr[GtkSnapshot]): Unit = extern
 
-@extern def gtk_snapshot_push_blend(snapshot : Ptr[GtkSnapshot], blend_mode : GskBlendMode): Unit = extern
+@extern def gtk_snapshot_push_blend(snapshot : Ptr[GtkSnapshot], blend_mode : _root_.sn.gnome.gsk4.internal.GskBlendMode): Unit = extern
 
 @extern def gtk_snapshot_push_blur(snapshot : Ptr[GtkSnapshot], radius : Double): Unit = extern
 
@@ -9998,21 +9998,21 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_snapshot_push_debug(snapshot : Ptr[GtkSnapshot], message : CString, rest: Any*): Unit = extern
 
-@extern def gtk_snapshot_push_fill(snapshot : Ptr[GtkSnapshot], path : Ptr[GskPath], fill_rule : GskFillRule): Unit = extern
+@extern def gtk_snapshot_push_fill(snapshot : Ptr[GtkSnapshot], path : Ptr[_root_.sn.gnome.gsk4.internal.GskPath], fill_rule : _root_.sn.gnome.gsk4.internal.GskFillRule): Unit = extern
 
-@extern def gtk_snapshot_push_gl_shader(snapshot : Ptr[GtkSnapshot], shader : Ptr[GskGLShader], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t], take_args : Ptr[_root_.sn.gnome.glib.internal.GBytes]): Unit = extern
+@extern def gtk_snapshot_push_gl_shader(snapshot : Ptr[GtkSnapshot], shader : Ptr[_root_.sn.gnome.gsk4.internal.GskGLShader], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t], take_args : Ptr[_root_.sn.gnome.glib.internal.GBytes]): Unit = extern
 
-@extern def gtk_snapshot_push_mask(snapshot : Ptr[GtkSnapshot], mask_mode : GskMaskMode): Unit = extern
+@extern def gtk_snapshot_push_mask(snapshot : Ptr[GtkSnapshot], mask_mode : _root_.sn.gnome.gsk4.internal.GskMaskMode): Unit = extern
 
 @extern def gtk_snapshot_push_opacity(snapshot : Ptr[GtkSnapshot], opacity : Double): Unit = extern
 
 @extern def gtk_snapshot_push_repeat(snapshot : Ptr[GtkSnapshot], bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t], child_bounds : Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]): Unit = extern
 
-@extern def gtk_snapshot_push_rounded_clip(snapshot : Ptr[GtkSnapshot], bounds : Ptr[GskRoundedRect]): Unit = extern
+@extern def gtk_snapshot_push_rounded_clip(snapshot : Ptr[GtkSnapshot], bounds : Ptr[_root_.sn.gnome.gsk4.internal.GskRoundedRect]): Unit = extern
 
-@extern def gtk_snapshot_push_shadow(snapshot : Ptr[GtkSnapshot], shadow : Ptr[GskShadow], n_shadows : _root_.sn.gnome.glib.internal.gsize): Unit = extern
+@extern def gtk_snapshot_push_shadow(snapshot : Ptr[GtkSnapshot], shadow : Ptr[_root_.sn.gnome.gsk4.internal.GskShadow], n_shadows : _root_.sn.gnome.glib.internal.gsize): Unit = extern
 
-@extern def gtk_snapshot_push_stroke(snapshot : Ptr[GtkSnapshot], path : Ptr[GskPath], stroke : Ptr[GskStroke]): Unit = extern
+@extern def gtk_snapshot_push_stroke(snapshot : Ptr[GtkSnapshot], path : Ptr[_root_.sn.gnome.gsk4.internal.GskPath], stroke : Ptr[_root_.sn.gnome.gsk4.internal.GskStroke]): Unit = extern
 
 @extern def gtk_snapshot_render_background(snapshot : Ptr[GtkSnapshot], context : Ptr[GtkStyleContext], x : Double, y : Double, width : Double, height : Double): Unit = extern
 
@@ -10036,11 +10036,11 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_snapshot_scale_3d(snapshot : Ptr[GtkSnapshot], factor_x : Float, factor_y : Float, factor_z : Float): Unit = extern
 
-@extern def gtk_snapshot_to_node(snapshot : Ptr[GtkSnapshot]): Ptr[GskRenderNode] = extern
+@extern def gtk_snapshot_to_node(snapshot : Ptr[GtkSnapshot]): Ptr[_root_.sn.gnome.gsk4.internal.GskRenderNode] = extern
 
-@extern def gtk_snapshot_to_paintable(snapshot : Ptr[GtkSnapshot], size : Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]): Ptr[GdkPaintable] = extern
+@extern def gtk_snapshot_to_paintable(snapshot : Ptr[GtkSnapshot], size : Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]): Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable] = extern
 
-@extern def gtk_snapshot_transform(snapshot : Ptr[GtkSnapshot], transform : Ptr[GskTransform]): Unit = extern
+@extern def gtk_snapshot_transform(snapshot : Ptr[GtkSnapshot], transform : Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]): Unit = extern
 
 @extern def gtk_snapshot_transform_matrix(snapshot : Ptr[GtkSnapshot], matrix : Ptr[_root_.sn.gnome.graphene.internal.graphene_matrix_t]): Unit = extern
 
@@ -10332,13 +10332,13 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_style_context_add_provider(context : Ptr[GtkStyleContext], provider : Ptr[GtkStyleProvider], priority : _root_.sn.gnome.glib.internal.guint): Unit = extern
 
-@extern def gtk_style_context_add_provider_for_display(display : Ptr[GdkDisplay], provider : Ptr[GtkStyleProvider], priority : _root_.sn.gnome.glib.internal.guint): Unit = extern
+@extern def gtk_style_context_add_provider_for_display(display : Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay], provider : Ptr[GtkStyleProvider], priority : _root_.sn.gnome.glib.internal.guint): Unit = extern
 
 @extern def gtk_style_context_get_border(context : Ptr[GtkStyleContext], border : Ptr[GtkBorder]): Unit = extern
 
-@extern def gtk_style_context_get_color(context : Ptr[GtkStyleContext], color : Ptr[GdkRGBA]): Unit = extern
+@extern def gtk_style_context_get_color(context : Ptr[GtkStyleContext], color : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]): Unit = extern
 
-@extern def gtk_style_context_get_display(context : Ptr[GtkStyleContext]): Ptr[GdkDisplay] = extern
+@extern def gtk_style_context_get_display(context : Ptr[GtkStyleContext]): Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay] = extern
 
 @extern def gtk_style_context_get_margin(context : Ptr[GtkStyleContext], margin : Ptr[GtkBorder]): Unit = extern
 
@@ -10352,7 +10352,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_style_context_has_class(context : Ptr[GtkStyleContext], class_name : CString): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_style_context_lookup_color(context : Ptr[GtkStyleContext], color_name : CString, color : Ptr[GdkRGBA]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_style_context_lookup_color(context : Ptr[GtkStyleContext], color_name : CString, color : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]): _root_.sn.gnome.glib.internal.gboolean = extern
 
 @extern def gtk_style_context_print_flags_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
@@ -10360,13 +10360,13 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_style_context_remove_provider(context : Ptr[GtkStyleContext], provider : Ptr[GtkStyleProvider]): Unit = extern
 
-@extern def gtk_style_context_remove_provider_for_display(display : Ptr[GdkDisplay], provider : Ptr[GtkStyleProvider]): Unit = extern
+@extern def gtk_style_context_remove_provider_for_display(display : Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay], provider : Ptr[GtkStyleProvider]): Unit = extern
 
 @extern def gtk_style_context_restore(context : Ptr[GtkStyleContext]): Unit = extern
 
 @extern def gtk_style_context_save(context : Ptr[GtkStyleContext]): Unit = extern
 
-@extern def gtk_style_context_set_display(context : Ptr[GtkStyleContext], display : Ptr[GdkDisplay]): Unit = extern
+@extern def gtk_style_context_set_display(context : Ptr[GtkStyleContext], display : Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]): Unit = extern
 
 @extern def gtk_style_context_set_scale(context : Ptr[GtkStyleContext], scale : CInt): Unit = extern
 
@@ -10392,7 +10392,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_symbolic_paintable_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
-@extern def gtk_symbolic_paintable_snapshot_symbolic(paintable : Ptr[GtkSymbolicPaintable], snapshot : Ptr[GdkSnapshot], width : Double, height : Double, colors : Ptr[GdkRGBA], n_colors : _root_.sn.gnome.glib.internal.gsize): Unit = extern
+@extern def gtk_symbolic_paintable_snapshot_symbolic(paintable : Ptr[GtkSymbolicPaintable], snapshot : Ptr[_root_.sn.gnome.gdk4.internal.GdkSnapshot], width : Double, height : Double, colors : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA], n_colors : _root_.sn.gnome.glib.internal.gsize): Unit = extern
 
 @extern def gtk_system_setting_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
@@ -10422,7 +10422,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_text_buffer_add_mark(buffer : Ptr[GtkTextBuffer], mark : Ptr[GtkTextMark], where : Ptr[GtkTextIter]): Unit = extern
 
-@extern def gtk_text_buffer_add_selection_clipboard(buffer : Ptr[GtkTextBuffer], clipboard : Ptr[GdkClipboard]): Unit = extern
+@extern def gtk_text_buffer_add_selection_clipboard(buffer : Ptr[GtkTextBuffer], clipboard : Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]): Unit = extern
 
 @extern def gtk_text_buffer_apply_tag(buffer : Ptr[GtkTextBuffer], tag : Ptr[GtkTextTag], start : Ptr[GtkTextIter], end : Ptr[GtkTextIter]): Unit = extern
 
@@ -10434,7 +10434,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_text_buffer_begin_user_action(buffer : Ptr[GtkTextBuffer]): Unit = extern
 
-@extern def gtk_text_buffer_copy_clipboard(buffer : Ptr[GtkTextBuffer], clipboard : Ptr[GdkClipboard]): Unit = extern
+@extern def gtk_text_buffer_copy_clipboard(buffer : Ptr[GtkTextBuffer], clipboard : Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]): Unit = extern
 
 @extern def gtk_text_buffer_create_child_anchor(buffer : Ptr[GtkTextBuffer], iter : Ptr[GtkTextIter]): Ptr[GtkTextChildAnchor] = extern
 
@@ -10442,7 +10442,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_text_buffer_create_tag(buffer : Ptr[GtkTextBuffer], tag_name : CString, first_property_name : CString, rest: Any*): Ptr[GtkTextTag] = extern
 
-@extern def gtk_text_buffer_cut_clipboard(buffer : Ptr[GtkTextBuffer], clipboard : Ptr[GdkClipboard], default_editable : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
+@extern def gtk_text_buffer_cut_clipboard(buffer : Ptr[GtkTextBuffer], clipboard : Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard], default_editable : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
 @extern def gtk_text_buffer_delete(buffer : Ptr[GtkTextBuffer], start : Ptr[GtkTextIter], end : Ptr[GtkTextIter]): Unit = extern
 
@@ -10498,7 +10498,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_text_buffer_get_selection_bounds(buffer : Ptr[GtkTextBuffer], start : Ptr[GtkTextIter], end : Ptr[GtkTextIter]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_text_buffer_get_selection_content(buffer : Ptr[GtkTextBuffer]): Ptr[GdkContentProvider] = extern
+@extern def gtk_text_buffer_get_selection_content(buffer : Ptr[GtkTextBuffer]): Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider] = extern
 
 @extern def gtk_text_buffer_get_slice(buffer : Ptr[GtkTextBuffer], start : Ptr[GtkTextIter], end : Ptr[GtkTextIter], include_hidden_chars : _root_.sn.gnome.glib.internal.gboolean): CString = extern
 
@@ -10522,7 +10522,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_text_buffer_insert_markup(buffer : Ptr[GtkTextBuffer], iter : Ptr[GtkTextIter], markup : CString, len : CInt): Unit = extern
 
-@extern def gtk_text_buffer_insert_paintable(buffer : Ptr[GtkTextBuffer], iter : Ptr[GtkTextIter], paintable : Ptr[GdkPaintable]): Unit = extern
+@extern def gtk_text_buffer_insert_paintable(buffer : Ptr[GtkTextBuffer], iter : Ptr[GtkTextIter], paintable : Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]): Unit = extern
 
 @extern def gtk_text_buffer_insert_range(buffer : Ptr[GtkTextBuffer], iter : Ptr[GtkTextIter], start : Ptr[GtkTextIter], end : Ptr[GtkTextIter]): Unit = extern
 
@@ -10538,7 +10538,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_text_buffer_new(table : Ptr[GtkTextTagTable]): Ptr[GtkTextBuffer] = extern
 
-@extern def gtk_text_buffer_paste_clipboard(buffer : Ptr[GtkTextBuffer], clipboard : Ptr[GdkClipboard], override_location : Ptr[GtkTextIter], default_editable : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
+@extern def gtk_text_buffer_paste_clipboard(buffer : Ptr[GtkTextBuffer], clipboard : Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard], override_location : Ptr[GtkTextIter], default_editable : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
 @extern def gtk_text_buffer_place_cursor(buffer : Ptr[GtkTextBuffer], where : Ptr[GtkTextIter]): Unit = extern
 
@@ -10546,7 +10546,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_text_buffer_remove_all_tags(buffer : Ptr[GtkTextBuffer], start : Ptr[GtkTextIter], end : Ptr[GtkTextIter]): Unit = extern
 
-@extern def gtk_text_buffer_remove_selection_clipboard(buffer : Ptr[GtkTextBuffer], clipboard : Ptr[GdkClipboard]): Unit = extern
+@extern def gtk_text_buffer_remove_selection_clipboard(buffer : Ptr[GtkTextBuffer], clipboard : Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]): Unit = extern
 
 @extern def gtk_text_buffer_remove_tag(buffer : Ptr[GtkTextBuffer], tag : Ptr[GtkTextTag], start : Ptr[GtkTextIter], end : Ptr[GtkTextIter]): Unit = extern
 
@@ -10740,7 +10740,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_text_iter_get_offset(iter : Ptr[GtkTextIter]): CInt = extern
 
-@extern def gtk_text_iter_get_paintable(iter : Ptr[GtkTextIter]): Ptr[GdkPaintable] = extern
+@extern def gtk_text_iter_get_paintable(iter : Ptr[GtkTextIter]): Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable] = extern
 
 @extern def gtk_text_iter_get_slice(start : Ptr[GtkTextIter], end : Ptr[GtkTextIter]): CString = extern
 
@@ -10896,7 +10896,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_text_view_get_buffer(text_view : Ptr[GtkTextView]): Ptr[GtkTextBuffer] = extern
 
-@extern def gtk_text_view_get_cursor_locations(text_view : Ptr[GtkTextView], iter : Ptr[GtkTextIter], strong : Ptr[GdkRectangle], weak : Ptr[GdkRectangle]): Unit = extern
+@extern def gtk_text_view_get_cursor_locations(text_view : Ptr[GtkTextView], iter : Ptr[GtkTextIter], strong : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], weak : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
 @extern def gtk_text_view_get_cursor_visible(text_view : Ptr[GtkTextView]): _root_.sn.gnome.glib.internal.gboolean = extern
 
@@ -10916,7 +10916,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_text_view_get_iter_at_position(text_view : Ptr[GtkTextView], iter : Ptr[GtkTextIter], trailing : Ptr[CInt], x : CInt, y : CInt): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_text_view_get_iter_location(text_view : Ptr[GtkTextView], iter : Ptr[GtkTextIter], location : Ptr[GdkRectangle]): Unit = extern
+@extern def gtk_text_view_get_iter_location(text_view : Ptr[GtkTextView], iter : Ptr[GtkTextIter], location : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
 @extern def gtk_text_view_get_justification(text_view : Ptr[GtkTextView]): GtkJustification = extern
 
@@ -10948,11 +10948,11 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_text_view_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
-@extern def gtk_text_view_get_visible_rect(text_view : Ptr[GtkTextView], visible_rect : Ptr[GdkRectangle]): Unit = extern
+@extern def gtk_text_view_get_visible_rect(text_view : Ptr[GtkTextView], visible_rect : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
 @extern def gtk_text_view_get_wrap_mode(text_view : Ptr[GtkTextView]): GtkWrapMode = extern
 
-@extern def gtk_text_view_im_context_filter_keypress(text_view : Ptr[GtkTextView], event : Ptr[GdkEvent]): _root_.sn.gnome.glib.internal.gboolean = extern
+@extern def gtk_text_view_im_context_filter_keypress(text_view : Ptr[GtkTextView], event : Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]): _root_.sn.gnome.glib.internal.gboolean = extern
 
 @extern def gtk_text_view_layer_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
@@ -11048,7 +11048,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_tooltip_set_custom(tooltip : Ptr[GtkTooltip], custom_widget : Ptr[GtkWidget]): Unit = extern
 
-@extern def gtk_tooltip_set_icon(tooltip : Ptr[GtkTooltip], paintable : Ptr[GdkPaintable]): Unit = extern
+@extern def gtk_tooltip_set_icon(tooltip : Ptr[GtkTooltip], paintable : Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]): Unit = extern
 
 @extern def gtk_tooltip_set_icon_from_gicon(tooltip : Ptr[GtkTooltip], gicon : Ptr[_root_.sn.gnome.gio.internal.GIcon]): Unit = extern
 
@@ -11058,9 +11058,9 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_tooltip_set_text(tooltip : Ptr[GtkTooltip], text : CString): Unit = extern
 
-@extern def gtk_tooltip_set_tip_area(tooltip : Ptr[GtkTooltip], rect : Ptr[GdkRectangle]): Unit = extern
+@extern def gtk_tooltip_set_tip_area(tooltip : Ptr[GtkTooltip], rect : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
-@extern def gtk_tree_create_row_drag_content(tree_model : Ptr[GtkTreeModel], path : Ptr[GtkTreePath]): Ptr[GdkContentProvider] = extern
+@extern def gtk_tree_create_row_drag_content(tree_model : Ptr[GtkTreeModel], path : Ptr[GtkTreePath]): Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider] = extern
 
 @extern def gtk_tree_drag_dest_drag_data_received(drag_dest : Ptr[GtkTreeDragDest], dest : Ptr[GtkTreePath], value : Ptr[_root_.sn.gnome.gobject.internal.GValue]): _root_.sn.gnome.glib.internal.gboolean = extern
 
@@ -11070,7 +11070,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_tree_drag_source_drag_data_delete(drag_source : Ptr[GtkTreeDragSource], path : Ptr[GtkTreePath]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_tree_drag_source_drag_data_get(drag_source : Ptr[GtkTreeDragSource], path : Ptr[GtkTreePath]): Ptr[GdkContentProvider] = extern
+@extern def gtk_tree_drag_source_drag_data_get(drag_source : Ptr[GtkTreeDragSource], path : Ptr[GtkTreePath]): Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider] = extern
 
 @extern def gtk_tree_drag_source_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
@@ -11559,13 +11559,13 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_tree_view_convert_widget_to_tree_coords(tree_view : Ptr[GtkTreeView], wx : CInt, wy : CInt, tx : Ptr[CInt], ty : Ptr[CInt]): Unit = extern
 
-@extern def gtk_tree_view_create_row_drag_icon(tree_view : Ptr[GtkTreeView], path : Ptr[GtkTreePath]): Ptr[GdkPaintable] = extern
+@extern def gtk_tree_view_create_row_drag_icon(tree_view : Ptr[GtkTreeView], path : Ptr[GtkTreePath]): Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable] = extern
 
 @extern def gtk_tree_view_drop_position_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
-@extern def gtk_tree_view_enable_model_drag_dest(tree_view : Ptr[GtkTreeView], formats : Ptr[GdkContentFormats], actions : GdkDragAction): Unit = extern
+@extern def gtk_tree_view_enable_model_drag_dest(tree_view : Ptr[GtkTreeView], formats : Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats], actions : _root_.sn.gnome.gdk4.internal.GdkDragAction): Unit = extern
 
-@extern def gtk_tree_view_enable_model_drag_source(tree_view : Ptr[GtkTreeView], start_button_mask : GdkModifierType, formats : Ptr[GdkContentFormats], actions : GdkDragAction): Unit = extern
+@extern def gtk_tree_view_enable_model_drag_source(tree_view : Ptr[GtkTreeView], start_button_mask : _root_.sn.gnome.gdk4.internal.GdkModifierType, formats : Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats], actions : _root_.sn.gnome.gdk4.internal.GdkDragAction): Unit = extern
 
 @extern def gtk_tree_view_expand_all(tree_view : Ptr[GtkTreeView]): Unit = extern
 
@@ -11575,9 +11575,9 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_tree_view_get_activate_on_single_click(tree_view : Ptr[GtkTreeView]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_tree_view_get_background_area(tree_view : Ptr[GtkTreeView], path : Ptr[GtkTreePath], column : Ptr[GtkTreeViewColumn], rect : Ptr[GdkRectangle]): Unit = extern
+@extern def gtk_tree_view_get_background_area(tree_view : Ptr[GtkTreeView], path : Ptr[GtkTreePath], column : Ptr[GtkTreeViewColumn], rect : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
-@extern def gtk_tree_view_get_cell_area(tree_view : Ptr[GtkTreeView], path : Ptr[GtkTreePath], column : Ptr[GtkTreeViewColumn], rect : Ptr[GdkRectangle]): Unit = extern
+@extern def gtk_tree_view_get_cell_area(tree_view : Ptr[GtkTreeView], path : Ptr[GtkTreePath], column : Ptr[GtkTreeViewColumn], rect : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
 @extern def gtk_tree_view_get_column(tree_view : Ptr[GtkTreeView], n : CInt): Ptr[GtkTreeViewColumn] = extern
 
@@ -11639,7 +11639,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_tree_view_get_visible_range(tree_view : Ptr[GtkTreeView], start_path : Ptr[Ptr[GtkTreePath]], end_path : Ptr[Ptr[GtkTreePath]]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_tree_view_get_visible_rect(tree_view : Ptr[GtkTreeView], visible_rect : Ptr[GdkRectangle]): Unit = extern
+@extern def gtk_tree_view_get_visible_rect(tree_view : Ptr[GtkTreeView], visible_rect : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
 @extern def gtk_tree_view_grid_lines_get_type(): _root_.sn.gnome.gobject.internal.GType = extern
 
@@ -11821,15 +11821,15 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_widget_add_tick_callback(widget : Ptr[GtkWidget], callback : GtkTickCallback, user_data : _root_.sn.gnome.glib.internal.gpointer, notify : _root_.sn.gnome.glib.internal.GDestroyNotify): _root_.sn.gnome.glib.internal.guint = extern
 
-@extern def gtk_widget_allocate(widget : Ptr[GtkWidget], width : CInt, height : CInt, baseline : CInt, transform : Ptr[GskTransform]): Unit = extern
+@extern def gtk_widget_allocate(widget : Ptr[GtkWidget], width : CInt, height : CInt, baseline : CInt, transform : Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]): Unit = extern
 
 @extern def gtk_widget_child_focus(widget : Ptr[GtkWidget], direction : GtkDirectionType): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_widget_class_add_binding(widget_class : Ptr[GtkWidgetClass], keyval : _root_.sn.gnome.glib.internal.guint, mods : GdkModifierType, callback : GtkShortcutFunc, format_string : CString, rest: Any*): Unit = extern
+@extern def gtk_widget_class_add_binding(widget_class : Ptr[GtkWidgetClass], keyval : _root_.sn.gnome.glib.internal.guint, mods : _root_.sn.gnome.gdk4.internal.GdkModifierType, callback : GtkShortcutFunc, format_string : CString, rest: Any*): Unit = extern
 
-@extern def gtk_widget_class_add_binding_action(widget_class : Ptr[GtkWidgetClass], keyval : _root_.sn.gnome.glib.internal.guint, mods : GdkModifierType, action_name : CString, format_string : CString, rest: Any*): Unit = extern
+@extern def gtk_widget_class_add_binding_action(widget_class : Ptr[GtkWidgetClass], keyval : _root_.sn.gnome.glib.internal.guint, mods : _root_.sn.gnome.gdk4.internal.GdkModifierType, action_name : CString, format_string : CString, rest: Any*): Unit = extern
 
-@extern def gtk_widget_class_add_binding_signal(widget_class : Ptr[GtkWidgetClass], keyval : _root_.sn.gnome.glib.internal.guint, mods : GdkModifierType, signal : CString, format_string : CString, rest: Any*): Unit = extern
+@extern def gtk_widget_class_add_binding_signal(widget_class : Ptr[GtkWidgetClass], keyval : _root_.sn.gnome.glib.internal.guint, mods : _root_.sn.gnome.gdk4.internal.GdkModifierType, signal : CString, format_string : CString, rest: Any*): Unit = extern
 
 @extern def gtk_widget_class_add_shortcut(widget_class : Ptr[GtkWidgetClass], shortcut : Ptr[GtkShortcut]): Unit = extern
 
@@ -11903,21 +11903,21 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_widget_get_child_visible(widget : Ptr[GtkWidget]): _root_.sn.gnome.glib.internal.gboolean = extern
 
-@extern def gtk_widget_get_clipboard(widget : Ptr[GtkWidget]): Ptr[GdkClipboard] = extern
+@extern def gtk_widget_get_clipboard(widget : Ptr[GtkWidget]): Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard] = extern
 
-@extern def gtk_widget_get_color(widget : Ptr[GtkWidget], color : Ptr[GdkRGBA]): Unit = extern
+@extern def gtk_widget_get_color(widget : Ptr[GtkWidget], color : Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]): Unit = extern
 
 @extern def gtk_widget_get_css_classes(widget : Ptr[GtkWidget]): Ptr[CString] = extern
 
 @extern def gtk_widget_get_css_name(self : Ptr[GtkWidget]): CString = extern
 
-@extern def gtk_widget_get_cursor(widget : Ptr[GtkWidget]): Ptr[GdkCursor] = extern
+@extern def gtk_widget_get_cursor(widget : Ptr[GtkWidget]): Ptr[_root_.sn.gnome.gdk4.internal.GdkCursor] = extern
 
 @extern def gtk_widget_get_default_direction(): GtkTextDirection = extern
 
 @extern def gtk_widget_get_direction(widget : Ptr[GtkWidget]): GtkTextDirection = extern
 
-@extern def gtk_widget_get_display(widget : Ptr[GtkWidget]): Ptr[GdkDisplay] = extern
+@extern def gtk_widget_get_display(widget : Ptr[GtkWidget]): Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay] = extern
 
 @extern def gtk_widget_get_first_child(widget : Ptr[GtkWidget]): Ptr[GtkWidget] = extern
 
@@ -11931,7 +11931,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_widget_get_font_options(widget : Ptr[GtkWidget]): Ptr[_root_.sn.gnome.cairo.internal.cairo_font_options_t] = extern
 
-@extern def gtk_widget_get_frame_clock(widget : Ptr[GtkWidget]): Ptr[GdkFrameClock] = extern
+@extern def gtk_widget_get_frame_clock(widget : Ptr[GtkWidget]): Ptr[_root_.sn.gnome.gdk4.internal.GdkFrameClock] = extern
 
 @extern def gtk_widget_get_halign(widget : Ptr[GtkWidget]): GtkAlign = extern
 
@@ -11975,7 +11975,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_widget_get_prev_sibling(widget : Ptr[GtkWidget]): Ptr[GtkWidget] = extern
 
-@extern def gtk_widget_get_primary_clipboard(widget : Ptr[GtkWidget]): Ptr[GdkClipboard] = extern
+@extern def gtk_widget_get_primary_clipboard(widget : Ptr[GtkWidget]): Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard] = extern
 
 @extern def gtk_widget_get_realized(widget : Ptr[GtkWidget]): _root_.sn.gnome.glib.internal.gboolean = extern
 
@@ -12067,7 +12067,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_widget_paintable_get_widget(self : Ptr[GtkWidgetPaintable]): Ptr[GtkWidget] = extern
 
-@extern def gtk_widget_paintable_new(widget : Ptr[GtkWidget]): Ptr[GdkPaintable] = extern
+@extern def gtk_widget_paintable_new(widget : Ptr[GtkWidget]): Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable] = extern
 
 @extern def gtk_widget_paintable_set_widget(self : Ptr[GtkWidgetPaintable], widget : Ptr[GtkWidget]): Unit = extern
 
@@ -12097,7 +12097,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_widget_set_css_classes(widget : Ptr[GtkWidget], classes : Ptr[CString]): Unit = extern
 
-@extern def gtk_widget_set_cursor(widget : Ptr[GtkWidget], cursor : Ptr[GdkCursor]): Unit = extern
+@extern def gtk_widget_set_cursor(widget : Ptr[GtkWidget], cursor : Ptr[_root_.sn.gnome.gdk4.internal.GdkCursor]): Unit = extern
 
 @extern def gtk_widget_set_cursor_from_name(widget : Ptr[GtkWidget], name : CString): Unit = extern
 
@@ -12201,7 +12201,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_window_fullscreen(window : Ptr[GtkWindow]): Unit = extern
 
-@extern def gtk_window_fullscreen_on_monitor(window : Ptr[GtkWindow], monitor : Ptr[GdkMonitor]): Unit = extern
+@extern def gtk_window_fullscreen_on_monitor(window : Ptr[GtkWindow], monitor : Ptr[_root_.sn.gnome.gdk4.internal.GdkMonitor]): Unit = extern
 
 @extern def gtk_window_get_application(window : Ptr[GtkWindow]): Ptr[GtkApplication] = extern
 
@@ -12305,7 +12305,7 @@ import _root_.scala.scalanative.*
 
 @extern def gtk_window_set_destroy_with_parent(window : Ptr[GtkWindow], setting : _root_.sn.gnome.glib.internal.gboolean): Unit = extern
 
-@extern def gtk_window_set_display(window : Ptr[GtkWindow], display : Ptr[GdkDisplay]): Unit = extern
+@extern def gtk_window_set_display(window : Ptr[GtkWindow], display : Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]): Unit = extern
 
 @extern def gtk_window_set_focus(window : Ptr[GtkWindow], focus : Ptr[GtkWidget]): Unit = extern
 
