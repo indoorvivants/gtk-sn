@@ -16,7 +16,7 @@ ENV LLVM_BIN=/usr/lib/llvm-17/bin
 
 WORKDIR /source/sn-bindgen
 ENV SCALANATIVE_MODE=release-fast
-ENV BINDGEN_REV=bindgen-to-string
+ENV BINDGEN_REV=23505d91ea3ac50566a8a4ba78f280570f42e7ee
 RUN git clone https://github.com/indoorvivants/sn-bindgen . && git checkout $BINDGEN_REV && sbt devPublish versionDump
 RUN chmod +x /root/.ivy2/local/com.indoorvivants/bindgen_native0.5_3/*/exes/bindgen_native0.5_3-*.exe
 
