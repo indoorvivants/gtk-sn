@@ -15,7 +15,13 @@ def renderClass(
   WithEffects.collect: coll =>
     val cTypeName = cls.attributes.get("@type").map(_.as[String])
     val cType =
-      cTypeName.getOrElse(break("c:type missing"))
+      cTypeName
+        .orElse(
+          Option.when(ns.name.contains("Gtk") && cls.name == "Snapshot")(
+            "GtkSnapshot"
+          )
+        )
+        .getOrElse(break("c:type missing"))
 
     coll.add(
       Effect.RequiresImport(
@@ -69,5 +75,6 @@ def renderClass(
             emptyLine()
             df()
 
-    coll.observe(renderClassCompanionObject(ns, cls))
+    handleExceptions:
+      coll.observe(renderClassCompanionObject(ns, cls))
 end renderClass

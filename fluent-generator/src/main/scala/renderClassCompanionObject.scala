@@ -8,14 +8,13 @@ def renderClassCompanionObject(
     RenderingContext,
     GlobalKnowledge,
     NamingPolicy,
-    Label[String]
 ) =
   WithEffects.collect: coll =>
     val objectHeader = s"object ${cls.name}"
     val objectHasAnyMembers = cls.constructors.nonEmpty
 
     if objectHasAnyMembers then
-      transact["no constructors"]:
+      transact[Boolean]:
         emptyLine()
         block(objectHeader + ":", s"end ${cls.name}"):
           var atLeastOneConstructor = false
@@ -40,7 +39,7 @@ def renderClassCompanionObject(
                 line("// " + value)
                 emptyLine()
           // roll back whole rendering of companion object if it's empty
-          if !atLeastOneConstructor then break("no constructors")
+          if !atLeastOneConstructor then break(true)
 
           coll
             .effectsSoFar()

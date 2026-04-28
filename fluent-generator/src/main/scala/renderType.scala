@@ -37,6 +37,9 @@ def renderType(
   def importGio(name: String) =
     Effect.RequiresImport(policy.namespaceToInternalPackage("gio"), name)
 
+  def importGtk(name: String) =
+    Effect.RequiresImport(policy.namespaceToInternalPackage("gtk4"), name)
+
   def requiresStringExtractor(mapping: TypeMapping) =
     mapping
       .withEffect(stringExtractor._2)
@@ -91,7 +94,7 @@ def renderType(
       if typeName.contains(name) then
         if typeValue.trim == cName then Some(TypeMapping(result))
         else
-          scribe.info(
+          scribe.debug(
             s"whenFull($name) did not match cName: expected ${cName}, got ${typeValue}"
           )
           None
@@ -290,7 +293,12 @@ def renderType(
       glibAlias("gchar", "char")("Byte").map(
         _.withMassageIntoUnsafe(Massage.InferredCast)
       ),
-      whenTypeValue("void")("Unit")
+      whenTypeValue("void")("Unit"),
+      whenFull("ResponseType", "GtkResponseType")("BLA").map(
+        _.withMassageIntoUnsafe(Massage.Field("int")).withEffect(
+          importGtk("GtkResponseType")
+        )
+      )
     ).reduce(_ orElse _)
   end getCType
 
@@ -332,6 +340,8 @@ def renderType(
                   .withMassageIntoUnsafe(Massage.Apply("gpointer"))
                   .withEffect(importGlib("gpointer"))
               case _ => base
+          case name if name.short == "GtkResponseType" => 
+            TypeMapping(name.short).withEffect(name.effects*).withMassageIntoUnsafe(Massage.Field("value"))
           case other =>
             TypeMapping(other.short).withEffect(other.effects*)
         .orElse(getCType(tpe.name, tpe.typeValue))
