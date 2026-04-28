@@ -15,7 +15,7 @@ addSbtPlugin(
 val BindgenVersion =
   sys.env.getOrElse(
     "SN_BINDGEN_VERSION",
-    "0.4.3"
+    "0.4.4"
   )
 
 addSbtPlugin(
