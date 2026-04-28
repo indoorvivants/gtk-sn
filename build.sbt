@@ -522,7 +522,7 @@ lazy val `fluent-generator` = project
   .settings(scalaVersion := "3.3.7")
   .settings(
     libraryDependencies += "com.outr" %%% "scribe" % "3.13.0",
-    libraryDependencies += "com.indoorvivants" %%% "rendition" % "0.0.3+4-818d0ad8-SNAPSHOT",
+    libraryDependencies += "com.indoorvivants" %%% "rendition" % "0.0.4",
     libraryDependencies += "com.monovore" %%% "decline" % "2.4.1",
     libraryDependencies += "com.lihaoyi" %%% "os-lib" % "0.9.1",
     fork := true,
