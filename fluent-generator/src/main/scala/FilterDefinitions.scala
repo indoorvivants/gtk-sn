@@ -69,6 +69,10 @@ def filterDefinitions(
     weirdClass("DesktopAppInfo")
     weirdClass("ThreadedResolver")
     weirdClass("BroadwayRenderer", "Missing in raw bindings")
+    weirdClass("PrintJob", "Missing in raw bindings")
+    weirdClass("Printer", "Missing in raw bindings")
+    weirdClass("PrintUnixDialog", "Missing in raw bindings")
+    weirdClass("PageSetupUnixDialog", "Missing in raw bindings")
 
     def weirdMethod(cName: String, msg: String) =
       method.foreach: meth =>
@@ -83,6 +87,8 @@ def filterDefinitions(
         "g_data_input_stream_read_byte",
         s"there are conflicting versions of it in DataInputStream and BufferedInputStream"
       )
+      weirdMethod("gtk_menu_button_get_direction", "conflicting override")
+      weirdMethod("gtk_menu_button_set_direction", "conflicting override")
       check(
         meth.identifier.startsWith("g_settings_backend"),
         "GSettingsBackend methods are not rendered"
