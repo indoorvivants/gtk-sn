@@ -8,7 +8,7 @@ def renderTrait(ns: AugmentedNamespace, iface: AugmentedInterface)(using
     Label[String]
 ) =
   WithEffects.collect: coll =>
-    val extensions = coll.observe(renderClassExtensions(None, iface.implements))
+    val extensions = coll.observe(renderClassExtensions(iface.name, None, iface.implements))
     transact[String]:
       block(
         s"trait ${iface.name}${extensions}:",

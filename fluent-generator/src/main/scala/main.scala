@@ -53,7 +53,12 @@ end config
 
       val repository = reader(value.module)
       val policy = NamingPolicy(
-        namespaceToPackage = nm => s"sn.gnome.${nm.toLowerCase()}"
+        namespaceToPackage = nm =>
+          nm.toLowerCase match
+            case "gtk" => s"sn.gnome.gtk4"
+            case "gdk" => s"sn.gnome.gdk4"
+            case "gsk" => s"sn.gnome.gsk4"
+            case other => s"sn.gnome.$other"
       )
 
       val streams = RenderingStreams()
@@ -68,10 +73,10 @@ end config
 
       val nonEmptyFiles = List.newBuilder[os.Path]
 
-      val createTarget = 
+      val createTarget =
         var created = false
-        () => 
-          if !created then 
+        () =>
+          if !created then
             os.makeDir.all(target)
             created = true
 

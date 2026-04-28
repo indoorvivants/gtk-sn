@@ -1,0 +1,15 @@
+package sn.gnome.gdk4.internal
+
+// This file was generated using sn-bindgen 0.4.4: https://sn-bindgen.indoorvivants.com/
+
+import _root_.scala.scalanative.unsafe.*
+import _root_.scala.scalanative.unsigned.*
+import _root_.scala.scalanative.libc.*
+import _root_.scala.scalanative.*
+
+opaque type GdkDragSurface_autoptr = Ptr[GdkDragSurface]
+object GdkDragSurface_autoptr:
+  given _tag: Tag[GdkDragSurface_autoptr] = Tag.Ptr[GdkDragSurface](GdkDragSurface._tag)
+  inline def apply(inline o: Ptr[GdkDragSurface]): GdkDragSurface_autoptr = o
+  extension (v: GdkDragSurface_autoptr)
+    inline def value: Ptr[GdkDragSurface] = v
