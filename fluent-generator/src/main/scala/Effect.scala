@@ -15,4 +15,5 @@ import scribe.LogRecord
 enum Effect:
   case RequiresZone
   case RequiresImport(namespace: String, definition: String)
+  case RequiresRenamedImport(namespace: String, definition: String, alias: String)
   case RequiresDefinition(f: () => RenderingContext ?=> Unit)

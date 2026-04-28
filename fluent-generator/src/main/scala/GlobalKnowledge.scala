@@ -12,6 +12,7 @@ import boundary.break
 import scala.annotation.tailrec
 
 case class GlobalName(
+    namespace: String,
     short: String,
     effects: List[Effect],
     tpe: NameType
@@ -22,6 +23,7 @@ object GlobalName:
       NamingPolicy
   ) =
     GlobalName(
+      namespace,
       short,
       List(
         Effect.RequiresImport(
@@ -35,6 +37,7 @@ object GlobalName:
       NamingPolicy
   ) =
     GlobalName(
+      namespace,
       short,
       List(
         Effect.RequiresImport(
@@ -55,7 +58,7 @@ case class GlobalKnowledge(
   given NamingPolicy = policy
 
   lazy val classMethods =
-    val b = Map.newBuilder[String, Map[String, Method]]
+    val b = Map.newBuilder[GlobalName, Map[String, Method]]
 
     @tailrec
     def go(repos: Seq[AugmentedRepository], visited: Set[String]): Unit =
@@ -67,9 +70,11 @@ case class GlobalKnowledge(
               val cl = Map.newBuilder[String, Method]
               cls.methods.foreach: m =>
                 cl += (m.name -> m)
-              b += ((ns.name
+              val name = names(ns.name
                 .map(_ + ".")
-                .getOrElse("") + cls.name) -> cl.result)
+                .getOrElse("") + cls.name)
+
+              b += name -> cl.result()
           val deps =
             repository.dependencies.filterNot(visited.contains).map(reader(_))
 
@@ -217,3 +222,6 @@ case class GlobalKnowledge(
     go(Seq(repository), Map.empty, Set.empty)
   end names
 end GlobalKnowledge
+
+object GlobalKnowledge:
+  inline def apply()(using gk: GlobalKnowledge) = gk

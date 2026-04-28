@@ -2,6 +2,7 @@ import rendition.*
 import util.boundary.*
 
 def renderClassCompanionObject(
+    ns: AugmentedNamespace,
     cls: AugmentedClass
 )(using
     RenderingContext,
@@ -17,14 +18,24 @@ def renderClassCompanionObject(
       emptyLine()
       block(objectHeader + ":", s"end ${cls.name}"):
         cls.constructors.foreach: constructor =>
-          val result =
-            transact[String]:
-              handleExceptions(coll.observe(renderClassConstructor(cls, constructor)))
+          filterDefinitions(
+            namespace = Some(ns),
+            cls = Some(cls),
+            constructor = Some(constructor)
+          ) match
+            case None =>
+              val result =
+                transact[String]:
+                  handleExceptions(coll.observe(renderClassConstructor(cls, constructor)))
 
-          result.foreach: msg =>
-            scribe.warn(
-              s"Failed to render constructor for class ${cls.name}, ${constructor.name}: `$msg`"
-            )
+              result.foreach: msg =>
+                scribe.warn(
+                  s"Failed to render constructor for class ${cls.name}, ${constructor.name}: `$msg`"
+                )
+            case Some(value) =>
+              line("// " + value)
+              emptyLine()
+
 
         coll
           .effectsSoFar()

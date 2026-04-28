@@ -194,6 +194,37 @@ lazy val gtk4 = project
           .withMultiFile(true)
           .addExcludedSystemPath(headerPath.toPath.getParent())
       }
+lazy val gdk4 = project
+  .in(file("gdk4"))
+  .dependsOn(glib, gio, gobject, cairo, harfbuzz, graphene, pango, gdkpixbuf)
+  .configure(pkgConfigured("gtk4"))
+  .settings(
+    bindgenBindings +=
+      buildWithDependencies(
+        "gdkpixbuf",
+        "gio",
+        "glib",
+        "gobject",
+        "cairo",
+        "harfbuzz",
+        "gdkpixbuf",
+        "graphene",
+        "pango"
+      ) {
+        val headerPath = findHeader("gtk4", _ / "gdk" / "gdk.h")
+        Binding(
+          headerPath,
+          bindingPackage("gdk4")
+        )
+          .withClangFlags(pkgConfig("gtk4", "cflags") :+ "-fsigned-char")
+          // .addCImport("graphene.h")
+          .withNoLocation(true)
+          .withMultiFile(true)
+          .addExcludedSystemPath(headerPath.toPath.getParent())
+      },
+    girModuleName := "gdk-4.0",
+    withFluentBindings
+  )
   )
 
 lazy val gobject =
@@ -495,10 +526,16 @@ def buildWithDependencies(deps: String*)(bb: Binding) = {
     case "cairo" =>
       List("*/cairo/*")
     case "harfbuzz" => List("*/harfbuzz/*")
-    case "gtk4"     =>
+    case "gdk4"     =>
       List(
-        "*/gtk-4.0/gdk/*",
-        "*/gtk-4.0/gsk/*",
+        "*/gtk-4.0/gdk/*"
+      )
+    case "gsk4" =>
+      List(
+        "*/gtk-4.0/gsk/*"
+      )
+    case "gtk4" =>
+      List(
         "*/gtk-4.0/gtk/*"
       )
     case "graphene"  => List("*/graphene-1.0/*")

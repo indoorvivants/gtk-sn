@@ -26,8 +26,12 @@ def renderClassMethod(cls: AugmentedClass, meth: Method)(using
 
     val isOverride = allParents
       .exists(clsName =>
-        methods.get(clsName).exists(_.exists((_, m) => sig(m) == thisMethodSig))
+        methods.get(GlobalKnowledge().names(clsName)).exists(_.exists((_, m) => sig(m) == thisMethodSig))
       )
+
+    if meth.identifier == "gdk_gl_context_get_surface" then 
+      val sigs = methods.mapValues(_.mapValues(sig(_)).toMap).toMap
+      scribe.info(s"$thisMethodSig: $allParents, ${allParents},  $isOverride, ${GlobalKnowledge().names.get("DrawContext")}")
 
     val isVararg = meth.parameters
       .collect:

@@ -27,7 +27,7 @@ def renderClass(
     val data = s"(raw: Ptr[$cType])"
 
     val extensions =
-      coll.observe(renderClassExtensions(cls.parent, cls.implements))
+      coll.observe(renderClassExtensions(cls.name, cls.parent, cls.implements))
 
     val classHeader =
       s"class ${cls.name}$data${extensions}"
@@ -69,5 +69,5 @@ def renderClass(
             emptyLine()
             df()
 
-    coll.observe(renderClassCompanionObject(cls))
+    coll.observe(renderClassCompanionObject(ns, cls))
 end renderClass

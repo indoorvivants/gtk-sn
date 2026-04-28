@@ -8,3 +8,10 @@ def renderEffects(effects: List[Effect])(using RenderingContext) =
     .sortBy(i => i.namespace -> i.definition)
     .foreach: i =>
       line(s"import ${i.namespace}.${i.definition}")
+  effects.distinct
+    .collect:
+      case a: Effect.RequiresRenamedImport =>
+        a
+    .sortBy(i => i.namespace -> i.definition)
+    .foreach: i =>
+      line(s"import ${i.namespace}.${i.definition} as ${i.alias}")
