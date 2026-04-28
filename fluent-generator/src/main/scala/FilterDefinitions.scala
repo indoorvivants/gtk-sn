@@ -59,8 +59,8 @@ def filterDefinitions(
     def check(b: Boolean, msg: String) =
       if b then break(Some(msg))
 
-    def weirdClass(name: String) =
-      check(isClass(name), s"Class $name is weird")
+    def weirdClass(name: String, msg: String = "") =
+      check(isClass(name), s"Class $name is weird: $msg")
 
     weirdClass("UnixInputStream")
     weirdClass("UnixMountMonitor")
@@ -68,6 +68,7 @@ def filterDefinitions(
     weirdClass("UnixFDMessage")
     weirdClass("DesktopAppInfo")
     weirdClass("ThreadedResolver")
+    weirdClass("BroadwayRenderer", "Missing in raw bindings")
 
     def weirdMethod(cName: String, msg: String) =
       method.foreach: meth =>

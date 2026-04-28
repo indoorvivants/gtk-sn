@@ -15,35 +15,40 @@ def renderClassCompanionObject(
     val objectHasAnyMembers = cls.constructors.nonEmpty
 
     if objectHasAnyMembers then
-      emptyLine()
-      block(objectHeader + ":", s"end ${cls.name}"):
-        cls.constructors.foreach: constructor =>
-          filterDefinitions(
-            namespace = Some(ns),
-            cls = Some(cls),
-            constructor = Some(constructor)
-          ) match
-            case None =>
-              val result =
-                transact[String]:
-                  handleExceptions(coll.observe(renderClassConstructor(cls, constructor)))
+      transact["no constructors"]:
+        emptyLine()
+        block(objectHeader + ":", s"end ${cls.name}"):
+          var atLeastOneConstructor = false
+          cls.constructors.foreach: constructor =>
+            filterDefinitions(
+              namespace = Some(ns),
+              cls = Some(cls),
+              constructor = Some(constructor)
+            ) match
+              case None =>
+                val result =
+                  transact[String]:
+                    handleExceptions(coll.observe(renderClassConstructor(cls, constructor)))
 
-              result.foreach: msg =>
-                scribe.warn(
-                  s"Failed to render constructor for class ${cls.name}, ${constructor.name}: `$msg`"
-                )
-            case Some(value) =>
-              line("// " + value)
-              emptyLine()
+                result.foreach: msg =>
+                  scribe.warn(
+                    s"Failed to render constructor for class ${cls.name}, ${constructor.name}: `$msg`"
+                  )
 
+                atLeastOneConstructor = atLeastOneConstructor || result.isEmpty
+              case Some(value) =>
+                line("// " + value)
+                emptyLine()
+          // roll back whole rendering of companion object if it's empty
+          if !atLeastOneConstructor then break("no constructors")
 
-        coll
-          .effectsSoFar()
-          .distinct
-          .collect:
-            case Effect.RequiresDefinition(df) =>
-              emptyLine()
-              df()
+          coll
+            .effectsSoFar()
+            .distinct
+            .collect:
+              case Effect.RequiresDefinition(df) =>
+                emptyLine()
+                df()
 
     end if
 
