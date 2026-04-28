@@ -168,7 +168,18 @@ lazy val glib = project
 
 lazy val gtk4 = project
   .in(file("gtk4"))
-  .dependsOn(glib, gio, gobject, cairo, harfbuzz, graphene, pango, gdkpixbuf)
+  .dependsOn(
+    gdk4,
+    gsk4,
+    glib,
+    gio,
+    gobject,
+    cairo,
+    harfbuzz,
+    graphene,
+    pango,
+    gdkpixbuf
+  )
   .configure(pkgConfigured("gtk4"))
   .settings(
     bindgenBindings +=
@@ -181,7 +192,9 @@ lazy val gtk4 = project
         "harfbuzz",
         "gdkpixbuf",
         "graphene",
-        "pango"
+        "pango",
+        "gdk4",
+        "gsk4"
       ) {
         val headerPath = findHeader("gtk4", _ / "gtk" / "gtk.h")
         Binding(
@@ -193,7 +206,11 @@ lazy val gtk4 = project
           .withNoLocation(true)
           .withMultiFile(true)
           .addExcludedSystemPath(headerPath.toPath.getParent())
-      }
+      },
+    girModuleName := "gtk-4.0",
+    withFluentBindings
+  )
+
 lazy val gdk4 = project
   .in(file("gdk4"))
   .dependsOn(glib, gio, gobject, cairo, harfbuzz, graphene, pango, gdkpixbuf)
@@ -225,6 +242,38 @@ lazy val gdk4 = project
     girModuleName := "gdk-4.0",
     withFluentBindings
   )
+
+lazy val gsk4 = project
+  .in(file("gsk4"))
+  .dependsOn(gdk4, graphene)
+  .configure(pkgConfigured("gtk4"))
+  .settings(
+    bindgenBindings +=
+      buildWithDependencies(
+        "gdk4",
+        "gdkpixbuf",
+        "gio",
+        "glib",
+        "gobject",
+        "cairo",
+        "harfbuzz",
+        "gdkpixbuf",
+        "graphene",
+        "pango"
+      ) {
+        val headerPath = findHeader("gtk4", _ / "gsk" / "gsk.h")
+        Binding(
+          headerPath,
+          bindingPackage("gsk4")
+        )
+          .withClangFlags(pkgConfig("gtk4", "cflags") :+ "-fsigned-char")
+          // .addCImport("graphene.h")
+          .withNoLocation(true)
+          .withMultiFile(true)
+          .addExcludedSystemPath(headerPath.toPath.getParent())
+      },
+    girModuleName := "gsk-4.0",
+    withFluentBindings
   )
 
 lazy val gobject =
