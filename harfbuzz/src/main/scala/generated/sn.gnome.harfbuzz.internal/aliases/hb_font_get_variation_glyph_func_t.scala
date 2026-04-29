@@ -1,6 +1,6 @@
 package sn.gnome.harfbuzz.internal
 
-// This file was generated using sn-bindgen 0.4.3+6-e972956a-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
+// This file was generated using sn-bindgen 0.4.4: https://sn-bindgen.indoorvivants.com/
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*

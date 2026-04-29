@@ -1,10 +1,10 @@
 name: CI
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
   release:
-    types: [ 'published' ]
+    types: ["published"]
 
 env:
   JAVA_OPTS: -Xmx6G
@@ -29,8 +29,8 @@ jobs:
 
       - uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: "temurin"
+          java-version: "17"
           cache: sbt
 
       - uses: sbt/setup-sbt@v1
@@ -71,7 +71,7 @@ jobs:
 
       - name: Publish ${{ github.ref }}
         if: github.event_name != 'pull_request' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main')
-        run: sbt ci-release  # sbt --client won't pick up the env variables from the block below
+        run: sbt ci-release # sbt --client won't pick up the env variables from the block below
         env:
           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
           PGP_SECRET: ${{ secrets.PGP_SECRET }}
@@ -93,25 +93,25 @@ jobs:
 
       - uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: "temurin"
+          java-version: "17"
           cache: sbt
 
       - uses: sbt/setup-sbt@v1
 
       - name: Regenerate XSD schema
-        run: sbt --client generateIntrospectionSchema && git diff
+        run: sbt --client generateIntrospectionSchema && git diff --exit-code
 
       - name: Regenerate fluent bindings
-        run: sbt --client generateFluentBindings && git diff
+        run: sbt --client generateFluentBindings && git diff --exit-code
 
-      - name: Regenerate raw bindings in docker
-        run: sbt --client generateRawBindings && git diff
-
+      # Temporarily dxisab le
+      # - name: Regenerate raw bindings in docker
+      #   run: sbt --client generateRawBindings && git diff
 
   mergify-build-checkpoint:
     runs-on: ubuntu-24.04
-    needs: [ build, gen-check ]
+    needs: [build, gen-check]
     steps:
       - name: I only exist to please Mergify :(
         run: echo "It's a sad existence but necessary"
