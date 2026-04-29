@@ -123,7 +123,7 @@ class MenuButton(raw: Ptr[GtkMenuButton])
   @annotation.compileTimeOnly(
     "Method get_direction is weird: conflicting override"
   )
-  def getDirection() = ???
+  def getDirection(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -273,7 +273,7 @@ class MenuButton(raw: Ptr[GtkMenuButton])
   @annotation.compileTimeOnly(
     "Method set_direction is weird: conflicting override"
   )
-  def setDirection() = ???
+  def setDirection(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

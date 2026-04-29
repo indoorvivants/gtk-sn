@@ -111,12 +111,12 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_bounding_box contains an OUT parameter, which is not supported yet"
   )
-  def getBoundingBox() = ???
+  def getBoundingBox(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_bounding_box_center contains an OUT parameter, which is not supported yet"
   )
-  def getBoundingBoxCenter() = ???
+  def getBoundingBoxCenter(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -157,7 +157,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_point contains an OUT parameter, which is not supported yet"
   )
-  def getPoint() = ???
+  def getPoint(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

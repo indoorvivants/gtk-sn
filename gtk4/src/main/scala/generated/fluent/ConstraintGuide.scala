@@ -31,12 +31,12 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
   @annotation.compileTimeOnly(
     "Method get_max_size contains an OUT parameter, which is not supported yet"
   )
-  def getMaxSize() = ???
+  def getMaxSize(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_min_size contains an OUT parameter, which is not supported yet"
   )
-  def getMinSize() = ???
+  def getMinSize(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -49,7 +49,7 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
   @annotation.compileTimeOnly(
     "Method get_nat_size contains an OUT parameter, which is not supported yet"
   )
-  def getNatSize() = ???
+  def getNatSize(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

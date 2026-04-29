@@ -178,7 +178,7 @@ class Scale(raw: Ptr[GtkScale])
   @annotation.compileTimeOnly(
     "Method get_layout_offsets contains an OUT parameter, which is not supported yet"
   )
-  def getLayoutOffsets() = ???
+  def getLayoutOffsets(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

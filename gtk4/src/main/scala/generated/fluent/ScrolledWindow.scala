@@ -187,7 +187,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
   @annotation.compileTimeOnly(
     "Method get_policy contains an OUT parameter, which is not supported yet"
   )
-  def getPolicy() = ???
+  def getPolicy(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

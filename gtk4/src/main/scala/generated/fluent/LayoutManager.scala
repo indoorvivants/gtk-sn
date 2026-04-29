@@ -126,6 +126,6 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
   @annotation.compileTimeOnly(
     "Method measure contains an OUT parameter, which is not supported yet"
   )
-  def measure() = ???
+  def measure(using DummyImplicit) = ???
 
 end LayoutManager

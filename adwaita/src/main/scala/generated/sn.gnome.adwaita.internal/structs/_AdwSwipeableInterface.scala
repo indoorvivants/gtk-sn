@@ -1,6 +1,6 @@
 package sn.gnome.adwaita.internal
 
-// This file was generated using sn-bindgen 0.4.3+6-e972956a-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
+// This file was generated using sn-bindgen 0.4.4: https://sn-bindgen.indoorvivants.com/
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
@@ -12,10 +12,10 @@ import _root_.scala.scalanative.*
 
  * [bindgen] header: /usr/include/libadwaita-1/adw-swipeable.h
 */
-opaque type _AdwSwipeableInterface = CStruct7[_root_.sn.gnome.gobject.internal.GTypeInterface, CFuncPtr1[Ptr[AdwSwipeable], Double], CFuncPtr2[Ptr[AdwSwipeable], Ptr[CInt], Ptr[Double]], CFuncPtr1[Ptr[AdwSwipeable], Double], CFuncPtr1[Ptr[AdwSwipeable], Double], CFuncPtr4[Ptr[AdwSwipeable], AdwNavigationDirection, _root_.sn.gnome.glib.internal.gboolean, Ptr[_root_.sn.gnome.gtk4.internal.GdkRectangle], Unit], CArray[_root_.sn.gnome.glib.internal.gpointer, Nat._4]]
+opaque type _AdwSwipeableInterface = CStruct7[_root_.sn.gnome.gobject.internal.GTypeInterface, CFuncPtr1[Ptr[AdwSwipeable], Double], CFuncPtr2[Ptr[AdwSwipeable], Ptr[CInt], Ptr[Double]], CFuncPtr1[Ptr[AdwSwipeable], Double], CFuncPtr1[Ptr[AdwSwipeable], Double], CFuncPtr4[Ptr[AdwSwipeable], AdwNavigationDirection, _root_.sn.gnome.glib.internal.gboolean, Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], Unit], CArray[_root_.sn.gnome.glib.internal.gpointer, Nat._4]]
 
 object _AdwSwipeableInterface:
-  given _tag: Tag[_AdwSwipeableInterface] = Tag.materializeCStruct7Tag[_root_.sn.gnome.gobject.internal.GTypeInterface, CFuncPtr1[Ptr[AdwSwipeable], Double], CFuncPtr2[Ptr[AdwSwipeable], Ptr[CInt], Ptr[Double]], CFuncPtr1[Ptr[AdwSwipeable], Double], CFuncPtr1[Ptr[AdwSwipeable], Double], CFuncPtr4[Ptr[AdwSwipeable], AdwNavigationDirection, _root_.sn.gnome.glib.internal.gboolean, Ptr[_root_.sn.gnome.gtk4.internal.GdkRectangle], Unit], CArray[_root_.sn.gnome.glib.internal.gpointer, Nat._4]]
+  given _tag: Tag[_AdwSwipeableInterface] = Tag.materializeCStruct7Tag[_root_.sn.gnome.gobject.internal.GTypeInterface, CFuncPtr1[Ptr[AdwSwipeable], Double], CFuncPtr2[Ptr[AdwSwipeable], Ptr[CInt], Ptr[Double]], CFuncPtr1[Ptr[AdwSwipeable], Double], CFuncPtr1[Ptr[AdwSwipeable], Double], CFuncPtr4[Ptr[AdwSwipeable], AdwNavigationDirection, _root_.sn.gnome.glib.internal.gboolean, Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], Unit], CArray[_root_.sn.gnome.glib.internal.gpointer, Nat._4]]
   
   export fields.*
   private[internal] object fields:
@@ -30,15 +30,15 @@ object _AdwSwipeableInterface:
       inline def get_progress_=(value: CFuncPtr1[Ptr[AdwSwipeable], Double]): Unit = (!struct.at4 = value)
       inline def get_cancel_progress : CFuncPtr1[Ptr[AdwSwipeable], Double] = struct._5
       inline def get_cancel_progress_=(value: CFuncPtr1[Ptr[AdwSwipeable], Double]): Unit = (!struct.at5 = value)
-      inline def get_swipe_area : CFuncPtr4[Ptr[AdwSwipeable], AdwNavigationDirection, _root_.sn.gnome.glib.internal.gboolean, Ptr[_root_.sn.gnome.gtk4.internal.GdkRectangle], Unit] = struct._6
-      inline def get_swipe_area_=(value: CFuncPtr4[Ptr[AdwSwipeable], AdwNavigationDirection, _root_.sn.gnome.glib.internal.gboolean, Ptr[_root_.sn.gnome.gtk4.internal.GdkRectangle], Unit]): Unit = (!struct.at6 = value)
+      inline def get_swipe_area : CFuncPtr4[Ptr[AdwSwipeable], AdwNavigationDirection, _root_.sn.gnome.glib.internal.gboolean, Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], Unit] = struct._6
+      inline def get_swipe_area_=(value: CFuncPtr4[Ptr[AdwSwipeable], AdwNavigationDirection, _root_.sn.gnome.glib.internal.gboolean, Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], Unit]): Unit = (!struct.at6 = value)
       inline def padding : CArray[_root_.sn.gnome.glib.internal.gpointer, Nat._4] = struct._7
       inline def padding_=(value: CArray[_root_.sn.gnome.glib.internal.gpointer, Nat._4]): Unit = (!struct.at7 = value)
     end extension
   
   // Allocates _AdwSwipeableInterface on the heap – fields are not initalised or zeroed out
   def apply()(using Zone): Ptr[_AdwSwipeableInterface] = scala.scalanative.unsafe.alloc[_AdwSwipeableInterface](1)
-  def apply(parent : _root_.sn.gnome.gobject.internal.GTypeInterface, get_distance : CFuncPtr1[Ptr[AdwSwipeable], Double], get_snap_points : CFuncPtr2[Ptr[AdwSwipeable], Ptr[CInt], Ptr[Double]], get_progress : CFuncPtr1[Ptr[AdwSwipeable], Double], get_cancel_progress : CFuncPtr1[Ptr[AdwSwipeable], Double], get_swipe_area : CFuncPtr4[Ptr[AdwSwipeable], AdwNavigationDirection, _root_.sn.gnome.glib.internal.gboolean, Ptr[_root_.sn.gnome.gtk4.internal.GdkRectangle], Unit], padding : CArray[_root_.sn.gnome.glib.internal.gpointer, Nat._4])(using Zone): Ptr[_AdwSwipeableInterface] =
+  def apply(parent : _root_.sn.gnome.gobject.internal.GTypeInterface, get_distance : CFuncPtr1[Ptr[AdwSwipeable], Double], get_snap_points : CFuncPtr2[Ptr[AdwSwipeable], Ptr[CInt], Ptr[Double]], get_progress : CFuncPtr1[Ptr[AdwSwipeable], Double], get_cancel_progress : CFuncPtr1[Ptr[AdwSwipeable], Double], get_swipe_area : CFuncPtr4[Ptr[AdwSwipeable], AdwNavigationDirection, _root_.sn.gnome.glib.internal.gboolean, Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle], Unit], padding : CArray[_root_.sn.gnome.glib.internal.gpointer, Nat._4])(using Zone): Ptr[_AdwSwipeableInterface] =
     val ____ptr = apply()
     (!____ptr).parent = parent
     (!____ptr).get_distance = get_distance

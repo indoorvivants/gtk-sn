@@ -66,7 +66,7 @@ class IMContextSimple(raw: Ptr[GtkIMContextSimple])
   @annotation.compileTimeOnly(
     "Method add_table is weird: non NULL-terminated arrays require special handling"
   )
-  def addTable() = ???
+  def addTable(using DummyImplicit) = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

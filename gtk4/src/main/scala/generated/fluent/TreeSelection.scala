@@ -74,12 +74,12 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
   @annotation.compileTimeOnly(
     "Method get_selected contains an OUT parameter, which is not supported yet"
   )
-  def getSelected() = ???
+  def getSelected(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_selected_rows contains an OUT parameter, which is not supported yet"
   )
-  def getSelectedRows() = ???
+  def getSelectedRows(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

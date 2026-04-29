@@ -175,7 +175,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method append contains an OUT parameter, which is not supported yet"
   )
-  def append() = ???
+  def append(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -186,27 +186,27 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method insert contains an OUT parameter, which is not supported yet"
   )
-  def insert() = ???
+  def insert(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method insert_after contains an OUT parameter, which is not supported yet"
   )
-  def insertAfter() = ???
+  def insertAfter(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method insert_before contains an OUT parameter, which is not supported yet"
   )
-  def insertBefore() = ???
+  def insertBefore(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method insert_with_values contains an OUT parameter, which is not supported yet"
   )
-  def insertWithValues() = ???
+  def insertWithValues(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method insert_with_valuesv contains an OUT parameter, which is not supported yet"
   )
-  def insertWithValuesv() = ???
+  def insertWithValuesv(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -238,7 +238,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method prepend contains an OUT parameter, which is not supported yet"
   )
-  def prepend() = ???
+  def prepend(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

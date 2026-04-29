@@ -114,7 +114,7 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_cell_rect contains an OUT parameter, which is not supported yet"
   )
-  def getCellRect() = ???
+  def getCellRect(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -133,22 +133,22 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_cursor contains an OUT parameter, which is not supported yet"
   )
-  def getCursor() = ???
+  def getCursor(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_dest_item_at_pos contains an OUT parameter, which is not supported yet"
   )
-  def getDestItemAtPos() = ???
+  def getDestItemAtPos(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_drag_dest_item contains an OUT parameter, which is not supported yet"
   )
-  def getDragDestItem() = ???
+  def getDragDestItem(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_item_at_pos contains an OUT parameter, which is not supported yet"
   )
-  def getItemAtPos() = ???
+  def getItemAtPos(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -300,12 +300,12 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_tooltip_context contains an OUT parameter, which is not supported yet"
   )
-  def getTooltipContext() = ???
+  def getTooltipContext(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_visible_range contains an OUT parameter, which is not supported yet"
   )
-  def getVisibleRange() = ???
+  def getVisibleRange(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

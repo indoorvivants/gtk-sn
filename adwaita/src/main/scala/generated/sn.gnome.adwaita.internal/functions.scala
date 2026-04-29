@@ -1,6 +1,6 @@
 package sn.gnome.adwaita.internal
 
-// This file was generated using sn-bindgen 0.4.3+6-e972956a-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
+// This file was generated using sn-bindgen 0.4.4: https://sn-bindgen.indoorvivants.com/
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
@@ -1925,12 +1925,12 @@ import _root_.scala.scalanative.*
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-avatar.h
 */
-@extern def adw_avatar_draw_to_texture(self : Ptr[AdwAvatar], scale_factor : CInt): Ptr[_root_.sn.gnome.gtk4.internal.GdkTexture] = extern
+@extern def adw_avatar_draw_to_texture(self : Ptr[AdwAvatar], scale_factor : CInt): Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture] = extern
 
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-avatar.h
 */
-@extern def adw_avatar_get_custom_image(self : Ptr[AdwAvatar]): Ptr[_root_.sn.gnome.gtk4.internal.GdkPaintable] = extern
+@extern def adw_avatar_get_custom_image(self : Ptr[AdwAvatar]): Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable] = extern
 
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-avatar.h
@@ -1965,7 +1965,7 @@ import _root_.scala.scalanative.*
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-avatar.h
 */
-@extern def adw_avatar_set_custom_image(self : Ptr[AdwAvatar], custom_image : Ptr[_root_.sn.gnome.gtk4.internal.GdkPaintable]): Unit = extern
+@extern def adw_avatar_set_custom_image(self : Ptr[AdwAvatar], custom_image : Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]): Unit = extern
 
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-avatar.h
@@ -4995,7 +4995,7 @@ import _root_.scala.scalanative.*
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-status-page.h
 */
-@extern def adw_status_page_get_paintable(self : Ptr[AdwStatusPage]): Ptr[_root_.sn.gnome.gtk4.internal.GdkPaintable] = extern
+@extern def adw_status_page_get_paintable(self : Ptr[AdwStatusPage]): Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable] = extern
 
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-status-page.h
@@ -5030,7 +5030,7 @@ import _root_.scala.scalanative.*
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-status-page.h
 */
-@extern def adw_status_page_set_paintable(self : Ptr[AdwStatusPage], paintable : Ptr[_root_.sn.gnome.gtk4.internal.GdkPaintable]): Unit = extern
+@extern def adw_status_page_set_paintable(self : Ptr[AdwStatusPage], paintable : Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]): Unit = extern
 
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-status-page.h
@@ -5055,12 +5055,12 @@ import _root_.scala.scalanative.*
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-style-manager.h
 */
-@extern def adw_style_manager_get_display(self : Ptr[AdwStyleManager]): Ptr[_root_.sn.gnome.gtk4.internal.GdkDisplay] = extern
+@extern def adw_style_manager_get_display(self : Ptr[AdwStyleManager]): Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay] = extern
 
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-style-manager.h
 */
-@extern def adw_style_manager_get_for_display(display : Ptr[_root_.sn.gnome.gtk4.internal.GdkDisplay]): Ptr[AdwStyleManager] = extern
+@extern def adw_style_manager_get_for_display(display : Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]): Ptr[AdwStyleManager] = extern
 
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-style-manager.h
@@ -5195,7 +5195,7 @@ import _root_.scala.scalanative.*
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-swipeable.h
 */
-@extern def adw_swipeable_get_swipe_area(self : Ptr[AdwSwipeable], navigation_direction : AdwNavigationDirection, is_drag : _root_.sn.gnome.glib.internal.gboolean, rect : Ptr[_root_.sn.gnome.gtk4.internal.GdkRectangle]): Unit = extern
+@extern def adw_swipeable_get_swipe_area(self : Ptr[AdwSwipeable], navigation_direction : AdwNavigationDirection, is_drag : _root_.sn.gnome.glib.internal.gboolean, rect : Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]): Unit = extern
 
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-swipeable.h
@@ -5240,7 +5240,7 @@ import _root_.scala.scalanative.*
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-tab-bar.h
 */
-@extern def adw_tab_bar_get_extra_drag_preferred_action(self : Ptr[AdwTabBar]): _root_.sn.gnome.gtk4.internal.GdkDragAction = extern
+@extern def adw_tab_bar_get_extra_drag_preferred_action(self : Ptr[AdwTabBar]): _root_.sn.gnome.gdk4.internal.GdkDragAction = extern
 
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-tab-bar.h
@@ -5320,7 +5320,7 @@ import _root_.scala.scalanative.*
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-tab-bar.h
 */
-@extern def adw_tab_bar_setup_extra_drop_target(self : Ptr[AdwTabBar], actions : _root_.sn.gnome.gtk4.internal.GdkDragAction, types : Ptr[_root_.sn.gnome.gobject.internal.GType], n_types : _root_.sn.gnome.glib.internal.gsize): Unit = extern
+@extern def adw_tab_bar_setup_extra_drop_target(self : Ptr[AdwTabBar], actions : _root_.sn.gnome.gdk4.internal.GdkDragAction, types : Ptr[_root_.sn.gnome.gobject.internal.GType], n_types : _root_.sn.gnome.glib.internal.gsize): Unit = extern
 
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-tab-button.h
@@ -5360,7 +5360,7 @@ import _root_.scala.scalanative.*
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-tab-overview.h
 */
-@extern def adw_tab_overview_get_extra_drag_preferred_action(self : Ptr[AdwTabOverview]): _root_.sn.gnome.gtk4.internal.GdkDragAction = extern
+@extern def adw_tab_overview_get_extra_drag_preferred_action(self : Ptr[AdwTabOverview]): _root_.sn.gnome.gdk4.internal.GdkDragAction = extern
 
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-tab-overview.h
@@ -5465,7 +5465,7 @@ import _root_.scala.scalanative.*
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-tab-overview.h
 */
-@extern def adw_tab_overview_setup_extra_drop_target(self : Ptr[AdwTabOverview], actions : _root_.sn.gnome.gtk4.internal.GdkDragAction, types : Ptr[_root_.sn.gnome.gobject.internal.GType], n_types : _root_.sn.gnome.glib.internal.gsize): Unit = extern
+@extern def adw_tab_overview_setup_extra_drop_target(self : Ptr[AdwTabOverview], actions : _root_.sn.gnome.gdk4.internal.GdkDragAction, types : Ptr[_root_.sn.gnome.gobject.internal.GType], n_types : _root_.sn.gnome.glib.internal.gsize): Unit = extern
 
 /**
  * [bindgen] header: /usr/include/libadwaita-1/adw-tab-view.h

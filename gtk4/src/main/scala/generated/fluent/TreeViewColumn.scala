@@ -65,12 +65,12 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
   @annotation.compileTimeOnly(
     "Method cell_get_position contains an OUT parameter, which is not supported yet"
   )
-  def cellGetPosition() = ???
+  def cellGetPosition(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method cell_get_size contains an OUT parameter, which is not supported yet"
   )
-  def cellGetSize() = ???
+  def cellGetSize(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

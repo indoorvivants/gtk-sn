@@ -177,7 +177,7 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method choose_font_and_features_finish contains an OUT parameter, which is not supported yet"
   )
-  def chooseFontAndFeaturesFinish() = ???
+  def chooseFontAndFeaturesFinish(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

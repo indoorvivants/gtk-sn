@@ -40,7 +40,7 @@ def renderClass(
 
     val classHasAnyMembers =
       cls.methods.nonEmpty
-  
+
     renderComment(cls.doc)
     block(
       classHeader + ":",
@@ -66,7 +66,7 @@ def renderClass(
               msg.log(s"Failed to render method ${meth.name}")
           case Some(value) =>
             line(s"@annotation.compileTimeOnly(\"$value\")")
-            line(s"def ${camelify(meth.name)}() = ???")
+            line(s"def ${camelify(meth.name)}(using DummyImplicit) = ???")
             emptyLine()
 
       coll

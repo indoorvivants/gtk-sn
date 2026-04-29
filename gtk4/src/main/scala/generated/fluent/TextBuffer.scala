@@ -385,7 +385,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_bounds contains an OUT parameter, which is not supported yet"
   )
-  def getBounds() = ???
+  def getBounds(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -429,7 +429,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_end_iter contains an OUT parameter, which is not supported yet"
   )
-  def getEndIter() = ???
+  def getEndIter(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -453,32 +453,32 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_iter_at_child_anchor contains an OUT parameter, which is not supported yet"
   )
-  def getIterAtChildAnchor() = ???
+  def getIterAtChildAnchor(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_iter_at_line contains an OUT parameter, which is not supported yet"
   )
-  def getIterAtLine() = ???
+  def getIterAtLine(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_iter_at_line_index contains an OUT parameter, which is not supported yet"
   )
-  def getIterAtLineIndex() = ???
+  def getIterAtLineIndex(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_iter_at_line_offset contains an OUT parameter, which is not supported yet"
   )
-  def getIterAtLineOffset() = ???
+  def getIterAtLineOffset(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_iter_at_mark contains an OUT parameter, which is not supported yet"
   )
-  def getIterAtMark() = ???
+  def getIterAtMark(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_iter_at_offset contains an OUT parameter, which is not supported yet"
   )
-  def getIterAtOffset() = ???
+  def getIterAtOffset(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -546,7 +546,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_selection_bounds contains an OUT parameter, which is not supported yet"
   )
-  def getSelectionBounds() = ???
+  def getSelectionBounds(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -588,7 +588,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_start_iter contains an OUT parameter, which is not supported yet"
   )
-  def getStartIter() = ???
+  def getStartIter(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

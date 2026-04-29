@@ -146,12 +146,12 @@ class Popover(raw: Ptr[GtkPopover])
   @annotation.compileTimeOnly(
     "Method get_offset contains an OUT parameter, which is not supported yet"
   )
-  def getOffset() = ???
+  def getOffset(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_pointing_to contains an OUT parameter, which is not supported yet"
   )
-  def getPointingTo() = ???
+  def getPointingTo(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

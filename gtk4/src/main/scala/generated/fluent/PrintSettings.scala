@@ -229,7 +229,7 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
   @annotation.compileTimeOnly(
     "Method get_page_ranges contains an OUT parameter, which is not supported yet"
   )
-  def getPageRanges() = ???
+  def getPageRanges(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

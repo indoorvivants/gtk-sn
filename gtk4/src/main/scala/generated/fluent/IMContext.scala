@@ -139,17 +139,17 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_preedit_string contains an OUT parameter, which is not supported yet"
   )
-  def getPreeditString() = ???
+  def getPreeditString(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_surrounding contains an OUT parameter, which is not supported yet"
   )
-  def getSurrounding() = ???
+  def getSurrounding(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_surrounding_with_selection contains an OUT parameter, which is not supported yet"
   )
-  def getSurroundingWithSelection() = ???
+  def getSurroundingWithSelection(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -132,7 +132,7 @@ class DropTarget(raw: Ptr[GtkDropTarget])
   @annotation.compileTimeOnly(
     "Method get_gtypes contains an OUT parameter, which is not supported yet"
   )
-  def getGtypes() = ???
+  def getGtypes(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

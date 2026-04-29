@@ -255,7 +255,7 @@ class Grid(raw: Ptr[GtkGrid])
   @annotation.compileTimeOnly(
     "Method query_child contains an OUT parameter, which is not supported yet"
   )
-  def queryChild() = ???
+  def queryChild(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

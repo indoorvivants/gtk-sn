@@ -136,7 +136,7 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
   @annotation.compileTimeOnly(
     "Method convert_child_iter_to_iter contains an OUT parameter, which is not supported yet"
   )
-  def convertChildIterToIter() = ???
+  def convertChildIterToIter(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -155,7 +155,7 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
   @annotation.compileTimeOnly(
     "Method convert_iter_to_child_iter contains an OUT parameter, which is not supported yet"
   )
-  def convertIterToChildIter() = ???
+  def convertIterToChildIter(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

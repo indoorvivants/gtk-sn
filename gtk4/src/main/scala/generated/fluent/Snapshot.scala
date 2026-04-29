@@ -56,12 +56,12 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method append_border is weird: non NULL-terminated arrays require special handling"
   )
-  def appendBorder() = ???
+  def appendBorder(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method append_cairo is weird: non NULL-terminated arrays require special handling"
   )
-  def appendCairo() = ???
+  def appendCairo(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

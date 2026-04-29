@@ -98,7 +98,7 @@ class Text(raw: Ptr[GtkText])
   @annotation.compileTimeOnly(
     "Method compute_cursor_extents contains an OUT parameter, which is not supported yet"
   )
-  def computeCursorExtents() = ???
+  def computeCursorExtents(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

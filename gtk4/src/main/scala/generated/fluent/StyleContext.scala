@@ -102,12 +102,12 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_border contains an OUT parameter, which is not supported yet"
   )
-  def getBorder() = ???
+  def getBorder(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_color contains an OUT parameter, which is not supported yet"
   )
-  def getColor() = ???
+  def getColor(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -120,12 +120,12 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_margin contains an OUT parameter, which is not supported yet"
   )
-  def getMargin() = ???
+  def getMargin(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_padding contains an OUT parameter, which is not supported yet"
   )
-  def getPadding() = ???
+  def getPadding(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -159,7 +159,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method lookup_color contains an OUT parameter, which is not supported yet"
   )
-  def lookupColor() = ???
+  def lookupColor(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
