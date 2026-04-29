@@ -515,10 +515,20 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     this.raw.asInstanceOf
   ).asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Queries a pointer to the pixel data of a pixbuf.
+    *
+    * This function will cause an implicit copy of the pixbuf data if the pixbuf
+    * was created from read-only data.
+    *
+    * Please see the section on [image data](class.Pixbuf.html#image-data) for
+    * information about how the pixel data is stored in memory.
+    */
   @annotation.compileTimeOnly(
     "Method get_pixels_with_length contains an OUT parameter, which is not supported yet"
   )
-  def getPixelsWithLength() = ???
+  def getPixelsWithLength(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -719,15 +729,40 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     args*
   ).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Saves pixbuf to a new buffer in format `type`, which is currently "jpeg",
+    * "png", "tiff", "ico" or "bmp".
+    *
+    * This is a convenience function that uses `gdk_pixbuf_save_to_callback()`
+    * to do the real work.
+    *
+    * Note that the buffer is not `NUL`-terminated and may contain embedded
+    * `NUL` characters.
+    *
+    * If @error is set, `FALSE` will be returned and @buffer will be set to
+    * `NULL`. Possible errors include those in the `GDK_PIXBUF_ERROR` domain.
+    *
+    * See `gdk_pixbuf_save()` for more details.
+    */
   @annotation.compileTimeOnly(
     "Method save_to_buffer contains an OUT parameter, which is not supported yet"
   )
-  def saveToBuffer() = ???
+  def saveToBuffer(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Vector version of `gdk_pixbuf_save_to_buffer()`.
+    *
+    * Saves pixbuf to a new buffer in format @type, which is currently "jpeg",
+    * "tiff", "png", "ico" or "bmp".
+    *
+    * See [method@GdkPixbuf.Pixbuf.save_to_buffer] for more details.
+    */
   @annotation.compileTimeOnly(
     "Method save_to_bufferv contains an OUT parameter, which is not supported yet"
   )
-  def saveToBufferv() = ???
+  def saveToBufferv(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

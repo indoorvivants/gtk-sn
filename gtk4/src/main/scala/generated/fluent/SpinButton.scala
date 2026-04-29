@@ -188,6 +188,12 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     this.raw.asInstanceOf
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the current step and page the increments used by @spin_button.
+    *
+    * See [method@Gtk.SpinButton.set_increments].
+    */
   @annotation.compileTimeOnly(
     "Method get_increments contains an OUT parameter, which is not supported yet"
   )
@@ -200,6 +206,12 @@ class SpinButton(raw: Ptr[GtkSpinButton])
   def getNumeric(): Boolean =
     gtk_spin_button_get_numeric(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the range allowed for @spin_button.
+    *
+    * See [method@Gtk.SpinButton.set_range].
+    */
   @annotation.compileTimeOnly(
     "Method get_range contains an OUT parameter, which is not supported yet"
   )

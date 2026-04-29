@@ -671,11 +671,21 @@ class CellArea(raw: Ptr[GtkCellArea])
     gpointer(callback_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Derives the allocation of @renderer inside @area if @area were to be
+    * rendered in @cell_area.
+    */
   @annotation.compileTimeOnly(
     "Method get_cell_allocation contains an OUT parameter, which is not supported yet"
   )
   def getCellAllocation(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the `GtkCellRenderer` at @x and @y coordinates inside @area and
+    * optionally returns the full cell allocation for it inside @cell_area.
+    */
   @annotation.compileTimeOnly(
     "Method get_cell_at_position contains an OUT parameter, which is not supported yet"
   )
@@ -744,21 +754,81 @@ class CellArea(raw: Ptr[GtkCellArea])
       renderer.getUnsafeRawPointer().asInstanceOf
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves a cell area’s initial minimum and natural height.
+    *
+    * @area
+    *   will store some geometrical information in @context along the way; when
+    *   requesting sizes over an arbitrary number of rows, it’s not important to
+    *   check the @minimum_height and @natural_height of this call but rather to
+    *   consult gtk_cell_area_context_get_preferred_height() after a series of
+    *   requests.
+    */
   @annotation.compileTimeOnly(
     "Method get_preferred_height contains an OUT parameter, which is not supported yet"
   )
   def getPreferredHeight(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves a cell area’s minimum and natural height if it would be given
+    * the specified @width.
+    *
+    * @area
+    *   stores some geometrical information in @context along the way while
+    *   calling gtk_cell_area_get_preferred_width(). It’s important to perform a
+    *   series of gtk_cell_area_get_preferred_width() requests with
+    * @context
+    *   first and then call gtk_cell_area_get_preferred_height_for_width() on
+    *   each cell area individually to get the height for width of each fully
+    *   requested row.
+    *
+    * If at some point, the width of a single row changes, it should be
+    * requested with gtk_cell_area_get_preferred_width() again and then the full
+    * width of the requested rows checked again with
+    * gtk_cell_area_context_get_preferred_width().
+    */
   @annotation.compileTimeOnly(
     "Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
   )
   def getPreferredHeightForWidth(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves a cell area’s initial minimum and natural width.
+    *
+    * @area
+    *   will store some geometrical information in @context along the way; when
+    *   requesting sizes over an arbitrary number of rows, it’s not important to
+    *   check the @minimum_width and @natural_width of this call but rather to
+    *   consult gtk_cell_area_context_get_preferred_width() after a series of
+    *   requests.
+    */
   @annotation.compileTimeOnly(
     "Method get_preferred_width contains an OUT parameter, which is not supported yet"
   )
   def getPreferredWidth(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves a cell area’s minimum and natural width if it would be given the
+    * specified @height.
+    *
+    * @area
+    *   stores some geometrical information in @context along the way while
+    *   calling gtk_cell_area_get_preferred_height(). It’s important to perform
+    *   a series of gtk_cell_area_get_preferred_height() requests with
+    * @context
+    *   first and then call gtk_cell_area_get_preferred_width_for_height() on
+    *   each cell area individually to get the height for width of each fully
+    *   requested row.
+    *
+    * If at some point, the height of a single row changes, it should be
+    * requested with gtk_cell_area_get_preferred_height() again and then the
+    * full height of the requested rows checked again with
+    * gtk_cell_area_context_get_preferred_height().
+    */
   @annotation.compileTimeOnly(
     "Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
   )
@@ -782,6 +852,12 @@ class CellArea(raw: Ptr[GtkCellArea])
     renderer.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * This is a convenience function for `GtkCellArea` implementations to get
+    * the inner area where a given `GtkCellRenderer` will be rendered. It
+    * removes any padding previously added by gtk_cell_area_request_renderer().
+    */
   @annotation.compileTimeOnly(
     "Method inner_cell_area contains an OUT parameter, which is not supported yet"
   )
@@ -828,6 +904,14 @@ class CellArea(raw: Ptr[GtkCellArea])
       sibling.getUnsafeRawPointer().asInstanceOf
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * This is a convenience function for `GtkCellArea` implementations to
+    * request size for cell renderers. It’s important to use this function to
+    * request size and then use gtk_cell_area_inner_cell_area() at render and
+    * event time since this function will add padding around the cell for focus
+    * painting.
+    */
   @annotation.compileTimeOnly(
     "Method request_renderer contains an OUT parameter, which is not supported yet"
   )

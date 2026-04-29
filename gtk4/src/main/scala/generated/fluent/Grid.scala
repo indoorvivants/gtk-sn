@@ -252,6 +252,10 @@ class Grid(raw: Ptr[GtkGrid])
   def insertRow(position: Int): Unit =
     gtk_grid_insert_row(this.raw.asInstanceOf, position)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Queries the attach points and spans of @child inside the given `GtkGrid`.
+    */
   @annotation.compileTimeOnly(
     "Method query_child contains an OUT parameter, which is not supported yet"
   )

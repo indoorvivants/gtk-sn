@@ -99,6 +99,12 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets @filter_iter to point to the row in @filter that corresponds to the
+    * row pointed at by @child_iter. If @filter_iter was not set, %FALSE is
+    * returned.
+    */
   @annotation.compileTimeOnly(
     "Method convert_child_iter_to_iter contains an OUT parameter, which is not supported yet"
   )
@@ -118,6 +124,10 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
       child_path
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets @child_iter to point to the row pointed to by @filter_iter.
+    */
   @annotation.compileTimeOnly(
     "Method convert_iter_to_child_iter contains an OUT parameter, which is not supported yet"
   )

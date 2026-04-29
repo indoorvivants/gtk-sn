@@ -95,6 +95,19 @@ class Text(raw: Ptr[GtkText])
       Editable:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Determine the positions of the strong and weak cursors if the insertion
+    * point in the layout is at @position.
+    *
+    * The position of each cursor is stored as a zero-width rectangle. The
+    * strong cursor location is the location where characters of the
+    * directionality equal to the base direction are inserted. The weak cursor
+    * location is the location where characters of the directionality opposite
+    * to the base direction are inserted.
+    *
+    * The rectangle positions are in widget coordinates.
+    */
   @annotation.compileTimeOnly(
     "Method compute_cursor_extents contains an OUT parameter, which is not supported yet"
   )

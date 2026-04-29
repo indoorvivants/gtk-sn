@@ -382,6 +382,11 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves the first and last iterators in the buffer, i.e. the entire
+    * buffer lies within the range [@start,@end).
+    */
   @annotation.compileTimeOnly(
     "Method get_bounds contains an OUT parameter, which is not supported yet"
   )
@@ -426,6 +431,16 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   def getEnableUndo(): Boolean =
     gtk_text_buffer_get_enable_undo(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Initializes @iter with the “end iterator,” one past the last valid
+    * character in the text buffer.
+    *
+    * If dereferenced with [method@Gtk.TextIter.get_char], the end iterator has
+    * a character value of 0. The entire buffer lies in the range from the first
+    * position in the buffer (call [method@Gtk.TextBuffer.get_start_iter] to get
+    * character position 0) to the end iterator.
+    */
   @annotation.compileTimeOnly(
     "Method get_end_iter contains an OUT parameter, which is not supported yet"
   )
@@ -450,31 +465,78 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     gtk_text_buffer_get_insert(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Obtains the location of @anchor within @buffer.
+    */
   @annotation.compileTimeOnly(
     "Method get_iter_at_child_anchor contains an OUT parameter, which is not supported yet"
   )
   def getIterAtChildAnchor(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Initializes @iter to the start of the given line.
+    *
+    * If @line_number is greater than or equal to the number of lines in the @buffer,
+    * the end iterator is returned.
+    */
   @annotation.compileTimeOnly(
     "Method get_iter_at_line contains an OUT parameter, which is not supported yet"
   )
   def getIterAtLine(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Obtains an iterator pointing to @byte_index within the given line.
+    *
+    * @byte_index
+    *   must be the start of a UTF-8 character. Note bytes, not characters;
+    *   UTF-8 may encode one character as multiple bytes.
+    *
+    * If @line_number is greater than or equal to the number of lines in the @buffer,
+    * the end iterator is returned. And if @byte_index is off the end of the
+    * line, the iterator at the end of the line is returned.
+    */
   @annotation.compileTimeOnly(
     "Method get_iter_at_line_index contains an OUT parameter, which is not supported yet"
   )
   def getIterAtLineIndex(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Obtains an iterator pointing to @char_offset within the given line.
+    *
+    * Note characters, not bytes; UTF-8 may encode one character as multiple
+    * bytes.
+    *
+    * If @line_number is greater than or equal to the number of lines in the @buffer,
+    * the end iterator is returned. And if @char_offset is off the end of the
+    * line, the iterator at the end of the line is returned.
+    */
   @annotation.compileTimeOnly(
     "Method get_iter_at_line_offset contains an OUT parameter, which is not supported yet"
   )
   def getIterAtLineOffset(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Initializes @iter with the current position of @mark.
+    */
   @annotation.compileTimeOnly(
     "Method get_iter_at_mark contains an OUT parameter, which is not supported yet"
   )
   def getIterAtMark(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Initializes @iter to a position @char_offset chars from the start of the
+    * entire buffer.
+    *
+    * If @char_offset is -1 or greater than the number of characters in the
+    * buffer, @iter is initialized to the end iterator, the iterator one past
+    * the last valid character in the buffer.
+    */
   @annotation.compileTimeOnly(
     "Method get_iter_at_offset contains an OUT parameter, which is not supported yet"
   )
@@ -543,6 +605,16 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     gtk_text_buffer_get_selection_bound(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns %TRUE if some text is selected; places the bounds of the selection
+    * in @start and @end.
+    *
+    * If the selection has length 0, then @start and @end are filled in with the
+    * same value. @start and @end will be in ascending order. If @start and @end
+    * are %NULL, then they are not filled in, but the return value still
+    * indicates whether text is selected.
+    */
   @annotation.compileTimeOnly(
     "Method get_selection_bounds contains an OUT parameter, which is not supported yet"
   )
@@ -585,6 +657,13 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Initialized @iter with the first position in the text buffer.
+    *
+    * This is the same as using [method@Gtk.TextBuffer.get_iter_at_offset] to
+    * get the iter at character offset 0.
+    */
   @annotation.compileTimeOnly(
     "Method get_start_iter contains an OUT parameter, which is not supported yet"
   )

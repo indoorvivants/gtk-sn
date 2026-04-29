@@ -65,6 +65,7 @@ def renderClass(
             result.foreach: msg =>
               msg.log(s"Failed to render method ${meth.name}")
           case Some(value) =>
+            renderComment(meth.doc)
             line(s"@annotation.compileTimeOnly(\"$value\")")
             line(s"def ${camelify(meth.name)}(using DummyImplicit) = ???")
             emptyLine()

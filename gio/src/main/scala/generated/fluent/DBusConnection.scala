@@ -338,15 +338,38 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     gpointer(user_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes an operation started with
+    * g_dbus_connection_call_with_unix_fd_list().
+    *
+    * The file descriptors normally correspond to %G_VARIANT_TYPE_HANDLE values
+    * in the body of the message. For example, if g_variant_get_handle() returns
+    * 5, that is intended to be a reference to the file descriptor that can be
+    * accessed by `g_unix_fd_list_get (*out_fd_list, 5, ...)`.
+    *
+    * When designing D-Bus APIs that are intended to be interoperable, please
+    * note that non-GDBus implementations of D-Bus can usually only access file
+    * descriptors if they are referenced in this way by a value of type
+    * %G_VARIANT_TYPE_HANDLE in the body of the message.
+    */
   @annotation.compileTimeOnly(
     "Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet"
   )
-  def callWithUnixFdListFinish() = ???
+  def callWithUnixFdListFinish(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Like g_dbus_connection_call_sync() but also takes and returns #GUnixFDList
+    * objects. See g_dbus_connection_call_with_unix_fd_list() and
+    * g_dbus_connection_call_with_unix_fd_list_finish() for more details.
+    *
+    * This method is only available on UNIX.
+    */
   @annotation.compileTimeOnly(
     "Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet"
   )
-  def callWithUnixFdListSync() = ???
+  def callWithUnixFdListSync(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -799,15 +822,70 @@ class DBusConnection(raw: Ptr[GDBusConnection])
   def removeFilter(filter_id: UInt): Unit =
     g_dbus_connection_remove_filter(this.raw.asInstanceOf, guint(filter_id))
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Asynchronously sends @message to the peer represented by @connection.
+    *
+    * Unless @flags contain the %G_DBUS_SEND_MESSAGE_FLAGS_PRESERVE_SERIAL flag,
+    * the serial number will be assigned by @connection and set on @message via
+    * g_dbus_message_set_serial(). If @out_serial is not %NULL, then the serial
+    * number used will be written to this location prior to submitting the
+    * message to the underlying transport. While it has a `volatile` qualifier,
+    * this is a historical artifact and the argument passed to it should not be
+    * `volatile`.
+    *
+    * If @connection is closed then the operation will fail with
+    * %G_IO_ERROR_CLOSED. If @message is not well-formed, the operation fails
+    * with %G_IO_ERROR_INVALID_ARGUMENT.
+    *
+    * See this [server][gdbus-server] and [client][gdbus-unix-fd-client] for an
+    * example of how to use this low-level API to send and receive UNIX file
+    * descriptors.
+    *
+    * Note that @message must be unlocked, unless @flags contain the
+    * %G_DBUS_SEND_MESSAGE_FLAGS_PRESERVE_SERIAL flag.
+    */
   @annotation.compileTimeOnly(
     "Method send_message contains an OUT parameter, which is not supported yet"
   )
-  def sendMessage() = ???
+  def sendMessage(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Asynchronously sends @message to the peer represented by @connection.
+    *
+    * Unless @flags contain the %G_DBUS_SEND_MESSAGE_FLAGS_PRESERVE_SERIAL flag,
+    * the serial number will be assigned by @connection and set on @message via
+    * g_dbus_message_set_serial(). If @out_serial is not %NULL, then the serial
+    * number used will be written to this location prior to submitting the
+    * message to the underlying transport. While it has a `volatile` qualifier,
+    * this is a historical artifact and the argument passed to it should not be
+    * `volatile`.
+    *
+    * If @connection is closed then the operation will fail with
+    * %G_IO_ERROR_CLOSED. If @cancellable is canceled, the operation will fail
+    * with %G_IO_ERROR_CANCELLED. If @message is not well-formed, the operation
+    * fails with %G_IO_ERROR_INVALID_ARGUMENT.
+    *
+    * This is an asynchronous method. When the operation is finished, @callback
+    * will be invoked in the [thread-default main
+    * context][g-main-context-push-thread-default] of the thread you are calling
+    * this method from. You can then call
+    * g_dbus_connection_send_message_with_reply_finish() to get the result of
+    * the operation. See g_dbus_connection_send_message_with_reply_sync() for
+    * the synchronous version.
+    *
+    * Note that @message must be unlocked, unless @flags contain the
+    * %G_DBUS_SEND_MESSAGE_FLAGS_PRESERVE_SERIAL flag.
+    *
+    * See this [server][gdbus-server] and [client][gdbus-unix-fd-client] for an
+    * example of how to use this low-level API to send and receive UNIX file
+    * descriptors.
+    */
   @annotation.compileTimeOnly(
     "Method send_message_with_reply contains an OUT parameter, which is not supported yet"
   )
-  def sendMessageWithReply() = ???
+  def sendMessageWithReply(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -834,10 +912,42 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       )
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Synchronously sends @message to the peer represented by @connection and
+    * blocks the calling thread until a reply is received or the timeout is
+    * reached. See g_dbus_connection_send_message_with_reply() for the
+    * asynchronous version of this method.
+    *
+    * Unless @flags contain the %G_DBUS_SEND_MESSAGE_FLAGS_PRESERVE_SERIAL flag,
+    * the serial number will be assigned by @connection and set on @message via
+    * g_dbus_message_set_serial(). If @out_serial is not %NULL, then the serial
+    * number used will be written to this location prior to submitting the
+    * message to the underlying transport. While it has a `volatile` qualifier,
+    * this is a historical artifact and the argument passed to it should not be
+    * `volatile`.
+    *
+    * If @connection is closed then the operation will fail with
+    * %G_IO_ERROR_CLOSED. If @cancellable is canceled, the operation will fail
+    * with %G_IO_ERROR_CANCELLED. If @message is not well-formed, the operation
+    * fails with %G_IO_ERROR_INVALID_ARGUMENT.
+    *
+    * Note that @error is only set if a local in-process error occurred. That is
+    * to say that the returned #GDBusMessage object may be of type
+    * %G_DBUS_MESSAGE_TYPE_ERROR. Use g_dbus_message_to_gerror() to transcode
+    * this to a #GError.
+    *
+    * See this [server][gdbus-server] and [client][gdbus-unix-fd-client] for an
+    * example of how to use this low-level API to send and receive UNIX file
+    * descriptors.
+    *
+    * Note that @message must be unlocked, unless @flags contain the
+    * %G_DBUS_SEND_MESSAGE_FLAGS_PRESERVE_SERIAL flag.
+    */
   @annotation.compileTimeOnly(
     "Method send_message_with_reply_sync contains an OUT parameter, which is not supported yet"
   )
-  def sendMessageWithReplySync() = ???
+  def sendMessageWithReplySync(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

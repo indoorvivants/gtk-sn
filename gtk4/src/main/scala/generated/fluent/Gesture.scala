@@ -108,11 +108,32 @@ import sn.gnome.gtk4.internal.GtkGesture
 class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * If there are touch sequences being currently handled by @gesture, returns
+    * %TRUE and fills in @rect with the bounding box containing all active
+    * touches.
+    *
+    * Otherwise, %FALSE will be returned.
+    *
+    * Note: This function will yield unexpected results on touchpad gestures.
+    * Since there is no correlation between physical and pixel distances, these
+    * will look as if constrained in an infinitely small area, @rect width and
+    * height will thus be 0 regardless of the number of touchpoints.
+    */
   @annotation.compileTimeOnly(
     "Method get_bounding_box contains an OUT parameter, which is not supported yet"
   )
   def getBoundingBox(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * If there are touch sequences being currently handled by @gesture, returns
+    * %TRUE and fills in @x and @y with the center of the bounding box
+    * containing all active touches.
+    *
+    * Otherwise, %FALSE will be returned.
+    */
   @annotation.compileTimeOnly(
     "Method get_bounding_box_center contains an OUT parameter, which is not supported yet"
   )
@@ -154,6 +175,14 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
   def getLastUpdatedSequence(): Ptr[GdkEventSequence] =
     gtk_gesture_get_last_updated_sequence(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * If @sequence is currently being interpreted by @gesture, returns %TRUE and
+    * fills in @x and @y with the last coordinates stored for that event
+    * sequence.
+    *
+    * The coordinates are always relative to the widget allocation.
+    */
   @annotation.compileTimeOnly(
     "Method get_point contains an OUT parameter, which is not supported yet"
   )

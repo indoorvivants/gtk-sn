@@ -63,6 +63,17 @@ class IMContextSimple(raw: Ptr[GtkIMContextSimple])
       __sn_extract_string(compose_file)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Adds an additional table to search to the input context. Each row of the
+    * table consists of @max_seq_len key symbols followed by two #guint16
+    * interpreted as the high and low words of a #gunicode value. Tables are
+    * searched starting from the last added.
+    *
+    * The table must be sorted in dictionary order on the numeric value of the
+    * key symbol fields. (Values beyond the length of the sequence should be
+    * zero.)
+    */
   @annotation.compileTimeOnly(
     "Method add_table is weird: non NULL-terminated arrays require special handling"
   )

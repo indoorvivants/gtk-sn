@@ -200,6 +200,19 @@ class Entry(raw: Ptr[GtkEntry])
   def getIconActivatable(icon_pos: GtkEntryIconPosition): Boolean =
     gtk_entry_get_icon_activatable(this.raw.asInstanceOf, icon_pos).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the area where entry’s icon at @icon_pos is drawn.
+    *
+    * This function is useful when drawing something to the entry in a draw
+    * callback.
+    *
+    * If the entry is not realized or has no icon at the given position, @icon_area
+    * is filled with zeros. Otherwise,
+    * @icon_area
+    *   will be filled with the icon's allocation, relative to @entry's
+    *   allocation.
+    */
   @annotation.compileTimeOnly(
     "Method get_icon_area contains an OUT parameter, which is not supported yet"
   )

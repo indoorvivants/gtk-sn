@@ -60,6 +60,17 @@ class TreeStore(raw: Ptr[GtkTreeStore])
       TreeSortable:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Appends a new row to @tree_store.
+    *
+    * If @parent is non-%NULL, then it will append the new row after the last
+    * child of @parent, otherwise it will append a row to the top level.
+    *
+    * The @iter parameter will be changed to point to this new row. The row will
+    * be empty after this function is called. To fill in values, you need to
+    * call gtk_tree_store_set() or gtk_tree_store_set_value().
+    */
   @annotation.compileTimeOnly(
     "Method append contains an OUT parameter, which is not supported yet"
   )
@@ -71,26 +82,109 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     */
   def clear(): Unit = gtk_tree_store_clear(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new row at @position.
+    *
+    * If parent is non-%NULL, then the row will be made a child of @parent.
+    * Otherwise, the row will be created at the toplevel.
+    *
+    * If @position is `-1` or is larger than the number of rows at that level,
+    * then the new row will be inserted to the end of the list.
+    *
+    * The @iter parameter will be changed to point to this new row. The row will
+    * be empty after this function is called. To fill in values, you need to
+    * call gtk_tree_store_set() or gtk_tree_store_set_value().
+    */
   @annotation.compileTimeOnly(
     "Method insert contains an OUT parameter, which is not supported yet"
   )
   def insert(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Inserts a new row after @sibling.
+    *
+    * If @sibling is %NULL, then the row will be prepended to @parent’s
+    * children.
+    *
+    * If @parent and @sibling are %NULL, then the row will be prepended to the
+    * toplevel.
+    *
+    * If both @sibling and @parent are set, then @parent must be the parent of @sibling.
+    * When @sibling is set, @parent is optional.
+    *
+    * The @iter parameter will be changed to point to this new row. The row will
+    * be empty after this function is called. To fill in values, you need to
+    * call gtk_tree_store_set() or gtk_tree_store_set_value().
+    */
   @annotation.compileTimeOnly(
     "Method insert_after contains an OUT parameter, which is not supported yet"
   )
   def insertAfter(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Inserts a new row before @sibling.
+    *
+    * If @sibling is %NULL, then the row will be appended to @parent’s children.
+    *
+    * If @parent and @sibling are %NULL, then the row will be appended to the
+    * toplevel.
+    *
+    * If both @sibling and @parent are set, then @parent must be the parent of @sibling.
+    * When @sibling is set, @parent is optional.
+    *
+    * The @iter parameter will be changed to point to this new row. The row will
+    * be empty after this function is called. To fill in values, you need to
+    * call gtk_tree_store_set() or gtk_tree_store_set_value().
+    */
   @annotation.compileTimeOnly(
     "Method insert_before contains an OUT parameter, which is not supported yet"
   )
   def insertBefore(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new row at the given @position.
+    *
+    * The @iter parameter will be changed to point to this new row.
+    *
+    * If @position is -1, or larger than the number of rows on the list, then
+    * the new row will be appended to the list. The row will be filled with the
+    * values given to this function.
+    *
+    * Calling
+    *
+    * gtk_tree_store_insert_with_values (tree_store, iter, position, ...)
+    *
+    * has the same effect as calling
+    *
+    * ```c
+    * gtk_tree_store_insert (tree_store, iter, position);
+    * gtk_tree_store_set (tree_store, iter, ...);
+    * ```
+    *
+    * with the different that the former will only emit a row_inserted signal,
+    * while the latter will emit row_inserted, row_changed and if the tree store
+    * is sorted, rows_reordered.
+    *
+    * Since emitting the rows_reordered signal repeatedly can affect the
+    * performance of the program, gtk_tree_store_insert_with_values() should
+    * generally be preferred when inserting rows in a sorted tree store.
+    */
   @annotation.compileTimeOnly(
     "Method insert_with_values contains an OUT parameter, which is not supported yet"
   )
   def insertWithValues(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * A variant of gtk_tree_store_insert_with_values() which takes the columns
+    * and values as two arrays, instead of varargs.
+    *
+    * This function is mainly intended for language bindings.
+    */
   @annotation.compileTimeOnly(
     "Method insert_with_valuesv contains an OUT parameter, which is not supported yet"
   )
@@ -154,6 +248,16 @@ class TreeStore(raw: Ptr[GtkTreeStore])
   def moveBefore(iter: Ptr[GtkTreeIter], position: Ptr[GtkTreeIter]): Unit =
     gtk_tree_store_move_before(this.raw.asInstanceOf, iter, position)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Prepends a new row to @tree_store.
+    *
+    * If @parent is non-%NULL, then it will prepend the new row before the first
+    * child of @parent, otherwise it will prepend a row to the top level. The
+    * `iter` parameter will be changed to point to this new row. The row will be
+    * empty after this function is called. To fill in values, you need to call
+    * gtk_tree_store_set() or gtk_tree_store_set_value().
+    */
   @annotation.compileTimeOnly(
     "Method prepend contains an OUT parameter, which is not supported yet"
   )

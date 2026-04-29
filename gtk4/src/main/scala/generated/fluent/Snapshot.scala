@@ -53,11 +53,22 @@ import sn.gnome.gdk4.fluent.Snapshot as _Snapshot
 class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Appends a stroked border rectangle inside the given @outline.
+    *
+    * The four sides of the border can have different widths and colors.
+    */
   @annotation.compileTimeOnly(
     "Method append_border is weird: non NULL-terminated arrays require special handling"
   )
   def appendBorder(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new [class@Gsk.CairoNode] and appends it to the current render
+    * node of @snapshot, without changing the current node.
+    */
   @annotation.compileTimeOnly(
     "Method append_cairo is weird: non NULL-terminated arrays require special handling"
   )

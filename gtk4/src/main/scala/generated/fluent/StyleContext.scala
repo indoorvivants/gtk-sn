@@ -99,11 +99,19 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
       guint(priority)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the border for a given state as a `GtkBorder`.
+    */
   @annotation.compileTimeOnly(
     "Method get_border contains an OUT parameter, which is not supported yet"
   )
   def getBorder(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the foreground color for a given state.
+    */
   @annotation.compileTimeOnly(
     "Method get_color contains an OUT parameter, which is not supported yet"
   )
@@ -117,11 +125,19 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     gtk_style_context_get_display(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the margin for a given state as a `GtkBorder`.
+    */
   @annotation.compileTimeOnly(
     "Method get_margin contains an OUT parameter, which is not supported yet"
   )
   def getMargin(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the padding for a given state as a `GtkBorder`.
+    */
   @annotation.compileTimeOnly(
     "Method get_padding contains an OUT parameter, which is not supported yet"
   )
@@ -156,6 +172,10 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
       __sn_extract_string(class_name)
     ).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Looks up and resolves a color name in the @context color map.
+    */
   @annotation.compileTimeOnly(
     "Method lookup_color contains an OUT parameter, which is not supported yet"
   )

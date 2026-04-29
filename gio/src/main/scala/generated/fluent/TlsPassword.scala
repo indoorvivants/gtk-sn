@@ -36,10 +36,17 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Get the password value. If @length is not %NULL then it will be filled in
+    * with the length of the password value. (Note that the password value is
+    * not nul-terminated, so you can only pass %NULL for @length in contexts
+    * where you know the password will have a certain fixed length.)
+    */
   @annotation.compileTimeOnly(
     "Method get_value contains an OUT parameter, which is not supported yet"
   )
-  def getValue() = ???
+  def getValue(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

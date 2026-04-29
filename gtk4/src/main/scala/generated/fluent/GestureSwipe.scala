@@ -25,6 +25,14 @@ class GestureSwipe(raw: Ptr[GtkGestureSwipe])
     extends GestureSingle(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the current velocity.
+    *
+    * If the gesture is recognized, this function returns %TRUE and fills in @velocity_x
+    * and @velocity_y with the recorded velocity, as per the last events
+    * processed.
+    */
   @annotation.compileTimeOnly(
     "Method get_velocity contains an OUT parameter, which is not supported yet"
   )

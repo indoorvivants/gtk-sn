@@ -81,10 +81,56 @@ class Subprocess(raw: Ptr[GSubprocess])
       Initable:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Communicate with the subprocess until it terminates, and all input and
+    * output has been completed.
+    *
+    * If @stdin_buf is given, the subprocess must have been created with
+    * %G_SUBPROCESS_FLAGS_STDIN_PIPE. The given data is fed to the stdin of the
+    * subprocess and the pipe is closed (ie: EOF).
+    *
+    * At the same time (as not to cause blocking when dealing with large amounts
+    * of data), if %G_SUBPROCESS_FLAGS_STDOUT_PIPE or
+    * %G_SUBPROCESS_FLAGS_STDERR_PIPE were used, reads from those streams. The
+    * data that was read is returned in @stdout and/or the @stderr.
+    *
+    * If the subprocess was created with %G_SUBPROCESS_FLAGS_STDOUT_PIPE,
+    * @stdout_buf
+    *   will contain the data read from stdout. Otherwise, for subprocesses not
+    *   created with %G_SUBPROCESS_FLAGS_STDOUT_PIPE,
+    * @stdout_buf
+    *   will be set to %NULL. Similar provisions apply to
+    * @stderr_buf
+    *   and %G_SUBPROCESS_FLAGS_STDERR_PIPE.
+    *
+    * As usual, any output variable may be given as %NULL to ignore it.
+    *
+    * If you desire the stdout and stderr data to be interleaved, create the
+    * subprocess with %G_SUBPROCESS_FLAGS_STDOUT_PIPE and
+    * %G_SUBPROCESS_FLAGS_STDERR_MERGE. The merged result will be returned in @stdout_buf
+    * and @stderr_buf will be set to %NULL.
+    *
+    * In case of any error (including cancellation), %FALSE will be returned
+    * with @error set. Some or all of the stdin data may have been written. Any
+    * stdout or stderr data that has been read will be discarded. None of the
+    * out variables (aside from @error) will have been set to anything in
+    * particular and should not be inspected.
+    *
+    * In the case that %TRUE is returned, the subprocess has exited and the exit
+    * status inspection APIs (eg: g_subprocess_get_if_exited(),
+    * g_subprocess_get_exit_status()) may be used.
+    *
+    * You should not attempt to use any of the subprocess pipes after starting
+    * this function, since they may be left in strange states, even if the
+    * operation was cancelled. You should especially not attempt to interact
+    * with the pipes while the operation is in progress (either from another
+    * thread or if using the asynchronous version).
+    */
   @annotation.compileTimeOnly(
     "Method communicate contains an OUT parameter, which is not supported yet"
   )
-  def communicate() = ???
+  def communicate(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -104,15 +150,27 @@ class Subprocess(raw: Ptr[GSubprocess])
     gpointer(user_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Complete an invocation of g_subprocess_communicate_async().
+    */
   @annotation.compileTimeOnly(
     "Method communicate_finish contains an OUT parameter, which is not supported yet"
   )
-  def communicateFinish() = ???
+  def communicateFinish(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Like g_subprocess_communicate(), but validates the output of the process
+    * as UTF-8, and returns it as a regular NUL terminated string.
+    *
+    * On error, @stdout_buf and @stderr_buf will be set to undefined values and
+    * should not be used.
+    */
   @annotation.compileTimeOnly(
     "Method communicate_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def communicateUtf8() = ???
+  def communicateUtf8(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -132,10 +190,14 @@ class Subprocess(raw: Ptr[GSubprocess])
     gpointer(user_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Complete an invocation of g_subprocess_communicate_utf8_async().
+    */
   @annotation.compileTimeOnly(
     "Method communicate_utf8_finish contains an OUT parameter, which is not supported yet"
   )
-  def communicateUtf8Finish() = ???
+  def communicateUtf8Finish(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

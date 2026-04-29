@@ -36,10 +36,23 @@ class SocketListener(raw: Ptr[GSocketListener])
     extends Object(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Blocks waiting for a client to connect to any of the sockets added to the
+    * listener. Returns a #GSocketConnection for the socket that was accepted.
+    *
+    * If @source_object is not %NULL it will be filled out with the source
+    * object specified when the corresponding socket or address was added to the
+    * listener.
+    *
+    * If @cancellable is not %NULL, then the operation can be cancelled by
+    * triggering the cancellable object from another thread. If the operation
+    * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
+    */
   @annotation.compileTimeOnly(
     "Method accept contains an OUT parameter, which is not supported yet"
   )
-  def accept() = ???
+  def accept(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -59,15 +72,36 @@ class SocketListener(raw: Ptr[GSocketListener])
     gpointer(user_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes an async accept operation. See g_socket_listener_accept_async()
+    */
   @annotation.compileTimeOnly(
     "Method accept_finish contains an OUT parameter, which is not supported yet"
   )
-  def acceptFinish() = ???
+  def acceptFinish(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Blocks waiting for a client to connect to any of the sockets added to the
+    * listener. Returns the #GSocket that was accepted.
+    *
+    * If you want to accept the high-level #GSocketConnection, not a #GSocket,
+    * which is often the case, then you should use g_socket_listener_accept()
+    * instead.
+    *
+    * If @source_object is not %NULL it will be filled out with the source
+    * object specified when the corresponding socket or address was added to the
+    * listener.
+    *
+    * If @cancellable is not %NULL, then the operation can be cancelled by
+    * triggering the cancellable object from another thread. If the operation
+    * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
+    */
   @annotation.compileTimeOnly(
     "Method accept_socket contains an OUT parameter, which is not supported yet"
   )
-  def acceptSocket() = ???
+  def acceptSocket(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -88,15 +122,45 @@ class SocketListener(raw: Ptr[GSocketListener])
     gpointer(user_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes an async accept operation. See
+    * g_socket_listener_accept_socket_async()
+    */
   @annotation.compileTimeOnly(
     "Method accept_socket_finish contains an OUT parameter, which is not supported yet"
   )
-  def acceptSocketFinish() = ???
+  def acceptSocketFinish(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a socket of type @type and protocol @protocol, binds it to @address
+    * and adds it to the set of sockets we're accepting sockets from.
+    *
+    * Note that adding an IPv6 address, depending on the platform, may or may
+    * not result in a listener that also accepts IPv4 connections. For more
+    * deterministic behavior, see g_socket_listener_add_inet_port().
+    *
+    * @source_object
+    *   will be passed out in the various calls to accept to identify this
+    *   particular source, which is useful if you're listening on multiple
+    *   addresses and do different things depending on what address is connected
+    *   to.
+    *
+    * If successful and @effective_address is non-%NULL then it will be set to
+    * the address that the binding actually occurred at. This is helpful for
+    * determining the port number that was used for when requesting a binding to
+    * port 0 (ie: "any port"). This address, if requested, belongs to the caller
+    * and must be freed.
+    *
+    * Call g_socket_listener_close() to stop listening on @address; this will
+    * not be done automatically when you drop your final reference to @listener,
+    * as references may be held internally.
+    */
   @annotation.compileTimeOnly(
     "Method add_address contains an OUT parameter, which is not supported yet"
   )
-  def addAddress() = ???
+  def addAddress(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

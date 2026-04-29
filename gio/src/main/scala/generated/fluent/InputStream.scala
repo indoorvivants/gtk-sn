@@ -131,30 +131,132 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
   def isClosed(): Boolean =
     g_input_stream_is_closed(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Tries to read @count bytes from the stream into the buffer starting at
+    * @buffer.
+    *   Will block during this read.
+    *
+    * If count is zero returns zero and does nothing. A value of @count larger
+    * than %G_MAXSSIZE will cause a %G_IO_ERROR_INVALID_ARGUMENT error.
+    *
+    * On success, the number of bytes read into the buffer is returned. It is
+    * not an error if this is not the same as the requested size, as it can
+    * happen e.g. near the end of a file. Zero is returned on end of file (or if @count
+    * is zero), but never otherwise.
+    *
+    * The returned @buffer is not a nul-terminated string, it can contain nul
+    * bytes at any position, and this function doesn't nul-terminate the @buffer.
+    *
+    * If @cancellable is not %NULL, then the operation can be cancelled by
+    * triggering the cancellable object from another thread. If the operation
+    * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned. If an
+    * operation was partially finished when the operation was cancelled the
+    * partial result will be returned, without an error.
+    *
+    * On error -1 is returned and @error is set accordingly.
+    */
   @annotation.compileTimeOnly(
     "Method read contains an OUT parameter, which is not supported yet"
   )
-  def read() = ???
+  def read(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Tries to read @count bytes from the stream into the buffer starting at
+    * @buffer.
+    *   Will block during this read.
+    *
+    * This function is similar to g_input_stream_read(), except it tries to read
+    * as many bytes as requested, only stopping on an error or end of stream.
+    *
+    * On a successful read of @count bytes, or if we reached the end of the
+    * stream, %TRUE is returned, and @bytes_read is set to the number of bytes
+    * read into @buffer.
+    *
+    * If there is an error during the operation %FALSE is returned and @error is
+    * set to indicate the error status.
+    *
+    * As a special exception to the normal conventions for functions that use
+    * #GError, if this function returns %FALSE (and sets @error) then
+    * @bytes_read
+    *   will be set to the number of bytes that were successfully read before
+    *   the error was encountered. This functionality is only available from C.
+    *   If you need it from another language then you must write your own loop
+    *   around g_input_stream_read().
+    */
   @annotation.compileTimeOnly(
     "Method read_all contains an OUT parameter, which is not supported yet"
   )
-  def readAll() = ???
+  def readAll(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Request an asynchronous read of @count bytes from the stream into the
+    * buffer starting at @buffer.
+    *
+    * This is the asynchronous equivalent of g_input_stream_read_all().
+    *
+    * Call g_input_stream_read_all_finish() to collect the result.
+    *
+    * Any outstanding I/O request with higher priority (lower numerical value)
+    * will be executed before an outstanding request with lower priority.
+    * Default priority is %G_PRIORITY_DEFAULT.
+    */
   @annotation.compileTimeOnly(
     "Method read_all_async contains an OUT parameter, which is not supported yet"
   )
-  def readAllAsync() = ???
+  def readAllAsync(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes an asynchronous stream read operation started with
+    * g_input_stream_read_all_async().
+    *
+    * As a special exception to the normal conventions for functions that use
+    * #GError, if this function returns %FALSE (and sets @error) then
+    * @bytes_read
+    *   will be set to the number of bytes that were successfully read before
+    *   the error was encountered. This functionality is only available from C.
+    *   If you need it from another language then you must write your own loop
+    *   around g_input_stream_read_async().
+    */
   @annotation.compileTimeOnly(
     "Method read_all_finish contains an OUT parameter, which is not supported yet"
   )
-  def readAllFinish() = ???
+  def readAllFinish(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Request an asynchronous read of @count bytes from the stream into the
+    * buffer starting at @buffer. When the operation is finished @callback will
+    * be called. You can then call g_input_stream_read_finish() to get the
+    * result of the operation.
+    *
+    * During an async request no other sync and async calls are allowed on @stream,
+    * and will result in %G_IO_ERROR_PENDING errors.
+    *
+    * A value of @count larger than %G_MAXSSIZE will cause a
+    * %G_IO_ERROR_INVALID_ARGUMENT error.
+    *
+    * On success, the number of bytes read into the buffer will be passed to the
+    * callback. It is not an error if this is not the same as the requested
+    * size, as it can happen e.g. near the end of a file, but generally we try
+    * to read as many bytes as requested. Zero is returned on end of file (or if @count
+    * is zero), but never otherwise.
+    *
+    * Any outstanding i/o request with higher priority (lower numerical value)
+    * will be executed before an outstanding request with lower priority.
+    * Default priority is %G_PRIORITY_DEFAULT.
+    *
+    * The asynchronous methods have a default fallback that uses threads to
+    * implement asynchronicity, so they are optional for inheriting classes.
+    * However, if you override one you must override all.
+    */
   @annotation.compileTimeOnly(
     "Method read_async contains an OUT parameter, which is not supported yet"
   )
-  def readAsync() = ???
+  def readAsync(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

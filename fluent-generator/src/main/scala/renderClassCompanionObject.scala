@@ -35,6 +35,7 @@ def renderClassCompanionObject(
                 )
 
             case Some(value) =>
+              renderComment(constructor.doc)
               line(s"@annotation.compileTimeOnly(\"$value\")")
               line(s"def ${safeConstructorName(constructor.name)}() = ???")
               emptyLine()

@@ -169,31 +169,59 @@ class TreeView(raw: Ptr[GtkTreeView])
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Converts bin_window coordinates to coordinates for the tree (the full
+    * scrollable area of the tree).
+    */
   @annotation.compileTimeOnly(
     "Method convert_bin_window_to_tree_coords contains an OUT parameter, which is not supported yet"
   )
   def convertBinWindowToTreeCoords(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Converts bin_window coordinates to widget relative coordinates.
+    */
   @annotation.compileTimeOnly(
     "Method convert_bin_window_to_widget_coords contains an OUT parameter, which is not supported yet"
   )
   def convertBinWindowToWidgetCoords(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Converts tree coordinates (coordinates in full scrollable area of the
+    * tree) to bin_window coordinates.
+    */
   @annotation.compileTimeOnly(
     "Method convert_tree_to_bin_window_coords contains an OUT parameter, which is not supported yet"
   )
   def convertTreeToBinWindowCoords(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Converts tree coordinates (coordinates in full scrollable area of the
+    * tree) to widget coordinates.
+    */
   @annotation.compileTimeOnly(
     "Method convert_tree_to_widget_coords contains an OUT parameter, which is not supported yet"
   )
   def convertTreeToWidgetCoords(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Converts widget coordinates to coordinates for the bin_window.
+    */
   @annotation.compileTimeOnly(
     "Method convert_widget_to_bin_window_coords contains an OUT parameter, which is not supported yet"
   )
   def convertWidgetToBinWindowCoords(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Converts widget coordinates to coordinates for the tree (the full
+    * scrollable area of the tree).
+    */
   @annotation.compileTimeOnly(
     "Method convert_widget_to_tree_coords contains an OUT parameter, which is not supported yet"
   )
@@ -276,11 +304,37 @@ class TreeView(raw: Ptr[GtkTreeView])
     gtk_tree_view_get_activate_on_single_click(this.raw.asInstanceOf).value
       .!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Fills the bounding rectangle in bin_window coordinates for the cell at the
+    * row specified by @path and the column specified by @column. If @path is
+    * %NULL, or points to a node not found in the tree, the @y and @height
+    * fields of the rectangle will be filled with 0. If @column is %NULL, the @x
+    * and @width fields will be filled with 0. The returned rectangle is
+    * equivalent to the
+    * @background_area
+    *   passed to gtk_cell_renderer_render(). These background areas tile to
+    *   cover the entire bin window. Contrast with the @cell_area, returned by
+    *   gtk_tree_view_get_cell_area(), which returns only the cell itself,
+    *   excluding surrounding borders and the tree expander area.
+    */
   @annotation.compileTimeOnly(
     "Method get_background_area contains an OUT parameter, which is not supported yet"
   )
   def getBackgroundArea(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Fills the bounding rectangle in bin_window coordinates for the cell at the
+    * row specified by @path and the column specified by @column. If @path is
+    * %NULL, or points to a path not currently displayed, the @y and @height
+    * fields of the rectangle will be filled with 0. If @column is %NULL, the @x
+    * and @width fields will be filled with 0. The sum of all cell rects does
+    * not cover the entire tree; there are extra pixels in between rows, for
+    * example. The returned rectangle is equivalent to the @cell_area passed to
+    * gtk_cell_renderer_render(). This function is only valid if @tree_view is
+    * realized.
+    */
   @annotation.compileTimeOnly(
     "Method get_cell_area contains an OUT parameter, which is not supported yet"
   )
@@ -303,16 +357,38 @@ class TreeView(raw: Ptr[GtkTreeView])
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Fills in @path and @focus_column with the current path and focus column.
+    * If the cursor isn’t currently set, then *@path will be %NULL. If no column
+    * currently has focus, then *@focus_column will be %NULL.
+    *
+    * The returned `GtkTreePath` must be freed with gtk_tree_path_free() when
+    * you are done with it.
+    */
   @annotation.compileTimeOnly(
     "Method get_cursor contains an OUT parameter, which is not supported yet"
   )
   def getCursor(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Determines the destination row for a given position. @drag_x and
+    * @drag_y
+    *   are expected to be in widget coordinates. This function is only
+    *   meaningful if @tree_view is realized. Therefore this function will
+    *   always return %FALSE if @tree_view is not realized or does not have a
+    *   model.
+    */
   @annotation.compileTimeOnly(
     "Method get_dest_row_at_pos contains an OUT parameter, which is not supported yet"
   )
   def getDestRowAtPos(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets information about the row that is highlighted for feedback.
+    */
   @annotation.compileTimeOnly(
     "Method get_drag_dest_row contains an OUT parameter, which is not supported yet"
   )
@@ -410,6 +486,26 @@ class TreeView(raw: Ptr[GtkTreeView])
     this.raw.asInstanceOf
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finds the path at the point (@x, @y), relative to bin_window coordinates.
+    * That is, @x and @y are relative to an events coordinates. Widget-relative
+    * coordinates must be converted using
+    * gtk_tree_view_convert_widget_to_bin_window_coords(). It is primarily for
+    * things like popup menus. If @path is non-%NULL, then it will be filled
+    * with the `GtkTreePath` at that point. This path should be freed with
+    * gtk_tree_path_free(). If @column is non-%NULL, then it will be filled with
+    * the column at that point. @cell_x and @cell_y return the coordinates
+    * relative to the cell background (i.e. the @background_area passed to
+    * gtk_cell_renderer_render()). This function is only meaningful if
+    * @tree_view
+    *   is realized. Therefore this function will always return %FALSE if @tree_view
+    *   is not realized or does not have a model.
+    *
+    * For converting widget coordinates (eg. the ones you get from
+    * GtkWidget::query-tooltip), please see
+    * gtk_tree_view_convert_widget_to_bin_window_coords().
+    */
   @annotation.compileTimeOnly(
     "Method get_path_at_pos contains an OUT parameter, which is not supported yet"
   )
@@ -488,16 +584,45 @@ class TreeView(raw: Ptr[GtkTreeView])
     this.raw.asInstanceOf
   )
 
+  /**  COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    *  This function is supposed to be used in a ::query-tooltip
+    *  signal handler for `GtkTreeView`. The @x, @y and @keyboard_tip values
+    *  which are received in the signal handler, should be passed to this
+    *  function without modification.
+    *
+    *  The return value indicates whether there is a tree view row at the given
+    *  coordinates (%TRUE) or not (%FALSE) for mouse tooltips. For keyboard
+    *  tooltips the row returned will be the cursor row. When %TRUE, then any of
+    *  @model, @path and @iter which have been provided will be set to point to
+    *  that row and the corresponding model. @x and @y will always be converted
+    *  to be relative to @tree_view’s bin_window if @keyboard_tooltip is %FALSE.
+    */
   @annotation.compileTimeOnly(
     "Method get_tooltip_context contains an OUT parameter, which is not supported yet"
   )
   def getTooltipContext(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets @start_path and @end_path to be the first and last visible path. Note
+    * that there may be invisible paths in between.
+    *
+    * The paths should be freed with gtk_tree_path_free() after use.
+    */
   @annotation.compileTimeOnly(
     "Method get_visible_range contains an OUT parameter, which is not supported yet"
   )
   def getVisibleRange(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Fills @visible_rect with the currently-visible region of the buffer, in
+    * tree coordinates. Convert to bin_window coordinates with
+    * gtk_tree_view_convert_tree_to_bin_window_coords(). Tree coordinates start
+    * at 0,0 for row 0 of the tree, and cover the entire scrollable area of the
+    * tree.
+    */
   @annotation.compileTimeOnly(
     "Method get_visible_rect contains an OUT parameter, which is not supported yet"
   )
@@ -566,6 +691,26 @@ class TreeView(raw: Ptr[GtkTreeView])
     dnotify
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Determine whether the point (@x, @y) in @tree_view is blank, that is no
+    * cell content nor an expander arrow is drawn at the location. If so, the
+    * location can be considered as the background. You might wish to take
+    * special action on clicks on the background, such as clearing a current
+    * selection, having a custom context menu or starting rubber banding.
+    *
+    * The @x and @y coordinate that are provided must be relative to bin_window
+    * coordinates. Widget-relative coordinates must be converted using
+    * gtk_tree_view_convert_widget_to_bin_window_coords().
+    *
+    * For converting widget coordinates (eg. the ones you get from
+    * GtkWidget::query-tooltip), please see
+    * gtk_tree_view_convert_widget_to_bin_window_coords().
+    *
+    * The @path, @column, @cell_x and @cell_y arguments will be filled in
+    * likewise as for gtk_tree_view_get_path_at_pos(). Please see
+    * gtk_tree_view_get_path_at_pos() for more information.
+    */
   @annotation.compileTimeOnly(
     "Method is_blank_at_pos contains an OUT parameter, which is not supported yet"
   )

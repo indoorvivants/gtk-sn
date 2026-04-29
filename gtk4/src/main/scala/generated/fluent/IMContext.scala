@@ -136,16 +136,59 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     */
   def focusOut(): Unit = gtk_im_context_focus_out(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieve the current preedit string for the input context, and a list of
+    * attributes to apply to the string.
+    *
+    * This string should be displayed inserted at the insertion point.
+    */
   @annotation.compileTimeOnly(
     "Method get_preedit_string contains an OUT parameter, which is not supported yet"
   )
   def getPreeditString(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves context around the insertion point.
+    *
+    * Input methods typically want context in order to constrain input text
+    * based on existing text; this is important for languages such as Thai where
+    * only some sequences of characters are allowed.
+    *
+    * This function is implemented by emitting the
+    * [signal@Gtk.IMContext::retrieve-surrounding] signal on the input method;
+    * in response to this signal, a widget should provide as much context as is
+    * available, up to an entire paragraph, by calling
+    * [method@Gtk.IMContext.set_surrounding].
+    *
+    * Note that there is no obligation for a widget to respond to the
+    * `::retrieve-surrounding` signal, so input methods must be prepared to
+    * function without context.
+    */
   @annotation.compileTimeOnly(
     "Method get_surrounding contains an OUT parameter, which is not supported yet"
   )
   def getSurrounding(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves context around the insertion point.
+    *
+    * Input methods typically want context in order to constrain input text
+    * based on existing text; this is important for languages such as Thai where
+    * only some sequences of characters are allowed.
+    *
+    * This function is implemented by emitting the
+    * [signal@Gtk.IMContext::retrieve-surrounding] signal on the input method;
+    * in response to this signal, a widget should provide as much context as is
+    * available, up to an entire paragraph, by calling
+    * [method@Gtk.IMContext.set_surrounding_with_selection].
+    *
+    * Note that there is no obligation for a widget to respond to the
+    * `::retrieve-surrounding` signal, so input methods must be prepared to
+    * function without context.
+    */
   @annotation.compileTimeOnly(
     "Method get_surrounding_with_selection contains an OUT parameter, which is not supported yet"
   )

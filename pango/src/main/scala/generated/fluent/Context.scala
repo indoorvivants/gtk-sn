@@ -168,10 +168,14 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     */
   def getSerial(): UInt = pango_context_get_serial(this.raw.asInstanceOf).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * List all families for a context.
+    */
   @annotation.compileTimeOnly(
     "Method list_families contains an OUT parameter, which is not supported yet"
   )
-  def listFamilies() = ???
+  def listFamilies(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

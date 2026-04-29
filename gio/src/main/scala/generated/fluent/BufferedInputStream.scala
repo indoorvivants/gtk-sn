@@ -129,10 +129,16 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
   def getBufferSize(): CUnsignedLongInt =
     g_buffered_input_stream_get_buffer_size(this.raw.asInstanceOf).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the buffer with the currently available bytes. The returned buffer
+    * must not be modified and will become invalid when reading from the stream
+    * or filling the buffer.
+    */
   @annotation.compileTimeOnly(
     "Method peek_buffer contains an OUT parameter, which is not supported yet"
   )
-  def peekBuffer() = ???
+  def peekBuffer(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

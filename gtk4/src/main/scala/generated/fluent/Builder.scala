@@ -560,11 +560,37 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
       __sn_extract_string(domain)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Demarshals a value from a string.
+    *
+    * This function calls g_value_init() on the @value argument, so it need not
+    * be initialised beforehand.
+    *
+    * Can handle char, uchar, boolean, int, uint, long, ulong, enum, flags,
+    * float, double, string, `GdkRGBA` and `GtkAdjustment` type values.
+    *
+    * Upon errors %FALSE will be returned and @error will be assigned a `GError`
+    * from the %GTK_BUILDER_ERROR domain.
+    */
   @annotation.compileTimeOnly(
     "Method value_from_string contains an OUT parameter, which is not supported yet"
   )
   def valueFromString(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Demarshals a value from a string.
+    *
+    * Unlike [method@Gtk.Builder.value_from_string], this function takes a
+    * `GType` instead of `GParamSpec`.
+    *
+    * Calls g_value_init() on the @value argument, so it need not be initialised
+    * beforehand.
+    *
+    * Upon errors %FALSE will be returned and @error will be assigned a `GError`
+    * from the %GTK_BUILDER_ERROR domain.
+    */
   @annotation.compileTimeOnly(
     "Method value_from_string_type contains an OUT parameter, which is not supported yet"
   )

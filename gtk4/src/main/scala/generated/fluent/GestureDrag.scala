@@ -21,11 +21,26 @@ class GestureDrag(raw: Ptr[GtkGestureDrag])
     extends GestureSingle(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the offset from the start point.
+    *
+    * If the @gesture is active, this function returns %TRUE and fills in @x and @y
+    * with the coordinates of the current point, as an offset to the starting
+    * drag point.
+    */
   @annotation.compileTimeOnly(
     "Method get_offset contains an OUT parameter, which is not supported yet"
   )
   def getOffset(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the point where the drag started.
+    *
+    * If the @gesture is active, this function returns %TRUE and fills in @x and @y
+    * with the drag start coordinates, in widget-relative coordinates.
+    */
   @annotation.compileTimeOnly(
     "Method get_start_point contains an OUT parameter, which is not supported yet"
   )

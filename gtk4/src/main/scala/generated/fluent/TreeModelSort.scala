@@ -133,6 +133,12 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets @sort_iter to point to the row in @tree_model_sort that corresponds
+    * to the row pointed at by @child_iter. If @sort_iter was not set, %FALSE is
+    * returned. Note: a boolean is only returned since 2.14.
+    */
   @annotation.compileTimeOnly(
     "Method convert_child_iter_to_iter contains an OUT parameter, which is not supported yet"
   )
@@ -152,6 +158,10 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
       child_path
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets @child_iter to point to the row pointed to by @sorted_iter.
+    */
   @annotation.compileTimeOnly(
     "Method convert_iter_to_child_iter contains an OUT parameter, which is not supported yet"
   )

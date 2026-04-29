@@ -20,16 +20,50 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     extends GestureSingle(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the current values for the requested @axes.
+    *
+    * This function must be called from the handler of one of the
+    * [signal@Gtk.GestureStylus::down], [signal@Gtk.GestureStylus::motion],
+    * [signal@Gtk.GestureStylus::up] or [signal@Gtk.GestureStylus::proximity]
+    * signals.
+    */
   @annotation.compileTimeOnly(
     "Method get_axes contains an OUT parameter, which is not supported yet"
   )
   def getAxes(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the current value for the requested @axis.
+    *
+    * This function must be called from the handler of one of the
+    * [signal@Gtk.GestureStylus::down], [signal@Gtk.GestureStylus::motion],
+    * [signal@Gtk.GestureStylus::up] or [signal@Gtk.GestureStylus::proximity]
+    * signals.
+    */
   @annotation.compileTimeOnly(
     "Method get_axis contains an OUT parameter, which is not supported yet"
   )
   def getAxis(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the accumulated backlog of tracking information.
+    *
+    * By default, GTK will limit rate of input events. On stylus input where
+    * accuracy of strokes is paramount, this function returns the accumulated
+    * coordinate/timing state before the emission of the current
+    * [Gtk.GestureStylus::motion] signal.
+    *
+    * This function may only be called within a
+    * [signal@Gtk.GestureStylus::motion] signal handler, the state given in this
+    * signal and obtainable through [method@Gtk.GestureStylus.get_axis] express
+    * the latest (most up-to-date) state in motion history.
+    *
+    * The @backlog is provided in chronological order.
+    */
   @annotation.compileTimeOnly(
     "Method get_backlog contains an OUT parameter, which is not supported yet"
   )

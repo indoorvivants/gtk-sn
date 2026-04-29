@@ -703,10 +703,23 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     g_task_propagate_pointer(this.raw.asInstanceOf, __errorPtr).value
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the result of @task as a #GValue, and transfers ownership of that
+    * value to the caller. As with g_task_return_value(), this is a generic
+    * low-level method; g_task_propagate_pointer() and the like will usually be
+    * more useful for C code.
+    *
+    * If the task resulted in an error, or was cancelled, then this will instead
+    * set @error and return %FALSE.
+    *
+    * Since this method transfers ownership of the return value (or error) to
+    * the caller, you may only call it once.
+    */
   @annotation.compileTimeOnly(
     "Method propagate_value contains an OUT parameter, which is not supported yet"
   )
-  def propagateValue() = ???
+  def propagateValue(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

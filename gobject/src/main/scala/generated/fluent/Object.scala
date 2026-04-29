@@ -79,10 +79,23 @@ class Object(raw: Ptr[GObject]):
   def addToggleRef(_notify: GToggleNotify, data: Ptr[Byte]): Unit =
     g_object_add_toggle_ref(this.raw.asInstanceOf, _notify, gpointer(data))
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Adds a weak reference from weak_pointer to @object to indicate that the
+    * pointer located at @weak_pointer_location is only valid during the
+    * lifetime of @object. When the @object is finalized,
+    * @weak_pointer
+    *   will be set to %NULL.
+    *
+    * Note that as with g_object_weak_ref(), the weak references created by this
+    * method are not thread-safe: they cannot safely be used in one thread if
+    * the object's last g_object_unref() might happen in another thread. Use
+    * #GWeakRef if thread-safety is required.
+    */
   @annotation.compileTimeOnly(
     "Method add_weak_pointer contains an INOUT parameter, which is not supported yet"
   )
-  def addWeakPointer() = ???
+  def addWeakPointer(using DummyImplicit) = ???
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -569,20 +582,61 @@ class Object(raw: Ptr[GObject]):
   def removeToggleRef(_notify: GToggleNotify, data: Ptr[Byte]): Unit =
     g_object_remove_toggle_ref(this.raw.asInstanceOf, _notify, gpointer(data))
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Removes a weak reference from @object that was previously added using
+    * g_object_add_weak_pointer(). The @weak_pointer_location has to match the
+    * one used with g_object_add_weak_pointer().
+    */
   @annotation.compileTimeOnly(
     "Method remove_weak_pointer contains an INOUT parameter, which is not supported yet"
   )
-  def removeWeakPointer() = ???
+  def removeWeakPointer(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Compares the user data for the key @key on @object with
+    * @oldval,
+    *   and if they are the same, replaces @oldval with
+    * @newval.
+    *
+    * This is like a typical atomic compare-and-exchange operation, for user
+    * data on an object.
+    *
+    * If the previous value was replaced then ownership of the old value
+    * (@oldval) is passed to the caller, including the registered destroy notify
+    * for it (passed out in @old_destroy). It’s up to the caller to free this as
+    * needed, which may or may not include using @old_destroy as sometimes
+    * replacement should not destroy the object in the normal way.
+    *
+    * See g_object_set_data() for guidance on using a small, bounded set of
+    * values for @key.
+    */
   @annotation.compileTimeOnly(
     "Method replace_data contains an OUT parameter, which is not supported yet"
   )
-  def replaceData() = ???
+  def replaceData(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Compares the user data for the key @quark on @object with
+    * @oldval,
+    *   and if they are the same, replaces @oldval with
+    * @newval.
+    *
+    * This is like a typical atomic compare-and-exchange operation, for user
+    * data on an object.
+    *
+    * If the previous value was replaced then ownership of the old value
+    * (@oldval) is passed to the caller, including the registered destroy notify
+    * for it (passed out in @old_destroy). It’s up to the caller to free this as
+    * needed, which may or may not include using @old_destroy as sometimes
+    * replacement should not destroy the object in the normal way.
+    */
   @annotation.compileTimeOnly(
     "Method replace_qdata contains an OUT parameter, which is not supported yet"
   )
-  def replaceQdata() = ???
+  def replaceQdata(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

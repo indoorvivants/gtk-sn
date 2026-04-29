@@ -63,10 +63,14 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
   def set(`index_`: Int, level: PangoCoverageLevel): Unit =
     pango_coverage_set(this.raw.asInstanceOf, `index_`, level)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convert a `PangoCoverage` structure into a flat binary format.
+    */
   @annotation.compileTimeOnly(
     "Method to_bytes contains an OUT parameter, which is not supported yet"
   )
-  def toBytes() = ???
+  def toBytes(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
