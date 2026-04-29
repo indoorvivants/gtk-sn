@@ -41,6 +41,8 @@ lazy val root = project
     gdkpixbuf,
     graphene,
     gtk4,
+    gdk4,
+    gsk4,
     harfbuzz,
     pango,
     `gir-schema`,
