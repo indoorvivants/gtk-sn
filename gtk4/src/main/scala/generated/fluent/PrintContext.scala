@@ -127,6 +127,10 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     */
   def getDpiY(): Double = gtk_print_context_get_dpi_y(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Obtains the hardware printer margins of the `GtkPrintContext`, in units.
+    */
   @annotation.compileTimeOnly(
     "Method get_hard_margins contains an OUT parameter, which is not supported yet"
   )

@@ -51,10 +51,14 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   def getNewlineType(): GDataStreamNewlineType =
     g_data_input_stream_get_newline_type(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Reads an unsigned 8-bit/1-byte value from @stream.
+    */
   @annotation.compileTimeOnly(
     "Method read_byte is weird: there are conflicting versions of it in DataInputStream and BufferedInputStream"
   )
-  def readByte() = ???
+  def readByte(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -115,10 +119,20 @@ class DataInputStream(raw: Ptr[GDataInputStream])
       ).value
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Reads a line from the data input stream. Note that no encoding checks or
+    * conversion is performed; the input is not guaranteed to be UTF-8, and may
+    * in fact have embedded NUL characters.
+    *
+    * If @cancellable is not %NULL, then the operation can be cancelled by
+    * triggering the cancellable object from another thread. If the operation
+    * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
+    */
   @annotation.compileTimeOnly(
     "Method read_line contains an OUT parameter, which is not supported yet"
   )
-  def readLine() = ???
+  def readLine(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -142,20 +156,39 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     gpointer(user_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finish an asynchronous call started by
+    * g_data_input_stream_read_line_async(). Note the warning about string
+    * encoding in g_data_input_stream_read_line() applies here as well.
+    */
   @annotation.compileTimeOnly(
     "Method read_line_finish contains an OUT parameter, which is not supported yet"
   )
-  def readLineFinish() = ???
+  def readLineFinish(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finish an asynchronous call started by
+    * g_data_input_stream_read_line_async().
+    */
   @annotation.compileTimeOnly(
     "Method read_line_finish_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def readLineFinishUtf8() = ???
+  def readLineFinishUtf8(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Reads a UTF-8 encoded line from the data input stream.
+    *
+    * If @cancellable is not %NULL, then the operation can be cancelled by
+    * triggering the cancellable object from another thread. If the operation
+    * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
+    */
   @annotation.compileTimeOnly(
     "Method read_line_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def readLineUtf8() = ???
+  def readLineUtf8(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -215,10 +248,23 @@ class DataInputStream(raw: Ptr[GDataInputStream])
       ).value
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Reads a string from the data input stream, up to the first occurrence of
+    * any of the stop characters.
+    *
+    * Note that, in contrast to g_data_input_stream_read_until_async(), this
+    * function consumes the stop character that it finds.
+    *
+    * Don't use this function in new code. Its functionality is inconsistent
+    * with g_data_input_stream_read_until_async(). Both functions will be marked
+    * as deprecated in a future release. Use g_data_input_stream_read_upto()
+    * instead, but note that that function does not consume the stop character.
+    */
   @annotation.compileTimeOnly(
     "Method read_until contains an OUT parameter, which is not supported yet"
   )
-  def readUntil() = ???
+  def readUntil(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -253,15 +299,34 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     gpointer(user_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finish an asynchronous call started by
+    * g_data_input_stream_read_until_async().
+    */
   @annotation.compileTimeOnly(
     "Method read_until_finish contains an OUT parameter, which is not supported yet"
   )
-  def readUntilFinish() = ???
+  def readUntilFinish(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Reads a string from the data input stream, up to the first occurrence of
+    * any of the stop characters.
+    *
+    * In contrast to g_data_input_stream_read_until(), this function does not
+    * consume the stop character. You have to use
+    * g_data_input_stream_read_byte() to get it before calling
+    * g_data_input_stream_read_upto() again.
+    *
+    * Note that @stop_chars may contain '\0' if @stop_chars_len is specified.
+    *
+    * The returned string will always be nul-terminated on success.
+    */
   @annotation.compileTimeOnly(
     "Method read_upto contains an OUT parameter, which is not supported yet"
   )
-  def readUpto() = ???
+  def readUpto(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -296,10 +361,21 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     gpointer(user_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finish an asynchronous call started by
+    * g_data_input_stream_read_upto_async().
+    *
+    * Note that this function does not consume the stop character. You have to
+    * use g_data_input_stream_read_byte() to get it before calling
+    * g_data_input_stream_read_upto_async() again.
+    *
+    * The returned string will always be nul-terminated on success.
+    */
   @annotation.compileTimeOnly(
     "Method read_upto_finish contains an OUT parameter, which is not supported yet"
   )
-  def readUptoFinish() = ???
+  def readUptoFinish(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -478,10 +478,15 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
       fd_list.getUnsafeRawPointer().asInstanceOf
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Serializes @message to a blob. The byte order returned by
+    * g_dbus_message_get_byte_order() will be used.
+    */
   @annotation.compileTimeOnly(
     "Method to_blob contains an OUT parameter, which is not supported yet"
   )
-  def toBlob() = ???
+  def toBlob(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -111,6 +111,15 @@ class IconView(raw: Ptr[GtkIconView])
     gtk_icon_view_get_activate_on_single_click(this.raw.asInstanceOf).value
       .!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Fills the bounding rectangle in widget coordinates for the cell specified
+    * by
+    * @path
+    *   and @cell. If @cell is %NULL the main cell area is used.
+    *
+    * This function is only valid if @icon_view is realized.
+    */
   @annotation.compileTimeOnly(
     "Method get_cell_rect contains an OUT parameter, which is not supported yet"
   )
@@ -130,21 +139,41 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def getColumns(): Int = gtk_icon_view_get_columns(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Fills in @path and @cell with the current cursor path and cell. If the
+    * cursor isn’t currently set, then *@path will be %NULL. If no cell
+    * currently has focus, then *@cell will be %NULL.
+    *
+    * The returned `GtkTreePath` must be freed with gtk_tree_path_free().
+    */
   @annotation.compileTimeOnly(
     "Method get_cursor contains an OUT parameter, which is not supported yet"
   )
   def getCursor(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Determines the destination item for a given position.
+    */
   @annotation.compileTimeOnly(
     "Method get_dest_item_at_pos contains an OUT parameter, which is not supported yet"
   )
   def getDestItemAtPos(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets information about the item that is highlighted for feedback.
+    */
   @annotation.compileTimeOnly(
     "Method get_drag_dest_item contains an OUT parameter, which is not supported yet"
   )
   def getDragDestItem(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the path and cell for the icon at the given position.
+    */
   @annotation.compileTimeOnly(
     "Method get_item_at_pos contains an OUT parameter, which is not supported yet"
   )
@@ -297,11 +326,31 @@ class IconView(raw: Ptr[GtkIconView])
     this.raw.asInstanceOf
   )
 
+  /**  COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    *  This function is supposed to be used in a `GtkWidget::query-tooltip`
+    *  signal handler for `GtkIconView`. The @x, @y and @keyboard_tip values
+    *  which are received in the signal handler, should be passed to this
+    *  function without modification.
+    *
+    *  The return value indicates whether there is an icon view item at the given
+    *  coordinates (%TRUE) or not (%FALSE) for mouse tooltips. For keyboard
+    *  tooltips the item returned will be the cursor item. When %TRUE, then any of
+    *  @model, @path and @iter which have been provided will be set to point to
+    *  that row and the corresponding model.
+    */
   @annotation.compileTimeOnly(
     "Method get_tooltip_context contains an OUT parameter, which is not supported yet"
   )
   def getTooltipContext(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets @start_path and @end_path to be the first and last visible path. Note
+    * that there may be invisible paths in between.
+    *
+    * Both paths should be freed with gtk_tree_path_free() after use.
+    */
   @annotation.compileTimeOnly(
     "Method get_visible_range contains an OUT parameter, which is not supported yet"
   )

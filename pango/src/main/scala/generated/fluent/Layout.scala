@@ -122,10 +122,23 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     */
   def getBaseline(): Int = pango_layout_get_baseline(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Given an index within a layout, determines the positions that of the
+    * strong and weak cursors if the insertion point is at that index.
+    *
+    * This is a variant of [method@Pango.Layout.get_cursor_pos] that applies
+    * font metric information about caret slope and offset to the positions it
+    * returns.
+    *
+    * <picture> <source srcset="caret-metrics-dark.png"
+    * media="(prefers-color-scheme: dark)"> <img alt="Caret metrics"
+    * src="caret-metrics-light.png"> </picture>
+    */
   @annotation.compileTimeOnly(
     "Method get_caret_pos contains an OUT parameter, which is not supported yet"
   )
-  def getCaretPos() = ???
+  def getCaretPos(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -143,10 +156,38 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     pango_layout_get_context(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Given an index within a layout, determines the positions that of the
+    * strong and weak cursors if the insertion point is at that index.
+    *
+    * The position of each cursor is stored as a zero-width rectangle with the
+    * height of the run extents.
+    *
+    * <picture> <source srcset="cursor-positions-dark.png"
+    * media="(prefers-color-scheme: dark)"> <img alt="Cursor positions"
+    * src="cursor-positions-light.png"> </picture>
+    *
+    * The strong cursor location is the location where characters of the
+    * directionality equal to the base direction of the layout are inserted. The
+    * weak cursor location is the location where characters of the
+    * directionality opposite to the base direction of the layout are inserted.
+    *
+    * The following example shows text with both a strong and a weak cursor.
+    *
+    * <picture> <source srcset="split-cursor-dark.png"
+    * media="(prefers-color-scheme: dark)"> <img alt="Strong and weak cursors"
+    * src="split-cursor-light.png"> </picture>
+    *
+    * The strong cursor has a little arrow pointing to the right, the weak
+    * cursor to the left. Typing a 'c' in this situation will insert the
+    * character after the 'b', and typing another Hebrew character, like 'ג',
+    * will insert it at the end.
+    */
   @annotation.compileTimeOnly(
     "Method get_cursor_pos contains an OUT parameter, which is not supported yet"
   )
-  def getCursorPos() = ???
+  def getCursorPos(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -168,10 +209,23 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Computes the logical and ink extents of @layout.
+    *
+    * Logical extents are usually what you want for positioning things. Note
+    * that both extents may have non-zero x and y. You may want to use those to
+    * offset where you render the layout. Not doing that is a very typical bug
+    * that shows up as right-to-left layouts not being correctly positioned in a
+    * layout with a set width.
+    *
+    * The extents are given in layout coordinates and in Pango units; layout
+    * coordinates begin at the top left corner of the layout.
+    */
   @annotation.compileTimeOnly(
     "Method get_extents contains an OUT parameter, which is not supported yet"
   )
-  def getExtents() = ???
+  def getExtents(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -278,25 +332,60 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves an array of logical attributes for each character in the @layout.
+    */
   @annotation.compileTimeOnly(
     "Method get_log_attrs contains an OUT parameter, which is not supported yet"
   )
-  def getLogAttrs() = ???
+  def getLogAttrs(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves an array of logical attributes for each character in the @layout.
+    *
+    * This is a faster alternative to [method@Pango.Layout.get_log_attrs]. The
+    * returned array is part of @layout and must not be modified. Modifying the
+    * layout will invalidate the returned array.
+    *
+    * The number of attributes returned in @n_attrs will be one more than the
+    * total number of characters in the layout, since there need to be
+    * attributes corresponding to both the position before the first character
+    * and the position after the last character.
+    */
   @annotation.compileTimeOnly(
     "Method get_log_attrs_readonly contains an OUT parameter, which is not supported yet"
   )
-  def getLogAttrsReadonly() = ???
+  def getLogAttrsReadonly(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Computes the logical and ink extents of @layout in device units.
+    *
+    * This function just calls [method@Pango.Layout.get_extents] followed by two
+    * [func@extents_to_pixels] calls, rounding @ink_rect and @logical_rect such
+    * that the rounded rectangles fully contain the unrounded one (that is,
+    * passes them as first argument to [func@Pango.extents_to_pixels]).
+    */
   @annotation.compileTimeOnly(
     "Method get_pixel_extents contains an OUT parameter, which is not supported yet"
   )
-  def getPixelExtents() = ???
+  def getPixelExtents(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Determines the logical width and height of a `PangoLayout` in device
+    * units.
+    *
+    * [method@Pango.Layout.get_size] returns the width and height scaled by
+    * %PANGO_SCALE. This is simply a convenience function around
+    * [method@Pango.Layout.get_pixel_extents].
+    */
   @annotation.compileTimeOnly(
     "Method get_pixel_size contains an OUT parameter, which is not supported yet"
   )
-  def getPixelSize() = ???
+  def getPixelSize(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -323,10 +412,17 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   def getSingleParagraphMode(): Boolean =
     pango_layout_get_single_paragraph_mode(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Determines the logical width and height of a `PangoLayout` in Pango units.
+    *
+    * This is simply a convenience function around
+    * [method@Pango.Layout.get_extents].
+    */
   @annotation.compileTimeOnly(
     "Method get_size contains an OUT parameter, which is not supported yet"
   )
-  def getSize() = ???
+  def getSize(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -385,15 +481,31 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     */
   def getWrap(): PangoWrapMode = pango_layout_get_wrap(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Converts from byte @index_ within the @layout to line and X position.
+    *
+    * The X position is measured from the left edge of the line.
+    */
   @annotation.compileTimeOnly(
     "Method index_to_line_x contains an OUT parameter, which is not supported yet"
   )
-  def indexToLineX() = ???
+  def indexToLineX(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Converts from an index within a `PangoLayout` to the onscreen position
+    * corresponding to the grapheme at that index.
+    *
+    * The returns is represented as rectangle. Note that `pos->x` is always the
+    * leading edge of the grapheme and `pos->x + pos->width` the trailing edge
+    * of the grapheme. If the directionality of the grapheme is right-to-left,
+    * then `pos->width` will be negative.
+    */
   @annotation.compileTimeOnly(
     "Method index_to_pos contains an OUT parameter, which is not supported yet"
   )
-  def indexToPos() = ???
+  def indexToPos(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -417,10 +529,27 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   def isWrapped(): Boolean =
     pango_layout_is_wrapped(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Computes a new cursor position from an old position and a direction.
+    *
+    * If @direction is positive, then the new position will cause the strong or
+    * weak cursor to be displayed one position to right of where it was with the
+    * old cursor position. If @direction is negative, it will be moved to the
+    * left.
+    *
+    * In the presence of bidirectional text, the correspondence between logical
+    * and visual order will depend on the direction of the current run, and
+    * there may be jumps when the cursor is moved off of the end of a run.
+    *
+    * Motion here is in cursor positions, not in characters, so a single call to
+    * this function may move the cursor over multiple characters when multiple
+    * characters combine to form a single grapheme.
+    */
   @annotation.compileTimeOnly(
     "Method move_cursor_visually contains an OUT parameter, which is not supported yet"
   )
-  def moveCursorVisually() = ???
+  def moveCursorVisually(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -638,10 +767,25 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
       length
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the layout text and attribute list from marked-up text.
+    *
+    * See [Pango Markup](pango_markup.html)).
+    *
+    * Replaces the current text and attribute list.
+    *
+    * If @accel_marker is nonzero, the given character will mark the character
+    * following it as an accelerator. For example, @accel_marker might be an
+    * ampersand or underscore. All characters marked as an accelerator will
+    * receive a %PANGO_UNDERLINE_LOW attribute, and the first character so
+    * marked will be returned in @accel_char. Two @accel_marker characters
+    * following each other produce a single literal @accel_marker character.
+    */
   @annotation.compileTimeOnly(
     "Method set_markup_with_accel contains an OUT parameter, which is not supported yet"
   )
-  def setMarkupWithAccel() = ???
+  def setMarkupWithAccel(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -765,10 +909,22 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Converts from X and Y position within a layout to the byte index to the
+    * character at that logical position.
+    *
+    * If the Y position is not inside the layout, the closest position is chosen
+    * (the position will be clamped inside the layout). If the X position is not
+    * within the layout, then the start or the end of the line is chosen as
+    * described for [method@Pango.LayoutLine.x_to_index]. If either the X or Y
+    * positions were not inside the layout, then the function returns %FALSE; on
+    * an exact hit, it returns %TRUE.
+    */
   @annotation.compileTimeOnly(
     "Method xy_to_index contains an OUT parameter, which is not supported yet"
   )
-  def xyToIndex() = ???
+  def xyToIndex(using DummyImplicit) = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

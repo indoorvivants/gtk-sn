@@ -60,9 +60,17 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
   def isSynthesized(): Boolean =
     pango_font_face_is_synthesized(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * List the available sizes for a font.
+    *
+    * This is only applicable to bitmap fonts. For scalable fonts, stores %NULL
+    * at the location pointed to by @sizes and 0 at the location pointed to by @n_sizes.
+    * The sizes returned are in Pango units and are sorted in ascending order.
+    */
   @annotation.compileTimeOnly(
     "Method list_sizes contains an OUT parameter, which is not supported yet"
   )
-  def listSizes() = ???
+  def listSizes(using DummyImplicit) = ???
 
 end FontFace

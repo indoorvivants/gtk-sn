@@ -142,10 +142,14 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       ).asInstanceOf
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the attribute type, value and status for an attribute key.
+    */
   @annotation.compileTimeOnly(
     "Method get_attribute_data contains an OUT parameter, which is not supported yet"
   )
-  def getAttributeData() = ???
+  def getAttributeData(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -416,10 +420,18 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def getModificationDateTime(): Ptr[GDateTime] =
     g_file_info_get_modification_date_time(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the modification time of the current @info and sets it in @result.
+    *
+    * It is an error to call this if the #GFileInfo does not contain
+    * %G_FILE_ATTRIBUTE_TIME_MODIFIED. If %G_FILE_ATTRIBUTE_TIME_MODIFIED_USEC
+    * is provided it will be used too.
+    */
   @annotation.compileTimeOnly(
     "Method get_modification_time contains an OUT parameter, which is not supported yet"
   )
-  def getModificationTime() = ???
+  def getModificationTime(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

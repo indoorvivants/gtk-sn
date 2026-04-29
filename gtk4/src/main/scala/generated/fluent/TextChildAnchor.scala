@@ -32,6 +32,12 @@ class TextChildAnchor(raw: Ptr[GtkTextChildAnchor])
   def getDeleted(): Boolean =
     gtk_text_child_anchor_get_deleted(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets a list of all widgets anchored at this child anchor.
+    *
+    * The order in which the widgets are returned is not defined.
+    */
   @annotation.compileTimeOnly(
     "Method get_widgets contains an OUT parameter, which is not supported yet"
   )

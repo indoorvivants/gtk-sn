@@ -184,6 +184,13 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves the current policy values for the horizontal and vertical
+    * scrollbars.
+    *
+    * See [method@Gtk.ScrolledWindow.set_policy].
+    */
   @annotation.compileTimeOnly(
     "Method get_policy contains an OUT parameter, which is not supported yet"
   )

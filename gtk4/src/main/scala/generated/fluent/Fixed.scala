@@ -54,6 +54,13 @@ class Fixed(raw: Ptr[GtkFixed])
       ConstraintTarget:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves the translation transformation of the given child `GtkWidget` in
+    * the `GtkFixed`.
+    *
+    * See also: [method@Gtk.Fixed.get_child_transform].
+    */
   @annotation.compileTimeOnly(
     "Method get_child_position contains an OUT parameter, which is not supported yet"
   )

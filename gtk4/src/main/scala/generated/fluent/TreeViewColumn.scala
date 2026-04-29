@@ -62,11 +62,23 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     column
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Obtains the horizontal position and size of a cell in a column.
+    *
+    * If the cell is not found in the column, @start_pos and @width are not
+    * changed and %FALSE is returned.
+    */
   @annotation.compileTimeOnly(
     "Method cell_get_position contains an OUT parameter, which is not supported yet"
   )
   def cellGetPosition(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Obtains the width and height needed to render the column. This is used
+    * primarily by the `GtkTreeView`.
+    */
   @annotation.compileTimeOnly(
     "Method cell_get_size contains an OUT parameter, which is not supported yet"
   )

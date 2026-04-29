@@ -85,10 +85,19 @@ class FontMap(raw: Ptr[PangoFontMap])
     */
   def getSerial(): UInt = pango_font_map_get_serial(this.raw.asInstanceOf).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * List all families for a fontmap.
+    *
+    * Note that the returned families are not in any particular order.
+    *
+    * `PangoFontMap` also implemented the [iface@Gio.ListModel] interface for
+    * enumerating families.
+    */
   @annotation.compileTimeOnly(
     "Method list_families contains an OUT parameter, which is not supported yet"
   )
-  def listFamilies() = ???
+  def listFamilies(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

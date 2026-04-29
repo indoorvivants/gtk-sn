@@ -123,6 +123,12 @@ class ComboBox(raw: Ptr[GtkComboBox])
     gtk_combo_box_get_active_id(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets @iter to point to the currently active item.
+    *
+    * If no item is active, @iter is left unchanged.
+    */
   @annotation.compileTimeOnly(
     "Method get_active_iter contains an OUT parameter, which is not supported yet"
   )

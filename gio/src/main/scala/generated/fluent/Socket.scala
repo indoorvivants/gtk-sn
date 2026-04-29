@@ -469,10 +469,26 @@ class Socket(raw: Ptr[GSocket])
     this.raw.asInstanceOf
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the value of an integer-valued option on @socket, as with
+    * getsockopt(). (If you need to fetch a non-integer-valued option, you will
+    * need to call getsockopt() directly.)
+    *
+    * The [<gio/gnetworking.h>][gio-gnetworking.h] header pulls in system
+    * headers that will define most of the standard/portable socket options. For
+    * unusual socket protocols or platform-dependent options, you may need to
+    * include additional headers.
+    *
+    * Note that even for socket options that are a single byte in size,
+    * @value
+    *   is still a pointer to a #gint variable, not a #guchar;
+    *   g_socket_get_option() will handle the conversion internally.
+    */
   @annotation.compileTimeOnly(
     "Method get_option contains an OUT parameter, which is not supported yet"
   )
-  def getOption() = ???
+  def getOption(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -666,20 +682,122 @@ class Socket(raw: Ptr[GSocket])
     g_socket_listen(this.raw.asInstanceOf, __errorPtr).value.!=(0)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Receive data (up to @size bytes) from a socket. This is mainly used by
+    * connection-oriented sockets; it is identical to g_socket_receive_from()
+    * with @address set to %NULL.
+    *
+    * For %G_SOCKET_TYPE_DATAGRAM and %G_SOCKET_TYPE_SEQPACKET sockets,
+    * g_socket_receive() will always read either 0 or 1 complete messages from
+    * the socket. If the received message is too large to fit in @buffer, then
+    * the data beyond @size bytes will be discarded, without any explicit
+    * indication that this has occurred.
+    *
+    * For %G_SOCKET_TYPE_STREAM sockets, g_socket_receive() can return any
+    * number of bytes, up to @size. If more than @size bytes have been received,
+    * the additional data will be returned in future calls to
+    * g_socket_receive().
+    *
+    * If the socket is in blocking mode the call will block until there is some
+    * data to receive, the connection is closed, or there is an error. If there
+    * is no data available and the socket is in non-blocking mode, a
+    * %G_IO_ERROR_WOULD_BLOCK error will be returned. To be notified when data
+    * is available, wait for the %G_IO_IN condition.
+    *
+    * On error -1 is returned and @error is set accordingly.
+    */
   @annotation.compileTimeOnly(
     "Method receive contains an OUT parameter, which is not supported yet"
   )
-  def receive() = ???
+  def receive(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Receive data (up to @size bytes) from a socket.
+    *
+    * If @address is non-%NULL then @address will be set equal to the source
+    * address of the received packet.
+    * @address
+    *   is owned by the caller.
+    *
+    * See g_socket_receive() for additional information.
+    */
   @annotation.compileTimeOnly(
     "Method receive_from contains an OUT parameter, which is not supported yet"
   )
-  def receiveFrom() = ???
+  def receiveFrom(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Receive data from a socket. For receiving multiple messages, see
+    * g_socket_receive_messages(); for easier use, see g_socket_receive() and
+    * g_socket_receive_from().
+    *
+    * If @address is non-%NULL then @address will be set equal to the source
+    * address of the received packet.
+    * @address
+    *   is owned by the caller.
+    *
+    * @vector
+    *   must point to an array of #GInputVector structs and
+    * @num_vectors
+    *   must be the length of this array. These structs describe the buffers
+    *   that received data will be scattered into. If @num_vectors is -1, then @vectors
+    *   is assumed to be terminated by a #GInputVector with a %NULL buffer
+    *   pointer.
+    *
+    * As a special case, if @num_vectors is 0 (in which case, @vectors may of
+    * course be %NULL), then a single byte is received and discarded. This is to
+    * facilitate the common practice of sending a single '\0' byte for the
+    * purposes of transferring ancillary data.
+    *
+    * @messages,
+    *   if non-%NULL, will be set to point to a newly-allocated array of
+    *   #GSocketControlMessage instances or %NULL if no such messages was
+    *   received. These correspond to the control messages received from the
+    *   kernel, one #GSocketControlMessage per message from the kernel. This
+    *   array is %NULL-terminated and must be freed by the caller using g_free()
+    *   after calling g_object_unref() on each element. If @messages is %NULL,
+    *   any control messages received will be discarded.
+    *
+    * @num_messages,
+    *   if non-%NULL, will be set to the number of control messages received.
+    *
+    * If both @messages and @num_messages are non-%NULL, then
+    * @num_messages
+    *   gives the number of #GSocketControlMessage instances in @messages (ie:
+    *   not including the %NULL terminator).
+    *
+    * @flags
+    *   is an in/out parameter. The commonly available arguments for this are
+    *   available in the #GSocketMsgFlags enum, but the values there are the
+    *   same as the system values, and the flags are passed in as-is, so you can
+    *   pass in system-specific flags too (and g_socket_receive_message() may
+    *   pass system-specific flags out). Flags passed in to the parameter affect
+    *   the receive operation; flags returned out of it are relevant to the
+    *   specific returned message.
+    *
+    * As with g_socket_receive(), data may be discarded if @socket is
+    * %G_SOCKET_TYPE_DATAGRAM or %G_SOCKET_TYPE_SEQPACKET and you do not provide
+    * enough buffer space to read a complete message. You can pass
+    * %G_SOCKET_MSG_PEEK in @flags to peek at the current message without
+    * removing it from the receive queue, but there is no portable way to find
+    * out the length of the message other than by reading it into a
+    * sufficiently-large buffer.
+    *
+    * If the socket is in blocking mode the call will block until there is some
+    * data to receive, the connection is closed, or there is an error. If there
+    * is no data available and the socket is in non-blocking mode, a
+    * %G_IO_ERROR_WOULD_BLOCK error will be returned. To be notified when data
+    * is available, wait for the %G_IO_IN condition.
+    *
+    * On error -1 is returned and @error is set accordingly.
+    */
   @annotation.compileTimeOnly(
     "Method receive_message contains an OUT parameter, which is not supported yet"
   )
-  def receiveMessage() = ???
+  def receiveMessage(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -754,20 +872,84 @@ class Socket(raw: Ptr[GSocket])
     ).value
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * This behaves exactly the same as g_socket_receive(), except that the
+    * choice of blocking or non-blocking behavior is determined by the @blocking
+    * argument rather than by @socket's properties.
+    */
   @annotation.compileTimeOnly(
     "Method receive_with_blocking contains an OUT parameter, which is not supported yet"
   )
-  def receiveWithBlocking() = ???
+  def receiveWithBlocking(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Send data to @address on @socket. For sending multiple messages see
+    * g_socket_send_messages(); for easier use, see g_socket_send() and
+    * g_socket_send_to().
+    *
+    * If @address is %NULL then the message is sent to the default receiver (set
+    * by g_socket_connect()).
+    *
+    * @vectors
+    *   must point to an array of #GOutputVector structs and
+    * @num_vectors
+    *   must be the length of this array. (If @num_vectors is -1, then @vectors
+    *   is assumed to be terminated by a #GOutputVector with a %NULL buffer
+    *   pointer.) The #GOutputVector structs describe the buffers that the sent
+    *   data will be gathered from. Using multiple #GOutputVectors is more
+    *   memory-efficient than manually copying data from multiple sources into a
+    *   single buffer, and more network-efficient than making multiple calls to
+    *   g_socket_send().
+    *
+    * @messages,
+    *   if non-%NULL, is taken to point to an array of @num_messages
+    *   #GSocketControlMessage instances. These correspond to the control
+    *   messages to be sent on the socket. If @num_messages is -1 then @messages
+    *   is treated as a %NULL-terminated array.
+    *
+    * @flags
+    *   modify how the message is sent. The commonly available arguments for
+    *   this are available in the #GSocketMsgFlags enum, but the values there
+    *   are the same as the system values, and the flags are passed in as-is, so
+    *   you can pass in system-specific flags too.
+    *
+    * If the socket is in blocking mode the call will block until there is space
+    * for the data in the socket queue. If there is no space available and the
+    * socket is in non-blocking mode a %G_IO_ERROR_WOULD_BLOCK error will be
+    * returned. To be notified when space is available, wait for the %G_IO_OUT
+    * condition. Note though that you may still receive %G_IO_ERROR_WOULD_BLOCK
+    * from g_socket_send() even if you were previously notified of a %G_IO_OUT
+    * condition. (On Windows in particular, this is very common due to the way
+    * the underlying APIs work.)
+    *
+    * The sum of the sizes of each #GOutputVector in vectors must not be greater
+    * than %G_MAXSSIZE. If the message can be larger than this, then it is
+    * mandatory to use the g_socket_send_message_with_timeout() function.
+    *
+    * On error -1 is returned and @error is set accordingly.
+    */
   @annotation.compileTimeOnly(
     "Method send_message is weird: non NULL-terminated arrays require special handling"
   )
-  def sendMessage() = ???
+  def sendMessage(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * This behaves exactly the same as g_socket_send_message(), except that the
+    * choice of timeout behavior is determined by the @timeout_us argument
+    * rather than by @socket's properties.
+    *
+    * On error %G_POLLABLE_RETURN_FAILED is returned and @error is set
+    * accordingly, or if the socket is currently not writable
+    * %G_POLLABLE_RETURN_WOULD_BLOCK is returned. @bytes_written will contain 0
+    * in both cases.
+    */
   @annotation.compileTimeOnly(
     "Method send_message_with_timeout contains an OUT parameter, which is not supported yet"
   )
-  def sendMessageWithTimeout() = ???
+  def sendMessageWithTimeout(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -18,6 +18,14 @@ class CClosureExpression(raw: Ptr[GtkCClosureExpression])
 end CClosureExpression
 
 object CClosureExpression:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a `GtkExpression` that calls `callback_func` when it is evaluated.
+    *
+    * This function is a variant of [ctor@Gtk.ClosureExpression.new] that
+    * creates a `GClosure` by calling g_cclosure_new() with the given
+    * `callback_func`, `user_data` and `user_destroy`.
+    */
   @annotation.compileTimeOnly(
     "Constructor new is weird: non NULL-terminated arrays require special handling"
   )

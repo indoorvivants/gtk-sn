@@ -63,10 +63,20 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     pango_font_get_face(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Obtain the OpenType features that are provided by the font.
+    *
+    * These are passed to the rendering system, together with features that have
+    * been explicitly set via attributes.
+    *
+    * Note that this does not include OpenType features which the rendering
+    * system enables by default.
+    */
   @annotation.compileTimeOnly(
     "Method get_features contains an OUT parameter, which is not supported yet"
   )
-  def getFeatures() = ???
+  def getFeatures(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -85,15 +95,37 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     pango_font_get_font_map(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the logical and ink extents of a glyph within a font.
+    *
+    * The coordinate system for each rectangle has its origin at the base line
+    * and horizontal origin of the character with increasing coordinates
+    * extending to the right and down. The macros PANGO_ASCENT(),
+    * PANGO_DESCENT(), PANGO_LBEARING(), and PANGO_RBEARING() can be used to
+    * convert from the extents rectangle to more traditional font metrics. The
+    * units of the rectangles are in 1/PANGO_SCALE of a device unit.
+    *
+    * If @font is %NULL, this function gracefully sets some sane values in the
+    * output variables and returns.
+    */
   @annotation.compileTimeOnly(
     "Method get_glyph_extents contains an OUT parameter, which is not supported yet"
   )
-  def getGlyphExtents() = ???
+  def getGlyphExtents(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Get a `hb_font_t` object backing this font.
+    *
+    * Note that the objects returned by this function are cached and immutable.
+    * If you need to make changes to the `hb_font_t`, use
+    * [hb_font_create_sub_font()](https://harfbuzz.github.io/harfbuzz-hb-font.html#hb-font-create-sub-font).
+    */
   @annotation.compileTimeOnly(
     "Method get_hb_font is weird: refers to HarfBuzz.font_t as gconstpointer"
   )
-  def getHbFont() = ???
+  def getHbFont(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

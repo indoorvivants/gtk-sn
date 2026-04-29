@@ -174,6 +174,11 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     gpointer(user_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes the [method@Gtk.FontDialog.choose_font_and_features] call and
+    * returns the resulting font description and font features.
+    */
   @annotation.compileTimeOnly(
     "Method choose_font_and_features_finish contains an OUT parameter, which is not supported yet"
   )

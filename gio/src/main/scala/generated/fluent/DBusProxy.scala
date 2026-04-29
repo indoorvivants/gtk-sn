@@ -235,15 +235,26 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     gpointer(user_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes an operation started with g_dbus_proxy_call_with_unix_fd_list().
+    */
   @annotation.compileTimeOnly(
     "Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet"
   )
-  def callWithUnixFdListFinish() = ???
+  def callWithUnixFdListFinish(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Like g_dbus_proxy_call_sync() but also takes and returns #GUnixFDList
+    * objects.
+    *
+    * This method is only available on UNIX.
+    */
   @annotation.compileTimeOnly(
     "Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet"
   )
-  def callWithUnixFdListSync() = ???
+  def callWithUnixFdListSync(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

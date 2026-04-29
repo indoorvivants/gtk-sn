@@ -166,6 +166,18 @@ class Window(raw: Ptr[GtkWindow])
   def getDecorated(): Boolean =
     gtk_window_get_decorated(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the default size of the window.
+    *
+    * A value of 0 for the width or height indicates that a default size has not
+    * been explicitly set for that dimension, so the “natural” size of the
+    * window will be used.
+    *
+    * This function is the recommended way for [saving window state across
+    * restarts of
+    * applications](https://developer.gnome.org/documentation/tutorials/save-state.html).
+    */
   @annotation.compileTimeOnly(
     "Method get_default_size contains an OUT parameter, which is not supported yet"
   )

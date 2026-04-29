@@ -40,20 +40,51 @@ class ListStore(raw: Ptr[GListStore])
     gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Looks up the given @item in the list store by looping over the items until
+    * the first occurrence of @item. If @item was not found, then @position will
+    * not be set, and this method will return %FALSE.
+    *
+    * If you need to compare the two items with a custom comparison function,
+    * use g_list_store_find_with_equal_func() with a custom #GEqualFunc instead.
+    */
   @annotation.compileTimeOnly(
     "Method find contains an OUT parameter, which is not supported yet"
   )
-  def find() = ???
+  def find(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Looks up the given @item in the list store by looping over the items and
+    * comparing them with @equal_func until the first occurrence of @item which
+    * matches. If @item was not found, then @position will not be set, and this
+    * method will return %FALSE.
+    *
+    * @item
+    *   is always passed as second parameter to @equal_func.
+    *
+    * Since GLib 2.76 it is possible to pass `NULL` for @item.
+    */
   @annotation.compileTimeOnly(
     "Method find_with_equal_func contains an OUT parameter, which is not supported yet"
   )
-  def findWithEqualFunc() = ???
+  def findWithEqualFunc(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Like g_list_store_find_with_equal_func() but with an additional @user_data
+    * that is passed to @equal_func.
+    *
+    * @item
+    *   is always passed as second parameter to @equal_func.
+    *
+    * Since GLib 2.76 it is possible to pass `NULL` for @item.
+    */
   @annotation.compileTimeOnly(
     "Method find_with_equal_func_full contains an OUT parameter, which is not supported yet"
   )
-  def findWithEqualFuncFull() = ???
+  def findWithEqualFuncFull(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -68,6 +68,13 @@ class Range(raw: Ptr[GtkRange])
   def getInverted(): Boolean =
     gtk_range_get_inverted(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * This function returns the area that contains the range’s trough, in
+    * coordinates relative to @range's origin.
+    *
+    * This function is useful mainly for `GtkRange` subclasses.
+    */
   @annotation.compileTimeOnly(
     "Method get_range_rect contains an OUT parameter, which is not supported yet"
   )
@@ -95,6 +102,13 @@ class Range(raw: Ptr[GtkRange])
   def getShowFillLevel(): Boolean =
     gtk_range_get_show_fill_level(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * This function returns sliders range along the long dimension, in
+    * widget->window coordinates.
+    *
+    * This function is useful mainly for `GtkRange` subclasses.
+    */
   @annotation.compileTimeOnly(
     "Method get_slider_range contains an OUT parameter, which is not supported yet"
   )

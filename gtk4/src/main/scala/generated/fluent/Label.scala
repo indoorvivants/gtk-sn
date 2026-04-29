@@ -294,6 +294,16 @@ class Label(raw: Ptr[GtkLabel])
     gtk_label_get_layout(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Obtains the coordinates where the label will draw its `PangoLayout`.
+    *
+    * The coordinates are useful to convert mouse events into coordinates inside
+    * the [class@Pango.Layout], e.g. to take some action if some part of the
+    * label is clicked. Remember when using the [class@Pango.Layout] functions
+    * you need to convert to and from pixels using PANGO_PIXELS() or
+    * [const@Pango.SCALE].
+    */
   @annotation.compileTimeOnly(
     "Method get_layout_offsets contains an OUT parameter, which is not supported yet"
   )
@@ -356,6 +366,10 @@ class Label(raw: Ptr[GtkLabel])
   def getSelectable(): Boolean =
     gtk_label_get_selectable(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the selected range of characters in the label.
+    */
   @annotation.compileTimeOnly(
     "Method get_selection_bounds contains an OUT parameter, which is not supported yet"
   )

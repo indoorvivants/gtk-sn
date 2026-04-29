@@ -19,6 +19,13 @@ class ClosureExpression(raw: Ptr[GtkClosureExpression])
 end ClosureExpression
 
 object ClosureExpression:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a `GtkExpression` that calls `closure` when it is evaluated.
+    *
+    * `closure` is called with the `this` object and the results of evaluating
+    * the `params` expressions.
+    */
   @annotation.compileTimeOnly(
     "Constructor new is weird: non NULL-terminated arrays require special handling"
   )

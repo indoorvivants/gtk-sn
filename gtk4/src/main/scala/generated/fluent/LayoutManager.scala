@@ -123,6 +123,14 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Measures the size of the @widget using @manager, for the given @orientation
+    * and size.
+    *
+    * See the [class@Gtk.Widget] documentation on layout management for more
+    * details.
+    */
   @annotation.compileTimeOnly(
     "Method measure contains an OUT parameter, which is not supported yet"
   )

@@ -29,10 +29,27 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
     g_menu_link_iter_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * This function combines g_menu_link_iter_next() with
+    * g_menu_link_iter_get_name() and g_menu_link_iter_get_value().
+    *
+    * First the iterator is advanced to the next (possibly first) link. If that
+    * fails, then %FALSE is returned and there are no other effects.
+    *
+    * If successful, @out_link and @value are set to the name and #GMenuModel of
+    * the link that has just been advanced to. At this point,
+    * g_menu_link_iter_get_name() and g_menu_link_iter_get_value() will return
+    * the same values again.
+    *
+    * The value returned in @out_link remains valid for as long as the iterator
+    * remains at the current position. The value returned in @value must be
+    * unreffed using g_object_unref() when it is no longer in use.
+    */
   @annotation.compileTimeOnly(
     "Method get_next contains an OUT parameter, which is not supported yet"
   )
-  def getNext() = ???
+  def getNext(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

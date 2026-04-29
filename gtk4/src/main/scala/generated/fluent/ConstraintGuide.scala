@@ -28,11 +28,19 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
       ConstraintTarget:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the maximum size of @guide.
+    */
   @annotation.compileTimeOnly(
     "Method get_max_size contains an OUT parameter, which is not supported yet"
   )
   def getMaxSize(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the minimum size of @guide.
+    */
   @annotation.compileTimeOnly(
     "Method get_min_size contains an OUT parameter, which is not supported yet"
   )
@@ -46,6 +54,10 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     gtk_constraint_guide_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the natural size of @guide.
+    */
   @annotation.compileTimeOnly(
     "Method get_nat_size contains an OUT parameter, which is not supported yet"
   )

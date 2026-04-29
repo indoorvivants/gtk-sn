@@ -63,6 +63,13 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
     this.raw.asInstanceOf
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the @position'th sort column and its associated sort order.
+    *
+    * Use the [signal@Gtk.Sorter::changed] signal to get notified when sort
+    * columns change.
+    */
   @annotation.compileTimeOnly(
     "Method get_nth_sort_column contains an OUT parameter, which is not supported yet"
   )

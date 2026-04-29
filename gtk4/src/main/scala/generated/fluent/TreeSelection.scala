@@ -71,11 +71,31 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
   def getSelectFunction(): GtkTreeSelectionFunc =
     gtk_tree_selection_get_select_function(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets @iter to the currently selected node if @selection is set to
+    * %GTK_SELECTION_SINGLE or %GTK_SELECTION_BROWSE. @iter may be NULL if you
+    * just want to test if @selection has any selected nodes. @model is filled
+    * with the current model as a convenience. This function will not work if
+    * you use @selection is %GTK_SELECTION_MULTIPLE.
+    */
   @annotation.compileTimeOnly(
     "Method get_selected contains an OUT parameter, which is not supported yet"
   )
   def getSelected(using DummyImplicit) = ???
 
+  /**  COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    *  Creates a list of path of all selected rows. Additionally, if you are
+    *  planning on modifying the model after calling this function, you may
+    *  want to convert the returned list into a list of `GtkTreeRowReference`s.
+    *  To do this, you can use gtk_tree_row_reference_new().
+    *
+    *  To free the return value, use:
+    *  |[<!-- language="C" -->
+    *  g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);
+    *  ]|
+    */
   @annotation.compileTimeOnly(
     "Method get_selected_rows contains an OUT parameter, which is not supported yet"
   )

@@ -175,6 +175,17 @@ class Scale(raw: Ptr[GtkScale])
     gtk_scale_get_layout(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Obtains the coordinates where the scale will draw the `PangoLayout`
+    * representing the text in the scale.
+    *
+    * Remember when using the `PangoLayout` function you need to convert to and
+    * from pixels using `PANGO_PIXELS()` or `PANGO_SCALE`.
+    *
+    * If the [property@Gtk.Scale:draw-value] property is %FALSE, the return
+    * values are undefined.
+    */
   @annotation.compileTimeOnly(
     "Method get_layout_offsets contains an OUT parameter, which is not supported yet"
   )

@@ -167,6 +167,10 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     */
   def getMode(): GtkLevelBarMode = gtk_level_bar_get_mode(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Fetches the value specified for the offset marker @name in @self.
+    */
   @annotation.compileTimeOnly(
     "Method get_offset_value contains an OUT parameter, which is not supported yet"
   )

@@ -135,6 +135,10 @@ class TextView(raw: Ptr[GtkTextView])
     gtk_text_view_backward_display_line_start(this.raw.asInstanceOf, iter).value
       .!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Converts buffer coordinates to window coordinates.
+    */
   @annotation.compileTimeOnly(
     "Method buffer_to_window_coords contains an OUT parameter, which is not supported yet"
   )
@@ -199,6 +203,29 @@ class TextView(raw: Ptr[GtkTextView])
     gtk_text_view_get_buffer(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Determine the positions of the strong and weak cursors if the insertion
+    * point is at @iter.
+    *
+    * The position of each cursor is stored as a zero-width rectangle. The
+    * strong cursor location is the location where characters of the
+    * directionality equal to the base direction of the paragraph are inserted.
+    * The weak cursor location is the location where characters of the
+    * directionality opposite to the base direction of the paragraph are
+    * inserted.
+    *
+    * If @iter is %NULL, the actual cursor position is used.
+    *
+    * Note that if @iter happens to be the actual cursor position, and there is
+    * currently an IM preedit sequence being entered, the returned locations
+    * will be adjusted to account for the preedit cursor’s offset within the
+    * preedit sequence.
+    *
+    * The rectangle position is in buffer coordinates; use
+    * [method@Gtk.TextView.buffer_to_window_coords] to convert these coordinates
+    * to coordinates for one of the windows in the text view.
+    */
   @annotation.compileTimeOnly(
     "Method get_cursor_locations contains an OUT parameter, which is not supported yet"
   )
@@ -268,16 +295,47 @@ class TextView(raw: Ptr[GtkTextView])
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves the iterator at buffer coordinates @x and @y.
+    *
+    * Buffer coordinates are coordinates for the entire buffer, not just the
+    * currently-displayed portion. If you have coordinates from an event, you
+    * have to convert those to buffer coordinates with
+    * [method@Gtk.TextView.window_to_buffer_coords].
+    */
   @annotation.compileTimeOnly(
     "Method get_iter_at_location contains an OUT parameter, which is not supported yet"
   )
   def getIterAtLocation(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves the iterator pointing to the character at buffer coordinates @x
+    * and @y.
+    *
+    * Buffer coordinates are coordinates for the entire buffer, not just the
+    * currently-displayed portion. If you have coordinates from an event, you
+    * have to convert those to buffer coordinates with
+    * [method@Gtk.TextView.window_to_buffer_coords].
+    *
+    * Note that this is different from
+    * [method@Gtk.TextView.get_iter_at_location], which returns cursor
+    * locations, i.e. positions between characters.
+    */
   @annotation.compileTimeOnly(
     "Method get_iter_at_position contains an OUT parameter, which is not supported yet"
   )
   def getIterAtPosition(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets a rectangle which roughly contains the character at @iter.
+    *
+    * The rectangle position is in buffer coordinates; use
+    * [method@Gtk.TextView.buffer_to_window_coords] to convert these coordinates
+    * to coordinates for one of the windows in the text view.
+    */
   @annotation.compileTimeOnly(
     "Method get_iter_location contains an OUT parameter, which is not supported yet"
   )
@@ -303,11 +361,29 @@ class TextView(raw: Ptr[GtkTextView])
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the `GtkTextIter` at the start of the line containing the coordinate @y.
+    *
+    * @y
+    *   is in buffer coordinates, convert from window coordinates with
+    *   [method@Gtk.TextView.window_to_buffer_coords]. If non-%NULL,
+    * @line_top
+    *   will be filled with the coordinate of the top edge of the line.
+    */
   @annotation.compileTimeOnly(
     "Method get_line_at_y contains an OUT parameter, which is not supported yet"
   )
   def getLineAtY(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the y coordinate of the top of the line containing @iter, and the
+    * height of the line.
+    *
+    * The coordinate is a buffer coordinate; convert to window coordinates with
+    * [method@Gtk.TextView.buffer_to_window_coords].
+    */
   @annotation.compileTimeOnly(
     "Method get_line_yrange contains an OUT parameter, which is not supported yet"
   )
@@ -408,6 +484,14 @@ class TextView(raw: Ptr[GtkTextView])
     */
   def getTopMargin(): Int = gtk_text_view_get_top_margin(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Fills @visible_rect with the currently-visible region of the buffer, in
+    * buffer coordinates.
+    *
+    * Convert to window coordinates with
+    * [method@Gtk.TextView.buffer_to_window_coords].
+    */
   @annotation.compileTimeOnly(
     "Method get_visible_rect contains an OUT parameter, which is not supported yet"
   )
@@ -860,6 +944,11 @@ class TextView(raw: Ptr[GtkTextView])
   def startsDisplayLine(iter: Ptr[GtkTextIter]): Boolean =
     gtk_text_view_starts_display_line(this.raw.asInstanceOf, iter).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Converts coordinates on the window identified by @win to buffer
+    * coordinates.
+    */
   @annotation.compileTimeOnly(
     "Method window_to_buffer_coords contains an OUT parameter, which is not supported yet"
   )

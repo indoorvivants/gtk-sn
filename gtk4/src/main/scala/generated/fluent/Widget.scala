@@ -651,6 +651,21 @@ class Widget(raw: Ptr[GtkWidget])
   def childFocus(direction: GtkDirectionType): Boolean =
     gtk_widget_child_focus(this.raw.asInstanceOf, direction).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Computes the bounds for @widget in the coordinate space of @target.
+    *
+    * The bounds of widget are (the bounding box of) the region that it is
+    * expected to draw in. See the [coordinate system](coordinates.html)
+    * overview to learn more.
+    *
+    * If the operation is successful, %TRUE is returned. If @widget has no
+    * bounds or the bounds cannot be expressed in @target's coordinate space
+    * (for example if both widgets are in different windows), %FALSE is returned
+    * and @bounds is set to the zero rectangle.
+    *
+    * It is valid for @widget and @target to be the same widget.
+    */
   @annotation.compileTimeOnly(
     "Method compute_bounds contains an OUT parameter, which is not supported yet"
   )
@@ -675,11 +690,32 @@ class Widget(raw: Ptr[GtkWidget])
   def computeExpand(orientation: GtkOrientation): Boolean =
     gtk_widget_compute_expand(this.raw.asInstanceOf, orientation).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Translates the given @point in @widget's coordinates to coordinates
+    * relative to @target’s coordinate system.
+    *
+    * In order to perform this operation, both widgets must share a common
+    * ancestor.
+    */
   @annotation.compileTimeOnly(
     "Method compute_point contains an OUT parameter, which is not supported yet"
   )
   def computePoint(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Computes a matrix suitable to describe a transformation from
+    * @widget's
+    *   coordinate system into @target's coordinate system.
+    *
+    * The transform can not be computed in certain cases, for example when @widget
+    * and @target do not share a common ancestor. In that case @out_transform
+    * gets set to the identity matrix.
+    *
+    * To learn more about widget coordinate systems, see the coordinate system
+    * [overview](coordinates.html).
+    */
   @annotation.compileTimeOnly(
     "Method compute_transform contains an OUT parameter, which is not supported yet"
   )
@@ -819,6 +855,23 @@ class Widget(raw: Ptr[GtkWidget])
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves the widget’s allocation.
+    *
+    * Note, when implementing a layout container: a widget’s allocation will be
+    * its “adjusted” allocation, that is, the widget’s parent typically calls
+    * [method@Gtk.Widget.size_allocate] with an allocation, and that allocation
+    * is then adjusted (to handle margin and alignment for example) before
+    * assignment to the widget. [method@Gtk.Widget.get_allocation] returns the
+    * adjusted allocation that was actually assigned to the widget. The adjusted
+    * allocation is guaranteed to be completely contained within the
+    * [method@Gtk.Widget.size_allocate] allocation, however.
+    *
+    * So a layout container is guaranteed that its children stay inside the
+    * assigned bounds, but not that they have exactly the bounds the container
+    * assigned.
+    */
   @annotation.compileTimeOnly(
     "Method get_allocation contains an OUT parameter, which is not supported yet"
   )
@@ -893,6 +946,13 @@ class Widget(raw: Ptr[GtkWidget])
     gtk_widget_get_clipboard(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the current foreground color for the widget’s CSS style.
+    *
+    * This function should only be used in snapshot implementations that need to
+    * do custom drawing with the foreground color.
+    */
   @annotation.compileTimeOnly(
     "Method get_color contains an OUT parameter, which is not supported yet"
   )
@@ -1231,6 +1291,23 @@ class Widget(raw: Ptr[GtkWidget])
     gtk_widget_get_parent(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves the minimum and natural size of a widget, taking into account
+    * the widget’s preference for height-for-width management.
+    *
+    * This is used to retrieve a suitable size by container widgets which do not
+    * impose any restrictions on the child placement. It can be used to deduce
+    * toplevel window and menu sizes as well as child widgets in free-form
+    * containers such as `GtkFixed`.
+    *
+    * Handle with care. Note that the natural height of a height-for-width
+    * widget will generally be a smaller size than the minimum height, since the
+    * required height for the natural width is generally smaller than the
+    * required height for the minimum width.
+    *
+    * Use [method@Gtk.Widget.measure] if you want to support baseline alignment.
+    */
   @annotation.compileTimeOnly(
     "Method get_preferred_size contains an OUT parameter, which is not supported yet"
   )
@@ -1359,6 +1436,17 @@ class Widget(raw: Ptr[GtkWidget])
   def getSize(orientation: GtkOrientation): Int =
     gtk_widget_get_size(this.raw.asInstanceOf, orientation)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the size request that was explicitly set for the widget using
+    * gtk_widget_set_size_request().
+    *
+    * A value of -1 stored in @width or @height indicates that that dimension
+    * has not been set explicitly and the natural requisition of the widget will
+    * be used instead. See [method@Gtk.Widget.set_size_request]. To get the size
+    * a widget will actually request, call [method@Gtk.Widget.measure] instead
+    * of this function.
+    */
   @annotation.compileTimeOnly(
     "Method get_size_request contains an OUT parameter, which is not supported yet"
   )
@@ -1766,6 +1854,18 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def map(): Unit = gtk_widget_map(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Measures @widget in the orientation @orientation and for the given @for_size.
+    *
+    * As an example, if @orientation is %GTK_ORIENTATION_HORIZONTAL and @for_size
+    * is 300, this functions will compute the minimum and natural width of @widget
+    * if it is allocated at a height of 300 pixels.
+    *
+    * See [GtkWidget’s geometry management
+    * section](class.Widget.html#height-for-width-geometry-management) for a
+    * more details on implementing `GtkWidgetClass.measure()`.
+    */
   @annotation.compileTimeOnly(
     "Method measure contains an OUT parameter, which is not supported yet"
   )
@@ -2519,6 +2619,14 @@ class Widget(raw: Ptr[GtkWidget])
       snapshot.getUnsafeRawPointer().asInstanceOf
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Translate coordinates relative to @src_widget’s allocation to coordinates
+    * relative to @dest_widget’s allocations.
+    *
+    * In order to perform this operation, both widget must share a common
+    * ancestor.
+    */
   @annotation.compileTimeOnly(
     "Method translate_coordinates contains an OUT parameter, which is not supported yet"
   )

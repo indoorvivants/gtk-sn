@@ -82,16 +82,29 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     flags
   ).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the aligned area used by @cell inside @cell_area. Used for finding
+    * the appropriate edit and focus rectangle.
+    */
   @annotation.compileTimeOnly(
     "Method get_aligned_area contains an OUT parameter, which is not supported yet"
   )
   def getAlignedArea(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Fills in @xalign and @yalign with the appropriate values of @cell.
+    */
   @annotation.compileTimeOnly(
     "Method get_alignment contains an OUT parameter, which is not supported yet"
   )
   def getAlignment(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Fills in @width and @height with the appropriate size of @cell.
+    */
   @annotation.compileTimeOnly(
     "Method get_fixed_size contains an OUT parameter, which is not supported yet"
   )
@@ -111,31 +124,62 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   def getIsExpander(): Boolean =
     gtk_cell_renderer_get_is_expander(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Fills in @xpad and @ypad with the appropriate values of @cell.
+    */
   @annotation.compileTimeOnly(
     "Method get_padding contains an OUT parameter, which is not supported yet"
   )
   def getPadding(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves a renderer’s natural size when rendered to @widget.
+    */
   @annotation.compileTimeOnly(
     "Method get_preferred_height contains an OUT parameter, which is not supported yet"
   )
   def getPreferredHeight(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves a cell renderers’s minimum and natural height if it were
+    * rendered to
+    * @widget
+    *   with the specified @width.
+    */
   @annotation.compileTimeOnly(
     "Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
   )
   def getPreferredHeightForWidth(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves the minimum and natural size of a cell taking into account the
+    * widget’s preference for height-for-width management.
+    */
   @annotation.compileTimeOnly(
     "Method get_preferred_size contains an OUT parameter, which is not supported yet"
   )
   def getPreferredSize(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves a renderer’s natural size when rendered to @widget.
+    */
   @annotation.compileTimeOnly(
     "Method get_preferred_width contains an OUT parameter, which is not supported yet"
   )
   def getPreferredWidth(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves a cell renderers’s minimum and natural width if it were rendered
+    * to
+    * @widget
+    *   with the specified @height.
+    */
   @annotation.compileTimeOnly(
     "Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
   )

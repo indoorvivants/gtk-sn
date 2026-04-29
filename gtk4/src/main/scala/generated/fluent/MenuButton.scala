@@ -120,6 +120,10 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     gtk_menu_button_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the direction the popup will be pointing at when popped up.
+    */
   @annotation.compileTimeOnly(
     "Method get_direction is weird: conflicting override"
   )
@@ -270,6 +274,19 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     destroy_notify
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the direction in which the popup will be popped up.
+    *
+    * If the button is automatically populated with an arrow icon, its direction
+    * will be changed to match.
+    *
+    * If the does not fit in the available space in the given direction, GTK
+    * will its best to keep it inside the screen and fully visible.
+    *
+    * If you pass %GTK_ARROW_NONE for a @direction, the popup will behave as if
+    * you passed %GTK_ARROW_DOWN (although you won’t see any arrows).
+    */
   @annotation.compileTimeOnly(
     "Method set_direction is weird: conflicting override"
   )

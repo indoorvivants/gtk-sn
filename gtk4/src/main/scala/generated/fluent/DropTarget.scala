@@ -129,6 +129,12 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the list of supported `GType`s that can be dropped on the target.
+    *
+    * If no types have been set, `NULL` will be returned.
+    */
   @annotation.compileTimeOnly(
     "Method get_gtypes contains an OUT parameter, which is not supported yet"
   )

@@ -42,6 +42,14 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
   def allocate(width: Int, height: Int): Unit =
     gtk_cell_area_context_allocate(this.raw.asInstanceOf, width, height)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Fetches the current allocation size for @context.
+    *
+    * If the context was not allocated in width or height, or if the context was
+    * recently reset with gtk_cell_area_context_reset(), the returned value will
+    * be -1.
+    */
   @annotation.compileTimeOnly(
     "Method get_allocation contains an OUT parameter, which is not supported yet"
   )
@@ -63,21 +71,53 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     gtk_cell_area_context_get_area(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the accumulative preferred height for all rows which have been
+    * requested with this context.
+    *
+    * After gtk_cell_area_context_reset() is called and/or before ever
+    * requesting the size of a `GtkCellArea`, the returned values are 0.
+    */
   @annotation.compileTimeOnly(
     "Method get_preferred_height contains an OUT parameter, which is not supported yet"
   )
   def getPreferredHeight(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the accumulative preferred height for @width for all rows which have
+    * been requested for the same said @width with this context.
+    *
+    * After gtk_cell_area_context_reset() is called and/or before ever
+    * requesting the size of a `GtkCellArea`, the returned values are -1.
+    */
   @annotation.compileTimeOnly(
     "Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
   )
   def getPreferredHeightForWidth(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the accumulative preferred width for all rows which have been
+    * requested with this context.
+    *
+    * After gtk_cell_area_context_reset() is called and/or before ever
+    * requesting the size of a `GtkCellArea`, the returned values are 0.
+    */
   @annotation.compileTimeOnly(
     "Method get_preferred_width contains an OUT parameter, which is not supported yet"
   )
   def getPreferredWidth(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the accumulative preferred width for @height for all rows which have
+    * been requested for the same said @height with this context.
+    *
+    * After gtk_cell_area_context_reset() is called and/or before ever
+    * requesting the size of a `GtkCellArea`, the returned values are -1.
+    */
   @annotation.compileTimeOnly(
     "Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
   )

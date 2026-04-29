@@ -194,6 +194,12 @@ class GLArea(raw: Ptr[GtkGLArea])
   def getHasStencilBuffer(): Boolean =
     gtk_gl_area_get_has_stencil_buffer(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves the required version of OpenGL.
+    *
+    * See [method@Gtk.GLArea.set_required_version].
+    */
   @annotation.compileTimeOnly(
     "Method get_required_version contains an OUT parameter, which is not supported yet"
   )

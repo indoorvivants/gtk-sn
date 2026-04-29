@@ -76,10 +76,23 @@ class FontFamily(raw: Ptr[PangoFontFamily])
   def isVariable(): Boolean =
     pango_font_family_is_variable(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Lists the different font faces that make up @family.
+    *
+    * The faces in a family share a common design, but differ in slant, weight,
+    * width and other aspects.
+    *
+    * Note that the returned faces are not in any particular order, and multiple
+    * faces may have the same name or characteristics.
+    *
+    * `PangoFontFamily` also implemented the [iface@Gio.ListModel] interface for
+    * enumerating faces.
+    */
   @annotation.compileTimeOnly(
     "Method list_faces contains an OUT parameter, which is not supported yet"
   )
-  def listFaces() = ???
+  def listFaces(using DummyImplicit) = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

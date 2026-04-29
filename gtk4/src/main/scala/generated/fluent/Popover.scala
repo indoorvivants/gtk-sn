@@ -143,11 +143,23 @@ class Popover(raw: Ptr[GtkPopover])
   def getMnemonicsVisible(): Boolean =
     gtk_popover_get_mnemonics_visible(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the offset previous set with [method@Gtk.Popover.set_offset()].
+    */
   @annotation.compileTimeOnly(
     "Method get_offset contains an OUT parameter, which is not supported yet"
   )
   def getOffset(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the rectangle that the popover points to.
+    *
+    * If a rectangle to point to has been set, this function will return %TRUE
+    * and fill in @rect with such rectangle, otherwise it will return %FALSE and
+    * fill in @rect with the parent widget coordinates.
+    */
   @annotation.compileTimeOnly(
     "Method get_pointing_to contains an OUT parameter, which is not supported yet"
   )

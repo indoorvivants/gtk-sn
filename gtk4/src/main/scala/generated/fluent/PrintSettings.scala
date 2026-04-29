@@ -226,6 +226,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     gtk_print_settings_get_output_bin(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the value of %GTK_PRINT_SETTINGS_PAGE_RANGES.
+    */
   @annotation.compileTimeOnly(
     "Method get_page_ranges contains an OUT parameter, which is not supported yet"
   )
