@@ -15,6 +15,31 @@ import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkRevealer
 import sn.gnome.gtk4.internal.GtkRevealerTransitionType
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A `GtkRevealer` animates the transition of its child from invisible to
+  * visible.
+  *
+  * The style of transition can be controlled with
+  * [method@Gtk.Revealer.set_transition_type].
+  *
+  * These animations respect the [property@Gtk.Settings:gtk-enable-animations]
+  * setting.
+  *
+  * # CSS nodes
+  *
+  * `GtkRevealer` has a single CSS node with name revealer. When styling
+  * `GtkRevealer` using CSS, remember that it only hides its contents, not
+  * itself. That means applied margin, padding and borders will be visible even
+  * when the [property@Gtk.Revealer:reveal-child] property is set to %FALSE.
+  *
+  * # Accessibility
+  *
+  * `GtkRevealer` uses the %GTK_ACCESSIBLE_ROLE_GROUP role.
+  *
+  * The child of `GtkRevealer`, if set, is always available in the accessibility
+  * tree, regardless of the state of the revealer widget.
+  */
 class Revealer(raw: Ptr[GtkRevealer])
     extends Widget(raw.asInstanceOf),
       Accessible,
@@ -22,42 +47,93 @@ class Revealer(raw: Ptr[GtkRevealer])
       ConstraintTarget:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the child widget of @revealer.
+    */
   def getChild(): Widget = new Widget(
     gtk_revealer_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns whether the child is fully revealed.
+    *
+    * In other words, this returns whether the transition to the revealed state
+    * is completed.
+    */
   def getChildRevealed(): Boolean =
     gtk_revealer_get_child_revealed(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns whether the child is currently revealed.
+    *
+    * This function returns %TRUE as soon as the transition is to the revealed
+    * state is started. To learn whether the child is fully revealed (ie the
+    * transition is completed), use [method@Gtk.Revealer.get_child_revealed].
+    */
   def getRevealChild(): Boolean =
     gtk_revealer_get_reveal_child(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the amount of time (in milliseconds) that transitions will take.
+    */
   def getTransitionDuration(): UInt = gtk_revealer_get_transition_duration(
     this.raw.asInstanceOf
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the type of animation that will be used for transitions in @revealer.
+    */
   def getTransitionType(): GtkRevealerTransitionType =
     gtk_revealer_get_transition_type(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the child widget of @revealer.
+    */
   def setChild(child: Widget): Unit = gtk_revealer_set_child(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Tells the `GtkRevealer` to reveal or conceal its child.
+    *
+    * The transition will be animated with the current transition type of @revealer.
+    */
   def setRevealChild(reveal_child: Boolean): Unit =
     gtk_revealer_set_reveal_child(
       this.raw.asInstanceOf,
       gboolean(gint((if reveal_child == true then 1 else 0)))
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the duration that transitions will take.
+    */
   def setTransitionDuration(duration: UInt): Unit =
     gtk_revealer_set_transition_duration(this.raw.asInstanceOf, guint(duration))
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the type of animation that will be used for transitions in @revealer.
+    *
+    * Available types include various kinds of fades and slides.
+    */
   def setTransitionType(transition: GtkRevealerTransitionType): Unit =
     gtk_revealer_set_transition_type(this.raw.asInstanceOf, transition)
 
 end Revealer
 
 object Revealer:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new `GtkRevealer`.
+    */
   def apply(): Revealer = new Revealer(gtk_revealer_new().asInstanceOf)
 end Revealer

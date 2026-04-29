@@ -24,11 +24,11 @@ def renderNamespace(
   filteredInterfaces.map: iface =>
     r.in(iface.name + ".scala"):
       val newLB = LineBuilder()
-      var error = Option.empty[String]
+      var error = Option.empty[FluentErr]
 
       val effects = WithEffects.collect: coll =>
         newLB.use:
-          error = transact[String]:
+          error = transact[FluentErr]:
             coll.observe(renderTrait(namespace, iface))
 
       error match
@@ -47,7 +47,7 @@ def renderNamespace(
           append(newLB)
 
         case Some(msg) =>
-          scribe.warn(s"Failed to render class ${iface.name}: `$msg`")
+          msg.log(s"Failed to render class ${iface.name}")
       end match
 
   val filteredClasses =
@@ -61,11 +61,11 @@ def renderNamespace(
   filteredClasses.map: cls =>
     r.in(cls.name + ".scala"):
       val newLB = LineBuilder()
-      var error = Option.empty[String]
+      var error = Option.empty[FluentErr]
 
       val effects = WithEffects.collect: coll =>
         newLB.use:
-          error = transact[String]:
+          error = transact[FluentErr]:
             coll.observe(renderClass(namespace, cls))
 
       error match

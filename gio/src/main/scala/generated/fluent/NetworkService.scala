@@ -9,27 +9,60 @@ import sn.gnome.gio.internal.GNetworkService
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * Like #GNetworkAddress does with hostnames, #GNetworkService provides an easy
+  * way to resolve a SRV record, and then attempt to connect to one of the hosts
+  * that implements that service, handling service priority/weighting, multiple
+  * IP addresses, and multiple address families.
+  *
+  * See #GSrvTarget for more information about SRV records, and see
+  * #GSocketConnectable for an example of using the connectable interface.
+  */
 class NetworkService(raw: Ptr[GNetworkService])
     extends Object(raw.asInstanceOf),
       SocketConnectable:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the domain that @srv serves. This might be either UTF-8 or
+    * ASCII-encoded, depending on what @srv was created with.
+    */
   def getDomain()(using Zone): String = fromCString(
     g_network_service_get_domain(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets @srv's protocol name (eg, "tcp").
+    */
   def getProtocol()(using Zone): String = fromCString(
     g_network_service_get_protocol(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the URI scheme used to resolve proxies. By default, the service name
+    * is used as scheme.
+    */
   def getScheme()(using Zone): String = fromCString(
     g_network_service_get_scheme(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets @srv's service name (eg, "ldap").
+    */
   def getService()(using Zone): String = fromCString(
     g_network_service_get_service(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Set's the URI scheme used to resolve proxies. By default, the service name
+    * is used as scheme.
+    */
   def setScheme(scheme: String | CString)(using Zone): Unit =
     g_network_service_set_scheme(
       this.raw.asInstanceOf,
@@ -47,6 +80,13 @@ class NetworkService(raw: Ptr[GNetworkService])
 end NetworkService
 
 object NetworkService:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GNetworkService representing the given @service,
+    * @protocol,
+    *   and @domain. This will initially be unresolved; use the
+    *   #GSocketConnectable interface to resolve it.
+    */
   def apply(
       service: String | CString,
       protocol: String | CString,

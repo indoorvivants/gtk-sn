@@ -10,18 +10,31 @@ import sn.gnome.gio.fluent.LoadableIcon
 import sn.gnome.gio.internal.GFileIcon
 import sn.gnome.gobject.fluent.Object
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * #GFileIcon specifies an icon by pointing to an image file to be used as
+  * icon.
+  */
 class FileIcon(raw: Ptr[GFileIcon])
     extends Object(raw.asInstanceOf),
       Icon,
       LoadableIcon:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the #GFile associated with the given @icon.
+    */
   def getFile(): File =
     new File.Abstract(g_file_icon_get_file(this.raw.asInstanceOf).asInstanceOf)
 
 end FileIcon
 
 object FileIcon:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new icon for a file.
+    */
   def apply(file: File): FileIcon = new FileIcon(
     g_file_icon_new(file.getUnsafeRawPointer().asInstanceOf).asInstanceOf
   )

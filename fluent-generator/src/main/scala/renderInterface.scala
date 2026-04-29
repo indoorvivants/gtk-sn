@@ -5,7 +5,7 @@ def renderTrait(ns: AugmentedNamespace, iface: AugmentedInterface)(using
     GlobalKnowledge,
     NamingPolicy,
     RenderingContext,
-    Label[String]
+    Label[FluentErr]
 ) =
   WithEffects.collect: coll =>
     val extensions = coll.observe(renderClassExtensions(iface.name, None, iface.implements))

@@ -11,24 +11,58 @@ import sn.gnome.pango.fluent.FontFamily
 import sn.gnome.pango.internal.PangoFontDescription
 import sn.gnome.pango.internal.PangoFontFace
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A `PangoFontFace` is used to represent a group of fonts with the same
+  * family, slant, weight, and width, but varying sizes.
+  */
 class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns a font description that matches the face.
+    *
+    * The resulting font description will have the family, style, variant,
+    * weight and stretch of the face, but its size field will be unset.
+    */
   def describe(): Ptr[PangoFontDescription] = pango_font_face_describe(
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets a name representing the style of this face.
+    *
+    * Note that a font family may contain multiple faces with the same name
+    * (e.g. a variable and a non-variable face for the same style).
+    */
   def getFaceName()(using Zone): String = fromCString(
     pango_font_face_get_face_name(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the `PangoFontFamily` that @face belongs to.
+    */
   def getFamily(): FontFamily = new FontFamily(
     pango_font_face_get_family(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns whether a `PangoFontFace` is synthesized.
+    *
+    * This will be the case if the underlying font rendering engine creates this
+    * face from another face, by shearing, emboldening, lightening or modifying
+    * it in some other way.
+    */
   def isSynthesized(): Boolean =
     pango_font_face_is_synthesized(this.raw.asInstanceOf).value.!=(0)
 
-  // Method list_sizes contains an array parameter, which is not supported yet
+  @annotation.compileTimeOnly(
+    "Method list_sizes contains an OUT parameter, which is not supported yet"
+  )
+  def listSizes() = ???
 
 end FontFace

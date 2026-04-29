@@ -12,6 +12,24 @@ import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkOrientation
 import sn.gnome.gtk4.internal.GtkSeparator
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * `GtkSeparator` is a horizontal or vertical separator widget.
+  *
+  * ![An example GtkSeparator](separator.png)
+  *
+  * A `GtkSeparator` can be used to group the widgets within a window. It
+  * displays a line with a shadow to make it appear sunken into the interface.
+  *
+  * # CSS nodes
+  *
+  * `GtkSeparator` has a single CSS node with name separator. The node gets one
+  * of the .horizontal or .vertical style classes.
+  *
+  * # Accessibility
+  *
+  * `GtkSeparator` uses the %GTK_ACCESSIBLE_ROLE_SEPARATOR role.
+  */
 class Separator(raw: Ptr[GtkSeparator])
     extends Widget(raw.asInstanceOf),
       Accessible,
@@ -23,6 +41,10 @@ class Separator(raw: Ptr[GtkSeparator])
 end Separator
 
 object Separator:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new `GtkSeparator` with the given orientation.
+    */
   def apply(orientation: GtkOrientation): Separator = new Separator(
     gtk_separator_new(orientation).asInstanceOf
   )

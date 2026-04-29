@@ -7,47 +7,45 @@ def renderClassCompanionObject(
 )(using
     RenderingContext,
     GlobalKnowledge,
-    NamingPolicy,
+    NamingPolicy
 ) =
   WithEffects.collect: coll =>
     val objectHeader = s"object ${cls.name}"
     val objectHasAnyMembers = cls.constructors.nonEmpty
 
     if objectHasAnyMembers then
-      transact[Boolean]:
-        emptyLine()
-        block(objectHeader + ":", s"end ${cls.name}"):
-          var atLeastOneConstructor = false
-          cls.constructors.foreach: constructor =>
-            filterDefinitions(
-              namespace = Some(ns),
-              cls = Some(cls),
-              constructor = Some(constructor)
-            ) match
-              case None =>
-                val result =
-                  transact[String]:
-                    handleExceptions(coll.observe(renderClassConstructor(cls, constructor)))
-
-                result.foreach: msg =>
-                  scribe.warn(
-                    s"Failed to render constructor for class ${cls.name}, ${constructor.name}: `$msg`"
+      emptyLine()
+      block(objectHeader + ":", s"end ${cls.name}"):
+        cls.constructors.foreach: constructor =>
+          filterDefinitions(
+            namespace = Some(ns),
+            cls = Some(cls),
+            constructor = Some(constructor)
+          ) match
+            case None =>
+              val result =
+                transact[FluentErr]:
+                  handleExceptions(
+                    coll.observe(renderClassConstructor(cls, constructor))
                   )
 
-                atLeastOneConstructor = atLeastOneConstructor || result.isEmpty
-              case Some(value) =>
-                line("// " + value)
-                emptyLine()
-          // roll back whole rendering of companion object if it's empty
-          if !atLeastOneConstructor then break(true)
+              result.foreach: msg =>
+                scribe.warn(
+                  s"Failed to render constructor for class ${cls.name}, ${constructor.name}: `$msg`"
+                )
 
-          coll
-            .effectsSoFar()
-            .distinct
-            .collect:
-              case Effect.RequiresDefinition(df) =>
-                emptyLine()
-                df()
+            case Some(value) =>
+              line(s"@annotation.compileTimeOnly(\"$value\")")
+              line(s"def ${safeConstructorName(constructor.name)}() = ???")
+              emptyLine()
+
+        coll
+          .effectsSoFar()
+          .distinct
+          .collect:
+            case Effect.RequiresDefinition(df) =>
+              emptyLine()
+              df()
 
     end if
 

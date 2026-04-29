@@ -15,19 +15,35 @@ import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.fluent.Object
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * #GCharsetConverter is an implementation of #GConverter based on GIConv.
+  */
 class CharsetConverter(raw: Ptr[GCharsetConverter])
     extends Object(raw.asInstanceOf),
       Converter,
       Initable:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the number of fallbacks that @converter has applied so far.
+    */
   def getNumFallbacks(): UInt = g_charset_converter_get_num_fallbacks(
     this.raw.asInstanceOf
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the #GCharsetConverter:use-fallback property.
+    */
   def getUseFallback(): Boolean =
     g_charset_converter_get_use_fallback(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the #GCharsetConverter:use-fallback property.
+    */
   def setUseFallback(use_fallback: Boolean): Unit =
     g_charset_converter_set_use_fallback(
       this.raw.asInstanceOf,
@@ -37,6 +53,10 @@ class CharsetConverter(raw: Ptr[GCharsetConverter])
 end CharsetConverter
 
 object CharsetConverter:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GCharsetConverter.
+    */
   def apply(to_charset: String | CString, from_charset: String | CString)(using
       Zone
   ): GResult[CharsetConverter] = GResult.wrap(__errorPtr =>

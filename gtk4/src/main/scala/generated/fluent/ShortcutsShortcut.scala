@@ -10,6 +10,13 @@ import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkShortcutsShortcut
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A `GtkShortcutsShortcut` represents a single keyboard shortcut or gesture
+  * with a short text.
+  *
+  * This widget is only meant to be used with `GtkShortcutsWindow`.
+  */
 class ShortcutsShortcut(raw: Ptr[GtkShortcutsShortcut])
     extends Widget(raw.asInstanceOf),
       Accessible,

@@ -13,21 +13,70 @@ import sn.gnome.gtk4.fluent.TextTag
 import sn.gnome.gtk4.internal.GtkTextTagTable
 import sn.gnome.gtk4.internal.GtkTextTagTableForeach
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * The collection of tags in a `GtkTextBuffer`
+  *
+  * You may wish to begin by reading the [text widget conceptual
+  * overview](section-text-widget.html), which gives an overview of all the
+  * objects and data types related to the text widget and how they work
+  * together.
+  *
+  * # GtkTextTagTables as GtkBuildable
+  *
+  * The `GtkTextTagTable` implementation of the `GtkBuildable` interface
+  * supports adding tags by specifying “tag” as the “type” attribute of a
+  * `<child>` element.
+  *
+  * An example of a UI definition fragment specifying tags:
+  * ```xml
+  * <object class="GtkTextTagTable">
+  *  <child type="tag">
+  *    <object class="GtkTextTag"/>
+  *  </child>
+  * </object>
+  * ```
+  */
 class TextTagTable(raw: Ptr[GtkTextTagTable])
     extends Object(raw.asInstanceOf),
       Buildable:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Add a tag to the table.
+    *
+    * The tag is assigned the highest priority in the table.
+    *
+    * @tag
+    *   must not be in a tag table already, and may not have the same name as an
+    *   already-added tag.
+    */
   def add(tag: TextTag): Boolean = gtk_text_tag_table_add(
     this.raw.asInstanceOf,
     tag.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Calls @func on each tag in @table, with user data @data.
+    *
+    * Note that the table may not be modified while iterating over it (you can’t
+    * add/remove tags).
+    */
   def foreach(func: GtkTextTagTableForeach, data: Ptr[Byte]): Unit =
     gtk_text_tag_table_foreach(this.raw.asInstanceOf, func, gpointer(data))
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the size of the table (number of tags)
+    */
   def getSize(): Int = gtk_text_tag_table_get_size(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Look up a named tag.
+    */
   def lookup(name: String | CString)(using Zone): TextTag = new TextTag(
     gtk_text_tag_table_lookup(
       this.raw.asInstanceOf,
@@ -35,6 +84,14 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     ).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Remove a tag from the table.
+    *
+    * If a `GtkTextBuffer` has @table as its tag table, the tag is removed from
+    * the buffer. The table’s reference to the tag is removed, so the tag will
+    * end up destroyed if you don’t have a reference to it.
+    */
   def remove(tag: TextTag): Unit = gtk_text_tag_table_remove(
     this.raw.asInstanceOf,
     tag.getUnsafeRawPointer().asInstanceOf
@@ -51,6 +108,12 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
 end TextTagTable
 
 object TextTagTable:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new `GtkTextTagTable`.
+    *
+    * The table contains no tags by default.
+    */
   def apply(): TextTagTable = new TextTagTable(
     gtk_text_tag_table_new().asInstanceOf
   )

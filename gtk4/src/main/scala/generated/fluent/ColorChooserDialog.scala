@@ -15,6 +15,29 @@ import sn.gnome.gtk4.fluent.ShortcutManager
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkColorChooserDialog
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A dialog for choosing a color.
+  *
+  * ![An example GtkColorChooserDialog](colorchooser.png)
+  *
+  * `GtkColorChooserDialog` implements the [iface@Gtk.ColorChooser] interface
+  * and does not provide much API of its own.
+  *
+  * To create a `GtkColorChooserDialog`, use [ctor@Gtk.ColorChooserDialog.new].
+  *
+  * To change the initially selected color, use
+  * [method@Gtk.ColorChooser.set_rgba]. To get the selected color use
+  * [method@Gtk.ColorChooser.get_rgba].
+  *
+  * `GtkColorChooserDialog` has been deprecated in favor of
+  * [class@Gtk.ColorDialog].
+  *
+  * ## CSS nodes
+  *
+  * `GtkColorChooserDialog` has a single CSS node with the name `window` and
+  * style class `.colorchooser`.
+  */
 class ColorChooserDialog(raw: Ptr[GtkColorChooserDialog])
     extends Dialog(raw.asInstanceOf),
       Accessible,
@@ -29,6 +52,10 @@ class ColorChooserDialog(raw: Ptr[GtkColorChooserDialog])
 end ColorChooserDialog
 
 object ColorChooserDialog:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new `GtkColorChooserDialog`.
+    */
   def apply(title: String | CString, parent: Window)(using
       Zone
   ): ColorChooserDialog = new ColorChooserDialog(

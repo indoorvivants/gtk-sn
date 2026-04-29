@@ -10,25 +10,60 @@ import sn.gnome.gio.internal.GDBusObjectSkeleton
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A #GDBusObjectSkeleton instance is essentially a group of D-Bus interfaces.
+  * The set of exported interfaces on the object may be dynamic and change at
+  * runtime.
+  *
+  * This type is intended to be used with #GDBusObjectManager.
+  */
 class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
     extends Object(raw.asInstanceOf),
       DBusObject:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Adds @interface_ to @object.
+    *
+    * If @object already contains a #GDBusInterfaceSkeleton with the same
+    * interface name, it is removed before @interface_ is added.
+    *
+    * Note that @object takes its own reference on @interface_ and holds it
+    * until removed.
+    */
   def addInterface(`interface_`: DBusInterfaceSkeleton): Unit =
     g_dbus_object_skeleton_add_interface(
       this.raw.asInstanceOf,
       `interface_`.getUnsafeRawPointer().asInstanceOf
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * This method simply calls g_dbus_interface_skeleton_flush() on all
+    * interfaces belonging to @object. See that method for when flushing is
+    * useful.
+    */
   def flush(): Unit = g_dbus_object_skeleton_flush(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Removes @interface_ from @object.
+    */
   def removeInterface(`interface_`: DBusInterfaceSkeleton): Unit =
     g_dbus_object_skeleton_remove_interface(
       this.raw.asInstanceOf,
       `interface_`.getUnsafeRawPointer().asInstanceOf
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Removes the #GDBusInterface with @interface_name from @object.
+    *
+    * If no D-Bus interface of the given interface exists, this function does
+    * nothing.
+    */
   def removeInterfaceByName(
       interface_name: String | CString
   )(using Zone): Unit = g_dbus_object_skeleton_remove_interface_by_name(
@@ -36,6 +71,10 @@ class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
     __sn_extract_string(interface_name).asInstanceOf[Ptr[gchar]]
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the object path for @object.
+    */
   def setObjectPath(object_path: String | CString)(using Zone): Unit =
     g_dbus_object_skeleton_set_object_path(
       this.raw.asInstanceOf,
@@ -53,6 +92,10 @@ class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
 end DBusObjectSkeleton
 
 object DBusObjectSkeleton:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GDBusObjectSkeleton.
+    */
   def apply(object_path: String | CString)(using Zone): DBusObjectSkeleton =
     new DBusObjectSkeleton(
       g_dbus_object_skeleton_new(

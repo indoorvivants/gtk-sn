@@ -10,7 +10,7 @@ def renderClass(
     RenderingContext,
     GlobalKnowledge,
     NamingPolicy,
-    Label[String]
+    Label[FluentErr]
 ): WithEffects[Unit] =
   WithEffects.collect: coll =>
     val cTypeName = cls.attributes.get("@type").map(_.as[String])
@@ -21,7 +21,7 @@ def renderClass(
             "GtkSnapshot"
           )
         )
-        .getOrElse(break("c:type missing"))
+        .getOrElse(break(FluentErr.ClassHasNoCType(cls.name)))
 
     coll.add(
       Effect.RequiresImport(
@@ -40,7 +40,8 @@ def renderClass(
 
     val classHasAnyMembers =
       cls.methods.nonEmpty
-
+  
+    renderComment(cls.doc)
     block(
       classHeader + ":",
       s"end ${cls.name}"
@@ -58,13 +59,14 @@ def renderClass(
         ) match
           case None =>
             val result =
-              transact[String]:
+              transact[FluentErr]:
                 handleExceptions(coll.observe(renderClassMethod(cls, meth)))
 
             result.foreach: msg =>
-              scribe.warn(s"Failed to render method ${meth.name}: `$msg`")
+              msg.log(s"Failed to render method ${meth.name}")
           case Some(value) =>
-            line("// " + value)
+            line(s"@annotation.compileTimeOnly(\"$value\")")
+            line(s"def ${camelify(meth.name)}() = ???")
             emptyLine()
 
       coll

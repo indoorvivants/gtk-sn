@@ -9,10 +9,21 @@ import sn.gnome.gio.fluent.Socket
 import sn.gnome.gio.fluent.TcpConnection
 import sn.gnome.gio.internal.GTcpWrapperConnection
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A #GTcpWrapperConnection can be used to wrap a #GIOStream that is based on a
+  * #GSocket, but which is not actually a #GSocketConnection. This is used by
+  * #GSocketClient so that it can always return a #GSocketConnection, even when
+  * the connection it has actually created is not directly a #GSocketConnection.
+  */
 class TcpWrapperConnection(raw: Ptr[GTcpWrapperConnection])
     extends TcpConnection(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets @conn's base #GIOStream
+    */
   def getBaseIoStream(): IOStream = new IOStream(
     g_tcp_wrapper_connection_get_base_io_stream(
       this.raw.asInstanceOf
@@ -22,6 +33,10 @@ class TcpWrapperConnection(raw: Ptr[GTcpWrapperConnection])
 end TcpWrapperConnection
 
 object TcpWrapperConnection:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Wraps @base_io_stream and @socket together as a #GSocketConnection.
+    */
   def apply(base_io_stream: IOStream, socket: Socket): TcpWrapperConnection =
     new TcpWrapperConnection(
       g_tcp_wrapper_connection_new(

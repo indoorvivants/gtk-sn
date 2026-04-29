@@ -9,20 +9,59 @@ import sn.gnome.gtk4.fluent.BuilderScope
 import sn.gnome.gtk4.fluent.ListItemFactory
 import sn.gnome.gtk4.internal.GtkBuilderListItemFactory
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * `GtkBuilderListItemFactory` is a `GtkListItemFactory` that creates widgets
+  * by instantiating `GtkBuilder` UI templates.
+  *
+  * The templates must be extending `GtkListItem`, and typically use
+  * `GtkExpression`s to obtain data from the items in the model.
+  *
+  * Example:
+  * ```xml
+  *   <interface>
+  *     <template class="GtkListItem">
+  *       <property name="child">
+  *         <object class="GtkLabel">
+  *           <property name="xalign">0</property>
+  *           <binding name="label">
+  *             <lookup name="name" type="SettingsKey">
+  *               <lookup name="item">GtkListItem</lookup>
+  *             </lookup>
+  *           </binding>
+  *         </object>
+  *       </property>
+  *     </template>
+  *   </interface>
+  * ```
+  */
 class BuilderListItemFactory(raw: Ptr[GtkBuilderListItemFactory])
     extends ListItemFactory(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the data used as the `GtkBuilder` UI template for constructing
+    * listitems.
+    */
   def getBytes(): Ptr[GBytes] = gtk_builder_list_item_factory_get_bytes(
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * If the data references a resource, gets the path of that resource.
+    */
   def getResource()(using Zone): String = fromCString(
     gtk_builder_list_item_factory_get_resource(
       this.raw.asInstanceOf
     ).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the scope used when constructing listitems.
+    */
   def getScope(): BuilderScope = new BuilderScope.Abstract(
     gtk_builder_list_item_factory_get_scope(this.raw.asInstanceOf).asInstanceOf
   )
@@ -30,6 +69,11 @@ class BuilderListItemFactory(raw: Ptr[GtkBuilderListItemFactory])
 end BuilderListItemFactory
 
 object BuilderListItemFactory:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new `GtkBuilderListItemFactory` that instantiates widgets using @bytes
+    * as the data to pass to `GtkBuilder`.
+    */
   def fromBytes(
       scope: BuilderScope,
       bytes: Ptr[GBytes]
@@ -39,6 +83,12 @@ object BuilderListItemFactory:
       bytes
     ).asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new `GtkBuilderListItemFactory` that instantiates widgets using
+    * data read from the given @resource_path to pass to `GtkBuilder`.
+    */
   def fromResource(scope: BuilderScope, resource_path: String | CString)(using
       Zone
   ): BuilderListItemFactory = new BuilderListItemFactory(

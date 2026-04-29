@@ -13,6 +13,10 @@ import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkListBoxRow
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * `GtkListBoxRow` is the kind of widget that can be added to a `GtkListBox`.
+  */
 class ListBoxRow(raw: Ptr[GtkListBoxRow])
     extends Widget(raw.asInstanceOf),
       Accessible,
@@ -21,43 +25,111 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
       ConstraintTarget:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Marks @row as changed, causing any state that depends on this to be
+    * updated.
+    *
+    * This affects sorting, filtering and headers.
+    *
+    * Note that calls to this method must be in sync with the data used for the
+    * row functions. For instance, if the list is mirroring some external data
+    * set, and *two* rows changed in the external data set then when you call
+    * gtk_list_box_row_changed() on the first row the sort function must only
+    * read the new data for the first of the two changed rows, otherwise the
+    * resorting of the rows will be wrong.
+    *
+    * This generally means that if you don’t fully control the data model you
+    * have to duplicate the data that affects the listbox row functions into the
+    * row widgets themselves. Another alternative is to call
+    * [method@Gtk.ListBox.invalidate_sort] on any model change, but that is more
+    * expensive.
+    */
   def changed(): Unit = gtk_list_box_row_changed(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets whether the row is activatable.
+    */
   def getActivatable(): Boolean =
     gtk_list_box_row_get_activatable(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the child widget of @row.
+    */
   def getChild(): Widget = new Widget(
     gtk_list_box_row_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the current header of the @row.
+    *
+    * This can be used in a [callback@Gtk.ListBoxUpdateHeaderFunc] to see if
+    * there is a header set already, and if so to update the state of it.
+    */
   def getHeader(): Widget = new Widget(
     gtk_list_box_row_get_header(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the current index of the @row in its `GtkListBox` container.
+    */
   def getIndex(): Int = gtk_list_box_row_get_index(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets whether the row can be selected.
+    */
   def getSelectable(): Boolean =
     gtk_list_box_row_get_selectable(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns whether the child is currently selected in its `GtkListBox`
+    * container.
+    */
   def isSelected(): Boolean =
     gtk_list_box_row_is_selected(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Set whether the row is activatable.
+    */
   def setActivatable(activatable: Boolean): Unit =
     gtk_list_box_row_set_activatable(
       this.raw.asInstanceOf,
       gboolean(gint((if activatable == true then 1 else 0)))
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the child widget of @self.
+    */
   def setChild(child: Widget): Unit = gtk_list_box_row_set_child(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the current header of the @row.
+    *
+    * This is only allowed to be called from a
+    * [callback@Gtk.ListBoxUpdateHeaderFunc]. It will replace any existing
+    * header in the row, and be shown in front of the row in the listbox.
+    */
   def setHeader(header: Widget): Unit = gtk_list_box_row_set_header(
     this.raw.asInstanceOf,
     header.getUnsafeRawPointer().asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Set whether the row can be selected.
+    */
   def setSelectable(selectable: Boolean): Unit =
     gtk_list_box_row_set_selectable(
       this.raw.asInstanceOf,
@@ -67,5 +139,9 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
 end ListBoxRow
 
 object ListBoxRow:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new `GtkListBoxRow`.
+    */
   def apply(): ListBoxRow = new ListBoxRow(gtk_list_box_row_new().asInstanceOf)
 end ListBoxRow

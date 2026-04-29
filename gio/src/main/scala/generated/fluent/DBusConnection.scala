@@ -41,12 +41,92 @@ import sn.gnome.glib.internal.guint32
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GClosure
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * The #GDBusConnection type is used for D-Bus connections to remote peers such
+  * as a message buses. It is a low-level API that offers a lot of flexibility.
+  * For instance, it lets you establish a connection over any transport that can
+  * by represented as a #GIOStream.
+  *
+  * This class is rarely used directly in D-Bus clients. If you are writing a
+  * D-Bus client, it is often easier to use the g_bus_own_name(),
+  * g_bus_watch_name() or g_dbus_proxy_new_for_bus() APIs.
+  *
+  * As an exception to the usual GLib rule that a particular object must not be
+  * used by two threads at the same time, #GDBusConnection's methods may be
+  * called from any thread. This is so that g_bus_get() and g_bus_get_sync() can
+  * safely return the same #GDBusConnection when called from any thread.
+  *
+  * Most of the ways to obtain a #GDBusConnection automatically initialize it
+  * (i.e. connect to D-Bus): for instance, g_dbus_connection_new() and
+  * g_bus_get(), and the synchronous versions of those methods, give you an
+  * initialized connection. Language bindings for GIO should use
+  * g_initable_new() or g_async_initable_new_async(), which also initialize the
+  * connection.
+  *
+  * If you construct an uninitialized #GDBusConnection, such as via
+  * g_object_new(), you must initialize it via g_initable_init() or
+  * g_async_initable_init_async() before using its methods or properties.
+  * Calling methods or accessing properties on a #GDBusConnection that has not
+  * completed initialization successfully is considered to be invalid, and leads
+  * to undefined behaviour. In particular, if initialization fails with a
+  * #GError, the only valid thing you can do with that #GDBusConnection is to
+  * free it with g_object_unref().
+  *
+  * ## An example D-Bus server # {#gdbus-server}
+  *
+  * Here is an example for a D-Bus server:
+  * [gdbus-example-server.c](https://gitlab.gnome.org/GNOME/glib/-/blob/HEAD/gio/tests/gdbus-example-server.c)
+  *
+  * ## An example for exporting a subtree # {#gdbus-subtree-server}
+  *
+  * Here is an example for exporting a subtree:
+  * [gdbus-example-subtree.c](https://gitlab.gnome.org/GNOME/glib/-/blob/HEAD/gio/tests/gdbus-example-subtree.c)
+  *
+  * ## An example for file descriptor passing # {#gdbus-unix-fd-client}
+  *
+  * Here is an example for passing UNIX file descriptors:
+  * [gdbus-unix-fd-client.c](https://gitlab.gnome.org/GNOME/glib/-/blob/HEAD/gio/tests/gdbus-example-unix-fd-client.c)
+  *
+  * ## An example for exporting a GObject # {#gdbus-export}
+  *
+  * Here is an example for exporting a #GObject:
+  * [gdbus-example-export.c](https://gitlab.gnome.org/GNOME/glib/-/blob/HEAD/gio/tests/gdbus-example-export.c)
+  */
 class DBusConnection(raw: Ptr[GDBusConnection])
     extends Object(raw.asInstanceOf),
       AsyncInitable,
       Initable:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Adds a message filter. Filters are handlers that are run on all incoming
+    * and outgoing messages, prior to standard dispatch. Filters are run in the
+    * order that they were added. The same handler can be added as a filter more
+    * than once, in which case it will be run more than once. Filters added
+    * during a filter callback won't be run on the message being processed.
+    * Filter functions are allowed to modify and even drop messages.
+    *
+    * Note that filters are run in a dedicated message handling thread so they
+    * can't block and, generally, can't do anything but signal a worker thread.
+    * Also note that filters are rarely needed - use API such as
+    * g_dbus_connection_send_message_with_reply(),
+    * g_dbus_connection_signal_subscribe() or g_dbus_connection_call() instead.
+    *
+    * If a filter consumes an incoming message the message is not dispatched
+    * anywhere else - not even the standard dispatch machinery (that API such as
+    * g_dbus_connection_signal_subscribe() and
+    * g_dbus_connection_send_message_with_reply() relies on) will see the
+    * message. Similarly, if a filter consumes an outgoing message, the message
+    * will not be sent to the other peer.
+    *
+    * If @user_data_free_func is non-%NULL, it will be called (in the
+    * thread-default main context of the thread you are calling this method
+    * from) at some point after @user_data is no longer needed. (It is not
+    * guaranteed to be called synchronously when the filter is removed, and may
+    * be called after @connection has been destroyed.)
+    */
   def addFilter(
       filter_function: GDBusMessageFilterFunction,
       user_data: Ptr[Byte],
@@ -58,6 +138,54 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     user_data_free_func
   ).value
 
+  /**  COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    *  Asynchronously invokes the @method_name method on the
+    *  @interface_name D-Bus interface on the remote object at
+    *  @object_path owned by @bus_name.
+    *
+    *  If @connection is closed then the operation will fail with
+    *  %G_IO_ERROR_CLOSED. If @cancellable is canceled, the operation will
+    *  fail with %G_IO_ERROR_CANCELLED. If @parameters contains a value
+    *  not compatible with the D-Bus protocol, the operation fails with
+    *  %G_IO_ERROR_INVALID_ARGUMENT.
+    *
+    *  If @reply_type is non-%NULL then the reply will be checked for having this type and an
+    *  error will be raised if it does not match.  Said another way, if you give a @reply_type
+    *  then any non-%NULL return value will be of this type. Unless it’s
+    *  %G_VARIANT_TYPE_UNIT, the @reply_type will be a tuple containing one or more
+    *  values.
+    *
+    *  If the @parameters #GVariant is floating, it is consumed. This allows
+    *  convenient 'inline' use of g_variant_new(), e.g.:
+    *  |[<!-- language="C" -->
+    *   g_dbus_connection_call (connection,
+    *                           "org.freedesktop.StringThings",
+    *                           "/org/freedesktop/StringThings",
+    *                           "org.freedesktop.StringThings",
+    *                           "TwoStrings",
+    *                           g_variant_new ("(ss)",
+    *                                          "Thing One",
+    *                                          "Thing Two"),
+    *                           NULL,
+    *                           G_DBUS_CALL_FLAGS_NONE,
+    *                           -1,
+    *                           NULL,
+    *                           (GAsyncReadyCallback) two_strings_done,
+    *                           NULL);
+    *  ]|
+    *
+    *  This is an asynchronous method. When the operation is finished,
+    *  @callback will be invoked in the
+    *  [thread-default main context][g-main-context-push-thread-default]
+    *  of the thread you are calling this method from. You can then call
+    *  g_dbus_connection_call_finish() to get the result of the operation.
+    *  See g_dbus_connection_call_sync() for the synchronous version of this
+    *  function.
+    *
+    *  If @callback is %NULL then the D-Bus method call message will be sent with
+    *  the %G_DBUS_MESSAGE_FLAGS_NO_REPLY_EXPECTED flag set.
+    */
   def call(
       bus_name: String | CString,
       object_path: String | CString,
@@ -85,6 +213,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     gpointer(user_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes an operation started with g_dbus_connection_call().
+    */
   def callFinish(res: AsyncResult): GResult[Ptr[GVariant]] =
     GResult.wrap(__errorPtr =>
       g_dbus_connection_call_finish(
@@ -94,6 +226,45 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       )
     )
 
+  /**  COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    *  Synchronously invokes the @method_name method on the
+    *  @interface_name D-Bus interface on the remote object at
+    *  @object_path owned by @bus_name.
+    *
+    *  If @connection is closed then the operation will fail with
+    *  %G_IO_ERROR_CLOSED. If @cancellable is canceled, the
+    *  operation will fail with %G_IO_ERROR_CANCELLED. If @parameters
+    *  contains a value not compatible with the D-Bus protocol, the operation
+    *  fails with %G_IO_ERROR_INVALID_ARGUMENT.
+    *
+    *  If @reply_type is non-%NULL then the reply will be checked for having
+    *  this type and an error will be raised if it does not match.  Said
+    *  another way, if you give a @reply_type then any non-%NULL return
+    *  value will be of this type.
+    *
+    *  If the @parameters #GVariant is floating, it is consumed.
+    *  This allows convenient 'inline' use of g_variant_new(), e.g.:
+    *  |[<!-- language="C" -->
+    *   g_dbus_connection_call_sync (connection,
+    *                                "org.freedesktop.StringThings",
+    *                                "/org/freedesktop/StringThings",
+    *                                "org.freedesktop.StringThings",
+    *                                "TwoStrings",
+    *                                g_variant_new ("(ss)",
+    *                                               "Thing One",
+    *                                               "Thing Two"),
+    *                                NULL,
+    *                                G_DBUS_CALL_FLAGS_NONE,
+    *                                -1,
+    *                                NULL,
+    *                                &error);
+    *  ]|
+    *
+    *  The calling thread is blocked until a reply is received. See
+    *  g_dbus_connection_call() for the asynchronous version of
+    *  this method.
+    */
   def callSync(
       bus_name: String | CString,
       object_path: String | CString,
@@ -120,6 +291,24 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     )
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Like g_dbus_connection_call() but also takes a #GUnixFDList object.
+    *
+    * The file descriptors normally correspond to %G_VARIANT_TYPE_HANDLE values
+    * in the body of the message. For example, if a message contains two file
+    * descriptors, @fd_list would have length 2, and `g_variant_new_handle (0)`
+    * and `g_variant_new_handle (1)` would appear somewhere in the body of the
+    * message (not necessarily in that order!) to represent the file descriptors
+    * at indexes 0 and 1 respectively.
+    *
+    * When designing D-Bus APIs that are intended to be interoperable, please
+    * note that non-GDBus implementations of D-Bus can usually only access file
+    * descriptors if they are referenced in this way by a value of type
+    * %G_VARIANT_TYPE_HANDLE in the body of the message.
+    *
+    * This method is only available on UNIX.
+    */
   def callWithUnixFdList(
       bus_name: String | CString,
       object_path: String | CString,
@@ -149,10 +338,43 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     gpointer(user_data)
   )
 
-  // Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet
+  @annotation.compileTimeOnly(
+    "Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet"
+  )
+  def callWithUnixFdListFinish() = ???
 
-  // Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet
+  @annotation.compileTimeOnly(
+    "Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet"
+  )
+  def callWithUnixFdListSync() = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Closes @connection. Note that this never causes the process to exit (this
+    * might only happen if the other end of a shared message bus connection
+    * disconnects, see #GDBusConnection:exit-on-close).
+    *
+    * Once the connection is closed, operations such as sending a message will
+    * return with the error %G_IO_ERROR_CLOSED. Closing a connection will not
+    * automatically flush the connection so queued messages may be lost. Use
+    * g_dbus_connection_flush() if you need such guarantees.
+    *
+    * If @connection is already closed, this method fails with
+    * %G_IO_ERROR_CLOSED.
+    *
+    * When @connection has been closed, the #GDBusConnection::closed signal is
+    * emitted in the [thread-default main
+    * context][g-main-context-push-thread-default] of the thread that @connection
+    * was constructed in.
+    *
+    * This is an asynchronous method. When the operation is finished,
+    * @callback
+    *   will be invoked in the [thread-default main
+    *   context][g-main-context-push-thread-default] of the thread you are
+    *   calling this method from. You can then call
+    *   g_dbus_connection_close_finish() to get the result of the operation. See
+    *   g_dbus_connection_close_sync() for the synchronous version.
+    */
   def close(
       cancellable: Cancellable,
       callback: GAsyncReadyCallback,
@@ -164,6 +386,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     gpointer(user_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes an operation started with g_dbus_connection_close().
+    */
   def closeFinish(res: AsyncResult): GResult[Boolean] =
     GResult.wrap(__errorPtr =>
       g_dbus_connection_close_finish(
@@ -173,6 +399,12 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       ).value.!=(0)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Synchronously closes @connection. The calling thread is blocked until this
+    * is done. See g_dbus_connection_close() for the asynchronous version of
+    * this method and more details about what it does.
+    */
   def closeSync(cancellable: Cancellable): GResult[Boolean] =
     GResult.wrap(__errorPtr =>
       g_dbus_connection_close_sync(
@@ -182,6 +414,16 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       ).value.!=(0)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Emits a signal.
+    *
+    * If the parameters GVariant is floating, it is consumed.
+    *
+    * This can only fail if @parameters is not compatible with the D-Bus
+    * protocol (%G_IO_ERROR_INVALID_ARGUMENT), or if @connection has been closed
+    * (%G_IO_ERROR_CLOSED).
+    */
   def emitSignal(
       destination_bus_name: String | CString,
       object_path: String | CString,
@@ -200,6 +442,29 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).value.!=(0)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Exports @action_group on @connection at @object_path.
+    *
+    * The implemented D-Bus API should be considered private. It is subject to
+    * change in the future.
+    *
+    * A given object path can only have one action group exported on it. If this
+    * constraint is violated, the export will fail and 0 will be returned (with @error
+    * set accordingly).
+    *
+    * You can unexport the action group using
+    * g_dbus_connection_unexport_action_group() with the return value of this
+    * function.
+    *
+    * The thread default main context is taken at the time of this call. All
+    * incoming action activations and state change requests are reported from
+    * this context. Any changes on the action group that cause it to emit
+    * signals must also come from this same context. Since incoming action
+    * activations and state change requests are rather likely to cause changes
+    * on the action group, this effectively limits a given action group to being
+    * exported from only one main context.
+    */
   def exportActionGroup(
       object_path: String | CString,
       action_group: ActionGroup
@@ -212,6 +477,25 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).value
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Exports @menu on @connection at @object_path.
+    *
+    * The implemented D-Bus API should be considered private. It is subject to
+    * change in the future.
+    *
+    * An object path can only have one menu model exported on it. If this
+    * constraint is violated, the export will fail and 0 will be returned (with @error
+    * set accordingly).
+    *
+    * Exporting menus with sections containing more than
+    * %G_MENU_EXPORTER_MAX_SECTION_SIZE items is not supported and results in
+    * undefined behavior.
+    *
+    * You can unexport the menu model using
+    * g_dbus_connection_unexport_menu_model() with the return value of this
+    * function.
+    */
   def exportMenuModel(object_path: String | CString, menu: MenuModel)(using
       Zone
   ): GResult[UInt] = GResult.wrap(__errorPtr =>
@@ -223,6 +507,23 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).value
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Asynchronously flushes @connection, that is, writes all queued outgoing
+    * message to the transport and then flushes the transport (using
+    * g_output_stream_flush_async()). This is useful in programs that wants to
+    * emit a D-Bus signal and then exit immediately. Without flushing the
+    * connection, there is no guaranteed that the message has been sent to the
+    * networking buffers in the OS kernel.
+    *
+    * This is an asynchronous method. When the operation is finished,
+    * @callback
+    *   will be invoked in the [thread-default main
+    *   context][g-main-context-push-thread-default] of the thread you are
+    *   calling this method from. You can then call
+    *   g_dbus_connection_flush_finish() to get the result of the operation. See
+    *   g_dbus_connection_flush_sync() for the synchronous version.
+    */
   def flush(
       cancellable: Cancellable,
       callback: GAsyncReadyCallback,
@@ -234,6 +535,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     gpointer(user_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes an operation started with g_dbus_connection_flush().
+    */
   def flushFinish(res: AsyncResult): GResult[Boolean] =
     GResult.wrap(__errorPtr =>
       g_dbus_connection_flush_finish(
@@ -243,6 +548,12 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       ).value.!=(0)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Synchronously flushes @connection. The calling thread is blocked until
+    * this is done. See g_dbus_connection_flush() for the asynchronous version
+    * of this method and more details about what it does.
+    */
   def flushSync(cancellable: Cancellable): GResult[Boolean] =
     GResult.wrap(__errorPtr =>
       g_dbus_connection_flush_sync(
@@ -252,39 +563,133 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       ).value.!=(0)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the capabilities negotiated with the remote peer
+    */
   def getCapabilities(): GDBusCapabilityFlags =
     g_dbus_connection_get_capabilities(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets whether the process is terminated when @connection is closed by the
+    * remote peer. See #GDBusConnection:exit-on-close for more details.
+    */
   def getExitOnClose(): Boolean =
     g_dbus_connection_get_exit_on_close(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the flags used to construct this connection
+    */
   def getFlags(): GDBusConnectionFlags = g_dbus_connection_get_flags(
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * The GUID of the peer performing the role of server when authenticating.
+    * See #GDBusConnection:guid for more details.
+    */
   def getGuid()(using Zone): String = fromCString(
     g_dbus_connection_get_guid(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves the last serial number assigned to a #GDBusMessage on the
+    * current thread. This includes messages sent via both low-level API such as
+    * g_dbus_connection_send_message() as well as high-level API such as
+    * g_dbus_connection_emit_signal(), g_dbus_connection_call() or
+    * g_dbus_proxy_call().
+    */
   def getLastSerial(): UInt = g_dbus_connection_get_last_serial(
     this.raw.asInstanceOf
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the credentials of the authenticated peer. This will always return
+    * %NULL unless @connection acted as a server (e.g.
+    * %G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_SERVER was passed) when set up and
+    * the client passed credentials as part of the authentication process.
+    *
+    * In a message bus setup, the message bus is always the server and each
+    * application is a client. So this method will always return %NULL for
+    * message bus clients.
+    */
   def getPeerCredentials(): Credentials = new Credentials(
     g_dbus_connection_get_peer_credentials(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the underlying stream used for IO.
+    *
+    * While the #GDBusConnection is active, it will interact with this stream
+    * from a worker thread, so it is not safe to interact with the stream
+    * directly.
+    */
   def getStream(): IOStream = new IOStream(
     g_dbus_connection_get_stream(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the unique name of @connection as assigned by the message bus. This
+    * can also be used to figure out if @connection is a message bus connection.
+    */
   def getUniqueName()(using Zone): String = fromCString(
     g_dbus_connection_get_unique_name(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets whether @connection is closed.
+    */
   def isClosed(): Boolean =
     g_dbus_connection_is_closed(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Registers callbacks for exported objects at @object_path with the D-Bus
+    * interface that is described in @interface_info.
+    *
+    * Calls to functions in @vtable (and @user_data_free_func) will happen in
+    * the [thread-default main context][g-main-context-push-thread-default] of
+    * the thread you are calling this method from.
+    *
+    * Note that all #GVariant values passed to functions in @vtable will match
+    * the signature given in @interface_info - if a remote caller passes
+    * incorrect values, the `org.freedesktop.DBus.Error.InvalidArgs` is returned
+    * to the remote caller.
+    *
+    * Additionally, if the remote caller attempts to invoke methods or access
+    * properties not mentioned in @interface_info the
+    * `org.freedesktop.DBus.Error.UnknownMethod` resp.
+    * `org.freedesktop.DBus.Error.InvalidArgs` errors are returned to the
+    * caller.
+    *
+    * It is considered a programming error if the #GDBusInterfaceGetPropertyFunc
+    * function in @vtable returns a #GVariant of incorrect type.
+    *
+    * If an existing callback is already registered at @object_path and
+    * @interface_name,
+    *   then @error is set to %G_IO_ERROR_EXISTS.
+    *
+    * GDBus automatically implements the standard D-Bus interfaces
+    * org.freedesktop.DBus.Properties, org.freedesktop.DBus.Introspectable and
+    * org.freedesktop.Peer, so you don't have to implement those for the objects
+    * you export. You can implement org.freedesktop.DBus.Properties yourself,
+    * e.g. to handle getting and setting of properties asynchronously.
+    *
+    * Note that the reference count on @interface_info will be incremented by 1
+    * (unless allocated statically, e.g. if the reference count is -1, see
+    * g_dbus_interface_info_ref()) for as long as the object is exported. Also
+    * note that @vtable will be copied.
+    *
+    * See this [server][gdbus-server] for an example of how to use this method.
+    */
   def registerObject(
       object_path: String | CString,
       interface_info: Ptr[GDBusInterfaceInfo],
@@ -303,6 +708,11 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).value
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Version of g_dbus_connection_register_object() using closures instead of a
+    * #GDBusInterfaceVTable for easier binding in other languages.
+    */
   def registerObjectWithClosures(
       object_path: String | CString,
       interface_info: Ptr[GDBusInterfaceInfo],
@@ -321,6 +731,42 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).value
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Registers a whole subtree of dynamic objects.
+    *
+    * The @enumerate and @introspection functions in @vtable are used to convey,
+    * to remote callers, what nodes exist in the subtree rooted by @object_path.
+    *
+    * When handling remote calls into any node in the subtree, first the
+    * @enumerate
+    *   function is used to check if the node exists. If the node exists or the
+    *   %G_DBUS_SUBTREE_FLAGS_DISPATCH_TO_UNENUMERATED_NODES flag is set the @introspection
+    *   function is used to check if the node supports the requested method. If
+    *   so, the @dispatch function is used to determine where to dispatch the
+    *   call. The collected #GDBusInterfaceVTable and #gpointer will be used to
+    *   call into the interface vtable for processing the request.
+    *
+    * All calls into user-provided code will be invoked in the [thread-default
+    * main context][g-main-context-push-thread-default] of the thread you are
+    * calling this method from.
+    *
+    * If an existing subtree is already registered at @object_path or then @error
+    * is set to %G_IO_ERROR_EXISTS.
+    *
+    * Note that it is valid to register regular objects (using
+    * g_dbus_connection_register_object()) in a subtree registered with
+    * g_dbus_connection_register_subtree() - if so, the subtree handler is tried
+    * as the last resort. One way to think about a subtree handler is to
+    * consider it a fallback handler for object paths not registered via
+    * g_dbus_connection_register_object() or other bindings.
+    *
+    * Note that @vtable will be copied so you cannot change it after
+    * registration.
+    *
+    * See this [server][gdbus-subtree-server] for an example of how to use this
+    * method.
+    */
   def registerSubtree(
       object_path: String | CString,
       vtable: Ptr[GDBusSubtreeVTable],
@@ -339,13 +785,44 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).value
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Removes a filter.
+    *
+    * Note that since filters run in a different thread, there is a race
+    * condition where it is possible that the filter will be running even after
+    * calling g_dbus_connection_remove_filter(), so you cannot just free data
+    * that the filter might be using. Instead, you should pass a #GDestroyNotify
+    * to g_dbus_connection_add_filter(), which will be called when it is
+    * guaranteed that the data is no longer needed.
+    */
   def removeFilter(filter_id: UInt): Unit =
     g_dbus_connection_remove_filter(this.raw.asInstanceOf, guint(filter_id))
 
-  // Method send_message contains an OUT parameter, which is not supported yet
+  @annotation.compileTimeOnly(
+    "Method send_message contains an OUT parameter, which is not supported yet"
+  )
+  def sendMessage() = ???
 
-  // Method send_message_with_reply contains an OUT parameter, which is not supported yet
+  @annotation.compileTimeOnly(
+    "Method send_message_with_reply contains an OUT parameter, which is not supported yet"
+  )
+  def sendMessageWithReply() = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes an operation started with
+    * g_dbus_connection_send_message_with_reply().
+    *
+    * Note that @error is only set if a local in-process error occurred. That is
+    * to say that the returned #GDBusMessage object may be of type
+    * %G_DBUS_MESSAGE_TYPE_ERROR. Use g_dbus_message_to_gerror() to transcode
+    * this to a #GError.
+    *
+    * See this [server][gdbus-server] and [client][gdbus-unix-fd-client] for an
+    * example of how to use this low-level API to send and receive UNIX file
+    * descriptors.
+    */
   def sendMessageWithReplyFinish(res: AsyncResult): GResult[DBusMessage] =
     GResult.wrap(__errorPtr =>
       new DBusMessage(
@@ -357,14 +834,80 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       )
     )
 
-  // Method send_message_with_reply_sync contains an OUT parameter, which is not supported yet
+  @annotation.compileTimeOnly(
+    "Method send_message_with_reply_sync contains an OUT parameter, which is not supported yet"
+  )
+  def sendMessageWithReplySync() = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets whether the process should be terminated when @connection is closed
+    * by the remote peer. See #GDBusConnection:exit-on-close for more details.
+    *
+    * Note that this function should be used with care. Most modern UNIX
+    * desktops tie the notion of a user session with the session bus, and expect
+    * all of a user's applications to quit when their bus connection goes away.
+    * If you are setting @exit_on_close to %FALSE for the shared session bus
+    * connection, you should make sure that your application exits when the user
+    * session ends.
+    */
   def setExitOnClose(exit_on_close: Boolean): Unit =
     g_dbus_connection_set_exit_on_close(
       this.raw.asInstanceOf,
       gboolean(gint((if exit_on_close == true then 1 else 0)))
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Subscribes to signals on @connection and invokes @callback whenever the
+    * signal is received. Note that @callback will be invoked in the
+    * [thread-default main context][g-main-context-push-thread-default] of the
+    * thread you are calling this method from.
+    *
+    * If @connection is not a message bus connection, @sender must be %NULL.
+    *
+    * If @sender is a well-known name note that @callback is invoked with the
+    * unique name for the owner of @sender, not the well-known name as one would
+    * expect. This is because the message bus rewrites the name. As such, to
+    * avoid certain race conditions, users should be tracking the name owner of
+    * the well-known name and use that when processing the received signal.
+    *
+    * If one of %G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_NAMESPACE or
+    * %G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_PATH are given, @arg0 is interpreted as
+    * part of a namespace or path. The first argument of a signal is matched
+    * against that part as specified by D-Bus.
+    *
+    * If @user_data_free_func is non-%NULL, it will be called (in the
+    * thread-default main context of the thread you are calling this method
+    * from) at some point after @user_data is no longer needed. (It is not
+    * guaranteed to be called synchronously when the signal is unsubscribed
+    * from, and may be called after @connection has been destroyed.)
+    *
+    * As @callback is potentially invoked in a different thread from where it’s
+    * emitted, it’s possible for this to happen after
+    * g_dbus_connection_signal_unsubscribe() has been called in another thread.
+    * Due to this, @user_data should have a strong reference which is freed with
+    * @user_data_free_func,
+    *   rather than pointing to data whose lifecycle is tied to the signal
+    *   subscription. For example, if a #GObject is used to store the
+    *   subscription ID from g_dbus_connection_signal_subscribe(), a strong
+    *   reference to that #GObject must be passed to @user_data, and
+    *   g_object_unref() passed to
+    * @user_data_free_func.
+    *   You are responsible for breaking the resulting reference count cycle by
+    *   explicitly unsubscribing from the signal when dropping the last external
+    *   reference to the #GObject. Alternatively, a weak reference may be used.
+    *
+    * It is guaranteed that if you unsubscribe from a signal using
+    * g_dbus_connection_signal_unsubscribe() from the same thread which made the
+    * corresponding g_dbus_connection_signal_subscribe() call, @callback will
+    * not be invoked after g_dbus_connection_signal_unsubscribe() returns.
+    *
+    * The returned subscription identifier is an opaque value which is
+    * guaranteed to never be zero.
+    *
+    * This function can never fail.
+    */
   def signalSubscribe(
       sender: String | CString,
       interface_name: String | CString,
@@ -388,33 +931,80 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     user_data_free_func
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Unsubscribes from signals.
+    *
+    * Note that there may still be D-Bus traffic to process (relating to this
+    * signal subscription) in the current thread-default #GMainContext after
+    * this function has returned. You should continue to iterate the
+    * #GMainContext until the #GDestroyNotify function passed to
+    * g_dbus_connection_signal_subscribe() is called, in order to avoid memory
+    * leaks through callbacks queued on the #GMainContext after it’s stopped
+    * being iterated. Alternatively, any idle source with a priority lower than
+    * %G_PRIORITY_DEFAULT that was scheduled after unsubscription, also
+    * indicates that all resources of this subscription are released.
+    */
   def signalUnsubscribe(subscription_id: UInt): Unit =
     g_dbus_connection_signal_unsubscribe(
       this.raw.asInstanceOf,
       guint(subscription_id)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * If @connection was created with
+    * %G_DBUS_CONNECTION_FLAGS_DELAY_MESSAGE_PROCESSING, this method starts
+    * processing messages. Does nothing on if @connection wasn't created with
+    * this flag or if the method has already been called.
+    */
   def startMessageProcessing(): Unit =
     g_dbus_connection_start_message_processing(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Reverses the effect of a previous call to
+    * g_dbus_connection_export_action_group().
+    *
+    * It is an error to call this function with an ID that wasn't returned from
+    * g_dbus_connection_export_action_group() or to call it with the same ID
+    * more than once.
+    */
   def unexportActionGroup(export_id: UInt): Unit =
     g_dbus_connection_unexport_action_group(
       this.raw.asInstanceOf,
       guint(export_id)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Reverses the effect of a previous call to
+    * g_dbus_connection_export_menu_model().
+    *
+    * It is an error to call this function with an ID that wasn't returned from
+    * g_dbus_connection_export_menu_model() or to call it with the same ID more
+    * than once.
+    */
   def unexportMenuModel(export_id: UInt): Unit =
     g_dbus_connection_unexport_menu_model(
       this.raw.asInstanceOf,
       guint(export_id)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Unregisters an object.
+    */
   def unregisterObject(registration_id: UInt): Boolean =
     g_dbus_connection_unregister_object(
       this.raw.asInstanceOf,
       guint(registration_id)
     ).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Unregisters a subtree.
+    */
   def unregisterSubtree(registration_id: UInt): Boolean =
     g_dbus_connection_unregister_subtree(
       this.raw.asInstanceOf,
@@ -432,6 +1022,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
 end DBusConnection
 
 object DBusConnection:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes an operation started with g_dbus_connection_new().
+    */
   def finish(res: AsyncResult): GResult[DBusConnection] =
     GResult.wrap(__errorPtr =>
       new DBusConnection(
@@ -441,6 +1035,11 @@ object DBusConnection:
         ).asInstanceOf
       )
     )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes an operation started with g_dbus_connection_new_for_address().
+    */
   def forAddressFinish(res: AsyncResult): GResult[DBusConnection] =
     GResult.wrap(__errorPtr =>
       new DBusConnection(
@@ -450,6 +1049,27 @@ object DBusConnection:
         ).asInstanceOf
       )
     )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Synchronously connects and sets up a D-Bus client connection for
+    * exchanging D-Bus messages with an endpoint specified by @address which
+    * must be in the [D-Bus address
+    * format](https://dbus.freedesktop.org/doc/dbus-specification.html#addresses).
+    *
+    * This constructor can only be used to initiate client-side connections -
+    * use g_dbus_connection_new_sync() if you need to act as the server. In
+    * particular, @flags cannot contain the
+    * %G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_SERVER,
+    * %G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_ALLOW_ANONYMOUS or
+    * %G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_REQUIRE_SAME_USER flags.
+    *
+    * This is a synchronous failable constructor. See
+    * g_dbus_connection_new_for_address() for the asynchronous version.
+    *
+    * If @observer is not %NULL it may be used to control the authentication
+    * process.
+    */
   def forAddressSync(
       address: String | CString,
       flags: GDBusConnectionFlags,
@@ -466,6 +1086,25 @@ object DBusConnection:
       ).asInstanceOf
     )
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Synchronously sets up a D-Bus connection for exchanging D-Bus messages
+    * with the end represented by @stream.
+    *
+    * If @stream is a #GSocketConnection, then the corresponding #GSocket will
+    * be put into non-blocking mode.
+    *
+    * The D-Bus connection will interact with @stream from a worker thread. As a
+    * result, the caller should not interact with @stream after this method has
+    * been called, except by calling g_object_unref() on it.
+    *
+    * If @observer is not %NULL it may be used to control the authentication
+    * process.
+    *
+    * This is a synchronous failable constructor. See g_dbus_connection_new()
+    * for the asynchronous version.
+    */
   def sync(
       stream: IOStream,
       guid: String | CString,

@@ -38,7 +38,6 @@ def filterDefinitions(
         case _: ArrayType => true
       .contains(true)
 
-
   def hasOutParameters(params: Seq[Parameter | Instanceu45parameter]): Boolean =
     params
       .collectFirst:
@@ -48,7 +47,9 @@ def filterDefinitions(
       .contains(true)
   end hasOutParameters
 
-  def hasInoutParamaters(params: Seq[Parameter | Instanceu45parameter]): Boolean =
+  def hasInoutParamaters(
+      params: Seq[Parameter | Instanceu45parameter]
+  ): Boolean =
     params
       .collectFirst:
         case p: Parameter if p.direction.contains(Inout)                 => true
@@ -78,6 +79,29 @@ def filterDefinitions(
       method.foreach: meth =>
         check(meth.identifier == cName, s"Method ${meth.name} is weird: $msg")
 
+    def weirdConstructor(cName: String, msg: String) =
+      constructor.foreach: meth =>
+        check(meth.identifier == cName, s"Constructor ${meth.name} is weird: $msg")
+
+
+    val weirdArrays = Seq(
+      "gtk_cclosure_expression_new",
+      "g_application_open",
+      "g_socket_send_message",
+      "gtk_closure_expression_new",
+      "gtk_snapshot_append_cairo",
+      "gtk_im_context_simple_add_table",
+      "gtk_cclosure_expression_new",
+      "gtk_snapshot_append_border"
+    )
+
+    weirdArrays.foreach: ar =>
+      weirdMethod(ar, "non NULL-terminated arrays require special handling")
+
+    weirdArrays.foreach: ar =>
+      weirdConstructor(ar, "non NULL-terminated arrays require special handling")
+
+
     method.foreach: meth =>
       weirdMethod(
         "pango_font_get_hb_font",
@@ -93,10 +117,10 @@ def filterDefinitions(
         meth.identifier.startsWith("g_settings_backend"),
         "GSettingsBackend methods are not rendered"
       )
-      check(
-        hasArray(meth.parameters),
-        s"Method ${meth.name} contains an array parameter, which is not supported yet"
-      )
+
+      weirdArrays.foreach: ar =>
+        weirdMethod(ar, "non NULL-terminated arrays require special handling")
+
       check(
         hasOutParameters(meth.parameters),
         s"Method ${meth.name} contains an OUT parameter, which is not supported yet"
@@ -107,10 +131,7 @@ def filterDefinitions(
       )
 
     constructor.foreach: constr =>
-      check(
-        hasArray(constr.parameters),
-        s"constructor ${constr.name} contains an array parameter, which is not supported yet"
-      )
+      
       check(
         hasOutParameters(constr.parameters),
         s"Constructor ${constr.name} contains an OUT parameter, which is not supported yet"

@@ -14,15 +14,55 @@ import sn.gnome.gio.internal.GFileOutputStream
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gpointer
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * GFileOutputStream provides output streams that write their content to a
+  * file.
+  *
+  * GFileOutputStream implements #GSeekable, which allows the output stream to
+  * jump to arbitrary positions in the file and to truncate the file, provided
+  * the filesystem of the file supports these operations.
+  *
+  * To find the position of a file output stream, use g_seekable_tell(). To find
+  * out if a file output stream supports seeking, use g_seekable_can_seek().To
+  * position a file output stream, use g_seekable_seek(). To find out if a file
+  * output stream supports truncating, use g_seekable_can_truncate(). To
+  * truncate a file output stream, use g_seekable_truncate().
+  */
 class FileOutputStream(raw: Ptr[GFileOutputStream])
     extends OutputStream(raw.asInstanceOf),
       Seekable:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the entity tag for the file when it has been written. This must be
+    * called after the stream has been written and closed, as the etag can
+    * change while writing.
+    */
   def getEtag()(using Zone): String = fromCString(
     g_file_output_stream_get_etag(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Queries a file output stream for the given @attributes. This function
+    * blocks while querying the stream. For the asynchronous version of this
+    * function, see g_file_output_stream_query_info_async(). While the stream is
+    * blocked, the stream will set the pending flag internally, and any other
+    * operations on the stream will fail with %G_IO_ERROR_PENDING.
+    *
+    * Can fail if the stream was already closed (with @error being set to
+    * %G_IO_ERROR_CLOSED), the stream has pending operations (with @error being
+    * set to %G_IO_ERROR_PENDING), or if querying info is not supported for the
+    * stream's interface (with @error being set to %G_IO_ERROR_NOT_SUPPORTED).
+    * In all cases of failure, %NULL will be returned.
+    *
+    * If @cancellable is not %NULL, then the operation can be cancelled by
+    * triggering the cancellable object from another thread. If the operation
+    * was cancelled, the error %G_IO_ERROR_CANCELLED will be set, and %NULL will
+    * be returned.
+    */
   def queryInfo(attributes: String | CString, cancellable: Cancellable)(using
       Zone
   ): GResult[FileInfo] = GResult.wrap(__errorPtr =>
@@ -36,6 +76,16 @@ class FileOutputStream(raw: Ptr[GFileOutputStream])
     )
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Asynchronously queries the @stream for a #GFileInfo. When completed,
+    * @callback
+    *   will be called with a #GAsyncResult which can be used to finish the
+    *   operation with g_file_output_stream_query_info_finish().
+    *
+    * For the synchronous version of this function, see
+    * g_file_output_stream_query_info().
+    */
   def queryInfoAsync(
       attributes: String | CString,
       io_priority: Int,
@@ -51,6 +101,11 @@ class FileOutputStream(raw: Ptr[GFileOutputStream])
     gpointer(user_data)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finalizes the asynchronous query started by
+    * g_file_output_stream_query_info_async().
+    */
   def queryInfoFinish(result: AsyncResult): GResult[FileInfo] =
     GResult.wrap(__errorPtr =>
       new FileInfo(

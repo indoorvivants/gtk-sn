@@ -8,6 +8,13 @@ import sn.gnome.gtk4.fluent.CellRenderer
 import sn.gnome.gtk4.fluent.Orientable
 import sn.gnome.gtk4.internal.GtkCellRendererProgress
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * Renders numbers as progress bars
+  *
+  * `GtkCellRendererProgress` renders a numeric value as a progress par in a
+  * cell. Additionally, it can display a text on top of the progress bar.
+  */
 class CellRendererProgress(raw: Ptr[GtkCellRendererProgress])
     extends CellRenderer(raw.asInstanceOf),
       Orientable:
@@ -16,6 +23,10 @@ class CellRendererProgress(raw: Ptr[GtkCellRendererProgress])
 end CellRendererProgress
 
 object CellRendererProgress:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new `GtkCellRendererProgress`.
+    */
   def apply(): CellRendererProgress = new CellRendererProgress(
     gtk_cell_renderer_progress_new().asInstanceOf
   )

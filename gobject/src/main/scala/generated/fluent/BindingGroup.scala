@@ -13,9 +13,28 @@ import sn.gnome.gobject.internal.GBindingGroup
 import sn.gnome.gobject.internal.GBindingTransformFunc
 import sn.gnome.gobject.internal.GClosure
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * The #GBindingGroup can be used to bind multiple properties from an object
+  * collectively.
+  *
+  * Use the various methods to bind properties from a single source object to
+  * multiple destination objects. Properties can be bound bidirectionally and
+  * are connected when the source object is set with
+  * g_binding_group_set_source().
+  */
 class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a binding between @source_property on the source object and @target_property
+    * on @target. Whenever the @source_property is changed the @target_property
+    * is updated using the same value. The binding flag %G_BINDING_SYNC_CREATE
+    * is automatically specified.
+    *
+    * See g_object_bind_property() for more information.
+    */
   def bind(
       source_property: String | CString,
       target: Object,
@@ -29,6 +48,16 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     flags
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a binding between @source_property on the source object and
+    * @target_property
+    *   on @target, allowing you to set the transformation functions to be used
+    *   by the binding. The binding flag %G_BINDING_SYNC_CREATE is automatically
+    *   specified.
+    *
+    * See g_object_bind_property_full() for more information.
+    */
   def bindFull(
       source_property: String | CString,
       target: Object,
@@ -50,6 +79,20 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     user_data_destroy
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a binding between @source_property on the source object and
+    * @target_property
+    *   on @target, allowing you to set the transformation functions to be used
+    *   by the binding. The binding flag %G_BINDING_SYNC_CREATE is automatically
+    *   specified.
+    *
+    * This function is the language bindings friendly version of
+    * g_binding_group_bind_property_full(), using #GClosures instead of function
+    * pointers.
+    *
+    * See g_object_bind_property_with_closures() for more information.
+    */
   def bindWithClosures(
       source_property: String | CString,
       target: Object,
@@ -67,10 +110,21 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     transform_from
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the source object used for binding properties.
+    */
   def dupSource(): Object = new Object(
     g_binding_group_dup_source(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets @source as the source object used for creating property bindings. If
+    * there is already a source object all bindings from it will be removed.
+    *
+    * Note that all properties that have been bound must exist on @source.
+    */
   def setSource(source: Object): Unit = g_binding_group_set_source(
     this.raw.asInstanceOf,
     gpointer(source.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
@@ -87,6 +141,10 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
 end BindingGroup
 
 object BindingGroup:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GBindingGroup.
+    */
   def apply(): BindingGroup = new BindingGroup(
     g_binding_group_new().asInstanceOf
   )

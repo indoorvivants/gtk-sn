@@ -7,7 +7,7 @@ def renderClassMethod(cls: AugmentedClass, meth: Method)(using
     RenderingContext,
     GlobalKnowledge,
     NamingPolicy,
-    Label[String]
+    Label[FluentErr]
 ) =
   WithEffects.collect: coll =>
     val camelName = camelify(meth.name)
@@ -29,10 +29,6 @@ def renderClassMethod(cls: AugmentedClass, meth: Method)(using
         methods.get(GlobalKnowledge().names(clsName)).exists(_.exists((_, m) => sig(m) == thisMethodSig))
       )
 
-    if meth.identifier == "gdk_gl_context_get_surface" then 
-      val sigs = methods.mapValues(_.mapValues(sig(_)).toMap).toMap
-      scribe.info(s"$thisMethodSig: $allParents, ${allParents},  $isOverride, ${GlobalKnowledge().names.get("DrawContext")}")
-
     val isVararg = meth.parameters
       .collect:
         case p: Parameter if p.name.contains("...") => p
@@ -45,7 +41,7 @@ def renderClassMethod(cls: AugmentedClass, meth: Method)(using
 
     val returnType = renderType(
       meth.returnType.getOrElse(
-        break(s"return type missing")
+        break(FluentErr.MethodHasNoReturnType(meth.name))
       ),
       position = TypePosition.ReturnType
     )
@@ -80,7 +76,8 @@ def renderClassMethod(cls: AugmentedClass, meth: Method)(using
     val over = if isOverride then "override " else ""
 
     val inlining = if isVararg then "inline " else ""
-
+    
+    renderComment(meth.doc)
     line(
       s"${over}${inlining}def ${escape(camelName)}(${serialisedParams})$requiresZone: ${returnTypeRepr} = $finalBody"
     )

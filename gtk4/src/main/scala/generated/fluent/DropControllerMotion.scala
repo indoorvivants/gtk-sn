@@ -10,24 +10,57 @@ import sn.gnome.glib.internal.gint
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkDropControllerMotion
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * `GtkDropControllerMotion` is an event controller tracking the pointer during
+  * Drag-and-Drop operations.
+  *
+  * It is modeled after [class@Gtk.EventControllerMotion] so if you have used
+  * that, this should feel really familiar.
+  *
+  * This controller is not able to accept drops, use [class@Gtk.DropTarget] for
+  * that purpose.
+  */
 class DropControllerMotion(raw: Ptr[GtkDropControllerMotion])
     extends EventController(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns if a Drag-and-Drop operation is within the widget
+    * @self
+    *   or one of its children.
+    */
   def containsPointer(): Boolean = gtk_drop_controller_motion_contains_pointer(
     this.raw.asInstanceOf
   ).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the `GdkDrop` of a current Drag-and-Drop operation over the widget
+    * of @self.
+    */
   def getDrop(): Drop = new Drop(
     gtk_drop_controller_motion_get_drop(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns if a Drag-and-Drop operation is within the widget
+    * @self,
+    *   not one of its children.
+    */
   def isPointer(): Boolean =
     gtk_drop_controller_motion_is_pointer(this.raw.asInstanceOf).value.!=(0)
 
 end DropControllerMotion
 
 object DropControllerMotion:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new event controller that will handle pointer motion events
+    * during drag and drop.
+    */
   def apply(): DropControllerMotion = new DropControllerMotion(
     gtk_drop_controller_motion_new().asInstanceOf
   )

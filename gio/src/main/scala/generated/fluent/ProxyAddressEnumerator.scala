@@ -7,6 +7,18 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.SocketAddressEnumerator
 import sn.gnome.gio.internal.GProxyAddressEnumerator
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * #GProxyAddressEnumerator is a wrapper around #GSocketAddressEnumerator which
+  * takes the #GSocketAddress instances returned by the
+  * #GSocketAddressEnumerator and wraps them in #GProxyAddress instances, using
+  * the given #GProxyAddressEnumerator:proxy-resolver.
+  *
+  * This enumerator will be returned (for example, by
+  * g_socket_connectable_enumerate()) as appropriate when a proxy is configured;
+  * there should be no need to manually wrap a #GSocketAddressEnumerator
+  * instance with one.
+  */
 class ProxyAddressEnumerator(raw: Ptr[GProxyAddressEnumerator])
     extends SocketAddressEnumerator(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
