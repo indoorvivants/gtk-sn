@@ -8,13 +8,25 @@ import sn.gnome.graphene.internal.graphene_rect_t
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskRepeatNode
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A render node repeating its single child node.
+  */
 class RepeatNode(raw: Ptr[GskRepeatNode]) extends RenderNode(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves the child of @node.
+    */
   def getChild(): RenderNode = new RenderNode(
     gsk_repeat_node_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves the bounding rectangle of the child of @node.
+    */
   def getChildBounds(): Ptr[graphene_rect_t] = gsk_repeat_node_get_child_bounds(
     this.raw.asInstanceOf
   )
@@ -22,6 +34,11 @@ class RepeatNode(raw: Ptr[GskRepeatNode]) extends RenderNode(raw.asInstanceOf):
 end RepeatNode
 
 object RepeatNode:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a `GskRenderNode` that will repeat the drawing of @child across
+    * the given @bounds.
+    */
   def apply(
       bounds: Ptr[graphene_rect_t],
       child: RenderNode,

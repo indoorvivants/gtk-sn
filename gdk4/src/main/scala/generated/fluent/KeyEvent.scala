@@ -13,27 +13,75 @@ import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.guint
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * An event related to a key-based device.
+  */
 class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Extracts the consumed modifiers from a key event.
+    */
   def getConsumedModifiers(): GdkModifierType =
     gdk_key_event_get_consumed_modifiers(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Extracts the keycode from a key event.
+    */
   def getKeycode(): UInt = gdk_key_event_get_keycode(
     this.raw.asInstanceOf
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Extracts the keyval from a key event.
+    */
   def getKeyval(): UInt = gdk_key_event_get_keyval(this.raw.asInstanceOf).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Extracts the layout from a key event.
+    */
   def getLayout(): UInt = gdk_key_event_get_layout(this.raw.asInstanceOf).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Extracts the shift level from a key event.
+    */
   def getLevel(): UInt = gdk_key_event_get_level(this.raw.asInstanceOf).value
 
-  // Method get_match contains an OUT parameter, which is not supported yet
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets a keyval and modifier combination that will match the event.
+    *
+    * See [method@Gdk.KeyEvent.matches].
+    */
+  @annotation.compileTimeOnly(
+    "Method get_match contains an OUT parameter, which is not supported yet"
+  )
+  def getMatch(using DummyImplicit) = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Extracts whether the key event is for a modifier key.
+    */
   def isModifier(): Boolean =
     gdk_key_event_is_modifier(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Matches a key event against a keyval and modifiers.
+    *
+    * This is typically used to trigger keyboard shortcuts such as Ctrl-C.
+    *
+    * Partial matches are possible where the combination matches if the
+    * currently active group is ignored.
+    *
+    * Note that we ignore Caps Lock for matching.
+    */
   def matches(keyval: UInt, modifiers: GdkModifierType): GdkKeyMatch =
     gdk_key_event_matches(this.raw.asInstanceOf, guint(keyval), modifiers)
 

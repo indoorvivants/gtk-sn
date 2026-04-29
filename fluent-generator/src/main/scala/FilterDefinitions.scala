@@ -81,8 +81,10 @@ def filterDefinitions(
 
     def weirdConstructor(cName: String, msg: String) =
       constructor.foreach: meth =>
-        check(meth.identifier == cName, s"Constructor ${meth.name} is weird: $msg")
-
+        check(
+          meth.identifier == cName,
+          s"Constructor ${meth.name} is weird: $msg"
+        )
 
     val weirdArrays = Seq(
       "gtk_cclosure_expression_new",
@@ -92,15 +94,21 @@ def filterDefinitions(
       "gtk_snapshot_append_cairo",
       "gtk_im_context_simple_add_table",
       "gtk_cclosure_expression_new",
-      "gtk_snapshot_append_border"
+      "gtk_snapshot_append_border",
+      "gdk_content_provider_new_union",
+      "gsk_container_node_new",
+      "gsk_border_node_new",
+      "gsk_gl_shader_node_new"
     )
 
     weirdArrays.foreach: ar =>
       weirdMethod(ar, "non NULL-terminated arrays require special handling")
 
     weirdArrays.foreach: ar =>
-      weirdConstructor(ar, "non NULL-terminated arrays require special handling")
-
+      weirdConstructor(
+        ar,
+        "non NULL-terminated arrays require special handling"
+      )
 
     method.foreach: meth =>
       weirdMethod(
@@ -131,7 +139,6 @@ def filterDefinitions(
       )
 
     constructor.foreach: constr =>
-      
       check(
         hasOutParameters(constr.parameters),
         s"Constructor ${constr.name} contains an OUT parameter, which is not supported yet"

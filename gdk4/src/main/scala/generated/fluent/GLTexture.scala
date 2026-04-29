@@ -15,6 +15,10 @@ import sn.gnome.glib.internal.GDestroyNotify
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.glib.internal.guint
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A GdkTexture representing a GL texture object.
+  */
 class GLTexture(raw: Ptr[GdkGLTexture])
     extends Texture(raw.asInstanceOf),
       Paintable,
@@ -22,11 +26,27 @@ class GLTexture(raw: Ptr[GdkGLTexture])
       LoadableIcon:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Releases the GL resources held by a `GdkGLTexture`.
+    *
+    * The texture contents are still available via the
+    * [method@Gdk.Texture.download] function, after this function has been
+    * called.
+    */
   def release(): Unit = gdk_gl_texture_release(this.raw.asInstanceOf)
 
 end GLTexture
 
 object GLTexture:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new texture for an existing GL texture.
+    *
+    * Note that the GL texture must not be modified until @destroy is called,
+    * which will happen when the GdkTexture object is finalized, or due to an
+    * explicit call of [method@Gdk.GLTexture.release].
+    */
   def apply(
       context: GLContext,
       id: UInt,

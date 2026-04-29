@@ -14,6 +14,10 @@ import sn.gnome.gio.fluent.LoadableIcon
 import sn.gnome.glib.internal.GBytes
 import sn.gnome.glib.internal.gsize
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A `GdkTexture` representing image data in memory.
+  */
 class MemoryTexture(raw: Ptr[GdkMemoryTexture])
     extends Texture(raw.asInstanceOf),
       Paintable,
@@ -24,6 +28,12 @@ class MemoryTexture(raw: Ptr[GdkMemoryTexture])
 end MemoryTexture
 
 object MemoryTexture:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new texture for a blob of image data.
+    *
+    * The `GBytes` must contain @stride × @height pixels in the given format.
+    */
   def apply(
       width: Int,
       height: Int,

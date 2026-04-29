@@ -15,50 +15,120 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.internal.GValue
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A `GdkContentSerializer` is used to serialize content for inter-application
+  * data transfers.
+  *
+  * The `GdkContentSerializer` transforms an object that is identified by a
+  * GType into a serialized form (i.e. a byte stream) that is identified by a
+  * mime type.
+  *
+  * GTK provides serializers and deserializers for common data types such as
+  * text, colors, images or file lists. To register your own serialization
+  * functions, use [func@Gdk.content_register_serializer].
+  *
+  * Also see [class@Gdk.ContentDeserializer].
+  */
 class ContentSerializer(raw: Ptr[GdkContentSerializer])
     extends Object(raw.asInstanceOf),
       AsyncResult:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the cancellable for the current operation.
+    *
+    * This is the `GCancellable` that was passed to
+    * [func@content_serialize_async].
+    */
   def getCancellable(): Cancellable = new Cancellable(
     gdk_content_serializer_get_cancellable(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the `GType` to of the object to serialize.
+    */
   def getGtype(): GType = gdk_content_serializer_get_gtype(
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the mime type to serialize to.
+    */
   def getMimeType()(using Zone): String = fromCString(
     gdk_content_serializer_get_mime_type(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the output stream for the current operation.
+    *
+    * This is the stream that was passed to [func@content_serialize_async].
+    */
   def getOutputStream(): OutputStream = new OutputStream(
     gdk_content_serializer_get_output_stream(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the I/O priority for the current operation.
+    *
+    * This is the priority that was passed to [func@content_serialize_async].
+    */
   def getPriority(): Int = gdk_content_serializer_get_priority(
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the data that was associated with the current operation.
+    *
+    * See [method@Gdk.ContentSerializer.set_task_data].
+    */
   def getTaskData(): Ptr[Byte] = gdk_content_serializer_get_task_data(
     this.raw.asInstanceOf
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the user data that was passed when the serializer was registered.
+    */
   def getUserData(): Ptr[Byte] = gdk_content_serializer_get_user_data(
     this.raw.asInstanceOf
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the `GValue` to read the object to serialize from.
+    */
   def getValue(): Ptr[GValue] = gdk_content_serializer_get_value(
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Indicate that the serialization has ended with an error.
+    *
+    * This function consumes @error.
+    */
   def returnError(error: Ptr[GError]): Unit =
     gdk_content_serializer_return_error(this.raw.asInstanceOf, error)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Indicate that the serialization has been successfully completed.
+    */
   def returnSuccess(): Unit = gdk_content_serializer_return_success(
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Associate data with the current serialization operation.
+    */
   def setTaskData(data: Ptr[Byte], _notify: GDestroyNotify): Unit =
     gdk_content_serializer_set_task_data(
       this.raw.asInstanceOf,

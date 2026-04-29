@@ -13,5 +13,9 @@ class GLRenderer(raw: Ptr[GskGLRenderer]) extends Renderer(raw.asInstanceOf):
 end GLRenderer
 
 object GLRenderer:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new `GskRenderer` using the new OpenGL renderer.
+    */
   def apply(): GLRenderer = new GLRenderer(gsk_gl_renderer_new().asInstanceOf)
 end GLRenderer

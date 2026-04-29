@@ -9,9 +9,18 @@ import sn.gnome.gdk4.internal.GdkFocusEvent
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * An event related to a keyboard focus change.
+  */
 class FocusEvent(raw: Ptr[GdkFocusEvent]) extends Event(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Extracts whether this event is about focus entering or leaving the
+    * surface.
+    */
   def getIn(): Boolean =
     gdk_focus_event_get_in(this.raw.asInstanceOf).value.!=(0)
 
