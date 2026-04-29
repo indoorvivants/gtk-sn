@@ -170,7 +170,7 @@ class LevelBar(raw: Ptr[GtkLevelBar])
   @annotation.compileTimeOnly(
     "Method get_offset_value contains an OUT parameter, which is not supported yet"
   )
-  def getOffsetValue() = ???
+  def getOffsetValue(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -203,7 +203,7 @@ class Entry(raw: Ptr[GtkEntry])
   @annotation.compileTimeOnly(
     "Method get_icon_area contains an OUT parameter, which is not supported yet"
   )
-  def getIconArea() = ???
+  def getIconArea(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

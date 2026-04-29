@@ -57,7 +57,7 @@ class Fixed(raw: Ptr[GtkFixed])
   @annotation.compileTimeOnly(
     "Method get_child_position contains an OUT parameter, which is not supported yet"
   )
-  def getChildPosition() = ???
+  def getChildPosition(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

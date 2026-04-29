@@ -24,12 +24,12 @@ class GestureDrag(raw: Ptr[GtkGestureDrag])
   @annotation.compileTimeOnly(
     "Method get_offset contains an OUT parameter, which is not supported yet"
   )
-  def getOffset() = ???
+  def getOffset(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_start_point contains an OUT parameter, which is not supported yet"
   )
-  def getStartPoint() = ???
+  def getStartPoint(using DummyImplicit) = ???
 
 end GestureDrag
 

@@ -674,12 +674,12 @@ class CellArea(raw: Ptr[GtkCellArea])
   @annotation.compileTimeOnly(
     "Method get_cell_allocation contains an OUT parameter, which is not supported yet"
   )
-  def getCellAllocation() = ???
+  def getCellAllocation(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_cell_at_position contains an OUT parameter, which is not supported yet"
   )
-  def getCellAtPosition() = ???
+  def getCellAtPosition(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -747,22 +747,22 @@ class CellArea(raw: Ptr[GtkCellArea])
   @annotation.compileTimeOnly(
     "Method get_preferred_height contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredHeight() = ???
+  def getPreferredHeight(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredHeightForWidth() = ???
+  def getPreferredHeightForWidth(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_preferred_width contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredWidth() = ???
+  def getPreferredWidth(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredWidthForHeight() = ???
+  def getPreferredWidthForHeight(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -785,7 +785,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   @annotation.compileTimeOnly(
     "Method inner_cell_area contains an OUT parameter, which is not supported yet"
   )
-  def innerCellArea() = ???
+  def innerCellArea(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -831,7 +831,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   @annotation.compileTimeOnly(
     "Method request_renderer contains an OUT parameter, which is not supported yet"
   )
-  def requestRenderer() = ???
+  def requestRenderer(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

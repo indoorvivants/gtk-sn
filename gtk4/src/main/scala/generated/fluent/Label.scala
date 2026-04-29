@@ -297,7 +297,7 @@ class Label(raw: Ptr[GtkLabel])
   @annotation.compileTimeOnly(
     "Method get_layout_offsets contains an OUT parameter, which is not supported yet"
   )
-  def getLayoutOffsets() = ???
+  def getLayoutOffsets(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -359,7 +359,7 @@ class Label(raw: Ptr[GtkLabel])
   @annotation.compileTimeOnly(
     "Method get_selection_bounds contains an OUT parameter, which is not supported yet"
   )
-  def getSelectionBounds() = ???
+  def getSelectionBounds(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

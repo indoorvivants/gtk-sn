@@ -130,7 +130,7 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_hard_margins contains an OUT parameter, which is not supported yet"
   )
-  def getHardMargins() = ???
+  def getHardMargins(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

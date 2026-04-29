@@ -654,7 +654,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method compute_bounds contains an OUT parameter, which is not supported yet"
   )
-  def computeBounds() = ???
+  def computeBounds(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -678,12 +678,12 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method compute_point contains an OUT parameter, which is not supported yet"
   )
-  def computePoint() = ???
+  def computePoint(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method compute_transform contains an OUT parameter, which is not supported yet"
   )
-  def computeTransform() = ???
+  def computeTransform(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -822,7 +822,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method get_allocation contains an OUT parameter, which is not supported yet"
   )
-  def getAllocation() = ???
+  def getAllocation(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -896,7 +896,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method get_color contains an OUT parameter, which is not supported yet"
   )
-  def getColor() = ???
+  def getColor(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1234,7 +1234,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method get_preferred_size contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredSize() = ???
+  def getPreferredSize(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1362,7 +1362,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method get_size_request contains an OUT parameter, which is not supported yet"
   )
-  def getSizeRequest() = ???
+  def getSizeRequest(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1769,7 +1769,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method measure contains an OUT parameter, which is not supported yet"
   )
-  def measure() = ???
+  def measure(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2522,7 +2522,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method translate_coordinates contains an OUT parameter, which is not supported yet"
   )
-  def translateCoordinates() = ???
+  def translateCoordinates(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

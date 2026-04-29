@@ -66,7 +66,7 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
   @annotation.compileTimeOnly(
     "Method get_nth_sort_column contains an OUT parameter, which is not supported yet"
   )
-  def getNthSortColumn() = ???
+  def getNthSortColumn(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

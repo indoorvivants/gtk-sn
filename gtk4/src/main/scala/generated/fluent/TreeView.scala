@@ -172,32 +172,32 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method convert_bin_window_to_tree_coords contains an OUT parameter, which is not supported yet"
   )
-  def convertBinWindowToTreeCoords() = ???
+  def convertBinWindowToTreeCoords(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method convert_bin_window_to_widget_coords contains an OUT parameter, which is not supported yet"
   )
-  def convertBinWindowToWidgetCoords() = ???
+  def convertBinWindowToWidgetCoords(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method convert_tree_to_bin_window_coords contains an OUT parameter, which is not supported yet"
   )
-  def convertTreeToBinWindowCoords() = ???
+  def convertTreeToBinWindowCoords(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method convert_tree_to_widget_coords contains an OUT parameter, which is not supported yet"
   )
-  def convertTreeToWidgetCoords() = ???
+  def convertTreeToWidgetCoords(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method convert_widget_to_bin_window_coords contains an OUT parameter, which is not supported yet"
   )
-  def convertWidgetToBinWindowCoords() = ???
+  def convertWidgetToBinWindowCoords(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method convert_widget_to_tree_coords contains an OUT parameter, which is not supported yet"
   )
-  def convertWidgetToTreeCoords() = ???
+  def convertWidgetToTreeCoords(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -279,12 +279,12 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method get_background_area contains an OUT parameter, which is not supported yet"
   )
-  def getBackgroundArea() = ???
+  def getBackgroundArea(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_cell_area contains an OUT parameter, which is not supported yet"
   )
-  def getCellArea() = ???
+  def getCellArea(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -306,17 +306,17 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method get_cursor contains an OUT parameter, which is not supported yet"
   )
-  def getCursor() = ???
+  def getCursor(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_dest_row_at_pos contains an OUT parameter, which is not supported yet"
   )
-  def getDestRowAtPos() = ???
+  def getDestRowAtPos(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_drag_dest_row contains an OUT parameter, which is not supported yet"
   )
-  def getDragDestRow() = ???
+  def getDragDestRow(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -413,7 +413,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method get_path_at_pos contains an OUT parameter, which is not supported yet"
   )
-  def getPathAtPos() = ???
+  def getPathAtPos(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -491,17 +491,17 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method get_tooltip_context contains an OUT parameter, which is not supported yet"
   )
-  def getTooltipContext() = ???
+  def getTooltipContext(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_visible_range contains an OUT parameter, which is not supported yet"
   )
-  def getVisibleRange() = ???
+  def getVisibleRange(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_visible_rect contains an OUT parameter, which is not supported yet"
   )
-  def getVisibleRect() = ???
+  def getVisibleRect(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -569,7 +569,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method is_blank_at_pos contains an OUT parameter, which is not supported yet"
   )
-  def isBlankAtPos() = ???
+  def isBlankAtPos(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

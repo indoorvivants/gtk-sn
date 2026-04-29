@@ -191,7 +191,7 @@ class SpinButton(raw: Ptr[GtkSpinButton])
   @annotation.compileTimeOnly(
     "Method get_increments contains an OUT parameter, which is not supported yet"
   )
-  def getIncrements() = ???
+  def getIncrements(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -203,7 +203,7 @@ class SpinButton(raw: Ptr[GtkSpinButton])
   @annotation.compileTimeOnly(
     "Method get_range contains an OUT parameter, which is not supported yet"
   )
-  def getRange() = ???
+  def getRange(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

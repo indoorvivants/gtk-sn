@@ -169,7 +169,7 @@ class Window(raw: Ptr[GtkWindow])
   @annotation.compileTimeOnly(
     "Method get_default_size contains an OUT parameter, which is not supported yet"
   )
-  def getDefaultSize() = ???
+  def getDefaultSize(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

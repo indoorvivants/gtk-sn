@@ -45,7 +45,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
   @annotation.compileTimeOnly(
     "Method get_allocation contains an OUT parameter, which is not supported yet"
   )
-  def getAllocation() = ???
+  def getAllocation(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -66,22 +66,22 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
   @annotation.compileTimeOnly(
     "Method get_preferred_height contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredHeight() = ???
+  def getPreferredHeight(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredHeightForWidth() = ???
+  def getPreferredHeightForWidth(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_preferred_width contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredWidth() = ???
+  def getPreferredWidth(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredWidthForHeight() = ???
+  def getPreferredWidthForHeight(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

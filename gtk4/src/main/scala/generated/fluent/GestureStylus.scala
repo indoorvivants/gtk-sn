@@ -23,17 +23,17 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
   @annotation.compileTimeOnly(
     "Method get_axes contains an OUT parameter, which is not supported yet"
   )
-  def getAxes() = ???
+  def getAxes(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_axis contains an OUT parameter, which is not supported yet"
   )
-  def getAxis() = ???
+  def getAxis(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_backlog contains an OUT parameter, which is not supported yet"
   )
-  def getBacklog() = ???
+  def getBacklog(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

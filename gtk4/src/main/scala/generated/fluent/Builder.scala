@@ -563,12 +563,12 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method value_from_string contains an OUT parameter, which is not supported yet"
   )
-  def valueFromString() = ???
+  def valueFromString(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method value_from_string_type contains an OUT parameter, which is not supported yet"
   )
-  def valueFromStringType() = ???
+  def valueFromStringType(using DummyImplicit) = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

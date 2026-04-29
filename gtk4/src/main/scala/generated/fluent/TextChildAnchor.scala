@@ -35,7 +35,7 @@ class TextChildAnchor(raw: Ptr[GtkTextChildAnchor])
   @annotation.compileTimeOnly(
     "Method get_widgets contains an OUT parameter, which is not supported yet"
   )
-  def getWidgets() = ???
+  def getWidgets(using DummyImplicit) = ???
 
 end TextChildAnchor
 

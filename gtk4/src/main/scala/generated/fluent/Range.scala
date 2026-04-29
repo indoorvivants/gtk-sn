@@ -71,7 +71,7 @@ class Range(raw: Ptr[GtkRange])
   @annotation.compileTimeOnly(
     "Method get_range_rect contains an OUT parameter, which is not supported yet"
   )
-  def getRangeRect() = ???
+  def getRangeRect(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -98,7 +98,7 @@ class Range(raw: Ptr[GtkRange])
   @annotation.compileTimeOnly(
     "Method get_slider_range contains an OUT parameter, which is not supported yet"
   )
-  def getSliderRange() = ???
+  def getSliderRange(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

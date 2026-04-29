@@ -3,6 +3,26 @@ import rendition.*
 import com.indoorvivants.gnome.gir_schema.*
 import util.boundary.*
 
+def needsOverride(cls: AugmentedClass, meth: Method)(using GlobalKnowledge) =
+  val methods = summon[GlobalKnowledge].classMethods
+  val allParents = (cls.parent.toSeq ++ cls.implements.map(_.name))
+
+  def sig(meth: Method) =
+    val params =
+      meth.parameters.collect:
+        case p: Parameter => p.name.getOrElse("<noname>")
+    s"${meth.name}(${params.mkString(", ")})"
+
+  val thisMethodSig = sig(meth)
+
+  allParents
+    .exists(clsName =>
+      methods
+        .get(GlobalKnowledge().names(clsName))
+        .exists(_.exists((_, m) => sig(m) == thisMethodSig))
+    )
+end needsOverride
+
 def renderClassMethod(cls: AugmentedClass, meth: Method)(using
     RenderingContext,
     GlobalKnowledge,
@@ -13,21 +33,7 @@ def renderClassMethod(cls: AugmentedClass, meth: Method)(using
     val camelName = camelify(meth.name)
     val cMethod = meth.identifier
 
-    val methods = summon[GlobalKnowledge].classMethods
-    val allParents = (cls.parent.toSeq ++ cls.implements.map(_.name))
-
-    def sig(meth: Method) =
-      val params =
-        meth.parameters.collect:
-          case p: Parameter => p.name.getOrElse("<noname>")
-      s"${meth.name}(${params.mkString(", ")})"
-
-    val thisMethodSig = sig(meth)
-
-    val isOverride = allParents
-      .exists(clsName =>
-        methods.get(GlobalKnowledge().names(clsName)).exists(_.exists((_, m) => sig(m) == thisMethodSig))
-      )
+    val isOverride = needsOverride(cls, meth)
 
     val isVararg = meth.parameters
       .collect:
@@ -76,7 +82,7 @@ def renderClassMethod(cls: AugmentedClass, meth: Method)(using
     val over = if isOverride then "override " else ""
 
     val inlining = if isVararg then "inline " else ""
-    
+
     renderComment(meth.doc)
     line(
       s"${over}${inlining}def ${escape(camelName)}(${serialisedParams})$requiresZone: ${returnTypeRepr} = $finalBody"

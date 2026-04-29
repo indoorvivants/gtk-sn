@@ -85,17 +85,17 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   @annotation.compileTimeOnly(
     "Method get_aligned_area contains an OUT parameter, which is not supported yet"
   )
-  def getAlignedArea() = ???
+  def getAlignedArea(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_alignment contains an OUT parameter, which is not supported yet"
   )
-  def getAlignment() = ???
+  def getAlignment(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_fixed_size contains an OUT parameter, which is not supported yet"
   )
-  def getFixedSize() = ???
+  def getFixedSize(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -114,32 +114,32 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   @annotation.compileTimeOnly(
     "Method get_padding contains an OUT parameter, which is not supported yet"
   )
-  def getPadding() = ???
+  def getPadding(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_preferred_height contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredHeight() = ???
+  def getPreferredHeight(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredHeightForWidth() = ???
+  def getPreferredHeightForWidth(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_preferred_size contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredSize() = ???
+  def getPreferredSize(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_preferred_width contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredWidth() = ???
+  def getPreferredWidth(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredWidthForHeight() = ???
+  def getPreferredWidthForHeight(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

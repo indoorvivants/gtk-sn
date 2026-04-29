@@ -126,7 +126,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
   @annotation.compileTimeOnly(
     "Method get_active_iter contains an OUT parameter, which is not supported yet"
   )
-  def getActiveIter() = ???
+  def getActiveIter(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -138,7 +138,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method buffer_to_window_coords contains an OUT parameter, which is not supported yet"
   )
-  def bufferToWindowCoords() = ???
+  def bufferToWindowCoords(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -202,7 +202,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_cursor_locations contains an OUT parameter, which is not supported yet"
   )
-  def getCursorLocations() = ???
+  def getCursorLocations(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -271,17 +271,17 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_iter_at_location contains an OUT parameter, which is not supported yet"
   )
-  def getIterAtLocation() = ???
+  def getIterAtLocation(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_iter_at_position contains an OUT parameter, which is not supported yet"
   )
-  def getIterAtPosition() = ???
+  def getIterAtPosition(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_iter_location contains an OUT parameter, which is not supported yet"
   )
-  def getIterLocation() = ???
+  def getIterLocation(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -306,12 +306,12 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_line_at_y contains an OUT parameter, which is not supported yet"
   )
-  def getLineAtY() = ???
+  def getLineAtY(using DummyImplicit) = ???
 
   @annotation.compileTimeOnly(
     "Method get_line_yrange contains an OUT parameter, which is not supported yet"
   )
-  def getLineYrange() = ???
+  def getLineYrange(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -411,7 +411,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_visible_rect contains an OUT parameter, which is not supported yet"
   )
-  def getVisibleRect() = ???
+  def getVisibleRect(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -863,7 +863,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method window_to_buffer_coords contains an OUT parameter, which is not supported yet"
   )
-  def windowToBufferCoords() = ???
+  def windowToBufferCoords(using DummyImplicit) = ???
 
 end TextView
 

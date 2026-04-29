@@ -197,7 +197,7 @@ class GLArea(raw: Ptr[GtkGLArea])
   @annotation.compileTimeOnly(
     "Method get_required_version contains an OUT parameter, which is not supported yet"
   )
-  def getRequiredVersion() = ???
+  def getRequiredVersion(using DummyImplicit) = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
