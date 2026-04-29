@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.gtk.org/introspection/doc/1.0" xmlns:glib="http://www.gtk.org/introspection/glib/1.0" xmlns:c="http://www.gtk.org/introspection/c/1.0" xmlns:core="http://www.gtk.org/introspection/core/1.0" xmlns:doc="http://www.gtk.org/introspection/doc/1.0">
+  <xs:import namespace="http://www.gtk.org/introspection/c/1.0" schemaLocation="c.xsd"/>
+  <xs:import namespace="http://www.gtk.org/introspection/core/1.0" schemaLocation="gir.xsd"/>
+  <xs:import namespace="http://www.gtk.org/introspection/glib/1.0" schemaLocation="glib.xsd"/>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+  <xs:element name="format">
+    <xs:annotation>
+      <xs:documentation>Format used for the included documentation.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Name of the documentation format. Valid values are: gi-docgen, gtk-doc-docbook, gtk-doc-markdown, hotdoc, unknown.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

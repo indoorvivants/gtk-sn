@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.w3.org/XML/1998/namespace" xmlns:glib="http://www.gtk.org/introspection/glib/1.0" xmlns:c="http://www.gtk.org/introspection/c/1.0" xmlns:core="http://www.gtk.org/introspection/core/1.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.w3.org/XML/1998/namespace" xmlns:glib="http://www.gtk.org/introspection/glib/1.0" xmlns:c="http://www.gtk.org/introspection/c/1.0" xmlns:core="http://www.gtk.org/introspection/core/1.0" xmlns:doc="http://www.gtk.org/introspection/doc/1.0">
   <xs:import namespace="http://www.gtk.org/introspection/c/1.0" schemaLocation="c.xsd"/>
   <xs:import namespace="http://www.gtk.org/introspection/core/1.0" schemaLocation="gir.xsd"/>
+  <xs:import namespace="http://www.gtk.org/introspection/doc/1.0" schemaLocation="doc.xsd"/>
   <xs:import namespace="http://www.gtk.org/introspection/glib/1.0" schemaLocation="glib.xsd"/>
   <xs:attribute name="space">
     <xs:annotation>
