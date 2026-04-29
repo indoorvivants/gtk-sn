@@ -22,87 +22,206 @@ import sn.gnome.glib.internal.guint
 import sn.gnome.glib.internal.guint32
 import sn.gnome.gobject.fluent.Object
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A type for representing D-Bus messages that can be sent or received on a
+  * #GDBusConnection.
+  */
 class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Copies @message. The copy is a deep copy and the returned #GDBusMessage is
+    * completely identical except that it is guaranteed to not be locked.
+    *
+    * This operation can fail if e.g. @message contains file descriptors and the
+    * per-process or system-wide open files limit is reached.
+    */
   def copy(): GResult[DBusMessage] = GResult.wrap(__errorPtr =>
     new DBusMessage(
       g_dbus_message_copy(this.raw.asInstanceOf, __errorPtr).asInstanceOf
     )
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience to get the first item in the body of @message.
+    */
   def getArg0()(using Zone): String = fromCString(
     g_dbus_message_get_arg0(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the body of a message.
+    */
   def getBody(): Ptr[GVariant] = g_dbus_message_get_body(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the byte order of @message.
+    */
   def getByteOrder(): GDBusMessageByteOrder = g_dbus_message_get_byte_order(
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience getter for the %G_DBUS_MESSAGE_HEADER_FIELD_DESTINATION header
+    * field.
+    */
   def getDestination()(using Zone): String = fromCString(
     g_dbus_message_get_destination(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience getter for the %G_DBUS_MESSAGE_HEADER_FIELD_ERROR_NAME header
+    * field.
+    */
   def getErrorName()(using Zone): String = fromCString(
     g_dbus_message_get_error_name(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the flags for @message.
+    */
   def getFlags(): GDBusMessageFlags = g_dbus_message_get_flags(
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets a header field on @message.
+    *
+    * The caller is responsible for checking the type of the returned #GVariant
+    * matches what is expected.
+    */
   def getHeader(header_field: GDBusMessageHeaderField): Ptr[GVariant] =
     g_dbus_message_get_header(this.raw.asInstanceOf, header_field)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets an array of all header fields on @message that are set.
+    */
   def getHeaderFields(): Ptr[UByte] = g_dbus_message_get_header_fields(
     this.raw.asInstanceOf
   ).asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience getter for the %G_DBUS_MESSAGE_HEADER_FIELD_INTERFACE header
+    * field.
+    */
   def getInterface()(using Zone): String = fromCString(
     g_dbus_message_get_interface(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Checks whether @message is locked. To monitor changes to this value,
+    * conncet to the #GObject::notify signal to listen for changes on the
+    * #GDBusMessage:locked property.
+    */
   def getLocked(): Boolean =
     g_dbus_message_get_locked(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience getter for the %G_DBUS_MESSAGE_HEADER_FIELD_MEMBER header
+    * field.
+    */
   def getMember()(using Zone): String = fromCString(
     g_dbus_message_get_member(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the type of @message.
+    */
   def getMessageType(): GDBusMessageType = g_dbus_message_get_message_type(
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience getter for the %G_DBUS_MESSAGE_HEADER_FIELD_NUM_UNIX_FDS
+    * header field.
+    */
   def getNumUnixFds(): UInt = g_dbus_message_get_num_unix_fds(
     this.raw.asInstanceOf
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience getter for the %G_DBUS_MESSAGE_HEADER_FIELD_PATH header field.
+    */
   def getPath()(using Zone): String = fromCString(
     g_dbus_message_get_path(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience getter for the %G_DBUS_MESSAGE_HEADER_FIELD_REPLY_SERIAL
+    * header field.
+    */
   def getReplySerial(): UInt = g_dbus_message_get_reply_serial(
     this.raw.asInstanceOf
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience getter for the %G_DBUS_MESSAGE_HEADER_FIELD_SENDER header
+    * field.
+    */
   def getSender()(using Zone): String = fromCString(
     g_dbus_message_get_sender(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the serial for @message.
+    */
   def getSerial(): UInt = g_dbus_message_get_serial(this.raw.asInstanceOf).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience getter for the %G_DBUS_MESSAGE_HEADER_FIELD_SIGNATURE header
+    * field.
+    *
+    * This will always be non-%NULL, but may be an empty string.
+    */
   def getSignature()(using Zone): String = fromCString(
     g_dbus_message_get_signature(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the UNIX file descriptors associated with @message, if any.
+    *
+    * This method is only available on UNIX.
+    *
+    * The file descriptors normally correspond to %G_VARIANT_TYPE_HANDLE values
+    * in the body of the message. For example, if g_variant_get_handle() returns
+    * 5, that is intended to be a reference to the file descriptor that can be
+    * accessed by `g_unix_fd_list_get (list, 5, ...)`.
+    */
   def getUnixFdList(): UnixFDList = new UnixFDList(
     g_dbus_message_get_unix_fd_list(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * If @message is locked, does nothing. Otherwise locks the message.
+    */
   def lock(): Unit = g_dbus_message_lock(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GDBusMessage that is an error reply to @method_call_message.
+    */
   inline def newMethodError(
       error_name: String | CString,
       error_message_format: String | CString,
@@ -116,6 +235,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GDBusMessage that is an error reply to @method_call_message.
+    */
   def newMethodErrorLiteral(
       error_name: String | CString,
       error_message: String | CString
@@ -127,6 +250,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Like g_dbus_message_new_method_error() but intended for language bindings.
+    */
   def newMethodErrorValist(
       error_name: String | CString,
       error_message_format: String | CString,
@@ -140,91 +267,232 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GDBusMessage that is a reply to @method_call_message.
+    */
   def newMethodReply(): DBusMessage = new DBusMessage(
     g_dbus_message_new_method_reply(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /**  COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    *  Produces a human-readable multi-line description of @message.
+    *
+    *  The contents of the description has no ABI guarantees, the contents
+    *  and formatting is subject to change at any time. Typical output
+    *  looks something like this:
+    *  |[
+    *  Flags:   none
+    *  Version: 0
+    *  Serial:  4
+    *  Headers:
+    *    path -> objectpath '/org/gtk/GDBus/TestObject'
+    *    interface -> 'org.gtk.GDBus.TestInterface'
+    *    member -> 'GimmeStdout'
+    *    destination -> ':1.146'
+    *  Body: ()
+    *  UNIX File Descriptors:
+    *    (none)
+    *  ]|
+    *  or
+    *  |[
+    *  Flags:   no-reply-expected
+    *  Version: 0
+    *  Serial:  477
+    *  Headers:
+    *    reply-serial -> uint32 4
+    *    destination -> ':1.159'
+    *    sender -> ':1.146'
+    *    num-unix-fds -> uint32 1
+    *  Body: ()
+    *  UNIX File Descriptors:
+    *    fd 12: dev=0:10,mode=020620,ino=5,uid=500,gid=5,rdev=136:2,size=0,atime=1273085037,mtime=1273085851,ctime=1272982635
+    *  ]|
+    */
   def print(indent: UInt)(using Zone): String = fromCString(
     g_dbus_message_print(this.raw.asInstanceOf, guint(indent)).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the body @message. As a side-effect the
+    * %G_DBUS_MESSAGE_HEADER_FIELD_SIGNATURE header field is set to the type
+    * string of @body (or cleared if @body is %NULL).
+    *
+    * If @body is floating, @message assumes ownership of @body.
+    */
   def setBody(body: Ptr[GVariant]): Unit =
     g_dbus_message_set_body(this.raw.asInstanceOf, body)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the byte order of @message.
+    */
   def setByteOrder(byte_order: GDBusMessageByteOrder): Unit =
     g_dbus_message_set_byte_order(this.raw.asInstanceOf, byte_order)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience setter for the %G_DBUS_MESSAGE_HEADER_FIELD_DESTINATION header
+    * field.
+    */
   def setDestination(value: String | CString)(using Zone): Unit =
     g_dbus_message_set_destination(
       this.raw.asInstanceOf,
       __sn_extract_string(value).asInstanceOf[Ptr[gchar]]
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience setter for the %G_DBUS_MESSAGE_HEADER_FIELD_ERROR_NAME header
+    * field.
+    */
   def setErrorName(value: String | CString)(using Zone): Unit =
     g_dbus_message_set_error_name(
       this.raw.asInstanceOf,
       __sn_extract_string(value).asInstanceOf[Ptr[gchar]]
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the flags to set on @message.
+    */
   def setFlags(flags: GDBusMessageFlags): Unit =
     g_dbus_message_set_flags(this.raw.asInstanceOf, flags)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets a header field on @message.
+    *
+    * If @value is floating, @message assumes ownership of @value.
+    */
   def setHeader(
       header_field: GDBusMessageHeaderField,
       value: Ptr[GVariant]
   ): Unit =
     g_dbus_message_set_header(this.raw.asInstanceOf, header_field, value)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience setter for the %G_DBUS_MESSAGE_HEADER_FIELD_INTERFACE header
+    * field.
+    */
   def setInterface(value: String | CString)(using Zone): Unit =
     g_dbus_message_set_interface(
       this.raw.asInstanceOf,
       __sn_extract_string(value).asInstanceOf[Ptr[gchar]]
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience setter for the %G_DBUS_MESSAGE_HEADER_FIELD_MEMBER header
+    * field.
+    */
   def setMember(value: String | CString)(using Zone): Unit =
     g_dbus_message_set_member(
       this.raw.asInstanceOf,
       __sn_extract_string(value).asInstanceOf[Ptr[gchar]]
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets @message to be of @type.
+    */
   def setMessageType(`type`: GDBusMessageType): Unit =
     g_dbus_message_set_message_type(this.raw.asInstanceOf, `type`)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience setter for the %G_DBUS_MESSAGE_HEADER_FIELD_NUM_UNIX_FDS
+    * header field.
+    */
   def setNumUnixFds(value: UInt): Unit =
     g_dbus_message_set_num_unix_fds(this.raw.asInstanceOf, guint32(value))
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience setter for the %G_DBUS_MESSAGE_HEADER_FIELD_PATH header field.
+    */
   def setPath(value: String | CString)(using Zone): Unit =
     g_dbus_message_set_path(
       this.raw.asInstanceOf,
       __sn_extract_string(value).asInstanceOf[Ptr[gchar]]
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience setter for the %G_DBUS_MESSAGE_HEADER_FIELD_REPLY_SERIAL
+    * header field.
+    */
   def setReplySerial(value: UInt): Unit =
     g_dbus_message_set_reply_serial(this.raw.asInstanceOf, guint32(value))
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience setter for the %G_DBUS_MESSAGE_HEADER_FIELD_SENDER header
+    * field.
+    */
   def setSender(value: String | CString)(using Zone): Unit =
     g_dbus_message_set_sender(
       this.raw.asInstanceOf,
       __sn_extract_string(value).asInstanceOf[Ptr[gchar]]
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the serial for @message.
+    */
   def setSerial(serial: UInt): Unit =
     g_dbus_message_set_serial(this.raw.asInstanceOf, guint32(serial))
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convenience setter for the %G_DBUS_MESSAGE_HEADER_FIELD_SIGNATURE header
+    * field.
+    */
   def setSignature(value: String | CString)(using Zone): Unit =
     g_dbus_message_set_signature(
       this.raw.asInstanceOf,
       __sn_extract_string(value).asInstanceOf[Ptr[gchar]]
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the UNIX file descriptors associated with @message. As a side-effect
+    * the %G_DBUS_MESSAGE_HEADER_FIELD_NUM_UNIX_FDS header field is set to the
+    * number of fds in @fd_list (or cleared if
+    * @fd_list
+    *   is %NULL).
+    *
+    * This method is only available on UNIX.
+    *
+    * When designing D-Bus APIs that are intended to be interoperable, please
+    * note that non-GDBus implementations of D-Bus can usually only access file
+    * descriptors if they are referenced by a value of type
+    * %G_VARIANT_TYPE_HANDLE in the body of the message.
+    */
   def setUnixFdList(fd_list: UnixFDList): Unit =
     g_dbus_message_set_unix_fd_list(
       this.raw.asInstanceOf,
       fd_list.getUnsafeRawPointer().asInstanceOf
     )
 
-  // Method to_blob contains an OUT parameter, which is not supported yet
+  @annotation.compileTimeOnly(
+    "Method to_blob contains an OUT parameter, which is not supported yet"
+  )
+  def toBlob() = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * If @message is not of type %G_DBUS_MESSAGE_TYPE_ERROR does nothing and
+    * returns %FALSE.
+    *
+    * Otherwise this method encodes the error in @message as a #GError using
+    * g_dbus_error_set_dbus_error() using the information in the
+    * %G_DBUS_MESSAGE_HEADER_FIELD_ERROR_NAME header field of @message as well
+    * as the first string item in @message's body.
+    */
   def toGerror(): GResult[Boolean] = GResult.wrap(__errorPtr =>
     g_dbus_message_to_gerror(this.raw.asInstanceOf, __errorPtr).value.!=(0)
   )
@@ -240,7 +508,16 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
 end DBusMessage
 
 object DBusMessage:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new empty #GDBusMessage.
+    */
   def apply(): DBusMessage = new DBusMessage(g_dbus_message_new().asInstanceOf)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GDBusMessage for a method call.
+    */
   def methodCall(
       name: String | CString,
       path: String | CString,
@@ -254,6 +531,11 @@ object DBusMessage:
       __sn_extract_string(method).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GDBusMessage for a signal emission.
+    */
   def signal(
       path: String | CString,
       `interface_`: String | CString,

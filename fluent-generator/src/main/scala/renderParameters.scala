@@ -11,7 +11,7 @@ def renderParameters(
     params: Seq[Parameter | Instanceu45parameter],
     methodLabel: String
 )(using
-    Label[String],
+    Label[FluentErr],
     GlobalKnowledge,
     NamingPolicy
 ): WithEffects[RenderedParameters] =
@@ -32,7 +32,7 @@ def renderParameters(
             renderType(
               param.tpe.getOrElse(
                 break(
-                  s"$methodLabel, param: ${param.name}: type is empty"
+                  FluentErr.MethodParameterHasNoType(methodLabel, param.name)
                 )
               )
             )
@@ -40,7 +40,11 @@ def renderParameters(
 
           coll.addAll(paramType.effects)
 
-          val paramName = escape(paraName.getOrElse(param.name.get))
+          val paramName = escape(
+            paraName.getOrElse(
+              param.name.getOrElse(break(FluentErr.MethodParameterHasNoName(methodLabel)))
+            )
+          )
 
           val parameter = paramName + " : " + paramType.scalaRepr
 

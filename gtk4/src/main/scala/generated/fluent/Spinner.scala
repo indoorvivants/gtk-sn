@@ -12,6 +12,23 @@ import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkSpinner
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A `GtkSpinner` widget displays an icon-size spinning animation.
+  *
+  * It is often used as an alternative to a [class@Gtk.ProgressBar] for
+  * displaying indefinite activity, instead of actual progress.
+  *
+  * ![An example GtkSpinner](spinner.png)
+  *
+  * To start the animation, use [method@Gtk.Spinner.start], to stop it use
+  * [method@Gtk.Spinner.stop].
+  *
+  * # CSS nodes
+  *
+  * `GtkSpinner` has a single CSS node with the name spinner. When the animation
+  * is active, the :checked pseudoclass is added to this node.
+  */
 class Spinner(raw: Ptr[GtkSpinner])
     extends Widget(raw.asInstanceOf),
       Accessible,
@@ -19,20 +36,40 @@ class Spinner(raw: Ptr[GtkSpinner])
       ConstraintTarget:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns whether the spinner is spinning.
+    */
   def getSpinning(): Boolean =
     gtk_spinner_get_spinning(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the activity of the spinner.
+    */
   def setSpinning(spinning: Boolean): Unit = gtk_spinner_set_spinning(
     this.raw.asInstanceOf,
     gboolean(gint((if spinning == true then 1 else 0)))
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Starts the animation of the spinner.
+    */
   def start(): Unit = gtk_spinner_start(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Stops the animation of the spinner.
+    */
   def stop(): Unit = gtk_spinner_stop(this.raw.asInstanceOf)
 
 end Spinner
 
 object Spinner:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns a new spinner widget. Not yet started.
+    */
   def apply(): Spinner = new Spinner(gtk_spinner_new().asInstanceOf)
 end Spinner

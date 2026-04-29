@@ -7,14 +7,34 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.ShortcutTrigger
 import sn.gnome.gtk4.internal.GtkAlternativeTrigger
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A `GtkShortcutTrigger` that combines two triggers.
+  *
+  * The `GtkAlternativeTrigger` triggers when either of two trigger.
+  *
+  * This can be cascaded to combine more than two triggers.
+  */
 class AlternativeTrigger(raw: Ptr[GtkAlternativeTrigger])
     extends ShortcutTrigger(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the first of the two alternative triggers that may trigger @self.
+    *
+    * [method@Gtk.AlternativeTrigger.get_second] will return the other one.
+    */
   def getFirst(): ShortcutTrigger = new ShortcutTrigger(
     gtk_alternative_trigger_get_first(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the second of the two alternative triggers that may trigger @self.
+    *
+    * [method@Gtk.AlternativeTrigger.get_first] will return the other one.
+    */
   def getSecond(): ShortcutTrigger = new ShortcutTrigger(
     gtk_alternative_trigger_get_second(this.raw.asInstanceOf).asInstanceOf
   )
@@ -22,6 +42,14 @@ class AlternativeTrigger(raw: Ptr[GtkAlternativeTrigger])
 end AlternativeTrigger
 
 object AlternativeTrigger:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a `GtkShortcutTrigger` that will trigger whenever either of the
+    * two given triggers gets triggered.
+    *
+    * Note that nesting is allowed, so if you want more than two alternative,
+    * create a new alternative trigger for each option.
+    */
   def apply(
       first: ShortcutTrigger,
       second: ShortcutTrigger

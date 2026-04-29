@@ -109,6 +109,7 @@ lazy val adwaita = project
         "gobject",
         "graphene",
         "gtk4",
+        "gdk4",
         "cairo",
         "harfbuzz",
         "pango"

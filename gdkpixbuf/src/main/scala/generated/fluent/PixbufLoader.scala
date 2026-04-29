@@ -4,6 +4,7 @@ import _root_.sn.gnome.gdkpixbuf.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdkpixbuf.fluent.Pixbuf
 import sn.gnome.gdkpixbuf.fluent.PixbufAnimation
 import sn.gnome.gdkpixbuf.internal.GdkPixbufFormat
@@ -12,32 +13,161 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.GBytes
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.gsize
+import sn.gnome.glib.internal.guchar
 import sn.gnome.gobject.fluent.Object
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * Incremental image loader.
+  *
+  * `GdkPixbufLoader` provides a way for applications to drive the process of
+  * loading an image, by letting them send the image data directly to the loader
+  * instead of having the loader read the data from a file. Applications can use
+  * this functionality instead of `gdk_pixbuf_new_from_file()` or
+  * `gdk_pixbuf_animation_new_from_file()` when they need to parse image data in
+  * small chunks. For example, it should be used when reading an image from a
+  * (potentially) slow network connection, or when loading an extremely large
+  * file.
+  *
+  * To use `GdkPixbufLoader` to load an image, create a new instance, and call
+  * [method@GdkPixbuf.PixbufLoader.write] to send the data to it. When done,
+  * [method@GdkPixbuf.PixbufLoader.close] should be called to end the stream and
+  * finalize everything.
+  *
+  * The loader will emit three important signals throughout the process:
+  *
+  *   - [signal@GdkPixbuf.PixbufLoader::size-prepared] will be emitted as soon
+  *     as the image has enough information to determine the size of the image
+  *     to be used. If you want to scale the image while loading it, you can
+  *     call [method@GdkPixbuf.PixbufLoader.set_size] in response to this
+  *     signal.
+  *   - [signal@GdkPixbuf.PixbufLoader::area-prepared] will be emitted as soon
+  *     as the pixbuf of the desired has been allocated. You can obtain the
+  *     `GdkPixbuf` instance by calling
+  *     [method@GdkPixbuf.PixbufLoader.get_pixbuf]. If you want to use it,
+  *     simply acquire a reference to it. You can also call
+  *     `gdk_pixbuf_loader_get_pixbuf()` later to get the same pixbuf.
+  *   - [signal@GdkPixbuf.PixbufLoader::area-updated] will be emitted every time
+  *     a region is updated. This way you can update a partially completed
+  *     image. Note that you do not know anything about the completeness of an
+  *     image from the updated area. For example, in an interlaced image you
+  *     will need to make several passes before the image is done loading.
+  *
+  * ## Loading an animation
+  *
+  * Loading an animation is almost as easy as loading an image. Once the first
+  * [signal@GdkPixbuf.PixbufLoader::area-prepared] signal has been emitted, you
+  * can call [method@GdkPixbuf.PixbufLoader.get_animation] to get the
+  * [class@GdkPixbuf.PixbufAnimation] instance, and then call and
+  * [method@GdkPixbuf.PixbufAnimation.get_iter] to get a
+  * [class@GdkPixbuf.PixbufAnimationIter] to retrieve the pixbuf for the desired
+  * time stamp.
+  */
 class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Informs a pixbuf loader that no further writes with
+    * gdk_pixbuf_loader_write() will occur, so that it can free its internal
+    * loading structures.
+    *
+    * This function also tries to parse any data that hasn't yet been parsed; if
+    * the remaining data is partial or corrupt, an error will be returned.
+    *
+    * If `FALSE` is returned, `error` will be set to an error from the
+    * `GDK_PIXBUF_ERROR` or `G_FILE_ERROR` domains.
+    *
+    * If you're just cancelling a load rather than expecting it to be finished,
+    * passing `NULL` for `error` to ignore it is reasonable.
+    *
+    * Remember that this function does not release a reference on the loader, so
+    * you will need to explicitly release any reference you hold.
+    */
   def close(): GResult[Boolean] = GResult.wrap(__errorPtr =>
     gdk_pixbuf_loader_close(this.raw.asInstanceOf, __errorPtr).value.!=(0)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Queries the #GdkPixbufAnimation that a pixbuf loader is currently
+    * creating.
+    *
+    * In general it only makes sense to call this function after the
+    * [signal@GdkPixbuf.PixbufLoader::area-prepared] signal has been emitted by
+    * the loader.
+    *
+    * If the loader doesn't have enough bytes yet, and hasn't emitted the
+    * `area-prepared` signal, this function will return `NULL`.
+    */
   def getAnimation(): PixbufAnimation = new PixbufAnimation(
     gdk_pixbuf_loader_get_animation(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Obtains the available information about the format of the currently
+    * loading image file.
+    */
   def getFormat(): Ptr[GdkPixbufFormat] = gdk_pixbuf_loader_get_format(
     this.raw.asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Queries the #GdkPixbuf that a pixbuf loader is currently creating.
+    *
+    * In general it only makes sense to call this function after the
+    * [signal@GdkPixbuf.PixbufLoader::area-prepared] signal has been emitted by
+    * the loader; this means that enough data has been read to know the size of
+    * the image that will be allocated.
+    *
+    * If the loader has not received enough data via gdk_pixbuf_loader_write(),
+    * then this function returns `NULL`.
+    *
+    * The returned pixbuf will be the same in all future calls to the loader, so
+    * if you want to keep using it, you should acquire a reference to it.
+    *
+    * Additionally, if the loader is an animation, it will return the "static
+    * image" of the animation (see gdk_pixbuf_animation_get_static_image()).
+    */
   def getPixbuf(): Pixbuf = new Pixbuf(
     gdk_pixbuf_loader_get_pixbuf(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Causes the image to be scaled while it is loaded.
+    *
+    * The desired image size can be determined relative to the original size of
+    * the image by calling gdk_pixbuf_loader_set_size() from a signal handler
+    * for the ::size-prepared signal.
+    *
+    * Attempts to set the desired image size are ignored after the emission of
+    * the ::size-prepared signal.
+    */
   def setSize(width: Int, height: Int): Unit =
     gdk_pixbuf_loader_set_size(this.raw.asInstanceOf, width, height)
 
-  // Method write contains an array parameter, which is not supported yet
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Parses the next `count` bytes in the given image buffer.
+    */
+  def write(buf: Ptr[UByte], count: CUnsignedLongInt): GResult[Boolean] =
+    GResult.wrap(__errorPtr =>
+      gdk_pixbuf_loader_write(
+        this.raw.asInstanceOf,
+        buf.asInstanceOf,
+        gsize(count),
+        __errorPtr
+      ).value.!=(0)
+    )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Parses the next contents of the given image buffer.
+    */
   def writeBytes(buffer: Ptr[GBytes]): GResult[Boolean] =
     GResult.wrap(__errorPtr =>
       gdk_pixbuf_loader_write_bytes(
@@ -50,9 +180,32 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
 end PixbufLoader
 
 object PixbufLoader:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new pixbuf loader object.
+    */
   def apply(): PixbufLoader = new PixbufLoader(
     gdk_pixbuf_loader_new().asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new pixbuf loader object that always attempts to parse image
+    * data as if it were an image of MIME type @mime_type, instead of
+    * identifying the type automatically.
+    *
+    * This function is useful if you want an error if the image isn't the
+    * expected MIME type; for loading image formats that can't be reliably
+    * identified by looking at the data; or if the user manually forces a
+    * specific MIME type.
+    *
+    * The list of supported mime types depends on what image loaders are
+    * installed, but typically "image/png", "image/jpeg", "image/gif",
+    * "image/tiff" and "image/x-xpixmap" are among the supported mime types. To
+    * obtain the full list of supported mime types, call
+    * gdk_pixbuf_format_get_mime_types() on each of the #GdkPixbufFormat structs
+    * returned by gdk_pixbuf_get_formats().
+    */
   def withMimeType(
       mime_type: String | CString
   )(using Zone): GResult[PixbufLoader] = GResult.wrap(__errorPtr =>
@@ -63,6 +216,23 @@ object PixbufLoader:
       ).asInstanceOf
     )
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new pixbuf loader object that always attempts to parse image
+    * data as if it were an image of type @image_type, instead of identifying
+    * the type automatically.
+    *
+    * This function is useful if you want an error if the image isn't the
+    * expected type; for loading image formats that can't be reliably identified
+    * by looking at the data; or if the user manually forces a specific type.
+    *
+    * The list of supported image formats depends on what image loaders are
+    * installed, but typically "png", "jpeg", "gif", "tiff" and "xpm" are among
+    * the supported formats. To obtain the full list of supported image formats,
+    * call gdk_pixbuf_format_get_name() on each of the #GdkPixbufFormat structs
+    * returned by gdk_pixbuf_get_formats().
+    */
   def withType(
       image_type: String | CString
   )(using Zone): GResult[PixbufLoader] = GResult.wrap(__errorPtr =>

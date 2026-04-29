@@ -11,6 +11,10 @@ import sn.gnome.gio.internal.GNativeSocketAddress
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.glib.internal.gsize
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A socket address of some unknown native type.
+  */
 class NativeSocketAddress(raw: Ptr[GNativeSocketAddress])
     extends SocketAddress(raw.asInstanceOf),
       SocketConnectable:
@@ -19,6 +23,10 @@ class NativeSocketAddress(raw: Ptr[GNativeSocketAddress])
 end NativeSocketAddress
 
 object NativeSocketAddress:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GNativeSocketAddress for @native and @len.
+    */
   def apply(native: Ptr[Byte], len: CUnsignedLongInt): NativeSocketAddress =
     new NativeSocketAddress(
       g_native_socket_address_new(gpointer(native), gsize(len)).asInstanceOf

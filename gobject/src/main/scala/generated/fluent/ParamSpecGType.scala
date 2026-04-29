@@ -7,6 +7,11 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gobject.fluent.ParamSpec
 import sn.gnome.gobject.internal.GParamSpecGType
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A #GParamSpec derived structure that contains the meta data for #GType
+  * properties.
+  */
 class ParamSpecGType(raw: Ptr[GParamSpecGType])
     extends ParamSpec(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf

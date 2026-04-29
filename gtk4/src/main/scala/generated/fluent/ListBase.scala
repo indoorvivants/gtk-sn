@@ -12,6 +12,10 @@ import sn.gnome.gtk4.fluent.Scrollable
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkListBase
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * `GtkListBase` is the abstract base class for GTK's list widgets.
+  */
 class ListBase(raw: Ptr[GtkListBase])
     extends Widget(raw.asInstanceOf),
       Accessible,

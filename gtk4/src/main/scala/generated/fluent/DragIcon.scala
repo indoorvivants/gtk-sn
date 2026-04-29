@@ -12,6 +12,20 @@ import sn.gnome.gtk4.fluent.Root
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkDragIcon
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * `GtkDragIcon` is a `GtkRoot` implementation for drag icons.
+  *
+  * A drag icon moves with the pointer during a Drag-and-Drop operation and is
+  * destroyed when the drag ends.
+  *
+  * To set up a drag icon and associate it with an ongoing drag operation, use
+  * [func@Gtk.DragIcon.get_for_drag] to get the icon for a drag. You can then
+  * use it like any other widget and use [method@Gtk.DragIcon.set_child] to set
+  * whatever widget should be used for the drag icon.
+  *
+  * Keep in mind that drag icons do not allow user input.
+  */
 class DragIcon(raw: Ptr[GtkDragIcon])
     extends Widget(raw.asInstanceOf),
       Accessible,
@@ -21,10 +35,18 @@ class DragIcon(raw: Ptr[GtkDragIcon])
       Root:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the widget currently used as drag icon.
+    */
   def getChild(): Widget = new Widget(
     gtk_drag_icon_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the widget to display as the drag icon.
+    */
   def setChild(child: Widget): Unit = gtk_drag_icon_set_child(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf

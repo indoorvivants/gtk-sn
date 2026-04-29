@@ -8,13 +8,13 @@ def renderClassExtensions(
     parent: Option[String],
     impl: Seq[Implements]
 )(using
-    Label[String],
+    Label[FluentErr],
     GlobalKnowledge
 ): WithEffects[String] =
   WithEffects.collect: coll =>
     val parentExt = parent.map: name =>
       summon[GlobalKnowledge].names.get(name) match
-        case None        => break(s"Could not find a global name for ${name}")
+        case None        => break(FluentErr.NoGlobalNameFor(name))
         case Some(value) =>
           value.tpe match
             case NameType.Class =>
@@ -34,18 +34,14 @@ def renderClassExtensions(
                 s"_${value.short}(raw.asInstanceOf)"
 
             case other =>
-              break(s"unexpected parent: $value")
+              break(FluentErr.UnexpectedClassParent(selfName, value))
 
     val ext = parentExt.toSeq ++ impl
       .map(_.name)
       .map: name =>
         val gname = summon[GlobalKnowledge].names
           .get(name)
-          .getOrElse(
-            break(
-              s"Could not find a global name for extension $name"
-            )
-          )
+          .getOrElse(break(FluentErr.NoGlobalNameFor(name)))
         coll.addAll(gname.effects)
         gname.short
 

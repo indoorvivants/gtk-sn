@@ -1,19 +1,40 @@
 import com.indoorvivants.gnome.gir_schema.*
 import rendition.*
+import scala.util.boundary.Label
+import scala.util.boundary
+
+val StringExtractorName = "__sn_extract_string"
 
 val stringExtractor =
-  val name = "__sn_extract_string"
 
   val f: () => RenderingContext ?=> Unit = () =>
     block(
-      s"private inline def $name(str: String | CString)(using Zone): CString = ",
-      s"end $name"
+      s"private inline def $StringExtractorName(str: String | CString)(using Zone): CString = ",
+      s"end $StringExtractorName"
     ):
       block("str match", "end match"):
         line("case s: String => toCString(s)")
         line("case s: CString => s")
-  name -> Effect.RequiresDefinition(f)
+  StringExtractorName -> Effect.RequiresDefinition(f)
 end stringExtractor
+
+val decodeNullablePtrs =
+  val name = "__decode_nullable_ptrs"
+  val f: () => RenderingContext ?=> Unit = () =>
+    block(
+      s"private inline def $name[T](p: Ptr[Ptr[T]])(using ptag: Tag[T]): Array[Ptr[T]] = ",
+      s"end $name"
+    ):
+      line("val ab = Array.newBuilder[Ptr[T]]")
+      line("var offset = 0 ")
+      line("val tg = Tag.materializePtrTag(ptag)")
+      block("while(p(offset)(using tg) != null) do", "end while"):
+        line("ab += p(offset)(using tg)")
+        line("offset += 1 ")
+      line("ab.result()")
+
+  name -> Effect.RequiresDefinition(f)
+end decodeNullablePtrs
 
 enum TypePosition:
   case ParameterType, ReturnType
@@ -24,7 +45,7 @@ def renderType(
 )(using
     global: GlobalKnowledge,
     policy: NamingPolicy
-): TypeMapping =
+)(using Label[FluentErr]): TypeMapping =
   val importUnsigned =
     Effect.RequiresImport("_root_.scala.scalanative.unsigned", "*")
 
@@ -302,8 +323,15 @@ def renderType(
     ).reduce(_ orElse _)
   end getCType
 
+  def safeGetTypeValue(tpe: Type)(using Label[FluentErr]) =
+    try tpe.typeValue
+    catch
+      case exc: NoSuchElementException =>
+        boundary.break(FluentErr.TypeMissingValue(tpe))
+
   tpe match
     case tpe: Type =>
+      lazy val typeValue = safeGetTypeValue(tpe)
       tpe.name
         .flatMap(global.names.get)
         .filterNot(n => n.tpe == NameType.Record || n.tpe == NameType.Callback)
@@ -333,53 +361,78 @@ def renderType(
                 )
                 .withEffect(name.effects*)
 
-            tpe.typeValue match
+            typeValue match
               case "gpointer" =>
                 base
                   .withMassageIntoUnsafe(Massage.Cast("Ptr[Byte]"))
                   .withMassageIntoUnsafe(Massage.Apply("gpointer"))
                   .withEffect(importGlib("gpointer"))
               case _ => base
-          case name if name.short == "GtkResponseType" => 
-            TypeMapping(name.short).withEffect(name.effects*).withMassageIntoUnsafe(Massage.Field("value"))
+          case name if name.short == "GtkResponseType" =>
+            TypeMapping(name.short)
+              .withEffect(name.effects*)
+              .withMassageIntoUnsafe(Massage.Field("value"))
           case other =>
             TypeMapping(other.short).withEffect(other.effects*)
-        .orElse(getCType(tpe.name, tpe.typeValue))
-        .orElse(deconstructCType(tpe.typeValue))
+        .orElse(getCType(tpe.name, typeValue))
+        .orElse(deconstructCType(typeValue))
         .getOrElse(
           TypeMapping(
-            s"Any /* failed to render type: name=`${tpe.name}`: typeValue=`${tpe.typeValue}` */"
+            s"Any /* failed to render type: name=`${tpe.name}`: typeValue=`${typeValue}` */"
           )
         )
 
     case ar: ArrayType =>
       val elementType = ar.AnyType.as[Type]
-      val renderedElementType = renderType(elementType)
+      lazy val typeValue = safeGetTypeValue(elementType)
+      lazy val renderedElementType = renderType(elementType)
 
-      if elementType.name == Some("File") then
-        scribe.info(renderedElementType.toString())
-      if elementType.typeValue.endsWith("gchar*") then
-        TypeMapping(s"Ptr[CString]", effects = renderedElementType.effects)
-          .withMassageIntoUnsafe(Massage.InferredCast)
-      else if elementType.typeValue.endsWith("guchar") then
-        TypeMapping(s"Ptr[UByte]", effects = renderedElementType.effects)
-          .withMassageIntoUnsafe(Massage.InferredCast)
-          .withMassageFromUnsafe(Massage.InferredCast)
-      else if elementType.typeValue.endsWith("guint8") then
-        TypeMapping(s"Ptr[guint8]", effects = renderedElementType.effects)
-          .withMassageIntoUnsafe(Massage.InferredCast)
-          .withMassageFromUnsafe(Massage.InferredCast)
-      else if elementType.typeValue.endsWith("gint") then
-        TypeMapping(s"Ptr[Int]", effects = renderedElementType.effects)
-          .withMassageIntoUnsafe(Massage.InferredCast)
-          .withMassageFromUnsafe(Massage.InferredCast)
-      else if elementType.typeValue.endsWith("char*") then
-        TypeMapping(s"Ptr[CString]", effects = renderedElementType.effects)
-      else
-        TypeMapping(
-          s"Ptr[${renderedElementType.scalaRepr}]",
-          effects = renderedElementType.effects
-        )
-      end if
+      ar.typeValue match
+        case "char**" =>
+          position match
+            case TypePosition.ParameterType =>
+              TypeMapping("Array[String]")
+                .withEffect(stringExtractor._2)
+                .withEffect(Effect.RequiresZone)
+                .withMassageIntoUnsafe(
+                  Massage.Field(s"map(${StringExtractorName})")
+                )
+                .withMassageIntoUnsafe(Massage.Field("atUnsafe(0)"))
+            case TypePosition.ReturnType =>
+              TypeMapping("Array[String]")
+                .withEffect(decodeNullablePtrs._2)
+                .withEffect(Effect.RequiresZone)
+                .withMassageFromUnsafe(Massage.Apply(decodeNullablePtrs._1))
+                .withMassageFromUnsafe(
+                  Massage.Field(s"map(fromCString(_))")
+                )
+
+        case _ =>
+          if elementType.name == Some("File") then
+            scribe.info(renderedElementType.toString())
+          if typeValue.endsWith("gchar*") then
+            TypeMapping(s"Ptr[CString]", effects = renderedElementType.effects)
+              .withMassageIntoUnsafe(Massage.InferredCast)
+          else if typeValue.endsWith("guchar") then
+            TypeMapping(s"Ptr[UByte]", effects = renderedElementType.effects)
+              .withMassageIntoUnsafe(Massage.InferredCast)
+              .withMassageFromUnsafe(Massage.InferredCast)
+          else if typeValue.endsWith("guint8") then
+            TypeMapping(s"Ptr[guint8]", effects = renderedElementType.effects)
+              .withMassageIntoUnsafe(Massage.InferredCast)
+              .withMassageFromUnsafe(Massage.InferredCast)
+          else if typeValue.endsWith("gint") then
+            TypeMapping(s"Ptr[Int]", effects = renderedElementType.effects)
+              .withMassageIntoUnsafe(Massage.InferredCast)
+              .withMassageFromUnsafe(Massage.InferredCast)
+          else if typeValue.endsWith("char*") then
+            TypeMapping(s"Ptr[CString]", effects = renderedElementType.effects)
+          else
+            TypeMapping(
+              s"Ptr[${renderedElementType.scalaRepr}]",
+              effects = renderedElementType.effects
+            )
+          end if
+      end match
   end match
 end renderType

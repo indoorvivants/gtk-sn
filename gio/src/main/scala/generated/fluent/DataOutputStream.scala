@@ -23,14 +23,27 @@ import sn.gnome.glib.internal.guint16
 import sn.gnome.glib.internal.guint32
 import sn.gnome.glib.internal.guint64
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * Data output stream implements #GOutputStream and includes functions for
+  * writing data directly to an output stream.
+  */
 class DataOutputStream(raw: Ptr[GDataOutputStream])
     extends FilterOutputStream(raw.asInstanceOf),
       Seekable:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the byte order for the stream.
+    */
   def getByteOrder(): GDataStreamByteOrder =
     g_data_output_stream_get_byte_order(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Puts a byte into the output stream.
+    */
   def putByte(data: UByte, cancellable: Cancellable): GResult[Boolean] =
     GResult.wrap(__errorPtr =>
       g_data_output_stream_put_byte(
@@ -41,6 +54,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       ).value.!=(0)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Puts a signed 16-bit integer into the output stream.
+    */
   def putInt16(data: CShort, cancellable: Cancellable): GResult[Boolean] =
     GResult.wrap(__errorPtr =>
       g_data_output_stream_put_int16(
@@ -51,6 +68,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       ).value.!=(0)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Puts a signed 32-bit integer into the output stream.
+    */
   def putInt32(data: CInt, cancellable: Cancellable): GResult[Boolean] =
     GResult.wrap(__errorPtr =>
       g_data_output_stream_put_int32(
@@ -61,6 +82,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       ).value.!=(0)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Puts a signed 64-bit integer into the stream.
+    */
   def putInt64(data: CLongInt, cancellable: Cancellable): GResult[Boolean] =
     GResult.wrap(__errorPtr =>
       g_data_output_stream_put_int64(
@@ -71,6 +96,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       ).value.!=(0)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Puts a string into the output stream.
+    */
   def putString(str: String | CString, cancellable: Cancellable)(using
       Zone
   ): GResult[Boolean] = GResult.wrap(__errorPtr =>
@@ -82,6 +111,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     ).value.!=(0)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Puts an unsigned 16-bit integer into the output stream.
+    */
   def putUint16(data: UShort, cancellable: Cancellable): GResult[Boolean] =
     GResult.wrap(__errorPtr =>
       g_data_output_stream_put_uint16(
@@ -92,6 +125,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       ).value.!=(0)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Puts an unsigned 32-bit integer into the stream.
+    */
   def putUint32(data: UInt, cancellable: Cancellable): GResult[Boolean] =
     GResult.wrap(__errorPtr =>
       g_data_output_stream_put_uint32(
@@ -102,6 +139,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       ).value.!=(0)
     )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Puts an unsigned 64-bit integer into the stream.
+    */
   def putUint64(
       data: CUnsignedLongInt,
       cancellable: Cancellable
@@ -114,6 +155,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     ).value.!=(0)
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the byte order of the data output stream to @order.
+    */
   def setByteOrder(order: GDataStreamByteOrder): Unit =
     g_data_output_stream_set_byte_order(this.raw.asInstanceOf, order)
 
@@ -128,6 +173,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
 end DataOutputStream
 
 object DataOutputStream:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new data output stream for @base_stream.
+    */
   def apply(base_stream: OutputStream): DataOutputStream = new DataOutputStream(
     g_data_output_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf

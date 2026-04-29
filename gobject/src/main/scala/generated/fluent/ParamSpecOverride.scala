@@ -7,6 +7,19 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gobject.fluent.ParamSpec
 import sn.gnome.gobject.internal.GParamSpecOverride
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A #GParamSpec derived structure that redirects operations to other types of
+  * #GParamSpec.
+  *
+  * All operations other than getting or setting the value are redirected,
+  * including accessing the nick and blurb, validating a value, and so forth.
+  *
+  * See g_param_spec_get_redirect_target() for retrieving the overridden
+  * property. #GParamSpecOverride is used in implementing
+  * g_object_class_override_property(), and will not be directly useful unless
+  * you are implementing a new base type similar to GObject.
+  */
 class ParamSpecOverride(raw: Ptr[GParamSpecOverride])
     extends ParamSpec(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf

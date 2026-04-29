@@ -14,33 +14,100 @@ import sn.gnome.gtk4.fluent.ListItem
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkColumnViewCell
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * `GtkColumnViewCell` is used by [class@Gtk.ColumnViewColumn] to represent
+  * items in a cell in [class@Gtk.ColumnView].
+  *
+  * The `GtkColumnViewCell`s are managed by the columnview widget (with its
+  * factory) and cannot be created by applications, but they need to be
+  * populated by application code. This is done by calling
+  * [method@Gtk.ColumnViewCell.set_child].
+  *
+  * `GtkColumnViewCell`s exist in 2 stages:
+  *
+  *   1. The unbound stage where the listitem is not currently connected to an
+  *      item in the list. In that case, the [property@Gtk.ColumnViewCell:item]
+  *      property is set to %NULL.
+  *   2. The bound stage where the listitem references an item from the list.
+  *      The [property@Gtk.ColumnViewCell:item] property is not %NULL.
+  */
 class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     extends ListItem(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the child previously set via gtk_column_view_cell_set_child() or
+    * %NULL if none was set.
+    */
   override def getChild(): Widget = new Widget(
     gtk_column_view_cell_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Checks if a list item has been set to be focusable via
+    * gtk_column_view_cell_set_focusable().
+    */
   override def getFocusable(): Boolean =
     gtk_column_view_cell_get_focusable(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the model item that associated with @self.
+    *
+    * If @self is unbound, this function returns %NULL.
+    */
   override def getItem(): Object = new Object(
     gtk_column_view_cell_get_item(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the position in the model that @self currently displays.
+    *
+    * If @self is unbound, %GTK_INVALID_LIST_POSITION is returned.
+    */
   override def getPosition(): UInt = gtk_column_view_cell_get_position(
     this.raw.asInstanceOf
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Checks if the item is displayed as selected.
+    *
+    * The selected state is maintained by the liste widget and its model and
+    * cannot be set otherwise.
+    */
   override def getSelected(): Boolean =
     gtk_column_view_cell_get_selected(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the child to be used for this listitem.
+    *
+    * This function is typically called by applications when setting up a
+    * listitem so that the widget can be reused when binding it multiple times.
+    */
   override def setChild(child: Widget): Unit = gtk_column_view_cell_set_child(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets @self to be focusable.
+    *
+    * If an item is focusable, it can be focused using the keyboard. This works
+    * similar to [method@Gtk.Widget.set_focusable].
+    *
+    * Note that if items are not focusable, the keyboard cannot be used to
+    * activate them and selecting only works if one of the listitem's children
+    * is focusable.
+    *
+    * By default, list items are focusable.
+    */
   override def setFocusable(focusable: Boolean): Unit =
     gtk_column_view_cell_set_focusable(
       this.raw.asInstanceOf,

@@ -18,6 +18,65 @@ import sn.gnome.gtk4.internal.GtkDialogFlags
 import sn.gnome.gtk4.internal.GtkMessageDialog
 import sn.gnome.gtk4.internal.GtkMessageType
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * `GtkMessageDialog` presents a dialog with some message text.
+  *
+  * ![An example GtkMessageDialog](messagedialog.png)
+  *
+  * It’s simply a convenience widget; you could construct the equivalent of
+  * `GtkMessageDialog` from `GtkDialog` without too much effort, but
+  * `GtkMessageDialog` saves typing.
+  *
+  * The easiest way to do a modal message dialog is to use the %GTK_DIALOG_MODAL
+  * flag, which will call [method@Gtk.Window.set_modal] internally. The dialog
+  * will prevent interaction with the parent window until it's hidden or
+  * destroyed. You can use the [signal@Gtk.Dialog::response] signal to know when
+  * the user dismissed the dialog.
+  *
+  * An example for using a modal dialog:
+  * ```c
+  * GtkDialogFlags flags = GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_MODAL;
+  * dialog = gtk_message_dialog_new (parent_window,
+  *                                  flags,
+  *                                  GTK_MESSAGE_ERROR,
+  *                                  GTK_BUTTONS_CLOSE,
+  *                                  "Error reading “%s”: %s",
+  *                                  filename,
+  *                                  g_strerror (errno));
+  * // Destroy the dialog when the user responds to it
+  * // (e.g. clicks a button)
+  *
+  * g_signal_connect (dialog, "response",
+  *                   G_CALLBACK (gtk_window_destroy),
+  *                   NULL);
+  * ```
+  *
+  * You might do a non-modal `GtkMessageDialog` simply by omitting the
+  * %GTK_DIALOG_MODAL flag:
+  *
+  * ```c
+  * GtkDialogFlags flags = GTK_DIALOG_DESTROY_WITH_PARENT;
+  * dialog = gtk_message_dialog_new (parent_window,
+  *                                  flags,
+  *                                  GTK_MESSAGE_ERROR,
+  *                                  GTK_BUTTONS_CLOSE,
+  *                                  "Error reading “%s”: %s",
+  *                                  filename,
+  *                                  g_strerror (errno));
+  *
+  * // Destroy the dialog when the user responds to it
+  * // (e.g. clicks a button)
+  * g_signal_connect (dialog, "response",
+  *                   G_CALLBACK (gtk_window_destroy),
+  *                   NULL);
+  * ```
+  *
+  * # GtkMessageDialog as GtkBuildable
+  *
+  * The `GtkMessageDialog` implementation of the `GtkBuildable` interface
+  * exposes the message area as an internal child with the name “message_area”.
+  */
 class MessageDialog(raw: Ptr[GtkMessageDialog])
     extends Dialog(raw.asInstanceOf),
       Accessible,
@@ -28,6 +87,26 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
       ShortcutManager:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the secondary text of the message dialog.
+    *
+    * The @message_format is assumed to contain Pango markup.
+    *
+    * Due to an oversight, this function does not escape special XML characters
+    * like [ctor@Gtk.MessageDialog.new_with_markup] does. Thus, if the arguments
+    * may contain special XML characters, you should use
+    * g_markup_printf_escaped() to escape it.
+    *
+    * ```c
+    * char *msg;
+    *
+    * msg = g_markup_printf_escaped (message_format, ...);
+    * gtk_message_dialog_format_secondary_markup (message_dialog,
+    *                                             "%s", msg);
+    * g_free (msg);
+    * ```
+    */
   inline def formatSecondaryMarkup(
       message_format: String | CString,
       args: Any*
@@ -37,6 +116,10 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
     args*
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the secondary text of the message dialog.
+    */
   inline def formatSecondaryText(message_format: String | CString, args: Any*)(
       using Zone
   ): Unit = gtk_message_dialog_format_secondary_text(
@@ -45,10 +128,23 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
     args*
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the message area of the dialog.
+    *
+    * This is the box where the dialog’s primary and secondary labels are
+    * packed. You can add your own extra content to that box and it will appear
+    * below those labels. See [method@Gtk.Dialog.get_content_area] for the
+    * corresponding function in the parent [class@Gtk.Dialog].
+    */
   def getMessageArea(): Widget = new Widget(
     gtk_message_dialog_get_message_area(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the text of the message dialog.
+    */
   def setMarkup(str: String | CString)(using Zone): Unit =
     gtk_message_dialog_set_markup(
       this.raw.asInstanceOf,
@@ -66,6 +162,14 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
 end MessageDialog
 
 object MessageDialog:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new message dialog.
+    *
+    * This is a simple dialog with some text the user may want to see. When the
+    * user clicks a button a “response” signal is emitted with response IDs from
+    * [enum@Gtk.ResponseType]. See [class@Gtk.Dialog] for more details.
+    */
   inline def apply(
       parent: Window,
       flags: GtkDialogFlags,
@@ -83,6 +187,36 @@ object MessageDialog:
       args*
     ).asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new message dialog.
+    *
+    * This is a simple dialog with some text that is marked up with Pango
+    * markup. When the user clicks a button a “response” signal is emitted with
+    * response IDs from [enum@Gtk.ResponseType]. See [class@Gtk.Dialog] for more
+    * details.
+    *
+    * Special XML characters in the printf() arguments passed to this function
+    * will automatically be escaped as necessary. (See g_markup_printf_escaped()
+    * for how this is implemented.) Usually this is what you want, but if you
+    * have an existing Pango markup string that you want to use literally as the
+    * label, then you need to use [method@Gtk.MessageDialog.set_markup] instead,
+    * since you can’t pass the markup string either as the format (it might
+    * contain “%” characters) or as a string argument.
+    *
+    * ```c
+    * GtkWidget *dialog;
+    * GtkDialogFlags flags = GTK_DIALOG_DESTROY_WITH_PARENT;
+    * dialog = gtk_message_dialog_new (parent_window,
+    *                                  flags,
+    *                                  GTK_MESSAGE_ERROR,
+    *                                  GTK_BUTTONS_CLOSE,
+    *                                  NULL);
+    * gtk_message_dialog_set_markup (GTK_MESSAGE_DIALOG (dialog),
+    *                                markup);
+    * ```
+    */
   inline def withMarkup(
       parent: Window,
       flags: GtkDialogFlags,

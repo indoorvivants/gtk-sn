@@ -9,34 +9,79 @@ import sn.gnome.pango.fluent.Coverage
 import sn.gnome.pango.internal.PangoCoverage
 import sn.gnome.pango.internal.PangoCoverageLevel
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A `PangoCoverage` structure is a map from Unicode characters to
+  * [enum@Pango.CoverageLevel] values.
+  *
+  * It is often necessary in Pango to determine if a particular font can
+  * represent a particular character, and also how well it can represent that
+  * character. The `PangoCoverage` is a data structure that is used to represent
+  * that information. It is an opaque structure with no public fields.
+  */
 class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Copy an existing `PangoCoverage`.
+    */
   def copy(): Coverage = new Coverage(
     pango_coverage_copy(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Determine whether a particular index is covered by @coverage.
+    */
   def get(`index_`: Int): PangoCoverageLevel =
     pango_coverage_get(this.raw.asInstanceOf, `index_`)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Set the coverage for each index in @coverage to be the max (better) value
+    * of the current coverage for the index and the coverage for the
+    * corresponding index in @other.
+    */
   def max(other: Coverage): Unit = pango_coverage_max(
     this.raw.asInstanceOf,
     other.getUnsafeRawPointer().asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Increase the reference count on the `PangoCoverage` by one.
+    */
   override def ref(): Coverage = new Coverage(
     pango_coverage_ref(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Modify a particular index within @coverage
+    */
   def set(`index_`: Int, level: PangoCoverageLevel): Unit =
     pango_coverage_set(this.raw.asInstanceOf, `index_`, level)
 
-  // Method to_bytes contains an array parameter, which is not supported yet
+  @annotation.compileTimeOnly(
+    "Method to_bytes contains an OUT parameter, which is not supported yet"
+  )
+  def toBytes() = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Decrease the reference count on the `PangoCoverage` by one.
+    *
+    * If the result is zero, free the coverage and all associated memory.
+    */
   override def unref(): Unit = pango_coverage_unref(this.raw.asInstanceOf)
 
 end Coverage
 
 object Coverage:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Create a new `PangoCoverage`
+    */
   def apply(): Coverage = new Coverage(pango_coverage_new().asInstanceOf)
 end Coverage

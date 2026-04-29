@@ -9,21 +9,57 @@ import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.internal.GtkTextChildAnchor
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A `GtkTextChildAnchor` is a spot in a `GtkTextBuffer` where child widgets
+  * can be “anchored”.
+  *
+  * The anchor can have multiple widgets anchored, to allow for multiple views.
+  */
 class TextChildAnchor(raw: Ptr[GtkTextChildAnchor])
     extends Object(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Determines whether a child anchor has been deleted from the buffer.
+    *
+    * Keep in mind that the child anchor will be unreferenced when removed from
+    * the buffer, so you need to hold your own reference (with g_object_ref())
+    * if you plan to use this function — otherwise all deleted child anchors
+    * will also be finalized.
+    */
   def getDeleted(): Boolean =
     gtk_text_child_anchor_get_deleted(this.raw.asInstanceOf).value.!=(0)
 
-  // Method get_widgets contains an OUT parameter, which is not supported yet
+  @annotation.compileTimeOnly(
+    "Method get_widgets contains an OUT parameter, which is not supported yet"
+  )
+  def getWidgets() = ???
 
 end TextChildAnchor
 
 object TextChildAnchor:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new `GtkTextChildAnchor`.
+    *
+    * Usually you would then insert it into a `GtkTextBuffer` with
+    * [method@Gtk.TextBuffer.insert_child_anchor]. To perform the creation and
+    * insertion in one step, use the convenience function
+    * [method@Gtk.TextBuffer.create_child_anchor].
+    */
   def apply(): TextChildAnchor = new TextChildAnchor(
     gtk_text_child_anchor_new().asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new `GtkTextChildAnchor` with the given replacement character.
+    *
+    * Usually you would then insert it into a `GtkTextBuffer` with
+    * [method@Gtk.TextBuffer.insert_child_anchor].
+    */
   def withReplacement(
       character: String | CString
   )(using Zone): TextChildAnchor = new TextChildAnchor(

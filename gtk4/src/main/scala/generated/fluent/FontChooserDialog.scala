@@ -15,6 +15,27 @@ import sn.gnome.gtk4.fluent.ShortcutManager
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkFontChooserDialog
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * The `GtkFontChooserDialog` widget is a dialog for selecting a font.
+  *
+  * ![An example GtkFontChooserDialog](fontchooser.png)
+  *
+  * `GtkFontChooserDialog` implements the [iface@Gtk.FontChooser] interface and
+  * does not provide much API of its own.
+  *
+  * To create a `GtkFontChooserDialog`, use [ctor@Gtk.FontChooserDialog.new].
+  *
+  * # GtkFontChooserDialog as GtkBuildable
+  *
+  * The `GtkFontChooserDialog` implementation of the `GtkBuildable` interface
+  * exposes the buttons with the names “select_button” and “cancel_button”.
+  *
+  * ## CSS nodes
+  *
+  * `GtkFontChooserDialog` has a single CSS node with the name `window` and
+  * style class `.fontchooser`.
+  */
 class FontChooserDialog(raw: Ptr[GtkFontChooserDialog])
     extends Dialog(raw.asInstanceOf),
       Accessible,
@@ -29,6 +50,10 @@ class FontChooserDialog(raw: Ptr[GtkFontChooserDialog])
 end FontChooserDialog
 
 object FontChooserDialog:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new `GtkFontChooserDialog`.
+    */
   def apply(title: String | CString, parent: Window)(using
       Zone
   ): FontChooserDialog = new FontChooserDialog(

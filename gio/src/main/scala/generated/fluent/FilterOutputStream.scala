@@ -9,18 +9,37 @@ import sn.gnome.gio.internal.GFilterOutputStream
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * Base class for output stream implementations that perform some kind of
+  * filtering operation on a base stream. Typical examples of filtering
+  * operations are character set conversion, compression and byte order
+  * flipping.
+  */
 class FilterOutputStream(raw: Ptr[GFilterOutputStream])
     extends OutputStream(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the base stream for the filter stream.
+    */
   def getBaseStream(): OutputStream = new OutputStream(
     g_filter_output_stream_get_base_stream(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns whether the base stream will be closed when @stream is closed.
+    */
   def getCloseBaseStream(): Boolean =
     g_filter_output_stream_get_close_base_stream(this.raw.asInstanceOf).value
       .!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets whether the base stream will be closed when @stream is closed.
+    */
   def setCloseBaseStream(close_base: Boolean): Unit =
     g_filter_output_stream_set_close_base_stream(
       this.raw.asInstanceOf,

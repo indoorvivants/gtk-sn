@@ -11,19 +11,48 @@ import sn.gnome.glib.internal.gchar
 import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * #GMenuLinkIter is an opaque structure type. You must access it using the
+  * functions below.
+  */
 class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the name of the link at the current iterator position.
+    *
+    * The iterator is not advanced.
+    */
   def getName()(using Zone): String = fromCString(
     g_menu_link_iter_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
-  // Method get_next contains an OUT parameter, which is not supported yet
+  @annotation.compileTimeOnly(
+    "Method get_next contains an OUT parameter, which is not supported yet"
+  )
+  def getNext() = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the linked #GMenuModel at the current iterator position.
+    *
+    * The iterator is not advanced.
+    */
   def getValue(): MenuModel = new MenuModel(
     g_menu_link_iter_get_value(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Attempts to advance the iterator to the next (possibly first) link.
+    *
+    * %TRUE is returned on success, or %FALSE if there are no more links.
+    *
+    * You must call this function when you first acquire the iterator to advance
+    * it to the first link (and determine if the first link exists at all).
+    */
   def next(): Boolean = g_menu_link_iter_next(this.raw.asInstanceOf).value.!=(0)
 
 end MenuLinkIter

@@ -25,6 +25,9 @@ private def extractParams(
 extension (c: Constructor) 
   def parameters = extractParams(c.constructoroption)
   def isThrowing = c.throws.exists(_.toString == "1")
+  def doc =
+    c.constructoroption.collectFirst:
+      case d if d.value.isInstanceOf[Doc] => d.as[Doc]
 
 extension (c: Virtualu45method)
   def isThrowing = c.throws.exists(_.toString == "1")
@@ -62,6 +65,9 @@ extension (c: Method)
       rv.returnu45valueoption.collectFirst:
         case d if d.value.isInstanceOf[Type]      => d.as[Type]
         case d if d.value.isInstanceOf[ArrayType] => d.as[ArrayType]
+  def doc =
+    c.methodoption.collectFirst:
+      case d if d.value.isInstanceOf[Doc] => d.as[Doc]
 end extension
 
 extension [T](c: Seq[DataRecord[T]])
@@ -75,6 +81,14 @@ extension (c: Seq[DataRecord[Any]])
       case d if d.value.isInstanceOf[Type] => d.as[Type]
 
 extension (c: Parameter | Instanceu45parameter)
+  def doc =
+    val attrs = c match
+      case Parameter(parameteroption, attributes) => parameteroption
+      case Instanceu45parameter(instanceu45parameteroption, attributes) => instanceu45parameteroption
+    
+    attrs.collectFirst:
+      case d if d.value.isInstanceOf[Doc] => d.as[Doc]
+
   def tpe: Option[Type | ArrayType] =
     val data =
       c match

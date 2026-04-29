@@ -12,6 +12,10 @@ import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkFlowBoxChild
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * `GtkFlowBoxChild` is the kind of widget that can be added to a `GtkFlowBox`.
+  */
 class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
     extends Widget(raw.asInstanceOf),
       Accessible,
@@ -19,17 +23,55 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
       ConstraintTarget:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Marks @child as changed, causing any state that depends on this to be
+    * updated.
+    *
+    * This affects sorting and filtering.
+    *
+    * Note that calls to this method must be in sync with the data used for the
+    * sorting and filtering functions. For instance, if the list is mirroring
+    * some external data set, and *two* children changed in the external data
+    * set when you call gtk_flow_box_child_changed() on the first child, the
+    * sort function must only read the new data for the first of the two changed
+    * children, otherwise the resorting of the children will be wrong.
+    *
+    * This generally means that if you don’t fully control the data model, you
+    * have to duplicate the data that affects the sorting and filtering
+    * functions into the widgets themselves.
+    *
+    * Another alternative is to call [method@Gtk.FlowBox.invalidate_sort] on any
+    * model change, but that is more expensive.
+    */
   def changed(): Unit = gtk_flow_box_child_changed(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the child widget of @self.
+    */
   def getChild(): Widget = new Widget(
     gtk_flow_box_child_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the current index of the @child in its `GtkFlowBox` container.
+    */
   def getIndex(): Int = gtk_flow_box_child_get_index(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns whether the @child is currently selected in its `GtkFlowBox`
+    * container.
+    */
   def isSelected(): Boolean =
     gtk_flow_box_child_is_selected(this.raw.asInstanceOf).value.!=(0)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the child widget of @self.
+    */
   def setChild(child: Widget): Unit = gtk_flow_box_child_set_child(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf
@@ -38,6 +80,12 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
 end FlowBoxChild
 
 object FlowBoxChild:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new `GtkFlowBoxChild`.
+    *
+    * This should only be used as a child of a `GtkFlowBox`.
+    */
   def apply(): FlowBoxChild = new FlowBoxChild(
     gtk_flow_box_child_new().asInstanceOf
   )

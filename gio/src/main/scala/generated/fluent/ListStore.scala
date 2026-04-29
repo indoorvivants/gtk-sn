@@ -13,28 +13,76 @@ import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GType
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * #GListStore is a simple implementation of #GListModel that stores all items
+  * in memory.
+  *
+  * It provides insertions, deletions, and lookups in logarithmic time with a
+  * fast path for the common case of iterating the list linearly.
+  */
 class ListStore(raw: Ptr[GListStore])
     extends Object(raw.asInstanceOf),
       ListModel:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Appends @item to @store. @item must be of type #GListStore:item-type.
+    *
+    * This function takes a ref on @item.
+    *
+    * Use g_list_store_splice() to append multiple items at the same time
+    * efficiently.
+    */
   def append(item: Object): Unit = g_list_store_append(
     this.raw.asInstanceOf,
     gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
   )
 
-  // Method find contains an OUT parameter, which is not supported yet
+  @annotation.compileTimeOnly(
+    "Method find contains an OUT parameter, which is not supported yet"
+  )
+  def find() = ???
 
-  // Method find_with_equal_func contains an OUT parameter, which is not supported yet
+  @annotation.compileTimeOnly(
+    "Method find_with_equal_func contains an OUT parameter, which is not supported yet"
+  )
+  def findWithEqualFunc() = ???
 
-  // Method find_with_equal_func_full contains an OUT parameter, which is not supported yet
+  @annotation.compileTimeOnly(
+    "Method find_with_equal_func_full contains an OUT parameter, which is not supported yet"
+  )
+  def findWithEqualFuncFull() = ???
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Inserts @item into @store at @position. @item must be of type
+    * #GListStore:item-type or derived from it. @position must be smaller than
+    * the length of the list, or equal to it to append.
+    *
+    * This function takes a ref on @item.
+    *
+    * Use g_list_store_splice() to insert multiple items at the same time
+    * efficiently.
+    */
   def insert(position: UInt, item: Object): Unit = g_list_store_insert(
     this.raw.asInstanceOf,
     guint(position),
     gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Inserts @item into @store at a position to be determined by the
+    * @compare_func.
+    *
+    * The list must already be sorted before calling this function or the result
+    * is undefined. Usually you would approach this by only ever inserting items
+    * by way of this function.
+    *
+    * This function takes a ref on @item.
+    */
   def insertSorted(
       item: Object,
       compare_func: GCompareDataFunc,
@@ -46,19 +94,38 @@ class ListStore(raw: Ptr[GListStore])
     gpointer(user_data)
   ).value
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Removes the item from @store that is at @position. @position must be
+    * smaller than the current length of the list.
+    *
+    * Use g_list_store_splice() to remove multiple items at the same time
+    * efficiently.
+    */
   def remove(position: UInt): Unit =
     g_list_store_remove(this.raw.asInstanceOf, guint(position))
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Removes all items from @store.
+    */
   def removeAll(): Unit = g_list_store_remove_all(this.raw.asInstanceOf)
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sort the items in @store according to @compare_func.
+    */
   def sort(compare_func: GCompareDataFunc, user_data: Ptr[Byte]): Unit =
     g_list_store_sort(this.raw.asInstanceOf, compare_func, gpointer(user_data))
-
-  // Method splice contains an array parameter, which is not supported yet
 
 end ListStore
 
 object ListStore:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GListStore with items of type @item_type. @item_type must
+    * be a subclass of #GObject.
+    */
   def apply(item_type: GType): ListStore = new ListStore(
     g_list_store_new(item_type).asInstanceOf
   )

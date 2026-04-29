@@ -7,6 +7,10 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.ShortcutAction
 import sn.gnome.gtk4.internal.GtkNothingAction
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * A `GtkShortcutAction` that does nothing.
+  */
 class NothingAction(raw: Ptr[GtkNothingAction])
     extends ShortcutAction(raw.asInstanceOf):
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf

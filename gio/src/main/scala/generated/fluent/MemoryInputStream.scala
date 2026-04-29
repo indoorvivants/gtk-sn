@@ -10,23 +10,41 @@ import sn.gnome.gio.fluent.Seekable
 import sn.gnome.gio.internal.GMemoryInputStream
 import sn.gnome.glib.internal.GBytes
 
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * #GMemoryInputStream is a class for using arbitrary memory chunks as input
+  * for GIO streaming input operations.
+  *
+  * As of GLib 2.34, #GMemoryInputStream implements #GPollableInputStream.
+  */
 class MemoryInputStream(raw: Ptr[GMemoryInputStream])
     extends InputStream(raw.asInstanceOf),
       PollableInputStream,
       Seekable:
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Appends @bytes to data that can be read from the input stream.
+    */
   def addBytes(bytes: Ptr[GBytes]): Unit =
     g_memory_input_stream_add_bytes(this.raw.asInstanceOf, bytes)
-
-  // Method add_data contains an array parameter, which is not supported yet
 
 end MemoryInputStream
 
 object MemoryInputStream:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new empty #GMemoryInputStream.
+    */
   def apply(): MemoryInputStream = new MemoryInputStream(
     g_memory_input_stream_new().asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GMemoryInputStream with data from the given @bytes.
+    */
   def fromBytes(bytes: Ptr[GBytes]): MemoryInputStream = new MemoryInputStream(
     g_memory_input_stream_new_from_bytes(bytes).asInstanceOf
   )
