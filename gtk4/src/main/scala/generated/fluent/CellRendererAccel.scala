@@ -17,6 +17,7 @@ import sn.gnome.gtk4.internal.GtkCellRendererAccel
   */
 class CellRendererAccel(raw: Ptr[GtkCellRendererAccel])
     extends CellRendererText(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end CellRendererAccel

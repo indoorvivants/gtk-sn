@@ -30,6 +30,7 @@ import sn.gnome.gsk4.internal.GskRenderer
   * render the scene.
   */
 class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -38,7 +39,7 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
     *
     * If the renderer has not been realized yet, %NULL will be returned.
     */
-  def getSurface(): Surface = new Surface(
+  def getSurface(): Surface /* None */ = new Surface(
     gsk_renderer_get_surface(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -46,7 +47,7 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
     *
     * Checks whether the @renderer is realized or not.
     */
-  def isRealized(): Boolean =
+  def isRealized(): Boolean /* None */ =
     gsk_renderer_is_realized(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -59,10 +60,20 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
     * Note that it is mandatory to call [method@Gsk.Renderer.unrealize] before
     * destroying the renderer.
     */
-  def realize(surface: Surface): GResult[Boolean] = GResult.wrap(__errorPtr =>
+  def realize(
+      surface: Option[
+        Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
+      ]
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gsk_renderer_realize(
       this.raw.asInstanceOf,
-      surface.getUnsafeRawPointer().asInstanceOf,
+      surface
+        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]]
+        ),
       __errorPtr
     ).value.!=(0)
   )
@@ -82,12 +93,20 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
     * The @renderer will acquire a reference on the `GskRenderNode` tree while
     * the rendering is in progress.
     */
-  def render(root: RenderNode, region: Ptr[cairo_region_t]): Unit =
-    gsk_renderer_render(
-      this.raw.asInstanceOf,
-      root.getUnsafeRawPointer().asInstanceOf,
-      region
-    )
+  def render(
+      root: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      region: Option[Ptr[
+        cairo_region_t
+      ] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */ ]
+  ): Unit /* None */ = gsk_renderer_render(
+    this.raw.asInstanceOf,
+    root.getUnsafeRawPointer().asInstanceOf,
+    region
+      .map[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]](o => o)
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]]
+      )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -100,20 +119,32 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
     * If you want to apply any transformations to @root, you should put it into
     * a transform node and pass that node instead.
     */
-  def renderTexture(root: RenderNode, viewport: Ptr[graphene_rect_t]): Texture =
-    new Texture(
-      gsk_renderer_render_texture(
-        this.raw.asInstanceOf,
-        root.getUnsafeRawPointer().asInstanceOf,
-        viewport
-      ).asInstanceOf
-    )
+  def renderTexture(
+      root: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      viewport: Option[Ptr[
+        graphene_rect_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */ ]
+  ): Texture /* None */ = new Texture(
+    gsk_renderer_render_texture(
+      this.raw.asInstanceOf,
+      root.getUnsafeRawPointer().asInstanceOf,
+      viewport
+        .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]](o => o)
+        .getOrElse(
+          null.asInstanceOf[Ptr[
+            _root_.sn.gnome.graphene.internal.graphene_rect_t
+          ]]
+        )
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Releases all the resources created by gsk_renderer_realize().
     */
-  def unrealize(): Unit = gsk_renderer_unrealize(this.raw.asInstanceOf)
+  def unrealize(): Unit /* None */ = gsk_renderer_unrealize(
+    this.raw.asInstanceOf
+  )
 
 end Renderer
 
@@ -128,7 +159,9 @@ object Renderer:
     *
     * The renderer will be realized before it is returned.
     */
-  def forSurface(surface: Surface): Renderer = new Renderer(
+  def forSurface(
+      surface: Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
+  ): Renderer = new Renderer(
     gsk_renderer_new_for_surface(
       surface.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

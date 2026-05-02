@@ -16,6 +16,7 @@ import sn.gnome.gtk4.internal.GtkGestureZoom
   * scale factor.
   */
 class GestureZoom(raw: Ptr[GtkGestureZoom]) extends Gesture(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -26,7 +27,7 @@ class GestureZoom(raw: Ptr[GtkGestureZoom]) extends Gesture(raw.asInstanceOf):
     * the gesture was recognized (hence the starting point is considered 1:1).
     * If @gesture is not active, 1 is returned.
     */
-  def getScaleDelta(): Double = gtk_gesture_zoom_get_scale_delta(
+  def getScaleDelta(): Double /* None */ = gtk_gesture_zoom_get_scale_delta(
     this.raw.asInstanceOf
   )
 

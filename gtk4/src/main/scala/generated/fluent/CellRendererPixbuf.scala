@@ -26,6 +26,7 @@ import sn.gnome.gtk4.internal.GtkCellRendererPixbuf
   */
 class CellRendererPixbuf(raw: Ptr[GtkCellRendererPixbuf])
     extends CellRenderer(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end CellRendererPixbuf

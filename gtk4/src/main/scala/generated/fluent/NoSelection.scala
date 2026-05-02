@@ -25,13 +25,14 @@ class NoSelection(raw: Ptr[GtkNoSelection])
       ListModel,
       SectionModel,
       SelectionModel:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the model that @self is wrapping.
     */
-  def getModel(): ListModel = new ListModel.Abstract(
+  def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_no_selection_get_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -41,9 +42,19 @@ class NoSelection(raw: Ptr[GtkNoSelection])
     *
     * If @model is %NULL, this model will be empty.
     */
-  def setModel(model: ListModel): Unit = gtk_no_selection_set_model(
+  def setModel(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ]
+  ): Unit /* None */ = gtk_no_selection_set_model(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf
+    model
+      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+      )
   )
 
 end NoSelection
@@ -53,7 +64,19 @@ object NoSelection:
     *
     * Creates a new selection to handle @model.
     */
-  def apply(model: ListModel): NoSelection = new NoSelection(
-    gtk_no_selection_new(model.getUnsafeRawPointer().asInstanceOf).asInstanceOf
+  def apply(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ]
+  ): NoSelection = new NoSelection(
+    gtk_no_selection_new(
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        )
+    ).asInstanceOf
   )
 end NoSelection

@@ -12,6 +12,7 @@ import sn.gnome.gdk4.internal.GdkDeleteEvent
   * An event related to closing a top-level surface.
   */
 class DeleteEvent(raw: Ptr[GdkDeleteEvent]) extends Event(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end DeleteEvent

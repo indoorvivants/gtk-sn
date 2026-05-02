@@ -18,6 +18,7 @@ import sn.gnome.gobject.fluent.TypePlugin
 class IOModule(raw: Ptr[GIOModule])
     extends TypeModule(raw.asInstanceOf),
       TypePlugin:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -36,7 +37,7 @@ class IOModule(raw: Ptr[GIOModule])
     * statically. The old symbol names continue to be supported, but cannot be
     * used for static builds.
     */
-  def load(): Unit = g_io_module_load(this.raw.asInstanceOf)
+  def load(): Unit /* None */ = g_io_module_load(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -53,7 +54,7 @@ class IOModule(raw: Ptr[GIOModule])
     * building modules statically. The old symbol names continue to be
     * supported, but cannot be used for static builds.
     */
-  def unload(): Unit = g_io_module_unload(this.raw.asInstanceOf)
+  def unload(): Unit /* None */ = g_io_module_unload(this.raw.asInstanceOf)
 
 end IOModule
 
@@ -63,7 +64,10 @@ object IOModule:
     * Creates a new GIOModule that will load the specific shared library when in
     * use.
     */
-  def apply(filename: String | CString)(using Zone): IOModule = new IOModule(
+  def apply(
+      filename: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): IOModule = new IOModule(
     g_io_module_new(
       __sn_extract_string(filename).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf

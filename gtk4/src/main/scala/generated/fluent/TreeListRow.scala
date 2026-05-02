@@ -29,6 +29,7 @@ import sn.gnome.gtk4.internal.GtkTreeListRow
   * makes it possible to sort trees properly.
   */
 class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -36,7 +37,9 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     * If @self is not expanded or @position is greater than the number of
     * children, %NULL is returned.
     */
-  def getChildRow(position: UInt): TreeListRow = new TreeListRow(
+  def getChildRow(
+      position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): TreeListRow /* None */ = new TreeListRow(
     gtk_tree_list_row_get_child_row(
       this.raw.asInstanceOf,
       guint(position)
@@ -52,7 +55,7 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     * items, no matter what value [property@Gtk.TreeListModel:passthrough] is
     * set to.
     */
-  def getChildren(): ListModel = new ListModel.Abstract(
+  def getChildren(): ListModel /* None */ = new ListModel.Abstract(
     gtk_tree_list_row_get_children(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -67,7 +70,7 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     * The depth of a row never changes until the row is removed from its model
     * at which point it will forever return 0.
     */
-  def getDepth(): UInt = gtk_tree_list_row_get_depth(
+  def getDepth(): UInt /* None */ = gtk_tree_list_row_get_depth(
     this.raw.asInstanceOf
   ).value
 
@@ -75,14 +78,14 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     *
     * Gets if a row is currently expanded.
     */
-  def getExpanded(): Boolean =
+  def getExpanded(): Boolean /* None */ =
     gtk_tree_list_row_get_expanded(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the item corresponding to this row,
     */
-  def getItem(): Object = new Object(
+  def getItem(): Object /* None */ = new Object(
     gtk_tree_list_row_get_item(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -98,7 +101,7 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     * The value returned by this function never changes until the row is removed
     * from its model at which point it will forever return %NULL.
     */
-  def getParent(): TreeListRow = new TreeListRow(
+  def getParent(): TreeListRow /* None */ = new TreeListRow(
     gtk_tree_list_row_get_parent(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -107,7 +110,7 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     * Returns the position in the `GtkTreeListModel` that @self occupies at the
     * moment.
     */
-  def getPosition(): UInt = gtk_tree_list_row_get_position(
+  def getPosition(): UInt /* None */ = gtk_tree_list_row_get_position(
     this.raw.asInstanceOf
   ).value
 
@@ -121,7 +124,7 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     * If a row is expandable never changes until the row is removed from its
     * model at which point it will forever return %FALSE.
     */
-  def isExpandable(): Boolean =
+  def isExpandable(): Boolean /* None */ =
     gtk_tree_list_row_is_expandable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -135,7 +138,9 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     *
     * If the row is not expandable, this function does nothing.
     */
-  def setExpanded(expanded: Boolean): Unit = gtk_tree_list_row_set_expanded(
+  def setExpanded(
+      expanded: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_tree_list_row_set_expanded(
     this.raw.asInstanceOf,
     gboolean(gint((if expanded == true then 1 else 0)))
   )

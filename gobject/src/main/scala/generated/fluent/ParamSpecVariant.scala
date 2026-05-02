@@ -20,6 +20,7 @@ import sn.gnome.gobject.internal.GParamSpecVariant
   */
 class ParamSpecVariant(raw: Ptr[GParamSpecVariant])
     extends ParamSpec(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ParamSpecVariant

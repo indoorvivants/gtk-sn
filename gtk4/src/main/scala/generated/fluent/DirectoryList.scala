@@ -41,13 +41,14 @@ import sn.gnome.gtk4.internal.GtkDirectoryList
 class DirectoryList(raw: Ptr[GtkDirectoryList])
     extends Object(raw.asInstanceOf),
       ListModel:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the attributes queried on the children.
     */
-  def getAttributes()(using Zone): String = fromCString(
+  def getAttributes()(using Zone): String /* None */ = fromCString(
     gtk_directory_list_get_attributes(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -62,7 +63,7 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * An error being set does not mean that no files were loaded, and all
     * successfully queried files will remain in the list.
     */
-  def getError(): Ptr[GError] = gtk_directory_list_get_error(
+  def getError(): Ptr[GError] /* None */ = gtk_directory_list_get_error(
     this.raw.asInstanceOf
   )
 
@@ -70,7 +71,7 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     *
     * Gets the file whose children are currently enumerated.
     */
-  def getFile(): File = new File.Abstract(
+  def getFile(): File /* None */ = new File.Abstract(
     gtk_directory_list_get_file(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -78,7 +79,7 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     *
     * Gets the IO priority set via gtk_directory_list_set_io_priority().
     */
-  def getIoPriority(): Int = gtk_directory_list_get_io_priority(
+  def getIoPriority(): Int /* None */ = gtk_directory_list_get_io_priority(
     this.raw.asInstanceOf
   )
 
@@ -87,7 +88,7 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * Returns whether the directory list is monitoring the directory for
     * changes.
     */
-  def getMonitored(): Boolean =
+  def getMonitored(): Boolean /* None */ =
     gtk_directory_list_get_monitored(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -97,7 +98,7 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * Files will be added to @self from time to time while loading is going on.
     * The order in which are added is undefined and may change in between runs.
     */
-  def isLoading(): Boolean =
+  def isLoading(): Boolean /* None */ =
     gtk_directory_list_is_loading(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -107,11 +108,14 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * If @attributes is %NULL, the list of file infos will still be created, it
     * will just not contain any extra attributes.
     */
-  def setAttributes(attributes: String | CString)(using Zone): Unit =
-    gtk_directory_list_set_attributes(
-      this.raw.asInstanceOf,
-      __sn_extract_string(attributes)
-    )
+  def setAttributes(
+      attributes: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_directory_list_set_attributes(
+    this.raw.asInstanceOf,
+    attributes
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -119,9 +123,15 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     *
     * If @file is %NULL, the result will be an empty list.
     */
-  def setFile(file: File): Unit = gtk_directory_list_set_file(
+  def setFile(
+      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+  ): Unit /* None */ = gtk_directory_list_set_file(
     this.raw.asInstanceOf,
-    file.getUnsafeRawPointer().asInstanceOf
+    file
+      .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -136,7 +146,7 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * lowering it to something like %G_PRIORITY_DEFAULT_IDLE may increase
     * responsiveness.
     */
-  def setIoPriority(io_priority: Int): Unit =
+  def setIoPriority(io_priority: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_directory_list_set_io_priority(this.raw.asInstanceOf, io_priority)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -150,7 +160,9 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * list, the directory is reloaded to avoid missing files that appeared
     * between the initial loading and when monitoring was turned on.
     */
-  def setMonitored(monitored: Boolean): Unit = gtk_directory_list_set_monitored(
+  def setMonitored(
+      monitored: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_directory_list_set_monitored(
     this.raw.asInstanceOf,
     gboolean(gint((if monitored == true then 1 else 0)))
   )
@@ -172,12 +184,19 @@ object DirectoryList:
     *
     * The `GtkDirectoryList` is querying the given @file with the given @attributes.
     */
-  def apply(attributes: String | CString, file: File)(using
-      Zone
-  ): DirectoryList = new DirectoryList(
+  def apply(
+      attributes: Option[String | CString /* Some(CString) */ ],
+      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+  )(using Zone): DirectoryList = new DirectoryList(
     gtk_directory_list_new(
-      __sn_extract_string(attributes),
-      file.getUnsafeRawPointer().asInstanceOf
+      attributes
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
+      file
+        .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
     ).asInstanceOf
   )
 

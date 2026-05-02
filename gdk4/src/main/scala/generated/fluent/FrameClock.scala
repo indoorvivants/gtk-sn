@@ -49,6 +49,7 @@ import sn.gnome.gobject.fluent.Object
   * synchronized.
   */
 class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -61,7 +62,7 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * times and frames will be requested until gdk_frame_clock_end_updating() is
     * called the same number of times.
     */
-  def beginUpdating(): Unit = gdk_frame_clock_begin_updating(
+  def beginUpdating(): Unit /* None */ = gdk_frame_clock_begin_updating(
     this.raw.asInstanceOf
   )
 
@@ -71,29 +72,32 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     *
     * See the documentation for [method@Gdk.FrameClock.begin_updating].
     */
-  def endUpdating(): Unit = gdk_frame_clock_end_updating(this.raw.asInstanceOf)
+  def endUpdating(): Unit /* None */ = gdk_frame_clock_end_updating(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the frame timings for the current frame.
     */
-  def getCurrentTimings(): Ptr[GdkFrameTimings] =
+  def getCurrentTimings(): Ptr[GdkFrameTimings] /* None */ =
     gdk_frame_clock_get_current_timings(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Calculates the current frames-per-second, based on the frame timings of @frame_clock.
     */
-  def getFps(): Double = gdk_frame_clock_get_fps(this.raw.asInstanceOf)
+  def getFps(): Double /* None */ = gdk_frame_clock_get_fps(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * `GdkFrameClock` maintains a 64-bit counter that increments for each frame
     * drawn.
     */
-  def getFrameCounter(): CLongInt = gdk_frame_clock_get_frame_counter(
-    this.raw.asInstanceOf
-  ).value
+  def getFrameCounter(): CLongInt /* None */ =
+    gdk_frame_clock_get_frame_counter(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -104,7 +108,7 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * time of the conceptual “previous frame,” which may be either the actual
     * previous frame time, or if that’s too old, an updated time.
     */
-  def getFrameTime(): CLongInt = gdk_frame_clock_get_frame_time(
+  def getFrameTime(): CLongInt /* None */ = gdk_frame_clock_get_frame_time(
     this.raw.asInstanceOf
   ).value
 
@@ -118,9 +122,8 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * from the counter values given by [method@Gdk.FrameClock.get_history_start]
     * and [method@Gdk.FrameClock.get_frame_counter], inclusive.
     */
-  def getHistoryStart(): CLongInt = gdk_frame_clock_get_history_start(
-    this.raw.asInstanceOf
-  ).value
+  def getHistoryStart(): CLongInt /* None */ =
+    gdk_frame_clock_get_history_start(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -135,7 +138,7 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_refresh_info contains an OUT parameter, which is not supported yet"
   )
-  def getRefreshInfo(using DummyImplicit) = ???
+  private def getRefreshInfo__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -146,7 +149,9 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * [method@Gdk.FrameTimings.get_complete] and
     * [method@Gdk.FrameClock.get_history_start].
     */
-  def getTimings(frame_counter: CLongInt): Ptr[GdkFrameTimings] =
+  def getTimings(
+      frame_counter: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
+  ): Ptr[GdkFrameTimings] /* None */ =
     gdk_frame_clock_get_timings(this.raw.asInstanceOf, gint64(frame_counter))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -162,7 +167,9 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * since this allows GTK to adjust system parameters to get maximally smooth
     * animations.
     */
-  def requestPhase(phase: GdkFrameClockPhase): Unit =
+  def requestPhase(
+      phase: GdkFrameClockPhase /* Some(GdkFrameClockPhase) */
+  ): Unit /* None */ =
     gdk_frame_clock_request_phase(this.raw.asInstanceOf, phase)
 
 end FrameClock

@@ -14,13 +14,14 @@ import sn.gnome.glib.internal.guint
   * An event related to a button on a pointer device.
   */
 class ButtonEvent(raw: Ptr[GdkButtonEvent]) extends Event(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extract the button number from a button event.
     */
-  def getButton(): UInt = gdk_button_event_get_button(
+  def getButton(): UInt /* None */ = gdk_button_event_get_button(
     this.raw.asInstanceOf
   ).value
 

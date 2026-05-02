@@ -15,13 +15,14 @@ import sn.gnome.gsk4.internal.GskTextureNode
   */
 class TextureNode(raw: Ptr[GskTextureNode])
     extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the `GdkTexture` used when creating this `GskRenderNode`.
     */
-  def getTexture(): Texture = new Texture(
+  def getTexture(): Texture /* None */ = new Texture(
     gsk_texture_node_get_texture(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -38,11 +39,15 @@ object TextureNode:
     * transformed. See [class@Gsk.TextureScaleNode] for a way to influence
     * filtering.
     */
-  def apply(texture: Texture, bounds: Ptr[graphene_rect_t]): TextureNode =
-    new TextureNode(
-      gsk_texture_node_new(
-        texture.getUnsafeRawPointer().asInstanceOf,
-        bounds
-      ).asInstanceOf
-    )
+  def apply(
+      texture: Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */,
+      bounds: Ptr[
+        graphene_rect_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
+  ): TextureNode = new TextureNode(
+    gsk_texture_node_new(
+      texture.getUnsafeRawPointer().asInstanceOf,
+      bounds
+    ).asInstanceOf
+  )
 end TextureNode

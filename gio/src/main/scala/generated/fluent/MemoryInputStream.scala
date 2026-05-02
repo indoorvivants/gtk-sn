@@ -21,13 +21,16 @@ class MemoryInputStream(raw: Ptr[GMemoryInputStream])
     extends InputStream(raw.asInstanceOf),
       PollableInputStream,
       Seekable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Appends @bytes to data that can be read from the input stream.
     */
-  def addBytes(bytes: Ptr[GBytes]): Unit =
+  def addBytes(
+      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  ): Unit /* None */ =
     g_memory_input_stream_add_bytes(this.raw.asInstanceOf, bytes)
 
 end MemoryInputStream
@@ -45,7 +48,9 @@ object MemoryInputStream:
     *
     * Creates a new #GMemoryInputStream with data from the given @bytes.
     */
-  def fromBytes(bytes: Ptr[GBytes]): MemoryInputStream = new MemoryInputStream(
+  def fromBytes(
+      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  ): MemoryInputStream = new MemoryInputStream(
     g_memory_input_stream_new_from_bytes(bytes).asInstanceOf
   )
 end MemoryInputStream

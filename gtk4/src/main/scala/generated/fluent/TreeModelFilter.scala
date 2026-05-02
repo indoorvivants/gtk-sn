@@ -84,6 +84,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     extends Object(raw.asInstanceOf),
       TreeDragSource,
       TreeModel:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -95,7 +96,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * nodes. As a side effect of this function, all unreffed iters will be
     * invalid.
     */
-  def clearCache(): Unit = gtk_tree_model_filter_clear_cache(
+  def clearCache(): Unit /* None */ = gtk_tree_model_filter_clear_cache(
     this.raw.asInstanceOf
   )
 
@@ -108,7 +109,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
   @annotation.compileTimeOnly(
     "Method convert_child_iter_to_iter contains an OUT parameter, which is not supported yet"
   )
-  def convertChildIterToIter(using DummyImplicit) = ???
+  private def convertChildIterToIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -118,7 +119,9 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * child model or points to a row which is not visible in @filter, then %NULL
     * is returned.
     */
-  def convertChildPathToPath(child_path: Ptr[GtkTreePath]): Ptr[GtkTreePath] =
+  def convertChildPathToPath(
+      child_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
+  ): Ptr[GtkTreePath] /* None */ =
     gtk_tree_model_filter_convert_child_path_to_path(
       this.raw.asInstanceOf,
       child_path
@@ -131,7 +134,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
   @annotation.compileTimeOnly(
     "Method convert_iter_to_child_iter contains an OUT parameter, which is not supported yet"
   )
-  def convertIterToChildIter(using DummyImplicit) = ???
+  private def convertIterToChildIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -141,7 +144,9 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     *   same location in the model not being filtered. If @filter_path does not
     *   point to a location in the child model, %NULL is returned.
     */
-  def convertPathToChildPath(filter_path: Ptr[GtkTreePath]): Ptr[GtkTreePath] =
+  def convertPathToChildPath(
+      filter_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
+  ): Ptr[GtkTreePath] /* None */ =
     gtk_tree_model_filter_convert_path_to_child_path(
       this.raw.asInstanceOf,
       filter_path
@@ -151,7 +156,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     *
     * Returns a pointer to the child model of @filter.
     */
-  def getModel(): TreeModel = new TreeModel.Abstract(
+  def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
     gtk_tree_model_filter_get_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -160,7 +165,9 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * Emits ::row_changed for each row in the child model, which causes the
     * filter to re-evaluate whether a row is visible or not.
     */
-  def refilter(): Unit = gtk_tree_model_filter_refilter(this.raw.asInstanceOf)
+  def refilter(): Unit /* None */ = gtk_tree_model_filter_refilter(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -175,18 +182,30 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * for a given filter model.
     */
   def setModifyFunc(
-      n_columns: Int,
-      types: Ptr[GType],
-      func: GtkTreeModelFilterModifyFunc,
-      data: Ptr[Byte],
-      destroy: GDestroyNotify
-  ): Unit = gtk_tree_model_filter_set_modify_func(
+      n_columns: Int /* Some(CInt) */,
+      types: Ptr[
+        GType /* None */
+      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GType]) */,
+      func: GtkTreeModelFilterModifyFunc /* Some(GtkTreeModelFilterModifyFunc) */,
+      data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      destroy: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ]
+  ): Unit /* None */ = gtk_tree_model_filter_set_modify_func(
     this.raw.asInstanceOf,
     n_columns,
     types,
     func,
-    gpointer(data),
+    data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     destroy
+      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -200,7 +219,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * gtk_tree_model_filter_set_visible_column() can only be called once for a
     * given filter model.
     */
-  def setVisibleColumn(column: Int): Unit =
+  def setVisibleColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_tree_model_filter_set_visible_column(this.raw.asInstanceOf, column)
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
@@ -242,14 +261,24 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     *  once for a given filter model.
     */
   def setVisibleFunc(
-      func: GtkTreeModelFilterVisibleFunc,
-      data: Ptr[Byte],
-      destroy: GDestroyNotify
-  ): Unit = gtk_tree_model_filter_set_visible_func(
+      func: GtkTreeModelFilterVisibleFunc /* Some(GtkTreeModelFilterVisibleFunc) */,
+      data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      destroy: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ]
+  ): Unit /* None */ = gtk_tree_model_filter_set_visible_func(
     this.raw.asInstanceOf,
     func,
-    gpointer(data),
+    data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     destroy
+      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+      )
   )
 
 end TreeModelFilter

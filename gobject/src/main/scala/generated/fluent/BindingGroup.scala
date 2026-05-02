@@ -24,6 +24,7 @@ import sn.gnome.gobject.internal.GClosure
   * g_binding_group_set_source().
   */
 class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -36,11 +37,13 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     * See g_object_bind_property() for more information.
     */
   def bind(
-      source_property: String | CString,
-      target: Object,
-      target_property: String | CString,
-      flags: GBindingFlags
-  )(using Zone): Unit = g_binding_group_bind(
+      source_property: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      target: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      target_property: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: GBindingFlags /* Some(GBindingFlags) */
+  )(using Zone): Unit /* None */ = g_binding_group_bind(
     this.raw.asInstanceOf,
     __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
     gpointer(target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
@@ -59,23 +62,37 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     * See g_object_bind_property_full() for more information.
     */
   def bindFull(
-      source_property: String | CString,
-      target: Object,
-      target_property: String | CString,
-      flags: GBindingFlags,
-      transform_to: GBindingTransformFunc,
-      transform_from: GBindingTransformFunc,
-      user_data: Ptr[Byte],
-      user_data_destroy: GDestroyNotify
-  )(using Zone): Unit = g_binding_group_bind_full(
+      source_property: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      target: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      target_property: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: GBindingFlags /* Some(GBindingFlags) */,
+      transform_to: Option[
+        GBindingTransformFunc /* Some(GBindingTransformFunc) */
+      ],
+      transform_from: Option[
+        GBindingTransformFunc /* Some(GBindingTransformFunc) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      user_data_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+  )(using Zone): Unit /* None */ = g_binding_group_bind_full(
     this.raw.asInstanceOf,
     __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
     gpointer(target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
     __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
     flags,
-    transform_to,
-    transform_from,
-    gpointer(user_data),
+    transform_to
+      .map[GBindingTransformFunc](o => o)
+      .getOrElse(null.asInstanceOf[GBindingTransformFunc]),
+    transform_from
+      .map[GBindingTransformFunc](o => o)
+      .getOrElse(null.asInstanceOf[GBindingTransformFunc]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     user_data_destroy
   )
 
@@ -94,27 +111,33 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     * See g_object_bind_property_with_closures() for more information.
     */
   def bindWithClosures(
-      source_property: String | CString,
-      target: Object,
-      target_property: String | CString,
-      flags: GBindingFlags,
-      transform_to: Ptr[GClosure],
-      transform_from: Ptr[GClosure]
-  )(using Zone): Unit = g_binding_group_bind_with_closures(
+      source_property: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      target: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      target_property: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: GBindingFlags /* Some(GBindingFlags) */,
+      transform_to: Option[Ptr[GClosure] /* Some(Ptr[GClosure]) */ ],
+      transform_from: Option[Ptr[GClosure] /* Some(Ptr[GClosure]) */ ]
+  )(using Zone): Unit /* None */ = g_binding_group_bind_with_closures(
     this.raw.asInstanceOf,
     __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
     gpointer(target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
     __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
     flags,
-    transform_to,
+    transform_to
+      .map[Ptr[GClosure]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[GClosure]]),
     transform_from
+      .map[Ptr[GClosure]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[GClosure]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the source object used for binding properties.
     */
-  def dupSource(): Object = new Object(
+  def dupSource(): Object /* None */ = new Object(
     g_binding_group_dup_source(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -125,9 +148,15 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     *
     * Note that all properties that have been bound must exist on @source.
     */
-  def setSource(source: Object): Unit = g_binding_group_set_source(
+  def setSource(
+      source: Option[Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */ ]
+  ): Unit /* None */ = g_binding_group_set_source(
     this.raw.asInstanceOf,
-    gpointer(source.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
+    source
+      .map[_root_.sn.gnome.glib.internal.gpointer](o =>
+        gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
+      )
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

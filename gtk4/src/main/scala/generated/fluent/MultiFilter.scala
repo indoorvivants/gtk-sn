@@ -20,16 +20,18 @@ class MultiFilter(raw: Ptr[GtkMultiFilter])
     extends Filter(raw.asInstanceOf),
       ListModel,
       Buildable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Adds a @filter to @self to use for matching.
     */
-  def append(filter: Filter): Unit = gtk_multi_filter_append(
-    this.raw.asInstanceOf,
-    filter.getUnsafeRawPointer().asInstanceOf
-  )
+  def append(filter: Filter /* Some(Ptr[GtkFilter]) */ ): Unit /* None */ =
+    gtk_multi_filter_append(
+      this.raw.asInstanceOf,
+      filter.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -38,7 +40,9 @@ class MultiFilter(raw: Ptr[GtkMultiFilter])
     * If @position is larger than the number of filters, nothing happens and the
     * function returns.
     */
-  def remove(position: UInt): Unit =
+  def remove(
+      position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_multi_filter_remove(this.raw.asInstanceOf, guint(position))
 
 end MultiFilter

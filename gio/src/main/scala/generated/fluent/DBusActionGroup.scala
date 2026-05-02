@@ -19,6 +19,7 @@ class DBusActionGroup(raw: Ptr[GDBusActionGroup])
     extends Object(raw.asInstanceOf),
       ActionGroup,
       RemoteActionGroup:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end DBusActionGroup

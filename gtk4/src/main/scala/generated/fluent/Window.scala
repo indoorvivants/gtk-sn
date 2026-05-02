@@ -91,6 +91,7 @@ class Window(raw: Ptr[GtkWindow])
       Native,
       Root,
       ShortcutManager:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -102,13 +103,13 @@ class Window(raw: Ptr[GtkWindow])
     *
     * This function can be used with close buttons in custom titlebars.
     */
-  def close(): Unit = gtk_window_close(this.raw.asInstanceOf)
+  def close(): Unit /* None */ = gtk_window_close(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Drop the internal reference GTK holds on toplevel windows.
     */
-  def destroy(): Unit = gtk_window_destroy(this.raw.asInstanceOf)
+  def destroy(): Unit /* None */ = gtk_window_destroy(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -123,7 +124,9 @@ class Window(raw: Ptr[GtkWindow])
     * [property@Gdk.Toplevel:state] property, or by listening to notifications
     * of the [property@Gtk.Window:fullscreened] property.
     */
-  def fullscreen(): Unit = gtk_window_fullscreen(this.raw.asInstanceOf)
+  def fullscreen(): Unit /* None */ = gtk_window_fullscreen(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -137,17 +140,18 @@ class Window(raw: Ptr[GtkWindow])
     * [property@Gdk.Toplevel:state] property, or by listening to notifications
     * of the [property@Gtk.Window:fullscreened] property.
     */
-  def fullscreenOnMonitor(monitor: Monitor): Unit =
-    gtk_window_fullscreen_on_monitor(
-      this.raw.asInstanceOf,
-      monitor.getUnsafeRawPointer().asInstanceOf
-    )
+  def fullscreenOnMonitor(
+      monitor: Monitor /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkMonitor]) */
+  ): Unit /* None */ = gtk_window_fullscreen_on_monitor(
+    this.raw.asInstanceOf,
+    monitor.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the `GtkApplication` associated with the window.
     */
-  def getApplication(): Application = new Application(
+  def getApplication(): Application /* None */ = new Application(
     gtk_window_get_application(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -155,7 +159,7 @@ class Window(raw: Ptr[GtkWindow])
     *
     * Gets the child widget of @window.
     */
-  def getChild(): Widget = new Widget(
+  def getChild(): Widget /* None */ = new Widget(
     gtk_window_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -163,7 +167,7 @@ class Window(raw: Ptr[GtkWindow])
     *
     * Returns whether the window has been set to have decorations.
     */
-  def getDecorated(): Boolean =
+  def getDecorated(): Boolean /* None */ =
     gtk_window_get_decorated(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -181,13 +185,13 @@ class Window(raw: Ptr[GtkWindow])
   @annotation.compileTimeOnly(
     "Method get_default_size contains an OUT parameter, which is not supported yet"
   )
-  def getDefaultSize(using DummyImplicit) = ???
+  private def getDefaultSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the default widget for @window.
     */
-  def getDefaultWidget(): Widget = new Widget(
+  def getDefaultWidget(): Widget /* None */ = new Widget(
     gtk_window_get_default_widget(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -195,14 +199,14 @@ class Window(raw: Ptr[GtkWindow])
     *
     * Returns whether the window has been set to have a close button.
     */
-  def getDeletable(): Boolean =
+  def getDeletable(): Boolean /* None */ =
     gtk_window_get_deletable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the window will be destroyed with its transient parent.
     */
-  def getDestroyWithParent(): Boolean =
+  def getDestroyWithParent(): Boolean /* None */ =
     gtk_window_get_destroy_with_parent(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -213,7 +217,7 @@ class Window(raw: Ptr[GtkWindow])
     * window focused; if the toplevel window is not focused then
     * `gtk_widget_has_focus (widget)` will not be %TRUE for the widget.
     */
-  def getFocus(): Widget = new Widget(
+  def getFocus(): Widget /* None */ = new Widget(
     gtk_window_get_focus(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -221,7 +225,7 @@ class Window(raw: Ptr[GtkWindow])
     *
     * Gets whether “focus rectangles” are supposed to be visible.
     */
-  def getFocusVisible(): Boolean =
+  def getFocusVisible(): Boolean /* None */ =
     gtk_window_get_focus_visible(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -230,7 +234,7 @@ class Window(raw: Ptr[GtkWindow])
     *
     * If the window has no group, then the default group is returned.
     */
-  def getGroup(): WindowGroup = new WindowGroup(
+  def getGroup(): WindowGroup /* None */ = new WindowGroup(
     gtk_window_get_group(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -239,7 +243,7 @@ class Window(raw: Ptr[GtkWindow])
     * Returns whether this window reacts to F10 key presses by activating a
     * menubar it contains.
     */
-  def getHandleMenubarAccel(): Boolean =
+  def getHandleMenubarAccel(): Boolean /* None */ =
     gtk_window_get_handle_menubar_accel(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -247,14 +251,14 @@ class Window(raw: Ptr[GtkWindow])
     * Returns whether the window will be hidden when the close button is
     * clicked.
     */
-  def getHideOnClose(): Boolean =
+  def getHideOnClose(): Boolean /* None */ =
     gtk_window_get_hide_on_close(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the name of the themed icon for the window.
     */
-  def getIconName()(using Zone): String = fromCString(
+  def getIconName()(using Zone): String /* None */ = fromCString(
     gtk_window_get_icon_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -262,28 +266,28 @@ class Window(raw: Ptr[GtkWindow])
     *
     * Gets whether mnemonics are supposed to be visible.
     */
-  def getMnemonicsVisible(): Boolean =
+  def getMnemonicsVisible(): Boolean /* None */ =
     gtk_window_get_mnemonics_visible(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the window is modal.
     */
-  def getModal(): Boolean =
+  def getModal(): Boolean /* None */ =
     gtk_window_get_modal(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the value set by gtk_window_set_resizable().
     */
-  def getResizable(): Boolean =
+  def getResizable(): Boolean /* None */ =
     gtk_window_get_resizable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the title of the window.
     */
-  def getTitle()(using Zone): String = fromCString(
+  def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_window_get_title(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -292,7 +296,7 @@ class Window(raw: Ptr[GtkWindow])
     * Returns the custom titlebar that has been set with
     * gtk_window_set_titlebar().
     */
-  def getTitlebar(): Widget = new Widget(
+  def getTitlebar(): Widget /* None */ = new Widget(
     gtk_window_get_titlebar(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -300,7 +304,7 @@ class Window(raw: Ptr[GtkWindow])
     *
     * Fetches the transient parent for this window.
     */
-  def getTransientFor(): Window = new Window(
+  def getTransientFor(): Window /* None */ = new Window(
     gtk_window_get_transient_for(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -308,7 +312,7 @@ class Window(raw: Ptr[GtkWindow])
     *
     * Returns whether @window has an explicit window group.
     */
-  def hasGroup(): Boolean =
+  def hasGroup(): Boolean /* None */ =
     gtk_window_has_group(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -321,7 +325,7 @@ class Window(raw: Ptr[GtkWindow])
     * might use this function if you wanted to draw a widget differently in an
     * active window from a widget in an inactive window.
     */
-  def isActive(): Boolean =
+  def isActive(): Boolean /* None */ =
     gtk_window_is_active(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -337,7 +341,7 @@ class Window(raw: Ptr[GtkWindow])
     * If the window isn't yet mapped, the value returned will whether the
     * initial requested state is fullscreen.
     */
-  def isFullscreen(): Boolean =
+  def isFullscreen(): Boolean /* None */ =
     gtk_window_is_fullscreen(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -353,7 +357,7 @@ class Window(raw: Ptr[GtkWindow])
     * If the window isn't yet mapped, the value returned will whether the
     * initial requested state is maximized.
     */
-  def isMaximized(): Boolean =
+  def isMaximized(): Boolean /* None */ =
     gtk_window_is_maximized(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -363,7 +367,7 @@ class Window(raw: Ptr[GtkWindow])
     * A window being suspended means it's currently not visible to the user, for
     * example by being on a inactive workspace, minimized, obstructed.
     */
-  def isSuspended(): Boolean =
+  def isSuspended(): Boolean /* None */ =
     gtk_window_is_suspended(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -381,7 +385,7 @@ class Window(raw: Ptr[GtkWindow])
     * [property@Gdk.Toplevel:state] property, or by listening to notifications
     * on the [property@Gtk.Window:maximized] property.
     */
-  def maximize(): Unit = gtk_window_maximize(this.raw.asInstanceOf)
+  def maximize(): Unit /* None */ = gtk_window_maximize(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -399,7 +403,7 @@ class Window(raw: Ptr[GtkWindow])
     * You can track result of this operation via the
     * [property@Gdk.Toplevel:state] property.
     */
-  def minimize(): Unit = gtk_window_minimize(this.raw.asInstanceOf)
+  def minimize(): Unit /* None */ = gtk_window_minimize(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -412,7 +416,7 @@ class Window(raw: Ptr[GtkWindow])
     *
     * If @window is hidden, this function also makes it visible.
     */
-  def present(): Unit = gtk_window_present(this.raw.asInstanceOf)
+  def present(): Unit /* None */ = gtk_window_present(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -424,7 +428,9 @@ class Window(raw: Ptr[GtkWindow])
     * (when clicking a link for example), rather than once the window is ready
     * to be shown.
     */
-  def presentWithTime(timestamp: UInt): Unit =
+  def presentWithTime(
+      timestamp: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
+  ): Unit /* None */ =
     gtk_window_present_with_time(this.raw.asInstanceOf, guint32(timestamp))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -443,19 +449,26 @@ class Window(raw: Ptr[GtkWindow])
     * and/or [method@Gtk.Application.add_window] on the old/new applications as
     * relevant.
     */
-  def setApplication(application: Application): Unit =
-    gtk_window_set_application(
-      this.raw.asInstanceOf,
-      application.getUnsafeRawPointer().asInstanceOf
-    )
+  def setApplication(
+      application: Option[Application /* Some(Ptr[GtkApplication]) */ ]
+  ): Unit /* None */ = gtk_window_set_application(
+    this.raw.asInstanceOf,
+    application
+      .map[Ptr[GtkApplication]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkApplication]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the child widget of @window.
     */
-  def setChild(child: Widget): Unit = gtk_window_set_child(
+  def setChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_window_set_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -473,7 +486,9 @@ class Window(raw: Ptr[GtkWindow])
     * On Windows, this function always works, since there’s no window manager
     * policy involved.
     */
-  def setDecorated(setting: Boolean): Unit = gtk_window_set_decorated(
+  def setDecorated(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_window_set_decorated(
     this.raw.asInstanceOf,
     gboolean(gint((if setting == true then 1 else 0)))
   )
@@ -509,7 +524,10 @@ class Window(raw: Ptr[GtkWindow])
     * will not work in all circumstances and can lead to growing or shrinking
     * windows.
     */
-  def setDefaultSize(width: Int, height: Int): Unit =
+  def setDefaultSize(
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */
+  ): Unit /* None */ =
     gtk_window_set_default_size(this.raw.asInstanceOf, width, height)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -519,11 +537,14 @@ class Window(raw: Ptr[GtkWindow])
     * The default widget is the widget that is activated when the user presses
     * Enter in a dialog (for example).
     */
-  def setDefaultWidget(default_widget: Widget): Unit =
-    gtk_window_set_default_widget(
-      this.raw.asInstanceOf,
-      default_widget.getUnsafeRawPointer().asInstanceOf
-    )
+  def setDefaultWidget(
+      default_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_window_set_default_widget(
+    this.raw.asInstanceOf,
+    default_widget
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -540,7 +561,9 @@ class Window(raw: Ptr[GtkWindow])
     * On Windows, this function always works, since there’s no window manager
     * policy involved.
     */
-  def setDeletable(setting: Boolean): Unit = gtk_window_set_deletable(
+  def setDeletable(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_window_set_deletable(
     this.raw.asInstanceOf,
     gboolean(gint((if setting == true then 1 else 0)))
   )
@@ -553,11 +576,12 @@ class Window(raw: Ptr[GtkWindow])
     * This is useful for dialogs that shouldn’t persist beyond the lifetime of
     * the main window they are associated with, for example.
     */
-  def setDestroyWithParent(setting: Boolean): Unit =
-    gtk_window_set_destroy_with_parent(
-      this.raw.asInstanceOf,
-      gboolean(gint((if setting == true then 1 else 0)))
-    )
+  def setDestroyWithParent(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_window_set_destroy_with_parent(
+    this.raw.asInstanceOf,
+    gboolean(gint((if setting == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -566,7 +590,9 @@ class Window(raw: Ptr[GtkWindow])
     * If the window is already mapped, it will be unmapped, and then remapped on
     * the new display.
     */
-  def setDisplay(display: Display): Unit = gtk_window_set_display(
+  def setDisplay(
+      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+  ): Unit /* None */ = gtk_window_set_display(
     this.raw.asInstanceOf,
     display.getUnsafeRawPointer().asInstanceOf
   )
@@ -581,9 +607,13 @@ class Window(raw: Ptr[GtkWindow])
     * toplevel, it is usually more convenient to use
     * [method@Gtk.Widget.grab_focus] instead of this function.
     */
-  def setFocus(focus: Widget): Unit = gtk_window_set_focus(
+  def setFocus(
+      focus: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_window_set_focus(
     this.raw.asInstanceOf,
-    focus.getUnsafeRawPointer().asInstanceOf
+    focus
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -593,7 +623,9 @@ class Window(raw: Ptr[GtkWindow])
     * This property is maintained by GTK based on user input, and should not be
     * set by applications.
     */
-  def setFocusVisible(setting: Boolean): Unit = gtk_window_set_focus_visible(
+  def setFocusVisible(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_window_set_focus_visible(
     this.raw.asInstanceOf,
     gboolean(gint((if setting == true then 1 else 0)))
   )
@@ -603,18 +635,21 @@ class Window(raw: Ptr[GtkWindow])
     * Sets whether this window should react to F10 key presses by activating a
     * menubar it contains.
     */
-  def setHandleMenubarAccel(handle_menubar_accel: Boolean): Unit =
-    gtk_window_set_handle_menubar_accel(
-      this.raw.asInstanceOf,
-      gboolean(gint((if handle_menubar_accel == true then 1 else 0)))
-    )
+  def setHandleMenubarAccel(
+      handle_menubar_accel: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_window_set_handle_menubar_accel(
+    this.raw.asInstanceOf,
+    gboolean(gint((if handle_menubar_accel == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * If @setting is %TRUE, then clicking the close button on the window will
     * not destroy it, but only hide it.
     */
-  def setHideOnClose(setting: Boolean): Unit = gtk_window_set_hide_on_close(
+  def setHideOnClose(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_window_set_hide_on_close(
     this.raw.asInstanceOf,
     gboolean(gint((if setting == true then 1 else 0)))
   )
@@ -629,8 +664,14 @@ class Window(raw: Ptr[GtkWindow])
     * Note that this has nothing to do with the WM_ICON_NAME property which is
     * mentioned in the ICCCM.
     */
-  def setIconName(name: String | CString)(using Zone): Unit =
-    gtk_window_set_icon_name(this.raw.asInstanceOf, __sn_extract_string(name))
+  def setIconName(
+      name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_window_set_icon_name(
+    this.raw.asInstanceOf,
+    name
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -639,11 +680,12 @@ class Window(raw: Ptr[GtkWindow])
     * This property is maintained by GTK based on user input, and should not be
     * set by applications.
     */
-  def setMnemonicsVisible(setting: Boolean): Unit =
-    gtk_window_set_mnemonics_visible(
-      this.raw.asInstanceOf,
-      gboolean(gint((if setting == true then 1 else 0)))
-    )
+  def setMnemonicsVisible(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_window_set_mnemonics_visible(
+    this.raw.asInstanceOf,
+    gboolean(gint((if setting == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -655,7 +697,9 @@ class Window(raw: Ptr[GtkWindow])
     * parent; most window managers will then disallow lowering the dialog below
     * the parent.
     */
-  def setModal(modal: Boolean): Unit = gtk_window_set_modal(
+  def setModal(
+      modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_window_set_modal(
     this.raw.asInstanceOf,
     gboolean(gint((if modal == true then 1 else 0)))
   )
@@ -666,7 +710,9 @@ class Window(raw: Ptr[GtkWindow])
     *
     * Windows are user resizable by default.
     */
-  def setResizable(resizable: Boolean): Unit = gtk_window_set_resizable(
+  def setResizable(
+      resizable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_window_set_resizable(
     this.raw.asInstanceOf,
     gboolean(gint((if resizable == true then 1 else 0)))
   )
@@ -688,11 +734,12 @@ class Window(raw: Ptr[GtkWindow])
     *
     * This function is only useful on X11, not with other GTK targets.
     */
-  def setStartupId(startup_id: String | CString)(using Zone): Unit =
-    gtk_window_set_startup_id(
-      this.raw.asInstanceOf,
-      __sn_extract_string(startup_id)
-    )
+  def setStartupId(
+      startup_id: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_window_set_startup_id(
+    this.raw.asInstanceOf,
+    __sn_extract_string(startup_id)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -707,8 +754,14 @@ class Window(raw: Ptr[GtkWindow])
     *
     * Passing %NULL does the same as setting the title to an empty string.
     */
-  def setTitle(title: String | CString)(using Zone): Unit =
-    gtk_window_set_title(this.raw.asInstanceOf, __sn_extract_string(title))
+  def setTitle(
+      title: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_window_set_title(
+    this.raw.asInstanceOf,
+    title
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -723,9 +776,13 @@ class Window(raw: Ptr[GtkWindow])
     * system, this function may not work for a window that is already visible,
     * so you set the titlebar before calling [method@Gtk.Widget.show].
     */
-  def setTitlebar(titlebar: Widget): Unit = gtk_window_set_titlebar(
+  def setTitlebar(
+      titlebar: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_window_set_titlebar(
     this.raw.asInstanceOf,
-    titlebar.getUnsafeRawPointer().asInstanceOf
+    titlebar
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -741,9 +798,13 @@ class Window(raw: Ptr[GtkWindow])
     * On Windows, this function puts the child window on top of the parent, much
     * as the window manager would have done on X.
     */
-  def setTransientFor(parent: Window): Unit = gtk_window_set_transient_for(
+  def setTransientFor(
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
+  ): Unit /* None */ = gtk_window_set_transient_for(
     this.raw.asInstanceOf,
-    parent.getUnsafeRawPointer().asInstanceOf
+    parent
+      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -761,7 +822,9 @@ class Window(raw: Ptr[GtkWindow])
     * [property@Gdk.Toplevel:state] property, or by listening to notifications
     * of the [property@Gtk.Window:fullscreened] property.
     */
-  def unfullscreen(): Unit = gtk_window_unfullscreen(this.raw.asInstanceOf)
+  def unfullscreen(): Unit /* None */ = gtk_window_unfullscreen(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -776,7 +839,9 @@ class Window(raw: Ptr[GtkWindow])
     * [property@Gdk.Toplevel:state] property, or by listening to notifications
     * on the [property@Gtk.Window:maximized] property.
     */
-  def unmaximize(): Unit = gtk_window_unmaximize(this.raw.asInstanceOf)
+  def unmaximize(): Unit /* None */ = gtk_window_unmaximize(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -791,7 +856,9 @@ class Window(raw: Ptr[GtkWindow])
     * You can track result of this operation via the
     * [property@Gdk.Toplevel:state] property.
     */
-  def unminimize(): Unit = gtk_window_unminimize(this.raw.asInstanceOf)
+  def unminimize(): Unit /* None */ = gtk_window_unminimize(
+    this.raw.asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

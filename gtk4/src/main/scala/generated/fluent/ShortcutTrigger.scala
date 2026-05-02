@@ -32,6 +32,7 @@ import sn.gnome.gtk4.internal.GtkShortcutTrigger
   */
 class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -41,7 +42,9 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     *
     * They must each be a `GtkShortcutTrigger`.
     */
-  def compare(trigger2: ShortcutTrigger): Int = gtk_shortcut_trigger_compare(
+  def compare(
+      trigger2: ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
+  ): Int /* None */ = gtk_shortcut_trigger_compare(
     this.raw.asInstanceOf,
     trigger2.getUnsafeRawPointer().asInstanceOf
   )
@@ -53,7 +56,9 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * The types of @one and @two are `gconstpointer` only to allow use of this
     * function with `GHashTable`. They must each be a `GtkShortcutTrigger`.
     */
-  def equal(trigger2: ShortcutTrigger): Boolean = gtk_shortcut_trigger_equal(
+  def equal(
+      trigger2: ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
+  ): Boolean /* None */ = gtk_shortcut_trigger_equal(
     this.raw.asInstanceOf,
     trigger2.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
@@ -70,7 +75,9 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * The types of @trigger is `gconstpointer` only to allow use of this
     * function with `GHashTable`. They must each be a `GtkShortcutTrigger`.
     */
-  def hash(): UInt = gtk_shortcut_trigger_hash(this.raw.asInstanceOf).value
+  def hash(): UInt /* None */ = gtk_shortcut_trigger_hash(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -80,8 +87,11 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * The form of the representation may change at any time and is not
     * guaranteed to stay identical.
     */
-  def print(string: Ptr[GString]): Unit =
-    gtk_shortcut_trigger_print(this.raw.asInstanceOf, string)
+  def print(
+      string: Ptr[
+        GString
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GString]) */
+  ): Unit /* None */ = gtk_shortcut_trigger_print(this.raw.asInstanceOf, string)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -97,12 +107,16 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * The form of the representation may change at any time and is not
     * guaranteed to stay identical.
     */
-  def printLabel(display: Display, string: Ptr[GString]): Boolean =
-    gtk_shortcut_trigger_print_label(
-      this.raw.asInstanceOf,
-      display.getUnsafeRawPointer().asInstanceOf,
-      string
-    ).value.!=(0)
+  def printLabel(
+      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
+      string: Ptr[
+        GString
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GString]) */
+  ): Boolean /* None */ = gtk_shortcut_trigger_print_label(
+    this.raw.asInstanceOf,
+    display.getUnsafeRawPointer().asInstanceOf,
+    string
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -118,7 +132,9 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * The form of the representation may change at any time and is not
     * guaranteed to stay identical.
     */
-  def toLabel(display: Display)(using Zone): String = fromCString(
+  def toLabel(
+      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+  )(using Zone): String /* None */ = fromCString(
     gtk_shortcut_trigger_to_label(
       this.raw.asInstanceOf,
       display.getUnsafeRawPointer().asInstanceOf
@@ -132,7 +148,7 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * This is a small wrapper around [method@Gtk.ShortcutTrigger.print] to help
     * when debugging.
     */
-  def toString()(using Zone): String = fromCString(
+  def toString()(using Zone): String /* None */ = fromCString(
     gtk_shortcut_trigger_to_string(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -140,12 +156,14 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     *
     * Checks if the given @event triggers @self.
     */
-  def trigger(event: Event, enable_mnemonics: Boolean): GdkKeyMatch =
-    gtk_shortcut_trigger_trigger(
-      this.raw.asInstanceOf,
-      event.getUnsafeRawPointer().asInstanceOf,
-      gboolean(gint((if enable_mnemonics == true then 1 else 0)))
-    )
+  def trigger(
+      event: Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */,
+      enable_mnemonics: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): GdkKeyMatch /* None */ = gtk_shortcut_trigger_trigger(
+    this.raw.asInstanceOf,
+    event.getUnsafeRawPointer().asInstanceOf,
+    gboolean(gint((if enable_mnemonics == true then 1 else 0)))
+  )
 
 end ShortcutTrigger
 
@@ -171,12 +189,11 @@ object ShortcutTrigger:
     * specifying triggers in XML files, such as GtkBuilder ui files. Use `&lt;`
     * instead of `<` and `&gt;` instead of `>`.
     */
-  def parseString(string: String | CString)(using Zone): ShortcutTrigger =
-    new ShortcutTrigger(
-      gtk_shortcut_trigger_parse_string(
-        __sn_extract_string(string)
-      ).asInstanceOf
-    )
+  def parseString(
+      string: String | CString /* Some(CString) */
+  )(using Zone): ShortcutTrigger = new ShortcutTrigger(
+    gtk_shortcut_trigger_parse_string(__sn_extract_string(string)).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

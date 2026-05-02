@@ -14,6 +14,7 @@ import sn.gnome.gtk4.internal.GtkClosureExpression
   */
 class ClosureExpression(raw: Ptr[GtkClosureExpression])
     extends Expression(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ClosureExpression

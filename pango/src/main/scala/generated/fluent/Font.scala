@@ -24,6 +24,7 @@ import sn.gnome.pango.internal.PangoLanguage
   * manner.
   */
 class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -33,7 +34,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * Use [method@Pango.Font.describe_with_absolute_size] if you want the font
     * size in device units.
     */
-  def describe(): Ptr[PangoFontDescription] = pango_font_describe(
+  def describe(): Ptr[PangoFontDescription] /* None */ = pango_font_describe(
     this.raw.asInstanceOf
   )
 
@@ -44,14 +45,16 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     *
     * Use [method@Pango.Font.describe] if you want the font size in points.
     */
-  def describeWithAbsoluteSize(): Ptr[PangoFontDescription] =
+  def describeWithAbsoluteSize(): Ptr[PangoFontDescription] /* None */ =
     pango_font_describe_with_absolute_size(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Computes the coverage map for a given font and language tag.
     */
-  def getCoverage(language: Ptr[PangoLanguage]): Coverage = new Coverage(
+  def getCoverage(
+      language: Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */
+  ): Coverage /* None */ = new Coverage(
     pango_font_get_coverage(this.raw.asInstanceOf, language).asInstanceOf
   )
 
@@ -59,7 +62,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     *
     * Gets the `PangoFontFace` to which @font belongs.
     */
-  def getFace(): FontFace = new FontFace(
+  def getFace(): FontFace /* None */ = new FontFace(
     pango_font_get_face(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -76,7 +79,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_features contains an OUT parameter, which is not supported yet"
   )
-  def getFeatures(using DummyImplicit) = ???
+  private def getFeatures__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -91,7 +94,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * alive. In most uses this is not an issue as a `PangoContext` holds a
     * reference to the font map.
     */
-  def getFontMap(): FontMap = new FontMap(
+  def getFontMap(): FontMap /* None */ = new FontMap(
     pango_font_get_font_map(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -112,7 +115,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_glyph_extents contains an OUT parameter, which is not supported yet"
   )
-  def getGlyphExtents(using DummyImplicit) = ???
+  private def getGlyphExtents__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -125,7 +128,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_hb_font is weird: refers to HarfBuzz.font_t as gconstpointer"
   )
-  def getHbFont(using DummyImplicit) = ???
+  private def getHbFont__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -138,14 +141,22 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * If @font is %NULL, this function gracefully sets some sane values in the
     * output variables and returns.
     */
-  def getMetrics(language: Ptr[PangoLanguage]): Ptr[PangoFontMetrics] =
-    pango_font_get_metrics(this.raw.asInstanceOf, language)
+  def getMetrics(
+      language: Option[Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */ ]
+  ): Ptr[PangoFontMetrics] /* None */ = pango_font_get_metrics(
+    this.raw.asInstanceOf,
+    language
+      .map[Ptr[PangoLanguage]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[PangoLanguage]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the font provides a glyph for this character.
     */
-  def hasChar(wc: CUnsignedInt): Boolean =
+  def hasChar(
+      wc: CUnsignedInt /* Some(_root_.sn.gnome.glib.internal.gunichar) */
+  ): Boolean /* None */ =
     pango_font_has_char(this.raw.asInstanceOf, gunichar(guint32(wc))).value
       .!=(0)
 
@@ -162,6 +173,8 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * To recreate a font from its serialized form, use
     * [func@Pango.Font.deserialize].
     */
-  def serialize(): Ptr[GBytes] = pango_font_serialize(this.raw.asInstanceOf)
+  def serialize(): Ptr[GBytes] /* None */ = pango_font_serialize(
+    this.raw.asInstanceOf
+  )
 
 end Font

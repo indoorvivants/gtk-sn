@@ -34,6 +34,7 @@ import sn.gnome.gtk4.internal.GtkSorterOrder
   * `GtkSorter` and provide one's own sorter.
   */
 class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -50,8 +51,9 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
     * This function is intended for implementors of `GtkSorter` subclasses and
     * should not be called from other functions.
     */
-  def changed(change: GtkSorterChange): Unit =
-    gtk_sorter_changed(this.raw.asInstanceOf, change)
+  def changed(
+      change: GtkSorterChange /* Some(GtkSorterChange) */
+  ): Unit /* None */ = gtk_sorter_changed(this.raw.asInstanceOf, change)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -67,7 +69,10 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
     * The sorter may signal it conforms to additional constraints via the return
     * value of [method@Gtk.Sorter.get_order].
     */
-  def compare(item1: Object, item2: Object): GtkOrdering = gtk_sorter_compare(
+  def compare(
+      item1: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      item2: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+  ): GtkOrdering /* None */ = gtk_sorter_compare(
     this.raw.asInstanceOf,
     gpointer(item1.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
     gpointer(item2.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
@@ -81,6 +86,8 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
     *
     * This function is intended to allow optimizations.
     */
-  def getOrder(): GtkSorterOrder = gtk_sorter_get_order(this.raw.asInstanceOf)
+  def getOrder(): GtkSorterOrder /* None */ = gtk_sorter_get_order(
+    this.raw.asInstanceOf
+  )
 
 end Sorter

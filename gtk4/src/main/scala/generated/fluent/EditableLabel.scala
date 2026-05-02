@@ -48,20 +48,21 @@ class EditableLabel(raw: Ptr[GtkEditableLabel])
       Buildable,
       ConstraintTarget,
       Editable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the label is currently in “editing mode”.
     */
-  def getEditing(): Boolean =
+  def getEditing(): Boolean /* None */ =
     gtk_editable_label_get_editing(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Switches the label into “editing mode”.
     */
-  def startEditing(): Unit = gtk_editable_label_start_editing(
+  def startEditing(): Unit /* None */ = gtk_editable_label_start_editing(
     this.raw.asInstanceOf
   )
 
@@ -74,7 +75,9 @@ class EditableLabel(raw: Ptr[GtkEditableLabel])
     * is discarded and the label will keep its previous
     * [property@Gtk.Editable:text] property value.
     */
-  def stopEditing(commit: Boolean): Unit = gtk_editable_label_stop_editing(
+  def stopEditing(
+      commit: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_editable_label_stop_editing(
     this.raw.asInstanceOf,
     gboolean(gint((if commit == true then 1 else 0)))
   )
@@ -86,10 +89,11 @@ object EditableLabel:
     *
     * Creates a new `GtkEditableLabel` widget.
     */
-  def apply(str: String | CString)(using Zone): EditableLabel =
-    new EditableLabel(
-      gtk_editable_label_new(__sn_extract_string(str)).asInstanceOf
-    )
+  def apply(
+      str: String | CString /* Some(CString) */
+  )(using Zone): EditableLabel = new EditableLabel(
+    gtk_editable_label_new(__sn_extract_string(str)).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

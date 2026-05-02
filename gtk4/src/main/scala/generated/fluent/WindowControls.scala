@@ -71,13 +71,14 @@ class WindowControls(raw: Ptr[GtkWindowControls])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the decoration layout of this `GtkWindowControls`.
     */
-  def getDecorationLayout()(using Zone): String = fromCString(
+  def getDecorationLayout()(using Zone): String /* None */ = fromCString(
     gtk_window_controls_get_decoration_layout(
       this.raw.asInstanceOf
     ).asInstanceOf
@@ -87,14 +88,14 @@ class WindowControls(raw: Ptr[GtkWindowControls])
     *
     * Gets whether the widget has any window buttons.
     */
-  def getEmpty(): Boolean =
+  def getEmpty(): Boolean /* None */ =
     gtk_window_controls_get_empty(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the side to which this `GtkWindowControls` instance belongs.
     */
-  def getSide(): GtkPackType = gtk_window_controls_get_side(
+  def getSide(): GtkPackType /* None */ = gtk_window_controls_get_side(
     this.raw.asInstanceOf
   )
 
@@ -115,11 +116,14 @@ class WindowControls(raw: Ptr[GtkWindowControls])
     * If [property@Gtk.WindowControls:side] value is @GTK_PACK_START, @self will
     * display the part before the colon, otherwise after that.
     */
-  def setDecorationLayout(layout: String | CString)(using Zone): Unit =
-    gtk_window_controls_set_decoration_layout(
-      this.raw.asInstanceOf,
-      __sn_extract_string(layout)
-    )
+  def setDecorationLayout(
+      layout: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_window_controls_set_decoration_layout(
+    this.raw.asInstanceOf,
+    layout
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -127,7 +131,7 @@ class WindowControls(raw: Ptr[GtkWindowControls])
     *
     * See [property@Gtk.WindowControls:decoration-layout].
     */
-  def setSide(side: GtkPackType): Unit =
+  def setSide(side: GtkPackType /* Some(GtkPackType) */ ): Unit /* None */ =
     gtk_window_controls_set_side(this.raw.asInstanceOf, side)
 
   private inline def __sn_extract_string(str: String | CString)(using
@@ -145,7 +149,6 @@ object WindowControls:
     *
     * Creates a new `GtkWindowControls`.
     */
-  def apply(side: GtkPackType): WindowControls = new WindowControls(
-    gtk_window_controls_new(side).asInstanceOf
-  )
+  def apply(side: GtkPackType /* Some(GtkPackType) */ ): WindowControls =
+    new WindowControls(gtk_window_controls_new(side).asInstanceOf)
 end WindowControls

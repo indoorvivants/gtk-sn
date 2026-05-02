@@ -16,6 +16,7 @@ import sn.gnome.gtk4.internal.GtkShortcutFunc
   */
 class CallbackAction(raw: Ptr[GtkCallbackAction])
     extends ShortcutAction(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end CallbackAction
@@ -26,10 +27,20 @@ object CallbackAction:
     * Create a custom action that calls the given @callback when activated.
     */
   def apply(
-      callback: GtkShortcutFunc,
-      data: Ptr[Byte],
-      destroy: GDestroyNotify
+      callback: Option[GtkShortcutFunc /* Some(GtkShortcutFunc) */ ],
+      data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): CallbackAction = new CallbackAction(
-    gtk_callback_action_new(callback, gpointer(data), destroy).asInstanceOf
+    gtk_callback_action_new(
+      callback
+        .map[GtkShortcutFunc](o => o)
+        .getOrElse(null.asInstanceOf[GtkShortcutFunc]),
+      data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+      destroy
+    ).asInstanceOf
   )
 end CallbackAction

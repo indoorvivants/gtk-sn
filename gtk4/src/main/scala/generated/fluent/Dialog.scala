@@ -149,6 +149,7 @@ class Dialog(raw: Ptr[GtkDialog])
       Native,
       Root,
       ShortcutManager:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -162,12 +163,14 @@ class Dialog(raw: Ptr[GtkDialog])
     * If you want to add a non-activatable widget, simply pack it into the @action_area
     * field of the `GtkDialog` struct.
     */
-  def addActionWidget(child: Widget, response_id: GtkResponseType): Unit =
-    gtk_dialog_add_action_widget(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf,
-      response_id.value
-    )
+  def addActionWidget(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      response_id: GtkResponseType /* Some(CInt) */
+  ): Unit /* None */ = gtk_dialog_add_action_widget(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf,
+    response_id.value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -178,9 +181,10 @@ class Dialog(raw: Ptr[GtkDialog])
     * button is appended to the end of the dialog’s action area. The button
     * widget is returned, but usually you don’t need it.
     */
-  def addButton(button_text: String | CString, response_id: GtkResponseType)(
-      using Zone
-  ): Widget = new Widget(
+  def addButton(
+      button_text: String | CString /* Some(CString) */,
+      response_id: GtkResponseType /* Some(CInt) */
+  )(using Zone): Widget /* None */ = new Widget(
     gtk_dialog_add_button(
       this.raw.asInstanceOf,
       __sn_extract_string(button_text),
@@ -197,9 +201,10 @@ class Dialog(raw: Ptr[GtkDialog])
     * [ctor@Gtk.Dialog.new_with_buttons]. Each button must have both text and
     * response ID.
     */
-  inline def addButtons(first_button_text: String | CString, args: Any*)(using
-      Zone
-  ): Unit = gtk_dialog_add_buttons(
+  inline def addButtons(
+      first_button_text: String | CString /* Some(CString) */,
+      args: Any*
+  )(using Zone): Unit /* None */ = gtk_dialog_add_buttons(
     this.raw.asInstanceOf,
     __sn_extract_string(first_button_text),
     args*
@@ -209,7 +214,7 @@ class Dialog(raw: Ptr[GtkDialog])
     *
     * Returns the content area of @dialog.
     */
-  def getContentArea(): Box = new Box(
+  def getContentArea(): Box /* None */ = new Box(
     gtk_dialog_get_content_area(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -220,7 +225,7 @@ class Dialog(raw: Ptr[GtkDialog])
     * Note that the headerbar is only used by the dialog if the
     * [property@Gtk.Dialog:use-header-bar] property is %TRUE.
     */
-  def getHeaderBar(): HeaderBar = new HeaderBar(
+  def getHeaderBar(): HeaderBar /* None */ = new HeaderBar(
     gtk_dialog_get_header_bar(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -228,18 +233,21 @@ class Dialog(raw: Ptr[GtkDialog])
     *
     * Gets the response id of a widget in the action area of a dialog.
     */
-  def getResponseForWidget(widget: Widget): Int =
-    gtk_dialog_get_response_for_widget(
-      this.raw.asInstanceOf,
-      widget.getUnsafeRawPointer().asInstanceOf
-    )
+  def getResponseForWidget(
+      widget: Widget /* Some(Ptr[GtkWidget]) */
+  ): Int /* None */ = gtk_dialog_get_response_for_widget(
+    this.raw.asInstanceOf,
+    widget.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the widget button that uses the given response ID in the action area
     * of a dialog.
     */
-  def getWidgetForResponse(response_id: GtkResponseType): Widget = new Widget(
+  def getWidgetForResponse(
+      response_id: GtkResponseType /* Some(CInt) */
+  ): Widget /* None */ = new Widget(
     gtk_dialog_get_widget_for_response(
       this.raw.asInstanceOf,
       response_id.value
@@ -252,7 +260,9 @@ class Dialog(raw: Ptr[GtkDialog])
     *
     * Used to indicate that the user has responded to the dialog in some way.
     */
-  def response(response_id: GtkResponseType): Unit =
+  def response(
+      response_id: GtkResponseType /* Some(CInt) */
+  ): Unit /* None */ =
     gtk_dialog_response(this.raw.asInstanceOf, response_id.value)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -261,7 +271,9 @@ class Dialog(raw: Ptr[GtkDialog])
     *
     * Pressing “Enter” normally activates the default widget.
     */
-  def setDefaultResponse(response_id: GtkResponseType): Unit =
+  def setDefaultResponse(
+      response_id: GtkResponseType /* Some(CInt) */
+  ): Unit /* None */ =
     gtk_dialog_set_default_response(this.raw.asInstanceOf, response_id.value)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -272,9 +284,9 @@ class Dialog(raw: Ptr[GtkDialog])
     * dialog’s action area with the given @response_id.
     */
   def setResponseSensitive(
-      response_id: GtkResponseType,
-      setting: Boolean
-  ): Unit = gtk_dialog_set_response_sensitive(
+      response_id: GtkResponseType /* Some(CInt) */,
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_dialog_set_response_sensitive(
     this.raw.asInstanceOf,
     response_id.value,
     gboolean(gint((if setting == true then 1 else 0)))
@@ -337,17 +349,23 @@ object Dialog:
     * ```
     */
   inline def withButtons(
-      title: String | CString,
-      parent: Window,
-      flags: GtkDialogFlags,
-      first_button_text: String | CString,
+      title: Option[String | CString /* Some(CString) */ ],
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      flags: GtkDialogFlags /* Some(GtkDialogFlags) */,
+      first_button_text: Option[String | CString /* Some(CString) */ ],
       args: Any*
   )(using Zone): Dialog = new Dialog(
     gtk_dialog_new_with_buttons(
-      __sn_extract_string(title),
-      parent.getUnsafeRawPointer().asInstanceOf,
+      title
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       flags,
-      __sn_extract_string(first_button_text),
+      first_button_text
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf
   )

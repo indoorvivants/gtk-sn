@@ -23,32 +23,33 @@ class CharsetConverter(raw: Ptr[GCharsetConverter])
     extends Object(raw.asInstanceOf),
       Converter,
       Initable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the number of fallbacks that @converter has applied so far.
     */
-  def getNumFallbacks(): UInt = g_charset_converter_get_num_fallbacks(
-    this.raw.asInstanceOf
-  ).value
+  def getNumFallbacks(): UInt /* None */ =
+    g_charset_converter_get_num_fallbacks(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the #GCharsetConverter:use-fallback property.
     */
-  def getUseFallback(): Boolean =
+  def getUseFallback(): Boolean /* None */ =
     g_charset_converter_get_use_fallback(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the #GCharsetConverter:use-fallback property.
     */
-  def setUseFallback(use_fallback: Boolean): Unit =
-    g_charset_converter_set_use_fallback(
-      this.raw.asInstanceOf,
-      gboolean(gint((if use_fallback == true then 1 else 0)))
-    )
+  def setUseFallback(
+      use_fallback: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = g_charset_converter_set_use_fallback(
+    this.raw.asInstanceOf,
+    gboolean(gint((if use_fallback == true then 1 else 0)))
+  )
 
 end CharsetConverter
 
@@ -57,9 +58,12 @@ object CharsetConverter:
     *
     * Creates a new #GCharsetConverter.
     */
-  def apply(to_charset: String | CString, from_charset: String | CString)(using
-      Zone
-  ): GResult[CharsetConverter] = GResult.wrap(__errorPtr =>
+  def apply(
+      to_charset: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      from_charset: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): GResult[CharsetConverter] = GResult.wrap(__errorPtr =>
     new CharsetConverter(
       g_charset_converter_new(
         __sn_extract_string(to_charset).asInstanceOf[Ptr[gchar]],

@@ -23,20 +23,21 @@ import sn.gnome.gtk4.internal.GtkEventControllerFocus
   */
 class EventControllerFocus(raw: Ptr[GtkEventControllerFocus])
     extends EventController(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns %TRUE if focus is within @self or one of its children.
     */
-  def containsFocus(): Boolean =
+  def containsFocus(): Boolean /* None */ =
     gtk_event_controller_focus_contains_focus(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns %TRUE if focus is within @self, but not one of its children.
     */
-  def isFocus(): Boolean =
+  def isFocus(): Boolean /* None */ =
     gtk_event_controller_focus_is_focus(this.raw.asInstanceOf).value.!=(0)
 
 end EventControllerFocus

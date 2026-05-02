@@ -35,6 +35,7 @@ import sn.gnome.gobject.fluent.Object
   * #GTlsDatabase. It is used internally by #GTlsConnection.
   */
 class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -48,13 +49,14 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * and between applications. If a certificate is modified in the database,
     * then it is not guaranteed that this handle will continue to point to it.
     */
-  def createCertificateHandle(certificate: TlsCertificate)(using Zone): String =
-    fromCString(
-      g_tls_database_create_certificate_handle(
-        this.raw.asInstanceOf,
-        certificate.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def createCertificateHandle(
+      certificate: TlsCertificate /* Some(Ptr[GTlsCertificate]) */
+  )(using Zone): String /* None */ = fromCString(
+    g_tls_database_create_certificate_handle(
+      this.raw.asInstanceOf,
+      certificate.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -73,22 +75,30 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * operation asynchronously.
     */
   def lookupCertificateForHandle(
-      handle: String | CString,
-      interaction: TlsInteraction,
-      flags: GTlsDatabaseLookupFlags,
-      cancellable: Cancellable
-  )(using Zone): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
-    new TlsCertificate(
-      g_tls_database_lookup_certificate_for_handle(
-        this.raw.asInstanceOf,
-        __sn_extract_string(handle).asInstanceOf[Ptr[gchar]],
-        interaction.getUnsafeRawPointer().asInstanceOf,
-        flags,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+      handle: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ],
+      flags: GTlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  )(using Zone): GResult[TlsCertificate /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      new TlsCertificate(
+        g_tls_database_lookup_certificate_for_handle(
+          this.raw.asInstanceOf,
+          __sn_extract_string(handle).asInstanceOf[Ptr[gchar]],
+          interaction
+            .map[Ptr[GTlsInteraction]](o =>
+              o.getUnsafeRawPointer().asInstanceOf
+            )
+            .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]]),
+          flags,
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -96,21 +106,33 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * g_tls_database_lookup_certificate_for_handle() for more information.
     */
   def lookupCertificateForHandleAsync(
-      handle: String | CString,
-      interaction: TlsInteraction,
-      flags: GTlsDatabaseLookupFlags,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  )(using Zone): Unit = g_tls_database_lookup_certificate_for_handle_async(
-    this.raw.asInstanceOf,
-    __sn_extract_string(handle).asInstanceOf[Ptr[gchar]],
-    interaction.getUnsafeRawPointer().asInstanceOf,
-    flags,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
-  )
+      handle: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ],
+      flags: GTlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ =
+    g_tls_database_lookup_certificate_for_handle_async(
+      this.raw.asInstanceOf,
+      __sn_extract_string(handle).asInstanceOf[Ptr[gchar]],
+      interaction
+        .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]]),
+      flags,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      callback
+        .map[GAsyncReadyCallback](o => o)
+        .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+      user_data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -121,8 +143,8 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * this database, then %NULL will be returned.
     */
   def lookupCertificateForHandleFinish(
-      result: AsyncResult
-  ): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[TlsCertificate /* None */ ] = GResult.wrap(__errorPtr =>
     new TlsCertificate(
       g_tls_database_lookup_certificate_for_handle_finish(
         this.raw.asInstanceOf,
@@ -157,18 +179,22 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * certificates.
     */
   def lookupCertificateIssuer(
-      certificate: TlsCertificate,
-      interaction: TlsInteraction,
-      flags: GTlsDatabaseLookupFlags,
-      cancellable: Cancellable
-  ): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
+      certificate: TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
+      interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ],
+      flags: GTlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[TlsCertificate /* None */ ] = GResult.wrap(__errorPtr =>
     new TlsCertificate(
       g_tls_database_lookup_certificate_issuer(
         this.raw.asInstanceOf,
         certificate.getUnsafeRawPointer().asInstanceOf,
-        interaction.getUnsafeRawPointer().asInstanceOf,
+        interaction
+          .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]]),
         flags,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
         __errorPtr
       ).asInstanceOf
     )
@@ -180,20 +206,30 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * g_tls_database_lookup_certificate_issuer() for more information.
     */
   def lookupCertificateIssuerAsync(
-      certificate: TlsCertificate,
-      interaction: TlsInteraction,
-      flags: GTlsDatabaseLookupFlags,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_tls_database_lookup_certificate_issuer_async(
+      certificate: TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
+      interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ],
+      flags: GTlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_tls_database_lookup_certificate_issuer_async(
     this.raw.asInstanceOf,
     certificate.getUnsafeRawPointer().asInstanceOf,
-    interaction.getUnsafeRawPointer().asInstanceOf,
+    interaction
+      .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]]),
     flags,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -202,8 +238,8 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * g_tls_database_lookup_certificate_issuer() for more information.
     */
   def lookupCertificateIssuerFinish(
-      result: AsyncResult
-  ): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[TlsCertificate /* None */ ] = GResult.wrap(__errorPtr =>
     new TlsCertificate(
       g_tls_database_lookup_certificate_issuer_finish(
         this.raw.asInstanceOf,
@@ -222,17 +258,23 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * operation asynchronously.
     */
   def lookupCertificatesIssuedBy(
-      issuer_raw_dn: Ptr[guint8],
-      interaction: TlsInteraction,
-      flags: GTlsDatabaseLookupFlags,
-      cancellable: Cancellable
-  ): GResult[Ptr[GList]] = GResult.wrap(__errorPtr =>
+      issuer_raw_dn: Ptr[
+        guint8
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GByteArray]) */,
+      interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ],
+      flags: GTlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_database_lookup_certificates_issued_by(
       this.raw.asInstanceOf,
       issuer_raw_dn.asInstanceOf,
-      interaction.getUnsafeRawPointer().asInstanceOf,
+      interaction
+        .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]]),
       flags,
-      cancellable.getUnsafeRawPointer().asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
       __errorPtr
     )
   )
@@ -247,20 +289,32 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * modified during this time.
     */
   def lookupCertificatesIssuedByAsync(
-      issuer_raw_dn: Ptr[guint8],
-      interaction: TlsInteraction,
-      flags: GTlsDatabaseLookupFlags,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_tls_database_lookup_certificates_issued_by_async(
+      issuer_raw_dn: Ptr[
+        guint8
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GByteArray]) */,
+      interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ],
+      flags: GTlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_tls_database_lookup_certificates_issued_by_async(
     this.raw.asInstanceOf,
     issuer_raw_dn.asInstanceOf,
-    interaction.getUnsafeRawPointer().asInstanceOf,
+    interaction
+      .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]]),
     flags,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -269,8 +323,8 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * g_tls_database_lookup_certificates_issued_by() for more information.
     */
   def lookupCertificatesIssuedByFinish(
-      result: AsyncResult
-  ): GResult[Ptr[GList]] = GResult.wrap(__errorPtr =>
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_database_lookup_certificates_issued_by_finish(
       this.raw.asInstanceOf,
       result.getUnsafeRawPointer().asInstanceOf,
@@ -343,24 +397,34 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * perform the verification operation asynchronously.
     */
   def verifyChain(
-      chain: TlsCertificate,
-      purpose: String | CString,
-      identity: SocketConnectable,
-      interaction: TlsInteraction,
-      flags: GTlsDatabaseVerifyFlags,
-      cancellable: Cancellable
-  )(using Zone): GResult[GTlsCertificateFlags] = GResult.wrap(__errorPtr =>
-    g_tls_database_verify_chain(
-      this.raw.asInstanceOf,
-      chain.getUnsafeRawPointer().asInstanceOf,
-      __sn_extract_string(purpose).asInstanceOf[Ptr[gchar]],
-      identity.getUnsafeRawPointer().asInstanceOf,
-      interaction.getUnsafeRawPointer().asInstanceOf,
-      flags,
-      cancellable.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
+      chain: TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
+      purpose: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      identity: Option[SocketConnectable /* Some(Ptr[GSocketConnectable]) */ ],
+      interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ],
+      flags: GTlsDatabaseVerifyFlags /* Some(GTlsDatabaseVerifyFlags) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  )(using Zone): GResult[GTlsCertificateFlags /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_tls_database_verify_chain(
+        this.raw.asInstanceOf,
+        chain.getUnsafeRawPointer().asInstanceOf,
+        __sn_extract_string(purpose).asInstanceOf[Ptr[gchar]],
+        identity
+          .map[Ptr[GSocketConnectable]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(null.asInstanceOf[Ptr[GSocketConnectable]]),
+        interaction
+          .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]]),
+        flags,
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      )
     )
-  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -369,24 +433,37 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * g_tls_database_verify_chain() for more information.
     */
   def verifyChainAsync(
-      chain: TlsCertificate,
-      purpose: String | CString,
-      identity: SocketConnectable,
-      interaction: TlsInteraction,
-      flags: GTlsDatabaseVerifyFlags,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  )(using Zone): Unit = g_tls_database_verify_chain_async(
+      chain: TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
+      purpose: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      identity: Option[SocketConnectable /* Some(Ptr[GSocketConnectable]) */ ],
+      interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ],
+      flags: GTlsDatabaseVerifyFlags /* Some(GTlsDatabaseVerifyFlags) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_tls_database_verify_chain_async(
     this.raw.asInstanceOf,
     chain.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(purpose).asInstanceOf[Ptr[gchar]],
-    identity.getUnsafeRawPointer().asInstanceOf,
-    interaction.getUnsafeRawPointer().asInstanceOf,
+    identity
+      .map[Ptr[GSocketConnectable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GSocketConnectable]]),
+    interaction
+      .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]]),
     flags,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -404,14 +481,15 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     *   %G_TLS_CERTIFICATE_GENERIC_ERROR and @error will be set accordingly. @error
     *   is not set when @chain is successfully analyzed but found to be invalid.
     */
-  def verifyChainFinish(result: AsyncResult): GResult[GTlsCertificateFlags] =
-    GResult.wrap(__errorPtr =>
-      g_tls_database_verify_chain_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      )
+  def verifyChainFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[GTlsCertificateFlags /* None */ ] = GResult.wrap(__errorPtr =>
+    g_tls_database_verify_chain_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
     )
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

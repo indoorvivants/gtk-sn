@@ -33,13 +33,14 @@ class WindowHandle(raw: Ptr[GtkWindowHandle])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the child widget of @self.
     */
-  def getChild(): Widget = new Widget(
+  def getChild(): Widget /* None */ = new Widget(
     gtk_window_handle_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -47,9 +48,13 @@ class WindowHandle(raw: Ptr[GtkWindowHandle])
     *
     * Sets the child widget of @self.
     */
-  def setChild(child: Widget): Unit = gtk_window_handle_set_child(
+  def setChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_window_handle_set_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
 end WindowHandle

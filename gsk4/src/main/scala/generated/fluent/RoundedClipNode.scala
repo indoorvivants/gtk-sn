@@ -14,13 +14,14 @@ import sn.gnome.gsk4.internal.GskRoundedRect
   */
 class RoundedClipNode(raw: Ptr[GskRoundedClipNode])
     extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the child node that is getting clipped by the given @node.
     */
-  def getChild(): RenderNode = new RenderNode(
+  def getChild(): RenderNode /* None */ = new RenderNode(
     gsk_rounded_clip_node_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -28,9 +29,8 @@ class RoundedClipNode(raw: Ptr[GskRoundedClipNode])
     *
     * Retrieves the rounded rectangle used to clip the contents of the @node.
     */
-  def getClip(): Ptr[GskRoundedRect] = gsk_rounded_clip_node_get_clip(
-    this.raw.asInstanceOf
-  )
+  def getClip(): Ptr[GskRoundedRect] /* None */ =
+    gsk_rounded_clip_node_get_clip(this.raw.asInstanceOf)
 
 end RoundedClipNode
 
@@ -39,11 +39,13 @@ object RoundedClipNode:
     *
     * Creates a `GskRenderNode` that will clip the @child to the area given by @clip.
     */
-  def apply(child: RenderNode, clip: Ptr[GskRoundedRect]): RoundedClipNode =
-    new RoundedClipNode(
-      gsk_rounded_clip_node_new(
-        child.getUnsafeRawPointer().asInstanceOf,
-        clip
-      ).asInstanceOf
-    )
+  def apply(
+      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      clip: Ptr[GskRoundedRect] /* Some(Ptr[GskRoundedRect]) */
+  ): RoundedClipNode = new RoundedClipNode(
+    gsk_rounded_clip_node_new(
+      child.getUnsafeRawPointer().asInstanceOf,
+      clip
+    ).asInstanceOf
+  )
 end RoundedClipNode

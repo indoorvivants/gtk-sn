@@ -15,13 +15,14 @@ import sn.gnome.gsk4.internal.GskColorMatrixNode
   */
 class ColorMatrixNode(raw: Ptr[GskColorMatrixNode])
     extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the child node that is getting its colors modified by the given @node.
     */
-  def getChild(): RenderNode = new RenderNode(
+  def getChild(): RenderNode /* None */ = new RenderNode(
     gsk_color_matrix_node_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -29,14 +30,14 @@ class ColorMatrixNode(raw: Ptr[GskColorMatrixNode])
     *
     * Retrieves the color matrix used by the @node.
     */
-  def getColorMatrix(): Ptr[graphene_matrix_t] =
+  def getColorMatrix(): Ptr[graphene_matrix_t] /* None */ =
     gsk_color_matrix_node_get_color_matrix(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the color offset used by the @node.
     */
-  def getColorOffset(): Ptr[graphene_vec4_t] =
+  def getColorOffset(): Ptr[graphene_vec4_t] /* None */ =
     gsk_color_matrix_node_get_color_offset(this.raw.asInstanceOf)
 
 end ColorMatrixNode
@@ -55,9 +56,13 @@ object ColorMatrixNode:
     * with color components ordered R, G, B, A.
     */
   def apply(
-      child: RenderNode,
-      color_matrix: Ptr[graphene_matrix_t],
-      color_offset: Ptr[graphene_vec4_t]
+      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      color_matrix: Ptr[
+        graphene_matrix_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_matrix_t]) */,
+      color_offset: Ptr[
+        graphene_vec4_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec4_t]) */
   ): ColorMatrixNode = new ColorMatrixNode(
     gsk_color_matrix_node_new(
       child.getUnsafeRawPointer().asInstanceOf,

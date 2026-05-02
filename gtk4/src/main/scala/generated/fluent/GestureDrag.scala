@@ -19,6 +19,7 @@ import sn.gnome.gtk4.internal.GtkGestureDrag
   */
 class GestureDrag(raw: Ptr[GtkGestureDrag])
     extends GestureSingle(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -32,7 +33,7 @@ class GestureDrag(raw: Ptr[GtkGestureDrag])
   @annotation.compileTimeOnly(
     "Method get_offset contains an OUT parameter, which is not supported yet"
   )
-  def getOffset(using DummyImplicit) = ???
+  private def getOffset__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -44,7 +45,7 @@ class GestureDrag(raw: Ptr[GtkGestureDrag])
   @annotation.compileTimeOnly(
     "Method get_start_point contains an OUT parameter, which is not supported yet"
   )
-  def getStartPoint(using DummyImplicit) = ???
+  private def getStartPoint__ = ???
 
 end GestureDrag
 

@@ -63,6 +63,7 @@ import sn.gnome.gtk4.internal.GtkPadController
   */
 class PadController(raw: Ptr[GtkPadController])
     extends EventController(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -78,12 +79,12 @@ class PadController(raw: Ptr[GtkPadController])
     * use those for user feedback.
     */
   def setAction(
-      `type`: GtkPadActionType,
-      index: Int,
-      mode: Int,
-      label: String | CString,
-      action_name: String | CString
-  )(using Zone): Unit = gtk_pad_controller_set_action(
+      `type`: GtkPadActionType /* Some(GtkPadActionType) */,
+      index: Int /* Some(CInt) */,
+      mode: Int /* Some(CInt) */,
+      label: String | CString /* Some(CString) */,
+      action_name: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_pad_controller_set_action(
     this.raw.asInstanceOf,
     `type`,
     index,
@@ -99,12 +100,16 @@ class PadController(raw: Ptr[GtkPadController])
     *
     * See [struct@Gtk.PadActionEntry] and [method@Gtk.PadController.set_action].
     */
-  def setActionEntries(entries: Ptr[GtkPadActionEntry], n_entries: Int): Unit =
-    gtk_pad_controller_set_action_entries(
-      this.raw.asInstanceOf,
-      entries,
-      n_entries
-    )
+  def setActionEntries(
+      entries: Ptr[
+        GtkPadActionEntry /* None */
+      ] /* Some(Ptr[GtkPadActionEntry]) */,
+      n_entries: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_pad_controller_set_action_entries(
+    this.raw.asInstanceOf,
+    entries,
+    n_entries
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -134,10 +139,21 @@ object PadController:
     * Be aware that pad events will only be delivered to `GtkWindow`s, so adding
     * a pad controller to any other type of widget will not have an effect.
     */
-  def apply(group: ActionGroup, pad: Device): PadController = new PadController(
+  def apply(
+      group: ActionGroup /* Some(Ptr[_root_.sn.gnome.gio.internal.GActionGroup]) */,
+      pad: Option[
+        Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */
+      ]
+  ): PadController = new PadController(
     gtk_pad_controller_new(
       group.getUnsafeRawPointer().asInstanceOf,
-      pad.getUnsafeRawPointer().asInstanceOf
+      pad
+        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]]
+        )
     ).asInstanceOf
   )
 end PadController

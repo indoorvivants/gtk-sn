@@ -23,6 +23,7 @@ import sn.gnome.gobject.fluent.Object
 class SimpleProxyResolver(raw: Ptr[GSimpleProxyResolver])
     extends Object(raw.asInstanceOf),
       ProxyResolver:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -35,11 +36,18 @@ class SimpleProxyResolver(raw: Ptr[GSimpleProxyResolver])
     * it as referring to all three of the socks5, socks4a, and socks4 proxy
     * types.
     */
-  def setDefaultProxy(default_proxy: String | CString)(using Zone): Unit =
-    g_simple_proxy_resolver_set_default_proxy(
-      this.raw.asInstanceOf,
-      __sn_extract_string(default_proxy).asInstanceOf[Ptr[gchar]]
-    )
+  def setDefaultProxy(
+      default_proxy: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
+  )(using Zone): Unit /* None */ = g_simple_proxy_resolver_set_default_proxy(
+    this.raw.asInstanceOf,
+    default_proxy
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -49,11 +57,14 @@ class SimpleProxyResolver(raw: Ptr[GSimpleProxyResolver])
     * @ignore_hosts
     *   argument is interpreted.
     */
-  def setIgnoreHosts(ignore_hosts: Ptr[CString])(using Zone): Unit =
-    g_simple_proxy_resolver_set_ignore_hosts(
-      this.raw.asInstanceOf,
-      ignore_hosts.asInstanceOf
-    )
+  def setIgnoreHosts(
+      ignore_hosts: Ptr[
+        CString
+      ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]) */
+  )(using Zone): Unit /* None */ = g_simple_proxy_resolver_set_ignore_hosts(
+    this.raw.asInstanceOf,
+    ignore_hosts.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -65,9 +76,12 @@ class SimpleProxyResolver(raw: Ptr[GSimpleProxyResolver])
     * "socks://", #GSimpleProxyResolver will treat it as referring to all three
     * of the socks5, socks4a, and socks4 proxy types.
     */
-  def setUriProxy(uri_scheme: String | CString, proxy: String | CString)(using
-      Zone
-  ): Unit = g_simple_proxy_resolver_set_uri_proxy(
+  def setUriProxy(
+      uri_scheme: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      proxy: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_simple_proxy_resolver_set_uri_proxy(
     this.raw.asInstanceOf,
     __sn_extract_string(uri_scheme).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(proxy).asInstanceOf[Ptr[gchar]]

@@ -18,13 +18,14 @@ import sn.gnome.gobject.fluent.Object
 class ZlibCompressor(raw: Ptr[GZlibCompressor])
     extends Object(raw.asInstanceOf),
       Converter:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the #GZlibCompressor:file-info property.
     */
-  def getFileInfo(): FileInfo = new FileInfo(
+  def getFileInfo(): FileInfo /* None */ = new FileInfo(
     g_zlib_compressor_get_file_info(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -39,9 +40,13 @@ class ZlibCompressor(raw: Ptr[GZlibCompressor])
     * progress; it may only be called immediately after creation of @compressor,
     * or after resetting it with g_converter_reset().
     */
-  def setFileInfo(file_info: FileInfo): Unit = g_zlib_compressor_set_file_info(
+  def setFileInfo(
+      file_info: Option[FileInfo /* Some(Ptr[GFileInfo]) */ ]
+  ): Unit /* None */ = g_zlib_compressor_set_file_info(
     this.raw.asInstanceOf,
-    file_info.getUnsafeRawPointer().asInstanceOf
+    file_info
+      .map[Ptr[GFileInfo]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GFileInfo]])
   )
 
 end ZlibCompressor
@@ -51,6 +56,10 @@ object ZlibCompressor:
     *
     * Creates a new #GZlibCompressor.
     */
-  def apply(format: GZlibCompressorFormat, level: Int): ZlibCompressor =
-    new ZlibCompressor(g_zlib_compressor_new(format, level).asInstanceOf)
+  def apply(
+      format: GZlibCompressorFormat /* Some(GZlibCompressorFormat) */,
+      level: Int /* Some(CInt) */
+  ): ZlibCompressor = new ZlibCompressor(
+    g_zlib_compressor_new(format, level).asInstanceOf
+  )
 end ZlibCompressor

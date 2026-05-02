@@ -27,6 +27,7 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     extends OutputStream(raw.asInstanceOf),
       PollableOutputStream,
       Seekable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -36,7 +37,7 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     * Note that the returned pointer may become invalid on the next write or
     * truncate operation on the stream.
     */
-  def getData(): Ptr[Byte] = g_memory_output_stream_get_data(
+  def getData(): Ptr[Byte] /* None */ = g_memory_output_stream_get_data(
     this.raw.asInstanceOf
   ).value
 
@@ -45,9 +46,8 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     * Returns the number of bytes from the start up to including the last byte
     * written in the stream that has not been truncated away.
     */
-  def getDataSize(): CUnsignedLongInt = g_memory_output_stream_get_data_size(
-    this.raw.asInstanceOf
-  ).value
+  def getDataSize(): CUnsignedLongInt /* None */ =
+    g_memory_output_stream_get_data_size(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -66,7 +66,7 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     * In any case, if you want the number of bytes currently written to the
     * stream, use g_memory_output_stream_get_data_size().
     */
-  def getSize(): CUnsignedLongInt = g_memory_output_stream_get_size(
+  def getSize(): CUnsignedLongInt /* None */ = g_memory_output_stream_get_size(
     this.raw.asInstanceOf
   ).value
 
@@ -75,9 +75,8 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     * Returns data from the @ostream as a #GBytes. @ostream must be closed
     * before calling this function.
     */
-  def stealAsBytes(): Ptr[GBytes] = g_memory_output_stream_steal_as_bytes(
-    this.raw.asInstanceOf
-  )
+  def stealAsBytes(): Ptr[GBytes] /* None */ =
+    g_memory_output_stream_steal_as_bytes(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -89,7 +88,7 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     * @ostream
     *   must be closed before calling this function.
     */
-  def stealData(): Ptr[Byte] = g_memory_output_stream_steal_data(
+  def stealData(): Ptr[Byte] /* None */ = g_memory_output_stream_steal_data(
     this.raw.asInstanceOf
   ).value
 
@@ -141,16 +140,28 @@ object MemoryOutputStream:
     *  ]|
     */
   def apply(
-      data: Ptr[Byte],
-      size: CUnsignedLongInt,
-      realloc_function: GReallocFunc,
-      destroy_function: GDestroyNotify
+      data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
+      realloc_function: Option[GReallocFunc /* Some(GReallocFunc) */ ],
+      destroy_function: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ]
   ): MemoryOutputStream = new MemoryOutputStream(
     g_memory_output_stream_new(
-      gpointer(data),
+      data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
       gsize(size),
-      realloc_function,
+      realloc_function
+        .map[GReallocFunc](o => o)
+        .getOrElse(null.asInstanceOf[GReallocFunc]),
       destroy_function
+        .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+        .getOrElse(
+          null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+        )
     ).asInstanceOf
   )
 

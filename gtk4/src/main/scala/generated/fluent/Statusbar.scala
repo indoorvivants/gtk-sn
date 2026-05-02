@@ -56,6 +56,7 @@ class Statusbar(raw: Ptr[GtkStatusbar])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -65,11 +66,12 @@ class Statusbar(raw: Ptr[GtkStatusbar])
     *
     * Note that the description is not shown in the UI.
     */
-  def getContextId(context_description: String | CString)(using Zone): UInt =
-    gtk_statusbar_get_context_id(
-      this.raw.asInstanceOf,
-      __sn_extract_string(context_description)
-    ).value
+  def getContextId(
+      context_description: String | CString /* Some(CString) */
+  )(using Zone): UInt /* None */ = gtk_statusbar_get_context_id(
+    this.raw.asInstanceOf,
+    __sn_extract_string(context_description)
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -79,26 +81,33 @@ class Statusbar(raw: Ptr[GtkStatusbar])
     * Note that this may not change the displayed message, if the message at the
     * top of the stack has a different context id.
     */
-  def pop(context_id: UInt): Unit =
+  def pop(
+      context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_statusbar_pop(this.raw.asInstanceOf, guint(context_id))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Pushes a new message onto a statusbar’s stack.
     */
-  def push(context_id: UInt, text: String | CString)(using Zone): UInt =
-    gtk_statusbar_push(
-      this.raw.asInstanceOf,
-      guint(context_id),
-      __sn_extract_string(text)
-    ).value
+  def push(
+      context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      text: String | CString /* Some(CString) */
+  )(using Zone): UInt /* None */ = gtk_statusbar_push(
+    this.raw.asInstanceOf,
+    guint(context_id),
+    __sn_extract_string(text)
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Forces the removal of a message from a statusbar’s stack. The exact @context_id
     * and @message_id must be specified.
     */
-  def remove(context_id: UInt, message_id: UInt): Unit = gtk_statusbar_remove(
+  def remove(
+      context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      message_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ = gtk_statusbar_remove(
     this.raw.asInstanceOf,
     guint(context_id),
     guint(message_id)
@@ -108,7 +117,9 @@ class Statusbar(raw: Ptr[GtkStatusbar])
     *
     * Forces the removal of all messages from a statusbar's stack with the exact @context_id.
     */
-  def removeAll(context_id: UInt): Unit =
+  def removeAll(
+      context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_statusbar_remove_all(this.raw.asInstanceOf, guint(context_id))
 
   private inline def __sn_extract_string(str: String | CString)(using

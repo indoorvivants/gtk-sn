@@ -47,6 +47,7 @@ def renderClass(
       s"end ${cls.name}"
     ):
       val overrides = if cls.parent.nonEmpty then "override " else ""
+      emptyLine()
       line(
         s"${overrides}def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf"
       )
@@ -67,7 +68,7 @@ def renderClass(
           case Some(value) =>
             renderComment(meth.doc)
             line(s"@annotation.compileTimeOnly(\"$value\")")
-            line(s"def ${camelify(meth.name)}(using DummyImplicit) = ???")
+            line(s"private def ${camelify(meth.name)}__ = ???")
             emptyLine()
 
       coll

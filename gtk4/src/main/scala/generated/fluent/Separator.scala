@@ -36,6 +36,7 @@ class Separator(raw: Ptr[GtkSeparator])
       Buildable,
       ConstraintTarget,
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end Separator
@@ -45,7 +46,7 @@ object Separator:
     *
     * Creates a new `GtkSeparator` with the given orientation.
     */
-  def apply(orientation: GtkOrientation): Separator = new Separator(
-    gtk_separator_new(orientation).asInstanceOf
-  )
+  def apply(
+      orientation: GtkOrientation /* Some(GtkOrientation) */
+  ): Separator = new Separator(gtk_separator_new(orientation).asInstanceOf)
 end Separator

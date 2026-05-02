@@ -36,13 +36,14 @@ import sn.gnome.gio.fluent.AppLaunchContext as _AppLaunchContext
   */
 class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     extends _AppLaunchContext(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the `GdkDisplay` that @context is for.
     */
-  def getDisplay(): Display = new Display(
+  def getDisplay(): Display /* None */ = new Display(
     gdk_app_launch_context_get_display(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -61,7 +62,7 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     * the window manager to pick one, typically it will be the current
     * workspace.
     */
-  def setDesktop(desktop: Int): Unit =
+  def setDesktop(desktop: Int /* Some(CInt) */ ): Unit /* None */ =
     gdk_app_launch_context_set_desktop(this.raw.asInstanceOf, desktop)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -73,9 +74,15 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     *
     * See also [method@Gdk.AppLaunchContext.set_icon_name].
     */
-  def setIcon(icon: Icon): Unit = gdk_app_launch_context_set_icon(
+  def setIcon(
+      icon: Option[Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */ ]
+  ): Unit /* None */ = gdk_app_launch_context_set_icon(
     this.raw.asInstanceOf,
-    icon.getUnsafeRawPointer().asInstanceOf
+    icon
+      .map[Ptr[_root_.sn.gnome.gio.internal.GIcon]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GIcon]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -90,11 +97,14 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     * that is passed to launched application or from the `GAppInfo` for the
     * launched application itself.
     */
-  def setIconName(icon_name: String | CString)(using Zone): Unit =
-    gdk_app_launch_context_set_icon_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(icon_name)
-    )
+  def setIconName(
+      icon_name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gdk_app_launch_context_set_icon_name(
+    this.raw.asInstanceOf,
+    icon_name
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -107,11 +117,12 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     * newly launched application when the user is busy typing in another window.
     * This is also known as 'focus stealing prevention'.
     */
-  def setTimestamp(timestamp: UInt): Unit =
-    gdk_app_launch_context_set_timestamp(
-      this.raw.asInstanceOf,
-      guint32(timestamp)
-    )
+  def setTimestamp(
+      timestamp: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
+  ): Unit /* None */ = gdk_app_launch_context_set_timestamp(
+    this.raw.asInstanceOf,
+    guint32(timestamp)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

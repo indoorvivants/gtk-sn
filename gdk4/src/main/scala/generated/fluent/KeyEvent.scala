@@ -18,20 +18,21 @@ import sn.gnome.glib.internal.guint
   * An event related to a key-based device.
   */
 class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts the consumed modifiers from a key event.
     */
-  def getConsumedModifiers(): GdkModifierType =
+  def getConsumedModifiers(): GdkModifierType /* None */ =
     gdk_key_event_get_consumed_modifiers(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts the keycode from a key event.
     */
-  def getKeycode(): UInt = gdk_key_event_get_keycode(
+  def getKeycode(): UInt /* None */ = gdk_key_event_get_keycode(
     this.raw.asInstanceOf
   ).value
 
@@ -39,19 +40,25 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
     *
     * Extracts the keyval from a key event.
     */
-  def getKeyval(): UInt = gdk_key_event_get_keyval(this.raw.asInstanceOf).value
+  def getKeyval(): UInt /* None */ = gdk_key_event_get_keyval(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts the layout from a key event.
     */
-  def getLayout(): UInt = gdk_key_event_get_layout(this.raw.asInstanceOf).value
+  def getLayout(): UInt /* None */ = gdk_key_event_get_layout(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts the shift level from a key event.
     */
-  def getLevel(): UInt = gdk_key_event_get_level(this.raw.asInstanceOf).value
+  def getLevel(): UInt /* None */ = gdk_key_event_get_level(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -62,13 +69,13 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_match contains an OUT parameter, which is not supported yet"
   )
-  def getMatch(using DummyImplicit) = ???
+  private def getMatch__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts whether the key event is for a modifier key.
     */
-  def isModifier(): Boolean =
+  def isModifier(): Boolean /* None */ =
     gdk_key_event_is_modifier(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -82,7 +89,10 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
     *
     * Note that we ignore Caps Lock for matching.
     */
-  def matches(keyval: UInt, modifiers: GdkModifierType): GdkKeyMatch =
+  def matches(
+      keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      modifiers: GdkModifierType /* Some(GdkModifierType) */
+  ): GdkKeyMatch /* None */ =
     gdk_key_event_matches(this.raw.asInstanceOf, guint(keyval), modifiers)
 
 end KeyEvent

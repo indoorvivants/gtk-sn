@@ -25,6 +25,7 @@ import sn.gnome.gobject.fluent.Object
 class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     extends Object(raw.asInstanceOf),
       DBusInterface:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -37,9 +38,11 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     *
     * Use g_dbus_interface_skeleton_unexport() to unexport the object.
     */
-  def `export`(connection: DBusConnection, object_path: String | CString)(using
-      Zone
-  ): GResult[Boolean] = GResult.wrap(__errorPtr =>
+  def `export`(
+      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      object_path: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_interface_skeleton_export(
       this.raw.asInstanceOf,
       connection.getUnsafeRawPointer().asInstanceOf,
@@ -58,13 +61,15 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * (e.g. in an idle handler). This technique is useful for collapsing
     * multiple property changes into one.
     */
-  def flush(): Unit = g_dbus_interface_skeleton_flush(this.raw.asInstanceOf)
+  def flush(): Unit /* None */ = g_dbus_interface_skeleton_flush(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the first connection that @interface_ is exported on, if any.
     */
-  def getConnection(): DBusConnection = new DBusConnection(
+  def getConnection(): DBusConnection /* None */ = new DBusConnection(
     g_dbus_interface_skeleton_get_connection(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -72,15 +77,14 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     *
     * Gets a list of the connections that @interface_ is exported on.
     */
-  def getConnections(): Ptr[GList] = g_dbus_interface_skeleton_get_connections(
-    this.raw.asInstanceOf
-  )
+  def getConnections(): Ptr[GList] /* None */ =
+    g_dbus_interface_skeleton_get_connections(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the #GDBusInterfaceSkeletonFlags that describes what the behavior of @interface_
     */
-  def getFlags(): GDBusInterfaceSkeletonFlags =
+  def getFlags(): GDBusInterfaceSkeletonFlags /* None */ =
     g_dbus_interface_skeleton_get_flags(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -88,15 +92,14 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * Gets D-Bus introspection information for the D-Bus interface implemented
     * by @interface_.
     */
-  def getInfo(): Ptr[GDBusInterfaceInfo] = g_dbus_interface_skeleton_get_info(
-    this.raw.asInstanceOf
-  )
+  def getInfo(): Ptr[GDBusInterfaceInfo] /* None */ =
+    g_dbus_interface_skeleton_get_info(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the object path that @interface_ is exported on, if any.
     */
-  def getObjectPath()(using Zone): String = fromCString(
+  def getObjectPath()(using Zone): String /* None */ = fromCString(
     g_dbus_interface_skeleton_get_object_path(
       this.raw.asInstanceOf
     ).asInstanceOf
@@ -106,9 +109,8 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     *
     * Gets all D-Bus properties for @interface_.
     */
-  def getProperties(): Ptr[GVariant] = g_dbus_interface_skeleton_get_properties(
-    this.raw.asInstanceOf
-  )
+  def getProperties(): Ptr[GVariant] /* None */ =
+    g_dbus_interface_skeleton_get_properties(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -117,24 +119,27 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     *   The returned function pointers should expect @interface_ itself to be
     *   passed as @user_data.
     */
-  def getVtable(): Ptr[GDBusInterfaceVTable] =
+  def getVtable(): Ptr[GDBusInterfaceVTable] /* None */ =
     g_dbus_interface_skeleton_get_vtable(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if @interface_ is exported on @connection.
     */
-  def hasConnection(connection: DBusConnection): Boolean =
-    g_dbus_interface_skeleton_has_connection(
-      this.raw.asInstanceOf,
-      connection.getUnsafeRawPointer().asInstanceOf
-    ).value.!=(0)
+  def hasConnection(
+      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */
+  ): Boolean /* None */ = g_dbus_interface_skeleton_has_connection(
+    this.raw.asInstanceOf,
+    connection.getUnsafeRawPointer().asInstanceOf
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets flags describing what the behavior of @skeleton should be.
     */
-  def setFlags(flags: GDBusInterfaceSkeletonFlags): Unit =
+  def setFlags(
+      flags: GDBusInterfaceSkeletonFlags /* Some(GDBusInterfaceSkeletonFlags) */
+  ): Unit /* None */ =
     g_dbus_interface_skeleton_set_flags(this.raw.asInstanceOf, flags)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -144,7 +149,7 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * To unexport @interface_ from only a single connection, use
     * g_dbus_interface_skeleton_unexport_from_connection()
     */
-  def unexport(): Unit = g_dbus_interface_skeleton_unexport(
+  def unexport(): Unit /* None */ = g_dbus_interface_skeleton_unexport(
     this.raw.asInstanceOf
   )
 
@@ -155,11 +160,12 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * To stop exporting on all connections the interface is exported on, use
     * g_dbus_interface_skeleton_unexport().
     */
-  def unexportFromConnection(connection: DBusConnection): Unit =
-    g_dbus_interface_skeleton_unexport_from_connection(
-      this.raw.asInstanceOf,
-      connection.getUnsafeRawPointer().asInstanceOf
-    )
+  def unexportFromConnection(
+      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */
+  ): Unit /* None */ = g_dbus_interface_skeleton_unexport_from_connection(
+    this.raw.asInstanceOf,
+    connection.getUnsafeRawPointer().asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

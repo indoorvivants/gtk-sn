@@ -30,13 +30,14 @@ import sn.gnome.gio.internal.GUnixCredentialsMessage
   */
 class UnixCredentialsMessage(raw: Ptr[GUnixCredentialsMessage])
     extends SocketControlMessage(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the credentials stored in @message.
     */
-  def getCredentials(): Credentials = new Credentials(
+  def getCredentials(): Credentials /* None */ = new Credentials(
     g_unix_credentials_message_get_credentials(
       this.raw.asInstanceOf
     ).asInstanceOf
@@ -58,10 +59,11 @@ object UnixCredentialsMessage:
     *
     * Creates a new #GUnixCredentialsMessage holding @credentials.
     */
-  def withCredentials(credentials: Credentials): UnixCredentialsMessage =
-    new UnixCredentialsMessage(
-      g_unix_credentials_message_new_with_credentials(
-        credentials.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def withCredentials(
+      credentials: Credentials /* Some(Ptr[GCredentials]) */
+  ): UnixCredentialsMessage = new UnixCredentialsMessage(
+    g_unix_credentials_message_new_with_credentials(
+      credentials.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+  )
 end UnixCredentialsMessage

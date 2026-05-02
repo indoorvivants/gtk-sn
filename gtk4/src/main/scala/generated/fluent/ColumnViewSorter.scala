@@ -47,6 +47,7 @@ import sn.gnome.gtk4.internal.GtkSortType
   */
 class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
     extends Sorter(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -59,9 +60,8 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
     * Use the [signal@Gtk.Sorter::changed] signal to get notified when the
     * number of sort columns changes.
     */
-  def getNSortColumns(): UInt = gtk_column_view_sorter_get_n_sort_columns(
-    this.raw.asInstanceOf
-  ).value
+  def getNSortColumns(): UInt /* None */ =
+    gtk_column_view_sorter_get_n_sort_columns(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -73,7 +73,7 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
   @annotation.compileTimeOnly(
     "Method get_nth_sort_column contains an OUT parameter, which is not supported yet"
   )
-  def getNthSortColumn(using DummyImplicit) = ???
+  private def getNthSortColumn__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -82,11 +82,12 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
     * The primary sort column is the one that displays the triangle in a column
     * view header.
     */
-  def getPrimarySortColumn(): ColumnViewColumn = new ColumnViewColumn(
-    gtk_column_view_sorter_get_primary_sort_column(
-      this.raw.asInstanceOf
-    ).asInstanceOf
-  )
+  def getPrimarySortColumn(): ColumnViewColumn /* None */ =
+    new ColumnViewColumn(
+      gtk_column_view_sorter_get_primary_sort_column(
+        this.raw.asInstanceOf
+      ).asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -98,7 +99,7 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
     * If there is no primary sort column, then this function returns
     * `GTK_SORT_ASCENDING`.
     */
-  def getPrimarySortOrder(): GtkSortType =
+  def getPrimarySortOrder(): GtkSortType /* None */ =
     gtk_column_view_sorter_get_primary_sort_order(this.raw.asInstanceOf)
 
 end ColumnViewSorter

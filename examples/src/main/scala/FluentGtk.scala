@@ -4,6 +4,7 @@ import sn.gnome.gio.internal.*
 import sn.gnome.gio.fluent.Application as GioApplication
 import sn.gnome.glib.internal.*
 import sn.gnome.gobject.internal.*
+import sn.gnome.gobject.runtime.*
 
 import scalanative.unsafe.*
 
@@ -12,20 +13,20 @@ class FluentGtk:
     gtk_init()
     Zone:
       val app = Application(
-        "hello.scala.native",
+        Some("hello.scala.native"),
         GApplicationFlags.G_APPLICATION_FLAGS_NONE
       )
 
       app.connectSignal("activate"): app =>
         val window = ApplicationWindow(app)
-        window.setTitle("Hello from Scala Native")
+        window.setTitle(Some("Hello from Scala Native"))
         window.setDefaultSize(640, 480)
 
         val box = Box(GtkOrientation.GTK_ORIENTATION_VERTICAL, 10)
         box.setHalign(GtkAlign.GTK_ALIGN_CENTER)
         box.setValign(GtkAlign.GTK_ALIGN_CENTER)
 
-        window.setChild(box)
+        window.setChild(Some(box))
 
         val button = Button.withLabel("Press me ya coward")
         button.connectSignal("clicked"): button =>
@@ -34,7 +35,7 @@ class FluentGtk:
 
         window.show()
 
-      app.run(0, Array.empty)
+      app.run(0, None)
   end run
 end FluentGtk
 

@@ -13,6 +13,7 @@ import sn.gnome.gtk4.internal.GtkNothingAction
   */
 class NothingAction(raw: Ptr[GtkNothingAction])
     extends ShortcutAction(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end NothingAction

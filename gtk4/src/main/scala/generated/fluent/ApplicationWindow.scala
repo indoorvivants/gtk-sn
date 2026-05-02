@@ -104,6 +104,7 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
       Native,
       Root,
       ShortcutManager:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -112,7 +113,7 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
     *
     * See [method@Gtk.ApplicationWindow.set_help_overlay].
     */
-  def getHelpOverlay(): ShortcutsWindow = new ShortcutsWindow(
+  def getHelpOverlay(): ShortcutsWindow /* None */ = new ShortcutsWindow(
     gtk_application_window_get_help_overlay(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -122,14 +123,16 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
     *
     * If the window has not yet been added to a `GtkApplication`, returns `0`.
     */
-  def getId(): UInt = gtk_application_window_get_id(this.raw.asInstanceOf).value
+  def getId(): UInt /* None */ = gtk_application_window_get_id(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the window will display a menubar for the app menu and
     * menubar as needed.
     */
-  def getShowMenubar(): Boolean =
+  def getShowMenubar(): Boolean /* None */ =
     gtk_application_window_get_show_menubar(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -142,22 +145,26 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
     * @window
     *   takes responsibility for destroying @help_overlay.
     */
-  def setHelpOverlay(help_overlay: ShortcutsWindow): Unit =
-    gtk_application_window_set_help_overlay(
-      this.raw.asInstanceOf,
-      help_overlay.getUnsafeRawPointer().asInstanceOf
-    )
+  def setHelpOverlay(
+      help_overlay: Option[ShortcutsWindow /* Some(Ptr[GtkShortcutsWindow]) */ ]
+  ): Unit /* None */ = gtk_application_window_set_help_overlay(
+    this.raw.asInstanceOf,
+    help_overlay
+      .map[Ptr[GtkShortcutsWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkShortcutsWindow]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the window will display a menubar for the app menu and
     * menubar as needed.
     */
-  def setShowMenubar(show_menubar: Boolean): Unit =
-    gtk_application_window_set_show_menubar(
-      this.raw.asInstanceOf,
-      gboolean(gint((if show_menubar == true then 1 else 0)))
-    )
+  def setShowMenubar(
+      show_menubar: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_application_window_set_show_menubar(
+    this.raw.asInstanceOf,
+    gboolean(gint((if show_menubar == true then 1 else 0)))
+  )
 
 end ApplicationWindow
 
@@ -166,10 +173,11 @@ object ApplicationWindow:
     *
     * Creates a new `GtkApplicationWindow`.
     */
-  def apply(application: Application): ApplicationWindow =
-    new ApplicationWindow(
-      gtk_application_window_new(
-        application.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def apply(
+      application: Application /* Some(Ptr[GtkApplication]) */
+  ): ApplicationWindow = new ApplicationWindow(
+    gtk_application_window_new(
+      application.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+  )
 end ApplicationWindow

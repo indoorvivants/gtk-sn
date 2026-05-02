@@ -13,13 +13,14 @@ import sn.gnome.gtk4.internal.GtkNamedAction
   */
 class NamedAction(raw: Ptr[GtkNamedAction])
     extends ShortcutAction(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the name of the action that will be activated.
     */
-  def getActionName()(using Zone): String = fromCString(
+  def getActionName()(using Zone): String /* None */ = fromCString(
     gtk_named_action_get_action_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -36,7 +37,9 @@ object NamedAction:
     * See [method@Gtk.Widget.insert_action_group] for how to add actions to
     * widgets.
     */
-  def apply(name: String | CString)(using Zone): NamedAction = new NamedAction(
+  def apply(
+      name: String | CString /* Some(CString) */
+  )(using Zone): NamedAction = new NamedAction(
     gtk_named_action_new(__sn_extract_string(name)).asInstanceOf
   )
 

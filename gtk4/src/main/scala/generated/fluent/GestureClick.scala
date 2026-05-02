@@ -19,6 +19,7 @@ import sn.gnome.gtk4.internal.GtkGestureClick
   */
 class GestureClick(raw: Ptr[GtkGestureClick])
     extends GestureSingle(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end GestureClick

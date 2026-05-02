@@ -125,6 +125,7 @@ class GLArea(raw: Ptr[GtkGLArea])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -139,7 +140,9 @@ class GLArea(raw: Ptr[GtkGLArea])
     * [signal@Gtk.GLArea::render] signal, and doesn't normally need to be called
     * by application code.
     */
-  def attachBuffers(): Unit = gtk_gl_area_attach_buffers(this.raw.asInstanceOf)
+  def attachBuffers(): Unit /* None */ = gtk_gl_area_attach_buffers(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -147,7 +150,7 @@ class GLArea(raw: Ptr[GtkGLArea])
     *
     * See [method@Gtk.GLArea.set_allowed_apis].
     */
-  def getAllowedApis(): GdkGLAPI = gtk_gl_area_get_allowed_apis(
+  def getAllowedApis(): GdkGLAPI /* None */ = gtk_gl_area_get_allowed_apis(
     this.raw.asInstanceOf
   )
 
@@ -157,20 +160,20 @@ class GLArea(raw: Ptr[GtkGLArea])
     *
     * If the GL area has not been realized yet, 0 is returned.
     */
-  def getApi(): GdkGLAPI = gtk_gl_area_get_api(this.raw.asInstanceOf)
+  def getApi(): GdkGLAPI /* None */ = gtk_gl_area_get_api(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the area is in auto render mode or not.
     */
-  def getAutoRender(): Boolean =
+  def getAutoRender(): Boolean /* None */ =
     gtk_gl_area_get_auto_render(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the `GdkGLContext` used by @area.
     */
-  def getContext(): GLContext = new GLContext(
+  def getContext(): GLContext /* None */ = new GLContext(
     gtk_gl_area_get_context(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -178,20 +181,22 @@ class GLArea(raw: Ptr[GtkGLArea])
     *
     * Gets the current error set on the @area.
     */
-  def getError(): Ptr[GError] = gtk_gl_area_get_error(this.raw.asInstanceOf)
+  def getError(): Ptr[GError] /* None */ = gtk_gl_area_get_error(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the area has a depth buffer.
     */
-  def getHasDepthBuffer(): Boolean =
+  def getHasDepthBuffer(): Boolean /* None */ =
     gtk_gl_area_get_has_depth_buffer(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the area has a stencil buffer.
     */
-  def getHasStencilBuffer(): Boolean =
+  def getHasStencilBuffer(): Boolean /* None */ =
     gtk_gl_area_get_has_stencil_buffer(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -203,7 +208,7 @@ class GLArea(raw: Ptr[GtkGLArea])
   @annotation.compileTimeOnly(
     "Method get_required_version contains an OUT parameter, which is not supported yet"
   )
-  def getRequiredVersion(using DummyImplicit) = ???
+  private def getRequiredVersion__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -211,7 +216,7 @@ class GLArea(raw: Ptr[GtkGLArea])
     *
     * See [method@Gtk.GLArea.set_use_es].
     */
-  def getUseEs(): Boolean =
+  def getUseEs(): Boolean /* None */ =
     gtk_gl_area_get_use_es(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -223,7 +228,9 @@ class GLArea(raw: Ptr[GtkGLArea])
     * [signal@Gtk.GLArea::render] signal, and doesn't normally need to be called
     * by application code.
     */
-  def makeCurrent(): Unit = gtk_gl_area_make_current(this.raw.asInstanceOf)
+  def makeCurrent(): Unit /* None */ = gtk_gl_area_make_current(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -237,7 +244,9 @@ class GLArea(raw: Ptr[GtkGLArea])
     * called with a %FALSE value. The default behaviour is to emit
     * [signal@Gtk.GLArea::render] on each draw.
     */
-  def queueRender(): Unit = gtk_gl_area_queue_render(this.raw.asInstanceOf)
+  def queueRender(): Unit /* None */ = gtk_gl_area_queue_render(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -247,8 +256,9 @@ class GLArea(raw: Ptr[GtkGLArea])
     *
     * By default, all APIs are allowed.
     */
-  def setAllowedApis(apis: GdkGLAPI): Unit =
-    gtk_gl_area_set_allowed_apis(this.raw.asInstanceOf, apis)
+  def setAllowedApis(
+      apis: GdkGLAPI /* Some(_root_.sn.gnome.gdk4.internal.GdkGLAPI) */
+  ): Unit /* None */ = gtk_gl_area_set_allowed_apis(this.raw.asInstanceOf, apis)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -264,7 +274,9 @@ class GLArea(raw: Ptr[GtkGLArea])
     * must be called. This mode is useful when the scene changes seldom, but
     * takes a long time to redraw.
     */
-  def setAutoRender(auto_render: Boolean): Unit = gtk_gl_area_set_auto_render(
+  def setAutoRender(
+      auto_render: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_gl_area_set_auto_render(
     this.raw.asInstanceOf,
     gboolean(gint((if auto_render == true then 1 else 0)))
   )
@@ -276,8 +288,16 @@ class GLArea(raw: Ptr[GtkGLArea])
     * This is useful in the [signal@Gtk.GLArea::create-context] signal if GL
     * context creation fails.
     */
-  def setError(error: Ptr[GError]): Unit =
-    gtk_gl_area_set_error(this.raw.asInstanceOf, error)
+  def setError(
+      error: Option[
+        Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+      ]
+  ): Unit /* None */ = gtk_gl_area_set_error(
+    this.raw.asInstanceOf,
+    error
+      .map[Ptr[_root_.sn.gnome.glib.internal.GError]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GError]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -286,11 +306,12 @@ class GLArea(raw: Ptr[GtkGLArea])
     * If @has_depth_buffer is %TRUE the widget will allocate and enable a depth
     * buffer for the target framebuffer. Otherwise there will be none.
     */
-  def setHasDepthBuffer(has_depth_buffer: Boolean): Unit =
-    gtk_gl_area_set_has_depth_buffer(
-      this.raw.asInstanceOf,
-      gboolean(gint((if has_depth_buffer == true then 1 else 0)))
-    )
+  def setHasDepthBuffer(
+      has_depth_buffer: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_gl_area_set_has_depth_buffer(
+    this.raw.asInstanceOf,
+    gboolean(gint((if has_depth_buffer == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -299,11 +320,12 @@ class GLArea(raw: Ptr[GtkGLArea])
     * If @has_stencil_buffer is %TRUE the widget will allocate and enable a
     * stencil buffer for the target framebuffer. Otherwise there will be none.
     */
-  def setHasStencilBuffer(has_stencil_buffer: Boolean): Unit =
-    gtk_gl_area_set_has_stencil_buffer(
-      this.raw.asInstanceOf,
-      gboolean(gint((if has_stencil_buffer == true then 1 else 0)))
-    )
+  def setHasStencilBuffer(
+      has_stencil_buffer: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_gl_area_set_has_stencil_buffer(
+    this.raw.asInstanceOf,
+    gboolean(gint((if has_stencil_buffer == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -312,7 +334,10 @@ class GLArea(raw: Ptr[GtkGLArea])
     *
     * This function must be called before the area has been realized.
     */
-  def setRequiredVersion(major: Int, minor: Int): Unit =
+  def setRequiredVersion(
+      major: Int /* Some(CInt) */,
+      minor: Int /* Some(CInt) */
+  ): Unit /* None */ =
     gtk_gl_area_set_required_version(this.raw.asInstanceOf, major, minor)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -322,7 +347,9 @@ class GLArea(raw: Ptr[GtkGLArea])
     * You should check the capabilities of the `GdkGLContext` before drawing
     * with either API.
     */
-  def setUseEs(use_es: Boolean): Unit = gtk_gl_area_set_use_es(
+  def setUseEs(
+      use_es: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_gl_area_set_use_es(
     this.raw.asInstanceOf,
     gboolean(gint((if use_es == true then 1 else 0)))
   )

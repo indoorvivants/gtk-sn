@@ -32,13 +32,14 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     extends Object(raw.asInstanceOf),
       ListModel,
       SectionModel:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the `GtkFilter` currently set on @self.
     */
-  def getFilter(): Filter = new Filter(
+  def getFilter(): Filter /* None */ = new Filter(
     gtk_filter_list_model_get_filter(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -48,14 +49,14 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     *
     * See [method@Gtk.FilterListModel.set_incremental].
     */
-  def getIncremental(): Boolean =
+  def getIncremental(): Boolean /* None */ =
     gtk_filter_list_model_get_incremental(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the model currently filtered or %NULL if none.
     */
-  def getModel(): ListModel = new ListModel.Abstract(
+  def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_filter_list_model_get_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -78,7 +79,7 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     * [property@Gtk.FilterListModel:incremental] is %FALSE - this function
     * returns 0.
     */
-  def getPending(): UInt = gtk_filter_list_model_get_pending(
+  def getPending(): UInt /* None */ = gtk_filter_list_model_get_pending(
     this.raw.asInstanceOf
   ).value
 
@@ -86,9 +87,13 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     *
     * Sets the filter used to filter items.
     */
-  def setFilter(filter: Filter): Unit = gtk_filter_list_model_set_filter(
+  def setFilter(
+      filter: Option[Filter /* Some(Ptr[GtkFilter]) */ ]
+  ): Unit /* None */ = gtk_filter_list_model_set_filter(
     this.raw.asInstanceOf,
-    filter.getUnsafeRawPointer().asInstanceOf
+    filter
+      .map[Ptr[GtkFilter]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkFilter]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -110,11 +115,12 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     * See [method@Gtk.FilterListModel.get_pending] for progress information
     * about an ongoing incremental filtering operation.
     */
-  def setIncremental(incremental: Boolean): Unit =
-    gtk_filter_list_model_set_incremental(
-      this.raw.asInstanceOf,
-      gboolean(gint((if incremental == true then 1 else 0)))
-    )
+  def setIncremental(
+      incremental: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_filter_list_model_set_incremental(
+    this.raw.asInstanceOf,
+    gboolean(gint((if incremental == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -124,9 +130,19 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     * type of @self. It assumes that the caller knows what they are doing and
     * have set up an appropriate filter to ensure that item types match.
     */
-  def setModel(model: ListModel): Unit = gtk_filter_list_model_set_model(
+  def setModel(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ]
+  ): Unit /* None */ = gtk_filter_list_model_set_model(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf
+    model
+      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+      )
   )
 
 end FilterListModel
@@ -137,11 +153,23 @@ object FilterListModel:
     * Creates a new `GtkFilterListModel` that will filter @model using the given
     * @filter.
     */
-  def apply(model: ListModel, filter: Filter): FilterListModel =
-    new FilterListModel(
-      gtk_filter_list_model_new(
-        model.getUnsafeRawPointer().asInstanceOf,
-        filter.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def apply(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ],
+      filter: Option[Filter /* Some(Ptr[GtkFilter]) */ ]
+  ): FilterListModel = new FilterListModel(
+    gtk_filter_list_model_new(
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        ),
+      filter
+        .map[Ptr[GtkFilter]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkFilter]])
+    ).asInstanceOf
+  )
 end FilterListModel

@@ -72,6 +72,7 @@ import sn.gnome.gtk4.internal.GtkRecentManager
   */
 class RecentManager(raw: Ptr[GtkRecentManager])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -93,9 +94,10 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * that is, should be displayed only by the applications that have registered
     * it.
     */
-  def addFull(uri: String | CString, recent_data: Ptr[GtkRecentData])(using
-      Zone
-  ): Boolean = gtk_recent_manager_add_full(
+  def addFull(
+      uri: String | CString /* Some(CString) */,
+      recent_data: Ptr[GtkRecentData] /* Some(Ptr[GtkRecentData]) */
+  )(using Zone): Boolean /* None */ = gtk_recent_manager_add_full(
     this.raw.asInstanceOf,
     __sn_extract_string(uri),
     recent_data
@@ -113,17 +115,18 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * See [method@Gtk.RecentManager.add_full] if you want to explicitly define
     * the metadata for the resource pointed by @uri.
     */
-  def addItem(uri: String | CString)(using Zone): Boolean =
-    gtk_recent_manager_add_item(
-      this.raw.asInstanceOf,
-      __sn_extract_string(uri)
-    ).value.!=(0)
+  def addItem(
+      uri: String | CString /* Some(CString) */
+  )(using Zone): Boolean /* None */ = gtk_recent_manager_add_item(
+    this.raw.asInstanceOf,
+    __sn_extract_string(uri)
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the list of recently used resources.
     */
-  def getItems(): Ptr[GList] = gtk_recent_manager_get_items(
+  def getItems(): Ptr[GList] /* None */ = gtk_recent_manager_get_items(
     this.raw.asInstanceOf
   )
 
@@ -132,11 +135,12 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * Checks whether there is a recently used resource registered with @uri
     * inside the recent manager.
     */
-  def hasItem(uri: String | CString)(using Zone): Boolean =
-    gtk_recent_manager_has_item(
-      this.raw.asInstanceOf,
-      __sn_extract_string(uri)
-    ).value.!=(0)
+  def hasItem(
+      uri: String | CString /* Some(CString) */
+  )(using Zone): Boolean /* None */ = gtk_recent_manager_has_item(
+    this.raw.asInstanceOf,
+    __sn_extract_string(uri)
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -144,9 +148,9 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * `GtkRecentInfo` containing information about the resource like its MIME
     * type, or its display name.
     */
-  def lookupItem(
-      uri: String | CString
-  )(using Zone): GResult[Ptr[GtkRecentInfo]] = GResult.wrap(__errorPtr =>
+  def lookupItem(uri: String | CString /* Some(CString) */ )(using
+      Zone
+  ): GResult[Ptr[GtkRecentInfo] /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_recent_manager_lookup_item(
       this.raw.asInstanceOf,
       __sn_extract_string(uri),
@@ -161,13 +165,16 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * Please note that this function will not affect the resource pointed by the
     * URIs, but only the URI used in the recently used resources list.
     */
-  def moveItem(uri: String | CString, new_uri: String | CString)(using
-      Zone
-  ): GResult[Boolean] = GResult.wrap(__errorPtr =>
+  def moveItem(
+      uri: String | CString /* Some(CString) */,
+      new_uri: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_recent_manager_move_item(
       this.raw.asInstanceOf,
       __sn_extract_string(uri),
-      __sn_extract_string(new_uri),
+      new_uri
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
       __errorPtr
     ).value.!=(0)
   )
@@ -176,7 +183,7 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     *
     * Purges every item from the recently used resources list.
     */
-  def purgeItems(): GResult[Int] = GResult.wrap(__errorPtr =>
+  def purgeItems(): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_recent_manager_purge_items(this.raw.asInstanceOf, __errorPtr)
   )
 
@@ -185,14 +192,15 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * Removes a resource pointed by @uri from the recently used resources list
     * handled by a recent manager.
     */
-  def removeItem(uri: String | CString)(using Zone): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      gtk_recent_manager_remove_item(
-        this.raw.asInstanceOf,
-        __sn_extract_string(uri),
-        __errorPtr
-      ).value.!=(0)
-    )
+  def removeItem(
+      uri: String | CString /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    gtk_recent_manager_remove_item(
+      this.raw.asInstanceOf,
+      __sn_extract_string(uri),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

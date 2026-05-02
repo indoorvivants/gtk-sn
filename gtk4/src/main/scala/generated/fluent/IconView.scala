@@ -61,6 +61,7 @@ class IconView(raw: Ptr[GtkIconView])
       CellLayout,
       ConstraintTarget,
       Scrollable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -68,10 +69,11 @@ class IconView(raw: Ptr[GtkIconView])
     * Creates a `GdkPaintable` representation of the item at @path. This image
     * is used for a drag icon.
     */
-  def createDragIcon(path: Ptr[GtkTreePath]): Paintable =
-    new Paintable.Abstract(
-      gtk_icon_view_create_drag_icon(this.raw.asInstanceOf, path).asInstanceOf
-    )
+  def createDragIcon(
+      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
+  ): Paintable /* None */ = new Paintable.Abstract(
+    gtk_icon_view_create_drag_icon(this.raw.asInstanceOf, path).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -79,9 +81,11 @@ class IconView(raw: Ptr[GtkIconView])
     * method sets `GtkIconView`:reorderable to %FALSE.
     */
   def enableModelDragDest(
-      formats: Ptr[GdkContentFormats],
-      actions: GdkDragAction
-  ): Unit = gtk_icon_view_enable_model_drag_dest(
+      formats: Ptr[
+        GdkContentFormats
+      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */,
+      actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+  ): Unit /* None */ = gtk_icon_view_enable_model_drag_dest(
     this.raw.asInstanceOf,
     formats,
     actions
@@ -93,10 +97,12 @@ class IconView(raw: Ptr[GtkIconView])
     * sets `GtkIconView`:reorderable to %FALSE.
     */
   def enableModelDragSource(
-      start_button_mask: GdkModifierType,
-      formats: Ptr[GdkContentFormats],
-      actions: GdkDragAction
-  ): Unit = gtk_icon_view_enable_model_drag_source(
+      start_button_mask: GdkModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */,
+      formats: Ptr[
+        GdkContentFormats
+      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */,
+      actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+  ): Unit /* None */ = gtk_icon_view_enable_model_drag_source(
     this.raw.asInstanceOf,
     start_button_mask,
     formats,
@@ -107,7 +113,7 @@ class IconView(raw: Ptr[GtkIconView])
     *
     * Gets the setting set by gtk_icon_view_set_activate_on_single_click().
     */
-  def getActivateOnSingleClick(): Boolean =
+  def getActivateOnSingleClick(): Boolean /* None */ =
     gtk_icon_view_get_activate_on_single_click(this.raw.asInstanceOf).value
       .!=(0)
 
@@ -123,13 +129,13 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_cell_rect contains an OUT parameter, which is not supported yet"
   )
-  def getCellRect(using DummyImplicit) = ???
+  private def getCellRect__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the value of the ::column-spacing property.
     */
-  def getColumnSpacing(): Int = gtk_icon_view_get_column_spacing(
+  def getColumnSpacing(): Int /* None */ = gtk_icon_view_get_column_spacing(
     this.raw.asInstanceOf
   )
 
@@ -137,7 +143,9 @@ class IconView(raw: Ptr[GtkIconView])
     *
     * Returns the value of the ::columns property.
     */
-  def getColumns(): Int = gtk_icon_view_get_columns(this.raw.asInstanceOf)
+  def getColumns(): Int /* None */ = gtk_icon_view_get_columns(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -150,7 +158,7 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_cursor contains an OUT parameter, which is not supported yet"
   )
-  def getCursor(using DummyImplicit) = ???
+  private def getCursor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -159,7 +167,7 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_dest_item_at_pos contains an OUT parameter, which is not supported yet"
   )
-  def getDestItemAtPos(using DummyImplicit) = ???
+  private def getDestItemAtPos__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -168,7 +176,7 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_drag_dest_item contains an OUT parameter, which is not supported yet"
   )
-  def getDragDestItem(using DummyImplicit) = ???
+  private def getDragDestItem__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -177,30 +185,30 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_item_at_pos contains an OUT parameter, which is not supported yet"
   )
-  def getItemAtPos(using DummyImplicit) = ???
+  private def getItemAtPos__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the column in which the item @path is currently displayed. Column
     * numbers start at 0.
     */
-  def getItemColumn(path: Ptr[GtkTreePath]): Int =
-    gtk_icon_view_get_item_column(this.raw.asInstanceOf, path)
+  def getItemColumn(
+      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
+  ): Int /* None */ = gtk_icon_view_get_item_column(this.raw.asInstanceOf, path)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the value of the ::item-orientation property which determines
     * whether the labels are drawn beside the icons instead of below.
     */
-  def getItemOrientation(): GtkOrientation = gtk_icon_view_get_item_orientation(
-    this.raw.asInstanceOf
-  )
+  def getItemOrientation(): GtkOrientation /* None */ =
+    gtk_icon_view_get_item_orientation(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the value of the ::item-padding property.
     */
-  def getItemPadding(): Int = gtk_icon_view_get_item_padding(
+  def getItemPadding(): Int /* None */ = gtk_icon_view_get_item_padding(
     this.raw.asInstanceOf
   )
 
@@ -209,26 +217,31 @@ class IconView(raw: Ptr[GtkIconView])
     * Gets the row in which the item @path is currently displayed. Row numbers
     * start at 0.
     */
-  def getItemRow(path: Ptr[GtkTreePath]): Int =
-    gtk_icon_view_get_item_row(this.raw.asInstanceOf, path)
+  def getItemRow(
+      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
+  ): Int /* None */ = gtk_icon_view_get_item_row(this.raw.asInstanceOf, path)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the value of the ::item-width property.
     */
-  def getItemWidth(): Int = gtk_icon_view_get_item_width(this.raw.asInstanceOf)
+  def getItemWidth(): Int /* None */ = gtk_icon_view_get_item_width(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the value of the ::margin property.
     */
-  def getMargin(): Int = gtk_icon_view_get_margin(this.raw.asInstanceOf)
+  def getMargin(): Int /* None */ = gtk_icon_view_get_margin(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the column with markup text for @icon_view.
     */
-  def getMarkupColumn(): Int = gtk_icon_view_get_markup_column(
+  def getMarkupColumn(): Int /* None */ = gtk_icon_view_get_markup_column(
     this.raw.asInstanceOf
   )
 
@@ -237,7 +250,7 @@ class IconView(raw: Ptr[GtkIconView])
     * Returns the model the `GtkIconView` is based on. Returns %NULL if the
     * model is unset.
     */
-  def getModel(): TreeModel = new TreeModel.Abstract(
+  def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
     gtk_icon_view_get_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -245,14 +258,17 @@ class IconView(raw: Ptr[GtkIconView])
     *
     * Gets the path for the icon at the given position.
     */
-  def getPathAtPos(x: Int, y: Int): Ptr[GtkTreePath] =
+  def getPathAtPos(
+      x: Int /* Some(CInt) */,
+      y: Int /* Some(CInt) */
+  ): Ptr[GtkTreePath] /* None */ =
     gtk_icon_view_get_path_at_pos(this.raw.asInstanceOf, x, y)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the column with pixbufs for @icon_view.
     */
-  def getPixbufColumn(): Int = gtk_icon_view_get_pixbuf_column(
+  def getPixbufColumn(): Int /* None */ = gtk_icon_view_get_pixbuf_column(
     this.raw.asInstanceOf
   )
 
@@ -261,14 +277,14 @@ class IconView(raw: Ptr[GtkIconView])
     * Retrieves whether the user can reorder the list via drag-and-drop. See
     * gtk_icon_view_set_reorderable().
     */
-  def getReorderable(): Boolean =
+  def getReorderable(): Boolean /* None */ =
     gtk_icon_view_get_reorderable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the value of the ::row-spacing property.
     */
-  def getRowSpacing(): Int = gtk_icon_view_get_row_spacing(
+  def getRowSpacing(): Int /* None */ = gtk_icon_view_get_row_spacing(
     this.raw.asInstanceOf
   )
 
@@ -291,29 +307,29 @@ class IconView(raw: Ptr[GtkIconView])
     *  g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);
     *  ]|
     */
-  def getSelectedItems(): Ptr[GList] = gtk_icon_view_get_selected_items(
-    this.raw.asInstanceOf
-  )
+  def getSelectedItems(): Ptr[GList] /* None */ =
+    gtk_icon_view_get_selected_items(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the selection mode of the @icon_view.
     */
-  def getSelectionMode(): GtkSelectionMode = gtk_icon_view_get_selection_mode(
-    this.raw.asInstanceOf
-  )
+  def getSelectionMode(): GtkSelectionMode /* None */ =
+    gtk_icon_view_get_selection_mode(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the value of the ::spacing property.
     */
-  def getSpacing(): Int = gtk_icon_view_get_spacing(this.raw.asInstanceOf)
+  def getSpacing(): Int /* None */ = gtk_icon_view_get_spacing(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the column with text for @icon_view.
     */
-  def getTextColumn(): Int = gtk_icon_view_get_text_column(
+  def getTextColumn(): Int /* None */ = gtk_icon_view_get_text_column(
     this.raw.asInstanceOf
   )
 
@@ -322,7 +338,7 @@ class IconView(raw: Ptr[GtkIconView])
     * Returns the column of @icon_view’s model which is being used for
     * displaying tooltips on @icon_view’s rows.
     */
-  def getTooltipColumn(): Int = gtk_icon_view_get_tooltip_column(
+  def getTooltipColumn(): Int /* None */ = gtk_icon_view_get_tooltip_column(
     this.raw.asInstanceOf
   )
 
@@ -342,7 +358,7 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_tooltip_context contains an OUT parameter, which is not supported yet"
   )
-  def getTooltipContext(using DummyImplicit) = ???
+  private def getTooltipContext__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -354,21 +370,24 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_visible_range contains an OUT parameter, which is not supported yet"
   )
-  def getVisibleRange(using DummyImplicit) = ???
+  private def getVisibleRange__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Activates the item determined by @path.
     */
-  def itemActivated(path: Ptr[GtkTreePath]): Unit =
-    gtk_icon_view_item_activated(this.raw.asInstanceOf, path)
+  def itemActivated(
+      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
+  ): Unit /* None */ = gtk_icon_view_item_activated(this.raw.asInstanceOf, path)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns %TRUE if the icon pointed to by @path is currently selected. If @path
     * does not point to a valid location, %FALSE is returned.
     */
-  def pathIsSelected(path: Ptr[GtkTreePath]): Boolean =
+  def pathIsSelected(
+      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
+  ): Boolean /* None */ =
     gtk_icon_view_path_is_selected(this.raw.asInstanceOf, path).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -390,11 +409,11 @@ class IconView(raw: Ptr[GtkIconView])
     * centered path will be modified to reflect this change.
     */
   def scrollToPath(
-      path: Ptr[GtkTreePath],
-      use_align: Boolean,
-      row_align: Float,
-      col_align: Float
-  ): Unit = gtk_icon_view_scroll_to_path(
+      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */,
+      use_align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      row_align: Float /* Some(Float) */,
+      col_align: Float /* Some(Float) */
+  ): Unit /* None */ = gtk_icon_view_scroll_to_path(
     this.raw.asInstanceOf,
     path,
     gboolean(gint((if use_align == true then 1 else 0))),
@@ -407,40 +426,54 @@ class IconView(raw: Ptr[GtkIconView])
     * Selects all the icons. @icon_view must has its selection mode set to
     * %GTK_SELECTION_MULTIPLE.
     */
-  def selectAll(): Unit = gtk_icon_view_select_all(this.raw.asInstanceOf)
+  def selectAll(): Unit /* None */ = gtk_icon_view_select_all(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Selects the row at @path.
     */
-  def selectPath(path: Ptr[GtkTreePath]): Unit =
-    gtk_icon_view_select_path(this.raw.asInstanceOf, path)
+  def selectPath(
+      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
+  ): Unit /* None */ = gtk_icon_view_select_path(this.raw.asInstanceOf, path)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Calls a function for each selected icon. Note that the model or selection
     * cannot be modified from within this function.
     */
-  def selectedForeach(func: GtkIconViewForeachFunc, data: Ptr[Byte]): Unit =
-    gtk_icon_view_selected_foreach(this.raw.asInstanceOf, func, gpointer(data))
+  def selectedForeach(
+      func: GtkIconViewForeachFunc /* Some(GtkIconViewForeachFunc) */,
+      data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gtk_icon_view_selected_foreach(
+    this.raw.asInstanceOf,
+    func,
+    data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Causes the `GtkIconView`::item-activated signal to be emitted on a single
     * click instead of a double click.
     */
-  def setActivateOnSingleClick(single: Boolean): Unit =
-    gtk_icon_view_set_activate_on_single_click(
-      this.raw.asInstanceOf,
-      gboolean(gint((if single == true then 1 else 0)))
-    )
+  def setActivateOnSingleClick(
+      single: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_icon_view_set_activate_on_single_click(
+    this.raw.asInstanceOf,
+    gboolean(gint((if single == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the ::column-spacing property which specifies the space which is
     * inserted between the columns of the icon view.
     */
-  def setColumnSpacing(column_spacing: Int): Unit =
+  def setColumnSpacing(column_spacing: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_column_spacing(this.raw.asInstanceOf, column_spacing)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -449,7 +482,7 @@ class IconView(raw: Ptr[GtkIconView])
     * are arranged. If @columns is -1, the number of columns will be chosen
     * automatically to fill the available area.
     */
-  def setColumns(columns: Int): Unit =
+  def setColumns(columns: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_columns(this.raw.asInstanceOf, columns)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -465,13 +498,15 @@ class IconView(raw: Ptr[GtkIconView])
     * only happen when the widget is realized.
     */
   def setCursor(
-      path: Ptr[GtkTreePath],
-      cell: CellRenderer,
-      start_editing: Boolean
-  ): Unit = gtk_icon_view_set_cursor(
+      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */,
+      cell: Option[CellRenderer /* Some(Ptr[GtkCellRenderer]) */ ],
+      start_editing: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_icon_view_set_cursor(
     this.raw.asInstanceOf,
     path,
-    cell.getUnsafeRawPointer().asInstanceOf,
+    cell
+      .map[Ptr[GtkCellRenderer]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkCellRenderer]]),
     gboolean(gint((if start_editing == true then 1 else 0)))
   )
 
@@ -480,16 +515,24 @@ class IconView(raw: Ptr[GtkIconView])
     * Sets the item that is highlighted for feedback.
     */
   def setDragDestItem(
-      path: Ptr[GtkTreePath],
-      pos: GtkIconViewDropPosition
-  ): Unit = gtk_icon_view_set_drag_dest_item(this.raw.asInstanceOf, path, pos)
+      path: Option[Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */ ],
+      pos: GtkIconViewDropPosition /* Some(GtkIconViewDropPosition) */
+  ): Unit /* None */ = gtk_icon_view_set_drag_dest_item(
+    this.raw.asInstanceOf,
+    path
+      .map[Ptr[GtkTreePath]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]]),
+    pos
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the ::item-orientation property which determines whether the labels
     * are drawn beside the icons instead of below.
     */
-  def setItemOrientation(orientation: GtkOrientation): Unit =
+  def setItemOrientation(
+      orientation: GtkOrientation /* Some(GtkOrientation) */
+  ): Unit /* None */ =
     gtk_icon_view_set_item_orientation(this.raw.asInstanceOf, orientation)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -497,7 +540,7 @@ class IconView(raw: Ptr[GtkIconView])
     * Sets the `GtkIconView`:item-padding property which specifies the padding
     * around each of the icon view’s items.
     */
-  def setItemPadding(item_padding: Int): Unit =
+  def setItemPadding(item_padding: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_item_padding(this.raw.asInstanceOf, item_padding)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -506,7 +549,7 @@ class IconView(raw: Ptr[GtkIconView])
     * item. If it is set to -1, the icon view will automatically determine a
     * suitable item size.
     */
-  def setItemWidth(item_width: Int): Unit =
+  def setItemWidth(item_width: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_item_width(this.raw.asInstanceOf, item_width)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -514,7 +557,7 @@ class IconView(raw: Ptr[GtkIconView])
     * Sets the ::margin property which specifies the space which is inserted at
     * the top, bottom, left and right of the icon view.
     */
-  def setMargin(margin: Int): Unit =
+  def setMargin(margin: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_margin(this.raw.asInstanceOf, margin)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -525,7 +568,7 @@ class IconView(raw: Ptr[GtkIconView])
     *   is set to something, it overrides the text column set by
     *   gtk_icon_view_set_text_column().
     */
-  def setMarkupColumn(column: Int): Unit =
+  def setMarkupColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_markup_column(this.raw.asInstanceOf, column)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -534,9 +577,13 @@ class IconView(raw: Ptr[GtkIconView])
     * set, it will remove it before setting the new model. If @model is %NULL,
     * then it will unset the old model.
     */
-  def setModel(model: TreeModel): Unit = gtk_icon_view_set_model(
+  def setModel(
+      model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
+  ): Unit /* None */ = gtk_icon_view_set_model(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf
+    model
+      .map[Ptr[GtkTreeModel]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkTreeModel]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -544,7 +591,7 @@ class IconView(raw: Ptr[GtkIconView])
     * Sets the column with pixbufs for @icon_view to be @column. The pixbuf
     * column must be of type `GDK_TYPE_PIXBUF`
     */
-  def setPixbufColumn(column: Int): Unit =
+  def setPixbufColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_pixbuf_column(this.raw.asInstanceOf, column)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -562,25 +609,28 @@ class IconView(raw: Ptr[GtkIconView])
     * any reordering is allowed. If more control is needed, you should probably
     * handle drag and drop manually.
     */
-  def setReorderable(reorderable: Boolean): Unit =
-    gtk_icon_view_set_reorderable(
-      this.raw.asInstanceOf,
-      gboolean(gint((if reorderable == true then 1 else 0)))
-    )
+  def setReorderable(
+      reorderable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_icon_view_set_reorderable(
+    this.raw.asInstanceOf,
+    gboolean(gint((if reorderable == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the ::row-spacing property which specifies the space which is
     * inserted between the rows of the icon view.
     */
-  def setRowSpacing(row_spacing: Int): Unit =
+  def setRowSpacing(row_spacing: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_row_spacing(this.raw.asInstanceOf, row_spacing)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the selection mode of the @icon_view.
     */
-  def setSelectionMode(mode: GtkSelectionMode): Unit =
+  def setSelectionMode(
+      mode: GtkSelectionMode /* Some(GtkSelectionMode) */
+  ): Unit /* None */ =
     gtk_icon_view_set_selection_mode(this.raw.asInstanceOf, mode)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -588,7 +638,7 @@ class IconView(raw: Ptr[GtkIconView])
     * Sets the ::spacing property which specifies the space which is inserted
     * between the cells (i.e. the icon and the text) of an item.
     */
-  def setSpacing(spacing: Int): Unit =
+  def setSpacing(spacing: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_spacing(this.raw.asInstanceOf, spacing)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -596,7 +646,7 @@ class IconView(raw: Ptr[GtkIconView])
     * Sets the column with text for @icon_view to be @column. The text column
     * must be of type `G_TYPE_STRING`.
     */
-  def setTextColumn(column: Int): Unit =
+  def setTextColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_text_column(this.raw.asInstanceOf, column)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -607,14 +657,16 @@ class IconView(raw: Ptr[GtkIconView])
     * See also gtk_icon_view_set_tooltip_column() for a simpler alternative.
     */
   def setTooltipCell(
-      tooltip: Tooltip,
-      path: Ptr[GtkTreePath],
-      cell: CellRenderer
-  ): Unit = gtk_icon_view_set_tooltip_cell(
+      tooltip: Tooltip /* Some(Ptr[GtkTooltip]) */,
+      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */,
+      cell: Option[CellRenderer /* Some(Ptr[GtkCellRenderer]) */ ]
+  ): Unit /* None */ = gtk_icon_view_set_tooltip_cell(
     this.raw.asInstanceOf,
     tooltip.getUnsafeRawPointer().asInstanceOf,
     path,
-    cell.getUnsafeRawPointer().asInstanceOf
+    cell
+      .map[Ptr[GtkCellRenderer]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkCellRenderer]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -631,7 +683,7 @@ class IconView(raw: Ptr[GtkIconView])
     * Note that the signal handler sets the text with gtk_tooltip_set_markup(),
     * so &, <, etc have to be escaped in the text.
     */
-  def setTooltipColumn(column: Int): Unit =
+  def setTooltipColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_tooltip_column(this.raw.asInstanceOf, column)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -640,43 +692,46 @@ class IconView(raw: Ptr[GtkIconView])
     * See also gtk_icon_view_set_tooltip_column() for a simpler alternative. See
     * also gtk_tooltip_set_tip_area().
     */
-  def setTooltipItem(tooltip: Tooltip, path: Ptr[GtkTreePath]): Unit =
-    gtk_icon_view_set_tooltip_item(
-      this.raw.asInstanceOf,
-      tooltip.getUnsafeRawPointer().asInstanceOf,
-      path
-    )
+  def setTooltipItem(
+      tooltip: Tooltip /* Some(Ptr[GtkTooltip]) */,
+      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
+  ): Unit /* None */ = gtk_icon_view_set_tooltip_item(
+    this.raw.asInstanceOf,
+    tooltip.getUnsafeRawPointer().asInstanceOf,
+    path
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Unselects all the icons.
     */
-  def unselectAll(): Unit = gtk_icon_view_unselect_all(this.raw.asInstanceOf)
+  def unselectAll(): Unit /* None */ = gtk_icon_view_unselect_all(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Unselects the row at @path.
     */
-  def unselectPath(path: Ptr[GtkTreePath]): Unit =
-    gtk_icon_view_unselect_path(this.raw.asInstanceOf, path)
+  def unselectPath(
+      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
+  ): Unit /* None */ = gtk_icon_view_unselect_path(this.raw.asInstanceOf, path)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Undoes the effect of gtk_icon_view_enable_model_drag_dest(). Calling this
     * method sets `GtkIconView`:reorderable to %FALSE.
     */
-  def unsetModelDragDest(): Unit = gtk_icon_view_unset_model_drag_dest(
-    this.raw.asInstanceOf
-  )
+  def unsetModelDragDest(): Unit /* None */ =
+    gtk_icon_view_unset_model_drag_dest(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Undoes the effect of gtk_icon_view_enable_model_drag_source(). Calling
     * this method sets `GtkIconView`:reorderable to %FALSE.
     */
-  def unsetModelDragSource(): Unit = gtk_icon_view_unset_model_drag_source(
-    this.raw.asInstanceOf
-  )
+  def unsetModelDragSource(): Unit /* None */ =
+    gtk_icon_view_unset_model_drag_source(this.raw.asInstanceOf)
 
 end IconView
 
@@ -692,19 +747,21 @@ object IconView:
     * Creates a new `GtkIconView` widget using the specified @area to layout
     * cells inside the icons.
     */
-  def withArea(area: CellArea): IconView = new IconView(
-    gtk_icon_view_new_with_area(
-      area.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+  def withArea(area: CellArea /* Some(Ptr[GtkCellArea]) */ ): IconView =
+    new IconView(
+      gtk_icon_view_new_with_area(
+        area.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a new `GtkIconView` widget with the model @model.
     */
-  def withModel(model: TreeModel): IconView = new IconView(
-    gtk_icon_view_new_with_model(
-      model.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+  def withModel(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ ): IconView =
+    new IconView(
+      gtk_icon_view_new_with_model(
+        model.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 end IconView

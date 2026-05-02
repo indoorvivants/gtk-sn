@@ -19,13 +19,16 @@ class BytesIcon(raw: Ptr[GBytesIcon])
     extends Object(raw.asInstanceOf),
       Icon,
       LoadableIcon:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the #GBytes associated with the given @icon.
     */
-  def getBytes(): Ptr[GBytes] = g_bytes_icon_get_bytes(this.raw.asInstanceOf)
+  def getBytes(): Ptr[GBytes] /* None */ = g_bytes_icon_get_bytes(
+    this.raw.asInstanceOf
+  )
 
 end BytesIcon
 
@@ -38,7 +41,7 @@ object BytesIcon:
     * (for example, if g_loadable_icon_load() is called) if the image is
     * invalid.
     */
-  def apply(bytes: Ptr[GBytes]): BytesIcon = new BytesIcon(
-    g_bytes_icon_new(bytes).asInstanceOf
-  )
+  def apply(
+      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  ): BytesIcon = new BytesIcon(g_bytes_icon_new(bytes).asInstanceOf)
 end BytesIcon

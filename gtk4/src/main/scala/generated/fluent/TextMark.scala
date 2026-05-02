@@ -46,6 +46,7 @@ import sn.gnome.gtk4.internal.GtkTextMark
   * function.
   */
 class TextMark(raw: Ptr[GtkTextMark]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -54,7 +55,7 @@ class TextMark(raw: Ptr[GtkTextMark]) extends Object(raw.asInstanceOf):
     *
     * Returns %NULL if the mark is deleted.
     */
-  def getBuffer(): TextBuffer = new TextBuffer(
+  def getBuffer(): TextBuffer /* None */ = new TextBuffer(
     gtk_text_mark_get_buffer(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -65,14 +66,14 @@ class TextMark(raw: Ptr[GtkTextMark]) extends Object(raw.asInstanceOf):
     * See [method@Gtk.TextBuffer.add_mark] for a way to add it to a buffer
     * again.
     */
-  def getDeleted(): Boolean =
+  def getDeleted(): Boolean /* None */ =
     gtk_text_mark_get_deleted(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Determines whether the mark has left gravity.
     */
-  def getLeftGravity(): Boolean =
+  def getLeftGravity(): Boolean /* None */ =
     gtk_text_mark_get_left_gravity(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -81,7 +82,7 @@ class TextMark(raw: Ptr[GtkTextMark]) extends Object(raw.asInstanceOf):
     *
     * Returns %NULL for anonymous marks.
     */
-  def getName()(using Zone): String = fromCString(
+  def getName()(using Zone): String /* None */ = fromCString(
     gtk_text_mark_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -91,10 +92,12 @@ class TextMark(raw: Ptr[GtkTextMark]) extends Object(raw.asInstanceOf):
     *
     * A cursor is displayed for visible marks.
     */
-  def getVisible(): Boolean =
+  def getVisible(): Boolean /* None */ =
     gtk_text_mark_get_visible(this.raw.asInstanceOf).value.!=(0)
 
-  def setVisible(setting: Boolean): Unit = gtk_text_mark_set_visible(
+  def setVisible(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_text_mark_set_visible(
     this.raw.asInstanceOf,
     gboolean(gint((if setting == true then 1 else 0)))
   )
@@ -116,11 +119,14 @@ object TextMark:
     * right gravity (when you type, the cursor stays on the right side of the
     * text you’re typing).
     */
-  def apply(name: String | CString, left_gravity: Boolean)(using
-      Zone
-  ): TextMark = new TextMark(
+  def apply(
+      name: Option[String | CString /* Some(CString) */ ],
+      left_gravity: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  )(using Zone): TextMark = new TextMark(
     gtk_text_mark_new(
-      __sn_extract_string(name),
+      name
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
       gboolean(gint((if left_gravity == true then 1 else 0)))
     ).asInstanceOf
   )

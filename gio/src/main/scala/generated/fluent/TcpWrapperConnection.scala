@@ -18,13 +18,14 @@ import sn.gnome.gio.internal.GTcpWrapperConnection
   */
 class TcpWrapperConnection(raw: Ptr[GTcpWrapperConnection])
     extends TcpConnection(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets @conn's base #GIOStream
     */
-  def getBaseIoStream(): IOStream = new IOStream(
+  def getBaseIoStream(): IOStream /* None */ = new IOStream(
     g_tcp_wrapper_connection_get_base_io_stream(
       this.raw.asInstanceOf
     ).asInstanceOf
@@ -37,11 +38,13 @@ object TcpWrapperConnection:
     *
     * Wraps @base_io_stream and @socket together as a #GSocketConnection.
     */
-  def apply(base_io_stream: IOStream, socket: Socket): TcpWrapperConnection =
-    new TcpWrapperConnection(
-      g_tcp_wrapper_connection_new(
-        base_io_stream.getUnsafeRawPointer().asInstanceOf,
-        socket.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def apply(
+      base_io_stream: IOStream /* Some(Ptr[GIOStream]) */,
+      socket: Socket /* Some(Ptr[GSocket]) */
+  ): TcpWrapperConnection = new TcpWrapperConnection(
+    g_tcp_wrapper_connection_new(
+      base_io_stream.getUnsafeRawPointer().asInstanceOf,
+      socket.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+  )
 end TcpWrapperConnection

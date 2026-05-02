@@ -15,37 +15,41 @@ import sn.gnome.gtk4.internal.GtkOverlayLayoutChild
   */
 class OverlayLayoutChild(raw: Ptr[GtkOverlayLayoutChild])
     extends LayoutChild(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves whether the child is clipped.
     */
-  def getClipOverlay(): Boolean =
+  def getClipOverlay(): Boolean /* None */ =
     gtk_overlay_layout_child_get_clip_overlay(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves whether the child is measured.
     */
-  def getMeasure(): Boolean =
+  def getMeasure(): Boolean /* None */ =
     gtk_overlay_layout_child_get_measure(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether to clip this child.
     */
-  def setClipOverlay(clip_overlay: Boolean): Unit =
-    gtk_overlay_layout_child_set_clip_overlay(
-      this.raw.asInstanceOf,
-      gboolean(gint((if clip_overlay == true then 1 else 0)))
-    )
+  def setClipOverlay(
+      clip_overlay: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_overlay_layout_child_set_clip_overlay(
+    this.raw.asInstanceOf,
+    gboolean(gint((if clip_overlay == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether to measure this child.
     */
-  def setMeasure(measure: Boolean): Unit = gtk_overlay_layout_child_set_measure(
+  def setMeasure(
+      measure: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_overlay_layout_child_set_measure(
     this.raw.asInstanceOf,
     gboolean(gint((if measure == true then 1 else 0)))
   )

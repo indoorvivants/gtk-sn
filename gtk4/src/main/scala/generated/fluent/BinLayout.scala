@@ -18,6 +18,7 @@ import sn.gnome.gtk4.internal.GtkBinLayout
   * each child to determine where they should be positioned.
   */
 class BinLayout(raw: Ptr[GtkBinLayout]) extends LayoutManager(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end BinLayout

@@ -36,33 +36,35 @@ class Video(raw: Ptr[GtkVideo])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns %TRUE if videos have been set to loop.
     */
-  def getAutoplay(): Boolean =
+  def getAutoplay(): Boolean /* None */ =
     gtk_video_get_autoplay(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the file played by @self or %NULL if not playing back a file.
     */
-  def getFile(): File =
+  def getFile(): File /* None */ =
     new File.Abstract(gtk_video_get_file(this.raw.asInstanceOf).asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns %TRUE if videos have been set to loop.
     */
-  def getLoop(): Boolean = gtk_video_get_loop(this.raw.asInstanceOf).value.!=(0)
+  def getLoop(): Boolean /* None */ =
+    gtk_video_get_loop(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the media stream managed by @self or %NULL if none.
     */
-  def getMediaStream(): MediaStream = new MediaStream(
+  def getMediaStream(): MediaStream /* None */ = new MediaStream(
     gtk_video_get_media_stream(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -71,7 +73,9 @@ class Video(raw: Ptr[GtkVideo])
     * Sets whether @self automatically starts playback when it becomes visible
     * or when a new file gets loaded.
     */
-  def setAutoplay(autoplay: Boolean): Unit = gtk_video_set_autoplay(
+  def setAutoplay(
+      autoplay: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_video_set_autoplay(
     this.raw.asInstanceOf,
     gboolean(gint((if autoplay == true then 1 else 0)))
   )
@@ -80,9 +84,15 @@ class Video(raw: Ptr[GtkVideo])
     *
     * Makes @self play the given @file.
     */
-  def setFile(file: File): Unit = gtk_video_set_file(
+  def setFile(
+      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+  ): Unit /* None */ = gtk_video_set_file(
     this.raw.asInstanceOf,
-    file.getUnsafeRawPointer().asInstanceOf
+    file
+      .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -91,14 +101,22 @@ class Video(raw: Ptr[GtkVideo])
     *
     * This is a utility function that calls gtk_video_set_file(),
     */
-  def setFilename(filename: String | CString)(using Zone): Unit =
-    gtk_video_set_filename(this.raw.asInstanceOf, __sn_extract_string(filename))
+  def setFilename(
+      filename: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_video_set_filename(
+    this.raw.asInstanceOf,
+    filename
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether new files loaded by @self should be set to loop.
     */
-  def setLoop(loop: Boolean): Unit = gtk_video_set_loop(
+  def setLoop(
+      loop: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_video_set_loop(
     this.raw.asInstanceOf,
     gboolean(gint((if loop == true then 1 else 0)))
   )
@@ -115,9 +133,13 @@ class Video(raw: Ptr[GtkVideo])
     * If you want to display a file, consider using [method@Gtk.Video.set_file]
     * instead.
     */
-  def setMediaStream(stream: MediaStream): Unit = gtk_video_set_media_stream(
+  def setMediaStream(
+      stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
+  ): Unit /* None */ = gtk_video_set_media_stream(
     this.raw.asInstanceOf,
-    stream.getUnsafeRawPointer().asInstanceOf
+    stream
+      .map[Ptr[GtkMediaStream]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkMediaStream]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -126,11 +148,14 @@ class Video(raw: Ptr[GtkVideo])
     *
     * This is a utility function that calls [method@Gtk.Video.set_file].
     */
-  def setResource(resource_path: String | CString)(using Zone): Unit =
-    gtk_video_set_resource(
-      this.raw.asInstanceOf,
-      __sn_extract_string(resource_path)
-    )
+  def setResource(
+      resource_path: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_video_set_resource(
+    this.raw.asInstanceOf,
+    resource_path
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -153,8 +178,16 @@ object Video:
     *
     * Creates a `GtkVideo` to play back the given @file.
     */
-  def forFile(file: File): Video = new Video(
-    gtk_video_new_for_file(file.getUnsafeRawPointer().asInstanceOf).asInstanceOf
+  def forFile(
+      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+  ): Video = new Video(
+    gtk_video_new_for_file(
+      file
+        .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -164,17 +197,27 @@ object Video:
     * This is a utility function that calls [ctor@Gtk.Video.new_for_file], See
     * that function for details.
     */
-  def forFilename(filename: String | CString)(using Zone): Video = new Video(
-    gtk_video_new_for_filename(__sn_extract_string(filename)).asInstanceOf
+  def forFilename(
+      filename: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Video = new Video(
+    gtk_video_new_for_filename(
+      filename
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString])
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a `GtkVideo` to play back the given @stream.
     */
-  def forMediaStream(stream: MediaStream): Video = new Video(
+  def forMediaStream(
+      stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
+  ): Video = new Video(
     gtk_video_new_for_media_stream(
-      stream.getUnsafeRawPointer().asInstanceOf
+      stream
+        .map[Ptr[GtkMediaStream]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkMediaStream]])
     ).asInstanceOf
   )
 
@@ -184,12 +227,15 @@ object Video:
     *
     * This is a utility function that calls [ctor@Gtk.Video.new_for_file].
     */
-  def forResource(resource_path: String | CString)(using Zone): Video =
-    new Video(
-      gtk_video_new_for_resource(
-        __sn_extract_string(resource_path)
-      ).asInstanceOf
-    )
+  def forResource(
+      resource_path: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Video = new Video(
+    gtk_video_new_for_resource(
+      resource_path
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString])
+    ).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -64,6 +64,7 @@ import sn.gnome.gobject.fluent.Object
 class PropertyAction(raw: Ptr[GPropertyAction])
     extends Object(raw.asInstanceOf),
       Action:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end PropertyAction
@@ -82,9 +83,11 @@ object PropertyAction:
     * the action is destroyed.
     */
   def apply(
-      name: String | CString,
-      `object`: Object,
-      property_name: String | CString
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      property_name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): PropertyAction = new PropertyAction(
     g_property_action_new(
       __sn_extract_string(name).asInstanceOf[Ptr[gchar]],

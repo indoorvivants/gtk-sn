@@ -18,6 +18,7 @@ import sn.gnome.gobject.fluent.Object
 class ZlibDecompressor(raw: Ptr[GZlibDecompressor])
     extends Object(raw.asInstanceOf),
       Converter:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -28,7 +29,7 @@ class ZlibDecompressor(raw: Ptr[GZlibDecompressor])
     * or the header data was not fully processed yet, or it not present in the
     * data stream at all.
     */
-  def getFileInfo(): FileInfo = new FileInfo(
+  def getFileInfo(): FileInfo /* None */ = new FileInfo(
     g_zlib_decompressor_get_file_info(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -39,6 +40,9 @@ object ZlibDecompressor:
     *
     * Creates a new #GZlibDecompressor.
     */
-  def apply(format: GZlibCompressorFormat): ZlibDecompressor =
-    new ZlibDecompressor(g_zlib_decompressor_new(format).asInstanceOf)
+  def apply(
+      format: GZlibCompressorFormat /* Some(GZlibCompressorFormat) */
+  ): ZlibDecompressor = new ZlibDecompressor(
+    g_zlib_decompressor_new(format).asInstanceOf
+  )
 end ZlibDecompressor

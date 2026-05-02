@@ -31,6 +31,7 @@ import sn.gnome.gtk4.internal.GtkTextTag
   * They are maintained by GTK and you should not set them independently.
   */
 class TextTag(raw: Ptr[GtkTextTag]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -41,7 +42,9 @@ class TextTag(raw: Ptr[GtkTextTag]) extends Object(raw.asInstanceOf):
     * The signal is already emitted when setting a `GtkTextTag` property. This
     * function is useful for a `GtkTextTag` subclass.
     */
-  def changed(size_changed: Boolean): Unit = gtk_text_tag_changed(
+  def changed(
+      size_changed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_text_tag_changed(
     this.raw.asInstanceOf,
     gboolean(gint((if size_changed == true then 1 else 0)))
   )
@@ -50,7 +53,9 @@ class TextTag(raw: Ptr[GtkTextTag]) extends Object(raw.asInstanceOf):
     *
     * Get the tag priority.
     */
-  def getPriority(): Int = gtk_text_tag_get_priority(this.raw.asInstanceOf)
+  def getPriority(): Int /* None */ = gtk_text_tag_get_priority(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -68,7 +73,7 @@ class TextTag(raw: Ptr[GtkTextTag]) extends Object(raw.asInstanceOf):
     * [method@Gtk.TextBuffer.create_tag], which adds the tag to the buffer’s
     * table automatically.
     */
-  def setPriority(priority: Int): Unit =
+  def setPriority(priority: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_text_tag_set_priority(this.raw.asInstanceOf, priority)
 
 end TextTag
@@ -78,8 +83,14 @@ object TextTag:
     *
     * Creates a `GtkTextTag`.
     */
-  def apply(name: String | CString)(using Zone): TextTag = new TextTag(
-    gtk_text_tag_new(__sn_extract_string(name)).asInstanceOf
+  def apply(
+      name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): TextTag = new TextTag(
+    gtk_text_tag_new(
+      name
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString])
+    ).asInstanceOf
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

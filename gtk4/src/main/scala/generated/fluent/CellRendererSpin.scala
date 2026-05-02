@@ -26,6 +26,7 @@ import sn.gnome.gtk4.internal.GtkCellRendererSpin
   */
 class CellRendererSpin(raw: Ptr[GtkCellRendererSpin])
     extends CellRendererText(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end CellRendererSpin

@@ -186,6 +186,7 @@ import sn.gnome.gtk4.internal.GtkConstraintLayout
 class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     extends LayoutManager(raw.asInstanceOf),
       Buildable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -204,11 +205,12 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * The @layout acquires the ownership of @constraint after calling this
     * function.
     */
-  def addConstraint(constraint: Constraint): Unit =
-    gtk_constraint_layout_add_constraint(
-      this.raw.asInstanceOf,
-      constraint.getUnsafeRawPointer().asInstanceOf
-    )
+  def addConstraint(
+      constraint: Constraint /* Some(Ptr[GtkConstraint]) */
+  ): Unit /* None */ = gtk_constraint_layout_add_constraint(
+    this.raw.asInstanceOf,
+    constraint.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -219,14 +221,16 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * variadic arguments to populate the view/target map.
     */
   inline def addConstraintsFromDescription(
-      lines: Ptr[CString],
-      n_lines: CUnsignedLongInt,
-      hspacing: Int,
-      vspacing: Int,
-      error: Ptr[Ptr[GError]],
-      first_view: String | CString,
+      lines: Ptr[CString] /* Some(Ptr[CString]) */,
+      n_lines: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
+      hspacing: Int /* Some(CInt) */,
+      vspacing: Int /* Some(CInt) */,
+      error: Ptr[
+        Ptr[GError]
+      ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]) */,
+      first_view: String | CString /* Some(CString) */,
       args: Any*
-  )(using Zone): Ptr[GList] =
+  )(using Zone): Ptr[GList] /* None */ =
     gtk_constraint_layout_add_constraints_from_description(
       this.raw.asInstanceOf,
       lines,
@@ -320,12 +324,14 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * ```
     */
   def addConstraintsFromDescriptionv(
-      lines: Ptr[CString],
-      n_lines: CUnsignedLongInt,
-      hspacing: Int,
-      vspacing: Int,
-      views: Ptr[GHashTable]
-  )(using Zone): GResult[Ptr[GList]] = GResult.wrap(__errorPtr =>
+      lines: Ptr[CString] /* Some(Ptr[CString]) */,
+      n_lines: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
+      hspacing: Int /* Some(CInt) */,
+      vspacing: Int /* Some(CInt) */,
+      views: Ptr[
+        GHashTable
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GHashTable]) */
+  )(using Zone): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_constraint_layout_add_constraints_from_descriptionv(
       this.raw.asInstanceOf,
       lines,
@@ -347,7 +353,9 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * The `layout` acquires the ownership of `guide` after calling this
     * function.
     */
-  def addGuide(guide: ConstraintGuide): Unit = gtk_constraint_layout_add_guide(
+  def addGuide(
+      guide: ConstraintGuide /* Some(Ptr[GtkConstraintGuide]) */
+  ): Unit /* None */ = gtk_constraint_layout_add_guide(
     this.raw.asInstanceOf,
     guide.getUnsafeRawPointer().asInstanceOf
   )
@@ -364,7 +372,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * Applications should try hard to avoid calling this function because of the
     * slowdowns.
     */
-  def observeConstraints(): ListModel = new ListModel.Abstract(
+  def observeConstraints(): ListModel /* None */ = new ListModel.Abstract(
     gtk_constraint_layout_observe_constraints(
       this.raw.asInstanceOf
     ).asInstanceOf
@@ -381,7 +389,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * Applications should try hard to avoid calling this function because of the
     * slowdowns.
     */
-  def observeGuides(): ListModel = new ListModel.Abstract(
+  def observeGuides(): ListModel /* None */ = new ListModel.Abstract(
     gtk_constraint_layout_observe_guides(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -389,7 +397,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     *
     * Removes all constraints from the layout manager.
     */
-  def removeAllConstraints(): Unit =
+  def removeAllConstraints(): Unit /* None */ =
     gtk_constraint_layout_remove_all_constraints(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -397,22 +405,24 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * Removes `constraint` from the layout manager, so that it no longer
     * influences the layout.
     */
-  def removeConstraint(constraint: Constraint): Unit =
-    gtk_constraint_layout_remove_constraint(
-      this.raw.asInstanceOf,
-      constraint.getUnsafeRawPointer().asInstanceOf
-    )
+  def removeConstraint(
+      constraint: Constraint /* Some(Ptr[GtkConstraint]) */
+  ): Unit /* None */ = gtk_constraint_layout_remove_constraint(
+    this.raw.asInstanceOf,
+    constraint.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes `guide` from the layout manager, so that it no longer influences
     * the layout.
     */
-  def removeGuide(guide: ConstraintGuide): Unit =
-    gtk_constraint_layout_remove_guide(
-      this.raw.asInstanceOf,
-      guide.getUnsafeRawPointer().asInstanceOf
-    )
+  def removeGuide(
+      guide: ConstraintGuide /* Some(Ptr[GtkConstraintGuide]) */
+  ): Unit /* None */ = gtk_constraint_layout_remove_guide(
+    this.raw.asInstanceOf,
+    guide.getUnsafeRawPointer().asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -18,6 +18,7 @@ import sn.gnome.gobject.fluent.Object
   * that fallback icons work nicely with themes that inherit other themes.
   */
 class ThemedIcon(raw: Ptr[GThemedIcon]) extends Object(raw.asInstanceOf), Icon:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -27,11 +28,12 @@ class ThemedIcon(raw: Ptr[GThemedIcon]) extends Object(raw.asInstanceOf), Icon:
     * Note that doing so invalidates the hash computed by prior calls to
     * g_icon_hash().
     */
-  def appendName(iconname: String | CString)(using Zone): Unit =
-    g_themed_icon_append_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(iconname)
-    )
+  def appendName(
+      iconname: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = g_themed_icon_append_name(
+    this.raw.asInstanceOf,
+    __sn_extract_string(iconname)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -40,11 +42,12 @@ class ThemedIcon(raw: Ptr[GThemedIcon]) extends Object(raw.asInstanceOf), Icon:
     * Note that doing so invalidates the hash computed by prior calls to
     * g_icon_hash().
     */
-  def prependName(iconname: String | CString)(using Zone): Unit =
-    g_themed_icon_prepend_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(iconname)
-    )
+  def prependName(
+      iconname: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = g_themed_icon_prepend_name(
+    this.raw.asInstanceOf,
+    __sn_extract_string(iconname)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -61,22 +64,25 @@ object ThemedIcon:
     *
     * Creates a new themed icon for @iconname.
     */
-  def apply(iconname: String | CString)(using Zone): ThemedIcon =
-    new ThemedIcon(
-      g_themed_icon_new(__sn_extract_string(iconname)).asInstanceOf
-    )
+  def apply(
+      iconname: String | CString /* Some(CString) */
+  )(using Zone): ThemedIcon = new ThemedIcon(
+    g_themed_icon_new(__sn_extract_string(iconname)).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a new themed icon for @iconnames.
     */
-  def fromNames(iconnames: Array[String], len: Int)(using Zone): ThemedIcon =
-    new ThemedIcon(
-      g_themed_icon_new_from_names(
-        iconnames.map(__sn_extract_string).atUnsafe(0),
-        len
-      ).asInstanceOf
-    )
+  def fromNames(
+      iconnames: Array[String] /* Some(Ptr[CString]) */,
+      len: Int /* Some(CInt) */
+  )(using Zone): ThemedIcon = new ThemedIcon(
+    g_themed_icon_new_from_names(
+      iconnames.map(__sn_extract_string).atUnsafe(0),
+      len
+    ).asInstanceOf
+  )
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -96,12 +102,13 @@ object ThemedIcon:
     *  icon2 = g_themed_icon_new_with_default_fallbacks ("gnome-dev-cdrom-audio");
     *  ]|
     */
-  def withDefaultFallbacks(iconname: String | CString)(using Zone): ThemedIcon =
-    new ThemedIcon(
-      g_themed_icon_new_with_default_fallbacks(
-        __sn_extract_string(iconname)
-      ).asInstanceOf
-    )
+  def withDefaultFallbacks(
+      iconname: String | CString /* Some(CString) */
+  )(using Zone): ThemedIcon = new ThemedIcon(
+    g_themed_icon_new_with_default_fallbacks(
+      __sn_extract_string(iconname)
+    ).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

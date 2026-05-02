@@ -18,19 +18,21 @@ import sn.gnome.gobject.fluent.Object
   * Entry point for using GIO functionality.
   */
 class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets a #GFile for @path.
     */
-  def getFileForPath(path: String | CString)(using Zone): File =
-    new File.Abstract(
-      g_vfs_get_file_for_path(
-        this.raw.asInstanceOf,
-        __sn_extract_string(path)
-      ).asInstanceOf
-    )
+  def getFileForPath(
+      path: String | CString /* Some(CString) */
+  )(using Zone): File /* None */ = new File.Abstract(
+    g_vfs_get_file_for_path(
+      this.raw.asInstanceOf,
+      __sn_extract_string(path)
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -40,32 +42,35 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     * I/O operation if the URI is malformed or if the URI scheme is not
     * supported.
     */
-  def getFileForUri(uri: String | CString)(using Zone): File =
-    new File.Abstract(
-      g_vfs_get_file_for_uri(
-        this.raw.asInstanceOf,
-        __sn_extract_string(uri)
-      ).asInstanceOf
-    )
+  def getFileForUri(
+      uri: String | CString /* Some(CString) */
+  )(using Zone): File /* None */ = new File.Abstract(
+    g_vfs_get_file_for_uri(
+      this.raw.asInstanceOf,
+      __sn_extract_string(uri)
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if the VFS is active.
     */
-  def isActive(): Boolean = g_vfs_is_active(this.raw.asInstanceOf).value.!=(0)
+  def isActive(): Boolean /* None */ =
+    g_vfs_is_active(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * This operation never fails, but the returned object might not support any
     * I/O operations if the @parse_name cannot be parsed by the #GVfs module.
     */
-  def parseName(parse_name: String | CString)(using Zone): File =
-    new File.Abstract(
-      g_vfs_parse_name(
-        this.raw.asInstanceOf,
-        __sn_extract_string(parse_name)
-      ).asInstanceOf
-    )
+  def parseName(
+      parse_name: String | CString /* Some(CString) */
+  )(using Zone): File /* None */ = new File.Abstract(
+    g_vfs_parse_name(
+      this.raw.asInstanceOf,
+      __sn_extract_string(parse_name)
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -95,22 +100,48 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     * unregister a custom URI scheme, use g_vfs_unregister_uri_scheme().
     */
   def registerUriScheme(
-      scheme: String | CString,
-      uri_func: GVfsFileLookupFunc,
-      uri_data: Ptr[Byte],
-      uri_destroy: GDestroyNotify,
-      parse_name_func: GVfsFileLookupFunc,
-      parse_name_data: Ptr[Byte],
-      parse_name_destroy: GDestroyNotify
-  )(using Zone): Boolean = g_vfs_register_uri_scheme(
+      scheme: String | CString /* Some(CString) */,
+      uri_func: Option[GVfsFileLookupFunc /* Some(GVfsFileLookupFunc) */ ],
+      uri_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      uri_destroy: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ],
+      parse_name_func: Option[
+        GVfsFileLookupFunc /* Some(GVfsFileLookupFunc) */
+      ],
+      parse_name_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      parse_name_destroy: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ]
+  )(using Zone): Boolean /* None */ = g_vfs_register_uri_scheme(
     this.raw.asInstanceOf,
     __sn_extract_string(scheme),
-    uri_func,
-    gpointer(uri_data),
-    uri_destroy,
-    parse_name_func,
-    gpointer(parse_name_data),
+    uri_func
+      .map[GVfsFileLookupFunc](o => o)
+      .getOrElse(null.asInstanceOf[GVfsFileLookupFunc]),
+    uri_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    uri_destroy
+      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+      ),
+    parse_name_func
+      .map[GVfsFileLookupFunc](o => o)
+      .getOrElse(null.asInstanceOf[GVfsFileLookupFunc]),
+    parse_name_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     parse_name_destroy
+      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+      )
   ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -118,11 +149,12 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     * Unregisters the URI handler for @scheme previously registered with
     * g_vfs_register_uri_scheme().
     */
-  def unregisterUriScheme(scheme: String | CString)(using Zone): Boolean =
-    g_vfs_unregister_uri_scheme(
-      this.raw.asInstanceOf,
-      __sn_extract_string(scheme)
-    ).value.!=(0)
+  def unregisterUriScheme(
+      scheme: String | CString /* Some(CString) */
+  )(using Zone): Boolean /* None */ = g_vfs_unregister_uri_scheme(
+    this.raw.asInstanceOf,
+    __sn_extract_string(scheme)
+  ).value.!=(0)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

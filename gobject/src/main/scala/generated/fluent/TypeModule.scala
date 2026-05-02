@@ -51,6 +51,7 @@ import sn.gnome.gobject.internal.GTypeModule
 class TypeModule(raw: Ptr[GTypeModule])
     extends Object(raw.asInstanceOf),
       TypePlugin:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -67,10 +68,10 @@ class TypeModule(raw: Ptr[GTypeModule])
     * static build of the module.
     */
   def addInterface(
-      instance_type: GType,
-      interface_type: GType,
-      interface_info: Ptr[GInterfaceInfo]
-  ): Unit = g_type_module_add_interface(
+      instance_type: GType /* Some(GType) */,
+      interface_type: GType /* Some(GType) */,
+      interface_info: Ptr[GInterfaceInfo] /* Some(Ptr[GInterfaceInfo]) */
+  ): Unit /* None */ = g_type_module_add_interface(
     this.raw.asInstanceOf,
     instance_type,
     interface_type,
@@ -91,9 +92,10 @@ class TypeModule(raw: Ptr[GTypeModule])
     * instead. This can be used when making a static build of the module.
     */
   def registerEnum(
-      name: String | CString,
-      const_static_values: Ptr[GEnumValue]
-  )(using Zone): GType = g_type_module_register_enum(
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      const_static_values: Ptr[GEnumValue] /* Some(Ptr[GEnumValue]) */
+  )(using Zone): GType /* None */ = g_type_module_register_enum(
     this.raw.asInstanceOf,
     __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
     const_static_values
@@ -113,9 +115,10 @@ class TypeModule(raw: Ptr[GTypeModule])
     * instead. This can be used when making a static build of the module.
     */
   def registerFlags(
-      name: String | CString,
-      const_static_values: Ptr[GFlagsValue]
-  )(using Zone): GType = g_type_module_register_flags(
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      const_static_values: Ptr[GFlagsValue] /* Some(Ptr[GFlagsValue]) */
+  )(using Zone): GType /* None */ = g_type_module_register_flags(
     this.raw.asInstanceOf,
     __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
     const_static_values
@@ -139,11 +142,12 @@ class TypeModule(raw: Ptr[GTypeModule])
     * instead. This can be used when making a static build of the module.
     */
   def registerType(
-      parent_type: GType,
-      type_name: String | CString,
-      type_info: Ptr[GTypeInfo],
-      flags: GTypeFlags
-  )(using Zone): GType = g_type_module_register_type(
+      parent_type: GType /* Some(GType) */,
+      type_name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      type_info: Ptr[GTypeInfo] /* Some(Ptr[GTypeInfo]) */,
+      flags: GTypeFlags /* Some(GTypeFlags) */
+  )(using Zone): GType /* None */ = g_type_module_register_type(
     this.raw.asInstanceOf,
     parent_type,
     __sn_extract_string(type_name).asInstanceOf[Ptr[gchar]],
@@ -155,11 +159,13 @@ class TypeModule(raw: Ptr[GTypeModule])
     *
     * Sets the name for a #GTypeModule
     */
-  def setName(name: String | CString)(using Zone): Unit =
-    g_type_module_set_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
-    )
+  def setName(
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_type_module_set_name(
+    this.raw.asInstanceOf,
+    __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -168,7 +174,7 @@ class TypeModule(raw: Ptr[GTypeModule])
     * and types associated with the #GTypeModule are not unregistered. Once a
     * #GTypeModule is initialized, it must exist forever.)
     */
-  def unuse(): Unit = g_type_module_unuse(this.raw.asInstanceOf)
+  def unuse(): Unit /* None */ = g_type_module_unuse(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -176,7 +182,8 @@ class TypeModule(raw: Ptr[GTypeModule])
     * zero before, the plugin will be loaded. If loading the plugin fails, the
     * use count is reset to its prior value.
     */
-  def use(): Boolean = g_type_module_use(this.raw.asInstanceOf).value.!=(0)
+  def use(): Boolean /* None */ =
+    g_type_module_use(this.raw.asInstanceOf).value.!=(0)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

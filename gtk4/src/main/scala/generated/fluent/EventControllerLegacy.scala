@@ -17,6 +17,7 @@ import sn.gnome.gtk4.internal.GtkEventControllerLegacy
   */
 class EventControllerLegacy(raw: Ptr[GtkEventControllerLegacy])
     extends EventController(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end EventControllerLegacy

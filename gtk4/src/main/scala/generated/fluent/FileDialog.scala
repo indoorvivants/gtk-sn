@@ -30,9 +30,10 @@ import sn.gnome.gtk4.internal.GtkFileDialog
   * for example [method@Gtk.FileDialog.open_finish].
   */
 class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  def getAcceptLabel()(using Zone): String = fromCString(
+  def getAcceptLabel()(using Zone): String /* None */ = fromCString(
     gtk_file_dialog_get_accept_label(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -41,7 +42,7 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * Gets the filter that will be selected by default in the file chooser
     * dialog.
     */
-  def getDefaultFilter(): FileFilter = new FileFilter(
+  def getDefaultFilter(): FileFilter /* None */ = new FileFilter(
     gtk_file_dialog_get_default_filter(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -50,7 +51,7 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * Gets the filters that will be offered to the user in the file chooser
     * dialog.
     */
-  def getFilters(): ListModel = new ListModel.Abstract(
+  def getFilters(): ListModel /* None */ = new ListModel.Abstract(
     gtk_file_dialog_get_filters(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -58,7 +59,7 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     *
     * Gets the file that will be initially selected in the file chooser dialog.
     */
-  def getInitialFile(): File = new File.Abstract(
+  def getInitialFile(): File /* None */ = new File.Abstract(
     gtk_file_dialog_get_initial_file(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -67,7 +68,7 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * Gets the folder that will be set as the initial folder in the file chooser
     * dialog.
     */
-  def getInitialFolder(): File = new File.Abstract(
+  def getInitialFolder(): File /* None */ = new File.Abstract(
     gtk_file_dialog_get_initial_folder(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -75,7 +76,7 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     *
     * Gets the name for the file that should be initially set.
     */
-  def getInitialName()(using Zone): String = fromCString(
+  def getInitialName()(using Zone): String /* None */ = fromCString(
     gtk_file_dialog_get_initial_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -84,14 +85,14 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * Returns whether the file chooser dialog blocks interaction with the parent
     * window while it is presented.
     */
-  def getModal(): Boolean =
+  def getModal(): Boolean /* None */ =
     gtk_file_dialog_get_modal(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the title that will be shown on the file chooser dialog.
     */
-  def getTitle()(using Zone): String = fromCString(
+  def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_file_dialog_get_title(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -104,16 +105,36 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * [method@Gtk.FileDialog.open_finish] to obtain the result.
     */
   def open(
-      parent: Window,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = gtk_file_dialog_open(
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      cancellable: Option[
+        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+      ],
+      callback: Option[
+        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gtk_file_dialog_open(
     this.raw.asInstanceOf,
-    parent.getUnsafeRawPointer().asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    parent
+      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
+    cancellable
+      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
+      ),
+    callback
+      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
+      ),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -121,16 +142,17 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * Finishes the [method@Gtk.FileDialog.open] call and returns the resulting
     * file.
     */
-  def openFinish(result: AsyncResult): GResult[File] =
-    GResult.wrap(__errorPtr =>
-      new File.Abstract(
-        gtk_file_dialog_open_finish(
-          this.raw.asInstanceOf,
-          result.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def openFinish(
+      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[File /* None */ ] = GResult.wrap(__errorPtr =>
+    new File.Abstract(
+      gtk_file_dialog_open_finish(
+        this.raw.asInstanceOf,
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -144,16 +166,36 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * [method@Gtk.FileDialog.open_multiple_finish] to obtain the result.
     */
   def openMultiple(
-      parent: Window,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = gtk_file_dialog_open_multiple(
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      cancellable: Option[
+        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+      ],
+      callback: Option[
+        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gtk_file_dialog_open_multiple(
     this.raw.asInstanceOf,
-    parent.getUnsafeRawPointer().asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    parent
+      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
+    cancellable
+      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
+      ),
+    callback
+      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
+      ),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -161,16 +203,17 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * Finishes the [method@Gtk.FileDialog.open] call and returns the resulting
     * files in a `GListModel`.
     */
-  def openMultipleFinish(result: AsyncResult): GResult[ListModel] =
-    GResult.wrap(__errorPtr =>
-      new ListModel.Abstract(
-        gtk_file_dialog_open_multiple_finish(
-          this.raw.asInstanceOf,
-          result.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def openMultipleFinish(
+      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[ListModel /* None */ ] = GResult.wrap(__errorPtr =>
+    new ListModel.Abstract(
+      gtk_file_dialog_open_multiple_finish(
+        this.raw.asInstanceOf,
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -181,16 +224,36 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * [method@Gtk.FileDialog.save_finish] to obtain the result.
     */
   def save(
-      parent: Window,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = gtk_file_dialog_save(
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      cancellable: Option[
+        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+      ],
+      callback: Option[
+        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gtk_file_dialog_save(
     this.raw.asInstanceOf,
-    parent.getUnsafeRawPointer().asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    parent
+      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
+    cancellable
+      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
+      ),
+    callback
+      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
+      ),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -198,16 +261,17 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * Finishes the [method@Gtk.FileDialog.save] call and returns the resulting
     * file.
     */
-  def saveFinish(result: AsyncResult): GResult[File] =
-    GResult.wrap(__errorPtr =>
-      new File.Abstract(
-        gtk_file_dialog_save_finish(
-          this.raw.asInstanceOf,
-          result.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def saveFinish(
+      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[File /* None */ ] = GResult.wrap(__errorPtr =>
+    new File.Abstract(
+      gtk_file_dialog_save_finish(
+        this.raw.asInstanceOf,
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -222,16 +286,36 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * [method@Gtk.FileDialog.select_folder_finish] to obtain the result.
     */
   def selectFolder(
-      parent: Window,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = gtk_file_dialog_select_folder(
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      cancellable: Option[
+        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+      ],
+      callback: Option[
+        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gtk_file_dialog_select_folder(
     this.raw.asInstanceOf,
-    parent.getUnsafeRawPointer().asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    parent
+      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
+    cancellable
+      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
+      ),
+    callback
+      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
+      ),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -239,16 +323,17 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * Finishes the [method@Gtk.FileDialog.select_folder] call and returns the
     * resulting file.
     */
-  def selectFolderFinish(result: AsyncResult): GResult[File] =
-    GResult.wrap(__errorPtr =>
-      new File.Abstract(
-        gtk_file_dialog_select_folder_finish(
-          this.raw.asInstanceOf,
-          result.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def selectFolderFinish(
+      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[File /* None */ ] = GResult.wrap(__errorPtr =>
+    new File.Abstract(
+      gtk_file_dialog_select_folder_finish(
+        this.raw.asInstanceOf,
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -263,16 +348,36 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * result.
     */
   def selectMultipleFolders(
-      parent: Window,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = gtk_file_dialog_select_multiple_folders(
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      cancellable: Option[
+        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+      ],
+      callback: Option[
+        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gtk_file_dialog_select_multiple_folders(
     this.raw.asInstanceOf,
-    parent.getUnsafeRawPointer().asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    parent
+      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
+    cancellable
+      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
+      ),
+    callback
+      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
+      ),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -280,16 +385,17 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * Finishes the [method@Gtk.FileDialog.select_multiple_folders] call and
     * returns the resulting files in a `GListModel`.
     */
-  def selectMultipleFoldersFinish(result: AsyncResult): GResult[ListModel] =
-    GResult.wrap(__errorPtr =>
-      new ListModel.Abstract(
-        gtk_file_dialog_select_multiple_folders_finish(
-          this.raw.asInstanceOf,
-          result.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def selectMultipleFoldersFinish(
+      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[ListModel /* None */ ] = GResult.wrap(__errorPtr =>
+    new ListModel.Abstract(
+      gtk_file_dialog_select_multiple_folders_finish(
+        this.raw.asInstanceOf,
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -298,11 +404,14 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * Leaving the accept label unset or setting it as `NULL` will fall back to a
     * default label, depending on what API is used to launch the file dialog.
     */
-  def setAcceptLabel(accept_label: String | CString)(using Zone): Unit =
-    gtk_file_dialog_set_accept_label(
-      this.raw.asInstanceOf,
-      __sn_extract_string(accept_label)
-    )
+  def setAcceptLabel(
+      accept_label: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_file_dialog_set_accept_label(
+    this.raw.asInstanceOf,
+    accept_label
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -313,20 +422,33 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * be used as the default filter. If that list is empty, the dialog will be
     * unfiltered.
     */
-  def setDefaultFilter(filter: FileFilter): Unit =
-    gtk_file_dialog_set_default_filter(
-      this.raw.asInstanceOf,
-      filter.getUnsafeRawPointer().asInstanceOf
-    )
+  def setDefaultFilter(
+      filter: Option[FileFilter /* Some(Ptr[GtkFileFilter]) */ ]
+  ): Unit /* None */ = gtk_file_dialog_set_default_filter(
+    this.raw.asInstanceOf,
+    filter
+      .map[Ptr[GtkFileFilter]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkFileFilter]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the filters that will be offered to the user in the file chooser
     * dialog.
     */
-  def setFilters(filters: ListModel): Unit = gtk_file_dialog_set_filters(
+  def setFilters(
+      filters: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ]
+  ): Unit /* None */ = gtk_file_dialog_set_filters(
     this.raw.asInstanceOf,
-    filters.getUnsafeRawPointer().asInstanceOf
+    filters
+      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -338,9 +460,15 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * gtk_file_dialog_set_initial_name() with the directory and name of @file
     * respectively.
     */
-  def setInitialFile(file: File): Unit = gtk_file_dialog_set_initial_file(
+  def setInitialFile(
+      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+  ): Unit /* None */ = gtk_file_dialog_set_initial_file(
     this.raw.asInstanceOf,
-    file.getUnsafeRawPointer().asInstanceOf
+    file
+      .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -348,9 +476,15 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * Sets the folder that will be set as the initial folder in the file chooser
     * dialog.
     */
-  def setInitialFolder(folder: File): Unit = gtk_file_dialog_set_initial_folder(
+  def setInitialFolder(
+      folder: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+  ): Unit /* None */ = gtk_file_dialog_set_initial_folder(
     this.raw.asInstanceOf,
-    folder.getUnsafeRawPointer().asInstanceOf
+    folder
+      .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -361,18 +495,23 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * If a file with this name already exists in the directory set via
     * [property@Gtk.FileDialog:initial-folder], the dialog should preselect it.
     */
-  def setInitialName(name: String | CString)(using Zone): Unit =
-    gtk_file_dialog_set_initial_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name)
-    )
+  def setInitialName(
+      name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_file_dialog_set_initial_name(
+    this.raw.asInstanceOf,
+    name
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the file chooser dialog blocks interaction with the parent
     * window while it is presented.
     */
-  def setModal(modal: Boolean): Unit = gtk_file_dialog_set_modal(
+  def setModal(
+      modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_file_dialog_set_modal(
     this.raw.asInstanceOf,
     gboolean(gint((if modal == true then 1 else 0)))
   )
@@ -381,7 +520,9 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     *
     * Sets the title that will be shown on the file chooser dialog.
     */
-  def setTitle(title: String | CString)(using Zone): Unit =
+  def setTitle(
+      title: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ =
     gtk_file_dialog_set_title(this.raw.asInstanceOf, __sn_extract_string(title))
 
   private inline def __sn_extract_string(str: String | CString)(using

@@ -71,13 +71,16 @@ class Calendar(raw: Ptr[GtkCalendar])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Remove all visual markers.
     */
-  def clearMarks(): Unit = gtk_calendar_clear_marks(this.raw.asInstanceOf)
+  def clearMarks(): Unit /* None */ = gtk_calendar_clear_marks(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -86,13 +89,17 @@ class Calendar(raw: Ptr[GtkCalendar])
     *
     * The returned date is in the local time zone.
     */
-  def getDate(): Ptr[GDateTime] = gtk_calendar_get_date(this.raw.asInstanceOf)
+  def getDate(): Ptr[GDateTime] /* None */ = gtk_calendar_get_date(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns if the @day of the @calendar is already marked.
     */
-  def getDayIsMarked(day: UInt): Boolean =
+  def getDayIsMarked(
+      day: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Boolean /* None */ =
     gtk_calendar_get_day_is_marked(this.raw.asInstanceOf, guint(day)).value
       .!=(0)
 
@@ -102,7 +109,7 @@ class Calendar(raw: Ptr[GtkCalendar])
     *
     * This is the value of the [property@Gtk.Calendar:show-day-names] property.
     */
-  def getShowDayNames(): Boolean =
+  def getShowDayNames(): Boolean /* None */ =
     gtk_calendar_get_show_day_names(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -111,7 +118,7 @@ class Calendar(raw: Ptr[GtkCalendar])
     *
     * This is the value of the [property@Gtk.Calendar:show-heading] property.
     */
-  def getShowHeading(): Boolean =
+  def getShowHeading(): Boolean /* None */ =
     gtk_calendar_get_show_heading(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -121,28 +128,34 @@ class Calendar(raw: Ptr[GtkCalendar])
     * This is the value of the [property@Gtk.Calendar:show-week-numbers]
     * property.
     */
-  def getShowWeekNumbers(): Boolean =
+  def getShowWeekNumbers(): Boolean /* None */ =
     gtk_calendar_get_show_week_numbers(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Places a visual marker on a particular day of the current month.
     */
-  def markDay(day: UInt): Unit =
-    gtk_calendar_mark_day(this.raw.asInstanceOf, guint(day))
+  def markDay(
+      day: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ = gtk_calendar_mark_day(this.raw.asInstanceOf, guint(day))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Switches to @date's year and month and select its day.
     */
-  def selectDay(date: Ptr[GDateTime]): Unit =
-    gtk_calendar_select_day(this.raw.asInstanceOf, date)
+  def selectDay(
+      date: Ptr[
+        GDateTime
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GDateTime]) */
+  ): Unit /* None */ = gtk_calendar_select_day(this.raw.asInstanceOf, date)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the calendar shows day names.
     */
-  def setShowDayNames(value: Boolean): Unit = gtk_calendar_set_show_day_names(
+  def setShowDayNames(
+      value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_calendar_set_show_day_names(
     this.raw.asInstanceOf,
     gboolean(gint((if value == true then 1 else 0)))
   )
@@ -154,7 +167,9 @@ class Calendar(raw: Ptr[GtkCalendar])
     * The heading contains the current year and month as well as buttons for
     * changing both.
     */
-  def setShowHeading(value: Boolean): Unit = gtk_calendar_set_show_heading(
+  def setShowHeading(
+      value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_calendar_set_show_heading(
     this.raw.asInstanceOf,
     gboolean(gint((if value == true then 1 else 0)))
   )
@@ -163,17 +178,20 @@ class Calendar(raw: Ptr[GtkCalendar])
     *
     * Sets whether week numbers are shown in the calendar.
     */
-  def setShowWeekNumbers(value: Boolean): Unit =
-    gtk_calendar_set_show_week_numbers(
-      this.raw.asInstanceOf,
-      gboolean(gint((if value == true then 1 else 0)))
-    )
+  def setShowWeekNumbers(
+      value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_calendar_set_show_week_numbers(
+    this.raw.asInstanceOf,
+    gboolean(gint((if value == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes the visual marker from a particular day.
     */
-  def unmarkDay(day: UInt): Unit =
+  def unmarkDay(
+      day: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_calendar_unmark_day(this.raw.asInstanceOf, guint(day))
 
 end Calendar

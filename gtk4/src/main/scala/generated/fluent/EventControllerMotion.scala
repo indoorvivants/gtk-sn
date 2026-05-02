@@ -23,21 +23,22 @@ import sn.gnome.gtk4.internal.GtkEventControllerMotion
   */
 class EventControllerMotion(raw: Ptr[GtkEventControllerMotion])
     extends EventController(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns if a pointer is within @self or one of its children.
     */
-  def containsPointer(): Boolean = gtk_event_controller_motion_contains_pointer(
-    this.raw.asInstanceOf
-  ).value.!=(0)
+  def containsPointer(): Boolean /* None */ =
+    gtk_event_controller_motion_contains_pointer(this.raw.asInstanceOf).value
+      .!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns if a pointer is within @self, but not one of its children.
     */
-  def isPointer(): Boolean =
+  def isPointer(): Boolean /* None */ =
     gtk_event_controller_motion_is_pointer(this.raw.asInstanceOf).value.!=(0)
 
 end EventControllerMotion

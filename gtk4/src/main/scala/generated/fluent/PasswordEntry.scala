@@ -55,13 +55,14 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
       Buildable,
       ConstraintTarget,
       Editable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the menu model set with gtk_password_entry_set_extra_menu().
     */
-  def getExtraMenu(): MenuModel = new MenuModel(
+  def getExtraMenu(): MenuModel /* None */ = new MenuModel(
     gtk_password_entry_get_extra_menu(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -69,16 +70,26 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
     *
     * Returns whether the entry is showing an icon to reveal the contents.
     */
-  def getShowPeekIcon(): Boolean =
+  def getShowPeekIcon(): Boolean /* None */ =
     gtk_password_entry_get_show_peek_icon(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets a menu model to add when constructing the context menu for @entry.
     */
-  def setExtraMenu(model: MenuModel): Unit = gtk_password_entry_set_extra_menu(
+  def setExtraMenu(
+      model: Option[
+        MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+      ]
+  ): Unit /* None */ = gtk_password_entry_set_extra_menu(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf
+    model
+      .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -88,11 +99,12 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
     *
     * Setting this to %FALSE also hides the text again.
     */
-  def setShowPeekIcon(show_peek_icon: Boolean): Unit =
-    gtk_password_entry_set_show_peek_icon(
-      this.raw.asInstanceOf,
-      gboolean(gint((if show_peek_icon == true then 1 else 0)))
-    )
+  def setShowPeekIcon(
+      show_peek_icon: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_password_entry_set_show_peek_icon(
+    this.raw.asInstanceOf,
+    gboolean(gint((if show_peek_icon == true then 1 else 0)))
+  )
 
 end PasswordEntry
 

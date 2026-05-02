@@ -25,6 +25,7 @@ import sn.gnome.gtk4.internal.GtkCellRendererCombo
   */
 class CellRendererCombo(raw: Ptr[GtkCellRendererCombo])
     extends CellRendererText(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end CellRendererCombo

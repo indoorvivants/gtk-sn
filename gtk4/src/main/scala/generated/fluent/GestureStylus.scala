@@ -18,6 +18,7 @@ import sn.gnome.gtk4.internal.GtkGestureStylus
   */
 class GestureStylus(raw: Ptr[GtkGestureStylus])
     extends GestureSingle(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -32,7 +33,7 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
   @annotation.compileTimeOnly(
     "Method get_axes contains an OUT parameter, which is not supported yet"
   )
-  def getAxes(using DummyImplicit) = ???
+  private def getAxes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -46,7 +47,7 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
   @annotation.compileTimeOnly(
     "Method get_axis contains an OUT parameter, which is not supported yet"
   )
-  def getAxis(using DummyImplicit) = ???
+  private def getAxis__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -67,7 +68,7 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
   @annotation.compileTimeOnly(
     "Method get_backlog contains an OUT parameter, which is not supported yet"
   )
-  def getBacklog(using DummyImplicit) = ???
+  private def getBacklog__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -78,7 +79,7 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     * [signal@Gtk.GestureStylus::up] or [signal@Gtk.GestureStylus::proximity]
     * signals.
     */
-  def getDeviceTool(): DeviceTool = new DeviceTool(
+  def getDeviceTool(): DeviceTool /* None */ = new DeviceTool(
     gtk_gesture_stylus_get_device_tool(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -89,7 +90,7 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     * Stylus-only gestures will signal events exclusively from stylus input
     * devices.
     */
-  def getStylusOnly(): Boolean =
+  def getStylusOnly(): Boolean /* None */ =
     gtk_gesture_stylus_get_stylus_only(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -99,11 +100,12 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     * If true, the gesture will exclusivly handle events from stylus input
     * deivces, otherwise it'll handle events from any pointing device.
     */
-  def setStylusOnly(stylus_only: Boolean): Unit =
-    gtk_gesture_stylus_set_stylus_only(
-      this.raw.asInstanceOf,
-      gboolean(gint((if stylus_only == true then 1 else 0)))
-    )
+  def setStylusOnly(
+      stylus_only: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_gesture_stylus_set_stylus_only(
+    this.raw.asInstanceOf,
+    gboolean(gint((if stylus_only == true then 1 else 0)))
+  )
 
 end GestureStylus
 

@@ -70,13 +70,16 @@ class Stack(raw: Ptr[GtkStack])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Adds a child to @stack.
     */
-  def addChild(child: Widget): StackPage = new StackPage(
+  def addChild(
+      child: Widget /* Some(Ptr[GtkWidget]) */
+  ): StackPage /* None */ = new StackPage(
     gtk_stack_add_child(
       this.raw.asInstanceOf,
       child.getUnsafeRawPointer().asInstanceOf
@@ -89,14 +92,18 @@ class Stack(raw: Ptr[GtkStack])
     *
     * The child is identified by the @name.
     */
-  def addNamed(child: Widget, name: String | CString)(using Zone): StackPage =
-    new StackPage(
-      gtk_stack_add_named(
-        this.raw.asInstanceOf,
-        child.getUnsafeRawPointer().asInstanceOf,
-        __sn_extract_string(name)
-      ).asInstanceOf
-    )
+  def addNamed(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): StackPage /* None */ = new StackPage(
+    gtk_stack_add_named(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf,
+      name
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString])
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -107,13 +114,17 @@ class Stack(raw: Ptr[GtkStack])
     * @child
     *   in a tab bar, so it should be short.
     */
-  def addTitled(child: Widget, name: String | CString, title: String | CString)(
-      using Zone
-  ): StackPage = new StackPage(
+  def addTitled(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      name: Option[String | CString /* Some(CString) */ ],
+      title: String | CString /* Some(CString) */
+  )(using Zone): StackPage /* None */ = new StackPage(
     gtk_stack_add_titled(
       this.raw.asInstanceOf,
       child.getUnsafeRawPointer().asInstanceOf,
-      __sn_extract_string(name),
+      name
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
       __sn_extract_string(title)
     ).asInstanceOf
   )
@@ -124,7 +135,9 @@ class Stack(raw: Ptr[GtkStack])
     *
     * Returns %NULL if there is no child with this name.
     */
-  def getChildByName(name: String | CString)(using Zone): Widget = new Widget(
+  def getChildByName(
+      name: String | CString /* Some(CString) */
+  )(using Zone): Widget /* None */ = new Widget(
     gtk_stack_get_child_by_name(
       this.raw.asInstanceOf,
       __sn_extract_string(name)
@@ -135,7 +148,7 @@ class Stack(raw: Ptr[GtkStack])
     *
     * Gets whether @stack is horizontally homogeneous.
     */
-  def getHhomogeneous(): Boolean =
+  def getHhomogeneous(): Boolean /* None */ =
     gtk_stack_get_hhomogeneous(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -143,19 +156,20 @@ class Stack(raw: Ptr[GtkStack])
     * Returns whether the `GtkStack` is set up to interpolate between the sizes
     * of children on page switch.
     */
-  def getInterpolateSize(): Boolean =
+  def getInterpolateSize(): Boolean /* None */ =
     gtk_stack_get_interpolate_size(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `GtkStackPage` object for @child.
     */
-  def getPage(child: Widget): StackPage = new StackPage(
-    gtk_stack_get_page(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+  def getPage(child: Widget /* Some(Ptr[GtkWidget]) */ ): StackPage /* None */ =
+    new StackPage(
+      gtk_stack_get_page(
+        this.raw.asInstanceOf,
+        child.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -165,7 +179,7 @@ class Stack(raw: Ptr[GtkStack])
     * [iface@Gtk.SelectionModel] and can be used to track and modify the visible
     * page.
     */
-  def getPages(): SelectionModel = new SelectionModel.Abstract(
+  def getPages(): SelectionModel /* None */ = new SelectionModel.Abstract(
     gtk_stack_get_pages(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -174,16 +188,15 @@ class Stack(raw: Ptr[GtkStack])
     * Returns the amount of time (in milliseconds) that transitions between
     * pages in @stack will take.
     */
-  def getTransitionDuration(): UInt = gtk_stack_get_transition_duration(
-    this.raw.asInstanceOf
-  ).value
+  def getTransitionDuration(): UInt /* None */ =
+    gtk_stack_get_transition_duration(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the @stack is currently in a transition from one page to
     * another.
     */
-  def getTransitionRunning(): Boolean =
+  def getTransitionRunning(): Boolean /* None */ =
     gtk_stack_get_transition_running(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -191,14 +204,14 @@ class Stack(raw: Ptr[GtkStack])
     * Gets the type of animation that will be used for transitions between pages
     * in @stack.
     */
-  def getTransitionType(): GtkStackTransitionType =
+  def getTransitionType(): GtkStackTransitionType /* None */ =
     gtk_stack_get_transition_type(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether @stack is vertically homogeneous.
     */
-  def getVhomogeneous(): Boolean =
+  def getVhomogeneous(): Boolean /* None */ =
     gtk_stack_get_vhomogeneous(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -207,7 +220,7 @@ class Stack(raw: Ptr[GtkStack])
     *
     * Returns %NULL if there are no visible children.
     */
-  def getVisibleChild(): Widget = new Widget(
+  def getVisibleChild(): Widget /* None */ = new Widget(
     gtk_stack_get_visible_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -217,7 +230,7 @@ class Stack(raw: Ptr[GtkStack])
     *
     * Returns %NULL if there is no visible child.
     */
-  def getVisibleChildName()(using Zone): String = fromCString(
+  def getVisibleChildName()(using Zone): String /* None */ = fromCString(
     gtk_stack_get_visible_child_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -225,10 +238,11 @@ class Stack(raw: Ptr[GtkStack])
     *
     * Removes a child widget from @stack.
     */
-  def remove(child: Widget): Unit = gtk_stack_remove(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_stack_remove(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -238,7 +252,9 @@ class Stack(raw: Ptr[GtkStack])
     * its children. If it isn't, the stack may change width when a different
     * child becomes visible.
     */
-  def setHhomogeneous(hhomogeneous: Boolean): Unit = gtk_stack_set_hhomogeneous(
+  def setHhomogeneous(
+      hhomogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_stack_set_hhomogeneous(
     this.raw.asInstanceOf,
     gboolean(gint((if hhomogeneous == true then 1 else 0)))
   )
@@ -253,17 +269,20 @@ class Stack(raw: Ptr[GtkStack])
     * after changing the visible child, according to the set transition
     * duration.
     */
-  def setInterpolateSize(interpolate_size: Boolean): Unit =
-    gtk_stack_set_interpolate_size(
-      this.raw.asInstanceOf,
-      gboolean(gint((if interpolate_size == true then 1 else 0)))
-    )
+  def setInterpolateSize(
+      interpolate_size: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_stack_set_interpolate_size(
+    this.raw.asInstanceOf,
+    gboolean(gint((if interpolate_size == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the duration that transitions between pages in @stack will take.
     */
-  def setTransitionDuration(duration: UInt): Unit =
+  def setTransitionDuration(
+      duration: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_stack_set_transition_duration(this.raw.asInstanceOf, guint(duration))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -277,7 +296,9 @@ class Stack(raw: Ptr[GtkStack])
     * possible to change the animation based on the page that is about to become
     * current.
     */
-  def setTransitionType(transition: GtkStackTransitionType): Unit =
+  def setTransitionType(
+      transition: GtkStackTransitionType /* Some(GtkStackTransitionType) */
+  ): Unit /* None */ =
     gtk_stack_set_transition_type(this.raw.asInstanceOf, transition)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -288,7 +309,9 @@ class Stack(raw: Ptr[GtkStack])
     * its children. If it isn't, the stack may change height when a different
     * child becomes visible.
     */
-  def setVhomogeneous(vhomogeneous: Boolean): Unit = gtk_stack_set_vhomogeneous(
+  def setVhomogeneous(
+      vhomogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_stack_set_vhomogeneous(
     this.raw.asInstanceOf,
     gboolean(gint((if vhomogeneous == true then 1 else 0)))
   )
@@ -303,7 +326,9 @@ class Stack(raw: Ptr[GtkStack])
     * Note that the @child widget has to be visible itself (see
     * [method@Gtk.Widget.show]) in order to become the visible child of @stack.
     */
-  def setVisibleChild(child: Widget): Unit = gtk_stack_set_visible_child(
+  def setVisibleChild(
+      child: Widget /* Some(Ptr[GtkWidget]) */
+  ): Unit /* None */ = gtk_stack_set_visible_child(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf
   )
@@ -316,9 +341,9 @@ class Stack(raw: Ptr[GtkStack])
     * [method@Gtk.Widget.show]) in order to become the visible child of @stack.
     */
   def setVisibleChildFull(
-      name: String | CString,
-      transition: GtkStackTransitionType
-  )(using Zone): Unit = gtk_stack_set_visible_child_full(
+      name: String | CString /* Some(CString) */,
+      transition: GtkStackTransitionType /* Some(GtkStackTransitionType) */
+  )(using Zone): Unit /* None */ = gtk_stack_set_visible_child_full(
     this.raw.asInstanceOf,
     __sn_extract_string(name),
     transition
@@ -334,11 +359,12 @@ class Stack(raw: Ptr[GtkStack])
     * Note that the child widget has to be visible itself (see
     * [method@Gtk.Widget.show]) in order to become the visible child of @stack.
     */
-  def setVisibleChildName(name: String | CString)(using Zone): Unit =
-    gtk_stack_set_visible_child_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name)
-    )
+  def setVisibleChildName(
+      name: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_stack_set_visible_child_name(
+    this.raw.asInstanceOf,
+    __sn_extract_string(name)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

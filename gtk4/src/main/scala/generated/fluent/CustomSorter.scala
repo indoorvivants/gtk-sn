@@ -16,6 +16,7 @@ import sn.gnome.gtk4.internal.GtkCustomSorter
   * function.
   */
 class CustomSorter(raw: Ptr[GtkCustomSorter]) extends Sorter(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -30,13 +31,23 @@ class CustomSorter(raw: Ptr[GtkCustomSorter]) extends Sorter(raw.asInstanceOf):
     * If a previous function was set, its @user_destroy will be called now.
     */
   def setSortFunc(
-      sort_func: GCompareDataFunc,
-      user_data: Ptr[Byte],
-      user_destroy: GDestroyNotify
-  ): Unit = gtk_custom_sorter_set_sort_func(
+      sort_func: Option[
+        GCompareDataFunc /* Some(_root_.sn.gnome.glib.internal.GCompareDataFunc) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      user_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+  ): Unit /* None */ = gtk_custom_sorter_set_sort_func(
     this.raw.asInstanceOf,
-    sort_func,
-    gpointer(user_data),
+    sort_func
+      .map[_root_.sn.gnome.glib.internal.GCompareDataFunc](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.glib.internal.GCompareDataFunc]
+      ),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     user_destroy
   )
 
@@ -52,14 +63,30 @@ object CustomSorter:
     * If @sort_func is %NULL, all items are considered equal.
     */
   def apply(
-      sort_func: GCompareDataFunc,
-      user_data: Ptr[Byte],
-      user_destroy: GDestroyNotify
+      sort_func: Option[
+        GCompareDataFunc /* Some(_root_.sn.gnome.glib.internal.GCompareDataFunc) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      user_destroy: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ]
   ): CustomSorter = new CustomSorter(
     gtk_custom_sorter_new(
-      sort_func,
-      gpointer(user_data),
+      sort_func
+        .map[_root_.sn.gnome.glib.internal.GCompareDataFunc](o => o)
+        .getOrElse(
+          null.asInstanceOf[_root_.sn.gnome.glib.internal.GCompareDataFunc]
+        ),
+      user_data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
       user_destroy
+        .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+        .getOrElse(
+          null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+        )
     ).asInstanceOf
   )
 end CustomSorter

@@ -69,6 +69,7 @@ class Picture(raw: Ptr[GtkPicture])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -78,7 +79,7 @@ class Picture(raw: Ptr[GtkPicture])
     * The returned string will be %NULL if the picture cannot be described
     * textually.
     */
-  def getAlternativeText()(using Zone): String = fromCString(
+  def getAlternativeText()(using Zone): String /* None */ = fromCString(
     gtk_picture_get_alternative_text(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -86,7 +87,7 @@ class Picture(raw: Ptr[GtkPicture])
     *
     * Returns whether the `GtkPicture` respects its contents size.
     */
-  def getCanShrink(): Boolean =
+  def getCanShrink(): Boolean /* None */ =
     gtk_picture_get_can_shrink(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -95,7 +96,7 @@ class Picture(raw: Ptr[GtkPicture])
     *
     * See [enum@Gtk.ContentFit] for details.
     */
-  def getContentFit(): GtkContentFit = gtk_picture_get_content_fit(
+  def getContentFit(): GtkContentFit /* None */ = gtk_picture_get_content_fit(
     this.raw.asInstanceOf
   )
 
@@ -106,21 +107,21 @@ class Picture(raw: Ptr[GtkPicture])
     * If @self is not displaying a file, for example when
     * [method@Gtk.Picture.set_paintable] was used, then %NULL is returned.
     */
-  def getFile(): File =
+  def getFile(): File /* None */ =
     new File.Abstract(gtk_picture_get_file(this.raw.asInstanceOf).asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the `GtkPicture` preserves its contents aspect ratio.
     */
-  def getKeepAspectRatio(): Boolean =
+  def getKeepAspectRatio(): Boolean /* None */ =
     gtk_picture_get_keep_aspect_ratio(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the `GdkPaintable` being displayed by the `GtkPicture`.
     */
-  def getPaintable(): Paintable = new Paintable.Abstract(
+  def getPaintable(): Paintable /* None */ = new Paintable.Abstract(
     gtk_picture_get_paintable(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -134,11 +135,14 @@ class Picture(raw: Ptr[GtkPicture])
     *
     * If the picture cannot be described textually, set this property to %NULL.
     */
-  def setAlternativeText(alternative_text: String | CString)(using Zone): Unit =
-    gtk_picture_set_alternative_text(
-      this.raw.asInstanceOf,
-      __sn_extract_string(alternative_text)
-    )
+  def setAlternativeText(
+      alternative_text: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_picture_set_alternative_text(
+    this.raw.asInstanceOf,
+    alternative_text
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -153,7 +157,9 @@ class Picture(raw: Ptr[GtkPicture])
     * the grow behavior can be controlled via [method@Gtk.Widget.set_halign] and
     * [method@Gtk.Widget.set_valign].
     */
-  def setCanShrink(can_shrink: Boolean): Unit = gtk_picture_set_can_shrink(
+  def setCanShrink(
+      can_shrink: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_picture_set_can_shrink(
     this.raw.asInstanceOf,
     gboolean(gint((if can_shrink == true then 1 else 0)))
   )
@@ -164,7 +170,9 @@ class Picture(raw: Ptr[GtkPicture])
     *
     * See [enum@Gtk.ContentFit] for details.
     */
-  def setContentFit(content_fit: GtkContentFit): Unit =
+  def setContentFit(
+      content_fit: GtkContentFit /* Some(GtkContentFit) */
+  ): Unit /* None */ =
     gtk_picture_set_content_fit(this.raw.asInstanceOf, content_fit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -173,9 +181,15 @@ class Picture(raw: Ptr[GtkPicture])
     *
     * See [ctor@Gtk.Picture.new_for_file] for details.
     */
-  def setFile(file: File): Unit = gtk_picture_set_file(
+  def setFile(
+      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+  ): Unit /* None */ = gtk_picture_set_file(
     this.raw.asInstanceOf,
-    file.getUnsafeRawPointer().asInstanceOf
+    file
+      .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -184,11 +198,14 @@ class Picture(raw: Ptr[GtkPicture])
     *
     * This is a utility function that calls [method@Gtk.Picture.set_file].
     */
-  def setFilename(filename: String | CString)(using Zone): Unit =
-    gtk_picture_set_filename(
-      this.raw.asInstanceOf,
-      __sn_extract_string(filename)
-    )
+  def setFilename(
+      filename: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_picture_set_filename(
+    this.raw.asInstanceOf,
+    filename
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -200,11 +217,12 @@ class Picture(raw: Ptr[GtkPicture])
     * If set to %FALSE or if the contents provide no aspect ratio, the contents
     * will be stretched over the picture's whole area.
     */
-  def setKeepAspectRatio(keep_aspect_ratio: Boolean): Unit =
-    gtk_picture_set_keep_aspect_ratio(
-      this.raw.asInstanceOf,
-      gboolean(gint((if keep_aspect_ratio == true then 1 else 0)))
-    )
+  def setKeepAspectRatio(
+      keep_aspect_ratio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_picture_set_keep_aspect_ratio(
+    this.raw.asInstanceOf,
+    gboolean(gint((if keep_aspect_ratio == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -214,9 +232,19 @@ class Picture(raw: Ptr[GtkPicture])
     *
     * See [ctor@Gtk.Picture.new_for_paintable] for details.
     */
-  def setPaintable(paintable: Paintable): Unit = gtk_picture_set_paintable(
+  def setPaintable(
+      paintable: Option[
+        Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
+      ]
+  ): Unit /* None */ = gtk_picture_set_paintable(
     this.raw.asInstanceOf,
-    paintable.getUnsafeRawPointer().asInstanceOf
+    paintable
+      .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -227,9 +255,19 @@ class Picture(raw: Ptr[GtkPicture])
     *
     * This is a utility function that calls [method@Gtk.Picture.set_paintable].
     */
-  def setPixbuf(pixbuf: Pixbuf): Unit = gtk_picture_set_pixbuf(
+  def setPixbuf(
+      pixbuf: Option[
+        Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
+      ]
+  ): Unit /* None */ = gtk_picture_set_pixbuf(
     this.raw.asInstanceOf,
-    pixbuf.getUnsafeRawPointer().asInstanceOf
+    pixbuf
+      .map[Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -239,11 +277,14 @@ class Picture(raw: Ptr[GtkPicture])
     *
     * This is a utility function that calls [method@Gtk.Picture.set_file].
     */
-  def setResource(resource_path: String | CString)(using Zone): Unit =
-    gtk_picture_set_resource(
-      this.raw.asInstanceOf,
-      __sn_extract_string(resource_path)
-    )
+  def setResource(
+      resource_path: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_picture_set_resource(
+    this.raw.asInstanceOf,
+    resource_path
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -273,9 +314,15 @@ object Picture:
     * [ctor@Gdk.Texture.new_from_file] to load the file yourself, then create
     * the `GtkPicture` from the texture.
     */
-  def forFile(file: File): Picture = new Picture(
+  def forFile(
+      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+  ): Picture = new Picture(
     gtk_picture_new_for_file(
-      file.getUnsafeRawPointer().asInstanceOf
+      file
+        .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
     ).asInstanceOf
   )
 
@@ -286,10 +333,15 @@ object Picture:
     * This is a utility function that calls [ctor@Gtk.Picture.new_for_file]. See
     * that function for details.
     */
-  def forFilename(filename: String | CString)(using Zone): Picture =
-    new Picture(
-      gtk_picture_new_for_filename(__sn_extract_string(filename)).asInstanceOf
-    )
+  def forFilename(
+      filename: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Picture = new Picture(
+    gtk_picture_new_for_filename(
+      filename
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString])
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -298,9 +350,19 @@ object Picture:
     * The `GtkPicture` will track changes to the @paintable and update its size
     * and contents in response to it.
     */
-  def forPaintable(paintable: Paintable): Picture = new Picture(
+  def forPaintable(
+      paintable: Option[
+        Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
+      ]
+  ): Picture = new Picture(
     gtk_picture_new_for_paintable(
-      paintable.getUnsafeRawPointer().asInstanceOf
+      paintable
+        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]]
+        )
     ).asInstanceOf
   )
 
@@ -313,9 +375,19 @@ object Picture:
     *
     * The pixbuf must not be modified after passing it to this function.
     */
-  def forPixbuf(pixbuf: Pixbuf): Picture = new Picture(
+  def forPixbuf(
+      pixbuf: Option[
+        Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
+      ]
+  ): Picture = new Picture(
     gtk_picture_new_for_pixbuf(
-      pixbuf.getUnsafeRawPointer().asInstanceOf
+      pixbuf
+        .map[Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]]
+        )
     ).asInstanceOf
   )
 
@@ -326,12 +398,15 @@ object Picture:
     * This is a utility function that calls [ctor@Gtk.Picture.new_for_file]. See
     * that function for details.
     */
-  def forResource(resource_path: String | CString)(using Zone): Picture =
-    new Picture(
-      gtk_picture_new_for_resource(
-        __sn_extract_string(resource_path)
-      ).asInstanceOf
-    )
+  def forResource(
+      resource_path: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Picture = new Picture(
+    gtk_picture_new_for_resource(
+      resource_path
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString])
+    ).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

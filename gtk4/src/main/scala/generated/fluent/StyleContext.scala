@@ -55,6 +55,7 @@ import sn.gnome.gtk4.internal.GtkStyleContextPrintFlags
   * changes, as it uses the %GTK_STYLE_PROVIDER_PRIORITY_USER priority.
   */
 class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -74,11 +75,12 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * .search { ... }
     * ```
     */
-  def addClass(class_name: String | CString)(using Zone): Unit =
-    gtk_style_context_add_class(
-      this.raw.asInstanceOf,
-      __sn_extract_string(class_name)
-    )
+  def addClass(
+      class_name: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_style_context_add_class(
+    this.raw.asInstanceOf,
+    __sn_extract_string(class_name)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -92,12 +94,14 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * this function takes precedence over another added through
     * [func@Gtk.StyleContext.add_provider_for_display].
     */
-  def addProvider(provider: StyleProvider, priority: UInt): Unit =
-    gtk_style_context_add_provider(
-      this.raw.asInstanceOf,
-      provider.getUnsafeRawPointer().asInstanceOf,
-      guint(priority)
-    )
+  def addProvider(
+      provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */,
+      priority: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ = gtk_style_context_add_provider(
+    this.raw.asInstanceOf,
+    provider.getUnsafeRawPointer().asInstanceOf,
+    guint(priority)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -106,7 +110,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_border contains an OUT parameter, which is not supported yet"
   )
-  def getBorder(using DummyImplicit) = ???
+  private def getBorder__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -115,13 +119,13 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_color contains an OUT parameter, which is not supported yet"
   )
-  def getColor(using DummyImplicit) = ???
+  private def getColor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `GdkDisplay` to which @context is attached.
     */
-  def getDisplay(): Display = new Display(
+  def getDisplay(): Display /* None */ = new Display(
     gtk_style_context_get_display(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -132,7 +136,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_margin contains an OUT parameter, which is not supported yet"
   )
-  def getMargin(using DummyImplicit) = ???
+  private def getMargin__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -141,13 +145,15 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_padding contains an OUT parameter, which is not supported yet"
   )
-  def getPadding(using DummyImplicit) = ???
+  private def getPadding__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the scale used for assets.
     */
-  def getScale(): Int = gtk_style_context_get_scale(this.raw.asInstanceOf)
+  def getScale(): Int /* None */ = gtk_style_context_get_scale(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -158,7 +164,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * you need to retrieve the current state of a `GtkWidget`, use
     * [method@Gtk.Widget.get_state_flags].
     */
-  def getState(): GtkStateFlags = gtk_style_context_get_state(
+  def getState(): GtkStateFlags /* None */ = gtk_style_context_get_state(
     this.raw.asInstanceOf
   )
 
@@ -166,11 +172,12 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     *
     * Returns %TRUE if @context currently has defined the given class name.
     */
-  def hasClass(class_name: String | CString)(using Zone): Boolean =
-    gtk_style_context_has_class(
-      this.raw.asInstanceOf,
-      __sn_extract_string(class_name)
-    ).value.!=(0)
+  def hasClass(
+      class_name: String | CString /* Some(CString) */
+  )(using Zone): Boolean /* None */ = gtk_style_context_has_class(
+    this.raw.asInstanceOf,
+    __sn_extract_string(class_name)
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -179,27 +186,29 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method lookup_color contains an OUT parameter, which is not supported yet"
   )
-  def lookupColor(using DummyImplicit) = ???
+  private def lookupColor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes @class_name from @context.
     */
-  def removeClass(class_name: String | CString)(using Zone): Unit =
-    gtk_style_context_remove_class(
-      this.raw.asInstanceOf,
-      __sn_extract_string(class_name)
-    )
+  def removeClass(
+      class_name: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_style_context_remove_class(
+    this.raw.asInstanceOf,
+    __sn_extract_string(class_name)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes @provider from the style providers list in @context.
     */
-  def removeProvider(provider: StyleProvider): Unit =
-    gtk_style_context_remove_provider(
-      this.raw.asInstanceOf,
-      provider.getUnsafeRawPointer().asInstanceOf
-    )
+  def removeProvider(
+      provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */
+  ): Unit /* None */ = gtk_style_context_remove_provider(
+    this.raw.asInstanceOf,
+    provider.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -207,7 +216,9 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     *
     * See [method@Gtk.StyleContext.save].
     */
-  def restore(): Unit = gtk_style_context_restore(this.raw.asInstanceOf)
+  def restore(): Unit /* None */ = gtk_style_context_restore(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -222,7 +233,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * The matching call to [method@Gtk.StyleContext.restore] must be done before
     * GTK returns to the main loop.
     */
-  def save(): Unit = gtk_style_context_save(this.raw.asInstanceOf)
+  def save(): Unit /* None */ = gtk_style_context_save(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -235,7 +246,9 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * [method@Gtk.Widget.get_style_context], you do not need to call this
     * yourself.
     */
-  def setDisplay(display: Display): Unit = gtk_style_context_set_display(
+  def setDisplay(
+      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+  ): Unit /* None */ = gtk_style_context_set_display(
     this.raw.asInstanceOf,
     display.getUnsafeRawPointer().asInstanceOf
   )
@@ -244,15 +257,16 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     *
     * Sets the scale to use when getting image assets for the style.
     */
-  def setScale(scale: Int): Unit =
+  def setScale(scale: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_style_context_set_scale(this.raw.asInstanceOf, scale)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the state to be used for style matching.
     */
-  def setState(flags: GtkStateFlags): Unit =
-    gtk_style_context_set_state(this.raw.asInstanceOf, flags)
+  def setState(
+      flags: GtkStateFlags /* Some(GtkStateFlags) */
+  ): Unit /* None */ = gtk_style_context_set_state(this.raw.asInstanceOf, flags)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -266,10 +280,11 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * implementation in GTK. There are no guarantees about the format of the
     * returned string, it may change.
     */
-  def toString(flags: GtkStyleContextPrintFlags)(using Zone): String =
-    fromCString(
-      gtk_style_context_to_string(this.raw.asInstanceOf, flags).asInstanceOf
-    )
+  def toString(
+      flags: GtkStyleContextPrintFlags /* Some(GtkStyleContextPrintFlags) */
+  )(using Zone): String /* None */ = fromCString(
+    gtk_style_context_to_string(this.raw.asInstanceOf, flags).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

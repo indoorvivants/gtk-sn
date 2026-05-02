@@ -118,6 +118,7 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
       TreeDragSource,
       TreeModel,
       TreeSortable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -129,7 +130,7 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     * unreffed access to nodes. As a side effect of this function, all unreffed
     * iters will be invalid.
     */
-  def clearCache(): Unit = gtk_tree_model_sort_clear_cache(
+  def clearCache(): Unit /* None */ = gtk_tree_model_sort_clear_cache(
     this.raw.asInstanceOf
   )
 
@@ -142,7 +143,7 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
   @annotation.compileTimeOnly(
     "Method convert_child_iter_to_iter contains an OUT parameter, which is not supported yet"
   )
-  def convertChildIterToIter(using DummyImplicit) = ???
+  private def convertChildIterToIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -152,7 +153,9 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     *   same row in the sorted model. If @child_path isn’t a valid path on the
     *   child model, then %NULL is returned.
     */
-  def convertChildPathToPath(child_path: Ptr[GtkTreePath]): Ptr[GtkTreePath] =
+  def convertChildPathToPath(
+      child_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
+  ): Ptr[GtkTreePath] /* None */ =
     gtk_tree_model_sort_convert_child_path_to_path(
       this.raw.asInstanceOf,
       child_path
@@ -165,7 +168,7 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
   @annotation.compileTimeOnly(
     "Method convert_iter_to_child_iter contains an OUT parameter, which is not supported yet"
   )
-  def convertIterToChildIter(using DummyImplicit) = ???
+  private def convertIterToChildIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -175,7 +178,9 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     * sorted. If @sorted_path does not point to a location in the child model,
     * %NULL is returned.
     */
-  def convertPathToChildPath(sorted_path: Ptr[GtkTreePath]): Ptr[GtkTreePath] =
+  def convertPathToChildPath(
+      sorted_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
+  ): Ptr[GtkTreePath] /* None */ =
     gtk_tree_model_sort_convert_path_to_child_path(
       this.raw.asInstanceOf,
       sorted_path
@@ -185,7 +190,7 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     *
     * Returns the model the `GtkTreeModelSort` is sorting.
     */
-  def getModel(): TreeModel = new TreeModel.Abstract(
+  def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
     gtk_tree_model_sort_get_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -196,7 +201,9 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     *
     * Checks if the given iter is a valid iter for this `GtkTreeModelSort`.
     */
-  def iterIsValid(iter: Ptr[GtkTreeIter]): Boolean =
+  def iterIsValid(
+      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
+  ): Boolean /* None */ =
     gtk_tree_model_sort_iter_is_valid(this.raw.asInstanceOf, iter).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -206,7 +213,7 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     * to be in the same order as the child model only if the `GtkTreeModelSort`
     * is in “unsorted” state.
     */
-  def resetDefaultSortFunc(): Unit =
+  def resetDefaultSortFunc(): Unit /* None */ =
     gtk_tree_model_sort_reset_default_sort_func(this.raw.asInstanceOf)
 
 end TreeModelSort
@@ -216,7 +223,9 @@ object TreeModelSort:
     *
     * Creates a new `GtkTreeModelSort`, with @child_model as the child model.
     */
-  def withModel(child_model: TreeModel): TreeModelSort = new TreeModelSort(
+  def withModel(
+      child_model: TreeModel /* Some(Ptr[GtkTreeModel]) */
+  ): TreeModelSort = new TreeModelSort(
     gtk_tree_model_sort_new_with_model(
       child_model.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

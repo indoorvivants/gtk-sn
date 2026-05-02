@@ -31,6 +31,7 @@ import sn.gnome.gobject.fluent.Object
   */
 class SocketAddressEnumerator(raw: Ptr[GSocketAddressEnumerator])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -47,16 +48,19 @@ class SocketAddressEnumerator(raw: Ptr[GSocketAddressEnumerator])
     * succeeds, then any further internal errors (other than @cancellable being
     * triggered) will be ignored.
     */
-  def next(cancellable: Cancellable): GResult[SocketAddress] =
-    GResult.wrap(__errorPtr =>
-      new SocketAddress(
-        g_socket_address_enumerator_next(
-          this.raw.asInstanceOf,
-          cancellable.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def next(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[SocketAddress /* None */ ] = GResult.wrap(__errorPtr =>
+    new SocketAddress(
+      g_socket_address_enumerator_next(
+        this.raw.asInstanceOf,
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -68,14 +72,22 @@ class SocketAddressEnumerator(raw: Ptr[GSocketAddressEnumerator])
     * has finished.
     */
   def nextAsync(
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_socket_address_enumerator_next_async(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_socket_address_enumerator_next_async(
     this.raw.asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -85,15 +97,16 @@ class SocketAddressEnumerator(raw: Ptr[GSocketAddressEnumerator])
     * g_socket_address_enumerator_next() for more information about error
     * handling.
     */
-  def nextFinish(result: AsyncResult): GResult[SocketAddress] =
-    GResult.wrap(__errorPtr =>
-      new SocketAddress(
-        g_socket_address_enumerator_next_finish(
-          this.raw.asInstanceOf,
-          result.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def nextFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[SocketAddress /* None */ ] = GResult.wrap(__errorPtr =>
+    new SocketAddress(
+      g_socket_address_enumerator_next_finish(
+        this.raw.asInstanceOf,
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
 end SocketAddressEnumerator

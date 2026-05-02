@@ -12,6 +12,7 @@ import sn.gnome.gdk4.internal.GdkMotionEvent
   * An event related to a pointer or touch device motion.
   */
 class MotionEvent(raw: Ptr[GdkMotionEvent]) extends Event(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end MotionEvent

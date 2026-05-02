@@ -14,13 +14,14 @@ import sn.gnome.glib.internal.gint
   * An event related to a touch-based device.
   */
 class TouchEvent(raw: Ptr[GdkTouchEvent]) extends Event(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts whether a touch event is emulating a pointer event.
     */
-  def getEmulatingPointer(): Boolean =
+  def getEmulatingPointer(): Boolean /* None */ =
     gdk_touch_event_get_emulating_pointer(this.raw.asInstanceOf).value.!=(0)
 
 end TouchEvent

@@ -45,6 +45,7 @@ class FontChooserDialog(raw: Ptr[GtkFontChooserDialog])
       Native,
       Root,
       ShortcutManager:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end FontChooserDialog
@@ -54,12 +55,17 @@ object FontChooserDialog:
     *
     * Creates a new `GtkFontChooserDialog`.
     */
-  def apply(title: String | CString, parent: Window)(using
-      Zone
-  ): FontChooserDialog = new FontChooserDialog(
+  def apply(
+      title: Option[String | CString /* Some(CString) */ ],
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
+  )(using Zone): FontChooserDialog = new FontChooserDialog(
     gtk_font_chooser_dialog_new(
-      __sn_extract_string(title),
-      parent.getUnsafeRawPointer().asInstanceOf
+      title
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])
     ).asInstanceOf
   )
 

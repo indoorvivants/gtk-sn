@@ -18,13 +18,14 @@ import sn.gnome.gtk4.internal.GtkStackPage
 class StackPage(raw: Ptr[GtkStackPage])
     extends Object(raw.asInstanceOf),
       Accessible:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the stack child to which @self belongs.
     */
-  def getChild(): Widget = new Widget(
+  def getChild(): Widget /* None */ = new Widget(
     gtk_stack_page_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -32,7 +33,7 @@ class StackPage(raw: Ptr[GtkStackPage])
     *
     * Returns the icon name of the page.
     */
-  def getIconName()(using Zone): String = fromCString(
+  def getIconName()(using Zone): String /* None */ = fromCString(
     gtk_stack_page_get_icon_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -40,7 +41,7 @@ class StackPage(raw: Ptr[GtkStackPage])
     *
     * Returns the name of the page.
     */
-  def getName()(using Zone): String = fromCString(
+  def getName()(using Zone): String /* None */ = fromCString(
     gtk_stack_page_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -48,14 +49,14 @@ class StackPage(raw: Ptr[GtkStackPage])
     *
     * Returns whether the page is marked as “needs attention”.
     */
-  def getNeedsAttention(): Boolean =
+  def getNeedsAttention(): Boolean /* None */ =
     gtk_stack_page_get_needs_attention(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the page title.
     */
-  def getTitle()(using Zone): String = fromCString(
+  def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_stack_page_get_title(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -63,7 +64,7 @@ class StackPage(raw: Ptr[GtkStackPage])
     *
     * Gets whether underlines in the page title indicate mnemonics.
     */
-  def getUseUnderline(): Boolean =
+  def getUseUnderline(): Boolean /* None */ =
     gtk_stack_page_get_use_underline(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -73,61 +74,69 @@ class StackPage(raw: Ptr[GtkStackPage])
     * This is independent from the [property@Gtk.Widget:visible] property of its
     * widget.
     */
-  def getVisible(): Boolean =
+  def getVisible(): Boolean /* None */ =
     gtk_stack_page_get_visible(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the icon name of the page.
     */
-  def setIconName(setting: String | CString)(using Zone): Unit =
-    gtk_stack_page_set_icon_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(setting)
-    )
+  def setIconName(
+      setting: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_stack_page_set_icon_name(
+    this.raw.asInstanceOf,
+    __sn_extract_string(setting)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the name of the page.
     */
-  def setName(setting: String | CString)(using Zone): Unit =
+  def setName(
+      setting: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ =
     gtk_stack_page_set_name(this.raw.asInstanceOf, __sn_extract_string(setting))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the page is marked as “needs attention”.
     */
-  def setNeedsAttention(setting: Boolean): Unit =
-    gtk_stack_page_set_needs_attention(
-      this.raw.asInstanceOf,
-      gboolean(gint((if setting == true then 1 else 0)))
-    )
+  def setNeedsAttention(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_stack_page_set_needs_attention(
+    this.raw.asInstanceOf,
+    gboolean(gint((if setting == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the page title.
     */
-  def setTitle(setting: String | CString)(using Zone): Unit =
-    gtk_stack_page_set_title(
-      this.raw.asInstanceOf,
-      __sn_extract_string(setting)
-    )
+  def setTitle(
+      setting: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_stack_page_set_title(
+    this.raw.asInstanceOf,
+    __sn_extract_string(setting)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether underlines in the page title indicate mnemonics.
     */
-  def setUseUnderline(setting: Boolean): Unit =
-    gtk_stack_page_set_use_underline(
-      this.raw.asInstanceOf,
-      gboolean(gint((if setting == true then 1 else 0)))
-    )
+  def setUseUnderline(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_stack_page_set_use_underline(
+    this.raw.asInstanceOf,
+    gboolean(gint((if setting == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether @page is visible in its `GtkStack`.
     */
-  def setVisible(visible: Boolean): Unit = gtk_stack_page_set_visible(
+  def setVisible(
+      visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_stack_page_set_visible(
     this.raw.asInstanceOf,
     gboolean(gint((if visible == true then 1 else 0)))
   )

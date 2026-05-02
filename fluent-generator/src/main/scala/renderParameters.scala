@@ -9,16 +9,26 @@ case class RenderedParameters(
 
 def renderParameters(
     params: Seq[Parameter | Instanceu45parameter],
-    methodLabel: String
+    methodLabel: String,
+    methodContext: TargetTypes.MethodContext
 )(using
     Label[FluentErr],
     GlobalKnowledge,
     NamingPolicy
 ): WithEffects[RenderedParameters] =
   WithEffects.collect: coll =>
-    val (paramSpecs, arguments) = params
+    def getTargetType(name: String, idx: Int) =
+      methodContext
+        .getParamType(idx)
+        .getOrElse(
+          break(
+            FluentErr.ParameterHasNoTargetType(methodContext.name, name, idx)
+          )
+        )
+
+    val (paramSpecs, arguments) = params.zipWithIndex
       .map:
-        case param: Parameter =>
+        case (param: Parameter, idx) =>
           val (paraName, vararg) =
             (Option
               .when(param.name.contains("...")):
@@ -28,21 +38,30 @@ def renderParameters(
               )
               .unzip
 
-          val paramType = vararg.getOrElse(
-            renderType(
-              param.tpe.getOrElse(
-                break(
-                  FluentErr.MethodParameterHasNoType(methodLabel, param.name)
-                )
+          val targetType = getTargetType(param.name.getOrElse("<no name>"), idx)
+
+          val paramType = vararg.getOrElse:
+            val rendered =
+              renderType(
+                param.tpe.getOrElse(
+                  break(
+                    FluentErr.MethodParameterHasNoType(methodLabel, param.name)
+                  )
+                ),
+                position = TypePosition.ParameterType,
+                Some(targetType)
               )
-            )
-          )
+            if param.nullable.contains(Number1Value20) then
+              TypeMapping.optional(rendered, Some(targetType))
+            else rendered
 
           coll.addAll(paramType.effects)
 
           val paramName = escape(
             paraName.getOrElse(
-              param.name.getOrElse(break(FluentErr.MethodParameterHasNoName(methodLabel)))
+              param.name.getOrElse(
+                break(FluentErr.MethodParameterHasNoName(methodLabel))
+              )
             )
           )
 
@@ -52,7 +71,7 @@ def renderParameters(
 
           (Some(parameter), argument)
 
-        case param: Instanceu45parameter =>
+        case (param: Instanceu45parameter, _) =>
           (None, "this.raw.asInstanceOf")
       .unzip
 

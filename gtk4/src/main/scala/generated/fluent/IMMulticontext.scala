@@ -18,13 +18,14 @@ import sn.gnome.gtk4.internal.GtkIMMulticontext
   */
 class IMMulticontext(raw: Ptr[GtkIMMulticontext])
     extends IMContext(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the id of the currently active delegate of the @context.
     */
-  def getContextId()(using Zone): String = fromCString(
+  def getContextId()(using Zone): String /* None */ = fromCString(
     gtk_im_multicontext_get_context_id(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -38,11 +39,14 @@ class IMMulticontext(raw: Ptr[GtkIMMulticontext])
     * Setting this to a non-%NULL value overrides the system-wide IM module
     * setting. See the [property@Gtk.Settings:gtk-im-module] property.
     */
-  def setContextId(context_id: String | CString)(using Zone): Unit =
-    gtk_im_multicontext_set_context_id(
-      this.raw.asInstanceOf,
-      __sn_extract_string(context_id)
-    )
+  def setContextId(
+      context_id: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_im_multicontext_set_context_id(
+    this.raw.asInstanceOf,
+    context_id
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

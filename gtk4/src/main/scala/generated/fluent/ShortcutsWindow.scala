@@ -80,6 +80,7 @@ class ShortcutsWindow(raw: Ptr[GtkShortcutsWindow])
       Native,
       Root,
       ShortcutManager:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -92,10 +93,11 @@ class ShortcutsWindow(raw: Ptr[GtkShortcutsWindow])
     * Using [method@Gtk.Window.set_child] is not appropriate as the shortcuts
     * window manages its children internally.
     */
-  def addSection(section: ShortcutsSection): Unit =
-    gtk_shortcuts_window_add_section(
-      this.raw.asInstanceOf,
-      section.getUnsafeRawPointer().asInstanceOf
-    )
+  def addSection(
+      section: ShortcutsSection /* Some(Ptr[GtkShortcutsSection]) */
+  ): Unit /* None */ = gtk_shortcuts_window_add_section(
+    this.raw.asInstanceOf,
+    section.getUnsafeRawPointer().asInstanceOf
+  )
 
 end ShortcutsWindow

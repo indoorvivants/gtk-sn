@@ -21,6 +21,7 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -44,13 +45,15 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
     * Another alternative is to call [method@Gtk.FlowBox.invalidate_sort] on any
     * model change, but that is more expensive.
     */
-  def changed(): Unit = gtk_flow_box_child_changed(this.raw.asInstanceOf)
+  def changed(): Unit /* None */ = gtk_flow_box_child_changed(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the child widget of @self.
     */
-  def getChild(): Widget = new Widget(
+  def getChild(): Widget /* None */ = new Widget(
     gtk_flow_box_child_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -58,23 +61,29 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
     *
     * Gets the current index of the @child in its `GtkFlowBox` container.
     */
-  def getIndex(): Int = gtk_flow_box_child_get_index(this.raw.asInstanceOf)
+  def getIndex(): Int /* None */ = gtk_flow_box_child_get_index(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the @child is currently selected in its `GtkFlowBox`
     * container.
     */
-  def isSelected(): Boolean =
+  def isSelected(): Boolean /* None */ =
     gtk_flow_box_child_is_selected(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the child widget of @self.
     */
-  def setChild(child: Widget): Unit = gtk_flow_box_child_set_child(
+  def setChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_flow_box_child_set_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
 end FlowBoxChild

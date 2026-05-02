@@ -3,24 +3,40 @@ import rendition.*
 import com.indoorvivants.gnome.gir_schema.*
 import util.boundary.*
 
+val needsOverrideCache =
+  collection.mutable.Map[(AugmentedClass, Method), Boolean]()
+
 def needsOverride(cls: AugmentedClass, meth: Method)(using GlobalKnowledge) =
-  val methods = summon[GlobalKnowledge].classMethods
-  val allParents = (cls.parent.toSeq ++ cls.implements.map(_.name))
+  needsOverrideCache.getOrElseUpdate(
+    cls -> meth,
+    defaultValue =
+      val methods = summon[GlobalKnowledge].classMethods
+      val allParents =
+        def go(classes: Seq[AugmentedClass], result: Seq[String]): Seq[String] =
+          classes match
+            case Nil         => result
+            case cls :: rest =>
+              go(rest, result ++ cls.parent.toSeq ++ cls.implements.map(_.name))
+        go(Seq(cls), Seq.empty)
 
-  def sig(meth: Method) =
-    val params =
-      meth.parameters.collect:
-        case p: Parameter => p.name.getOrElse("<noname>")
-    s"${meth.name}(${params.mkString(", ")})"
+      def sig(clsName: String, meth: Method) =
+        val params =
+          meth.parameters.collect:
+            case p: Parameter => p.name.getOrElse("<noname>")
+        val result = s"${meth.name}(${params.mkString(", ")})"
 
-  val thisMethodSig = sig(meth)
+        result
+      end sig
 
-  allParents
-    .exists(clsName =>
-      methods
-        .get(GlobalKnowledge().names(clsName))
-        .exists(_.exists((_, m) => sig(m) == thisMethodSig))
-    )
+      val thisMethodSig = sig(cls.name, meth)
+
+      allParents
+        .exists(clsName =>
+          methods
+            .get(GlobalKnowledge().names(clsName))
+            .exists(_.exists((_, m) => sig(clsName, m) == thisMethodSig))
+        )
+  )
 end needsOverride
 
 def renderClassMethod(cls: AugmentedClass, meth: Method)(using
@@ -42,8 +58,18 @@ def renderClassMethod(cls: AugmentedClass, meth: Method)(using
 
     if meth.isThrowing then coll.add(importGResultEffect)
 
+    val methodContext = globalKnowledge.targetTypes
+      .inMethod(meth.identifier)
+      .getOrElse(break(FluentErr.TargetTypesMissing(meth.identifier)))
+
     val renderedParameters =
-      coll.observe(renderParameters(meth.parameters, s"method: ${meth.name}"))
+      coll.observe(
+        renderParameters(
+          meth.parameters,
+          s"method: ${meth.name}",
+          methodContext
+        )
+      )
 
     val returnType = renderType(
       meth.returnType.getOrElse(

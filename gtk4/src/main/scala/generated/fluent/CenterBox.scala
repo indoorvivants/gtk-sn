@@ -59,20 +59,21 @@ class CenterBox(raw: Ptr[GtkCenterBox])
       Buildable,
       ConstraintTarget,
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the value set by gtk_center_box_set_baseline_position().
     */
-  def getBaselinePosition(): GtkBaselinePosition =
+  def getBaselinePosition(): GtkBaselinePosition /* None */ =
     gtk_center_box_get_baseline_position(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the center widget, or %NULL if there is none.
     */
-  def getCenterWidget(): Widget = new Widget(
+  def getCenterWidget(): Widget /* None */ = new Widget(
     gtk_center_box_get_center_widget(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -80,7 +81,7 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     *
     * Gets the end widget, or %NULL if there is none.
     */
-  def getEndWidget(): Widget = new Widget(
+  def getEndWidget(): Widget /* None */ = new Widget(
     gtk_center_box_get_end_widget(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -88,14 +89,14 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     *
     * Gets whether @self shrinks the center widget after other children.
     */
-  def getShrinkCenterLast(): Boolean =
+  def getShrinkCenterLast(): Boolean /* None */ =
     gtk_center_box_get_shrink_center_last(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the start widget, or %NULL if there is none.
     */
-  def getStartWidget(): Widget = new Widget(
+  def getStartWidget(): Widget /* None */ = new Widget(
     gtk_center_box_get_start_widget(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -109,7 +110,9 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     * @position
     *   is used to allocate the baseline wrt. the extra space available.
     */
-  def setBaselinePosition(position: GtkBaselinePosition): Unit =
+  def setBaselinePosition(
+      position: GtkBaselinePosition /* Some(GtkBaselinePosition) */
+  ): Unit /* None */ =
     gtk_center_box_set_baseline_position(this.raw.asInstanceOf, position)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -118,9 +121,13 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     *
     * To remove the existing center widget, pass %NULL.
     */
-  def setCenterWidget(child: Widget): Unit = gtk_center_box_set_center_widget(
+  def setCenterWidget(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_center_box_set_center_widget(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -129,9 +136,13 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     *
     * To remove the existing end widget, pass %NULL.
     */
-  def setEndWidget(child: Widget): Unit = gtk_center_box_set_end_widget(
+  def setEndWidget(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_center_box_set_end_widget(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -145,11 +156,12 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     * If set to `FALSE`, start and end widgets keep natural width and the center
     * widget starts shrinking instead.
     */
-  def setShrinkCenterLast(shrink_center_last: Boolean): Unit =
-    gtk_center_box_set_shrink_center_last(
-      this.raw.asInstanceOf,
-      gboolean(gint((if shrink_center_last == true then 1 else 0)))
-    )
+  def setShrinkCenterLast(
+      shrink_center_last: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_center_box_set_shrink_center_last(
+    this.raw.asInstanceOf,
+    gboolean(gint((if shrink_center_last == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -157,9 +169,13 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     *
     * To remove the existing start widget, pass %NULL.
     */
-  def setStartWidget(child: Widget): Unit = gtk_center_box_set_start_widget(
+  def setStartWidget(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_center_box_set_start_widget(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
 end CenterBox

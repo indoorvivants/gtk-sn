@@ -13,43 +13,41 @@ import scala.xml.XML
 import scala.annotation.tailrec
 import scribe.LogFeature
 import scribe.LogRecord
+import decline_derive.*
 
-case class CLI(
-    girFiles: Path,
-    out: Path,
-    module: String,
-    dumpFileList: Option[Path]
-)
-
-val config =
-  import com.monovore.decline.*
-  val userOpt =
-    Opts.option[Path]("gir-files", help = "Location of GIR files")
-
-  val out = Opts.option[Path]("out", help = "Where to output generated files")
-  val dumpFileList = Opts
-    .option[Path](
-      "dump-files-list",
-      help = "Dump list of generated files into some location"
-    )
-    .orNone
-  val module = Opts
-    .option[String]("module", help = "Module to render (e.g. gdkpixbuf-2.0)")
-
-  Command("generate", "?")((userOpt, out, module, dumpFileList).mapN(CLI.apply))
-end config
+enum CLI derives CommandApplication:
+  case Fluent(
+      @Name("gir-files")
+      @Help("Location of GIR files")
+      girFiles: Path,
+      @Name("out")
+      @Help("Where to output generated files")
+      out: Path,
+      @Name("module")
+      @Help("Module to render (e.g. gdkpixbuf-2.0)")
+      module: String,
+      @Name("dump-files-list")
+      @Help("Dump list of generated files into some location")
+      dumpFileList: Option[Path]
+  )
+  @Name("target-types")
+  case TargetTypes(
+      @Positional("function-file")
+      functions: List[Path],
+      out: Path
+  )
+end CLI
 
 @main def fluentGenerator(args: String*) =
-  config.parse(args) match
-    case Left(value) =>
-      System.err.println(value)
-      if value.errors.nonEmpty then sys.exit(1)
-
-    case Right(value) =>
+  CommandApplication.parseOrExit[CLI](args) match
+    case CLI.TargetTypes(functions, out) =>
+      TargetTypesGenerator(functions).run(out)
+    case value: CLI.Fluent =>
       val root = os.Path(value.girFiles.toAbsolutePath())
       val target = os.Path(value.out.toAbsolutePath())
       val includeResolver = IncludeResolver(root.toNIO)
       val reader = Reader(includeResolver)
+      val targetTypes = TargetTypes.fromResources()
 
       val repository = reader(value.module)
       val policy = NamingPolicy(
@@ -62,7 +60,8 @@ end config
       )
 
       val streams = RenderingStreams()
-      val globalKnowledge = GlobalKnowledge(reader, repository, policy)
+      val globalKnowledge =
+        GlobalKnowledge(reader, repository, policy, targetTypes)
 
       renderNamespace(
         r = streams,
@@ -101,6 +100,7 @@ end config
           createFolders = true
         )
         scribe.info(s"List of rendered files was dumped into `$path`")
+  end match
 end fluentGenerator
 
 def camelify(name: String) =

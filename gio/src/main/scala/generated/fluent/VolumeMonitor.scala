@@ -24,6 +24,7 @@ import sn.gnome.gobject.fluent.Object
   * a main loop must be running.
   */
 class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -33,21 +34,21 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * The returned list should be freed with g_list_free(), after its elements
     * have been unreffed with g_object_unref().
     */
-  def getConnectedDrives(): Ptr[GList] = g_volume_monitor_get_connected_drives(
-    this.raw.asInstanceOf
-  )
+  def getConnectedDrives(): Ptr[GList] /* None */ =
+    g_volume_monitor_get_connected_drives(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finds a #GMount object by its UUID (see g_mount_get_uuid())
     */
-  def getMountForUuid(uuid: String | CString)(using Zone): Mount =
-    new Mount.Abstract(
-      g_volume_monitor_get_mount_for_uuid(
-        this.raw.asInstanceOf,
-        __sn_extract_string(uuid)
-      ).asInstanceOf
-    )
+  def getMountForUuid(
+      uuid: String | CString /* Some(CString) */
+  )(using Zone): Mount /* None */ = new Mount.Abstract(
+    g_volume_monitor_get_mount_for_uuid(
+      this.raw.asInstanceOf,
+      __sn_extract_string(uuid)
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -56,7 +57,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * The returned list should be freed with g_list_free(), after its elements
     * have been unreffed with g_object_unref().
     */
-  def getMounts(): Ptr[GList] = g_volume_monitor_get_mounts(
+  def getMounts(): Ptr[GList] /* None */ = g_volume_monitor_get_mounts(
     this.raw.asInstanceOf
   )
 
@@ -64,13 +65,14 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     *
     * Finds a #GVolume object by its UUID (see g_volume_get_uuid())
     */
-  def getVolumeForUuid(uuid: String | CString)(using Zone): Volume =
-    new Volume.Abstract(
-      g_volume_monitor_get_volume_for_uuid(
-        this.raw.asInstanceOf,
-        __sn_extract_string(uuid)
-      ).asInstanceOf
-    )
+  def getVolumeForUuid(
+      uuid: String | CString /* Some(CString) */
+  )(using Zone): Volume /* None */ = new Volume.Abstract(
+    g_volume_monitor_get_volume_for_uuid(
+      this.raw.asInstanceOf,
+      __sn_extract_string(uuid)
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -79,7 +81,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * The returned list should be freed with g_list_free(), after its elements
     * have been unreffed with g_object_unref().
     */
-  def getVolumes(): Ptr[GList] = g_volume_monitor_get_volumes(
+  def getVolumes(): Ptr[GList] /* None */ = g_volume_monitor_get_volumes(
     this.raw.asInstanceOf
   )
 

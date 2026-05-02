@@ -16,6 +16,7 @@ import sn.gnome.gtk4.internal.GtkGestureRotate
   */
 class GestureRotate(raw: Ptr[GtkGestureRotate])
     extends Gesture(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -26,7 +27,7 @@ class GestureRotate(raw: Ptr[GtkGestureRotate])
     * radians since the gesture was first recognized. If @gesture is not active,
     * 0 is returned.
     */
-  def getAngleDelta(): Double = gtk_gesture_rotate_get_angle_delta(
+  def getAngleDelta(): Double /* None */ = gtk_gesture_rotate_get_angle_delta(
     this.raw.asInstanceOf
   )
 

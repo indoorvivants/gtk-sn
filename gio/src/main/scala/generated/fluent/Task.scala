@@ -550,6 +550,7 @@ import sn.gnome.gobject.internal.GValue
   *    context when the task is finalized
   */
 class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -565,14 +566,19 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * This takes a reference on @task until @source is destroyed.
     */
-  def attachSource(source: Ptr[GSource], callback: GSourceFunc): Unit =
+  def attachSource(
+      source: Ptr[
+        GSource
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GSource]) */,
+      callback: GSourceFunc /* Some(_root_.sn.gnome.glib.internal.GSourceFunc) */
+  ): Unit /* None */ =
     g_task_attach_source(this.raw.asInstanceOf, source, callback)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets @task's #GCancellable
     */
-  def getCancellable(): Cancellable = new Cancellable(
+  def getCancellable(): Cancellable /* None */ = new Cancellable(
     g_task_get_cancellable(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -581,7 +587,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * Gets @task's check-cancellable flag. See g_task_set_check_cancellable()
     * for more details.
     */
-  def getCheckCancellable(): Boolean =
+  def getCheckCancellable(): Boolean /* None */ =
     g_task_get_check_cancellable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -590,7 +596,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * after the task’s callback is invoked, and will return %FALSE if called
     * from inside the callback.
     */
-  def getCompleted(): Boolean =
+  def getCompleted(): Boolean /* None */ =
     g_task_get_completed(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -603,7 +609,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * This will always return a non-%NULL value, even if the task's context is
     * the default #GMainContext.
     */
-  def getContext(): Ptr[GMainContext] = g_task_get_context(
+  def getContext(): Ptr[GMainContext] /* None */ = g_task_get_context(
     this.raw.asInstanceOf
   )
 
@@ -611,7 +617,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * Gets @task’s name. See g_task_set_name().
     */
-  def getName()(using Zone): String = fromCString(
+  def getName()(using Zone): String /* None */ = fromCString(
     g_task_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -619,14 +625,16 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * Gets @task's priority
     */
-  def getPriority(): Int = g_task_get_priority(this.raw.asInstanceOf).value
+  def getPriority(): Int /* None */ = g_task_get_priority(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets @task's return-on-cancel flag. See g_task_set_return_on_cancel() for
     * more details.
     */
-  def getReturnOnCancel(): Boolean =
+  def getReturnOnCancel(): Boolean /* None */ =
     g_task_get_return_on_cancel(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -634,7 +642,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * Gets the source object from @task. Like
     * g_async_result_get_source_object(), but does not ref the object.
     */
-  def getSourceObject(): Object = new Object(
+  def getSourceObject(): Object /* None */ = new Object(
     g_task_get_source_object(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -642,7 +650,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * Gets @task's source tag. See g_task_set_source_tag().
     */
-  def getSourceTag(): Ptr[Byte] = g_task_get_source_tag(
+  def getSourceTag(): Ptr[Byte] /* None */ = g_task_get_source_tag(
     this.raw.asInstanceOf
   ).value
 
@@ -650,7 +658,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * Gets @task's `task_data`.
     */
-  def getTaskData(): Ptr[Byte] = g_task_get_task_data(
+  def getTaskData(): Ptr[Byte] /* None */ = g_task_get_task_data(
     this.raw.asInstanceOf
   ).value
 
@@ -658,7 +666,8 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * Tests if @task resulted in an error.
     */
-  def hadError(): Boolean = g_task_had_error(this.raw.asInstanceOf).value.!=(0)
+  def hadError(): Boolean /* None */ =
+    g_task_had_error(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -670,9 +679,10 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * Since this method transfers ownership of the return value (or error) to
     * the caller, you may only call it once.
     */
-  def propagateBoolean(): GResult[Boolean] = GResult.wrap(__errorPtr =>
-    g_task_propagate_boolean(this.raw.asInstanceOf, __errorPtr).value.!=(0)
-  )
+  def propagateBoolean(): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_task_propagate_boolean(this.raw.asInstanceOf, __errorPtr).value.!=(0)
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -684,7 +694,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * Since this method transfers ownership of the return value (or error) to
     * the caller, you may only call it once.
     */
-  def propagateInt(): GResult[CLongInt] = GResult.wrap(__errorPtr =>
+  def propagateInt(): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_task_propagate_int(this.raw.asInstanceOf, __errorPtr).value
   )
 
@@ -699,9 +709,10 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * Since this method transfers ownership of the return value (or error) to
     * the caller, you may only call it once.
     */
-  def propagatePointer(): GResult[Ptr[Byte]] = GResult.wrap(__errorPtr =>
-    g_task_propagate_pointer(this.raw.asInstanceOf, __errorPtr).value
-  )
+  def propagatePointer(): GResult[Ptr[Byte] /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_task_propagate_pointer(this.raw.asInstanceOf, __errorPtr).value
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -719,14 +730,16 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
   @annotation.compileTimeOnly(
     "Method propagate_value contains an OUT parameter, which is not supported yet"
   )
-  def propagateValue(using DummyImplicit) = ???
+  private def propagateValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets @task's result to @result and completes the task (see
     * g_task_return_pointer() for more discussion of exactly what this means).
     */
-  def returnBoolean(result: Boolean): Unit = g_task_return_boolean(
+  def returnBoolean(
+      result: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = g_task_return_boolean(
     this.raw.asInstanceOf,
     gboolean(gint((if result == true then 1 else 0)))
   )
@@ -744,8 +757,9 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * See also g_task_return_new_error().
     */
-  def returnError(error: Ptr[GError]): Unit =
-    g_task_return_error(this.raw.asInstanceOf, error)
+  def returnError(
+      error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+  ): Unit /* None */ = g_task_return_error(this.raw.asInstanceOf, error)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -754,7 +768,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *   error accordingly and completes the task (see g_task_return_pointer()
     *   for more discussion of exactly what this means).
     */
-  def returnErrorIfCancelled(): Boolean =
+  def returnErrorIfCancelled(): Boolean /* None */ =
     g_task_return_error_if_cancelled(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -762,8 +776,9 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * Sets @task's result to @result and completes the task (see
     * g_task_return_pointer() for more discussion of exactly what this means).
     */
-  def returnInt(result: CLongInt): Unit =
-    g_task_return_int(this.raw.asInstanceOf, gssize(result))
+  def returnInt(
+      result: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
+  ): Unit /* None */ = g_task_return_int(this.raw.asInstanceOf, gssize(result))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -775,11 +790,11 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * See also g_task_return_error().
     */
   inline def returnNewError(
-      domain: GQuark,
-      code: Int,
-      format: String | CString,
+      domain: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
+      code: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
+      format: String | CString /* Some(CString) */,
       args: Any*
-  )(using Zone): Unit = g_task_return_new_error(
+  )(using Zone): Unit /* None */ = g_task_return_new_error(
     this.raw.asInstanceOf,
     domain,
     gint(code),
@@ -805,12 +820,24 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * g_task_return_pointer(), you cannot assume that @result is still valid
     * after calling this, unless you are still holding another reference on it.
     */
-  def returnPointer(result: Ptr[Byte], result_destroy: GDestroyNotify): Unit =
-    g_task_return_pointer(
-      this.raw.asInstanceOf,
-      gpointer(result),
-      result_destroy
-    )
+  def returnPointer(
+      result: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      result_destroy: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ]
+  ): Unit /* None */ = g_task_return_pointer(
+    this.raw.asInstanceOf,
+    result
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    result_destroy
+      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+      )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -823,8 +850,18 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * language bindings; for C code, g_task_return_pointer() and the like will
     * normally be much easier to use.
     */
-  def returnValue(result: Ptr[GValue]): Unit =
-    g_task_return_value(this.raw.asInstanceOf, result)
+  def returnValue(
+      result: Option[
+        Ptr[GValue] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+      ]
+  ): Unit /* None */ = g_task_return_value(
+    this.raw.asInstanceOf,
+    result
+      .map[Ptr[_root_.sn.gnome.gobject.internal.GValue]](o => o)
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GValue]]
+      )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -848,8 +885,9 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * using a separate worker thread or thread pool explicitly, rather than
     * using g_task_run_in_thread().
     */
-  def runInThread(task_func: GTaskThreadFunc): Unit =
-    g_task_run_in_thread(this.raw.asInstanceOf, task_func)
+  def runInThread(
+      task_func: GTaskThreadFunc /* Some(GTaskThreadFunc) */
+  ): Unit /* None */ = g_task_run_in_thread(this.raw.asInstanceOf, task_func)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -870,7 +908,9 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * to all run at once, you should only queue a limited number of them at a
     * time.
     */
-  def runInThreadSync(task_func: GTaskThreadFunc): Unit =
+  def runInThreadSync(
+      task_func: GTaskThreadFunc /* Some(GTaskThreadFunc) */
+  ): Unit /* None */ =
     g_task_run_in_thread_sync(this.raw.asInstanceOf, task_func)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -889,11 +929,12 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * If you are using g_task_set_return_on_cancel() as well, then you must
     * leave check-cancellable set %TRUE.
     */
-  def setCheckCancellable(check_cancellable: Boolean): Unit =
-    g_task_set_check_cancellable(
-      this.raw.asInstanceOf,
-      gboolean(gint((if check_cancellable == true then 1 else 0)))
-    )
+  def setCheckCancellable(
+      check_cancellable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = g_task_set_check_cancellable(
+    this.raw.asInstanceOf,
+    gboolean(gint((if check_cancellable == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -908,9 +949,17 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * thread other than the one it was constructed in. It is called
     * automatically by g_task_set_source_tag() if not called already.
     */
-  def setName(name: String | CString)(using Zone): Unit = g_task_set_name(
+  def setName(
+      name: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
+  )(using Zone): Unit /* None */ = g_task_set_name(
     this.raw.asInstanceOf,
-    __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
+    name
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -922,7 +971,9 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * g_task_attach_source() and the scheduling of tasks run in threads, and can
     * also be explicitly retrieved later via g_task_get_priority().
     */
-  def setPriority(priority: Int): Unit =
+  def setPriority(
+      priority: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  ): Unit /* None */ =
     g_task_set_priority(this.raw.asInstanceOf, gint(priority))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -953,11 +1004,12 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * #GTaskThreadFunc will still be run (for consistency), but the task will
     * also be completed right away.
     */
-  def setReturnOnCancel(return_on_cancel: Boolean): Boolean =
-    g_task_set_return_on_cancel(
-      this.raw.asInstanceOf,
-      gboolean(gint((if return_on_cancel == true then 1 else 0)))
-    ).value.!=(0)
+  def setReturnOnCancel(
+      return_on_cancel: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Boolean /* None */ = g_task_set_return_on_cancel(
+    this.raw.asInstanceOf,
+    gboolean(gint((if return_on_cancel == true then 1 else 0)))
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -973,8 +1025,16 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * name to the string form of @source_tag if it’s not already set, for
     * convenience.
     */
-  def setSourceTag(source_tag: Ptr[Byte]): Unit =
-    g_task_set_source_tag(this.raw.asInstanceOf, gpointer(source_tag))
+  def setSourceTag(
+      source_tag: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_task_set_source_tag(
+    this.raw.asInstanceOf,
+    source_tag
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -982,23 +1042,40 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * This is a variant of g_task_set_name() that avoids copying @name.
     */
-  def setStaticName(name: String | CString)(using Zone): Unit =
-    g_task_set_static_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
-    )
+  def setStaticName(
+      name: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
+  )(using Zone): Unit /* None */ = g_task_set_static_name(
+    this.raw.asInstanceOf,
+    name
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets @task's task data (freeing the existing task data, if any).
     */
   def setTaskData(
-      task_data: Ptr[Byte],
-      task_data_destroy: GDestroyNotify
-  ): Unit = g_task_set_task_data(
+      task_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      task_data_destroy: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ]
+  ): Unit /* None */ = g_task_set_task_data(
     this.raw.asInstanceOf,
-    gpointer(task_data),
+    task_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     task_data_destroy
+      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+      )
   )
 
   private inline def __sn_extract_string(str: String | CString)(using
@@ -1031,18 +1108,30 @@ object Task:
     * use g_task_set_check_cancellable() to change it.
     */
   def apply(
-      source_object: Object,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      callback_data: Ptr[Byte]
+      source_object: Option[
+        Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      callback_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
   ): Task = new Task(
     g_task_new(
-      gpointer(
-        source_object.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-      ),
-      cancellable.getUnsafeRawPointer().asInstanceOf,
-      callback,
-      gpointer(callback_data)
+      source_object
+        .map[_root_.sn.gnome.glib.internal.gpointer](o =>
+          gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
+        )
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      callback
+        .map[GAsyncReadyCallback](o => o)
+        .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+      callback_data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
     ).asInstanceOf
   )
 end Task

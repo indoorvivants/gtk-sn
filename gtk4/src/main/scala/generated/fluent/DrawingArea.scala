@@ -96,13 +96,14 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the content height of the `GtkDrawingArea`.
     */
-  def getContentHeight(): Int = gtk_drawing_area_get_content_height(
+  def getContentHeight(): Int /* None */ = gtk_drawing_area_get_content_height(
     this.raw.asInstanceOf
   )
 
@@ -110,7 +111,7 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     *
     * Retrieves the content width of the `GtkDrawingArea`.
     */
-  def getContentWidth(): Int = gtk_drawing_area_get_content_width(
+  def getContentWidth(): Int /* None */ = gtk_drawing_area_get_content_width(
     this.raw.asInstanceOf
   )
 
@@ -125,7 +126,7 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     *
     * If the height is set to 0 (the default), the drawing area may disappear.
     */
-  def setContentHeight(height: Int): Unit =
+  def setContentHeight(height: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_drawing_area_set_content_height(this.raw.asInstanceOf, height)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -139,7 +140,7 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     *
     * If the width is set to 0 (the default), the drawing area may disappear.
     */
-  def setContentWidth(width: Int): Unit =
+  def setContentWidth(width: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_drawing_area_set_content_width(this.raw.asInstanceOf, width)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -161,13 +162,21 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     * again.
     */
   def setDrawFunc(
-      draw_func: GtkDrawingAreaDrawFunc,
-      user_data: Ptr[Byte],
-      destroy: GDestroyNotify
-  ): Unit = gtk_drawing_area_set_draw_func(
+      draw_func: Option[
+        GtkDrawingAreaDrawFunc /* Some(GtkDrawingAreaDrawFunc) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+  ): Unit /* None */ = gtk_drawing_area_set_draw_func(
     this.raw.asInstanceOf,
-    draw_func,
-    gpointer(user_data),
+    draw_func
+      .map[GtkDrawingAreaDrawFunc](o => o)
+      .getOrElse(null.asInstanceOf[GtkDrawingAreaDrawFunc]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     destroy
   )
 

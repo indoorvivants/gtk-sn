@@ -27,15 +27,15 @@ import sn.gnome.gtk4.internal.GtkGestureLongPress
   */
 class GestureLongPress(raw: Ptr[GtkGestureLongPress])
     extends GestureSingle(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the delay factor.
     */
-  def getDelayFactor(): Double = gtk_gesture_long_press_get_delay_factor(
-    this.raw.asInstanceOf
-  )
+  def getDelayFactor(): Double /* None */ =
+    gtk_gesture_long_press_get_delay_factor(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -44,7 +44,9 @@ class GestureLongPress(raw: Ptr[GtkGestureLongPress])
     * The default long press time will be multiplied by this value. Valid values
     * are in the range [0.5..2.0].
     */
-  def setDelayFactor(delay_factor: Double): Unit =
+  def setDelayFactor(
+      delay_factor: Double /* Some(Double) */
+  ): Unit /* None */ =
     gtk_gesture_long_press_set_delay_factor(this.raw.asInstanceOf, delay_factor)
 
 end GestureLongPress

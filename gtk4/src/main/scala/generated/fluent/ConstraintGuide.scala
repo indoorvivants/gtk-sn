@@ -26,6 +26,7 @@ import sn.gnome.gtk4.internal.GtkConstraintStrength
 class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     extends Object(raw.asInstanceOf),
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -35,7 +36,7 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
   @annotation.compileTimeOnly(
     "Method get_max_size contains an OUT parameter, which is not supported yet"
   )
-  def getMaxSize(using DummyImplicit) = ???
+  private def getMaxSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -44,13 +45,13 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
   @annotation.compileTimeOnly(
     "Method get_min_size contains an OUT parameter, which is not supported yet"
   )
-  def getMinSize(using DummyImplicit) = ???
+  private def getMinSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the name set using gtk_constraint_guide_set_name().
     */
-  def getName()(using Zone): String = fromCString(
+  def getName()(using Zone): String /* None */ = fromCString(
     gtk_constraint_guide_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -61,15 +62,14 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
   @annotation.compileTimeOnly(
     "Method get_nat_size contains an OUT parameter, which is not supported yet"
   )
-  def getNatSize(using DummyImplicit) = ???
+  private def getNatSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the strength set using gtk_constraint_guide_set_strength().
     */
-  def getStrength(): GtkConstraintStrength = gtk_constraint_guide_get_strength(
-    this.raw.asInstanceOf
-  )
+  def getStrength(): GtkConstraintStrength /* None */ =
+    gtk_constraint_guide_get_strength(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -78,7 +78,10 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     * If @guide is attached to a `GtkConstraintLayout`, the constraints will be
     * updated to reflect the new size.
     */
-  def setMaxSize(width: Int, height: Int): Unit =
+  def setMaxSize(
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */
+  ): Unit /* None */ =
     gtk_constraint_guide_set_max_size(this.raw.asInstanceOf, width, height)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -88,7 +91,10 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     * If @guide is attached to a `GtkConstraintLayout`, the constraints will be
     * updated to reflect the new size.
     */
-  def setMinSize(width: Int, height: Int): Unit =
+  def setMinSize(
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */
+  ): Unit /* None */ =
     gtk_constraint_guide_set_min_size(this.raw.asInstanceOf, width, height)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -97,11 +103,14 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     *
     * The name is useful for debugging purposes.
     */
-  def setName(name: String | CString)(using Zone): Unit =
-    gtk_constraint_guide_set_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name)
-    )
+  def setName(
+      name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_constraint_guide_set_name(
+    this.raw.asInstanceOf,
+    name
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -110,7 +119,10 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     * If @guide is attached to a `GtkConstraintLayout`, the constraints will be
     * updated to reflect the new size.
     */
-  def setNatSize(width: Int, height: Int): Unit =
+  def setNatSize(
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */
+  ): Unit /* None */ =
     gtk_constraint_guide_set_nat_size(this.raw.asInstanceOf, width, height)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -118,7 +130,9 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     * Sets the strength of the constraint on the natural size of the given
     * `GtkConstraintGuide`.
     */
-  def setStrength(strength: GtkConstraintStrength): Unit =
+  def setStrength(
+      strength: GtkConstraintStrength /* Some(GtkConstraintStrength) */
+  ): Unit /* None */ =
     gtk_constraint_guide_set_strength(this.raw.asInstanceOf, strength)
 
   private inline def __sn_extract_string(str: String | CString)(using

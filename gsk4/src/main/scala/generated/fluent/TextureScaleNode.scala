@@ -16,21 +16,21 @@ import sn.gnome.gsk4.internal.GskTextureScaleNode
   */
 class TextureScaleNode(raw: Ptr[GskTextureScaleNode])
     extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the `GskScalingFilter` used when creating this `GskRenderNode`.
     */
-  def getFilter(): GskScalingFilter = gsk_texture_scale_node_get_filter(
-    this.raw.asInstanceOf
-  )
+  def getFilter(): GskScalingFilter /* None */ =
+    gsk_texture_scale_node_get_filter(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the `GdkTexture` used when creating this `GskRenderNode`.
     */
-  def getTexture(): Texture = new Texture(
+  def getTexture(): Texture /* None */ = new Texture(
     gsk_texture_scale_node_get_texture(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -51,9 +51,11 @@ object TextureScaleNode:
     * the desired effect of this node.
     */
   def apply(
-      texture: Texture,
-      bounds: Ptr[graphene_rect_t],
-      filter: GskScalingFilter
+      texture: Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */,
+      bounds: Ptr[
+        graphene_rect_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
+      filter: GskScalingFilter /* Some(GskScalingFilter) */
   ): TextureScaleNode = new TextureScaleNode(
     gsk_texture_scale_node_new(
       texture.getUnsafeRawPointer().asInstanceOf,

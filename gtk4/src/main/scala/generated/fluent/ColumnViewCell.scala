@@ -34,6 +34,7 @@ import sn.gnome.gtk4.internal.GtkColumnViewCell
   */
 class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     extends ListItem(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -41,7 +42,7 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     * Gets the child previously set via gtk_column_view_cell_set_child() or
     * %NULL if none was set.
     */
-  override def getChild(): Widget = new Widget(
+  override def getChild(): Widget /* None */ = new Widget(
     gtk_column_view_cell_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -50,7 +51,7 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     * Checks if a list item has been set to be focusable via
     * gtk_column_view_cell_set_focusable().
     */
-  override def getFocusable(): Boolean =
+  override def getFocusable(): Boolean /* None */ =
     gtk_column_view_cell_get_focusable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -59,7 +60,7 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     *
     * If @self is unbound, this function returns %NULL.
     */
-  override def getItem(): Object = new Object(
+  override def getItem(): Object /* None */ = new Object(
     gtk_column_view_cell_get_item(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -69,9 +70,8 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     *
     * If @self is unbound, %GTK_INVALID_LIST_POSITION is returned.
     */
-  override def getPosition(): UInt = gtk_column_view_cell_get_position(
-    this.raw.asInstanceOf
-  ).value
+  override def getPosition(): UInt /* None */ =
+    gtk_column_view_cell_get_position(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -80,7 +80,7 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     * The selected state is maintained by the liste widget and its model and
     * cannot be set otherwise.
     */
-  override def getSelected(): Boolean =
+  override def getSelected(): Boolean /* None */ =
     gtk_column_view_cell_get_selected(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -90,9 +90,13 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     * This function is typically called by applications when setting up a
     * listitem so that the widget can be reused when binding it multiple times.
     */
-  override def setChild(child: Widget): Unit = gtk_column_view_cell_set_child(
+  override def setChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_column_view_cell_set_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -108,10 +112,11 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     *
     * By default, list items are focusable.
     */
-  override def setFocusable(focusable: Boolean): Unit =
-    gtk_column_view_cell_set_focusable(
-      this.raw.asInstanceOf,
-      gboolean(gint((if focusable == true then 1 else 0)))
-    )
+  override def setFocusable(
+      focusable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_column_view_cell_set_focusable(
+    this.raw.asInstanceOf,
+    gboolean(gint((if focusable == true then 1 else 0)))
+  )
 
 end ColumnViewCell

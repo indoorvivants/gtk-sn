@@ -72,6 +72,7 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
       Buildable,
       ConstraintTarget,
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -80,15 +81,14 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     *
     * See [method@Gtk.ProgressBar.set_ellipsize].
     */
-  def getEllipsize(): PangoEllipsizeMode = gtk_progress_bar_get_ellipsize(
-    this.raw.asInstanceOf
-  )
+  def getEllipsize(): PangoEllipsizeMode /* None */ =
+    gtk_progress_bar_get_ellipsize(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the current fraction of the task that’s been completed.
     */
-  def getFraction(): Double = gtk_progress_bar_get_fraction(
+  def getFraction(): Double /* None */ = gtk_progress_bar_get_fraction(
     this.raw.asInstanceOf
   )
 
@@ -96,7 +96,7 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     *
     * Returns whether the progress bar is inverted.
     */
-  def getInverted(): Boolean =
+  def getInverted(): Boolean /* None */ =
     gtk_progress_bar_get_inverted(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -105,7 +105,7 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     *
     * See [method@Gtk.ProgressBar.set_pulse_step].
     */
-  def getPulseStep(): Double = gtk_progress_bar_get_pulse_step(
+  def getPulseStep(): Double /* None */ = gtk_progress_bar_get_pulse_step(
     this.raw.asInstanceOf
   )
 
@@ -115,7 +115,7 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     *
     * See [method@Gtk.ProgressBar.set_show_text].
     */
-  def getShowText(): Boolean =
+  def getShowText(): Boolean /* None */ =
     gtk_progress_bar_get_show_text(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -125,7 +125,7 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * The return value is a reference to the text, not a copy of it, so will
     * become invalid if you change the text in the progress bar.
     */
-  def getText()(using Zone): String = fromCString(
+  def getText()(using Zone): String /* None */ = fromCString(
     gtk_progress_bar_get_text(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -138,7 +138,7 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * block to move by a little bit (the amount of movement per pulse is
     * determined by [method@Gtk.ProgressBar.set_pulse_step]).
     */
-  def pulse(): Unit = gtk_progress_bar_pulse(this.raw.asInstanceOf)
+  def pulse(): Unit /* None */ = gtk_progress_bar_pulse(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -147,7 +147,9 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * The text is ellipsized if there is not enough space to render the entire
     * string.
     */
-  def setEllipsize(mode: PangoEllipsizeMode): Unit =
+  def setEllipsize(
+      mode: PangoEllipsizeMode /* Some(_root_.sn.gnome.pango.internal.PangoEllipsizeMode) */
+  ): Unit /* None */ =
     gtk_progress_bar_set_ellipsize(this.raw.asInstanceOf, mode)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -156,7 +158,7 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     *
     * The fraction should be between 0.0 and 1.0, inclusive.
     */
-  def setFraction(fraction: Double): Unit =
+  def setFraction(fraction: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_progress_bar_set_fraction(this.raw.asInstanceOf, fraction)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -166,7 +168,9 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * Progress bars normally grow from top to bottom or left to right. Inverted
     * progress bars grow in the opposite direction.
     */
-  def setInverted(inverted: Boolean): Unit = gtk_progress_bar_set_inverted(
+  def setInverted(
+      inverted: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_progress_bar_set_inverted(
     this.raw.asInstanceOf,
     gboolean(gint((if inverted == true then 1 else 0)))
   )
@@ -177,7 +181,7 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     *
     * The bouncing block is moved when [method@Gtk.ProgressBar.pulse] is called.
     */
-  def setPulseStep(fraction: Double): Unit =
+  def setPulseStep(fraction: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_progress_bar_set_pulse_step(this.raw.asInstanceOf, fraction)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -193,7 +197,9 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * [property@Gtk.ProgressBar:show-text] to %TRUE and
     * [property@Gtk.ProgressBar:text] to the empty string (not %NULL).
     */
-  def setShowText(show_text: Boolean): Unit = gtk_progress_bar_set_show_text(
+  def setShowText(
+      show_text: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_progress_bar_set_show_text(
     this.raw.asInstanceOf,
     gboolean(gint((if show_text == true then 1 else 0)))
   )
@@ -212,8 +218,14 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * styled and sized suitably for containing text, as long as
     * [property@Gtk.ProgressBar:show-text] is %TRUE.
     */
-  def setText(text: String | CString)(using Zone): Unit =
-    gtk_progress_bar_set_text(this.raw.asInstanceOf, __sn_extract_string(text))
+  def setText(
+      text: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_progress_bar_set_text(
+    this.raw.asInstanceOf,
+    text
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

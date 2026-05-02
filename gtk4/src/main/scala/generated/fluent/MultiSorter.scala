@@ -22,6 +22,7 @@ class MultiSorter(raw: Ptr[GtkMultiSorter])
     extends Sorter(raw.asInstanceOf),
       ListModel,
       Buildable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -31,10 +32,11 @@ class MultiSorter(raw: Ptr[GtkMultiSorter])
     * @self
     *   will consult all existing sorters before it will sort with the given @sorter.
     */
-  def append(sorter: Sorter): Unit = gtk_multi_sorter_append(
-    this.raw.asInstanceOf,
-    sorter.getUnsafeRawPointer().asInstanceOf
-  )
+  def append(sorter: Sorter /* Some(Ptr[GtkSorter]) */ ): Unit /* None */ =
+    gtk_multi_sorter_append(
+      this.raw.asInstanceOf,
+      sorter.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -42,7 +44,9 @@ class MultiSorter(raw: Ptr[GtkMultiSorter])
     *
     * If @position is larger than the number of sorters, nothing happens.
     */
-  def remove(position: UInt): Unit =
+  def remove(
+      position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_multi_sorter_remove(this.raw.asInstanceOf, guint(position))
 
 end MultiSorter

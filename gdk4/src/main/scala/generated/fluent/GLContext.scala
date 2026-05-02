@@ -68,13 +68,14 @@ import sn.gnome.glib.internal.gint
   * is currently set by calling [func@Gdk.GLContext.clear_current].
   */
 class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the allowed APIs set via gdk_gl_context_set_allowed_apis().
     */
-  def getAllowedApis(): GdkGLAPI = gdk_gl_context_get_allowed_apis(
+  def getAllowedApis(): GdkGLAPI /* None */ = gdk_gl_context_get_allowed_apis(
     this.raw.asInstanceOf
   )
 
@@ -84,7 +85,9 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     *
     * If the renderer has not been realized yet, 0 is returned.
     */
-  def getApi(): GdkGLAPI = gdk_gl_context_get_api(this.raw.asInstanceOf)
+  def getApi(): GdkGLAPI /* None */ = gdk_gl_context_get_api(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -93,14 +96,14 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     *
     * See [method@Gdk.GLContext.set_debug_enabled].
     */
-  def getDebugEnabled(): Boolean =
+  def getDebugEnabled(): Boolean /* None */ =
     gdk_gl_context_get_debug_enabled(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the display the @context is created for
     */
-  override def getDisplay(): Display = new Display(
+  override def getDisplay(): Display /* None */ = new Display(
     gdk_gl_context_get_display(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -110,7 +113,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     *
     * See [method@Gdk.GLContext.set_forward_compatible].
     */
-  def getForwardCompatible(): Boolean =
+  def getForwardCompatible(): Boolean /* None */ =
     gdk_gl_context_get_forward_compatible(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -125,7 +128,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_required_version contains an OUT parameter, which is not supported yet"
   )
-  def getRequiredVersion(using DummyImplicit) = ???
+  private def getRequiredVersion__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -134,7 +137,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * As many contexts can share data now and no single shared context exists
     * anymore, this function has been deprecated and now always returns %NULL.
     */
-  def getSharedContext(): GLContext = new GLContext(
+  def getSharedContext(): GLContext /* None */ = new GLContext(
     gdk_gl_context_get_shared_context(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -142,7 +145,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     *
     * Retrieves the surface used by the @context.
     */
-  override def getSurface(): Surface = new Surface(
+  override def getSurface(): Surface /* None */ = new Surface(
     gdk_gl_context_get_surface(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -150,7 +153,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     *
     * Checks whether the @context is using an OpenGL or OpenGL ES profile.
     */
-  def getUseEs(): Boolean =
+  def getUseEs(): Boolean /* None */ =
     gdk_gl_context_get_use_es(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -162,7 +165,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_version contains an OUT parameter, which is not supported yet"
   )
-  def getVersion(using DummyImplicit) = ???
+  private def getVersion__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -183,7 +186,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * OpenGL API to use, or whether to do extension discovery, or what kind of
     * shader programs to load.
     */
-  def isLegacy(): Boolean =
+  def isLegacy(): Boolean /* None */ =
     gdk_gl_context_is_legacy(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -201,7 +204,9 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * Both contexts must be realized for this check to succeed. If either one is
     * not, this function will return %FALSE.
     */
-  def isShared(other: GLContext): Boolean = gdk_gl_context_is_shared(
+  def isShared(
+      other: GLContext /* Some(Ptr[GdkGLContext]) */
+  ): Boolean /* None */ = gdk_gl_context_is_shared(
     this.raw.asInstanceOf,
     other.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
@@ -210,7 +215,9 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     *
     * Makes the @context the current one.
     */
-  def makeCurrent(): Unit = gdk_gl_context_make_current(this.raw.asInstanceOf)
+  def makeCurrent(): Unit /* None */ = gdk_gl_context_make_current(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -218,7 +225,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     *
     * It is safe to call this function on a realized `GdkGLContext`.
     */
-  def realize(): GResult[Boolean] = GResult.wrap(__errorPtr =>
+  def realize(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gdk_gl_context_realize(this.raw.asInstanceOf, __errorPtr).value.!=(0)
   )
 
@@ -233,7 +240,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     *
     * By default, all APIs are allowed.
     */
-  def setAllowedApis(apis: GdkGLAPI): Unit =
+  def setAllowedApis(apis: GdkGLAPI /* Some(GdkGLAPI) */ ): Unit /* None */ =
     gdk_gl_context_set_allowed_apis(this.raw.asInstanceOf, apis)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -246,11 +253,12 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * The `GdkGLContext` must not be realized or made current prior to calling
     * this function.
     */
-  def setDebugEnabled(enabled: Boolean): Unit =
-    gdk_gl_context_set_debug_enabled(
-      this.raw.asInstanceOf,
-      gboolean(gint((if enabled == true then 1 else 0)))
-    )
+  def setDebugEnabled(
+      enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gdk_gl_context_set_debug_enabled(
+    this.raw.asInstanceOf,
+    gboolean(gint((if enabled == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -264,11 +272,12 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * The `GdkGLContext` must not be realized or made current prior to calling
     * this function.
     */
-  def setForwardCompatible(compatible: Boolean): Unit =
-    gdk_gl_context_set_forward_compatible(
-      this.raw.asInstanceOf,
-      gboolean(gint((if compatible == true then 1 else 0)))
-    )
+  def setForwardCompatible(
+      compatible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gdk_gl_context_set_forward_compatible(
+    this.raw.asInstanceOf,
+    gboolean(gint((if compatible == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -282,7 +291,10 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * The @context must not be realized or made current prior to calling this
     * function.
     */
-  def setRequiredVersion(major: Int, minor: Int): Unit =
+  def setRequiredVersion(
+      major: Int /* Some(CInt) */,
+      minor: Int /* Some(CInt) */
+  ): Unit /* None */ =
     gdk_gl_context_set_required_version(this.raw.asInstanceOf, major, minor)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -301,7 +313,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * after calling [method@Gdk.GLContext.realize] to decide whether to use the
     * OpenGL or OpenGL ES API, extensions, or shaders.
     */
-  def setUseEs(use_es: Int): Unit =
+  def setUseEs(use_es: Int /* Some(CInt) */ ): Unit /* None */ =
     gdk_gl_context_set_use_es(this.raw.asInstanceOf, use_es)
 
 end GLContext

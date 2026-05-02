@@ -40,6 +40,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     extends InitiallyUnowned(raw.asInstanceOf),
       Buildable,
       CellLayout:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -52,10 +53,10 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * “text” attribute of a `GtkCellRendererText` get its values from column 2.
     */
   def addAttribute(
-      cell_renderer: CellRenderer,
-      attribute: String | CString,
-      column: Int
-  )(using Zone): Unit = gtk_tree_view_column_add_attribute(
+      cell_renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      attribute: String | CString /* Some(CString) */,
+      column: Int /* Some(CInt) */
+  )(using Zone): Unit /* None */ = gtk_tree_view_column_add_attribute(
     this.raw.asInstanceOf,
     cell_renderer.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(attribute),
@@ -72,7 +73,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
   @annotation.compileTimeOnly(
     "Method cell_get_position contains an OUT parameter, which is not supported yet"
   )
-  def cellGetPosition(using DummyImplicit) = ???
+  private def cellGetPosition__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -82,7 +83,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
   @annotation.compileTimeOnly(
     "Method cell_get_size contains an OUT parameter, which is not supported yet"
   )
-  def cellGetSize(using DummyImplicit) = ???
+  private def cellGetSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -90,7 +91,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * visible. For this to be meaningful, you must first initialize the cells
     * with gtk_tree_view_column_cell_set_cell_data()
     */
-  def cellIsVisible(): Boolean =
+  def cellIsVisible(): Boolean /* None */ =
     gtk_tree_view_column_cell_is_visible(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -101,11 +102,11 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * renderer. This is used primarily by the `GtkTreeView`.
     */
   def cellSetCellData(
-      tree_model: TreeModel,
-      iter: Ptr[GtkTreeIter],
-      is_expander: Boolean,
-      is_expanded: Boolean
-  ): Unit = gtk_tree_view_column_cell_set_cell_data(
+      tree_model: TreeModel /* Some(Ptr[GtkTreeModel]) */,
+      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
+      is_expander: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      is_expanded: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_tree_view_column_cell_set_cell_data(
     this.raw.asInstanceOf,
     tree_model.getUnsafeRawPointer().asInstanceOf,
     iter,
@@ -117,18 +118,21 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     *
     * Unsets all the mappings on all renderers on the @tree_column.
     */
-  def clear(): Unit = gtk_tree_view_column_clear(this.raw.asInstanceOf)
+  def clear(): Unit /* None */ = gtk_tree_view_column_clear(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Clears all existing attributes previously set with
     * gtk_tree_view_column_set_attributes().
     */
-  def clearAttributes(cell_renderer: CellRenderer): Unit =
-    gtk_tree_view_column_clear_attributes(
-      this.raw.asInstanceOf,
-      cell_renderer.getUnsafeRawPointer().asInstanceOf
-    )
+  def clearAttributes(
+      cell_renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
+  ): Unit /* None */ = gtk_tree_view_column_clear_attributes(
+    this.raw.asInstanceOf,
+    cell_renderer.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -136,14 +140,18 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * @tree_column
     *   is clickable.
     */
-  def clicked(): Unit = gtk_tree_view_column_clicked(this.raw.asInstanceOf)
+  def clicked(): Unit /* None */ = gtk_tree_view_column_clicked(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the current keyboard focus to be at @cell, if the column contains 2
     * or more editable and activatable cells.
     */
-  def focusCell(cell: CellRenderer): Unit = gtk_tree_view_column_focus_cell(
+  def focusCell(
+      cell: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
+  ): Unit /* None */ = gtk_tree_view_column_focus_cell(
     this.raw.asInstanceOf,
     cell.getUnsafeRawPointer().asInstanceOf
   )
@@ -153,7 +161,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * Returns the current x alignment of @tree_column. This value can range
     * between 0.0 and 1.0.
     */
-  def getAlignment(): Float = gtk_tree_view_column_get_alignment(
+  def getAlignment(): Float /* None */ = gtk_tree_view_column_get_alignment(
     this.raw.asInstanceOf
   )
 
@@ -161,7 +169,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     *
     * Returns the button used in the treeview column header
     */
-  def getButton(): Widget = new Widget(
+  def getButton(): Widget /* None */ = new Widget(
     gtk_tree_view_column_get_button(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -169,14 +177,14 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     *
     * Returns %TRUE if the user can click on the header for the column.
     */
-  def getClickable(): Boolean =
+  def getClickable(): Boolean /* None */ =
     gtk_tree_view_column_get_clickable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns %TRUE if the column expands to fill available space.
     */
-  def getExpand(): Boolean =
+  def getExpand(): Boolean /* None */ =
     gtk_tree_view_column_get_expand(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -184,7 +192,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * Gets the fixed width of the column. This may not be the actual displayed
     * width of the column; for that, use gtk_tree_view_column_get_width().
     */
-  def getFixedWidth(): Int = gtk_tree_view_column_get_fixed_width(
+  def getFixedWidth(): Int /* None */ = gtk_tree_view_column_get_fixed_width(
     this.raw.asInstanceOf
   )
 
@@ -193,7 +201,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * Returns the maximum width in pixels of the @tree_column, or -1 if no
     * maximum width is set.
     */
-  def getMaxWidth(): Int = gtk_tree_view_column_get_max_width(
+  def getMaxWidth(): Int /* None */ = gtk_tree_view_column_get_max_width(
     this.raw.asInstanceOf
   )
 
@@ -202,7 +210,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * Returns the minimum width in pixels of the @tree_column, or -1 if no
     * minimum width is set.
     */
-  def getMinWidth(): Int = gtk_tree_view_column_get_min_width(
+  def getMinWidth(): Int /* None */ = gtk_tree_view_column_get_min_width(
     this.raw.asInstanceOf
   )
 
@@ -210,23 +218,22 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     *
     * Returns %TRUE if the @tree_column can be reordered by the user.
     */
-  def getReorderable(): Boolean =
+  def getReorderable(): Boolean /* None */ =
     gtk_tree_view_column_get_reorderable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns %TRUE if the @tree_column can be resized by the end user.
     */
-  def getResizable(): Boolean =
+  def getResizable(): Boolean /* None */ =
     gtk_tree_view_column_get_resizable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the current type of @tree_column.
     */
-  def getSizing(): GtkTreeViewColumnSizing = gtk_tree_view_column_get_sizing(
-    this.raw.asInstanceOf
-  )
+  def getSizing(): GtkTreeViewColumnSizing /* None */ =
+    gtk_tree_view_column_get_sizing(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -235,30 +242,28 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     *
     * See [method@Gtk.TreeViewColumn.set_sort_column_id].
     */
-  def getSortColumnId(): Int = gtk_tree_view_column_get_sort_column_id(
-    this.raw.asInstanceOf
-  )
+  def getSortColumnId(): Int /* None */ =
+    gtk_tree_view_column_get_sort_column_id(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the value set by gtk_tree_view_column_set_sort_indicator().
     */
-  def getSortIndicator(): Boolean =
+  def getSortIndicator(): Boolean /* None */ =
     gtk_tree_view_column_get_sort_indicator(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the value set by gtk_tree_view_column_set_sort_order().
     */
-  def getSortOrder(): GtkSortType = gtk_tree_view_column_get_sort_order(
-    this.raw.asInstanceOf
-  )
+  def getSortOrder(): GtkSortType /* None */ =
+    gtk_tree_view_column_get_sort_order(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the spacing of @tree_column.
     */
-  def getSpacing(): Int = gtk_tree_view_column_get_spacing(
+  def getSpacing(): Int /* None */ = gtk_tree_view_column_get_spacing(
     this.raw.asInstanceOf
   )
 
@@ -266,7 +271,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     *
     * Returns the title of the widget.
     */
-  def getTitle()(using Zone): String = fromCString(
+  def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_tree_view_column_get_title(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -275,7 +280,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * Returns the `GtkTreeView` wherein @tree_column has been inserted. If @column
     * is currently not inserted in any tree view, %NULL is returned.
     */
-  def getTreeView(): Widget = new Widget(
+  def getTreeView(): Widget /* None */ = new Widget(
     gtk_tree_view_column_get_tree_view(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -283,7 +288,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     *
     * Returns %TRUE if @tree_column is visible.
     */
-  def getVisible(): Boolean =
+  def getVisible(): Boolean /* None */ =
     gtk_tree_view_column_get_visible(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -292,7 +297,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     *
     * If a custom widget has not been set then %NULL is returned.
     */
-  def getWidget(): Widget = new Widget(
+  def getWidget(): Widget /* None */ = new Widget(
     gtk_tree_view_column_get_widget(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -300,13 +305,15 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     *
     * Returns the current size of @tree_column in pixels.
     */
-  def getWidth(): Int = gtk_tree_view_column_get_width(this.raw.asInstanceOf)
+  def getWidth(): Int /* None */ = gtk_tree_view_column_get_width(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the current X offset of @tree_column in pixels.
     */
-  def getXOffset(): Int = gtk_tree_view_column_get_x_offset(
+  def getXOffset(): Int /* None */ = gtk_tree_view_column_get_x_offset(
     this.raw.asInstanceOf
   )
 
@@ -316,12 +323,14 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * is allocated no more space than it needs. Any unused space is divided
     * evenly between cells for which @expand is %TRUE.
     */
-  def packEnd(cell: CellRenderer, expand: Boolean): Unit =
-    gtk_tree_view_column_pack_end(
-      this.raw.asInstanceOf,
-      cell.getUnsafeRawPointer().asInstanceOf,
-      gboolean(gint((if expand == true then 1 else 0)))
-    )
+  def packEnd(
+      cell: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_tree_view_column_pack_end(
+    this.raw.asInstanceOf,
+    cell.getUnsafeRawPointer().asInstanceOf,
+    gboolean(gint((if expand == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -329,19 +338,21 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * then the @cell is allocated no more space than it needs. Any unused space
     * is divided evenly between cells for which @expand is %TRUE.
     */
-  def packStart(cell: CellRenderer, expand: Boolean): Unit =
-    gtk_tree_view_column_pack_start(
-      this.raw.asInstanceOf,
-      cell.getUnsafeRawPointer().asInstanceOf,
-      gboolean(gint((if expand == true then 1 else 0)))
-    )
+  def packStart(
+      cell: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_tree_view_column_pack_start(
+    this.raw.asInstanceOf,
+    cell.getUnsafeRawPointer().asInstanceOf,
+    gboolean(gint((if expand == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Flags the column, and the cell renderers added to this column, to have
     * their sizes renegotiated.
     */
-  def queueResize(): Unit = gtk_tree_view_column_queue_resize(
+  def queueResize(): Unit /* None */ = gtk_tree_view_column_queue_resize(
     this.raw.asInstanceOf
   )
 
@@ -351,10 +362,11 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * The alignment determines its location inside the button -- 0.0 for left,
     * 0.5 for center, 1.0 for right.
     */
-  def setAlignment(xalign: Float): Unit = gtk_tree_view_column_set_alignment(
-    this.raw.asInstanceOf,
-    xalign.asInstanceOf
-  )
+  def setAlignment(xalign: Float /* Some(Float) */ ): Unit /* None */ =
+    gtk_tree_view_column_set_alignment(
+      this.raw.asInstanceOf,
+      xalign.asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -364,12 +376,14 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * gtk_tree_view_column_add_attribute(). All existing attributes are removed,
     * and replaced with the new attributes.
     */
-  inline def setAttributes(cell_renderer: CellRenderer, args: Any*): Unit =
-    gtk_tree_view_column_set_attributes(
-      this.raw.asInstanceOf,
-      cell_renderer.getUnsafeRawPointer().asInstanceOf,
-      args*
-    )
+  inline def setAttributes(
+      cell_renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      args: Any*
+  ): Unit /* None */ = gtk_tree_view_column_set_attributes(
+    this.raw.asInstanceOf,
+    cell_renderer.getUnsafeRawPointer().asInstanceOf,
+    args*
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -380,15 +394,21 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * renderer as appropriate. @func may be %NULL to remove an older one.
     */
   def setCellDataFunc(
-      cell_renderer: CellRenderer,
-      func: GtkTreeCellDataFunc,
-      func_data: Ptr[Byte],
-      destroy: GDestroyNotify
-  ): Unit = gtk_tree_view_column_set_cell_data_func(
+      cell_renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      func: Option[GtkTreeCellDataFunc /* Some(GtkTreeCellDataFunc) */ ],
+      func_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+  ): Unit /* None */ = gtk_tree_view_column_set_cell_data_func(
     this.raw.asInstanceOf,
     cell_renderer.getUnsafeRawPointer().asInstanceOf,
-    func,
-    gpointer(func_data),
+    func
+      .map[GtkTreeCellDataFunc](o => o)
+      .getOrElse(null.asInstanceOf[GtkTreeCellDataFunc]),
+    func_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     destroy
   )
 
@@ -397,11 +417,12 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * Sets the header to be active if @clickable is %TRUE. When the header is
     * active, then it can take keyboard focus, and can be clicked.
     */
-  def setClickable(clickable: Boolean): Unit =
-    gtk_tree_view_column_set_clickable(
-      this.raw.asInstanceOf,
-      gboolean(gint((if clickable == true then 1 else 0)))
-    )
+  def setClickable(
+      clickable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_tree_view_column_set_clickable(
+    this.raw.asInstanceOf,
+    gboolean(gint((if clickable == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -413,7 +434,9 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * Along with “fixed-width”, the “expand” property changes when the column is
     * resized by the user.
     */
-  def setExpand(expand: Boolean): Unit = gtk_tree_view_column_set_expand(
+  def setExpand(
+      expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_tree_view_column_set_expand(
     this.raw.asInstanceOf,
     gboolean(gint((if expand == true then 1 else 0)))
   )
@@ -433,7 +456,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * Along with “expand”, the “fixed-width” property changes when the column is
     * resized by the user.
     */
-  def setFixedWidth(fixed_width: Int): Unit =
+  def setFixedWidth(fixed_width: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_tree_view_column_set_fixed_width(this.raw.asInstanceOf, fixed_width)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -443,7 +466,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * width if it’s the last column in a view. In this case, the column expands
     * to fill any extra space.
     */
-  def setMaxWidth(max_width: Int): Unit =
+  def setMaxWidth(max_width: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_tree_view_column_set_max_width(this.raw.asInstanceOf, max_width)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -451,7 +474,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * Sets the minimum width of the @tree_column. If @min_width is -1, then the
     * minimum width is unset.
     */
-  def setMinWidth(min_width: Int): Unit =
+  def setMinWidth(min_width: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_tree_view_column_set_min_width(this.raw.asInstanceOf, min_width)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -459,11 +482,12 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * If @reorderable is %TRUE, then the column can be reordered by the end user
     * dragging the header.
     */
-  def setReorderable(reorderable: Boolean): Unit =
-    gtk_tree_view_column_set_reorderable(
-      this.raw.asInstanceOf,
-      gboolean(gint((if reorderable == true then 1 else 0)))
-    )
+  def setReorderable(
+      reorderable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_tree_view_column_set_reorderable(
+    this.raw.asInstanceOf,
+    gboolean(gint((if reorderable == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -474,17 +498,20 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * %GTK_TREE_VIEW_COLUMN_AUTOSIZE, then the sizing mode is changed to
     * %GTK_TREE_VIEW_COLUMN_GROW_ONLY.
     */
-  def setResizable(resizable: Boolean): Unit =
-    gtk_tree_view_column_set_resizable(
-      this.raw.asInstanceOf,
-      gboolean(gint((if resizable == true then 1 else 0)))
-    )
+  def setResizable(
+      resizable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_tree_view_column_set_resizable(
+    this.raw.asInstanceOf,
+    gboolean(gint((if resizable == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the growth behavior of @tree_column to @type.
     */
-  def setSizing(`type`: GtkTreeViewColumnSizing): Unit =
+  def setSizing(
+      `type`: GtkTreeViewColumnSizing /* Some(GtkTreeViewColumnSizing) */
+  ): Unit /* None */ =
     gtk_tree_view_column_set_sizing(this.raw.asInstanceOf, `type`)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -493,7 +520,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * column is selected for sorting. Doing so makes the column header
     * clickable.
     */
-  def setSortColumnId(sort_column_id: Int): Unit =
+  def setSortColumnId(sort_column_id: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_tree_view_column_set_sort_column_id(
       this.raw.asInstanceOf,
       sort_column_id
@@ -506,11 +533,12 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * gtk_tree_view_column_set_sort_order() to change the direction of the
     * arrow.
     */
-  def setSortIndicator(setting: Boolean): Unit =
-    gtk_tree_view_column_set_sort_indicator(
-      this.raw.asInstanceOf,
-      gboolean(gint((if setting == true then 1 else 0)))
-    )
+  def setSortIndicator(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_tree_view_column_set_sort_indicator(
+    this.raw.asInstanceOf,
+    gboolean(gint((if setting == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -526,7 +554,9 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * sort. Note that you must have the sort indicator enabled to see anything
     * when calling this function; see gtk_tree_view_column_set_sort_indicator().
     */
-  def setSortOrder(order: GtkSortType): Unit =
+  def setSortOrder(
+      order: GtkSortType /* Some(GtkSortType) */
+  ): Unit /* None */ =
     gtk_tree_view_column_set_sort_order(this.raw.asInstanceOf, order)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -534,7 +564,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * Sets the spacing field of @tree_column, which is the number of pixels to
     * place between cell renderers packed into it.
     */
-  def setSpacing(spacing: Int): Unit =
+  def setSpacing(spacing: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_tree_view_column_set_spacing(this.raw.asInstanceOf, spacing)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -542,17 +572,20 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * Sets the title of the @tree_column. If a custom widget has been set, then
     * this value is ignored.
     */
-  def setTitle(title: String | CString)(using Zone): Unit =
-    gtk_tree_view_column_set_title(
-      this.raw.asInstanceOf,
-      __sn_extract_string(title)
-    )
+  def setTitle(
+      title: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_tree_view_column_set_title(
+    this.raw.asInstanceOf,
+    __sn_extract_string(title)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the visibility of @tree_column.
     */
-  def setVisible(visible: Boolean): Unit = gtk_tree_view_column_set_visible(
+  def setVisible(
+      visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_tree_view_column_set_visible(
     this.raw.asInstanceOf,
     gboolean(gint((if visible == true then 1 else 0)))
   )
@@ -562,9 +595,13 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * Sets the widget in the header to be @widget. If widget is %NULL, then the
     * header button is set with a `GtkLabel` set to the title of @tree_column.
     */
-  def setWidget(widget: Widget): Unit = gtk_tree_view_column_set_widget(
+  def setWidget(
+      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_tree_view_column_set_widget(
     this.raw.asInstanceOf,
-    widget.getUnsafeRawPointer().asInstanceOf
+    widget
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   private inline def __sn_extract_string(str: String | CString)(using
@@ -590,11 +627,12 @@ object TreeViewColumn:
     *
     * Creates a new `GtkTreeViewColumn` using @area to render its cells.
     */
-  def withArea(area: CellArea): TreeViewColumn = new TreeViewColumn(
-    gtk_tree_view_column_new_with_area(
-      area.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+  def withArea(area: CellArea /* Some(Ptr[GtkCellArea]) */ ): TreeViewColumn =
+    new TreeViewColumn(
+      gtk_tree_view_column_new_with_area(
+        area.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -620,8 +658,8 @@ object TreeViewColumn:
     *  ]|
     */
   inline def withAttributes(
-      title: String | CString,
-      cell: CellRenderer,
+      title: String | CString /* Some(CString) */,
+      cell: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       args: Any*
   )(using Zone): TreeViewColumn = new TreeViewColumn(
     gtk_tree_view_column_new_with_attributes(

@@ -27,6 +27,7 @@ import sn.gnome.pango.internal.PangoDirection
   * various kinds of devices, and their relationships.
   */
 class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -35,14 +36,14 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     *
     * This is only relevant for keyboard devices.
     */
-  def getCapsLockState(): Boolean =
+  def getCapsLockState(): Boolean /* None */ =
     gdk_device_get_caps_lock_state(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the current tool for @device.
     */
-  def getDeviceTool(): DeviceTool = new DeviceTool(
+  def getDeviceTool(): DeviceTool /* None */ = new DeviceTool(
     gdk_device_get_device_tool(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -55,7 +56,7 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     * The direction of a layout is the direction of the majority of its symbols.
     * See [func@Pango.unichar_direction].
     */
-  def getDirection(): PangoDirection = gdk_device_get_direction(
+  def getDirection(): PangoDirection /* None */ = gdk_device_get_direction(
     this.raw.asInstanceOf
   )
 
@@ -63,7 +64,7 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     *
     * Returns the `GdkDisplay` to which @device pertains.
     */
-  def getDisplay(): Display = new Display(
+  def getDisplay(): Display /* None */ = new Display(
     gdk_device_get_display(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -73,7 +74,7 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     *
     * This is not meaningful for keyboard devices, which don't have a pointer.
     */
-  def getHasCursor(): Boolean =
+  def getHasCursor(): Boolean /* None */ =
     gdk_device_get_has_cursor(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -82,15 +83,14 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     *
     * This is only relevant for keyboard devices.
     */
-  def getModifierState(): GdkModifierType = gdk_device_get_modifier_state(
-    this.raw.asInstanceOf
-  )
+  def getModifierState(): GdkModifierType /* None */ =
+    gdk_device_get_modifier_state(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * The name of the device, suitable for showing in a user interface.
     */
-  def getName()(using Zone): String = fromCString(
+  def getName()(using Zone): String /* None */ = fromCString(
     gdk_device_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -100,14 +100,14 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     *
     * This is only relevant for keyboard devices.
     */
-  def getNumLockState(): Boolean =
+  def getNumLockState(): Boolean /* None */ =
     gdk_device_get_num_lock_state(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the number of touch points associated to @device.
     */
-  def getNumTouches(): UInt = gdk_device_get_num_touches(
+  def getNumTouches(): UInt /* None */ = gdk_device_get_num_touches(
     this.raw.asInstanceOf
   ).value
 
@@ -118,7 +118,7 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     * This ID is retrieved from the device, and does not change. See
     * [method@Gdk.Device.get_vendor_id] for more information.
     */
-  def getProductId()(using Zone): String = fromCString(
+  def getProductId()(using Zone): String /* None */ = fromCString(
     gdk_device_get_product_id(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -128,14 +128,14 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     *
     * This is only relevant for keyboard devices.
     */
-  def getScrollLockState(): Boolean =
+  def getScrollLockState(): Boolean /* None */ =
     gdk_device_get_scroll_lock_state(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `GdkSeat` the device belongs to.
     */
-  def getSeat(): Seat = new Seat(
+  def getSeat(): Seat /* None */ = new Seat(
     gdk_device_get_seat(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -143,7 +143,9 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     *
     * Determines the type of the device.
     */
-  def getSource(): GdkInputSource = gdk_device_get_source(this.raw.asInstanceOf)
+  def getSource(): GdkInputSource /* None */ = gdk_device_get_source(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -156,7 +158,7 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_surface_at_position contains an OUT parameter, which is not supported yet"
   )
-  def getSurfaceAtPosition(using DummyImplicit) = ???
+  private def getSurfaceAtPosition__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -167,7 +169,7 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     * device that are not received from the OS, and will not update the
     * timestamp).
     */
-  def getTimestamp(): UInt = gdk_device_get_timestamp(
+  def getTimestamp(): UInt /* None */ = gdk_device_get_timestamp(
     this.raw.asInstanceOf
   ).value
 
@@ -200,7 +202,7 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     *  }
     * ```
     */
-  def getVendorId()(using Zone): String = fromCString(
+  def getVendorId()(using Zone): String /* None */ = fromCString(
     gdk_device_get_vendor_id(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -211,7 +213,7 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     *
     * This is only relevant for keyboard devices.
     */
-  def hasBidiLayouts(): Boolean =
+  def hasBidiLayouts(): Boolean /* None */ =
     gdk_device_has_bidi_layouts(this.raw.asInstanceOf).value.!=(0)
 
 end Device

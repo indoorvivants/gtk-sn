@@ -48,6 +48,7 @@ class EmojiChooser(raw: Ptr[GtkEmojiChooser])
       ConstraintTarget,
       Native,
       ShortcutManager:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end EmojiChooser

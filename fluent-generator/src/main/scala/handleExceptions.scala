@@ -12,6 +12,9 @@ enum FluentErr:
   case MethodParameterHasNoType(meth: String, param: Option[String])
   case MethodParameterHasNoName(meth: String)
   case TypeMissingValue(tpe: Type)
+  case TargetTypesMissing(meth: String)
+  case ParameterHasNoTargetType(meth: String, param: String, idx: Int)
+end FluentErr
 
 extension (fe: FluentErr)
   def log(title: String) =
@@ -37,6 +40,12 @@ extension (fe: FluentErr)
         warn(s"Method ${meth} has no name for one of the parameters")
       case FluentErr.TypeMissingValue(tpe) =>
         warn(s"Type $tpe has no @type attribute")
+      case FluentErr.TargetTypesMissing(meth) =>
+        warn(s"Method ${meth} has no target types")
+      case FluentErr.ParameterHasNoTargetType(meth, param, idx) =>
+        warn(
+          s"Method ${meth} has no target type for parameter $param (index $idx)"
+        )
     end match
 end extension
 

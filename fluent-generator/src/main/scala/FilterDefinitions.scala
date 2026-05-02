@@ -47,6 +47,16 @@ def filterDefinitions(
       .contains(true)
   end hasOutParameters
 
+  def hasNullableParameters(
+      params: Seq[Parameter | Instanceu45parameter]
+  ): Boolean =
+    params
+      .collectFirst:
+        case p: Parameter if p.nullable.contains(Number1Value20) => true
+        case p: Instanceu45parameter if p.nullable.contains(Number1Value20) =>
+          true
+      .contains(true)
+
   def hasInoutParamaters(
       params: Seq[Parameter | Instanceu45parameter]
   ): Boolean =
@@ -110,43 +120,55 @@ def filterDefinitions(
         "non NULL-terminated arrays require special handling"
       )
 
-    method.foreach: meth =>
-      weirdMethod(
-        "pango_font_get_hb_font",
-        "refers to HarfBuzz.font_t as gconstpointer"
-      )
-      weirdMethod(
-        "g_data_input_stream_read_byte",
-        s"there are conflicting versions of it in DataInputStream and BufferedInputStream"
-      )
-      weirdMethod("gtk_menu_button_get_direction", "conflicting override")
-      weirdMethod("gtk_menu_button_set_direction", "conflicting override")
-      check(
-        meth.identifier.startsWith("g_settings_backend"),
-        "GSettingsBackend methods are not rendered"
-      )
+    method.foreach:
+      meth =>
+        weirdMethod(
+          "pango_font_get_hb_font",
+          "refers to HarfBuzz.font_t as gconstpointer"
+        )
+        weirdMethod(
+          "g_data_input_stream_read_byte",
+          s"there are conflicting versions of it in DataInputStream and BufferedInputStream"
+        )
+        weirdMethod("gtk_menu_button_get_direction", "conflicting override")
+        weirdMethod("gtk_menu_button_set_direction", "conflicting override")
+        check(
+          meth.identifier.startsWith("g_settings_backend"),
+          "GSettingsBackend methods are not rendered"
+        )
 
-      weirdArrays.foreach: ar =>
-        weirdMethod(ar, "non NULL-terminated arrays require special handling")
+        weirdArrays.foreach: ar =>
+          weirdMethod(ar, "non NULL-terminated arrays require special handling")
 
-      check(
-        hasOutParameters(meth.parameters),
-        s"Method ${meth.name} contains an OUT parameter, which is not supported yet"
-      )
-      check(
-        hasInoutParamaters(meth.parameters),
-        s"Method ${meth.name} contains an INOUT parameter, which is not supported yet"
-      )
+        check(
+          hasOutParameters(meth.parameters),
+          s"Method ${meth.name} contains an OUT parameter, which is not supported yet"
+        )
+        check(
+          hasInoutParamaters(meth.parameters),
+          s"Method ${meth.name} contains an INOUT parameter, which is not supported yet"
+        )
+        // check(
+        //   meth.name != "gtk_application_new" && hasNullableParameters(
+        //     meth.parameters
+        //   ),
+        //   s"Method ${meth.name} contains a nullable parameter, which is not supported yet"
+        // )
 
-    constructor.foreach: constr =>
-      check(
-        hasOutParameters(constr.parameters),
-        s"Constructor ${constr.name} contains an OUT parameter, which is not supported yet"
-      )
-      check(
-        hasInoutParamaters(constr.parameters),
-        s"Constructor ${constr.name} contains an INOUT parameter, which is not supported yet"
-      )
+    constructor.foreach:
+      constr =>
+        check(
+          hasOutParameters(constr.parameters),
+          s"Constructor ${constr.name} contains an OUT parameter, which is not supported yet"
+        )
+        check(
+          hasInoutParamaters(constr.parameters),
+          s"Constructor ${constr.name} contains an INOUT parameter, which is not supported yet"
+        )
+        // check(
+        //   hasNullableParameters(constr.parameters),
+        //   s"Constructor ${constr.name} contains a nullable parameter, which is not supported yet"
+        // )
 
     None
 

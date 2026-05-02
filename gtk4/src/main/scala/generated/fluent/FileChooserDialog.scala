@@ -199,6 +199,7 @@ class FileChooserDialog(raw: Ptr[GtkFileChooserDialog])
       Native,
       Root,
       ShortcutManager:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end FileChooserDialog
@@ -211,17 +212,23 @@ object FileChooserDialog:
     * This function is analogous to [ctor@Gtk.Dialog.new_with_buttons].
     */
   inline def apply(
-      title: String | CString,
-      parent: Window,
-      action: GtkFileChooserAction,
-      first_button_text: String | CString,
+      title: Option[String | CString /* Some(CString) */ ],
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      action: GtkFileChooserAction /* Some(GtkFileChooserAction) */,
+      first_button_text: Option[String | CString /* Some(CString) */ ],
       args: Any*
   )(using Zone): FileChooserDialog = new FileChooserDialog(
     gtk_file_chooser_dialog_new(
-      __sn_extract_string(title),
-      parent.getUnsafeRawPointer().asInstanceOf,
+      title
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       action,
-      __sn_extract_string(first_button_text),
+      first_button_text
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf
   )

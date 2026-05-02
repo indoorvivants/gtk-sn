@@ -17,13 +17,14 @@ import sn.gnome.gtk4.internal.GtkSelectionFilterModel
 class SelectionFilterModel(raw: Ptr[GtkSelectionFilterModel])
     extends Object(raw.asInstanceOf),
       ListModel:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the model currently filtered or %NULL if none.
     */
-  def getModel(): SelectionModel = new SelectionModel.Abstract(
+  def getModel(): SelectionModel /* None */ = new SelectionModel.Abstract(
     gtk_selection_filter_model_get_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -35,11 +36,14 @@ class SelectionFilterModel(raw: Ptr[GtkSelectionFilterModel])
     * type of @self. It assumes that the caller knows what they are doing and
     * have set up an appropriate filter to ensure that item types match.
     */
-  def setModel(model: SelectionModel): Unit =
-    gtk_selection_filter_model_set_model(
-      this.raw.asInstanceOf,
-      model.getUnsafeRawPointer().asInstanceOf
-    )
+  def setModel(
+      model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
+  ): Unit /* None */ = gtk_selection_filter_model_set_model(
+    this.raw.asInstanceOf,
+    model
+      .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])
+  )
 
 end SelectionFilterModel
 
@@ -49,10 +53,13 @@ object SelectionFilterModel:
     * Creates a new `GtkSelectionFilterModel` that will include the selected
     * items from the underlying selection model.
     */
-  def apply(model: SelectionModel): SelectionFilterModel =
-    new SelectionFilterModel(
-      gtk_selection_filter_model_new(
-        model.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def apply(
+      model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
+  ): SelectionFilterModel = new SelectionFilterModel(
+    gtk_selection_filter_model_new(
+      model
+        .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])
+    ).asInstanceOf
+  )
 end SelectionFilterModel

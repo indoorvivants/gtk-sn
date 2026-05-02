@@ -28,22 +28,24 @@ import sn.gnome.gtk4.internal.GtkWindowGroup
   * have been removed, the window group will be freed.
   */
 class WindowGroup(raw: Ptr[GtkWindowGroup]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Adds a window to a `GtkWindowGroup`.
     */
-  def addWindow(window: Window): Unit = gtk_window_group_add_window(
-    this.raw.asInstanceOf,
-    window.getUnsafeRawPointer().asInstanceOf
-  )
+  def addWindow(window: Window /* Some(Ptr[GtkWindow]) */ ): Unit /* None */ =
+    gtk_window_group_add_window(
+      this.raw.asInstanceOf,
+      window.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns a list of the `GtkWindows` that belong to @window_group.
     */
-  def listWindows(): Ptr[GList] = gtk_window_group_list_windows(
+  def listWindows(): Ptr[GList] /* None */ = gtk_window_group_list_windows(
     this.raw.asInstanceOf
   )
 
@@ -51,7 +53,9 @@ class WindowGroup(raw: Ptr[GtkWindowGroup]) extends Object(raw.asInstanceOf):
     *
     * Removes a window from a `GtkWindowGroup`.
     */
-  def removeWindow(window: Window): Unit = gtk_window_group_remove_window(
+  def removeWindow(
+      window: Window /* Some(Ptr[GtkWindow]) */
+  ): Unit /* None */ = gtk_window_group_remove_window(
     this.raw.asInstanceOf,
     window.getUnsafeRawPointer().asInstanceOf
   )

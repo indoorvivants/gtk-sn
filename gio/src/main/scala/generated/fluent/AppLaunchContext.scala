@@ -17,6 +17,7 @@ import sn.gnome.gobject.fluent.Object
   */
 class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -25,14 +26,16 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * applications are started on the same display as the launching application,
     * by setting the `DISPLAY` environment variable.
     */
-  def getDisplay(info: AppInfo, files: Ptr[GList])(using Zone): String =
-    fromCString(
-      g_app_launch_context_get_display(
-        this.raw.asInstanceOf,
-        info.getUnsafeRawPointer().asInstanceOf,
-        files
-      ).asInstanceOf
-    )
+  def getDisplay(
+      info: AppInfo /* Some(Ptr[GAppInfo]) */,
+      files: Ptr[GList] /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
+  )(using Zone): String /* None */ = fromCString(
+    g_app_launch_context_get_display(
+      this.raw.asInstanceOf,
+      info.getUnsafeRawPointer().asInstanceOf,
+      files
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -41,9 +44,10 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * %NULL-terminated array of strings, where each string has the form
     * `KEY=VALUE`.
     */
-  def getEnvironment()(using Zone): Array[String] = __decode_nullable_ptrs(
-    g_app_launch_context_get_environment(this.raw.asInstanceOf)
-  ).map(fromCString(_))
+  def getEnvironment()(using Zone): Array[String] /* None */ =
+    __decode_nullable_ptrs(
+      g_app_launch_context_get_environment(this.raw.asInstanceOf)
+    ).map(fromCString(_))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -63,14 +67,16 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     *
     * Support for the XDG Activation Protocol was added in GLib 2.76.
     */
-  def getStartupNotifyId(info: AppInfo, files: Ptr[GList])(using Zone): String =
-    fromCString(
-      g_app_launch_context_get_startup_notify_id(
-        this.raw.asInstanceOf,
-        info.getUnsafeRawPointer().asInstanceOf,
-        files
-      ).asInstanceOf
-    )
+  def getStartupNotifyId(
+      info: AppInfo /* Some(Ptr[GAppInfo]) */,
+      files: Ptr[GList] /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
+  )(using Zone): String /* None */ = fromCString(
+    g_app_launch_context_get_startup_notify_id(
+      this.raw.asInstanceOf,
+      info.getUnsafeRawPointer().asInstanceOf,
+      files
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -78,20 +84,22 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * application startup notification started in
     * g_app_launch_context_get_startup_notify_id().
     */
-  def launchFailed(startup_notify_id: String | CString)(using Zone): Unit =
-    g_app_launch_context_launch_failed(
-      this.raw.asInstanceOf,
-      __sn_extract_string(startup_notify_id)
-    )
+  def launchFailed(
+      startup_notify_id: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = g_app_launch_context_launch_failed(
+    this.raw.asInstanceOf,
+    __sn_extract_string(startup_notify_id)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Arranges for @variable to be set to @value in the child's environment when @context
     * is used to launch an application.
     */
-  def setenv(variable: String | CString, value: String | CString)(using
-      Zone
-  ): Unit = g_app_launch_context_setenv(
+  def setenv(
+      variable: String | CString /* Some(CString) */,
+      value: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = g_app_launch_context_setenv(
     this.raw.asInstanceOf,
     __sn_extract_string(variable),
     __sn_extract_string(value)
@@ -102,11 +110,12 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * Arranges for @variable to be unset in the child's environment when @context
     * is used to launch an application.
     */
-  def unsetenv(variable: String | CString)(using Zone): Unit =
-    g_app_launch_context_unsetenv(
-      this.raw.asInstanceOf,
-      __sn_extract_string(variable)
-    )
+  def unsetenv(
+      variable: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = g_app_launch_context_unsetenv(
+    this.raw.asInstanceOf,
+    __sn_extract_string(variable)
+  )
 
   private inline def __decode_nullable_ptrs[T](p: Ptr[Ptr[T]])(using
       ptag: Tag[T]

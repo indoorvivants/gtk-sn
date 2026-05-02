@@ -22,6 +22,7 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
     extends Object(raw.asInstanceOf),
       Paintable,
       SymbolicPaintable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -30,7 +31,7 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
     *
     * Returns %NULL if the icon was not loaded from a file.
     */
-  def getFile(): File = new File.Abstract(
+  def getFile(): File /* None */ = new File.Abstract(
     gtk_icon_paintable_get_file(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -46,7 +47,7 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
     * If the icon was created without an icon theme, this function returns
     * %NULL.
     */
-  def getIconName()(using Zone): String = fromCString(
+  def getIconName()(using Zone): String /* None */ = fromCString(
     gtk_icon_paintable_get_icon_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -60,7 +61,7 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
     * Note that to render a symbolic `GtkIconPaintable` properly (with
     * recoloring), you have to set its icon name on a `GtkImage`.
     */
-  def isSymbolic(): Boolean =
+  def isSymbolic(): Boolean /* None */ =
     gtk_icon_paintable_is_symbolic(this.raw.asInstanceOf).value.!=(0)
 
 end IconPaintable
@@ -72,12 +73,15 @@ object IconPaintable:
     *
     * The icon can then be rendered by using it as a `GdkPaintable`.
     */
-  def forFile(file: File, size: Int, scale: Int): IconPaintable =
-    new IconPaintable(
-      gtk_icon_paintable_new_for_file(
-        file.getUnsafeRawPointer().asInstanceOf,
-        size,
-        scale
-      ).asInstanceOf
-    )
+  def forFile(
+      file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */,
+      size: Int /* Some(CInt) */,
+      scale: Int /* Some(CInt) */
+  ): IconPaintable = new IconPaintable(
+    gtk_icon_paintable_new_for_file(
+      file.getUnsafeRawPointer().asInstanceOf,
+      size,
+      scale
+    ).asInstanceOf
+  )
 end IconPaintable

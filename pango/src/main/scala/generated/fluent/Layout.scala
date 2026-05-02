@@ -64,6 +64,7 @@ import sn.gnome.pango.internal.PangoWrapMode
   * results of a `PangoLayout` as a list of lines.
   */
 class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -74,7 +75,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * This function should be called if you make changes to the context
     * subsequent to creating the layout.
     */
-  def contextChanged(): Unit = pango_layout_context_changed(
+  def contextChanged(): Unit /* None */ = pango_layout_context_changed(
     this.raw.asInstanceOf
   )
 
@@ -85,7 +86,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * The attribute list, tab array, and text from the original layout are all
     * copied by value.
     */
-  def copy(): Layout = new Layout(
+  def copy(): Layout /* None */ = new Layout(
     pango_layout_copy(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -94,7 +95,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Gets the alignment for the layout: how partial lines are positioned within
     * the horizontal space available.
     */
-  def getAlignment(): PangoAlignment = pango_layout_get_alignment(
+  def getAlignment(): PangoAlignment /* None */ = pango_layout_get_alignment(
     this.raw.asInstanceOf
   )
 
@@ -102,9 +103,8 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * Gets the attribute list for the layout, if any.
     */
-  def getAttributes(): Ptr[PangoAttrList] = pango_layout_get_attributes(
-    this.raw.asInstanceOf
-  )
+  def getAttributes(): Ptr[PangoAttrList] /* None */ =
+    pango_layout_get_attributes(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -113,14 +113,16 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * See [method@Pango.Layout.set_auto_dir].
     */
-  def getAutoDir(): Boolean =
+  def getAutoDir(): Boolean /* None */ =
     pango_layout_get_auto_dir(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the Y position of baseline of the first line in @layout.
     */
-  def getBaseline(): Int = pango_layout_get_baseline(this.raw.asInstanceOf)
+  def getBaseline(): Int /* None */ = pango_layout_get_baseline(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -138,13 +140,13 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_caret_pos contains an OUT parameter, which is not supported yet"
   )
-  def getCaretPos(using DummyImplicit) = ???
+  private def getCaretPos__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the number of Unicode characters in the the text of @layout.
     */
-  def getCharacterCount(): Int = pango_layout_get_character_count(
+  def getCharacterCount(): Int /* None */ = pango_layout_get_character_count(
     this.raw.asInstanceOf
   ).value
 
@@ -152,7 +154,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * Retrieves the `PangoContext` used for this layout.
     */
-  def getContext(): Context = new Context(
+  def getContext(): Context /* None */ = new Context(
     pango_layout_get_context(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -187,13 +189,13 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_cursor_pos contains an OUT parameter, which is not supported yet"
   )
-  def getCursorPos(using DummyImplicit) = ???
+  private def getCursorPos__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the text direction at the given character position in @layout.
     */
-  def getDirection(index: Int): PangoDirection =
+  def getDirection(index: Int /* Some(CInt) */ ): PangoDirection /* None */ =
     pango_layout_get_direction(this.raw.asInstanceOf, index)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -205,9 +207,8 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Use [method@Pango.Layout.is_ellipsized] to query whether any paragraphs
     * were actually ellipsized.
     */
-  def getEllipsize(): PangoEllipsizeMode = pango_layout_get_ellipsize(
-    this.raw.asInstanceOf
-  )
+  def getEllipsize(): PangoEllipsizeMode /* None */ =
+    pango_layout_get_ellipsize(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -225,13 +226,13 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_extents contains an OUT parameter, which is not supported yet"
   )
-  def getExtents(using DummyImplicit) = ???
+  private def getExtents__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the font description for the layout, if any.
     */
-  def getFontDescription(): Ptr[PangoFontDescription] =
+  def getFontDescription(): Ptr[PangoFontDescription] /* None */ =
     pango_layout_get_font_description(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -240,7 +241,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * See [method@Pango.Layout.set_height] for details.
     */
-  def getHeight(): Int = pango_layout_get_height(this.raw.asInstanceOf)
+  def getHeight(): Int /* None */ = pango_layout_get_height(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -248,13 +251,15 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * A negative value indicates a hanging indentation.
     */
-  def getIndent(): Int = pango_layout_get_indent(this.raw.asInstanceOf)
+  def getIndent(): Int /* None */ = pango_layout_get_indent(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns an iterator to iterate over the visual extents of the layout.
     */
-  def getIter(): Ptr[PangoLayoutIter] = pango_layout_get_iter(
+  def getIter(): Ptr[PangoLayoutIter] /* None */ = pango_layout_get_iter(
     this.raw.asInstanceOf
   )
 
@@ -263,7 +268,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Gets whether each complete line should be stretched to fill the entire
     * width of the layout.
     */
-  def getJustify(): Boolean =
+  def getJustify(): Boolean /* None */ =
     pango_layout_get_justify(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -271,7 +276,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Gets whether the last line should be stretched to fill the entire width of
     * the layout.
     */
-  def getJustifyLastLine(): Boolean =
+  def getJustifyLastLine(): Boolean /* None */ =
     pango_layout_get_justify_last_line(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -281,14 +286,16 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Use the faster [method@Pango.Layout.get_line_readonly] if you do not plan
     * to modify the contents of the line (glyphs, glyph widths, etc.).
     */
-  def getLine(line: Int): Ptr[PangoLayoutLine] =
+  def getLine(line: Int /* Some(CInt) */ ): Ptr[PangoLayoutLine] /* None */ =
     pango_layout_get_line(this.raw.asInstanceOf, line)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the count of lines for the @layout.
     */
-  def getLineCount(): Int = pango_layout_get_line_count(this.raw.asInstanceOf)
+  def getLineCount(): Int /* None */ = pango_layout_get_line_count(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -298,7 +305,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * user is not expected to modify the contents of the line (glyphs, glyph
     * widths, etc.).
     */
-  def getLineReadonly(line: Int): Ptr[PangoLayoutLine] =
+  def getLineReadonly(
+      line: Int /* Some(CInt) */
+  ): Ptr[PangoLayoutLine] /* None */ =
     pango_layout_get_line_readonly(this.raw.asInstanceOf, line)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -307,7 +316,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * See [method@Pango.Layout.set_line_spacing].
     */
-  def getLineSpacing(): Float = pango_layout_get_line_spacing(
+  def getLineSpacing(): Float /* None */ = pango_layout_get_line_spacing(
     this.raw.asInstanceOf
   )
 
@@ -318,7 +327,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Use the faster [method@Pango.Layout.get_lines_readonly] if you do not plan
     * to modify the contents of the lines (glyphs, glyph widths, etc.).
     */
-  def getLines(): Ptr[GSList] = pango_layout_get_lines(this.raw.asInstanceOf)
+  def getLines(): Ptr[GSList] /* None */ = pango_layout_get_lines(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -328,9 +339,8 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * user is not expected to modify the contents of the lines (glyphs, glyph
     * widths, etc.).
     */
-  def getLinesReadonly(): Ptr[GSList] = pango_layout_get_lines_readonly(
-    this.raw.asInstanceOf
-  )
+  def getLinesReadonly(): Ptr[GSList] /* None */ =
+    pango_layout_get_lines_readonly(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -339,7 +349,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_log_attrs contains an OUT parameter, which is not supported yet"
   )
-  def getLogAttrs(using DummyImplicit) = ???
+  private def getLogAttrs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -357,7 +367,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_log_attrs_readonly contains an OUT parameter, which is not supported yet"
   )
-  def getLogAttrsReadonly(using DummyImplicit) = ???
+  private def getLogAttrsReadonly__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -371,7 +381,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_pixel_extents contains an OUT parameter, which is not supported yet"
   )
-  def getPixelExtents(using DummyImplicit) = ???
+  private def getPixelExtents__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -385,7 +395,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_pixel_size contains an OUT parameter, which is not supported yet"
   )
-  def getPixelSize(using DummyImplicit) = ???
+  private def getPixelSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -401,7 +411,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * is useful for example to decide whether a layout needs redrawing. To force
     * the serial to be increased, use [method@Pango.Layout.context_changed].
     */
-  def getSerial(): UInt = pango_layout_get_serial(this.raw.asInstanceOf).value
+  def getSerial(): UInt /* None */ = pango_layout_get_serial(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -409,7 +421,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * See [method@Pango.Layout.set_single_paragraph_mode].
     */
-  def getSingleParagraphMode(): Boolean =
+  def getSingleParagraphMode(): Boolean /* None */ =
     pango_layout_get_single_paragraph_mode(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -422,13 +434,15 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_size contains an OUT parameter, which is not supported yet"
   )
-  def getSize(using DummyImplicit) = ???
+  private def getSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the amount of spacing between the lines of the layout.
     */
-  def getSpacing(): Int = pango_layout_get_spacing(this.raw.asInstanceOf)
+  def getSpacing(): Int /* None */ = pango_layout_get_spacing(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -439,7 +453,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * The return value should be freed with [method@Pango.TabArray.free].
     */
-  def getTabs(): Ptr[PangoTabArray] = pango_layout_get_tabs(
+  def getTabs(): Ptr[PangoTabArray] /* None */ = pango_layout_get_tabs(
     this.raw.asInstanceOf
   )
 
@@ -449,7 +463,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * The returned text should not be freed or modified.
     */
-  def getText()(using Zone): String = fromCString(
+  def getText()(using Zone): String /* None */ = fromCString(
     pango_layout_get_text(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -462,15 +476,14 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * with %PANGO_ATTR_FALLBACK, to check if a certain font supports all the
     * characters in the string.
     */
-  def getUnknownGlyphsCount(): Int = pango_layout_get_unknown_glyphs_count(
-    this.raw.asInstanceOf
-  )
+  def getUnknownGlyphsCount(): Int /* None */ =
+    pango_layout_get_unknown_glyphs_count(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the width to which the lines of the `PangoLayout` should wrap.
     */
-  def getWidth(): Int = pango_layout_get_width(this.raw.asInstanceOf)
+  def getWidth(): Int /* None */ = pango_layout_get_width(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -479,7 +492,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Use [method@Pango.Layout.is_wrapped] to query whether any paragraphs were
     * actually wrapped.
     */
-  def getWrap(): PangoWrapMode = pango_layout_get_wrap(this.raw.asInstanceOf)
+  def getWrap(): PangoWrapMode /* None */ = pango_layout_get_wrap(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -490,7 +505,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method index_to_line_x contains an OUT parameter, which is not supported yet"
   )
-  def indexToLineX(using DummyImplicit) = ???
+  private def indexToLineX__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -505,7 +520,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method index_to_pos contains an OUT parameter, which is not supported yet"
   )
-  def indexToPos(using DummyImplicit) = ???
+  private def indexToPos__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -515,7 +530,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * %PANGO_ELLIPSIZE_NONE, a positive width is set on @layout, and there are
     * paragraphs exceeding that width that have to be ellipsized.
     */
-  def isEllipsized(): Boolean =
+  def isEllipsized(): Boolean /* None */ =
     pango_layout_is_ellipsized(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -526,7 +541,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * mode of @layout is set to %PANGO_ELLIPSIZE_NONE, and there are paragraphs
     * exceeding the layout width that have to be wrapped.
     */
-  def isWrapped(): Boolean =
+  def isWrapped(): Boolean /* None */ =
     pango_layout_is_wrapped(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -549,7 +564,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method move_cursor_visually contains an OUT parameter, which is not supported yet"
   )
-  def moveCursorVisually(using DummyImplicit) = ???
+  private def moveCursorVisually__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -563,7 +578,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * The intended use of this function is testing, benchmarking and debugging.
     * The format is not meant as a permanent storage format.
     */
-  def serialize(flags: PangoLayoutSerializeFlags): Ptr[GBytes] =
+  def serialize(
+      flags: PangoLayoutSerializeFlags /* Some(PangoLayoutSerializeFlags) */
+  ): Ptr[GBytes] /* None */ =
     pango_layout_serialize(this.raw.asInstanceOf, flags)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -573,7 +590,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * The default alignment is %PANGO_ALIGN_LEFT.
     */
-  def setAlignment(alignment: PangoAlignment): Unit =
+  def setAlignment(
+      alignment: PangoAlignment /* Some(PangoAlignment) */
+  ): Unit /* None */ =
     pango_layout_set_alignment(this.raw.asInstanceOf, alignment)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -582,8 +601,14 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * References @attrs, so the caller can unref its reference.
     */
-  def setAttributes(attrs: Ptr[PangoAttrList]): Unit =
-    pango_layout_set_attributes(this.raw.asInstanceOf, attrs)
+  def setAttributes(
+      attrs: Option[Ptr[PangoAttrList] /* Some(Ptr[PangoAttrList]) */ ]
+  ): Unit /* None */ = pango_layout_set_attributes(
+    this.raw.asInstanceOf,
+    attrs
+      .map[Ptr[PangoAttrList]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[PangoAttrList]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -604,7 +629,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * direction of the context, the interpretation of %PANGO_ALIGN_LEFT and
     * %PANGO_ALIGN_RIGHT are swapped.
     */
-  def setAutoDir(auto_dir: Boolean): Unit = pango_layout_set_auto_dir(
+  def setAutoDir(
+      auto_dir: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = pango_layout_set_auto_dir(
     this.raw.asInstanceOf,
     gboolean(gint((if auto_dir == true then 1 else 0)))
   )
@@ -627,7 +654,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * See [method@Pango.Layout.set_height] for details.
     */
-  def setEllipsize(ellipsize: PangoEllipsizeMode): Unit =
+  def setEllipsize(
+      ellipsize: PangoEllipsizeMode /* Some(PangoEllipsizeMode) */
+  ): Unit /* None */ =
     pango_layout_set_ellipsize(this.raw.asInstanceOf, ellipsize)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -637,8 +666,16 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * If no font description is set on the layout, the font description from the
     * layout's context is used.
     */
-  def setFontDescription(desc: Ptr[PangoFontDescription]): Unit =
-    pango_layout_set_font_description(this.raw.asInstanceOf, desc)
+  def setFontDescription(
+      desc: Option[
+        Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */
+      ]
+  ): Unit /* None */ = pango_layout_set_font_description(
+    this.raw.asInstanceOf,
+    desc
+      .map[Ptr[PangoFontDescription]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[PangoFontDescription]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -668,7 +705,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *   behavior is undefined if a height other than -1 is set and ellipsization
     *   mode is set to %PANGO_ELLIPSIZE_NONE, and may change in the future.
     */
-  def setHeight(height: Int): Unit =
+  def setHeight(height: Int /* Some(CInt) */ ): Unit /* None */ =
     pango_layout_set_height(this.raw.asInstanceOf, height)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -684,7 +721,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * The default value is 0.
     */
-  def setIndent(indent: Int): Unit =
+  def setIndent(indent: Int /* Some(CInt) */ ): Unit /* None */ =
     pango_layout_set_indent(this.raw.asInstanceOf, indent)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -706,7 +743,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * Also see [method@Pango.Layout.set_justify_last_line].
     */
-  def setJustify(justify: Boolean): Unit = pango_layout_set_justify(
+  def setJustify(
+      justify: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = pango_layout_set_justify(
     this.raw.asInstanceOf,
     gboolean(gint((if justify == true then 1 else 0)))
   )
@@ -721,11 +760,12 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * The default value is %FALSE.
     */
-  def setJustifyLastLine(justify: Boolean): Unit =
-    pango_layout_set_justify_last_line(
-      this.raw.asInstanceOf,
-      gboolean(gint((if justify == true then 1 else 0)))
-    )
+  def setJustifyLastLine(
+      justify: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = pango_layout_set_justify_last_line(
+    this.raw.asInstanceOf,
+    gboolean(gint((if justify == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -746,7 +786,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Note: for semantics that are closer to the CSS line-height property, see
     * [func@Pango.attr_line_height_new].
     */
-  def setLineSpacing(factor: Float): Unit =
+  def setLineSpacing(factor: Float /* Some(Float) */ ): Unit /* None */ =
     pango_layout_set_line_spacing(this.raw.asInstanceOf, factor.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -760,12 +800,14 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * This is the same as [method@Pango.Layout.set_markup_with_accel], but the
     * markup text isn't scanned for accelerators.
     */
-  def setMarkup(markup: String | CString, length: Int)(using Zone): Unit =
-    pango_layout_set_markup(
-      this.raw.asInstanceOf,
-      __sn_extract_string(markup),
-      length
-    )
+  def setMarkup(
+      markup: String | CString /* Some(CString) */,
+      length: Int /* Some(CInt) */
+  )(using Zone): Unit /* None */ = pango_layout_set_markup(
+    this.raw.asInstanceOf,
+    __sn_extract_string(markup),
+    length
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -785,7 +827,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method set_markup_with_accel contains an OUT parameter, which is not supported yet"
   )
-  def setMarkupWithAccel(using DummyImplicit) = ???
+  private def setMarkupWithAccel__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -798,11 +840,12 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * The default value is %FALSE.
     */
-  def setSingleParagraphMode(setting: Boolean): Unit =
-    pango_layout_set_single_paragraph_mode(
-      this.raw.asInstanceOf,
-      gboolean(gint((if setting == true then 1 else 0)))
-    )
+  def setSingleParagraphMode(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = pango_layout_set_single_paragraph_mode(
+    this.raw.asInstanceOf,
+    gboolean(gint((if setting == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -822,7 +865,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Note: for semantics that are closer to the CSS line-height property, see
     * [func@Pango.attr_line_height_new].
     */
-  def setSpacing(spacing: Int): Unit =
+  def setSpacing(spacing: Int /* Some(CInt) */ ): Unit /* None */ =
     pango_layout_set_spacing(this.raw.asInstanceOf, spacing)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -840,8 +883,14 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * will move content away from its tab-aligned positions. The same is true
     * for alignments other than %PANGO_ALIGN_LEFT.
     */
-  def setTabs(tabs: Ptr[PangoTabArray]): Unit =
-    pango_layout_set_tabs(this.raw.asInstanceOf, tabs)
+  def setTabs(
+      tabs: Option[Ptr[PangoTabArray] /* Some(Ptr[PangoTabArray]) */ ]
+  ): Unit /* None */ = pango_layout_set_tabs(
+    this.raw.asInstanceOf,
+    tabs
+      .map[Ptr[PangoTabArray]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[PangoTabArray]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -856,12 +905,14 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * set on the layout from the markup as this function does not clear
     * attributes.
     */
-  def setText(text: String | CString, length: Int)(using Zone): Unit =
-    pango_layout_set_text(
-      this.raw.asInstanceOf,
-      __sn_extract_string(text),
-      length
-    )
+  def setText(
+      text: String | CString /* Some(CString) */,
+      length: Int /* Some(CInt) */
+  )(using Zone): Unit /* None */ = pango_layout_set_text(
+    this.raw.asInstanceOf,
+    __sn_extract_string(text),
+    length
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -870,7 +921,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * The default value is -1: no width set.
     */
-  def setWidth(width: Int): Unit =
+  def setWidth(width: Int /* Some(CInt) */ ): Unit /* None */ =
     pango_layout_set_width(this.raw.asInstanceOf, width)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -883,7 +934,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * The default value is %PANGO_WRAP_WORD.
     */
-  def setWrap(wrap: PangoWrapMode): Unit =
+  def setWrap(wrap: PangoWrapMode /* Some(PangoWrapMode) */ ): Unit /* None */ =
     pango_layout_set_wrap(this.raw.asInstanceOf, wrap)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -898,9 +949,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * It is mostly intended for use inside a debugger to quickly dump a layout
     * to a file for later inspection.
     */
-  def writeToFile(flags: PangoLayoutSerializeFlags, filename: String | CString)(
-      using Zone
-  ): GResult[Boolean] = GResult.wrap(__errorPtr =>
+  def writeToFile(
+      flags: PangoLayoutSerializeFlags /* Some(PangoLayoutSerializeFlags) */,
+      filename: String | CString /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     pango_layout_write_to_file(
       this.raw.asInstanceOf,
       flags,
@@ -924,7 +976,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method xy_to_index contains an OUT parameter, which is not supported yet"
   )
-  def xyToIndex(using DummyImplicit) = ???
+  private def xyToIndex__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -942,7 +994,8 @@ object Layout:
     * Create a new `PangoLayout` object with attributes initialized to default
     * values for a particular `PangoContext`.
     */
-  def apply(context: Context): Layout = new Layout(
-    pango_layout_new(context.getUnsafeRawPointer().asInstanceOf).asInstanceOf
-  )
+  def apply(context: Context /* Some(Ptr[PangoContext]) */ ): Layout =
+    new Layout(
+      pango_layout_new(context.getUnsafeRawPointer().asInstanceOf).asInstanceOf
+    )
 end Layout

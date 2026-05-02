@@ -18,6 +18,7 @@ import sn.gnome.gsk4.internal.GskConicGradientNode
   */
 class ConicGradientNode(raw: Ptr[GskConicGradientNode])
     extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -30,7 +31,7 @@ class ConicGradientNode(raw: Ptr[GskConicGradientNode])
     *
     * angle = 90 - gsk_conic_gradient_node_get_rotation()
     */
-  def getAngle(): Float = gsk_conic_gradient_node_get_angle(
+  def getAngle(): Float /* None */ = gsk_conic_gradient_node_get_angle(
     this.raw.asInstanceOf
   )
 
@@ -38,9 +39,8 @@ class ConicGradientNode(raw: Ptr[GskConicGradientNode])
     *
     * Retrieves the center pointer for the gradient.
     */
-  def getCenter(): Ptr[graphene_point_t] = gsk_conic_gradient_node_get_center(
-    this.raw.asInstanceOf
-  )
+  def getCenter(): Ptr[graphene_point_t] /* None */ =
+    gsk_conic_gradient_node_get_center(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -49,20 +49,20 @@ class ConicGradientNode(raw: Ptr[GskConicGradientNode])
   @annotation.compileTimeOnly(
     "Method get_color_stops contains an OUT parameter, which is not supported yet"
   )
-  def getColorStops(using DummyImplicit) = ???
+  private def getColorStops__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the number of color stops in the gradient.
     */
-  def getNColorStops(): CUnsignedLongInt =
+  def getNColorStops(): CUnsignedLongInt /* None */ =
     gsk_conic_gradient_node_get_n_color_stops(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the rotation for the gradient in degrees.
     */
-  def getRotation(): Float = gsk_conic_gradient_node_get_rotation(
+  def getRotation(): Float /* None */ = gsk_conic_gradient_node_get_rotation(
     this.raw.asInstanceOf
   )
 
@@ -78,11 +78,15 @@ object ConicGradientNode:
     * added clockwise.
     */
   def apply(
-      bounds: Ptr[graphene_rect_t],
-      center: Ptr[graphene_point_t],
-      rotation: Float,
-      color_stops: Ptr[GskColorStop],
-      n_color_stops: CUnsignedLongInt
+      bounds: Ptr[
+        graphene_rect_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
+      center: Ptr[
+        graphene_point_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
+      rotation: Float /* Some(Float) */,
+      color_stops: Ptr[GskColorStop /* None */ ] /* Some(Ptr[GskColorStop]) */,
+      n_color_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): ConicGradientNode = new ConicGradientNode(
     gsk_conic_gradient_node_new(
       bounds,

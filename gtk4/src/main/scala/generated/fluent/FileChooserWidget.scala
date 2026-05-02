@@ -29,6 +29,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
       Buildable,
       ConstraintTarget,
       FileChooser:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end FileChooserWidget
@@ -41,6 +42,9 @@ object FileChooserWidget:
     * This is a file chooser widget that can be embedded in custom windows, and
     * it is the same widget that is used by `GtkFileChooserDialog`.
     */
-  def apply(action: GtkFileChooserAction): FileChooserWidget =
-    new FileChooserWidget(gtk_file_chooser_widget_new(action).asInstanceOf)
+  def apply(
+      action: GtkFileChooserAction /* Some(GtkFileChooserAction) */
+  ): FileChooserWidget = new FileChooserWidget(
+    gtk_file_chooser_widget_new(action).asInstanceOf
+  )
 end FileChooserWidget

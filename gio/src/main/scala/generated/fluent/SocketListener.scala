@@ -34,6 +34,7 @@ import sn.gnome.gobject.fluent.Object
   */
 class SocketListener(raw: Ptr[GSocketListener])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -52,7 +53,7 @@ class SocketListener(raw: Ptr[GSocketListener])
   @annotation.compileTimeOnly(
     "Method accept contains an OUT parameter, which is not supported yet"
   )
-  def accept(using DummyImplicit) = ???
+  private def accept__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -62,14 +63,22 @@ class SocketListener(raw: Ptr[GSocketListener])
     * g_socket_listener_accept_finish() to get the result of the operation.
     */
   def acceptAsync(
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_socket_listener_accept_async(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_socket_listener_accept_async(
     this.raw.asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -79,7 +88,7 @@ class SocketListener(raw: Ptr[GSocketListener])
   @annotation.compileTimeOnly(
     "Method accept_finish contains an OUT parameter, which is not supported yet"
   )
-  def acceptFinish(using DummyImplicit) = ???
+  private def acceptFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -101,7 +110,7 @@ class SocketListener(raw: Ptr[GSocketListener])
   @annotation.compileTimeOnly(
     "Method accept_socket contains an OUT parameter, which is not supported yet"
   )
-  def acceptSocket(using DummyImplicit) = ???
+  private def acceptSocket__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -112,14 +121,22 @@ class SocketListener(raw: Ptr[GSocketListener])
     * operation.
     */
   def acceptSocketAsync(
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_socket_listener_accept_socket_async(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_socket_listener_accept_socket_async(
     this.raw.asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -130,7 +147,7 @@ class SocketListener(raw: Ptr[GSocketListener])
   @annotation.compileTimeOnly(
     "Method accept_socket_finish contains an OUT parameter, which is not supported yet"
   )
-  def acceptSocketFinish(using DummyImplicit) = ???
+  private def acceptSocketFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -160,7 +177,7 @@ class SocketListener(raw: Ptr[GSocketListener])
   @annotation.compileTimeOnly(
     "Method add_address contains an OUT parameter, which is not supported yet"
   )
-  def addAddress(using DummyImplicit) = ???
+  private def addAddress__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -176,14 +193,23 @@ class SocketListener(raw: Ptr[GSocketListener])
     *   addresses and do different things depending on what address is connected
     *   to.
     */
-  def addAnyInetPort(source_object: Object): GResult[UShort] =
-    GResult.wrap(__errorPtr =>
-      g_socket_listener_add_any_inet_port(
-        this.raw.asInstanceOf,
-        source_object.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value
-    )
+  def addAnyInetPort(
+      source_object: Option[
+        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+      ]
+  ): GResult[UShort /* None */ ] = GResult.wrap(__errorPtr =>
+    g_socket_listener_add_any_inet_port(
+      this.raw.asInstanceOf,
+      source_object
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
+        ),
+      __errorPtr
+    ).value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -201,15 +227,25 @@ class SocketListener(raw: Ptr[GSocketListener])
     * be done automatically when you drop your final reference to @listener, as
     * references may be held internally.
     */
-  def addInetPort(port: UShort, source_object: Object): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_socket_listener_add_inet_port(
-        this.raw.asInstanceOf,
-        guint16(port),
-        source_object.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def addInetPort(
+      port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      source_object: Option[
+        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+      ]
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_socket_listener_add_inet_port(
+      this.raw.asInstanceOf,
+      guint16(port),
+      source_object
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
+        ),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -227,21 +263,31 @@ class SocketListener(raw: Ptr[GSocketListener])
     * Before GLib 2.42, the @socket was automatically closed on finalization of
     * the @listener, even if references to it were held elsewhere.
     */
-  def addSocket(socket: Socket, source_object: Object): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_socket_listener_add_socket(
-        this.raw.asInstanceOf,
-        socket.getUnsafeRawPointer().asInstanceOf,
-        source_object.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def addSocket(
+      socket: Socket /* Some(Ptr[GSocket]) */,
+      source_object: Option[
+        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+      ]
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_socket_listener_add_socket(
+      this.raw.asInstanceOf,
+      socket.getUnsafeRawPointer().asInstanceOf,
+      source_object
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
+        ),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Closes all the sockets in the listener.
     */
-  def close(): Unit = g_socket_listener_close(this.raw.asInstanceOf)
+  def close(): Unit /* None */ = g_socket_listener_close(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -252,7 +298,7 @@ class SocketListener(raw: Ptr[GSocketListener])
     *
     * See g_socket_set_listen_backlog() for details
     */
-  def setBacklog(listen_backlog: Int): Unit =
+  def setBacklog(listen_backlog: Int /* Some(CInt) */ ): Unit /* None */ =
     g_socket_listener_set_backlog(this.raw.asInstanceOf, listen_backlog)
 
 end SocketListener

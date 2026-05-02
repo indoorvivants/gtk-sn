@@ -27,6 +27,7 @@ import sn.gnome.pango.internal.PangoLanguage
 class FontMap(raw: Ptr[PangoFontMap])
     extends Object(raw.asInstanceOf),
       ListModel:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -38,7 +39,7 @@ class FontMap(raw: Ptr[PangoFontMap])
     * something applications won't do. Backends should call this function if
     * they have attached extra data to the context and such data is changed.
     */
-  def changed(): Unit = pango_font_map_changed(this.raw.asInstanceOf)
+  def changed(): Unit /* None */ = pango_font_map_changed(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -52,7 +53,7 @@ class FontMap(raw: Ptr[PangoFontMap])
     * toolkit has, among others, gtk_widget_get_pango_context(). Use those
     * instead.
     */
-  def createContext(): Context = new Context(
+  def createContext(): Context /* None */ = new Context(
     pango_font_map_create_context(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -60,13 +61,14 @@ class FontMap(raw: Ptr[PangoFontMap])
     *
     * Gets a font family by name.
     */
-  def getFamily(name: String | CString)(using Zone): FontFamily =
-    new FontFamily(
-      pango_font_map_get_family(
-        this.raw.asInstanceOf,
-        __sn_extract_string(name)
-      ).asInstanceOf
-    )
+  def getFamily(
+      name: String | CString /* Some(CString) */
+  )(using Zone): FontFamily /* None */ = new FontFamily(
+    pango_font_map_get_family(
+      this.raw.asInstanceOf,
+      __sn_extract_string(name)
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -83,7 +85,9 @@ class FontMap(raw: Ptr[PangoFontMap])
     * This can be used to automatically detect changes to a `PangoFontMap`, like
     * in `PangoContext`.
     */
-  def getSerial(): UInt = pango_font_map_get_serial(this.raw.asInstanceOf).value
+  def getSerial(): UInt /* None */ = pango_font_map_get_serial(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -97,20 +101,22 @@ class FontMap(raw: Ptr[PangoFontMap])
   @annotation.compileTimeOnly(
     "Method list_families contains an OUT parameter, which is not supported yet"
   )
-  def listFamilies(using DummyImplicit) = ???
+  private def listFamilies__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Load the font in the fontmap that is the closest match for @desc.
     */
-  def loadFont(context: Context, desc: Ptr[PangoFontDescription]): Font =
-    new Font(
-      pango_font_map_load_font(
-        this.raw.asInstanceOf,
-        context.getUnsafeRawPointer().asInstanceOf,
-        desc
-      ).asInstanceOf
-    )
+  def loadFont(
+      context: Context /* Some(Ptr[PangoContext]) */,
+      desc: Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */
+  ): Font /* None */ = new Font(
+    pango_font_map_load_font(
+      this.raw.asInstanceOf,
+      context.getUnsafeRawPointer().asInstanceOf,
+      desc
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -118,10 +124,10 @@ class FontMap(raw: Ptr[PangoFontMap])
     * matching @desc.
     */
   def loadFontset(
-      context: Context,
-      desc: Ptr[PangoFontDescription],
-      language: Ptr[PangoLanguage]
-  ): Fontset = new Fontset(
+      context: Context /* Some(Ptr[PangoContext]) */,
+      desc: Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */,
+      language: Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */
+  ): Fontset /* None */ = new Fontset(
     pango_font_map_load_fontset(
       this.raw.asInstanceOf,
       context.getUnsafeRawPointer().asInstanceOf,

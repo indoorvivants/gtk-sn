@@ -28,13 +28,14 @@ import sn.gnome.gobject.fluent.Object
   */
 class TlsCertificate(raw: Ptr[GTlsCertificate])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the #GTlsCertificate representing @cert's issuer, if known
     */
-  def getIssuer(): TlsCertificate = new TlsCertificate(
+  def getIssuer(): TlsCertificate /* None */ = new TlsCertificate(
     g_tls_certificate_get_issuer(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -42,7 +43,7 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     *
     * Returns the issuer name from the certificate.
     */
-  def getIssuerName()(using Zone): String = fromCString(
+  def getIssuerName()(using Zone): String /* None */ = fromCString(
     g_tls_certificate_get_issuer_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -50,21 +51,21 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     *
     * Returns the time at which the certificate became or will become invalid.
     */
-  def getNotValidAfter(): Ptr[GDateTime] =
+  def getNotValidAfter(): Ptr[GDateTime] /* None */ =
     g_tls_certificate_get_not_valid_after(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the time at which the certificate became or will become valid.
     */
-  def getNotValidBefore(): Ptr[GDateTime] =
+  def getNotValidBefore(): Ptr[GDateTime] /* None */ =
     g_tls_certificate_get_not_valid_before(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the subject name from the certificate.
     */
-  def getSubjectName()(using Zone): String = fromCString(
+  def getSubjectName()(using Zone): String /* None */ = fromCString(
     g_tls_certificate_get_subject_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -76,7 +77,9 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     * #GTlsCertificate:issuer, #GTlsCertificate:private-key, or
     * #GTlsCertificate:private-key-pem properties differ.
     */
-  def isSame(cert_two: TlsCertificate): Boolean = g_tls_certificate_is_same(
+  def isSame(
+      cert_two: TlsCertificate /* Some(Ptr[GTlsCertificate]) */
+  ): Boolean /* None */ = g_tls_certificate_is_same(
     this.raw.asInstanceOf,
     cert_two.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
@@ -116,12 +119,16 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     * connection is to let #GTlsConnection handle the verification.
     */
   def verify(
-      identity: SocketConnectable,
-      trusted_ca: TlsCertificate
-  ): GTlsCertificateFlags = g_tls_certificate_verify(
+      identity: Option[SocketConnectable /* Some(Ptr[GSocketConnectable]) */ ],
+      trusted_ca: Option[TlsCertificate /* Some(Ptr[GTlsCertificate]) */ ]
+  ): GTlsCertificateFlags /* None */ = g_tls_certificate_verify(
     this.raw.asInstanceOf,
-    identity.getUnsafeRawPointer().asInstanceOf,
-    trusted_ca.getUnsafeRawPointer().asInstanceOf
+    identity
+      .map[Ptr[GSocketConnectable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GSocketConnectable]]),
+    trusted_ca
+      .map[Ptr[GTlsCertificate]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GTlsCertificate]])
   )
 
 end TlsCertificate
@@ -137,15 +144,17 @@ object TlsCertificate:
     *
     * If @file cannot be read or parsed, the function will return %NULL and set @error.
     */
-  def fromFile(file: String | CString)(using Zone): GResult[TlsCertificate] =
-    GResult.wrap(__errorPtr =>
-      new TlsCertificate(
-        g_tls_certificate_new_from_file(
-          __sn_extract_string(file).asInstanceOf[Ptr[gchar]],
-          __errorPtr
-        ).asInstanceOf
-      )
+  def fromFile(
+      file: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
+    new TlsCertificate(
+      g_tls_certificate_new_from_file(
+        __sn_extract_string(file).asInstanceOf[Ptr[gchar]],
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -157,9 +166,12 @@ object TlsCertificate:
     * Currently only `.p12` and `.pfx` files are supported. See
     * g_tls_certificate_new_from_pkcs12() for more details.
     */
-  def fromFileWithPassword(file: String | CString, password: String | CString)(
-      using Zone
-  ): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
+  def fromFileWithPassword(
+      file: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      password: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
     new TlsCertificate(
       g_tls_certificate_new_from_file_with_password(
         __sn_extract_string(file).asInstanceOf[Ptr[gchar]],
@@ -185,9 +197,12 @@ object TlsCertificate:
     * and set @error. Otherwise, this behaves like
     * g_tls_certificate_new_from_pem().
     */
-  def fromFiles(cert_file: String | CString, key_file: String | CString)(using
-      Zone
-  ): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
+  def fromFiles(
+      cert_file: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key_file: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
     new TlsCertificate(
       g_tls_certificate_new_from_files(
         __sn_extract_string(cert_file).asInstanceOf[Ptr[gchar]],
@@ -216,9 +231,11 @@ object TlsCertificate:
     *   chain cannot be verified, the first certificate in the file will still
     *   be returned.
     */
-  def fromPem(data: String | CString, length: CLongInt)(using
-      Zone
-  ): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
+  def fromPem(
+      data: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
+  )(using Zone): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
     new TlsCertificate(
       g_tls_certificate_new_from_pem(
         __sn_extract_string(data).asInstanceOf[Ptr[gchar]],
@@ -256,13 +273,22 @@ object TlsCertificate:
     *  Note that the private key is not accessed until usage and may fail or require a PIN later.
     */
   def fromPkcs11Uris(
-      pkcs11_uri: String | CString,
-      private_key_pkcs11_uri: String | CString
+      pkcs11_uri: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      private_key_pkcs11_uri: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
   )(using Zone): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
     new TlsCertificate(
       g_tls_certificate_new_from_pkcs11_uris(
         __sn_extract_string(pkcs11_uri).asInstanceOf[Ptr[gchar]],
-        __sn_extract_string(private_key_pkcs11_uri).asInstanceOf[Ptr[gchar]],
+        private_key_pkcs11_uri
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
         __errorPtr
       ).asInstanceOf
     )
@@ -287,15 +313,23 @@ object TlsCertificate:
     * Other parsing failures will error with %G_TLS_ERROR_BAD_CERTIFICATE.
     */
   def fromPkcs12(
-      data: Ptr[guint8],
-      length: CUnsignedLongInt,
-      password: String | CString
+      data: Ptr[guint8] /* Some(Ptr[_root_.sn.gnome.glib.internal.guint8]) */,
+      length: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
+      password: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
   )(using Zone): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
     new TlsCertificate(
       g_tls_certificate_new_from_pkcs12(
         data.asInstanceOf,
         gsize(length),
-        __sn_extract_string(password).asInstanceOf[Ptr[gchar]],
+        password
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
         __errorPtr
       ).asInstanceOf
     )

@@ -23,6 +23,7 @@ import sn.gnome.gtk4.internal.GtkTreeListModelCreateModelFunc
 class TreeListModel(raw: Ptr[GtkTreeListModel])
     extends Object(raw.asInstanceOf),
       ListModel:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -33,7 +34,7 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     * This can be either rows added by changes to the underlying models or via
     * [method@Gtk.TreeListRow.set_expanded].
     */
-  def getAutoexpand(): Boolean =
+  def getAutoexpand(): Boolean /* None */ =
     gtk_tree_list_model_get_autoexpand(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -47,7 +48,9 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     *
     * Do not confuse this function with [method@Gtk.TreeListModel.get_row].
     */
-  def getChildRow(position: UInt): TreeListRow = new TreeListRow(
+  def getChildRow(
+      position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): TreeListRow /* None */ = new TreeListRow(
     gtk_tree_list_model_get_child_row(
       this.raw.asInstanceOf,
       guint(position)
@@ -58,7 +61,7 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     *
     * Gets the root model that @self was created with.
     */
-  def getModel(): ListModel = new ListModel.Abstract(
+  def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_tree_list_model_get_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -75,7 +78,7 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     * original state. You then need to call [method@Gtk.TreeListModel.get_row]
     * to get the custom `GtkTreeListRow`s.
     */
-  def getPassthrough(): Boolean =
+  def getPassthrough(): Boolean /* None */ =
     gtk_tree_list_model_get_passthrough(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -98,7 +101,9 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     * Do not confuse this function with
     * [method@Gtk.TreeListModel.get_child_row].
     */
-  def getRow(position: UInt): TreeListRow = new TreeListRow(
+  def getRow(
+      position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): TreeListRow /* None */ = new TreeListRow(
     gtk_tree_list_model_get_row(
       this.raw.asInstanceOf,
       guint(position)
@@ -113,11 +118,12 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     * to the model. This can be either rows added by changes to the underlying
     * models or via [method@Gtk.TreeListRow.set_expanded].
     */
-  def setAutoexpand(autoexpand: Boolean): Unit =
-    gtk_tree_list_model_set_autoexpand(
-      this.raw.asInstanceOf,
-      gboolean(gint((if autoexpand == true then 1 else 0)))
-    )
+  def setAutoexpand(
+      autoexpand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_tree_list_model_set_autoexpand(
+    this.raw.asInstanceOf,
+    gboolean(gint((if autoexpand == true then 1 else 0)))
+  )
 
 end TreeListModel
 
@@ -128,19 +134,23 @@ object TreeListModel:
     * collapsed.
     */
   def apply(
-      root: ListModel,
-      passthrough: Boolean,
-      autoexpand: Boolean,
-      create_func: GtkTreeListModelCreateModelFunc,
-      user_data: Ptr[Byte],
-      user_destroy: GDestroyNotify
+      root: ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */,
+      passthrough: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      autoexpand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      create_func: GtkTreeListModelCreateModelFunc /* Some(GtkTreeListModelCreateModelFunc) */,
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      user_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): TreeListModel = new TreeListModel(
     gtk_tree_list_model_new(
       root.getUnsafeRawPointer().asInstanceOf,
       gboolean(gint((if passthrough == true then 1 else 0))),
       gboolean(gint((if autoexpand == true then 1 else 0))),
       create_func,
-      gpointer(user_data),
+      user_data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
       user_destroy
     ).asInstanceOf
   )

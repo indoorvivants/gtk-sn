@@ -24,13 +24,14 @@ class MediaControls(raw: Ptr[GtkMediaControls])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the media stream managed by @controls or %NULL if none.
     */
-  def getMediaStream(): MediaStream = new MediaStream(
+  def getMediaStream(): MediaStream /* None */ = new MediaStream(
     gtk_media_controls_get_media_stream(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -38,11 +39,14 @@ class MediaControls(raw: Ptr[GtkMediaControls])
     *
     * Sets the stream that is controlled by @controls.
     */
-  def setMediaStream(stream: MediaStream): Unit =
-    gtk_media_controls_set_media_stream(
-      this.raw.asInstanceOf,
-      stream.getUnsafeRawPointer().asInstanceOf
-    )
+  def setMediaStream(
+      stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
+  ): Unit /* None */ = gtk_media_controls_set_media_stream(
+    this.raw.asInstanceOf,
+    stream
+      .map[Ptr[GtkMediaStream]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkMediaStream]])
+  )
 
 end MediaControls
 
@@ -51,9 +55,13 @@ object MediaControls:
     *
     * Creates a new `GtkMediaControls` managing the @stream passed to it.
     */
-  def apply(stream: MediaStream): MediaControls = new MediaControls(
+  def apply(
+      stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
+  ): MediaControls = new MediaControls(
     gtk_media_controls_new(
-      stream.getUnsafeRawPointer().asInstanceOf
+      stream
+        .map[Ptr[GtkMediaStream]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkMediaStream]])
     ).asInstanceOf
   )
 end MediaControls

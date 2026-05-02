@@ -26,13 +26,25 @@ case class TypeMapping(
     massageFromUnsafe.foldLeft(ref): (cur, m) =>
       m.render(cur)
 
-
-  def withMassageIntoUnsafe(m: Massage*) = copy(massageIntoUnsafe = massageIntoUnsafe ++ m)
-  def withMassageFromUnsafe(m: Massage*) = copy(massageFromUnsafe = massageFromUnsafe ++ m)
+  def withMassageIntoUnsafe(m: Massage*) =
+    copy(massageIntoUnsafe = massageIntoUnsafe ++ m)
+  def withMassageFromUnsafe(m: Massage*) =
+    copy(massageFromUnsafe = massageFromUnsafe ++ m)
 
   def withEffect(e: Effect*) = copy(effects = effects ++ e)
 end TypeMapping
 
 object TypeMapping:
   def apply(rer: String): TypeMapping = TypeMapping(rer, Nil, Nil, Nil)
-
+  def optional(tm: TypeMapping, cast: Option[String] = None) =
+    tm.copy(
+      scalaRepr = s"Option[${tm.scalaRepr}]",
+      massageIntoUnsafe = List(
+        Massage.Map("o", cast, tm.massageIntoUnsafe),
+        Massage.Field(
+          s"getOrElse(null${cast.map(c => s".asInstanceOf[$c]").getOrElse("")})"
+        )
+      ) ++ Option.when(cast.isEmpty)(Massage.InferredCast).toList,
+      massageFromUnsafe = Massage.Apply("Option") :: tm.massageFromUnsafe
+    )
+end TypeMapping

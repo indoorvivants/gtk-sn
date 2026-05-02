@@ -52,6 +52,7 @@ import sn.gnome.gtk4.internal.GtkIMContext
   * [class@Gtk.IMMulticontext].
   */
 class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -73,12 +74,14 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * in the existing text in response to new input. It is not useful for
     * applications.
     */
-  def deleteSurrounding(offset: Int, n_chars: Int): Boolean =
-    gtk_im_context_delete_surrounding(
-      this.raw.asInstanceOf,
-      offset,
-      n_chars
-    ).value.!=(0)
+  def deleteSurrounding(
+      offset: Int /* Some(CInt) */,
+      n_chars: Int /* Some(CInt) */
+  ): Boolean /* None */ = gtk_im_context_delete_surrounding(
+    this.raw.asInstanceOf,
+    offset,
+    n_chars
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -86,14 +89,14 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * input method without necessarily having a `GdkEvent` available.
     */
   def filterKey(
-      press: Boolean,
-      surface: Surface,
-      device: Device,
-      time: UInt,
-      keycode: UInt,
-      state: GdkModifierType,
-      group: Int
-  ): Boolean = gtk_im_context_filter_key(
+      press: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      surface: Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */,
+      device: Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */,
+      time: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
+      keycode: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      state: GdkModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */,
+      group: Int /* Some(CInt) */
+  ): Boolean /* None */ = gtk_im_context_filter_key(
     this.raw.asInstanceOf,
     gboolean(gint((if press == true then 1 else 0))),
     surface.getUnsafeRawPointer().asInstanceOf,
@@ -111,7 +114,9 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * If this function returns %TRUE, then no further processing should be done
     * for this key event.
     */
-  def filterKeypress(event: Event): Boolean = gtk_im_context_filter_keypress(
+  def filterKeypress(
+      event: Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */
+  ): Boolean /* None */ = gtk_im_context_filter_keypress(
     this.raw.asInstanceOf,
     event.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
@@ -124,7 +129,9 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * The input method may, for example, change the displayed feedback to
     * reflect this change.
     */
-  def focusIn(): Unit = gtk_im_context_focus_in(this.raw.asInstanceOf)
+  def focusIn(): Unit /* None */ = gtk_im_context_focus_in(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -134,7 +141,9 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * The input method may, for example, change the displayed feedback or reset
     * the contexts state to reflect this change.
     */
-  def focusOut(): Unit = gtk_im_context_focus_out(this.raw.asInstanceOf)
+  def focusOut(): Unit /* None */ = gtk_im_context_focus_out(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -146,7 +155,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_preedit_string contains an OUT parameter, which is not supported yet"
   )
-  def getPreeditString(using DummyImplicit) = ???
+  private def getPreeditString__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -169,7 +178,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_surrounding contains an OUT parameter, which is not supported yet"
   )
-  def getSurrounding(using DummyImplicit) = ???
+  private def getSurrounding__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -192,7 +201,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_surrounding_with_selection contains an OUT parameter, which is not supported yet"
   )
-  def getSurroundingWithSelection(using DummyImplicit) = ???
+  private def getSurroundingWithSelection__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -201,7 +210,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     *
     * This will typically cause the input method to clear the preedit state.
     */
-  def reset(): Unit = gtk_im_context_reset(this.raw.asInstanceOf)
+  def reset(): Unit /* None */ = gtk_im_context_reset(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -211,9 +220,13 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * order to correctly position status windows, and may also be used for
     * purposes internal to the input method.
     */
-  def setClientWidget(widget: Widget): Unit = gtk_im_context_set_client_widget(
+  def setClientWidget(
+      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_im_context_set_client_widget(
     this.raw.asInstanceOf,
-    widget.getUnsafeRawPointer().asInstanceOf
+    widget
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -222,7 +235,11 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     *
     * The location is relative to the client widget.
     */
-  def setCursorLocation(area: Ptr[GdkRectangle]): Unit =
+  def setCursorLocation(
+      area: Ptr[
+        GdkRectangle
+      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */
+  ): Unit /* None */ =
     gtk_im_context_set_cursor_location(this.raw.asInstanceOf, area)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -233,9 +250,11 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * [signal@Gtk.IMContext::retrieve-surrounding] signal, and will likely have
     * no effect if called at other times.
     */
-  def setSurrounding(text: String | CString, len: Int, cursor_index: Int)(using
-      Zone
-  ): Unit = gtk_im_context_set_surrounding(
+  def setSurrounding(
+      text: String | CString /* Some(CString) */,
+      len: Int /* Some(CInt) */,
+      cursor_index: Int /* Some(CInt) */
+  )(using Zone): Unit /* None */ = gtk_im_context_set_surrounding(
     this.raw.asInstanceOf,
     __sn_extract_string(text),
     len,
@@ -250,17 +269,18 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * no effect if called at other times.
     */
   def setSurroundingWithSelection(
-      text: String | CString,
-      len: Int,
-      cursor_index: Int,
-      anchor_index: Int
-  )(using Zone): Unit = gtk_im_context_set_surrounding_with_selection(
-    this.raw.asInstanceOf,
-    __sn_extract_string(text),
-    len,
-    cursor_index,
-    anchor_index
-  )
+      text: String | CString /* Some(CString) */,
+      len: Int /* Some(CInt) */,
+      cursor_index: Int /* Some(CInt) */,
+      anchor_index: Int /* Some(CInt) */
+  )(using Zone): Unit /* None */ =
+    gtk_im_context_set_surrounding_with_selection(
+      this.raw.asInstanceOf,
+      __sn_extract_string(text),
+      len,
+      cursor_index,
+      anchor_index
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -271,11 +291,12 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * some other method to display feedback, such as displaying it in a child of
     * the root window.
     */
-  def setUsePreedit(use_preedit: Boolean): Unit =
-    gtk_im_context_set_use_preedit(
-      this.raw.asInstanceOf,
-      gboolean(gint((if use_preedit == true then 1 else 0)))
-    )
+  def setUsePreedit(
+      use_preedit: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_im_context_set_use_preedit(
+    this.raw.asInstanceOf,
+    gboolean(gint((if use_preedit == true then 1 else 0)))
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

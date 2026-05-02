@@ -75,15 +75,17 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
       Native,
       Root,
       ShortcutManager:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a new section in the "Credits" page.
     */
-  def addCreditSection(section_name: String | CString, people: Ptr[CString])(
-      using Zone
-  ): Unit = gtk_about_dialog_add_credit_section(
+  def addCreditSection(
+      section_name: String | CString /* Some(CString) */,
+      people: Ptr[CString] /* Some(Ptr[CString]) */
+  )(using Zone): Unit /* None */ = gtk_about_dialog_add_credit_section(
     this.raw.asInstanceOf,
     __sn_extract_string(section_name),
     people
@@ -93,7 +95,7 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * Returns the comments string.
     */
-  def getComments()(using Zone): String = fromCString(
+  def getComments()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_comments(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -101,7 +103,7 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * Returns the copyright string.
     */
-  def getCopyright()(using Zone): String = fromCString(
+  def getCopyright()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_copyright(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -109,7 +111,7 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * Returns the license information.
     */
-  def getLicense()(using Zone): String = fromCString(
+  def getLicense()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_license(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -117,15 +119,14 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * Retrieves the license type.
     */
-  def getLicenseType(): GtkLicense = gtk_about_dialog_get_license_type(
-    this.raw.asInstanceOf
-  )
+  def getLicenseType(): GtkLicense /* None */ =
+    gtk_about_dialog_get_license_type(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the paintable displayed as logo in the about dialog.
     */
-  def getLogo(): Paintable = new Paintable.Abstract(
+  def getLogo(): Paintable /* None */ = new Paintable.Abstract(
     gtk_about_dialog_get_logo(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -133,7 +134,7 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * Returns the icon name displayed as logo in the about dialog.
     */
-  def getLogoIconName()(using Zone): String = fromCString(
+  def getLogoIconName()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_logo_icon_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -141,7 +142,7 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * Returns the program name displayed in the about dialog.
     */
-  def getProgramName()(using Zone): String = fromCString(
+  def getProgramName()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_program_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -149,7 +150,7 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * Returns the system information that is shown in the about dialog.
     */
-  def getSystemInformation()(using Zone): String = fromCString(
+  def getSystemInformation()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_system_information(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -158,7 +159,7 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * Returns the translator credits string which is displayed in the credits
     * page.
     */
-  def getTranslatorCredits()(using Zone): String = fromCString(
+  def getTranslatorCredits()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_translator_credits(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -166,7 +167,7 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * Returns the version string.
     */
-  def getVersion()(using Zone): String = fromCString(
+  def getVersion()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_version(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -174,7 +175,7 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * Returns the website URL.
     */
-  def getWebsite()(using Zone): String = fromCString(
+  def getWebsite()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_website(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -182,7 +183,7 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * Returns the label used for the website link.
     */
-  def getWebsiteLabel()(using Zone): String = fromCString(
+  def getWebsiteLabel()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_website_label(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -191,14 +192,16 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * Returns whether the license text in the about dialog is automatically
     * wrapped.
     */
-  def getWrapLicense(): Boolean =
+  def getWrapLicense(): Boolean /* None */ =
     gtk_about_dialog_get_wrap_license(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the names of the artists to be displayed in the "Credits" page.
     */
-  def setArtists(artists: Ptr[CString])(using Zone): Unit =
+  def setArtists(
+      artists: Ptr[CString] /* Some(Ptr[CString]) */
+  )(using Zone): Unit /* None */ =
     gtk_about_dialog_set_artists(this.raw.asInstanceOf, artists)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -206,7 +209,9 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * Sets the names of the authors which are displayed in the "Credits" page of
     * the about dialog.
     */
-  def setAuthors(authors: Ptr[CString])(using Zone): Unit =
+  def setAuthors(
+      authors: Ptr[CString] /* Some(Ptr[CString]) */
+  )(using Zone): Unit /* None */ =
     gtk_about_dialog_set_authors(this.raw.asInstanceOf, authors)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -215,11 +220,14 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * This should be a short string of one or two lines.
     */
-  def setComments(comments: String | CString)(using Zone): Unit =
-    gtk_about_dialog_set_comments(
-      this.raw.asInstanceOf,
-      __sn_extract_string(comments)
-    )
+  def setComments(
+      comments: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_about_dialog_set_comments(
+    this.raw.asInstanceOf,
+    comments
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -227,18 +235,23 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * This should be a short string of one or two lines.
     */
-  def setCopyright(copyright: String | CString)(using Zone): Unit =
-    gtk_about_dialog_set_copyright(
-      this.raw.asInstanceOf,
-      __sn_extract_string(copyright)
-    )
+  def setCopyright(
+      copyright: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_about_dialog_set_copyright(
+    this.raw.asInstanceOf,
+    copyright
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the names of the documenters which are displayed in the "Credits"
     * page.
     */
-  def setDocumenters(documenters: Ptr[CString])(using Zone): Unit =
+  def setDocumenters(
+      documenters: Ptr[CString] /* Some(Ptr[CString]) */
+  )(using Zone): Unit /* None */ =
     gtk_about_dialog_set_documenters(this.raw.asInstanceOf, documenters)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -247,11 +260,14 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * If `license` is `NULL`, the license page is hidden.
     */
-  def setLicense(license: String | CString)(using Zone): Unit =
-    gtk_about_dialog_set_license(
-      this.raw.asInstanceOf,
-      __sn_extract_string(license)
-    )
+  def setLicense(
+      license: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_about_dialog_set_license(
+    this.raw.asInstanceOf,
+    license
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -261,27 +277,42 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * This function overrides the license set using
     * [method@Gtk.AboutDialog.set_license].
     */
-  def setLicenseType(license_type: GtkLicense): Unit =
+  def setLicenseType(
+      license_type: GtkLicense /* Some(GtkLicense) */
+  ): Unit /* None */ =
     gtk_about_dialog_set_license_type(this.raw.asInstanceOf, license_type)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the logo in the about dialog.
     */
-  def setLogo(logo: Paintable): Unit = gtk_about_dialog_set_logo(
+  def setLogo(
+      logo: Option[
+        Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
+      ]
+  ): Unit /* None */ = gtk_about_dialog_set_logo(
     this.raw.asInstanceOf,
-    logo.getUnsafeRawPointer().asInstanceOf
+    logo
+      .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the icon name to be displayed as logo in the about dialog.
     */
-  def setLogoIconName(icon_name: String | CString)(using Zone): Unit =
-    gtk_about_dialog_set_logo_icon_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(icon_name)
-    )
+  def setLogoIconName(
+      icon_name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_about_dialog_set_logo_icon_name(
+    this.raw.asInstanceOf,
+    icon_name
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -290,11 +321,14 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * If `name` is not set, the string returned by `g_get_application_name()` is
     * used.
     */
-  def setProgramName(name: String | CString)(using Zone): Unit =
-    gtk_about_dialog_set_program_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name)
-    )
+  def setProgramName(
+      name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_about_dialog_set_program_name(
+    this.raw.asInstanceOf,
+    name
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -305,10 +339,12 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * See [property@Gtk.AboutDialog:system-information].
     */
   def setSystemInformation(
-      system_information: String | CString
-  )(using Zone): Unit = gtk_about_dialog_set_system_information(
+      system_information: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_about_dialog_set_system_information(
     this.raw.asInstanceOf,
-    __sn_extract_string(system_information)
+    system_information
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -331,52 +367,62 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * untranslated and omit translator credits.
     */
   def setTranslatorCredits(
-      translator_credits: String | CString
-  )(using Zone): Unit = gtk_about_dialog_set_translator_credits(
+      translator_credits: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_about_dialog_set_translator_credits(
     this.raw.asInstanceOf,
-    __sn_extract_string(translator_credits)
+    translator_credits
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the version string to display in the about dialog.
     */
-  def setVersion(version: String | CString)(using Zone): Unit =
-    gtk_about_dialog_set_version(
-      this.raw.asInstanceOf,
-      __sn_extract_string(version)
-    )
+  def setVersion(
+      version: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_about_dialog_set_version(
+    this.raw.asInstanceOf,
+    version
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the URL to use for the website link.
     */
-  def setWebsite(website: String | CString)(using Zone): Unit =
-    gtk_about_dialog_set_website(
-      this.raw.asInstanceOf,
-      __sn_extract_string(website)
-    )
+  def setWebsite(
+      website: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_about_dialog_set_website(
+    this.raw.asInstanceOf,
+    website
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the label to be used for the website link.
     */
-  def setWebsiteLabel(website_label: String | CString)(using Zone): Unit =
-    gtk_about_dialog_set_website_label(
-      this.raw.asInstanceOf,
-      __sn_extract_string(website_label)
-    )
+  def setWebsiteLabel(
+      website_label: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_about_dialog_set_website_label(
+    this.raw.asInstanceOf,
+    __sn_extract_string(website_label)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the license text in the about dialog should be automatically
     * wrapped.
     */
-  def setWrapLicense(wrap_license: Boolean): Unit =
-    gtk_about_dialog_set_wrap_license(
-      this.raw.asInstanceOf,
-      gboolean(gint((if wrap_license == true then 1 else 0)))
-    )
+  def setWrapLicense(
+      wrap_license: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_about_dialog_set_wrap_license(
+    this.raw.asInstanceOf,
+    gboolean(gint((if wrap_license == true then 1 else 0)))
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

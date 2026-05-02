@@ -26,6 +26,7 @@ class VolumeButton(raw: Ptr[GtkVolumeButton])
       Buildable,
       ConstraintTarget,
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end VolumeButton

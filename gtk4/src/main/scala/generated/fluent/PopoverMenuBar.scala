@@ -49,6 +49,7 @@ class PopoverMenuBar(raw: Ptr[GtkPopoverMenuBar])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -58,18 +59,20 @@ class PopoverMenuBar(raw: Ptr[GtkPopoverMenuBar])
     * For this to work, the menu model of @bar must have an item with a `custom`
     * attribute that matches @id.
     */
-  def addChild(child: Widget, id: String | CString)(using Zone): Boolean =
-    gtk_popover_menu_bar_add_child(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf,
-      __sn_extract_string(id)
-    ).value.!=(0)
+  def addChild(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      id: String | CString /* Some(CString) */
+  )(using Zone): Boolean /* None */ = gtk_popover_menu_bar_add_child(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf,
+    __sn_extract_string(id)
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the model from which the contents of @bar are taken.
     */
-  def getMenuModel(): MenuModel = new MenuModel(
+  def getMenuModel(): MenuModel /* None */ = new MenuModel(
     gtk_popover_menu_bar_get_menu_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -78,7 +81,9 @@ class PopoverMenuBar(raw: Ptr[GtkPopoverMenuBar])
     * Removes a widget that has previously been added with
     * gtk_popover_menu_bar_add_child().
     */
-  def removeChild(child: Widget): Boolean = gtk_popover_menu_bar_remove_child(
+  def removeChild(
+      child: Widget /* Some(Ptr[GtkWidget]) */
+  ): Boolean /* None */ = gtk_popover_menu_bar_remove_child(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
@@ -87,11 +92,20 @@ class PopoverMenuBar(raw: Ptr[GtkPopoverMenuBar])
     *
     * Sets a menu model from which @bar should take its contents.
     */
-  def setMenuModel(model: MenuModel): Unit =
-    gtk_popover_menu_bar_set_menu_model(
-      this.raw.asInstanceOf,
-      model.getUnsafeRawPointer().asInstanceOf
-    )
+  def setMenuModel(
+      model: Option[
+        MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+      ]
+  ): Unit /* None */ = gtk_popover_menu_bar_set_menu_model(
+    this.raw.asInstanceOf,
+    model
+      .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
+      )
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -108,9 +122,19 @@ object PopoverMenuBar:
     *
     * Creates a `GtkPopoverMenuBar` from a `GMenuModel`.
     */
-  def fromModel(model: MenuModel): PopoverMenuBar = new PopoverMenuBar(
+  def fromModel(
+      model: Option[
+        MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+      ]
+  ): PopoverMenuBar = new PopoverMenuBar(
     gtk_popover_menu_bar_new_from_model(
-      model.getUnsafeRawPointer().asInstanceOf
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
+        )
     ).asInstanceOf
   )
 end PopoverMenuBar

@@ -79,6 +79,7 @@ import sn.gnome.gobject.fluent.Object
 class Subprocess(raw: Ptr[GSubprocess])
     extends Object(raw.asInstanceOf),
       Initable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -130,7 +131,7 @@ class Subprocess(raw: Ptr[GSubprocess])
   @annotation.compileTimeOnly(
     "Method communicate contains an OUT parameter, which is not supported yet"
   )
-  def communicate(using DummyImplicit) = ???
+  private def communicate__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -138,16 +139,28 @@ class Subprocess(raw: Ptr[GSubprocess])
     * with g_subprocess_communicate_finish().
     */
   def communicateAsync(
-      stdin_buf: Ptr[GBytes],
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_subprocess_communicate_async(
+      stdin_buf: Option[
+        Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+      ],
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_subprocess_communicate_async(
     this.raw.asInstanceOf,
-    stdin_buf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    stdin_buf
+      .map[Ptr[_root_.sn.gnome.glib.internal.GBytes]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GBytes]]),
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -157,7 +170,7 @@ class Subprocess(raw: Ptr[GSubprocess])
   @annotation.compileTimeOnly(
     "Method communicate_finish contains an OUT parameter, which is not supported yet"
   )
-  def communicateFinish(using DummyImplicit) = ???
+  private def communicateFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -170,7 +183,7 @@ class Subprocess(raw: Ptr[GSubprocess])
   @annotation.compileTimeOnly(
     "Method communicate_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def communicateUtf8(using DummyImplicit) = ???
+  private def communicateUtf8__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -178,16 +191,26 @@ class Subprocess(raw: Ptr[GSubprocess])
     * invocation with g_subprocess_communicate_utf8_finish().
     */
   def communicateUtf8Async(
-      stdin_buf: String | CString,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  )(using Zone): Unit = g_subprocess_communicate_utf8_async(
+      stdin_buf: Option[String | CString /* Some(CString) */ ],
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_subprocess_communicate_utf8_async(
     this.raw.asInstanceOf,
-    __sn_extract_string(stdin_buf),
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    stdin_buf
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString]),
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -197,7 +220,7 @@ class Subprocess(raw: Ptr[GSubprocess])
   @annotation.compileTimeOnly(
     "Method communicate_utf8_finish contains an OUT parameter, which is not supported yet"
   )
-  def communicateUtf8Finish(using DummyImplicit) = ???
+  private def communicateUtf8Finish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -209,7 +232,9 @@ class Subprocess(raw: Ptr[GSubprocess])
     *
     * On Unix, this function sends %SIGKILL.
     */
-  def forceExit(): Unit = g_subprocess_force_exit(this.raw.asInstanceOf)
+  def forceExit(): Unit /* None */ = g_subprocess_force_exit(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -222,7 +247,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * It is an error to call this function before g_subprocess_wait() and unless
     * g_subprocess_get_if_exited() returned %TRUE.
     */
-  def getExitStatus(): Int = g_subprocess_get_exit_status(
+  def getExitStatus(): Int /* None */ = g_subprocess_get_exit_status(
     this.raw.asInstanceOf
   ).value
 
@@ -232,7 +257,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * the result of GetProcessId() also as a string. If the subprocess has
     * terminated, this will return %NULL.
     */
-  def getIdentifier()(using Zone): String = fromCString(
+  def getIdentifier()(using Zone): String /* None */ = fromCString(
     g_subprocess_get_identifier(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -246,7 +271,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * It is an error to call this function before g_subprocess_wait() has
     * returned.
     */
-  def getIfExited(): Boolean =
+  def getIfExited(): Boolean /* None */ =
     g_subprocess_get_if_exited(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -258,7 +283,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * It is an error to call this function before g_subprocess_wait() has
     * returned.
     */
-  def getIfSignaled(): Boolean =
+  def getIfSignaled(): Boolean /* None */ =
     g_subprocess_get_if_signaled(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -275,7 +300,9 @@ class Subprocess(raw: Ptr[GSubprocess])
     * It is an error to call this function before g_subprocess_wait() has
     * returned.
     */
-  def getStatus(): Int = g_subprocess_get_status(this.raw.asInstanceOf).value
+  def getStatus(): Int /* None */ = g_subprocess_get_status(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -285,7 +312,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * The process must have been created with %G_SUBPROCESS_FLAGS_STDERR_PIPE,
     * otherwise %NULL will be returned.
     */
-  def getStderrPipe(): InputStream = new InputStream(
+  def getStderrPipe(): InputStream /* None */ = new InputStream(
     g_subprocess_get_stderr_pipe(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -297,7 +324,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * The process must have been created with %G_SUBPROCESS_FLAGS_STDIN_PIPE and
     * not %G_SUBPROCESS_FLAGS_STDIN_INHERIT, otherwise %NULL will be returned.
     */
-  def getStdinPipe(): OutputStream = new OutputStream(
+  def getStdinPipe(): OutputStream /* None */ = new OutputStream(
     g_subprocess_get_stdin_pipe(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -309,7 +336,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * The process must have been created with %G_SUBPROCESS_FLAGS_STDOUT_PIPE,
     * otherwise %NULL will be returned.
     */
-  def getStdoutPipe(): InputStream = new InputStream(
+  def getStdoutPipe(): InputStream /* None */ = new InputStream(
     g_subprocess_get_stdout_pipe(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -322,7 +349,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * It is an error to call this function before g_subprocess_wait() has
     * returned.
     */
-  def getSuccessful(): Boolean =
+  def getSuccessful(): Boolean /* None */ =
     g_subprocess_get_successful(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -335,7 +362,9 @@ class Subprocess(raw: Ptr[GSubprocess])
     * It is an error to call this function before g_subprocess_wait() and unless
     * g_subprocess_get_if_signaled() returned %TRUE.
     */
-  def getTermSig(): Int = g_subprocess_get_term_sig(this.raw.asInstanceOf).value
+  def getTermSig(): Int /* None */ = g_subprocess_get_term_sig(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -347,7 +376,9 @@ class Subprocess(raw: Ptr[GSubprocess])
     *
     * This API is not available on Windows.
     */
-  def sendSignal(signal_num: Int): Unit =
+  def sendSignal(
+      signal_num: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  ): Unit /* None */ =
     g_subprocess_send_signal(this.raw.asInstanceOf, gint(signal_num))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -363,14 +394,17 @@ class Subprocess(raw: Ptr[GSubprocess])
     * Cancelling @cancellable doesn't kill the subprocess. Call
     * g_subprocess_force_exit() if it is desirable.
     */
-  def _wait(cancellable: Cancellable): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_subprocess_wait(
-        this.raw.asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def _wait(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_subprocess_wait(
+      this.raw.asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -379,28 +413,39 @@ class Subprocess(raw: Ptr[GSubprocess])
     * This is the asynchronous version of g_subprocess_wait().
     */
   def waitAsync(
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_subprocess_wait_async(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_subprocess_wait_async(
     this.raw.asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Combines g_subprocess_wait() with g_spawn_check_wait_status().
     */
-  def waitCheck(cancellable: Cancellable): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_subprocess_wait_check(
-        this.raw.asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def waitCheck(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_subprocess_wait_check(
+      this.raw.asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -409,41 +454,51 @@ class Subprocess(raw: Ptr[GSubprocess])
     * This is the asynchronous version of g_subprocess_wait_check().
     */
   def waitCheckAsync(
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_subprocess_wait_check_async(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_subprocess_wait_check_async(
     this.raw.asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Collects the result of a previous call to g_subprocess_wait_check_async().
     */
-  def waitCheckFinish(result: AsyncResult): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_subprocess_wait_check_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def waitCheckFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_subprocess_wait_check_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Collects the result of a previous call to g_subprocess_wait_async().
     */
-  def waitFinish(result: AsyncResult): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_subprocess_wait_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def waitFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_subprocess_wait_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value.!=(0)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -468,14 +523,21 @@ object Subprocess:
     * The argument list must be terminated with %NULL.
     */
   inline def apply(
-      flags: GSubprocessFlags,
-      error: Ptr[Ptr[GError]],
-      argv0: String | CString,
+      flags: GSubprocessFlags /* Some(GSubprocessFlags) */,
+      error: Option[Ptr[
+        Ptr[GError]
+      ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]) */ ],
+      argv0: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
   )(using Zone): Subprocess = new Subprocess(
     g_subprocess_new(
       flags,
-      error,
+      error
+        .map[Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]](o => o)
+        .getOrElse(
+          null.asInstanceOf[Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]]
+        ),
       __sn_extract_string(argv0).asInstanceOf[Ptr[gchar]],
       args*
     ).asInstanceOf

@@ -27,13 +27,16 @@ import sn.gnome.gobject.fluent.Object
 class InetAddressMask(raw: Ptr[GInetAddressMask])
     extends Object(raw.asInstanceOf),
       Initable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Tests if @mask and @mask2 are the same mask.
     */
-  def equal(mask2: InetAddressMask): Boolean = g_inet_address_mask_equal(
+  def equal(
+      mask2: InetAddressMask /* Some(Ptr[GInetAddressMask]) */
+  ): Boolean /* None */ = g_inet_address_mask_equal(
     this.raw.asInstanceOf,
     mask2.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
@@ -42,7 +45,7 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     *
     * Gets @mask's base address
     */
-  def getAddress(): InetAddress = new InetAddress(
+  def getAddress(): InetAddress /* None */ = new InetAddress(
     g_inet_address_mask_get_address(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -50,7 +53,7 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     *
     * Gets the #GSocketFamily of @mask's address
     */
-  def getFamily(): GSocketFamily = g_inet_address_mask_get_family(
+  def getFamily(): GSocketFamily /* None */ = g_inet_address_mask_get_family(
     this.raw.asInstanceOf
   )
 
@@ -58,7 +61,7 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     *
     * Gets @mask's length
     */
-  def getLength(): UInt = g_inet_address_mask_get_length(
+  def getLength(): UInt /* None */ = g_inet_address_mask_get_length(
     this.raw.asInstanceOf
   ).value
 
@@ -66,7 +69,9 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     *
     * Tests if @address falls within the range described by @mask.
     */
-  def matches(address: InetAddress): Boolean = g_inet_address_mask_matches(
+  def matches(
+      address: InetAddress /* Some(Ptr[GInetAddress]) */
+  ): Boolean /* None */ = g_inet_address_mask_matches(
     this.raw.asInstanceOf,
     address.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
@@ -75,7 +80,7 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     *
     * Converts @mask back to its corresponding string form.
     */
-  def toString()(using Zone): String = fromCString(
+  def toString()(using Zone): String /* None */ = fromCString(
     g_inet_address_mask_to_string(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -87,16 +92,18 @@ object InetAddressMask:
     * Creates a new #GInetAddressMask representing all addresses whose first @length
     * bits match @addr.
     */
-  def apply(addr: InetAddress, length: UInt): GResult[InetAddressMask] =
-    GResult.wrap(__errorPtr =>
-      new InetAddressMask(
-        g_inet_address_mask_new(
-          addr.getUnsafeRawPointer().asInstanceOf,
-          guint(length),
-          __errorPtr
-        ).asInstanceOf
-      )
+  def apply(
+      addr: InetAddress /* Some(Ptr[GInetAddress]) */,
+      length: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): GResult[InetAddressMask] = GResult.wrap(__errorPtr =>
+    new InetAddressMask(
+      g_inet_address_mask_new(
+        addr.getUnsafeRawPointer().asInstanceOf,
+        guint(length),
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -106,7 +113,8 @@ object InetAddressMask:
     * address.
     */
   def fromString(
-      mask_string: String | CString
+      mask_string: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): GResult[InetAddressMask] = GResult.wrap(__errorPtr =>
     new InetAddressMask(
       g_inet_address_mask_new_from_string(

@@ -58,13 +58,14 @@ class LockButton(raw: Ptr[GtkLockButton])
       Actionable,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Obtains the `GPermission` object that controls @button.
     */
-  def getPermission(): Permission = new Permission(
+  def getPermission(): Permission /* None */ = new Permission(
     gtk_lock_button_get_permission(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -72,11 +73,20 @@ class LockButton(raw: Ptr[GtkLockButton])
     *
     * Sets the `GPermission` object that controls @button.
     */
-  def setPermission(permission: Permission): Unit =
-    gtk_lock_button_set_permission(
-      this.raw.asInstanceOf,
-      permission.getUnsafeRawPointer().asInstanceOf
-    )
+  def setPermission(
+      permission: Option[
+        Permission /* Some(Ptr[_root_.sn.gnome.gio.internal.GPermission]) */
+      ]
+  ): Unit /* None */ = gtk_lock_button_set_permission(
+    this.raw.asInstanceOf,
+    permission
+      .map[Ptr[_root_.sn.gnome.gio.internal.GPermission]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GPermission]]
+      )
+  )
 
 end LockButton
 
@@ -85,9 +95,19 @@ object LockButton:
     *
     * Creates a new lock button which reflects the @permission.
     */
-  def apply(permission: Permission): LockButton = new LockButton(
+  def apply(
+      permission: Option[
+        Permission /* Some(Ptr[_root_.sn.gnome.gio.internal.GPermission]) */
+      ]
+  ): LockButton = new LockButton(
     gtk_lock_button_new(
-      permission.getUnsafeRawPointer().asInstanceOf
+      permission
+        .map[Ptr[_root_.sn.gnome.gio.internal.GPermission]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GPermission]]
+        )
     ).asInstanceOf
   )
 end LockButton

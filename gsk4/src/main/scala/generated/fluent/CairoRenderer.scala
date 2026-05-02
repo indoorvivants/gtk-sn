@@ -15,6 +15,7 @@ import sn.gnome.gsk4.internal.GskCairoRenderer
   */
 class CairoRenderer(raw: Ptr[GskCairoRenderer])
     extends Renderer(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end CairoRenderer

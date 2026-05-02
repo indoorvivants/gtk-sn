@@ -33,13 +33,14 @@ class StackSidebar(raw: Ptr[GtkStackSidebar])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the stack.
     */
-  def getStack(): Stack = new Stack(
+  def getStack(): Stack /* None */ = new Stack(
     gtk_stack_sidebar_get_stack(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -50,10 +51,11 @@ class StackSidebar(raw: Ptr[GtkStackSidebar])
     * The sidebar widget will automatically update according to the order and
     * items within the given `GtkStack`.
     */
-  def setStack(stack: Stack): Unit = gtk_stack_sidebar_set_stack(
-    this.raw.asInstanceOf,
-    stack.getUnsafeRawPointer().asInstanceOf
-  )
+  def setStack(stack: Stack /* Some(Ptr[GtkStack]) */ ): Unit /* None */ =
+    gtk_stack_sidebar_set_stack(
+      this.raw.asInstanceOf,
+      stack.getUnsafeRawPointer().asInstanceOf
+    )
 
 end StackSidebar
 

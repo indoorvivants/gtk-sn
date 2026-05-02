@@ -79,29 +79,34 @@ import sn.gnome.gobject.fluent.Object
   */
 class DBusAuthObserver(raw: Ptr[GDBusAuthObserver])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Emits the #GDBusAuthObserver::allow-mechanism signal on @observer.
     */
-  def allowMechanism(mechanism: String | CString)(using Zone): Boolean =
-    g_dbus_auth_observer_allow_mechanism(
-      this.raw.asInstanceOf,
-      __sn_extract_string(mechanism).asInstanceOf[Ptr[gchar]]
-    ).value.!=(0)
+  def allowMechanism(
+      mechanism: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Boolean /* None */ = g_dbus_auth_observer_allow_mechanism(
+    this.raw.asInstanceOf,
+    __sn_extract_string(mechanism).asInstanceOf[Ptr[gchar]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Emits the #GDBusAuthObserver::authorize-authenticated-peer signal on @observer.
     */
   def authorizeAuthenticatedPeer(
-      stream: IOStream,
-      credentials: Credentials
-  ): Boolean = g_dbus_auth_observer_authorize_authenticated_peer(
+      stream: IOStream /* Some(Ptr[GIOStream]) */,
+      credentials: Option[Credentials /* Some(Ptr[GCredentials]) */ ]
+  ): Boolean /* None */ = g_dbus_auth_observer_authorize_authenticated_peer(
     this.raw.asInstanceOf,
     stream.getUnsafeRawPointer().asInstanceOf,
-    credentials.getUnsafeRawPointer().asInstanceOf
+    credentials
+      .map[Ptr[GCredentials]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCredentials]])
   ).value.!=(0)
 
   private inline def __sn_extract_string(str: String | CString)(using

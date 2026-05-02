@@ -15,6 +15,7 @@ import sn.gnome.gsk4.internal.GskCairoNode
   * A render node for a Cairo surface.
   */
 class CairoNode(raw: Ptr[GskCairoNode]) extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -25,17 +26,15 @@ class CairoNode(raw: Ptr[GskCairoNode]) extends RenderNode(raw.asInstanceOf):
     * If no surface exists yet, a surface will be created optimized for
     * rendering to @renderer.
     */
-  def getDrawContext(): Ptr[cairo_t] = gsk_cairo_node_get_draw_context(
-    this.raw.asInstanceOf
-  )
+  def getDrawContext(): Ptr[cairo_t] /* None */ =
+    gsk_cairo_node_get_draw_context(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the Cairo surface used by the render node.
     */
-  def getSurface(): Ptr[cairo_surface_t] = gsk_cairo_node_get_surface(
-    this.raw.asInstanceOf
-  )
+  def getSurface(): Ptr[cairo_surface_t] /* None */ =
+    gsk_cairo_node_get_surface(this.raw.asInstanceOf)
 
 end CairoNode
 
@@ -48,7 +47,9 @@ object CairoNode:
     * You can draw to the cairo surface using
     * [method@Gsk.CairoNode.get_draw_context].
     */
-  def apply(bounds: Ptr[graphene_rect_t]): CairoNode = new CairoNode(
-    gsk_cairo_node_new(bounds).asInstanceOf
-  )
+  def apply(
+      bounds: Ptr[
+        graphene_rect_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
+  ): CairoNode = new CairoNode(gsk_cairo_node_new(bounds).asInstanceOf)
 end CairoNode

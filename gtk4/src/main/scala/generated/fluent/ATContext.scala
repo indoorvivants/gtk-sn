@@ -20,13 +20,14 @@ import sn.gnome.gtk4.internal.GtkAccessibleRole
   * in `GtkAccessible`.
   */
 class ATContext(raw: Ptr[GtkATContext]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the `GtkAccessible` using this context.
     */
-  def getAccessible(): Accessible = new Accessible.Abstract(
+  def getAccessible(): Accessible /* None */ = new Accessible.Abstract(
     gtk_at_context_get_accessible(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -34,7 +35,7 @@ class ATContext(raw: Ptr[GtkATContext]) extends Object(raw.asInstanceOf):
     *
     * Retrieves the accessible role of this context.
     */
-  def getAccessibleRole(): GtkAccessibleRole =
+  def getAccessibleRole(): GtkAccessibleRole /* None */ =
     gtk_at_context_get_accessible_role(this.raw.asInstanceOf)
 
 end ATContext
@@ -49,9 +50,9 @@ object ATContext:
     * platform.
     */
   def create(
-      accessible_role: GtkAccessibleRole,
-      accessible: Accessible,
-      display: Display
+      accessible_role: GtkAccessibleRole /* Some(GtkAccessibleRole) */,
+      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
+      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
   ): ATContext = new ATContext(
     gtk_at_context_create(
       accessible_role,

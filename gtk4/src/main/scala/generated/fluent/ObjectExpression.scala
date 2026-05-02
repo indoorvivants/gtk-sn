@@ -14,13 +14,14 @@ import sn.gnome.gtk4.internal.GtkObjectExpression
   */
 class ObjectExpression(raw: Ptr[GtkObjectExpression])
     extends Expression(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the object that the expression evaluates to.
     */
-  def getObject(): Object = new Object(
+  def getObject(): Object /* None */ = new Object(
     gtk_object_expression_get_object(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -39,7 +40,9 @@ object ObjectExpression:
     * If you want to keep a reference to `object`, use
     * [ctor@Gtk.ConstantExpression.new].
     */
-  def apply(`object`: Object): ObjectExpression = new ObjectExpression(
+  def apply(
+      `object`: Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+  ): ObjectExpression = new ObjectExpression(
     gtk_object_expression_new(
       `object`.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

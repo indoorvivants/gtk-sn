@@ -133,6 +133,7 @@ import sn.gnome.gsk4.internal.GskGLUniformType
   * ```
   */
 class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -148,7 +149,9 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * that the widget has to be realized. Commonly you want to call this from
     * the realize signal of a widget, or during widget snapshot.
     */
-  def compile(renderer: Renderer): GResult[Boolean] = GResult.wrap(__errorPtr =>
+  def compile(
+      renderer: Renderer /* Some(Ptr[GskRenderer]) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gsk_gl_shader_compile(
       this.raw.asInstanceOf,
       renderer.getUnsafeRawPointer().asInstanceOf,
@@ -161,11 +164,12 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * Looks for a uniform by the name @name, and returns the index of the
     * uniform, or -1 if it was not found.
     */
-  def findUniformByName(name: String | CString)(using Zone): Int =
-    gsk_gl_shader_find_uniform_by_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name)
-    )
+  def findUniformByName(
+      name: String | CString /* Some(CString) */
+  )(using Zone): Int /* None */ = gsk_gl_shader_find_uniform_by_name(
+    this.raw.asInstanceOf,
+    __sn_extract_string(name)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -179,7 +183,7 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * Any uniforms of the shader that are not included in the argument list are
     * zero-initialized.
     */
-  inline def formatArgs(args: Any*): Ptr[GBytes] =
+  inline def formatArgs(args: Any*): Ptr[GBytes] /* None */ =
     gsk_gl_shader_format_args(this.raw.asInstanceOf, args*)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -196,7 +200,9 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * Any uniforms of the shader that are not included in the argument list are
     * zero-initialized.
     */
-  def formatArgsVa(uniforms: CVarArgList): Ptr[GBytes] =
+  def formatArgsVa(
+      uniforms: CVarArgList /* Some(va_list) */
+  ): Ptr[GBytes] /* None */ =
     gsk_gl_shader_format_args_va(this.raw.asInstanceOf, uniforms)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -205,7 +211,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * The uniform must be of bool type.
     */
-  def getArgBool(args: Ptr[GBytes], idx: Int): Boolean =
+  def getArgBool(
+      args: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      idx: Int /* Some(CInt) */
+  ): Boolean /* None */ =
     gsk_gl_shader_get_arg_bool(this.raw.asInstanceOf, args, idx).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -214,7 +223,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * The uniform must be of float type.
     */
-  def getArgFloat(args: Ptr[GBytes], idx: Int): Float =
+  def getArgFloat(
+      args: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      idx: Int /* Some(CInt) */
+  ): Float /* None */ =
     gsk_gl_shader_get_arg_float(this.raw.asInstanceOf, args, idx)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -223,7 +235,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * The uniform must be of int type.
     */
-  def getArgInt(args: Ptr[GBytes], idx: Int): CInt =
+  def getArgInt(
+      args: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      idx: Int /* Some(CInt) */
+  ): CInt /* None */ =
     gsk_gl_shader_get_arg_int(this.raw.asInstanceOf, args, idx).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -232,7 +247,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * The uniform must be of uint type.
     */
-  def getArgUint(args: Ptr[GBytes], idx: Int): UInt =
+  def getArgUint(
+      args: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      idx: Int /* Some(CInt) */
+  ): UInt /* None */ =
     gsk_gl_shader_get_arg_uint(this.raw.asInstanceOf, args, idx).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -242,10 +260,12 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * The uniform must be of vec2 type.
     */
   def getArgVec2(
-      args: Ptr[GBytes],
-      idx: Int,
-      out_value: Ptr[graphene_vec2_t]
-  ): Unit =
+      args: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      idx: Int /* Some(CInt) */,
+      out_value: Ptr[
+        graphene_vec2_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec2_t]) */
+  ): Unit /* None */ =
     gsk_gl_shader_get_arg_vec2(this.raw.asInstanceOf, args, idx, out_value)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -255,10 +275,12 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * The uniform must be of vec3 type.
     */
   def getArgVec3(
-      args: Ptr[GBytes],
-      idx: Int,
-      out_value: Ptr[graphene_vec3_t]
-  ): Unit =
+      args: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      idx: Int /* Some(CInt) */,
+      out_value: Ptr[
+        graphene_vec3_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec3_t]) */
+  ): Unit /* None */ =
     gsk_gl_shader_get_arg_vec3(this.raw.asInstanceOf, args, idx, out_value)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -268,17 +290,19 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * The uniform must be of vec4 type.
     */
   def getArgVec4(
-      args: Ptr[GBytes],
-      idx: Int,
-      out_value: Ptr[graphene_vec4_t]
-  ): Unit =
+      args: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      idx: Int /* Some(CInt) */,
+      out_value: Ptr[
+        graphene_vec4_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec4_t]) */
+  ): Unit /* None */ =
     gsk_gl_shader_get_arg_vec4(this.raw.asInstanceOf, args, idx, out_value)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Get the size of the data block used to specify arguments for this shader.
     */
-  def getArgsSize(): CUnsignedLongInt = gsk_gl_shader_get_args_size(
+  def getArgsSize(): CUnsignedLongInt /* None */ = gsk_gl_shader_get_args_size(
     this.raw.asInstanceOf
   ).value
 
@@ -290,20 +314,24 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * It is determined by looking at the highest u_textureN value that the
     * shader defines.
     */
-  def getNTextures(): Int = gsk_gl_shader_get_n_textures(this.raw.asInstanceOf)
+  def getNTextures(): Int /* None */ = gsk_gl_shader_get_n_textures(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Get the number of declared uniforms for this shader.
     */
-  def getNUniforms(): Int = gsk_gl_shader_get_n_uniforms(this.raw.asInstanceOf)
+  def getNUniforms(): Int /* None */ = gsk_gl_shader_get_n_uniforms(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the resource path for the GLSL sourcecode being used to render this
     * shader.
     */
-  def getResource()(using Zone): String = fromCString(
+  def getResource()(using Zone): String /* None */ = fromCString(
     gsk_gl_shader_get_resource(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -311,13 +339,17 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * Gets the GLSL sourcecode being used to render this shader.
     */
-  def getSource(): Ptr[GBytes] = gsk_gl_shader_get_source(this.raw.asInstanceOf)
+  def getSource(): Ptr[GBytes] /* None */ = gsk_gl_shader_get_source(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Get the name of the declared uniform for this shader at index @idx.
     */
-  def getUniformName(idx: Int)(using Zone): String = fromCString(
+  def getUniformName(
+      idx: Int /* Some(CInt) */
+  )(using Zone): String /* None */ = fromCString(
     gsk_gl_shader_get_uniform_name(this.raw.asInstanceOf, idx).asInstanceOf
   )
 
@@ -325,14 +357,14 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * Get the offset into the data block where data for this uniforms is stored.
     */
-  def getUniformOffset(idx: Int): Int =
+  def getUniformOffset(idx: Int /* Some(CInt) */ ): Int /* None */ =
     gsk_gl_shader_get_uniform_offset(this.raw.asInstanceOf, idx)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Get the type of the declared uniform for this shader at index @idx.
     */
-  def getUniformType(idx: Int): GskGLUniformType =
+  def getUniformType(idx: Int /* Some(CInt) */ ): GskGLUniformType /* None */ =
     gsk_gl_shader_get_uniform_type(this.raw.asInstanceOf, idx)
 
   private inline def __sn_extract_string(str: String | CString)(using
@@ -350,7 +382,11 @@ object GLShader:
     *
     * Creates a `GskGLShader` that will render pixels using the specified code.
     */
-  def fromBytes(sourcecode: Ptr[GBytes]): GLShader = new GLShader(
+  def fromBytes(
+      sourcecode: Ptr[
+        GBytes
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  ): GLShader = new GLShader(
     gsk_gl_shader_new_from_bytes(sourcecode).asInstanceOf
   )
 
@@ -358,12 +394,13 @@ object GLShader:
     *
     * Creates a `GskGLShader` that will render pixels using the specified code.
     */
-  def fromResource(resource_path: String | CString)(using Zone): GLShader =
-    new GLShader(
-      gsk_gl_shader_new_from_resource(
-        __sn_extract_string(resource_path)
-      ).asInstanceOf
-    )
+  def fromResource(
+      resource_path: String | CString /* Some(CString) */
+  )(using Zone): GLShader = new GLShader(
+    gsk_gl_shader_new_from_resource(
+      __sn_extract_string(resource_path)
+    ).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

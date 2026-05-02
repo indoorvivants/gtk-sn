@@ -66,13 +66,14 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
       Buildable,
       ConstraintTarget,
       Editable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the widget that @entry is capturing key events from.
     */
-  def getKeyCaptureWidget(): Widget = new Widget(
+  def getKeyCaptureWidget(): Widget /* None */ = new Widget(
     gtk_search_entry_get_key_capture_widget(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -80,7 +81,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     *
     * Gets the placeholder text associated with @entry.
     */
-  def getPlaceholderText()(using Zone): String = fromCString(
+  def getPlaceholderText()(using Zone): String /* None */ = fromCString(
     gtk_search_entry_get_placeholder_text(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -89,7 +90,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * Get the delay to be used between the last keypress and the
     * [signal@Gtk.SearchEntry::search-changed] signal being emitted.
     */
-  def getSearchDelay(): UInt = gtk_search_entry_get_search_delay(
+  def getSearchDelay(): UInt /* None */ = gtk_search_entry_get_search_delay(
     this.raw.asInstanceOf
   ).value
 
@@ -109,28 +110,36 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * you can capture and forward the events yourself with
     * [method@Gtk.EventControllerKey.forward].
     */
-  def setKeyCaptureWidget(widget: Widget): Unit =
-    gtk_search_entry_set_key_capture_widget(
-      this.raw.asInstanceOf,
-      widget.getUnsafeRawPointer().asInstanceOf
-    )
+  def setKeyCaptureWidget(
+      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_search_entry_set_key_capture_widget(
+    this.raw.asInstanceOf,
+    widget
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the placeholder text associated with @entry.
     */
-  def setPlaceholderText(text: String | CString)(using Zone): Unit =
-    gtk_search_entry_set_placeholder_text(
-      this.raw.asInstanceOf,
-      __sn_extract_string(text)
-    )
+  def setPlaceholderText(
+      text: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_search_entry_set_placeholder_text(
+    this.raw.asInstanceOf,
+    text
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Set the delay to be used between the last keypress and the
     * [signal@Gtk.SearchEntry::search-changed] signal being emitted.
     */
-  def setSearchDelay(delay: UInt): Unit =
+  def setSearchDelay(
+      delay: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_search_entry_set_search_delay(this.raw.asInstanceOf, guint(delay))
 
   private inline def __sn_extract_string(str: String | CString)(using

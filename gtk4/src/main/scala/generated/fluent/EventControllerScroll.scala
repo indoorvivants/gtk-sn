@@ -49,13 +49,14 @@ import sn.gnome.gtk4.internal.GtkEventControllerScrollFlags
   */
 class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
     extends EventController(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the flags conditioning the scroll controller behavior.
     */
-  def getFlags(): GtkEventControllerScrollFlags =
+  def getFlags(): GtkEventControllerScrollFlags /* None */ =
     gtk_event_controller_scroll_get_flags(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -66,15 +67,16 @@ class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
     * Always returns %GDK_SCROLL_UNIT_WHEEL if the
     * %GTK_EVENT_CONTROLLER_SCROLL_DISCRETE flag is set.
     */
-  def getUnit(): GdkScrollUnit = gtk_event_controller_scroll_get_unit(
-    this.raw.asInstanceOf
-  )
+  def getUnit(): GdkScrollUnit /* None */ =
+    gtk_event_controller_scroll_get_unit(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the flags conditioning scroll controller behavior.
     */
-  def setFlags(flags: GtkEventControllerScrollFlags): Unit =
+  def setFlags(
+      flags: GtkEventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */
+  ): Unit /* None */ =
     gtk_event_controller_scroll_set_flags(this.raw.asInstanceOf, flags)
 
 end EventControllerScroll
@@ -84,8 +86,9 @@ object EventControllerScroll:
     *
     * Creates a new event controller that will handle scroll events.
     */
-  def apply(flags: GtkEventControllerScrollFlags): EventControllerScroll =
-    new EventControllerScroll(
-      gtk_event_controller_scroll_new(flags).asInstanceOf
-    )
+  def apply(
+      flags: GtkEventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */
+  ): EventControllerScroll = new EventControllerScroll(
+    gtk_event_controller_scroll_new(flags).asInstanceOf
+  )
 end EventControllerScroll

@@ -30,6 +30,7 @@ import sn.gnome.gtk4.internal.GtkBuilderCScope
 class BuilderCScope(raw: Ptr[GtkBuilderCScope])
     extends Object(raw.asInstanceOf),
       BuilderScope:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -42,9 +43,9 @@ class BuilderCScope(raw: Ptr[GtkBuilderCScope])
     * require that callback symbols be declared in the global namespace.
     */
   def addCallbackSymbol(
-      callback_name: String | CString,
-      callback_symbol: GCallback
-  )(using Zone): Unit = gtk_builder_cscope_add_callback_symbol(
+      callback_name: String | CString /* Some(CString) */,
+      callback_symbol: GCallback /* Some(_root_.sn.gnome.gobject.internal.GCallback) */
+  )(using Zone): Unit /* None */ = gtk_builder_cscope_add_callback_symbol(
     this.raw.asInstanceOf,
     __sn_extract_string(callback_name),
     callback_symbol
@@ -58,10 +59,10 @@ class BuilderCScope(raw: Ptr[GtkBuilderCScope])
     * [method@Gtk.BuilderCScope.add_callback_symbol] for each symbol.
     */
   inline def addCallbackSymbols(
-      first_callback_name: String | CString,
-      first_callback_symbol: GCallback,
+      first_callback_name: String | CString /* Some(CString) */,
+      first_callback_symbol: GCallback /* Some(_root_.sn.gnome.gobject.internal.GCallback) */,
       args: Any*
-  )(using Zone): Unit = gtk_builder_cscope_add_callback_symbols(
+  )(using Zone): Unit /* None */ = gtk_builder_cscope_add_callback_symbols(
     this.raw.asInstanceOf,
     __sn_extract_string(first_callback_name),
     first_callback_symbol,
@@ -74,11 +75,12 @@ class BuilderCScope(raw: Ptr[GtkBuilderCScope])
     * gtk_builder_cscope_add_callback_symbol().
     */
   def lookupCallbackSymbol(
-      callback_name: String | CString
-  )(using Zone): GCallback = gtk_builder_cscope_lookup_callback_symbol(
-    this.raw.asInstanceOf,
-    __sn_extract_string(callback_name)
-  )
+      callback_name: String | CString /* Some(CString) */
+  )(using Zone): GCallback /* None */ =
+    gtk_builder_cscope_lookup_callback_symbol(
+      this.raw.asInstanceOf,
+      __sn_extract_string(callback_name)
+    )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

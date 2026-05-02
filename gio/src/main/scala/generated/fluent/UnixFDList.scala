@@ -25,6 +25,7 @@ import sn.gnome.gobject.fluent.Object
   * Since 2.74, the API is available for Windows.
   */
 class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -42,7 +43,9 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     * index with g_unix_fd_list_get() then you will receive back a duplicated
     * copy of the same file descriptor.
     */
-  def append(fd: Int): GResult[Int] = GResult.wrap(__errorPtr =>
+  def append(
+      fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
     g_unix_fd_list_append(this.raw.asInstanceOf, gint(fd), __errorPtr).value
   )
 
@@ -60,7 +63,9 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     * A possible cause of failure is exceeding the per-process or system-wide
     * file descriptor limit.
     */
-  def get(`index_`: Int): GResult[Int] = GResult.wrap(__errorPtr =>
+  def get(
+      `index_`: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
     g_unix_fd_list_get(this.raw.asInstanceOf, gint(`index_`), __errorPtr).value
   )
 
@@ -69,7 +74,9 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     * Gets the length of @list (ie: the number of file descriptors contained
     * within).
     */
-  def getLength(): Int = g_unix_fd_list_get_length(this.raw.asInstanceOf).value
+  def getLength(): Int /* None */ = g_unix_fd_list_get_length(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -88,7 +95,7 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method peek_fds contains an OUT parameter, which is not supported yet"
   )
-  def peekFds(using DummyImplicit) = ???
+  private def peekFds__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -112,7 +119,7 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method steal_fds contains an OUT parameter, which is not supported yet"
   )
-  def stealFds(using DummyImplicit) = ???
+  private def stealFds__ = ???
 
 end UnixFDList
 
@@ -134,7 +141,10 @@ object UnixFDList:
     *
     * If @n_fds is -1 then @fds must be terminated with -1.
     */
-  def fromArray(fds: Ptr[Int], n_fds: Int): UnixFDList = new UnixFDList(
+  def fromArray(
+      fds: Ptr[Int] /* Some(Ptr[_root_.sn.gnome.glib.internal.gint]) */,
+      n_fds: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  ): UnixFDList = new UnixFDList(
     g_unix_fd_list_new_from_array(fds.asInstanceOf, gint(n_fds)).asInstanceOf
   )
 end UnixFDList

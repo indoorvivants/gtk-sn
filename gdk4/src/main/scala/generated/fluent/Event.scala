@@ -29,6 +29,7 @@ import sn.gnome.glib.internal.guint32
   * `GdkEvent` and its related API is rarely needed.
   */
 class Event(raw: Ptr[GdkEvent]):
+
   def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -45,7 +46,7 @@ class Event(raw: Ptr[GdkEvent]):
   @annotation.compileTimeOnly(
     "Method _get_angle contains an OUT parameter, which is not supported yet"
   )
-  def GetAngle(using DummyImplicit) = ???
+  private def GetAngle__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -57,7 +58,7 @@ class Event(raw: Ptr[GdkEvent]):
   @annotation.compileTimeOnly(
     "Method _get_center contains an OUT parameter, which is not supported yet"
   )
-  def GetCenter(using DummyImplicit) = ???
+  private def GetCenter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -69,7 +70,7 @@ class Event(raw: Ptr[GdkEvent]):
   @annotation.compileTimeOnly(
     "Method _get_distance contains an OUT parameter, which is not supported yet"
   )
-  def GetDistance(using DummyImplicit) = ???
+  private def GetDistance__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -81,7 +82,7 @@ class Event(raw: Ptr[GdkEvent]):
   @annotation.compileTimeOnly(
     "Method get_axes contains an OUT parameter, which is not supported yet"
   )
-  def getAxes(using DummyImplicit) = ???
+  private def getAxes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -93,13 +94,13 @@ class Event(raw: Ptr[GdkEvent]):
   @annotation.compileTimeOnly(
     "Method get_axis contains an OUT parameter, which is not supported yet"
   )
-  def getAxis(using DummyImplicit) = ???
+  private def getAxis__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the device of an event.
     */
-  def getDevice(): Device = new Device(
+  def getDevice(): Device /* None */ = new Device(
     gdk_event_get_device(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -114,7 +115,7 @@ class Event(raw: Ptr[GdkEvent]):
     * lifetime, if settings must be stored persistently across runs, see
     * [method@Gdk.DeviceTool.get_serial].
     */
-  def getDeviceTool(): DeviceTool = new DeviceTool(
+  def getDeviceTool(): DeviceTool /* None */ = new DeviceTool(
     gdk_event_get_device_tool(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -122,7 +123,7 @@ class Event(raw: Ptr[GdkEvent]):
     *
     * Retrieves the display associated to the @event.
     */
-  def getDisplay(): Display = new Display(
+  def getDisplay(): Display /* None */ = new Display(
     gdk_event_get_display(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -133,15 +134,14 @@ class Event(raw: Ptr[GdkEvent]):
     * Related touch events are connected in a sequence. Other events typically
     * don't have event sequence information.
     */
-  def getEventSequence(): Ptr[GdkEventSequence] = gdk_event_get_event_sequence(
-    this.raw.asInstanceOf
-  )
+  def getEventSequence(): Ptr[GdkEventSequence] /* None */ =
+    gdk_event_get_event_sequence(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the type of the event.
     */
-  def getEventType(): GdkEventType = gdk_event_get_event_type(
+  def getEventType(): GdkEventType /* None */ = gdk_event_get_event_type(
     this.raw.asInstanceOf
   )
 
@@ -159,15 +159,14 @@ class Event(raw: Ptr[GdkEvent]):
   @annotation.compileTimeOnly(
     "Method get_history contains an OUT parameter, which is not supported yet"
   )
-  def getHistory(using DummyImplicit) = ???
+  private def getHistory__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the modifier state field of an event.
     */
-  def getModifierState(): GdkModifierType = gdk_event_get_modifier_state(
-    this.raw.asInstanceOf
-  )
+  def getModifierState(): GdkModifierType /* None */ =
+    gdk_event_get_modifier_state(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -175,7 +174,7 @@ class Event(raw: Ptr[GdkEvent]):
     *
     * Emulated pointer events typically originate from a touch events.
     */
-  def getPointerEmulated(): Boolean =
+  def getPointerEmulated(): Boolean /* None */ =
     gdk_event_get_pointer_emulated(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -187,13 +186,13 @@ class Event(raw: Ptr[GdkEvent]):
   @annotation.compileTimeOnly(
     "Method get_position contains an OUT parameter, which is not supported yet"
   )
-  def getPosition(using DummyImplicit) = ???
+  private def getPosition__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the seat that originated the event.
     */
-  def getSeat(): Seat = new Seat(
+  def getSeat(): Seat /* None */ = new Seat(
     gdk_event_get_seat(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -201,7 +200,7 @@ class Event(raw: Ptr[GdkEvent]):
     *
     * Extracts the surface associated with an event.
     */
-  def getSurface(): Surface = new Surface(
+  def getSurface(): Surface /* None */ = new Surface(
     gdk_event_get_surface(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -212,13 +211,15 @@ class Event(raw: Ptr[GdkEvent]):
     * Not all events have timestamps. In that case, this function returns
     * %GDK_CURRENT_TIME.
     */
-  def getTime(): UInt = gdk_event_get_time(this.raw.asInstanceOf).value
+  def getTime(): UInt /* None */ = gdk_event_get_time(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Increase the ref count of @event.
     */
-  def ref(): Event = new Event(
+  def ref(): Event /* None */ = new Event(
     gdk_event_ref(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -232,7 +233,7 @@ class Event(raw: Ptr[GdkEvent]):
     * This function should always be used instead of simply checking for
     * event->button == %GDK_BUTTON_SECONDARY.
     */
-  def triggersContextMenu(): Boolean =
+  def triggersContextMenu(): Boolean /* None */ =
     gdk_event_triggers_context_menu(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -241,6 +242,6 @@ class Event(raw: Ptr[GdkEvent]):
     *
     * If the last reference is dropped, the structure is freed.
     */
-  def unref(): Unit = gdk_event_unref(this.raw.asInstanceOf)
+  def unref(): Unit /* None */ = gdk_event_unref(this.raw.asInstanceOf)
 
 end Event

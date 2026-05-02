@@ -14,6 +14,7 @@ import sn.gnome.glib.internal.guint
   * An event related to a pad-based device.
   */
 class PadEvent(raw: Ptr[GdkPadEvent]) extends Event(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -23,13 +24,15 @@ class PadEvent(raw: Ptr[GdkPadEvent]) extends Event(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_axis_value contains an OUT parameter, which is not supported yet"
   )
-  def getAxisValue(using DummyImplicit) = ???
+  private def getAxisValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts information about the pressed button from a pad event.
     */
-  def getButton(): UInt = gdk_pad_event_get_button(this.raw.asInstanceOf).value
+  def getButton(): UInt /* None */ = gdk_pad_event_get_button(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -38,6 +41,6 @@ class PadEvent(raw: Ptr[GdkPadEvent]) extends Event(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_group_mode contains an OUT parameter, which is not supported yet"
   )
-  def getGroupMode(using DummyImplicit) = ???
+  private def getGroupMode__ = ???
 
 end PadEvent

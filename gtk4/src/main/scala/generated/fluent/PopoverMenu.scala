@@ -139,6 +139,7 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
       ConstraintTarget,
       Native,
       ShortcutManager:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -148,19 +149,21 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     * For this to work, the menu model of @popover must have an item with a
     * `custom` attribute that matches @id.
     */
-  def addChild(child: Widget, id: String | CString)(using Zone): Boolean =
-    gtk_popover_menu_add_child(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf,
-      __sn_extract_string(id)
-    ).value.!=(0)
+  def addChild(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      id: String | CString /* Some(CString) */
+  )(using Zone): Boolean /* None */ = gtk_popover_menu_add_child(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf,
+    __sn_extract_string(id)
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the flags that @popover uses to create/display a menu from its
     * model.
     */
-  def getFlags(): GtkPopoverMenuFlags = gtk_popover_menu_get_flags(
+  def getFlags(): GtkPopoverMenuFlags /* None */ = gtk_popover_menu_get_flags(
     this.raw.asInstanceOf
   )
 
@@ -168,7 +171,7 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     *
     * Returns the menu model used to populate the popover.
     */
-  def getMenuModel(): MenuModel = new MenuModel(
+  def getMenuModel(): MenuModel /* None */ = new MenuModel(
     gtk_popover_menu_get_menu_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -177,7 +180,9 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     * Removes a widget that has previously been added with
     * [method@Gtk.PopoverMenu.add_child()]
     */
-  def removeChild(child: Widget): Boolean = gtk_popover_menu_remove_child(
+  def removeChild(
+      child: Widget /* Some(Ptr[GtkWidget]) */
+  ): Boolean /* None */ = gtk_popover_menu_remove_child(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
@@ -190,8 +195,9 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     * setting properties individually, set flags before model to avoid a
     * redundant rebuild.
     */
-  def setFlags(flags: GtkPopoverMenuFlags): Unit =
-    gtk_popover_menu_set_flags(this.raw.asInstanceOf, flags)
+  def setFlags(
+      flags: GtkPopoverMenuFlags /* Some(GtkPopoverMenuFlags) */
+  ): Unit /* None */ = gtk_popover_menu_set_flags(this.raw.asInstanceOf, flags)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -200,9 +206,19 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     * The existing contents of @popover are removed, and the @popover is
     * populated with new contents according to @model.
     */
-  def setMenuModel(model: MenuModel): Unit = gtk_popover_menu_set_menu_model(
+  def setMenuModel(
+      model: Option[
+        MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+      ]
+  ): Unit /* None */ = gtk_popover_menu_set_menu_model(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf
+    model
+      .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
+      )
   )
 
   private inline def __sn_extract_string(str: String | CString)(using
@@ -231,9 +247,19 @@ object PopoverMenu:
     * This function creates menus with sliding submenus. See
     * [ctor@Gtk.PopoverMenu.new_from_model_full] for a way to control this.
     */
-  def fromModel(model: MenuModel): PopoverMenu = new PopoverMenu(
+  def fromModel(
+      model: Option[
+        MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+      ]
+  ): PopoverMenu = new PopoverMenu(
     gtk_popover_menu_new_from_model(
-      model.getUnsafeRawPointer().asInstanceOf
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
+        )
     ).asInstanceOf
   )
 
@@ -251,11 +277,13 @@ object PopoverMenu:
     * which makes GTK create traditional, nested submenus instead of the default
     * sliding submenus.
     */
-  def fromModelFull(model: MenuModel, flags: GtkPopoverMenuFlags): PopoverMenu =
-    new PopoverMenu(
-      gtk_popover_menu_new_from_model_full(
-        model.getUnsafeRawPointer().asInstanceOf,
-        flags
-      ).asInstanceOf
-    )
+  def fromModelFull(
+      model: MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */,
+      flags: GtkPopoverMenuFlags /* Some(GtkPopoverMenuFlags) */
+  ): PopoverMenu = new PopoverMenu(
+    gtk_popover_menu_new_from_model_full(
+      model.getUnsafeRawPointer().asInstanceOf,
+      flags
+    ).asInstanceOf
+  )
 end PopoverMenu

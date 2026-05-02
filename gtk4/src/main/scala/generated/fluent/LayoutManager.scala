@@ -62,6 +62,7 @@ import sn.gnome.gtk4.internal.GtkSizeRequestMode
   */
 class LayoutManager(raw: Ptr[GtkLayoutManager])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -70,14 +71,18 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     * computes the position and sizes of the children of the @widget using the
     * layout management policy of @manager.
     */
-  def allocate(widget: Widget, width: Int, height: Int, baseline: Int): Unit =
-    gtk_layout_manager_allocate(
-      this.raw.asInstanceOf,
-      widget.getUnsafeRawPointer().asInstanceOf,
-      width,
-      height,
-      baseline
-    )
+  def allocate(
+      widget: Widget /* Some(Ptr[GtkWidget]) */,
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */,
+      baseline: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_layout_manager_allocate(
+    this.raw.asInstanceOf,
+    widget.getUnsafeRawPointer().asInstanceOf,
+    width,
+    height,
+    baseline
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -90,7 +95,9 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     * guaranteed to exist as long as @child is a child of the `GtkWidget` using
     * the given `GtkLayoutManager`.
     */
-  def getLayoutChild(child: Widget): LayoutChild = new LayoutChild(
+  def getLayoutChild(
+      child: Widget /* Some(Ptr[GtkWidget]) */
+  ): LayoutChild /* None */ = new LayoutChild(
     gtk_layout_manager_get_layout_child(
       this.raw.asInstanceOf,
       child.getUnsafeRawPointer().asInstanceOf
@@ -101,14 +108,14 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     *
     * Retrieves the request mode of @manager.
     */
-  def getRequestMode(): GtkSizeRequestMode =
+  def getRequestMode(): GtkSizeRequestMode /* None */ =
     gtk_layout_manager_get_request_mode(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the `GtkWidget` using the given `GtkLayoutManager`.
     */
-  def getWidget(): Widget = new Widget(
+  def getWidget(): Widget /* None */ = new Widget(
     gtk_layout_manager_get_widget(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -119,7 +126,7 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     * This function should be called by subclasses of `GtkLayoutManager` in
     * response to changes to their layout management policies.
     */
-  def layoutChanged(): Unit = gtk_layout_manager_layout_changed(
+  def layoutChanged(): Unit /* None */ = gtk_layout_manager_layout_changed(
     this.raw.asInstanceOf
   )
 
@@ -134,6 +141,6 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
   @annotation.compileTimeOnly(
     "Method measure contains an OUT parameter, which is not supported yet"
   )
-  def measure(using DummyImplicit) = ???
+  private def measure__ = ???
 
 end LayoutManager

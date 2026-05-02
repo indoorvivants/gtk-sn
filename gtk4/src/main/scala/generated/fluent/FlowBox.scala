@@ -79,6 +79,7 @@ class FlowBox(raw: Ptr[GtkFlowBox])
       Buildable,
       ConstraintTarget,
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -90,10 +91,11 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * See also: [method@Gtk.FlowBox.insert].
     */
-  def append(child: Widget): Unit = gtk_flow_box_append(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def append(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_flow_box_append(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -113,15 +115,27 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * should be implemented by the model.
     */
   def bindModel(
-      model: ListModel,
-      create_widget_func: GtkFlowBoxCreateWidgetFunc,
-      user_data: Ptr[Byte],
-      user_data_free_func: GDestroyNotify
-  ): Unit = gtk_flow_box_bind_model(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ],
+      create_widget_func: GtkFlowBoxCreateWidgetFunc /* Some(GtkFlowBoxCreateWidgetFunc) */,
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      user_data_free_func: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+  ): Unit /* None */ = gtk_flow_box_bind_model(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf,
+    model
+      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+      ),
     create_widget_func,
-    gpointer(user_data),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     user_data_free_func
   )
 
@@ -129,16 +143,17 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * Returns whether children activate on single clicks.
     */
-  def getActivateOnSingleClick(): Boolean =
+  def getActivateOnSingleClick(): Boolean /* None */ =
     gtk_flow_box_get_activate_on_single_click(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the nth child in the @box.
     */
-  def getChildAtIndex(idx: Int): FlowBoxChild = new FlowBoxChild(
-    gtk_flow_box_get_child_at_index(this.raw.asInstanceOf, idx).asInstanceOf
-  )
+  def getChildAtIndex(idx: Int /* Some(CInt) */ ): FlowBoxChild /* None */ =
+    new FlowBoxChild(
+      gtk_flow_box_get_child_at_index(this.raw.asInstanceOf, idx).asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -146,7 +161,10 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * Both @x and @y are assumed to be relative to the origin of @box.
     */
-  def getChildAtPos(x: Int, y: Int): FlowBoxChild = new FlowBoxChild(
+  def getChildAtPos(
+      x: Int /* Some(CInt) */,
+      y: Int /* Some(CInt) */
+  ): FlowBoxChild /* None */ = new FlowBoxChild(
     gtk_flow_box_get_child_at_pos(this.raw.asInstanceOf, x, y).asInstanceOf
   )
 
@@ -154,7 +172,7 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * Gets the horizontal spacing.
     */
-  def getColumnSpacing(): UInt = gtk_flow_box_get_column_spacing(
+  def getColumnSpacing(): UInt /* None */ = gtk_flow_box_get_column_spacing(
     this.raw.asInstanceOf
   ).value
 
@@ -162,30 +180,28 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * Returns whether the box is homogeneous.
     */
-  def getHomogeneous(): Boolean =
+  def getHomogeneous(): Boolean /* None */ =
     gtk_flow_box_get_homogeneous(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the maximum number of children per line.
     */
-  def getMaxChildrenPerLine(): UInt = gtk_flow_box_get_max_children_per_line(
-    this.raw.asInstanceOf
-  ).value
+  def getMaxChildrenPerLine(): UInt /* None */ =
+    gtk_flow_box_get_max_children_per_line(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the minimum number of children per line.
     */
-  def getMinChildrenPerLine(): UInt = gtk_flow_box_get_min_children_per_line(
-    this.raw.asInstanceOf
-  ).value
+  def getMinChildrenPerLine(): UInt /* None */ =
+    gtk_flow_box_get_min_children_per_line(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the vertical spacing.
     */
-  def getRowSpacing(): UInt = gtk_flow_box_get_row_spacing(
+  def getRowSpacing(): UInt /* None */ = gtk_flow_box_get_row_spacing(
     this.raw.asInstanceOf
   ).value
 
@@ -193,17 +209,15 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * Creates a list of all selected children.
     */
-  def getSelectedChildren(): Ptr[GList] = gtk_flow_box_get_selected_children(
-    this.raw.asInstanceOf
-  )
+  def getSelectedChildren(): Ptr[GList] /* None */ =
+    gtk_flow_box_get_selected_children(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the selection mode of @box.
     */
-  def getSelectionMode(): GtkSelectionMode = gtk_flow_box_get_selection_mode(
-    this.raw.asInstanceOf
-  )
+  def getSelectionMode(): GtkSelectionMode /* None */ =
+    gtk_flow_box_get_selection_mode(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -215,7 +229,10 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * If @position is -1, or larger than the total number of children in the @box,
     * then the @widget will be appended to the end.
     */
-  def insert(widget: Widget, position: Int): Unit = gtk_flow_box_insert(
+  def insert(
+      widget: Widget /* Some(Ptr[GtkWidget]) */,
+      position: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_flow_box_insert(
     this.raw.asInstanceOf,
     widget.getUnsafeRawPointer().asInstanceOf,
     position
@@ -230,7 +247,7 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * filter function just looked for a specific search term, and the entry with
     * the string has changed.
     */
-  def invalidateFilter(): Unit = gtk_flow_box_invalidate_filter(
+  def invalidateFilter(): Unit /* None */ = gtk_flow_box_invalidate_filter(
     this.raw.asInstanceOf
   )
 
@@ -242,7 +259,7 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * @box
     *   is changed due to an external factor.
     */
-  def invalidateSort(): Unit = gtk_flow_box_invalidate_sort(
+  def invalidateSort(): Unit /* None */ = gtk_flow_box_invalidate_sort(
     this.raw.asInstanceOf
   )
 
@@ -255,19 +272,21 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * See also: [method@Gtk.FlowBox.insert].
     */
-  def prepend(child: Widget): Unit = gtk_flow_box_prepend(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def prepend(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_flow_box_prepend(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes a child from @box.
     */
-  def remove(widget: Widget): Unit = gtk_flow_box_remove(
-    this.raw.asInstanceOf,
-    widget.getUnsafeRawPointer().asInstanceOf
-  )
+  def remove(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_flow_box_remove(
+      this.raw.asInstanceOf,
+      widget.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -275,19 +294,25 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * This function does nothing if @box is backed by a model.
     */
-  def removeAll(): Unit = gtk_flow_box_remove_all(this.raw.asInstanceOf)
+  def removeAll(): Unit /* None */ = gtk_flow_box_remove_all(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Select all children of @box, if the selection mode allows it.
     */
-  def selectAll(): Unit = gtk_flow_box_select_all(this.raw.asInstanceOf)
+  def selectAll(): Unit /* None */ = gtk_flow_box_select_all(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Selects a single child of @box, if the selection mode allows it.
     */
-  def selectChild(child: FlowBoxChild): Unit = gtk_flow_box_select_child(
+  def selectChild(
+      child: FlowBoxChild /* Some(Ptr[GtkFlowBoxChild]) */
+  ): Unit /* None */ = gtk_flow_box_select_child(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf
   )
@@ -298,25 +323,38 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * Note that the selection cannot be modified from within this function.
     */
-  def selectedForeach(func: GtkFlowBoxForeachFunc, data: Ptr[Byte]): Unit =
-    gtk_flow_box_selected_foreach(this.raw.asInstanceOf, func, gpointer(data))
+  def selectedForeach(
+      func: GtkFlowBoxForeachFunc /* Some(GtkFlowBoxForeachFunc) */,
+      data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gtk_flow_box_selected_foreach(
+    this.raw.asInstanceOf,
+    func,
+    data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * If @single is %TRUE, children will be activated when you click on them,
     * otherwise you need to double-click.
     */
-  def setActivateOnSingleClick(single: Boolean): Unit =
-    gtk_flow_box_set_activate_on_single_click(
-      this.raw.asInstanceOf,
-      gboolean(gint((if single == true then 1 else 0)))
-    )
+  def setActivateOnSingleClick(
+      single: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_flow_box_set_activate_on_single_click(
+    this.raw.asInstanceOf,
+    gboolean(gint((if single == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the horizontal space to add between children.
     */
-  def setColumnSpacing(spacing: UInt): Unit =
+  def setColumnSpacing(
+      spacing: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_flow_box_set_column_spacing(this.raw.asInstanceOf, guint(spacing))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -336,13 +374,21 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * [method@Gtk.FlowBox.bind_model]).
     */
   def setFilterFunc(
-      filter_func: GtkFlowBoxFilterFunc,
-      user_data: Ptr[Byte],
-      destroy: GDestroyNotify
-  ): Unit = gtk_flow_box_set_filter_func(
+      filter_func: Option[
+        GtkFlowBoxFilterFunc /* Some(GtkFlowBoxFilterFunc) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+  ): Unit /* None */ = gtk_flow_box_set_filter_func(
     this.raw.asInstanceOf,
-    filter_func,
-    gpointer(user_data),
+    filter_func
+      .map[GtkFlowBoxFilterFunc](o => o)
+      .getOrElse(null.asInstanceOf[GtkFlowBoxFilterFunc]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     destroy
   )
 
@@ -358,17 +404,20 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * The adjustments have to be in pixel units and in the same coordinate
     * system as the allocation for immediate children of the box.
     */
-  def setHadjustment(adjustment: Adjustment): Unit =
-    gtk_flow_box_set_hadjustment(
-      this.raw.asInstanceOf,
-      adjustment.getUnsafeRawPointer().asInstanceOf
-    )
+  def setHadjustment(
+      adjustment: Adjustment /* Some(Ptr[GtkAdjustment]) */
+  ): Unit /* None */ = gtk_flow_box_set_hadjustment(
+    this.raw.asInstanceOf,
+    adjustment.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether or not all children of @box are given equal space in the box.
     */
-  def setHomogeneous(homogeneous: Boolean): Unit = gtk_flow_box_set_homogeneous(
+  def setHomogeneous(
+      homogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_flow_box_set_homogeneous(
     this.raw.asInstanceOf,
     gboolean(gint((if homogeneous == true then 1 else 0)))
   )
@@ -382,35 +431,41 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * size request to be no more than @n_children children long in the given
     * orientation.
     */
-  def setMaxChildrenPerLine(n_children: UInt): Unit =
-    gtk_flow_box_set_max_children_per_line(
-      this.raw.asInstanceOf,
-      guint(n_children)
-    )
+  def setMaxChildrenPerLine(
+      n_children: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ = gtk_flow_box_set_max_children_per_line(
+    this.raw.asInstanceOf,
+    guint(n_children)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the minimum number of children to line up in @box’s orientation
     * before flowing.
     */
-  def setMinChildrenPerLine(n_children: UInt): Unit =
-    gtk_flow_box_set_min_children_per_line(
-      this.raw.asInstanceOf,
-      guint(n_children)
-    )
+  def setMinChildrenPerLine(
+      n_children: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ = gtk_flow_box_set_min_children_per_line(
+    this.raw.asInstanceOf,
+    guint(n_children)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the vertical space to add between children.
     */
-  def setRowSpacing(spacing: UInt): Unit =
+  def setRowSpacing(
+      spacing: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_flow_box_set_row_spacing(this.raw.asInstanceOf, guint(spacing))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets how selection works in @box.
     */
-  def setSelectionMode(mode: GtkSelectionMode): Unit =
+  def setSelectionMode(
+      mode: GtkSelectionMode /* Some(GtkSelectionMode) */
+  ): Unit /* None */ =
     gtk_flow_box_set_selection_mode(this.raw.asInstanceOf, mode)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -427,13 +482,19 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * [method@Gtk.FlowBox.bind_model]).
     */
   def setSortFunc(
-      sort_func: GtkFlowBoxSortFunc,
-      user_data: Ptr[Byte],
-      destroy: GDestroyNotify
-  ): Unit = gtk_flow_box_set_sort_func(
+      sort_func: Option[GtkFlowBoxSortFunc /* Some(GtkFlowBoxSortFunc) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+  ): Unit /* None */ = gtk_flow_box_set_sort_func(
     this.raw.asInstanceOf,
-    sort_func,
-    gpointer(user_data),
+    sort_func
+      .map[GtkFlowBoxSortFunc](o => o)
+      .getOrElse(null.asInstanceOf[GtkFlowBoxSortFunc]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     destroy
   )
 
@@ -449,23 +510,28 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * The adjustments have to be in pixel units and in the same coordinate
     * system as the allocation for immediate children of the box.
     */
-  def setVadjustment(adjustment: Adjustment): Unit =
-    gtk_flow_box_set_vadjustment(
-      this.raw.asInstanceOf,
-      adjustment.getUnsafeRawPointer().asInstanceOf
-    )
+  def setVadjustment(
+      adjustment: Adjustment /* Some(Ptr[GtkAdjustment]) */
+  ): Unit /* None */ = gtk_flow_box_set_vadjustment(
+    this.raw.asInstanceOf,
+    adjustment.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Unselect all children of @box, if the selection mode allows it.
     */
-  def unselectAll(): Unit = gtk_flow_box_unselect_all(this.raw.asInstanceOf)
+  def unselectAll(): Unit /* None */ = gtk_flow_box_unselect_all(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Unselects a single child of @box, if the selection mode allows it.
     */
-  def unselectChild(child: FlowBoxChild): Unit = gtk_flow_box_unselect_child(
+  def unselectChild(
+      child: FlowBoxChild /* Some(Ptr[GtkFlowBoxChild]) */
+  ): Unit /* None */ = gtk_flow_box_unselect_child(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf
   )

@@ -27,6 +27,7 @@ import sn.gnome.gio.internal.GThreadedSocketService
   */
 class ThreadedSocketService(raw: Ptr[GThreadedSocketService])
     extends SocketService(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ThreadedSocketService
@@ -37,7 +38,7 @@ object ThreadedSocketService:
     * Creates a new #GThreadedSocketService with no listeners. Listeners must be
     * added with one of the #GSocketListener "add" methods.
     */
-  def apply(max_threads: Int): ThreadedSocketService =
+  def apply(max_threads: Int /* Some(CInt) */ ): ThreadedSocketService =
     new ThreadedSocketService(
       g_threaded_socket_service_new(max_threads).asInstanceOf
     )

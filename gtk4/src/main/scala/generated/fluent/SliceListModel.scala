@@ -25,13 +25,14 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     extends Object(raw.asInstanceOf),
       ListModel,
       SectionModel:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the model that is currently being used or %NULL if none.
     */
-  def getModel(): ListModel = new ListModel.Abstract(
+  def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_slice_list_model_get_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -39,7 +40,7 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     *
     * Gets the offset set via gtk_slice_list_model_set_offset().
     */
-  def getOffset(): UInt = gtk_slice_list_model_get_offset(
+  def getOffset(): UInt /* None */ = gtk_slice_list_model_get_offset(
     this.raw.asInstanceOf
   ).value
 
@@ -47,7 +48,7 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     *
     * Gets the size set via gtk_slice_list_model_set_size().
     */
-  def getSize(): UInt = gtk_slice_list_model_get_size(
+  def getSize(): UInt /* None */ = gtk_slice_list_model_get_size(
     this.raw.asInstanceOf
   ).value
 
@@ -57,9 +58,19 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     *
     * The model's item type must conform to @self's item type.
     */
-  def setModel(model: ListModel): Unit = gtk_slice_list_model_set_model(
+  def setModel(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ]
+  ): Unit /* None */ = gtk_slice_list_model_set_model(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf
+    model
+      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -70,7 +81,9 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     * @self
     *   will end up empty.
     */
-  def setOffset(offset: UInt): Unit =
+  def setOffset(
+      offset: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_slice_list_model_set_offset(this.raw.asInstanceOf, guint(offset))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -80,7 +93,9 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     * It can however have fewer items if the offset is too large or the model
     * sliced from doesn't have enough items.
     */
-  def setSize(size: UInt): Unit =
+  def setSize(
+      size: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_slice_list_model_set_size(this.raw.asInstanceOf, guint(size))
 
 end SliceListModel
@@ -92,12 +107,23 @@ object SliceListModel:
     *
     * It presents the slice from @offset to offset + @size of the given @model.
     */
-  def apply(model: ListModel, offset: UInt, size: UInt): SliceListModel =
-    new SliceListModel(
-      gtk_slice_list_model_new(
-        model.getUnsafeRawPointer().asInstanceOf,
-        guint(offset),
-        guint(size)
-      ).asInstanceOf
-    )
+  def apply(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ],
+      offset: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      size: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): SliceListModel = new SliceListModel(
+    gtk_slice_list_model_new(
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        ),
+      guint(offset),
+      guint(size)
+    ).asInstanceOf
+  )
 end SliceListModel

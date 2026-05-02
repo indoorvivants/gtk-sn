@@ -15,6 +15,7 @@ import sn.gnome.gio.internal.GDBusMenuModel
   */
 class DBusMenuModel(raw: Ptr[GDBusMenuModel])
     extends MenuModel(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end DBusMenuModel

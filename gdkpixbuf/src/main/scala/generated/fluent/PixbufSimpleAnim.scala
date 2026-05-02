@@ -17,6 +17,7 @@ import sn.gnome.glib.internal.gint
   */
 class PixbufSimpleAnim(raw: Ptr[GdkPixbufSimpleAnim])
     extends PixbufAnimation(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -24,23 +25,26 @@ class PixbufSimpleAnim(raw: Ptr[GdkPixbufSimpleAnim])
     * Adds a new frame to @animation. The @pixbuf must have the dimensions
     * specified when the animation was constructed.
     */
-  def addFrame(pixbuf: Pixbuf): Unit = gdk_pixbuf_simple_anim_add_frame(
-    this.raw.asInstanceOf,
-    pixbuf.getUnsafeRawPointer().asInstanceOf
-  )
+  def addFrame(pixbuf: Pixbuf /* Some(Ptr[GdkPixbuf]) */ ): Unit /* None */ =
+    gdk_pixbuf_simple_anim_add_frame(
+      this.raw.asInstanceOf,
+      pixbuf.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether @animation should loop indefinitely when it reaches the end.
     */
-  def getLoop(): Boolean =
+  def getLoop(): Boolean /* None */ =
     gdk_pixbuf_simple_anim_get_loop(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether @animation should loop indefinitely when it reaches the end.
     */
-  def setLoop(loop: Boolean): Unit = gdk_pixbuf_simple_anim_set_loop(
+  def setLoop(
+      loop: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gdk_pixbuf_simple_anim_set_loop(
     this.raw.asInstanceOf,
     gboolean(gint((if loop == true then 1 else 0)))
   )
@@ -52,12 +56,15 @@ object PixbufSimpleAnim:
     *
     * Creates a new, empty animation.
     */
-  def apply(width: Int, height: Int, rate: Float): PixbufSimpleAnim =
-    new PixbufSimpleAnim(
-      gdk_pixbuf_simple_anim_new(
-        gint(width),
-        gint(height),
-        gfloat(rate)
-      ).asInstanceOf
-    )
+  def apply(
+      width: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
+      height: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
+      rate: Float /* Some(_root_.sn.gnome.glib.internal.gfloat) */
+  ): PixbufSimpleAnim = new PixbufSimpleAnim(
+    gdk_pixbuf_simple_anim_new(
+      gint(width),
+      gint(height),
+      gfloat(rate)
+    ).asInstanceOf
+  )
 end PixbufSimpleAnim

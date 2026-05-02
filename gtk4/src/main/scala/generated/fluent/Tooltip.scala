@@ -38,6 +38,7 @@ import sn.gnome.gtk4.internal.GtkTooltip
   *     to be show. If you return %FALSE, it will not be shown.
   */
 class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
@@ -49,9 +50,13 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
     *  the tooltip, which can be configured using gtk_tooltip_set_markup()
     *  and gtk_tooltip_set_icon().
     */
-  def setCustom(custom_widget: Widget): Unit = gtk_tooltip_set_custom(
+  def setCustom(
+      custom_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_tooltip_set_custom(
     this.raw.asInstanceOf,
-    custom_widget.getUnsafeRawPointer().asInstanceOf
+    custom_widget
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -60,9 +65,19 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
     * @paintable.
     *   If @paintable is %NULL, the image will be hidden.
     */
-  def setIcon(paintable: Paintable): Unit = gtk_tooltip_set_icon(
+  def setIcon(
+      paintable: Option[
+        Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
+      ]
+  ): Unit /* None */ = gtk_tooltip_set_icon(
     this.raw.asInstanceOf,
-    paintable.getUnsafeRawPointer().asInstanceOf
+    paintable
+      .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -71,9 +86,15 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
     * icon indicated by @gicon with the size indicated by @size. If @gicon is
     * %NULL, the image will be hidden.
     */
-  def setIconFromGicon(gicon: Icon): Unit = gtk_tooltip_set_icon_from_gicon(
+  def setIconFromGicon(
+      gicon: Option[Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */ ]
+  ): Unit /* None */ = gtk_tooltip_set_icon_from_gicon(
     this.raw.asInstanceOf,
-    gicon.getUnsafeRawPointer().asInstanceOf
+    gicon
+      .map[Ptr[_root_.sn.gnome.gio.internal.GIcon]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GIcon]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -82,11 +103,14 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
     * icon indicated by @icon_name with the size indicated by @size. If @icon_name
     * is %NULL, the image will be hidden.
     */
-  def setIconFromIconName(icon_name: String | CString)(using Zone): Unit =
-    gtk_tooltip_set_icon_from_icon_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(icon_name)
-    )
+  def setIconFromIconName(
+      icon_name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_tooltip_set_icon_from_icon_name(
+    this.raw.asInstanceOf,
+    icon_name
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -95,8 +119,14 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
     * The string must be marked up with Pango markup. If @markup is %NULL, the
     * label will be hidden.
     */
-  def setMarkup(markup: String | CString)(using Zone): Unit =
-    gtk_tooltip_set_markup(this.raw.asInstanceOf, __sn_extract_string(markup))
+  def setMarkup(
+      markup: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_tooltip_set_markup(
+    this.raw.asInstanceOf,
+    markup
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -105,8 +135,14 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
     * If @text is %NULL, the label will be hidden. See also
     * [method@Gtk.Tooltip.set_markup].
     */
-  def setText(text: String | CString)(using Zone): Unit =
-    gtk_tooltip_set_text(this.raw.asInstanceOf, __sn_extract_string(text))
+  def setText(
+      text: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_tooltip_set_text(
+    this.raw.asInstanceOf,
+    text
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -118,8 +154,11 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
     * functions for this: gtk_tree_view_set_tooltip_row() and
     * gtk_tree_view_set_tooltip_cell().
     */
-  def setTipArea(rect: Ptr[GdkRectangle]): Unit =
-    gtk_tooltip_set_tip_area(this.raw.asInstanceOf, rect)
+  def setTipArea(
+      rect: Ptr[
+        GdkRectangle
+      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */
+  ): Unit /* None */ = gtk_tooltip_set_tip_area(this.raw.asInstanceOf, rect)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -14,6 +14,7 @@ import sn.gnome.gobject.internal.GParamSpecDouble
   */
 class ParamSpecDouble(raw: Ptr[GParamSpecDouble])
     extends ParamSpec(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ParamSpecDouble

@@ -35,13 +35,16 @@ import sn.gnome.gobject.fluent.Object
   */
 class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Queries the height of the bounding box of a pixbuf animation.
     */
-  def getHeight(): Int = gdk_pixbuf_animation_get_height(this.raw.asInstanceOf)
+  def getHeight(): Int /* None */ = gdk_pixbuf_animation_get_height(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -78,13 +81,20 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     *
     * A delay time of -1 is possible, indicating "infinite".
     */
-  def getIter(start_time: Ptr[GTimeVal]): PixbufAnimationIter =
-    new PixbufAnimationIter(
-      gdk_pixbuf_animation_get_iter(
-        this.raw.asInstanceOf,
-        start_time
-      ).asInstanceOf
-    )
+  def getIter(
+      start_time: Option[
+        Ptr[GTimeVal] /* Some(Ptr[_root_.sn.gnome.glib.internal.GTimeVal]) */
+      ]
+  ): PixbufAnimationIter /* None */ = new PixbufAnimationIter(
+    gdk_pixbuf_animation_get_iter(
+      this.raw.asInstanceOf,
+      start_time
+        .map[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]](o => o)
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]]
+        )
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -100,7 +110,7 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     * If an animation hasn't loaded any frames yet, this function will return
     * `NULL`.
     */
-  def getStaticImage(): Pixbuf = new Pixbuf(
+  def getStaticImage(): Pixbuf /* None */ = new Pixbuf(
     gdk_pixbuf_animation_get_static_image(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -108,7 +118,9 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     *
     * Queries the width of the bounding box of a pixbuf animation.
     */
-  def getWidth(): Int = gdk_pixbuf_animation_get_width(this.raw.asInstanceOf)
+  def getWidth(): Int /* None */ = gdk_pixbuf_animation_get_width(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -118,14 +130,14 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     * out to be a plain, unanimated image, then this function will return
     * `TRUE`. Use gdk_pixbuf_animation_get_static_image() to retrieve the image.
     */
-  def isStaticImage(): Boolean =
+  def isStaticImage(): Boolean /* None */ =
     gdk_pixbuf_animation_is_static_image(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Adds a reference to an animation.
     */
-  override def ref(): PixbufAnimation = new PixbufAnimation(
+  override def ref(): PixbufAnimation /* None */ = new PixbufAnimation(
     gdk_pixbuf_animation_ref(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -133,7 +145,9 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     *
     * Removes a reference from an animation.
     */
-  override def unref(): Unit = gdk_pixbuf_animation_unref(this.raw.asInstanceOf)
+  override def unref(): Unit /* None */ = gdk_pixbuf_animation_unref(
+    this.raw.asInstanceOf
+  )
 
 end PixbufAnimation
 
@@ -150,7 +164,7 @@ object PixbufAnimation:
     * Possible errors are in the `GDK_PIXBUF_ERROR` and `G_FILE_ERROR` domains.
     */
   def fromFile(
-      filename: String | CString
+      filename: String | CString /* Some(CString) */
   )(using Zone): GResult[PixbufAnimation] = GResult.wrap(__errorPtr =>
     new PixbufAnimation(
       gdk_pixbuf_animation_new_from_file(
@@ -169,7 +183,7 @@ object PixbufAnimation:
     *   will be set.
     */
   def fromResource(
-      resource_path: String | CString
+      resource_path: String | CString /* Some(CString) */
   )(using Zone): GResult[PixbufAnimation] = GResult.wrap(__errorPtr =>
     new PixbufAnimation(
       gdk_pixbuf_animation_new_from_resource(
@@ -195,13 +209,21 @@ object PixbufAnimation:
     * The stream is not closed.
     */
   def fromStream(
-      stream: InputStream,
-      cancellable: Cancellable
+      stream: InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
+      cancellable: Option[
+        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+      ]
   ): GResult[PixbufAnimation] = GResult.wrap(__errorPtr =>
     new PixbufAnimation(
       gdk_pixbuf_animation_new_from_stream(
         stream.getUnsafeRawPointer().asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
+        cancellable
+          .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
+          ),
         __errorPtr
       ).asInstanceOf
     )
@@ -212,15 +234,16 @@ object PixbufAnimation:
     * Finishes an asynchronous pixbuf animation creation operation started with
     * [func@GdkPixbuf.PixbufAnimation.new_from_stream_async].
     */
-  def fromStreamFinish(async_result: AsyncResult): GResult[PixbufAnimation] =
-    GResult.wrap(__errorPtr =>
-      new PixbufAnimation(
-        gdk_pixbuf_animation_new_from_stream_finish(
-          async_result.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def fromStreamFinish(
+      async_result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[PixbufAnimation] = GResult.wrap(__errorPtr =>
+    new PixbufAnimation(
+      gdk_pixbuf_animation_new_from_stream_finish(
+        async_result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

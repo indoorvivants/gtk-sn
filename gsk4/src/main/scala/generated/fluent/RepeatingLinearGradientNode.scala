@@ -18,6 +18,7 @@ import sn.gnome.gsk4.internal.GskRepeatingLinearGradientNode
   */
 class RepeatingLinearGradientNode(raw: Ptr[GskRepeatingLinearGradientNode])
     extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end RepeatingLinearGradientNode
@@ -30,11 +31,17 @@ object RepeatingLinearGradientNode:
     * by @bounds.
     */
   def apply(
-      bounds: Ptr[graphene_rect_t],
-      start: Ptr[graphene_point_t],
-      end: Ptr[graphene_point_t],
-      color_stops: Ptr[GskColorStop],
-      n_color_stops: CUnsignedLongInt
+      bounds: Ptr[
+        graphene_rect_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
+      start: Ptr[
+        graphene_point_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
+      end: Ptr[
+        graphene_point_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
+      color_stops: Ptr[GskColorStop /* None */ ] /* Some(Ptr[GskColorStop]) */,
+      n_color_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): RepeatingLinearGradientNode = new RepeatingLinearGradientNode(
     gsk_repeating_linear_gradient_node_new(
       bounds,

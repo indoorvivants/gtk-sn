@@ -24,6 +24,7 @@ class GLTexture(raw: Ptr[GdkGLTexture])
       Paintable,
       Icon,
       LoadableIcon:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -34,7 +35,7 @@ class GLTexture(raw: Ptr[GdkGLTexture])
     * [method@Gdk.Texture.download] function, after this function has been
     * called.
     */
-  def release(): Unit = gdk_gl_texture_release(this.raw.asInstanceOf)
+  def release(): Unit /* None */ = gdk_gl_texture_release(this.raw.asInstanceOf)
 
 end GLTexture
 
@@ -48,12 +49,14 @@ object GLTexture:
     * explicit call of [method@Gdk.GLTexture.release].
     */
   def apply(
-      context: GLContext,
-      id: UInt,
-      width: Int,
-      height: Int,
-      destroy: GDestroyNotify,
-      data: Ptr[Byte]
+      context: GLContext /* Some(Ptr[GdkGLContext]) */,
+      id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */,
+      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */,
+      data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
   ): GLTexture = new GLTexture(
     gdk_gl_texture_new(
       context.getUnsafeRawPointer().asInstanceOf,
@@ -61,7 +64,9 @@ object GLTexture:
       width,
       height,
       destroy,
-      gpointer(data)
+      data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
     ).asInstanceOf
   )
 end GLTexture

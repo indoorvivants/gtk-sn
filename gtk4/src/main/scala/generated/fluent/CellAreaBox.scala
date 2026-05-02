@@ -38,13 +38,16 @@ class CellAreaBox(raw: Ptr[GtkCellAreaBox])
       Buildable,
       CellLayout,
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the spacing added between cell renderers.
     */
-  def getSpacing(): Int = gtk_cell_area_box_get_spacing(this.raw.asInstanceOf)
+  def getSpacing(): Int /* None */ = gtk_cell_area_box_get_spacing(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -54,11 +57,11 @@ class CellAreaBox(raw: Ptr[GtkCellAreaBox])
     * `GtkCellRenderer` packed with reference to the end of @box.
     */
   def packEnd(
-      renderer: CellRenderer,
-      expand: Boolean,
-      align: Boolean,
-      fixed: Boolean
-  ): Unit = gtk_cell_area_box_pack_end(
+      renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      fixed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_cell_area_box_pack_end(
     this.raw.asInstanceOf,
     renderer.getUnsafeRawPointer().asInstanceOf,
     gboolean(gint((if expand == true then 1 else 0))),
@@ -74,11 +77,11 @@ class CellAreaBox(raw: Ptr[GtkCellAreaBox])
     * reference to the start of @box.
     */
   def packStart(
-      renderer: CellRenderer,
-      expand: Boolean,
-      align: Boolean,
-      fixed: Boolean
-  ): Unit = gtk_cell_area_box_pack_start(
+      renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      fixed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_cell_area_box_pack_start(
     this.raw.asInstanceOf,
     renderer.getUnsafeRawPointer().asInstanceOf,
     gboolean(gint((if expand == true then 1 else 0))),
@@ -90,7 +93,7 @@ class CellAreaBox(raw: Ptr[GtkCellAreaBox])
     *
     * Sets the spacing to add between cell renderers in @box.
     */
-  def setSpacing(spacing: Int): Unit =
+  def setSpacing(spacing: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_cell_area_box_set_spacing(this.raw.asInstanceOf, spacing)
 
 end CellAreaBox

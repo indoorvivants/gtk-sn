@@ -33,13 +33,16 @@ import sn.gnome.gobject.fluent.Object
   * All of these functions have async variants too.
   */
 class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Clears the pending flag on @stream.
     */
-  def clearPending(): Unit = g_input_stream_clear_pending(this.raw.asInstanceOf)
+  def clearPending(): Unit /* None */ = g_input_stream_clear_pending(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -68,14 +71,17 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * Cancelling a close will still leave the stream closed, but some streams
     * can use a faster close that doesn't block to e.g. check errors.
     */
-  def close(cancellable: Cancellable): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_input_stream_close(
-        this.raw.asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def close(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_input_stream_close(
+      this.raw.asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -91,16 +97,24 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * However, if you override one you must override all.
     */
   def closeAsync(
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_input_stream_close_async(
+      io_priority: Int /* Some(CInt) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_input_stream_close_async(
     this.raw.asInstanceOf,
     io_priority,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -108,27 +122,28 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * Finishes closing a stream asynchronously, started from
     * g_input_stream_close_async().
     */
-  def closeFinish(result: AsyncResult): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_input_stream_close_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def closeFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_input_stream_close_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if an input stream has pending actions.
     */
-  def hasPending(): Boolean =
+  def hasPending(): Boolean /* None */ =
     g_input_stream_has_pending(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if an input stream is closed.
     */
-  def isClosed(): Boolean =
+  def isClosed(): Boolean /* None */ =
     g_input_stream_is_closed(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -159,7 +174,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method read contains an OUT parameter, which is not supported yet"
   )
-  def read(using DummyImplicit) = ???
+  private def read__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -188,7 +203,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method read_all contains an OUT parameter, which is not supported yet"
   )
-  def readAll(using DummyImplicit) = ???
+  private def readAll__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -206,7 +221,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method read_all_async contains an OUT parameter, which is not supported yet"
   )
-  def readAllAsync(using DummyImplicit) = ???
+  private def readAllAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -224,7 +239,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method read_all_finish contains an OUT parameter, which is not supported yet"
   )
-  def readAllFinish(using DummyImplicit) = ???
+  private def readAllFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -256,7 +271,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method read_async contains an OUT parameter, which is not supported yet"
   )
-  def readAsync(using DummyImplicit) = ???
+  private def readAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -283,13 +298,15 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * On error %NULL is returned and @error is set accordingly.
     */
   def readBytes(
-      count: CUnsignedLongInt,
-      cancellable: Cancellable
-  ): GResult[Ptr[GBytes]] = GResult.wrap(__errorPtr =>
+      count: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[Ptr[GBytes] /* None */ ] = GResult.wrap(__errorPtr =>
     g_input_stream_read_bytes(
       this.raw.asInstanceOf,
       gsize(count),
-      cancellable.getUnsafeRawPointer().asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
       __errorPtr
     )
   )
@@ -319,45 +336,55 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * Default priority is %G_PRIORITY_DEFAULT.
     */
   def readBytesAsync(
-      count: CUnsignedLongInt,
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_input_stream_read_bytes_async(
+      count: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
+      io_priority: Int /* Some(CInt) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_input_stream_read_bytes_async(
     this.raw.asInstanceOf,
     gsize(count),
     io_priority,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes an asynchronous stream read-into-#GBytes operation.
     */
-  def readBytesFinish(result: AsyncResult): GResult[Ptr[GBytes]] =
-    GResult.wrap(__errorPtr =>
-      g_input_stream_read_bytes_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      )
+  def readBytesFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[Ptr[GBytes] /* None */ ] = GResult.wrap(__errorPtr =>
+    g_input_stream_read_bytes_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes an asynchronous stream read operation.
     */
-  def readFinish(result: AsyncResult): GResult[CLongInt] =
-    GResult.wrap(__errorPtr =>
-      g_input_stream_read_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value
-    )
+  def readFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
+    g_input_stream_read_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -365,7 +392,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * or @stream is closed, it will return %FALSE and set
     * @error.
     */
-  def setPending(): GResult[Boolean] = GResult.wrap(__errorPtr =>
+  def setPending(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_input_stream_set_pending(this.raw.asInstanceOf, __errorPtr).value.!=(0)
   )
 
@@ -388,13 +415,15 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * partial result will be returned, without an error.
     */
   def skip(
-      count: CUnsignedLongInt,
-      cancellable: Cancellable
-  ): GResult[CLongInt] = GResult.wrap(__errorPtr =>
+      count: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_input_stream_skip(
       this.raw.asInstanceOf,
       gsize(count),
-      cancellable.getUnsafeRawPointer().asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
       __errorPtr
     ).value
   )
@@ -426,31 +455,40 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * However, if you override one, you must override all.
     */
   def skipAsync(
-      count: CUnsignedLongInt,
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_input_stream_skip_async(
+      count: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
+      io_priority: Int /* Some(CInt) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_input_stream_skip_async(
     this.raw.asInstanceOf,
     gsize(count),
     io_priority,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes a stream skip operation.
     */
-  def skipFinish(result: AsyncResult): GResult[CLongInt] =
-    GResult.wrap(__errorPtr =>
-      g_input_stream_skip_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value
-    )
+  def skipFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
+    g_input_stream_skip_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value
+  )
 
 end InputStream

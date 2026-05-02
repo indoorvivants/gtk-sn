@@ -91,6 +91,7 @@ import sn.gnome.gobject.internal.GBindingFlags
   *  #GBinding is available since GObject 2.26
   */
 class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -101,7 +102,7 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * strong reference to the source. If the source is destroyed before the
     * binding then this function will return %NULL.
     */
-  def dupSource(): Object = new Object(
+  def dupSource(): Object /* None */ = new Object(
     g_binding_dup_source(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -113,7 +114,7 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * strong reference to the target. If the target is destroyed before the
     * binding then this function will return %NULL.
     */
-  def dupTarget(): Object = new Object(
+  def dupTarget(): Object /* None */ = new Object(
     g_binding_dup_target(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -121,7 +122,9 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     *
     * Retrieves the flags passed when constructing the #GBinding.
     */
-  def getFlags(): GBindingFlags = g_binding_get_flags(this.raw.asInstanceOf)
+  def getFlags(): GBindingFlags /* None */ = g_binding_get_flags(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -136,7 +139,7 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * might become invalid if the source is finalized from another thread in the
     * meantime.
     */
-  def getSource(): Object = new Object(
+  def getSource(): Object /* None */ = new Object(
     g_binding_get_source(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -145,7 +148,7 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * Retrieves the name of the property of #GBinding:source used as the source
     * of the binding.
     */
-  def getSourceProperty()(using Zone): String = fromCString(
+  def getSourceProperty()(using Zone): String /* None */ = fromCString(
     g_binding_get_source_property(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -162,7 +165,7 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * might become invalid if the target is finalized from another thread in the
     * meantime.
     */
-  def getTarget(): Object = new Object(
+  def getTarget(): Object /* None */ = new Object(
     g_binding_get_target(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -171,7 +174,7 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * Retrieves the name of the property of #GBinding:target used as the target
     * of the binding.
     */
-  def getTargetProperty()(using Zone): String = fromCString(
+  def getTargetProperty()(using Zone): String /* None */ = fromCString(
     g_binding_get_target_property(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -189,6 +192,6 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * only unrefs the reference that was initially created by
     * g_object_bind_property() and is owned by the binding.
     */
-  def unbind(): Unit = g_binding_unbind(this.raw.asInstanceOf)
+  def unbind(): Unit /* None */ = g_binding_unbind(this.raw.asInstanceOf)
 
 end Binding

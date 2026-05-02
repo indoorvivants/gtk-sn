@@ -19,6 +19,7 @@ import sn.gnome.pango.internal.PangoLanguage
   */
 class FontsetSimple(raw: Ptr[PangoFontsetSimple])
     extends Fontset(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -27,16 +28,17 @@ class FontsetSimple(raw: Ptr[PangoFontsetSimple])
     *
     * The fontset takes ownership of @font.
     */
-  def append(font: Font): Unit = pango_fontset_simple_append(
-    this.raw.asInstanceOf,
-    font.getUnsafeRawPointer().asInstanceOf
-  )
+  def append(font: Font /* Some(Ptr[PangoFont]) */ ): Unit /* None */ =
+    pango_fontset_simple_append(
+      this.raw.asInstanceOf,
+      font.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the number of fonts in the fontset.
     */
-  def size(): Int = pango_fontset_simple_size(this.raw.asInstanceOf)
+  def size(): Int /* None */ = pango_fontset_simple_size(this.raw.asInstanceOf)
 
 end FontsetSimple
 
@@ -45,7 +47,9 @@ object FontsetSimple:
     *
     * Creates a new `PangoFontsetSimple` for the given language.
     */
-  def apply(language: Ptr[PangoLanguage]): FontsetSimple = new FontsetSimple(
+  def apply(
+      language: Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */
+  ): FontsetSimple = new FontsetSimple(
     pango_fontset_simple_new(language).asInstanceOf
   )
 end FontsetSimple

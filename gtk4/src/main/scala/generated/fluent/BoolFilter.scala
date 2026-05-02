@@ -16,6 +16,7 @@ import sn.gnome.gtk4.internal.GtkBoolFilter
   * include items.
   */
 class BoolFilter(raw: Ptr[GtkBoolFilter]) extends Filter(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -23,7 +24,7 @@ class BoolFilter(raw: Ptr[GtkBoolFilter]) extends Filter(raw.asInstanceOf):
     * Gets the expression that the filter uses to evaluate if an item should be
     * filtered.
     */
-  def getExpression(): Expression = new Expression(
+  def getExpression(): Expression /* None */ = new Expression(
     gtk_bool_filter_get_expression(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -31,7 +32,7 @@ class BoolFilter(raw: Ptr[GtkBoolFilter]) extends Filter(raw.asInstanceOf):
     *
     * Returns whether the filter inverts the expression.
     */
-  def getInvert(): Boolean =
+  def getInvert(): Boolean /* None */ =
     gtk_bool_filter_get_invert(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -41,17 +42,22 @@ class BoolFilter(raw: Ptr[GtkBoolFilter]) extends Filter(raw.asInstanceOf):
     *
     * The expression must have a value type of %G_TYPE_BOOLEAN.
     */
-  def setExpression(expression: Expression): Unit =
-    gtk_bool_filter_set_expression(
-      this.raw.asInstanceOf,
-      expression.getUnsafeRawPointer().asInstanceOf
-    )
+  def setExpression(
+      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
+  ): Unit /* None */ = gtk_bool_filter_set_expression(
+    this.raw.asInstanceOf,
+    expression
+      .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the filter should invert the expression.
     */
-  def setInvert(invert: Boolean): Unit = gtk_bool_filter_set_invert(
+  def setInvert(
+      invert: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_bool_filter_set_invert(
     this.raw.asInstanceOf,
     gboolean(gint((if invert == true then 1 else 0)))
   )
@@ -63,9 +69,13 @@ object BoolFilter:
     *
     * Creates a new bool filter.
     */
-  def apply(expression: Expression): BoolFilter = new BoolFilter(
+  def apply(
+      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
+  ): BoolFilter = new BoolFilter(
     gtk_bool_filter_new(
-      expression.getUnsafeRawPointer().asInstanceOf
+      expression
+        .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
     ).asInstanceOf
   )
 end BoolFilter

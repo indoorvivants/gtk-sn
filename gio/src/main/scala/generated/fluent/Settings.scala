@@ -318,6 +318,7 @@ import sn.gnome.gobject.fluent.Object
   *  `EXTRA_DIST`.
   */
 class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -327,7 +328,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * g_settings_delay(). In the normal case settings are always applied
     * immediately.
     */
-  def apply(): Unit = g_settings_apply(this.raw.asInstanceOf)
+  def apply(): Unit /* None */ = g_settings_apply(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -353,11 +354,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * one.
     */
   def bind(
-      key: String | CString,
-      `object`: Object,
-      property: String | CString,
-      flags: GSettingsBindFlags
-  )(using Zone): Unit = g_settings_bind(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      property: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: GSettingsBindFlags /* Some(GSettingsBindFlags) */
+  )(using Zone): Unit /* None */ = g_settings_bind(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
     gpointer(
@@ -381,15 +384,19 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * one.
     */
   def bindWithMapping(
-      key: String | CString,
-      `object`: Object,
-      property: String | CString,
-      flags: GSettingsBindFlags,
-      get_mapping: GSettingsBindGetMapping,
-      set_mapping: GSettingsBindSetMapping,
-      user_data: Ptr[Byte],
-      destroy: GDestroyNotify
-  )(using Zone): Unit = g_settings_bind_with_mapping(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      property: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: GSettingsBindFlags /* Some(GSettingsBindFlags) */,
+      get_mapping: GSettingsBindGetMapping /* Some(GSettingsBindGetMapping) */,
+      set_mapping: GSettingsBindSetMapping /* Some(GSettingsBindSetMapping) */,
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+  )(using Zone): Unit /* None */ = g_settings_bind_with_mapping(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
     gpointer(
@@ -399,7 +406,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     flags,
     get_mapping,
     set_mapping,
-    gpointer(user_data),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     destroy
   )
 
@@ -425,11 +434,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * one.
     */
   def bindWritable(
-      key: String | CString,
-      `object`: Object,
-      property: String | CString,
-      inverted: Boolean
-  )(using Zone): Unit = g_settings_bind_writable(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      property: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      inverted: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  )(using Zone): Unit /* None */ = g_settings_bind_writable(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
     gpointer(
@@ -454,13 +465,14 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * in the toggling of the value. For all other types, activations take the
     * new value for the key (which must have the correct type).
     */
-  def createAction(key: String | CString)(using Zone): Action =
-    new Action.Abstract(
-      g_settings_create_action(
-        this.raw.asInstanceOf,
-        __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-      ).asInstanceOf
-    )
+  def createAction(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Action /* None */ = new Action.Abstract(
+    g_settings_create_action(
+      this.raw.asInstanceOf,
+      __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -468,7 +480,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * changes to @settings are not immediately propagated to the backend, but
     * kept locally until g_settings_apply() is called.
     */
-  def delay(): Unit = g_settings_delay(this.raw.asInstanceOf)
+  def delay(): Unit /* None */ = g_settings_delay(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -481,9 +493,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * for @settings or for the #GVariantType of @format to mismatch the type
     * given in the schema.
     */
-  inline def get(key: String | CString, format: String | CString, args: Any*)(
-      using Zone
-  ): Unit = g_settings_get(
+  inline def get(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      format: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      args: Any*
+  )(using Zone): Unit /* None */ = g_settings_get(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
@@ -499,11 +515,12 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having a
     * boolean type in the schema for @settings.
     */
-  def getBoolean(key: String | CString)(using Zone): Boolean =
-    g_settings_get_boolean(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-    ).value.!=(0)
+  def getBoolean(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Boolean /* None */ = g_settings_get_boolean(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -517,7 +534,10 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * The created child settings object will inherit the #GSettings:delay-apply
     * mode from @settings.
     */
-  def getChild(name: String | CString)(using Zone): Settings = new Settings(
+  def getChild(
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Settings /* None */ = new Settings(
     g_settings_get_child(
       this.raw.asInstanceOf,
       __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
@@ -547,11 +567,12 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't contained in the schema
     * for @settings.
     */
-  def getDefaultValue(key: String | CString)(using Zone): Ptr[GVariant] =
-    g_settings_get_default_value(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-    )
+  def getDefaultValue(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Ptr[GVariant] /* None */ = g_settings_get_default_value(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -562,11 +583,12 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having a
     * 'double' type in the schema for @settings.
     */
-  def getDouble(key: String | CString)(using Zone): Double =
-    g_settings_get_double(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-    ).value
+  def getDouble(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Double /* None */ = g_settings_get_double(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -582,7 +604,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * If the value stored in the configuration database is not a valid value for
     * the enumerated type then this function will return the default value.
     */
-  def getEnum(key: String | CString)(using Zone): Int = g_settings_get_enum(
+  def getEnum(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Int /* None */ = g_settings_get_enum(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
@@ -601,7 +625,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * If the value stored in the configuration database is not a valid value for
     * the flags type then this function will return the default value.
     */
-  def getFlags(key: String | CString)(using Zone): UInt = g_settings_get_flags(
+  def getFlags(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): UInt /* None */ = g_settings_get_flags(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
@@ -611,7 +637,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * Returns whether the #GSettings object has any unapplied changes. This can
     * only be the case if it is in 'delayed-apply' mode.
     */
-  def getHasUnapplied(): Boolean =
+  def getHasUnapplied(): Boolean /* None */ =
     g_settings_get_has_unapplied(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -623,7 +649,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having a
     * int32 type in the schema for @settings.
     */
-  def getInt(key: String | CString)(using Zone): Int = g_settings_get_int(
+  def getInt(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Int /* None */ = g_settings_get_int(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
@@ -637,11 +665,12 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having a
     * int64 type in the schema for @settings.
     */
-  def getInt64(key: String | CString)(using Zone): CLongInt =
-    g_settings_get_int64(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-    ).value
+  def getInt64(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): CLongInt /* None */ = g_settings_get_int64(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -675,25 +704,31 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * other value would be.
     */
   def getMapped(
-      key: String | CString,
-      mapping: GSettingsGetMapping,
-      user_data: Ptr[Byte]
-  )(using Zone): Ptr[Byte] = g_settings_get_mapped(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      mapping: GSettingsGetMapping /* Some(GSettingsGetMapping) */,
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Ptr[Byte] /* None */ = g_settings_get_mapped(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
     mapping,
-    gpointer(user_data)
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Queries the range of a key.
     */
-  def getRange(key: String | CString)(using Zone): Ptr[GVariant] =
-    g_settings_get_range(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-    )
+  def getRange(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Ptr[GVariant] /* None */ = g_settings_get_range(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -704,7 +739,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having a
     * string type in the schema for @settings.
     */
-  def getString(key: String | CString)(using Zone): String = fromCString(
+  def getString(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): String /* None */ = fromCString(
     g_settings_get_string(
       this.raw.asInstanceOf,
       __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
@@ -720,7 +757,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having a
     * uint32 type in the schema for @settings.
     */
-  def getUint(key: String | CString)(using Zone): UInt = g_settings_get_uint(
+  def getUint(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): UInt /* None */ = g_settings_get_uint(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
@@ -734,11 +773,12 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having a
     * uint64 type in the schema for @settings.
     */
-  def getUint64(key: String | CString)(using Zone): CUnsignedLongInt =
-    g_settings_get_uint64(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-    ).value
+  def getUint64(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): CUnsignedLongInt /* None */ = g_settings_get_uint64(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -760,11 +800,12 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't contained in the schema
     * for @settings.
     */
-  def getUserValue(key: String | CString)(using Zone): Ptr[GVariant] =
-    g_settings_get_user_value(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-    )
+  def getUserValue(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Ptr[GVariant] /* None */ = g_settings_get_user_value(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -773,30 +814,37 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't contained in the schema
     * for @settings.
     */
-  def getValue(key: String | CString)(using Zone): Ptr[GVariant] =
-    g_settings_get_value(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-    )
+  def getValue(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Ptr[GVariant] /* None */ = g_settings_get_value(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finds out if a key can be written or not
     */
-  def isWritable(name: String | CString)(using Zone): Boolean =
-    g_settings_is_writable(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
-    ).value.!=(0)
+  def isWritable(
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Boolean /* None */ = g_settings_is_writable(
+    this.raw.asInstanceOf,
+    __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if the given @value is of the correct type and within the permitted
     * range for @key.
     */
-  def rangeCheck(key: String | CString, value: Ptr[GVariant])(using
-      Zone
-  ): Boolean = g_settings_range_check(
+  def rangeCheck(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: Ptr[
+        GVariant
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  )(using Zone): Boolean /* None */ = g_settings_range_check(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
     value
@@ -810,7 +858,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * might be the value specified in the schema or the one set by the
     * administrator.
     */
-  def reset(key: String | CString)(using Zone): Unit = g_settings_reset(
+  def reset(
+      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_settings_reset(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   )
@@ -823,7 +873,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     *
     * Change notifications will be emitted for affected keys.
     */
-  def revert(): Unit = g_settings_revert(this.raw.asInstanceOf)
+  def revert(): Unit /* None */ = g_settings_revert(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -836,9 +886,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * for @settings or for the #GVariantType of @format to mismatch the type
     * given in the schema.
     */
-  inline def set(key: String | CString, format: String | CString, args: Any*)(
-      using Zone
-  ): Boolean = g_settings_set(
+  inline def set(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      format: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      args: Any*
+  )(using Zone): Boolean /* None */ = g_settings_set(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
@@ -854,12 +908,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having a
     * boolean type in the schema for @settings.
     */
-  def setBoolean(key: String | CString, value: Boolean)(using Zone): Boolean =
-    g_settings_set_boolean(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-      gboolean(gint((if value == true then 1 else 0)))
-    ).value.!=(0)
+  def setBoolean(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  )(using Zone): Boolean /* None */ = g_settings_set_boolean(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
+    gboolean(gint((if value == true then 1 else 0)))
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -870,12 +927,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having a
     * 'double' type in the schema for @settings.
     */
-  def setDouble(key: String | CString, value: Double)(using Zone): Boolean =
-    g_settings_set_double(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-      gdouble(value)
-    ).value.!=(0)
+  def setDouble(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: Double /* Some(_root_.sn.gnome.glib.internal.gdouble) */
+  )(using Zone): Boolean /* None */ = g_settings_set_double(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
+    gdouble(value)
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -890,12 +950,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * g_settings_get_string() will return the 'nick' associated with
     * @value.
     */
-  def setEnum(key: String | CString, value: Int)(using Zone): Boolean =
-    g_settings_set_enum(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-      gint(value)
-    ).value.!=(0)
+  def setEnum(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  )(using Zone): Boolean /* None */ = g_settings_set_enum(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
+    gint(value)
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -910,12 +973,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * After performing the write, accessing @key directly with
     * g_settings_get_strv() will return an array of 'nicks'; one for each bit in @value.
     */
-  def setFlags(key: String | CString, value: UInt)(using Zone): Boolean =
-    g_settings_set_flags(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-      guint(value)
-    ).value.!=(0)
+  def setFlags(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  )(using Zone): Boolean /* None */ = g_settings_set_flags(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
+    guint(value)
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -926,12 +992,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having a
     * int32 type in the schema for @settings.
     */
-  def setInt(key: String | CString, value: Int)(using Zone): Boolean =
-    g_settings_set_int(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-      gint(value)
-    ).value.!=(0)
+  def setInt(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  )(using Zone): Boolean /* None */ = g_settings_set_int(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
+    gint(value)
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -942,12 +1011,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having a
     * int64 type in the schema for @settings.
     */
-  def setInt64(key: String | CString, value: CLongInt)(using Zone): Boolean =
-    g_settings_set_int64(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-      gint64(value)
-    ).value.!=(0)
+  def setInt64(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
+  )(using Zone): Boolean /* None */ = g_settings_set_int64(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
+    gint64(value)
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -958,9 +1030,12 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having a
     * string type in the schema for @settings.
     */
-  def setString(key: String | CString, value: String | CString)(using
-      Zone
-  ): Boolean = g_settings_set_string(
+  def setString(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Boolean /* None */ = g_settings_set_string(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(value).asInstanceOf[Ptr[gchar]]
@@ -977,12 +1052,21 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having an
     * array of strings type in the schema for @settings.
     */
-  def setStrv(key: String | CString, value: Ptr[CString])(using Zone): Boolean =
-    g_settings_set_strv(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-      value.asInstanceOf
-    ).value.!=(0)
+  def setStrv(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: Option[
+        Ptr[CString] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]) */
+      ]
+  )(using Zone): Boolean /* None */ = g_settings_set_strv(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
+    value
+      .map[Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]](o => o.asInstanceOf)
+      .getOrElse(
+        null.asInstanceOf[Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]]
+      )
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -993,12 +1077,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having a
     * uint32 type in the schema for @settings.
     */
-  def setUint(key: String | CString, value: UInt)(using Zone): Boolean =
-    g_settings_set_uint(
-      this.raw.asInstanceOf,
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-      guint(value)
-    ).value.!=(0)
+  def setUint(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  )(using Zone): Boolean /* None */ = g_settings_set_uint(
+    this.raw.asInstanceOf,
+    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
+    guint(value)
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1009,9 +1096,11 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having a
     * uint64 type in the schema for @settings.
     */
-  def setUint64(key: String | CString, value: CUnsignedLongInt)(using
-      Zone
-  ): Boolean = g_settings_set_uint64(
+  def setUint64(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */
+  )(using Zone): Boolean /* None */ = g_settings_set_uint64(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
     guint64(value)
@@ -1026,9 +1115,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     *
     * If @value is floating then this function consumes the reference.
     */
-  def setValue(key: String | CString, value: Ptr[GVariant])(using
-      Zone
-  ): Boolean = g_settings_set_value(
+  def setValue(
+      key: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: Ptr[
+        GVariant
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  )(using Zone): Boolean /* None */ = g_settings_set_value(
     this.raw.asInstanceOf,
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
     value
@@ -1061,7 +1154,10 @@ object Settings:
     * g_settings_new(). The new #GSettings will hold a reference on the context.
     * See g_main_context_push_thread_default().
     */
-  def apply(schema_id: String | CString)(using Zone): Settings = new Settings(
+  def apply(
+      schema_id: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Settings = new Settings(
     g_settings_new(
       __sn_extract_string(schema_id).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
@@ -1094,14 +1190,22 @@ object Settings:
     *  have.
     */
   def full(
-      schema: Ptr[GSettingsSchema],
-      backend: SettingsBackend,
-      path: String | CString
+      schema: Ptr[GSettingsSchema] /* Some(Ptr[GSettingsSchema]) */,
+      backend: Option[SettingsBackend /* Some(Ptr[GSettingsBackend]) */ ],
+      path: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
   )(using Zone): Settings = new Settings(
     g_settings_new_full(
       schema,
-      backend.getUnsafeRawPointer().asInstanceOf,
-      __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
+      backend
+        .map[Ptr[GSettingsBackend]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GSettingsBackend]]),
+      path
+        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     ).asInstanceOf
   )
 
@@ -1117,9 +1221,11 @@ object Settings:
     * database on the system to get a settings object that modifies the system
     * default settings instead of the settings for this user.
     */
-  def withBackend(schema_id: String | CString, backend: SettingsBackend)(using
-      Zone
-  ): Settings = new Settings(
+  def withBackend(
+      schema_id: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      backend: SettingsBackend /* Some(Ptr[GSettingsBackend]) */
+  )(using Zone): Settings = new Settings(
     g_settings_new_with_backend(
       __sn_extract_string(schema_id).asInstanceOf[Ptr[gchar]],
       backend.getUnsafeRawPointer().asInstanceOf
@@ -1136,9 +1242,11 @@ object Settings:
     * g_settings_new_with_path().
     */
   def withBackendAndPath(
-      schema_id: String | CString,
-      backend: SettingsBackend,
-      path: String | CString
+      schema_id: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      backend: SettingsBackend /* Some(Ptr[GSettingsBackend]) */,
+      path: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Settings = new Settings(
     g_settings_new_with_backend_and_path(
       __sn_extract_string(schema_id).asInstanceOf[Ptr[gchar]],
@@ -1162,9 +1270,12 @@ object Settings:
     * It is a programmer error if @path is not a valid path. A valid path begins
     * and ends with '/' and does not contain two consecutive '/' characters.
     */
-  def withPath(schema_id: String | CString, path: String | CString)(using
-      Zone
-  ): Settings = new Settings(
+  def withPath(
+      schema_id: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      path: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Settings = new Settings(
     g_settings_new_with_path(
       __sn_extract_string(schema_id).asInstanceOf[Ptr[gchar]],
       __sn_extract_string(path).asInstanceOf[Ptr[gchar]]

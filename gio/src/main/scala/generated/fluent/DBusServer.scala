@@ -39,6 +39,7 @@ import sn.gnome.gobject.fluent.Object
 class DBusServer(raw: Ptr[GDBusServer])
     extends Object(raw.asInstanceOf),
       Initable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -49,7 +50,7 @@ class DBusServer(raw: Ptr[GDBusServer])
     *
     * This is valid and non-empty if initializing the #GDBusServer succeeded.
     */
-  def getClientAddress()(using Zone): String = fromCString(
+  def getClientAddress()(using Zone): String /* None */ = fromCString(
     g_dbus_server_get_client_address(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -57,7 +58,7 @@ class DBusServer(raw: Ptr[GDBusServer])
     *
     * Gets the flags for @server.
     */
-  def getFlags(): GDBusServerFlags = g_dbus_server_get_flags(
+  def getFlags(): GDBusServerFlags /* None */ = g_dbus_server_get_flags(
     this.raw.asInstanceOf
   )
 
@@ -65,7 +66,7 @@ class DBusServer(raw: Ptr[GDBusServer])
     *
     * Gets the GUID for @server, as provided to g_dbus_server_new_sync().
     */
-  def getGuid()(using Zone): String = fromCString(
+  def getGuid()(using Zone): String /* None */ = fromCString(
     g_dbus_server_get_guid(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -73,20 +74,20 @@ class DBusServer(raw: Ptr[GDBusServer])
     *
     * Gets whether @server is active.
     */
-  def isActive(): Boolean =
+  def isActive(): Boolean /* None */ =
     g_dbus_server_is_active(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Starts @server.
     */
-  def start(): Unit = g_dbus_server_start(this.raw.asInstanceOf)
+  def start(): Unit /* None */ = g_dbus_server_start(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Stops @server.
     */
-  def stop(): Unit = g_dbus_server_stop(this.raw.asInstanceOf)
+  def stop(): Unit /* None */ = g_dbus_server_stop(this.raw.asInstanceOf)
 
 end DBusServer
 
@@ -116,19 +117,27 @@ object DBusServer:
     * asynchronous version.
     */
   def sync(
-      address: String | CString,
-      flags: GDBusServerFlags,
-      guid: String | CString,
-      observer: DBusAuthObserver,
-      cancellable: Cancellable
+      address: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: GDBusServerFlags /* Some(GDBusServerFlags) */,
+      guid: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      observer: Option[DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */ ],
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   )(using Zone): GResult[DBusServer] = GResult.wrap(__errorPtr =>
     new DBusServer(
       g_dbus_server_new_sync(
         __sn_extract_string(address).asInstanceOf[Ptr[gchar]],
         flags,
         __sn_extract_string(guid).asInstanceOf[Ptr[gchar]],
-        observer.getUnsafeRawPointer().asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
+        observer
+          .map[Ptr[GDBusAuthObserver]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(null.asInstanceOf[Ptr[GDBusAuthObserver]]),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
         __errorPtr
       ).asInstanceOf
     )

@@ -15,13 +15,16 @@ import sn.gnome.gsk4.internal.GskContainerNode
   */
 class ContainerNode(raw: Ptr[GskContainerNode])
     extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets one of the children of @container.
     */
-  def getChild(idx: UInt): RenderNode = new RenderNode(
+  def getChild(
+      idx: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): RenderNode /* None */ = new RenderNode(
     gsk_container_node_get_child(this.raw.asInstanceOf, guint(idx)).asInstanceOf
   )
 
@@ -29,7 +32,7 @@ class ContainerNode(raw: Ptr[GskContainerNode])
     *
     * Retrieves the number of direct children of @node.
     */
-  def getNChildren(): UInt = gsk_container_node_get_n_children(
+  def getNChildren(): UInt /* None */ = gsk_container_node_get_n_children(
     this.raw.asInstanceOf
   ).value
 

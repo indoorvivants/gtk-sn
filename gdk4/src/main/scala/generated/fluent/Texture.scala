@@ -43,6 +43,7 @@ class Texture(raw: Ptr[GdkTexture])
       Paintable,
       Icon,
       LoadableIcon:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -70,12 +71,14 @@ class Texture(raw: Ptr[GdkTexture])
     * For more flexible download capabilites, see
     * [struct@Gdk.TextureDownloader].
     */
-  def download(data: Ptr[UByte], stride: CUnsignedLongInt): Unit =
-    gdk_texture_download(
-      this.raw.asInstanceOf,
-      data.asInstanceOf,
-      gsize(stride)
-    )
+  def download(
+      data: Ptr[UByte] /* Some(Ptr[_root_.sn.gnome.glib.internal.guchar]) */,
+      stride: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
+  ): Unit /* None */ = gdk_texture_download(
+    this.raw.asInstanceOf,
+    data.asInstanceOf,
+    gsize(stride)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -89,7 +92,7 @@ class Texture(raw: Ptr[GdkTexture])
     * texture and is useful to determine the best format for downloading the
     * texture.
     */
-  def getFormat(): GdkMemoryFormat = gdk_texture_get_format(
+  def getFormat(): GdkMemoryFormat /* None */ = gdk_texture_get_format(
     this.raw.asInstanceOf
   )
 
@@ -97,13 +100,15 @@ class Texture(raw: Ptr[GdkTexture])
     *
     * Returns the height of the @texture, in pixels.
     */
-  def getHeight(): Int = gdk_texture_get_height(this.raw.asInstanceOf)
+  def getHeight(): Int /* None */ = gdk_texture_get_height(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the width of @texture, in pixels.
     */
-  def getWidth(): Int = gdk_texture_get_width(this.raw.asInstanceOf)
+  def getWidth(): Int /* None */ = gdk_texture_get_width(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -115,11 +120,12 @@ class Texture(raw: Ptr[GdkTexture])
     * [method@Gdk.Texture.save_to_png_bytes] or look into the gdk-pixbuf
     * library.
     */
-  def saveToPng(filename: String | CString)(using Zone): Boolean =
-    gdk_texture_save_to_png(
-      this.raw.asInstanceOf,
-      __sn_extract_string(filename)
-    ).value.!=(0)
+  def saveToPng(
+      filename: String | CString /* Some(CString) */
+  )(using Zone): Boolean /* None */ = gdk_texture_save_to_png(
+    this.raw.asInstanceOf,
+    __sn_extract_string(filename)
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -137,7 +143,7 @@ class Texture(raw: Ptr[GdkTexture])
     * If you are dealing with high dynamic range float data, you might also want
     * to consider [method@Gdk.Texture.save_to_tiff_bytes] instead.
     */
-  def saveToPngBytes(): Ptr[GBytes] = gdk_texture_save_to_png_bytes(
+  def saveToPngBytes(): Ptr[GBytes] /* None */ = gdk_texture_save_to_png_bytes(
     this.raw.asInstanceOf
   )
 
@@ -147,11 +153,12 @@ class Texture(raw: Ptr[GdkTexture])
     *
     * GTK will attempt to store data without loss.
     */
-  def saveToTiff(filename: String | CString)(using Zone): Boolean =
-    gdk_texture_save_to_tiff(
-      this.raw.asInstanceOf,
-      __sn_extract_string(filename)
-    ).value.!=(0)
+  def saveToTiff(
+      filename: String | CString /* Some(CString) */
+  )(using Zone): Boolean /* None */ = gdk_texture_save_to_tiff(
+    this.raw.asInstanceOf,
+    __sn_extract_string(filename)
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -167,9 +174,8 @@ class Texture(raw: Ptr[GdkTexture])
     * more portable format, you might want to use
     * [method@Gdk.Texture.save_to_png_bytes].
     */
-  def saveToTiffBytes(): Ptr[GBytes] = gdk_texture_save_to_tiff_bytes(
-    this.raw.asInstanceOf
-  )
+  def saveToTiffBytes(): Ptr[GBytes] /* None */ =
+    gdk_texture_save_to_tiff_bytes(this.raw.asInstanceOf)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -190,7 +196,9 @@ object Texture:
     * [method@Gio.Task.run_in_thread] to avoid blocking the main thread while
     * loading a big image.
     */
-  def forPixbuf(pixbuf: Pixbuf): Texture = new Texture(
+  def forPixbuf(
+      pixbuf: Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
+  ): Texture = new Texture(
     gdk_texture_new_for_pixbuf(
       pixbuf.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
@@ -209,10 +217,11 @@ object Texture:
     * [method@Gio.Task.run_in_thread] to avoid blocking the main thread while
     * loading a big image.
     */
-  def fromBytes(bytes: Ptr[GBytes]): GResult[Texture] =
-    GResult.wrap(__errorPtr =>
-      new Texture(gdk_texture_new_from_bytes(bytes, __errorPtr).asInstanceOf)
-    )
+  def fromBytes(
+      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  ): GResult[Texture] = GResult.wrap(__errorPtr =>
+    new Texture(gdk_texture_new_from_bytes(bytes, __errorPtr).asInstanceOf)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -227,7 +236,9 @@ object Texture:
     * [method@Gio.Task.run_in_thread] to avoid blocking the main thread while
     * loading a big image.
     */
-  def fromFile(file: File): GResult[Texture] = GResult.wrap(__errorPtr =>
+  def fromFile(
+      file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+  ): GResult[Texture] = GResult.wrap(__errorPtr =>
     new Texture(
       gdk_texture_new_from_file(
         file.getUnsafeRawPointer().asInstanceOf,
@@ -249,15 +260,16 @@ object Texture:
     * [method@Gio.Task.run_in_thread] to avoid blocking the main thread while
     * loading a big image.
     */
-  def fromFilename(path: String | CString)(using Zone): GResult[Texture] =
-    GResult.wrap(__errorPtr =>
-      new Texture(
-        gdk_texture_new_from_filename(
-          __sn_extract_string(path),
-          __errorPtr
-        ).asInstanceOf
-      )
+  def fromFilename(
+      path: String | CString /* Some(CString) */
+  )(using Zone): GResult[Texture] = GResult.wrap(__errorPtr =>
+    new Texture(
+      gdk_texture_new_from_filename(
+        __sn_extract_string(path),
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -275,12 +287,13 @@ object Texture:
     * [method@Gio.Task.run_in_thread] to avoid blocking the main thread while
     * loading a big image.
     */
-  def fromResource(resource_path: String | CString)(using Zone): Texture =
-    new Texture(
-      gdk_texture_new_from_resource(
-        __sn_extract_string(resource_path)
-      ).asInstanceOf
-    )
+  def fromResource(
+      resource_path: String | CString /* Some(CString) */
+  )(using Zone): Texture = new Texture(
+    gdk_texture_new_from_resource(
+      __sn_extract_string(resource_path)
+    ).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -23,6 +23,7 @@ class ListBase(raw: Ptr[GtkListBase])
       ConstraintTarget,
       Orientable,
       Scrollable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ListBase

@@ -43,6 +43,7 @@ import sn.gnome.gobject.fluent.Object
   * can just create a new one any time you need one.
   */
 class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -66,11 +67,13 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * will be skipped. This is required to let the application do the proxy
     * specific handshake.
     */
-  def addApplicationProxy(protocol: String | CString)(using Zone): Unit =
-    g_socket_client_add_application_proxy(
-      this.raw.asInstanceOf,
-      __sn_extract_string(protocol).asInstanceOf[Ptr[gchar]]
-    )
+  def addApplicationProxy(
+      protocol: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_socket_client_add_application_proxy(
+    this.raw.asInstanceOf,
+    __sn_extract_string(protocol).asInstanceOf[Ptr[gchar]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -95,14 +98,16 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * the socket will be bound to this address before connecting.
     */
   def connect(
-      connectable: SocketConnectable,
-      cancellable: Cancellable
-  ): GResult[SocketConnection] = GResult.wrap(__errorPtr =>
+      connectable: SocketConnectable /* Some(Ptr[GSocketConnectable]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[SocketConnection /* None */ ] = GResult.wrap(__errorPtr =>
     new SocketConnection(
       g_socket_client_connect(
         this.raw.asInstanceOf,
         connectable.getUnsafeRawPointer().asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
         __errorPtr
       ).asInstanceOf
     )
@@ -124,32 +129,41 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * g_socket_client_connect_finish() to get the result of the operation.
     */
   def connectAsync(
-      connectable: SocketConnectable,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_socket_client_connect_async(
+      connectable: SocketConnectable /* Some(Ptr[GSocketConnectable]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_socket_client_connect_async(
     this.raw.asInstanceOf,
     connectable.getUnsafeRawPointer().asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes an async connect operation. See g_socket_client_connect_async()
     */
-  def connectFinish(result: AsyncResult): GResult[SocketConnection] =
-    GResult.wrap(__errorPtr =>
-      new SocketConnection(
-        g_socket_client_connect_finish(
-          this.raw.asInstanceOf,
-          result.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def connectFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[SocketConnection /* None */ ] = GResult.wrap(__errorPtr =>
+    new SocketConnection(
+      g_socket_client_connect_finish(
+        this.raw.asInstanceOf,
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -187,20 +201,24 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * accordingly.
     */
   def connectToHost(
-      host_and_port: String | CString,
-      default_port: UShort,
-      cancellable: Cancellable
-  )(using Zone): GResult[SocketConnection] = GResult.wrap(__errorPtr =>
-    new SocketConnection(
-      g_socket_client_connect_to_host(
-        this.raw.asInstanceOf,
-        __sn_extract_string(host_and_port).asInstanceOf[Ptr[gchar]],
-        guint16(default_port),
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+      host_and_port: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  )(using Zone): GResult[SocketConnection /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      new SocketConnection(
+        g_socket_client_connect_to_host(
+          this.raw.asInstanceOf,
+          __sn_extract_string(host_and_port).asInstanceOf[Ptr[gchar]],
+          guint16(default_port),
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -211,18 +229,27 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * operation.
     */
   def connectToHostAsync(
-      host_and_port: String | CString,
-      default_port: UShort,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  )(using Zone): Unit = g_socket_client_connect_to_host_async(
+      host_and_port: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_socket_client_connect_to_host_async(
     this.raw.asInstanceOf,
     __sn_extract_string(host_and_port).asInstanceOf[Ptr[gchar]],
     guint16(default_port),
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -230,16 +257,17 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * Finishes an async connect operation. See
     * g_socket_client_connect_to_host_async()
     */
-  def connectToHostFinish(result: AsyncResult): GResult[SocketConnection] =
-    GResult.wrap(__errorPtr =>
-      new SocketConnection(
-        g_socket_client_connect_to_host_finish(
-          this.raw.asInstanceOf,
-          result.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def connectToHostFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[SocketConnection /* None */ ] = GResult.wrap(__errorPtr =>
+    new SocketConnection(
+      g_socket_client_connect_to_host_finish(
+        this.raw.asInstanceOf,
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -259,38 +287,53 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * accordingly.
     */
   def connectToService(
-      domain: String | CString,
-      service: String | CString,
-      cancellable: Cancellable
-  )(using Zone): GResult[SocketConnection] = GResult.wrap(__errorPtr =>
-    new SocketConnection(
-      g_socket_client_connect_to_service(
-        this.raw.asInstanceOf,
-        __sn_extract_string(domain).asInstanceOf[Ptr[gchar]],
-        __sn_extract_string(service).asInstanceOf[Ptr[gchar]],
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+      domain: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      service: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  )(using Zone): GResult[SocketConnection /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      new SocketConnection(
+        g_socket_client_connect_to_service(
+          this.raw.asInstanceOf,
+          __sn_extract_string(domain).asInstanceOf[Ptr[gchar]],
+          __sn_extract_string(service).asInstanceOf[Ptr[gchar]],
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * This is the asynchronous version of g_socket_client_connect_to_service().
     */
   def connectToServiceAsync(
-      domain: String | CString,
-      service: String | CString,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  )(using Zone): Unit = g_socket_client_connect_to_service_async(
+      domain: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      service: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_socket_client_connect_to_service_async(
     this.raw.asInstanceOf,
     __sn_extract_string(domain).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(service).asInstanceOf[Ptr[gchar]],
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -298,16 +341,17 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * Finishes an async connect operation. See
     * g_socket_client_connect_to_service_async()
     */
-  def connectToServiceFinish(result: AsyncResult): GResult[SocketConnection] =
-    GResult.wrap(__errorPtr =>
-      new SocketConnection(
-        g_socket_client_connect_to_service_finish(
-          this.raw.asInstanceOf,
-          result.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def connectToServiceFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[SocketConnection /* None */ ] = GResult.wrap(__errorPtr =>
+    new SocketConnection(
+      g_socket_client_connect_to_service_finish(
+        this.raw.asInstanceOf,
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -335,20 +379,24 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * accordingly.
     */
   def connectToUri(
-      uri: String | CString,
-      default_port: UShort,
-      cancellable: Cancellable
-  )(using Zone): GResult[SocketConnection] = GResult.wrap(__errorPtr =>
-    new SocketConnection(
-      g_socket_client_connect_to_uri(
-        this.raw.asInstanceOf,
-        __sn_extract_string(uri).asInstanceOf[Ptr[gchar]],
-        guint16(default_port),
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+      uri: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  )(using Zone): GResult[SocketConnection /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      new SocketConnection(
+        g_socket_client_connect_to_uri(
+          this.raw.asInstanceOf,
+          __sn_extract_string(uri).asInstanceOf[Ptr[gchar]],
+          guint16(default_port),
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -359,18 +407,27 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * operation.
     */
   def connectToUriAsync(
-      uri: String | CString,
-      default_port: UShort,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  )(using Zone): Unit = g_socket_client_connect_to_uri_async(
+      uri: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_socket_client_connect_to_uri_async(
     this.raw.asInstanceOf,
     __sn_extract_string(uri).asInstanceOf[Ptr[gchar]],
     guint16(default_port),
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -378,22 +435,23 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * Finishes an async connect operation. See
     * g_socket_client_connect_to_uri_async()
     */
-  def connectToUriFinish(result: AsyncResult): GResult[SocketConnection] =
-    GResult.wrap(__errorPtr =>
-      new SocketConnection(
-        g_socket_client_connect_to_uri_finish(
-          this.raw.asInstanceOf,
-          result.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def connectToUriFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[SocketConnection /* None */ ] = GResult.wrap(__errorPtr =>
+    new SocketConnection(
+      g_socket_client_connect_to_uri_finish(
+        this.raw.asInstanceOf,
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the proxy enable state; see g_socket_client_set_enable_proxy()
     */
-  def getEnableProxy(): Boolean =
+  def getEnableProxy(): Boolean /* None */ =
     g_socket_client_get_enable_proxy(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -402,7 +460,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *
     * See g_socket_client_set_family() for details.
     */
-  def getFamily(): GSocketFamily = g_socket_client_get_family(
+  def getFamily(): GSocketFamily /* None */ = g_socket_client_get_family(
     this.raw.asInstanceOf
   )
 
@@ -412,7 +470,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *
     * See g_socket_client_set_local_address() for details.
     */
-  def getLocalAddress(): SocketAddress = new SocketAddress(
+  def getLocalAddress(): SocketAddress /* None */ = new SocketAddress(
     g_socket_client_get_local_address(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -422,7 +480,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *
     * See g_socket_client_set_protocol() for details.
     */
-  def getProtocol(): GSocketProtocol = g_socket_client_get_protocol(
+  def getProtocol(): GSocketProtocol /* None */ = g_socket_client_get_protocol(
     this.raw.asInstanceOf
   )
 
@@ -432,7 +490,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * resolver returned by g_proxy_resolver_get_default(), but you can override
     * it with g_socket_client_set_proxy_resolver().
     */
-  def getProxyResolver(): ProxyResolver = new ProxyResolver.Abstract(
+  def getProxyResolver(): ProxyResolver /* None */ = new ProxyResolver.Abstract(
     g_socket_client_get_proxy_resolver(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -442,7 +500,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *
     * See g_socket_client_set_socket_type() for details.
     */
-  def getSocketType(): GSocketType = g_socket_client_get_socket_type(
+  def getSocketType(): GSocketType /* None */ = g_socket_client_get_socket_type(
     this.raw.asInstanceOf
   )
 
@@ -452,7 +510,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *
     * See g_socket_client_set_timeout() for details.
     */
-  def getTimeout(): UInt = g_socket_client_get_timeout(
+  def getTimeout(): UInt /* None */ = g_socket_client_get_timeout(
     this.raw.asInstanceOf
   ).value
 
@@ -461,7 +519,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * Gets whether @client creates TLS connections. See
     * g_socket_client_set_tls() for details.
     */
-  def getTls(): Boolean =
+  def getTls(): Boolean /* None */ =
     g_socket_client_get_tls(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -473,7 +531,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * use correctly. See #GSocketClient:tls-validation-flags for more
     * information.
     */
-  def getTlsValidationFlags(): GTlsCertificateFlags =
+  def getTlsValidationFlags(): GTlsCertificateFlags /* None */ =
     g_socket_client_get_tls_validation_flags(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -485,7 +543,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *
     * See also g_socket_client_set_proxy_resolver().
     */
-  def setEnableProxy(enable: Boolean): Unit = g_socket_client_set_enable_proxy(
+  def setEnableProxy(
+      enable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = g_socket_client_set_enable_proxy(
     this.raw.asInstanceOf,
     gboolean(gint((if enable == true then 1 else 0)))
   )
@@ -500,8 +560,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * connection to be an ipv4 socket, even though the address might be an ipv6
     * mapped to ipv4 address.
     */
-  def setFamily(family: GSocketFamily): Unit =
-    g_socket_client_set_family(this.raw.asInstanceOf, family)
+  def setFamily(
+      family: GSocketFamily /* Some(GSocketFamily) */
+  ): Unit /* None */ = g_socket_client_set_family(this.raw.asInstanceOf, family)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -512,11 +573,14 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * This is useful if you want to ensure that the local side of the connection
     * is on a specific port, or on a specific interface.
     */
-  def setLocalAddress(address: SocketAddress): Unit =
-    g_socket_client_set_local_address(
-      this.raw.asInstanceOf,
-      address.getUnsafeRawPointer().asInstanceOf
-    )
+  def setLocalAddress(
+      address: Option[SocketAddress /* Some(Ptr[GSocketAddress]) */ ]
+  ): Unit /* None */ = g_socket_client_set_local_address(
+    this.raw.asInstanceOf,
+    address
+      .map[Ptr[GSocketAddress]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GSocketAddress]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -526,7 +590,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * If @protocol is %G_SOCKET_PROTOCOL_DEFAULT that means to use the default
     * protocol for the socket family and type.
     */
-  def setProtocol(protocol: GSocketProtocol): Unit =
+  def setProtocol(
+      protocol: GSocketProtocol /* Some(GSocketProtocol) */
+  ): Unit /* None */ =
     g_socket_client_set_protocol(this.raw.asInstanceOf, protocol)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -539,11 +605,14 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * the setting of #GSocketClient:enable-proxy, which is not changed by this
     * function (but which is %TRUE by default)
     */
-  def setProxyResolver(proxy_resolver: ProxyResolver): Unit =
-    g_socket_client_set_proxy_resolver(
-      this.raw.asInstanceOf,
-      proxy_resolver.getUnsafeRawPointer().asInstanceOf
-    )
+  def setProxyResolver(
+      proxy_resolver: Option[ProxyResolver /* Some(Ptr[GProxyResolver]) */ ]
+  ): Unit /* None */ = g_socket_client_set_proxy_resolver(
+    this.raw.asInstanceOf,
+    proxy_resolver
+      .map[Ptr[GProxyResolver]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GProxyResolver]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -553,7 +622,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * It doesn't make sense to specify a type of %G_SOCKET_TYPE_DATAGRAM, as
     * GSocketClient is used for connection oriented services.
     */
-  def setSocketType(`type`: GSocketType): Unit =
+  def setSocketType(
+      `type`: GSocketType /* Some(GSocketType) */
+  ): Unit /* None */ =
     g_socket_client_set_socket_type(this.raw.asInstanceOf, `type`)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -565,7 +636,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * setting this may cause calls to g_socket_client_connect(), etc, to fail
     * with %G_IO_ERROR_TIMED_OUT.
     */
-  def setTimeout(timeout: UInt): Unit =
+  def setTimeout(
+      timeout: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     g_socket_client_set_timeout(this.raw.asInstanceOf, guint(timeout))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -588,7 +661,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *   %G_SOCKET_CLIENT_TLS_HANDSHAKING, which will give you a chance to see
     *   the #GTlsClientConnection before the handshake starts.
     */
-  def setTls(tls: Boolean): Unit = g_socket_client_set_tls(
+  def setTls(
+      tls: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = g_socket_client_set_tls(
     this.raw.asInstanceOf,
     gboolean(gint((if tls == true then 1 else 0)))
   )
@@ -602,7 +677,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * use correctly. See #GSocketClient:tls-validation-flags for more
     * information.
     */
-  def setTlsValidationFlags(flags: GTlsCertificateFlags): Unit =
+  def setTlsValidationFlags(
+      flags: GTlsCertificateFlags /* Some(GTlsCertificateFlags) */
+  ): Unit /* None */ =
     g_socket_client_set_tls_validation_flags(this.raw.asInstanceOf, flags)
 
   private inline def __sn_extract_string(str: String | CString)(using

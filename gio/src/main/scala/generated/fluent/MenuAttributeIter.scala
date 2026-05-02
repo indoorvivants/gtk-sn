@@ -18,6 +18,7 @@ import sn.gnome.gobject.fluent.Object
   */
 class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -27,7 +28,7 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     *
     * The iterator is not advanced.
     */
-  def getName()(using Zone): String = fromCString(
+  def getName()(using Zone): String /* None */ = fromCString(
     g_menu_attribute_iter_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -51,7 +52,7 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
   @annotation.compileTimeOnly(
     "Method get_next contains an OUT parameter, which is not supported yet"
   )
-  def getNext(using DummyImplicit) = ???
+  private def getNext__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -59,7 +60,7 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     *
     * The iterator is not advanced.
     */
-  def getValue(): Ptr[GVariant] = g_menu_attribute_iter_get_value(
+  def getValue(): Ptr[GVariant] /* None */ = g_menu_attribute_iter_get_value(
     this.raw.asInstanceOf
   )
 
@@ -73,7 +74,7 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     * it to the first attribute (and determine if the first attribute exists at
     * all).
     */
-  def next(): Boolean =
+  def next(): Boolean /* None */ =
     g_menu_attribute_iter_next(this.raw.asInstanceOf).value.!=(0)
 
 end MenuAttributeIter

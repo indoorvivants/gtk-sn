@@ -37,6 +37,7 @@ class FontChooserWidget(raw: Ptr[GtkFontChooserWidget])
       Buildable,
       ConstraintTarget,
       FontChooser:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end FontChooserWidget

@@ -40,6 +40,7 @@ import sn.gnome.gtk4.internal.GtkTextTagTableForeach
 class TextTagTable(raw: Ptr[GtkTextTagTable])
     extends Object(raw.asInstanceOf),
       Buildable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -52,10 +53,11 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     *   must not be in a tag table already, and may not have the same name as an
     *   already-added tag.
     */
-  def add(tag: TextTag): Boolean = gtk_text_tag_table_add(
-    this.raw.asInstanceOf,
-    tag.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+  def add(tag: TextTag /* Some(Ptr[GtkTextTag]) */ ): Boolean /* None */ =
+    gtk_text_tag_table_add(
+      this.raw.asInstanceOf,
+      tag.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -64,20 +66,34 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     * Note that the table may not be modified while iterating over it (you can’t
     * add/remove tags).
     */
-  def foreach(func: GtkTextTagTableForeach, data: Ptr[Byte]): Unit =
-    gtk_text_tag_table_foreach(this.raw.asInstanceOf, func, gpointer(data))
+  def foreach(
+      func: GtkTextTagTableForeach /* Some(GtkTextTagTableForeach) */,
+      data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gtk_text_tag_table_foreach(
+    this.raw.asInstanceOf,
+    func,
+    data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the size of the table (number of tags)
     */
-  def getSize(): Int = gtk_text_tag_table_get_size(this.raw.asInstanceOf)
+  def getSize(): Int /* None */ = gtk_text_tag_table_get_size(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Look up a named tag.
     */
-  def lookup(name: String | CString)(using Zone): TextTag = new TextTag(
+  def lookup(
+      name: String | CString /* Some(CString) */
+  )(using Zone): TextTag /* None */ = new TextTag(
     gtk_text_tag_table_lookup(
       this.raw.asInstanceOf,
       __sn_extract_string(name)
@@ -92,10 +108,11 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     * the buffer. The table’s reference to the tag is removed, so the tag will
     * end up destroyed if you don’t have a reference to it.
     */
-  def remove(tag: TextTag): Unit = gtk_text_tag_table_remove(
-    this.raw.asInstanceOf,
-    tag.getUnsafeRawPointer().asInstanceOf
-  )
+  def remove(tag: TextTag /* Some(Ptr[GtkTextTag]) */ ): Unit /* None */ =
+    gtk_text_tag_table_remove(
+      this.raw.asInstanceOf,
+      tag.getUnsafeRawPointer().asInstanceOf
+    )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

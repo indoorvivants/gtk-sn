@@ -28,6 +28,7 @@ import sn.gnome.gobject.fluent.Object
   */
 class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -45,7 +46,9 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * disposed, but is provided separately so that garbage collected language
     * bindings can call it earlier to guarantee when FDs are closed.
     */
-  def close(): Unit = g_subprocess_launcher_close(this.raw.asInstanceOf)
+  def close(): Unit /* None */ = g_subprocess_launcher_close(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -55,7 +58,10 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * On UNIX, the returned string can be an arbitrary byte string. On Windows,
     * it will be UTF-8.
     */
-  def getenv(variable: String | CString)(using Zone): String = fromCString(
+  def getenv(
+      variable: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): String /* None */ = fromCString(
     g_subprocess_launcher_getenv(
       this.raw.asInstanceOf,
       __sn_extract_string(variable).asInstanceOf[Ptr[gchar]]
@@ -79,13 +85,17 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * Child setup functions are only available on UNIX.
     */
   def setChildSetup(
-      child_setup: GSpawnChildSetupFunc,
-      user_data: Ptr[Byte],
-      destroy_notify: GDestroyNotify
-  ): Unit = g_subprocess_launcher_set_child_setup(
+      child_setup: GSpawnChildSetupFunc /* Some(_root_.sn.gnome.glib.internal.GSpawnChildSetupFunc) */,
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      destroy_notify: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+  ): Unit /* None */ = g_subprocess_launcher_set_child_setup(
     this.raw.asInstanceOf,
     child_setup,
-    gpointer(user_data),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     destroy_notify
   )
 
@@ -96,11 +106,12 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * By default processes are launched with the current working directory of
     * the launching process at the time of launch.
     */
-  def setCwd(cwd: String | CString)(using Zone): Unit =
-    g_subprocess_launcher_set_cwd(
-      this.raw.asInstanceOf,
-      __sn_extract_string(cwd).asInstanceOf[Ptr[gchar]]
-    )
+  def setCwd(
+      cwd: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_subprocess_launcher_set_cwd(
+    this.raw.asInstanceOf,
+    __sn_extract_string(cwd).asInstanceOf[Ptr[gchar]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -116,7 +127,9 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * function like g_subprocess_launcher_set_stdin_file_path() or
     * g_subprocess_launcher_take_stdout_fd().
     */
-  def setFlags(flags: GSubprocessFlags): Unit =
+  def setFlags(
+      flags: GSubprocessFlags /* Some(GSubprocessFlags) */
+  ): Unit /* None */ =
     g_subprocess_launcher_set_flags(this.raw.asInstanceOf, flags)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -136,11 +149,18 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     *
     * This feature is only available on UNIX.
     */
-  def setStderrFilePath(path: String | CString)(using Zone): Unit =
-    g_subprocess_launcher_set_stderr_file_path(
-      this.raw.asInstanceOf,
-      __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
-    )
+  def setStderrFilePath(
+      path: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
+  )(using Zone): Unit /* None */ = g_subprocess_launcher_set_stderr_file_path(
+    this.raw.asInstanceOf,
+    path
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -155,11 +175,13 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     *
     * This feature is only available on UNIX.
     */
-  def setStdinFilePath(path: String | CString)(using Zone): Unit =
-    g_subprocess_launcher_set_stdin_file_path(
-      this.raw.asInstanceOf,
-      __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
-    )
+  def setStdinFilePath(
+      path: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_subprocess_launcher_set_stdin_file_path(
+    this.raw.asInstanceOf,
+    __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -175,11 +197,18 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     *
     * This feature is only available on UNIX.
     */
-  def setStdoutFilePath(path: String | CString)(using Zone): Unit =
-    g_subprocess_launcher_set_stdout_file_path(
-      this.raw.asInstanceOf,
-      __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
-    )
+  def setStdoutFilePath(
+      path: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
+  )(using Zone): Unit /* None */ = g_subprocess_launcher_set_stdout_file_path(
+    this.raw.asInstanceOf,
+    path
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -191,10 +220,12 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * should be in UTF-8.
     */
   def setenv(
-      variable: String | CString,
-      value: String | CString,
-      overwrite: Boolean
-  )(using Zone): Unit = g_subprocess_launcher_setenv(
+      variable: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      overwrite: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  )(using Zone): Unit /* None */ = g_subprocess_launcher_setenv(
     this.raw.asInstanceOf,
     __sn_extract_string(variable).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(value).asInstanceOf[Ptr[gchar]],
@@ -206,10 +237,13 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * Creates a #GSubprocess given a provided varargs list of arguments.
     */
   inline def spawn(
-      error: Ptr[Ptr[GError]],
-      argv0: String | CString,
+      error: Ptr[
+        Ptr[GError]
+      ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]) */,
+      argv0: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
-  )(using Zone): Subprocess = new Subprocess(
+  )(using Zone): Subprocess /* None */ = new Subprocess(
     g_subprocess_launcher_spawn(
       this.raw.asInstanceOf,
       error,
@@ -233,12 +267,14 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * `--passphrase-fd` providing a file descriptor number where it expects the
     * passphrase to be written.
     */
-  def takeFd(source_fd: Int, target_fd: Int): Unit =
-    g_subprocess_launcher_take_fd(
-      this.raw.asInstanceOf,
-      gint(source_fd),
-      gint(target_fd)
-    )
+  def takeFd(
+      source_fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
+      target_fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  ): Unit /* None */ = g_subprocess_launcher_take_fd(
+    this.raw.asInstanceOf,
+    gint(source_fd),
+    gint(target_fd)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -258,7 +294,9 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     *
     * This feature is only available on UNIX.
     */
-  def takeStderrFd(fd: Int): Unit =
+  def takeStderrFd(
+      fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  ): Unit /* None */ =
     g_subprocess_launcher_take_stderr_fd(this.raw.asInstanceOf, gint(fd))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -282,7 +320,9 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     *
     * This feature is only available on UNIX.
     */
-  def takeStdinFd(fd: Int): Unit =
+  def takeStdinFd(
+      fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  ): Unit /* None */ =
     g_subprocess_launcher_take_stdin_fd(this.raw.asInstanceOf, gint(fd))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -305,7 +345,9 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     *
     * This feature is only available on UNIX.
     */
-  def takeStdoutFd(fd: Int): Unit =
+  def takeStdoutFd(
+      fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  ): Unit /* None */ =
     g_subprocess_launcher_take_stdout_fd(this.raw.asInstanceOf, gint(fd))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -316,11 +358,13 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * On UNIX, the variable's name can be an arbitrary byte string not
     * containing '='. On Windows, it should be in UTF-8.
     */
-  def unsetenv(variable: String | CString)(using Zone): Unit =
-    g_subprocess_launcher_unsetenv(
-      this.raw.asInstanceOf,
-      __sn_extract_string(variable).asInstanceOf[Ptr[gchar]]
-    )
+  def unsetenv(
+      variable: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_subprocess_launcher_unsetenv(
+    this.raw.asInstanceOf,
+    __sn_extract_string(variable).asInstanceOf[Ptr[gchar]]
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -341,6 +385,9 @@ object SubprocessLauncher:
     * environment of the calling process is made at the time of this call and
     * will be used as the environment that the process is launched in.
     */
-  def apply(flags: GSubprocessFlags): SubprocessLauncher =
-    new SubprocessLauncher(g_subprocess_launcher_new(flags).asInstanceOf)
+  def apply(
+      flags: GSubprocessFlags /* Some(GSubprocessFlags) */
+  ): SubprocessLauncher = new SubprocessLauncher(
+    g_subprocess_launcher_new(flags).asInstanceOf
+  )
 end SubprocessLauncher

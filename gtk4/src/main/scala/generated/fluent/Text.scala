@@ -93,6 +93,7 @@ class Text(raw: Ptr[GtkText])
       Buildable,
       ConstraintTarget,
       Editable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -111,7 +112,7 @@ class Text(raw: Ptr[GtkText])
   @annotation.compileTimeOnly(
     "Method compute_cursor_extents contains an OUT parameter, which is not supported yet"
   )
-  def computeCursorExtents(using DummyImplicit) = ???
+  private def computeCursorExtents__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -120,7 +121,7 @@ class Text(raw: Ptr[GtkText])
     *
     * See [method@Gtk.Text.set_activates_default].
     */
-  def getActivatesDefault(): Boolean =
+  def getActivatesDefault(): Boolean /* None */ =
     gtk_text_get_activates_default(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -129,7 +130,7 @@ class Text(raw: Ptr[GtkText])
     *
     * See [method@Gtk.Text.set_attributes].
     */
-  def getAttributes(): Ptr[PangoAttrList] = gtk_text_get_attributes(
+  def getAttributes(): Ptr[PangoAttrList] /* None */ = gtk_text_get_attributes(
     this.raw.asInstanceOf
   )
 
@@ -137,7 +138,7 @@ class Text(raw: Ptr[GtkText])
     *
     * Get the `GtkEntryBuffer` object which holds the text for this widget.
     */
-  def getBuffer(): EntryBuffer = new EntryBuffer(
+  def getBuffer(): EntryBuffer /* None */ = new EntryBuffer(
     gtk_text_get_buffer(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -145,7 +146,7 @@ class Text(raw: Ptr[GtkText])
     *
     * Returns whether Emoji completion is enabled for this `GtkText` widget.
     */
-  def getEnableEmojiCompletion(): Boolean =
+  def getEnableEmojiCompletion(): Boolean /* None */ =
     gtk_text_get_enable_emoji_completion(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -154,7 +155,7 @@ class Text(raw: Ptr[GtkText])
     *
     * See [method@Gtk.Text.set_extra_menu].
     */
-  def getExtraMenu(): MenuModel = new MenuModel(
+  def getExtraMenu(): MenuModel /* None */ = new MenuModel(
     gtk_text_get_extra_menu(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -162,7 +163,7 @@ class Text(raw: Ptr[GtkText])
     *
     * Gets the input hints of the `GtkText`.
     */
-  def getInputHints(): GtkInputHints = gtk_text_get_input_hints(
+  def getInputHints(): GtkInputHints /* None */ = gtk_text_get_input_hints(
     this.raw.asInstanceOf
   )
 
@@ -170,9 +171,8 @@ class Text(raw: Ptr[GtkText])
     *
     * Gets the input purpose of the `GtkText`.
     */
-  def getInputPurpose(): GtkInputPurpose = gtk_text_get_input_purpose(
-    this.raw.asInstanceOf
-  )
+  def getInputPurpose(): GtkInputPurpose /* None */ =
+    gtk_text_get_input_purpose(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -182,7 +182,7 @@ class Text(raw: Ptr[GtkText])
     * returned by this function is not very useful unless it has been explicitly
     * set with [method@Gtk.Text.set_invisible_char].
     */
-  def getInvisibleChar(): CUnsignedInt = gtk_text_get_invisible_char(
+  def getInvisibleChar(): CUnsignedInt /* None */ = gtk_text_get_invisible_char(
     this.raw.asInstanceOf
   ).value
 
@@ -195,7 +195,9 @@ class Text(raw: Ptr[GtkText])
     * This is equivalent to getting @self's `GtkEntryBuffer` and calling
     * [method@Gtk.EntryBuffer.get_max_length] on it.
     */
-  def getMaxLength(): Int = gtk_text_get_max_length(this.raw.asInstanceOf)
+  def getMaxLength(): Int /* None */ = gtk_text_get_max_length(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -203,7 +205,7 @@ class Text(raw: Ptr[GtkText])
     *
     * See [method@Gtk.Text.set_overwrite_mode].
     */
-  def getOverwriteMode(): Boolean =
+  def getOverwriteMode(): Boolean /* None */ =
     gtk_text_get_overwrite_mode(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -214,7 +216,7 @@ class Text(raw: Ptr[GtkText])
     *
     * If no placeholder text has been set, %NULL will be returned.
     */
-  def getPlaceholderText()(using Zone): String = fromCString(
+  def getPlaceholderText()(using Zone): String /* None */ = fromCString(
     gtk_text_get_placeholder_text(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -222,7 +224,7 @@ class Text(raw: Ptr[GtkText])
     *
     * Returns whether the `GtkText` will grow and shrink with the content.
     */
-  def getPropagateTextWidth(): Boolean =
+  def getPropagateTextWidth(): Boolean /* None */ =
     gtk_text_get_propagate_text_width(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -231,7 +233,9 @@ class Text(raw: Ptr[GtkText])
     *
     * See [method@Gtk.Text.set_tabs].
     */
-  def getTabs(): Ptr[PangoTabArray] = gtk_text_get_tabs(this.raw.asInstanceOf)
+  def getTabs(): Ptr[PangoTabArray] /* None */ = gtk_text_get_tabs(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -240,7 +244,7 @@ class Text(raw: Ptr[GtkText])
     * This is equivalent to getting @self's `GtkEntryBuffer` and calling
     * [method@Gtk.EntryBuffer.get_length] on it.
     */
-  def getTextLength(): UShort = gtk_text_get_text_length(
+  def getTextLength(): UShort /* None */ = gtk_text_get_text_length(
     this.raw.asInstanceOf
   ).value
 
@@ -249,14 +253,14 @@ class Text(raw: Ptr[GtkText])
     * Returns whether the `GtkText` will truncate multi-line text that is pasted
     * into the widget
     */
-  def getTruncateMultiline(): Boolean =
+  def getTruncateMultiline(): Boolean /* None */ =
     gtk_text_get_truncate_multiline(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves whether the text in @self is visible.
     */
-  def getVisibility(): Boolean =
+  def getVisibility(): Boolean /* None */ =
     gtk_text_get_visibility(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -268,7 +272,7 @@ class Text(raw: Ptr[GtkText])
     * entries which the user usually doesn't want to replace all text in, such
     * as search-as-you-type entries.
     */
-  def grabFocusWithoutSelecting(): Boolean =
+  def grabFocusWithoutSelecting(): Boolean /* None */ =
     gtk_text_grab_focus_without_selecting(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -279,24 +283,37 @@ class Text(raw: Ptr[GtkText])
     * This usually means that the dialog containing the `GtkText` will be
     * closed, since the default widget is usually one of the dialog buttons.
     */
-  def setActivatesDefault(activates: Boolean): Unit =
-    gtk_text_set_activates_default(
-      this.raw.asInstanceOf,
-      gboolean(gint((if activates == true then 1 else 0)))
-    )
+  def setActivatesDefault(
+      activates: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_text_set_activates_default(
+    this.raw.asInstanceOf,
+    gboolean(gint((if activates == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets attributes that are applied to the text.
     */
-  def setAttributes(attrs: Ptr[PangoAttrList]): Unit =
-    gtk_text_set_attributes(this.raw.asInstanceOf, attrs)
+  def setAttributes(
+      attrs: Option[Ptr[
+        PangoAttrList
+      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]) */ ]
+  ): Unit /* None */ = gtk_text_set_attributes(
+    this.raw.asInstanceOf,
+    attrs
+      .map[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]](o => o)
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]]
+      )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Set the `GtkEntryBuffer` object which holds the text for this widget.
     */
-  def setBuffer(buffer: EntryBuffer): Unit = gtk_text_set_buffer(
+  def setBuffer(
+      buffer: EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */
+  ): Unit /* None */ = gtk_text_set_buffer(
     this.raw.asInstanceOf,
     buffer.getUnsafeRawPointer().asInstanceOf
   )
@@ -308,27 +325,39 @@ class Text(raw: Ptr[GtkText])
     * If it is, typing ':', followed by a recognized keyword, will pop up a
     * window with suggested Emojis matching the keyword.
     */
-  def setEnableEmojiCompletion(enable_emoji_completion: Boolean): Unit =
-    gtk_text_set_enable_emoji_completion(
-      this.raw.asInstanceOf,
-      gboolean(gint((if enable_emoji_completion == true then 1 else 0)))
-    )
+  def setEnableEmojiCompletion(
+      enable_emoji_completion: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_text_set_enable_emoji_completion(
+    this.raw.asInstanceOf,
+    gboolean(gint((if enable_emoji_completion == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets a menu model to add when constructing the context menu for @self.
     */
-  def setExtraMenu(model: MenuModel): Unit = gtk_text_set_extra_menu(
+  def setExtraMenu(
+      model: Option[
+        MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+      ]
+  ): Unit /* None */ = gtk_text_set_extra_menu(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf
+    model
+      .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets input hints that allow input methods to fine-tune their behaviour.
     */
-  def setInputHints(hints: GtkInputHints): Unit =
-    gtk_text_set_input_hints(this.raw.asInstanceOf, hints)
+  def setInputHints(
+      hints: GtkInputHints /* Some(GtkInputHints) */
+  ): Unit /* None */ = gtk_text_set_input_hints(this.raw.asInstanceOf, hints)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -337,7 +366,9 @@ class Text(raw: Ptr[GtkText])
     * This can be used by on-screen keyboards and other input methods to adjust
     * their behaviour.
     */
-  def setInputPurpose(purpose: GtkInputPurpose): Unit =
+  def setInputPurpose(
+      purpose: GtkInputPurpose /* Some(GtkInputPurpose) */
+  ): Unit /* None */ =
     gtk_text_set_input_purpose(this.raw.asInstanceOf, purpose)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -348,7 +379,9 @@ class Text(raw: Ptr[GtkText])
     * font. If you set the invisible char to 0, then the user will get no
     * feedback at all; there will be no text on the screen as they type.
     */
-  def setInvisibleChar(ch: CUnsignedInt): Unit =
+  def setInvisibleChar(
+      ch: CUnsignedInt /* Some(_root_.sn.gnome.glib.internal.gunichar) */
+  ): Unit /* None */ =
     gtk_text_set_invisible_char(this.raw.asInstanceOf, gunichar(guint32(ch)))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -361,14 +394,16 @@ class Text(raw: Ptr[GtkText])
     * This is equivalent to getting @self's `GtkEntryBuffer` and calling
     * [method@Gtk.EntryBuffer.set_max_length] on it.
     */
-  def setMaxLength(length: Int): Unit =
+  def setMaxLength(length: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_text_set_max_length(this.raw.asInstanceOf, length)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the text is overwritten when typing in the `GtkText`.
     */
-  def setOverwriteMode(overwrite: Boolean): Unit = gtk_text_set_overwrite_mode(
+  def setOverwriteMode(
+      overwrite: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_text_set_overwrite_mode(
     this.raw.asInstanceOf,
     gboolean(gint((if overwrite == true then 1 else 0)))
   )
@@ -380,39 +415,54 @@ class Text(raw: Ptr[GtkText])
     * This can be used to give a visual hint of the expected contents of the
     * `GtkText`.
     */
-  def setPlaceholderText(text: String | CString)(using Zone): Unit =
-    gtk_text_set_placeholder_text(
-      this.raw.asInstanceOf,
-      __sn_extract_string(text)
-    )
+  def setPlaceholderText(
+      text: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_text_set_placeholder_text(
+    this.raw.asInstanceOf,
+    text
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the `GtkText` should grow and shrink with the content.
     */
-  def setPropagateTextWidth(propagate_text_width: Boolean): Unit =
-    gtk_text_set_propagate_text_width(
-      this.raw.asInstanceOf,
-      gboolean(gint((if propagate_text_width == true then 1 else 0)))
-    )
+  def setPropagateTextWidth(
+      propagate_text_width: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_text_set_propagate_text_width(
+    this.raw.asInstanceOf,
+    gboolean(gint((if propagate_text_width == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets tabstops that are applied to the text.
     */
-  def setTabs(tabs: Ptr[PangoTabArray]): Unit =
-    gtk_text_set_tabs(this.raw.asInstanceOf, tabs)
+  def setTabs(
+      tabs: Option[Ptr[
+        PangoTabArray
+      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]) */ ]
+  ): Unit /* None */ = gtk_text_set_tabs(
+    this.raw.asInstanceOf,
+    tabs
+      .map[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]](o => o)
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]]
+      )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the `GtkText` should truncate multi-line text that is pasted
     * into the widget.
     */
-  def setTruncateMultiline(truncate_multiline: Boolean): Unit =
-    gtk_text_set_truncate_multiline(
-      this.raw.asInstanceOf,
-      gboolean(gint((if truncate_multiline == true then 1 else 0)))
-    )
+  def setTruncateMultiline(
+      truncate_multiline: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_text_set_truncate_multiline(
+    this.raw.asInstanceOf,
+    gboolean(gint((if truncate_multiline == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -431,7 +481,9 @@ class Text(raw: Ptr[GtkText])
     * methods about the purpose of this self, in addition to setting visibility
     * to %FALSE.
     */
-  def setVisibility(visible: Boolean): Unit = gtk_text_set_visibility(
+  def setVisibility(
+      visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_text_set_visibility(
     this.raw.asInstanceOf,
     gboolean(gint((if visible == true then 1 else 0)))
   )
@@ -442,7 +494,7 @@ class Text(raw: Ptr[GtkText])
     *
     * After calling this, the default invisible char is used again.
     */
-  def unsetInvisibleChar(): Unit = gtk_text_unset_invisible_char(
+  def unsetInvisibleChar(): Unit /* None */ = gtk_text_unset_invisible_char(
     this.raw.asInstanceOf
   )
 
@@ -467,9 +519,10 @@ object Text:
     *
     * Creates a new `GtkText` with the specified text buffer.
     */
-  def withBuffer(buffer: EntryBuffer): Text = new Text(
-    gtk_text_new_with_buffer(
-      buffer.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+  def withBuffer(buffer: EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */ ): Text =
+    new Text(
+      gtk_text_new_with_buffer(
+        buffer.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 end Text

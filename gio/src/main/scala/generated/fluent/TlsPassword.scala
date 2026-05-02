@@ -18,13 +18,14 @@ import sn.gnome.gobject.fluent.Object
   * Holds a password used in TLS.
   */
 class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Get a description string about what the password will be used for.
     */
-  def getDescription()(using Zone): String = fromCString(
+  def getDescription()(using Zone): String /* None */ = fromCString(
     g_tls_password_get_description(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -32,7 +33,7 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     *
     * Get flags about the password.
     */
-  def getFlags(): GTlsPasswordFlags = g_tls_password_get_flags(
+  def getFlags(): GTlsPasswordFlags /* None */ = g_tls_password_get_flags(
     this.raw.asInstanceOf
   )
 
@@ -46,7 +47,7 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_value contains an OUT parameter, which is not supported yet"
   )
-  def getValue(using DummyImplicit) = ???
+  private def getValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -54,7 +55,7 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     * representation of the password flags returned from
     * g_tls_password_get_flags().
     */
-  def getWarning()(using Zone): String = fromCString(
+  def getWarning()(using Zone): String /* None */ = fromCString(
     g_tls_password_get_warning(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -62,18 +63,21 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     *
     * Set a description string about what the password will be used for.
     */
-  def setDescription(description: String | CString)(using Zone): Unit =
-    g_tls_password_set_description(
-      this.raw.asInstanceOf,
-      __sn_extract_string(description).asInstanceOf[Ptr[gchar]]
-    )
+  def setDescription(
+      description: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_tls_password_set_description(
+    this.raw.asInstanceOf,
+    __sn_extract_string(description).asInstanceOf[Ptr[gchar]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Set flags about the password.
     */
-  def setFlags(flags: GTlsPasswordFlags): Unit =
-    g_tls_password_set_flags(this.raw.asInstanceOf, flags)
+  def setFlags(
+      flags: GTlsPasswordFlags /* Some(GTlsPasswordFlags) */
+  ): Unit /* None */ = g_tls_password_set_flags(this.raw.asInstanceOf, flags)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -86,12 +90,14 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     *   automatically. (Note that the terminating nul is not considered part of
     *   the password in this case.)
     */
-  def setValue(value: Ptr[UByte], length: CLongInt): Unit =
-    g_tls_password_set_value(
-      this.raw.asInstanceOf,
-      value.asInstanceOf,
-      gssize(length)
-    )
+  def setValue(
+      value: Ptr[UByte] /* Some(Ptr[_root_.sn.gnome.glib.internal.guchar]) */,
+      length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
+  ): Unit /* None */ = g_tls_password_set_value(
+    this.raw.asInstanceOf,
+    value.asInstanceOf,
+    gssize(length)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -107,14 +113,20 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     *   the password in this case.)
     */
   def setValueFull(
-      value: Ptr[UByte],
-      length: CLongInt,
-      destroy: GDestroyNotify
-  ): Unit = g_tls_password_set_value_full(
+      value: Ptr[UByte] /* Some(Ptr[_root_.sn.gnome.glib.internal.guchar]) */,
+      length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */,
+      destroy: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ]
+  ): Unit /* None */ = g_tls_password_set_value_full(
     this.raw.asInstanceOf,
     value.asInstanceOf,
     gssize(length),
     destroy
+      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -123,11 +135,13 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     * representation of the password flags returned from
     * g_tls_password_get_flags().
     */
-  def setWarning(warning: String | CString)(using Zone): Unit =
-    g_tls_password_set_warning(
-      this.raw.asInstanceOf,
-      __sn_extract_string(warning).asInstanceOf[Ptr[gchar]]
-    )
+  def setWarning(
+      warning: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_tls_password_set_warning(
+    this.raw.asInstanceOf,
+    __sn_extract_string(warning).asInstanceOf[Ptr[gchar]]
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -144,9 +158,11 @@ object TlsPassword:
     *
     * Create a new #GTlsPassword object.
     */
-  def apply(flags: GTlsPasswordFlags, description: String | CString)(using
-      Zone
-  ): TlsPassword = new TlsPassword(
+  def apply(
+      flags: GTlsPasswordFlags /* Some(GTlsPasswordFlags) */,
+      description: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): TlsPassword = new TlsPassword(
     g_tls_password_new(
       flags,
       __sn_extract_string(description).asInstanceOf[Ptr[gchar]]

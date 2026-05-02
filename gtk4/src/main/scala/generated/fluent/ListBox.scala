@@ -85,6 +85,7 @@ class ListBox(raw: Ptr[GtkListBox])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -94,10 +95,11 @@ class ListBox(raw: Ptr[GtkListBox])
     * If a sort function is set, the widget will actually be inserted at the
     * calculated position.
     */
-  def append(child: Widget): Unit = gtk_list_box_append(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def append(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_list_box_append(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -117,15 +119,31 @@ class ListBox(raw: Ptr[GtkListBox])
     * should be implemented by the model.
     */
   def bindModel(
-      model: ListModel,
-      create_widget_func: GtkListBoxCreateWidgetFunc,
-      user_data: Ptr[Byte],
-      user_data_free_func: GDestroyNotify
-  ): Unit = gtk_list_box_bind_model(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ],
+      create_widget_func: Option[
+        GtkListBoxCreateWidgetFunc /* Some(GtkListBoxCreateWidgetFunc) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      user_data_free_func: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+  ): Unit /* None */ = gtk_list_box_bind_model(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf,
-    create_widget_func,
-    gpointer(user_data),
+    model
+      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+      ),
+    create_widget_func
+      .map[GtkListBoxCreateWidgetFunc](o => o)
+      .getOrElse(null.asInstanceOf[GtkListBoxCreateWidgetFunc]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     user_data_free_func
   )
 
@@ -141,7 +159,9 @@ class ListBox(raw: Ptr[GtkListBox])
     * The row will also be unhighlighted when the widget gets a drag leave
     * event.
     */
-  def dragHighlightRow(row: ListBoxRow): Unit = gtk_list_box_drag_highlight_row(
+  def dragHighlightRow(
+      row: ListBoxRow /* Some(Ptr[GtkListBoxRow]) */
+  ): Unit /* None */ = gtk_list_box_drag_highlight_row(
     this.raw.asInstanceOf,
     row.getUnsafeRawPointer().asInstanceOf
   )
@@ -151,7 +171,7 @@ class ListBox(raw: Ptr[GtkListBox])
     * If a row has previously been highlighted via
     * gtk_list_box_drag_highlight_row(), it will have the highlight removed.
     */
-  def dragUnhighlightRow(): Unit = gtk_list_box_drag_unhighlight_row(
+  def dragUnhighlightRow(): Unit /* None */ = gtk_list_box_drag_unhighlight_row(
     this.raw.asInstanceOf
   )
 
@@ -159,7 +179,7 @@ class ListBox(raw: Ptr[GtkListBox])
     *
     * Returns whether rows activate on single clicks.
     */
-  def getActivateOnSingleClick(): Boolean =
+  def getActivateOnSingleClick(): Boolean /* None */ =
     gtk_list_box_get_activate_on_single_click(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -167,7 +187,7 @@ class ListBox(raw: Ptr[GtkListBox])
     * Gets the adjustment (if any) that the widget uses to for vertical
     * scrolling.
     */
-  def getAdjustment(): Adjustment = new Adjustment(
+  def getAdjustment(): Adjustment /* None */ = new Adjustment(
     gtk_list_box_get_adjustment(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -178,17 +198,22 @@ class ListBox(raw: Ptr[GtkListBox])
     * If @index_ is negative or larger than the number of items in the list,
     * %NULL is returned.
     */
-  def getRowAtIndex(`index_`: Int): ListBoxRow = new ListBoxRow(
-    gtk_list_box_get_row_at_index(this.raw.asInstanceOf, `index_`).asInstanceOf
-  )
+  def getRowAtIndex(`index_`: Int /* Some(CInt) */ ): ListBoxRow /* None */ =
+    new ListBoxRow(
+      gtk_list_box_get_row_at_index(
+        this.raw.asInstanceOf,
+        `index_`
+      ).asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the row at the @y position.
     */
-  def getRowAtY(y: Int): ListBoxRow = new ListBoxRow(
-    gtk_list_box_get_row_at_y(this.raw.asInstanceOf, y).asInstanceOf
-  )
+  def getRowAtY(y: Int /* Some(CInt) */ ): ListBoxRow /* None */ =
+    new ListBoxRow(
+      gtk_list_box_get_row_at_y(this.raw.asInstanceOf, y).asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -197,7 +222,7 @@ class ListBox(raw: Ptr[GtkListBox])
     * Note that the box may allow multiple selection, in which case you should
     * use [method@Gtk.ListBox.selected_foreach] to find all selected rows.
     */
-  def getSelectedRow(): ListBoxRow = new ListBoxRow(
+  def getSelectedRow(): ListBoxRow /* None */ = new ListBoxRow(
     gtk_list_box_get_selected_row(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -205,7 +230,7 @@ class ListBox(raw: Ptr[GtkListBox])
     *
     * Creates a list of all selected children.
     */
-  def getSelectedRows(): Ptr[GList] = gtk_list_box_get_selected_rows(
+  def getSelectedRows(): Ptr[GList] /* None */ = gtk_list_box_get_selected_rows(
     this.raw.asInstanceOf
   )
 
@@ -213,15 +238,14 @@ class ListBox(raw: Ptr[GtkListBox])
     *
     * Gets the selection mode of the listbox.
     */
-  def getSelectionMode(): GtkSelectionMode = gtk_list_box_get_selection_mode(
-    this.raw.asInstanceOf
-  )
+  def getSelectionMode(): GtkSelectionMode /* None */ =
+    gtk_list_box_get_selection_mode(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the list box should show separators between rows.
     */
-  def getShowSeparators(): Boolean =
+  def getShowSeparators(): Boolean /* None */ =
     gtk_list_box_get_show_separators(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -235,7 +259,10 @@ class ListBox(raw: Ptr[GtkListBox])
     * @box,
     *   then the @child will be appended to the end.
     */
-  def insert(child: Widget, position: Int): Unit = gtk_list_box_insert(
+  def insert(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      position: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_list_box_insert(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf,
     position
@@ -250,7 +277,7 @@ class ListBox(raw: Ptr[GtkListBox])
     * function just looked for a specific search string and the entry with the
     * search string has changed.
     */
-  def invalidateFilter(): Unit = gtk_list_box_invalidate_filter(
+  def invalidateFilter(): Unit /* None */ = gtk_list_box_invalidate_filter(
     this.raw.asInstanceOf
   )
 
@@ -261,7 +288,7 @@ class ListBox(raw: Ptr[GtkListBox])
     * Call this when result of the header function on the @box is changed due to
     * an external factor.
     */
-  def invalidateHeaders(): Unit = gtk_list_box_invalidate_headers(
+  def invalidateHeaders(): Unit /* None */ = gtk_list_box_invalidate_headers(
     this.raw.asInstanceOf
   )
 
@@ -272,7 +299,7 @@ class ListBox(raw: Ptr[GtkListBox])
     * Call this when result of the sort function on the @box is changed due to
     * an external factor.
     */
-  def invalidateSort(): Unit = gtk_list_box_invalidate_sort(
+  def invalidateSort(): Unit /* None */ = gtk_list_box_invalidate_sort(
     this.raw.asInstanceOf
   )
 
@@ -283,19 +310,21 @@ class ListBox(raw: Ptr[GtkListBox])
     * If a sort function is set, the widget will actually be inserted at the
     * calculated position.
     */
-  def prepend(child: Widget): Unit = gtk_list_box_prepend(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def prepend(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_list_box_prepend(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes a child from @box.
     */
-  def remove(child: Widget): Unit = gtk_list_box_remove(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_list_box_remove(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -303,21 +332,29 @@ class ListBox(raw: Ptr[GtkListBox])
     *
     * This function does nothing if @box is backed by a model.
     */
-  def removeAll(): Unit = gtk_list_box_remove_all(this.raw.asInstanceOf)
+  def removeAll(): Unit /* None */ = gtk_list_box_remove_all(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Select all children of @box, if the selection mode allows it.
     */
-  def selectAll(): Unit = gtk_list_box_select_all(this.raw.asInstanceOf)
+  def selectAll(): Unit /* None */ = gtk_list_box_select_all(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Make @row the currently selected row.
     */
-  def selectRow(row: ListBoxRow): Unit = gtk_list_box_select_row(
+  def selectRow(
+      row: Option[ListBoxRow /* Some(Ptr[GtkListBoxRow]) */ ]
+  ): Unit /* None */ = gtk_list_box_select_row(
     this.raw.asInstanceOf,
-    row.getUnsafeRawPointer().asInstanceOf
+    row
+      .map[Ptr[GtkListBoxRow]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkListBoxRow]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -326,19 +363,30 @@ class ListBox(raw: Ptr[GtkListBox])
     *
     * Note that the selection cannot be modified from within this function.
     */
-  def selectedForeach(func: GtkListBoxForeachFunc, data: Ptr[Byte]): Unit =
-    gtk_list_box_selected_foreach(this.raw.asInstanceOf, func, gpointer(data))
+  def selectedForeach(
+      func: GtkListBoxForeachFunc /* Some(GtkListBoxForeachFunc) */,
+      data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gtk_list_box_selected_foreach(
+    this.raw.asInstanceOf,
+    func,
+    data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * If @single is %TRUE, rows will be activated when you click on them,
     * otherwise you need to double-click.
     */
-  def setActivateOnSingleClick(single: Boolean): Unit =
-    gtk_list_box_set_activate_on_single_click(
-      this.raw.asInstanceOf,
-      gboolean(gint((if single == true then 1 else 0)))
-    )
+  def setActivateOnSingleClick(
+      single: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_list_box_set_activate_on_single_click(
+    this.raw.asInstanceOf,
+    gboolean(gint((if single == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -352,9 +400,13 @@ class ListBox(raw: Ptr[GtkListBox])
     * the adjustment from that will be picked up automatically, so there is no
     * need to manually do that.
     */
-  def setAdjustment(adjustment: Adjustment): Unit = gtk_list_box_set_adjustment(
+  def setAdjustment(
+      adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
+  ): Unit /* None */ = gtk_list_box_set_adjustment(
     this.raw.asInstanceOf,
-    adjustment.getUnsafeRawPointer().asInstanceOf
+    adjustment
+      .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -374,13 +426,21 @@ class ListBox(raw: Ptr[GtkListBox])
     * [method@Gtk.ListBox.bind_model]).
     */
   def setFilterFunc(
-      filter_func: GtkListBoxFilterFunc,
-      user_data: Ptr[Byte],
-      destroy: GDestroyNotify
-  ): Unit = gtk_list_box_set_filter_func(
+      filter_func: Option[
+        GtkListBoxFilterFunc /* Some(GtkListBoxFilterFunc) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+  ): Unit /* None */ = gtk_list_box_set_filter_func(
     this.raw.asInstanceOf,
-    filter_func,
-    gpointer(user_data),
+    filter_func
+      .map[GtkListBoxFilterFunc](o => o)
+      .getOrElse(null.asInstanceOf[GtkListBoxFilterFunc]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     destroy
   )
 
@@ -414,13 +474,21 @@ class ListBox(raw: Ptr[GtkListBox])
     * [method@Gtk.ListBox.invalidate_headers] is called.
     */
   def setHeaderFunc(
-      update_header: GtkListBoxUpdateHeaderFunc,
-      user_data: Ptr[Byte],
-      destroy: GDestroyNotify
-  ): Unit = gtk_list_box_set_header_func(
+      update_header: Option[
+        GtkListBoxUpdateHeaderFunc /* Some(GtkListBoxUpdateHeaderFunc) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+  ): Unit /* None */ = gtk_list_box_set_header_func(
     this.raw.asInstanceOf,
-    update_header,
-    gpointer(user_data),
+    update_header
+      .map[GtkListBoxUpdateHeaderFunc](o => o)
+      .getOrElse(null.asInstanceOf[GtkListBoxUpdateHeaderFunc]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     destroy
   )
 
@@ -429,27 +497,34 @@ class ListBox(raw: Ptr[GtkListBox])
     * Sets the placeholder widget that is shown in the list when it doesn't
     * display any visible children.
     */
-  def setPlaceholder(placeholder: Widget): Unit = gtk_list_box_set_placeholder(
+  def setPlaceholder(
+      placeholder: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_list_box_set_placeholder(
     this.raw.asInstanceOf,
-    placeholder.getUnsafeRawPointer().asInstanceOf
+    placeholder
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets how selection works in the listbox.
     */
-  def setSelectionMode(mode: GtkSelectionMode): Unit =
+  def setSelectionMode(
+      mode: GtkSelectionMode /* Some(GtkSelectionMode) */
+  ): Unit /* None */ =
     gtk_list_box_set_selection_mode(this.raw.asInstanceOf, mode)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the list box should show separators between rows.
     */
-  def setShowSeparators(show_separators: Boolean): Unit =
-    gtk_list_box_set_show_separators(
-      this.raw.asInstanceOf,
-      gboolean(gint((if show_separators == true then 1 else 0)))
-    )
+  def setShowSeparators(
+      show_separators: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_list_box_set_show_separators(
+    this.raw.asInstanceOf,
+    gboolean(gint((if show_separators == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -467,13 +542,19 @@ class ListBox(raw: Ptr[GtkListBox])
     * [method@Gtk.ListBox.bind_model]).
     */
   def setSortFunc(
-      sort_func: GtkListBoxSortFunc,
-      user_data: Ptr[Byte],
-      destroy: GDestroyNotify
-  ): Unit = gtk_list_box_set_sort_func(
+      sort_func: Option[GtkListBoxSortFunc /* Some(GtkListBoxSortFunc) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+  ): Unit /* None */ = gtk_list_box_set_sort_func(
     this.raw.asInstanceOf,
-    sort_func,
-    gpointer(user_data),
+    sort_func
+      .map[GtkListBoxSortFunc](o => o)
+      .getOrElse(null.asInstanceOf[GtkListBoxSortFunc]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     destroy
   )
 
@@ -481,13 +562,17 @@ class ListBox(raw: Ptr[GtkListBox])
     *
     * Unselect all children of @box, if the selection mode allows it.
     */
-  def unselectAll(): Unit = gtk_list_box_unselect_all(this.raw.asInstanceOf)
+  def unselectAll(): Unit /* None */ = gtk_list_box_unselect_all(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Unselects a single row of @box, if the selection mode allows it.
     */
-  def unselectRow(row: ListBoxRow): Unit = gtk_list_box_unselect_row(
+  def unselectRow(
+      row: ListBoxRow /* Some(Ptr[GtkListBoxRow]) */
+  ): Unit /* None */ = gtk_list_box_unselect_row(
     this.raw.asInstanceOf,
     row.getUnsafeRawPointer().asInstanceOf
   )

@@ -34,21 +34,21 @@ import sn.gnome.glib.internal.guint64
 class DataInputStream(raw: Ptr[GDataInputStream])
     extends BufferedInputStream(raw.asInstanceOf),
       Seekable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the byte order for the data input stream.
     */
-  def getByteOrder(): GDataStreamByteOrder = g_data_input_stream_get_byte_order(
-    this.raw.asInstanceOf
-  )
+  def getByteOrder(): GDataStreamByteOrder /* None */ =
+    g_data_input_stream_get_byte_order(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the current newline type for the @stream.
     */
-  def getNewlineType(): GDataStreamNewlineType =
+  def getNewlineType(): GDataStreamNewlineType /* None */ =
     g_data_input_stream_get_newline_type(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -58,7 +58,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_byte is weird: there are conflicting versions of it in DataInputStream and BufferedInputStream"
   )
-  def readByte(using DummyImplicit) = ???
+  private def readByte__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -68,14 +68,17 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * g_data_input_stream_get_byte_order() and
     * g_data_input_stream_set_byte_order().
     */
-  def readInt16(cancellable: Cancellable): GResult[CShort] =
-    GResult.wrap(__errorPtr =>
-      g_data_input_stream_read_int16(
-        this.raw.asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value
-    )
+  def readInt16(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[CShort /* None */ ] = GResult.wrap(__errorPtr =>
+    g_data_input_stream_read_int16(
+      this.raw.asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
+    ).value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -89,14 +92,17 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * triggering the cancellable object from another thread. If the operation
     * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
     */
-  def readInt32(cancellable: Cancellable): GResult[CInt] =
-    GResult.wrap(__errorPtr =>
-      g_data_input_stream_read_int32(
-        this.raw.asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value
-    )
+  def readInt32(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[CInt /* None */ ] = GResult.wrap(__errorPtr =>
+    g_data_input_stream_read_int32(
+      this.raw.asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
+    ).value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -110,14 +116,17 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * triggering the cancellable object from another thread. If the operation
     * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
     */
-  def readInt64(cancellable: Cancellable): GResult[CLongInt] =
-    GResult.wrap(__errorPtr =>
-      g_data_input_stream_read_int64(
-        this.raw.asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value
-    )
+  def readInt64(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
+    g_data_input_stream_read_int64(
+      this.raw.asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
+    ).value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -132,7 +141,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_line contains an OUT parameter, which is not supported yet"
   )
-  def readLine(using DummyImplicit) = ???
+  private def readLine__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -144,16 +153,24 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * operation.
     */
   def readLineAsync(
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_data_input_stream_read_line_async(
+      io_priority: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_data_input_stream_read_line_async(
     this.raw.asInstanceOf,
     gint(io_priority),
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -165,7 +182,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_line_finish contains an OUT parameter, which is not supported yet"
   )
-  def readLineFinish(using DummyImplicit) = ???
+  private def readLineFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -175,7 +192,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_line_finish_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def readLineFinishUtf8(using DummyImplicit) = ???
+  private def readLineFinishUtf8__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -188,7 +205,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_line_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def readLineUtf8(using DummyImplicit) = ???
+  private def readLineUtf8__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -198,14 +215,17 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * g_data_input_stream_get_byte_order() and
     * g_data_input_stream_set_byte_order().
     */
-  def readUint16(cancellable: Cancellable): GResult[UShort] =
-    GResult.wrap(__errorPtr =>
-      g_data_input_stream_read_uint16(
-        this.raw.asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value
-    )
+  def readUint16(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[UShort /* None */ ] = GResult.wrap(__errorPtr =>
+    g_data_input_stream_read_uint16(
+      this.raw.asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
+    ).value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -219,14 +239,17 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * triggering the cancellable object from another thread. If the operation
     * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
     */
-  def readUint32(cancellable: Cancellable): GResult[UInt] =
-    GResult.wrap(__errorPtr =>
-      g_data_input_stream_read_uint32(
-        this.raw.asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value
-    )
+  def readUint32(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[UInt /* None */ ] = GResult.wrap(__errorPtr =>
+    g_data_input_stream_read_uint32(
+      this.raw.asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
+    ).value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -239,14 +262,17 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * triggering the cancellable object from another thread. If the operation
     * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
     */
-  def readUint64(cancellable: Cancellable): GResult[CUnsignedLongInt] =
-    GResult.wrap(__errorPtr =>
-      g_data_input_stream_read_uint64(
-        this.raw.asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value
-    )
+  def readUint64(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[CUnsignedLongInt /* None */ ] = GResult.wrap(__errorPtr =>
+    g_data_input_stream_read_uint64(
+      this.raw.asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
+    ).value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -264,7 +290,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_until contains an OUT parameter, which is not supported yet"
   )
-  def readUntil(using DummyImplicit) = ???
+  private def readUntil__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -285,18 +311,27 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * instead.
     */
   def readUntilAsync(
-      stop_chars: String | CString,
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  )(using Zone): Unit = g_data_input_stream_read_until_async(
+      stop_chars: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      io_priority: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_data_input_stream_read_until_async(
     this.raw.asInstanceOf,
     __sn_extract_string(stop_chars).asInstanceOf[Ptr[gchar]],
     gint(io_priority),
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -307,7 +342,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_until_finish contains an OUT parameter, which is not supported yet"
   )
-  def readUntilFinish(using DummyImplicit) = ???
+  private def readUntilFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -326,7 +361,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_upto contains an OUT parameter, which is not supported yet"
   )
-  def readUpto(using DummyImplicit) = ???
+  private def readUpto__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -345,20 +380,29 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * operation.
     */
   def readUptoAsync(
-      stop_chars: String | CString,
-      stop_chars_len: CLongInt,
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  )(using Zone): Unit = g_data_input_stream_read_upto_async(
+      stop_chars: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      stop_chars_len: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */,
+      io_priority: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_data_input_stream_read_upto_async(
     this.raw.asInstanceOf,
     __sn_extract_string(stop_chars).asInstanceOf[Ptr[gchar]],
     gssize(stop_chars_len),
     gint(io_priority),
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -375,14 +419,16 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_upto_finish contains an OUT parameter, which is not supported yet"
   )
-  def readUptoFinish(using DummyImplicit) = ???
+  private def readUptoFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * This function sets the byte order for the given @stream. All subsequent
     * reads from the @stream will be read in the given @order.
     */
-  def setByteOrder(order: GDataStreamByteOrder): Unit =
+  def setByteOrder(
+      order: GDataStreamByteOrder /* Some(GDataStreamByteOrder) */
+  ): Unit /* None */ =
     g_data_input_stream_set_byte_order(this.raw.asInstanceOf, order)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -393,7 +439,9 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * read chunk ends in "CR" we must read an additional byte to know if this is
     * "CR" or "CR LF", and this might block if there is no more data available.
     */
-  def setNewlineType(`type`: GDataStreamNewlineType): Unit =
+  def setNewlineType(
+      `type`: GDataStreamNewlineType /* Some(GDataStreamNewlineType) */
+  ): Unit /* None */ =
     g_data_input_stream_set_newline_type(this.raw.asInstanceOf, `type`)
 
   private inline def __sn_extract_string(str: String | CString)(using
@@ -411,7 +459,9 @@ object DataInputStream:
     *
     * Creates a new data input stream for the @base_stream.
     */
-  def apply(base_stream: InputStream): DataInputStream = new DataInputStream(
+  def apply(
+      base_stream: InputStream /* Some(Ptr[GInputStream]) */
+  ): DataInputStream = new DataInputStream(
     g_data_input_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

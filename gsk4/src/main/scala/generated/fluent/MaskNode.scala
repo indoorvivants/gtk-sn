@@ -13,13 +13,14 @@ import sn.gnome.gsk4.internal.GskMaskNode
   * A render node masking one child node with another.
   */
 class MaskNode(raw: Ptr[GskMaskNode]) extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the mask `GskRenderNode` child of the @node.
     */
-  def getMask(): RenderNode = new RenderNode(
+  def getMask(): RenderNode /* None */ = new RenderNode(
     gsk_mask_node_get_mask(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -27,7 +28,7 @@ class MaskNode(raw: Ptr[GskMaskNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the mask mode used by @node.
     */
-  def getMaskMode(): GskMaskMode = gsk_mask_node_get_mask_mode(
+  def getMaskMode(): GskMaskMode /* None */ = gsk_mask_node_get_mask_mode(
     this.raw.asInstanceOf
   )
 
@@ -35,7 +36,7 @@ class MaskNode(raw: Ptr[GskMaskNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the source `GskRenderNode` child of the @node.
     */
-  def getSource(): RenderNode = new RenderNode(
+  def getSource(): RenderNode /* None */ = new RenderNode(
     gsk_mask_node_get_source(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -51,9 +52,9 @@ object MaskNode:
     * value' with the alpha of the source.
     */
   def apply(
-      source: RenderNode,
-      mask: RenderNode,
-      mask_mode: GskMaskMode
+      source: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      mask: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      mask_mode: GskMaskMode /* Some(GskMaskMode) */
   ): MaskNode = new MaskNode(
     gsk_mask_node_new(
       source.getUnsafeRawPointer().asInstanceOf,

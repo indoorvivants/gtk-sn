@@ -35,6 +35,7 @@ import sn.gnome.gobject.fluent.Object
   */
 class SettingsBackend(raw: Ptr[GSettingsBackend])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -63,7 +64,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * that was passed to that call.
     */
   @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  def changed(using DummyImplicit) = ???
+  private def changed__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -73,7 +74,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     *   g_settings_backend_changed().
     */
   @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  def changedTree(using DummyImplicit) = ???
+  private def changedTree__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -99,7 +100,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * were changed) but this is not strictly required.
     */
   @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  def keysChanged(using DummyImplicit) = ???
+  private def keysChanged__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -126,7 +127,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * application will be notified of a possible change.
     */
   @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  def pathChanged(using DummyImplicit) = ???
+  private def pathChanged__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -137,7 +138,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * always be made in response to external events.
     */
   @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  def pathWritableChanged(using DummyImplicit) = ???
+  private def pathWritableChanged__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -147,6 +148,6 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * always be made in response to external events.
     */
   @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  def writableChanged(using DummyImplicit) = ???
+  private def writableChanged__ = ???
 
 end SettingsBackend
