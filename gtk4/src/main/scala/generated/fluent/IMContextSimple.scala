@@ -61,7 +61,7 @@ class IMContextSimple(raw: Ptr[GtkIMContextSimple])
   def addComposeFile(
       compose_file: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_im_context_simple_add_compose_file(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkIMContextSimple]],
     __sn_extract_string(compose_file)
   )
 

@@ -46,7 +46,7 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
     * model change, but that is more expensive.
     */
   def changed(): Unit /* None */ = gtk_flow_box_child_changed(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkFlowBoxChild]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -54,7 +54,9 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
     * Gets the child widget of @self.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_flow_box_child_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_flow_box_child_get_child(
+      this.raw.asInstanceOf[Ptr[GtkFlowBoxChild]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -62,7 +64,7 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
     * Gets the current index of the @child in its `GtkFlowBox` container.
     */
   def getIndex(): Int /* None */ = gtk_flow_box_child_get_index(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkFlowBoxChild]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -70,8 +72,9 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
     * Returns whether the @child is currently selected in its `GtkFlowBox`
     * container.
     */
-  def isSelected(): Boolean /* None */ =
-    gtk_flow_box_child_is_selected(this.raw.asInstanceOf).value.!=(0)
+  def isSelected(): Boolean /* None */ = gtk_flow_box_child_is_selected(
+    this.raw.asInstanceOf[Ptr[GtkFlowBoxChild]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -80,7 +83,7 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_flow_box_child_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFlowBoxChild]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])

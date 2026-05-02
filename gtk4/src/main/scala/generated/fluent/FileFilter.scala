@@ -68,7 +68,7 @@ class FileFilter(raw: Ptr[GtkFileFilter])
   def addMimeType(
       mime_type: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_file_filter_add_mime_type(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFileFilter]],
     __sn_extract_string(mime_type)
   )
 
@@ -82,7 +82,7 @@ class FileFilter(raw: Ptr[GtkFileFilter])
   def addPattern(
       pattern: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_file_filter_add_pattern(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFileFilter]],
     __sn_extract_string(pattern)
   )
 
@@ -94,7 +94,7 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * all the supported mime types.
     */
   def addPixbufFormats(): Unit /* None */ = gtk_file_filter_add_pixbuf_formats(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkFileFilter]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -109,7 +109,7 @@ class FileFilter(raw: Ptr[GtkFileFilter])
   def addSuffix(
       suffix: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_file_filter_add_suffix(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFileFilter]],
     __sn_extract_string(suffix)
   )
 
@@ -120,7 +120,9 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * See [method@Gtk.FileFilter.set_name].
     */
   def getName()(using Zone): String /* None */ = fromCString(
-    gtk_file_filter_get_name(this.raw.asInstanceOf).asInstanceOf
+    gtk_file_filter_get_name(
+      this.raw.asInstanceOf[Ptr[GtkFileFilter]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -133,7 +135,7 @@ class FileFilter(raw: Ptr[GtkFileFilter])
   def setName(
       name: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_file_filter_set_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFileFilter]],
     name
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -144,7 +146,7 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * Serialize a file filter to an `a{sv}` variant.
     */
   def toGvariant(): Ptr[GVariant] /* None */ = gtk_file_filter_to_gvariant(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkFileFilter]]
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

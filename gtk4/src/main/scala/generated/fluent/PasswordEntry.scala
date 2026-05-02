@@ -63,7 +63,9 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
     * Gets the menu model set with gtk_password_entry_set_extra_menu().
     */
   def getExtraMenu(): MenuModel /* None */ = new MenuModel(
-    gtk_password_entry_get_extra_menu(this.raw.asInstanceOf).asInstanceOf
+    gtk_password_entry_get_extra_menu(
+      this.raw.asInstanceOf[Ptr[GtkPasswordEntry]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -71,7 +73,9 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
     * Returns whether the entry is showing an icon to reveal the contents.
     */
   def getShowPeekIcon(): Boolean /* None */ =
-    gtk_password_entry_get_show_peek_icon(this.raw.asInstanceOf).value.!=(0)
+    gtk_password_entry_get_show_peek_icon(
+      this.raw.asInstanceOf[Ptr[GtkPasswordEntry]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -82,7 +86,7 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
         MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   ): Unit /* None */ = gtk_password_entry_set_extra_menu(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPasswordEntry]],
     model
       .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -102,7 +106,7 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
   def setShowPeekIcon(
       show_peek_icon: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_password_entry_set_show_peek_icon(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPasswordEntry]],
     gboolean(gint((if show_peek_icon == true then 1 else 0)))
   )
 

@@ -46,7 +46,9 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
     * Returns the `GtkColorDialog` of @self.
     */
   def getDialog(): ColorDialog /* None */ = new ColorDialog(
-    gtk_color_dialog_button_get_dialog(this.raw.asInstanceOf).asInstanceOf
+    gtk_color_dialog_button_get_dialog(
+      this.raw.asInstanceOf[Ptr[GtkColorDialogButton]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -57,7 +59,7 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
     * by the user. To get informed about changes, listen to "notify::color".
     */
   def getRgba(): Ptr[GdkRGBA] /* None */ = gtk_color_dialog_button_get_rgba(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkColorDialogButton]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -68,7 +70,7 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
   def setDialog(
       dialog: ColorDialog /* Some(Ptr[GtkColorDialog]) */
   ): Unit /* None */ = gtk_color_dialog_button_set_dialog(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColorDialogButton]],
     dialog.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -78,8 +80,10 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
     */
   def setRgba(
       color: Ptr[GdkRGBA] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
-  ): Unit /* None */ =
-    gtk_color_dialog_button_set_rgba(this.raw.asInstanceOf, color)
+  ): Unit /* None */ = gtk_color_dialog_button_set_rgba(
+    this.raw.asInstanceOf[Ptr[GtkColorDialogButton]],
+    color
+  )
 
 end ColorDialogButton
 

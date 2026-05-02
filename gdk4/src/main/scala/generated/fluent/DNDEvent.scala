@@ -21,7 +21,7 @@ class DNDEvent(raw: Ptr[GdkDNDEvent]) extends Event(raw.asInstanceOf):
     * Gets the `GdkDrop` object from a DND event.
     */
   def getDrop(): Drop /* None */ = new Drop(
-    gdk_dnd_event_get_drop(this.raw.asInstanceOf).asInstanceOf
+    gdk_dnd_event_get_drop(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
   )
 
 end DNDEvent

@@ -46,14 +46,18 @@ class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
     * Gets @address's type.
     */
   def getAddressType(): GUnixSocketAddressType /* None */ =
-    g_unix_socket_address_get_address_type(this.raw.asInstanceOf)
+    g_unix_socket_address_get_address_type(
+      this.raw.asInstanceOf[Ptr[GUnixSocketAddress]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Tests if @address is abstract.
     */
   def getIsAbstract(): Boolean /* None */ =
-    g_unix_socket_address_get_is_abstract(this.raw.asInstanceOf).value.!=(0)
+    g_unix_socket_address_get_is_abstract(
+      this.raw.asInstanceOf[Ptr[GUnixSocketAddress]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -65,7 +69,9 @@ class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
     * string.
     */
   def getPath()(using Zone): String /* None */ = fromCString(
-    g_unix_socket_address_get_path(this.raw.asInstanceOf).asInstanceOf
+    g_unix_socket_address_get_path(
+      this.raw.asInstanceOf[Ptr[GUnixSocketAddress]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -75,7 +81,9 @@ class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
     * For details, see g_unix_socket_address_get_path().
     */
   def getPathLen(): CUnsignedLongInt /* None */ =
-    g_unix_socket_address_get_path_len(this.raw.asInstanceOf).value
+    g_unix_socket_address_get_path_len(
+      this.raw.asInstanceOf[Ptr[GUnixSocketAddress]]
+    ).value
 
 end UnixSocketAddress
 

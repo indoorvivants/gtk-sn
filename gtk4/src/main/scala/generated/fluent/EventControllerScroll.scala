@@ -57,7 +57,9 @@ class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
     * Gets the flags conditioning the scroll controller behavior.
     */
   def getFlags(): GtkEventControllerScrollFlags /* None */ =
-    gtk_event_controller_scroll_get_flags(this.raw.asInstanceOf)
+    gtk_event_controller_scroll_get_flags(
+      this.raw.asInstanceOf[Ptr[GtkEventControllerScroll]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -68,7 +70,9 @@ class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
     * %GTK_EVENT_CONTROLLER_SCROLL_DISCRETE flag is set.
     */
   def getUnit(): GdkScrollUnit /* None */ =
-    gtk_event_controller_scroll_get_unit(this.raw.asInstanceOf)
+    gtk_event_controller_scroll_get_unit(
+      this.raw.asInstanceOf[Ptr[GtkEventControllerScroll]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -76,8 +80,10 @@ class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
     */
   def setFlags(
       flags: GtkEventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */
-  ): Unit /* None */ =
-    gtk_event_controller_scroll_set_flags(this.raw.asInstanceOf, flags)
+  ): Unit /* None */ = gtk_event_controller_scroll_set_flags(
+    this.raw.asInstanceOf[Ptr[GtkEventControllerScroll]],
+    flags
+  )
 
 end EventControllerScroll
 

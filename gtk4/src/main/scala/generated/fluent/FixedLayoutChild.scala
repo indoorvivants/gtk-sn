@@ -22,7 +22,9 @@ class FixedLayoutChild(raw: Ptr[GtkFixedLayoutChild])
     * Retrieves the transformation of the child.
     */
   def getTransform(): Ptr[GskTransform] /* None */ =
-    gtk_fixed_layout_child_get_transform(this.raw.asInstanceOf)
+    gtk_fixed_layout_child_get_transform(
+      this.raw.asInstanceOf[Ptr[GtkFixedLayoutChild]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -32,7 +34,9 @@ class FixedLayoutChild(raw: Ptr[GtkFixedLayoutChild])
       transform: Ptr[
         GskTransform
       ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]) */
-  ): Unit /* None */ =
-    gtk_fixed_layout_child_set_transform(this.raw.asInstanceOf, transform)
+  ): Unit /* None */ = gtk_fixed_layout_child_set_transform(
+    this.raw.asInstanceOf[Ptr[GtkFixedLayoutChild]],
+    transform
+  )
 
 end FixedLayoutChild

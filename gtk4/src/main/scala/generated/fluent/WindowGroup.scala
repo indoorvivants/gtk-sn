@@ -37,7 +37,7 @@ class WindowGroup(raw: Ptr[GtkWindowGroup]) extends Object(raw.asInstanceOf):
     */
   def addWindow(window: Window /* Some(Ptr[GtkWindow]) */ ): Unit /* None */ =
     gtk_window_group_add_window(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkWindowGroup]],
       window.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -46,7 +46,7 @@ class WindowGroup(raw: Ptr[GtkWindowGroup]) extends Object(raw.asInstanceOf):
     * Returns a list of the `GtkWindows` that belong to @window_group.
     */
   def listWindows(): Ptr[GList] /* None */ = gtk_window_group_list_windows(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWindowGroup]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -56,7 +56,7 @@ class WindowGroup(raw: Ptr[GtkWindowGroup]) extends Object(raw.asInstanceOf):
   def removeWindow(
       window: Window /* Some(Ptr[GtkWindow]) */
   ): Unit /* None */ = gtk_window_group_remove_window(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWindowGroup]],
     window.getUnsafeRawPointer().asInstanceOf
   )
 

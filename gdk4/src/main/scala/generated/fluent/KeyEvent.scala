@@ -26,14 +26,14 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
     * Extracts the consumed modifiers from a key event.
     */
   def getConsumedModifiers(): GdkModifierType /* None */ =
-    gdk_key_event_get_consumed_modifiers(this.raw.asInstanceOf)
+    gdk_key_event_get_consumed_modifiers(this.raw.asInstanceOf[Ptr[GdkEvent]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts the keycode from a key event.
     */
   def getKeycode(): UInt /* None */ = gdk_key_event_get_keycode(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -41,7 +41,7 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
     * Extracts the keyval from a key event.
     */
   def getKeyval(): UInt /* None */ = gdk_key_event_get_keyval(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -49,7 +49,7 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
     * Extracts the layout from a key event.
     */
   def getLayout(): UInt /* None */ = gdk_key_event_get_layout(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -57,7 +57,7 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
     * Extracts the shift level from a key event.
     */
   def getLevel(): UInt /* None */ = gdk_key_event_get_level(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -76,7 +76,7 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
     * Extracts whether the key event is for a modifier key.
     */
   def isModifier(): Boolean /* None */ =
-    gdk_key_event_is_modifier(this.raw.asInstanceOf).value.!=(0)
+    gdk_key_event_is_modifier(this.raw.asInstanceOf[Ptr[GdkEvent]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -92,7 +92,10 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
   def matches(
       keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       modifiers: GdkModifierType /* Some(GdkModifierType) */
-  ): GdkKeyMatch /* None */ =
-    gdk_key_event_matches(this.raw.asInstanceOf, guint(keyval), modifiers)
+  ): GdkKeyMatch /* None */ = gdk_key_event_matches(
+    this.raw.asInstanceOf[Ptr[GdkEvent]],
+    guint(keyval),
+    modifiers
+  )
 
 end KeyEvent

@@ -61,7 +61,7 @@ class UnixConnection(raw: Ptr[GUnixConnection])
   ): GResult[Credentials /* None */ ] = GResult.wrap(__errorPtr =>
     new Credentials(
       g_unix_connection_receive_credentials(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GUnixConnection]],
         cancellable
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
           .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -88,7 +88,7 @@ class UnixConnection(raw: Ptr[GUnixConnection])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_unix_connection_receive_credentials_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GUnixConnection]],
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -110,7 +110,7 @@ class UnixConnection(raw: Ptr[GUnixConnection])
   ): GResult[Credentials /* None */ ] = GResult.wrap(__errorPtr =>
     new Credentials(
       g_unix_connection_receive_credentials_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GUnixConnection]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf
@@ -129,7 +129,7 @@ class UnixConnection(raw: Ptr[GUnixConnection])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
     g_unix_connection_receive_fd(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GUnixConnection]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -163,7 +163,7 @@ class UnixConnection(raw: Ptr[GUnixConnection])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_unix_connection_send_credentials(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GUnixConnection]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -189,7 +189,7 @@ class UnixConnection(raw: Ptr[GUnixConnection])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_unix_connection_send_credentials_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GUnixConnection]],
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -210,7 +210,7 @@ class UnixConnection(raw: Ptr[GUnixConnection])
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_unix_connection_send_credentials_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GUnixConnection]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)
@@ -230,7 +230,7 @@ class UnixConnection(raw: Ptr[GUnixConnection])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_unix_connection_send_fd(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GUnixConnection]],
       gint(fd),
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)

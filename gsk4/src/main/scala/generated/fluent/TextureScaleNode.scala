@@ -24,14 +24,16 @@ class TextureScaleNode(raw: Ptr[GskTextureScaleNode])
     * Retrieves the `GskScalingFilter` used when creating this `GskRenderNode`.
     */
   def getFilter(): GskScalingFilter /* None */ =
-    gsk_texture_scale_node_get_filter(this.raw.asInstanceOf)
+    gsk_texture_scale_node_get_filter(this.raw.asInstanceOf[Ptr[GskRenderNode]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the `GdkTexture` used when creating this `GskRenderNode`.
     */
   def getTexture(): Texture /* None */ = new Texture(
-    gsk_texture_scale_node_get_texture(this.raw.asInstanceOf).asInstanceOf
+    gsk_texture_scale_node_get_texture(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
 end TextureScaleNode

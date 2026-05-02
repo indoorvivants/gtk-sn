@@ -20,7 +20,9 @@ class DebugNode(raw: Ptr[GskDebugNode]) extends RenderNode(raw.asInstanceOf):
     * Gets the child node that is getting drawn by the given @node.
     */
   def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_debug_node_get_child(this.raw.asInstanceOf).asInstanceOf
+    gsk_debug_node_get_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -28,7 +30,9 @@ class DebugNode(raw: Ptr[GskDebugNode]) extends RenderNode(raw.asInstanceOf):
     * Gets the debug message that was set on this node
     */
   def getMessage()(using Zone): String /* None */ = fromCString(
-    gsk_debug_node_get_message(this.raw.asInstanceOf).asInstanceOf
+    gsk_debug_node_get_message(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
 end DebugNode

@@ -34,8 +34,9 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     * This can be either rows added by changes to the underlying models or via
     * [method@Gtk.TreeListRow.set_expanded].
     */
-  def getAutoexpand(): Boolean /* None */ =
-    gtk_tree_list_model_get_autoexpand(this.raw.asInstanceOf).value.!=(0)
+  def getAutoexpand(): Boolean /* None */ = gtk_tree_list_model_get_autoexpand(
+    this.raw.asInstanceOf[Ptr[GtkTreeListModel]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -52,7 +53,7 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): TreeListRow /* None */ = new TreeListRow(
     gtk_tree_list_model_get_child_row(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkTreeListModel]],
       guint(position)
     ).asInstanceOf
   )
@@ -62,7 +63,9 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     * Gets the root model that @self was created with.
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_tree_list_model_get_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_tree_list_model_get_model(
+      this.raw.asInstanceOf[Ptr[GtkTreeListModel]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -79,7 +82,9 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     * to get the custom `GtkTreeListRow`s.
     */
   def getPassthrough(): Boolean /* None */ =
-    gtk_tree_list_model_get_passthrough(this.raw.asInstanceOf).value.!=(0)
+    gtk_tree_list_model_get_passthrough(
+      this.raw.asInstanceOf[Ptr[GtkTreeListModel]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -105,7 +110,7 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): TreeListRow /* None */ = new TreeListRow(
     gtk_tree_list_model_get_row(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkTreeListModel]],
       guint(position)
     ).asInstanceOf
   )
@@ -121,7 +126,7 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
   def setAutoexpand(
       autoexpand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_tree_list_model_set_autoexpand(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeListModel]],
     gboolean(gint((if autoexpand == true then 1 else 0)))
   )
 

@@ -28,7 +28,9 @@ class DBusObjectProxy(raw: Ptr[GDBusObjectProxy])
     * Gets the connection that @proxy is for.
     */
   def getConnection(): DBusConnection /* None */ = new DBusConnection(
-    g_dbus_object_proxy_get_connection(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_object_proxy_get_connection(
+      this.raw.asInstanceOf[Ptr[GDBusObjectProxy]]
+    ).asInstanceOf
   )
 
 end DBusObjectProxy

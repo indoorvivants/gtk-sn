@@ -44,7 +44,7 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       flags: GBindingFlags /* Some(GBindingFlags) */
   )(using Zone): Unit /* None */ = g_binding_group_bind(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GBindingGroup]],
     __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
     gpointer(target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
     __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
@@ -79,7 +79,7 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
       ],
       user_data_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   )(using Zone): Unit /* None */ = g_binding_group_bind_full(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GBindingGroup]],
     __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
     gpointer(target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
     __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
@@ -120,7 +120,7 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
       transform_to: Option[Ptr[GClosure] /* Some(Ptr[GClosure]) */ ],
       transform_from: Option[Ptr[GClosure] /* Some(Ptr[GClosure]) */ ]
   )(using Zone): Unit /* None */ = g_binding_group_bind_with_closures(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GBindingGroup]],
     __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
     gpointer(target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
     __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
@@ -138,7 +138,9 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     * Gets the source object used for binding properties.
     */
   def dupSource(): Object /* None */ = new Object(
-    g_binding_group_dup_source(this.raw.asInstanceOf).asInstanceOf
+    g_binding_group_dup_source(
+      this.raw.asInstanceOf[Ptr[GBindingGroup]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -151,7 +153,7 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
   def setSource(
       source: Option[Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */ ]
   ): Unit /* None */ = g_binding_group_set_source(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GBindingGroup]],
     source
       .map[_root_.sn.gnome.glib.internal.gpointer](o =>
         gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])

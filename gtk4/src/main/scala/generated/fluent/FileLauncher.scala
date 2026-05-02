@@ -39,15 +39,18 @@ class FileLauncher(raw: Ptr[GtkFileLauncher]) extends Object(raw.asInstanceOf):
     *
     * Returns whether to ask the user to choose an app for opening the file.
     */
-  def getAlwaysAsk(): Boolean /* None */ =
-    gtk_file_launcher_get_always_ask(this.raw.asInstanceOf).value.!=(0)
+  def getAlwaysAsk(): Boolean /* None */ = gtk_file_launcher_get_always_ask(
+    this.raw.asInstanceOf[Ptr[GtkFileLauncher]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the file that will be opened.
     */
   def getFile(): File /* None */ = new File.Abstract(
-    gtk_file_launcher_get_file(this.raw.asInstanceOf).asInstanceOf
+    gtk_file_launcher_get_file(
+      this.raw.asInstanceOf[Ptr[GtkFileLauncher]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -71,7 +74,7 @@ class FileLauncher(raw: Ptr[GtkFileLauncher]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gtk_file_launcher_launch(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFileLauncher]],
     parent
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
@@ -100,7 +103,7 @@ class FileLauncher(raw: Ptr[GtkFileLauncher]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_file_launcher_launch_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkFileLauncher]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)
@@ -129,7 +132,7 @@ class FileLauncher(raw: Ptr[GtkFileLauncher]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gtk_file_launcher_open_containing_folder(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFileLauncher]],
     parent
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
@@ -159,7 +162,7 @@ class FileLauncher(raw: Ptr[GtkFileLauncher]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_file_launcher_open_containing_folder_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkFileLauncher]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)
@@ -174,7 +177,7 @@ class FileLauncher(raw: Ptr[GtkFileLauncher]) extends Object(raw.asInstanceOf):
   def setAlwaysAsk(
       always_ask: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_file_launcher_set_always_ask(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFileLauncher]],
     gboolean(gint((if always_ask == true then 1 else 0)))
   )
 
@@ -185,7 +188,7 @@ class FileLauncher(raw: Ptr[GtkFileLauncher]) extends Object(raw.asInstanceOf):
   def setFile(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
   ): Unit /* None */ = gtk_file_launcher_set_file(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFileLauncher]],
     file
       .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
         o.getUnsafeRawPointer().asInstanceOf

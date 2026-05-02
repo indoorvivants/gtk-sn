@@ -29,7 +29,9 @@ class InetSocketAddress(raw: Ptr[GInetSocketAddress])
     * Gets @address's #GInetAddress.
     */
   def getAddress(): InetAddress /* None */ = new InetAddress(
-    g_inet_socket_address_get_address(this.raw.asInstanceOf).asInstanceOf
+    g_inet_socket_address_get_address(
+      this.raw.asInstanceOf[Ptr[GInetSocketAddress]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -38,7 +40,7 @@ class InetSocketAddress(raw: Ptr[GInetSocketAddress])
     * address.
     */
   def getFlowinfo(): UInt /* None */ = g_inet_socket_address_get_flowinfo(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GInetSocketAddress]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -46,7 +48,7 @@ class InetSocketAddress(raw: Ptr[GInetSocketAddress])
     * Gets @address's port.
     */
   def getPort(): UShort /* None */ = g_inet_socket_address_get_port(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GInetSocketAddress]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -55,7 +57,7 @@ class InetSocketAddress(raw: Ptr[GInetSocketAddress])
     * address.
     */
   def getScopeId(): UInt /* None */ = g_inet_socket_address_get_scope_id(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GInetSocketAddress]]
   ).value
 
 end InetSocketAddress

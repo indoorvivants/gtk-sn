@@ -208,7 +208,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
   def addConstraint(
       constraint: Constraint /* Some(Ptr[GtkConstraint]) */
   ): Unit /* None */ = gtk_constraint_layout_add_constraint(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkConstraintLayout]],
     constraint.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -232,7 +232,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
       args: Any*
   )(using Zone): Ptr[GList] /* None */ =
     gtk_constraint_layout_add_constraints_from_description(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkConstraintLayout]],
       lines,
       gsize(n_lines),
       hspacing,
@@ -333,7 +333,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
       ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GHashTable]) */
   )(using Zone): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_constraint_layout_add_constraints_from_descriptionv(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkConstraintLayout]],
       lines,
       gsize(n_lines),
       hspacing,
@@ -356,7 +356,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
   def addGuide(
       guide: ConstraintGuide /* Some(Ptr[GtkConstraintGuide]) */
   ): Unit /* None */ = gtk_constraint_layout_add_guide(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkConstraintLayout]],
     guide.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -374,7 +374,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     */
   def observeConstraints(): ListModel /* None */ = new ListModel.Abstract(
     gtk_constraint_layout_observe_constraints(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GtkConstraintLayout]]
     ).asInstanceOf
   )
 
@@ -390,7 +390,9 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * slowdowns.
     */
   def observeGuides(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_constraint_layout_observe_guides(this.raw.asInstanceOf).asInstanceOf
+    gtk_constraint_layout_observe_guides(
+      this.raw.asInstanceOf[Ptr[GtkConstraintLayout]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -398,7 +400,9 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * Removes all constraints from the layout manager.
     */
   def removeAllConstraints(): Unit /* None */ =
-    gtk_constraint_layout_remove_all_constraints(this.raw.asInstanceOf)
+    gtk_constraint_layout_remove_all_constraints(
+      this.raw.asInstanceOf[Ptr[GtkConstraintLayout]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -408,7 +412,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
   def removeConstraint(
       constraint: Constraint /* Some(Ptr[GtkConstraint]) */
   ): Unit /* None */ = gtk_constraint_layout_remove_constraint(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkConstraintLayout]],
     constraint.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -420,7 +424,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
   def removeGuide(
       guide: ConstraintGuide /* Some(Ptr[GtkConstraintGuide]) */
   ): Unit /* None */ = gtk_constraint_layout_remove_guide(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkConstraintLayout]],
     guide.getUnsafeRawPointer().asInstanceOf
   )
 

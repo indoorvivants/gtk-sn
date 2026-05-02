@@ -98,7 +98,7 @@ class RecentManager(raw: Ptr[GtkRecentManager])
       uri: String | CString /* Some(CString) */,
       recent_data: Ptr[GtkRecentData] /* Some(Ptr[GtkRecentData]) */
   )(using Zone): Boolean /* None */ = gtk_recent_manager_add_full(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkRecentManager]],
     __sn_extract_string(uri),
     recent_data
   ).value.!=(0)
@@ -118,7 +118,7 @@ class RecentManager(raw: Ptr[GtkRecentManager])
   def addItem(
       uri: String | CString /* Some(CString) */
   )(using Zone): Boolean /* None */ = gtk_recent_manager_add_item(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkRecentManager]],
     __sn_extract_string(uri)
   ).value.!=(0)
 
@@ -127,7 +127,7 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * Gets the list of recently used resources.
     */
   def getItems(): Ptr[GList] /* None */ = gtk_recent_manager_get_items(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkRecentManager]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -138,7 +138,7 @@ class RecentManager(raw: Ptr[GtkRecentManager])
   def hasItem(
       uri: String | CString /* Some(CString) */
   )(using Zone): Boolean /* None */ = gtk_recent_manager_has_item(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkRecentManager]],
     __sn_extract_string(uri)
   ).value.!=(0)
 
@@ -152,7 +152,7 @@ class RecentManager(raw: Ptr[GtkRecentManager])
       Zone
   ): GResult[Ptr[GtkRecentInfo] /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_recent_manager_lookup_item(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkRecentManager]],
       __sn_extract_string(uri),
       __errorPtr
     )
@@ -170,7 +170,7 @@ class RecentManager(raw: Ptr[GtkRecentManager])
       new_uri: Option[String | CString /* Some(CString) */ ]
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_recent_manager_move_item(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkRecentManager]],
       __sn_extract_string(uri),
       new_uri
         .map[CString](o => __sn_extract_string(o))
@@ -184,7 +184,10 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * Purges every item from the recently used resources list.
     */
   def purgeItems(): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_recent_manager_purge_items(this.raw.asInstanceOf, __errorPtr)
+    gtk_recent_manager_purge_items(
+      this.raw.asInstanceOf[Ptr[GtkRecentManager]],
+      __errorPtr
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -196,7 +199,7 @@ class RecentManager(raw: Ptr[GtkRecentManager])
       uri: String | CString /* Some(CString) */
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_recent_manager_remove_item(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkRecentManager]],
       __sn_extract_string(uri),
       __errorPtr
     ).value.!=(0)

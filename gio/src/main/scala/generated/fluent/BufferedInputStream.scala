@@ -72,7 +72,7 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_buffered_input_stream_fill(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GBufferedInputStream]],
       gssize(count),
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -100,7 +100,7 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_buffered_input_stream_fill_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GBufferedInputStream]],
     gssize(count),
     io_priority,
     cancellable
@@ -122,7 +122,7 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_buffered_input_stream_fill_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GBufferedInputStream]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value
@@ -133,14 +133,18 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     * Gets the size of the available data within the stream.
     */
   def getAvailable(): CUnsignedLongInt /* None */ =
-    g_buffered_input_stream_get_available(this.raw.asInstanceOf).value
+    g_buffered_input_stream_get_available(
+      this.raw.asInstanceOf[Ptr[GBufferedInputStream]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the size of the input buffer.
     */
   def getBufferSize(): CUnsignedLongInt /* None */ =
-    g_buffered_input_stream_get_buffer_size(this.raw.asInstanceOf).value
+    g_buffered_input_stream_get_buffer_size(
+      this.raw.asInstanceOf[Ptr[GBufferedInputStream]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -173,7 +177,7 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
     g_buffered_input_stream_read_byte(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GBufferedInputStream]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -189,8 +193,10 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     */
   def setBufferSize(
       size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): Unit /* None */ =
-    g_buffered_input_stream_set_buffer_size(this.raw.asInstanceOf, gsize(size))
+  ): Unit /* None */ = g_buffered_input_stream_set_buffer_size(
+    this.raw.asInstanceOf[Ptr[GBufferedInputStream]],
+    gsize(size)
+  )
 
 end BufferedInputStream
 

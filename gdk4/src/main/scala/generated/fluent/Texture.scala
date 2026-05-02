@@ -75,7 +75,7 @@ class Texture(raw: Ptr[GdkTexture])
       data: Ptr[UByte] /* Some(Ptr[_root_.sn.gnome.glib.internal.guchar]) */,
       stride: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): Unit /* None */ = gdk_texture_download(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkTexture]],
     data.asInstanceOf,
     gsize(stride)
   )
@@ -93,7 +93,7 @@ class Texture(raw: Ptr[GdkTexture])
     * texture.
     */
   def getFormat(): GdkMemoryFormat /* None */ = gdk_texture_get_format(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkTexture]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -101,14 +101,16 @@ class Texture(raw: Ptr[GdkTexture])
     * Returns the height of the @texture, in pixels.
     */
   def getHeight(): Int /* None */ = gdk_texture_get_height(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkTexture]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the width of @texture, in pixels.
     */
-  def getWidth(): Int /* None */ = gdk_texture_get_width(this.raw.asInstanceOf)
+  def getWidth(): Int /* None */ = gdk_texture_get_width(
+    this.raw.asInstanceOf[Ptr[GdkTexture]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -123,7 +125,7 @@ class Texture(raw: Ptr[GdkTexture])
   def saveToPng(
       filename: String | CString /* Some(CString) */
   )(using Zone): Boolean /* None */ = gdk_texture_save_to_png(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkTexture]],
     __sn_extract_string(filename)
   ).value.!=(0)
 
@@ -144,7 +146,7 @@ class Texture(raw: Ptr[GdkTexture])
     * to consider [method@Gdk.Texture.save_to_tiff_bytes] instead.
     */
   def saveToPngBytes(): Ptr[GBytes] /* None */ = gdk_texture_save_to_png_bytes(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkTexture]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -156,7 +158,7 @@ class Texture(raw: Ptr[GdkTexture])
   def saveToTiff(
       filename: String | CString /* Some(CString) */
   )(using Zone): Boolean /* None */ = gdk_texture_save_to_tiff(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkTexture]],
     __sn_extract_string(filename)
   ).value.!=(0)
 
@@ -175,7 +177,7 @@ class Texture(raw: Ptr[GdkTexture])
     * [method@Gdk.Texture.save_to_png_bytes].
     */
   def saveToTiffBytes(): Ptr[GBytes] /* None */ =
-    gdk_texture_save_to_tiff_bytes(this.raw.asInstanceOf)
+    gdk_texture_save_to_tiff_bytes(this.raw.asInstanceOf[Ptr[GdkTexture]])
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

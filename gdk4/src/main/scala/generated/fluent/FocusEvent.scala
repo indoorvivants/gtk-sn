@@ -23,6 +23,6 @@ class FocusEvent(raw: Ptr[GdkFocusEvent]) extends Event(raw.asInstanceOf):
     * surface.
     */
   def getIn(): Boolean /* None */ =
-    gdk_focus_event_get_in(this.raw.asInstanceOf).value.!=(0)
+    gdk_focus_event_get_in(this.raw.asInstanceOf[Ptr[GdkEvent]]).value.!=(0)
 
 end FocusEvent

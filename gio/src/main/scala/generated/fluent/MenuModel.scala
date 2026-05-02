@@ -158,7 +158,7 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
   )(using Zone): Boolean /* None */ = g_menu_model_get_item_attribute(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GMenuModel]],
     gint(item_index),
     __sn_extract_string(attribute).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(format_string).asInstanceOf[Ptr[gchar]],
@@ -188,7 +188,7 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
       ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */ ]
   )(using Zone): Ptr[GVariant] /* None */ =
     g_menu_model_get_item_attribute_value(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GMenuModel]],
       gint(item_index),
       __sn_extract_string(attribute).asInstanceOf[Ptr[gchar]],
       expected_type
@@ -212,7 +212,7 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): MenuModel /* None */ = new MenuModel(
     g_menu_model_get_item_link(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GMenuModel]],
       gint(item_index),
       __sn_extract_string(link).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
@@ -223,7 +223,7 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     * Query the number of items in @model.
     */
   def getNItems(): Int /* None */ = g_menu_model_get_n_items(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GMenuModel]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -234,7 +234,7 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     * signal. Consumers of the model may make optimisations accordingly.
     */
   def isMutable(): Boolean /* None */ =
-    g_menu_model_is_mutable(this.raw.asInstanceOf).value.!=(0)
+    g_menu_model_is_mutable(this.raw.asInstanceOf[Ptr[GMenuModel]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -259,7 +259,7 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
       removed: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       added: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   ): Unit /* None */ = g_menu_model_items_changed(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GMenuModel]],
     gint(position),
     gint(removed),
     gint(added)
@@ -276,7 +276,7 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   ): MenuAttributeIter /* None */ = new MenuAttributeIter(
     g_menu_model_iterate_item_attributes(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GMenuModel]],
       gint(item_index)
     ).asInstanceOf
   )
@@ -292,7 +292,7 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   ): MenuLinkIter /* None */ = new MenuLinkIter(
     g_menu_model_iterate_item_links(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GMenuModel]],
       gint(item_index)
     ).asInstanceOf
   )

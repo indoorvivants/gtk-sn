@@ -195,7 +195,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
       arg: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): File /* None */ = new File.Abstract(
     g_application_command_line_create_file_for_arg(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]],
       __sn_extract_string(arg).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
@@ -231,7 +231,9 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * as @cmdline exists.
     */
   def getCwd()(using Zone): String /* None */ = fromCString(
-    g_application_command_line_get_cwd(this.raw.asInstanceOf).asInstanceOf
+    g_application_command_line_get_cwd(
+      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -240,14 +242,18 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * g_application_command_line_set_exit_status() for more information.
     */
   def getExitStatus(): Int /* None */ =
-    g_application_command_line_get_exit_status(this.raw.asInstanceOf)
+    g_application_command_line_get_exit_status(
+      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Determines if @cmdline represents a remote invocation.
     */
   def getIsRemote(): Boolean /* None */ =
-    g_application_command_line_get_is_remote(this.raw.asInstanceOf).value.!=(0)
+    g_application_command_line_get_is_remote(
+      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -265,7 +271,9 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * of all values must be checked before being used.
     */
   def getOptionsDict(): Ptr[GVariantDict] /* None */ =
-    g_application_command_line_get_options_dict(this.raw.asInstanceOf)
+    g_application_command_line_get_options_dict(
+      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -281,7 +289,9 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * For local invocation, it will be %NULL.
     */
   def getPlatformData(): Ptr[GVariant] /* None */ =
-    g_application_command_line_get_platform_data(this.raw.asInstanceOf)
+    g_application_command_line_get_platform_data(
+      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -296,7 +306,9 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * You must only call this function once per commandline invocation.
     */
   def getStdin(): InputStream /* None */ = new InputStream(
-    g_application_command_line_get_stdin(this.raw.asInstanceOf).asInstanceOf
+    g_application_command_line_get_stdin(
+      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -318,7 +330,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): String /* None */ = fromCString(
     g_application_command_line_getenv(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]],
       __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
@@ -337,7 +349,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
   )(using Zone): Unit /* None */ = g_application_command_line_print(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GApplicationCommandLine]],
     __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
     args*
   )
@@ -356,7 +368,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
   )(using Zone): Unit /* None */ = g_application_command_line_printerr(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GApplicationCommandLine]],
     __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
     args*
   )
@@ -386,7 +398,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     */
   def setExitStatus(exit_status: Int /* Some(CInt) */ ): Unit /* None */ =
     g_application_command_line_set_exit_status(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]],
       exit_status
     )
 

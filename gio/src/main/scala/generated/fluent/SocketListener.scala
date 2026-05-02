@@ -69,7 +69,7 @@ class SocketListener(raw: Ptr[GSocketListener])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_socket_listener_accept_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocketListener]],
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -127,7 +127,7 @@ class SocketListener(raw: Ptr[GSocketListener])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_socket_listener_accept_socket_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocketListener]],
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -199,7 +199,7 @@ class SocketListener(raw: Ptr[GSocketListener])
       ]
   ): GResult[UShort /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_listener_add_any_inet_port(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocketListener]],
       source_object
         .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -234,7 +234,7 @@ class SocketListener(raw: Ptr[GSocketListener])
       ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_listener_add_inet_port(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocketListener]],
       guint16(port),
       source_object
         .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
@@ -270,7 +270,7 @@ class SocketListener(raw: Ptr[GSocketListener])
       ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_listener_add_socket(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocketListener]],
       socket.getUnsafeRawPointer().asInstanceOf,
       source_object
         .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
@@ -287,7 +287,9 @@ class SocketListener(raw: Ptr[GSocketListener])
     *
     * Closes all the sockets in the listener.
     */
-  def close(): Unit /* None */ = g_socket_listener_close(this.raw.asInstanceOf)
+  def close(): Unit /* None */ = g_socket_listener_close(
+    this.raw.asInstanceOf[Ptr[GSocketListener]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -299,7 +301,10 @@ class SocketListener(raw: Ptr[GSocketListener])
     * See g_socket_set_listen_backlog() for details
     */
   def setBacklog(listen_backlog: Int /* Some(CInt) */ ): Unit /* None */ =
-    g_socket_listener_set_backlog(this.raw.asInstanceOf, listen_backlog)
+    g_socket_listener_set_backlog(
+      this.raw.asInstanceOf[Ptr[GSocketListener]],
+      listen_backlog
+    )
 
 end SocketListener
 

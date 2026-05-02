@@ -33,7 +33,7 @@ class SocketAddress(raw: Ptr[GSocketAddress])
     * Gets the socket family type of @address.
     */
   def getFamily(): GSocketFamily /* None */ = g_socket_address_get_family(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocketAddress]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -42,7 +42,7 @@ class SocketAddress(raw: Ptr[GSocketAddress])
     * allocate memory to pass to g_socket_address_to_native().
     */
   def getNativeSize(): CLongInt /* None */ = g_socket_address_get_native_size(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocketAddress]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -61,7 +61,7 @@ class SocketAddress(raw: Ptr[GSocketAddress])
       destlen: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_address_to_native(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocketAddress]],
       dest
         .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
         .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),

@@ -53,7 +53,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
       certificate: TlsCertificate /* Some(Ptr[GTlsCertificate]) */
   )(using Zone): String /* None */ = fromCString(
     g_tls_database_create_certificate_handle(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GTlsDatabase]],
       certificate.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
   )
@@ -84,7 +84,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     GResult.wrap(__errorPtr =>
       new TlsCertificate(
         g_tls_database_lookup_certificate_for_handle(
-          this.raw.asInstanceOf,
+          this.raw.asInstanceOf[Ptr[GTlsDatabase]],
           __sn_extract_string(handle).asInstanceOf[Ptr[gchar]],
           interaction
             .map[Ptr[GTlsInteraction]](o =>
@@ -117,7 +117,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
       ]
   )(using Zone): Unit /* None */ =
     g_tls_database_lookup_certificate_for_handle_async(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GTlsDatabase]],
       __sn_extract_string(handle).asInstanceOf[Ptr[gchar]],
       interaction
         .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -147,7 +147,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
   ): GResult[TlsCertificate /* None */ ] = GResult.wrap(__errorPtr =>
     new TlsCertificate(
       g_tls_database_lookup_certificate_for_handle_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GTlsDatabase]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf
@@ -186,7 +186,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
   ): GResult[TlsCertificate /* None */ ] = GResult.wrap(__errorPtr =>
     new TlsCertificate(
       g_tls_database_lookup_certificate_issuer(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GTlsDatabase]],
         certificate.getUnsafeRawPointer().asInstanceOf,
         interaction
           .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -215,7 +215,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_tls_database_lookup_certificate_issuer_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsDatabase]],
     certificate.getUnsafeRawPointer().asInstanceOf,
     interaction
       .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -242,7 +242,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
   ): GResult[TlsCertificate /* None */ ] = GResult.wrap(__errorPtr =>
     new TlsCertificate(
       g_tls_database_lookup_certificate_issuer_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GTlsDatabase]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf
@@ -266,7 +266,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_database_lookup_certificates_issued_by(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GTlsDatabase]],
       issuer_raw_dn.asInstanceOf,
       interaction
         .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -300,7 +300,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_tls_database_lookup_certificates_issued_by_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsDatabase]],
     issuer_raw_dn.asInstanceOf,
     interaction
       .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -326,7 +326,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_database_lookup_certificates_issued_by_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GTlsDatabase]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -407,7 +407,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
   )(using Zone): GResult[GTlsCertificateFlags /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_tls_database_verify_chain(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GTlsDatabase]],
         chain.getUnsafeRawPointer().asInstanceOf,
         __sn_extract_string(purpose).asInstanceOf[Ptr[gchar]],
         identity
@@ -445,7 +445,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_tls_database_verify_chain_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsDatabase]],
     chain.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(purpose).asInstanceOf[Ptr[gchar]],
     identity
@@ -485,7 +485,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[GTlsCertificateFlags /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_database_verify_chain_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GTlsDatabase]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )

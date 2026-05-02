@@ -69,7 +69,9 @@ class Image(raw: Ptr[GtkImage])
     *
     * Resets the image to be empty.
     */
-  def clear(): Unit /* None */ = gtk_image_clear(this.raw.asInstanceOf)
+  def clear(): Unit /* None */ = gtk_image_clear(
+    this.raw.asInstanceOf[Ptr[GtkImage]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -79,8 +81,9 @@ class Image(raw: Ptr[GtkImage])
     * (see [method@Gtk.Image.get_storage_type]). The caller of this function
     * does not own a reference to the returned `GIcon`.
     */
-  def getGicon(): Icon /* None */ =
-    new Icon.Abstract(gtk_image_get_gicon(this.raw.asInstanceOf).asInstanceOf)
+  def getGicon(): Icon /* None */ = new Icon.Abstract(
+    gtk_image_get_gicon(this.raw.asInstanceOf[Ptr[GtkImage]]).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -91,7 +94,7 @@ class Image(raw: Ptr[GtkImage])
     * returned string is owned by the `GtkImage` and should not be freed.
     */
   def getIconName()(using Zone): String /* None */ = fromCString(
-    gtk_image_get_icon_name(this.raw.asInstanceOf).asInstanceOf
+    gtk_image_get_icon_name(this.raw.asInstanceOf[Ptr[GtkImage]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -99,7 +102,7 @@ class Image(raw: Ptr[GtkImage])
     * Gets the icon size used by the @image when rendering icons.
     */
   def getIconSize(): GtkIconSize /* None */ = gtk_image_get_icon_size(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkImage]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -111,7 +114,7 @@ class Image(raw: Ptr[GtkImage])
     * of this function does not own a reference to the returned paintable.
     */
   def getPaintable(): Paintable /* None */ = new Paintable.Abstract(
-    gtk_image_get_paintable(this.raw.asInstanceOf).asInstanceOf
+    gtk_image_get_paintable(this.raw.asInstanceOf[Ptr[GtkImage]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -119,7 +122,7 @@ class Image(raw: Ptr[GtkImage])
     * Gets the pixel size used for named icons.
     */
   def getPixelSize(): Int /* None */ = gtk_image_get_pixel_size(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkImage]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -131,7 +134,7 @@ class Image(raw: Ptr[GtkImage])
     * %GTK_IMAGE_EMPTY.
     */
   def getStorageType(): GtkImageType /* None */ = gtk_image_get_storage_type(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkImage]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -143,7 +146,7 @@ class Image(raw: Ptr[GtkImage])
   def setFromFile(
       filename: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_image_set_from_file(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkImage]],
     filename
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -158,7 +161,7 @@ class Image(raw: Ptr[GtkImage])
   def setFromGicon(
       icon: Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
   ): Unit /* None */ = gtk_image_set_from_gicon(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkImage]],
     icon.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -171,7 +174,7 @@ class Image(raw: Ptr[GtkImage])
   def setFromIconName(
       icon_name: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_image_set_from_icon_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkImage]],
     icon_name
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -188,7 +191,7 @@ class Image(raw: Ptr[GtkImage])
         Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
       ]
   ): Unit /* None */ = gtk_image_set_from_paintable(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkImage]],
     paintable
       .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -212,7 +215,7 @@ class Image(raw: Ptr[GtkImage])
         Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
       ]
   ): Unit /* None */ = gtk_image_set_from_pixbuf(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkImage]],
     pixbuf
       .map[Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -231,7 +234,7 @@ class Image(raw: Ptr[GtkImage])
   def setFromResource(
       resource_path: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_image_set_from_resource(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkImage]],
     resource_path
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -243,7 +246,8 @@ class Image(raw: Ptr[GtkImage])
     */
   def setIconSize(
       icon_size: GtkIconSize /* Some(GtkIconSize) */
-  ): Unit /* None */ = gtk_image_set_icon_size(this.raw.asInstanceOf, icon_size)
+  ): Unit /* None */ =
+    gtk_image_set_icon_size(this.raw.asInstanceOf[Ptr[GtkImage]], icon_size)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -253,7 +257,7 @@ class Image(raw: Ptr[GtkImage])
     * size set by [method@Gtk.Image.set_from_icon_name].
     */
   def setPixelSize(pixel_size: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_image_set_pixel_size(this.raw.asInstanceOf, pixel_size)
+    gtk_image_set_pixel_size(this.raw.asInstanceOf[Ptr[GtkImage]], pixel_size)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

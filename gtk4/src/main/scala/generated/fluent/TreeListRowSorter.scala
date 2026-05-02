@@ -33,7 +33,9 @@ class TreeListRowSorter(raw: Ptr[GtkTreeListRowSorter])
     * Returns the sorter used by @self.
     */
   def getSorter(): Sorter /* None */ = new Sorter(
-    gtk_tree_list_row_sorter_get_sorter(this.raw.asInstanceOf).asInstanceOf
+    gtk_tree_list_row_sorter_get_sorter(
+      this.raw.asInstanceOf[Ptr[GtkTreeListRowSorter]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -46,7 +48,7 @@ class TreeListRowSorter(raw: Ptr[GtkTreeListRowSorter])
   def setSorter(
       sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ]
   ): Unit /* None */ = gtk_tree_list_row_sorter_set_sorter(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeListRowSorter]],
     sorter
       .map[Ptr[GtkSorter]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkSorter]])

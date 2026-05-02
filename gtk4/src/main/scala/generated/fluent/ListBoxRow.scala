@@ -47,22 +47,25 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
     * expensive.
     */
   def changed(): Unit /* None */ = gtk_list_box_row_changed(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether the row is activatable.
     */
-  def getActivatable(): Boolean /* None */ =
-    gtk_list_box_row_get_activatable(this.raw.asInstanceOf).value.!=(0)
+  def getActivatable(): Boolean /* None */ = gtk_list_box_row_get_activatable(
+    this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the child widget of @row.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_list_box_row_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_list_box_row_get_child(
+      this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -73,7 +76,9 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
     * there is a header set already, and if so to update the state of it.
     */
   def getHeader(): Widget /* None */ = new Widget(
-    gtk_list_box_row_get_header(this.raw.asInstanceOf).asInstanceOf
+    gtk_list_box_row_get_header(
+      this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -81,23 +86,25 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
     * Gets the current index of the @row in its `GtkListBox` container.
     */
   def getIndex(): Int /* None */ = gtk_list_box_row_get_index(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether the row can be selected.
     */
-  def getSelectable(): Boolean /* None */ =
-    gtk_list_box_row_get_selectable(this.raw.asInstanceOf).value.!=(0)
+  def getSelectable(): Boolean /* None */ = gtk_list_box_row_get_selectable(
+    this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the child is currently selected in its `GtkListBox`
     * container.
     */
-  def isSelected(): Boolean /* None */ =
-    gtk_list_box_row_is_selected(this.raw.asInstanceOf).value.!=(0)
+  def isSelected(): Boolean /* None */ = gtk_list_box_row_is_selected(
+    this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -106,7 +113,7 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
   def setActivatable(
       activatable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_list_box_row_set_activatable(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListBoxRow]],
     gboolean(gint((if activatable == true then 1 else 0)))
   )
 
@@ -117,7 +124,7 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_list_box_row_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListBoxRow]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -134,7 +141,7 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
   def setHeader(
       header: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_list_box_row_set_header(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListBoxRow]],
     header
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -147,7 +154,7 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
   def setSelectable(
       selectable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_list_box_row_set_selectable(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListBoxRow]],
     gboolean(gint((if selectable == true then 1 else 0)))
   )
 

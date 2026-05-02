@@ -135,7 +135,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       ],
       user_data_free_func: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): UInt /* None */ = g_dbus_connection_add_filter(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusConnection]],
     filter_function,
     user_data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -215,7 +215,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_dbus_connection_call(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusConnection]],
     bus_name
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -255,7 +255,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Ptr[GVariant] /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_connection_call_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusConnection]],
       res.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -321,7 +321,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   )(using Zone): GResult[Ptr[GVariant] /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_connection_call_sync(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusConnection]],
       bus_name
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
           __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -392,7 +392,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_dbus_connection_call_with_unix_fd_list(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusConnection]],
     bus_name
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -494,7 +494,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_dbus_connection_close(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusConnection]],
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -514,7 +514,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_connection_close_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusConnection]],
       res.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)
@@ -530,7 +530,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_connection_close_sync(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusConnection]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -563,7 +563,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       ]
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_connection_emit_signal(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusConnection]],
       destination_bus_name
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
           __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -610,7 +610,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       action_group: ActionGroup /* Some(Ptr[GActionGroup]) */
   )(using Zone): GResult[UInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_connection_export_action_group(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusConnection]],
       __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
       action_group.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
@@ -642,7 +642,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       menu: MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone): GResult[UInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_connection_export_menu_model(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusConnection]],
       __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
       menu.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
@@ -673,7 +673,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_dbus_connection_flush(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusConnection]],
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -693,7 +693,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_connection_flush_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusConnection]],
       res.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)
@@ -709,7 +709,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_connection_flush_sync(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusConnection]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -722,7 +722,9 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * Gets the capabilities negotiated with the remote peer
     */
   def getCapabilities(): GDBusCapabilityFlags /* None */ =
-    g_dbus_connection_get_capabilities(this.raw.asInstanceOf)
+    g_dbus_connection_get_capabilities(
+      this.raw.asInstanceOf[Ptr[GDBusConnection]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -730,14 +732,16 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * remote peer. See #GDBusConnection:exit-on-close for more details.
     */
   def getExitOnClose(): Boolean /* None */ =
-    g_dbus_connection_get_exit_on_close(this.raw.asInstanceOf).value.!=(0)
+    g_dbus_connection_get_exit_on_close(
+      this.raw.asInstanceOf[Ptr[GDBusConnection]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the flags used to construct this connection
     */
   def getFlags(): GDBusConnectionFlags /* None */ = g_dbus_connection_get_flags(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GDBusConnection]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -746,7 +750,9 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * See #GDBusConnection:guid for more details.
     */
   def getGuid()(using Zone): String /* None */ = fromCString(
-    g_dbus_connection_get_guid(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_connection_get_guid(
+      this.raw.asInstanceOf[Ptr[GDBusConnection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -758,7 +764,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * g_dbus_proxy_call().
     */
   def getLastSerial(): UInt /* None */ = g_dbus_connection_get_last_serial(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GDBusConnection]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -773,7 +779,9 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * message bus clients.
     */
   def getPeerCredentials(): Credentials /* None */ = new Credentials(
-    g_dbus_connection_get_peer_credentials(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_connection_get_peer_credentials(
+      this.raw.asInstanceOf[Ptr[GDBusConnection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -785,7 +793,9 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * directly.
     */
   def getStream(): IOStream /* None */ = new IOStream(
-    g_dbus_connection_get_stream(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_connection_get_stream(
+      this.raw.asInstanceOf[Ptr[GDBusConnection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -794,15 +804,18 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * can also be used to figure out if @connection is a message bus connection.
     */
   def getUniqueName()(using Zone): String /* None */ = fromCString(
-    g_dbus_connection_get_unique_name(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_connection_get_unique_name(
+      this.raw.asInstanceOf[Ptr[GDBusConnection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether @connection is closed.
     */
-  def isClosed(): Boolean /* None */ =
-    g_dbus_connection_is_closed(this.raw.asInstanceOf).value.!=(0)
+  def isClosed(): Boolean /* None */ = g_dbus_connection_is_closed(
+    this.raw.asInstanceOf[Ptr[GDBusConnection]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -859,7 +872,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       user_data_free_func: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   )(using Zone): GResult[UInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_connection_register_object(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusConnection]],
       __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
       interface_info,
       vtable
@@ -895,7 +908,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       ]
   )(using Zone): GResult[UInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_connection_register_object_with_closures(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusConnection]],
       __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
       interface_info,
       method_call_closure
@@ -964,7 +977,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       user_data_free_func: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   )(using Zone): GResult[UInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_connection_register_subtree(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusConnection]],
       __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
       vtable,
       flags,
@@ -989,8 +1002,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     */
   def removeFilter(
       filter_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    g_dbus_connection_remove_filter(this.raw.asInstanceOf, guint(filter_id))
+  ): Unit /* None */ = g_dbus_connection_remove_filter(
+    this.raw.asInstanceOf[Ptr[GDBusConnection]],
+    guint(filter_id)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1076,7 +1091,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
   ): GResult[DBusMessage /* None */ ] = GResult.wrap(__errorPtr =>
     new DBusMessage(
       g_dbus_connection_send_message_with_reply_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GDBusConnection]],
         res.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf
@@ -1135,7 +1150,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
   def setExitOnClose(
       exit_on_close: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_dbus_connection_set_exit_on_close(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusConnection]],
     gboolean(gint((if exit_on_close == true then 1 else 0)))
   )
 
@@ -1215,7 +1230,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
         GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
       ]
   )(using Zone): UInt /* None */ = g_dbus_connection_signal_subscribe(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusConnection]],
     sender
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -1270,7 +1285,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
   def signalUnsubscribe(
       subscription_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ = g_dbus_connection_signal_unsubscribe(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusConnection]],
     guint(subscription_id)
   )
 
@@ -1282,7 +1297,9 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * this flag or if the method has already been called.
     */
   def startMessageProcessing(): Unit /* None */ =
-    g_dbus_connection_start_message_processing(this.raw.asInstanceOf)
+    g_dbus_connection_start_message_processing(
+      this.raw.asInstanceOf[Ptr[GDBusConnection]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1296,7 +1313,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
   def unexportActionGroup(
       export_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ = g_dbus_connection_unexport_action_group(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusConnection]],
     guint(export_id)
   )
 
@@ -1312,7 +1329,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
   def unexportMenuModel(
       export_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ = g_dbus_connection_unexport_menu_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusConnection]],
     guint(export_id)
   )
 
@@ -1323,7 +1340,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
   def unregisterObject(
       registration_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Boolean /* None */ = g_dbus_connection_unregister_object(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusConnection]],
     guint(registration_id)
   ).value.!=(0)
 
@@ -1334,7 +1351,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
   def unregisterSubtree(
       registration_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Boolean /* None */ = g_dbus_connection_unregister_subtree(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusConnection]],
     guint(registration_id)
   ).value.!=(0)
 

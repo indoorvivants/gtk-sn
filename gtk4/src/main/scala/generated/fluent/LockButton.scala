@@ -66,7 +66,9 @@ class LockButton(raw: Ptr[GtkLockButton])
     * Obtains the `GPermission` object that controls @button.
     */
   def getPermission(): Permission /* None */ = new Permission(
-    gtk_lock_button_get_permission(this.raw.asInstanceOf).asInstanceOf
+    gtk_lock_button_get_permission(
+      this.raw.asInstanceOf[Ptr[GtkLockButton]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -78,7 +80,7 @@ class LockButton(raw: Ptr[GtkLockButton])
         Permission /* Some(Ptr[_root_.sn.gnome.gio.internal.GPermission]) */
       ]
   ): Unit /* None */ = gtk_lock_button_set_permission(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLockButton]],
     permission
       .map[Ptr[_root_.sn.gnome.gio.internal.GPermission]](o =>
         o.getUnsafeRawPointer().asInstanceOf

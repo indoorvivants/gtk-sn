@@ -41,7 +41,7 @@ class SimpleProxyResolver(raw: Ptr[GSimpleProxyResolver])
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Zone): Unit /* None */ = g_simple_proxy_resolver_set_default_proxy(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleProxyResolver]],
     default_proxy
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -62,7 +62,7 @@ class SimpleProxyResolver(raw: Ptr[GSimpleProxyResolver])
         CString
       ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]) */
   )(using Zone): Unit /* None */ = g_simple_proxy_resolver_set_ignore_hosts(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleProxyResolver]],
     ignore_hosts.asInstanceOf
   )
 
@@ -82,7 +82,7 @@ class SimpleProxyResolver(raw: Ptr[GSimpleProxyResolver])
       proxy: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_simple_proxy_resolver_set_uri_proxy(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleProxyResolver]],
     __sn_extract_string(uri_scheme).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(proxy).asInstanceOf[Ptr[gchar]]
   )

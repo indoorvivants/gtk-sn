@@ -52,7 +52,8 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
     */
   def changed(
       change: GtkFilterChange /* Some(GtkFilterChange) */
-  ): Unit /* None */ = gtk_filter_changed(this.raw.asInstanceOf, change)
+  ): Unit /* None */ =
+    gtk_filter_changed(this.raw.asInstanceOf[Ptr[GtkFilter]], change)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -67,7 +68,7 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
     * choose to omit implementing it, but `GtkFilterListModel` uses it.
     */
   def getStrictness(): GtkFilterMatch /* None */ = gtk_filter_get_strictness(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkFilter]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -77,7 +78,7 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
   def `match`(
       item: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   ): Boolean /* None */ = gtk_filter_match(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFilter]],
     gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
   ).value.!=(0)
 

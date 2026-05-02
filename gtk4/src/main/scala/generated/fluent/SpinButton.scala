@@ -159,7 +159,7 @@ class SpinButton(raw: Ptr[GtkSpinButton])
       climb_rate: Double /* Some(Double) */,
       digits: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ = gtk_spin_button_configure(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]],
     adjustment
       .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]]),
@@ -172,7 +172,9 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     * Get the adjustment associated with a `GtkSpinButton`.
     */
   def getAdjustment(): Adjustment /* None */ = new Adjustment(
-    gtk_spin_button_get_adjustment(this.raw.asInstanceOf).asInstanceOf
+    gtk_spin_button_get_adjustment(
+      this.raw.asInstanceOf[Ptr[GtkSpinButton]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -180,7 +182,7 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     * Returns the acceleration rate for repeated changes.
     */
   def getClimbRate(): Double /* None */ = gtk_spin_button_get_climb_rate(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -188,7 +190,7 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     * Fetches the precision of @spin_button.
     */
   def getDigits(): UInt /* None */ = gtk_spin_button_get_digits(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -206,8 +208,9 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     *
     * Returns whether non-numeric text can be typed into the spin button.
     */
-  def getNumeric(): Boolean /* None */ =
-    gtk_spin_button_get_numeric(this.raw.asInstanceOf).value.!=(0)
+  def getNumeric(): Boolean /* None */ = gtk_spin_button_get_numeric(
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -224,8 +227,9 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     *
     * Returns whether the values are corrected to the nearest step.
     */
-  def getSnapToTicks(): Boolean /* None */ =
-    gtk_spin_button_get_snap_to_ticks(this.raw.asInstanceOf).value.!=(0)
+  def getSnapToTicks(): Boolean /* None */ = gtk_spin_button_get_snap_to_ticks(
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -234,14 +238,14 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     * See [method@Gtk.SpinButton.set_update_policy].
     */
   def getUpdatePolicy(): GtkSpinButtonUpdatePolicy /* None */ =
-    gtk_spin_button_get_update_policy(this.raw.asInstanceOf)
+    gtk_spin_button_get_update_policy(this.raw.asInstanceOf[Ptr[GtkSpinButton]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Get the value in the @spin_button.
     */
   def getValue(): Double /* None */ = gtk_spin_button_get_value(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -249,7 +253,7 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     * Get the value @spin_button represented as an integer.
     */
   def getValueAsInt(): Int /* None */ = gtk_spin_button_get_value_as_int(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -257,8 +261,9 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     * Returns whether the spin button’s value wraps around to the opposite limit
     * when the upper or lower limit of the range is exceeded.
     */
-  def getWrap(): Boolean /* None */ =
-    gtk_spin_button_get_wrap(this.raw.asInstanceOf).value.!=(0)
+  def getWrap(): Boolean /* None */ = gtk_spin_button_get_wrap(
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -267,7 +272,7 @@ class SpinButton(raw: Ptr[GtkSpinButton])
   def setAdjustment(
       adjustment: Adjustment /* Some(Ptr[GtkAdjustment]) */
   ): Unit /* None */ = gtk_spin_button_set_adjustment(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]],
     adjustment.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -277,7 +282,10 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     * button or key.
     */
   def setClimbRate(climb_rate: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_spin_button_set_climb_rate(this.raw.asInstanceOf, climb_rate)
+    gtk_spin_button_set_climb_rate(
+      this.raw.asInstanceOf[Ptr[GtkSpinButton]],
+      climb_rate
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -287,8 +295,10 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     */
   def setDigits(
       digits: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_spin_button_set_digits(this.raw.asInstanceOf, guint(digits))
+  ): Unit /* None */ = gtk_spin_button_set_digits(
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]],
+    guint(digits)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -300,8 +310,11 @@ class SpinButton(raw: Ptr[GtkSpinButton])
   def setIncrements(
       step: Double /* Some(Double) */,
       page: Double /* Some(Double) */
-  ): Unit /* None */ =
-    gtk_spin_button_set_increments(this.raw.asInstanceOf, step, page)
+  ): Unit /* None */ = gtk_spin_button_set_increments(
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]],
+    step,
+    page
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -311,7 +324,7 @@ class SpinButton(raw: Ptr[GtkSpinButton])
   def setNumeric(
       numeric: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_spin_button_set_numeric(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]],
     gboolean(gint((if numeric == true then 1 else 0)))
   )
 
@@ -325,8 +338,11 @@ class SpinButton(raw: Ptr[GtkSpinButton])
   def setRange(
       min: Double /* Some(Double) */,
       max: Double /* Some(Double) */
-  ): Unit /* None */ =
-    gtk_spin_button_set_range(this.raw.asInstanceOf, min, max)
+  ): Unit /* None */ = gtk_spin_button_set_range(
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]],
+    min,
+    max
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -337,7 +353,7 @@ class SpinButton(raw: Ptr[GtkSpinButton])
   def setSnapToTicks(
       snap_to_ticks: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_spin_button_set_snap_to_ticks(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]],
     gboolean(gint((if snap_to_ticks == true then 1 else 0)))
   )
 
@@ -350,15 +366,17 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     */
   def setUpdatePolicy(
       policy: GtkSpinButtonUpdatePolicy /* Some(GtkSpinButtonUpdatePolicy) */
-  ): Unit /* None */ =
-    gtk_spin_button_set_update_policy(this.raw.asInstanceOf, policy)
+  ): Unit /* None */ = gtk_spin_button_set_update_policy(
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]],
+    policy
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the value of @spin_button.
     */
   def setValue(value: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_spin_button_set_value(this.raw.asInstanceOf, value)
+    gtk_spin_button_set_value(this.raw.asInstanceOf[Ptr[GtkSpinButton]], value)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -368,7 +386,7 @@ class SpinButton(raw: Ptr[GtkSpinButton])
   def setWrap(
       wrap: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_spin_button_set_wrap(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]],
     gboolean(gint((if wrap == true then 1 else 0)))
   )
 
@@ -380,14 +398,19 @@ class SpinButton(raw: Ptr[GtkSpinButton])
   def spin(
       direction: GtkSpinType /* Some(GtkSpinType) */,
       increment: Double /* Some(Double) */
-  ): Unit /* None */ =
-    gtk_spin_button_spin(this.raw.asInstanceOf, direction, increment)
+  ): Unit /* None */ = gtk_spin_button_spin(
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]],
+    direction,
+    increment
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Manually force an update of the spin button.
     */
-  def update(): Unit /* None */ = gtk_spin_button_update(this.raw.asInstanceOf)
+  def update(): Unit /* None */ = gtk_spin_button_update(
+    this.raw.asInstanceOf[Ptr[GtkSpinButton]]
+  )
 
 end SpinButton
 

@@ -43,8 +43,11 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
   def allocate(
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Unit /* None */ =
-    gtk_cell_area_context_allocate(this.raw.asInstanceOf, width, height)
+  ): Unit /* None */ = gtk_cell_area_context_allocate(
+    this.raw.asInstanceOf[Ptr[GtkCellAreaContext]],
+    width,
+    height
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -72,7 +75,9 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     * configured with in order to compute a proper allocation.
     */
   def getArea(): CellArea /* None */ = new CellArea(
-    gtk_cell_area_context_get_area(this.raw.asInstanceOf).asInstanceOf
+    gtk_cell_area_context_get_area(
+      this.raw.asInstanceOf[Ptr[GtkCellAreaContext]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -141,7 +146,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
       minimum_height: Int /* Some(CInt) */,
       natural_height: Int /* Some(CInt) */
   ): Unit /* None */ = gtk_cell_area_context_push_preferred_height(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellAreaContext]],
     minimum_height,
     natural_height
   )
@@ -160,7 +165,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
       minimum_width: Int /* Some(CInt) */,
       natural_width: Int /* Some(CInt) */
   ): Unit /* None */ = gtk_cell_area_context_push_preferred_width(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellAreaContext]],
     minimum_width,
     natural_width
   )
@@ -186,7 +191,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     * gtk_cell_area_get_preferred_height_for_width().
     */
   def reset(): Unit /* None */ = gtk_cell_area_context_reset(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkCellAreaContext]]
   )
 
 end CellAreaContext

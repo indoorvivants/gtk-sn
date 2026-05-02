@@ -23,7 +23,9 @@ class FillNode(raw: Ptr[GskFillNode]) extends RenderNode(raw.asInstanceOf):
     * Gets the child node that is getting drawn by the given @node.
     */
   def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_fill_node_get_child(this.raw.asInstanceOf).asInstanceOf
+    gsk_fill_node_get_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -31,7 +33,7 @@ class FillNode(raw: Ptr[GskFillNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the fill rule used to determine how the path is filled.
     */
   def getFillRule(): GskFillRule /* None */ = gsk_fill_node_get_fill_rule(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -40,7 +42,7 @@ class FillNode(raw: Ptr[GskFillNode]) extends RenderNode(raw.asInstanceOf):
     * the @node.
     */
   def getPath(): Ptr[GskPath] /* None */ = gsk_fill_node_get_path(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
 end FillNode

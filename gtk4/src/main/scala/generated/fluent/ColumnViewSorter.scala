@@ -61,7 +61,9 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
     * number of sort columns changes.
     */
   def getNSortColumns(): UInt /* None */ =
-    gtk_column_view_sorter_get_n_sort_columns(this.raw.asInstanceOf).value
+    gtk_column_view_sorter_get_n_sort_columns(
+      this.raw.asInstanceOf[Ptr[GtkColumnViewSorter]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -85,7 +87,7 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
   def getPrimarySortColumn(): ColumnViewColumn /* None */ =
     new ColumnViewColumn(
       gtk_column_view_sorter_get_primary_sort_column(
-        this.raw.asInstanceOf
+        this.raw.asInstanceOf[Ptr[GtkColumnViewSorter]]
       ).asInstanceOf
     )
 
@@ -100,6 +102,8 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
     * `GTK_SORT_ASCENDING`.
     */
   def getPrimarySortOrder(): GtkSortType /* None */ =
-    gtk_column_view_sorter_get_primary_sort_order(this.raw.asInstanceOf)
+    gtk_column_view_sorter_get_primary_sort_order(
+      this.raw.asInstanceOf[Ptr[GtkColumnViewSorter]]
+    )
 
 end ColumnViewSorter

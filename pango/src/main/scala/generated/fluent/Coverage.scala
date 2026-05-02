@@ -28,7 +28,7 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     * Copy an existing `PangoCoverage`.
     */
   def copy(): Coverage /* None */ = new Coverage(
-    pango_coverage_copy(this.raw.asInstanceOf).asInstanceOf
+    pango_coverage_copy(this.raw.asInstanceOf[Ptr[PangoCoverage]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -36,7 +36,7 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     * Determine whether a particular index is covered by @coverage.
     */
   def get(`index_`: Int /* Some(CInt) */ ): PangoCoverageLevel /* None */ =
-    pango_coverage_get(this.raw.asInstanceOf, `index_`)
+    pango_coverage_get(this.raw.asInstanceOf[Ptr[PangoCoverage]], `index_`)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -46,7 +46,7 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     */
   def max(other: Coverage /* Some(Ptr[PangoCoverage]) */ ): Unit /* None */ =
     pango_coverage_max(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[PangoCoverage]],
       other.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -55,7 +55,7 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     * Increase the reference count on the `PangoCoverage` by one.
     */
   override def ref(): Coverage /* None */ = new Coverage(
-    pango_coverage_ref(this.raw.asInstanceOf).asInstanceOf
+    pango_coverage_ref(this.raw.asInstanceOf[Ptr[PangoCoverage]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -65,8 +65,11 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
   def set(
       `index_`: Int /* Some(CInt) */,
       level: PangoCoverageLevel /* Some(PangoCoverageLevel) */
-  ): Unit /* None */ =
-    pango_coverage_set(this.raw.asInstanceOf, `index_`, level)
+  ): Unit /* None */ = pango_coverage_set(
+    this.raw.asInstanceOf[Ptr[PangoCoverage]],
+    `index_`,
+    level
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -84,7 +87,7 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     * If the result is zero, free the coverage and all associated memory.
     */
   override def unref(): Unit /* None */ = pango_coverage_unref(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[PangoCoverage]]
   )
 
 end Coverage

@@ -22,7 +22,9 @@ class ObjectExpression(raw: Ptr[GtkObjectExpression])
     * Gets the object that the expression evaluates to.
     */
   def getObject(): Object /* None */ = new Object(
-    gtk_object_expression_get_object(this.raw.asInstanceOf).asInstanceOf
+    gtk_object_expression_get_object(
+      this.raw.asInstanceOf[Ptr[GtkExpression]]
+    ).asInstanceOf
   )
 
 end ObjectExpression

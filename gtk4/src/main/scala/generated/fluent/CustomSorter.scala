@@ -39,7 +39,7 @@ class CustomSorter(raw: Ptr[GtkCustomSorter]) extends Sorter(raw.asInstanceOf):
       ],
       user_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): Unit /* None */ = gtk_custom_sorter_set_sort_func(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCustomSorter]],
     sort_func
       .map[_root_.sn.gnome.glib.internal.GCompareDataFunc](o => o)
       .getOrElse(

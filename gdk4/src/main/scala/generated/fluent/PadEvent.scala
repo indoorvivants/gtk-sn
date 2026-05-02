@@ -31,7 +31,7 @@ class PadEvent(raw: Ptr[GdkPadEvent]) extends Event(raw.asInstanceOf):
     * Extracts information about the pressed button from a pad event.
     */
   def getButton(): UInt /* None */ = gdk_pad_event_get_button(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

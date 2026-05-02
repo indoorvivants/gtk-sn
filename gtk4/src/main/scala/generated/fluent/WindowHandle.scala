@@ -41,7 +41,9 @@ class WindowHandle(raw: Ptr[GtkWindowHandle])
     * Gets the child widget of @self.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_window_handle_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_window_handle_get_child(
+      this.raw.asInstanceOf[Ptr[GtkWindowHandle]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -51,7 +53,7 @@ class WindowHandle(raw: Ptr[GtkWindowHandle])
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_window_handle_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWindowHandle]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])

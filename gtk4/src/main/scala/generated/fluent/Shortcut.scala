@@ -36,7 +36,9 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
     * Gets the action that is activated by this shortcut.
     */
   def getAction(): ShortcutAction /* None */ = new ShortcutAction(
-    gtk_shortcut_get_action(this.raw.asInstanceOf).asInstanceOf
+    gtk_shortcut_get_action(
+      this.raw.asInstanceOf[Ptr[GtkShortcut]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -44,7 +46,7 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
     * Gets the arguments that are passed when activating the shortcut.
     */
   def getArguments(): Ptr[GVariant] /* None */ = gtk_shortcut_get_arguments(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkShortcut]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -52,7 +54,9 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
     * Gets the trigger used to trigger @self.
     */
   def getTrigger(): ShortcutTrigger /* None */ = new ShortcutTrigger(
-    gtk_shortcut_get_trigger(this.raw.asInstanceOf).asInstanceOf
+    gtk_shortcut_get_trigger(
+      this.raw.asInstanceOf[Ptr[GtkShortcut]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -62,7 +66,7 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
   def setAction(
       action: Option[ShortcutAction /* Some(Ptr[GtkShortcutAction]) */ ]
   ): Unit /* None */ = gtk_shortcut_set_action(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkShortcut]],
     action
       .map[Ptr[GtkShortcutAction]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkShortcutAction]])
@@ -77,7 +81,7 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
         Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
       ]
   ): Unit /* None */ = gtk_shortcut_set_arguments(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkShortcut]],
     args
       .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
@@ -90,7 +94,7 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
   def setTrigger(
       trigger: Option[ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */ ]
   ): Unit /* None */ = gtk_shortcut_set_trigger(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkShortcut]],
     trigger
       .map[Ptr[GtkShortcutTrigger]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkShortcutTrigger]])

@@ -110,7 +110,7 @@ class Socket(raw: Ptr[GSocket])
   ): GResult[Socket /* None */ ] = GResult.wrap(__errorPtr =>
     new Socket(
       g_socket_accept(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GSocket]],
         cancellable
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
           .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -149,7 +149,7 @@ class Socket(raw: Ptr[GSocket])
       allow_reuse: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_bind(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocket]],
       address.getUnsafeRawPointer().asInstanceOf,
       gboolean(gint((if allow_reuse == true then 1 else 0))),
       __errorPtr
@@ -163,8 +163,10 @@ class Socket(raw: Ptr[GSocket])
     */
   def checkConnectResult(): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
-      g_socket_check_connect_result(this.raw.asInstanceOf, __errorPtr).value
-        .!=(0)
+      g_socket_check_connect_result(
+        this.raw.asInstanceOf[Ptr[GSocket]],
+        __errorPtr
+      ).value.!=(0)
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -198,7 +200,7 @@ class Socket(raw: Ptr[GSocket])
     * works if the client will close its connection after the server does.)
     */
   def close(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_socket_close(this.raw.asInstanceOf, __errorPtr).value.!=(0)
+    g_socket_close(this.raw.asInstanceOf[Ptr[GSocket]], __errorPtr).value.!=(0)
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -222,7 +224,7 @@ class Socket(raw: Ptr[GSocket])
   def conditionCheck(
       condition: GIOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */
   ): GIOCondition /* None */ =
-    g_socket_condition_check(this.raw.asInstanceOf, condition)
+    g_socket_condition_check(this.raw.asInstanceOf[Ptr[GSocket]], condition)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -249,7 +251,7 @@ class Socket(raw: Ptr[GSocket])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_condition_timed_wait(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocket]],
       condition,
       gint64(timeout_us),
       cancellable
@@ -276,7 +278,7 @@ class Socket(raw: Ptr[GSocket])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_condition_wait(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocket]],
       condition,
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -309,7 +311,7 @@ class Socket(raw: Ptr[GSocket])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_connect(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocket]],
       address.getUnsafeRawPointer().asInstanceOf,
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -326,7 +328,7 @@ class Socket(raw: Ptr[GSocket])
   def connectionFactoryCreateConnection(): SocketConnection /* None */ =
     new SocketConnection(
       g_socket_connection_factory_create_connection(
-        this.raw.asInstanceOf
+        this.raw.asInstanceOf[Ptr[GSocket]]
       ).asInstanceOf
     )
 
@@ -358,7 +360,7 @@ class Socket(raw: Ptr[GSocket])
       condition: GIOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): Ptr[GSource] /* None */ = g_socket_create_source(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocket]],
     condition,
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -379,7 +381,7 @@ class Socket(raw: Ptr[GSocket])
     * doing a receive of exactly the right size.
     */
   def getAvailableBytes(): CLongInt /* None */ = g_socket_get_available_bytes(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocket]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -388,7 +390,7 @@ class Socket(raw: Ptr[GSocket])
     * g_socket_set_blocking().
     */
   def getBlocking(): Boolean /* None */ =
-    g_socket_get_blocking(this.raw.asInstanceOf).value.!=(0)
+    g_socket_get_blocking(this.raw.asInstanceOf[Ptr[GSocket]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -396,7 +398,7 @@ class Socket(raw: Ptr[GSocket])
     * packets to broadcast addresses.
     */
   def getBroadcast(): Boolean /* None */ =
-    g_socket_get_broadcast(this.raw.asInstanceOf).value.!=(0)
+    g_socket_get_broadcast(this.raw.asInstanceOf[Ptr[GSocket]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -422,7 +424,10 @@ class Socket(raw: Ptr[GSocket])
   def getCredentials(): GResult[Credentials /* None */ ] =
     GResult.wrap(__errorPtr =>
       new Credentials(
-        g_socket_get_credentials(this.raw.asInstanceOf, __errorPtr).asInstanceOf
+        g_socket_get_credentials(
+          this.raw.asInstanceOf[Ptr[GSocket]],
+          __errorPtr
+        ).asInstanceOf
       )
     )
 
@@ -431,7 +436,7 @@ class Socket(raw: Ptr[GSocket])
     * Gets the socket family of the socket.
     */
   def getFamily(): GSocketFamily /* None */ = g_socket_get_family(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocket]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -441,7 +446,9 @@ class Socket(raw: Ptr[GSocket])
     * useful for doing platform specific or otherwise unusual operations on the
     * socket.
     */
-  def getFd(): Int /* None */ = g_socket_get_fd(this.raw.asInstanceOf)
+  def getFd(): Int /* None */ = g_socket_get_fd(
+    this.raw.asInstanceOf[Ptr[GSocket]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -449,7 +456,7 @@ class Socket(raw: Ptr[GSocket])
     * g_socket_set_keepalive().
     */
   def getKeepalive(): Boolean /* None */ =
-    g_socket_get_keepalive(this.raw.asInstanceOf).value.!=(0)
+    g_socket_get_keepalive(this.raw.asInstanceOf[Ptr[GSocket]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -457,7 +464,7 @@ class Socket(raw: Ptr[GSocket])
     * g_socket_set_listen_backlog().
     */
   def getListenBacklog(): Int /* None */ = g_socket_get_listen_backlog(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocket]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -470,7 +477,7 @@ class Socket(raw: Ptr[GSocket])
     GResult.wrap(__errorPtr =>
       new SocketAddress(
         g_socket_get_local_address(
-          this.raw.asInstanceOf,
+          this.raw.asInstanceOf[Ptr[GSocket]],
           __errorPtr
         ).asInstanceOf
       )
@@ -483,7 +490,8 @@ class Socket(raw: Ptr[GSocket])
     * the same host.
     */
   def getMulticastLoopback(): Boolean /* None */ =
-    g_socket_get_multicast_loopback(this.raw.asInstanceOf).value.!=(0)
+    g_socket_get_multicast_loopback(this.raw.asInstanceOf[Ptr[GSocket]]).value
+      .!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -491,7 +499,7 @@ class Socket(raw: Ptr[GSocket])
     * g_socket_set_multicast_ttl() for more details.
     */
   def getMulticastTtl(): UInt /* None */ = g_socket_get_multicast_ttl(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocket]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -521,7 +529,7 @@ class Socket(raw: Ptr[GSocket])
     * protocol is unknown, -1 is returned.
     */
   def getProtocol(): GSocketProtocol /* None */ = g_socket_get_protocol(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocket]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -533,7 +541,7 @@ class Socket(raw: Ptr[GSocket])
     GResult.wrap(__errorPtr =>
       new SocketAddress(
         g_socket_get_remote_address(
-          this.raw.asInstanceOf,
+          this.raw.asInstanceOf[Ptr[GSocket]],
           __errorPtr
         ).asInstanceOf
       )
@@ -544,7 +552,7 @@ class Socket(raw: Ptr[GSocket])
     * Gets the socket type of the socket.
     */
   def getSocketType(): GSocketType /* None */ = g_socket_get_socket_type(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocket]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -553,7 +561,7 @@ class Socket(raw: Ptr[GSocket])
     * g_socket_set_timeout().
     */
   def getTimeout(): UInt /* None */ = g_socket_get_timeout(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocket]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -561,14 +569,16 @@ class Socket(raw: Ptr[GSocket])
     * Gets the unicast time-to-live setting on @socket; see g_socket_set_ttl()
     * for more details.
     */
-  def getTtl(): UInt /* None */ = g_socket_get_ttl(this.raw.asInstanceOf).value
+  def getTtl(): UInt /* None */ = g_socket_get_ttl(
+    this.raw.asInstanceOf[Ptr[GSocket]]
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks whether a socket is closed.
     */
   def isClosed(): Boolean /* None */ =
-    g_socket_is_closed(this.raw.asInstanceOf).value.!=(0)
+    g_socket_is_closed(this.raw.asInstanceOf[Ptr[GSocket]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -581,7 +591,7 @@ class Socket(raw: Ptr[GSocket])
     * call g_socket_check_connect_result().
     */
   def isConnected(): Boolean /* None */ =
-    g_socket_is_connected(this.raw.asInstanceOf).value.!=(0)
+    g_socket_is_connected(this.raw.asInstanceOf[Ptr[GSocket]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -608,7 +618,7 @@ class Socket(raw: Ptr[GSocket])
       ]
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_join_multicast_group(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocket]],
       group.getUnsafeRawPointer().asInstanceOf,
       gboolean(gint((if source_specific == true then 1 else 0))),
       iface
@@ -646,7 +656,7 @@ class Socket(raw: Ptr[GSocket])
       ]
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_join_multicast_group_ssm(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocket]],
       group.getUnsafeRawPointer().asInstanceOf,
       source_specific
         .map[Ptr[GInetAddress]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -680,7 +690,7 @@ class Socket(raw: Ptr[GSocket])
       ]
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_leave_multicast_group(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocket]],
       group.getUnsafeRawPointer().asInstanceOf,
       gboolean(gint((if source_specific == true then 1 else 0))),
       iface
@@ -709,7 +719,7 @@ class Socket(raw: Ptr[GSocket])
       ]
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_leave_multicast_group_ssm(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocket]],
       group.getUnsafeRawPointer().asInstanceOf,
       source_specific
         .map[Ptr[GInetAddress]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -735,7 +745,7 @@ class Socket(raw: Ptr[GSocket])
     * g_socket_set_listen_backlog().
     */
   def listen(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_socket_listen(this.raw.asInstanceOf, __errorPtr).value.!=(0)
+    g_socket_listen(this.raw.asInstanceOf[Ptr[GSocket]], __errorPtr).value.!=(0)
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -919,7 +929,7 @@ class Socket(raw: Ptr[GSocket])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_receive_messages(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocket]],
       messages,
       guint(num_messages),
       gint(flags),
@@ -1056,7 +1066,7 @@ class Socket(raw: Ptr[GSocket])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_send_messages(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocket]],
       messages,
       guint(num_messages),
       gint(flags),
@@ -1081,7 +1091,7 @@ class Socket(raw: Ptr[GSocket])
   def setBlocking(
       blocking: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_socket_set_blocking(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocket]],
     gboolean(gint((if blocking == true then 1 else 0)))
   )
 
@@ -1093,7 +1103,7 @@ class Socket(raw: Ptr[GSocket])
   def setBroadcast(
       broadcast: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_socket_set_broadcast(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocket]],
     gboolean(gint((if broadcast == true then 1 else 0)))
   )
 
@@ -1118,7 +1128,7 @@ class Socket(raw: Ptr[GSocket])
   def setKeepalive(
       keepalive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_socket_set_keepalive(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocket]],
     gboolean(gint((if keepalive == true then 1 else 0)))
   )
 
@@ -1134,8 +1144,10 @@ class Socket(raw: Ptr[GSocket])
     */
   def setListenBacklog(
       backlog: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ =
-    g_socket_set_listen_backlog(this.raw.asInstanceOf, gint(backlog))
+  ): Unit /* None */ = g_socket_set_listen_backlog(
+    this.raw.asInstanceOf[Ptr[GSocket]],
+    gint(backlog)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1146,7 +1158,7 @@ class Socket(raw: Ptr[GSocket])
   def setMulticastLoopback(
       loopback: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_socket_set_multicast_loopback(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocket]],
     gboolean(gint((if loopback == true then 1 else 0)))
   )
 
@@ -1159,7 +1171,7 @@ class Socket(raw: Ptr[GSocket])
   def setMulticastTtl(
       ttl: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ =
-    g_socket_set_multicast_ttl(this.raw.asInstanceOf, guint(ttl))
+    g_socket_set_multicast_ttl(this.raw.asInstanceOf[Ptr[GSocket]], guint(ttl))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1178,7 +1190,7 @@ class Socket(raw: Ptr[GSocket])
       value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_set_option(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocket]],
       gint(level),
       gint(optname),
       gint(value),
@@ -1213,7 +1225,7 @@ class Socket(raw: Ptr[GSocket])
   def setTimeout(
       timeout: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ =
-    g_socket_set_timeout(this.raw.asInstanceOf, guint(timeout))
+    g_socket_set_timeout(this.raw.asInstanceOf[Ptr[GSocket]], guint(timeout))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1222,7 +1234,8 @@ class Socket(raw: Ptr[GSocket])
     */
   def setTtl(
       ttl: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = g_socket_set_ttl(this.raw.asInstanceOf, guint(ttl))
+  ): Unit /* None */ =
+    g_socket_set_ttl(this.raw.asInstanceOf[Ptr[GSocket]], guint(ttl))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1246,7 +1259,7 @@ class Socket(raw: Ptr[GSocket])
       shutdown_write: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_shutdown(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocket]],
       gboolean(gint((if shutdown_read == true then 1 else 0))),
       gboolean(gint((if shutdown_write == true then 1 else 0))),
       __errorPtr
@@ -1265,7 +1278,7 @@ class Socket(raw: Ptr[GSocket])
     * speaking IPv4.
     */
   def speaksIpv4(): Boolean /* None */ =
-    g_socket_speaks_ipv4(this.raw.asInstanceOf).value.!=(0)
+    g_socket_speaks_ipv4(this.raw.asInstanceOf[Ptr[GSocket]]).value.!=(0)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -39,7 +39,7 @@ class UnixCredentialsMessage(raw: Ptr[GUnixCredentialsMessage])
     */
   def getCredentials(): Credentials /* None */ = new Credentials(
     g_unix_credentials_message_get_credentials(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GUnixCredentialsMessage]]
     ).asInstanceOf
   )
 

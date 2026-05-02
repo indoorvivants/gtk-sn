@@ -21,7 +21,9 @@ class OpacityNode(raw: Ptr[GskOpacityNode])
     * Gets the child node that is getting opacityed by the given @node.
     */
   def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_opacity_node_get_child(this.raw.asInstanceOf).asInstanceOf
+    gsk_opacity_node_get_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -29,7 +31,7 @@ class OpacityNode(raw: Ptr[GskOpacityNode])
     * Gets the transparency factor for an opacity node.
     */
   def getOpacity(): Float /* None */ = gsk_opacity_node_get_opacity(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
 end OpacityNode

@@ -36,7 +36,9 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     * Gets the #GTlsCertificate representing @cert's issuer, if known
     */
   def getIssuer(): TlsCertificate /* None */ = new TlsCertificate(
-    g_tls_certificate_get_issuer(this.raw.asInstanceOf).asInstanceOf
+    g_tls_certificate_get_issuer(
+      this.raw.asInstanceOf[Ptr[GTlsCertificate]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -44,7 +46,9 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     * Returns the issuer name from the certificate.
     */
   def getIssuerName()(using Zone): String /* None */ = fromCString(
-    g_tls_certificate_get_issuer_name(this.raw.asInstanceOf).asInstanceOf
+    g_tls_certificate_get_issuer_name(
+      this.raw.asInstanceOf[Ptr[GTlsCertificate]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -52,21 +56,27 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     * Returns the time at which the certificate became or will become invalid.
     */
   def getNotValidAfter(): Ptr[GDateTime] /* None */ =
-    g_tls_certificate_get_not_valid_after(this.raw.asInstanceOf)
+    g_tls_certificate_get_not_valid_after(
+      this.raw.asInstanceOf[Ptr[GTlsCertificate]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the time at which the certificate became or will become valid.
     */
   def getNotValidBefore(): Ptr[GDateTime] /* None */ =
-    g_tls_certificate_get_not_valid_before(this.raw.asInstanceOf)
+    g_tls_certificate_get_not_valid_before(
+      this.raw.asInstanceOf[Ptr[GTlsCertificate]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the subject name from the certificate.
     */
   def getSubjectName()(using Zone): String /* None */ = fromCString(
-    g_tls_certificate_get_subject_name(this.raw.asInstanceOf).asInstanceOf
+    g_tls_certificate_get_subject_name(
+      this.raw.asInstanceOf[Ptr[GTlsCertificate]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -80,7 +90,7 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
   def isSame(
       cert_two: TlsCertificate /* Some(Ptr[GTlsCertificate]) */
   ): Boolean /* None */ = g_tls_certificate_is_same(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsCertificate]],
     cert_two.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -122,7 +132,7 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
       identity: Option[SocketConnectable /* Some(Ptr[GSocketConnectable]) */ ],
       trusted_ca: Option[TlsCertificate /* Some(Ptr[GTlsCertificate]) */ ]
   ): GTlsCertificateFlags /* None */ = g_tls_certificate_verify(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsCertificate]],
     identity
       .map[Ptr[GSocketConnectable]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GSocketConnectable]]),

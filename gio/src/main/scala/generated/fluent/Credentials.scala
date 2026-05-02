@@ -69,8 +69,10 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     */
   def getNative(
       native_type: GCredentialsType /* Some(GCredentialsType) */
-  ): Ptr[Byte] /* None */ =
-    g_credentials_get_native(this.raw.asInstanceOf, native_type).value
+  ): Ptr[Byte] /* None */ = g_credentials_get_native(
+    this.raw.asInstanceOf[Ptr[GCredentials]],
+    native_type
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -82,7 +84,10 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * process ID.
     */
   def getUnixPid(): GResult[pid_t /* None */ ] = GResult.wrap(__errorPtr =>
-    g_credentials_get_unix_pid(this.raw.asInstanceOf, __errorPtr)
+    g_credentials_get_unix_pid(
+      this.raw.asInstanceOf[Ptr[GCredentials]],
+      __errorPtr
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -95,7 +100,10 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * user.
     */
   def getUnixUser(): GResult[uid_t /* None */ ] = GResult.wrap(__errorPtr =>
-    g_credentials_get_unix_user(this.raw.asInstanceOf, __errorPtr)
+    g_credentials_get_unix_user(
+      this.raw.asInstanceOf[Ptr[GCredentials]],
+      __errorPtr
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -108,7 +116,7 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
       other_credentials: Credentials /* Some(Ptr[GCredentials]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_credentials_is_same_user(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GCredentials]],
       other_credentials.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)
@@ -126,7 +134,7 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
       native_type: GCredentialsType /* Some(GCredentialsType) */,
       native: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   ): Unit /* None */ = g_credentials_set_native(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GCredentials]],
     native_type,
     gpointer(native)
   )
@@ -143,8 +151,11 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     */
   def setUnixUser(uid: uid_t /* Some(uid_t) */ ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
-      g_credentials_set_unix_user(this.raw.asInstanceOf, uid, __errorPtr).value
-        .!=(0)
+      g_credentials_set_unix_user(
+        this.raw.asInstanceOf[Ptr[GCredentials]],
+        uid,
+        __errorPtr
+      ).value.!=(0)
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -154,7 +165,9 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * may change in future GLib release.
     */
   def toString()(using Zone): String /* None */ = fromCString(
-    g_credentials_to_string(this.raw.asInstanceOf).asInstanceOf
+    g_credentials_to_string(
+      this.raw.asInstanceOf[Ptr[GCredentials]]
+    ).asInstanceOf
   )
 
 end Credentials

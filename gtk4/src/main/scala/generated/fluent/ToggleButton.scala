@@ -108,8 +108,9 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
     * Returns %TRUE if the toggle button is pressed in and %FALSE if it is
     * raised.
     */
-  def getActive(): Boolean /* None */ =
-    gtk_toggle_button_get_active(this.raw.asInstanceOf).value.!=(0)
+  def getActive(): Boolean /* None */ = gtk_toggle_button_get_active(
+    this.raw.asInstanceOf[Ptr[GtkToggleButton]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -124,7 +125,7 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
   def setActive(
       is_active: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_toggle_button_set_active(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkToggleButton]],
     gboolean(gint((if is_active == true then 1 else 0)))
   )
 
@@ -144,7 +145,7 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
   def setGroup(
       group: Option[ToggleButton /* Some(Ptr[GtkToggleButton]) */ ]
   ): Unit /* None */ = gtk_toggle_button_set_group(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkToggleButton]],
     group
       .map[Ptr[GtkToggleButton]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkToggleButton]])
@@ -155,7 +156,7 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
     * Emits the ::toggled signal on the `GtkToggleButton`.
     */
   def toggled(): Unit /* None */ = gtk_toggle_button_toggled(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkToggleButton]]
   )
 
 end ToggleButton

@@ -54,7 +54,7 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gtk_alert_dialog_choose(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
     parent
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
@@ -84,7 +84,7 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_alert_dialog_choose_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -95,7 +95,7 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     * Returns the index of the cancel button.
     */
   def getCancelButton(): Int /* None */ = gtk_alert_dialog_get_cancel_button(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAlertDialog]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -103,7 +103,7 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     * Returns the index of the default button.
     */
   def getDefaultButton(): Int /* None */ = gtk_alert_dialog_get_default_button(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAlertDialog]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -111,7 +111,9 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     * Returns the detail text that will be shown in the alert.
     */
   def getDetail()(using Zone): String /* None */ = fromCString(
-    gtk_alert_dialog_get_detail(this.raw.asInstanceOf).asInstanceOf
+    gtk_alert_dialog_get_detail(
+      this.raw.asInstanceOf[Ptr[GtkAlertDialog]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -119,7 +121,9 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     * Returns the message that will be shown in the alert.
     */
   def getMessage()(using Zone): String /* None */ = fromCString(
-    gtk_alert_dialog_get_message(this.raw.asInstanceOf).asInstanceOf
+    gtk_alert_dialog_get_message(
+      this.raw.asInstanceOf[Ptr[GtkAlertDialog]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -127,8 +131,9 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     * Returns whether the alert blocks interaction with the parent window while
     * it is presented.
     */
-  def getModal(): Boolean /* None */ =
-    gtk_alert_dialog_get_modal(this.raw.asInstanceOf).value.!=(0)
+  def getModal(): Boolean /* None */ = gtk_alert_dialog_get_modal(
+    this.raw.asInstanceOf[Ptr[GtkAlertDialog]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -136,8 +141,10 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     */
   def setButtons(
       labels: Ptr[CString] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ =
-    gtk_alert_dialog_set_buttons(this.raw.asInstanceOf, labels)
+  )(using Zone): Unit /* None */ = gtk_alert_dialog_set_buttons(
+    this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
+    labels
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -147,7 +154,10 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     * is used.
     */
   def setCancelButton(button: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_alert_dialog_set_cancel_button(this.raw.asInstanceOf, button)
+    gtk_alert_dialog_set_cancel_button(
+      this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
+      button
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -157,7 +167,10 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     * value is used.
     */
   def setDefaultButton(button: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_alert_dialog_set_default_button(this.raw.asInstanceOf, button)
+    gtk_alert_dialog_set_default_button(
+      this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
+      button
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -166,7 +179,7 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
   def setDetail(
       detail: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_alert_dialog_set_detail(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
     __sn_extract_string(detail)
   )
 
@@ -177,7 +190,7 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
   def setMessage(
       message: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_alert_dialog_set_message(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
     __sn_extract_string(message)
   )
 
@@ -189,7 +202,7 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_alert_dialog_set_modal(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
     gboolean(gint((if modal == true then 1 else 0)))
   )
 
@@ -206,7 +219,7 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
   def show(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
   ): Unit /* None */ = gtk_alert_dialog_show(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
     parent
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])

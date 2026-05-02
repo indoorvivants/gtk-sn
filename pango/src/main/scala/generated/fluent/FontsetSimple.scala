@@ -30,7 +30,7 @@ class FontsetSimple(raw: Ptr[PangoFontsetSimple])
     */
   def append(font: Font /* Some(Ptr[PangoFont]) */ ): Unit /* None */ =
     pango_fontset_simple_append(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[PangoFontsetSimple]],
       font.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -38,7 +38,9 @@ class FontsetSimple(raw: Ptr[PangoFontsetSimple])
     *
     * Returns the number of fonts in the fontset.
     */
-  def size(): Int /* None */ = pango_fontset_simple_size(this.raw.asInstanceOf)
+  def size(): Int /* None */ = pango_fontset_simple_size(
+    this.raw.asInstanceOf[Ptr[PangoFontsetSimple]]
+  )
 
 end FontsetSimple
 

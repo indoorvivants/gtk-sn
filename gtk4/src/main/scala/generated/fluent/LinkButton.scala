@@ -56,7 +56,9 @@ class LinkButton(raw: Ptr[GtkLinkButton])
     * Retrieves the URI of the `GtkLinkButton`.
     */
   def getUri()(using Zone): String /* None */ = fromCString(
-    gtk_link_button_get_uri(this.raw.asInstanceOf).asInstanceOf
+    gtk_link_button_get_uri(
+      this.raw.asInstanceOf[Ptr[GtkLinkButton]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -68,8 +70,9 @@ class LinkButton(raw: Ptr[GtkLinkButton])
     *
     * The state may also be changed using [method@Gtk.LinkButton.set_visited].
     */
-  def getVisited(): Boolean /* None */ =
-    gtk_link_button_get_visited(this.raw.asInstanceOf).value.!=(0)
+  def getVisited(): Boolean /* None */ = gtk_link_button_get_visited(
+    this.raw.asInstanceOf[Ptr[GtkLinkButton]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -79,8 +82,10 @@ class LinkButton(raw: Ptr[GtkLinkButton])
     */
   def setUri(
       uri: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ =
-    gtk_link_button_set_uri(this.raw.asInstanceOf, __sn_extract_string(uri))
+  )(using Zone): Unit /* None */ = gtk_link_button_set_uri(
+    this.raw.asInstanceOf[Ptr[GtkLinkButton]],
+    __sn_extract_string(uri)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -91,7 +96,7 @@ class LinkButton(raw: Ptr[GtkLinkButton])
   def setVisited(
       visited: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_link_button_set_visited(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLinkButton]],
     gboolean(gint((if visited == true then 1 else 0)))
   )
 

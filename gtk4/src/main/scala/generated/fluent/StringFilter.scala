@@ -37,29 +37,36 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
     * items.
     */
   def getExpression(): Expression /* None */ = new Expression(
-    gtk_string_filter_get_expression(this.raw.asInstanceOf).asInstanceOf
+    gtk_string_filter_get_expression(
+      this.raw.asInstanceOf[Ptr[GtkStringFilter]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the filter ignores case differences.
     */
-  def getIgnoreCase(): Boolean /* None */ =
-    gtk_string_filter_get_ignore_case(this.raw.asInstanceOf).value.!=(0)
+  def getIgnoreCase(): Boolean /* None */ = gtk_string_filter_get_ignore_case(
+    this.raw.asInstanceOf[Ptr[GtkStringFilter]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the match mode that the filter is using.
     */
   def getMatchMode(): GtkStringFilterMatchMode /* None */ =
-    gtk_string_filter_get_match_mode(this.raw.asInstanceOf)
+    gtk_string_filter_get_match_mode(
+      this.raw.asInstanceOf[Ptr[GtkStringFilter]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the search term.
     */
   def getSearch()(using Zone): String /* None */ = fromCString(
-    gtk_string_filter_get_search(this.raw.asInstanceOf).asInstanceOf
+    gtk_string_filter_get_search(
+      this.raw.asInstanceOf[Ptr[GtkStringFilter]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -72,7 +79,7 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
   def setExpression(
       expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
   ): Unit /* None */ = gtk_string_filter_set_expression(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkStringFilter]],
     expression
       .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
@@ -85,7 +92,7 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
   def setIgnoreCase(
       ignore_case: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_string_filter_set_ignore_case(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkStringFilter]],
     gboolean(gint((if ignore_case == true then 1 else 0)))
   )
 
@@ -95,8 +102,10 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
     */
   def setMatchMode(
       mode: GtkStringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
-  ): Unit /* None */ =
-    gtk_string_filter_set_match_mode(this.raw.asInstanceOf, mode)
+  ): Unit /* None */ = gtk_string_filter_set_match_mode(
+    this.raw.asInstanceOf[Ptr[GtkStringFilter]],
+    mode
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -105,7 +114,7 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
   def setSearch(
       search: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_string_filter_set_search(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkStringFilter]],
     search
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])

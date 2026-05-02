@@ -23,14 +23,16 @@ class OutsetShadowNode(raw: Ptr[GskOutsetShadowNode])
     * Retrieves the blur radius of the shadow.
     */
   def getBlurRadius(): Float /* None */ =
-    gsk_outset_shadow_node_get_blur_radius(this.raw.asInstanceOf)
+    gsk_outset_shadow_node_get_blur_radius(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the color of the outset shadow.
     */
   def getColor(): Ptr[GdkRGBA] /* None */ = gsk_outset_shadow_node_get_color(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -38,7 +40,7 @@ class OutsetShadowNode(raw: Ptr[GskOutsetShadowNode])
     * Retrieves the horizontal offset of the outset shadow.
     */
   def getDx(): Float /* None */ = gsk_outset_shadow_node_get_dx(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -46,7 +48,7 @@ class OutsetShadowNode(raw: Ptr[GskOutsetShadowNode])
     * Retrieves the vertical offset of the outset shadow.
     */
   def getDy(): Float /* None */ = gsk_outset_shadow_node_get_dy(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -54,14 +56,16 @@ class OutsetShadowNode(raw: Ptr[GskOutsetShadowNode])
     * Retrieves the outline rectangle of the outset shadow.
     */
   def getOutline(): Ptr[GskRoundedRect] /* None */ =
-    gsk_outset_shadow_node_get_outline(this.raw.asInstanceOf)
+    gsk_outset_shadow_node_get_outline(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves how much the shadow spreads outwards.
     */
   def getSpread(): Float /* None */ = gsk_outset_shadow_node_get_spread(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
 end OutsetShadowNode

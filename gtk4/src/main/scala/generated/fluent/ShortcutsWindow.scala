@@ -96,7 +96,7 @@ class ShortcutsWindow(raw: Ptr[GtkShortcutsWindow])
   def addSection(
       section: ShortcutsSection /* Some(Ptr[GtkShortcutsSection]) */
   ): Unit /* None */ = gtk_shortcuts_window_add_section(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkShortcutsWindow]],
     section.getUnsafeRawPointer().asInstanceOf
   )
 

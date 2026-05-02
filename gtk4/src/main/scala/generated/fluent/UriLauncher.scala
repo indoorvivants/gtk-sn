@@ -39,7 +39,9 @@ class UriLauncher(raw: Ptr[GtkUriLauncher]) extends Object(raw.asInstanceOf):
     * Gets the uri that will be opened.
     */
   def getUri()(using Zone): String /* None */ = fromCString(
-    gtk_uri_launcher_get_uri(this.raw.asInstanceOf).asInstanceOf
+    gtk_uri_launcher_get_uri(
+      this.raw.asInstanceOf[Ptr[GtkUriLauncher]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -63,7 +65,7 @@ class UriLauncher(raw: Ptr[GtkUriLauncher]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gtk_uri_launcher_launch(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkUriLauncher]],
     parent
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
@@ -92,7 +94,7 @@ class UriLauncher(raw: Ptr[GtkUriLauncher]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_uri_launcher_launch_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkUriLauncher]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)
@@ -105,7 +107,7 @@ class UriLauncher(raw: Ptr[GtkUriLauncher]) extends Object(raw.asInstanceOf):
   def setUri(
       uri: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_uri_launcher_set_uri(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkUriLauncher]],
     uri
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])

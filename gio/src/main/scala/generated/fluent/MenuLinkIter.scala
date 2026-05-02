@@ -27,7 +27,9 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
     * The iterator is not advanced.
     */
   def getName()(using Zone): String /* None */ = fromCString(
-    g_menu_link_iter_get_name(this.raw.asInstanceOf).asInstanceOf
+    g_menu_link_iter_get_name(
+      this.raw.asInstanceOf[Ptr[GMenuLinkIter]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -59,7 +61,9 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
     * The iterator is not advanced.
     */
   def getValue(): MenuModel /* None */ = new MenuModel(
-    g_menu_link_iter_get_value(this.raw.asInstanceOf).asInstanceOf
+    g_menu_link_iter_get_value(
+      this.raw.asInstanceOf[Ptr[GMenuLinkIter]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -72,6 +76,6 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
     * it to the first link (and determine if the first link exists at all).
     */
   def next(): Boolean /* None */ =
-    g_menu_link_iter_next(this.raw.asInstanceOf).value.!=(0)
+    g_menu_link_iter_next(this.raw.asInstanceOf[Ptr[GMenuLinkIter]]).value.!=(0)
 
 end MenuLinkIter

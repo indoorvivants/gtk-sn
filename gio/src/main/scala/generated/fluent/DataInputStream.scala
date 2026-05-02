@@ -42,14 +42,18 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * Gets the byte order for the data input stream.
     */
   def getByteOrder(): GDataStreamByteOrder /* None */ =
-    g_data_input_stream_get_byte_order(this.raw.asInstanceOf)
+    g_data_input_stream_get_byte_order(
+      this.raw.asInstanceOf[Ptr[GDataInputStream]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the current newline type for the @stream.
     */
   def getNewlineType(): GDataStreamNewlineType /* None */ =
-    g_data_input_stream_get_newline_type(this.raw.asInstanceOf)
+    g_data_input_stream_get_newline_type(
+      this.raw.asInstanceOf[Ptr[GDataInputStream]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -72,7 +76,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[CShort /* None */ ] = GResult.wrap(__errorPtr =>
     g_data_input_stream_read_int16(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDataInputStream]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -96,7 +100,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[CInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_data_input_stream_read_int32(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDataInputStream]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -120,7 +124,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_data_input_stream_read_int64(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDataInputStream]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -160,7 +164,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_data_input_stream_read_line_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDataInputStream]],
     gint(io_priority),
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -219,7 +223,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[UShort /* None */ ] = GResult.wrap(__errorPtr =>
     g_data_input_stream_read_uint16(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDataInputStream]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -243,7 +247,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[UInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_data_input_stream_read_uint32(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDataInputStream]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -266,7 +270,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[CUnsignedLongInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_data_input_stream_read_uint64(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDataInputStream]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -320,7 +324,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_data_input_stream_read_until_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDataInputStream]],
     __sn_extract_string(stop_chars).asInstanceOf[Ptr[gchar]],
     gint(io_priority),
     cancellable
@@ -390,7 +394,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_data_input_stream_read_upto_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDataInputStream]],
     __sn_extract_string(stop_chars).asInstanceOf[Ptr[gchar]],
     gssize(stop_chars_len),
     gint(io_priority),
@@ -428,8 +432,10 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     */
   def setByteOrder(
       order: GDataStreamByteOrder /* Some(GDataStreamByteOrder) */
-  ): Unit /* None */ =
-    g_data_input_stream_set_byte_order(this.raw.asInstanceOf, order)
+  ): Unit /* None */ = g_data_input_stream_set_byte_order(
+    this.raw.asInstanceOf[Ptr[GDataInputStream]],
+    order
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -441,8 +447,10 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     */
   def setNewlineType(
       `type`: GDataStreamNewlineType /* Some(GDataStreamNewlineType) */
-  ): Unit /* None */ =
-    g_data_input_stream_set_newline_type(this.raw.asInstanceOf, `type`)
+  ): Unit /* None */ = g_data_input_stream_set_newline_type(
+    this.raw.asInstanceOf[Ptr[GDataInputStream]],
+    `type`
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

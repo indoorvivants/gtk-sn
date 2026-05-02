@@ -49,7 +49,9 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     *
     * This blocked state will be kept across changes of the target instance.
     */
-  def block(): Unit /* None */ = g_signal_group_block(this.raw.asInstanceOf)
+  def block(): Unit /* None */ = g_signal_group_block(
+    this.raw.asInstanceOf[Ptr[GSignalGroup]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -67,7 +69,7 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_signal_group_connect(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSignalGroup]],
     __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
     c_handler,
     data
@@ -93,7 +95,7 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_signal_group_connect_after(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSignalGroup]],
     __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
     c_handler,
     data
@@ -114,7 +116,7 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
       closure: Ptr[GClosure] /* Some(Ptr[GClosure]) */,
       after: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Zone): Unit /* None */ = g_signal_group_connect_closure(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSignalGroup]],
     __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
     closure,
     gboolean(gint((if after == true then 1 else 0)))
@@ -138,7 +140,7 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
       _notify: GClosureNotify /* Some(GClosureNotify) */,
       flags: GConnectFlags /* Some(GConnectFlags) */
   )(using Zone): Unit /* None */ = g_signal_group_connect_data(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSignalGroup]],
     __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
     c_handler,
     data
@@ -167,7 +169,7 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
       `object`: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       flags: GConnectFlags /* Some(GConnectFlags) */
   )(using Zone): Unit /* None */ = g_signal_group_connect_object(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSignalGroup]],
     __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
     c_handler,
     gpointer(`object`),
@@ -193,7 +195,7 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_signal_group_connect_swapped(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSignalGroup]],
     __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
     c_handler,
     data
@@ -206,7 +208,9 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * Gets the target instance used when connecting signals.
     */
   def dupTarget(): Object /* None */ = new Object(
-    g_signal_group_dup_target(this.raw.asInstanceOf).asInstanceOf
+    g_signal_group_dup_target(
+      this.raw.asInstanceOf[Ptr[GSignalGroup]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -221,7 +225,7 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
   def setTarget(
       target: Option[Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */ ]
   ): Unit /* None */ = g_signal_group_set_target(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSignalGroup]],
     target
       .map[_root_.sn.gnome.glib.internal.gpointer](o =>
         gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
@@ -236,7 +240,9 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * exactly the same number of times it has been blocked to become active
     * again.
     */
-  def unblock(): Unit /* None */ = g_signal_group_unblock(this.raw.asInstanceOf)
+  def unblock(): Unit /* None */ = g_signal_group_unblock(
+    this.raw.asInstanceOf[Ptr[GSignalGroup]]
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

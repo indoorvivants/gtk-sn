@@ -55,7 +55,7 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     */
   def add(tag: TextTag /* Some(Ptr[GtkTextTag]) */ ): Boolean /* None */ =
     gtk_text_tag_table_add(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkTextTagTable]],
       tag.getUnsafeRawPointer().asInstanceOf
     ).value.!=(0)
 
@@ -72,7 +72,7 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gtk_text_tag_table_foreach(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTextTagTable]],
     func,
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -84,7 +84,7 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     * Returns the size of the table (number of tags)
     */
   def getSize(): Int /* None */ = gtk_text_tag_table_get_size(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkTextTagTable]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -95,7 +95,7 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
       name: String | CString /* Some(CString) */
   )(using Zone): TextTag /* None */ = new TextTag(
     gtk_text_tag_table_lookup(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkTextTagTable]],
       __sn_extract_string(name)
     ).asInstanceOf
   )
@@ -110,7 +110,7 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     */
   def remove(tag: TextTag /* Some(Ptr[GtkTextTag]) */ ): Unit /* None */ =
     gtk_text_tag_table_remove(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkTextTagTable]],
       tag.getUnsafeRawPointer().asInstanceOf
     )
 

@@ -32,7 +32,7 @@ class FontFamily(raw: Ptr[PangoFontFamily])
       name: Option[String | CString /* Some(CString) */ ]
   )(using Zone): FontFace /* None */ = new FontFace(
     pango_font_family_get_face(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[PangoFontFamily]],
       name
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
@@ -48,7 +48,9 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     * desired.
     */
   def getName()(using Zone): String /* None */ = fromCString(
-    pango_font_family_get_name(this.raw.asInstanceOf).asInstanceOf
+    pango_font_family_get_name(
+      this.raw.asInstanceOf[Ptr[PangoFontFamily]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -67,8 +69,9 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     * of [method@Pango.FontMetrics.get_approximate_char_width] may be affected
     * by double-width characters.
     */
-  def isMonospace(): Boolean /* None */ =
-    pango_font_family_is_monospace(this.raw.asInstanceOf).value.!=(0)
+  def isMonospace(): Boolean /* None */ = pango_font_family_is_monospace(
+    this.raw.asInstanceOf[Ptr[PangoFontFamily]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -78,8 +81,9 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     * Such axes are also known as _variations_; see
     * [method@Pango.FontDescription.set_variations] for more information.
     */
-  def isVariable(): Boolean /* None */ =
-    pango_font_family_is_variable(this.raw.asInstanceOf).value.!=(0)
+  def isVariable(): Boolean /* None */ = pango_font_family_is_variable(
+    this.raw.asInstanceOf[Ptr[PangoFontFamily]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

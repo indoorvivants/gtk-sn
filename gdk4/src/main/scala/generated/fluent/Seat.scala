@@ -25,7 +25,7 @@ class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * Returns the capabilities this `GdkSeat` currently has.
     */
   def getCapabilities(): GdkSeatCapabilities /* None */ =
-    gdk_seat_get_capabilities(this.raw.asInstanceOf)
+    gdk_seat_get_capabilities(this.raw.asInstanceOf[Ptr[GdkSeat]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -34,14 +34,14 @@ class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
   def getDevices(
       capabilities: GdkSeatCapabilities /* Some(GdkSeatCapabilities) */
   ): Ptr[GList] /* None */ =
-    gdk_seat_get_devices(this.raw.asInstanceOf, capabilities)
+    gdk_seat_get_devices(this.raw.asInstanceOf[Ptr[GdkSeat]], capabilities)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `GdkDisplay` this seat belongs to.
     */
   def getDisplay(): Display /* None */ = new Display(
-    gdk_seat_get_display(this.raw.asInstanceOf).asInstanceOf
+    gdk_seat_get_display(this.raw.asInstanceOf[Ptr[GdkSeat]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -49,7 +49,7 @@ class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * Returns the device that routes keyboard events.
     */
   def getKeyboard(): Device /* None */ = new Device(
-    gdk_seat_get_keyboard(this.raw.asInstanceOf).asInstanceOf
+    gdk_seat_get_keyboard(this.raw.asInstanceOf[Ptr[GdkSeat]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -57,7 +57,7 @@ class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * Returns the device that routes pointer events.
     */
   def getPointer(): Device /* None */ = new Device(
-    gdk_seat_get_pointer(this.raw.asInstanceOf).asInstanceOf
+    gdk_seat_get_pointer(this.raw.asInstanceOf[Ptr[GdkSeat]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -65,7 +65,7 @@ class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * Returns all `GdkDeviceTools` that are known to the application.
     */
   def getTools(): Ptr[GList] /* None */ = gdk_seat_get_tools(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkSeat]]
   )
 
 end Seat

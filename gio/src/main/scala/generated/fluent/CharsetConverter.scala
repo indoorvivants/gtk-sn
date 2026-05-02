@@ -31,14 +31,18 @@ class CharsetConverter(raw: Ptr[GCharsetConverter])
     * Gets the number of fallbacks that @converter has applied so far.
     */
   def getNumFallbacks(): UInt /* None */ =
-    g_charset_converter_get_num_fallbacks(this.raw.asInstanceOf).value
+    g_charset_converter_get_num_fallbacks(
+      this.raw.asInstanceOf[Ptr[GCharsetConverter]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the #GCharsetConverter:use-fallback property.
     */
   def getUseFallback(): Boolean /* None */ =
-    g_charset_converter_get_use_fallback(this.raw.asInstanceOf).value.!=(0)
+    g_charset_converter_get_use_fallback(
+      this.raw.asInstanceOf[Ptr[GCharsetConverter]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -47,7 +51,7 @@ class CharsetConverter(raw: Ptr[GCharsetConverter])
   def setUseFallback(
       use_fallback: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_charset_converter_set_use_fallback(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GCharsetConverter]],
     gboolean(gint((if use_fallback == true then 1 else 0)))
   )
 

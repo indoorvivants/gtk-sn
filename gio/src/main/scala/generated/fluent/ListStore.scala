@@ -39,7 +39,7 @@ class ListStore(raw: Ptr[GListStore])
   def append(
       item: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   ): Unit /* None */ = g_list_store_append(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GListStore]],
     gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
   )
 
@@ -104,7 +104,7 @@ class ListStore(raw: Ptr[GListStore])
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       item: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   ): Unit /* None */ = g_list_store_insert(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GListStore]],
     guint(position),
     gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
   )
@@ -127,7 +127,7 @@ class ListStore(raw: Ptr[GListStore])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): UInt /* None */ = g_list_store_insert_sorted(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GListStore]],
     gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
     compare_func,
     user_data
@@ -146,14 +146,14 @@ class ListStore(raw: Ptr[GListStore])
   def remove(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ =
-    g_list_store_remove(this.raw.asInstanceOf, guint(position))
+    g_list_store_remove(this.raw.asInstanceOf[Ptr[GListStore]], guint(position))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes all items from @store.
     */
   def removeAll(): Unit /* None */ = g_list_store_remove_all(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GListStore]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -166,7 +166,7 @@ class ListStore(raw: Ptr[GListStore])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_list_store_sort(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GListStore]],
     compare_func,
     user_data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))

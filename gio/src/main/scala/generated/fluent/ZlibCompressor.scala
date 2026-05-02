@@ -26,7 +26,9 @@ class ZlibCompressor(raw: Ptr[GZlibCompressor])
     * Returns the #GZlibCompressor:file-info property.
     */
   def getFileInfo(): FileInfo /* None */ = new FileInfo(
-    g_zlib_compressor_get_file_info(this.raw.asInstanceOf).asInstanceOf
+    g_zlib_compressor_get_file_info(
+      this.raw.asInstanceOf[Ptr[GZlibCompressor]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -43,7 +45,7 @@ class ZlibCompressor(raw: Ptr[GZlibCompressor])
   def setFileInfo(
       file_info: Option[FileInfo /* Some(Ptr[GFileInfo]) */ ]
   ): Unit /* None */ = g_zlib_compressor_set_file_info(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GZlibCompressor]],
     file_info
       .map[Ptr[GFileInfo]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GFileInfo]])

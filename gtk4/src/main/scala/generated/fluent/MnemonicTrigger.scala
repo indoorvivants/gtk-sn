@@ -26,7 +26,7 @@ class MnemonicTrigger(raw: Ptr[GtkMnemonicTrigger])
     * Gets the keyval that must be pressed to succeed triggering @self.
     */
   def getKeyval(): UInt /* None */ = gtk_mnemonic_trigger_get_keyval(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkMnemonicTrigger]]
   ).value
 
 end MnemonicTrigger

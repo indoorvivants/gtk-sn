@@ -41,7 +41,9 @@ class StackSidebar(raw: Ptr[GtkStackSidebar])
     * Retrieves the stack.
     */
   def getStack(): Stack /* None */ = new Stack(
-    gtk_stack_sidebar_get_stack(this.raw.asInstanceOf).asInstanceOf
+    gtk_stack_sidebar_get_stack(
+      this.raw.asInstanceOf[Ptr[GtkStackSidebar]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -53,7 +55,7 @@ class StackSidebar(raw: Ptr[GtkStackSidebar])
     */
   def setStack(stack: Stack /* Some(Ptr[GtkStack]) */ ): Unit /* None */ =
     gtk_stack_sidebar_set_stack(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkStackSidebar]],
       stack.getUnsafeRawPointer().asInstanceOf
     )
 

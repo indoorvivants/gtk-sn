@@ -27,7 +27,9 @@ class AlternativeTrigger(raw: Ptr[GtkAlternativeTrigger])
     * [method@Gtk.AlternativeTrigger.get_second] will return the other one.
     */
   def getFirst(): ShortcutTrigger /* None */ = new ShortcutTrigger(
-    gtk_alternative_trigger_get_first(this.raw.asInstanceOf).asInstanceOf
+    gtk_alternative_trigger_get_first(
+      this.raw.asInstanceOf[Ptr[GtkAlternativeTrigger]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -37,7 +39,9 @@ class AlternativeTrigger(raw: Ptr[GtkAlternativeTrigger])
     * [method@Gtk.AlternativeTrigger.get_first] will return the other one.
     */
   def getSecond(): ShortcutTrigger /* None */ = new ShortcutTrigger(
-    gtk_alternative_trigger_get_second(this.raw.asInstanceOf).asInstanceOf
+    gtk_alternative_trigger_get_second(
+      this.raw.asInstanceOf[Ptr[GtkAlternativeTrigger]]
+    ).asInstanceOf
   )
 
 end AlternativeTrigger

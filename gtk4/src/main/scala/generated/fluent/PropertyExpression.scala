@@ -23,7 +23,9 @@ class PropertyExpression(raw: Ptr[GtkPropertyExpression])
     * Gets the expression specifying the object of a property expression.
     */
   def getExpression(): Expression /* None */ = new Expression(
-    gtk_property_expression_get_expression(this.raw.asInstanceOf).asInstanceOf
+    gtk_property_expression_get_expression(
+      this.raw.asInstanceOf[Ptr[GtkExpression]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -31,7 +33,9 @@ class PropertyExpression(raw: Ptr[GtkPropertyExpression])
     * Gets the `GParamSpec` specifying the property of a property expression.
     */
   def getPspec(): ParamSpec /* None */ = new ParamSpec(
-    gtk_property_expression_get_pspec(this.raw.asInstanceOf).asInstanceOf
+    gtk_property_expression_get_pspec(
+      this.raw.asInstanceOf[Ptr[GtkExpression]]
+    ).asInstanceOf
   )
 
 end PropertyExpression

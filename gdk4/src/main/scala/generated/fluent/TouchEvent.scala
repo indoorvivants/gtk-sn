@@ -22,6 +22,8 @@ class TouchEvent(raw: Ptr[GdkTouchEvent]) extends Event(raw.asInstanceOf):
     * Extracts whether a touch event is emulating a pointer event.
     */
   def getEmulatingPointer(): Boolean /* None */ =
-    gdk_touch_event_get_emulating_pointer(this.raw.asInstanceOf).value.!=(0)
+    gdk_touch_event_get_emulating_pointer(
+      this.raw.asInstanceOf[Ptr[GdkEvent]]
+    ).value.!=(0)
 
 end TouchEvent

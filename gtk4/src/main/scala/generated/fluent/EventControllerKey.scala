@@ -34,7 +34,7 @@ class EventControllerKey(raw: Ptr[GtkEventControllerKey])
     */
   def forward(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Boolean /* None */ =
     gtk_event_controller_key_forward(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkEventControllerKey]],
       widget.getUnsafeRawPointer().asInstanceOf
     ).value.!=(0)
 
@@ -45,7 +45,7 @@ class EventControllerKey(raw: Ptr[GtkEventControllerKey])
     * See [method@Gdk.KeyEvent.get_layout].
     */
   def getGroup(): UInt /* None */ = gtk_event_controller_key_get_group(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkEventControllerKey]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -53,7 +53,9 @@ class EventControllerKey(raw: Ptr[GtkEventControllerKey])
     * Gets the input method context of the key @controller.
     */
   def getImContext(): IMContext /* None */ = new IMContext(
-    gtk_event_controller_key_get_im_context(this.raw.asInstanceOf).asInstanceOf
+    gtk_event_controller_key_get_im_context(
+      this.raw.asInstanceOf[Ptr[GtkEventControllerKey]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -63,7 +65,7 @@ class EventControllerKey(raw: Ptr[GtkEventControllerKey])
   def setImContext(
       im_context: Option[IMContext /* Some(Ptr[GtkIMContext]) */ ]
   ): Unit /* None */ = gtk_event_controller_key_set_im_context(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEventControllerKey]],
     im_context
       .map[Ptr[GtkIMContext]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkIMContext]])

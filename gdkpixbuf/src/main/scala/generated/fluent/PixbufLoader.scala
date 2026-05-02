@@ -87,7 +87,10 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * you will need to explicitly release any reference you hold.
     */
   def close(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_pixbuf_loader_close(this.raw.asInstanceOf, __errorPtr).value.!=(0)
+    gdk_pixbuf_loader_close(
+      this.raw.asInstanceOf[Ptr[GdkPixbufLoader]],
+      __errorPtr
+    ).value.!=(0)
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -103,7 +106,9 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * `area-prepared` signal, this function will return `NULL`.
     */
   def getAnimation(): PixbufAnimation /* None */ = new PixbufAnimation(
-    gdk_pixbuf_loader_get_animation(this.raw.asInstanceOf).asInstanceOf
+    gdk_pixbuf_loader_get_animation(
+      this.raw.asInstanceOf[Ptr[GdkPixbufLoader]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -112,7 +117,7 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * loading image file.
     */
   def getFormat(): Ptr[GdkPixbufFormat] /* None */ =
-    gdk_pixbuf_loader_get_format(this.raw.asInstanceOf)
+    gdk_pixbuf_loader_get_format(this.raw.asInstanceOf[Ptr[GdkPixbufLoader]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -133,7 +138,9 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * image" of the animation (see gdk_pixbuf_animation_get_static_image()).
     */
   def getPixbuf(): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_loader_get_pixbuf(this.raw.asInstanceOf).asInstanceOf
+    gdk_pixbuf_loader_get_pixbuf(
+      this.raw.asInstanceOf[Ptr[GdkPixbufLoader]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -150,8 +157,11 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
   def setSize(
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Unit /* None */ =
-    gdk_pixbuf_loader_set_size(this.raw.asInstanceOf, width, height)
+  ): Unit /* None */ = gdk_pixbuf_loader_set_size(
+    this.raw.asInstanceOf[Ptr[GdkPixbufLoader]],
+    width,
+    height
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -162,7 +172,7 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
       count: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gdk_pixbuf_loader_write(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkPixbufLoader]],
       buf.asInstanceOf,
       gsize(count),
       __errorPtr
@@ -177,7 +187,7 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
       buffer: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gdk_pixbuf_loader_write_bytes(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkPixbufLoader]],
       buffer,
       __errorPtr
     ).value.!=(0)

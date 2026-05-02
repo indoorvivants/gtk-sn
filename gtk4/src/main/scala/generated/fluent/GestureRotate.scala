@@ -28,7 +28,7 @@ class GestureRotate(raw: Ptr[GtkGestureRotate])
     * 0 is returned.
     */
   def getAngleDelta(): Double /* None */ = gtk_gesture_rotate_get_angle_delta(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkGestureRotate]]
   )
 
 end GestureRotate

@@ -30,7 +30,9 @@ class ListHeader(raw: Ptr[GtkListHeader]) extends Object(raw.asInstanceOf):
     * none was set.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_list_header_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_list_header_get_child(
+      this.raw.asInstanceOf[Ptr[GtkListHeader]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -41,7 +43,7 @@ class ListHeader(raw: Ptr[GtkListHeader]) extends Object(raw.asInstanceOf):
     * If @self is unbound, %GTK_INVALID_LIST_POSITION is returned.
     */
   def getEnd(): UInt /* None */ = gtk_list_header_get_end(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkListHeader]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -52,7 +54,9 @@ class ListHeader(raw: Ptr[GtkListHeader]) extends Object(raw.asInstanceOf):
     * If @self is unbound, this function returns %NULL.
     */
   def getItem(): Object /* None */ = new Object(
-    gtk_list_header_get_item(this.raw.asInstanceOf).asInstanceOf
+    gtk_list_header_get_item(
+      this.raw.asInstanceOf[Ptr[GtkListHeader]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -62,7 +66,7 @@ class ListHeader(raw: Ptr[GtkListHeader]) extends Object(raw.asInstanceOf):
     * If @self is unbound, 0 is returned.
     */
   def getNItems(): UInt /* None */ = gtk_list_header_get_n_items(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkListHeader]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -73,7 +77,7 @@ class ListHeader(raw: Ptr[GtkListHeader]) extends Object(raw.asInstanceOf):
     * If @self is unbound, %GTK_INVALID_LIST_POSITION is returned.
     */
   def getStart(): UInt /* None */ = gtk_list_header_get_start(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkListHeader]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -86,7 +90,7 @@ class ListHeader(raw: Ptr[GtkListHeader]) extends Object(raw.asInstanceOf):
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_list_header_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListHeader]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])

@@ -22,7 +22,7 @@ class ColorNode(raw: Ptr[GskColorNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the color of the given @node.
     */
   def getColor(): Ptr[GdkRGBA] /* None */ = gsk_color_node_get_color(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
 end ColorNode

@@ -453,7 +453,7 @@ class Widget(raw: Ptr[GtkWidget])
       action_name: String | CString /* Some(CString) */,
       enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Zone): Unit /* None */ = gtk_widget_action_set_enabled(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     __sn_extract_string(action_name),
     gboolean(gint((if enabled == true then 1 else 0)))
   )
@@ -476,7 +476,7 @@ class Widget(raw: Ptr[GtkWidget])
     * If @widget isn't activatable, the function returns %FALSE.
     */
   def activate(): Boolean /* None */ =
-    gtk_widget_activate(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_activate(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -491,7 +491,7 @@ class Widget(raw: Ptr[GtkWidget])
       format_string: Option[String | CString /* Some(CString) */ ],
       args: Any*
   )(using Zone): Boolean /* None */ = gtk_widget_activate_action(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     __sn_extract_string(name),
     format_string
       .map[CString](o => __sn_extract_string(o))
@@ -518,7 +518,7 @@ class Widget(raw: Ptr[GtkWidget])
         Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
       ]
   )(using Zone): Boolean /* None */ = gtk_widget_activate_action_variant(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     __sn_extract_string(name),
     args
       .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
@@ -530,7 +530,7 @@ class Widget(raw: Ptr[GtkWidget])
     * Activates the `default.activate` action from @widget.
     */
   def activateDefault(): Unit /* None */ = gtk_widget_activate_default(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -543,7 +543,7 @@ class Widget(raw: Ptr[GtkWidget])
   def addController(
       controller: EventController /* Some(Ptr[GtkEventController]) */
   ): Unit /* None */ = gtk_widget_add_controller(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     controller.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -559,7 +559,7 @@ class Widget(raw: Ptr[GtkWidget])
   def addCssClass(
       css_class: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_widget_add_css_class(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     __sn_extract_string(css_class)
   )
 
@@ -574,7 +574,7 @@ class Widget(raw: Ptr[GtkWidget])
   def addMnemonicLabel(
       label: Widget /* Some(Ptr[GtkWidget]) */
   ): Unit /* None */ = gtk_widget_add_mnemonic_label(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     label.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -609,7 +609,7 @@ class Widget(raw: Ptr[GtkWidget])
       ],
       _notify: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): UInt /* None */ = gtk_widget_add_tick_callback(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     callback,
     user_data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -637,7 +637,7 @@ class Widget(raw: Ptr[GtkWidget])
         GskTransform
       ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]) */ ]
   ): Unit /* None */ = gtk_widget_allocate(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     width,
     height,
     baseline,
@@ -673,8 +673,10 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def childFocus(
       direction: GtkDirectionType /* Some(GtkDirectionType) */
-  ): Boolean /* None */ =
-    gtk_widget_child_focus(this.raw.asInstanceOf, direction).value.!=(0)
+  ): Boolean /* None */ = gtk_widget_child_focus(
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
+    direction
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -714,8 +716,10 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def computeExpand(
       orientation: GtkOrientation /* Some(GtkOrientation) */
-  ): Boolean /* None */ =
-    gtk_widget_compute_expand(this.raw.asInstanceOf, orientation).value.!=(0)
+  ): Boolean /* None */ = gtk_widget_compute_expand(
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
+    orientation
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -759,7 +763,7 @@ class Widget(raw: Ptr[GtkWidget])
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */
   ): Boolean /* None */ =
-    gtk_widget_contains(this.raw.asInstanceOf, x, y).value.!=(0)
+    gtk_widget_contains(this.raw.asInstanceOf[Ptr[GtkWidget]], x, y).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -769,7 +773,9 @@ class Widget(raw: Ptr[GtkWidget])
     * See also [method@Gtk.Widget.get_pango_context].
     */
   def createPangoContext(): Context /* None */ = new Context(
-    gtk_widget_create_pango_context(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_create_pango_context(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -786,7 +792,7 @@ class Widget(raw: Ptr[GtkWidget])
       text: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Layout /* None */ = new Layout(
     gtk_widget_create_pango_layout(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkWidget]],
       text
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
@@ -823,8 +829,10 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def disposeTemplate(
       widget_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */
-  ): Unit /* None */ =
-    gtk_widget_dispose_template(this.raw.asInstanceOf, widget_type)
+  ): Unit /* None */ = gtk_widget_dispose_template(
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
+    widget_type
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -836,7 +844,7 @@ class Widget(raw: Ptr[GtkWidget])
       current_x: Int /* Some(CInt) */,
       current_y: Int /* Some(CInt) */
   ): Boolean /* None */ = gtk_drag_check_threshold(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     start_x,
     start_y,
     current_x,
@@ -855,7 +863,7 @@ class Widget(raw: Ptr[GtkWidget])
     * or window manager that is used.
     */
   def errorBell(): Unit /* None */ = gtk_widget_error_bell(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -867,7 +875,7 @@ class Widget(raw: Ptr[GtkWidget])
     * `GtkWidget`Class.size_allocate().
     */
   def getAllocatedBaseline(): Int /* None */ =
-    gtk_widget_get_allocated_baseline(this.raw.asInstanceOf)
+    gtk_widget_get_allocated_baseline(this.raw.asInstanceOf[Ptr[GtkWidget]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -877,7 +885,7 @@ class Widget(raw: Ptr[GtkWidget])
     * [overview](coordinates.html).
     */
   def getAllocatedHeight(): Int /* None */ = gtk_widget_get_allocated_height(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -888,7 +896,7 @@ class Widget(raw: Ptr[GtkWidget])
     * [overview](coordinates.html).
     */
   def getAllocatedWidth(): Int /* None */ = gtk_widget_get_allocated_width(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -927,7 +935,10 @@ class Widget(raw: Ptr[GtkWidget])
   def getAncestor(
       widget_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */
   ): Widget /* None */ = new Widget(
-    gtk_widget_get_ancestor(this.raw.asInstanceOf, widget_type).asInstanceOf
+    gtk_widget_get_ancestor(
+      this.raw.asInstanceOf[Ptr[GtkWidget]],
+      widget_type
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -939,7 +950,7 @@ class Widget(raw: Ptr[GtkWidget])
     * `GtkWidget`Class.size_allocate().
     */
   def getBaseline(): Int /* None */ = gtk_widget_get_baseline(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -950,14 +961,14 @@ class Widget(raw: Ptr[GtkWidget])
     * See [method@Gtk.Widget.set_focusable].
     */
   def getCanFocus(): Boolean /* None */ =
-    gtk_widget_get_can_focus(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_get_can_focus(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Queries whether @widget can be the target of pointer events.
     */
   def getCanTarget(): Boolean /* None */ =
-    gtk_widget_get_can_target(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_get_can_target(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -969,8 +980,9 @@ class Widget(raw: Ptr[GtkWidget])
     * This function is only useful for container implementations and should
     * never be called by an application.
     */
-  def getChildVisible(): Boolean /* None */ =
-    gtk_widget_get_child_visible(this.raw.asInstanceOf).value.!=(0)
+  def getChildVisible(): Boolean /* None */ = gtk_widget_get_child_visible(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -983,7 +995,7 @@ class Widget(raw: Ptr[GtkWidget])
     * yet.
     */
   def getClipboard(): Clipboard /* None */ = new Clipboard(
-    gtk_widget_get_clipboard(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_clipboard(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1003,15 +1015,16 @@ class Widget(raw: Ptr[GtkWidget])
     * Returns the list of style classes applied to @widget.
     */
   def getCssClasses()(using Zone): Array[String] /* None */ =
-    __decode_nullable_ptrs(gtk_widget_get_css_classes(this.raw.asInstanceOf))
-      .map(fromCString(_))
+    __decode_nullable_ptrs(
+      gtk_widget_get_css_classes(this.raw.asInstanceOf[Ptr[GtkWidget]])
+    ).map(fromCString(_))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the CSS name that is used for @self.
     */
   def getCssName()(using Zone): String /* None */ = fromCString(
-    gtk_widget_get_css_name(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_css_name(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1021,7 +1034,7 @@ class Widget(raw: Ptr[GtkWidget])
     * See [method@Gtk.Widget.set_cursor] for details.
     */
   def getCursor(): Cursor /* None */ = new Cursor(
-    gtk_widget_get_cursor(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_cursor(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1031,7 +1044,7 @@ class Widget(raw: Ptr[GtkWidget])
     * See [method@Gtk.Widget.set_direction].
     */
   def getDirection(): GtkTextDirection /* None */ = gtk_widget_get_direction(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1046,7 +1059,7 @@ class Widget(raw: Ptr[GtkWidget])
     * widget is unrealized.
     */
   def getDisplay(): Display /* None */ = new Display(
-    gtk_widget_get_display(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_display(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1056,7 +1069,9 @@ class Widget(raw: Ptr[GtkWidget])
     * This API is primarily meant for widget implementations.
     */
   def getFirstChild(): Widget /* None */ = new Widget(
-    gtk_widget_get_first_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_first_child(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1064,7 +1079,9 @@ class Widget(raw: Ptr[GtkWidget])
     * Returns the current focus child of @widget.
     */
   def getFocusChild(): Widget /* None */ = new Widget(
-    gtk_widget_get_focus_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_focus_child(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1074,8 +1091,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * See [method@Gtk.Widget.set_focus_on_click].
     */
-  def getFocusOnClick(): Boolean /* None */ =
-    gtk_widget_get_focus_on_click(this.raw.asInstanceOf).value.!=(0)
+  def getFocusOnClick(): Boolean /* None */ = gtk_widget_get_focus_on_click(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1084,7 +1102,7 @@ class Widget(raw: Ptr[GtkWidget])
     * See [method@Gtk.Widget.set_focusable].
     */
   def getFocusable(): Boolean /* None */ =
-    gtk_widget_get_focusable(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_get_focusable(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1093,7 +1111,7 @@ class Widget(raw: Ptr[GtkWidget])
     * See [method@Gtk.Widget.set_font_map].
     */
   def getFontMap(): FontMap /* None */ = new FontMap(
-    gtk_widget_get_font_map(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_font_map(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1103,7 +1121,7 @@ class Widget(raw: Ptr[GtkWidget])
     * Seee [method@Gtk.Widget.set_font_options].
     */
   def getFontOptions(): Ptr[cairo_font_options_t] /* None */ =
-    gtk_widget_get_font_options(this.raw.asInstanceOf)
+    gtk_widget_get_font_options(this.raw.asInstanceOf[Ptr[GtkWidget]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1131,7 +1149,9 @@ class Widget(raw: Ptr[GtkWidget])
     * Unrealized widgets do not have a frame clock.
     */
   def getFrameClock(): FrameClock /* None */ = new FrameClock(
-    gtk_widget_get_frame_clock(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_frame_clock(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1145,15 +1165,16 @@ class Widget(raw: Ptr[GtkWidget])
     * Baselines are not supported for horizontal alignment.
     */
   def getHalign(): GtkAlign /* None */ = gtk_widget_get_halign(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the current value of the `has-tooltip` property.
     */
-  def getHasTooltip(): Boolean /* None */ =
-    gtk_widget_get_has_tooltip(this.raw.asInstanceOf).value.!=(0)
+  def getHasTooltip(): Boolean /* None */ = gtk_widget_get_has_tooltip(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1168,7 +1189,9 @@ class Widget(raw: Ptr[GtkWidget])
     * To learn more about widget sizes, see the coordinate system
     * [overview](coordinates.html).
     */
-  def getHeight(): Int /* None */ = gtk_widget_get_height(this.raw.asInstanceOf)
+  def getHeight(): Int /* None */ = gtk_widget_get_height(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1188,7 +1211,7 @@ class Widget(raw: Ptr[GtkWidget])
     * expand.
     */
   def getHexpand(): Boolean /* None */ =
-    gtk_widget_get_hexpand(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_get_hexpand(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1203,8 +1226,9 @@ class Widget(raw: Ptr[GtkWidget])
     * There are few reasons to use this function, but it’s here for completeness
     * and consistency.
     */
-  def getHexpandSet(): Boolean /* None */ =
-    gtk_widget_get_hexpand_set(this.raw.asInstanceOf).value.!=(0)
+  def getHexpandSet(): Boolean /* None */ = gtk_widget_get_hexpand_set(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1213,7 +1237,9 @@ class Widget(raw: Ptr[GtkWidget])
     * This API is primarily meant for widget implementations.
     */
   def getLastChild(): Widget /* None */ = new Widget(
-    gtk_widget_get_last_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_last_child(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1223,7 +1249,9 @@ class Widget(raw: Ptr[GtkWidget])
     * See [method@Gtk.Widget.set_layout_manager].
     */
   def getLayoutManager(): LayoutManager /* None */ = new LayoutManager(
-    gtk_widget_get_layout_manager(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_layout_manager(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1231,14 +1259,14 @@ class Widget(raw: Ptr[GtkWidget])
     * Whether the widget is mapped.
     */
   def getMapped(): Boolean /* None */ =
-    gtk_widget_get_mapped(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_get_mapped(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the bottom margin of @widget.
     */
   def getMarginBottom(): Int /* None */ = gtk_widget_get_margin_bottom(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1246,7 +1274,7 @@ class Widget(raw: Ptr[GtkWidget])
     * Gets the end margin of @widget.
     */
   def getMarginEnd(): Int /* None */ = gtk_widget_get_margin_end(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1254,7 +1282,7 @@ class Widget(raw: Ptr[GtkWidget])
     * Gets the start margin of @widget.
     */
   def getMarginStart(): Int /* None */ = gtk_widget_get_margin_start(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1262,7 +1290,7 @@ class Widget(raw: Ptr[GtkWidget])
     * Gets the top margin of @widget.
     */
   def getMarginTop(): Int /* None */ = gtk_widget_get_margin_top(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1272,7 +1300,7 @@ class Widget(raw: Ptr[GtkWidget])
     * See [method@Gtk.Widget.set_name] for the significance of widget names.
     */
   def getName()(using Zone): String /* None */ = fromCString(
-    gtk_widget_get_name(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_name(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1285,7 +1313,7 @@ class Widget(raw: Ptr[GtkWidget])
     * `GtkNative` widgets will return themselves here.
     */
   def getNative(): Native /* None */ = new Native.Abstract(
-    gtk_widget_get_native(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_native(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1295,7 +1323,9 @@ class Widget(raw: Ptr[GtkWidget])
     * This API is primarily meant for widget implementations.
     */
   def getNextSibling(): Widget /* None */ = new Widget(
-    gtk_widget_get_next_sibling(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_next_sibling(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1305,7 +1335,7 @@ class Widget(raw: Ptr[GtkWidget])
     * See [method@Gtk.Widget.set_opacity].
     */
   def getOpacity(): Double /* None */ = gtk_widget_get_opacity(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1313,7 +1343,7 @@ class Widget(raw: Ptr[GtkWidget])
     * Returns the widget’s overflow value.
     */
   def getOverflow(): GtkOverflow /* None */ = gtk_widget_get_overflow(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1329,7 +1359,9 @@ class Widget(raw: Ptr[GtkWidget])
     * on the widget.
     */
   def getPangoContext(): Context /* None */ = new Context(
-    gtk_widget_get_pango_context(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_pango_context(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1337,7 +1369,7 @@ class Widget(raw: Ptr[GtkWidget])
     * Returns the parent widget of @widget.
     */
   def getParent(): Widget /* None */ = new Widget(
-    gtk_widget_get_parent(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_parent(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1369,7 +1401,9 @@ class Widget(raw: Ptr[GtkWidget])
     * This API is primarily meant for widget implementations.
     */
   def getPrevSibling(): Widget /* None */ = new Widget(
-    gtk_widget_get_prev_sibling(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_prev_sibling(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1383,7 +1417,9 @@ class Widget(raw: Ptr[GtkWidget])
     * yet.
     */
   def getPrimaryClipboard(): Clipboard /* None */ = new Clipboard(
-    gtk_widget_get_primary_clipboard(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_primary_clipboard(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1391,7 +1427,7 @@ class Widget(raw: Ptr[GtkWidget])
     * Determines whether @widget is realized.
     */
   def getRealized(): Boolean /* None */ =
-    gtk_widget_get_realized(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_get_realized(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1401,7 +1437,8 @@ class Widget(raw: Ptr[GtkWidget])
     * See [method@Gtk.Widget.set_receives_default].
     */
   def getReceivesDefault(): Boolean /* None */ =
-    gtk_widget_get_receives_default(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_get_receives_default(this.raw.asInstanceOf[Ptr[GtkWidget]]).value
+      .!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1413,7 +1450,7 @@ class Widget(raw: Ptr[GtkWidget])
     * children or in context of their allocation capabilities.
     */
   def getRequestMode(): GtkSizeRequestMode /* None */ =
-    gtk_widget_get_request_mode(this.raw.asInstanceOf)
+    gtk_widget_get_request_mode(this.raw.asInstanceOf[Ptr[GtkWidget]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1424,8 +1461,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * `GtkRoot` widgets will return themselves here.
     */
-  def getRoot(): Root /* None */ =
-    new Root.Abstract(gtk_widget_get_root(this.raw.asInstanceOf).asInstanceOf)
+  def getRoot(): Root /* None */ = new Root.Abstract(
+    gtk_widget_get_root(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1438,7 +1476,7 @@ class Widget(raw: Ptr[GtkWidget])
     * See [method@Gdk.Surface.get_scale_factor].
     */
   def getScaleFactor(): Int /* None */ = gtk_widget_get_scale_factor(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1453,7 +1491,7 @@ class Widget(raw: Ptr[GtkWidget])
     * [method@Gtk.Widget.is_sensitive].
     */
   def getSensitive(): Boolean /* None */ =
-    gtk_widget_get_sensitive(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_get_sensitive(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1465,7 +1503,7 @@ class Widget(raw: Ptr[GtkWidget])
     * its settings, connect to the `notify::display` signal.
     */
   def getSettings(): Settings /* None */ = new Settings(
-    gtk_widget_get_settings(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_settings(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1485,7 +1523,8 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def getSize(
       orientation: GtkOrientation /* Some(GtkOrientation) */
-  ): Int /* None */ = gtk_widget_get_size(this.raw.asInstanceOf, orientation)
+  ): Int /* None */ =
+    gtk_widget_get_size(this.raw.asInstanceOf[Ptr[GtkWidget]], orientation)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1516,7 +1555,7 @@ class Widget(raw: Ptr[GtkWidget])
     * should look at [method@Gtk.StyleContext.get_state].
     */
   def getStateFlags(): GtkStateFlags /* None */ = gtk_widget_get_state_flags(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1526,7 +1565,9 @@ class Widget(raw: Ptr[GtkWidget])
     * The returned object is guaranteed to be the same for the lifetime of @widget.
     */
   def getStyleContext(): StyleContext /* None */ = new StyleContext(
-    gtk_widget_get_style_context(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_style_context(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1546,7 +1587,7 @@ class Widget(raw: Ptr[GtkWidget])
       name: String | CString /* Some(CString) */
   )(using Zone): Object /* None */ = new Object(
     gtk_widget_get_template_child(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkWidget]],
       widget_type,
       __sn_extract_string(name)
     ).asInstanceOf
@@ -1560,7 +1601,9 @@ class Widget(raw: Ptr[GtkWidget])
     * [method@Gtk.Widget.set_tooltip_markup], this function returns %NULL.
     */
   def getTooltipMarkup()(using Zone): String /* None */ = fromCString(
-    gtk_widget_get_tooltip_markup(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_tooltip_markup(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1572,7 +1615,9 @@ class Widget(raw: Ptr[GtkWidget])
     * escaped text.
     */
   def getTooltipText()(using Zone): String /* None */ = fromCString(
-    gtk_widget_get_tooltip_text(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_get_tooltip_text(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1580,7 +1625,7 @@ class Widget(raw: Ptr[GtkWidget])
     * Gets the vertical alignment of @widget.
     */
   def getValign(): GtkAlign /* None */ = gtk_widget_get_valign(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1590,7 +1635,7 @@ class Widget(raw: Ptr[GtkWidget])
     * See [method@Gtk.Widget.get_hexpand] for more detail.
     */
   def getVexpand(): Boolean /* None */ =
-    gtk_widget_get_vexpand(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_get_vexpand(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1599,8 +1644,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * See [method@Gtk.Widget.get_hexpand_set] for more detail.
     */
-  def getVexpandSet(): Boolean /* None */ =
-    gtk_widget_get_vexpand_set(this.raw.asInstanceOf).value.!=(0)
+  def getVexpandSet(): Boolean /* None */ = gtk_widget_get_vexpand_set(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1614,7 +1660,7 @@ class Widget(raw: Ptr[GtkWidget])
     * See [method@Gtk.Widget.set_visible].
     */
   def getVisible(): Boolean /* None */ =
-    gtk_widget_get_visible(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_get_visible(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1629,7 +1675,9 @@ class Widget(raw: Ptr[GtkWidget])
     * To learn more about widget sizes, see the coordinate system
     * [overview](coordinates.html).
     */
-  def getWidth(): Int /* None */ = gtk_widget_get_width(this.raw.asInstanceOf)
+  def getWidth(): Int /* None */ = gtk_widget_get_width(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1643,7 +1691,7 @@ class Widget(raw: Ptr[GtkWidget])
     * allowed, should not have an effect, and return %TRUE.
     */
   def grabFocus(): Boolean /* None */ =
-    gtk_widget_grab_focus(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_grab_focus(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1652,7 +1700,7 @@ class Widget(raw: Ptr[GtkWidget])
   def hasCssClass(
       css_class: String | CString /* Some(CString) */
   )(using Zone): Boolean /* None */ = gtk_widget_has_css_class(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     __sn_extract_string(css_class)
   ).value.!=(0)
 
@@ -1662,7 +1710,7 @@ class Widget(raw: Ptr[GtkWidget])
     * toplevel.
     */
   def hasDefault(): Boolean /* None */ =
-    gtk_widget_has_default(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_has_default(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1672,7 +1720,7 @@ class Widget(raw: Ptr[GtkWidget])
     * global input focus, and only having the focus within a toplevel.
     */
   def hasFocus(): Boolean /* None */ =
-    gtk_widget_has_focus(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_has_focus(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1687,8 +1735,9 @@ class Widget(raw: Ptr[GtkWidget])
     * To find out if the widget has the global input focus, use
     * [method@Gtk.Widget.has_focus].
     */
-  def hasVisibleFocus(): Boolean /* None */ =
-    gtk_widget_has_visible_focus(this.raw.asInstanceOf).value.!=(0)
+  def hasVisibleFocus(): Boolean /* None */ = gtk_widget_has_visible_focus(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1696,7 +1745,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * This is causing the widget to be hidden (invisible to the user).
     */
-  def hide(): Unit /* None */ = gtk_widget_hide(this.raw.asInstanceOf)
+  def hide(): Unit /* None */ = gtk_widget_hide(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1705,7 +1756,7 @@ class Widget(raw: Ptr[GtkWidget])
     * This information can sometimes be used to avoid doing unnecessary work.
     */
   def inDestruction(): Boolean /* None */ =
-    gtk_widget_in_destruction(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_in_destruction(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1731,7 +1782,7 @@ class Widget(raw: Ptr[GtkWidget])
     * instance initialization function.
     */
   def initTemplate(): Unit /* None */ = gtk_widget_init_template(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1754,7 +1805,7 @@ class Widget(raw: Ptr[GtkWidget])
         ActionGroup /* Some(Ptr[_root_.sn.gnome.gio.internal.GActionGroup]) */
       ]
   )(using Zone): Unit /* None */ = gtk_widget_insert_action_group(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     __sn_extract_string(name),
     group
       .map[Ptr[_root_.sn.gnome.gio.internal.GActionGroup]](o =>
@@ -1786,7 +1837,7 @@ class Widget(raw: Ptr[GtkWidget])
       parent: Widget /* Some(Ptr[GtkWidget]) */,
       previous_sibling: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_widget_insert_after(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     parent.getUnsafeRawPointer().asInstanceOf,
     previous_sibling
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -1814,7 +1865,7 @@ class Widget(raw: Ptr[GtkWidget])
       parent: Widget /* Some(Ptr[GtkWidget]) */,
       next_sibling: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_widget_insert_before(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     parent.getUnsafeRawPointer().asInstanceOf,
     next_sibling
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -1829,7 +1880,7 @@ class Widget(raw: Ptr[GtkWidget])
   def isAncestor(
       ancestor: Widget /* Some(Ptr[GtkWidget]) */
   ): Boolean /* None */ = gtk_widget_is_ancestor(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     ancestor.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -1840,7 +1891,7 @@ class Widget(raw: Ptr[GtkWidget])
     * A widget can be drawn if it is mapped and visible.
     */
   def isDrawable(): Boolean /* None */ =
-    gtk_widget_is_drawable(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_is_drawable(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1851,7 +1902,7 @@ class Widget(raw: Ptr[GtkWidget])
     * toplevel widget additionally has the global input focus.
     */
   def isFocus(): Boolean /* None */ =
-    gtk_widget_is_focus(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_is_focus(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1860,7 +1911,7 @@ class Widget(raw: Ptr[GtkWidget])
     * This means it is sensitive itself and also its parent widget is sensitive.
     */
   def isSensitive(): Boolean /* None */ =
-    gtk_widget_is_sensitive(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_is_sensitive(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1872,7 +1923,7 @@ class Widget(raw: Ptr[GtkWidget])
     * [method@Gtk.Widget.set_visible].
     */
   def isVisible(): Boolean /* None */ =
-    gtk_widget_is_visible(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_is_visible(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1904,8 +1955,10 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def keynavFailed(
       direction: GtkDirectionType /* Some(GtkDirectionType) */
-  ): Boolean /* None */ =
-    gtk_widget_keynav_failed(this.raw.asInstanceOf, direction).value.!=(0)
+  ): Boolean /* None */ = gtk_widget_keynav_failed(
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
+    direction
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1921,7 +1974,7 @@ class Widget(raw: Ptr[GtkWidget])
     * all the widgets afterwards.
     */
   def listMnemonicLabels(): Ptr[GList] /* None */ =
-    gtk_widget_list_mnemonic_labels(this.raw.asInstanceOf)
+    gtk_widget_list_mnemonic_labels(this.raw.asInstanceOf[Ptr[GtkWidget]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1929,7 +1982,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * This function is only for use in widget implementations.
     */
-  def map(): Unit /* None */ = gtk_widget_map(this.raw.asInstanceOf)
+  def map(): Unit /* None */ = gtk_widget_map(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1957,7 +2012,7 @@ class Widget(raw: Ptr[GtkWidget])
   def mnemonicActivate(
       group_cycling: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Boolean /* None */ = gtk_widget_mnemonic_activate(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     gboolean(gint((if group_cycling == true then 1 else 0)))
   ).value.!=(0)
 
@@ -1973,7 +2028,9 @@ class Widget(raw: Ptr[GtkWidget])
     * slowdowns.
     */
   def observeChildren(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_widget_observe_children(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_observe_children(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1988,7 +2045,9 @@ class Widget(raw: Ptr[GtkWidget])
     * slowdowns.
     */
   def observeControllers(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_widget_observe_controllers(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_observe_controllers(
+      this.raw.asInstanceOf[Ptr[GtkWidget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -2011,7 +2070,12 @@ class Widget(raw: Ptr[GtkWidget])
       y: Double /* Some(Double) */,
       flags: GtkPickFlags /* Some(GtkPickFlags) */
   ): Widget /* None */ = new Widget(
-    gtk_widget_pick(this.raw.asInstanceOf, x, y, flags).asInstanceOf
+    gtk_widget_pick(
+      this.raw.asInstanceOf[Ptr[GtkWidget]],
+      x,
+      y,
+      flags
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -2027,7 +2091,7 @@ class Widget(raw: Ptr[GtkWidget])
     * This function is only for use in widget implementations.
     */
   def queueAllocate(): Unit /* None */ = gtk_widget_queue_allocate(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -2039,7 +2103,7 @@ class Widget(raw: Ptr[GtkWidget])
     * called.
     */
   def queueDraw(): Unit /* None */ = gtk_widget_queue_draw(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -2058,7 +2122,7 @@ class Widget(raw: Ptr[GtkWidget])
     * This function is only for use in widget implementations.
     */
   def queueResize(): Unit /* None */ = gtk_widget_queue_resize(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -2079,7 +2143,9 @@ class Widget(raw: Ptr[GtkWidget])
     * approach is to connect to a signal that will be called after the widget is
     * realized automatically, such as [signal@Gtk.Widget::realize].
     */
-  def realize(): Unit /* None */ = gtk_widget_realize(this.raw.asInstanceOf)
+  def realize(): Unit /* None */ = gtk_widget_realize(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2094,7 +2160,7 @@ class Widget(raw: Ptr[GtkWidget])
   def removeController(
       controller: EventController /* Some(Ptr[GtkEventController]) */
   ): Unit /* None */ = gtk_widget_remove_controller(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     controller.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -2107,7 +2173,7 @@ class Widget(raw: Ptr[GtkWidget])
   def removeCssClass(
       css_class: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_widget_remove_css_class(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     __sn_extract_string(css_class)
   )
 
@@ -2122,7 +2188,7 @@ class Widget(raw: Ptr[GtkWidget])
   def removeMnemonicLabel(
       label: Widget /* Some(Ptr[GtkWidget]) */
   ): Unit /* None */ = gtk_widget_remove_mnemonic_label(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     label.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -2133,8 +2199,10 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def removeTickCallback(
       id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_widget_remove_tick_callback(this.raw.asInstanceOf, guint(id))
+  ): Unit /* None */ = gtk_widget_remove_tick_callback(
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
+    guint(id)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2155,7 +2223,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setCanFocus(
       can_focus: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_can_focus(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     gboolean(gint((if can_focus == true then 1 else 0)))
   )
 
@@ -2166,7 +2234,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setCanTarget(
       can_target: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_can_target(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     gboolean(gint((if can_target == true then 1 else 0)))
   )
 
@@ -2190,7 +2258,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setChildVisible(
       child_visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_child_visible(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     gboolean(gint((if child_visible == true then 1 else 0)))
   )
 
@@ -2201,7 +2269,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setCssClasses(
       classes: Ptr[CString] /* Some(Ptr[CString]) */
   )(using Zone): Unit /* None */ =
-    gtk_widget_set_css_classes(this.raw.asInstanceOf, classes)
+    gtk_widget_set_css_classes(this.raw.asInstanceOf[Ptr[GtkWidget]], classes)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2215,7 +2283,7 @@ class Widget(raw: Ptr[GtkWidget])
         Cursor /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkCursor]) */
       ]
   ): Unit /* None */ = gtk_widget_set_cursor(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     cursor
       .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkCursor]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -2239,7 +2307,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setCursorFromName(
       name: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_widget_set_cursor_from_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     name
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -2263,7 +2331,8 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setDirection(
       dir: GtkTextDirection /* Some(GtkTextDirection) */
-  ): Unit /* None */ = gtk_widget_set_direction(this.raw.asInstanceOf, dir)
+  ): Unit /* None */ =
+    gtk_widget_set_direction(this.raw.asInstanceOf[Ptr[GtkWidget]], dir)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2276,7 +2345,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setFocusChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_widget_set_focus_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -2294,7 +2363,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setFocusOnClick(
       focus_on_click: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_focus_on_click(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     gboolean(gint((if focus_on_click == true then 1 else 0)))
   )
 
@@ -2316,7 +2385,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setFocusable(
       focusable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_focusable(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     gboolean(gint((if focusable == true then 1 else 0)))
   )
 
@@ -2335,7 +2404,7 @@ class Widget(raw: Ptr[GtkWidget])
         FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
       ]
   ): Unit /* None */ = gtk_widget_set_font_map(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     font_map
       .map[Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -2356,7 +2425,7 @@ class Widget(raw: Ptr[GtkWidget])
         cairo_font_options_t
       ] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_font_options_t]) */ ]
   ): Unit /* None */ = gtk_widget_set_font_options(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     options
       .map[Ptr[_root_.sn.gnome.cairo.internal.cairo_font_options_t]](o => o)
       .getOrElse(
@@ -2371,7 +2440,7 @@ class Widget(raw: Ptr[GtkWidget])
     * Sets the horizontal alignment of @widget.
     */
   def setHalign(align: GtkAlign /* Some(GtkAlign) */ ): Unit /* None */ =
-    gtk_widget_set_halign(this.raw.asInstanceOf, align)
+    gtk_widget_set_halign(this.raw.asInstanceOf[Ptr[GtkWidget]], align)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2380,7 +2449,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setHasTooltip(
       has_tooltip: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_has_tooltip(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     gboolean(gint((if has_tooltip == true then 1 else 0)))
   )
 
@@ -2414,7 +2483,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setHexpand(
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_hexpand(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     gboolean(gint((if expand == true then 1 else 0)))
   )
 
@@ -2437,7 +2506,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setHexpandSet(
       set: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_hexpand_set(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     gboolean(gint((if set == true then 1 else 0)))
   )
 
@@ -2449,7 +2518,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setLayoutManager(
       layout_manager: Option[LayoutManager /* Some(Ptr[GtkLayoutManager]) */ ]
   ): Unit /* None */ = gtk_widget_set_layout_manager(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     layout_manager
       .map[Ptr[GtkLayoutManager]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkLayoutManager]])
@@ -2460,28 +2529,28 @@ class Widget(raw: Ptr[GtkWidget])
     * Sets the bottom margin of @widget.
     */
   def setMarginBottom(margin: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_widget_set_margin_bottom(this.raw.asInstanceOf, margin)
+    gtk_widget_set_margin_bottom(this.raw.asInstanceOf[Ptr[GtkWidget]], margin)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the end margin of @widget.
     */
   def setMarginEnd(margin: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_widget_set_margin_end(this.raw.asInstanceOf, margin)
+    gtk_widget_set_margin_end(this.raw.asInstanceOf[Ptr[GtkWidget]], margin)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the start margin of @widget.
     */
   def setMarginStart(margin: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_widget_set_margin_start(this.raw.asInstanceOf, margin)
+    gtk_widget_set_margin_start(this.raw.asInstanceOf[Ptr[GtkWidget]], margin)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the top margin of @widget.
     */
   def setMarginTop(margin: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_widget_set_margin_top(this.raw.asInstanceOf, margin)
+    gtk_widget_set_margin_top(this.raw.asInstanceOf[Ptr[GtkWidget]], margin)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2499,8 +2568,10 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setName(
       name: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ =
-    gtk_widget_set_name(this.raw.asInstanceOf, __sn_extract_string(name))
+  )(using Zone): Unit /* None */ = gtk_widget_set_name(
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
+    __sn_extract_string(name)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2526,7 +2597,7 @@ class Widget(raw: Ptr[GtkWidget])
     * that is translucent.
     */
   def setOpacity(opacity: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_widget_set_opacity(this.raw.asInstanceOf, opacity)
+    gtk_widget_set_opacity(this.raw.asInstanceOf[Ptr[GtkWidget]], opacity)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2542,7 +2613,8 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setOverflow(
       overflow: GtkOverflow /* Some(GtkOverflow) */
-  ): Unit /* None */ = gtk_widget_set_overflow(this.raw.asInstanceOf, overflow)
+  ): Unit /* None */ =
+    gtk_widget_set_overflow(this.raw.asInstanceOf[Ptr[GtkWidget]], overflow)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2556,7 +2628,7 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setParent(parent: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_widget_set_parent(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkWidget]],
       parent.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -2568,7 +2640,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setReceivesDefault(
       receives_default: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_receives_default(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     gboolean(gint((if receives_default == true then 1 else 0)))
   )
 
@@ -2584,7 +2656,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setSensitive(
       sensitive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_sensitive(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     gboolean(gint((if sensitive == true then 1 else 0)))
   )
 
@@ -2623,8 +2695,11 @@ class Widget(raw: Ptr[GtkWidget])
   def setSizeRequest(
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Unit /* None */ =
-    gtk_widget_set_size_request(this.raw.asInstanceOf, width, height)
+  ): Unit /* None */ = gtk_widget_set_size_request(
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
+    width,
+    height
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2642,7 +2717,7 @@ class Widget(raw: Ptr[GtkWidget])
       flags: GtkStateFlags /* Some(GtkStateFlags) */,
       clear: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_state_flags(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     flags,
     gboolean(gint((if clear == true then 1 else 0)))
   )
@@ -2661,7 +2736,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setTooltipMarkup(
       markup: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_widget_set_tooltip_markup(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     markup
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -2682,7 +2757,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setTooltipText(
       text: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_widget_set_tooltip_text(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     text
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -2693,7 +2768,7 @@ class Widget(raw: Ptr[GtkWidget])
     * Sets the vertical alignment of @widget.
     */
   def setValign(align: GtkAlign /* Some(GtkAlign) */ ): Unit /* None */ =
-    gtk_widget_set_valign(this.raw.asInstanceOf, align)
+    gtk_widget_set_valign(this.raw.asInstanceOf[Ptr[GtkWidget]], align)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2704,7 +2779,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setVexpand(
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_vexpand(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     gboolean(gint((if expand == true then 1 else 0)))
   )
 
@@ -2717,7 +2792,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setVexpandSet(
       set: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_vexpand_set(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     gboolean(gint((if set == true then 1 else 0)))
   )
 
@@ -2731,7 +2806,7 @@ class Widget(raw: Ptr[GtkWidget])
   def setVisible(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_visible(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     gboolean(gint((if visible == true then 1 else 0)))
   )
 
@@ -2744,7 +2819,7 @@ class Widget(raw: Ptr[GtkWidget])
     * their own surface.
     */
   def shouldLayout(): Boolean /* None */ =
-    gtk_widget_should_layout(this.raw.asInstanceOf).value.!=(0)
+    gtk_widget_should_layout(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2759,7 +2834,9 @@ class Widget(raw: Ptr[GtkWidget])
     * other shown widgets are realized and mapped when their toplevel container
     * is realized and mapped.
     */
-  def show(): Unit /* None */ = gtk_widget_show(this.raw.asInstanceOf)
+  def show(): Unit /* None */ = gtk_widget_show(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2771,8 +2848,11 @@ class Widget(raw: Ptr[GtkWidget])
   def sizeAllocate(
       allocation: Ptr[GtkAllocation] /* Some(Ptr[GtkAllocation]) */,
       baseline: Int /* Some(CInt) */
-  ): Unit /* None */ =
-    gtk_widget_size_allocate(this.raw.asInstanceOf, allocation, baseline)
+  ): Unit /* None */ = gtk_widget_size_allocate(
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
+    allocation,
+    baseline
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2795,7 +2875,7 @@ class Widget(raw: Ptr[GtkWidget])
       child: Widget /* Some(Ptr[GtkWidget]) */,
       snapshot: Snapshot /* Some(Ptr[GtkSnapshot]) */
   ): Unit /* None */ = gtk_widget_snapshot_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
     child.getUnsafeRawPointer().asInstanceOf,
     snapshot.getUnsafeRawPointer().asInstanceOf
   )
@@ -2819,7 +2899,7 @@ class Widget(raw: Ptr[GtkWidget])
     * located.
     */
   def triggerTooltipQuery(): Unit /* None */ = gtk_widget_trigger_tooltip_query(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -2828,7 +2908,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * This function is only for use in widget implementations.
     */
-  def unmap(): Unit /* None */ = gtk_widget_unmap(this.raw.asInstanceOf)
+  def unmap(): Unit /* None */ = gtk_widget_unmap(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2837,7 +2919,9 @@ class Widget(raw: Ptr[GtkWidget])
     * This function is only for use in widget implementations, typically in
     * dispose.
     */
-  def unparent(): Unit /* None */ = gtk_widget_unparent(this.raw.asInstanceOf)
+  def unparent(): Unit /* None */ = gtk_widget_unparent(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2846,7 +2930,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * This function is only useful in widget implementations.
     */
-  def unrealize(): Unit /* None */ = gtk_widget_unrealize(this.raw.asInstanceOf)
+  def unrealize(): Unit /* None */ = gtk_widget_unrealize(
+    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2859,7 +2945,7 @@ class Widget(raw: Ptr[GtkWidget])
   def unsetStateFlags(
       flags: GtkStateFlags /* Some(GtkStateFlags) */
   ): Unit /* None */ =
-    gtk_widget_unset_state_flags(this.raw.asInstanceOf, flags)
+    gtk_widget_unset_state_flags(this.raw.asInstanceOf[Ptr[GtkWidget]], flags)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

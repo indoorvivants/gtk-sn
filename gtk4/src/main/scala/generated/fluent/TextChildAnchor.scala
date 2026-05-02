@@ -30,8 +30,9 @@ class TextChildAnchor(raw: Ptr[GtkTextChildAnchor])
     * if you plan to use this function — otherwise all deleted child anchors
     * will also be finalized.
     */
-  def getDeleted(): Boolean /* None */ =
-    gtk_text_child_anchor_get_deleted(this.raw.asInstanceOf).value.!=(0)
+  def getDeleted(): Boolean /* None */ = gtk_text_child_anchor_get_deleted(
+    this.raw.asInstanceOf[Ptr[GtkTextChildAnchor]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

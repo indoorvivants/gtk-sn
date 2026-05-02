@@ -39,7 +39,9 @@ class FontMap(raw: Ptr[PangoFontMap])
     * something applications won't do. Backends should call this function if
     * they have attached extra data to the context and such data is changed.
     */
-  def changed(): Unit /* None */ = pango_font_map_changed(this.raw.asInstanceOf)
+  def changed(): Unit /* None */ = pango_font_map_changed(
+    this.raw.asInstanceOf[Ptr[PangoFontMap]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -54,7 +56,9 @@ class FontMap(raw: Ptr[PangoFontMap])
     * instead.
     */
   def createContext(): Context /* None */ = new Context(
-    pango_font_map_create_context(this.raw.asInstanceOf).asInstanceOf
+    pango_font_map_create_context(
+      this.raw.asInstanceOf[Ptr[PangoFontMap]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -65,7 +69,7 @@ class FontMap(raw: Ptr[PangoFontMap])
       name: String | CString /* Some(CString) */
   )(using Zone): FontFamily /* None */ = new FontFamily(
     pango_font_map_get_family(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[PangoFontMap]],
       __sn_extract_string(name)
     ).asInstanceOf
   )
@@ -86,7 +90,7 @@ class FontMap(raw: Ptr[PangoFontMap])
     * in `PangoContext`.
     */
   def getSerial(): UInt /* None */ = pango_font_map_get_serial(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[PangoFontMap]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -112,7 +116,7 @@ class FontMap(raw: Ptr[PangoFontMap])
       desc: Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */
   ): Font /* None */ = new Font(
     pango_font_map_load_font(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[PangoFontMap]],
       context.getUnsafeRawPointer().asInstanceOf,
       desc
     ).asInstanceOf
@@ -129,7 +133,7 @@ class FontMap(raw: Ptr[PangoFontMap])
       language: Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */
   ): Fontset /* None */ = new Fontset(
     pango_font_map_load_fontset(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[PangoFontMap]],
       context.getUnsafeRawPointer().asInstanceOf,
       desc,
       language

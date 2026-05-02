@@ -63,7 +63,7 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gtk_font_dialog_choose_face(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
     parent
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
@@ -101,7 +101,7 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
   ): GResult[FontFace /* None */ ] = GResult.wrap(__errorPtr =>
     new FontFace(
       gtk_font_dialog_choose_face_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GtkFontDialog]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf
@@ -131,7 +131,7 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gtk_font_dialog_choose_family(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
     parent
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
@@ -173,7 +173,7 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
   ): GResult[FontFamily /* None */ ] = GResult.wrap(__errorPtr =>
     new FontFamily(
       gtk_font_dialog_choose_family_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GtkFontDialog]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf
@@ -206,7 +206,7 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gtk_font_dialog_choose_font(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
     parent
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
@@ -261,7 +261,7 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gtk_font_dialog_choose_font_and_features(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
     parent
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
@@ -308,7 +308,7 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Ptr[PangoFontDescription] /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_font_dialog_choose_font_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkFontDialog]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -320,7 +320,9 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     * dialog.
     */
   def getFilter(): Filter /* None */ = new Filter(
-    gtk_font_dialog_get_filter(this.raw.asInstanceOf).asInstanceOf
+    gtk_font_dialog_get_filter(
+      this.raw.asInstanceOf[Ptr[GtkFontDialog]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -329,7 +331,9 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     * default fontmap.
     */
   def getFontMap(): FontMap /* None */ = new FontMap(
-    gtk_font_dialog_get_font_map(this.raw.asInstanceOf).asInstanceOf
+    gtk_font_dialog_get_font_map(
+      this.raw.asInstanceOf[Ptr[GtkFontDialog]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -337,22 +341,25 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     * Returns the language for which font features are applied.
     */
   def getLanguage(): Ptr[PangoLanguage] /* None */ =
-    gtk_font_dialog_get_language(this.raw.asInstanceOf)
+    gtk_font_dialog_get_language(this.raw.asInstanceOf[Ptr[GtkFontDialog]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the font chooser dialog blocks interaction with the parent
     * window while it is presented.
     */
-  def getModal(): Boolean /* None */ =
-    gtk_font_dialog_get_modal(this.raw.asInstanceOf).value.!=(0)
+  def getModal(): Boolean /* None */ = gtk_font_dialog_get_modal(
+    this.raw.asInstanceOf[Ptr[GtkFontDialog]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the title that will be shown on the font chooser dialog.
     */
   def getTitle()(using Zone): String /* None */ = fromCString(
-    gtk_font_dialog_get_title(this.raw.asInstanceOf).asInstanceOf
+    gtk_font_dialog_get_title(
+      this.raw.asInstanceOf[Ptr[GtkFontDialog]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -366,7 +373,7 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
   def setFilter(
       filter: Option[Filter /* Some(Ptr[GtkFilter]) */ ]
   ): Unit /* None */ = gtk_font_dialog_set_filter(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
     filter
       .map[Ptr[GtkFilter]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkFilter]])
@@ -383,7 +390,7 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
         FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
       ]
   ): Unit /* None */ = gtk_font_dialog_set_font_map(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
     fontmap
       .map[Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -401,8 +408,10 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
       language: Ptr[
         PangoLanguage
       ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoLanguage]) */
-  ): Unit /* None */ =
-    gtk_font_dialog_set_language(this.raw.asInstanceOf, language)
+  ): Unit /* None */ = gtk_font_dialog_set_language(
+    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
+    language
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -412,7 +421,7 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_font_dialog_set_modal(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
     gboolean(gint((if modal == true then 1 else 0)))
   )
 
@@ -422,8 +431,10 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     */
   def setTitle(
       title: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ =
-    gtk_font_dialog_set_title(this.raw.asInstanceOf, __sn_extract_string(title))
+  )(using Zone): Unit /* None */ = gtk_font_dialog_set_title(
+    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
+    __sn_extract_string(title)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

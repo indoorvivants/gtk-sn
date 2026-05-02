@@ -33,8 +33,9 @@ class DropControllerMotion(raw: Ptr[GtkDropControllerMotion])
     *   or one of its children.
     */
   def containsPointer(): Boolean /* None */ =
-    gtk_drop_controller_motion_contains_pointer(this.raw.asInstanceOf).value
-      .!=(0)
+    gtk_drop_controller_motion_contains_pointer(
+      this.raw.asInstanceOf[Ptr[GtkDropControllerMotion]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -42,7 +43,9 @@ class DropControllerMotion(raw: Ptr[GtkDropControllerMotion])
     * of @self.
     */
   def getDrop(): Drop /* None */ = new Drop(
-    gtk_drop_controller_motion_get_drop(this.raw.asInstanceOf).asInstanceOf
+    gtk_drop_controller_motion_get_drop(
+      this.raw.asInstanceOf[Ptr[GtkDropControllerMotion]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -51,8 +54,9 @@ class DropControllerMotion(raw: Ptr[GtkDropControllerMotion])
     * @self,
     *   not one of its children.
     */
-  def isPointer(): Boolean /* None */ =
-    gtk_drop_controller_motion_is_pointer(this.raw.asInstanceOf).value.!=(0)
+  def isPointer(): Boolean /* None */ = gtk_drop_controller_motion_is_pointer(
+    this.raw.asInstanceOf[Ptr[GtkDropControllerMotion]]
+  ).value.!=(0)
 
 end DropControllerMotion
 

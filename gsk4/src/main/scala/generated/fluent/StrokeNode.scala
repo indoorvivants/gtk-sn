@@ -23,7 +23,9 @@ class StrokeNode(raw: Ptr[GskStrokeNode]) extends RenderNode(raw.asInstanceOf):
     * Gets the child node that is getting drawn by the given @node.
     */
   def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_stroke_node_get_child(this.raw.asInstanceOf).asInstanceOf
+    gsk_stroke_node_get_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -31,7 +33,7 @@ class StrokeNode(raw: Ptr[GskStrokeNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the path that will be stroked with the contents of the @node.
     */
   def getPath(): Ptr[GskPath] /* None */ = gsk_stroke_node_get_path(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -39,7 +41,7 @@ class StrokeNode(raw: Ptr[GskStrokeNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the stroke attributes used in this @node.
     */
   def getStroke(): Ptr[GskStroke] /* None */ = gsk_stroke_node_get_stroke(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
 end StrokeNode

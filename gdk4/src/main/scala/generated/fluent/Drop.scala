@@ -50,7 +50,8 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     */
   def finish(
       action: GdkDragAction /* Some(GdkDragAction) */
-  ): Unit /* None */ = gdk_drop_finish(this.raw.asInstanceOf, action)
+  ): Unit /* None */ =
+    gdk_drop_finish(this.raw.asInstanceOf[Ptr[GdkDrop]], action)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -69,7 +70,7 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * not change this value anymore once a drop has started.
     */
   def getActions(): GdkDragAction /* None */ = gdk_drop_get_actions(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkDrop]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -77,7 +78,7 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * Returns the `GdkDevice` performing the drop.
     */
   def getDevice(): Device /* None */ = new Device(
-    gdk_drop_get_device(this.raw.asInstanceOf).asInstanceOf
+    gdk_drop_get_device(this.raw.asInstanceOf[Ptr[GdkDrop]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -85,7 +86,7 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * Gets the `GdkDisplay` that @self was created for.
     */
   def getDisplay(): Display /* None */ = new Display(
-    gdk_drop_get_display(this.raw.asInstanceOf).asInstanceOf
+    gdk_drop_get_display(this.raw.asInstanceOf[Ptr[GdkDrop]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -96,7 +97,7 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * If it is not, %NULL is returned.
     */
   def getDrag(): Drag /* None */ = new Drag(
-    gdk_drop_get_drag(this.raw.asInstanceOf).asInstanceOf
+    gdk_drop_get_drag(this.raw.asInstanceOf[Ptr[GdkDrop]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -105,7 +106,7 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * in.
     */
   def getFormats(): Ptr[GdkContentFormats] /* None */ = gdk_drop_get_formats(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkDrop]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -113,7 +114,7 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * Returns the `GdkSurface` performing the drop.
     */
   def getSurface(): Surface /* None */ = new Surface(
-    gdk_drop_get_surface(this.raw.asInstanceOf).asInstanceOf
+    gdk_drop_get_surface(this.raw.asInstanceOf[Ptr[GdkDrop]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -157,7 +158,7 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gdk_drop_read_value_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkDrop]],
     `type`,
     io_priority,
     cancellable
@@ -187,7 +188,7 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Ptr[GValue] /* None */ ] = GResult.wrap(__errorPtr =>
     gdk_drop_read_value_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkDrop]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -213,6 +214,6 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
       actions: GdkDragAction /* Some(GdkDragAction) */,
       preferred: GdkDragAction /* Some(GdkDragAction) */
   ): Unit /* None */ =
-    gdk_drop_status(this.raw.asInstanceOf, actions, preferred)
+    gdk_drop_status(this.raw.asInstanceOf[Ptr[GdkDrop]], actions, preferred)
 
 end Drop

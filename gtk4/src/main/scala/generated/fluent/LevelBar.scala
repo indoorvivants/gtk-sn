@@ -140,7 +140,7 @@ class LevelBar(raw: Ptr[GtkLevelBar])
       name: String | CString /* Some(CString) */,
       value: Double /* Some(Double) */
   )(using Zone): Unit /* None */ = gtk_level_bar_add_offset_value(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLevelBar]],
     __sn_extract_string(name),
     value
   )
@@ -149,15 +149,16 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     *
     * Returns whether the levelbar is inverted.
     */
-  def getInverted(): Boolean /* None */ =
-    gtk_level_bar_get_inverted(this.raw.asInstanceOf).value.!=(0)
+  def getInverted(): Boolean /* None */ = gtk_level_bar_get_inverted(
+    this.raw.asInstanceOf[Ptr[GtkLevelBar]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `max-value` of the `GtkLevelBar`.
     */
   def getMaxValue(): Double /* None */ = gtk_level_bar_get_max_value(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLevelBar]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -165,7 +166,7 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     * Returns the `min-value` of the `GtkLevelBar`.
     */
   def getMinValue(): Double /* None */ = gtk_level_bar_get_min_value(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLevelBar]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -173,7 +174,7 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     * Returns the `mode` of the `GtkLevelBar`.
     */
   def getMode(): GtkLevelBarMode /* None */ = gtk_level_bar_get_mode(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLevelBar]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -190,7 +191,7 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     * Returns the `value` of the `GtkLevelBar`.
     */
   def getValue(): Double /* None */ = gtk_level_bar_get_value(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLevelBar]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -203,7 +204,7 @@ class LevelBar(raw: Ptr[GtkLevelBar])
   def removeOffsetValue(
       name: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_level_bar_remove_offset_value(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLevelBar]],
     name
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -216,7 +217,7 @@ class LevelBar(raw: Ptr[GtkLevelBar])
   def setInverted(
       inverted: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_level_bar_set_inverted(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLevelBar]],
     gboolean(gint((if inverted == true then 1 else 0)))
   )
 
@@ -228,7 +229,7 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     * function.
     */
   def setMaxValue(value: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_level_bar_set_max_value(this.raw.asInstanceOf, value)
+    gtk_level_bar_set_max_value(this.raw.asInstanceOf[Ptr[GtkLevelBar]], value)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -238,7 +239,7 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     * function.
     */
   def setMinValue(value: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_level_bar_set_min_value(this.raw.asInstanceOf, value)
+    gtk_level_bar_set_min_value(this.raw.asInstanceOf[Ptr[GtkLevelBar]], value)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -246,14 +247,15 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     */
   def setMode(
       mode: GtkLevelBarMode /* Some(GtkLevelBarMode) */
-  ): Unit /* None */ = gtk_level_bar_set_mode(this.raw.asInstanceOf, mode)
+  ): Unit /* None */ =
+    gtk_level_bar_set_mode(this.raw.asInstanceOf[Ptr[GtkLevelBar]], mode)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the value of the `GtkLevelBar`.
     */
   def setValue(value: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_level_bar_set_value(this.raw.asInstanceOf, value)
+    gtk_level_bar_set_value(this.raw.asInstanceOf[Ptr[GtkLevelBar]], value)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

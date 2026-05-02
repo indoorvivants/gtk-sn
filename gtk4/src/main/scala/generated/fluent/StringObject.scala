@@ -24,7 +24,9 @@ class StringObject(raw: Ptr[GtkStringObject]) extends Object(raw.asInstanceOf):
     * Returns the string contained in a `GtkStringObject`.
     */
   def getString()(using Zone): String /* None */ = fromCString(
-    gtk_string_object_get_string(this.raw.asInstanceOf).asInstanceOf
+    gtk_string_object_get_string(
+      this.raw.asInstanceOf[Ptr[GtkStringObject]]
+    ).asInstanceOf
   )
 
 end StringObject

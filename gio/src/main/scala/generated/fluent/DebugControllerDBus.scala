@@ -150,7 +150,7 @@ class DebugControllerDBus(raw: Ptr[GDebugControllerDBus])
     * handler will cause a deadlock and must not be done.
     */
   def stop(): Unit /* None */ = g_debug_controller_dbus_stop(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GDebugControllerDBus]]
   )
 
 end DebugControllerDBus

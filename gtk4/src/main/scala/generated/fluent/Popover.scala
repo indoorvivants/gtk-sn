@@ -112,21 +112,22 @@ class Popover(raw: Ptr[GtkPopover])
     * See [method@Gtk.Popover.set_autohide] for the implications of this.
     */
   def getAutohide(): Boolean /* None */ =
-    gtk_popover_get_autohide(this.raw.asInstanceOf).value.!=(0)
+    gtk_popover_get_autohide(this.raw.asInstanceOf[Ptr[GtkPopover]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the popover will close after a modal child is closed.
     */
-  def getCascadePopdown(): Boolean /* None */ =
-    gtk_popover_get_cascade_popdown(this.raw.asInstanceOf).value.!=(0)
+  def getCascadePopdown(): Boolean /* None */ = gtk_popover_get_cascade_popdown(
+    this.raw.asInstanceOf[Ptr[GtkPopover]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the child widget of @popover.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_popover_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_popover_get_child(this.raw.asInstanceOf[Ptr[GtkPopover]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -134,15 +135,18 @@ class Popover(raw: Ptr[GtkPopover])
     * Gets whether this popover is showing an arrow pointing at the widget that
     * it is relative to.
     */
-  def getHasArrow(): Boolean /* None */ =
-    gtk_popover_get_has_arrow(this.raw.asInstanceOf).value.!=(0)
+  def getHasArrow(): Boolean /* None */ = gtk_popover_get_has_arrow(
+    this.raw.asInstanceOf[Ptr[GtkPopover]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether mnemonics are visible.
     */
   def getMnemonicsVisible(): Boolean /* None */ =
-    gtk_popover_get_mnemonics_visible(this.raw.asInstanceOf).value.!=(0)
+    gtk_popover_get_mnemonics_visible(
+      this.raw.asInstanceOf[Ptr[GtkPopover]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -171,7 +175,7 @@ class Popover(raw: Ptr[GtkPopover])
     * Returns the preferred position of @popover.
     */
   def getPosition(): GtkPositionType /* None */ = gtk_popover_get_position(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkPopover]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -181,13 +185,17 @@ class Popover(raw: Ptr[GtkPopover])
     * This may have the side-effect of closing a parent popover as well. See
     * [property@Gtk.Popover:cascade-popdown].
     */
-  def popdown(): Unit /* None */ = gtk_popover_popdown(this.raw.asInstanceOf)
+  def popdown(): Unit /* None */ = gtk_popover_popdown(
+    this.raw.asInstanceOf[Ptr[GtkPopover]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Pops @popover up.
     */
-  def popup(): Unit /* None */ = gtk_popover_popup(this.raw.asInstanceOf)
+  def popup(): Unit /* None */ = gtk_popover_popup(
+    this.raw.asInstanceOf[Ptr[GtkPopover]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -199,7 +207,9 @@ class Popover(raw: Ptr[GtkPopover])
     *
     * To make a popover appear on screen, use [method@Gtk.Popover.popup].
     */
-  def present(): Unit /* None */ = gtk_popover_present(this.raw.asInstanceOf)
+  def present(): Unit /* None */ = gtk_popover_present(
+    this.raw.asInstanceOf[Ptr[GtkPopover]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -215,7 +225,7 @@ class Popover(raw: Ptr[GtkPopover])
   def setAutohide(
       autohide: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_popover_set_autohide(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPopover]],
     gboolean(gint((if autohide == true then 1 else 0)))
   )
 
@@ -229,7 +239,7 @@ class Popover(raw: Ptr[GtkPopover])
   def setCascadePopdown(
       cascade_popdown: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_popover_set_cascade_popdown(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPopover]],
     gboolean(gint((if cascade_popdown == true then 1 else 0)))
   )
 
@@ -240,7 +250,7 @@ class Popover(raw: Ptr[GtkPopover])
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_popover_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPopover]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -257,7 +267,7 @@ class Popover(raw: Ptr[GtkPopover])
   def setDefaultWidget(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_popover_set_default_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPopover]],
     widget
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -271,7 +281,7 @@ class Popover(raw: Ptr[GtkPopover])
   def setHasArrow(
       has_arrow: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_popover_set_has_arrow(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPopover]],
     gboolean(gint((if has_arrow == true then 1 else 0)))
   )
 
@@ -282,7 +292,7 @@ class Popover(raw: Ptr[GtkPopover])
   def setMnemonicsVisible(
       mnemonics_visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_popover_set_mnemonics_visible(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPopover]],
     gboolean(gint((if mnemonics_visible == true then 1 else 0)))
   )
 
@@ -296,8 +306,11 @@ class Popover(raw: Ptr[GtkPopover])
   def setOffset(
       x_offset: Int /* Some(CInt) */,
       y_offset: Int /* Some(CInt) */
-  ): Unit /* None */ =
-    gtk_popover_set_offset(this.raw.asInstanceOf, x_offset, y_offset)
+  ): Unit /* None */ = gtk_popover_set_offset(
+    this.raw.asInstanceOf[Ptr[GtkPopover]],
+    x_offset,
+    y_offset
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -310,7 +323,7 @@ class Popover(raw: Ptr[GtkPopover])
         GdkRectangle
       ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */ ]
   ): Unit /* None */ = gtk_popover_set_pointing_to(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPopover]],
     rect
       .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]](o => o)
       .getOrElse(
@@ -330,7 +343,8 @@ class Popover(raw: Ptr[GtkPopover])
     */
   def setPosition(
       position: GtkPositionType /* Some(GtkPositionType) */
-  ): Unit /* None */ = gtk_popover_set_position(this.raw.asInstanceOf, position)
+  ): Unit /* None */ =
+    gtk_popover_set_position(this.raw.asInstanceOf[Ptr[GtkPopover]], position)
 
 end Popover
 

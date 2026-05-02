@@ -29,7 +29,7 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
       path: String | CString /* Some(CString) */
   )(using Zone): File /* None */ = new File.Abstract(
     g_vfs_get_file_for_path(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GVfs]],
       __sn_extract_string(path)
     ).asInstanceOf
   )
@@ -46,7 +46,7 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
       uri: String | CString /* Some(CString) */
   )(using Zone): File /* None */ = new File.Abstract(
     g_vfs_get_file_for_uri(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GVfs]],
       __sn_extract_string(uri)
     ).asInstanceOf
   )
@@ -56,7 +56,7 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     * Checks if the VFS is active.
     */
   def isActive(): Boolean /* None */ =
-    g_vfs_is_active(this.raw.asInstanceOf).value.!=(0)
+    g_vfs_is_active(this.raw.asInstanceOf[Ptr[GVfs]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -67,7 +67,7 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
       parse_name: String | CString /* Some(CString) */
   )(using Zone): File /* None */ = new File.Abstract(
     g_vfs_parse_name(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GVfs]],
       __sn_extract_string(parse_name)
     ).asInstanceOf
   )
@@ -118,7 +118,7 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
         GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
       ]
   )(using Zone): Boolean /* None */ = g_vfs_register_uri_scheme(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GVfs]],
     __sn_extract_string(scheme),
     uri_func
       .map[GVfsFileLookupFunc](o => o)
@@ -152,7 +152,7 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
   def unregisterUriScheme(
       scheme: String | CString /* Some(CString) */
   )(using Zone): Boolean /* None */ = g_vfs_unregister_uri_scheme(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GVfs]],
     __sn_extract_string(scheme)
   ).value.!=(0)
 

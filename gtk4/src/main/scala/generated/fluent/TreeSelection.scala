@@ -54,14 +54,16 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * Returns the number of rows that have been selected in @tree.
     */
   def countSelectedRows(): Int /* None */ =
-    gtk_tree_selection_count_selected_rows(this.raw.asInstanceOf)
+    gtk_tree_selection_count_selected_rows(
+      this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the selection mode for @selection. See gtk_tree_selection_set_mode().
     */
   def getMode(): GtkSelectionMode /* None */ = gtk_tree_selection_get_mode(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -69,7 +71,9 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * Returns the current selection function.
     */
   def getSelectFunction(): GtkTreeSelectionFunc /* None */ =
-    gtk_tree_selection_get_select_function(this.raw.asInstanceOf)
+    gtk_tree_selection_get_select_function(
+      this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -106,7 +110,9 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * Returns the tree view associated with @selection.
     */
   def getTreeView(): TreeView /* None */ = new TreeView(
-    gtk_tree_selection_get_tree_view(this.raw.asInstanceOf).asInstanceOf
+    gtk_tree_selection_get_tree_view(
+      this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -114,7 +120,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * Returns the user data for the selection function.
     */
   def getUserData(): Ptr[Byte] /* None */ = gtk_tree_selection_get_user_data(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -123,8 +129,10 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     */
   def iterIsSelected(
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Boolean /* None */ =
-    gtk_tree_selection_iter_is_selected(this.raw.asInstanceOf, iter).value.!=(0)
+  ): Boolean /* None */ = gtk_tree_selection_iter_is_selected(
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
+    iter
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -133,8 +141,10 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     */
   def pathIsSelected(
       path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Boolean /* None */ =
-    gtk_tree_selection_path_is_selected(this.raw.asInstanceOf, path).value.!=(0)
+  ): Boolean /* None */ = gtk_tree_selection_path_is_selected(
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
+    path
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -142,7 +152,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * mode.
     */
   def selectAll(): Unit /* None */ = gtk_tree_selection_select_all(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -151,8 +161,10 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     */
   def selectIter(
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Unit /* None */ =
-    gtk_tree_selection_select_iter(this.raw.asInstanceOf, iter)
+  ): Unit /* None */ = gtk_tree_selection_select_iter(
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
+    iter
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -160,8 +172,10 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     */
   def selectPath(
       path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Unit /* None */ =
-    gtk_tree_selection_select_path(this.raw.asInstanceOf, path)
+  ): Unit /* None */ = gtk_tree_selection_select_path(
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
+    path
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -173,8 +187,11 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
   def selectRange(
       start_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */,
       end_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Unit /* None */ =
-    gtk_tree_selection_select_range(this.raw.asInstanceOf, start_path, end_path)
+  ): Unit /* None */ = gtk_tree_selection_select_range(
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
+    start_path,
+    end_path
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -188,7 +205,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gtk_tree_selection_selected_foreach(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
     func,
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -203,8 +220,10 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     */
   def setMode(
       `type`: GtkSelectionMode /* Some(GtkSelectionMode) */
-  ): Unit /* None */ =
-    gtk_tree_selection_set_mode(this.raw.asInstanceOf, `type`)
+  ): Unit /* None */ = gtk_tree_selection_set_mode(
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
+    `type`
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -222,7 +241,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
       ],
       destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): Unit /* None */ = gtk_tree_selection_set_select_function(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
     func
       .map[GtkTreeSelectionFunc](o => o)
       .getOrElse(null.asInstanceOf[GtkTreeSelectionFunc]),
@@ -237,7 +256,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * Unselects all the nodes.
     */
   def unselectAll(): Unit /* None */ = gtk_tree_selection_unselect_all(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -246,8 +265,10 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     */
   def unselectIter(
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Unit /* None */ =
-    gtk_tree_selection_unselect_iter(this.raw.asInstanceOf, iter)
+  ): Unit /* None */ = gtk_tree_selection_unselect_iter(
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
+    iter
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -255,8 +276,10 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     */
   def unselectPath(
       path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Unit /* None */ =
-    gtk_tree_selection_unselect_path(this.raw.asInstanceOf, path)
+  ): Unit /* None */ = gtk_tree_selection_unselect_path(
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
+    path
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -267,7 +290,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
       start_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */,
       end_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
   ): Unit /* None */ = gtk_tree_selection_unselect_range(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
     start_path,
     end_path
   )

@@ -46,7 +46,9 @@ class BuilderListItemFactory(raw: Ptr[GtkBuilderListItemFactory])
     * listitems.
     */
   def getBytes(): Ptr[GBytes] /* None */ =
-    gtk_builder_list_item_factory_get_bytes(this.raw.asInstanceOf)
+    gtk_builder_list_item_factory_get_bytes(
+      this.raw.asInstanceOf[Ptr[GtkBuilderListItemFactory]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -54,7 +56,7 @@ class BuilderListItemFactory(raw: Ptr[GtkBuilderListItemFactory])
     */
   def getResource()(using Zone): String /* None */ = fromCString(
     gtk_builder_list_item_factory_get_resource(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GtkBuilderListItemFactory]]
     ).asInstanceOf
   )
 
@@ -63,7 +65,9 @@ class BuilderListItemFactory(raw: Ptr[GtkBuilderListItemFactory])
     * Gets the scope used when constructing listitems.
     */
   def getScope(): BuilderScope /* None */ = new BuilderScope.Abstract(
-    gtk_builder_list_item_factory_get_scope(this.raw.asInstanceOf).asInstanceOf
+    gtk_builder_list_item_factory_get_scope(
+      this.raw.asInstanceOf[Ptr[GtkBuilderListItemFactory]]
+    ).asInstanceOf
   )
 
 end BuilderListItemFactory

@@ -43,7 +43,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * Get the timeout applied to all resolver lookups. See #GResolver:timeout.
     */
   def getTimeout(): UInt /* None */ = g_resolver_get_timeout(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GResolver]]
   ).asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -63,7 +63,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
   )(using Zone): GResult[String /* None */ ] = GResult.wrap(__errorPtr =>
     fromCString(
       g_resolver_lookup_by_address(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GResolver]],
         address.getUnsafeRawPointer().asInstanceOf,
         cancellable
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -87,7 +87,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_resolver_lookup_by_address_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GResolver]],
     address.getUnsafeRawPointer().asInstanceOf,
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -115,7 +115,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
   )(using Zone): GResult[String /* None */ ] = GResult.wrap(__errorPtr =>
     fromCString(
       g_resolver_lookup_by_address_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GResolver]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf
@@ -154,7 +154,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   )(using Zone): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_resolver_lookup_by_name(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GResolver]],
       __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -179,7 +179,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_resolver_lookup_by_name_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GResolver]],
     __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]],
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -205,7 +205,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_resolver_lookup_by_name_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GResolver]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -224,7 +224,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   )(using Zone): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_resolver_lookup_by_name_with_flags(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GResolver]],
       __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]],
       flags,
       cancellable
@@ -251,7 +251,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_resolver_lookup_by_name_with_flags_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GResolver]],
     __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]],
     flags,
     cancellable
@@ -279,7 +279,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_resolver_lookup_by_name_with_flags_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GResolver]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -304,7 +304,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   )(using Zone): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_resolver_lookup_records(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GResolver]],
       __sn_extract_string(rrname).asInstanceOf[Ptr[gchar]],
       record_type,
       cancellable
@@ -332,7 +332,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_resolver_lookup_records_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GResolver]],
     __sn_extract_string(rrname).asInstanceOf[Ptr[gchar]],
     record_type,
     cancellable
@@ -362,7 +362,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_resolver_lookup_records_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GResolver]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -403,7 +403,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   )(using Zone): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_resolver_lookup_service(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GResolver]],
       __sn_extract_string(service).asInstanceOf[Ptr[gchar]],
       __sn_extract_string(protocol).asInstanceOf[Ptr[gchar]],
       __sn_extract_string(domain).asInstanceOf[Ptr[gchar]],
@@ -436,7 +436,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_resolver_lookup_service_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GResolver]],
     __sn_extract_string(service).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(protocol).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(domain).asInstanceOf[Ptr[gchar]],
@@ -465,7 +465,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_resolver_lookup_service_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GResolver]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -485,7 +485,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * all later code to use.
     */
   def setDefault(): Unit /* None */ = g_resolver_set_default(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GResolver]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -494,7 +494,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     */
   def setTimeout(timeout_ms: UInt /* Some(CUnsignedInt) */ ): Unit /* None */ =
     g_resolver_set_timeout(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GResolver]],
       guint(timeout_ms).asInstanceOf
     )
 

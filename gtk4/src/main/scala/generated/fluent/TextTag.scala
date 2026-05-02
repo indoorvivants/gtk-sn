@@ -45,7 +45,7 @@ class TextTag(raw: Ptr[GtkTextTag]) extends Object(raw.asInstanceOf):
   def changed(
       size_changed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_text_tag_changed(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTextTag]],
     gboolean(gint((if size_changed == true then 1 else 0)))
   )
 
@@ -54,7 +54,7 @@ class TextTag(raw: Ptr[GtkTextTag]) extends Object(raw.asInstanceOf):
     * Get the tag priority.
     */
   def getPriority(): Int /* None */ = gtk_text_tag_get_priority(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkTextTag]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -74,7 +74,7 @@ class TextTag(raw: Ptr[GtkTextTag]) extends Object(raw.asInstanceOf):
     * table automatically.
     */
   def setPriority(priority: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_text_tag_set_priority(this.raw.asInstanceOf, priority)
+    gtk_text_tag_set_priority(this.raw.asInstanceOf[Ptr[GtkTextTag]], priority)
 
 end TextTag
 

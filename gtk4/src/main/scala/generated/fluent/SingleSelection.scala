@@ -38,8 +38,9 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
     * Checks if autoselect has been enabled or disabled via
     * gtk_single_selection_set_autoselect().
     */
-  def getAutoselect(): Boolean /* None */ =
-    gtk_single_selection_get_autoselect(this.raw.asInstanceOf).value.!=(0)
+  def getAutoselect(): Boolean /* None */ = gtk_single_selection_get_autoselect(
+    this.raw.asInstanceOf[Ptr[GtkSingleSelection]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -47,14 +48,18 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
     * unselecting the selected item.
     */
   def getCanUnselect(): Boolean /* None */ =
-    gtk_single_selection_get_can_unselect(this.raw.asInstanceOf).value.!=(0)
+    gtk_single_selection_get_can_unselect(
+      this.raw.asInstanceOf[Ptr[GtkSingleSelection]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the model that @self is wrapping.
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_single_selection_get_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_single_selection_get_model(
+      this.raw.asInstanceOf[Ptr[GtkSingleSelection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -64,7 +69,7 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
     * If no item is selected, %GTK_INVALID_LIST_POSITION is returned.
     */
   def getSelected(): UInt /* None */ = gtk_single_selection_get_selected(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkSingleSelection]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -74,7 +79,9 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
     * If no item is selected, %NULL is returned.
     */
   def getSelectedItem(): Object /* None */ = new Object(
-    gtk_single_selection_get_selected_item(this.raw.asInstanceOf).asInstanceOf
+    gtk_single_selection_get_selected_item(
+      this.raw.asInstanceOf[Ptr[GtkSingleSelection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -88,7 +95,7 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
   def setAutoselect(
       autoselect: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_single_selection_set_autoselect(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSingleSelection]],
     gboolean(gint((if autoselect == true then 1 else 0)))
   )
 
@@ -104,7 +111,7 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
   def setCanUnselect(
       can_unselect: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_single_selection_set_can_unselect(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSingleSelection]],
     gboolean(gint((if can_unselect == true then 1 else 0)))
   )
 
@@ -119,7 +126,7 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   ): Unit /* None */ = gtk_single_selection_set_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSingleSelection]],
     model
       .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -141,8 +148,10 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
     */
   def setSelected(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_single_selection_set_selected(this.raw.asInstanceOf, guint(position))
+  ): Unit /* None */ = gtk_single_selection_set_selected(
+    this.raw.asInstanceOf[Ptr[GtkSingleSelection]],
+    guint(position)
+  )
 
 end SingleSelection
 

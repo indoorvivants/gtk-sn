@@ -87,8 +87,9 @@ class DropDown(raw: Ptr[GtkDropDown])
     *
     * Returns whether search is enabled.
     */
-  def getEnableSearch(): Boolean /* None */ =
-    gtk_drop_down_get_enable_search(this.raw.asInstanceOf).value.!=(0)
+  def getEnableSearch(): Boolean /* None */ = gtk_drop_down_get_enable_search(
+    this.raw.asInstanceOf[Ptr[GtkDropDown]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -97,7 +98,9 @@ class DropDown(raw: Ptr[GtkDropDown])
     * See [method@Gtk.DropDown.set_expression].
     */
   def getExpression(): Expression /* None */ = new Expression(
-    gtk_drop_down_get_expression(this.raw.asInstanceOf).asInstanceOf
+    gtk_drop_down_get_expression(
+      this.raw.asInstanceOf[Ptr[GtkDropDown]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -109,7 +112,9 @@ class DropDown(raw: Ptr[GtkDropDown])
     * [property@Gtk.DropDown:list-factory] is not set.
     */
   def getFactory(): ListItemFactory /* None */ = new ListItemFactory(
-    gtk_drop_down_get_factory(this.raw.asInstanceOf).asInstanceOf
+    gtk_drop_down_get_factory(
+      this.raw.asInstanceOf[Ptr[GtkDropDown]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -118,7 +123,9 @@ class DropDown(raw: Ptr[GtkDropDown])
     * popup.
     */
   def getHeaderFactory(): ListItemFactory /* None */ = new ListItemFactory(
-    gtk_drop_down_get_header_factory(this.raw.asInstanceOf).asInstanceOf
+    gtk_drop_down_get_header_factory(
+      this.raw.asInstanceOf[Ptr[GtkDropDown]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -127,7 +134,9 @@ class DropDown(raw: Ptr[GtkDropDown])
     * popup.
     */
   def getListFactory(): ListItemFactory /* None */ = new ListItemFactory(
-    gtk_drop_down_get_list_factory(this.raw.asInstanceOf).asInstanceOf
+    gtk_drop_down_get_list_factory(
+      this.raw.asInstanceOf[Ptr[GtkDropDown]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -135,7 +144,9 @@ class DropDown(raw: Ptr[GtkDropDown])
     * Gets the model that provides the displayed items.
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_drop_down_get_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_drop_down_get_model(
+      this.raw.asInstanceOf[Ptr[GtkDropDown]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -143,14 +154,14 @@ class DropDown(raw: Ptr[GtkDropDown])
     * Returns the match mode that the search filter is using.
     */
   def getSearchMatchMode(): GtkStringFilterMatchMode /* None */ =
-    gtk_drop_down_get_search_match_mode(this.raw.asInstanceOf)
+    gtk_drop_down_get_search_match_mode(this.raw.asInstanceOf[Ptr[GtkDropDown]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the position of the selected item.
     */
   def getSelected(): UInt /* None */ = gtk_drop_down_get_selected(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkDropDown]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -158,15 +169,18 @@ class DropDown(raw: Ptr[GtkDropDown])
     * Gets the selected item. If no item is selected, %NULL is returned.
     */
   def getSelectedItem(): Object /* None */ = new Object(
-    gtk_drop_down_get_selected_item(this.raw.asInstanceOf).asInstanceOf
+    gtk_drop_down_get_selected_item(
+      this.raw.asInstanceOf[Ptr[GtkDropDown]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether to show an arrow within the widget.
     */
-  def getShowArrow(): Boolean /* None */ =
-    gtk_drop_down_get_show_arrow(this.raw.asInstanceOf).value.!=(0)
+  def getShowArrow(): Boolean /* None */ = gtk_drop_down_get_show_arrow(
+    this.raw.asInstanceOf[Ptr[GtkDropDown]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -179,7 +193,7 @@ class DropDown(raw: Ptr[GtkDropDown])
   def setEnableSearch(
       enable_search: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_drop_down_set_enable_search(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDropDown]],
     gboolean(gint((if enable_search == true then 1 else 0)))
   )
 
@@ -193,7 +207,7 @@ class DropDown(raw: Ptr[GtkDropDown])
   def setExpression(
       expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
   ): Unit /* None */ = gtk_drop_down_set_expression(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDropDown]],
     expression
       .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
@@ -206,7 +220,7 @@ class DropDown(raw: Ptr[GtkDropDown])
   def setFactory(
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
   ): Unit /* None */ = gtk_drop_down_set_factory(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDropDown]],
     factory
       .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
@@ -220,7 +234,7 @@ class DropDown(raw: Ptr[GtkDropDown])
   def setHeaderFactory(
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
   ): Unit /* None */ = gtk_drop_down_set_header_factory(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDropDown]],
     factory
       .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
@@ -234,7 +248,7 @@ class DropDown(raw: Ptr[GtkDropDown])
   def setListFactory(
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
   ): Unit /* None */ = gtk_drop_down_set_list_factory(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDropDown]],
     factory
       .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
@@ -249,7 +263,7 @@ class DropDown(raw: Ptr[GtkDropDown])
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   ): Unit /* None */ = gtk_drop_down_set_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDropDown]],
     model
       .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -266,7 +280,7 @@ class DropDown(raw: Ptr[GtkDropDown])
   def setSearchMatchMode(
       search_match_mode: GtkStringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
   ): Unit /* None */ = gtk_drop_down_set_search_match_mode(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDropDown]],
     search_match_mode
   )
 
@@ -276,8 +290,10 @@ class DropDown(raw: Ptr[GtkDropDown])
     */
   def setSelected(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_drop_down_set_selected(this.raw.asInstanceOf, guint(position))
+  ): Unit /* None */ = gtk_drop_down_set_selected(
+    this.raw.asInstanceOf[Ptr[GtkDropDown]],
+    guint(position)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -286,7 +302,7 @@ class DropDown(raw: Ptr[GtkDropDown])
   def setShowArrow(
       show_arrow: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_drop_down_set_show_arrow(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDropDown]],
     gboolean(gint((if show_arrow == true then 1 else 0)))
   )
 

@@ -32,7 +32,9 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
     * Returns %NULL if the icon was not loaded from a file.
     */
   def getFile(): File /* None */ = new File.Abstract(
-    gtk_icon_paintable_get_file(this.raw.asInstanceOf).asInstanceOf
+    gtk_icon_paintable_get_file(
+      this.raw.asInstanceOf[Ptr[GtkIconPaintable]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -48,7 +50,9 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
     * %NULL.
     */
   def getIconName()(using Zone): String /* None */ = fromCString(
-    gtk_icon_paintable_get_icon_name(this.raw.asInstanceOf).asInstanceOf
+    gtk_icon_paintable_get_icon_name(
+      this.raw.asInstanceOf[Ptr[GtkIconPaintable]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -61,8 +65,9 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
     * Note that to render a symbolic `GtkIconPaintable` properly (with
     * recoloring), you have to set its icon name on a `GtkImage`.
     */
-  def isSymbolic(): Boolean /* None */ =
-    gtk_icon_paintable_is_symbolic(this.raw.asInstanceOf).value.!=(0)
+  def isSymbolic(): Boolean /* None */ = gtk_icon_paintable_is_symbolic(
+    this.raw.asInstanceOf[Ptr[GtkIconPaintable]]
+  ).value.!=(0)
 
 end IconPaintable
 

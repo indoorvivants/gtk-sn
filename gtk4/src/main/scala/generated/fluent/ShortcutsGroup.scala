@@ -51,7 +51,7 @@ class ShortcutsGroup(raw: Ptr[GtkShortcutsGroup])
   def addShortcut(
       shortcut: ShortcutsShortcut /* Some(Ptr[GtkShortcutsShortcut]) */
   ): Unit /* None */ = gtk_shortcuts_group_add_shortcut(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkShortcutsGroup]],
     shortcut.getUnsafeRawPointer().asInstanceOf
   )
 

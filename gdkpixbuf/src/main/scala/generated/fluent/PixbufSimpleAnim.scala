@@ -27,7 +27,7 @@ class PixbufSimpleAnim(raw: Ptr[GdkPixbufSimpleAnim])
     */
   def addFrame(pixbuf: Pixbuf /* Some(Ptr[GdkPixbuf]) */ ): Unit /* None */ =
     gdk_pixbuf_simple_anim_add_frame(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkPixbufSimpleAnim]],
       pixbuf.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -35,8 +35,9 @@ class PixbufSimpleAnim(raw: Ptr[GdkPixbufSimpleAnim])
     *
     * Gets whether @animation should loop indefinitely when it reaches the end.
     */
-  def getLoop(): Boolean /* None */ =
-    gdk_pixbuf_simple_anim_get_loop(this.raw.asInstanceOf).value.!=(0)
+  def getLoop(): Boolean /* None */ = gdk_pixbuf_simple_anim_get_loop(
+    this.raw.asInstanceOf[Ptr[GdkPixbufSimpleAnim]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -45,7 +46,7 @@ class PixbufSimpleAnim(raw: Ptr[GdkPixbufSimpleAnim])
   def setLoop(
       loop: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gdk_pixbuf_simple_anim_set_loop(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkPixbufSimpleAnim]],
     gboolean(gint((if loop == true then 1 else 0)))
   )
 

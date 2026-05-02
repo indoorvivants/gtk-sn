@@ -28,7 +28,7 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
     * weight and stretch of the face, but its size field will be unset.
     */
   def describe(): Ptr[PangoFontDescription] /* None */ =
-    pango_font_face_describe(this.raw.asInstanceOf)
+    pango_font_face_describe(this.raw.asInstanceOf[Ptr[PangoFontFace]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -38,7 +38,9 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
     * (e.g. a variable and a non-variable face for the same style).
     */
   def getFaceName()(using Zone): String /* None */ = fromCString(
-    pango_font_face_get_face_name(this.raw.asInstanceOf).asInstanceOf
+    pango_font_face_get_face_name(
+      this.raw.asInstanceOf[Ptr[PangoFontFace]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -46,7 +48,9 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
     * Gets the `PangoFontFamily` that @face belongs to.
     */
   def getFamily(): FontFamily /* None */ = new FontFamily(
-    pango_font_face_get_family(this.raw.asInstanceOf).asInstanceOf
+    pango_font_face_get_family(
+      this.raw.asInstanceOf[Ptr[PangoFontFace]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -57,8 +61,9 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
     * face from another face, by shearing, emboldening, lightening or modifying
     * it in some other way.
     */
-  def isSynthesized(): Boolean /* None */ =
-    pango_font_face_is_synthesized(this.raw.asInstanceOf).value.!=(0)
+  def isSynthesized(): Boolean /* None */ = pango_font_face_is_synthesized(
+    this.raw.asInstanceOf[Ptr[PangoFontFace]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

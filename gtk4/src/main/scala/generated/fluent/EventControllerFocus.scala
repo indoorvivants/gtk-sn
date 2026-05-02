@@ -31,14 +31,17 @@ class EventControllerFocus(raw: Ptr[GtkEventControllerFocus])
     * Returns %TRUE if focus is within @self or one of its children.
     */
   def containsFocus(): Boolean /* None */ =
-    gtk_event_controller_focus_contains_focus(this.raw.asInstanceOf).value.!=(0)
+    gtk_event_controller_focus_contains_focus(
+      this.raw.asInstanceOf[Ptr[GtkEventControllerFocus]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns %TRUE if focus is within @self, but not one of its children.
     */
-  def isFocus(): Boolean /* None */ =
-    gtk_event_controller_focus_is_focus(this.raw.asInstanceOf).value.!=(0)
+  def isFocus(): Boolean /* None */ = gtk_event_controller_focus_is_focus(
+    this.raw.asInstanceOf[Ptr[GtkEventControllerFocus]]
+  ).value.!=(0)
 
 end EventControllerFocus
 

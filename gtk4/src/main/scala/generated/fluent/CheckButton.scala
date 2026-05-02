@@ -88,8 +88,9 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     *
     * Returns whether the check button is active.
     */
-  def getActive(): Boolean /* None */ =
-    gtk_check_button_get_active(this.raw.asInstanceOf).value.!=(0)
+  def getActive(): Boolean /* None */ = gtk_check_button_get_active(
+    this.raw.asInstanceOf[Ptr[GtkCheckButton]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -97,15 +98,18 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     * is set.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_check_button_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_check_button_get_child(
+      this.raw.asInstanceOf[Ptr[GtkCheckButton]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the check button is in an inconsistent state.
     */
-  def getInconsistent(): Boolean /* None */ =
-    gtk_check_button_get_inconsistent(this.raw.asInstanceOf).value.!=(0)
+  def getInconsistent(): Boolean /* None */ = gtk_check_button_get_inconsistent(
+    this.raw.asInstanceOf[Ptr[GtkCheckButton]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -113,7 +117,9 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     * [property@CheckButton:child] is set.
     */
   def getLabel()(using Zone): String /* None */ = fromCString(
-    gtk_check_button_get_label(this.raw.asInstanceOf).asInstanceOf
+    gtk_check_button_get_label(
+      this.raw.asInstanceOf[Ptr[GtkCheckButton]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -121,7 +127,9 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     * Returns whether underlines in the label indicate mnemonics.
     */
   def getUseUnderline(): Boolean /* None */ =
-    gtk_check_button_get_use_underline(this.raw.asInstanceOf).value.!=(0)
+    gtk_check_button_get_use_underline(
+      this.raw.asInstanceOf[Ptr[GtkCheckButton]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -130,7 +138,7 @@ class CheckButton(raw: Ptr[GtkCheckButton])
   def setActive(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_check_button_set_active(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCheckButton]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
@@ -147,7 +155,7 @@ class CheckButton(raw: Ptr[GtkCheckButton])
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_check_button_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCheckButton]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -173,7 +181,7 @@ class CheckButton(raw: Ptr[GtkCheckButton])
   def setGroup(
       group: Option[CheckButton /* Some(Ptr[GtkCheckButton]) */ ]
   ): Unit /* None */ = gtk_check_button_set_group(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCheckButton]],
     group
       .map[Ptr[GtkCheckButton]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkCheckButton]])
@@ -189,7 +197,7 @@ class CheckButton(raw: Ptr[GtkCheckButton])
   def setInconsistent(
       inconsistent: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_check_button_set_inconsistent(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCheckButton]],
     gboolean(gint((if inconsistent == true then 1 else 0)))
   )
 
@@ -204,7 +212,7 @@ class CheckButton(raw: Ptr[GtkCheckButton])
   def setLabel(
       label: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_check_button_set_label(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCheckButton]],
     label
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -221,7 +229,7 @@ class CheckButton(raw: Ptr[GtkCheckButton])
   def setUseUnderline(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_check_button_set_use_underline(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCheckButton]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 

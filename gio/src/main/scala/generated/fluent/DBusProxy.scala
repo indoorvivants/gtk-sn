@@ -136,7 +136,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_dbus_proxy_call(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusProxy]],
     __sn_extract_string(method_name).asInstanceOf[Ptr[gchar]],
     parameters
       .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
@@ -164,7 +164,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Ptr[GVariant] /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_proxy_call_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusProxy]],
       res.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -218,7 +218,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   )(using Zone): GResult[Ptr[GVariant] /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_proxy_call_sync(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusProxy]],
       __sn_extract_string(method_name).asInstanceOf[Ptr[gchar]],
       parameters
         .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
@@ -255,7 +255,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_dbus_proxy_call_with_unix_fd_list(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusProxy]],
     __sn_extract_string(method_name).asInstanceOf[Ptr[gchar]],
     parameters
       .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
@@ -312,7 +312,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
       property_name: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Ptr[GVariant] /* None */ = g_dbus_proxy_get_cached_property(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusProxy]],
     __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]]
   )
 
@@ -321,7 +321,9 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * Gets the connection @proxy is for.
     */
   def getConnection(): DBusConnection /* None */ = new DBusConnection(
-    g_dbus_proxy_get_connection(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_proxy_get_connection(
+      this.raw.asInstanceOf[Ptr[GDBusProxy]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -332,7 +334,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * See the #GDBusProxy:g-default-timeout property for more details.
     */
   def getDefaultTimeout(): Int /* None */ = g_dbus_proxy_get_default_timeout(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GDBusProxy]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -340,7 +342,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * Gets the flags that @proxy was constructed with.
     */
   def getFlags(): GDBusProxyFlags /* None */ = g_dbus_proxy_get_flags(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GDBusProxy]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -350,14 +352,16 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * details.
     */
   def getInterfaceInfo(): Ptr[GDBusInterfaceInfo] /* None */ =
-    g_dbus_proxy_get_interface_info(this.raw.asInstanceOf)
+    g_dbus_proxy_get_interface_info(this.raw.asInstanceOf[Ptr[GDBusProxy]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the D-Bus interface name @proxy is for.
     */
   def getInterfaceName()(using Zone): String /* None */ = fromCString(
-    g_dbus_proxy_get_interface_name(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_proxy_get_interface_name(
+      this.raw.asInstanceOf[Ptr[GDBusProxy]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -369,7 +373,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * pattern.
     */
   def getName()(using Zone): String /* None */ = fromCString(
-    g_dbus_proxy_get_name(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_proxy_get_name(this.raw.asInstanceOf[Ptr[GDBusProxy]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -379,7 +383,9 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * to track changes to the #GDBusProxy:g-name-owner property.
     */
   def getNameOwner()(using Zone): String /* None */ = fromCString(
-    g_dbus_proxy_get_name_owner(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_proxy_get_name_owner(
+      this.raw.asInstanceOf[Ptr[GDBusProxy]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -387,7 +393,9 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * Gets the object path @proxy is for.
     */
   def getObjectPath()(using Zone): String /* None */ = fromCString(
-    g_dbus_proxy_get_object_path(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_proxy_get_object_path(
+      this.raw.asInstanceOf[Ptr[GDBusProxy]]
+    ).asInstanceOf
   )
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
@@ -433,7 +441,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
         Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
       ]
   )(using Zone): Unit /* None */ = g_dbus_proxy_set_cached_property(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusProxy]],
     __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]],
     value
       .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
@@ -449,8 +457,10 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     */
   def setDefaultTimeout(
       timeout_msec: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ =
-    g_dbus_proxy_set_default_timeout(this.raw.asInstanceOf, gint(timeout_msec))
+  ): Unit /* None */ = g_dbus_proxy_set_default_timeout(
+    this.raw.asInstanceOf[Ptr[GDBusProxy]],
+    gint(timeout_msec)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -460,7 +470,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
   def setInterfaceInfo(
       info: Option[Ptr[GDBusInterfaceInfo] /* Some(Ptr[GDBusInterfaceInfo]) */ ]
   ): Unit /* None */ = g_dbus_proxy_set_interface_info(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusProxy]],
     info
       .map[Ptr[GDBusInterfaceInfo]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[GDBusInterfaceInfo]])

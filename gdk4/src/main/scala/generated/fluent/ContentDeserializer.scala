@@ -43,7 +43,9 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     * [func@Gdk.content_deserialize_async].
     */
   def getCancellable(): Cancellable /* None */ = new Cancellable(
-    gdk_content_deserializer_get_cancellable(this.raw.asInstanceOf).asInstanceOf
+    gdk_content_deserializer_get_cancellable(
+      this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -51,7 +53,7 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     * Gets the `GType` to create an instance of.
     */
   def getGtype(): GType /* None */ = gdk_content_deserializer_get_gtype(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -63,7 +65,7 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     */
   def getInputStream(): InputStream /* None */ = new InputStream(
     gdk_content_deserializer_get_input_stream(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
     ).asInstanceOf
   )
 
@@ -72,7 +74,9 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     * Gets the mime type to deserialize from.
     */
   def getMimeType()(using Zone): String /* None */ = fromCString(
-    gdk_content_deserializer_get_mime_type(this.raw.asInstanceOf).asInstanceOf
+    gdk_content_deserializer_get_mime_type(
+      this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -83,7 +87,7 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     * [func@Gdk.content_deserialize_async].
     */
   def getPriority(): Int /* None */ = gdk_content_deserializer_get_priority(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -93,21 +97,25 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     * See [method@Gdk.ContentDeserializer.set_task_data].
     */
   def getTaskData(): Ptr[Byte] /* None */ =
-    gdk_content_deserializer_get_task_data(this.raw.asInstanceOf).value
+    gdk_content_deserializer_get_task_data(
+      this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the user data that was passed when the deserializer was registered.
     */
   def getUserData(): Ptr[Byte] /* None */ =
-    gdk_content_deserializer_get_user_data(this.raw.asInstanceOf).value
+    gdk_content_deserializer_get_user_data(
+      this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the `GValue` to store the deserialized object in.
     */
   def getValue(): Ptr[GValue] /* None */ = gdk_content_deserializer_get_value(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -118,15 +126,19 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     */
   def returnError(
       error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): Unit /* None */ =
-    gdk_content_deserializer_return_error(this.raw.asInstanceOf, error)
+  ): Unit /* None */ = gdk_content_deserializer_return_error(
+    this.raw.asInstanceOf[Ptr[GdkContentDeserializer]],
+    error
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Indicate that the deserialization has been successfully completed.
     */
   def returnSuccess(): Unit /* None */ =
-    gdk_content_deserializer_return_success(this.raw.asInstanceOf)
+    gdk_content_deserializer_return_success(
+      this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -138,7 +150,7 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
       ],
       _notify: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): Unit /* None */ = gdk_content_deserializer_set_task_data(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkContentDeserializer]],
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
       .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),

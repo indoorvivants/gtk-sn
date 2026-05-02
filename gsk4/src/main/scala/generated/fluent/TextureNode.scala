@@ -23,7 +23,9 @@ class TextureNode(raw: Ptr[GskTextureNode])
     * Retrieves the `GdkTexture` used when creating this `GskRenderNode`.
     */
   def getTexture(): Texture /* None */ = new Texture(
-    gsk_texture_node_get_texture(this.raw.asInstanceOf).asInstanceOf
+    gsk_texture_node_get_texture(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
 end TextureNode

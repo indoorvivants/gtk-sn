@@ -24,7 +24,7 @@ class DeviceTool(raw: Ptr[GdkDeviceTool]) extends Object(raw.asInstanceOf):
     * Gets the axes of the tool.
     */
   def getAxes(): GdkAxisFlags /* None */ = gdk_device_tool_get_axes(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkDeviceTool]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -41,7 +41,9 @@ class DeviceTool(raw: Ptr[GdkDeviceTool]) extends Object(raw.asInstanceOf):
     * different hardware identifiers.
     */
   def getHardwareId(): CUnsignedLongInt /* None */ =
-    gdk_device_tool_get_hardware_id(this.raw.asInstanceOf).value
+    gdk_device_tool_get_hardware_id(
+      this.raw.asInstanceOf[Ptr[GdkDeviceTool]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -51,7 +53,7 @@ class DeviceTool(raw: Ptr[GdkDeviceTool]) extends Object(raw.asInstanceOf):
     * across program executions.
     */
   def getSerial(): CUnsignedLongInt /* None */ = gdk_device_tool_get_serial(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkDeviceTool]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -59,6 +61,6 @@ class DeviceTool(raw: Ptr[GdkDeviceTool]) extends Object(raw.asInstanceOf):
     * Gets the `GdkDeviceToolType` of the tool.
     */
   def getToolType(): GdkDeviceToolType /* None */ =
-    gdk_device_tool_get_tool_type(this.raw.asInstanceOf)
+    gdk_device_tool_get_tool_type(this.raw.asInstanceOf[Ptr[GdkDeviceTool]])
 
 end DeviceTool

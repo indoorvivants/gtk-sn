@@ -223,7 +223,7 @@ class Label(raw: Ptr[GtkLabel])
     * `pango_layout_get_attributes (gtk_label_get_layout (self))`.
     */
   def getAttributes(): Ptr[PangoAttrList] /* None */ = gtk_label_get_attributes(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLabel]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -237,7 +237,7 @@ class Label(raw: Ptr[GtkLabel])
     * handler or for use in a [signal@Gtk.Widget::query-tooltip] handler.
     */
   def getCurrentUri()(using Zone): String /* None */ = fromCString(
-    gtk_label_get_current_uri(this.raw.asInstanceOf).asInstanceOf
+    gtk_label_get_current_uri(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -247,7 +247,7 @@ class Label(raw: Ptr[GtkLabel])
     * See [method@Gtk.Label.set_ellipsize].
     */
   def getEllipsize(): PangoEllipsizeMode /* None */ = gtk_label_get_ellipsize(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLabel]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -257,7 +257,7 @@ class Label(raw: Ptr[GtkLabel])
     * See [method@Gtk.Label.set_extra_menu].
     */
   def getExtraMenu(): MenuModel /* None */ = new MenuModel(
-    gtk_label_get_extra_menu(this.raw.asInstanceOf).asInstanceOf
+    gtk_label_get_extra_menu(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -267,7 +267,7 @@ class Label(raw: Ptr[GtkLabel])
     * See [method@Gtk.Label.set_justify].
     */
   def getJustify(): GtkJustification /* None */ = gtk_label_get_justify(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLabel]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -278,7 +278,7 @@ class Label(raw: Ptr[GtkLabel])
     * and Pango markup. (See [method@Gtk.Label.get_text]).
     */
   def getLabel()(using Zone): String /* None */ = fromCString(
-    gtk_label_get_label(this.raw.asInstanceOf).asInstanceOf
+    gtk_label_get_label(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -292,7 +292,7 @@ class Label(raw: Ptr[GtkLabel])
     * read-only.
     */
   def getLayout(): Layout /* None */ = new Layout(
-    gtk_label_get_layout(this.raw.asInstanceOf).asInstanceOf
+    gtk_label_get_layout(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -317,7 +317,9 @@ class Label(raw: Ptr[GtkLabel])
     *
     * See [method@Gtk.Label.set_lines].
     */
-  def getLines(): Int /* None */ = gtk_label_get_lines(this.raw.asInstanceOf)
+  def getLines(): Int /* None */ = gtk_label_get_lines(
+    this.raw.asInstanceOf[Ptr[GtkLabel]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -326,7 +328,7 @@ class Label(raw: Ptr[GtkLabel])
     * See [method@Gtk.Label.set_width_chars].
     */
   def getMaxWidthChars(): Int /* None */ = gtk_label_get_max_width_chars(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLabel]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -338,7 +340,7 @@ class Label(raw: Ptr[GtkLabel])
     * mnemonic set up it returns `GDK_KEY_VoidSymbol`.
     */
   def getMnemonicKeyval(): UInt /* None */ = gtk_label_get_mnemonic_keyval(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLabel]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -348,7 +350,9 @@ class Label(raw: Ptr[GtkLabel])
     * See [method@Gtk.Label.set_mnemonic_widget].
     */
   def getMnemonicWidget(): Widget /* None */ = new Widget(
-    gtk_label_get_mnemonic_widget(this.raw.asInstanceOf).asInstanceOf
+    gtk_label_get_mnemonic_widget(
+      this.raw.asInstanceOf[Ptr[GtkLabel]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -358,14 +362,14 @@ class Label(raw: Ptr[GtkLabel])
     * See [method@Gtk.Label.set_natural_wrap_mode].
     */
   def getNaturalWrapMode(): GtkNaturalWrapMode /* None */ =
-    gtk_label_get_natural_wrap_mode(this.raw.asInstanceOf)
+    gtk_label_get_natural_wrap_mode(this.raw.asInstanceOf[Ptr[GtkLabel]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the label is selectable.
     */
   def getSelectable(): Boolean /* None */ =
-    gtk_label_get_selectable(this.raw.asInstanceOf).value.!=(0)
+    gtk_label_get_selectable(this.raw.asInstanceOf[Ptr[GtkLabel]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -380,8 +384,9 @@ class Label(raw: Ptr[GtkLabel])
     *
     * Returns whether the label is in single line mode.
     */
-  def getSingleLineMode(): Boolean /* None */ =
-    gtk_label_get_single_line_mode(this.raw.asInstanceOf).value.!=(0)
+  def getSingleLineMode(): Boolean /* None */ = gtk_label_get_single_line_mode(
+    this.raw.asInstanceOf[Ptr[GtkLabel]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -391,7 +396,7 @@ class Label(raw: Ptr[GtkLabel])
     * Free the return value with [method@Pango.TabArray.free].
     */
   def getTabs(): Ptr[PangoTabArray] /* None */ = gtk_label_get_tabs(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLabel]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -403,7 +408,7 @@ class Label(raw: Ptr[GtkLabel])
     * [method@Gtk.Label.get_label])
     */
   def getText()(using Zone): String /* None */ = fromCString(
-    gtk_label_get_text(this.raw.asInstanceOf).asInstanceOf
+    gtk_label_get_text(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -413,7 +418,7 @@ class Label(raw: Ptr[GtkLabel])
     * See [method@Gtk.Label.set_use_markup].
     */
   def getUseMarkup(): Boolean /* None */ =
-    gtk_label_get_use_markup(this.raw.asInstanceOf).value.!=(0)
+    gtk_label_get_use_markup(this.raw.asInstanceOf[Ptr[GtkLabel]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -421,8 +426,9 @@ class Label(raw: Ptr[GtkLabel])
     *
     * See [method@Gtk.Label.set_use_underline].
     */
-  def getUseUnderline(): Boolean /* None */ =
-    gtk_label_get_use_underline(this.raw.asInstanceOf).value.!=(0)
+  def getUseUnderline(): Boolean /* None */ = gtk_label_get_use_underline(
+    this.raw.asInstanceOf[Ptr[GtkLabel]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -431,7 +437,7 @@ class Label(raw: Ptr[GtkLabel])
     * See [method@Gtk.Label.set_width_chars].
     */
   def getWidthChars(): Int /* None */ = gtk_label_get_width_chars(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLabel]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -441,7 +447,7 @@ class Label(raw: Ptr[GtkLabel])
     * See [method@Gtk.Label.set_wrap].
     */
   def getWrap(): Boolean /* None */ =
-    gtk_label_get_wrap(this.raw.asInstanceOf).value.!=(0)
+    gtk_label_get_wrap(this.raw.asInstanceOf[Ptr[GtkLabel]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -450,7 +456,7 @@ class Label(raw: Ptr[GtkLabel])
     * See [method@Gtk.Label.set_wrap_mode].
     */
   def getWrapMode(): PangoWrapMode /* None */ = gtk_label_get_wrap_mode(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLabel]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -460,7 +466,7 @@ class Label(raw: Ptr[GtkLabel])
     * See the [property@Gtk.Label:xalign] property.
     */
   def getXalign(): Float /* None */ = gtk_label_get_xalign(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLabel]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -470,7 +476,7 @@ class Label(raw: Ptr[GtkLabel])
     * See the [property@Gtk.Label:yalign] property.
     */
   def getYalign(): Float /* None */ = gtk_label_get_yalign(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLabel]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -485,8 +491,11 @@ class Label(raw: Ptr[GtkLabel])
   def selectRegion(
       start_offset: Int /* Some(CInt) */,
       end_offset: Int /* Some(CInt) */
-  ): Unit /* None */ =
-    gtk_label_select_region(this.raw.asInstanceOf, start_offset, end_offset)
+  ): Unit /* None */ = gtk_label_select_region(
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
+    start_offset,
+    end_offset
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -504,7 +513,7 @@ class Label(raw: Ptr[GtkLabel])
         PangoAttrList
       ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]) */ ]
   ): Unit /* None */ = gtk_label_set_attributes(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
     attrs
       .map[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]](o => o)
       .getOrElse(
@@ -521,7 +530,8 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setEllipsize(
       mode: PangoEllipsizeMode /* Some(_root_.sn.gnome.pango.internal.PangoEllipsizeMode) */
-  ): Unit /* None */ = gtk_label_set_ellipsize(this.raw.asInstanceOf, mode)
+  ): Unit /* None */ =
+    gtk_label_set_ellipsize(this.raw.asInstanceOf[Ptr[GtkLabel]], mode)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -532,7 +542,7 @@ class Label(raw: Ptr[GtkLabel])
         MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   ): Unit /* None */ = gtk_label_set_extra_menu(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
     model
       .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -555,7 +565,8 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setJustify(
       jtype: GtkJustification /* Some(GtkJustification) */
-  ): Unit /* None */ = gtk_label_set_justify(this.raw.asInstanceOf, jtype)
+  ): Unit /* None */ =
+    gtk_label_set_justify(this.raw.asInstanceOf[Ptr[GtkLabel]], jtype)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -567,8 +578,10 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setLabel(
       str: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ =
-    gtk_label_set_label(this.raw.asInstanceOf, __sn_extract_string(str))
+  )(using Zone): Unit /* None */ = gtk_label_set_label(
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
+    __sn_extract_string(str)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -579,7 +592,7 @@ class Label(raw: Ptr[GtkLabel])
     * -1 if you don’t want to limit the number of lines.
     */
   def setLines(lines: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_label_set_lines(this.raw.asInstanceOf, lines)
+    gtk_label_set_lines(this.raw.asInstanceOf[Ptr[GtkLabel]], lines)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -613,8 +626,10 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setMarkup(
       str: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ =
-    gtk_label_set_markup(this.raw.asInstanceOf, __sn_extract_string(str))
+  )(using Zone): Unit /* None */ = gtk_label_set_markup(
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
+    __sn_extract_string(str)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -632,7 +647,7 @@ class Label(raw: Ptr[GtkLabel])
   def setMarkupWithMnemonic(
       str: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_label_set_markup_with_mnemonic(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
     __sn_extract_string(str)
   )
 
@@ -641,7 +656,7 @@ class Label(raw: Ptr[GtkLabel])
     * Sets the desired maximum width in characters of @label to @n_chars.
     */
   def setMaxWidthChars(n_chars: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_label_set_max_width_chars(this.raw.asInstanceOf, n_chars)
+    gtk_label_set_max_width_chars(this.raw.asInstanceOf[Ptr[GtkLabel]], n_chars)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -666,7 +681,7 @@ class Label(raw: Ptr[GtkLabel])
   def setMnemonicWidget(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_label_set_mnemonic_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
     widget
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -681,8 +696,10 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setNaturalWrapMode(
       wrap_mode: GtkNaturalWrapMode /* Some(GtkNaturalWrapMode) */
-  ): Unit /* None */ =
-    gtk_label_set_natural_wrap_mode(this.raw.asInstanceOf, wrap_mode)
+  ): Unit /* None */ = gtk_label_set_natural_wrap_mode(
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
+    wrap_mode
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -694,7 +711,7 @@ class Label(raw: Ptr[GtkLabel])
   def setSelectable(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_label_set_selectable(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
@@ -705,7 +722,7 @@ class Label(raw: Ptr[GtkLabel])
   def setSingleLineMode(
       single_line_mode: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_label_set_single_line_mode(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
     gboolean(gint((if single_line_mode == true then 1 else 0)))
   )
 
@@ -718,7 +735,7 @@ class Label(raw: Ptr[GtkLabel])
         PangoTabArray
       ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]) */ ]
   ): Unit /* None */ = gtk_label_set_tabs(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
     tabs
       .map[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]](o => o)
       .getOrElse(
@@ -743,8 +760,10 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setText(
       str: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ =
-    gtk_label_set_text(this.raw.asInstanceOf, __sn_extract_string(str))
+  )(using Zone): Unit /* None */ = gtk_label_set_text(
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
+    __sn_extract_string(str)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -758,7 +777,7 @@ class Label(raw: Ptr[GtkLabel])
   def setTextWithMnemonic(
       str: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_label_set_text_with_mnemonic(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
     __sn_extract_string(str)
   )
 
@@ -771,7 +790,7 @@ class Label(raw: Ptr[GtkLabel])
   def setUseMarkup(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_label_set_use_markup(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
@@ -782,7 +801,7 @@ class Label(raw: Ptr[GtkLabel])
   def setUseUnderline(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_label_set_use_underline(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
@@ -791,7 +810,7 @@ class Label(raw: Ptr[GtkLabel])
     * Sets the desired width in characters of @label to @n_chars.
     */
   def setWidthChars(n_chars: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_label_set_width_chars(this.raw.asInstanceOf, n_chars)
+    gtk_label_set_width_chars(this.raw.asInstanceOf[Ptr[GtkLabel]], n_chars)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -810,7 +829,7 @@ class Label(raw: Ptr[GtkLabel])
   def setWrap(
       wrap: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_label_set_wrap(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLabel]],
     gboolean(gint((if wrap == true then 1 else 0)))
   )
 
@@ -827,7 +846,8 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setWrapMode(
       wrap_mode: PangoWrapMode /* Some(_root_.sn.gnome.pango.internal.PangoWrapMode) */
-  ): Unit /* None */ = gtk_label_set_wrap_mode(this.raw.asInstanceOf, wrap_mode)
+  ): Unit /* None */ =
+    gtk_label_set_wrap_mode(this.raw.asInstanceOf[Ptr[GtkLabel]], wrap_mode)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -836,7 +856,10 @@ class Label(raw: Ptr[GtkLabel])
     * See the [property@Gtk.Label:xalign] property.
     */
   def setXalign(xalign: Float /* Some(Float) */ ): Unit /* None */ =
-    gtk_label_set_xalign(this.raw.asInstanceOf, xalign.asInstanceOf)
+    gtk_label_set_xalign(
+      this.raw.asInstanceOf[Ptr[GtkLabel]],
+      xalign.asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -845,7 +868,10 @@ class Label(raw: Ptr[GtkLabel])
     * See the [property@Gtk.Label:yalign] property.
     */
   def setYalign(yalign: Float /* Some(Float) */ ): Unit /* None */ =
-    gtk_label_set_yalign(this.raw.asInstanceOf, yalign.asInstanceOf)
+    gtk_label_set_yalign(
+      this.raw.asInstanceOf[Ptr[GtkLabel]],
+      yalign.asInstanceOf
+    )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

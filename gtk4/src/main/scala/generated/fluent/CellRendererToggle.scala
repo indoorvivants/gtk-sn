@@ -29,22 +29,26 @@ class CellRendererToggle(raw: Ptr[GtkCellRendererToggle])
     * gtk_cell_renderer_toggle_set_activatable().
     */
   def getActivatable(): Boolean /* None */ =
-    gtk_cell_renderer_toggle_get_activatable(this.raw.asInstanceOf).value.!=(0)
+    gtk_cell_renderer_toggle_get_activatable(
+      this.raw.asInstanceOf[Ptr[GtkCellRendererToggle]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the cell renderer is active. See
     * gtk_cell_renderer_toggle_set_active().
     */
-  def getActive(): Boolean /* None */ =
-    gtk_cell_renderer_toggle_get_active(this.raw.asInstanceOf).value.!=(0)
+  def getActive(): Boolean /* None */ = gtk_cell_renderer_toggle_get_active(
+    this.raw.asInstanceOf[Ptr[GtkCellRendererToggle]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether we’re rendering radio toggles rather than checkboxes.
     */
-  def getRadio(): Boolean /* None */ =
-    gtk_cell_renderer_toggle_get_radio(this.raw.asInstanceOf).value.!=(0)
+  def getRadio(): Boolean /* None */ = gtk_cell_renderer_toggle_get_radio(
+    this.raw.asInstanceOf[Ptr[GtkCellRendererToggle]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -53,7 +57,7 @@ class CellRendererToggle(raw: Ptr[GtkCellRendererToggle])
   def setActivatable(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_cell_renderer_toggle_set_activatable(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellRendererToggle]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
@@ -64,7 +68,7 @@ class CellRendererToggle(raw: Ptr[GtkCellRendererToggle])
   def setActive(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_cell_renderer_toggle_set_active(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellRendererToggle]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
@@ -80,7 +84,7 @@ class CellRendererToggle(raw: Ptr[GtkCellRendererToggle])
   def setRadio(
       radio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_cell_renderer_toggle_set_radio(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellRendererToggle]],
     gboolean(gint((if radio == true then 1 else 0)))
   )
 

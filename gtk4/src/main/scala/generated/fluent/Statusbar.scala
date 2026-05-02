@@ -69,7 +69,7 @@ class Statusbar(raw: Ptr[GtkStatusbar])
   def getContextId(
       context_description: String | CString /* Some(CString) */
   )(using Zone): UInt /* None */ = gtk_statusbar_get_context_id(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkStatusbar]],
     __sn_extract_string(context_description)
   ).value
 
@@ -83,8 +83,10 @@ class Statusbar(raw: Ptr[GtkStatusbar])
     */
   def pop(
       context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_statusbar_pop(this.raw.asInstanceOf, guint(context_id))
+  ): Unit /* None */ = gtk_statusbar_pop(
+    this.raw.asInstanceOf[Ptr[GtkStatusbar]],
+    guint(context_id)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -94,7 +96,7 @@ class Statusbar(raw: Ptr[GtkStatusbar])
       context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       text: String | CString /* Some(CString) */
   )(using Zone): UInt /* None */ = gtk_statusbar_push(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkStatusbar]],
     guint(context_id),
     __sn_extract_string(text)
   ).value
@@ -108,7 +110,7 @@ class Statusbar(raw: Ptr[GtkStatusbar])
       context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       message_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ = gtk_statusbar_remove(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkStatusbar]],
     guint(context_id),
     guint(message_id)
   )
@@ -119,8 +121,10 @@ class Statusbar(raw: Ptr[GtkStatusbar])
     */
   def removeAll(
       context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_statusbar_remove_all(this.raw.asInstanceOf, guint(context_id))
+  ): Unit /* None */ = gtk_statusbar_remove_all(
+    this.raw.asInstanceOf[Ptr[GtkStatusbar]],
+    guint(context_id)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

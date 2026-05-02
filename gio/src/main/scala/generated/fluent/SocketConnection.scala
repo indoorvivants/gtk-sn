@@ -49,7 +49,7 @@ class SocketConnection(raw: Ptr[GSocketConnection])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_connection_connect(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocketConnection]],
       address.getUnsafeRawPointer().asInstanceOf,
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -75,7 +75,7 @@ class SocketConnection(raw: Ptr[GSocketConnection])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_socket_connection_connect_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocketConnection]],
     address.getUnsafeRawPointer().asInstanceOf,
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -96,7 +96,7 @@ class SocketConnection(raw: Ptr[GSocketConnection])
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_connection_connect_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSocketConnection]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)
@@ -110,7 +110,7 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     GResult.wrap(__errorPtr =>
       new SocketAddress(
         g_socket_connection_get_local_address(
-          this.raw.asInstanceOf,
+          this.raw.asInstanceOf[Ptr[GSocketConnection]],
           __errorPtr
         ).asInstanceOf
       )
@@ -130,7 +130,7 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     GResult.wrap(__errorPtr =>
       new SocketAddress(
         g_socket_connection_get_remote_address(
-          this.raw.asInstanceOf,
+          this.raw.asInstanceOf[Ptr[GSocketConnection]],
           __errorPtr
         ).asInstanceOf
       )
@@ -143,7 +143,9 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     * #GSocketConnection APIs.
     */
   def getSocket(): Socket /* None */ = new Socket(
-    g_socket_connection_get_socket(this.raw.asInstanceOf).asInstanceOf
+    g_socket_connection_get_socket(
+      this.raw.asInstanceOf[Ptr[GSocketConnection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -151,7 +153,8 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     * Checks if @connection is connected. This is equivalent to calling
     * g_socket_is_connected() on @connection's underlying #GSocket.
     */
-  def isConnected(): Boolean /* None */ =
-    g_socket_connection_is_connected(this.raw.asInstanceOf).value.!=(0)
+  def isConnected(): Boolean /* None */ = g_socket_connection_is_connected(
+    this.raw.asInstanceOf[Ptr[GSocketConnection]]
+  ).value.!=(0)
 
 end SocketConnection

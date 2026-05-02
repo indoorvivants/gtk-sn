@@ -44,14 +44,18 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * If the display of @surface does not support per-surface beeps, emits a
     * short beep on the display just as [method@Gdk.Display.beep].
     */
-  def beep(): Unit /* None */ = gdk_surface_beep(this.raw.asInstanceOf)
+  def beep(): Unit /* None */ = gdk_surface_beep(
+    this.raw.asInstanceOf[Ptr[GdkSurface]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a new `GdkCairoContext` for rendering on @surface.
     */
   def createCairoContext(): CairoContext /* None */ = new CairoContext(
-    gdk_surface_create_cairo_context(this.raw.asInstanceOf).asInstanceOf
+    gdk_surface_create_cairo_context(
+      this.raw.asInstanceOf[Ptr[GdkSurface]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -67,7 +71,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     GResult.wrap(__errorPtr =>
       new GLContext(
         gdk_surface_create_gl_context(
-          this.raw.asInstanceOf,
+          this.raw.asInstanceOf[Ptr[GdkSurface]],
           __errorPtr
         ).asInstanceOf
       )
@@ -96,7 +100,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
   ): Ptr[cairo_surface_t] /* None */ = gdk_surface_create_similar_surface(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkSurface]],
     content,
     width,
     height
@@ -112,7 +116,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     GResult.wrap(__errorPtr =>
       new VulkanContext(
         gdk_surface_create_vulkan_context(
-          this.raw.asInstanceOf,
+          this.raw.asInstanceOf[Ptr[GdkSurface]],
           __errorPtr
         ).asInstanceOf
       )
@@ -130,7 +134,9 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * count reaches zero. You must call this function yourself before that
     * happens.
     */
-  def destroy(): Unit /* None */ = gdk_surface_destroy(this.raw.asInstanceOf)
+  def destroy(): Unit /* None */ = gdk_surface_destroy(
+    this.raw.asInstanceOf[Ptr[GdkSurface]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -143,7 +149,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * Use [method@Gdk.Surface.set_cursor] to unset the cursor of the surface.
     */
   def getCursor(): Cursor /* None */ = new Cursor(
-    gdk_surface_get_cursor(this.raw.asInstanceOf).asInstanceOf
+    gdk_surface_get_cursor(this.raw.asInstanceOf[Ptr[GdkSurface]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -160,7 +166,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
       device: Device /* Some(Ptr[GdkDevice]) */
   ): Cursor /* None */ = new Cursor(
     gdk_surface_get_device_cursor(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkSurface]],
       device.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
   )
@@ -181,7 +187,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * Gets the `GdkDisplay` associated with a `GdkSurface`.
     */
   def getDisplay(): Display /* None */ = new Display(
-    gdk_surface_get_display(this.raw.asInstanceOf).asInstanceOf
+    gdk_surface_get_display(this.raw.asInstanceOf[Ptr[GdkSurface]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -192,7 +198,9 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * reparented to a new toplevel surface.
     */
   def getFrameClock(): FrameClock /* None */ = new FrameClock(
-    gdk_surface_get_frame_clock(this.raw.asInstanceOf).asInstanceOf
+    gdk_surface_get_frame_clock(
+      this.raw.asInstanceOf[Ptr[GdkSurface]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -203,7 +211,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * [method@Gdk.Surface.get_scale_factor]).
     */
   def getHeight(): Int /* None */ = gdk_surface_get_height(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkSurface]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -214,7 +222,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * [method@Gdk.Popup.present].
     */
   def getMapped(): Boolean /* None */ =
-    gdk_surface_get_mapped(this.raw.asInstanceOf).value.!=(0)
+    gdk_surface_get_mapped(this.raw.asInstanceOf[Ptr[GdkSurface]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -231,7 +239,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * The scale may change during the lifetime of the surface.
     */
   def getScale(): Double /* None */ = gdk_surface_get_scale(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkSurface]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -249,7 +257,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * The scale factor may change during the lifetime of the surface.
     */
   def getScaleFactor(): Int /* None */ = gdk_surface_get_scale_factor(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkSurface]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -259,7 +267,9 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * Surface size is reported in ”application pixels”, not ”device pixels” (see
     * [method@Gdk.Surface.get_scale_factor]).
     */
-  def getWidth(): Int /* None */ = gdk_surface_get_width(this.raw.asInstanceOf)
+  def getWidth(): Int /* None */ = gdk_surface_get_width(
+    this.raw.asInstanceOf[Ptr[GdkSurface]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -270,14 +280,16 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * displayed. Normally done automatically as part of
     * [method@Gtk.Widget.hide].
     */
-  def hide(): Unit /* None */ = gdk_surface_hide(this.raw.asInstanceOf)
+  def hide(): Unit /* None */ = gdk_surface_hide(
+    this.raw.asInstanceOf[Ptr[GdkSurface]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Check to see if a surface is destroyed.
     */
   def isDestroyed(): Boolean /* None */ =
-    gdk_surface_is_destroyed(this.raw.asInstanceOf).value.!=(0)
+    gdk_surface_is_destroyed(this.raw.asInstanceOf[Ptr[GdkSurface]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -288,7 +300,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * their own.
     */
   def queueRender(): Unit /* None */ = gdk_surface_queue_render(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkSurface]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -298,7 +310,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * See [method@Gdk.FrameClock.request_phase].
     */
   def requestLayout(): Unit /* None */ = gdk_surface_request_layout(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkSurface]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -315,7 +327,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
   def setCursor(
       cursor: Option[Cursor /* Some(Ptr[GdkCursor]) */ ]
   ): Unit /* None */ = gdk_surface_set_cursor(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkSurface]],
     cursor
       .map[Ptr[GdkCursor]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GdkCursor]])
@@ -335,7 +347,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
       device: Device /* Some(Ptr[GdkDevice]) */,
       cursor: Cursor /* Some(Ptr[GdkCursor]) */
   ): Unit /* None */ = gdk_surface_set_device_cursor(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkSurface]],
     device.getUnsafeRawPointer().asInstanceOf,
     cursor.getUnsafeRawPointer().asInstanceOf
   )
@@ -361,7 +373,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
         cairo_region_t
       ] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */
   ): Unit /* None */ =
-    gdk_surface_set_input_region(this.raw.asInstanceOf, region)
+    gdk_surface_set_input_region(this.raw.asInstanceOf[Ptr[GdkSurface]], region)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -385,7 +397,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
         cairo_region_t
       ] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */ ]
   ): Unit /* None */ = gdk_surface_set_opaque_region(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkSurface]],
     region
       .map[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]](o => o)
       .getOrElse(

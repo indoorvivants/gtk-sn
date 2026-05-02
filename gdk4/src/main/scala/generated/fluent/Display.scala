@@ -48,7 +48,9 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     *
     * Emits a short beep on @display
     */
-  def beep(): Unit /* None */ = gdk_display_beep(this.raw.asInstanceOf)
+  def beep(): Unit /* None */ = gdk_display_beep(
+    this.raw.asInstanceOf[Ptr[GdkDisplay]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -56,7 +58,9 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     *
     * This cleans up associated resources.
     */
-  def close(): Unit /* None */ = gdk_display_close(this.raw.asInstanceOf)
+  def close(): Unit /* None */ = gdk_display_close(
+    this.raw.asInstanceOf[Ptr[GdkDisplay]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -74,7 +78,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     GResult.wrap(__errorPtr =>
       new GLContext(
         gdk_display_create_gl_context(
-          this.raw.asInstanceOf,
+          this.raw.asInstanceOf[Ptr[GdkDisplay]],
           __errorPtr
         ).asInstanceOf
       )
@@ -87,7 +91,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
   def deviceIsGrabbed(
       device: Device /* Some(Ptr[GdkDevice]) */
   ): Boolean /* None */ = gdk_display_device_is_grabbed(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkDisplay]],
     device.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -105,7 +109,9 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * This is most useful for X11. On windowing systems where requests are
     * handled synchronously, this function will do nothing.
     */
-  def flush(): Unit /* None */ = gdk_display_flush(this.raw.asInstanceOf)
+  def flush(): Unit /* None */ = gdk_display_flush(
+    this.raw.asInstanceOf[Ptr[GdkDisplay]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -113,7 +119,9 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * given display.
     */
   def getAppLaunchContext(): AppLaunchContext /* None */ = new AppLaunchContext(
-    gdk_display_get_app_launch_context(this.raw.asInstanceOf).asInstanceOf
+    gdk_display_get_app_launch_context(
+      this.raw.asInstanceOf[Ptr[GdkDisplay]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -121,7 +129,9 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * Gets the clipboard used for copy/paste operations.
     */
   def getClipboard(): Clipboard /* None */ = new Clipboard(
-    gdk_display_get_clipboard(this.raw.asInstanceOf).asInstanceOf
+    gdk_display_get_clipboard(
+      this.raw.asInstanceOf[Ptr[GdkDisplay]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -132,7 +142,9 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * return %NULL.
     */
   def getDefaultSeat(): Seat /* None */ = new Seat(
-    gdk_display_get_default_seat(this.raw.asInstanceOf).asInstanceOf
+    gdk_display_get_default_seat(
+      this.raw.asInstanceOf[Ptr[GdkDisplay]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -143,7 +155,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
       surface: Surface /* Some(Ptr[GdkSurface]) */
   ): Monitor /* None */ = new Monitor(
     gdk_display_get_monitor_at_surface(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkDisplay]],
       surface.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
   )
@@ -159,7 +171,9 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * monitor changes to the monitor of this display.
     */
   def getMonitors(): ListModel /* None */ = new ListModel.Abstract(
-    gdk_display_get_monitors(this.raw.asInstanceOf).asInstanceOf
+    gdk_display_get_monitors(
+      this.raw.asInstanceOf[Ptr[GdkDisplay]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -167,7 +181,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * Gets the name of the display.
     */
   def getName()(using Zone): String /* None */ = fromCString(
-    gdk_display_get_name(this.raw.asInstanceOf).asInstanceOf
+    gdk_display_get_name(this.raw.asInstanceOf[Ptr[GdkDisplay]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -178,7 +192,9 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * emulates this clipboard locally.
     */
   def getPrimaryClipboard(): Clipboard /* None */ = new Clipboard(
-    gdk_display_get_primary_clipboard(this.raw.asInstanceOf).asInstanceOf
+    gdk_display_get_primary_clipboard(
+      this.raw.asInstanceOf[Ptr[GdkDisplay]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -191,7 +207,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
         GValue
       ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
   )(using Zone): Boolean /* None */ = gdk_display_get_setting(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkDisplay]],
     __sn_extract_string(name),
     value
   ).value.!=(0)
@@ -202,7 +218,9 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * has been defined.
     */
   def getStartupNotificationId()(using Zone): String /* None */ = fromCString(
-    gdk_display_get_startup_notification_id(this.raw.asInstanceOf).asInstanceOf
+    gdk_display_get_startup_notification_id(
+      this.raw.asInstanceOf[Ptr[GdkDisplay]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -210,7 +228,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * Finds out if the display has been closed.
     */
   def isClosed(): Boolean /* None */ =
-    gdk_display_is_closed(this.raw.asInstanceOf).value.!=(0)
+    gdk_display_is_closed(this.raw.asInstanceOf[Ptr[GdkDisplay]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -225,8 +243,9 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     *
     * On modern displays, this value is always %TRUE.
     */
-  def isComposited(): Boolean /* None */ =
-    gdk_display_is_composited(this.raw.asInstanceOf).value.!=(0)
+  def isComposited(): Boolean /* None */ = gdk_display_is_composited(
+    this.raw.asInstanceOf[Ptr[GdkDisplay]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -242,14 +261,14 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * On modern displays, this value is always %TRUE.
     */
   def isRgba(): Boolean /* None */ =
-    gdk_display_is_rgba(this.raw.asInstanceOf).value.!=(0)
+    gdk_display_is_rgba(this.raw.asInstanceOf[Ptr[GdkDisplay]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the list of seats known to @display.
     */
   def listSeats(): Ptr[GList] /* None */ = gdk_display_list_seats(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkDisplay]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -303,7 +322,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
   def notifyStartupComplete(
       startup_id: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gdk_display_notify_startup_complete(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkDisplay]],
     __sn_extract_string(startup_id)
   )
 
@@ -324,7 +343,10 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * use of OpenGL.
     */
   def prepareGl(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_display_prepare_gl(this.raw.asInstanceOf, __errorPtr).value.!=(0)
+    gdk_display_prepare_gl(
+      this.raw.asInstanceOf[Ptr[GdkDisplay]],
+      __errorPtr
+    ).value.!=(0)
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -333,7 +355,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     */
   def putEvent(event: Event /* Some(Ptr[GdkEvent]) */ ): Unit /* None */ =
     gdk_display_put_event(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkDisplay]],
       event.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -347,7 +369,9 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * On modern displays, this value is always %TRUE.
     */
   def supportsInputShapes(): Boolean /* None */ =
-    gdk_display_supports_input_shapes(this.raw.asInstanceOf).value.!=(0)
+    gdk_display_supports_input_shapes(
+      this.raw.asInstanceOf[Ptr[GdkDisplay]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -363,7 +387,9 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * This is most useful for X11. On windowing systems where requests are
     * handled synchronously, this function will do nothing.
     */
-  def sync(): Unit /* None */ = gdk_display_sync(this.raw.asInstanceOf)
+  def sync(): Unit /* None */ = gdk_display_sync(
+    this.raw.asInstanceOf[Ptr[GdkDisplay]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -22,7 +22,9 @@ class RoundedClipNode(raw: Ptr[GskRoundedClipNode])
     * Gets the child node that is getting clipped by the given @node.
     */
   def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_rounded_clip_node_get_child(this.raw.asInstanceOf).asInstanceOf
+    gsk_rounded_clip_node_get_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -30,7 +32,7 @@ class RoundedClipNode(raw: Ptr[GskRoundedClipNode])
     * Retrieves the rounded rectangle used to clip the contents of the @node.
     */
   def getClip(): Ptr[GskRoundedRect] /* None */ =
-    gsk_rounded_clip_node_get_clip(this.raw.asInstanceOf)
+    gsk_rounded_clip_node_get_clip(this.raw.asInstanceOf[Ptr[GskRenderNode]])
 
 end RoundedClipNode
 

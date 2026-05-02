@@ -198,7 +198,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       b: UByte /* Some(_root_.sn.gnome.glib.internal.guchar) */
   ): Pixbuf /* None */ = new Pixbuf(
     gdk_pixbuf_add_alpha(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
       gboolean(gint((if substitute_color == true then 1 else 0))),
       guchar(r),
       guchar(g),
@@ -219,7 +219,9 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * performed so that the pixbuf is oriented correctly.
     */
   def applyEmbeddedOrientation(): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_apply_embedded_orientation(this.raw.asInstanceOf).asInstanceOf
+    gdk_pixbuf_apply_embedded_orientation(
+      this.raw.asInstanceOf[Ptr[GdkPixbuf]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -251,7 +253,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       interp_type: GdkInterpType /* Some(GdkInterpType) */,
       overall_alpha: Int /* Some(CInt) */
   ): Unit /* None */ = gdk_pixbuf_composite(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
     dest.getUnsafeRawPointer().asInstanceOf,
     dest_x,
     dest_y,
@@ -300,7 +302,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       color1: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
       color2: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
   ): Unit /* None */ = gdk_pixbuf_composite_color(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
     dest.getUnsafeRawPointer().asInstanceOf,
     dest_x,
     dest_y,
@@ -335,7 +337,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       color2: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
   ): Pixbuf /* None */ = new Pixbuf(
     gdk_pixbuf_composite_color_simple(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
       dest_width,
       dest_height,
       interp_type,
@@ -355,7 +357,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * use gdk_pixbuf_copy_options() for this.
     */
   def copy(): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_copy(this.raw.asInstanceOf).asInstanceOf
+    gdk_pixbuf_copy(this.raw.asInstanceOf[Ptr[GdkPixbuf]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -377,7 +379,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       dest_x: Int /* Some(CInt) */,
       dest_y: Int /* Some(CInt) */
   ): Unit /* None */ = gdk_pixbuf_copy_area(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
     src_x,
     src_y,
     width,
@@ -399,7 +401,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
   def copyOptions(
       dest_pixbuf: Pixbuf /* Some(Ptr[GdkPixbuf]) */
   ): Boolean /* None */ = gdk_pixbuf_copy_options(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
     dest_pixbuf.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -413,7 +415,8 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     */
   def fill(
       pixel: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
-  ): Unit /* None */ = gdk_pixbuf_fill(this.raw.asInstanceOf, guint32(pixel))
+  ): Unit /* None */ =
+    gdk_pixbuf_fill(this.raw.asInstanceOf[Ptr[GdkPixbuf]], guint32(pixel))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -424,7 +427,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       horizontal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Pixbuf /* None */ = new Pixbuf(
     gdk_pixbuf_flip(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
       gboolean(gint((if horizontal == true then 1 else 0)))
     ).asInstanceOf
   )
@@ -434,7 +437,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * Queries the number of bits per color sample in a pixbuf.
     */
   def getBitsPerSample(): Int /* None */ = gdk_pixbuf_get_bits_per_sample(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -442,7 +445,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * Returns the length of the pixel data, in bytes.
     */
   def getByteLength(): CUnsignedLongInt /* None */ = gdk_pixbuf_get_byte_length(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -450,7 +453,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * Queries the color space of a pixbuf.
     */
   def getColorspace(): GdkColorspace /* None */ = gdk_pixbuf_get_colorspace(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -458,20 +461,22 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * Queries whether a pixbuf has an alpha channel (opacity information).
     */
   def getHasAlpha(): Boolean /* None */ =
-    gdk_pixbuf_get_has_alpha(this.raw.asInstanceOf).value.!=(0)
+    gdk_pixbuf_get_has_alpha(this.raw.asInstanceOf[Ptr[GdkPixbuf]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Queries the height of a pixbuf.
     */
-  def getHeight(): Int /* None */ = gdk_pixbuf_get_height(this.raw.asInstanceOf)
+  def getHeight(): Int /* None */ = gdk_pixbuf_get_height(
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Queries the number of channels of a pixbuf.
     */
   def getNChannels(): Int /* None */ = gdk_pixbuf_get_n_channels(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -496,7 +501,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): String /* None */ = fromCString(
     gdk_pixbuf_get_option(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
       __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
@@ -508,7 +513,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * attached by another function using [method@GdkPixbuf.Pixbuf.set_option].
     */
   def getOptions(): Ptr[GHashTable] /* None */ = gdk_pixbuf_get_options(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -522,7 +527,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * information about how the pixel data is stored in memory.
     */
   def getPixels(): Ptr[UByte] /* None */ = gdk_pixbuf_get_pixels(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
   ).asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -546,14 +551,16 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * the start of a row and the start of the next row.
     */
   def getRowstride(): Int /* None */ = gdk_pixbuf_get_rowstride(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Queries the width of a pixbuf.
     */
-  def getWidth(): Int /* None */ = gdk_pixbuf_get_width(this.raw.asInstanceOf)
+  def getWidth(): Int /* None */ = gdk_pixbuf_get_width(
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -573,7 +580,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       height: Int /* Some(CInt) */
   ): Pixbuf /* None */ = new Pixbuf(
     gdk_pixbuf_new_subpixbuf(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
       src_x,
       src_y,
       width,
@@ -590,7 +597,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * gdk_pixbuf_get_pixels() is called on a read-only pixbuf.
     */
   def readPixelBytes(): Ptr[GBytes] /* None */ = gdk_pixbuf_read_pixel_bytes(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -601,7 +608,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * gdk_pixbuf_get_pixels() is called on a read-only pixbuf.
     */
   def readPixels(): Ptr[guint8] /* None */ = gdk_pixbuf_read_pixels(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -609,7 +616,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * Adds a reference to a pixbuf.
     */
   override def ref(): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_ref(this.raw.asInstanceOf).asInstanceOf
+    gdk_pixbuf_ref(this.raw.asInstanceOf[Ptr[GdkPixbuf]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -619,7 +626,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
   def removeOption(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* None */ = gdk_pixbuf_remove_option(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
@@ -633,7 +640,10 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
   def rotateSimple(
       angle: GdkPixbufRotation /* Some(GdkPixbufRotation) */
   ): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_rotate_simple(this.raw.asInstanceOf, angle).asInstanceOf
+    gdk_pixbuf_rotate_simple(
+      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
+      angle
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -658,7 +668,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       saturation: Float /* Some(_root_.sn.gnome.glib.internal.gfloat) */,
       pixelate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gdk_pixbuf_saturate_and_pixelate(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
     dest.getUnsafeRawPointer().asInstanceOf,
     gfloat(saturation),
     gboolean(gint((if pixelate == true then 1 else 0)))
@@ -745,7 +755,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]) */ ],
       args: Any*
   )(using Zone): Boolean /* None */ = gdk_pixbuf_save(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
     __sn_extract_string(filename),
     __sn_extract_string(`type`),
     error
@@ -814,7 +824,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]) */ ],
       args: Any*
   )(using Zone): Boolean /* None */ = gdk_pixbuf_save_to_callback(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
     save_func,
     user_data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -849,7 +859,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       option_values: Option[Array[String] /* Some(Ptr[CString]) */ ]
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gdk_pixbuf_save_to_callbackv(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
       save_func,
       user_data
         .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -890,7 +900,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]) */ ],
       args: Any*
   )(using Zone): Boolean /* None */ = gdk_pixbuf_save_to_stream(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
     stream.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(`type`),
     cancellable
@@ -936,7 +946,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       ],
       args: Any*
   )(using Zone): Unit /* None */ = gdk_pixbuf_save_to_stream_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
     stream.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(`type`).asInstanceOf[Ptr[gchar]],
     cancellable
@@ -976,7 +986,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       ]
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gdk_pixbuf_save_to_streamv(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
       stream.getUnsafeRawPointer().asInstanceOf,
       __sn_extract_string(`type`),
       option_keys
@@ -1014,7 +1024,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       option_values: Option[Array[String] /* Some(Ptr[CString]) */ ]
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gdk_pixbuf_savev(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
       __sn_extract_string(filename),
       __sn_extract_string(`type`),
       option_keys
@@ -1057,7 +1067,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       scale_y: Double /* Some(Double) */,
       interp_type: GdkInterpType /* Some(GdkInterpType) */
   ): Unit /* None */ = gdk_pixbuf_scale(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
     dest.getUnsafeRawPointer().asInstanceOf,
     dest_x,
     dest_y,
@@ -1097,7 +1107,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       interp_type: GdkInterpType /* Some(GdkInterpType) */
   ): Pixbuf /* None */ = new Pixbuf(
     gdk_pixbuf_scale_simple(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
       dest_width,
       dest_height,
       interp_type
@@ -1117,7 +1127,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       value: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* None */ = gdk_pixbuf_set_option(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(value).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
@@ -1127,7 +1137,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * Removes a reference from a pixbuf.
     */
   override def unref(): Unit /* None */ = gdk_pixbuf_unref(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

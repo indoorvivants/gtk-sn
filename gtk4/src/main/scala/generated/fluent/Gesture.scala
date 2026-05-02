@@ -147,7 +147,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * This returns %NULL if the gesture is not being interacted.
     */
   def getDevice(): Device /* None */ = new Device(
-    gtk_gesture_get_device(this.raw.asInstanceOf).asInstanceOf
+    gtk_gesture_get_device(this.raw.asInstanceOf[Ptr[GtkGesture]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -155,7 +155,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * Returns all gestures in the group of @gesture
     */
   def getGroup(): Ptr[GList] /* None */ = gtk_gesture_get_group(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkGesture]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -173,7 +173,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
       ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]) */ ]
   ): Event /* None */ = new Event(
     gtk_gesture_get_last_event(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkGesture]],
       sequence
         .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]](o => o)
         .getOrElse(
@@ -187,7 +187,9 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * Returns the `GdkEventSequence` that was last updated on @gesture.
     */
   def getLastUpdatedSequence(): Ptr[GdkEventSequence] /* None */ =
-    gtk_gesture_get_last_updated_sequence(this.raw.asInstanceOf)
+    gtk_gesture_get_last_updated_sequence(
+      this.raw.asInstanceOf[Ptr[GtkGesture]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -210,15 +212,17 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
       sequence: Ptr[
         GdkEventSequence
       ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]) */
-  ): GtkEventSequenceState /* None */ =
-    gtk_gesture_get_sequence_state(this.raw.asInstanceOf, sequence)
+  ): GtkEventSequenceState /* None */ = gtk_gesture_get_sequence_state(
+    this.raw.asInstanceOf[Ptr[GtkGesture]],
+    sequence
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the list of `GdkEventSequences` currently being interpreted by @gesture.
     */
   def getSequences(): Ptr[GList] /* None */ = gtk_gesture_get_sequences(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkGesture]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -241,7 +245,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     */
   def group(gesture: Gesture /* Some(Ptr[GtkGesture]) */ ): Unit /* None */ =
     gtk_gesture_group(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkGesture]],
       gesture.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -254,7 +258,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
         GdkEventSequence
       ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]) */ ]
   ): Boolean /* None */ = gtk_gesture_handles_sequence(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkGesture]],
     sequence
       .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]](o => o)
       .getOrElse(
@@ -269,7 +273,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * A gesture is active while there are touch sequences interacting with it.
     */
   def isActive(): Boolean /* None */ =
-    gtk_gesture_is_active(this.raw.asInstanceOf).value.!=(0)
+    gtk_gesture_is_active(this.raw.asInstanceOf[Ptr[GtkGesture]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -278,7 +282,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
   def isGroupedWith(
       other: Gesture /* Some(Ptr[GtkGesture]) */
   ): Boolean /* None */ = gtk_gesture_is_grouped_with(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkGesture]],
     other.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -289,8 +293,9 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * A gesture is recognized if there are as many interacting touch sequences
     * as required by @gesture.
     */
-  def isRecognized(): Boolean /* None */ =
-    gtk_gesture_is_recognized(this.raw.asInstanceOf).value.!=(0)
+  def isRecognized(): Boolean /* None */ = gtk_gesture_is_recognized(
+    this.raw.asInstanceOf[Ptr[GtkGesture]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -338,9 +343,11 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
         GdkEventSequence
       ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]) */,
       state: GtkEventSequenceState /* Some(GtkEventSequenceState) */
-  ): Boolean /* None */ =
-    gtk_gesture_set_sequence_state(this.raw.asInstanceOf, sequence, state).value
-      .!=(0)
+  ): Boolean /* None */ = gtk_gesture_set_sequence_state(
+    this.raw.asInstanceOf[Ptr[GtkGesture]],
+    sequence,
+    state
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -387,12 +394,15 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
   def setState(
       state: GtkEventSequenceState /* Some(GtkEventSequenceState) */
   ): Boolean /* None */ =
-    gtk_gesture_set_state(this.raw.asInstanceOf, state).value.!=(0)
+    gtk_gesture_set_state(this.raw.asInstanceOf[Ptr[GtkGesture]], state).value
+      .!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Separates @gesture into an isolated group.
     */
-  def ungroup(): Unit /* None */ = gtk_gesture_ungroup(this.raw.asInstanceOf)
+  def ungroup(): Unit /* None */ = gtk_gesture_ungroup(
+    this.raw.asInstanceOf[Ptr[GtkGesture]]
+  )
 
 end Gesture

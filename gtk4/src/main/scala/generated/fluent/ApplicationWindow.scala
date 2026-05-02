@@ -114,7 +114,9 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
     * See [method@Gtk.ApplicationWindow.set_help_overlay].
     */
   def getHelpOverlay(): ShortcutsWindow /* None */ = new ShortcutsWindow(
-    gtk_application_window_get_help_overlay(this.raw.asInstanceOf).asInstanceOf
+    gtk_application_window_get_help_overlay(
+      this.raw.asInstanceOf[Ptr[GtkApplicationWindow]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -124,7 +126,7 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
     * If the window has not yet been added to a `GtkApplication`, returns `0`.
     */
   def getId(): UInt /* None */ = gtk_application_window_get_id(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkApplicationWindow]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -133,7 +135,9 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
     * menubar as needed.
     */
   def getShowMenubar(): Boolean /* None */ =
-    gtk_application_window_get_show_menubar(this.raw.asInstanceOf).value.!=(0)
+    gtk_application_window_get_show_menubar(
+      this.raw.asInstanceOf[Ptr[GtkApplicationWindow]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -148,7 +152,7 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
   def setHelpOverlay(
       help_overlay: Option[ShortcutsWindow /* Some(Ptr[GtkShortcutsWindow]) */ ]
   ): Unit /* None */ = gtk_application_window_set_help_overlay(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkApplicationWindow]],
     help_overlay
       .map[Ptr[GtkShortcutsWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkShortcutsWindow]])
@@ -162,7 +166,7 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
   def setShowMenubar(
       show_menubar: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_application_window_set_show_menubar(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkApplicationWindow]],
     gboolean(gint((if show_menubar == true then 1 else 0)))
   )
 

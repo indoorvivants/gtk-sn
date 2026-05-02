@@ -45,7 +45,9 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * #GAsyncReadyCallback will not be invoked until the application returns to
     * the main loop.
     */
-  def cancel(): Unit /* None */ = g_cancellable_cancel(this.raw.asInstanceOf)
+  def cancel(): Unit /* None */ = g_cancellable_cancel(
+    this.raw.asInstanceOf[Ptr[GCancellable]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -78,7 +80,7 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
         GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
       ]
   ): CUnsignedLongInt /* None */ = g_cancellable_connect(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GCancellable]],
     callback,
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -106,8 +108,10 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     */
   def disconnect(
       handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
-  ): Unit /* None */ =
-    g_cancellable_disconnect(this.raw.asInstanceOf, gulong(handler_id))
+  ): Unit /* None */ = g_cancellable_disconnect(
+    this.raw.asInstanceOf[Ptr[GCancellable]],
+    gulong(handler_id)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -125,14 +129,17 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     *
     * See also g_cancellable_make_pollfd().
     */
-  def getFd(): Int /* None */ = g_cancellable_get_fd(this.raw.asInstanceOf)
+  def getFd(): Int /* None */ = g_cancellable_get_fd(
+    this.raw.asInstanceOf[Ptr[GCancellable]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if a cancellable job has been cancelled.
     */
-  def isCancelled(): Boolean /* None */ =
-    g_cancellable_is_cancelled(this.raw.asInstanceOf).value.!=(0)
+  def isCancelled(): Boolean /* None */ = g_cancellable_is_cancelled(
+    this.raw.asInstanceOf[Ptr[GCancellable]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -159,8 +166,10 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
       pollfd: Ptr[
         GPollFD
       ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GPollFD]) */
-  ): Boolean /* None */ =
-    g_cancellable_make_pollfd(this.raw.asInstanceOf, pollfd).value.!=(0)
+  ): Boolean /* None */ = g_cancellable_make_pollfd(
+    this.raw.asInstanceOf[Ptr[GCancellable]],
+    pollfd
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -168,7 +177,7 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * is on the top of the stack).
     */
   def popCurrent(): Unit /* None */ = g_cancellable_pop_current(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GCancellable]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -183,7 +192,7 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * rarely have to call this yourself.
     */
   def pushCurrent(): Unit /* None */ = g_cancellable_push_current(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GCancellable]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -199,7 +208,7 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * used at the same time.
     */
   def releaseFd(): Unit /* None */ = g_cancellable_release_fd(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GCancellable]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -216,7 +225,9 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * async operations. You should create a fresh cancellable for further async
     * operations.
     */
-  def reset(): Unit /* None */ = g_cancellable_reset(this.raw.asInstanceOf)
+  def reset(): Unit /* None */ = g_cancellable_reset(
+    this.raw.asInstanceOf[Ptr[GCancellable]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -226,7 +237,7 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
   def setErrorIfCancelled(): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_cancellable_set_error_if_cancelled(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GCancellable]],
         __errorPtr
       ).value.!=(0)
     )
@@ -244,7 +255,7 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * The new #GSource will hold a reference to the #GCancellable.
     */
   def sourceNew(): Ptr[GSource] /* None */ = g_cancellable_source_new(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GCancellable]]
   )
 
 end Cancellable

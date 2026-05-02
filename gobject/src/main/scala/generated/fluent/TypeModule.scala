@@ -72,7 +72,7 @@ class TypeModule(raw: Ptr[GTypeModule])
       interface_type: GType /* Some(GType) */,
       interface_info: Ptr[GInterfaceInfo] /* Some(Ptr[GInterfaceInfo]) */
   ): Unit /* None */ = g_type_module_add_interface(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTypeModule]],
     instance_type,
     interface_type,
     interface_info
@@ -96,7 +96,7 @@ class TypeModule(raw: Ptr[GTypeModule])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       const_static_values: Ptr[GEnumValue] /* Some(Ptr[GEnumValue]) */
   )(using Zone): GType /* None */ = g_type_module_register_enum(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTypeModule]],
     __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
     const_static_values
   )
@@ -119,7 +119,7 @@ class TypeModule(raw: Ptr[GTypeModule])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       const_static_values: Ptr[GFlagsValue] /* Some(Ptr[GFlagsValue]) */
   )(using Zone): GType /* None */ = g_type_module_register_flags(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTypeModule]],
     __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
     const_static_values
   )
@@ -148,7 +148,7 @@ class TypeModule(raw: Ptr[GTypeModule])
       type_info: Ptr[GTypeInfo] /* Some(Ptr[GTypeInfo]) */,
       flags: GTypeFlags /* Some(GTypeFlags) */
   )(using Zone): GType /* None */ = g_type_module_register_type(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTypeModule]],
     parent_type,
     __sn_extract_string(type_name).asInstanceOf[Ptr[gchar]],
     type_info,
@@ -163,7 +163,7 @@ class TypeModule(raw: Ptr[GTypeModule])
       name: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_type_module_set_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTypeModule]],
     __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
   )
 
@@ -174,7 +174,9 @@ class TypeModule(raw: Ptr[GTypeModule])
     * and types associated with the #GTypeModule are not unregistered. Once a
     * #GTypeModule is initialized, it must exist forever.)
     */
-  def unuse(): Unit /* None */ = g_type_module_unuse(this.raw.asInstanceOf)
+  def unuse(): Unit /* None */ = g_type_module_unuse(
+    this.raw.asInstanceOf[Ptr[GTypeModule]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -183,7 +185,7 @@ class TypeModule(raw: Ptr[GTypeModule])
     * use count is reset to its prior value.
     */
   def use(): Boolean /* None */ =
-    g_type_module_use(this.raw.asInstanceOf).value.!=(0)
+    g_type_module_use(this.raw.asInstanceOf[Ptr[GTypeModule]]).value.!=(0)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

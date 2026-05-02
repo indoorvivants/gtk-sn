@@ -43,7 +43,9 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
     * Gets the child widget of @self.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_aspect_frame_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_aspect_frame_get_child(
+      this.raw.asInstanceOf[Ptr[GtkAspectFrame]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -51,15 +53,16 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
     * Returns whether the child's size request should override the set aspect
     * ratio of the `GtkAspectFrame`.
     */
-  def getObeyChild(): Boolean /* None */ =
-    gtk_aspect_frame_get_obey_child(this.raw.asInstanceOf).value.!=(0)
+  def getObeyChild(): Boolean /* None */ = gtk_aspect_frame_get_obey_child(
+    this.raw.asInstanceOf[Ptr[GtkAspectFrame]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the desired aspect ratio of the child.
     */
   def getRatio(): Float /* None */ = gtk_aspect_frame_get_ratio(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAspectFrame]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -68,7 +71,7 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
     * `GtkAspectFrame`.
     */
   def getXalign(): Float /* None */ = gtk_aspect_frame_get_xalign(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAspectFrame]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -77,7 +80,7 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
     * `GtkAspectFrame`.
     */
   def getYalign(): Float /* None */ = gtk_aspect_frame_get_yalign(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAspectFrame]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -87,7 +90,7 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_aspect_frame_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAspectFrame]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -101,7 +104,7 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
   def setObeyChild(
       obey_child: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_aspect_frame_set_obey_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAspectFrame]],
     gboolean(gint((if obey_child == true then 1 else 0)))
   )
 
@@ -110,7 +113,10 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
     * Sets the desired aspect ratio of the child.
     */
   def setRatio(ratio: Float /* Some(Float) */ ): Unit /* None */ =
-    gtk_aspect_frame_set_ratio(this.raw.asInstanceOf, ratio.asInstanceOf)
+    gtk_aspect_frame_set_ratio(
+      this.raw.asInstanceOf[Ptr[GtkAspectFrame]],
+      ratio.asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -118,7 +124,10 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
     * `GtkAspectFrame`.
     */
   def setXalign(xalign: Float /* Some(Float) */ ): Unit /* None */ =
-    gtk_aspect_frame_set_xalign(this.raw.asInstanceOf, xalign.asInstanceOf)
+    gtk_aspect_frame_set_xalign(
+      this.raw.asInstanceOf[Ptr[GtkAspectFrame]],
+      xalign.asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -126,7 +135,10 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
     * `GtkAspectFrame`.
     */
   def setYalign(yalign: Float /* Some(Float) */ ): Unit /* None */ =
-    gtk_aspect_frame_set_yalign(this.raw.asInstanceOf, yalign.asInstanceOf)
+    gtk_aspect_frame_set_yalign(
+      this.raw.asInstanceOf[Ptr[GtkAspectFrame]],
+      yalign.asInstanceOf
+    )
 
 end AspectFrame
 

@@ -59,7 +59,7 @@ class DBusObjectManagerServer(raw: Ptr[GDBusObjectManagerServer])
   def `export`(
       `object`: DBusObjectSkeleton /* Some(Ptr[GDBusObjectSkeleton]) */
   ): Unit /* None */ = g_dbus_object_manager_server_export(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusObjectManagerServer]],
     `object`.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -73,7 +73,7 @@ class DBusObjectManagerServer(raw: Ptr[GDBusObjectManagerServer])
   def exportUniquely(
       `object`: DBusObjectSkeleton /* Some(Ptr[GDBusObjectSkeleton]) */
   ): Unit /* None */ = g_dbus_object_manager_server_export_uniquely(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusObjectManagerServer]],
     `object`.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -83,7 +83,7 @@ class DBusObjectManagerServer(raw: Ptr[GDBusObjectManagerServer])
     */
   def getConnection(): DBusConnection /* None */ = new DBusConnection(
     g_dbus_object_manager_server_get_connection(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GDBusObjectManagerServer]]
     ).asInstanceOf
   )
 
@@ -94,7 +94,7 @@ class DBusObjectManagerServer(raw: Ptr[GDBusObjectManagerServer])
   def isExported(
       `object`: DBusObjectSkeleton /* Some(Ptr[GDBusObjectSkeleton]) */
   ): Boolean /* None */ = g_dbus_object_manager_server_is_exported(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusObjectManagerServer]],
     `object`.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -107,7 +107,7 @@ class DBusObjectManagerServer(raw: Ptr[GDBusObjectManagerServer])
   def setConnection(
       connection: Option[DBusConnection /* Some(Ptr[GDBusConnection]) */ ]
   ): Unit /* None */ = g_dbus_object_manager_server_set_connection(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusObjectManagerServer]],
     connection
       .map[Ptr[GDBusConnection]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GDBusConnection]])
@@ -125,7 +125,7 @@ class DBusObjectManagerServer(raw: Ptr[GDBusObjectManagerServer])
       object_path: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* None */ = g_dbus_object_manager_server_unexport(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusObjectManagerServer]],
     __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 

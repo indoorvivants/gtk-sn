@@ -21,7 +21,9 @@ class CrossFadeNode(raw: Ptr[GskCrossFadeNode])
     * Retrieves the child `GskRenderNode` at the end of the cross-fade.
     */
   def getEndChild(): RenderNode /* None */ = new RenderNode(
-    gsk_cross_fade_node_get_end_child(this.raw.asInstanceOf).asInstanceOf
+    gsk_cross_fade_node_get_end_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -29,7 +31,7 @@ class CrossFadeNode(raw: Ptr[GskCrossFadeNode])
     * Retrieves the progress value of the cross fade.
     */
   def getProgress(): Float /* None */ = gsk_cross_fade_node_get_progress(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -37,7 +39,9 @@ class CrossFadeNode(raw: Ptr[GskCrossFadeNode])
     * Retrieves the child `GskRenderNode` at the beginning of the cross-fade.
     */
   def getStartChild(): RenderNode /* None */ = new RenderNode(
-    gsk_cross_fade_node_get_start_child(this.raw.asInstanceOf).asInstanceOf
+    gsk_cross_fade_node_get_start_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
 end CrossFadeNode

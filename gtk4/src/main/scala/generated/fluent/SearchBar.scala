@@ -79,7 +79,7 @@ class SearchBar(raw: Ptr[GtkSearchBar])
   def connectEntry(
       entry: Editable /* Some(Ptr[GtkEditable]) */
   ): Unit /* None */ = gtk_search_bar_connect_entry(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSearchBar]],
     entry.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -88,7 +88,9 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     * Gets the child widget of @bar.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_search_bar_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_search_bar_get_child(
+      this.raw.asInstanceOf[Ptr[GtkSearchBar]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -96,22 +98,27 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     * Gets the widget that @bar is capturing key events from.
     */
   def getKeyCaptureWidget(): Widget /* None */ = new Widget(
-    gtk_search_bar_get_key_capture_widget(this.raw.asInstanceOf).asInstanceOf
+    gtk_search_bar_get_key_capture_widget(
+      this.raw.asInstanceOf[Ptr[GtkSearchBar]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the search mode is on or off.
     */
-  def getSearchMode(): Boolean /* None */ =
-    gtk_search_bar_get_search_mode(this.raw.asInstanceOf).value.!=(0)
+  def getSearchMode(): Boolean /* None */ = gtk_search_bar_get_search_mode(
+    this.raw.asInstanceOf[Ptr[GtkSearchBar]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the close button is shown.
     */
   def getShowCloseButton(): Boolean /* None */ =
-    gtk_search_bar_get_show_close_button(this.raw.asInstanceOf).value.!=(0)
+    gtk_search_bar_get_show_close_button(
+      this.raw.asInstanceOf[Ptr[GtkSearchBar]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -120,7 +127,7 @@ class SearchBar(raw: Ptr[GtkSearchBar])
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_search_bar_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSearchBar]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -142,7 +149,7 @@ class SearchBar(raw: Ptr[GtkSearchBar])
   def setKeyCaptureWidget(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_search_bar_set_key_capture_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSearchBar]],
     widget
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -155,7 +162,7 @@ class SearchBar(raw: Ptr[GtkSearchBar])
   def setSearchMode(
       search_mode: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_search_bar_set_search_mode(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSearchBar]],
     gboolean(gint((if search_mode == true then 1 else 0)))
   )
 
@@ -170,7 +177,7 @@ class SearchBar(raw: Ptr[GtkSearchBar])
   def setShowCloseButton(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_search_bar_set_show_close_button(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSearchBar]],
     gboolean(gint((if visible == true then 1 else 0)))
   )
 

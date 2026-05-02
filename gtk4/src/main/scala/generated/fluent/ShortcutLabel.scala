@@ -30,7 +30,9 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
     * Retrieves the current accelerator of @self.
     */
   def getAccelerator()(using Zone): String /* None */ = fromCString(
-    gtk_shortcut_label_get_accelerator(this.raw.asInstanceOf).asInstanceOf
+    gtk_shortcut_label_get_accelerator(
+      this.raw.asInstanceOf[Ptr[GtkShortcutLabel]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -38,7 +40,9 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
     * Retrieves the text that is displayed when no accelerator is set.
     */
   def getDisabledText()(using Zone): String /* None */ = fromCString(
-    gtk_shortcut_label_get_disabled_text(this.raw.asInstanceOf).asInstanceOf
+    gtk_shortcut_label_get_disabled_text(
+      this.raw.asInstanceOf[Ptr[GtkShortcutLabel]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -48,7 +52,7 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
   def setAccelerator(
       accelerator: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_shortcut_label_set_accelerator(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkShortcutLabel]],
     __sn_extract_string(accelerator)
   )
 
@@ -59,7 +63,7 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
   def setDisabledText(
       disabled_text: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_shortcut_label_set_disabled_text(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkShortcutLabel]],
     __sn_extract_string(disabled_text)
   )
 

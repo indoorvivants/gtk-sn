@@ -90,7 +90,7 @@ class DBusAuthObserver(raw: Ptr[GDBusAuthObserver])
       mechanism: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* None */ = g_dbus_auth_observer_allow_mechanism(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusAuthObserver]],
     __sn_extract_string(mechanism).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
@@ -102,7 +102,7 @@ class DBusAuthObserver(raw: Ptr[GDBusAuthObserver])
       stream: IOStream /* Some(Ptr[GIOStream]) */,
       credentials: Option[Credentials /* Some(Ptr[GCredentials]) */ ]
   ): Boolean /* None */ = g_dbus_auth_observer_authorize_authenticated_peer(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusAuthObserver]],
     stream.getUnsafeRawPointer().asInstanceOf,
     credentials
       .map[Ptr[GCredentials]](o => o.getUnsafeRawPointer().asInstanceOf)

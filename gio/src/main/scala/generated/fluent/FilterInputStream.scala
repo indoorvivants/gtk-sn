@@ -26,7 +26,9 @@ class FilterInputStream(raw: Ptr[GFilterInputStream])
     * Gets the base stream for the filter stream.
     */
   def getBaseStream(): InputStream /* None */ = new InputStream(
-    g_filter_input_stream_get_base_stream(this.raw.asInstanceOf).asInstanceOf
+    g_filter_input_stream_get_base_stream(
+      this.raw.asInstanceOf[Ptr[GFilterInputStream]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -34,8 +36,9 @@ class FilterInputStream(raw: Ptr[GFilterInputStream])
     * Returns whether the base stream will be closed when @stream is closed.
     */
   def getCloseBaseStream(): Boolean /* None */ =
-    g_filter_input_stream_get_close_base_stream(this.raw.asInstanceOf).value
-      .!=(0)
+    g_filter_input_stream_get_close_base_stream(
+      this.raw.asInstanceOf[Ptr[GFilterInputStream]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -44,7 +47,7 @@ class FilterInputStream(raw: Ptr[GFilterInputStream])
   def setCloseBaseStream(
       close_base: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_filter_input_stream_set_close_base_stream(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFilterInputStream]],
     gboolean(gint((if close_base == true then 1 else 0)))
   )
 

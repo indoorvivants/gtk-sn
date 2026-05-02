@@ -27,7 +27,7 @@ class BytesIcon(raw: Ptr[GBytesIcon])
     * Gets the #GBytes associated with the given @icon.
     */
   def getBytes(): Ptr[GBytes] /* None */ = g_bytes_icon_get_bytes(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GBytesIcon]]
   )
 
 end BytesIcon

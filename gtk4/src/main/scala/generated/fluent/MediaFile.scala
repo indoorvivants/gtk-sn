@@ -31,7 +31,9 @@ class MediaFile(raw: Ptr[GtkMediaFile])
     *
     * Resets the media file to be empty.
     */
-  def clear(): Unit /* None */ = gtk_media_file_clear(this.raw.asInstanceOf)
+  def clear(): Unit /* None */ = gtk_media_file_clear(
+    this.raw.asInstanceOf[Ptr[GtkMediaFile]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -40,7 +42,9 @@ class MediaFile(raw: Ptr[GtkMediaFile])
     * When @self is not playing or not playing from a file, %NULL is returned.
     */
   def getFile(): File /* None */ = new File.Abstract(
-    gtk_media_file_get_file(this.raw.asInstanceOf).asInstanceOf
+    gtk_media_file_get_file(
+      this.raw.asInstanceOf[Ptr[GtkMediaFile]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -50,7 +54,9 @@ class MediaFile(raw: Ptr[GtkMediaFile])
     * When @self is not playing or not playing from a stream, %NULL is returned.
     */
   def getInputStream(): InputStream /* None */ = new InputStream(
-    gtk_media_file_get_input_stream(this.raw.asInstanceOf).asInstanceOf
+    gtk_media_file_get_input_stream(
+      this.raw.asInstanceOf[Ptr[GtkMediaFile]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -62,7 +68,7 @@ class MediaFile(raw: Ptr[GtkMediaFile])
   def setFile(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
   ): Unit /* None */ = gtk_media_file_set_file(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkMediaFile]],
     file
       .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -80,7 +86,7 @@ class MediaFile(raw: Ptr[GtkMediaFile])
   def setFilename(
       filename: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_media_file_set_filename(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkMediaFile]],
     filename
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -100,7 +106,7 @@ class MediaFile(raw: Ptr[GtkMediaFile])
         InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */
       ]
   ): Unit /* None */ = gtk_media_file_set_input_stream(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkMediaFile]],
     stream
       .map[Ptr[_root_.sn.gnome.gio.internal.GInputStream]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -120,7 +126,7 @@ class MediaFile(raw: Ptr[GtkMediaFile])
   def setResource(
       resource_path: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_media_file_set_resource(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkMediaFile]],
     resource_path
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])

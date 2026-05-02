@@ -33,7 +33,7 @@ class GesturePan(raw: Ptr[GtkGesturePan]) extends GestureDrag(raw.asInstanceOf):
     * Returns the orientation of the pan gestures that this @gesture expects.
     */
   def getOrientation(): GtkOrientation /* None */ =
-    gtk_gesture_pan_get_orientation(this.raw.asInstanceOf)
+    gtk_gesture_pan_get_orientation(this.raw.asInstanceOf[Ptr[GtkGesturePan]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -41,8 +41,10 @@ class GesturePan(raw: Ptr[GtkGesturePan]) extends GestureDrag(raw.asInstanceOf):
     */
   def setOrientation(
       orientation: GtkOrientation /* Some(GtkOrientation) */
-  ): Unit /* None */ =
-    gtk_gesture_pan_set_orientation(this.raw.asInstanceOf, orientation)
+  ): Unit /* None */ = gtk_gesture_pan_set_orientation(
+    this.raw.asInstanceOf[Ptr[GtkGesturePan]],
+    orientation
+  )
 
 end GesturePan
 

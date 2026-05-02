@@ -65,7 +65,7 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[GTlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_interaction_ask_password(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GTlsInteraction]],
       password.getUnsafeRawPointer().asInstanceOf,
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -100,7 +100,7 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_tls_interaction_ask_password_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsInteraction]],
     password.getUnsafeRawPointer().asInstanceOf,
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -129,7 +129,7 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[GTlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_interaction_ask_password_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GTlsInteraction]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -162,7 +162,7 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[GTlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_interaction_invoke_ask_password(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GTlsInteraction]],
       password.getUnsafeRawPointer().asInstanceOf,
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -199,7 +199,7 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[GTlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_interaction_invoke_request_certificate(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GTlsInteraction]],
       connection.getUnsafeRawPointer().asInstanceOf,
       flags,
       cancellable
@@ -236,7 +236,7 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[GTlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_interaction_request_certificate(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GTlsInteraction]],
       connection.getUnsafeRawPointer().asInstanceOf,
       flags,
       cancellable
@@ -266,7 +266,7 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_tls_interaction_request_certificate_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsInteraction]],
     connection.getUnsafeRawPointer().asInstanceOf,
     flags,
     cancellable
@@ -298,7 +298,7 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[GTlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_interaction_request_certificate_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GTlsInteraction]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )

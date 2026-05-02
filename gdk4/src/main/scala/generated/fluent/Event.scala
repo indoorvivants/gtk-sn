@@ -101,7 +101,7 @@ class Event(raw: Ptr[GdkEvent]):
     * Returns the device of an event.
     */
   def getDevice(): Device /* None */ = new Device(
-    gdk_event_get_device(this.raw.asInstanceOf).asInstanceOf
+    gdk_event_get_device(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -116,7 +116,7 @@ class Event(raw: Ptr[GdkEvent]):
     * [method@Gdk.DeviceTool.get_serial].
     */
   def getDeviceTool(): DeviceTool /* None */ = new DeviceTool(
-    gdk_event_get_device_tool(this.raw.asInstanceOf).asInstanceOf
+    gdk_event_get_device_tool(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -124,7 +124,7 @@ class Event(raw: Ptr[GdkEvent]):
     * Retrieves the display associated to the @event.
     */
   def getDisplay(): Display /* None */ = new Display(
-    gdk_event_get_display(this.raw.asInstanceOf).asInstanceOf
+    gdk_event_get_display(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -135,14 +135,14 @@ class Event(raw: Ptr[GdkEvent]):
     * don't have event sequence information.
     */
   def getEventSequence(): Ptr[GdkEventSequence] /* None */ =
-    gdk_event_get_event_sequence(this.raw.asInstanceOf)
+    gdk_event_get_event_sequence(this.raw.asInstanceOf[Ptr[GdkEvent]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the type of the event.
     */
   def getEventType(): GdkEventType /* None */ = gdk_event_get_event_type(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -166,7 +166,7 @@ class Event(raw: Ptr[GdkEvent]):
     * Returns the modifier state field of an event.
     */
   def getModifierState(): GdkModifierType /* None */ =
-    gdk_event_get_modifier_state(this.raw.asInstanceOf)
+    gdk_event_get_modifier_state(this.raw.asInstanceOf[Ptr[GdkEvent]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -174,8 +174,9 @@ class Event(raw: Ptr[GdkEvent]):
     *
     * Emulated pointer events typically originate from a touch events.
     */
-  def getPointerEmulated(): Boolean /* None */ =
-    gdk_event_get_pointer_emulated(this.raw.asInstanceOf).value.!=(0)
+  def getPointerEmulated(): Boolean /* None */ = gdk_event_get_pointer_emulated(
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -193,7 +194,7 @@ class Event(raw: Ptr[GdkEvent]):
     * Returns the seat that originated the event.
     */
   def getSeat(): Seat /* None */ = new Seat(
-    gdk_event_get_seat(this.raw.asInstanceOf).asInstanceOf
+    gdk_event_get_seat(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -201,7 +202,7 @@ class Event(raw: Ptr[GdkEvent]):
     * Extracts the surface associated with an event.
     */
   def getSurface(): Surface /* None */ = new Surface(
-    gdk_event_get_surface(this.raw.asInstanceOf).asInstanceOf
+    gdk_event_get_surface(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -212,7 +213,7 @@ class Event(raw: Ptr[GdkEvent]):
     * %GDK_CURRENT_TIME.
     */
   def getTime(): UInt /* None */ = gdk_event_get_time(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -220,7 +221,7 @@ class Event(raw: Ptr[GdkEvent]):
     * Increase the ref count of @event.
     */
   def ref(): Event /* None */ = new Event(
-    gdk_event_ref(this.raw.asInstanceOf).asInstanceOf
+    gdk_event_ref(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -234,7 +235,8 @@ class Event(raw: Ptr[GdkEvent]):
     * event->button == %GDK_BUTTON_SECONDARY.
     */
   def triggersContextMenu(): Boolean /* None */ =
-    gdk_event_triggers_context_menu(this.raw.asInstanceOf).value.!=(0)
+    gdk_event_triggers_context_menu(this.raw.asInstanceOf[Ptr[GdkEvent]]).value
+      .!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -242,6 +244,8 @@ class Event(raw: Ptr[GdkEvent]):
     *
     * If the last reference is dropped, the structure is freed.
     */
-  def unref(): Unit /* None */ = gdk_event_unref(this.raw.asInstanceOf)
+  def unref(): Unit /* None */ = gdk_event_unref(
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
+  )
 
 end Event

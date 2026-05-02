@@ -37,7 +37,7 @@ class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
   def equal(
       other_address: InetAddress /* Some(Ptr[GInetAddress]) */
   ): Boolean /* None */ = g_inet_address_equal(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GInetAddress]],
     other_address.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -46,72 +46,85 @@ class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
     * Gets @address's family
     */
   def getFamily(): GSocketFamily /* None */ = g_inet_address_get_family(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GInetAddress]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Tests whether @address is the "any" address for its family.
     */
-  def getIsAny(): Boolean /* None */ =
-    g_inet_address_get_is_any(this.raw.asInstanceOf).value.!=(0)
+  def getIsAny(): Boolean /* None */ = g_inet_address_get_is_any(
+    this.raw.asInstanceOf[Ptr[GInetAddress]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Tests whether @address is a link-local address (that is, if it identifies
     * a host on a local network that is not connected to the Internet).
     */
-  def getIsLinkLocal(): Boolean /* None */ =
-    g_inet_address_get_is_link_local(this.raw.asInstanceOf).value.!=(0)
+  def getIsLinkLocal(): Boolean /* None */ = g_inet_address_get_is_link_local(
+    this.raw.asInstanceOf[Ptr[GInetAddress]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Tests whether @address is the loopback address for its family.
     */
-  def getIsLoopback(): Boolean /* None */ =
-    g_inet_address_get_is_loopback(this.raw.asInstanceOf).value.!=(0)
+  def getIsLoopback(): Boolean /* None */ = g_inet_address_get_is_loopback(
+    this.raw.asInstanceOf[Ptr[GInetAddress]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Tests whether @address is a global multicast address.
     */
-  def getIsMcGlobal(): Boolean /* None */ =
-    g_inet_address_get_is_mc_global(this.raw.asInstanceOf).value.!=(0)
+  def getIsMcGlobal(): Boolean /* None */ = g_inet_address_get_is_mc_global(
+    this.raw.asInstanceOf[Ptr[GInetAddress]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Tests whether @address is a link-local multicast address.
     */
   def getIsMcLinkLocal(): Boolean /* None */ =
-    g_inet_address_get_is_mc_link_local(this.raw.asInstanceOf).value.!=(0)
+    g_inet_address_get_is_mc_link_local(
+      this.raw.asInstanceOf[Ptr[GInetAddress]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Tests whether @address is a node-local multicast address.
     */
   def getIsMcNodeLocal(): Boolean /* None */ =
-    g_inet_address_get_is_mc_node_local(this.raw.asInstanceOf).value.!=(0)
+    g_inet_address_get_is_mc_node_local(
+      this.raw.asInstanceOf[Ptr[GInetAddress]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Tests whether @address is an organization-local multicast address.
     */
   def getIsMcOrgLocal(): Boolean /* None */ =
-    g_inet_address_get_is_mc_org_local(this.raw.asInstanceOf).value.!=(0)
+    g_inet_address_get_is_mc_org_local(
+      this.raw.asInstanceOf[Ptr[GInetAddress]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Tests whether @address is a site-local multicast address.
     */
   def getIsMcSiteLocal(): Boolean /* None */ =
-    g_inet_address_get_is_mc_site_local(this.raw.asInstanceOf).value.!=(0)
+    g_inet_address_get_is_mc_site_local(
+      this.raw.asInstanceOf[Ptr[GInetAddress]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Tests whether @address is a multicast address.
     */
-  def getIsMulticast(): Boolean /* None */ =
-    g_inet_address_get_is_multicast(this.raw.asInstanceOf).value.!=(0)
+  def getIsMulticast(): Boolean /* None */ = g_inet_address_get_is_multicast(
+    this.raw.asInstanceOf[Ptr[GInetAddress]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -120,8 +133,9 @@ class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
     * directly from the Internet, but which may have outgoing Internet
     * connectivity via a NAT or firewall).
     */
-  def getIsSiteLocal(): Boolean /* None */ =
-    g_inet_address_get_is_site_local(this.raw.asInstanceOf).value.!=(0)
+  def getIsSiteLocal(): Boolean /* None */ = g_inet_address_get_is_site_local(
+    this.raw.asInstanceOf[Ptr[GInetAddress]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -129,14 +143,16 @@ class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
     * size of the data that you get from g_inet_address_to_bytes().
     */
   def getNativeSize(): CUnsignedLongInt /* None */ =
-    g_inet_address_get_native_size(this.raw.asInstanceOf).value
+    g_inet_address_get_native_size(
+      this.raw.asInstanceOf[Ptr[GInetAddress]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the raw binary address data from @address.
     */
   def toBytes(): Ptr[guint8] /* None */ = g_inet_address_to_bytes(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GInetAddress]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -144,7 +160,9 @@ class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
     * Converts @address to string form.
     */
   def toString()(using Zone): String /* None */ = fromCString(
-    g_inet_address_to_string(this.raw.asInstanceOf).asInstanceOf
+    g_inet_address_to_string(
+      this.raw.asInstanceOf[Ptr[GInetAddress]]
+    ).asInstanceOf
   )
 
 end InetAddress

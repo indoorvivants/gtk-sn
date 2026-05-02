@@ -80,7 +80,7 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
       detailed_action: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_notification_add_button(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GNotification]],
     __sn_extract_string(label).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(detailed_action).asInstanceOf[Ptr[gchar]]
   )
@@ -105,7 +105,7 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
       ],
       args: Any*
   )(using Zone): Unit /* None */ = g_notification_add_button_with_target(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GNotification]],
     __sn_extract_string(label).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(action).asInstanceOf[Ptr[gchar]],
     target_format
@@ -134,7 +134,7 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
         Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
       ]
   )(using Zone): Unit /* None */ = g_notification_add_button_with_target_value(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GNotification]],
     __sn_extract_string(label).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(action).asInstanceOf[Ptr[gchar]],
     target
@@ -151,7 +151,7 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Zone): Unit /* None */ = g_notification_set_body(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GNotification]],
     body
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -174,7 +174,7 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Zone): Unit /* None */ = g_notification_set_category(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GNotification]],
     category
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -199,7 +199,7 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
       detailed_action: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_notification_set_default_action(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GNotification]],
     __sn_extract_string(detailed_action).asInstanceOf[Ptr[gchar]]
   )
 
@@ -224,7 +224,7 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
       ],
       args: Any*
   )(using Zone): Unit /* None */ = g_notification_set_default_action_and_target(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GNotification]],
     __sn_extract_string(action).asInstanceOf[Ptr[gchar]],
     target_format
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
@@ -254,7 +254,7 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
       ]
   )(using Zone): Unit /* None */ =
     g_notification_set_default_action_and_target_value(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GNotification]],
       __sn_extract_string(action).asInstanceOf[Ptr[gchar]],
       target
         .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
@@ -269,7 +269,7 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     */
   def setIcon(icon: Icon /* Some(Ptr[GIcon]) */ ): Unit /* None */ =
     g_notification_set_icon(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GNotification]],
       icon.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -280,8 +280,10 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     */
   def setPriority(
       priority: GNotificationPriority /* Some(GNotificationPriority) */
-  ): Unit /* None */ =
-    g_notification_set_priority(this.raw.asInstanceOf, priority)
+  ): Unit /* None */ = g_notification_set_priority(
+    this.raw.asInstanceOf[Ptr[GNotification]],
+    priority
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -291,7 +293,7 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
       title: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_notification_set_title(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GNotification]],
     __sn_extract_string(title).asInstanceOf[Ptr[gchar]]
   )
 
@@ -302,7 +304,7 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
   def setUrgent(
       urgent: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_notification_set_urgent(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GNotification]],
     gboolean(gint((if urgent == true then 1 else 0)))
   )
 

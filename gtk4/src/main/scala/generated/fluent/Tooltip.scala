@@ -53,7 +53,7 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
   def setCustom(
       custom_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_tooltip_set_custom(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTooltip]],
     custom_widget
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -70,7 +70,7 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
         Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
       ]
   ): Unit /* None */ = gtk_tooltip_set_icon(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTooltip]],
     paintable
       .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -89,7 +89,7 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
   def setIconFromGicon(
       gicon: Option[Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */ ]
   ): Unit /* None */ = gtk_tooltip_set_icon_from_gicon(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTooltip]],
     gicon
       .map[Ptr[_root_.sn.gnome.gio.internal.GIcon]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -106,7 +106,7 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
   def setIconFromIconName(
       icon_name: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_tooltip_set_icon_from_icon_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTooltip]],
     icon_name
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -122,7 +122,7 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
   def setMarkup(
       markup: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_tooltip_set_markup(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTooltip]],
     markup
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -138,7 +138,7 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
   def setText(
       text: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_tooltip_set_text(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTooltip]],
     text
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -158,7 +158,8 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
       rect: Ptr[
         GdkRectangle
       ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */
-  ): Unit /* None */ = gtk_tooltip_set_tip_area(this.raw.asInstanceOf, rect)
+  ): Unit /* None */ =
+    gtk_tooltip_set_tip_area(this.raw.asInstanceOf[Ptr[GtkTooltip]], rect)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

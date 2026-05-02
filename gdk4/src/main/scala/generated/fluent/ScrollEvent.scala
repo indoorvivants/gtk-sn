@@ -38,7 +38,7 @@ class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
     * Extracts the direction of a scroll event.
     */
   def getDirection(): GdkScrollDirection /* None */ =
-    gdk_scroll_event_get_direction(this.raw.asInstanceOf)
+    gdk_scroll_event_get_direction(this.raw.asInstanceOf[Ptr[GdkEvent]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -48,7 +48,7 @@ class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
     * not %GDK_SCROLL_SMOOTH.
     */
   def getUnit(): GdkScrollUnit /* None */ = gdk_scroll_event_get_unit(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -63,6 +63,6 @@ class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
     * Stop scroll events always have a delta of 0/0.
     */
   def isStop(): Boolean /* None */ =
-    gdk_scroll_event_is_stop(this.raw.asInstanceOf).value.!=(0)
+    gdk_scroll_event_is_stop(this.raw.asInstanceOf[Ptr[GdkEvent]]).value.!=(0)
 
 end ScrollEvent

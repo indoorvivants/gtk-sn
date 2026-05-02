@@ -35,7 +35,9 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * have been unreffed with g_object_unref().
     */
   def getConnectedDrives(): Ptr[GList] /* None */ =
-    g_volume_monitor_get_connected_drives(this.raw.asInstanceOf)
+    g_volume_monitor_get_connected_drives(
+      this.raw.asInstanceOf[Ptr[GVolumeMonitor]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -45,7 +47,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
       uuid: String | CString /* Some(CString) */
   )(using Zone): Mount /* None */ = new Mount.Abstract(
     g_volume_monitor_get_mount_for_uuid(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GVolumeMonitor]],
       __sn_extract_string(uuid)
     ).asInstanceOf
   )
@@ -58,7 +60,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * have been unreffed with g_object_unref().
     */
   def getMounts(): Ptr[GList] /* None */ = g_volume_monitor_get_mounts(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GVolumeMonitor]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -69,7 +71,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
       uuid: String | CString /* Some(CString) */
   )(using Zone): Volume /* None */ = new Volume.Abstract(
     g_volume_monitor_get_volume_for_uuid(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GVolumeMonitor]],
       __sn_extract_string(uuid)
     ).asInstanceOf
   )
@@ -82,7 +84,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * have been unreffed with g_object_unref().
     */
   def getVolumes(): Ptr[GList] /* None */ = g_volume_monitor_get_volumes(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GVolumeMonitor]]
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

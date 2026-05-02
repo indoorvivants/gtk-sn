@@ -29,7 +29,7 @@ class MultiFilter(raw: Ptr[GtkMultiFilter])
     */
   def append(filter: Filter /* Some(Ptr[GtkFilter]) */ ): Unit /* None */ =
     gtk_multi_filter_append(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkMultiFilter]],
       filter.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -42,7 +42,9 @@ class MultiFilter(raw: Ptr[GtkMultiFilter])
     */
   def remove(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_multi_filter_remove(this.raw.asInstanceOf, guint(position))
+  ): Unit /* None */ = gtk_multi_filter_remove(
+    this.raw.asInstanceOf[Ptr[GtkMultiFilter]],
+    guint(position)
+  )
 
 end MultiFilter

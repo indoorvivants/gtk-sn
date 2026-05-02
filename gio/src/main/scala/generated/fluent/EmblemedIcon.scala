@@ -31,7 +31,7 @@ class EmblemedIcon(raw: Ptr[GEmblemedIcon])
     */
   def addEmblem(emblem: Emblem /* Some(Ptr[GEmblem]) */ ): Unit /* None */ =
     g_emblemed_icon_add_emblem(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GEmblemedIcon]],
       emblem.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -40,7 +40,7 @@ class EmblemedIcon(raw: Ptr[GEmblemedIcon])
     * Removes all the emblems from @icon.
     */
   def clearEmblems(): Unit /* None */ = g_emblemed_icon_clear_emblems(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GEmblemedIcon]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -48,7 +48,7 @@ class EmblemedIcon(raw: Ptr[GEmblemedIcon])
     * Gets the list of emblems for the @icon.
     */
   def getEmblems(): Ptr[GList] /* None */ = g_emblemed_icon_get_emblems(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GEmblemedIcon]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -56,7 +56,9 @@ class EmblemedIcon(raw: Ptr[GEmblemedIcon])
     * Gets the main icon for @emblemed.
     */
   def getIcon(): Icon /* None */ = new Icon.Abstract(
-    g_emblemed_icon_get_icon(this.raw.asInstanceOf).asInstanceOf
+    g_emblemed_icon_get_icon(
+      this.raw.asInstanceOf[Ptr[GEmblemedIcon]]
+    ).asInstanceOf
   )
 
 end EmblemedIcon

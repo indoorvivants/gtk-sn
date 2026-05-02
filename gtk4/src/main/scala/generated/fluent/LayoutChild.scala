@@ -31,7 +31,9 @@ class LayoutChild(raw: Ptr[GtkLayoutChild]) extends Object(raw.asInstanceOf):
     * Retrieves the `GtkWidget` associated to the given @layout_child.
     */
   def getChildWidget(): Widget /* None */ = new Widget(
-    gtk_layout_child_get_child_widget(this.raw.asInstanceOf).asInstanceOf
+    gtk_layout_child_get_child_widget(
+      this.raw.asInstanceOf[Ptr[GtkLayoutChild]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -39,7 +41,9 @@ class LayoutChild(raw: Ptr[GtkLayoutChild]) extends Object(raw.asInstanceOf):
     * Retrieves the `GtkLayoutManager` instance that created the given @layout_child.
     */
   def getLayoutManager(): LayoutManager /* None */ = new LayoutManager(
-    gtk_layout_child_get_layout_manager(this.raw.asInstanceOf).asInstanceOf
+    gtk_layout_child_get_layout_manager(
+      this.raw.asInstanceOf[Ptr[GtkLayoutChild]]
+    ).asInstanceOf
   )
 
 end LayoutChild

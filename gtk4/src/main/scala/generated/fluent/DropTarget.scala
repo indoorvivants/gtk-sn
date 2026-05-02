@@ -97,7 +97,7 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * Gets the actions that this drop target supports.
     */
   def getActions(): GdkDragAction /* None */ = gtk_drop_target_get_actions(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkDropTarget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -107,7 +107,9 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * If no drop operation is going on, %NULL is returned.
     */
   def getCurrentDrop(): Drop /* None */ = new Drop(
-    gtk_drop_target_get_current_drop(this.raw.asInstanceOf).asInstanceOf
+    gtk_drop_target_get_current_drop(
+      this.raw.asInstanceOf[Ptr[GtkDropTarget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -117,7 +119,9 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * If no drop operation is going on, %NULL is returned.
     */
   def getDrop(): Drop /* None */ = new Drop(
-    gtk_drop_target_get_drop(this.raw.asInstanceOf).asInstanceOf
+    gtk_drop_target_get_drop(
+      this.raw.asInstanceOf[Ptr[GtkDropTarget]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -127,7 +131,7 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * If the result is %NULL, all formats are expected to be supported.
     */
   def getFormats(): Ptr[GdkContentFormats] /* None */ =
-    gtk_drop_target_get_formats(this.raw.asInstanceOf)
+    gtk_drop_target_get_formats(this.raw.asInstanceOf[Ptr[GtkDropTarget]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -144,15 +148,16 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     *
     * Gets whether data should be preloaded on hover.
     */
-  def getPreload(): Boolean /* None */ =
-    gtk_drop_target_get_preload(this.raw.asInstanceOf).value.!=(0)
+  def getPreload(): Boolean /* None */ = gtk_drop_target_get_preload(
+    this.raw.asInstanceOf[Ptr[GtkDropTarget]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the current drop data, as a `GValue`.
     */
   def getValue(): Ptr[GValue] /* None */ = gtk_drop_target_get_value(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkDropTarget]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -166,7 +171,9 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * This function should be used when delaying the decision on whether to
     * accept a drag or not until after reading the data.
     */
-  def reject(): Unit /* None */ = gtk_drop_target_reject(this.raw.asInstanceOf)
+  def reject(): Unit /* None */ = gtk_drop_target_reject(
+    this.raw.asInstanceOf[Ptr[GtkDropTarget]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -174,8 +181,10 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     */
   def setActions(
       actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
-  ): Unit /* None */ =
-    gtk_drop_target_set_actions(this.raw.asInstanceOf, actions)
+  ): Unit /* None */ = gtk_drop_target_set_actions(
+    this.raw.asInstanceOf[Ptr[GtkDropTarget]],
+    actions
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -187,7 +196,7 @@ class DropTarget(raw: Ptr[GtkDropTarget])
       ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GType]) */ ],
       n_types: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): Unit /* None */ = gtk_drop_target_set_gtypes(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDropTarget]],
     types
       .map[Ptr[_root_.sn.gnome.gobject.internal.GType]](o => o)
       .getOrElse(
@@ -203,7 +212,7 @@ class DropTarget(raw: Ptr[GtkDropTarget])
   def setPreload(
       preload: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_drop_target_set_preload(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDropTarget]],
     gboolean(gint((if preload == true then 1 else 0)))
   )
 

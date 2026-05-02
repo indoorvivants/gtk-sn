@@ -37,7 +37,7 @@ class CellRendererText(raw: Ptr[GtkCellRendererText])
   def setFixedHeightFromFont(
       number_of_rows: Int /* Some(CInt) */
   ): Unit /* None */ = gtk_cell_renderer_text_set_fixed_height_from_font(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellRendererText]],
     number_of_rows
   )
 

@@ -103,7 +103,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * [struct@Gtk.TreePath] of the active item.
     */
   def getActive(): Int /* None */ = gtk_combo_box_get_active(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkComboBox]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -123,7 +123,9 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * then %NULL is returned.
     */
   def getActiveId()(using Zone): String /* None */ = fromCString(
-    gtk_combo_box_get_active_id(this.raw.asInstanceOf).asInstanceOf
+    gtk_combo_box_get_active_id(
+      this.raw.asInstanceOf[Ptr[GtkComboBox]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -143,14 +145,18 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * when there are no items in the model.
     */
   def getButtonSensitivity(): GtkSensitivityType /* None */ =
-    gtk_combo_box_get_button_sensitivity(this.raw.asInstanceOf)
+    gtk_combo_box_get_button_sensitivity(
+      this.raw.asInstanceOf[Ptr[GtkComboBox]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the child widget of @combo_box.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_combo_box_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_combo_box_get_child(
+      this.raw.asInstanceOf[Ptr[GtkComboBox]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -159,14 +165,15 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * display in the internal entry.
     */
   def getEntryTextColumn(): Int /* None */ =
-    gtk_combo_box_get_entry_text_column(this.raw.asInstanceOf)
+    gtk_combo_box_get_entry_text_column(this.raw.asInstanceOf[Ptr[GtkComboBox]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the combo box has an entry.
     */
-  def getHasEntry(): Boolean /* None */ =
-    gtk_combo_box_get_has_entry(this.raw.asInstanceOf).value.!=(0)
+  def getHasEntry(): Boolean /* None */ = gtk_combo_box_get_has_entry(
+    this.raw.asInstanceOf[Ptr[GtkComboBox]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -174,7 +181,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * from.
     */
   def getIdColumn(): Int /* None */ = gtk_combo_box_get_id_column(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkComboBox]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -182,7 +189,9 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * Returns the `GtkTreeModel` of @combo_box.
     */
   def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
-    gtk_combo_box_get_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_combo_box_get_model(
+      this.raw.asInstanceOf[Ptr[GtkComboBox]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -190,14 +199,18 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * Gets whether the popup uses a fixed width.
     */
   def getPopupFixedWidth(): Boolean /* None */ =
-    gtk_combo_box_get_popup_fixed_width(this.raw.asInstanceOf).value.!=(0)
+    gtk_combo_box_get_popup_fixed_width(
+      this.raw.asInstanceOf[Ptr[GtkComboBox]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the current row separator function.
     */
   def getRowSeparatorFunc(): GtkTreeViewRowSeparatorFunc /* None */ =
-    gtk_combo_box_get_row_separator_func(this.raw.asInstanceOf)
+    gtk_combo_box_get_row_separator_func(
+      this.raw.asInstanceOf[Ptr[GtkComboBox]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -206,7 +219,9 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * This function is mostly intended for use by accessibility technologies;
     * applications should have little use for it.
     */
-  def popdown(): Unit /* None */ = gtk_combo_box_popdown(this.raw.asInstanceOf)
+  def popdown(): Unit /* None */ = gtk_combo_box_popdown(
+    this.raw.asInstanceOf[Ptr[GtkComboBox]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -217,7 +232,9 @@ class ComboBox(raw: Ptr[GtkComboBox])
     *
     * Before calling this, @combo_box must be mapped, or nothing will happen.
     */
-  def popup(): Unit /* None */ = gtk_combo_box_popup(this.raw.asInstanceOf)
+  def popup(): Unit /* None */ = gtk_combo_box_popup(
+    this.raw.asInstanceOf[Ptr[GtkComboBox]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -231,7 +248,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
   def popupForDevice(
       device: Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */
   ): Unit /* None */ = gtk_combo_box_popup_for_device(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkComboBox]],
     device.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -240,7 +257,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * Sets the active item of @combo_box to be the item at @index.
     */
   def setActive(`index_`: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_combo_box_set_active(this.raw.asInstanceOf, `index_`)
+    gtk_combo_box_set_active(this.raw.asInstanceOf[Ptr[GtkComboBox]], `index_`)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -257,7 +274,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
   def setActiveId(
       active_id: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Boolean /* None */ = gtk_combo_box_set_active_id(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkComboBox]],
     active_id
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -272,7 +289,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
   def setActiveIter(
       iter: Option[Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */ ]
   ): Unit /* None */ = gtk_combo_box_set_active_iter(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkComboBox]],
     iter
       .map[Ptr[GtkTreeIter]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[GtkTreeIter]])
@@ -285,8 +302,10 @@ class ComboBox(raw: Ptr[GtkComboBox])
     */
   def setButtonSensitivity(
       sensitivity: GtkSensitivityType /* Some(GtkSensitivityType) */
-  ): Unit /* None */ =
-    gtk_combo_box_set_button_sensitivity(this.raw.asInstanceOf, sensitivity)
+  ): Unit /* None */ = gtk_combo_box_set_button_sensitivity(
+    this.raw.asInstanceOf[Ptr[GtkComboBox]],
+    sensitivity
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -295,7 +314,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_combo_box_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkComboBox]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -315,7 +334,10 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * [property@Gtk.ComboBox:has-entry] as %TRUE.
     */
   def setEntryTextColumn(text_column: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_combo_box_set_entry_text_column(this.raw.asInstanceOf, text_column)
+    gtk_combo_box_set_entry_text_column(
+      this.raw.asInstanceOf[Ptr[GtkComboBox]],
+      text_column
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -326,7 +348,10 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * %G_TYPE_STRING.
     */
   def setIdColumn(id_column: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_combo_box_set_id_column(this.raw.asInstanceOf, id_column)
+    gtk_combo_box_set_id_column(
+      this.raw.asInstanceOf[Ptr[GtkComboBox]],
+      id_column
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -342,7 +367,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
   def setModel(
       model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
   ): Unit /* None */ = gtk_combo_box_set_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkComboBox]],
     model
       .map[Ptr[GtkTreeModel]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkTreeModel]])
@@ -358,7 +383,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
   def setPopupFixedWidth(
       fixed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_combo_box_set_popup_fixed_width(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkComboBox]],
     gboolean(gint((if fixed == true then 1 else 0)))
   )
 
@@ -381,7 +406,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
         GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
       ]
   ): Unit /* None */ = gtk_combo_box_set_row_separator_func(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkComboBox]],
     func
       .map[GtkTreeViewRowSeparatorFunc](o => o)
       .getOrElse(null.asInstanceOf[GtkTreeViewRowSeparatorFunc]),

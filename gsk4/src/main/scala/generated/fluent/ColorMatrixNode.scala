@@ -23,7 +23,9 @@ class ColorMatrixNode(raw: Ptr[GskColorMatrixNode])
     * Gets the child node that is getting its colors modified by the given @node.
     */
   def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_color_matrix_node_get_child(this.raw.asInstanceOf).asInstanceOf
+    gsk_color_matrix_node_get_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -31,14 +33,18 @@ class ColorMatrixNode(raw: Ptr[GskColorMatrixNode])
     * Retrieves the color matrix used by the @node.
     */
   def getColorMatrix(): Ptr[graphene_matrix_t] /* None */ =
-    gsk_color_matrix_node_get_color_matrix(this.raw.asInstanceOf)
+    gsk_color_matrix_node_get_color_matrix(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the color offset used by the @node.
     */
   def getColorOffset(): Ptr[graphene_vec4_t] /* None */ =
-    gsk_color_matrix_node_get_color_offset(this.raw.asInstanceOf)
+    gsk_color_matrix_node_get_color_offset(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    )
 
 end ColorMatrixNode
 

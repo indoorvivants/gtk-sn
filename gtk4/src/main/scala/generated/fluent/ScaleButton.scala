@@ -52,8 +52,9 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     * Returns %TRUE if the scale button is pressed in and %FALSE if it is
     * raised.
     */
-  def getActive(): Boolean /* None */ =
-    gtk_scale_button_get_active(this.raw.asInstanceOf).value.!=(0)
+  def getActive(): Boolean /* None */ = gtk_scale_button_get_active(
+    this.raw.asInstanceOf[Ptr[GtkScaleButton]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -62,7 +63,9 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     * See [method@Gtk.Range.get_adjustment] for details.
     */
   def getAdjustment(): Adjustment /* None */ = new Adjustment(
-    gtk_scale_button_get_adjustment(this.raw.asInstanceOf).asInstanceOf
+    gtk_scale_button_get_adjustment(
+      this.raw.asInstanceOf[Ptr[GtkScaleButton]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -70,7 +73,9 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     * Retrieves the minus button of the `GtkScaleButton`.
     */
   def getMinusButton(): Button /* None */ = new Button(
-    gtk_scale_button_get_minus_button(this.raw.asInstanceOf).asInstanceOf
+    gtk_scale_button_get_minus_button(
+      this.raw.asInstanceOf[Ptr[GtkScaleButton]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -78,7 +83,9 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     * Retrieves the plus button of the `GtkScaleButton.`
     */
   def getPlusButton(): Button /* None */ = new Button(
-    gtk_scale_button_get_plus_button(this.raw.asInstanceOf).asInstanceOf
+    gtk_scale_button_get_plus_button(
+      this.raw.asInstanceOf[Ptr[GtkScaleButton]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -86,7 +93,9 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     * Retrieves the popup of the `GtkScaleButton`.
     */
   def getPopup(): Widget /* None */ = new Widget(
-    gtk_scale_button_get_popup(this.raw.asInstanceOf).asInstanceOf
+    gtk_scale_button_get_popup(
+      this.raw.asInstanceOf[Ptr[GtkScaleButton]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -94,7 +103,7 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     * Gets the current value of the scale button.
     */
   def getValue(): Double /* None */ = gtk_scale_button_get_value(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkScaleButton]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -107,7 +116,7 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
   def setAdjustment(
       adjustment: Adjustment /* Some(Ptr[GtkAdjustment]) */
   ): Unit /* None */ = gtk_scale_button_set_adjustment(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkScaleButton]],
     adjustment.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -115,9 +124,12 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     *
     * Sets the icons to be used by the scale button.
     */
-  def setIcons(icons: Ptr[CString] /* Some(Ptr[CString]) */ )(using
-      Zone
-  ): Unit /* None */ = gtk_scale_button_set_icons(this.raw.asInstanceOf, icons)
+  def setIcons(
+      icons: Ptr[CString] /* Some(Ptr[CString]) */
+  )(using Zone): Unit /* None */ = gtk_scale_button_set_icons(
+    this.raw.asInstanceOf[Ptr[GtkScaleButton]],
+    icons
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -130,7 +142,10 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     * if the value changes.
     */
   def setValue(value: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_scale_button_set_value(this.raw.asInstanceOf, value)
+    gtk_scale_button_set_value(
+      this.raw.asInstanceOf[Ptr[GtkScaleButton]],
+      value
+    )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

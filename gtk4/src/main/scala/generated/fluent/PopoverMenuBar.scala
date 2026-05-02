@@ -63,7 +63,7 @@ class PopoverMenuBar(raw: Ptr[GtkPopoverMenuBar])
       child: Widget /* Some(Ptr[GtkWidget]) */,
       id: String | CString /* Some(CString) */
   )(using Zone): Boolean /* None */ = gtk_popover_menu_bar_add_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPopoverMenuBar]],
     child.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(id)
   ).value.!=(0)
@@ -73,7 +73,9 @@ class PopoverMenuBar(raw: Ptr[GtkPopoverMenuBar])
     * Returns the model from which the contents of @bar are taken.
     */
   def getMenuModel(): MenuModel /* None */ = new MenuModel(
-    gtk_popover_menu_bar_get_menu_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_popover_menu_bar_get_menu_model(
+      this.raw.asInstanceOf[Ptr[GtkPopoverMenuBar]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -84,7 +86,7 @@ class PopoverMenuBar(raw: Ptr[GtkPopoverMenuBar])
   def removeChild(
       child: Widget /* Some(Ptr[GtkWidget]) */
   ): Boolean /* None */ = gtk_popover_menu_bar_remove_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPopoverMenuBar]],
     child.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -97,7 +99,7 @@ class PopoverMenuBar(raw: Ptr[GtkPopoverMenuBar])
         MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   ): Unit /* None */ = gtk_popover_menu_bar_set_menu_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPopoverMenuBar]],
     model
       .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
         o.getUnsafeRawPointer().asInstanceOf

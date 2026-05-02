@@ -46,7 +46,8 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     */
   def draw(
       cr: Ptr[cairo_t] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */
-  ): Unit /* None */ = gsk_render_node_draw(this.raw.asInstanceOf, cr)
+  ): Unit /* None */ =
+    gsk_render_node_draw(this.raw.asInstanceOf[Ptr[GskRenderNode]], cr)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -64,14 +65,14 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * Returns the type of the @node.
     */
   def getNodeType(): GskRenderNodeType /* None */ =
-    gsk_render_node_get_node_type(this.raw.asInstanceOf)
+    gsk_render_node_get_node_type(this.raw.asInstanceOf[Ptr[GskRenderNode]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Acquires a reference on the given `GskRenderNode`.
     */
   def ref(): RenderNode /* None */ = new RenderNode(
-    gsk_render_node_ref(this.raw.asInstanceOf).asInstanceOf
+    gsk_render_node_ref(this.raw.asInstanceOf[Ptr[GskRenderNode]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -87,7 +88,7 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * The format is not meant as a permanent storage format.
     */
   def serialize(): Ptr[GBytes] /* None */ = gsk_render_node_serialize(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -97,7 +98,9 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * If the reference was the last, the resources associated to the @node are
     * freed.
     */
-  def unref(): Unit /* None */ = gsk_render_node_unref(this.raw.asInstanceOf)
+  def unref(): Unit /* None */ = gsk_render_node_unref(
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -113,7 +116,7 @@ class RenderNode(raw: Ptr[GskRenderNode]):
       filename: String | CString /* Some(CString) */
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gsk_render_node_write_to_file(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GskRenderNode]],
       __sn_extract_string(filename),
       __errorPtr
     ).value.!=(0)

@@ -51,7 +51,9 @@ class DBusServer(raw: Ptr[GDBusServer])
     * This is valid and non-empty if initializing the #GDBusServer succeeded.
     */
   def getClientAddress()(using Zone): String /* None */ = fromCString(
-    g_dbus_server_get_client_address(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_server_get_client_address(
+      this.raw.asInstanceOf[Ptr[GDBusServer]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -59,7 +61,7 @@ class DBusServer(raw: Ptr[GDBusServer])
     * Gets the flags for @server.
     */
   def getFlags(): GDBusServerFlags /* None */ = g_dbus_server_get_flags(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GDBusServer]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -67,7 +69,7 @@ class DBusServer(raw: Ptr[GDBusServer])
     * Gets the GUID for @server, as provided to g_dbus_server_new_sync().
     */
   def getGuid()(using Zone): String /* None */ = fromCString(
-    g_dbus_server_get_guid(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_server_get_guid(this.raw.asInstanceOf[Ptr[GDBusServer]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -75,19 +77,23 @@ class DBusServer(raw: Ptr[GDBusServer])
     * Gets whether @server is active.
     */
   def isActive(): Boolean /* None */ =
-    g_dbus_server_is_active(this.raw.asInstanceOf).value.!=(0)
+    g_dbus_server_is_active(this.raw.asInstanceOf[Ptr[GDBusServer]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Starts @server.
     */
-  def start(): Unit /* None */ = g_dbus_server_start(this.raw.asInstanceOf)
+  def start(): Unit /* None */ = g_dbus_server_start(
+    this.raw.asInstanceOf[Ptr[GDBusServer]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Stops @server.
     */
-  def stop(): Unit /* None */ = g_dbus_server_stop(this.raw.asInstanceOf)
+  def stop(): Unit /* None */ = g_dbus_server_stop(
+    this.raw.asInstanceOf[Ptr[GDBusServer]]
+  )
 
 end DBusServer
 

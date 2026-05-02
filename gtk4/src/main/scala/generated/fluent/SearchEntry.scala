@@ -74,7 +74,9 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * Gets the widget that @entry is capturing key events from.
     */
   def getKeyCaptureWidget(): Widget /* None */ = new Widget(
-    gtk_search_entry_get_key_capture_widget(this.raw.asInstanceOf).asInstanceOf
+    gtk_search_entry_get_key_capture_widget(
+      this.raw.asInstanceOf[Ptr[GtkSearchEntry]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -82,7 +84,9 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * Gets the placeholder text associated with @entry.
     */
   def getPlaceholderText()(using Zone): String /* None */ = fromCString(
-    gtk_search_entry_get_placeholder_text(this.raw.asInstanceOf).asInstanceOf
+    gtk_search_entry_get_placeholder_text(
+      this.raw.asInstanceOf[Ptr[GtkSearchEntry]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -91,7 +95,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * [signal@Gtk.SearchEntry::search-changed] signal being emitted.
     */
   def getSearchDelay(): UInt /* None */ = gtk_search_entry_get_search_delay(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkSearchEntry]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -113,7 +117,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
   def setKeyCaptureWidget(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_search_entry_set_key_capture_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSearchEntry]],
     widget
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -126,7 +130,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
   def setPlaceholderText(
       text: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_search_entry_set_placeholder_text(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSearchEntry]],
     text
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -139,8 +143,10 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     */
   def setSearchDelay(
       delay: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_search_entry_set_search_delay(this.raw.asInstanceOf, guint(delay))
+  ): Unit /* None */ = gtk_search_entry_set_search_delay(
+    this.raw.asInstanceOf[Ptr[GtkSearchEntry]],
+    guint(delay)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

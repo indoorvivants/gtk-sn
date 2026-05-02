@@ -36,7 +36,7 @@ class CustomFilter(raw: Ptr[GtkCustomFilter]) extends Filter(raw.asInstanceOf):
       ],
       user_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): Unit /* None */ = gtk_custom_filter_set_filter_func(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCustomFilter]],
     match_func
       .map[GtkCustomFilterFunc](o => o)
       .getOrElse(null.asInstanceOf[GtkCustomFilterFunc]),

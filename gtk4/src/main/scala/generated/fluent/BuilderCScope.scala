@@ -46,7 +46,7 @@ class BuilderCScope(raw: Ptr[GtkBuilderCScope])
       callback_name: String | CString /* Some(CString) */,
       callback_symbol: GCallback /* Some(_root_.sn.gnome.gobject.internal.GCallback) */
   )(using Zone): Unit /* None */ = gtk_builder_cscope_add_callback_symbol(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkBuilderCScope]],
     __sn_extract_string(callback_name),
     callback_symbol
   )
@@ -63,7 +63,7 @@ class BuilderCScope(raw: Ptr[GtkBuilderCScope])
       first_callback_symbol: GCallback /* Some(_root_.sn.gnome.gobject.internal.GCallback) */,
       args: Any*
   )(using Zone): Unit /* None */ = gtk_builder_cscope_add_callback_symbols(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkBuilderCScope]],
     __sn_extract_string(first_callback_name),
     first_callback_symbol,
     args*
@@ -78,7 +78,7 @@ class BuilderCScope(raw: Ptr[GtkBuilderCScope])
       callback_name: String | CString /* Some(CString) */
   )(using Zone): GCallback /* None */ =
     gtk_builder_cscope_lookup_callback_symbol(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkBuilderCScope]],
       __sn_extract_string(callback_name)
     )
 

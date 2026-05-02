@@ -67,7 +67,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
   def addResourcePath(
       path: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_icon_theme_add_resource_path(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkIconTheme]],
     __sn_extract_string(path)
   )
 
@@ -80,7 +80,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
   def addSearchPath(
       path: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_icon_theme_add_search_path(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkIconTheme]],
     __sn_extract_string(path)
   )
 
@@ -89,7 +89,9 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * Returns the display that the `GtkIconTheme` object was created for.
     */
   def getDisplay(): Display /* None */ = new Display(
-    gtk_icon_theme_get_display(this.raw.asInstanceOf).asInstanceOf
+    gtk_icon_theme_get_display(
+      this.raw.asInstanceOf[Ptr[GtkIconTheme]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -97,8 +99,9 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * Lists the names of icons in the current icon theme.
     */
   def getIconNames()(using Zone): Array[String] /* None */ =
-    __decode_nullable_ptrs(gtk_icon_theme_get_icon_names(this.raw.asInstanceOf))
-      .map(fromCString(_))
+    __decode_nullable_ptrs(
+      gtk_icon_theme_get_icon_names(this.raw.asInstanceOf[Ptr[GtkIconTheme]])
+    ).map(fromCString(_))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -111,7 +114,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
   def getIconSizes(icon_name: String | CString /* Some(CString) */ )(using
       Zone
   ): Ptr[Int /* None */ ] /* None */ = gtk_icon_theme_get_icon_sizes(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkIconTheme]],
     __sn_extract_string(icon_name)
   )
 
@@ -123,7 +126,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     */
   def getResourcePath()(using Zone): Array[String] /* None */ =
     __decode_nullable_ptrs(
-      gtk_icon_theme_get_resource_path(this.raw.asInstanceOf)
+      gtk_icon_theme_get_resource_path(this.raw.asInstanceOf[Ptr[GtkIconTheme]])
     ).map(fromCString(_))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -134,7 +137,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     */
   def getSearchPath()(using Zone): Array[String] /* None */ =
     __decode_nullable_ptrs(
-      gtk_icon_theme_get_search_path(this.raw.asInstanceOf)
+      gtk_icon_theme_get_search_path(this.raw.asInstanceOf[Ptr[GtkIconTheme]])
     ).map(fromCString(_))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -144,7 +147,9 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * Returns (transfer full): the current icon theme name,
     */
   def getThemeName()(using Zone): String /* None */ = fromCString(
-    gtk_icon_theme_get_theme_name(this.raw.asInstanceOf).asInstanceOf
+    gtk_icon_theme_get_theme_name(
+      this.raw.asInstanceOf[Ptr[GtkIconTheme]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -154,7 +159,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
   def hasGicon(
       gicon: Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
   ): Boolean /* None */ = gtk_icon_theme_has_gicon(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkIconTheme]],
     gicon.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -165,7 +170,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
   def hasIcon(
       icon_name: String | CString /* Some(CString) */
   )(using Zone): Boolean /* None */ = gtk_icon_theme_has_icon(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkIconTheme]],
     __sn_extract_string(icon_name)
   ).value.!=(0)
 
@@ -184,7 +189,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
       flags: GtkIconLookupFlags /* Some(GtkIconLookupFlags) */
   ): IconPaintable /* None */ = new IconPaintable(
     gtk_icon_theme_lookup_by_gicon(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkIconTheme]],
       icon.getUnsafeRawPointer().asInstanceOf,
       size,
       scale,
@@ -221,7 +226,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
       flags: GtkIconLookupFlags /* Some(GtkIconLookupFlags) */
   )(using Zone): IconPaintable /* None */ = new IconPaintable(
     gtk_icon_theme_lookup_icon(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkIconTheme]],
       __sn_extract_string(icon_name),
       fallbacks
         .map[Ptr[CString]](o => o)
@@ -244,7 +249,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
   def setThemeName(
       theme_name: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_icon_theme_set_theme_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkIconTheme]],
     theme_name
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])

@@ -71,7 +71,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
       protocol: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_socket_client_add_application_proxy(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocketClient]],
     __sn_extract_string(protocol).asInstanceOf[Ptr[gchar]]
   )
 
@@ -103,7 +103,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
   ): GResult[SocketConnection /* None */ ] = GResult.wrap(__errorPtr =>
     new SocketConnection(
       g_socket_client_connect(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GSocketClient]],
         connectable.getUnsafeRawPointer().asInstanceOf,
         cancellable
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -136,7 +136,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_socket_client_connect_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocketClient]],
     connectable.getUnsafeRawPointer().asInstanceOf,
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -158,7 +158,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
   ): GResult[SocketConnection /* None */ ] = GResult.wrap(__errorPtr =>
     new SocketConnection(
       g_socket_client_connect_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GSocketClient]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf
@@ -209,7 +209,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     GResult.wrap(__errorPtr =>
       new SocketConnection(
         g_socket_client_connect_to_host(
-          this.raw.asInstanceOf,
+          this.raw.asInstanceOf[Ptr[GSocketClient]],
           __sn_extract_string(host_and_port).asInstanceOf[Ptr[gchar]],
           guint16(default_port),
           cancellable
@@ -238,7 +238,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_socket_client_connect_to_host_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocketClient]],
     __sn_extract_string(host_and_port).asInstanceOf[Ptr[gchar]],
     guint16(default_port),
     cancellable
@@ -262,7 +262,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
   ): GResult[SocketConnection /* None */ ] = GResult.wrap(__errorPtr =>
     new SocketConnection(
       g_socket_client_connect_to_host_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GSocketClient]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf
@@ -296,7 +296,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     GResult.wrap(__errorPtr =>
       new SocketConnection(
         g_socket_client_connect_to_service(
-          this.raw.asInstanceOf,
+          this.raw.asInstanceOf[Ptr[GSocketClient]],
           __sn_extract_string(domain).asInstanceOf[Ptr[gchar]],
           __sn_extract_string(service).asInstanceOf[Ptr[gchar]],
           cancellable
@@ -322,7 +322,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_socket_client_connect_to_service_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocketClient]],
     __sn_extract_string(domain).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(service).asInstanceOf[Ptr[gchar]],
     cancellable
@@ -346,7 +346,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
   ): GResult[SocketConnection /* None */ ] = GResult.wrap(__errorPtr =>
     new SocketConnection(
       g_socket_client_connect_to_service_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GSocketClient]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf
@@ -387,7 +387,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     GResult.wrap(__errorPtr =>
       new SocketConnection(
         g_socket_client_connect_to_uri(
-          this.raw.asInstanceOf,
+          this.raw.asInstanceOf[Ptr[GSocketClient]],
           __sn_extract_string(uri).asInstanceOf[Ptr[gchar]],
           guint16(default_port),
           cancellable
@@ -416,7 +416,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_socket_client_connect_to_uri_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocketClient]],
     __sn_extract_string(uri).asInstanceOf[Ptr[gchar]],
     guint16(default_port),
     cancellable
@@ -440,7 +440,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
   ): GResult[SocketConnection /* None */ ] = GResult.wrap(__errorPtr =>
     new SocketConnection(
       g_socket_client_connect_to_uri_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GSocketClient]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf
@@ -451,8 +451,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *
     * Gets the proxy enable state; see g_socket_client_set_enable_proxy()
     */
-  def getEnableProxy(): Boolean /* None */ =
-    g_socket_client_get_enable_proxy(this.raw.asInstanceOf).value.!=(0)
+  def getEnableProxy(): Boolean /* None */ = g_socket_client_get_enable_proxy(
+    this.raw.asInstanceOf[Ptr[GSocketClient]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -461,7 +462,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * See g_socket_client_set_family() for details.
     */
   def getFamily(): GSocketFamily /* None */ = g_socket_client_get_family(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocketClient]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -471,7 +472,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * See g_socket_client_set_local_address() for details.
     */
   def getLocalAddress(): SocketAddress /* None */ = new SocketAddress(
-    g_socket_client_get_local_address(this.raw.asInstanceOf).asInstanceOf
+    g_socket_client_get_local_address(
+      this.raw.asInstanceOf[Ptr[GSocketClient]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -481,7 +484,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * See g_socket_client_set_protocol() for details.
     */
   def getProtocol(): GSocketProtocol /* None */ = g_socket_client_get_protocol(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocketClient]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -491,7 +494,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * it with g_socket_client_set_proxy_resolver().
     */
   def getProxyResolver(): ProxyResolver /* None */ = new ProxyResolver.Abstract(
-    g_socket_client_get_proxy_resolver(this.raw.asInstanceOf).asInstanceOf
+    g_socket_client_get_proxy_resolver(
+      this.raw.asInstanceOf[Ptr[GSocketClient]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -501,7 +506,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * See g_socket_client_set_socket_type() for details.
     */
   def getSocketType(): GSocketType /* None */ = g_socket_client_get_socket_type(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocketClient]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -511,7 +516,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * See g_socket_client_set_timeout() for details.
     */
   def getTimeout(): UInt /* None */ = g_socket_client_get_timeout(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocketClient]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -519,8 +524,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * Gets whether @client creates TLS connections. See
     * g_socket_client_set_tls() for details.
     */
-  def getTls(): Boolean /* None */ =
-    g_socket_client_get_tls(this.raw.asInstanceOf).value.!=(0)
+  def getTls(): Boolean /* None */ = g_socket_client_get_tls(
+    this.raw.asInstanceOf[Ptr[GSocketClient]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -532,7 +538,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * information.
     */
   def getTlsValidationFlags(): GTlsCertificateFlags /* None */ =
-    g_socket_client_get_tls_validation_flags(this.raw.asInstanceOf)
+    g_socket_client_get_tls_validation_flags(
+      this.raw.asInstanceOf[Ptr[GSocketClient]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -546,7 +554,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
   def setEnableProxy(
       enable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_socket_client_set_enable_proxy(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocketClient]],
     gboolean(gint((if enable == true then 1 else 0)))
   )
 
@@ -562,7 +570,10 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     */
   def setFamily(
       family: GSocketFamily /* Some(GSocketFamily) */
-  ): Unit /* None */ = g_socket_client_set_family(this.raw.asInstanceOf, family)
+  ): Unit /* None */ = g_socket_client_set_family(
+    this.raw.asInstanceOf[Ptr[GSocketClient]],
+    family
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -576,7 +587,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
   def setLocalAddress(
       address: Option[SocketAddress /* Some(Ptr[GSocketAddress]) */ ]
   ): Unit /* None */ = g_socket_client_set_local_address(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocketClient]],
     address
       .map[Ptr[GSocketAddress]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GSocketAddress]])
@@ -592,8 +603,10 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     */
   def setProtocol(
       protocol: GSocketProtocol /* Some(GSocketProtocol) */
-  ): Unit /* None */ =
-    g_socket_client_set_protocol(this.raw.asInstanceOf, protocol)
+  ): Unit /* None */ = g_socket_client_set_protocol(
+    this.raw.asInstanceOf[Ptr[GSocketClient]],
+    protocol
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -608,7 +621,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
   def setProxyResolver(
       proxy_resolver: Option[ProxyResolver /* Some(Ptr[GProxyResolver]) */ ]
   ): Unit /* None */ = g_socket_client_set_proxy_resolver(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocketClient]],
     proxy_resolver
       .map[Ptr[GProxyResolver]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GProxyResolver]])
@@ -624,8 +637,10 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     */
   def setSocketType(
       `type`: GSocketType /* Some(GSocketType) */
-  ): Unit /* None */ =
-    g_socket_client_set_socket_type(this.raw.asInstanceOf, `type`)
+  ): Unit /* None */ = g_socket_client_set_socket_type(
+    this.raw.asInstanceOf[Ptr[GSocketClient]],
+    `type`
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -638,8 +653,10 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     */
   def setTimeout(
       timeout: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    g_socket_client_set_timeout(this.raw.asInstanceOf, guint(timeout))
+  ): Unit /* None */ = g_socket_client_set_timeout(
+    this.raw.asInstanceOf[Ptr[GSocketClient]],
+    guint(timeout)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -664,7 +681,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
   def setTls(
       tls: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_socket_client_set_tls(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocketClient]],
     gboolean(gint((if tls == true then 1 else 0)))
   )
 
@@ -679,8 +696,10 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     */
   def setTlsValidationFlags(
       flags: GTlsCertificateFlags /* Some(GTlsCertificateFlags) */
-  ): Unit /* None */ =
-    g_socket_client_set_tls_validation_flags(this.raw.asInstanceOf, flags)
+  ): Unit /* None */ = g_socket_client_set_tls_validation_flags(
+    this.raw.asInstanceOf[Ptr[GSocketClient]],
+    flags
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

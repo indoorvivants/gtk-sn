@@ -84,7 +84,9 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
     * Gets the child widget displayed by @self.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_tree_expander_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_tree_expander_get_child(
+      this.raw.asInstanceOf[Ptr[GtkTreeExpander]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -92,14 +94,18 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
     * Gets whether the TreeExpander should be hidden in a GtkTreeListRow.
     */
   def getHideExpander(): Boolean /* None */ =
-    gtk_tree_expander_get_hide_expander(this.raw.asInstanceOf).value.!=(0)
+    gtk_tree_expander_get_hide_expander(
+      this.raw.asInstanceOf[Ptr[GtkTreeExpander]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * TreeExpander indents each level of depth with an additional indent.
     */
   def getIndentForDepth(): Boolean /* None */ =
-    gtk_tree_expander_get_indent_for_depth(this.raw.asInstanceOf).value.!=(0)
+    gtk_tree_expander_get_indent_for_depth(
+      this.raw.asInstanceOf[Ptr[GtkTreeExpander]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -107,7 +113,9 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
     * not expandable.
     */
   def getIndentForIcon(): Boolean /* None */ =
-    gtk_tree_expander_get_indent_for_icon(this.raw.asInstanceOf).value.!=(0)
+    gtk_tree_expander_get_indent_for_icon(
+      this.raw.asInstanceOf[Ptr[GtkTreeExpander]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -120,7 +128,9 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
     * ```
     */
   def getItem(): Object /* None */ = new Object(
-    gtk_tree_expander_get_item(this.raw.asInstanceOf).asInstanceOf
+    gtk_tree_expander_get_item(
+      this.raw.asInstanceOf[Ptr[GtkTreeExpander]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -128,7 +138,9 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
     * Gets the list row managed by @self.
     */
   def getListRow(): TreeListRow /* None */ = new TreeListRow(
-    gtk_tree_expander_get_list_row(this.raw.asInstanceOf).asInstanceOf
+    gtk_tree_expander_get_list_row(
+      this.raw.asInstanceOf[Ptr[GtkTreeExpander]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -138,7 +150,7 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_tree_expander_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeExpander]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -151,7 +163,7 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
   def setHideExpander(
       hide_expander: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_tree_expander_set_hide_expander(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeExpander]],
     gboolean(gint((if hide_expander == true then 1 else 0)))
   )
 
@@ -162,7 +174,7 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
   def setIndentForDepth(
       indent_for_depth: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_tree_expander_set_indent_for_depth(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeExpander]],
     gboolean(gint((if indent_for_depth == true then 1 else 0)))
   )
 
@@ -174,7 +186,7 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
   def setIndentForIcon(
       indent_for_icon: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_tree_expander_set_indent_for_icon(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeExpander]],
     gboolean(gint((if indent_for_icon == true then 1 else 0)))
   )
 
@@ -185,7 +197,7 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
   def setListRow(
       list_row: Option[TreeListRow /* Some(Ptr[GtkTreeListRow]) */ ]
   ): Unit /* None */ = gtk_tree_expander_set_list_row(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeExpander]],
     list_row
       .map[Ptr[GtkTreeListRow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkTreeListRow]])

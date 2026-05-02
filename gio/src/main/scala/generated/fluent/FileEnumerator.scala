@@ -62,7 +62,7 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_file_enumerator_close(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GFileEnumerator]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -87,7 +87,7 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_file_enumerator_close_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileEnumerator]],
     io_priority,
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -119,7 +119,7 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_file_enumerator_close_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GFileEnumerator]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)
@@ -144,7 +144,7 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
   def getChild(info: FileInfo /* Some(Ptr[GFileInfo]) */ ): File /* None */ =
     new File.Abstract(
       g_file_enumerator_get_child(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GFileEnumerator]],
         info.getUnsafeRawPointer().asInstanceOf
       ).asInstanceOf
     )
@@ -154,22 +154,26 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     * Get the #GFile container which is being enumerated.
     */
   def getContainer(): File /* None */ = new File.Abstract(
-    g_file_enumerator_get_container(this.raw.asInstanceOf).asInstanceOf
+    g_file_enumerator_get_container(
+      this.raw.asInstanceOf[Ptr[GFileEnumerator]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if the file enumerator has pending operations.
     */
-  def hasPending(): Boolean /* None */ =
-    g_file_enumerator_has_pending(this.raw.asInstanceOf).value.!=(0)
+  def hasPending(): Boolean /* None */ = g_file_enumerator_has_pending(
+    this.raw.asInstanceOf[Ptr[GFileEnumerator]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if the file enumerator has been closed.
     */
-  def isClosed(): Boolean /* None */ =
-    g_file_enumerator_is_closed(this.raw.asInstanceOf).value.!=(0)
+  def isClosed(): Boolean /* None */ = g_file_enumerator_is_closed(
+    this.raw.asInstanceOf[Ptr[GFileEnumerator]]
+  ).value.!=(0)
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -235,7 +239,7 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
   ): GResult[FileInfo /* None */ ] = GResult.wrap(__errorPtr =>
     new FileInfo(
       g_file_enumerator_next_file(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GFileEnumerator]],
         cancellable
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
           .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -320,7 +324,7 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_file_enumerator_next_files_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileEnumerator]],
     num_files,
     io_priority,
     cancellable
@@ -343,7 +347,7 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_file_enumerator_next_files_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GFileEnumerator]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -356,7 +360,7 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
   def setPending(
       pending: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_file_enumerator_set_pending(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileEnumerator]],
     gboolean(gint((if pending == true then 1 else 0)))
   )
 

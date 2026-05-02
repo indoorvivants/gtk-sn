@@ -22,7 +22,7 @@ class BorderNode(raw: Ptr[GskBorderNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the colors of the border.
     */
   def getColors(): Ptr[GdkRGBA] /* None */ = gsk_border_node_get_colors(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -30,14 +30,14 @@ class BorderNode(raw: Ptr[GskBorderNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the outline of the border.
     */
   def getOutline(): Ptr[GskRoundedRect] /* None */ =
-    gsk_border_node_get_outline(this.raw.asInstanceOf)
+    gsk_border_node_get_outline(this.raw.asInstanceOf[Ptr[GskRenderNode]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the stroke widths of the border.
     */
   def getWidths(): Ptr[Float /* None */ ] /* None */ =
-    gsk_border_node_get_widths(this.raw.asInstanceOf)
+    gsk_border_node_get_widths(this.raw.asInstanceOf[Ptr[GskRenderNode]])
 
 end BorderNode
 
