@@ -54,7 +54,9 @@ class AppChooserDialog(raw: Ptr[GtkAppChooserDialog])
     * Returns the text to display at the top of the dialog.
     */
   def getHeading()(using Zone): String /* None */ = fromCString(
-    gtk_app_chooser_dialog_get_heading(this.raw.asInstanceOf).asInstanceOf
+    gtk_app_chooser_dialog_get_heading(
+      this.raw.asInstanceOf[Ptr[GtkAppChooserDialog]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -62,7 +64,9 @@ class AppChooserDialog(raw: Ptr[GtkAppChooserDialog])
     * Returns the `GtkAppChooserWidget` of this dialog.
     */
   def getWidget(): Widget /* None */ = new Widget(
-    gtk_app_chooser_dialog_get_widget(this.raw.asInstanceOf).asInstanceOf
+    gtk_app_chooser_dialog_get_widget(
+      this.raw.asInstanceOf[Ptr[GtkAppChooserDialog]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -74,7 +78,7 @@ class AppChooserDialog(raw: Ptr[GtkAppChooserDialog])
   def setHeading(
       heading: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_app_chooser_dialog_set_heading(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAppChooserDialog]],
     __sn_extract_string(heading)
   )
 

@@ -8,7 +8,7 @@ class TargetTypesGenerator(functionPaths: Seq[Path]):
   def run(outputFile: Path) =
     val parser = dialects.Scala3
     println(outputFile)
-    val b = Map.newBuilder[String, Array[(String, String)]]
+    val b = Map.newBuilder[String, (String, Array[(String, String)])]
 
     functionPaths
       .map(Input.File(_))
@@ -16,7 +16,7 @@ class TargetTypesGenerator(functionPaths: Seq[Path]):
       .foreach: a =>
         val funcs = analyse(a)
         funcs.foreach: func =>
-          b += func.name -> func.params
+          b += func.name -> (func.ret, func.params)
 
     import upickle.default.*
     Files.createDirectories(outputFile.getParent)
@@ -24,7 +24,11 @@ class TargetTypesGenerator(functionPaths: Seq[Path]):
     os.write.over(os.Path(outputFile), write(b.result()))
   end run
 
-  case class Function(name: String, params: Array[(String, String)])
+  case class Function(
+      name: String,
+      ret: String,
+      params: Array[(String, String)]
+  )
 
   def analyse(s: Tree) =
     val funcs = List.newBuilder[Function]
@@ -37,6 +41,7 @@ class TargetTypesGenerator(functionPaths: Seq[Path]):
         val params = f.paramss.head
         funcs += Function(
           name,
+          f.decltpe.map(_.toString).get,
           params.map(p => (p.name.value, p.decltpe.map(_.toString).get)).toArray
         )
     funcs.result()

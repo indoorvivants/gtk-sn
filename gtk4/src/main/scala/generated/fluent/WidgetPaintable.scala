@@ -43,7 +43,9 @@ class WidgetPaintable(raw: Ptr[GtkWidgetPaintable])
     * Returns the widget that is observed or %NULL if none.
     */
   def getWidget(): Widget /* None */ = new Widget(
-    gtk_widget_paintable_get_widget(this.raw.asInstanceOf).asInstanceOf
+    gtk_widget_paintable_get_widget(
+      this.raw.asInstanceOf[Ptr[GtkWidgetPaintable]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -53,7 +55,7 @@ class WidgetPaintable(raw: Ptr[GtkWidgetPaintable])
   def setWidget(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_widget_paintable_set_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWidgetPaintable]],
     widget
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])

@@ -43,7 +43,7 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     * Queries the height of the bounding box of a pixbuf animation.
     */
   def getHeight(): Int /* None */ = gdk_pixbuf_animation_get_height(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -87,7 +87,7 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
       ]
   ): PixbufAnimationIter /* None */ = new PixbufAnimationIter(
     gdk_pixbuf_animation_get_iter(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]],
       start_time
         .map[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]](o => o)
         .getOrElse(
@@ -111,7 +111,9 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     * `NULL`.
     */
   def getStaticImage(): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_animation_get_static_image(this.raw.asInstanceOf).asInstanceOf
+    gdk_pixbuf_animation_get_static_image(
+      this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -119,7 +121,7 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     * Queries the width of the bounding box of a pixbuf animation.
     */
   def getWidth(): Int /* None */ = gdk_pixbuf_animation_get_width(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -131,14 +133,18 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     * `TRUE`. Use gdk_pixbuf_animation_get_static_image() to retrieve the image.
     */
   def isStaticImage(): Boolean /* None */ =
-    gdk_pixbuf_animation_is_static_image(this.raw.asInstanceOf).value.!=(0)
+    gdk_pixbuf_animation_is_static_image(
+      this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Adds a reference to an animation.
     */
   override def ref(): PixbufAnimation /* None */ = new PixbufAnimation(
-    gdk_pixbuf_animation_ref(this.raw.asInstanceOf).asInstanceOf
+    gdk_pixbuf_animation_ref(
+      this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -146,7 +152,7 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     * Removes a reference from an animation.
     */
   override def unref(): Unit /* None */ = gdk_pixbuf_animation_unref(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
   )
 
 end PixbufAnimation

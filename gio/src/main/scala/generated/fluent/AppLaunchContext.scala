@@ -31,7 +31,7 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
       files: Ptr[GList] /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
   )(using Zone): String /* None */ = fromCString(
     g_app_launch_context_get_display(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GAppLaunchContext]],
       info.getUnsafeRawPointer().asInstanceOf,
       files
     ).asInstanceOf
@@ -46,7 +46,9 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     */
   def getEnvironment()(using Zone): Array[String] /* None */ =
     __decode_nullable_ptrs(
-      g_app_launch_context_get_environment(this.raw.asInstanceOf)
+      g_app_launch_context_get_environment(
+        this.raw.asInstanceOf[Ptr[GAppLaunchContext]]
+      )
     ).map(fromCString(_))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -72,7 +74,7 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
       files: Ptr[GList] /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
   )(using Zone): String /* None */ = fromCString(
     g_app_launch_context_get_startup_notify_id(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GAppLaunchContext]],
       info.getUnsafeRawPointer().asInstanceOf,
       files
     ).asInstanceOf
@@ -87,7 +89,7 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
   def launchFailed(
       startup_notify_id: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = g_app_launch_context_launch_failed(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GAppLaunchContext]],
     __sn_extract_string(startup_notify_id)
   )
 
@@ -100,7 +102,7 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
       variable: String | CString /* Some(CString) */,
       value: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = g_app_launch_context_setenv(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GAppLaunchContext]],
     __sn_extract_string(variable),
     __sn_extract_string(value)
   )
@@ -113,7 +115,7 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
   def unsetenv(
       variable: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = g_app_launch_context_unsetenv(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GAppLaunchContext]],
     __sn_extract_string(variable)
   )
 

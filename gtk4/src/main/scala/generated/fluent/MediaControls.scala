@@ -32,7 +32,9 @@ class MediaControls(raw: Ptr[GtkMediaControls])
     * Gets the media stream managed by @controls or %NULL if none.
     */
   def getMediaStream(): MediaStream /* None */ = new MediaStream(
-    gtk_media_controls_get_media_stream(this.raw.asInstanceOf).asInstanceOf
+    gtk_media_controls_get_media_stream(
+      this.raw.asInstanceOf[Ptr[GtkMediaControls]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -42,7 +44,7 @@ class MediaControls(raw: Ptr[GtkMediaControls])
   def setMediaStream(
       stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
   ): Unit /* None */ = gtk_media_controls_set_media_stream(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkMediaControls]],
     stream
       .map[Ptr[GtkMediaStream]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkMediaStream]])

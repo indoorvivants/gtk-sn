@@ -46,8 +46,9 @@ class SocketService(raw: Ptr[GSocketService])
     * new clients that connect, while a non-active service will let connecting
     * clients queue up until the service is started.
     */
-  def isActive(): Boolean /* None */ =
-    g_socket_service_is_active(this.raw.asInstanceOf).value.!=(0)
+  def isActive(): Boolean /* None */ = g_socket_service_is_active(
+    this.raw.asInstanceOf[Ptr[GSocketService]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -58,7 +59,9 @@ class SocketService(raw: Ptr[GSocketService])
     * This call is thread-safe, so it may be called from a thread handling an
     * incoming client request.
     */
-  def start(): Unit /* None */ = g_socket_service_start(this.raw.asInstanceOf)
+  def start(): Unit /* None */ = g_socket_service_start(
+    this.raw.asInstanceOf[Ptr[GSocketService]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -78,7 +81,9 @@ class SocketService(raw: Ptr[GSocketService])
     * service will start accepting connections immediately when a new socket is
     * added.
     */
-  def stop(): Unit /* None */ = g_socket_service_stop(this.raw.asInstanceOf)
+  def stop(): Unit /* None */ = g_socket_service_stop(
+    this.raw.asInstanceOf[Ptr[GSocketService]]
+  )
 
 end SocketService
 

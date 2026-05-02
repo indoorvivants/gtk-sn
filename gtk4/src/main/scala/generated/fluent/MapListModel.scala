@@ -58,15 +58,18 @@ class MapListModel(raw: Ptr[GtkMapListModel])
     * Gets the model that is currently being mapped or %NULL if none.
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_map_list_model_get_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_map_list_model_get_model(
+      this.raw.asInstanceOf[Ptr[GtkMapListModel]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if a map function is currently set on @self.
     */
-  def hasMap(): Boolean /* None */ =
-    gtk_map_list_model_has_map(this.raw.asInstanceOf).value.!=(0)
+  def hasMap(): Boolean /* None */ = gtk_map_list_model_has_map(
+    this.raw.asInstanceOf[Ptr[GtkMapListModel]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -91,7 +94,7 @@ class MapListModel(raw: Ptr[GtkMapListModel])
       ],
       user_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): Unit /* None */ = gtk_map_list_model_set_map_func(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkMapListModel]],
     map_func
       .map[GtkMapListModelMapFunc](o => o)
       .getOrElse(null.asInstanceOf[GtkMapListModelMapFunc]),
@@ -114,7 +117,7 @@ class MapListModel(raw: Ptr[GtkMapListModel])
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   ): Unit /* None */ = gtk_map_list_model_set_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkMapListModel]],
     model
       .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
         o.getUnsafeRawPointer().asInstanceOf

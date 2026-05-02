@@ -23,7 +23,7 @@ class ConstantExpression(raw: Ptr[GtkConstantExpression])
     * Gets the value that a constant expression evaluates to.
     */
   def getValue(): Ptr[GValue] /* None */ = gtk_constant_expression_get_value(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkExpression]]
   )
 
 end ConstantExpression

@@ -63,7 +63,7 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * called the same number of times.
     */
   def beginUpdating(): Unit /* None */ = gdk_frame_clock_begin_updating(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkFrameClock]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -73,7 +73,7 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * See the documentation for [method@Gdk.FrameClock.begin_updating].
     */
   def endUpdating(): Unit /* None */ = gdk_frame_clock_end_updating(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkFrameClock]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -81,14 +81,16 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * Gets the frame timings for the current frame.
     */
   def getCurrentTimings(): Ptr[GdkFrameTimings] /* None */ =
-    gdk_frame_clock_get_current_timings(this.raw.asInstanceOf)
+    gdk_frame_clock_get_current_timings(
+      this.raw.asInstanceOf[Ptr[GdkFrameClock]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Calculates the current frames-per-second, based on the frame timings of @frame_clock.
     */
   def getFps(): Double /* None */ = gdk_frame_clock_get_fps(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkFrameClock]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -97,7 +99,9 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * drawn.
     */
   def getFrameCounter(): CLongInt /* None */ =
-    gdk_frame_clock_get_frame_counter(this.raw.asInstanceOf).value
+    gdk_frame_clock_get_frame_counter(
+      this.raw.asInstanceOf[Ptr[GdkFrameClock]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -109,7 +113,7 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * previous frame time, or if that’s too old, an updated time.
     */
   def getFrameTime(): CLongInt /* None */ = gdk_frame_clock_get_frame_time(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkFrameClock]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -123,7 +127,9 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * and [method@Gdk.FrameClock.get_frame_counter], inclusive.
     */
   def getHistoryStart(): CLongInt /* None */ =
-    gdk_frame_clock_get_history_start(this.raw.asInstanceOf).value
+    gdk_frame_clock_get_history_start(
+      this.raw.asInstanceOf[Ptr[GdkFrameClock]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -151,8 +157,10 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     */
   def getTimings(
       frame_counter: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
-  ): Ptr[GdkFrameTimings] /* None */ =
-    gdk_frame_clock_get_timings(this.raw.asInstanceOf, gint64(frame_counter))
+  ): Ptr[GdkFrameTimings] /* None */ = gdk_frame_clock_get_timings(
+    this.raw.asInstanceOf[Ptr[GdkFrameClock]],
+    gint64(frame_counter)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -169,7 +177,9 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     */
   def requestPhase(
       phase: GdkFrameClockPhase /* Some(GdkFrameClockPhase) */
-  ): Unit /* None */ =
-    gdk_frame_clock_request_phase(this.raw.asInstanceOf, phase)
+  ): Unit /* None */ = gdk_frame_clock_request_phase(
+    this.raw.asInstanceOf[Ptr[GdkFrameClock]],
+    phase
+  )
 
 end FrameClock

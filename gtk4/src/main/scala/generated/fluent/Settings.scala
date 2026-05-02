@@ -54,7 +54,7 @@ class Settings(raw: Ptr[GtkSettings])
   def resetProperty(
       name: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_settings_reset_property(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSettings]],
     __sn_extract_string(name)
   )
 

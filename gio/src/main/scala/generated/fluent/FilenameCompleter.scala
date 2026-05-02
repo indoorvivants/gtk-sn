@@ -28,7 +28,7 @@ class FilenameCompleter(raw: Ptr[GFilenameCompleter])
       initial_text: String | CString /* Some(CString) */
   )(using Zone): String /* None */ = fromCString(
     g_filename_completer_get_completion_suffix(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GFilenameCompleter]],
       __sn_extract_string(initial_text)
     ).asInstanceOf
   )
@@ -41,7 +41,7 @@ class FilenameCompleter(raw: Ptr[GFilenameCompleter])
       initial_text: String | CString /* Some(CString) */
   )(using Zone): Array[String] /* None */ = __decode_nullable_ptrs(
     g_filename_completer_get_completions(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GFilenameCompleter]],
       __sn_extract_string(initial_text)
     )
   ).map(fromCString(_))
@@ -54,7 +54,7 @@ class FilenameCompleter(raw: Ptr[GFilenameCompleter])
   def setDirsOnly(
       dirs_only: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_filename_completer_set_dirs_only(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFilenameCompleter]],
     gboolean(gint((if dirs_only == true then 1 else 0)))
   )
 

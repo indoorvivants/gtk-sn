@@ -30,7 +30,9 @@ class ZlibDecompressor(raw: Ptr[GZlibDecompressor])
     * data stream at all.
     */
   def getFileInfo(): FileInfo /* None */ = new FileInfo(
-    g_zlib_decompressor_get_file_info(this.raw.asInstanceOf).asInstanceOf
+    g_zlib_decompressor_get_file_info(
+      this.raw.asInstanceOf[Ptr[GZlibDecompressor]]
+    ).asInstanceOf
   )
 
 end ZlibDecompressor

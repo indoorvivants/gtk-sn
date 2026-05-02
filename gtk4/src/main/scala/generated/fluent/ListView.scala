@@ -136,14 +136,18 @@ class ListView(raw: Ptr[GtkListView])
     * Returns whether rows can be selected by dragging with the mouse.
     */
   def getEnableRubberband(): Boolean /* None */ =
-    gtk_list_view_get_enable_rubberband(this.raw.asInstanceOf).value.!=(0)
+    gtk_list_view_get_enable_rubberband(
+      this.raw.asInstanceOf[Ptr[GtkListView]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the factory that's currently used to populate list items.
     */
   def getFactory(): ListItemFactory /* None */ = new ListItemFactory(
-    gtk_list_view_get_factory(this.raw.asInstanceOf).asInstanceOf
+    gtk_list_view_get_factory(
+      this.raw.asInstanceOf[Ptr[GtkListView]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -151,7 +155,9 @@ class ListView(raw: Ptr[GtkListView])
     * Gets the factory that's currently used to populate section headers.
     */
   def getHeaderFactory(): ListItemFactory /* None */ = new ListItemFactory(
-    gtk_list_view_get_header_factory(this.raw.asInstanceOf).asInstanceOf
+    gtk_list_view_get_header_factory(
+      this.raw.asInstanceOf[Ptr[GtkListView]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -159,7 +165,9 @@ class ListView(raw: Ptr[GtkListView])
     * Gets the model that's currently used to read the items displayed.
     */
   def getModel(): SelectionModel /* None */ = new SelectionModel.Abstract(
-    gtk_list_view_get_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_list_view_get_model(
+      this.raw.asInstanceOf[Ptr[GtkListView]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -167,7 +175,9 @@ class ListView(raw: Ptr[GtkListView])
     * Returns whether the list box should show separators between rows.
     */
   def getShowSeparators(): Boolean /* None */ =
-    gtk_list_view_get_show_separators(this.raw.asInstanceOf).value.!=(0)
+    gtk_list_view_get_show_separators(
+      this.raw.asInstanceOf[Ptr[GtkListView]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -175,14 +185,16 @@ class ListView(raw: Ptr[GtkListView])
     * hover.
     */
   def getSingleClickActivate(): Boolean /* None */ =
-    gtk_list_view_get_single_click_activate(this.raw.asInstanceOf).value.!=(0)
+    gtk_list_view_get_single_click_activate(
+      this.raw.asInstanceOf[Ptr[GtkListView]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the behavior set for the <kbd>Tab</kbd> key.
     */
   def getTabBehavior(): GtkListTabBehavior /* None */ =
-    gtk_list_view_get_tab_behavior(this.raw.asInstanceOf)
+    gtk_list_view_get_tab_behavior(this.raw.asInstanceOf[Ptr[GtkListView]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -197,7 +209,7 @@ class ListView(raw: Ptr[GtkListView])
       flags: GtkListScrollFlags /* Some(GtkListScrollFlags) */,
       scroll: Option[Ptr[GtkScrollInfo] /* Some(Ptr[GtkScrollInfo]) */ ]
   ): Unit /* None */ = gtk_list_view_scroll_to(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListView]],
     guint(pos),
     flags,
     scroll
@@ -212,7 +224,7 @@ class ListView(raw: Ptr[GtkListView])
   def setEnableRubberband(
       enable_rubberband: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_list_view_set_enable_rubberband(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListView]],
     gboolean(gint((if enable_rubberband == true then 1 else 0)))
   )
 
@@ -223,7 +235,7 @@ class ListView(raw: Ptr[GtkListView])
   def setFactory(
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
   ): Unit /* None */ = gtk_list_view_set_factory(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListView]],
     factory
       .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
@@ -239,7 +251,7 @@ class ListView(raw: Ptr[GtkListView])
   def setHeaderFactory(
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
   ): Unit /* None */ = gtk_list_view_set_header_factory(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListView]],
     factory
       .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
@@ -254,7 +266,7 @@ class ListView(raw: Ptr[GtkListView])
   def setModel(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
   ): Unit /* None */ = gtk_list_view_set_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListView]],
     model
       .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])
@@ -267,7 +279,7 @@ class ListView(raw: Ptr[GtkListView])
   def setShowSeparators(
       show_separators: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_list_view_set_show_separators(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListView]],
     gboolean(gint((if show_separators == true then 1 else 0)))
   )
 
@@ -279,7 +291,7 @@ class ListView(raw: Ptr[GtkListView])
   def setSingleClickActivate(
       single_click_activate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_list_view_set_single_click_activate(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListView]],
     gboolean(gint((if single_click_activate == true then 1 else 0)))
   )
 
@@ -290,8 +302,10 @@ class ListView(raw: Ptr[GtkListView])
     */
   def setTabBehavior(
       tab_behavior: GtkListTabBehavior /* Some(GtkListTabBehavior) */
-  ): Unit /* None */ =
-    gtk_list_view_set_tab_behavior(this.raw.asInstanceOf, tab_behavior)
+  ): Unit /* None */ = gtk_list_view_set_tab_behavior(
+    this.raw.asInstanceOf[Ptr[GtkListView]],
+    tab_behavior
+  )
 
 end ListView
 

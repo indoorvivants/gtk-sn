@@ -26,8 +26,9 @@ class FileIcon(raw: Ptr[GFileIcon])
     *
     * Gets the #GFile associated with the given @icon.
     */
-  def getFile(): File /* None */ =
-    new File.Abstract(g_file_icon_get_file(this.raw.asInstanceOf).asInstanceOf)
+  def getFile(): File /* None */ = new File.Abstract(
+    g_file_icon_get_file(this.raw.asInstanceOf[Ptr[GFileIcon]]).asInstanceOf
+  )
 
 end FileIcon
 

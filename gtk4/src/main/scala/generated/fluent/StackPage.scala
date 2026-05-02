@@ -26,7 +26,9 @@ class StackPage(raw: Ptr[GtkStackPage])
     * Returns the stack child to which @self belongs.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_stack_page_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_stack_page_get_child(
+      this.raw.asInstanceOf[Ptr[GtkStackPage]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -34,7 +36,9 @@ class StackPage(raw: Ptr[GtkStackPage])
     * Returns the icon name of the page.
     */
   def getIconName()(using Zone): String /* None */ = fromCString(
-    gtk_stack_page_get_icon_name(this.raw.asInstanceOf).asInstanceOf
+    gtk_stack_page_get_icon_name(
+      this.raw.asInstanceOf[Ptr[GtkStackPage]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -42,7 +46,9 @@ class StackPage(raw: Ptr[GtkStackPage])
     * Returns the name of the page.
     */
   def getName()(using Zone): String /* None */ = fromCString(
-    gtk_stack_page_get_name(this.raw.asInstanceOf).asInstanceOf
+    gtk_stack_page_get_name(
+      this.raw.asInstanceOf[Ptr[GtkStackPage]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -50,22 +56,27 @@ class StackPage(raw: Ptr[GtkStackPage])
     * Returns whether the page is marked as “needs attention”.
     */
   def getNeedsAttention(): Boolean /* None */ =
-    gtk_stack_page_get_needs_attention(this.raw.asInstanceOf).value.!=(0)
+    gtk_stack_page_get_needs_attention(
+      this.raw.asInstanceOf[Ptr[GtkStackPage]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the page title.
     */
   def getTitle()(using Zone): String /* None */ = fromCString(
-    gtk_stack_page_get_title(this.raw.asInstanceOf).asInstanceOf
+    gtk_stack_page_get_title(
+      this.raw.asInstanceOf[Ptr[GtkStackPage]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether underlines in the page title indicate mnemonics.
     */
-  def getUseUnderline(): Boolean /* None */ =
-    gtk_stack_page_get_use_underline(this.raw.asInstanceOf).value.!=(0)
+  def getUseUnderline(): Boolean /* None */ = gtk_stack_page_get_use_underline(
+    this.raw.asInstanceOf[Ptr[GtkStackPage]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -74,8 +85,9 @@ class StackPage(raw: Ptr[GtkStackPage])
     * This is independent from the [property@Gtk.Widget:visible] property of its
     * widget.
     */
-  def getVisible(): Boolean /* None */ =
-    gtk_stack_page_get_visible(this.raw.asInstanceOf).value.!=(0)
+  def getVisible(): Boolean /* None */ = gtk_stack_page_get_visible(
+    this.raw.asInstanceOf[Ptr[GtkStackPage]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -84,7 +96,7 @@ class StackPage(raw: Ptr[GtkStackPage])
   def setIconName(
       setting: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_stack_page_set_icon_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkStackPage]],
     __sn_extract_string(setting)
   )
 
@@ -94,8 +106,10 @@ class StackPage(raw: Ptr[GtkStackPage])
     */
   def setName(
       setting: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ =
-    gtk_stack_page_set_name(this.raw.asInstanceOf, __sn_extract_string(setting))
+  )(using Zone): Unit /* None */ = gtk_stack_page_set_name(
+    this.raw.asInstanceOf[Ptr[GtkStackPage]],
+    __sn_extract_string(setting)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -104,7 +118,7 @@ class StackPage(raw: Ptr[GtkStackPage])
   def setNeedsAttention(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_stack_page_set_needs_attention(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkStackPage]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
@@ -115,7 +129,7 @@ class StackPage(raw: Ptr[GtkStackPage])
   def setTitle(
       setting: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_stack_page_set_title(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkStackPage]],
     __sn_extract_string(setting)
   )
 
@@ -126,7 +140,7 @@ class StackPage(raw: Ptr[GtkStackPage])
   def setUseUnderline(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_stack_page_set_use_underline(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkStackPage]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
@@ -137,7 +151,7 @@ class StackPage(raw: Ptr[GtkStackPage])
   def setVisible(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_stack_page_set_visible(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkStackPage]],
     gboolean(gint((if visible == true then 1 else 0)))
   )
 

@@ -27,14 +27,14 @@ class CairoNode(raw: Ptr[GskCairoNode]) extends RenderNode(raw.asInstanceOf):
     * rendering to @renderer.
     */
   def getDrawContext(): Ptr[cairo_t] /* None */ =
-    gsk_cairo_node_get_draw_context(this.raw.asInstanceOf)
+    gsk_cairo_node_get_draw_context(this.raw.asInstanceOf[Ptr[GskRenderNode]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the Cairo surface used by the render node.
     */
   def getSurface(): Ptr[cairo_surface_t] /* None */ =
-    gsk_cairo_node_get_surface(this.raw.asInstanceOf)
+    gsk_cairo_node_get_surface(this.raw.asInstanceOf[Ptr[GskRenderNode]])
 
 end CairoNode
 

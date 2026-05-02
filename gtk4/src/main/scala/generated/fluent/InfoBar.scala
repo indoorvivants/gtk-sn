@@ -111,7 +111,7 @@ class InfoBar(raw: Ptr[GtkInfoBar])
       child: Widget /* Some(Ptr[GtkWidget]) */,
       response_id: GtkResponseType /* Some(CInt) */
   ): Unit /* None */ = gtk_info_bar_add_action_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
     child.getUnsafeRawPointer().asInstanceOf,
     response_id.value
   )
@@ -130,7 +130,7 @@ class InfoBar(raw: Ptr[GtkInfoBar])
       response_id: GtkResponseType /* Some(CInt) */
   )(using Zone): Button /* None */ = new Button(
     gtk_info_bar_add_button(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkInfoBar]],
       __sn_extract_string(button_text),
       response_id.value
     ).asInstanceOf
@@ -149,7 +149,7 @@ class InfoBar(raw: Ptr[GtkInfoBar])
       first_button_text: String | CString /* Some(CString) */,
       args: Any*
   )(using Zone): Unit /* None */ = gtk_info_bar_add_buttons(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
     __sn_extract_string(first_button_text),
     args*
   )
@@ -160,7 +160,7 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     */
   def addChild(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_info_bar_add_child(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkInfoBar]],
       widget.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -169,21 +169,24 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     * Returns the message type of the message area.
     */
   def getMessageType(): GtkMessageType /* None */ =
-    gtk_info_bar_get_message_type(this.raw.asInstanceOf)
+    gtk_info_bar_get_message_type(this.raw.asInstanceOf[Ptr[GtkInfoBar]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the info bar is currently revealed.
     */
-  def getRevealed(): Boolean /* None */ =
-    gtk_info_bar_get_revealed(this.raw.asInstanceOf).value.!=(0)
+  def getRevealed(): Boolean /* None */ = gtk_info_bar_get_revealed(
+    this.raw.asInstanceOf[Ptr[GtkInfoBar]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the widget will display a standard close button.
     */
   def getShowCloseButton(): Boolean /* None */ =
-    gtk_info_bar_get_show_close_button(this.raw.asInstanceOf).value.!=(0)
+    gtk_info_bar_get_show_close_button(
+      this.raw.asInstanceOf[Ptr[GtkInfoBar]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -195,7 +198,7 @@ class InfoBar(raw: Ptr[GtkInfoBar])
   def removeActionWidget(
       widget: Widget /* Some(Ptr[GtkWidget]) */
   ): Unit /* None */ = gtk_info_bar_remove_action_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
     widget.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -205,7 +208,7 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     */
   def removeChild(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_info_bar_remove_child(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkInfoBar]],
       widget.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -215,8 +218,10 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     */
   def response(
       response_id: GtkResponseType /* Some(CInt) */
-  ): Unit /* None */ =
-    gtk_info_bar_response(this.raw.asInstanceOf, response_id.value)
+  ): Unit /* None */ = gtk_info_bar_response(
+    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
+    response_id.value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -230,8 +235,10 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     */
   def setDefaultResponse(
       response_id: GtkResponseType /* Some(CInt) */
-  ): Unit /* None */ =
-    gtk_info_bar_set_default_response(this.raw.asInstanceOf, response_id.value)
+  ): Unit /* None */ = gtk_info_bar_set_default_response(
+    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
+    response_id.value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -241,8 +248,10 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     */
   def setMessageType(
       message_type: GtkMessageType /* Some(GtkMessageType) */
-  ): Unit /* None */ =
-    gtk_info_bar_set_message_type(this.raw.asInstanceOf, message_type)
+  ): Unit /* None */ = gtk_info_bar_set_message_type(
+    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
+    message_type
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -256,7 +265,7 @@ class InfoBar(raw: Ptr[GtkInfoBar])
       response_id: GtkResponseType /* Some(CInt) */,
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_info_bar_set_response_sensitive(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
     response_id.value,
     gboolean(gint((if setting == true then 1 else 0)))
   )
@@ -275,7 +284,7 @@ class InfoBar(raw: Ptr[GtkInfoBar])
   def setRevealed(
       revealed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_info_bar_set_revealed(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
     gboolean(gint((if revealed == true then 1 else 0)))
   )
 
@@ -288,7 +297,7 @@ class InfoBar(raw: Ptr[GtkInfoBar])
   def setShowCloseButton(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_info_bar_set_show_close_button(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 

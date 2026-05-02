@@ -23,14 +23,17 @@ class OverlayLayoutChild(raw: Ptr[GtkOverlayLayoutChild])
     * Retrieves whether the child is clipped.
     */
   def getClipOverlay(): Boolean /* None */ =
-    gtk_overlay_layout_child_get_clip_overlay(this.raw.asInstanceOf).value.!=(0)
+    gtk_overlay_layout_child_get_clip_overlay(
+      this.raw.asInstanceOf[Ptr[GtkOverlayLayoutChild]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves whether the child is measured.
     */
-  def getMeasure(): Boolean /* None */ =
-    gtk_overlay_layout_child_get_measure(this.raw.asInstanceOf).value.!=(0)
+  def getMeasure(): Boolean /* None */ = gtk_overlay_layout_child_get_measure(
+    this.raw.asInstanceOf[Ptr[GtkOverlayLayoutChild]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -39,7 +42,7 @@ class OverlayLayoutChild(raw: Ptr[GtkOverlayLayoutChild])
   def setClipOverlay(
       clip_overlay: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_overlay_layout_child_set_clip_overlay(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkOverlayLayoutChild]],
     gboolean(gint((if clip_overlay == true then 1 else 0)))
   )
 
@@ -50,7 +53,7 @@ class OverlayLayoutChild(raw: Ptr[GtkOverlayLayoutChild])
   def setMeasure(
       measure: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_overlay_layout_child_set_measure(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkOverlayLayoutChild]],
     gboolean(gint((if measure == true then 1 else 0)))
   )
 

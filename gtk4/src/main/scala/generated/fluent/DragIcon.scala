@@ -41,7 +41,9 @@ class DragIcon(raw: Ptr[GtkDragIcon])
     * Gets the widget currently used as drag icon.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_drag_icon_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_drag_icon_get_child(
+      this.raw.asInstanceOf[Ptr[GtkDragIcon]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -51,7 +53,7 @@ class DragIcon(raw: Ptr[GtkDragIcon])
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_drag_icon_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDragIcon]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])

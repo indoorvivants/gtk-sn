@@ -76,7 +76,7 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * Clears the pending flag on @stream.
     */
   def clearPending(): Unit /* None */ = g_io_stream_clear_pending(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GIOStream]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -118,7 +118,7 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_io_stream_close(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GIOStream]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -146,7 +146,7 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_io_stream_close_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GIOStream]],
     io_priority,
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -167,7 +167,7 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_io_stream_close_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GIOStream]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)
@@ -178,7 +178,9 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * Gets the input stream for this object. This is used for reading.
     */
   def getInputStream(): InputStream /* None */ = new InputStream(
-    g_io_stream_get_input_stream(this.raw.asInstanceOf).asInstanceOf
+    g_io_stream_get_input_stream(
+      this.raw.asInstanceOf[Ptr[GIOStream]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -186,7 +188,9 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * Gets the output stream for this object. This is used for writing.
     */
   def getOutputStream(): OutputStream /* None */ = new OutputStream(
-    g_io_stream_get_output_stream(this.raw.asInstanceOf).asInstanceOf
+    g_io_stream_get_output_stream(
+      this.raw.asInstanceOf[Ptr[GIOStream]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -194,14 +198,14 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * Checks if a stream has pending actions.
     */
   def hasPending(): Boolean /* None */ =
-    g_io_stream_has_pending(this.raw.asInstanceOf).value.!=(0)
+    g_io_stream_has_pending(this.raw.asInstanceOf[Ptr[GIOStream]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if a stream is closed.
     */
   def isClosed(): Boolean /* None */ =
-    g_io_stream_is_closed(this.raw.asInstanceOf).value.!=(0)
+    g_io_stream_is_closed(this.raw.asInstanceOf[Ptr[GIOStream]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -210,7 +214,10 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * @error.
     */
   def setPending(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_io_stream_set_pending(this.raw.asInstanceOf, __errorPtr).value.!=(0)
+    g_io_stream_set_pending(
+      this.raw.asInstanceOf[Ptr[GIOStream]],
+      __errorPtr
+    ).value.!=(0)
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -233,7 +240,7 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_io_stream_splice_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GIOStream]],
     stream2.getUnsafeRawPointer().asInstanceOf,
     flags,
     io_priority,

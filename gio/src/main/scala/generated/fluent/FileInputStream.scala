@@ -45,7 +45,7 @@ class FileInputStream(raw: Ptr[GFileInputStream])
   )(using Zone): GResult[FileInfo /* None */ ] = GResult.wrap(__errorPtr =>
     new FileInfo(
       g_file_input_stream_query_info(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GFileInputStream]],
         __sn_extract_string(attributes),
         cancellable
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -78,7 +78,7 @@ class FileInputStream(raw: Ptr[GFileInputStream])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_file_input_stream_query_info_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInputStream]],
     __sn_extract_string(attributes),
     io_priority,
     cancellable
@@ -101,7 +101,7 @@ class FileInputStream(raw: Ptr[GFileInputStream])
   ): GResult[FileInfo /* None */ ] = GResult.wrap(__errorPtr =>
     new FileInfo(
       g_file_input_stream_query_info_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GFileInputStream]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf

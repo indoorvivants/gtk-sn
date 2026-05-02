@@ -53,7 +53,8 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
     */
   def changed(
       change: GtkSorterChange /* Some(GtkSorterChange) */
-  ): Unit /* None */ = gtk_sorter_changed(this.raw.asInstanceOf, change)
+  ): Unit /* None */ =
+    gtk_sorter_changed(this.raw.asInstanceOf[Ptr[GtkSorter]], change)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -73,7 +74,7 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
       item1: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       item2: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   ): GtkOrdering /* None */ = gtk_sorter_compare(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSorter]],
     gpointer(item1.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
     gpointer(item2.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
   )
@@ -87,7 +88,7 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
     * This function is intended to allow optimizations.
     */
   def getOrder(): GtkSorterOrder /* None */ = gtk_sorter_get_order(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkSorter]]
   )
 
 end Sorter

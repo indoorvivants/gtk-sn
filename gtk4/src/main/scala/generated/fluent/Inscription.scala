@@ -43,7 +43,7 @@ class Inscription(raw: Ptr[GtkInscription])
     * Gets the inscription's attribute list.
     */
   def getAttributes(): Ptr[PangoAttrList] /* None */ =
-    gtk_inscription_get_attributes(this.raw.asInstanceOf)
+    gtk_inscription_get_attributes(this.raw.asInstanceOf[Ptr[GtkInscription]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -52,7 +52,7 @@ class Inscription(raw: Ptr[GtkInscription])
     * See the [property@Gtk.Inscription:min-chars] property.
     */
   def getMinChars(): UInt /* None */ = gtk_inscription_get_min_chars(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkInscription]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -62,7 +62,7 @@ class Inscription(raw: Ptr[GtkInscription])
     * See the [property@Gtk.Inscription:min-lines] property.
     */
   def getMinLines(): UInt /* None */ = gtk_inscription_get_min_lines(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkInscription]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -72,7 +72,7 @@ class Inscription(raw: Ptr[GtkInscription])
     * See the [property@Gtk.Inscription:nat-chars] property.
     */
   def getNatChars(): UInt /* None */ = gtk_inscription_get_nat_chars(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkInscription]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -82,7 +82,7 @@ class Inscription(raw: Ptr[GtkInscription])
     * See the [property@Gtk.Inscription:nat-lines] property.
     */
   def getNatLines(): UInt /* None */ = gtk_inscription_get_nat_lines(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkInscription]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -90,7 +90,9 @@ class Inscription(raw: Ptr[GtkInscription])
     * Gets the text that is displayed.
     */
   def getText()(using Zone): String /* None */ = fromCString(
-    gtk_inscription_get_text(this.raw.asInstanceOf).asInstanceOf
+    gtk_inscription_get_text(
+      this.raw.asInstanceOf[Ptr[GtkInscription]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -98,7 +100,9 @@ class Inscription(raw: Ptr[GtkInscription])
     * Gets the inscription's overflow method.
     */
   def getTextOverflow(): GtkInscriptionOverflow /* None */ =
-    gtk_inscription_get_text_overflow(this.raw.asInstanceOf)
+    gtk_inscription_get_text_overflow(
+      this.raw.asInstanceOf[Ptr[GtkInscription]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -107,7 +111,7 @@ class Inscription(raw: Ptr[GtkInscription])
     * See [method@Gtk.Inscription.set_wrap_mode].
     */
   def getWrapMode(): PangoWrapMode /* None */ = gtk_inscription_get_wrap_mode(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkInscription]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -117,7 +121,7 @@ class Inscription(raw: Ptr[GtkInscription])
     * See the [property@Gtk.Inscription:xalign] property.
     */
   def getXalign(): Float /* None */ = gtk_inscription_get_xalign(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkInscription]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -127,7 +131,7 @@ class Inscription(raw: Ptr[GtkInscription])
     * See the [property@Gtk.Inscription:yalign] property.
     */
   def getYalign(): Float /* None */ = gtk_inscription_get_yalign(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkInscription]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -141,7 +145,7 @@ class Inscription(raw: Ptr[GtkInscription])
         PangoAttrList
       ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]) */ ]
   ): Unit /* None */ = gtk_inscription_set_attributes(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkInscription]],
     attrs
       .map[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]](o => o)
       .getOrElse(
@@ -158,7 +162,7 @@ class Inscription(raw: Ptr[GtkInscription])
   def setMarkup(
       markup: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_inscription_set_markup(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkInscription]],
     markup
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -172,8 +176,10 @@ class Inscription(raw: Ptr[GtkInscription])
     */
   def setMinChars(
       min_chars: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_inscription_set_min_chars(this.raw.asInstanceOf, guint(min_chars))
+  ): Unit /* None */ = gtk_inscription_set_min_chars(
+    this.raw.asInstanceOf[Ptr[GtkInscription]],
+    guint(min_chars)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -183,8 +189,10 @@ class Inscription(raw: Ptr[GtkInscription])
     */
   def setMinLines(
       min_lines: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_inscription_set_min_lines(this.raw.asInstanceOf, guint(min_lines))
+  ): Unit /* None */ = gtk_inscription_set_min_lines(
+    this.raw.asInstanceOf[Ptr[GtkInscription]],
+    guint(min_lines)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -194,8 +202,10 @@ class Inscription(raw: Ptr[GtkInscription])
     */
   def setNatChars(
       nat_chars: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_inscription_set_nat_chars(this.raw.asInstanceOf, guint(nat_chars))
+  ): Unit /* None */ = gtk_inscription_set_nat_chars(
+    this.raw.asInstanceOf[Ptr[GtkInscription]],
+    guint(nat_chars)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -205,8 +215,10 @@ class Inscription(raw: Ptr[GtkInscription])
     */
   def setNatLines(
       nat_lines: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_inscription_set_nat_lines(this.raw.asInstanceOf, guint(nat_lines))
+  ): Unit /* None */ = gtk_inscription_set_nat_lines(
+    this.raw.asInstanceOf[Ptr[GtkInscription]],
+    guint(nat_lines)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -215,7 +227,7 @@ class Inscription(raw: Ptr[GtkInscription])
   def setText(
       text: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_inscription_set_text(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkInscription]],
     text
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -227,8 +239,10 @@ class Inscription(raw: Ptr[GtkInscription])
     */
   def setTextOverflow(
       overflow: GtkInscriptionOverflow /* Some(GtkInscriptionOverflow) */
-  ): Unit /* None */ =
-    gtk_inscription_set_text_overflow(this.raw.asInstanceOf, overflow)
+  ): Unit /* None */ = gtk_inscription_set_text_overflow(
+    this.raw.asInstanceOf[Ptr[GtkInscription]],
+    overflow
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -236,8 +250,10 @@ class Inscription(raw: Ptr[GtkInscription])
     */
   def setWrapMode(
       wrap_mode: PangoWrapMode /* Some(_root_.sn.gnome.pango.internal.PangoWrapMode) */
-  ): Unit /* None */ =
-    gtk_inscription_set_wrap_mode(this.raw.asInstanceOf, wrap_mode)
+  ): Unit /* None */ = gtk_inscription_set_wrap_mode(
+    this.raw.asInstanceOf[Ptr[GtkInscription]],
+    wrap_mode
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -246,7 +262,10 @@ class Inscription(raw: Ptr[GtkInscription])
     * See the [property@Gtk.Inscription:xalign] property.
     */
   def setXalign(xalign: Float /* Some(Float) */ ): Unit /* None */ =
-    gtk_inscription_set_xalign(this.raw.asInstanceOf, xalign.asInstanceOf)
+    gtk_inscription_set_xalign(
+      this.raw.asInstanceOf[Ptr[GtkInscription]],
+      xalign.asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -255,7 +274,10 @@ class Inscription(raw: Ptr[GtkInscription])
     * See the [property@Gtk.Inscription:yalign] property.
     */
   def setYalign(yalign: Float /* Some(Float) */ ): Unit /* None */ =
-    gtk_inscription_set_yalign(this.raw.asInstanceOf, yalign.asInstanceOf)
+    gtk_inscription_set_yalign(
+      this.raw.asInstanceOf[Ptr[GtkInscription]],
+      yalign.asInstanceOf
+    )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

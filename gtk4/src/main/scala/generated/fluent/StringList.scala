@@ -56,8 +56,10 @@ class StringList(raw: Ptr[GtkStringList])
     */
   def append(
       string: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ =
-    gtk_string_list_append(this.raw.asInstanceOf, __sn_extract_string(string))
+  )(using Zone): Unit /* None */ = gtk_string_list_append(
+    this.raw.asInstanceOf[Ptr[GtkStringList]],
+    __sn_extract_string(string)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -72,7 +74,7 @@ class StringList(raw: Ptr[GtkStringList])
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   )(using Zone): String /* None */ = fromCString(
     gtk_string_list_get_string(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkStringList]],
       guint(position)
     ).asInstanceOf
   )
@@ -86,8 +88,10 @@ class StringList(raw: Ptr[GtkStringList])
     */
   def remove(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_string_list_remove(this.raw.asInstanceOf, guint(position))
+  ): Unit /* None */ = gtk_string_list_remove(
+    this.raw.asInstanceOf[Ptr[GtkStringList]],
+    guint(position)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -109,7 +113,7 @@ class StringList(raw: Ptr[GtkStringList])
       n_removals: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       additions: Option[Ptr[CString] /* Some(Ptr[CString]) */ ]
   )(using Zone): Unit /* None */ = gtk_string_list_splice(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkStringList]],
     guint(position),
     guint(n_removals),
     additions
@@ -130,8 +134,10 @@ class StringList(raw: Ptr[GtkStringList])
     */
   def take(
       string: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ =
-    gtk_string_list_take(this.raw.asInstanceOf, __sn_extract_string(string))
+  )(using Zone): Unit /* None */ = gtk_string_list_take(
+    this.raw.asInstanceOf[Ptr[GtkStringList]],
+    __sn_extract_string(string)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -28,7 +28,9 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     * will be connected to via the proxy, not the name of the proxy itself.
     */
   def getDestinationHostname()(using Zone): String /* None */ = fromCString(
-    g_proxy_address_get_destination_hostname(this.raw.asInstanceOf).asInstanceOf
+    g_proxy_address_get_destination_hostname(
+      this.raw.asInstanceOf[Ptr[GProxyAddress]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -38,7 +40,9 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     * itself.
     */
   def getDestinationPort(): UShort /* None */ =
-    g_proxy_address_get_destination_port(this.raw.asInstanceOf).value
+    g_proxy_address_get_destination_port(
+      this.raw.asInstanceOf[Ptr[GProxyAddress]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -46,7 +50,9 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     * "http" or "ftp".
     */
   def getDestinationProtocol()(using Zone): String /* None */ = fromCString(
-    g_proxy_address_get_destination_protocol(this.raw.asInstanceOf).asInstanceOf
+    g_proxy_address_get_destination_protocol(
+      this.raw.asInstanceOf[Ptr[GProxyAddress]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -54,7 +60,9 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     * Gets @proxy's password.
     */
   def getPassword()(using Zone): String /* None */ = fromCString(
-    g_proxy_address_get_password(this.raw.asInstanceOf).asInstanceOf
+    g_proxy_address_get_password(
+      this.raw.asInstanceOf[Ptr[GProxyAddress]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -62,7 +70,9 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     * Gets @proxy's protocol. eg, "socks" or "http"
     */
   def getProtocol()(using Zone): String /* None */ = fromCString(
-    g_proxy_address_get_protocol(this.raw.asInstanceOf).asInstanceOf
+    g_proxy_address_get_protocol(
+      this.raw.asInstanceOf[Ptr[GProxyAddress]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -70,7 +80,9 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     * Gets the proxy URI that @proxy was constructed from.
     */
   def getUri()(using Zone): String /* None */ = fromCString(
-    g_proxy_address_get_uri(this.raw.asInstanceOf).asInstanceOf
+    g_proxy_address_get_uri(
+      this.raw.asInstanceOf[Ptr[GProxyAddress]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -78,7 +90,9 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     * Gets @proxy's username.
     */
   def getUsername()(using Zone): String /* None */ = fromCString(
-    g_proxy_address_get_username(this.raw.asInstanceOf).asInstanceOf
+    g_proxy_address_get_username(
+      this.raw.asInstanceOf[Ptr[GProxyAddress]]
+    ).asInstanceOf
   )
 
 end ProxyAddress

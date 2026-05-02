@@ -44,7 +44,7 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_dbus_interface_skeleton_export(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]],
       connection.getUnsafeRawPointer().asInstanceOf,
       __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
       __errorPtr
@@ -62,7 +62,7 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * multiple property changes into one.
     */
   def flush(): Unit /* None */ = g_dbus_interface_skeleton_flush(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -70,7 +70,9 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * Gets the first connection that @interface_ is exported on, if any.
     */
   def getConnection(): DBusConnection /* None */ = new DBusConnection(
-    g_dbus_interface_skeleton_get_connection(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_interface_skeleton_get_connection(
+      this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -78,14 +80,18 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * Gets a list of the connections that @interface_ is exported on.
     */
   def getConnections(): Ptr[GList] /* None */ =
-    g_dbus_interface_skeleton_get_connections(this.raw.asInstanceOf)
+    g_dbus_interface_skeleton_get_connections(
+      this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the #GDBusInterfaceSkeletonFlags that describes what the behavior of @interface_
     */
   def getFlags(): GDBusInterfaceSkeletonFlags /* None */ =
-    g_dbus_interface_skeleton_get_flags(this.raw.asInstanceOf)
+    g_dbus_interface_skeleton_get_flags(
+      this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -93,7 +99,9 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * by @interface_.
     */
   def getInfo(): Ptr[GDBusInterfaceInfo] /* None */ =
-    g_dbus_interface_skeleton_get_info(this.raw.asInstanceOf)
+    g_dbus_interface_skeleton_get_info(
+      this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -101,7 +109,7 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     */
   def getObjectPath()(using Zone): String /* None */ = fromCString(
     g_dbus_interface_skeleton_get_object_path(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
     ).asInstanceOf
   )
 
@@ -110,7 +118,9 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * Gets all D-Bus properties for @interface_.
     */
   def getProperties(): Ptr[GVariant] /* None */ =
-    g_dbus_interface_skeleton_get_properties(this.raw.asInstanceOf)
+    g_dbus_interface_skeleton_get_properties(
+      this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -120,7 +130,9 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     *   passed as @user_data.
     */
   def getVtable(): Ptr[GDBusInterfaceVTable] /* None */ =
-    g_dbus_interface_skeleton_get_vtable(this.raw.asInstanceOf)
+    g_dbus_interface_skeleton_get_vtable(
+      this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -129,7 +141,7 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
   def hasConnection(
       connection: DBusConnection /* Some(Ptr[GDBusConnection]) */
   ): Boolean /* None */ = g_dbus_interface_skeleton_has_connection(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]],
     connection.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -139,8 +151,10 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     */
   def setFlags(
       flags: GDBusInterfaceSkeletonFlags /* Some(GDBusInterfaceSkeletonFlags) */
-  ): Unit /* None */ =
-    g_dbus_interface_skeleton_set_flags(this.raw.asInstanceOf, flags)
+  ): Unit /* None */ = g_dbus_interface_skeleton_set_flags(
+    this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]],
+    flags
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -150,7 +164,7 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * g_dbus_interface_skeleton_unexport_from_connection()
     */
   def unexport(): Unit /* None */ = g_dbus_interface_skeleton_unexport(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -163,7 +177,7 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
   def unexportFromConnection(
       connection: DBusConnection /* Some(Ptr[GDBusConnection]) */
   ): Unit /* None */ = g_dbus_interface_skeleton_unexport_from_connection(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]],
     connection.getUnsafeRawPointer().asInstanceOf
   )
 

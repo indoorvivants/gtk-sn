@@ -33,7 +33,9 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     * Gets the model that is currently being used or %NULL if none.
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_slice_list_model_get_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_slice_list_model_get_model(
+      this.raw.asInstanceOf[Ptr[GtkSliceListModel]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -41,7 +43,7 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     * Gets the offset set via gtk_slice_list_model_set_offset().
     */
   def getOffset(): UInt /* None */ = gtk_slice_list_model_get_offset(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkSliceListModel]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -49,7 +51,7 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     * Gets the size set via gtk_slice_list_model_set_size().
     */
   def getSize(): UInt /* None */ = gtk_slice_list_model_get_size(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkSliceListModel]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -63,7 +65,7 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   ): Unit /* None */ = gtk_slice_list_model_set_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSliceListModel]],
     model
       .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -83,8 +85,10 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     */
   def setOffset(
       offset: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_slice_list_model_set_offset(this.raw.asInstanceOf, guint(offset))
+  ): Unit /* None */ = gtk_slice_list_model_set_offset(
+    this.raw.asInstanceOf[Ptr[GtkSliceListModel]],
+    guint(offset)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -95,8 +99,10 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     */
   def setSize(
       size: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_slice_list_model_set_size(this.raw.asInstanceOf, guint(size))
+  ): Unit /* None */ = gtk_slice_list_model_set_size(
+    this.raw.asInstanceOf[Ptr[GtkSliceListModel]],
+    guint(size)
+  )
 
 end SliceListModel
 

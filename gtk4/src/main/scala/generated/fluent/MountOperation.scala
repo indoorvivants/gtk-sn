@@ -37,7 +37,9 @@ class MountOperation(raw: Ptr[GtkMountOperation])
     * shown.
     */
   def getDisplay(): Display /* None */ = new Display(
-    gtk_mount_operation_get_display(this.raw.asInstanceOf).asInstanceOf
+    gtk_mount_operation_get_display(
+      this.raw.asInstanceOf[Ptr[GtkMountOperation]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -45,15 +47,18 @@ class MountOperation(raw: Ptr[GtkMountOperation])
     * Gets the transient parent used by the `GtkMountOperation`.
     */
   def getParent(): Window /* None */ = new Window(
-    gtk_mount_operation_get_parent(this.raw.asInstanceOf).asInstanceOf
+    gtk_mount_operation_get_parent(
+      this.raw.asInstanceOf[Ptr[GtkMountOperation]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the `GtkMountOperation` is currently displaying a window.
     */
-  def isShowing(): Boolean /* None */ =
-    gtk_mount_operation_is_showing(this.raw.asInstanceOf).value.!=(0)
+  def isShowing(): Boolean /* None */ = gtk_mount_operation_is_showing(
+    this.raw.asInstanceOf[Ptr[GtkMountOperation]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -62,7 +67,7 @@ class MountOperation(raw: Ptr[GtkMountOperation])
   def setDisplay(
       display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
   ): Unit /* None */ = gtk_mount_operation_set_display(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkMountOperation]],
     display.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -73,7 +78,7 @@ class MountOperation(raw: Ptr[GtkMountOperation])
   def setParent(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
   ): Unit /* None */ = gtk_mount_operation_set_parent(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkMountOperation]],
     parent
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])

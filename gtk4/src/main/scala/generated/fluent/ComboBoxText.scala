@@ -92,7 +92,7 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
       id: Option[String | CString /* Some(CString) */ ],
       text: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_combo_box_text_append(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkComboBoxText]],
     id.map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString]),
     __sn_extract_string(text)
@@ -108,7 +108,7 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
   def appendText(
       text: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_combo_box_text_append_text(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkComboBoxText]],
     __sn_extract_string(text)
   )
 
@@ -121,7 +121,9 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
     * necessarily be an item from the list).
     */
   def getActiveText()(using Zone): String /* None */ = fromCString(
-    gtk_combo_box_text_get_active_text(this.raw.asInstanceOf).asInstanceOf
+    gtk_combo_box_text_get_active_text(
+      this.raw.asInstanceOf[Ptr[GtkComboBoxText]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -138,7 +140,7 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
       id: Option[String | CString /* Some(CString) */ ],
       text: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_combo_box_text_insert(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkComboBoxText]],
     position,
     id.map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString]),
@@ -158,7 +160,7 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
       position: Int /* Some(CInt) */,
       text: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_combo_box_text_insert_text(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkComboBoxText]],
     position,
     __sn_extract_string(text)
   )
@@ -176,7 +178,7 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
       id: Option[String | CString /* Some(CString) */ ],
       text: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_combo_box_text_prepend(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkComboBoxText]],
     id.map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString]),
     __sn_extract_string(text)
@@ -192,7 +194,7 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
   def prependText(
       text: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_combo_box_text_prepend_text(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkComboBoxText]],
     __sn_extract_string(text)
   )
 
@@ -201,14 +203,17 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
     * Removes the string at @position from @combo_box.
     */
   def remove(position: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_combo_box_text_remove(this.raw.asInstanceOf, position)
+    gtk_combo_box_text_remove(
+      this.raw.asInstanceOf[Ptr[GtkComboBoxText]],
+      position
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes all the text entries from the combo box.
     */
   def removeAll(): Unit /* None */ = gtk_combo_box_text_remove_all(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkComboBoxText]]
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

@@ -27,7 +27,7 @@ class TcpWrapperConnection(raw: Ptr[GTcpWrapperConnection])
     */
   def getBaseIoStream(): IOStream /* None */ = new IOStream(
     g_tcp_wrapper_connection_get_base_io_stream(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GTcpWrapperConnection]]
     ).asInstanceOf
   )
 

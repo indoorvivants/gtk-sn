@@ -22,7 +22,9 @@ class AssistantPage(raw: Ptr[GtkAssistantPage])
     * Returns the child to which @page belongs.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_assistant_page_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_assistant_page_get_child(
+      this.raw.asInstanceOf[Ptr[GtkAssistantPage]]
+    ).asInstanceOf
   )
 
 end AssistantPage

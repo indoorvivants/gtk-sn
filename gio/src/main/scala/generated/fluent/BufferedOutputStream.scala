@@ -41,14 +41,18 @@ class BufferedOutputStream(raw: Ptr[GBufferedOutputStream])
     * Checks if the buffer automatically grows as data is added.
     */
   def getAutoGrow(): Boolean /* None */ =
-    g_buffered_output_stream_get_auto_grow(this.raw.asInstanceOf).value.!=(0)
+    g_buffered_output_stream_get_auto_grow(
+      this.raw.asInstanceOf[Ptr[GBufferedOutputStream]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the size of the buffer in the @stream.
     */
   def getBufferSize(): CUnsignedLongInt /* None */ =
-    g_buffered_output_stream_get_buffer_size(this.raw.asInstanceOf).value
+    g_buffered_output_stream_get_buffer_size(
+      this.raw.asInstanceOf[Ptr[GBufferedOutputStream]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -60,7 +64,7 @@ class BufferedOutputStream(raw: Ptr[GBufferedOutputStream])
   def setAutoGrow(
       auto_grow: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_buffered_output_stream_set_auto_grow(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GBufferedOutputStream]],
     gboolean(gint((if auto_grow == true then 1 else 0)))
   )
 
@@ -70,8 +74,10 @@ class BufferedOutputStream(raw: Ptr[GBufferedOutputStream])
     */
   def setBufferSize(
       size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): Unit /* None */ =
-    g_buffered_output_stream_set_buffer_size(this.raw.asInstanceOf, gsize(size))
+  ): Unit /* None */ = g_buffered_output_stream_set_buffer_size(
+    this.raw.asInstanceOf[Ptr[GBufferedOutputStream]],
+    gsize(size)
+  )
 
 end BufferedOutputStream
 

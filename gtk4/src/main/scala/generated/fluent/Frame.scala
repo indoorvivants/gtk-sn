@@ -72,7 +72,7 @@ class Frame(raw: Ptr[GtkFrame])
     * Gets the child widget of @frame.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_frame_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_frame_get_child(this.raw.asInstanceOf[Ptr[GtkFrame]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -82,7 +82,7 @@ class Frame(raw: Ptr[GtkFrame])
     * If the frame's label widget is not a `GtkLabel`, %NULL is returned.
     */
   def getLabel()(using Zone): String /* None */ = fromCString(
-    gtk_frame_get_label(this.raw.asInstanceOf).asInstanceOf
+    gtk_frame_get_label(this.raw.asInstanceOf[Ptr[GtkFrame]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -90,7 +90,7 @@ class Frame(raw: Ptr[GtkFrame])
     * Retrieves the X alignment of the frame’s label.
     */
   def getLabelAlign(): Float /* None */ = gtk_frame_get_label_align(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkFrame]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -98,7 +98,9 @@ class Frame(raw: Ptr[GtkFrame])
     * Retrieves the label widget for the frame.
     */
   def getLabelWidget(): Widget /* None */ = new Widget(
-    gtk_frame_get_label_widget(this.raw.asInstanceOf).asInstanceOf
+    gtk_frame_get_label_widget(
+      this.raw.asInstanceOf[Ptr[GtkFrame]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -108,7 +110,7 @@ class Frame(raw: Ptr[GtkFrame])
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_frame_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFrame]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -122,7 +124,7 @@ class Frame(raw: Ptr[GtkFrame])
   def setLabel(
       label: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_frame_set_label(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFrame]],
     label
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -135,7 +137,10 @@ class Frame(raw: Ptr[GtkFrame])
     * The default value for a newly created frame is 0.0.
     */
   def setLabelAlign(xalign: Float /* Some(Float) */ ): Unit /* None */ =
-    gtk_frame_set_label_align(this.raw.asInstanceOf, xalign.asInstanceOf)
+    gtk_frame_set_label_align(
+      this.raw.asInstanceOf[Ptr[GtkFrame]],
+      xalign.asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -147,7 +152,7 @@ class Frame(raw: Ptr[GtkFrame])
   def setLabelWidget(
       label_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_frame_set_label_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFrame]],
     label_widget
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])

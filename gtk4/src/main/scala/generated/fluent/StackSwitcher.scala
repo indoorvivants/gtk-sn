@@ -60,7 +60,9 @@ class StackSwitcher(raw: Ptr[GtkStackSwitcher])
     * Retrieves the stack.
     */
   def getStack(): Stack /* None */ = new Stack(
-    gtk_stack_switcher_get_stack(this.raw.asInstanceOf).asInstanceOf
+    gtk_stack_switcher_get_stack(
+      this.raw.asInstanceOf[Ptr[GtkStackSwitcher]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -70,7 +72,7 @@ class StackSwitcher(raw: Ptr[GtkStackSwitcher])
   def setStack(
       stack: Option[Stack /* Some(Ptr[GtkStack]) */ ]
   ): Unit /* None */ = gtk_stack_switcher_set_stack(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkStackSwitcher]],
     stack
       .map[Ptr[GtkStack]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkStack]])

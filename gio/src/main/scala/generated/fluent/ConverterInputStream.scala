@@ -28,7 +28,9 @@ class ConverterInputStream(raw: Ptr[GConverterInputStream])
     * Gets the #GConverter that is used by @converter_stream.
     */
   def getConverter(): Converter /* None */ = new Converter.Abstract(
-    g_converter_input_stream_get_converter(this.raw.asInstanceOf).asInstanceOf
+    g_converter_input_stream_get_converter(
+      this.raw.asInstanceOf[Ptr[GConverterInputStream]]
+    ).asInstanceOf
   )
 
 end ConverterInputStream

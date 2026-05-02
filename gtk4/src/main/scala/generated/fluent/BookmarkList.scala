@@ -31,7 +31,9 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
     * Gets the attributes queried on the children.
     */
   def getAttributes()(using Zone): String /* None */ = fromCString(
-    gtk_bookmark_list_get_attributes(this.raw.asInstanceOf).asInstanceOf
+    gtk_bookmark_list_get_attributes(
+      this.raw.asInstanceOf[Ptr[GtkBookmarkList]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -39,7 +41,9 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
     * Returns the filename of the bookmark file that this list is loading.
     */
   def getFilename()(using Zone): String /* None */ = fromCString(
-    gtk_bookmark_list_get_filename(this.raw.asInstanceOf).asInstanceOf
+    gtk_bookmark_list_get_filename(
+      this.raw.asInstanceOf[Ptr[GtkBookmarkList]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -47,7 +51,7 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
     * Gets the IO priority to use while loading file.
     */
   def getIoPriority(): Int /* None */ = gtk_bookmark_list_get_io_priority(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkBookmarkList]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -57,8 +61,9 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
     * Files will be added to @self from time to time while loading is going on.
     * The order in which are added is undefined and may change in between runs.
     */
-  def isLoading(): Boolean /* None */ =
-    gtk_bookmark_list_is_loading(this.raw.asInstanceOf).value.!=(0)
+  def isLoading(): Boolean /* None */ = gtk_bookmark_list_is_loading(
+    this.raw.asInstanceOf[Ptr[GtkBookmarkList]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -70,7 +75,7 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
   def setAttributes(
       attributes: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_bookmark_list_set_attributes(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkBookmarkList]],
     attributes
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -83,7 +88,10 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
     * The default IO priority is %G_PRIORITY_DEFAULT.
     */
   def setIoPriority(io_priority: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_bookmark_list_set_io_priority(this.raw.asInstanceOf, io_priority)
+    gtk_bookmark_list_set_io_priority(
+      this.raw.asInstanceOf[Ptr[GtkBookmarkList]],
+      io_priority
+    )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

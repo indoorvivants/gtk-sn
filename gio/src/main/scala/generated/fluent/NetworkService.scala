@@ -31,7 +31,9 @@ class NetworkService(raw: Ptr[GNetworkService])
     * ASCII-encoded, depending on what @srv was created with.
     */
   def getDomain()(using Zone): String /* None */ = fromCString(
-    g_network_service_get_domain(this.raw.asInstanceOf).asInstanceOf
+    g_network_service_get_domain(
+      this.raw.asInstanceOf[Ptr[GNetworkService]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -39,7 +41,9 @@ class NetworkService(raw: Ptr[GNetworkService])
     * Gets @srv's protocol name (eg, "tcp").
     */
   def getProtocol()(using Zone): String /* None */ = fromCString(
-    g_network_service_get_protocol(this.raw.asInstanceOf).asInstanceOf
+    g_network_service_get_protocol(
+      this.raw.asInstanceOf[Ptr[GNetworkService]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -48,7 +52,9 @@ class NetworkService(raw: Ptr[GNetworkService])
     * is used as scheme.
     */
   def getScheme()(using Zone): String /* None */ = fromCString(
-    g_network_service_get_scheme(this.raw.asInstanceOf).asInstanceOf
+    g_network_service_get_scheme(
+      this.raw.asInstanceOf[Ptr[GNetworkService]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -56,7 +62,9 @@ class NetworkService(raw: Ptr[GNetworkService])
     * Gets @srv's service name (eg, "ldap").
     */
   def getService()(using Zone): String /* None */ = fromCString(
-    g_network_service_get_service(this.raw.asInstanceOf).asInstanceOf
+    g_network_service_get_service(
+      this.raw.asInstanceOf[Ptr[GNetworkService]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -68,7 +76,7 @@ class NetworkService(raw: Ptr[GNetworkService])
       scheme: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_network_service_set_scheme(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GNetworkService]],
     __sn_extract_string(scheme).asInstanceOf[Ptr[gchar]]
   )
 

@@ -26,7 +26,9 @@ class IMMulticontext(raw: Ptr[GtkIMMulticontext])
     * Gets the id of the currently active delegate of the @context.
     */
   def getContextId()(using Zone): String /* None */ = fromCString(
-    gtk_im_multicontext_get_context_id(this.raw.asInstanceOf).asInstanceOf
+    gtk_im_multicontext_get_context_id(
+      this.raw.asInstanceOf[Ptr[GtkIMMulticontext]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -42,7 +44,7 @@ class IMMulticontext(raw: Ptr[GtkIMMulticontext])
   def setContextId(
       context_id: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_im_multicontext_set_context_id(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkIMMulticontext]],
     context_id
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])

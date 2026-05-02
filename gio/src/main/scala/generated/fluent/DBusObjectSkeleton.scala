@@ -37,7 +37,7 @@ class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
   def addInterface(
       `interface_`: DBusInterfaceSkeleton /* Some(Ptr[GDBusInterfaceSkeleton]) */
   ): Unit /* None */ = g_dbus_object_skeleton_add_interface(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusObjectSkeleton]],
     `interface_`.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -48,7 +48,7 @@ class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
     * useful.
     */
   def flush(): Unit /* None */ = g_dbus_object_skeleton_flush(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GDBusObjectSkeleton]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -58,7 +58,7 @@ class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
   def removeInterface(
       `interface_`: DBusInterfaceSkeleton /* Some(Ptr[GDBusInterfaceSkeleton]) */
   ): Unit /* None */ = g_dbus_object_skeleton_remove_interface(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusObjectSkeleton]],
     `interface_`.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -74,7 +74,7 @@ class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ =
     g_dbus_object_skeleton_remove_interface_by_name(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusObjectSkeleton]],
       __sn_extract_string(interface_name).asInstanceOf[Ptr[gchar]]
     )
 
@@ -86,7 +86,7 @@ class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
       object_path: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_dbus_object_skeleton_set_object_path(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusObjectSkeleton]],
     __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]]
   )
 

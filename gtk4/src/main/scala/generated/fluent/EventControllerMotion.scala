@@ -31,15 +31,17 @@ class EventControllerMotion(raw: Ptr[GtkEventControllerMotion])
     * Returns if a pointer is within @self or one of its children.
     */
   def containsPointer(): Boolean /* None */ =
-    gtk_event_controller_motion_contains_pointer(this.raw.asInstanceOf).value
-      .!=(0)
+    gtk_event_controller_motion_contains_pointer(
+      this.raw.asInstanceOf[Ptr[GtkEventControllerMotion]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns if a pointer is within @self, but not one of its children.
     */
-  def isPointer(): Boolean /* None */ =
-    gtk_event_controller_motion_is_pointer(this.raw.asInstanceOf).value.!=(0)
+  def isPointer(): Boolean /* None */ = gtk_event_controller_motion_is_pointer(
+    this.raw.asInstanceOf[Ptr[GtkEventControllerMotion]]
+  ).value.!=(0)
 
 end EventControllerMotion
 

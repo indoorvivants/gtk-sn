@@ -112,7 +112,7 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
       message_format: String | CString /* Some(CString) */,
       args: Any*
   )(using Zone): Unit /* None */ = gtk_message_dialog_format_secondary_markup(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkMessageDialog]],
     __sn_extract_string(message_format),
     args*
   )
@@ -125,7 +125,7 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
       message_format: Option[String | CString /* Some(CString) */ ],
       args: Any*
   )(using Zone): Unit /* None */ = gtk_message_dialog_format_secondary_text(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkMessageDialog]],
     message_format
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString]),
@@ -142,7 +142,9 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
     * corresponding function in the parent [class@Gtk.Dialog].
     */
   def getMessageArea(): Widget /* None */ = new Widget(
-    gtk_message_dialog_get_message_area(this.raw.asInstanceOf).asInstanceOf
+    gtk_message_dialog_get_message_area(
+      this.raw.asInstanceOf[Ptr[GtkMessageDialog]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -152,7 +154,7 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
   def setMarkup(
       str: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_message_dialog_set_markup(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkMessageDialog]],
     __sn_extract_string(str)
   )
 

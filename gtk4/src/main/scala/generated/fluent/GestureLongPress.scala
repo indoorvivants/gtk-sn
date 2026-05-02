@@ -35,7 +35,9 @@ class GestureLongPress(raw: Ptr[GtkGestureLongPress])
     * Returns the delay factor.
     */
   def getDelayFactor(): Double /* None */ =
-    gtk_gesture_long_press_get_delay_factor(this.raw.asInstanceOf)
+    gtk_gesture_long_press_get_delay_factor(
+      this.raw.asInstanceOf[Ptr[GtkGestureLongPress]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -46,8 +48,10 @@ class GestureLongPress(raw: Ptr[GtkGestureLongPress])
     */
   def setDelayFactor(
       delay_factor: Double /* Some(Double) */
-  ): Unit /* None */ =
-    gtk_gesture_long_press_set_delay_factor(this.raw.asInstanceOf, delay_factor)
+  ): Unit /* None */ = gtk_gesture_long_press_set_delay_factor(
+    this.raw.asInstanceOf[Ptr[GtkGestureLongPress]],
+    delay_factor
+  )
 
 end GestureLongPress
 

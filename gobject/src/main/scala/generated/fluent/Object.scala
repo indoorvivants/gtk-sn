@@ -83,7 +83,7 @@ class Object(raw: Ptr[GObject]):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_object_add_toggle_ref(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     _notify,
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -151,7 +151,7 @@ class Object(raw: Ptr[GObject]):
       flags: GBindingFlags /* Some(GBindingFlags) */
   )(using Zone): Binding /* None */ = new Binding(
     g_object_bind_property(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
       __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
       gpointer(
         target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
@@ -210,7 +210,7 @@ class Object(raw: Ptr[GObject]):
       ]
   )(using Zone): Binding /* None */ = new Binding(
     g_object_bind_property_full(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
       __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
       gpointer(
         target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
@@ -255,7 +255,7 @@ class Object(raw: Ptr[GObject]):
       transform_from: Ptr[GClosure] /* Some(Ptr[GClosure]) */
   )(using Zone): Binding /* None */ = new Binding(
     g_object_bind_property_with_closures(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
       __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
       gpointer(
         target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
@@ -299,7 +299,7 @@ class Object(raw: Ptr[GObject]):
       args: Any*
   )(using Zone): Object /* None */ = new Object(
     g_object_connect(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
       __sn_extract_string(signal_spec).asInstanceOf[Ptr[gchar]],
       args*
     ).asInstanceOf
@@ -319,7 +319,7 @@ class Object(raw: Ptr[GObject]):
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
   )(using Zone): Unit /* None */ = g_object_disconnect(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
     __sn_extract_string(signal_spec).asInstanceOf[Ptr[gchar]],
     args*
   )
@@ -348,7 +348,7 @@ class Object(raw: Ptr[GObject]):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Ptr[Byte] /* None */ = g_object_dup_data(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
     dup_func
       .map[_root_.sn.gnome.glib.internal.GDuplicateFunc](o => o)
@@ -383,7 +383,7 @@ class Object(raw: Ptr[GObject]):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Ptr[Byte] /* None */ = g_object_dup_qdata(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     quark,
     dup_func
       .map[_root_.sn.gnome.glib.internal.GDuplicateFunc](o => o)
@@ -403,7 +403,7 @@ class Object(raw: Ptr[GObject]):
     * usually just needs to be sunken by calling g_object_ref_sink().
     */
   def forceFloating(): Unit /* None */ = g_object_force_floating(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GObject]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -418,7 +418,7 @@ class Object(raw: Ptr[GObject]):
     * premature notification while the object is still being modified.
     */
   def freezeNotify(): Unit /* None */ = g_object_freeze_notify(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GObject]]
   )
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
@@ -455,7 +455,7 @@ class Object(raw: Ptr[GObject]):
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
   )(using Zone): Unit /* None */ = g_object_get(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
     __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
     args*
   )
@@ -468,7 +468,7 @@ class Object(raw: Ptr[GObject]):
   def getData(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Ptr[Byte] /* None */ = g_object_get_data(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
 
@@ -496,7 +496,7 @@ class Object(raw: Ptr[GObject]):
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Ptr[GValue] /* Some(Ptr[GValue]) */
   )(using Zone): Unit /* None */ = g_object_get_property(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]],
     value
   )
@@ -509,7 +509,7 @@ class Object(raw: Ptr[GObject]):
   def getQdata(
       quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */
   ): Ptr[Byte] /* None */ =
-    g_object_get_qdata(this.raw.asInstanceOf, quark).value
+    g_object_get_qdata(this.raw.asInstanceOf[Ptr[GObject]], quark).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -526,7 +526,7 @@ class Object(raw: Ptr[GObject]):
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       var_args: CVarArgList /* Some(va_list) */
   )(using Zone): Unit /* None */ = g_object_get_valist(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
     var_args
   )
@@ -544,7 +544,7 @@ class Object(raw: Ptr[GObject]):
       ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]) */,
       values: Ptr[GValue /* None */ ] /* Some(Ptr[GValue]) */
   )(using Zone): Unit /* None */ = g_object_getv(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     guint(n_properties),
     names.asInstanceOf,
     values
@@ -554,8 +554,9 @@ class Object(raw: Ptr[GObject]):
     *
     * Checks whether @object has a [floating][floating-ref] reference.
     */
-  def isFloating(): Boolean /* None */ =
-    g_object_is_floating(this.raw.asInstanceOf).value.!=(0)
+  def isFloating(): Boolean /* None */ = g_object_is_floating(
+    this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -574,7 +575,7 @@ class Object(raw: Ptr[GObject]):
       property_name: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_object_notify(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]]
   )
 
@@ -621,7 +622,7 @@ class Object(raw: Ptr[GObject]):
   def notifyByPspec(
       pspec: ParamSpec /* Some(Ptr[GParamSpec]) */
   ): Unit /* None */ = g_object_notify_by_pspec(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     pspec.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -635,7 +636,9 @@ class Object(raw: Ptr[GObject]):
     * type must be explicit.
     */
   def ref(): Object /* None */ = new Object(
-    g_object_ref(this.raw.asInstanceOf).asInstanceOf
+    g_object_ref(
+      this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -653,7 +656,9 @@ class Object(raw: Ptr[GObject]):
     * under the same conditions as for g_object_ref().
     */
   def refSink(): Object /* None */ = new Object(
-    g_object_ref_sink(this.raw.asInstanceOf).asInstanceOf
+    g_object_ref_sink(
+      this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -667,7 +672,7 @@ class Object(raw: Ptr[GObject]):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_object_remove_toggle_ref(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     _notify,
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -738,7 +743,7 @@ class Object(raw: Ptr[GObject]):
     * This function should only be called from object system implementations.
     */
   def runDispose(): Unit /* None */ = g_object_run_dispose(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GObject]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -758,7 +763,7 @@ class Object(raw: Ptr[GObject]):
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
   )(using Zone): Unit /* None */ = g_object_set(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
     __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
     args*
   )
@@ -784,7 +789,7 @@ class Object(raw: Ptr[GObject]):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_object_set_data(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -809,7 +814,7 @@ class Object(raw: Ptr[GObject]):
         GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
       ]
   )(using Zone): Unit /* None */ = g_object_set_data_full(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -830,7 +835,7 @@ class Object(raw: Ptr[GObject]):
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Ptr[GValue] /* Some(Ptr[GValue]) */
   )(using Zone): Unit /* None */ = g_object_set_property(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]],
     value
   )
@@ -850,7 +855,7 @@ class Object(raw: Ptr[GObject]):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_object_set_qdata(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     quark,
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -873,7 +878,7 @@ class Object(raw: Ptr[GObject]):
         GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
       ]
   ): Unit /* None */ = g_object_set_qdata_full(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     quark,
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -894,7 +899,7 @@ class Object(raw: Ptr[GObject]):
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       var_args: CVarArgList /* Some(va_list) */
   )(using Zone): Unit /* None */ = g_object_set_valist(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
     var_args
   )
@@ -912,7 +917,7 @@ class Object(raw: Ptr[GObject]):
       ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]) */,
       values: Ptr[GValue /* None */ ] /* Some(Ptr[GValue]) */
   )(using Zone): Unit /* None */ = g_object_setv(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     guint(n_properties),
     names.asInstanceOf,
     values
@@ -926,7 +931,7 @@ class Object(raw: Ptr[GObject]):
   def stealData(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Ptr[Byte] /* None */ = g_object_steal_data(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
 
@@ -971,7 +976,7 @@ class Object(raw: Ptr[GObject]):
   def stealQdata(
       quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */
   ): Ptr[Byte] /* None */ =
-    g_object_steal_qdata(this.raw.asInstanceOf, quark).value
+    g_object_steal_qdata(this.raw.asInstanceOf[Ptr[GObject]], quark).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1010,7 +1015,9 @@ class Object(raw: Ptr[GObject]):
     * top of that one is added. It is best to avoid this situation.
     */
   def takeRef(): Object /* None */ = new Object(
-    g_object_take_ref(this.raw.asInstanceOf).asInstanceOf
+    g_object_take_ref(
+      this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1026,7 +1033,7 @@ class Object(raw: Ptr[GObject]):
     * It is an error to call this function when the freeze count is zero.
     */
   def thawNotify(): Unit /* None */ = g_object_thaw_notify(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GObject]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1039,7 +1046,9 @@ class Object(raw: Ptr[GObject]):
     * pointer to %NULL rather than retain a dangling pointer to a potentially
     * invalid #GObject instance. Use g_clear_object() for this.
     */
-  def unref(): Unit /* None */ = g_object_unref(this.raw.asInstanceOf)
+  def unref(): Unit /* None */ = g_object_unref(
+    this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1056,7 +1065,8 @@ class Object(raw: Ptr[GObject]):
     */
   def watchClosure(
       closure: Ptr[GClosure] /* Some(Ptr[GClosure]) */
-  ): Unit /* None */ = g_object_watch_closure(this.raw.asInstanceOf, closure)
+  ): Unit /* None */ =
+    g_object_watch_closure(this.raw.asInstanceOf[Ptr[GObject]], closure)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1077,7 +1087,7 @@ class Object(raw: Ptr[GObject]):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_object_weak_ref(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     _notify,
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -1094,7 +1104,7 @@ class Object(raw: Ptr[GObject]):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_object_weak_unref(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GObject]],
     _notify,
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))

@@ -21,7 +21,9 @@ class ClipNode(raw: Ptr[GskClipNode]) extends RenderNode(raw.asInstanceOf):
     * Gets the child node that is getting clipped by the given @node.
     */
   def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_clip_node_get_child(this.raw.asInstanceOf).asInstanceOf
+    gsk_clip_node_get_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -29,7 +31,7 @@ class ClipNode(raw: Ptr[GskClipNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the clip rectangle for @node.
     */
   def getClip(): Ptr[graphene_rect_t] /* None */ = gsk_clip_node_get_clip(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
 end ClipNode

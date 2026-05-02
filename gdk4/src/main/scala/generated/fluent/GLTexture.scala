@@ -35,7 +35,9 @@ class GLTexture(raw: Ptr[GdkGLTexture])
     * [method@Gdk.Texture.download] function, after this function has been
     * called.
     */
-  def release(): Unit /* None */ = gdk_gl_texture_release(this.raw.asInstanceOf)
+  def release(): Unit /* None */ = gdk_gl_texture_release(
+    this.raw.asInstanceOf[Ptr[GdkGLTexture]]
+  )
 
 end GLTexture
 

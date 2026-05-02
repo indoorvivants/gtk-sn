@@ -41,7 +41,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     */
   def copy(): GResult[DBusMessage /* None */ ] = GResult.wrap(__errorPtr =>
     new DBusMessage(
-      g_dbus_message_copy(this.raw.asInstanceOf, __errorPtr).asInstanceOf
+      g_dbus_message_copy(
+        this.raw.asInstanceOf[Ptr[GDBusMessage]],
+        __errorPtr
+      ).asInstanceOf
     )
   )
 
@@ -50,7 +53,9 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * Convenience to get the first item in the body of @message.
     */
   def getArg0()(using Zone): String /* None */ = fromCString(
-    g_dbus_message_get_arg0(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_message_get_arg0(
+      this.raw.asInstanceOf[Ptr[GDBusMessage]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -58,7 +63,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * Gets the body of a message.
     */
   def getBody(): Ptr[GVariant] /* None */ = g_dbus_message_get_body(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GDBusMessage]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -66,7 +71,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * Gets the byte order of @message.
     */
   def getByteOrder(): GDBusMessageByteOrder /* None */ =
-    g_dbus_message_get_byte_order(this.raw.asInstanceOf)
+    g_dbus_message_get_byte_order(this.raw.asInstanceOf[Ptr[GDBusMessage]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -74,7 +79,9 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * field.
     */
   def getDestination()(using Zone): String /* None */ = fromCString(
-    g_dbus_message_get_destination(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_message_get_destination(
+      this.raw.asInstanceOf[Ptr[GDBusMessage]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -83,7 +90,9 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * field.
     */
   def getErrorName()(using Zone): String /* None */ = fromCString(
-    g_dbus_message_get_error_name(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_message_get_error_name(
+      this.raw.asInstanceOf[Ptr[GDBusMessage]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -91,7 +100,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * Gets the flags for @message.
     */
   def getFlags(): GDBusMessageFlags /* None */ = g_dbus_message_get_flags(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GDBusMessage]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -103,15 +112,19 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     */
   def getHeader(
       header_field: GDBusMessageHeaderField /* Some(GDBusMessageHeaderField) */
-  ): Ptr[GVariant] /* None */ =
-    g_dbus_message_get_header(this.raw.asInstanceOf, header_field)
+  ): Ptr[GVariant] /* None */ = g_dbus_message_get_header(
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
+    header_field
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets an array of all header fields on @message that are set.
     */
   def getHeaderFields(): Ptr[UByte] /* None */ =
-    g_dbus_message_get_header_fields(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_message_get_header_fields(
+      this.raw.asInstanceOf[Ptr[GDBusMessage]]
+    ).asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -119,7 +132,9 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * field.
     */
   def getInterface()(using Zone): String /* None */ = fromCString(
-    g_dbus_message_get_interface(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_message_get_interface(
+      this.raw.asInstanceOf[Ptr[GDBusMessage]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -128,8 +143,9 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * conncet to the #GObject::notify signal to listen for changes on the
     * #GDBusMessage:locked property.
     */
-  def getLocked(): Boolean /* None */ =
-    g_dbus_message_get_locked(this.raw.asInstanceOf).value.!=(0)
+  def getLocked(): Boolean /* None */ = g_dbus_message_get_locked(
+    this.raw.asInstanceOf[Ptr[GDBusMessage]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -137,7 +153,9 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * field.
     */
   def getMember()(using Zone): String /* None */ = fromCString(
-    g_dbus_message_get_member(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_message_get_member(
+      this.raw.asInstanceOf[Ptr[GDBusMessage]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -145,7 +163,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * Gets the type of @message.
     */
   def getMessageType(): GDBusMessageType /* None */ =
-    g_dbus_message_get_message_type(this.raw.asInstanceOf)
+    g_dbus_message_get_message_type(this.raw.asInstanceOf[Ptr[GDBusMessage]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -153,7 +171,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * header field.
     */
   def getNumUnixFds(): UInt /* None */ = g_dbus_message_get_num_unix_fds(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GDBusMessage]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -161,7 +179,9 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * Convenience getter for the %G_DBUS_MESSAGE_HEADER_FIELD_PATH header field.
     */
   def getPath()(using Zone): String /* None */ = fromCString(
-    g_dbus_message_get_path(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_message_get_path(
+      this.raw.asInstanceOf[Ptr[GDBusMessage]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -170,7 +190,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * header field.
     */
   def getReplySerial(): UInt /* None */ = g_dbus_message_get_reply_serial(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GDBusMessage]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -179,7 +199,9 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * field.
     */
   def getSender()(using Zone): String /* None */ = fromCString(
-    g_dbus_message_get_sender(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_message_get_sender(
+      this.raw.asInstanceOf[Ptr[GDBusMessage]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -187,7 +209,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * Gets the serial for @message.
     */
   def getSerial(): UInt /* None */ = g_dbus_message_get_serial(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GDBusMessage]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -198,7 +220,9 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * This will always be non-%NULL, but may be an empty string.
     */
   def getSignature()(using Zone): String /* None */ = fromCString(
-    g_dbus_message_get_signature(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_message_get_signature(
+      this.raw.asInstanceOf[Ptr[GDBusMessage]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -213,14 +237,18 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * accessed by `g_unix_fd_list_get (list, 5, ...)`.
     */
   def getUnixFdList(): UnixFDList /* None */ = new UnixFDList(
-    g_dbus_message_get_unix_fd_list(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_message_get_unix_fd_list(
+      this.raw.asInstanceOf[Ptr[GDBusMessage]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * If @message is locked, does nothing. Otherwise locks the message.
     */
-  def lock(): Unit /* None */ = g_dbus_message_lock(this.raw.asInstanceOf)
+  def lock(): Unit /* None */ = g_dbus_message_lock(
+    this.raw.asInstanceOf[Ptr[GDBusMessage]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -234,7 +262,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
       args: Any*
   )(using Zone): DBusMessage /* None */ = new DBusMessage(
     g_dbus_message_new_method_error(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusMessage]],
       __sn_extract_string(error_name).asInstanceOf[Ptr[gchar]],
       __sn_extract_string(error_message_format).asInstanceOf[Ptr[gchar]],
       args*
@@ -252,7 +280,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): DBusMessage /* None */ = new DBusMessage(
     g_dbus_message_new_method_error_literal(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusMessage]],
       __sn_extract_string(error_name).asInstanceOf[Ptr[gchar]],
       __sn_extract_string(error_message).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
@@ -270,7 +298,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
       var_args: CVarArgList /* Some(va_list) */
   )(using Zone): DBusMessage /* None */ = new DBusMessage(
     g_dbus_message_new_method_error_valist(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusMessage]],
       __sn_extract_string(error_name).asInstanceOf[Ptr[gchar]],
       __sn_extract_string(error_message_format).asInstanceOf[Ptr[gchar]],
       var_args
@@ -282,7 +310,9 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * Creates a new #GDBusMessage that is a reply to @method_call_message.
     */
   def newMethodReply(): DBusMessage /* None */ = new DBusMessage(
-    g_dbus_message_new_method_reply(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_message_new_method_reply(
+      this.raw.asInstanceOf[Ptr[GDBusMessage]]
+    ).asInstanceOf
   )
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
@@ -323,7 +353,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
   def print(
       indent: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   )(using Zone): String /* None */ = fromCString(
-    g_dbus_message_print(this.raw.asInstanceOf, guint(indent)).asInstanceOf
+    g_dbus_message_print(
+      this.raw.asInstanceOf[Ptr[GDBusMessage]],
+      guint(indent)
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -338,7 +371,8 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
       body: Ptr[
         GVariant
       ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-  ): Unit /* None */ = g_dbus_message_set_body(this.raw.asInstanceOf, body)
+  ): Unit /* None */ =
+    g_dbus_message_set_body(this.raw.asInstanceOf[Ptr[GDBusMessage]], body)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -346,8 +380,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     */
   def setByteOrder(
       byte_order: GDBusMessageByteOrder /* Some(GDBusMessageByteOrder) */
-  ): Unit /* None */ =
-    g_dbus_message_set_byte_order(this.raw.asInstanceOf, byte_order)
+  ): Unit /* None */ = g_dbus_message_set_byte_order(
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
+    byte_order
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -359,7 +395,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Zone): Unit /* None */ = g_dbus_message_set_destination(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
     value
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -376,7 +412,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
       value: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_dbus_message_set_error_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
     __sn_extract_string(value).asInstanceOf[Ptr[gchar]]
   )
 
@@ -386,7 +422,8 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     */
   def setFlags(
       flags: GDBusMessageFlags /* Some(GDBusMessageFlags) */
-  ): Unit /* None */ = g_dbus_message_set_flags(this.raw.asInstanceOf, flags)
+  ): Unit /* None */ =
+    g_dbus_message_set_flags(this.raw.asInstanceOf[Ptr[GDBusMessage]], flags)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -400,7 +437,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
         Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
       ]
   ): Unit /* None */ = g_dbus_message_set_header(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
     header_field,
     value
       .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
@@ -417,7 +454,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Zone): Unit /* None */ = g_dbus_message_set_interface(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
     value
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -435,7 +472,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Zone): Unit /* None */ = g_dbus_message_set_member(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
     value
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -449,8 +486,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     */
   def setMessageType(
       `type`: GDBusMessageType /* Some(GDBusMessageType) */
-  ): Unit /* None */ =
-    g_dbus_message_set_message_type(this.raw.asInstanceOf, `type`)
+  ): Unit /* None */ = g_dbus_message_set_message_type(
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
+    `type`
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -459,8 +498,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     */
   def setNumUnixFds(
       value: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
-  ): Unit /* None */ =
-    g_dbus_message_set_num_unix_fds(this.raw.asInstanceOf, guint32(value))
+  ): Unit /* None */ = g_dbus_message_set_num_unix_fds(
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
+    guint32(value)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -471,7 +512,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Zone): Unit /* None */ = g_dbus_message_set_path(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
     value
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -486,8 +527,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     */
   def setReplySerial(
       value: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
-  ): Unit /* None */ =
-    g_dbus_message_set_reply_serial(this.raw.asInstanceOf, guint32(value))
+  ): Unit /* None */ = g_dbus_message_set_reply_serial(
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
+    guint32(value)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -499,7 +542,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Zone): Unit /* None */ = g_dbus_message_set_sender(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
     value
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -513,8 +556,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     */
   def setSerial(
       serial: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
-  ): Unit /* None */ =
-    g_dbus_message_set_serial(this.raw.asInstanceOf, guint32(serial))
+  ): Unit /* None */ = g_dbus_message_set_serial(
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
+    guint32(serial)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -526,7 +571,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Zone): Unit /* None */ = g_dbus_message_set_signature(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
     value
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -552,7 +597,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
   def setUnixFdList(
       fd_list: Option[UnixFDList /* Some(Ptr[GUnixFDList]) */ ]
   ): Unit /* None */ = g_dbus_message_set_unix_fd_list(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
     fd_list
       .map[Ptr[GUnixFDList]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GUnixFDList]])
@@ -579,7 +624,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * as the first string item in @message's body.
     */
   def toGerror(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_dbus_message_to_gerror(this.raw.asInstanceOf, __errorPtr).value.!=(0)
+    g_dbus_message_to_gerror(
+      this.raw.asInstanceOf[Ptr[GDBusMessage]],
+      __errorPtr
+    ).value.!=(0)
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

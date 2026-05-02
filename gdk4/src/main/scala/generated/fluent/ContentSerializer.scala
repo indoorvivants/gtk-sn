@@ -44,7 +44,9 @@ class ContentSerializer(raw: Ptr[GdkContentSerializer])
     * [func@content_serialize_async].
     */
   def getCancellable(): Cancellable /* None */ = new Cancellable(
-    gdk_content_serializer_get_cancellable(this.raw.asInstanceOf).asInstanceOf
+    gdk_content_serializer_get_cancellable(
+      this.raw.asInstanceOf[Ptr[GdkContentSerializer]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -52,7 +54,7 @@ class ContentSerializer(raw: Ptr[GdkContentSerializer])
     * Gets the `GType` to of the object to serialize.
     */
   def getGtype(): GType /* None */ = gdk_content_serializer_get_gtype(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkContentSerializer]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -60,7 +62,9 @@ class ContentSerializer(raw: Ptr[GdkContentSerializer])
     * Gets the mime type to serialize to.
     */
   def getMimeType()(using Zone): String /* None */ = fromCString(
-    gdk_content_serializer_get_mime_type(this.raw.asInstanceOf).asInstanceOf
+    gdk_content_serializer_get_mime_type(
+      this.raw.asInstanceOf[Ptr[GdkContentSerializer]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -70,7 +74,9 @@ class ContentSerializer(raw: Ptr[GdkContentSerializer])
     * This is the stream that was passed to [func@content_serialize_async].
     */
   def getOutputStream(): OutputStream /* None */ = new OutputStream(
-    gdk_content_serializer_get_output_stream(this.raw.asInstanceOf).asInstanceOf
+    gdk_content_serializer_get_output_stream(
+      this.raw.asInstanceOf[Ptr[GdkContentSerializer]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -80,7 +86,7 @@ class ContentSerializer(raw: Ptr[GdkContentSerializer])
     * This is the priority that was passed to [func@content_serialize_async].
     */
   def getPriority(): Int /* None */ = gdk_content_serializer_get_priority(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkContentSerializer]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -90,21 +96,25 @@ class ContentSerializer(raw: Ptr[GdkContentSerializer])
     * See [method@Gdk.ContentSerializer.set_task_data].
     */
   def getTaskData(): Ptr[Byte] /* None */ =
-    gdk_content_serializer_get_task_data(this.raw.asInstanceOf).value
+    gdk_content_serializer_get_task_data(
+      this.raw.asInstanceOf[Ptr[GdkContentSerializer]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the user data that was passed when the serializer was registered.
     */
   def getUserData(): Ptr[Byte] /* None */ =
-    gdk_content_serializer_get_user_data(this.raw.asInstanceOf).value
+    gdk_content_serializer_get_user_data(
+      this.raw.asInstanceOf[Ptr[GdkContentSerializer]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the `GValue` to read the object to serialize from.
     */
   def getValue(): Ptr[GValue] /* None */ = gdk_content_serializer_get_value(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkContentSerializer]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -115,15 +125,17 @@ class ContentSerializer(raw: Ptr[GdkContentSerializer])
     */
   def returnError(
       error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): Unit /* None */ =
-    gdk_content_serializer_return_error(this.raw.asInstanceOf, error)
+  ): Unit /* None */ = gdk_content_serializer_return_error(
+    this.raw.asInstanceOf[Ptr[GdkContentSerializer]],
+    error
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Indicate that the serialization has been successfully completed.
     */
   def returnSuccess(): Unit /* None */ = gdk_content_serializer_return_success(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkContentSerializer]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -136,7 +148,7 @@ class ContentSerializer(raw: Ptr[GdkContentSerializer])
       ],
       _notify: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): Unit /* None */ = gdk_content_serializer_set_task_data(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkContentSerializer]],
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
       .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),

@@ -24,22 +24,23 @@ class CrossingEvent(raw: Ptr[GdkCrossingEvent]) extends Event(raw.asInstanceOf):
     * Extracts the notify detail from a crossing event.
     */
   def getDetail(): GdkNotifyType /* None */ = gdk_crossing_event_get_detail(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if the @event surface is the focus surface.
     */
-  def getFocus(): Boolean /* None */ =
-    gdk_crossing_event_get_focus(this.raw.asInstanceOf).value.!=(0)
+  def getFocus(): Boolean /* None */ = gdk_crossing_event_get_focus(
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts the crossing mode from a crossing event.
     */
   def getMode(): GdkCrossingMode /* None */ = gdk_crossing_event_get_mode(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
   )
 
 end CrossingEvent

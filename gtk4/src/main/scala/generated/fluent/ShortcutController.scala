@@ -72,7 +72,7 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
   def addShortcut(
       shortcut: Shortcut /* Some(Ptr[GtkShortcut]) */
   ): Unit /* None */ = gtk_shortcut_controller_add_shortcut(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkShortcutController]],
     shortcut.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -82,7 +82,9 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     * shortcuts.
     */
   def getMnemonicsModifiers(): GdkModifierType /* None */ =
-    gtk_shortcut_controller_get_mnemonics_modifiers(this.raw.asInstanceOf)
+    gtk_shortcut_controller_get_mnemonics_modifiers(
+      this.raw.asInstanceOf[Ptr[GtkShortcutController]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -91,7 +93,9 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     * See [method@Gtk.ShortcutController.set_scope] for details.
     */
   def getScope(): GtkShortcutScope /* None */ =
-    gtk_shortcut_controller_get_scope(this.raw.asInstanceOf)
+    gtk_shortcut_controller_get_scope(
+      this.raw.asInstanceOf[Ptr[GtkShortcutController]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -103,7 +107,7 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
   def removeShortcut(
       shortcut: Shortcut /* Some(Ptr[GtkShortcut]) */
   ): Unit /* None */ = gtk_shortcut_controller_remove_shortcut(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkShortcutController]],
     shortcut.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -126,7 +130,7 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
   def setMnemonicsModifiers(
       modifiers: GdkModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
   ): Unit /* None */ = gtk_shortcut_controller_set_mnemonics_modifiers(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkShortcutController]],
     modifiers
   )
 
@@ -143,8 +147,10 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     */
   def setScope(
       scope: GtkShortcutScope /* Some(GtkShortcutScope) */
-  ): Unit /* None */ =
-    gtk_shortcut_controller_set_scope(this.raw.asInstanceOf, scope)
+  ): Unit /* None */ = gtk_shortcut_controller_set_scope(
+    this.raw.asInstanceOf[Ptr[GtkShortcutController]],
+    scope
+  )
 
 end ShortcutController
 

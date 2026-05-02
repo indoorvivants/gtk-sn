@@ -66,15 +66,18 @@ class ActionBar(raw: Ptr[GtkActionBar])
     * Retrieves the center bar widget of the bar.
     */
   def getCenterWidget(): Widget /* None */ = new Widget(
-    gtk_action_bar_get_center_widget(this.raw.asInstanceOf).asInstanceOf
+    gtk_action_bar_get_center_widget(
+      this.raw.asInstanceOf[Ptr[GtkActionBar]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether the contents of the action bar are revealed.
     */
-  def getRevealed(): Boolean /* None */ =
-    gtk_action_bar_get_revealed(this.raw.asInstanceOf).value.!=(0)
+  def getRevealed(): Boolean /* None */ = gtk_action_bar_get_revealed(
+    this.raw.asInstanceOf[Ptr[GtkActionBar]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -82,7 +85,7 @@ class ActionBar(raw: Ptr[GtkActionBar])
     */
   def packEnd(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_action_bar_pack_end(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkActionBar]],
       child.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -92,7 +95,7 @@ class ActionBar(raw: Ptr[GtkActionBar])
     */
   def packStart(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_action_bar_pack_start(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkActionBar]],
       child.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -102,7 +105,7 @@ class ActionBar(raw: Ptr[GtkActionBar])
     */
   def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_action_bar_remove(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkActionBar]],
       child.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -113,7 +116,7 @@ class ActionBar(raw: Ptr[GtkActionBar])
   def setCenterWidget(
       center_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_action_bar_set_center_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkActionBar]],
     center_widget
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -130,7 +133,7 @@ class ActionBar(raw: Ptr[GtkActionBar])
   def setRevealed(
       revealed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_action_bar_set_revealed(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkActionBar]],
     gboolean(gint((if revealed == true then 1 else 0)))
   )
 

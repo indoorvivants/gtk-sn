@@ -55,15 +55,16 @@ class EditableLabel(raw: Ptr[GtkEditableLabel])
     *
     * Returns whether the label is currently in “editing mode”.
     */
-  def getEditing(): Boolean /* None */ =
-    gtk_editable_label_get_editing(this.raw.asInstanceOf).value.!=(0)
+  def getEditing(): Boolean /* None */ = gtk_editable_label_get_editing(
+    this.raw.asInstanceOf[Ptr[GtkEditableLabel]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Switches the label into “editing mode”.
     */
   def startEditing(): Unit /* None */ = gtk_editable_label_start_editing(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkEditableLabel]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -78,7 +79,7 @@ class EditableLabel(raw: Ptr[GtkEditableLabel])
   def stopEditing(
       commit: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_editable_label_stop_editing(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEditableLabel]],
     gboolean(gint((if commit == true then 1 else 0)))
   )
 

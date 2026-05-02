@@ -71,8 +71,10 @@ def renderParameters(
 
           (Some(parameter), argument)
 
-        case (param: Instanceu45parameter, _) =>
-          (None, "this.raw.asInstanceOf")
+        case (param: Instanceu45parameter, idx) =>
+          val targetType = getTargetType(param.name, idx)
+
+          (None, s"this.raw.asInstanceOf[$targetType]")
       .unzip
 
     RenderedParameters(paramSpecs.flatten, arguments)

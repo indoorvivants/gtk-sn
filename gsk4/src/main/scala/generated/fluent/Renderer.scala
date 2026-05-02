@@ -40,15 +40,18 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
     * If the renderer has not been realized yet, %NULL will be returned.
     */
   def getSurface(): Surface /* None */ = new Surface(
-    gsk_renderer_get_surface(this.raw.asInstanceOf).asInstanceOf
+    gsk_renderer_get_surface(
+      this.raw.asInstanceOf[Ptr[GskRenderer]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks whether the @renderer is realized or not.
     */
-  def isRealized(): Boolean /* None */ =
-    gsk_renderer_is_realized(this.raw.asInstanceOf).value.!=(0)
+  def isRealized(): Boolean /* None */ = gsk_renderer_is_realized(
+    this.raw.asInstanceOf[Ptr[GskRenderer]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -66,7 +69,7 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
       ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gsk_renderer_realize(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GskRenderer]],
       surface
         .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -99,7 +102,7 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
         cairo_region_t
       ] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */ ]
   ): Unit /* None */ = gsk_renderer_render(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GskRenderer]],
     root.getUnsafeRawPointer().asInstanceOf,
     region
       .map[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]](o => o)
@@ -126,7 +129,7 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */ ]
   ): Texture /* None */ = new Texture(
     gsk_renderer_render_texture(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GskRenderer]],
       root.getUnsafeRawPointer().asInstanceOf,
       viewport
         .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]](o => o)
@@ -143,7 +146,7 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
     * Releases all the resources created by gsk_renderer_realize().
     */
   def unrealize(): Unit /* None */ = gsk_renderer_unrealize(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderer]]
   )
 
 end Renderer

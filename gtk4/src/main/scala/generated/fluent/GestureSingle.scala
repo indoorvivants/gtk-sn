@@ -41,7 +41,7 @@ class GestureSingle(raw: Ptr[GtkGestureSingle])
     * If this is 0, the gesture reacts to any button press.
     */
   def getButton(): UInt /* None */ = gtk_gesture_single_get_button(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkGestureSingle]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -50,7 +50,9 @@ class GestureSingle(raw: Ptr[GtkGestureSingle])
     * there is none.
     */
   def getCurrentButton(): UInt /* None */ =
-    gtk_gesture_single_get_current_button(this.raw.asInstanceOf).value
+    gtk_gesture_single_get_current_button(
+      this.raw.asInstanceOf[Ptr[GtkGestureSingle]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -59,7 +61,9 @@ class GestureSingle(raw: Ptr[GtkGestureSingle])
     * This is only meaningful if [method@Gtk.Gesture.is_active] returns %TRUE.
     */
   def getCurrentSequence(): Ptr[GdkEventSequence] /* None */ =
-    gtk_gesture_single_get_current_sequence(this.raw.asInstanceOf)
+    gtk_gesture_single_get_current_sequence(
+      this.raw.asInstanceOf[Ptr[GtkGestureSingle]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -67,15 +71,17 @@ class GestureSingle(raw: Ptr[GtkGestureSingle])
     *
     * For more information, see [method@Gtk.GestureSingle.set_exclusive].
     */
-  def getExclusive(): Boolean /* None */ =
-    gtk_gesture_single_get_exclusive(this.raw.asInstanceOf).value.!=(0)
+  def getExclusive(): Boolean /* None */ = gtk_gesture_single_get_exclusive(
+    this.raw.asInstanceOf[Ptr[GtkGestureSingle]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns %TRUE if the gesture is only triggered by touch events.
     */
-  def getTouchOnly(): Boolean /* None */ =
-    gtk_gesture_single_get_touch_only(this.raw.asInstanceOf).value.!=(0)
+  def getTouchOnly(): Boolean /* None */ = gtk_gesture_single_get_touch_only(
+    this.raw.asInstanceOf[Ptr[GtkGestureSingle]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -86,8 +92,10 @@ class GestureSingle(raw: Ptr[GtkGestureSingle])
     */
   def setButton(
       button: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_gesture_single_set_button(this.raw.asInstanceOf, guint(button))
+  ): Unit /* None */ = gtk_gesture_single_set_button(
+    this.raw.asInstanceOf[Ptr[GtkGestureSingle]],
+    guint(button)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -100,7 +108,7 @@ class GestureSingle(raw: Ptr[GtkGestureSingle])
   def setExclusive(
       exclusive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_gesture_single_set_exclusive(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkGestureSingle]],
     gboolean(gint((if exclusive == true then 1 else 0)))
   )
 
@@ -115,7 +123,7 @@ class GestureSingle(raw: Ptr[GtkGestureSingle])
   def setTouchOnly(
       touch_only: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_gesture_single_set_touch_only(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkGestureSingle]],
     gboolean(gint((if touch_only == true then 1 else 0)))
   )
 

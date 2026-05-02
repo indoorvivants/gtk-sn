@@ -91,8 +91,11 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       bounds: Ptr[
         graphene_rect_t
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
-  ): Unit /* None */ =
-    gtk_snapshot_append_color(this.raw.asInstanceOf, color, bounds)
+  ): Unit /* None */ = gtk_snapshot_append_color(
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
+    color,
+    bounds
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -111,7 +114,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop]) */,
       n_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): Unit /* None */ = gtk_snapshot_append_conic_gradient(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     bounds,
     center,
     rotation.asInstanceOf,
@@ -130,8 +133,12 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       path: Ptr[GskPath] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskPath]) */,
       fill_rule: GskFillRule /* Some(_root_.sn.gnome.gsk4.internal.GskFillRule) */,
       color: Ptr[GdkRGBA] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
-  ): Unit /* None */ =
-    gtk_snapshot_append_fill(this.raw.asInstanceOf, path, fill_rule, color)
+  ): Unit /* None */ = gtk_snapshot_append_fill(
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
+    path,
+    fill_rule,
+    color
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -149,7 +156,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       spread: Float /* Some(Float) */,
       blur_radius: Float /* Some(Float) */
   ): Unit /* None */ = gtk_snapshot_append_inset_shadow(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     outline,
     color,
     dx.asInstanceOf,
@@ -162,7 +169,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       layout: Layout /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoLayout]) */,
       color: Ptr[GdkRGBA] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
   ): Unit /* None */ = gtk_snapshot_append_layout(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     layout.getUnsafeRawPointer().asInstanceOf,
     color
   )
@@ -186,7 +193,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop]) */,
       n_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): Unit /* None */ = gtk_snapshot_append_linear_gradient(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     bounds,
     start_point,
     end_point,
@@ -205,7 +212,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
   def appendNode(
       node: RenderNode /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskRenderNode]) */
   ): Unit /* None */ = gtk_snapshot_append_node(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     node.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -225,7 +232,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       spread: Float /* Some(Float) */,
       blur_radius: Float /* Some(Float) */
   ): Unit /* None */ = gtk_snapshot_append_outset_shadow(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     outline,
     color,
     dx.asInstanceOf,
@@ -254,7 +261,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop]) */,
       n_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): Unit /* None */ = gtk_snapshot_append_radial_gradient(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     bounds,
     center,
     hradius.asInstanceOf,
@@ -284,7 +291,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop]) */,
       n_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): Unit /* None */ = gtk_snapshot_append_repeating_linear_gradient(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     bounds,
     start_point,
     end_point,
@@ -312,7 +319,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop]) */,
       n_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): Unit /* None */ = gtk_snapshot_append_repeating_radial_gradient(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     bounds,
     center,
     hradius.asInstanceOf,
@@ -338,7 +345,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
         graphene_rect_t
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
   ): Unit /* None */ = gtk_snapshot_append_scaled_texture(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     texture.getUnsafeRawPointer().asInstanceOf,
     filter,
     bounds
@@ -357,8 +364,12 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
         GskStroke
       ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskStroke]) */,
       color: Ptr[GdkRGBA] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
-  ): Unit /* None */ =
-    gtk_snapshot_append_stroke(this.raw.asInstanceOf, path, stroke, color)
+  ): Unit /* None */ = gtk_snapshot_append_stroke(
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
+    path,
+    stroke,
+    color
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -375,7 +386,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
         graphene_rect_t
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
   ): Unit /* None */ = gtk_snapshot_append_texture(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     texture.getUnsafeRawPointer().asInstanceOf,
     bounds
   )
@@ -387,7 +398,9 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * See also [method@Gtk.Snapshot.to_node].
     */
   def freeToNode(): RenderNode /* None */ = new RenderNode(
-    gtk_snapshot_free_to_node(this.raw.asInstanceOf).asInstanceOf
+    gtk_snapshot_free_to_node(
+      this.raw.asInstanceOf[Ptr[GtkSnapshot]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -401,7 +414,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]) */ ]
   ): Paintable /* None */ = new Paintable.Abstract(
     gtk_snapshot_free_to_paintable(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkSnapshot]],
       size
         .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]](o => o)
         .getOrElse(
@@ -421,7 +434,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * needed for the shader in [method@Gtk.Snapshot.push_gl_shader].
     */
   def glShaderPopTexture(): Unit /* None */ =
-    gtk_snapshot_gl_shader_pop_texture(this.raw.asInstanceOf)
+    gtk_snapshot_gl_shader_pop_texture(this.raw.asInstanceOf[Ptr[GtkSnapshot]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -430,14 +443,19 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * See [method@Gsk.Transform.perspective] for a discussion on the details.
     */
   def perspective(depth: Float /* Some(Float) */ ): Unit /* None */ =
-    gtk_snapshot_perspective(this.raw.asInstanceOf, depth.asInstanceOf)
+    gtk_snapshot_perspective(
+      this.raw.asInstanceOf[Ptr[GtkSnapshot]],
+      depth.asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes the top element from the stack of render nodes, and appends it to
     * the node underneath it.
     */
-  def pop(): Unit /* None */ = gtk_snapshot_pop(this.raw.asInstanceOf)
+  def pop(): Unit /* None */ = gtk_snapshot_pop(
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -454,7 +472,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
   def pushBlend(
       blend_mode: GskBlendMode /* Some(_root_.sn.gnome.gsk4.internal.GskBlendMode) */
   ): Unit /* None */ =
-    gtk_snapshot_push_blend(this.raw.asInstanceOf, blend_mode)
+    gtk_snapshot_push_blend(this.raw.asInstanceOf[Ptr[GtkSnapshot]], blend_mode)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -463,7 +481,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * The image is recorded until the next call to [method@Gtk.Snapshot.pop].
     */
   def pushBlur(radius: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_snapshot_push_blur(this.raw.asInstanceOf, radius)
+    gtk_snapshot_push_blur(this.raw.asInstanceOf[Ptr[GtkSnapshot]], radius)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -475,7 +493,8 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       bounds: Ptr[
         graphene_rect_t
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
-  ): Unit /* None */ = gtk_snapshot_push_clip(this.raw.asInstanceOf, bounds)
+  ): Unit /* None */ =
+    gtk_snapshot_push_clip(this.raw.asInstanceOf[Ptr[GtkSnapshot]], bounds)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -499,7 +518,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
         graphene_vec4_t
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec4_t]) */
   ): Unit /* None */ = gtk_snapshot_push_color_matrix(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     color_matrix,
     color_offset
   )
@@ -516,7 +535,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * [method@Gtk.Snapshot.pop].
     */
   def pushCrossFade(progress: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_snapshot_push_cross_fade(this.raw.asInstanceOf, progress)
+    gtk_snapshot_push_cross_fade(
+      this.raw.asInstanceOf[Ptr[GtkSnapshot]],
+      progress
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -530,7 +552,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       message: String | CString /* Some(CString) */,
       args: Any*
   )(using Zone): Unit /* None */ = gtk_snapshot_push_debug(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     __sn_extract_string(message),
     args*
   )
@@ -548,8 +570,11 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
   def pushFill(
       path: Ptr[GskPath] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskPath]) */,
       fill_rule: GskFillRule /* Some(_root_.sn.gnome.gsk4.internal.GskFillRule) */
-  ): Unit /* None */ =
-    gtk_snapshot_push_fill(this.raw.asInstanceOf, path, fill_rule)
+  ): Unit /* None */ = gtk_snapshot_push_fill(
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
+    path,
+    fill_rule
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -597,7 +622,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
         GBytes
       ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
   ): Unit /* None */ = gtk_snapshot_push_gl_shader(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     shader.getUnsafeRawPointer().asInstanceOf,
     bounds,
     take_args
@@ -615,7 +640,8 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     */
   def pushMask(
       mask_mode: GskMaskMode /* Some(_root_.sn.gnome.gsk4.internal.GskMaskMode) */
-  ): Unit /* None */ = gtk_snapshot_push_mask(this.raw.asInstanceOf, mask_mode)
+  ): Unit /* None */ =
+    gtk_snapshot_push_mask(this.raw.asInstanceOf[Ptr[GtkSnapshot]], mask_mode)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -624,7 +650,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * The image is recorded until the next call to [method@Gtk.Snapshot.pop].
     */
   def pushOpacity(opacity: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_snapshot_push_opacity(this.raw.asInstanceOf, opacity)
+    gtk_snapshot_push_opacity(this.raw.asInstanceOf[Ptr[GtkSnapshot]], opacity)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -640,7 +666,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
         graphene_rect_t
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */ ]
   ): Unit /* None */ = gtk_snapshot_push_repeat(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     bounds,
     child_bounds
       .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]](o => o)
@@ -660,8 +686,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       bounds: Ptr[
         GskRoundedRect
       ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskRoundedRect]) */
-  ): Unit /* None */ =
-    gtk_snapshot_push_rounded_clip(this.raw.asInstanceOf, bounds)
+  ): Unit /* None */ = gtk_snapshot_push_rounded_clip(
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
+    bounds
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -674,8 +702,11 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
         GskShadow /* None */
       ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskShadow]) */,
       n_shadows: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): Unit /* None */ =
-    gtk_snapshot_push_shadow(this.raw.asInstanceOf, shadow, gsize(n_shadows))
+  ): Unit /* None */ = gtk_snapshot_push_shadow(
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
+    shadow,
+    gsize(n_shadows)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -695,8 +726,11 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       stroke: Ptr[
         GskStroke
       ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskStroke]) */
-  ): Unit /* None */ =
-    gtk_snapshot_push_stroke(this.raw.asInstanceOf, path, stroke)
+  ): Unit /* None */ = gtk_snapshot_push_stroke(
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
+    path,
+    stroke
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -711,7 +745,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       width: Double /* Some(Double) */,
       height: Double /* Some(Double) */
   ): Unit /* None */ = gtk_snapshot_render_background(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     context.getUnsafeRawPointer().asInstanceOf,
     x,
     y,
@@ -732,7 +766,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       width: Double /* Some(Double) */,
       height: Double /* Some(Double) */
   ): Unit /* None */ = gtk_snapshot_render_focus(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     context.getUnsafeRawPointer().asInstanceOf,
     x,
     y,
@@ -753,7 +787,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       width: Double /* Some(Double) */,
       height: Double /* Some(Double) */
   ): Unit /* None */ = gtk_snapshot_render_frame(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     context.getUnsafeRawPointer().asInstanceOf,
     x,
     y,
@@ -773,7 +807,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       index: Int /* Some(CInt) */,
       direction: PangoDirection /* Some(_root_.sn.gnome.pango.internal.PangoDirection) */
   ): Unit /* None */ = gtk_snapshot_render_insertion_cursor(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     context.getUnsafeRawPointer().asInstanceOf,
     x,
     y,
@@ -794,7 +828,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       y: Double /* Some(Double) */,
       layout: Layout /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoLayout]) */
   ): Unit /* None */ = gtk_snapshot_render_layout(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     context.getUnsafeRawPointer().asInstanceOf,
     x,
     y,
@@ -807,7 +841,9 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * [method@Snapshot.save] and removes that state from the stack of saved
     * states.
     */
-  def restore(): Unit /* None */ = gtk_snapshot_restore(this.raw.asInstanceOf)
+  def restore(): Unit /* None */ = gtk_snapshot_restore(
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -819,7 +855,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * [method@Gsk.Transform.rotate_3d].
     */
   def rotate(angle: Float /* Some(Float) */ ): Unit /* None */ =
-    gtk_snapshot_rotate(this.raw.asInstanceOf, angle.asInstanceOf)
+    gtk_snapshot_rotate(
+      this.raw.asInstanceOf[Ptr[GtkSnapshot]],
+      angle.asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -832,8 +871,11 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       axis: Ptr[
         graphene_vec3_t
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec3_t]) */
-  ): Unit /* None */ =
-    gtk_snapshot_rotate_3d(this.raw.asInstanceOf, angle.asInstanceOf, axis)
+  ): Unit /* None */ = gtk_snapshot_rotate_3d(
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
+    angle.asInstanceOf,
+    axis
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -849,7 +891,9 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * It is necessary to clear all saved states with corresponding calls to
     * `gtk_snapshot_restore()`.
     */
-  def save(): Unit /* None */ = gtk_snapshot_save(this.raw.asInstanceOf)
+  def save(): Unit /* None */ = gtk_snapshot_save(
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -862,7 +906,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       factor_x: Float /* Some(Float) */,
       factor_y: Float /* Some(Float) */
   ): Unit /* None */ = gtk_snapshot_scale(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     factor_x.asInstanceOf,
     factor_y.asInstanceOf
   )
@@ -876,7 +920,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       factor_y: Float /* Some(Float) */,
       factor_z: Float /* Some(Float) */
   ): Unit /* None */ = gtk_snapshot_scale_3d(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     factor_x.asInstanceOf,
     factor_y.asInstanceOf,
     factor_z.asInstanceOf
@@ -894,7 +938,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * [method@GObject.Object.unref].
     */
   def toNode(): RenderNode /* None */ = new RenderNode(
-    gtk_snapshot_to_node(this.raw.asInstanceOf).asInstanceOf
+    gtk_snapshot_to_node(this.raw.asInstanceOf[Ptr[GtkSnapshot]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -911,7 +955,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]) */ ]
   ): Paintable /* None */ = new Paintable.Abstract(
     gtk_snapshot_to_paintable(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkSnapshot]],
       size
         .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]](o => o)
         .getOrElse(
@@ -931,7 +975,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
         GskTransform
       ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]) */ ]
   ): Unit /* None */ = gtk_snapshot_transform(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     transform
       .map[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]](o => o)
       .getOrElse(
@@ -947,8 +991,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       matrix: Ptr[
         graphene_matrix_t
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_matrix_t]) */
-  ): Unit /* None */ =
-    gtk_snapshot_transform_matrix(this.raw.asInstanceOf, matrix)
+  ): Unit /* None */ = gtk_snapshot_transform_matrix(
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
+    matrix
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -958,7 +1004,8 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       point: Ptr[
         graphene_point_t
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */
-  ): Unit /* None */ = gtk_snapshot_translate(this.raw.asInstanceOf, point)
+  ): Unit /* None */ =
+    gtk_snapshot_translate(this.raw.asInstanceOf[Ptr[GtkSnapshot]], point)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -968,7 +1015,8 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       point: Ptr[
         graphene_point3d_t
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point3d_t]) */
-  ): Unit /* None */ = gtk_snapshot_translate_3d(this.raw.asInstanceOf, point)
+  ): Unit /* None */ =
+    gtk_snapshot_translate_3d(this.raw.asInstanceOf[Ptr[GtkSnapshot]], point)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

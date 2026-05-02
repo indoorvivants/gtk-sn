@@ -35,7 +35,9 @@ class NetworkAddress(raw: Ptr[GNetworkAddress])
     * depending on what @addr was created with.
     */
   def getHostname()(using Zone): String /* None */ = fromCString(
-    g_network_address_get_hostname(this.raw.asInstanceOf).asInstanceOf
+    g_network_address_get_hostname(
+      this.raw.asInstanceOf[Ptr[GNetworkAddress]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -43,7 +45,7 @@ class NetworkAddress(raw: Ptr[GNetworkAddress])
     * Gets @addr's port number
     */
   def getPort(): UShort /* None */ = g_network_address_get_port(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GNetworkAddress]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -51,7 +53,9 @@ class NetworkAddress(raw: Ptr[GNetworkAddress])
     * Gets @addr's scheme
     */
   def getScheme()(using Zone): String /* None */ = fromCString(
-    g_network_address_get_scheme(this.raw.asInstanceOf).asInstanceOf
+    g_network_address_get_scheme(
+      this.raw.asInstanceOf[Ptr[GNetworkAddress]]
+    ).asInstanceOf
   )
 
 end NetworkAddress

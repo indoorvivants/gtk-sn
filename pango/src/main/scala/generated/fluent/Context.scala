@@ -45,7 +45,9 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * something applications won't do. Backends should call this function if
     * they have attached extra data to the context and such data is changed.
     */
-  def changed(): Unit /* None */ = pango_context_changed(this.raw.asInstanceOf)
+  def changed(): Unit /* None */ = pango_context_changed(
+    this.raw.asInstanceOf[Ptr[PangoContext]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -54,7 +56,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * See [method@Pango.Context.set_base_dir].
     */
   def getBaseDir(): PangoDirection /* None */ = pango_context_get_base_dir(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[PangoContext]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -64,21 +66,23 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * See [method@Pango.Context.set_base_gravity].
     */
   def getBaseGravity(): PangoGravity /* None */ =
-    pango_context_get_base_gravity(this.raw.asInstanceOf)
+    pango_context_get_base_gravity(this.raw.asInstanceOf[Ptr[PangoContext]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieve the default font description for the context.
     */
   def getFontDescription(): Ptr[PangoFontDescription] /* None */ =
-    pango_context_get_font_description(this.raw.asInstanceOf)
+    pango_context_get_font_description(this.raw.asInstanceOf[Ptr[PangoContext]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the `PangoFontMap` used to look up fonts for this context.
     */
   def getFontMap(): FontMap /* None */ = new FontMap(
-    pango_context_get_font_map(this.raw.asInstanceOf).asInstanceOf
+    pango_context_get_font_map(
+      this.raw.asInstanceOf[Ptr[PangoContext]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -91,7 +95,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * current context matrix.
     */
   def getGravity(): PangoGravity /* None */ = pango_context_get_gravity(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[PangoContext]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -101,14 +105,14 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * See [method@Pango.Context.set_gravity_hint] for details.
     */
   def getGravityHint(): PangoGravityHint /* None */ =
-    pango_context_get_gravity_hint(this.raw.asInstanceOf)
+    pango_context_get_gravity_hint(this.raw.asInstanceOf[Ptr[PangoContext]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the global language tag for the context.
     */
   def getLanguage(): Ptr[PangoLanguage] /* None */ = pango_context_get_language(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[PangoContext]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -119,7 +123,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * See [method@Pango.Context.set_matrix].
     */
   def getMatrix(): Ptr[PangoMatrix] /* None */ = pango_context_get_matrix(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[PangoContext]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -142,7 +146,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
       ],
       language: Option[Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */ ]
   ): Ptr[PangoFontMetrics] /* None */ = pango_context_get_metrics(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoContext]],
     desc
       .map[Ptr[PangoFontDescription]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[PangoFontDescription]]),
@@ -157,7 +161,9 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * positions and widths.
     */
   def getRoundGlyphPositions(): Boolean /* None */ =
-    pango_context_get_round_glyph_positions(this.raw.asInstanceOf).value.!=(0)
+    pango_context_get_round_glyph_positions(
+      this.raw.asInstanceOf[Ptr[PangoContext]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -175,7 +181,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * `PangoContext` changes, like `PangoLayout`.
     */
   def getSerial(): UInt /* None */ = pango_context_get_serial(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[PangoContext]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -195,7 +201,10 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
   def loadFont(
       desc: Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */
   ): Font /* None */ = new Font(
-    pango_context_load_font(this.raw.asInstanceOf, desc).asInstanceOf
+    pango_context_load_font(
+      this.raw.asInstanceOf[Ptr[PangoContext]],
+      desc
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -208,7 +217,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
       language: Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */
   ): Fontset /* None */ = new Fontset(
     pango_context_load_fontset(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[PangoContext]],
       desc,
       language
     ).asInstanceOf
@@ -227,8 +236,10 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     */
   def setBaseDir(
       direction: PangoDirection /* Some(PangoDirection) */
-  ): Unit /* None */ =
-    pango_context_set_base_dir(this.raw.asInstanceOf, direction)
+  ): Unit /* None */ = pango_context_set_base_dir(
+    this.raw.asInstanceOf[Ptr[PangoContext]],
+    direction
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -238,8 +249,10 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     */
   def setBaseGravity(
       gravity: PangoGravity /* Some(PangoGravity) */
-  ): Unit /* None */ =
-    pango_context_set_base_gravity(this.raw.asInstanceOf, gravity)
+  ): Unit /* None */ = pango_context_set_base_gravity(
+    this.raw.asInstanceOf[Ptr[PangoContext]],
+    gravity
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -250,7 +263,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
         Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */
       ]
   ): Unit /* None */ = pango_context_set_font_description(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoContext]],
     desc
       .map[Ptr[PangoFontDescription]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[PangoFontDescription]])
@@ -267,7 +280,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
   def setFontMap(
       font_map: Option[FontMap /* Some(Ptr[PangoFontMap]) */ ]
   ): Unit /* None */ = pango_context_set_font_map(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoContext]],
     font_map
       .map[Ptr[PangoFontMap]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[PangoFontMap]])
@@ -284,8 +297,10 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     */
   def setGravityHint(
       hint: PangoGravityHint /* Some(PangoGravityHint) */
-  ): Unit /* None */ =
-    pango_context_set_gravity_hint(this.raw.asInstanceOf, hint)
+  ): Unit /* None */ = pango_context_set_gravity_hint(
+    this.raw.asInstanceOf[Ptr[PangoContext]],
+    hint
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -297,7 +312,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
   def setLanguage(
       language: Option[Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */ ]
   ): Unit /* None */ = pango_context_set_language(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoContext]],
     language
       .map[Ptr[PangoLanguage]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[PangoLanguage]])
@@ -317,7 +332,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
   def setMatrix(
       matrix: Option[Ptr[PangoMatrix] /* Some(Ptr[PangoMatrix]) */ ]
   ): Unit /* None */ = pango_context_set_matrix(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoContext]],
     matrix
       .map[Ptr[PangoMatrix]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[PangoMatrix]])
@@ -337,7 +352,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
   def setRoundGlyphPositions(
       round_positions: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = pango_context_set_round_glyph_positions(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoContext]],
     gboolean(gint((if round_positions == true then 1 else 0)))
   )
 

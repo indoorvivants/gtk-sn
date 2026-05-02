@@ -64,7 +64,7 @@ class ShortcutAction(raw: Ptr[GtkShortcutAction])
         Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
       ]
   ): Boolean /* None */ = gtk_shortcut_action_activate(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkShortcutAction]],
     flags,
     widget.getUnsafeRawPointer().asInstanceOf,
     args
@@ -85,7 +85,10 @@ class ShortcutAction(raw: Ptr[GtkShortcutAction])
       string: Ptr[
         GString
       ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GString]) */
-  ): Unit /* None */ = gtk_shortcut_action_print(this.raw.asInstanceOf, string)
+  ): Unit /* None */ = gtk_shortcut_action_print(
+    this.raw.asInstanceOf[Ptr[GtkShortcutAction]],
+    string
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -95,7 +98,9 @@ class ShortcutAction(raw: Ptr[GtkShortcutAction])
     * when debugging.
     */
   def toString()(using Zone): String /* None */ = fromCString(
-    gtk_shortcut_action_to_string(this.raw.asInstanceOf).asInstanceOf
+    gtk_shortcut_action_to_string(
+      this.raw.asInstanceOf[Ptr[GtkShortcutAction]]
+    ).asInstanceOf
   )
 
 end ShortcutAction

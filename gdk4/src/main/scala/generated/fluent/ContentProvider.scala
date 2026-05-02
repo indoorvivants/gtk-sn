@@ -42,7 +42,7 @@ class ContentProvider(raw: Ptr[GdkContentProvider])
     * Emits the ::content-changed signal.
     */
   def contentChanged(): Unit /* None */ = gdk_content_provider_content_changed(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkContentProvider]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -65,7 +65,9 @@ class ContentProvider(raw: Ptr[GdkContentProvider])
     * Gets the formats that the provider can provide its current contents in.
     */
   def refFormats(): Ptr[GdkContentFormats] /* None */ =
-    gdk_content_provider_ref_formats(this.raw.asInstanceOf)
+    gdk_content_provider_ref_formats(
+      this.raw.asInstanceOf[Ptr[GdkContentProvider]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -78,7 +80,9 @@ class ContentProvider(raw: Ptr[GdkContentProvider])
     * [method@Gdk.ContentProvider.ref_formats].
     */
   def refStorableFormats(): Ptr[GdkContentFormats] /* None */ =
-    gdk_content_provider_ref_storable_formats(this.raw.asInstanceOf)
+    gdk_content_provider_ref_storable_formats(
+      this.raw.asInstanceOf[Ptr[GdkContentProvider]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -109,7 +113,7 @@ class ContentProvider(raw: Ptr[GdkContentProvider])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = gdk_content_provider_write_mime_type_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkContentProvider]],
     __sn_extract_string(mime_type),
     stream.getUnsafeRawPointer().asInstanceOf,
     io_priority,
@@ -140,7 +144,7 @@ class ContentProvider(raw: Ptr[GdkContentProvider])
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gdk_content_provider_write_mime_type_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkContentProvider]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)

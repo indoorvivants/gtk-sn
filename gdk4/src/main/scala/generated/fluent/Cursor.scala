@@ -62,7 +62,7 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     * used on does not support textured cursors.
     */
   def getFallback(): Cursor /* None */ = new Cursor(
-    gdk_cursor_get_fallback(this.raw.asInstanceOf).asInstanceOf
+    gdk_cursor_get_fallback(this.raw.asInstanceOf[Ptr[GdkCursor]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -76,7 +76,7 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     * [ctor@Gdk.Cursor.new_from_texture].
     */
   def getHotspotX(): Int /* None */ = gdk_cursor_get_hotspot_x(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkCursor]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -90,7 +90,7 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     * [ctor@Gdk.Cursor.new_from_texture].
     */
   def getHotspotY(): Int /* None */ = gdk_cursor_get_hotspot_y(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkCursor]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -100,7 +100,7 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     * If the cursor is not a named cursor, %NULL will be returned.
     */
   def getName()(using Zone): String /* None */ = fromCString(
-    gdk_cursor_get_name(this.raw.asInstanceOf).asInstanceOf
+    gdk_cursor_get_name(this.raw.asInstanceOf[Ptr[GdkCursor]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -110,7 +110,7 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     * If the cursor is a named cursor, %NULL will be returned.
     */
   def getTexture(): Texture /* None */ = new Texture(
-    gdk_cursor_get_texture(this.raw.asInstanceOf).asInstanceOf
+    gdk_cursor_get_texture(this.raw.asInstanceOf[Ptr[GdkCursor]]).asInstanceOf
   )
 
 end Cursor

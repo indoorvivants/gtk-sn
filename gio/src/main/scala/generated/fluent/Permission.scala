@@ -56,7 +56,7 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_permission_acquire(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GPermission]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -78,7 +78,7 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_permission_acquire_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GPermission]],
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -101,7 +101,7 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_permission_acquire_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GPermission]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)
@@ -114,8 +114,9 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
     * @permission
     *   represents the permission to perform.
     */
-  def getAllowed(): Boolean /* None */ =
-    g_permission_get_allowed(this.raw.asInstanceOf).value.!=(0)
+  def getAllowed(): Boolean /* None */ = g_permission_get_allowed(
+    this.raw.asInstanceOf[Ptr[GPermission]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -123,8 +124,9 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
     * is generally possible to acquire the permission by calling
     * g_permission_acquire().
     */
-  def getCanAcquire(): Boolean /* None */ =
-    g_permission_get_can_acquire(this.raw.asInstanceOf).value.!=(0)
+  def getCanAcquire(): Boolean /* None */ = g_permission_get_can_acquire(
+    this.raw.asInstanceOf[Ptr[GPermission]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -132,8 +134,9 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
     * is generally possible to release the permission by calling
     * g_permission_release().
     */
-  def getCanRelease(): Boolean /* None */ =
-    g_permission_get_can_release(this.raw.asInstanceOf).value.!=(0)
+  def getCanRelease(): Boolean /* None */ = g_permission_get_can_release(
+    this.raw.asInstanceOf[Ptr[GPermission]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -148,7 +151,7 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
       can_acquire: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       can_release: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_permission_impl_update(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GPermission]],
     gboolean(gint((if allowed == true then 1 else 0))),
     gboolean(gint((if can_acquire == true then 1 else 0))),
     gboolean(gint((if can_release == true then 1 else 0)))
@@ -176,7 +179,7 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_permission_release(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GPermission]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -198,7 +201,7 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_permission_release_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GPermission]],
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -221,7 +224,7 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_permission_release_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GPermission]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)

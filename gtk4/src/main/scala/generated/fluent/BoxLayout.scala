@@ -42,7 +42,7 @@ class BoxLayout(raw: Ptr[GtkBoxLayout])
     * Gets the value set by gtk_box_layout_set_baseline_child().
     */
   def getBaselineChild(): Int /* None */ = gtk_box_layout_get_baseline_child(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkBoxLayout]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -50,21 +50,24 @@ class BoxLayout(raw: Ptr[GtkBoxLayout])
     * Gets the value set by gtk_box_layout_set_baseline_position().
     */
   def getBaselinePosition(): GtkBaselinePosition /* None */ =
-    gtk_box_layout_get_baseline_position(this.raw.asInstanceOf)
+    gtk_box_layout_get_baseline_position(
+      this.raw.asInstanceOf[Ptr[GtkBoxLayout]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the layout is set to be homogeneous.
     */
-  def getHomogeneous(): Boolean /* None */ =
-    gtk_box_layout_get_homogeneous(this.raw.asInstanceOf).value.!=(0)
+  def getHomogeneous(): Boolean /* None */ = gtk_box_layout_get_homogeneous(
+    this.raw.asInstanceOf[Ptr[GtkBoxLayout]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the space that @box_layout puts between children.
     */
   def getSpacing(): UInt /* None */ = gtk_box_layout_get_spacing(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkBoxLayout]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -73,7 +76,10 @@ class BoxLayout(raw: Ptr[GtkBoxLayout])
     * layout.
     */
   def setBaselineChild(child: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_box_layout_set_baseline_child(this.raw.asInstanceOf, child)
+    gtk_box_layout_set_baseline_child(
+      this.raw.asInstanceOf[Ptr[GtkBoxLayout]],
+      child
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -86,8 +92,10 @@ class BoxLayout(raw: Ptr[GtkBoxLayout])
     */
   def setBaselinePosition(
       position: GtkBaselinePosition /* Some(GtkBaselinePosition) */
-  ): Unit /* None */ =
-    gtk_box_layout_set_baseline_position(this.raw.asInstanceOf, position)
+  ): Unit /* None */ = gtk_box_layout_set_baseline_position(
+    this.raw.asInstanceOf[Ptr[GtkBoxLayout]],
+    position
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -96,7 +104,7 @@ class BoxLayout(raw: Ptr[GtkBoxLayout])
   def setHomogeneous(
       homogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_box_layout_set_homogeneous(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkBoxLayout]],
     gboolean(gint((if homogeneous == true then 1 else 0)))
   )
 
@@ -106,8 +114,10 @@ class BoxLayout(raw: Ptr[GtkBoxLayout])
     */
   def setSpacing(
       spacing: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_box_layout_set_spacing(this.raw.asInstanceOf, guint(spacing))
+  ): Unit /* None */ = gtk_box_layout_set_spacing(
+    this.raw.asInstanceOf[Ptr[GtkBoxLayout]],
+    guint(spacing)
+  )
 
 end BoxLayout
 

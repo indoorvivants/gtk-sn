@@ -22,7 +22,9 @@ class TransformNode(raw: Ptr[GskTransformNode])
     * Gets the child node that is getting transformed by the given @node.
     */
   def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_transform_node_get_child(this.raw.asInstanceOf).asInstanceOf
+    gsk_transform_node_get_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -30,7 +32,7 @@ class TransformNode(raw: Ptr[GskTransformNode])
     * Retrieves the `GskTransform` used by the @node.
     */
   def getTransform(): Ptr[GskTransform] /* None */ =
-    gsk_transform_node_get_transform(this.raw.asInstanceOf)
+    gsk_transform_node_get_transform(this.raw.asInstanceOf[Ptr[GskRenderNode]])
 
 end TransformNode
 

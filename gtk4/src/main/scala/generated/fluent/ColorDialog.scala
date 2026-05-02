@@ -56,7 +56,7 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gtk_color_dialog_choose_rgba(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColorDialog]],
     parent
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
@@ -89,7 +89,7 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Ptr[GdkRGBA] /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_color_dialog_choose_rgba_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkColorDialog]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -100,23 +100,27 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
     * Returns whether the color chooser dialog blocks interaction with the
     * parent window while it is presented.
     */
-  def getModal(): Boolean /* None */ =
-    gtk_color_dialog_get_modal(this.raw.asInstanceOf).value.!=(0)
+  def getModal(): Boolean /* None */ = gtk_color_dialog_get_modal(
+    this.raw.asInstanceOf[Ptr[GtkColorDialog]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the title that will be shown on the color chooser dialog.
     */
   def getTitle()(using Zone): String /* None */ = fromCString(
-    gtk_color_dialog_get_title(this.raw.asInstanceOf).asInstanceOf
+    gtk_color_dialog_get_title(
+      this.raw.asInstanceOf[Ptr[GtkColorDialog]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether colors may have alpha.
     */
-  def getWithAlpha(): Boolean /* None */ =
-    gtk_color_dialog_get_with_alpha(this.raw.asInstanceOf).value.!=(0)
+  def getWithAlpha(): Boolean /* None */ = gtk_color_dialog_get_with_alpha(
+    this.raw.asInstanceOf[Ptr[GtkColorDialog]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -126,7 +130,7 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_color_dialog_set_modal(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColorDialog]],
     gboolean(gint((if modal == true then 1 else 0)))
   )
 
@@ -137,7 +141,7 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
   def setTitle(
       title: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_color_dialog_set_title(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColorDialog]],
     __sn_extract_string(title)
   )
 
@@ -148,7 +152,7 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
   def setWithAlpha(
       with_alpha: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_color_dialog_set_with_alpha(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColorDialog]],
     gboolean(gint((if with_alpha == true then 1 else 0)))
   )
 

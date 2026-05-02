@@ -80,7 +80,9 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     * signals.
     */
   def getDeviceTool(): DeviceTool /* None */ = new DeviceTool(
-    gtk_gesture_stylus_get_device_tool(this.raw.asInstanceOf).asInstanceOf
+    gtk_gesture_stylus_get_device_tool(
+      this.raw.asInstanceOf[Ptr[GtkGestureStylus]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -90,8 +92,9 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     * Stylus-only gestures will signal events exclusively from stylus input
     * devices.
     */
-  def getStylusOnly(): Boolean /* None */ =
-    gtk_gesture_stylus_get_stylus_only(this.raw.asInstanceOf).value.!=(0)
+  def getStylusOnly(): Boolean /* None */ = gtk_gesture_stylus_get_stylus_only(
+    this.raw.asInstanceOf[Ptr[GtkGestureStylus]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -103,7 +106,7 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
   def setStylusOnly(
       stylus_only: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_gesture_stylus_set_stylus_only(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkGestureStylus]],
     gboolean(gint((if stylus_only == true then 1 else 0)))
   )
 

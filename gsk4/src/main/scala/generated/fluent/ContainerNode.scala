@@ -25,7 +25,10 @@ class ContainerNode(raw: Ptr[GskContainerNode])
   def getChild(
       idx: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): RenderNode /* None */ = new RenderNode(
-    gsk_container_node_get_child(this.raw.asInstanceOf, guint(idx)).asInstanceOf
+    gsk_container_node_get_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]],
+      guint(idx)
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -33,7 +36,7 @@ class ContainerNode(raw: Ptr[GskContainerNode])
     * Retrieves the number of direct children of @node.
     */
   def getNChildren(): UInt /* None */ = gsk_container_node_get_n_children(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   ).value
 
 end ContainerNode

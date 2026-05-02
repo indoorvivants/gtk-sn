@@ -39,7 +39,7 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Zone): Unit /* None */ = g_menu_append(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GMenu]],
     label
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -60,7 +60,7 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     */
   def appendItem(item: MenuItem /* Some(Ptr[GMenuItem]) */ ): Unit /* None */ =
     g_menu_append_item(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GMenu]],
       item.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -77,7 +77,7 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       ],
       section: MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone): Unit /* None */ = g_menu_append_section(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GMenu]],
     label
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -99,7 +99,7 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       ],
       submenu: MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone): Unit /* None */ = g_menu_append_submenu(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GMenu]],
     label
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -118,7 +118,9 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     * This function causes g_menu_model_is_mutable() to begin returning %FALSE,
     * which has some positive performance implications.
     */
-  def freeze(): Unit /* None */ = g_menu_freeze(this.raw.asInstanceOf)
+  def freeze(): Unit /* None */ = g_menu_freeze(
+    this.raw.asInstanceOf[Ptr[GMenu]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -135,7 +137,7 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Zone): Unit /* None */ = g_menu_insert(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GMenu]],
     gint(position),
     label
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
@@ -172,7 +174,7 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       position: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       item: MenuItem /* Some(Ptr[GMenuItem]) */
   ): Unit /* None */ = g_menu_insert_item(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GMenu]],
     gint(position),
     item.getUnsafeRawPointer().asInstanceOf
   )
@@ -190,7 +192,7 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       ],
       section: MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone): Unit /* None */ = g_menu_insert_section(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GMenu]],
     gint(position),
     label
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
@@ -213,7 +215,7 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       ],
       submenu: MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone): Unit /* None */ = g_menu_insert_submenu(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GMenu]],
     gint(position),
     label
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
@@ -237,7 +239,7 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Zone): Unit /* None */ = g_menu_prepend(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GMenu]],
     label
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -258,7 +260,7 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     */
   def prependItem(item: MenuItem /* Some(Ptr[GMenuItem]) */ ): Unit /* None */ =
     g_menu_prepend_item(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GMenu]],
       item.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -274,7 +276,7 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       ],
       section: MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone): Unit /* None */ = g_menu_prepend_section(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GMenu]],
     label
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -295,7 +297,7 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       ],
       submenu: MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone): Unit /* None */ = g_menu_prepend_submenu(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GMenu]],
     label
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -320,13 +322,16 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     */
   def remove(
       position: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ = g_menu_remove(this.raw.asInstanceOf, gint(position))
+  ): Unit /* None */ =
+    g_menu_remove(this.raw.asInstanceOf[Ptr[GMenu]], gint(position))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes all items in the menu.
     */
-  def removeAll(): Unit /* None */ = g_menu_remove_all(this.raw.asInstanceOf)
+  def removeAll(): Unit /* None */ = g_menu_remove_all(
+    this.raw.asInstanceOf[Ptr[GMenu]]
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

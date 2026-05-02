@@ -56,7 +56,9 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     * Gets the actions that this drop target supports.
     */
   def getActions(): GdkDragAction /* None */ =
-    gtk_drop_target_async_get_actions(this.raw.asInstanceOf)
+    gtk_drop_target_async_get_actions(
+      this.raw.asInstanceOf[Ptr[GtkDropTargetAsync]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -65,7 +67,9 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     * If the result is %NULL, all formats are expected to be supported.
     */
   def getFormats(): Ptr[GdkContentFormats] /* None */ =
-    gtk_drop_target_async_get_formats(this.raw.asInstanceOf)
+    gtk_drop_target_async_get_formats(
+      this.raw.asInstanceOf[Ptr[GtkDropTargetAsync]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -77,7 +81,7 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
   def rejectDrop(
       drop: Drop /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrop]) */
   ): Unit /* None */ = gtk_drop_target_async_reject_drop(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDropTargetAsync]],
     drop.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -87,8 +91,10 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     */
   def setActions(
       actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
-  ): Unit /* None */ =
-    gtk_drop_target_async_set_actions(this.raw.asInstanceOf, actions)
+  ): Unit /* None */ = gtk_drop_target_async_set_actions(
+    this.raw.asInstanceOf[Ptr[GtkDropTargetAsync]],
+    actions
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -99,7 +105,7 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
         GdkContentFormats
       ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */ ]
   ): Unit /* None */ = gtk_drop_target_async_set_formats(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDropTargetAsync]],
     formats
       .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]](o => o)
       .getOrElse(

@@ -103,7 +103,7 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     */
   def getConnection(): DBusConnection /* None */ = new DBusConnection(
     g_dbus_object_manager_client_get_connection(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GDBusObjectManagerClient]]
     ).asInstanceOf
   )
 
@@ -112,7 +112,9 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     * Gets the flags that @manager was constructed with.
     */
   def getFlags(): GDBusObjectManagerClientFlags /* None */ =
-    g_dbus_object_manager_client_get_flags(this.raw.asInstanceOf)
+    g_dbus_object_manager_client_get_flags(
+      this.raw.asInstanceOf[Ptr[GDBusObjectManagerClient]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -120,7 +122,9 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     * connection.
     */
   def getName()(using Zone): String /* None */ = fromCString(
-    g_dbus_object_manager_client_get_name(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_object_manager_client_get_name(
+      this.raw.asInstanceOf[Ptr[GDBusObjectManagerClient]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -131,7 +135,7 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     */
   def getNameOwner()(using Zone): String /* None */ = fromCString(
     g_dbus_object_manager_client_get_name_owner(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GDBusObjectManagerClient]]
     ).asInstanceOf
   )
 

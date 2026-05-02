@@ -71,7 +71,7 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
       label: String | CString /* Some(CString) */,
       icon: Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
   )(using Zone): Unit /* None */ = gtk_app_chooser_button_append_custom_item(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAppChooserButton]],
     __sn_extract_string(name),
     __sn_extract_string(label),
     icon.getUnsafeRawPointer().asInstanceOf
@@ -83,22 +83,27 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     * popup.
     */
   def appendSeparator(): Unit /* None */ =
-    gtk_app_chooser_button_append_separator(this.raw.asInstanceOf)
+    gtk_app_chooser_button_append_separator(
+      this.raw.asInstanceOf[Ptr[GtkAppChooserButton]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the text to display at the top of the dialog.
     */
   def getHeading()(using Zone): String /* None */ = fromCString(
-    gtk_app_chooser_button_get_heading(this.raw.asInstanceOf).asInstanceOf
+    gtk_app_chooser_button_get_heading(
+      this.raw.asInstanceOf[Ptr[GtkAppChooserButton]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether the dialog is modal.
     */
-  def getModal(): Boolean /* None */ =
-    gtk_app_chooser_button_get_modal(this.raw.asInstanceOf).value.!=(0)
+  def getModal(): Boolean /* None */ = gtk_app_chooser_button_get_modal(
+    this.raw.asInstanceOf[Ptr[GtkAppChooserButton]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -106,8 +111,9 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     * the top.
     */
   def getShowDefaultItem(): Boolean /* None */ =
-    gtk_app_chooser_button_get_show_default_item(this.raw.asInstanceOf).value
-      .!=(0)
+    gtk_app_chooser_button_get_show_default_item(
+      this.raw.asInstanceOf[Ptr[GtkAppChooserButton]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -115,8 +121,9 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     * `GtkAppChooserDialog`.
     */
   def getShowDialogItem(): Boolean /* None */ =
-    gtk_app_chooser_button_get_show_dialog_item(this.raw.asInstanceOf).value
-      .!=(0)
+    gtk_app_chooser_button_get_show_dialog_item(
+      this.raw.asInstanceOf[Ptr[GtkAppChooserButton]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -130,7 +137,7 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
   def setActiveCustomItem(name: String | CString /* Some(CString) */ )(using
       Zone
   ): Unit /* None */ = gtk_app_chooser_button_set_active_custom_item(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAppChooserButton]],
     __sn_extract_string(name)
   )
 
@@ -143,7 +150,7 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
   def setHeading(
       heading: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_app_chooser_button_set_heading(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAppChooserButton]],
     __sn_extract_string(heading)
   )
 
@@ -154,7 +161,7 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_app_chooser_button_set_modal(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAppChooserButton]],
     gboolean(gint((if modal == true then 1 else 0)))
   )
 
@@ -166,7 +173,7 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
   def setShowDefaultItem(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_app_chooser_button_set_show_default_item(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAppChooserButton]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
@@ -178,7 +185,7 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
   def setShowDialogItem(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_app_chooser_button_set_show_dialog_item(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAppChooserButton]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 

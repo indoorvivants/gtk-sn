@@ -44,7 +44,9 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     * Gets the `GdkDisplay` that @context is for.
     */
   def getDisplay(): Display /* None */ = new Display(
-    gdk_app_launch_context_get_display(this.raw.asInstanceOf).asInstanceOf
+    gdk_app_launch_context_get_display(
+      this.raw.asInstanceOf[Ptr[GdkAppLaunchContext]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -63,7 +65,10 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     * workspace.
     */
   def setDesktop(desktop: Int /* Some(CInt) */ ): Unit /* None */ =
-    gdk_app_launch_context_set_desktop(this.raw.asInstanceOf, desktop)
+    gdk_app_launch_context_set_desktop(
+      this.raw.asInstanceOf[Ptr[GdkAppLaunchContext]],
+      desktop
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -77,7 +82,7 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
   def setIcon(
       icon: Option[Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */ ]
   ): Unit /* None */ = gdk_app_launch_context_set_icon(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkAppLaunchContext]],
     icon
       .map[Ptr[_root_.sn.gnome.gio.internal.GIcon]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -100,7 +105,7 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
   def setIconName(
       icon_name: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gdk_app_launch_context_set_icon_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkAppLaunchContext]],
     icon_name
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -120,7 +125,7 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
   def setTimestamp(
       timestamp: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
   ): Unit /* None */ = gdk_app_launch_context_set_timestamp(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkAppLaunchContext]],
     guint32(timestamp)
   )
 

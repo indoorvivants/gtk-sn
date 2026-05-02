@@ -189,7 +189,9 @@ class ListStore(raw: Ptr[GtkListStore])
     *
     * Removes all rows from the list store.
     */
-  def clear(): Unit /* None */ = gtk_list_store_clear(this.raw.asInstanceOf)
+  def clear(): Unit /* None */ = gtk_list_store_clear(
+    this.raw.asInstanceOf[Ptr[GtkListStore]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -289,8 +291,10 @@ class ListStore(raw: Ptr[GtkListStore])
     */
   def iterIsValid(
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Boolean /* None */ =
-    gtk_list_store_iter_is_valid(this.raw.asInstanceOf, iter).value.!=(0)
+  ): Boolean /* None */ = gtk_list_store_iter_is_valid(
+    this.raw.asInstanceOf[Ptr[GtkListStore]],
+    iter
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -302,7 +306,7 @@ class ListStore(raw: Ptr[GtkListStore])
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
       position: Option[Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */ ]
   ): Unit /* None */ = gtk_list_store_move_after(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListStore]],
     iter,
     position
       .map[Ptr[GtkTreeIter]](o => o)
@@ -319,7 +323,7 @@ class ListStore(raw: Ptr[GtkListStore])
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
       position: Option[Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */ ]
   ): Unit /* None */ = gtk_list_store_move_before(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListStore]],
     iter,
     position
       .map[Ptr[GtkTreeIter]](o => o)
@@ -348,7 +352,8 @@ class ListStore(raw: Ptr[GtkListStore])
   def remove(
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
   ): Boolean /* None */ =
-    gtk_list_store_remove(this.raw.asInstanceOf, iter).value.!=(0)
+    gtk_list_store_remove(this.raw.asInstanceOf[Ptr[GtkListStore]], iter).value
+      .!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -357,7 +362,8 @@ class ListStore(raw: Ptr[GtkListStore])
     */
   def reorder(
       new_order: Ptr[Int /* None */ ] /* Some(Ptr[CInt]) */
-  ): Unit /* None */ = gtk_list_store_reorder(this.raw.asInstanceOf, new_order)
+  ): Unit /* None */ =
+    gtk_list_store_reorder(this.raw.asInstanceOf[Ptr[GtkListStore]], new_order)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -373,7 +379,8 @@ class ListStore(raw: Ptr[GtkListStore])
   inline def set(
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
       args: Any*
-  ): Unit /* None */ = gtk_list_store_set(this.raw.asInstanceOf, iter, args*)
+  ): Unit /* None */ =
+    gtk_list_store_set(this.raw.asInstanceOf[Ptr[GtkListStore]], iter, args*)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -390,8 +397,11 @@ class ListStore(raw: Ptr[GtkListStore])
       types: Ptr[
         GType /* None */
       ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GType]) */
-  ): Unit /* None */ =
-    gtk_list_store_set_column_types(this.raw.asInstanceOf, n_columns, types)
+  ): Unit /* None */ = gtk_list_store_set_column_types(
+    this.raw.asInstanceOf[Ptr[GtkListStore]],
+    n_columns,
+    types
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -401,8 +411,11 @@ class ListStore(raw: Ptr[GtkListStore])
   def setValist(
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
       var_args: CVarArgList /* Some(va_list) */
-  ): Unit /* None */ =
-    gtk_list_store_set_valist(this.raw.asInstanceOf, iter, var_args)
+  ): Unit /* None */ = gtk_list_store_set_valist(
+    this.raw.asInstanceOf[Ptr[GtkListStore]],
+    iter,
+    var_args
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -415,8 +428,12 @@ class ListStore(raw: Ptr[GtkListStore])
       value: Ptr[
         GValue
       ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  ): Unit /* None */ =
-    gtk_list_store_set_value(this.raw.asInstanceOf, iter, column, value)
+  ): Unit /* None */ = gtk_list_store_set_value(
+    this.raw.asInstanceOf[Ptr[GtkListStore]],
+    iter,
+    column,
+    value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -433,7 +450,7 @@ class ListStore(raw: Ptr[GtkListStore])
       ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
       n_values: Int /* Some(CInt) */
   ): Unit /* None */ = gtk_list_store_set_valuesv(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkListStore]],
     iter,
     columns,
     values,
@@ -448,7 +465,8 @@ class ListStore(raw: Ptr[GtkListStore])
   def swap(
       a: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
       b: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Unit /* None */ = gtk_list_store_swap(this.raw.asInstanceOf, a, b)
+  ): Unit /* None */ =
+    gtk_list_store_swap(this.raw.asInstanceOf[Ptr[GtkListStore]], a, b)
 
 end ListStore
 

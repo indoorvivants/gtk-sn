@@ -58,30 +58,34 @@ class CellView(raw: Ptr[GtkCellView])
     * row is currently displayed, %NULL is returned.
     */
   def getDisplayedRow(): Ptr[GtkTreePath] /* None */ =
-    gtk_cell_view_get_displayed_row(this.raw.asInstanceOf)
+    gtk_cell_view_get_displayed_row(this.raw.asInstanceOf[Ptr[GtkCellView]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether @cell_view is configured to draw all of its cells in a
     * sensitive state.
     */
-  def getDrawSensitive(): Boolean /* None */ =
-    gtk_cell_view_get_draw_sensitive(this.raw.asInstanceOf).value.!=(0)
+  def getDrawSensitive(): Boolean /* None */ = gtk_cell_view_get_draw_sensitive(
+    this.raw.asInstanceOf[Ptr[GtkCellView]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether @cell_view is configured to request space to fit the entire
     * `GtkTreeModel`.
     */
-  def getFitModel(): Boolean /* None */ =
-    gtk_cell_view_get_fit_model(this.raw.asInstanceOf).value.!=(0)
+  def getFitModel(): Boolean /* None */ = gtk_cell_view_get_fit_model(
+    this.raw.asInstanceOf[Ptr[GtkCellView]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the model for @cell_view. If no model is used %NULL is returned.
     */
   def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
-    gtk_cell_view_get_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_cell_view_get_model(
+      this.raw.asInstanceOf[Ptr[GtkCellView]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -95,7 +99,7 @@ class CellView(raw: Ptr[GtkCellView])
   def setDisplayedRow(
       path: Option[Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */ ]
   ): Unit /* None */ = gtk_cell_view_set_displayed_row(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellView]],
     path
       .map[Ptr[GtkTreePath]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]])
@@ -110,7 +114,7 @@ class CellView(raw: Ptr[GtkCellView])
   def setDrawSensitive(
       draw_sensitive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_cell_view_set_draw_sensitive(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellView]],
     gboolean(gint((if draw_sensitive == true then 1 else 0)))
   )
 
@@ -126,7 +130,7 @@ class CellView(raw: Ptr[GtkCellView])
   def setFitModel(
       fit_model: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_cell_view_set_fit_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellView]],
     gboolean(gint((if fit_model == true then 1 else 0)))
   )
 
@@ -139,7 +143,7 @@ class CellView(raw: Ptr[GtkCellView])
   def setModel(
       model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
   ): Unit /* None */ = gtk_cell_view_set_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellView]],
     model
       .map[Ptr[GtkTreeModel]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkTreeModel]])

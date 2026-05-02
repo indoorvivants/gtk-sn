@@ -37,7 +37,9 @@ class IOModule(raw: Ptr[GIOModule])
     * statically. The old symbol names continue to be supported, but cannot be
     * used for static builds.
     */
-  def load(): Unit /* None */ = g_io_module_load(this.raw.asInstanceOf)
+  def load(): Unit /* None */ = g_io_module_load(
+    this.raw.asInstanceOf[Ptr[GIOModule]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -54,7 +56,9 @@ class IOModule(raw: Ptr[GIOModule])
     * building modules statically. The old symbol names continue to be
     * supported, but cannot be used for static builds.
     */
-  def unload(): Unit /* None */ = g_io_module_unload(this.raw.asInstanceOf)
+  def unload(): Unit /* None */ = g_io_module_unload(
+    this.raw.asInstanceOf[Ptr[GIOModule]]
+  )
 
 end IOModule
 

@@ -102,7 +102,9 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * Gets the child widget of @scrolled_window.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_scrolled_window_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_scrolled_window_get_child(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -113,22 +115,27 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * child widget’s horizontal scroll functionality.
     */
   def getHadjustment(): Adjustment /* None */ = new Adjustment(
-    gtk_scrolled_window_get_hadjustment(this.raw.asInstanceOf).asInstanceOf
+    gtk_scrolled_window_get_hadjustment(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether the scrolled window draws a frame.
     */
-  def getHasFrame(): Boolean /* None */ =
-    gtk_scrolled_window_get_has_frame(this.raw.asInstanceOf).value.!=(0)
+  def getHasFrame(): Boolean /* None */ = gtk_scrolled_window_get_has_frame(
+    this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the horizontal scrollbar of @scrolled_window.
     */
   def getHscrollbar(): Widget /* None */ = new Widget(
-    gtk_scrolled_window_get_hscrollbar(this.raw.asInstanceOf).asInstanceOf
+    gtk_scrolled_window_get_hscrollbar(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -136,49 +143,63 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * Returns the specified kinetic scrolling behavior.
     */
   def getKineticScrolling(): Boolean /* None */ =
-    gtk_scrolled_window_get_kinetic_scrolling(this.raw.asInstanceOf).value.!=(0)
+    gtk_scrolled_window_get_kinetic_scrolling(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the maximum content height set.
     */
   def getMaxContentHeight(): Int /* None */ =
-    gtk_scrolled_window_get_max_content_height(this.raw.asInstanceOf)
+    gtk_scrolled_window_get_max_content_height(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the maximum content width set.
     */
   def getMaxContentWidth(): Int /* None */ =
-    gtk_scrolled_window_get_max_content_width(this.raw.asInstanceOf)
+    gtk_scrolled_window_get_max_content_width(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the minimal content height of @scrolled_window.
     */
   def getMinContentHeight(): Int /* None */ =
-    gtk_scrolled_window_get_min_content_height(this.raw.asInstanceOf)
+    gtk_scrolled_window_get_min_content_height(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the minimum content width of @scrolled_window.
     */
   def getMinContentWidth(): Int /* None */ =
-    gtk_scrolled_window_get_min_content_width(this.raw.asInstanceOf)
+    gtk_scrolled_window_get_min_content_width(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether overlay scrolling is enabled for this scrolled window.
     */
   def getOverlayScrolling(): Boolean /* None */ =
-    gtk_scrolled_window_get_overlay_scrolling(this.raw.asInstanceOf).value.!=(0)
+    gtk_scrolled_window_get_overlay_scrolling(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the placement of the contents with respect to the scrollbars.
     */
   def getPlacement(): GtkCornerType /* None */ =
-    gtk_scrolled_window_get_placement(this.raw.asInstanceOf)
+    gtk_scrolled_window_get_placement(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -199,7 +220,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     */
   def getPropagateNaturalHeight(): Boolean /* None */ =
     gtk_scrolled_window_get_propagate_natural_height(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
     ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -208,8 +229,9 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * propagated through the scrolled window’s requested natural width.
     */
   def getPropagateNaturalWidth(): Boolean /* None */ =
-    gtk_scrolled_window_get_propagate_natural_width(this.raw.asInstanceOf).value
-      .!=(0)
+    gtk_scrolled_window_get_propagate_natural_width(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -219,7 +241,9 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * widget’s vertical scroll functionality.
     */
   def getVadjustment(): Adjustment /* None */ = new Adjustment(
-    gtk_scrolled_window_get_vadjustment(this.raw.asInstanceOf).asInstanceOf
+    gtk_scrolled_window_get_vadjustment(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -227,7 +251,9 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * Returns the vertical scrollbar of @scrolled_window.
     */
   def getVscrollbar(): Widget /* None */ = new Widget(
-    gtk_scrolled_window_get_vscrollbar(this.raw.asInstanceOf).asInstanceOf
+    gtk_scrolled_window_get_vscrollbar(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -237,7 +263,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_scrolled_window_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -250,7 +276,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
   def setHadjustment(
       hadjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
   ): Unit /* None */ = gtk_scrolled_window_set_hadjustment(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
     hadjustment
       .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
@@ -263,7 +289,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
   def setHasFrame(
       has_frame: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_scrolled_window_set_has_frame(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
     gboolean(gint((if has_frame == true then 1 else 0)))
   )
 
@@ -277,7 +303,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
   def setKineticScrolling(
       kinetic_scrolling: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_scrolled_window_set_kinetic_scrolling(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
     gboolean(gint((if kinetic_scrolling == true then 1 else 0)))
   )
 
@@ -292,7 +318,10 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * smaller than [property@Gtk.ScrolledWindow:min-content-height].
     */
   def setMaxContentHeight(height: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_scrolled_window_set_max_content_height(this.raw.asInstanceOf, height)
+    gtk_scrolled_window_set_max_content_height(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
+      height
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -305,7 +334,10 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * smaller than [property@Gtk.ScrolledWindow:min-content-width].
     */
   def setMaxContentWidth(width: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_scrolled_window_set_max_content_width(this.raw.asInstanceOf, width)
+    gtk_scrolled_window_set_max_content_width(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
+      width
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -318,7 +350,10 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * greater than [property@Gtk.ScrolledWindow:max-content-height].
     */
   def setMinContentHeight(height: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_scrolled_window_set_min_content_height(this.raw.asInstanceOf, height)
+    gtk_scrolled_window_set_min_content_height(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
+      height
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -331,7 +366,10 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * greater than [property@Gtk.ScrolledWindow:max-content-width].
     */
   def setMinContentWidth(width: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_scrolled_window_set_min_content_width(this.raw.asInstanceOf, width)
+    gtk_scrolled_window_set_min_content_width(
+      this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
+      width
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -340,7 +378,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
   def setOverlayScrolling(
       overlay_scrolling: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_scrolled_window_set_overlay_scrolling(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
     gboolean(gint((if overlay_scrolling == true then 1 else 0)))
   )
 
@@ -359,8 +397,10 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     */
   def setPlacement(
       window_placement: GtkCornerType /* Some(GtkCornerType) */
-  ): Unit /* None */ =
-    gtk_scrolled_window_set_placement(this.raw.asInstanceOf, window_placement)
+  ): Unit /* None */ = gtk_scrolled_window_set_placement(
+    this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
+    window_placement
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -377,7 +417,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
       hscrollbar_policy: GtkPolicyType /* Some(GtkPolicyType) */,
       vscrollbar_policy: GtkPolicyType /* Some(GtkPolicyType) */
   ): Unit /* None */ = gtk_scrolled_window_set_policy(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
     hscrollbar_policy,
     vscrollbar_policy
   )
@@ -390,7 +430,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
   def setPropagateNaturalHeight(
       propagate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_scrolled_window_set_propagate_natural_height(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
     gboolean(gint((if propagate == true then 1 else 0)))
   )
 
@@ -402,7 +442,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
   def setPropagateNaturalWidth(
       propagate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_scrolled_window_set_propagate_natural_width(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
     gboolean(gint((if propagate == true then 1 else 0)))
   )
 
@@ -413,7 +453,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
   def setVadjustment(
       vadjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
   ): Unit /* None */ = gtk_scrolled_window_set_vadjustment(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
     vadjustment
       .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
@@ -427,7 +467,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * %GTK_CORNER_TOP_LEFT.
     */
   def unsetPlacement(): Unit /* None */ = gtk_scrolled_window_unset_placement(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
   )
 
 end ScrolledWindow

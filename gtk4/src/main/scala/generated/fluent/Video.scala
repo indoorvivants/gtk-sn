@@ -44,28 +44,31 @@ class Video(raw: Ptr[GtkVideo])
     * Returns %TRUE if videos have been set to loop.
     */
   def getAutoplay(): Boolean /* None */ =
-    gtk_video_get_autoplay(this.raw.asInstanceOf).value.!=(0)
+    gtk_video_get_autoplay(this.raw.asInstanceOf[Ptr[GtkVideo]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the file played by @self or %NULL if not playing back a file.
     */
-  def getFile(): File /* None */ =
-    new File.Abstract(gtk_video_get_file(this.raw.asInstanceOf).asInstanceOf)
+  def getFile(): File /* None */ = new File.Abstract(
+    gtk_video_get_file(this.raw.asInstanceOf[Ptr[GtkVideo]]).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns %TRUE if videos have been set to loop.
     */
   def getLoop(): Boolean /* None */ =
-    gtk_video_get_loop(this.raw.asInstanceOf).value.!=(0)
+    gtk_video_get_loop(this.raw.asInstanceOf[Ptr[GtkVideo]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the media stream managed by @self or %NULL if none.
     */
   def getMediaStream(): MediaStream /* None */ = new MediaStream(
-    gtk_video_get_media_stream(this.raw.asInstanceOf).asInstanceOf
+    gtk_video_get_media_stream(
+      this.raw.asInstanceOf[Ptr[GtkVideo]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -76,7 +79,7 @@ class Video(raw: Ptr[GtkVideo])
   def setAutoplay(
       autoplay: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_video_set_autoplay(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkVideo]],
     gboolean(gint((if autoplay == true then 1 else 0)))
   )
 
@@ -87,7 +90,7 @@ class Video(raw: Ptr[GtkVideo])
   def setFile(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
   ): Unit /* None */ = gtk_video_set_file(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkVideo]],
     file
       .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -104,7 +107,7 @@ class Video(raw: Ptr[GtkVideo])
   def setFilename(
       filename: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_video_set_filename(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkVideo]],
     filename
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -117,7 +120,7 @@ class Video(raw: Ptr[GtkVideo])
   def setLoop(
       loop: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_video_set_loop(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkVideo]],
     gboolean(gint((if loop == true then 1 else 0)))
   )
 
@@ -136,7 +139,7 @@ class Video(raw: Ptr[GtkVideo])
   def setMediaStream(
       stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
   ): Unit /* None */ = gtk_video_set_media_stream(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkVideo]],
     stream
       .map[Ptr[GtkMediaStream]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkMediaStream]])
@@ -151,7 +154,7 @@ class Video(raw: Ptr[GtkVideo])
   def setResource(
       resource_path: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_video_set_resource(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkVideo]],
     resource_path
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])

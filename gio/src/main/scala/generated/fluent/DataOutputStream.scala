@@ -39,7 +39,9 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     * Gets the byte order for the stream.
     */
   def getByteOrder(): GDataStreamByteOrder /* None */ =
-    g_data_output_stream_get_byte_order(this.raw.asInstanceOf)
+    g_data_output_stream_get_byte_order(
+      this.raw.asInstanceOf[Ptr[GDataOutputStream]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -50,7 +52,7 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_data_output_stream_put_byte(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
       guchar(data),
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -68,7 +70,7 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_data_output_stream_put_int16(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
       gint16(data),
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -86,7 +88,7 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_data_output_stream_put_int32(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
       gint32(data),
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -104,7 +106,7 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_data_output_stream_put_int64(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
       gint64(data),
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -122,7 +124,7 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_data_output_stream_put_string(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
       __sn_extract_string(str),
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -140,7 +142,7 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_data_output_stream_put_uint16(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
       guint16(data),
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -158,7 +160,7 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_data_output_stream_put_uint32(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
       guint32(data),
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -176,7 +178,7 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_data_output_stream_put_uint64(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
       guint64(data),
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -191,8 +193,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     */
   def setByteOrder(
       order: GDataStreamByteOrder /* Some(GDataStreamByteOrder) */
-  ): Unit /* None */ =
-    g_data_output_stream_set_byte_order(this.raw.asInstanceOf, order)
+  ): Unit /* None */ = g_data_output_stream_set_byte_order(
+    this.raw.asInstanceOf[Ptr[GDataOutputStream]],
+    order
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

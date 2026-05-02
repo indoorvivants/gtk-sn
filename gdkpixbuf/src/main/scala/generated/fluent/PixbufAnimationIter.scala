@@ -51,7 +51,7 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
         Ptr[GTimeVal] /* Some(Ptr[_root_.sn.gnome.glib.internal.GTimeVal]) */
       ]
   ): Boolean /* None */ = gdk_pixbuf_animation_iter_advance(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkPixbufAnimationIter]],
     current_time
       .map[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]])
@@ -70,7 +70,7 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     * for GIF images is currently 20 milliseconds.
     */
   def getDelayTime(): Int /* None */ = gdk_pixbuf_animation_iter_get_delay_time(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkPixbufAnimationIter]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -92,7 +92,9 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     * recycled as you advance the iterator.
     */
   def getPixbuf(): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_animation_iter_get_pixbuf(this.raw.asInstanceOf).asInstanceOf
+    gdk_pixbuf_animation_iter_get_pixbuf(
+      this.raw.asInstanceOf[Ptr[GdkPixbufAnimationIter]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -106,7 +108,7 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     */
   def onCurrentlyLoadingFrame(): Boolean /* None */ =
     gdk_pixbuf_animation_iter_on_currently_loading_frame(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GdkPixbufAnimationIter]]
     ).value.!=(0)
 
 end PixbufAnimationIter

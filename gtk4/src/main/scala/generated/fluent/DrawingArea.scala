@@ -104,7 +104,7 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     * Retrieves the content height of the `GtkDrawingArea`.
     */
   def getContentHeight(): Int /* None */ = gtk_drawing_area_get_content_height(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkDrawingArea]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -112,7 +112,7 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     * Retrieves the content width of the `GtkDrawingArea`.
     */
   def getContentWidth(): Int /* None */ = gtk_drawing_area_get_content_width(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkDrawingArea]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -127,7 +127,10 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     * If the height is set to 0 (the default), the drawing area may disappear.
     */
   def setContentHeight(height: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_drawing_area_set_content_height(this.raw.asInstanceOf, height)
+    gtk_drawing_area_set_content_height(
+      this.raw.asInstanceOf[Ptr[GtkDrawingArea]],
+      height
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -141,7 +144,10 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     * If the width is set to 0 (the default), the drawing area may disappear.
     */
   def setContentWidth(width: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_drawing_area_set_content_width(this.raw.asInstanceOf, width)
+    gtk_drawing_area_set_content_width(
+      this.raw.asInstanceOf[Ptr[GtkDrawingArea]],
+      width
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -170,7 +176,7 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
       ],
       destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): Unit /* None */ = gtk_drawing_area_set_draw_func(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDrawingArea]],
     draw_func
       .map[GtkDrawingAreaDrawFunc](o => o)
       .getOrElse(null.asInstanceOf[GtkDrawingAreaDrawFunc]),

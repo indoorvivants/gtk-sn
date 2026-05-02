@@ -71,7 +71,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * Clears the status information from @info.
     */
   def clearStatus(): Unit /* None */ = g_file_info_clear_status(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GFileInfo]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -82,7 +82,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def copyInto(
       dest_info: FileInfo /* Some(Ptr[GFileInfo]) */
   ): Unit /* None */ = g_file_info_copy_into(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     dest_info.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -91,7 +91,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * Duplicates a file info structure.
     */
   def dup(): FileInfo /* None */ = new FileInfo(
-    g_file_info_dup(this.raw.asInstanceOf).asInstanceOf
+    g_file_info_dup(this.raw.asInstanceOf[Ptr[GFileInfo]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -107,7 +107,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * be queried separately using g_file_info_get_attribute_uint32().
     */
   def getAccessDateTime(): Ptr[GDateTime] /* None */ =
-    g_file_info_get_access_date_time(this.raw.asInstanceOf)
+    g_file_info_get_access_date_time(this.raw.asInstanceOf[Ptr[GFileInfo]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -118,7 +118,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */
   )(using Zone): String /* None */ = fromCString(
     g_file_info_get_attribute_as_string(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GFileInfo]],
       __sn_extract_string(attribute)
     ).asInstanceOf
   )
@@ -131,7 +131,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def getAttributeBoolean(
       attribute: String | CString /* Some(CString) */
   )(using Zone): Boolean /* None */ = g_file_info_get_attribute_boolean(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute)
   ).value.!=(0)
 
@@ -144,7 +144,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */
   )(using Zone): String /* None */ = fromCString(
     g_file_info_get_attribute_byte_string(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GFileInfo]],
       __sn_extract_string(attribute)
     ).asInstanceOf
   )
@@ -171,7 +171,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */
   )(using Zone): String /* None */ = fromCString(
     g_file_info_get_attribute_file_path(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GFileInfo]],
       __sn_extract_string(attribute)
     ).asInstanceOf
   )
@@ -185,7 +185,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def getAttributeInt32(
       attribute: String | CString /* Some(CString) */
   )(using Zone): CInt /* None */ = g_file_info_get_attribute_int32(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute)
   ).value
 
@@ -198,7 +198,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def getAttributeInt64(
       attribute: String | CString /* Some(CString) */
   )(using Zone): CLongInt /* None */ = g_file_info_get_attribute_int64(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute)
   ).value
 
@@ -211,7 +211,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */
   )(using Zone): Object /* None */ = new Object(
     g_file_info_get_attribute_object(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GFileInfo]],
       __sn_extract_string(attribute)
     ).asInstanceOf
   )
@@ -223,7 +223,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def getAttributeStatus(attribute: String | CString /* Some(CString) */ )(using
       Zone
   ): GFileAttributeStatus /* None */ = g_file_info_get_attribute_status(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute)
   )
 
@@ -236,7 +236,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */
   )(using Zone): String /* None */ = fromCString(
     g_file_info_get_attribute_string(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GFileInfo]],
       __sn_extract_string(attribute)
     ).asInstanceOf
   )
@@ -250,7 +250,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */
   )(using Zone): Array[String] /* None */ = __decode_nullable_ptrs(
     g_file_info_get_attribute_stringv(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GFileInfo]],
       __sn_extract_string(attribute)
     )
   ).map(fromCString(_))
@@ -262,7 +262,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def getAttributeType(
       attribute: String | CString /* Some(CString) */
   )(using Zone): GFileAttributeType /* None */ = g_file_info_get_attribute_type(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute)
   )
 
@@ -275,7 +275,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def getAttributeUint32(
       attribute: String | CString /* Some(CString) */
   )(using Zone): UInt /* None */ = g_file_info_get_attribute_uint32(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute)
   ).value
 
@@ -288,7 +288,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def getAttributeUint64(
       attribute: String | CString /* Some(CString) */
   )(using Zone): CUnsignedLongInt /* None */ = g_file_info_get_attribute_uint64(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute)
   ).value
 
@@ -300,7 +300,9 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * %G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE.
     */
   def getContentType()(using Zone): String /* None */ = fromCString(
-    g_file_info_get_content_type(this.raw.asInstanceOf).asInstanceOf
+    g_file_info_get_content_type(
+      this.raw.asInstanceOf[Ptr[GFileInfo]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -317,7 +319,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * must be queried separately using g_file_info_get_attribute_uint32().
     */
   def getCreationDateTime(): Ptr[GDateTime] /* None */ =
-    g_file_info_get_creation_date_time(this.raw.asInstanceOf)
+    g_file_info_get_creation_date_time(this.raw.asInstanceOf[Ptr[GFileInfo]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -327,7 +329,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * returned.
     */
   def getDeletionDate(): Ptr[GDateTime] /* None */ =
-    g_file_info_get_deletion_date(this.raw.asInstanceOf)
+    g_file_info_get_deletion_date(this.raw.asInstanceOf[Ptr[GFileInfo]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -337,7 +339,9 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * %G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME.
     */
   def getDisplayName()(using Zone): String /* None */ = fromCString(
-    g_file_info_get_display_name(this.raw.asInstanceOf).asInstanceOf
+    g_file_info_get_display_name(
+      this.raw.asInstanceOf[Ptr[GFileInfo]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -348,7 +352,9 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * %G_FILE_ATTRIBUTE_STANDARD_EDIT_NAME.
     */
   def getEditName()(using Zone): String /* None */ = fromCString(
-    g_file_info_get_edit_name(this.raw.asInstanceOf).asInstanceOf
+    g_file_info_get_edit_name(
+      this.raw.asInstanceOf[Ptr[GFileInfo]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -360,7 +366,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * %G_FILE_ATTRIBUTE_ETAG_VALUE.
     */
   def getEtag()(using Zone): String /* None */ = fromCString(
-    g_file_info_get_etag(this.raw.asInstanceOf).asInstanceOf
+    g_file_info_get_etag(this.raw.asInstanceOf[Ptr[GFileInfo]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -373,7 +379,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * %G_FILE_ATTRIBUTE_STANDARD_TYPE.
     */
   def getFileType(): GFileType /* None */ = g_file_info_get_file_type(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GFileInfo]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -383,8 +389,9 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_ICON.
     */
-  def getIcon(): Icon /* None */ =
-    new Icon.Abstract(g_file_info_get_icon(this.raw.asInstanceOf).asInstanceOf)
+  def getIcon(): Icon /* None */ = new Icon.Abstract(
+    g_file_info_get_icon(this.raw.asInstanceOf[Ptr[GFileInfo]]).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -394,7 +401,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * %G_FILE_ATTRIBUTE_STANDARD_IS_BACKUP.
     */
   def getIsBackup(): Boolean /* None */ =
-    g_file_info_get_is_backup(this.raw.asInstanceOf).value.!=(0)
+    g_file_info_get_is_backup(this.raw.asInstanceOf[Ptr[GFileInfo]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -404,7 +411,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * %G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN.
     */
   def getIsHidden(): Boolean /* None */ =
-    g_file_info_get_is_hidden(this.raw.asInstanceOf).value.!=(0)
+    g_file_info_get_is_hidden(this.raw.asInstanceOf[Ptr[GFileInfo]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -413,8 +420,9 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_IS_SYMLINK.
     */
-  def getIsSymlink(): Boolean /* None */ =
-    g_file_info_get_is_symlink(this.raw.asInstanceOf).value.!=(0)
+  def getIsSymlink(): Boolean /* None */ = g_file_info_get_is_symlink(
+    this.raw.asInstanceOf[Ptr[GFileInfo]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -430,7 +438,9 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * must be queried separately using g_file_info_get_attribute_uint32().
     */
   def getModificationDateTime(): Ptr[GDateTime] /* None */ =
-    g_file_info_get_modification_date_time(this.raw.asInstanceOf)
+    g_file_info_get_modification_date_time(
+      this.raw.asInstanceOf[Ptr[GFileInfo]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -453,7 +463,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * %G_FILE_ATTRIBUTE_STANDARD_NAME.
     */
   def getName()(using Zone): String /* None */ = fromCString(
-    g_file_info_get_name(this.raw.asInstanceOf).asInstanceOf
+    g_file_info_get_name(this.raw.asInstanceOf[Ptr[GFileInfo]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -466,7 +476,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * %G_FILE_ATTRIBUTE_STANDARD_SIZE.
     */
   def getSize(): gint64 /* None */ = g_file_info_get_size(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GFileInfo]]
   ).asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -478,7 +488,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * %G_FILE_ATTRIBUTE_STANDARD_SORT_ORDER.
     */
   def getSortOrder(): CInt /* None */ = g_file_info_get_sort_order(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GFileInfo]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -489,7 +499,9 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * %G_FILE_ATTRIBUTE_STANDARD_SYMBOLIC_ICON.
     */
   def getSymbolicIcon(): Icon /* None */ = new Icon.Abstract(
-    g_file_info_get_symbolic_icon(this.raw.asInstanceOf).asInstanceOf
+    g_file_info_get_symbolic_icon(
+      this.raw.asInstanceOf[Ptr[GFileInfo]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -500,7 +512,9 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * %G_FILE_ATTRIBUTE_STANDARD_SYMLINK_TARGET.
     */
   def getSymlinkTarget()(using Zone): String /* None */ = fromCString(
-    g_file_info_get_symlink_target(this.raw.asInstanceOf).asInstanceOf
+    g_file_info_get_symlink_target(
+      this.raw.asInstanceOf[Ptr[GFileInfo]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -510,7 +524,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def hasAttribute(
       attribute: String | CString /* Some(CString) */
   )(using Zone): Boolean /* None */ = g_file_info_has_attribute(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute)
   ).value.!=(0)
 
@@ -521,7 +535,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def hasNamespace(
       name_space: String | CString /* Some(CString) */
   )(using Zone): Boolean /* None */ = g_file_info_has_namespace(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(name_space)
   ).value.!=(0)
 
@@ -533,7 +547,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       name_space: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Array[String] /* None */ = __decode_nullable_ptrs(
     g_file_info_list_attributes(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GFileInfo]],
       name_space
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
@@ -547,7 +561,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def removeAttribute(
       attribute: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = g_file_info_remove_attribute(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute)
   )
 
@@ -563,8 +577,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       atime: Ptr[
         GDateTime
       ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GDateTime]) */
-  ): Unit /* None */ =
-    g_file_info_set_access_date_time(this.raw.asInstanceOf, atime)
+  ): Unit /* None */ = g_file_info_set_access_date_time(
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
+    atime
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -576,7 +592,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       `type`: GFileAttributeType /* Some(GFileAttributeType) */,
       value_p: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   )(using Zone): Unit /* None */ = g_file_info_set_attribute(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
     `type`,
     gpointer(value_p)
@@ -590,7 +606,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */,
       attr_value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Zone): Unit /* None */ = g_file_info_set_attribute_boolean(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
     gboolean(gint((if attr_value == true then 1 else 0)))
   )
@@ -603,7 +619,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */,
       attr_value: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = g_file_info_set_attribute_byte_string(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
     __sn_extract_string(attr_value)
   )
@@ -619,7 +635,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */,
       attr_value: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = g_file_info_set_attribute_file_path(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
     __sn_extract_string(attr_value)
   )
@@ -632,7 +648,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */,
       attr_value: CInt /* Some(_root_.sn.gnome.glib.internal.gint32) */
   )(using Zone): Unit /* None */ = g_file_info_set_attribute_int32(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
     gint32(attr_value)
   )
@@ -645,7 +661,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */,
       attr_value: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
   )(using Zone): Unit /* None */ = g_file_info_set_attribute_int64(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
     gint64(attr_value)
   )
@@ -657,7 +673,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def setAttributeMask(
       mask: Ptr[GFileAttributeMatcher] /* Some(Ptr[GFileAttributeMatcher]) */
   ): Unit /* None */ =
-    g_file_info_set_attribute_mask(this.raw.asInstanceOf, mask)
+    g_file_info_set_attribute_mask(this.raw.asInstanceOf[Ptr[GFileInfo]], mask)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -667,7 +683,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */,
       attr_value: Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
   )(using Zone): Unit /* None */ = g_file_info_set_attribute_object(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
     attr_value.getUnsafeRawPointer().asInstanceOf
   )
@@ -685,7 +701,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */,
       status: GFileAttributeStatus /* Some(GFileAttributeStatus) */
   )(using Zone): Boolean /* None */ = g_file_info_set_attribute_status(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
     status
   ).value.!=(0)
@@ -698,7 +714,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */,
       attr_value: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = g_file_info_set_attribute_string(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
     __sn_extract_string(attr_value)
   )
@@ -713,7 +729,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */,
       attr_value: Array[String] /* Some(Ptr[CString]) */
   )(using Zone): Unit /* None */ = g_file_info_set_attribute_stringv(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
     attr_value.map(__sn_extract_string).atUnsafe(0)
   )
@@ -726,7 +742,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */,
       attr_value: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
   )(using Zone): Unit /* None */ = g_file_info_set_attribute_uint32(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
     guint32(attr_value)
   )
@@ -739,7 +755,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       attribute: String | CString /* Some(CString) */,
       attr_value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */
   )(using Zone): Unit /* None */ = g_file_info_set_attribute_uint64(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
     guint64(attr_value)
   )
@@ -752,7 +768,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def setContentType(
       content_type: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = g_file_info_set_content_type(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(content_type)
   )
 
@@ -768,8 +784,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       creation_time: Ptr[
         GDateTime
       ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GDateTime]) */
-  ): Unit /* None */ =
-    g_file_info_set_creation_date_time(this.raw.asInstanceOf, creation_time)
+  ): Unit /* None */ = g_file_info_set_creation_date_time(
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
+    creation_time
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -779,7 +797,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def setDisplayName(
       display_name: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = g_file_info_set_display_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(display_name)
   )
 
@@ -791,7 +809,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def setEditName(
       edit_name: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = g_file_info_set_edit_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(edit_name)
   )
 
@@ -801,7 +819,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * %G_FILE_ATTRIBUTE_STANDARD_TYPE.
     */
   def setFileType(`type`: GFileType /* Some(GFileType) */ ): Unit /* None */ =
-    g_file_info_set_file_type(this.raw.asInstanceOf, `type`)
+    g_file_info_set_file_type(this.raw.asInstanceOf[Ptr[GFileInfo]], `type`)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -809,7 +827,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     */
   def setIcon(icon: Icon /* Some(Ptr[GIcon]) */ ): Unit /* None */ =
     g_file_info_set_icon(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GFileInfo]],
       icon.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -821,7 +839,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def setIsHidden(
       is_hidden: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_file_info_set_is_hidden(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     gboolean(gint((if is_hidden == true then 1 else 0)))
   )
 
@@ -833,7 +851,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def setIsSymlink(
       is_symlink: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_file_info_set_is_symlink(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     gboolean(gint((if is_symlink == true then 1 else 0)))
   )
 
@@ -849,8 +867,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       mtime: Ptr[
         GDateTime
       ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GDateTime]) */
-  ): Unit /* None */ =
-    g_file_info_set_modification_date_time(this.raw.asInstanceOf, mtime)
+  ): Unit /* None */ = g_file_info_set_modification_date_time(
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
+    mtime
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -864,8 +884,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       mtime: Ptr[
         GTimeVal
       ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GTimeVal]) */
-  ): Unit /* None */ =
-    g_file_info_set_modification_time(this.raw.asInstanceOf, mtime)
+  ): Unit /* None */ = g_file_info_set_modification_time(
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
+    mtime
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -874,8 +896,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     */
   def setName(
       name: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ =
-    g_file_info_set_name(this.raw.asInstanceOf, __sn_extract_string(name))
+  )(using Zone): Unit /* None */ = g_file_info_set_name(
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
+    __sn_extract_string(name)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -885,7 +909,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def setSize(
       size: gint64 /* Some(_root_.sn.gnome.glib.internal.goffset) */
   ): Unit /* None */ =
-    g_file_info_set_size(this.raw.asInstanceOf, goffset(size))
+    g_file_info_set_size(this.raw.asInstanceOf[Ptr[GFileInfo]], goffset(size))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -894,8 +918,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     */
   def setSortOrder(
       sort_order: CInt /* Some(_root_.sn.gnome.glib.internal.gint32) */
-  ): Unit /* None */ =
-    g_file_info_set_sort_order(this.raw.asInstanceOf, gint32(sort_order))
+  ): Unit /* None */ = g_file_info_set_sort_order(
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
+    gint32(sort_order)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -904,7 +930,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     */
   def setSymbolicIcon(icon: Icon /* Some(Ptr[GIcon]) */ ): Unit /* None */ =
     g_file_info_set_symbolic_icon(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GFileInfo]],
       icon.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -916,7 +942,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   def setSymlinkTarget(
       symlink_target: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = g_file_info_set_symlink_target(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(symlink_target)
   )
 
@@ -925,7 +951,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * Unsets a mask set by g_file_info_set_attribute_mask(), if one is set.
     */
   def unsetAttributeMask(): Unit /* None */ = g_file_info_unset_attribute_mask(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GFileInfo]]
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

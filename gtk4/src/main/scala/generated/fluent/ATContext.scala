@@ -28,7 +28,9 @@ class ATContext(raw: Ptr[GtkATContext]) extends Object(raw.asInstanceOf):
     * Retrieves the `GtkAccessible` using this context.
     */
   def getAccessible(): Accessible /* None */ = new Accessible.Abstract(
-    gtk_at_context_get_accessible(this.raw.asInstanceOf).asInstanceOf
+    gtk_at_context_get_accessible(
+      this.raw.asInstanceOf[Ptr[GtkATContext]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -36,7 +38,7 @@ class ATContext(raw: Ptr[GtkATContext]) extends Object(raw.asInstanceOf):
     * Retrieves the accessible role of this context.
     */
   def getAccessibleRole(): GtkAccessibleRole /* None */ =
-    gtk_at_context_get_accessible_role(this.raw.asInstanceOf)
+    gtk_at_context_get_accessible_role(this.raw.asInstanceOf[Ptr[GtkATContext]])
 
 end ATContext
 

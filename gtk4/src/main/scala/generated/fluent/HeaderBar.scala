@@ -99,7 +99,9 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     * Gets the decoration layout of the `GtkHeaderBar`.
     */
   def getDecorationLayout()(using Zone): String /* None */ = fromCString(
-    gtk_header_bar_get_decoration_layout(this.raw.asInstanceOf).asInstanceOf
+    gtk_header_bar_get_decoration_layout(
+      this.raw.asInstanceOf[Ptr[GtkHeaderBar]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -107,7 +109,9 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     * Returns whether this header bar shows the standard window title buttons.
     */
   def getShowTitleButtons(): Boolean /* None */ =
-    gtk_header_bar_get_show_title_buttons(this.raw.asInstanceOf).value.!=(0)
+    gtk_header_bar_get_show_title_buttons(
+      this.raw.asInstanceOf[Ptr[GtkHeaderBar]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -116,7 +120,9 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     * See [method@Gtk.HeaderBar.set_title_widget].
     */
   def getTitleWidget(): Widget /* None */ = new Widget(
-    gtk_header_bar_get_title_widget(this.raw.asInstanceOf).asInstanceOf
+    gtk_header_bar_get_title_widget(
+      this.raw.asInstanceOf[Ptr[GtkHeaderBar]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -125,7 +131,7 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     */
   def packEnd(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_header_bar_pack_end(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkHeaderBar]],
       child.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -135,7 +141,7 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     */
   def packStart(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_header_bar_pack_start(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkHeaderBar]],
       child.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -149,7 +155,7 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     */
   def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_header_bar_remove(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkHeaderBar]],
       child.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -176,7 +182,7 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
   def setDecorationLayout(
       layout: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_header_bar_set_decoration_layout(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkHeaderBar]],
     layout
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -189,7 +195,7 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
   def setShowTitleButtons(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_header_bar_set_show_title_buttons(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkHeaderBar]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
@@ -209,7 +215,7 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
   def setTitleWidget(
       title_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_header_bar_set_title_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkHeaderBar]],
     title_widget
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])

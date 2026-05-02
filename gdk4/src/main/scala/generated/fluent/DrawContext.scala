@@ -59,8 +59,10 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
       region: Ptr[
         cairo_region_t
       ] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */
-  ): Unit /* None */ =
-    gdk_draw_context_begin_frame(this.raw.asInstanceOf, region)
+  ): Unit /* None */ = gdk_draw_context_begin_frame(
+    this.raw.asInstanceOf[Ptr[GdkDrawContext]],
+    region
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -74,7 +76,7 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
     * explicitly before calling this function.
     */
   def endFrame(): Unit /* None */ = gdk_draw_context_end_frame(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkDrawContext]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -82,7 +84,9 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
     * Retrieves the `GdkDisplay` the @context is created for
     */
   def getDisplay(): Display /* None */ = new Display(
-    gdk_draw_context_get_display(this.raw.asInstanceOf).asInstanceOf
+    gdk_draw_context_get_display(
+      this.raw.asInstanceOf[Ptr[GdkDrawContext]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -98,14 +102,18 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
     * [method@Gdk.DrawContext.end_frame], %NULL will be returned.
     */
   def getFrameRegion(): Ptr[cairo_region_t] /* None */ =
-    gdk_draw_context_get_frame_region(this.raw.asInstanceOf)
+    gdk_draw_context_get_frame_region(
+      this.raw.asInstanceOf[Ptr[GdkDrawContext]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the surface that @context is bound to.
     */
   def getSurface(): Surface /* None */ = new Surface(
-    gdk_draw_context_get_surface(this.raw.asInstanceOf).asInstanceOf
+    gdk_draw_context_get_surface(
+      this.raw.asInstanceOf[Ptr[GdkDrawContext]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -116,7 +124,8 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
     * [method@Gdk.DrawContext.end_frame]. In this situation, drawing commands
     * may be effecting the contents of the @context's surface.
     */
-  def isInFrame(): Boolean /* None */ =
-    gdk_draw_context_is_in_frame(this.raw.asInstanceOf).value.!=(0)
+  def isInFrame(): Boolean /* None */ = gdk_draw_context_is_in_frame(
+    this.raw.asInstanceOf[Ptr[GdkDrawContext]]
+  ).value.!=(0)
 
 end DrawContext

@@ -47,7 +47,9 @@ class FileIOStream(raw: Ptr[GFileIOStream])
     * change while writing.
     */
   def getEtag()(using Zone): String /* None */ = fromCString(
-    g_file_io_stream_get_etag(this.raw.asInstanceOf).asInstanceOf
+    g_file_io_stream_get_etag(
+      this.raw.asInstanceOf[Ptr[GFileIOStream]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -75,7 +77,7 @@ class FileIOStream(raw: Ptr[GFileIOStream])
   )(using Zone): GResult[FileInfo /* None */ ] = GResult.wrap(__errorPtr =>
     new FileInfo(
       g_file_io_stream_query_info(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GFileIOStream]],
         __sn_extract_string(attributes),
         cancellable
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -104,7 +106,7 @@ class FileIOStream(raw: Ptr[GFileIOStream])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = g_file_io_stream_query_info_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileIOStream]],
     __sn_extract_string(attributes),
     io_priority,
     cancellable
@@ -128,7 +130,7 @@ class FileIOStream(raw: Ptr[GFileIOStream])
   ): GResult[FileInfo /* None */ ] = GResult.wrap(__errorPtr =>
     new FileInfo(
       g_file_io_stream_query_info_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GFileIOStream]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf

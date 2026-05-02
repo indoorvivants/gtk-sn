@@ -109,7 +109,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
   def appendColumn(
       column: ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
   ): Unit /* None */ = gtk_column_view_append_column(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnView]],
     column.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -122,7 +122,9 @@ class ColumnView(raw: Ptr[GtkColumnView])
     * ::items-changed signal.
     */
   def getColumns(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_column_view_get_columns(this.raw.asInstanceOf).asInstanceOf
+    gtk_column_view_get_columns(
+      this.raw.asInstanceOf[Ptr[GtkColumnView]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -130,14 +132,18 @@ class ColumnView(raw: Ptr[GtkColumnView])
     * Returns whether rows can be selected by dragging with the mouse.
     */
   def getEnableRubberband(): Boolean /* None */ =
-    gtk_column_view_get_enable_rubberband(this.raw.asInstanceOf).value.!=(0)
+    gtk_column_view_get_enable_rubberband(
+      this.raw.asInstanceOf[Ptr[GtkColumnView]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the factory that's currently used to populate section headers.
     */
   def getHeaderFactory(): ListItemFactory /* None */ = new ListItemFactory(
-    gtk_column_view_get_header_factory(this.raw.asInstanceOf).asInstanceOf
+    gtk_column_view_get_header_factory(
+      this.raw.asInstanceOf[Ptr[GtkColumnView]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -145,22 +151,27 @@ class ColumnView(raw: Ptr[GtkColumnView])
     * Gets the model that's currently used to read the items displayed.
     */
   def getModel(): SelectionModel /* None */ = new SelectionModel.Abstract(
-    gtk_column_view_get_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_column_view_get_model(
+      this.raw.asInstanceOf[Ptr[GtkColumnView]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether columns are reorderable.
     */
-  def getReorderable(): Boolean /* None */ =
-    gtk_column_view_get_reorderable(this.raw.asInstanceOf).value.!=(0)
+  def getReorderable(): Boolean /* None */ = gtk_column_view_get_reorderable(
+    this.raw.asInstanceOf[Ptr[GtkColumnView]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the factory set via [method@Gtk.ColumnView.set_row_factory].
     */
   def getRowFactory(): ListItemFactory /* None */ = new ListItemFactory(
-    gtk_column_view_get_row_factory(this.raw.asInstanceOf).asInstanceOf
+    gtk_column_view_get_row_factory(
+      this.raw.asInstanceOf[Ptr[GtkColumnView]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -168,15 +179,18 @@ class ColumnView(raw: Ptr[GtkColumnView])
     * Returns whether the list should show separators between columns.
     */
   def getShowColumnSeparators(): Boolean /* None */ =
-    gtk_column_view_get_show_column_separators(this.raw.asInstanceOf).value
-      .!=(0)
+    gtk_column_view_get_show_column_separators(
+      this.raw.asInstanceOf[Ptr[GtkColumnView]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the list should show separators between rows.
     */
   def getShowRowSeparators(): Boolean /* None */ =
-    gtk_column_view_get_show_row_separators(this.raw.asInstanceOf).value.!=(0)
+    gtk_column_view_get_show_row_separators(
+      this.raw.asInstanceOf[Ptr[GtkColumnView]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -184,7 +198,9 @@ class ColumnView(raw: Ptr[GtkColumnView])
     * hover.
     */
   def getSingleClickActivate(): Boolean /* None */ =
-    gtk_column_view_get_single_click_activate(this.raw.asInstanceOf).value.!=(0)
+    gtk_column_view_get_single_click_activate(
+      this.raw.asInstanceOf[Ptr[GtkColumnView]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -209,7 +225,9 @@ class ColumnView(raw: Ptr[GtkColumnView])
     * ```
     */
   def getSorter(): Sorter /* None */ = new Sorter(
-    gtk_column_view_get_sorter(this.raw.asInstanceOf).asInstanceOf
+    gtk_column_view_get_sorter(
+      this.raw.asInstanceOf[Ptr[GtkColumnView]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -217,7 +235,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
     * Gets the behavior set for the <kbd>Tab</kbd> key.
     */
   def getTabBehavior(): GtkListTabBehavior /* None */ =
-    gtk_column_view_get_tab_behavior(this.raw.asInstanceOf)
+    gtk_column_view_get_tab_behavior(this.raw.asInstanceOf[Ptr[GtkColumnView]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -229,7 +247,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       column: ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
   ): Unit /* None */ = gtk_column_view_insert_column(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnView]],
     guint(position),
     column.getUnsafeRawPointer().asInstanceOf
   )
@@ -241,7 +259,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
   def removeColumn(
       column: ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
   ): Unit /* None */ = gtk_column_view_remove_column(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnView]],
     column.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -259,7 +277,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
       flags: GtkListScrollFlags /* Some(GtkListScrollFlags) */,
       scroll: Option[Ptr[GtkScrollInfo] /* Some(Ptr[GtkScrollInfo]) */ ]
   ): Unit /* None */ = gtk_column_view_scroll_to(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnView]],
     guint(pos),
     column
       .map[Ptr[GtkColumnViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -277,7 +295,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
   def setEnableRubberband(
       enable_rubberband: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_column_view_set_enable_rubberband(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnView]],
     gboolean(gint((if enable_rubberband == true then 1 else 0)))
   )
 
@@ -291,7 +309,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
   def setHeaderFactory(
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
   ): Unit /* None */ = gtk_column_view_set_header_factory(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnView]],
     factory
       .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
@@ -306,7 +324,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
   def setModel(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
   ): Unit /* None */ = gtk_column_view_set_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnView]],
     model
       .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])
@@ -319,7 +337,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
   def setReorderable(
       reorderable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_column_view_set_reorderable(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnView]],
     gboolean(gint((if reorderable == true then 1 else 0)))
   )
 
@@ -338,7 +356,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
   def setRowFactory(
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
   ): Unit /* None */ = gtk_column_view_set_row_factory(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnView]],
     factory
       .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
@@ -351,7 +369,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
   def setShowColumnSeparators(
       show_column_separators: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_column_view_set_show_column_separators(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnView]],
     gboolean(gint((if show_column_separators == true then 1 else 0)))
   )
 
@@ -362,7 +380,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
   def setShowRowSeparators(
       show_row_separators: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_column_view_set_show_row_separators(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnView]],
     gboolean(gint((if show_row_separators == true then 1 else 0)))
   )
 
@@ -374,7 +392,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
   def setSingleClickActivate(
       single_click_activate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_column_view_set_single_click_activate(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnView]],
     gboolean(gint((if single_click_activate == true then 1 else 0)))
   )
 
@@ -385,8 +403,10 @@ class ColumnView(raw: Ptr[GtkColumnView])
     */
   def setTabBehavior(
       tab_behavior: GtkListTabBehavior /* Some(GtkListTabBehavior) */
-  ): Unit /* None */ =
-    gtk_column_view_set_tab_behavior(this.raw.asInstanceOf, tab_behavior)
+  ): Unit /* None */ = gtk_column_view_set_tab_behavior(
+    this.raw.asInstanceOf[Ptr[GtkColumnView]],
+    tab_behavior
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -407,7 +427,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
       column: Option[ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */ ],
       direction: GtkSortType /* Some(GtkSortType) */
   ): Unit /* None */ = gtk_column_view_sort_by_column(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnView]],
     column
       .map[Ptr[GtkColumnViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkColumnViewColumn]]),

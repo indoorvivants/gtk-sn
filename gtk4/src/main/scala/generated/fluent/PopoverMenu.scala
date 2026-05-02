@@ -153,7 +153,7 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
       child: Widget /* Some(Ptr[GtkWidget]) */,
       id: String | CString /* Some(CString) */
   )(using Zone): Boolean /* None */ = gtk_popover_menu_add_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPopoverMenu]],
     child.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(id)
   ).value.!=(0)
@@ -164,7 +164,7 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     * model.
     */
   def getFlags(): GtkPopoverMenuFlags /* None */ = gtk_popover_menu_get_flags(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkPopoverMenu]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -172,7 +172,9 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     * Returns the menu model used to populate the popover.
     */
   def getMenuModel(): MenuModel /* None */ = new MenuModel(
-    gtk_popover_menu_get_menu_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_popover_menu_get_menu_model(
+      this.raw.asInstanceOf[Ptr[GtkPopoverMenu]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -183,7 +185,7 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
   def removeChild(
       child: Widget /* Some(Ptr[GtkWidget]) */
   ): Boolean /* None */ = gtk_popover_menu_remove_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPopoverMenu]],
     child.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -197,7 +199,10 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     */
   def setFlags(
       flags: GtkPopoverMenuFlags /* Some(GtkPopoverMenuFlags) */
-  ): Unit /* None */ = gtk_popover_menu_set_flags(this.raw.asInstanceOf, flags)
+  ): Unit /* None */ = gtk_popover_menu_set_flags(
+    this.raw.asInstanceOf[Ptr[GtkPopoverMenu]],
+    flags
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -211,7 +216,7 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
         MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   ): Unit /* None */ = gtk_popover_menu_set_menu_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPopoverMenu]],
     model
       .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
         o.getUnsafeRawPointer().asInstanceOf

@@ -97,7 +97,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * invalid.
     */
   def clearCache(): Unit /* None */ = gtk_tree_model_filter_clear_cache(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkTreeModelFilter]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -123,7 +123,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
       child_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
   ): Ptr[GtkTreePath] /* None */ =
     gtk_tree_model_filter_convert_child_path_to_path(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkTreeModelFilter]],
       child_path
     )
 
@@ -148,7 +148,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
       filter_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
   ): Ptr[GtkTreePath] /* None */ =
     gtk_tree_model_filter_convert_path_to_child_path(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkTreeModelFilter]],
       filter_path
     )
 
@@ -157,7 +157,9 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * Returns a pointer to the child model of @filter.
     */
   def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
-    gtk_tree_model_filter_get_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_tree_model_filter_get_model(
+      this.raw.asInstanceOf[Ptr[GtkTreeModelFilter]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -166,7 +168,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * filter to re-evaluate whether a row is visible or not.
     */
   def refilter(): Unit /* None */ = gtk_tree_model_filter_refilter(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkTreeModelFilter]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -194,7 +196,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
         GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
       ]
   ): Unit /* None */ = gtk_tree_model_filter_set_modify_func(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeModelFilter]],
     n_columns,
     types,
     func,
@@ -220,7 +222,10 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * given filter model.
     */
   def setVisibleColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_tree_model_filter_set_visible_column(this.raw.asInstanceOf, column)
+    gtk_tree_model_filter_set_visible_column(
+      this.raw.asInstanceOf[Ptr[GtkTreeModelFilter]],
+      column
+    )
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -269,7 +274,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
         GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
       ]
   ): Unit /* None */ = gtk_tree_model_filter_set_visible_func(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeModelFilter]],
     func,
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))

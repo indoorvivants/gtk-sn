@@ -44,7 +44,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
       peer_cert: TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
       errors: GTlsCertificateFlags /* Some(GTlsCertificateFlags) */
   ): Boolean /* None */ = g_tls_connection_emit_accept_certificate(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsConnection]],
     peer_cert.getUnsafeRawPointer().asInstanceOf,
     errors
   ).value.!=(0)
@@ -54,7 +54,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * Gets @conn's certificate, as set by g_tls_connection_set_certificate().
     */
   def getCertificate(): TlsCertificate /* None */ = new TlsCertificate(
-    g_tls_connection_get_certificate(this.raw.asInstanceOf).asInstanceOf
+    g_tls_connection_get_certificate(
+      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -90,7 +92,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * recommended.
     */
   def getCiphersuiteName()(using Zone): String /* None */ = fromCString(
-    g_tls_connection_get_ciphersuite_name(this.raw.asInstanceOf).asInstanceOf
+    g_tls_connection_get_ciphersuite_name(
+      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -99,7 +103,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * See g_tls_connection_set_database().
     */
   def getDatabase(): TlsDatabase /* None */ = new TlsDatabase(
-    g_tls_connection_get_database(this.raw.asInstanceOf).asInstanceOf
+    g_tls_connection_get_database(
+      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -109,7 +115,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * returned, then no user interaction will occur for this connection.
     */
   def getInteraction(): TlsInteraction /* None */ = new TlsInteraction(
-    g_tls_connection_get_interaction(this.raw.asInstanceOf).asInstanceOf
+    g_tls_connection_get_interaction(
+      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -123,7 +131,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * g_tls_connection_set_advertised_protocols().
     */
   def getNegotiatedProtocol()(using Zone): String /* None */ = fromCString(
-    g_tls_connection_get_negotiated_protocol(this.raw.asInstanceOf).asInstanceOf
+    g_tls_connection_get_negotiated_protocol(
+      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -133,7 +143,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * #GTlsConnection::accept-certificate.)
     */
   def getPeerCertificate(): TlsCertificate /* None */ = new TlsCertificate(
-    g_tls_connection_get_peer_certificate(this.raw.asInstanceOf).asInstanceOf
+    g_tls_connection_get_peer_certificate(
+      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -145,7 +157,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * See #GTlsConnection:peer-certificate-errors for more information.
     */
   def getPeerCertificateErrors(): GTlsCertificateFlags /* None */ =
-    g_tls_connection_get_peer_certificate_errors(this.raw.asInstanceOf)
+    g_tls_connection_get_peer_certificate_errors(
+      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -155,7 +169,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * that is not a recognized #GTlsProtocolVersion.
     */
   def getProtocolVersion(): GTlsProtocolVersion /* None */ =
-    g_tls_connection_get_protocol_version(this.raw.asInstanceOf)
+    g_tls_connection_get_protocol_version(
+      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -163,7 +179,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * for details.
     */
   def getRehandshakeMode(): GTlsRehandshakeMode /* None */ =
-    g_tls_connection_get_rehandshake_mode(this.raw.asInstanceOf)
+    g_tls_connection_get_rehandshake_mode(
+      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -172,7 +190,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * for details.
     */
   def getRequireCloseNotify(): Boolean /* None */ =
-    g_tls_connection_get_require_close_notify(this.raw.asInstanceOf).value.!=(0)
+    g_tls_connection_get_require_close_notify(
+      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -180,7 +200,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * certificates. See g_tls_connection_set_use_system_certdb().
     */
   def getUseSystemCertdb(): Boolean /* None */ =
-    g_tls_connection_get_use_system_certdb(this.raw.asInstanceOf).value.!=(0)
+    g_tls_connection_get_use_system_certdb(
+      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -218,7 +240,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_connection_handshake(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GTlsConnection]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -239,7 +261,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_tls_connection_handshake_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsConnection]],
     io_priority,
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -261,7 +283,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_connection_handshake_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GTlsConnection]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)
@@ -285,7 +307,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
         Ptr[CString] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]) */
       ]
   )(using Zone): Unit /* None */ = g_tls_connection_set_advertised_protocols(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsConnection]],
     protocols
       .map[Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]](o => o.asInstanceOf)
       .getOrElse(
@@ -314,7 +336,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
   def setCertificate(
       certificate: TlsCertificate /* Some(Ptr[GTlsCertificate]) */
   ): Unit /* None */ = g_tls_connection_set_certificate(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsConnection]],
     certificate.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -334,7 +356,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
   def setDatabase(
       database: Option[TlsDatabase /* Some(Ptr[GTlsDatabase]) */ ]
   ): Unit /* None */ = g_tls_connection_set_database(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsConnection]],
     database
       .map[Ptr[GTlsDatabase]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GTlsDatabase]])
@@ -352,7 +374,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
   def setInteraction(
       interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ]
   ): Unit /* None */ = g_tls_connection_set_interaction(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsConnection]],
     interaction
       .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]])
@@ -367,8 +389,10 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     */
   def setRehandshakeMode(
       mode: GTlsRehandshakeMode /* Some(GTlsRehandshakeMode) */
-  ): Unit /* None */ =
-    g_tls_connection_set_rehandshake_mode(this.raw.asInstanceOf, mode)
+  ): Unit /* None */ = g_tls_connection_set_rehandshake_mode(
+    this.raw.asInstanceOf[Ptr[GTlsConnection]],
+    mode
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -401,7 +425,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
   def setRequireCloseNotify(
       require_close_notify: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_tls_connection_set_require_close_notify(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsConnection]],
     gboolean(gint((if require_close_notify == true then 1 else 0)))
   )
 
@@ -417,7 +441,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
   def setUseSystemCertdb(
       use_system_certdb: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_tls_connection_set_use_system_certdb(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTlsConnection]],
     gboolean(gint((if use_system_certdb == true then 1 else 0)))
   )
 

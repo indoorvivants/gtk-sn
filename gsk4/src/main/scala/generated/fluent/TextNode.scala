@@ -28,7 +28,7 @@ class TextNode(raw: Ptr[GskTextNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the color used by the text @node.
     */
   def getColor(): Ptr[GdkRGBA] /* None */ = gsk_text_node_get_color(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -36,7 +36,9 @@ class TextNode(raw: Ptr[GskTextNode]) extends RenderNode(raw.asInstanceOf):
     * Returns the font used by the text @node.
     */
   def getFont(): Font /* None */ = new Font(
-    gsk_text_node_get_font(this.raw.asInstanceOf).asInstanceOf
+    gsk_text_node_get_font(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -53,7 +55,7 @@ class TextNode(raw: Ptr[GskTextNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the number of glyphs in the text node.
     */
   def getNumGlyphs(): UInt /* None */ = gsk_text_node_get_num_glyphs(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -61,15 +63,16 @@ class TextNode(raw: Ptr[GskTextNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the offset applied to the text.
     */
   def getOffset(): Ptr[graphene_point_t] /* None */ = gsk_text_node_get_offset(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks whether the text @node has color glyphs.
     */
-  def hasColorGlyphs(): Boolean /* None */ =
-    gsk_text_node_has_color_glyphs(this.raw.asInstanceOf).value.!=(0)
+  def hasColorGlyphs(): Boolean /* None */ = gsk_text_node_has_color_glyphs(
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
+  ).value.!=(0)
 
 end TextNode
 

@@ -75,7 +75,7 @@ class Fixed(raw: Ptr[GtkFixed])
   def getChildTransform(
       widget: Widget /* Some(Ptr[GtkWidget]) */
   ): Ptr[GskTransform] /* None */ = gtk_fixed_get_child_transform(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFixed]],
     widget.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -89,7 +89,7 @@ class Fixed(raw: Ptr[GtkFixed])
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */
   ): Unit /* None */ = gtk_fixed_move(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFixed]],
     widget.getUnsafeRawPointer().asInstanceOf,
     x,
     y
@@ -104,7 +104,7 @@ class Fixed(raw: Ptr[GtkFixed])
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */
   ): Unit /* None */ = gtk_fixed_put(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFixed]],
     widget.getUnsafeRawPointer().asInstanceOf,
     x,
     y
@@ -116,7 +116,7 @@ class Fixed(raw: Ptr[GtkFixed])
     */
   def remove(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_fixed_remove(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkFixed]],
       widget.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -135,7 +135,7 @@ class Fixed(raw: Ptr[GtkFixed])
         GskTransform
       ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]) */ ]
   ): Unit /* None */ = gtk_fixed_set_child_transform(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFixed]],
     widget.getUnsafeRawPointer().asInstanceOf,
     transform
       .map[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]](o => o)

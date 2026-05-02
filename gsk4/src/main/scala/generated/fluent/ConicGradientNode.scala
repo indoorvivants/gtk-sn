@@ -32,7 +32,7 @@ class ConicGradientNode(raw: Ptr[GskConicGradientNode])
     * angle = 90 - gsk_conic_gradient_node_get_rotation()
     */
   def getAngle(): Float /* None */ = gsk_conic_gradient_node_get_angle(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -40,7 +40,9 @@ class ConicGradientNode(raw: Ptr[GskConicGradientNode])
     * Retrieves the center pointer for the gradient.
     */
   def getCenter(): Ptr[graphene_point_t] /* None */ =
-    gsk_conic_gradient_node_get_center(this.raw.asInstanceOf)
+    gsk_conic_gradient_node_get_center(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -56,14 +58,16 @@ class ConicGradientNode(raw: Ptr[GskConicGradientNode])
     * Retrieves the number of color stops in the gradient.
     */
   def getNColorStops(): CUnsignedLongInt /* None */ =
-    gsk_conic_gradient_node_get_n_color_stops(this.raw.asInstanceOf).value
+    gsk_conic_gradient_node_get_n_color_stops(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the rotation for the gradient in degrees.
     */
   def getRotation(): Float /* None */ = gsk_conic_gradient_node_get_rotation(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
 end ConicGradientNode

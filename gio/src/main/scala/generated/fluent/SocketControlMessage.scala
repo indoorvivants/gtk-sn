@@ -42,7 +42,7 @@ class SocketControlMessage(raw: Ptr[GSocketControlMessage])
     * message. This is often SOL_SOCKET.
     */
   def getLevel(): Int /* None */ = g_socket_control_message_get_level(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocketControlMessage]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -51,7 +51,7 @@ class SocketControlMessage(raw: Ptr[GSocketControlMessage])
     * for UNIX fd passing this would be SCM_RIGHTS.
     */
   def getMsgType(): Int /* None */ = g_socket_control_message_get_msg_type(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSocketControlMessage]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -60,7 +60,9 @@ class SocketControlMessage(raw: Ptr[GSocketControlMessage])
     * or alignment.
     */
   def getSize(): CUnsignedLongInt /* None */ =
-    g_socket_control_message_get_size(this.raw.asInstanceOf).value
+    g_socket_control_message_get_size(
+      this.raw.asInstanceOf[Ptr[GSocketControlMessage]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -72,7 +74,9 @@ class SocketControlMessage(raw: Ptr[GSocketControlMessage])
     */
   def serialize(
       data: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-  ): Unit /* None */ =
-    g_socket_control_message_serialize(this.raw.asInstanceOf, gpointer(data))
+  ): Unit /* None */ = g_socket_control_message_serialize(
+    this.raw.asInstanceOf[Ptr[GSocketControlMessage]],
+    gpointer(data)
+  )
 
 end SocketControlMessage

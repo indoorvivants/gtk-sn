@@ -80,7 +80,7 @@ class WindowControls(raw: Ptr[GtkWindowControls])
     */
   def getDecorationLayout()(using Zone): String /* None */ = fromCString(
     gtk_window_controls_get_decoration_layout(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GtkWindowControls]]
     ).asInstanceOf
   )
 
@@ -88,15 +88,16 @@ class WindowControls(raw: Ptr[GtkWindowControls])
     *
     * Gets whether the widget has any window buttons.
     */
-  def getEmpty(): Boolean /* None */ =
-    gtk_window_controls_get_empty(this.raw.asInstanceOf).value.!=(0)
+  def getEmpty(): Boolean /* None */ = gtk_window_controls_get_empty(
+    this.raw.asInstanceOf[Ptr[GtkWindowControls]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the side to which this `GtkWindowControls` instance belongs.
     */
   def getSide(): GtkPackType /* None */ = gtk_window_controls_get_side(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkWindowControls]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -119,7 +120,7 @@ class WindowControls(raw: Ptr[GtkWindowControls])
   def setDecorationLayout(
       layout: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_window_controls_set_decoration_layout(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkWindowControls]],
     layout
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -132,7 +133,10 @@ class WindowControls(raw: Ptr[GtkWindowControls])
     * See [property@Gtk.WindowControls:decoration-layout].
     */
   def setSide(side: GtkPackType /* Some(GtkPackType) */ ): Unit /* None */ =
-    gtk_window_controls_set_side(this.raw.asInstanceOf, side)
+    gtk_window_controls_set_side(
+      this.raw.asInstanceOf[Ptr[GtkWindowControls]],
+      side
+    )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

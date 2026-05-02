@@ -34,7 +34,7 @@ class MultiSorter(raw: Ptr[GtkMultiSorter])
     */
   def append(sorter: Sorter /* Some(Ptr[GtkSorter]) */ ): Unit /* None */ =
     gtk_multi_sorter_append(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkMultiSorter]],
       sorter.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -46,8 +46,10 @@ class MultiSorter(raw: Ptr[GtkMultiSorter])
     */
   def remove(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_multi_sorter_remove(this.raw.asInstanceOf, guint(position))
+  ): Unit /* None */ = gtk_multi_sorter_remove(
+    this.raw.asInstanceOf[Ptr[GtkMultiSorter]],
+    guint(position)
+  )
 
 end MultiSorter
 

@@ -53,7 +53,7 @@ class SocketAddressEnumerator(raw: Ptr[GSocketAddressEnumerator])
   ): GResult[SocketAddress /* None */ ] = GResult.wrap(__errorPtr =>
     new SocketAddress(
       g_socket_address_enumerator_next(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GSocketAddressEnumerator]],
         cancellable
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
           .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -78,7 +78,7 @@ class SocketAddressEnumerator(raw: Ptr[GSocketAddressEnumerator])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_socket_address_enumerator_next_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSocketAddressEnumerator]],
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -102,7 +102,7 @@ class SocketAddressEnumerator(raw: Ptr[GSocketAddressEnumerator])
   ): GResult[SocketAddress /* None */ ] = GResult.wrap(__errorPtr =>
     new SocketAddress(
       g_socket_address_enumerator_next_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GSocketAddressEnumerator]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf

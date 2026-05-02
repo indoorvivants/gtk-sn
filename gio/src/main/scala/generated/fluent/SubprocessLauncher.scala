@@ -47,7 +47,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * bindings can call it earlier to guarantee when FDs are closed.
     */
   def close(): Unit /* None */ = g_subprocess_launcher_close(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -63,7 +63,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): String /* None */ = fromCString(
     g_subprocess_launcher_getenv(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
       __sn_extract_string(variable).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
@@ -91,7 +91,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
       ],
       destroy_notify: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): Unit /* None */ = g_subprocess_launcher_set_child_setup(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
     child_setup,
     user_data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -109,7 +109,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
   def setCwd(
       cwd: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_subprocess_launcher_set_cwd(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
     __sn_extract_string(cwd).asInstanceOf[Ptr[gchar]]
   )
 
@@ -129,8 +129,10 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     */
   def setFlags(
       flags: GSubprocessFlags /* Some(GSubprocessFlags) */
-  ): Unit /* None */ =
-    g_subprocess_launcher_set_flags(this.raw.asInstanceOf, flags)
+  ): Unit /* None */ = g_subprocess_launcher_set_flags(
+    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
+    flags
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -154,7 +156,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Zone): Unit /* None */ = g_subprocess_launcher_set_stderr_file_path(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
     path
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -179,7 +181,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
       path: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_subprocess_launcher_set_stdin_file_path(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
     __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
   )
 
@@ -202,7 +204,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Zone): Unit /* None */ = g_subprocess_launcher_set_stdout_file_path(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
     path
       .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
         __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -226,7 +228,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       overwrite: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Zone): Unit /* None */ = g_subprocess_launcher_setenv(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
     __sn_extract_string(variable).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(value).asInstanceOf[Ptr[gchar]],
     gboolean(gint((if overwrite == true then 1 else 0)))
@@ -245,7 +247,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
       args: Any*
   )(using Zone): Subprocess /* None */ = new Subprocess(
     g_subprocess_launcher_spawn(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
       error,
       __sn_extract_string(argv0).asInstanceOf[Ptr[gchar]],
       args*
@@ -271,7 +273,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
       source_fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       target_fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   ): Unit /* None */ = g_subprocess_launcher_take_fd(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
     gint(source_fd),
     gint(target_fd)
   )
@@ -296,8 +298,10 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     */
   def takeStderrFd(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ =
-    g_subprocess_launcher_take_stderr_fd(this.raw.asInstanceOf, gint(fd))
+  ): Unit /* None */ = g_subprocess_launcher_take_stderr_fd(
+    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
+    gint(fd)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -322,8 +326,10 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     */
   def takeStdinFd(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ =
-    g_subprocess_launcher_take_stdin_fd(this.raw.asInstanceOf, gint(fd))
+  ): Unit /* None */ = g_subprocess_launcher_take_stdin_fd(
+    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
+    gint(fd)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -347,8 +353,10 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     */
   def takeStdoutFd(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ =
-    g_subprocess_launcher_take_stdout_fd(this.raw.asInstanceOf, gint(fd))
+  ): Unit /* None */ = g_subprocess_launcher_take_stdout_fd(
+    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
+    gint(fd)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -362,7 +370,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
       variable: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_subprocess_launcher_unsetenv(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
     __sn_extract_string(variable).asInstanceOf[Ptr[gchar]]
   )
 

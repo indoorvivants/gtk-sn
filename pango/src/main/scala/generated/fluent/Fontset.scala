@@ -38,7 +38,7 @@ class Fontset(raw: Ptr[PangoFontset]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = pango_fontset_foreach(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoFontset]],
     func,
     data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -53,7 +53,10 @@ class Fontset(raw: Ptr[PangoFontset]) extends Object(raw.asInstanceOf):
   def getFont(
       wc: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Font /* None */ = new Font(
-    pango_fontset_get_font(this.raw.asInstanceOf, guint(wc)).asInstanceOf
+    pango_fontset_get_font(
+      this.raw.asInstanceOf[Ptr[PangoFontset]],
+      guint(wc)
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -61,6 +64,6 @@ class Fontset(raw: Ptr[PangoFontset]) extends Object(raw.asInstanceOf):
     * Get overall metric information for the fonts in the fontset.
     */
   def getMetrics(): Ptr[PangoFontMetrics] /* None */ =
-    pango_fontset_get_metrics(this.raw.asInstanceOf)
+    pango_fontset_get_metrics(this.raw.asInstanceOf[Ptr[PangoFontset]])
 
 end Fontset

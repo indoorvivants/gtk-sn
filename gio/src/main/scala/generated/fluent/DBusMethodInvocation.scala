@@ -37,7 +37,9 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * Gets the #GDBusConnection the method was invoked on.
     */
   def getConnection(): DBusConnection /* None */ = new DBusConnection(
-    g_dbus_method_invocation_get_connection(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_method_invocation_get_connection(
+      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -51,7 +53,7 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     */
   def getInterfaceName()(using Zone): String /* None */ = fromCString(
     g_dbus_method_invocation_get_interface_name(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
     ).asInstanceOf
   )
 
@@ -66,7 +68,9 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * descriptors.
     */
   def getMessage(): DBusMessage /* None */ = new DBusMessage(
-    g_dbus_method_invocation_get_message(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_method_invocation_get_message(
+      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -79,14 +83,18 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * for more information.
     */
   def getMethodInfo(): Ptr[GDBusMethodInfo] /* None */ =
-    g_dbus_method_invocation_get_method_info(this.raw.asInstanceOf)
+    g_dbus_method_invocation_get_method_info(
+      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the name of the method that was invoked.
     */
   def getMethodName()(using Zone): String /* None */ = fromCString(
-    g_dbus_method_invocation_get_method_name(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_method_invocation_get_method_name(
+      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -94,7 +102,9 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * Gets the object path the method was invoked on.
     */
   def getObjectPath()(using Zone): String /* None */ = fromCString(
-    g_dbus_method_invocation_get_object_path(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_method_invocation_get_object_path(
+      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -104,7 +114,9 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * NULL.
     */
   def getParameters(): Ptr[GVariant] /* None */ =
-    g_dbus_method_invocation_get_parameters(this.raw.asInstanceOf)
+    g_dbus_method_invocation_get_parameters(
+      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -120,14 +132,18 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * If the call was GetAll, %NULL will be returned.
     */
   def getPropertyInfo(): Ptr[GDBusPropertyInfo] /* None */ =
-    g_dbus_method_invocation_get_property_info(this.raw.asInstanceOf)
+    g_dbus_method_invocation_get_property_info(
+      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the bus name that invoked the method.
     */
   def getSender()(using Zone): String /* None */ = fromCString(
-    g_dbus_method_invocation_get_sender(this.raw.asInstanceOf).asInstanceOf
+    g_dbus_method_invocation_get_sender(
+      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -136,7 +152,9 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * g_dbus_connection_register_object().
     */
   def getUserData(): Ptr[Byte] /* None */ =
-    g_dbus_method_invocation_get_user_data(this.raw.asInstanceOf).value
+    g_dbus_method_invocation_get_user_data(
+      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -152,7 +170,7 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
       error_message: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_dbus_method_invocation_return_dbus_error(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
     __sn_extract_string(error_name).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(error_message).asInstanceOf[Ptr[gchar]]
   )
@@ -187,7 +205,7 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
   )(using Zone): Unit /* None */ = g_dbus_method_invocation_return_error(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
     domain,
     gint(code),
     __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
@@ -210,7 +228,7 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ =
     g_dbus_method_invocation_return_error_literal(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
       domain,
       gint(code),
       __sn_extract_string(message).asInstanceOf[Ptr[gchar]]
@@ -232,7 +250,7 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       var_args: CVarArgList /* Some(va_list) */
   )(using Zone): Unit /* None */ = g_dbus_method_invocation_return_error_valist(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
     domain,
     gint(code),
     __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
@@ -250,8 +268,10 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     */
   def returnGerror(
       error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): Unit /* None */ =
-    g_dbus_method_invocation_return_gerror(this.raw.asInstanceOf, error)
+  ): Unit /* None */ = g_dbus_method_invocation_return_gerror(
+    this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
+    error
+  )
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -293,7 +313,7 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
         Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
       ]
   ): Unit /* None */ = g_dbus_method_invocation_return_value(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
     parameters
       .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
@@ -316,7 +336,7 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
       ],
       fd_list: Option[UnixFDList /* Some(Ptr[GUnixFDList]) */ ]
   ): Unit /* None */ = g_dbus_method_invocation_return_value_with_unix_fd_list(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
     parameters
       .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
       .getOrElse(
@@ -338,8 +358,10 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     */
   def takeError(
       error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): Unit /* None */ =
-    g_dbus_method_invocation_take_error(this.raw.asInstanceOf, error)
+  ): Unit /* None */ = g_dbus_method_invocation_take_error(
+    this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
+    error
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

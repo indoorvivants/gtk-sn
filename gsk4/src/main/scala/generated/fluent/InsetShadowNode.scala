@@ -23,7 +23,7 @@ class InsetShadowNode(raw: Ptr[GskInsetShadowNode])
     * Retrieves the blur radius to apply to the shadow.
     */
   def getBlurRadius(): Float /* None */ = gsk_inset_shadow_node_get_blur_radius(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -31,7 +31,7 @@ class InsetShadowNode(raw: Ptr[GskInsetShadowNode])
     * Retrieves the color of the inset shadow.
     */
   def getColor(): Ptr[GdkRGBA] /* None */ = gsk_inset_shadow_node_get_color(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -39,7 +39,7 @@ class InsetShadowNode(raw: Ptr[GskInsetShadowNode])
     * Retrieves the horizontal offset of the inset shadow.
     */
   def getDx(): Float /* None */ = gsk_inset_shadow_node_get_dx(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -47,7 +47,7 @@ class InsetShadowNode(raw: Ptr[GskInsetShadowNode])
     * Retrieves the vertical offset of the inset shadow.
     */
   def getDy(): Float /* None */ = gsk_inset_shadow_node_get_dy(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -55,14 +55,14 @@ class InsetShadowNode(raw: Ptr[GskInsetShadowNode])
     * Retrieves the outline rectangle of the inset shadow.
     */
   def getOutline(): Ptr[GskRoundedRect] /* None */ =
-    gsk_inset_shadow_node_get_outline(this.raw.asInstanceOf)
+    gsk_inset_shadow_node_get_outline(this.raw.asInstanceOf[Ptr[GskRenderNode]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves how much the shadow spreads inwards.
     */
   def getSpread(): Float /* None */ = gsk_inset_shadow_node_get_spread(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
 end InsetShadowNode

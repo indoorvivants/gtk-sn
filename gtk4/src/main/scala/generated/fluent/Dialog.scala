@@ -167,7 +167,7 @@ class Dialog(raw: Ptr[GtkDialog])
       child: Widget /* Some(Ptr[GtkWidget]) */,
       response_id: GtkResponseType /* Some(CInt) */
   ): Unit /* None */ = gtk_dialog_add_action_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDialog]],
     child.getUnsafeRawPointer().asInstanceOf,
     response_id.value
   )
@@ -186,7 +186,7 @@ class Dialog(raw: Ptr[GtkDialog])
       response_id: GtkResponseType /* Some(CInt) */
   )(using Zone): Widget /* None */ = new Widget(
     gtk_dialog_add_button(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkDialog]],
       __sn_extract_string(button_text),
       response_id.value
     ).asInstanceOf
@@ -205,7 +205,7 @@ class Dialog(raw: Ptr[GtkDialog])
       first_button_text: String | CString /* Some(CString) */,
       args: Any*
   )(using Zone): Unit /* None */ = gtk_dialog_add_buttons(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDialog]],
     __sn_extract_string(first_button_text),
     args*
   )
@@ -215,7 +215,9 @@ class Dialog(raw: Ptr[GtkDialog])
     * Returns the content area of @dialog.
     */
   def getContentArea(): Box /* None */ = new Box(
-    gtk_dialog_get_content_area(this.raw.asInstanceOf).asInstanceOf
+    gtk_dialog_get_content_area(
+      this.raw.asInstanceOf[Ptr[GtkDialog]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -226,7 +228,9 @@ class Dialog(raw: Ptr[GtkDialog])
     * [property@Gtk.Dialog:use-header-bar] property is %TRUE.
     */
   def getHeaderBar(): HeaderBar /* None */ = new HeaderBar(
-    gtk_dialog_get_header_bar(this.raw.asInstanceOf).asInstanceOf
+    gtk_dialog_get_header_bar(
+      this.raw.asInstanceOf[Ptr[GtkDialog]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -236,7 +240,7 @@ class Dialog(raw: Ptr[GtkDialog])
   def getResponseForWidget(
       widget: Widget /* Some(Ptr[GtkWidget]) */
   ): Int /* None */ = gtk_dialog_get_response_for_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDialog]],
     widget.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -249,7 +253,7 @@ class Dialog(raw: Ptr[GtkDialog])
       response_id: GtkResponseType /* Some(CInt) */
   ): Widget /* None */ = new Widget(
     gtk_dialog_get_widget_for_response(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkDialog]],
       response_id.value
     ).asInstanceOf
   )
@@ -262,8 +266,10 @@ class Dialog(raw: Ptr[GtkDialog])
     */
   def response(
       response_id: GtkResponseType /* Some(CInt) */
-  ): Unit /* None */ =
-    gtk_dialog_response(this.raw.asInstanceOf, response_id.value)
+  ): Unit /* None */ = gtk_dialog_response(
+    this.raw.asInstanceOf[Ptr[GtkDialog]],
+    response_id.value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -273,8 +279,10 @@ class Dialog(raw: Ptr[GtkDialog])
     */
   def setDefaultResponse(
       response_id: GtkResponseType /* Some(CInt) */
-  ): Unit /* None */ =
-    gtk_dialog_set_default_response(this.raw.asInstanceOf, response_id.value)
+  ): Unit /* None */ = gtk_dialog_set_default_response(
+    this.raw.asInstanceOf[Ptr[GtkDialog]],
+    response_id.value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -287,7 +295,7 @@ class Dialog(raw: Ptr[GtkDialog])
       response_id: GtkResponseType /* Some(CInt) */,
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_dialog_set_response_sensitive(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDialog]],
     response_id.value,
     gboolean(gint((if setting == true then 1 else 0)))
   )

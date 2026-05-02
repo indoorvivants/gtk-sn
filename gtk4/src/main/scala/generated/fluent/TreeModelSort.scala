@@ -131,7 +131,7 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     * iters will be invalid.
     */
   def clearCache(): Unit /* None */ = gtk_tree_model_sort_clear_cache(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkTreeModelSort]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -157,7 +157,7 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
       child_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
   ): Ptr[GtkTreePath] /* None */ =
     gtk_tree_model_sort_convert_child_path_to_path(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkTreeModelSort]],
       child_path
     )
 
@@ -182,7 +182,7 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
       sorted_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
   ): Ptr[GtkTreePath] /* None */ =
     gtk_tree_model_sort_convert_path_to_child_path(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkTreeModelSort]],
       sorted_path
     )
 
@@ -191,7 +191,9 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     * Returns the model the `GtkTreeModelSort` is sorting.
     */
   def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
-    gtk_tree_model_sort_get_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_tree_model_sort_get_model(
+      this.raw.asInstanceOf[Ptr[GtkTreeModelSort]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -203,8 +205,10 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     */
   def iterIsValid(
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Boolean /* None */ =
-    gtk_tree_model_sort_iter_is_valid(this.raw.asInstanceOf, iter).value.!=(0)
+  ): Boolean /* None */ = gtk_tree_model_sort_iter_is_valid(
+    this.raw.asInstanceOf[Ptr[GtkTreeModelSort]],
+    iter
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -214,7 +218,9 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     * is in “unsorted” state.
     */
   def resetDefaultSortFunc(): Unit /* None */ =
-    gtk_tree_model_sort_reset_default_sort_func(this.raw.asInstanceOf)
+    gtk_tree_model_sort_reset_default_sort_func(
+      this.raw.asInstanceOf[Ptr[GtkTreeModelSort]]
+    )
 
 end TreeModelSort
 

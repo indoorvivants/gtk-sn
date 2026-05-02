@@ -39,7 +39,7 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * Retrieves the constant factor added to the source attributes' value.
     */
   def getConstant(): Double /* None */ = gtk_constraint_get_constant(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkConstraint]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -48,7 +48,7 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * value.
     */
   def getMultiplier(): Double /* None */ = gtk_constraint_get_multiplier(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkConstraint]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -56,7 +56,7 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * The order relation between the terms of the constraint.
     */
   def getRelation(): GtkConstraintRelation /* None */ =
-    gtk_constraint_get_relation(this.raw.asInstanceOf)
+    gtk_constraint_get_relation(this.raw.asInstanceOf[Ptr[GtkConstraint]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -67,7 +67,9 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * widget using the [class@Gtk.ConstraintLayout] as the source.
     */
   def getSource(): ConstraintTarget /* None */ = new ConstraintTarget.Abstract(
-    gtk_constraint_get_source(this.raw.asInstanceOf).asInstanceOf
+    gtk_constraint_get_source(
+      this.raw.asInstanceOf[Ptr[GtkConstraint]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -75,14 +77,16 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * Retrieves the attribute of the source to be read by the constraint.
     */
   def getSourceAttribute(): GtkConstraintAttribute /* None */ =
-    gtk_constraint_get_source_attribute(this.raw.asInstanceOf)
+    gtk_constraint_get_source_attribute(
+      this.raw.asInstanceOf[Ptr[GtkConstraint]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the strength of the constraint.
     */
   def getStrength(): Int /* None */ = gtk_constraint_get_strength(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkConstraint]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -94,7 +98,9 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * widget using the [class@Gtk.ConstraintLayout] as the target.
     */
   def getTarget(): ConstraintTarget /* None */ = new ConstraintTarget.Abstract(
-    gtk_constraint_get_target(this.raw.asInstanceOf).asInstanceOf
+    gtk_constraint_get_target(
+      this.raw.asInstanceOf[Ptr[GtkConstraint]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -102,31 +108,36 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * Retrieves the attribute of the target to be set by the constraint.
     */
   def getTargetAttribute(): GtkConstraintAttribute /* None */ =
-    gtk_constraint_get_target_attribute(this.raw.asInstanceOf)
+    gtk_constraint_get_target_attribute(
+      this.raw.asInstanceOf[Ptr[GtkConstraint]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks whether the constraint is attached to a
     * [class@Gtk.ConstraintLayout], and it is contributing to the layout.
     */
-  def isAttached(): Boolean /* None */ =
-    gtk_constraint_is_attached(this.raw.asInstanceOf).value.!=(0)
+  def isAttached(): Boolean /* None */ = gtk_constraint_is_attached(
+    this.raw.asInstanceOf[Ptr[GtkConstraint]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks whether the constraint describes a relation between an attribute on
     * the [property@Gtk.Constraint:target] and a constant value.
     */
-  def isConstant(): Boolean /* None */ =
-    gtk_constraint_is_constant(this.raw.asInstanceOf).value.!=(0)
+  def isConstant(): Boolean /* None */ = gtk_constraint_is_constant(
+    this.raw.asInstanceOf[Ptr[GtkConstraint]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks whether the constraint is a required relation for solving the
     * constraint layout.
     */
-  def isRequired(): Boolean /* None */ =
-    gtk_constraint_is_required(this.raw.asInstanceOf).value.!=(0)
+  def isRequired(): Boolean /* None */ = gtk_constraint_is_required(
+    this.raw.asInstanceOf[Ptr[GtkConstraint]]
+  ).value.!=(0)
 
 end Constraint
 

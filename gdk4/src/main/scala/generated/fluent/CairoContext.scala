@@ -34,7 +34,7 @@ class CairoContext(raw: Ptr[GdkCairoContext])
     * [method@Gdk.DrawContext.end_frame] is called.
     */
   def cairoCreate(): Ptr[cairo_t] /* None */ = gdk_cairo_context_cairo_create(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkCairoContext]]
   )
 
 end CairoContext

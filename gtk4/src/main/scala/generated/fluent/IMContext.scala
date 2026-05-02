@@ -78,7 +78,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
       offset: Int /* Some(CInt) */,
       n_chars: Int /* Some(CInt) */
   ): Boolean /* None */ = gtk_im_context_delete_surrounding(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkIMContext]],
     offset,
     n_chars
   ).value.!=(0)
@@ -97,7 +97,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
       state: GdkModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */,
       group: Int /* Some(CInt) */
   ): Boolean /* None */ = gtk_im_context_filter_key(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkIMContext]],
     gboolean(gint((if press == true then 1 else 0))),
     surface.getUnsafeRawPointer().asInstanceOf,
     device.getUnsafeRawPointer().asInstanceOf,
@@ -117,7 +117,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
   def filterKeypress(
       event: Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */
   ): Boolean /* None */ = gtk_im_context_filter_keypress(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkIMContext]],
     event.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -130,7 +130,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * reflect this change.
     */
   def focusIn(): Unit /* None */ = gtk_im_context_focus_in(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkIMContext]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -142,7 +142,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * the contexts state to reflect this change.
     */
   def focusOut(): Unit /* None */ = gtk_im_context_focus_out(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkIMContext]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -210,7 +210,9 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     *
     * This will typically cause the input method to clear the preedit state.
     */
-  def reset(): Unit /* None */ = gtk_im_context_reset(this.raw.asInstanceOf)
+  def reset(): Unit /* None */ = gtk_im_context_reset(
+    this.raw.asInstanceOf[Ptr[GtkIMContext]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -223,7 +225,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
   def setClientWidget(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_im_context_set_client_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkIMContext]],
     widget
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -239,8 +241,10 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
       area: Ptr[
         GdkRectangle
       ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */
-  ): Unit /* None */ =
-    gtk_im_context_set_cursor_location(this.raw.asInstanceOf, area)
+  ): Unit /* None */ = gtk_im_context_set_cursor_location(
+    this.raw.asInstanceOf[Ptr[GtkIMContext]],
+    area
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -255,7 +259,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
       len: Int /* Some(CInt) */,
       cursor_index: Int /* Some(CInt) */
   )(using Zone): Unit /* None */ = gtk_im_context_set_surrounding(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkIMContext]],
     __sn_extract_string(text),
     len,
     cursor_index
@@ -275,7 +279,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
       anchor_index: Int /* Some(CInt) */
   )(using Zone): Unit /* None */ =
     gtk_im_context_set_surrounding_with_selection(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkIMContext]],
       __sn_extract_string(text),
       len,
       cursor_index,
@@ -294,7 +298,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
   def setUsePreedit(
       use_preedit: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_im_context_set_use_preedit(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkIMContext]],
     gboolean(gint((if use_preedit == true then 1 else 0)))
   )
 

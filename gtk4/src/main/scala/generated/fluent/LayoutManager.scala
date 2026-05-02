@@ -77,7 +77,7 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
       height: Int /* Some(CInt) */,
       baseline: Int /* Some(CInt) */
   ): Unit /* None */ = gtk_layout_manager_allocate(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkLayoutManager]],
     widget.getUnsafeRawPointer().asInstanceOf,
     width,
     height,
@@ -99,7 +99,7 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
       child: Widget /* Some(Ptr[GtkWidget]) */
   ): LayoutChild /* None */ = new LayoutChild(
     gtk_layout_manager_get_layout_child(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkLayoutManager]],
       child.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
   )
@@ -109,14 +109,18 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     * Retrieves the request mode of @manager.
     */
   def getRequestMode(): GtkSizeRequestMode /* None */ =
-    gtk_layout_manager_get_request_mode(this.raw.asInstanceOf)
+    gtk_layout_manager_get_request_mode(
+      this.raw.asInstanceOf[Ptr[GtkLayoutManager]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the `GtkWidget` using the given `GtkLayoutManager`.
     */
   def getWidget(): Widget /* None */ = new Widget(
-    gtk_layout_manager_get_widget(this.raw.asInstanceOf).asInstanceOf
+    gtk_layout_manager_get_widget(
+      this.raw.asInstanceOf[Ptr[GtkLayoutManager]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -127,7 +131,7 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     * response to changes to their layout management policies.
     */
   def layoutChanged(): Unit /* None */ = gtk_layout_manager_layout_changed(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkLayoutManager]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

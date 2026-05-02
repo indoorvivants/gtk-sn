@@ -68,7 +68,7 @@ class Overlay(raw: Ptr[GtkOverlay])
     */
   def addOverlay(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_overlay_add_overlay(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkOverlay]],
       widget.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -77,7 +77,7 @@ class Overlay(raw: Ptr[GtkOverlay])
     * Gets the child widget of @overlay.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_overlay_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_overlay_get_child(this.raw.asInstanceOf[Ptr[GtkOverlay]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -87,7 +87,7 @@ class Overlay(raw: Ptr[GtkOverlay])
   def getClipOverlay(
       widget: Widget /* Some(Ptr[GtkWidget]) */
   ): Boolean /* None */ = gtk_overlay_get_clip_overlay(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkOverlay]],
     widget.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -99,7 +99,7 @@ class Overlay(raw: Ptr[GtkOverlay])
   def getMeasureOverlay(
       widget: Widget /* Some(Ptr[GtkWidget]) */
   ): Boolean /* None */ = gtk_overlay_get_measure_overlay(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkOverlay]],
     widget.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -110,7 +110,7 @@ class Overlay(raw: Ptr[GtkOverlay])
   def removeOverlay(
       widget: Widget /* Some(Ptr[GtkWidget]) */
   ): Unit /* None */ = gtk_overlay_remove_overlay(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkOverlay]],
     widget.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -121,7 +121,7 @@ class Overlay(raw: Ptr[GtkOverlay])
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_overlay_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkOverlay]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -135,7 +135,7 @@ class Overlay(raw: Ptr[GtkOverlay])
       widget: Widget /* Some(Ptr[GtkWidget]) */,
       clip_overlay: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_overlay_set_clip_overlay(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkOverlay]],
     widget.getUnsafeRawPointer().asInstanceOf,
     gboolean(gint((if clip_overlay == true then 1 else 0)))
   )
@@ -152,7 +152,7 @@ class Overlay(raw: Ptr[GtkOverlay])
       widget: Widget /* Some(Ptr[GtkWidget]) */,
       measure: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_overlay_set_measure_overlay(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkOverlay]],
     widget.getUnsafeRawPointer().asInstanceOf,
     gboolean(gint((if measure == true then 1 else 0)))
   )

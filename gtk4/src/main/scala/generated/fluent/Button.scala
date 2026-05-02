@@ -61,14 +61,14 @@ class Button(raw: Ptr[GtkButton])
     * contents.
     */
   def getCanShrink(): Boolean /* None */ =
-    gtk_button_get_can_shrink(this.raw.asInstanceOf).value.!=(0)
+    gtk_button_get_can_shrink(this.raw.asInstanceOf[Ptr[GtkButton]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the child widget of @button.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_button_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_button_get_child(this.raw.asInstanceOf[Ptr[GtkButton]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -76,7 +76,7 @@ class Button(raw: Ptr[GtkButton])
     * Returns whether the button has a frame.
     */
   def getHasFrame(): Boolean /* None */ =
-    gtk_button_get_has_frame(this.raw.asInstanceOf).value.!=(0)
+    gtk_button_get_has_frame(this.raw.asInstanceOf[Ptr[GtkButton]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -87,7 +87,7 @@ class Button(raw: Ptr[GtkButton])
     * empty button with [ctor@Gtk.Button.new] to use as a container.
     */
   def getIconName()(using Zone): String /* None */ = fromCString(
-    gtk_button_get_icon_name(this.raw.asInstanceOf).asInstanceOf
+    gtk_button_get_icon_name(this.raw.asInstanceOf[Ptr[GtkButton]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -99,7 +99,7 @@ class Button(raw: Ptr[GtkButton])
     * button with [ctor@Gtk.Button.new] to use as a container.
     */
   def getLabel()(using Zone): String /* None */ = fromCString(
-    gtk_button_get_label(this.raw.asInstanceOf).asInstanceOf
+    gtk_button_get_label(this.raw.asInstanceOf[Ptr[GtkButton]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -108,8 +108,9 @@ class Button(raw: Ptr[GtkButton])
     *
     * See [method@Gtk.Button.set_use_underline].
     */
-  def getUseUnderline(): Boolean /* None */ =
-    gtk_button_get_use_underline(this.raw.asInstanceOf).value.!=(0)
+  def getUseUnderline(): Boolean /* None */ = gtk_button_get_use_underline(
+    this.raw.asInstanceOf[Ptr[GtkButton]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -123,7 +124,7 @@ class Button(raw: Ptr[GtkButton])
   def setCanShrink(
       can_shrink: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_button_set_can_shrink(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkButton]],
     gboolean(gint((if can_shrink == true then 1 else 0)))
   )
 
@@ -140,7 +141,7 @@ class Button(raw: Ptr[GtkButton])
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_button_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkButton]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -155,7 +156,7 @@ class Button(raw: Ptr[GtkButton])
   def setHasFrame(
       has_frame: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_button_set_has_frame(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkButton]],
     gboolean(gint((if has_frame == true then 1 else 0)))
   )
 
@@ -169,7 +170,7 @@ class Button(raw: Ptr[GtkButton])
   def setIconName(
       icon_name: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_button_set_icon_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkButton]],
     __sn_extract_string(icon_name)
   )
 
@@ -181,8 +182,10 @@ class Button(raw: Ptr[GtkButton])
     */
   def setLabel(
       label: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ =
-    gtk_button_set_label(this.raw.asInstanceOf, __sn_extract_string(label))
+  )(using Zone): Unit /* None */ = gtk_button_set_label(
+    this.raw.asInstanceOf[Ptr[GtkButton]],
+    __sn_extract_string(label)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -194,7 +197,7 @@ class Button(raw: Ptr[GtkButton])
   def setUseUnderline(
       use_underline: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_button_set_use_underline(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkButton]],
     gboolean(gint((if use_underline == true then 1 else 0)))
   )
 

@@ -24,7 +24,9 @@ class SignalAction(raw: Ptr[GtkSignalAction])
     * Returns the name of the signal that will be emitted.
     */
   def getSignalName()(using Zone): String /* None */ = fromCString(
-    gtk_signal_action_get_signal_name(this.raw.asInstanceOf).asInstanceOf
+    gtk_signal_action_get_signal_name(
+      this.raw.asInstanceOf[Ptr[GtkSignalAction]]
+    ).asInstanceOf
   )
 
 end SignalAction

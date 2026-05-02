@@ -63,14 +63,14 @@ class Switch(raw: Ptr[GtkSwitch])
     * Gets whether the `GtkSwitch` is in its “on” or “off” state.
     */
   def getActive(): Boolean /* None */ =
-    gtk_switch_get_active(this.raw.asInstanceOf).value.!=(0)
+    gtk_switch_get_active(this.raw.asInstanceOf[Ptr[GtkSwitch]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the underlying state of the `GtkSwitch`.
     */
   def getState(): Boolean /* None */ =
-    gtk_switch_get_state(this.raw.asInstanceOf).value.!=(0)
+    gtk_switch_get_state(this.raw.asInstanceOf[Ptr[GtkSwitch]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -79,7 +79,7 @@ class Switch(raw: Ptr[GtkSwitch])
   def setActive(
       is_active: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_switch_set_active(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSwitch]],
     gboolean(gint((if is_active == true then 1 else 0)))
   )
 
@@ -95,7 +95,7 @@ class Switch(raw: Ptr[GtkSwitch])
   def setState(
       state: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_switch_set_state(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSwitch]],
     gboolean(gint((if state == true then 1 else 0)))
   )
 

@@ -103,7 +103,7 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * binding then this function will return %NULL.
     */
   def dupSource(): Object /* None */ = new Object(
-    g_binding_dup_source(this.raw.asInstanceOf).asInstanceOf
+    g_binding_dup_source(this.raw.asInstanceOf[Ptr[GBinding]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -115,7 +115,7 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * binding then this function will return %NULL.
     */
   def dupTarget(): Object /* None */ = new Object(
-    g_binding_dup_target(this.raw.asInstanceOf).asInstanceOf
+    g_binding_dup_target(this.raw.asInstanceOf[Ptr[GBinding]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -123,7 +123,7 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * Retrieves the flags passed when constructing the #GBinding.
     */
   def getFlags(): GBindingFlags /* None */ = g_binding_get_flags(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GBinding]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -140,7 +140,7 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * meantime.
     */
   def getSource(): Object /* None */ = new Object(
-    g_binding_get_source(this.raw.asInstanceOf).asInstanceOf
+    g_binding_get_source(this.raw.asInstanceOf[Ptr[GBinding]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -149,7 +149,9 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * of the binding.
     */
   def getSourceProperty()(using Zone): String /* None */ = fromCString(
-    g_binding_get_source_property(this.raw.asInstanceOf).asInstanceOf
+    g_binding_get_source_property(
+      this.raw.asInstanceOf[Ptr[GBinding]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -166,7 +168,7 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * meantime.
     */
   def getTarget(): Object /* None */ = new Object(
-    g_binding_get_target(this.raw.asInstanceOf).asInstanceOf
+    g_binding_get_target(this.raw.asInstanceOf[Ptr[GBinding]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -175,7 +177,9 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * of the binding.
     */
   def getTargetProperty()(using Zone): String /* None */ = fromCString(
-    g_binding_get_target_property(this.raw.asInstanceOf).asInstanceOf
+    g_binding_get_target_property(
+      this.raw.asInstanceOf[Ptr[GBinding]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -192,6 +196,8 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * only unrefs the reference that was initially created by
     * g_object_bind_property() and is owned by the binding.
     */
-  def unbind(): Unit /* None */ = g_binding_unbind(this.raw.asInstanceOf)
+  def unbind(): Unit /* None */ = g_binding_unbind(
+    this.raw.asInstanceOf[Ptr[GBinding]]
+  )
 
 end Binding

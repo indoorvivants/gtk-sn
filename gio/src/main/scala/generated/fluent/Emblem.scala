@@ -26,15 +26,16 @@ class Emblem(raw: Ptr[GEmblem]) extends Object(raw.asInstanceOf), Icon:
     *
     * Gives back the icon from @emblem.
     */
-  def getIcon(): Icon /* None */ =
-    new Icon.Abstract(g_emblem_get_icon(this.raw.asInstanceOf).asInstanceOf)
+  def getIcon(): Icon /* None */ = new Icon.Abstract(
+    g_emblem_get_icon(this.raw.asInstanceOf[Ptr[GEmblem]]).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the origin of the emblem.
     */
   def getOrigin(): GEmblemOrigin /* None */ = g_emblem_get_origin(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GEmblem]]
   )
 
 end Emblem

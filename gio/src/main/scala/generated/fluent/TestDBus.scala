@@ -97,7 +97,7 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
       path: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_test_dbus_add_service_dir(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTestDBus]],
     __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
   )
 
@@ -109,7 +109,9 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
     * g_bus_get_sync() to be destroyed. This is done to ensure that the next
     * unit test won't get a leaked singleton from this test.
     */
-  def down(): Unit /* None */ = g_test_dbus_down(this.raw.asInstanceOf)
+  def down(): Unit /* None */ = g_test_dbus_down(
+    this.raw.asInstanceOf[Ptr[GTestDBus]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -118,7 +120,9 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
     * g_dbus_connection_new_for_address().
     */
   def getBusAddress()(using Zone): String /* None */ = fromCString(
-    g_test_dbus_get_bus_address(this.raw.asInstanceOf).asInstanceOf
+    g_test_dbus_get_bus_address(
+      this.raw.asInstanceOf[Ptr[GTestDBus]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -126,7 +130,7 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
     * Get the flags of the #GTestDBus object.
     */
   def getFlags(): GTestDBusFlags /* None */ = g_test_dbus_get_flags(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GTestDBus]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -138,7 +142,9 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
     * tests wanting to verify behaviour after the session bus has been stopped
     * can use this function but should still call g_test_dbus_down() when done.
     */
-  def stop(): Unit /* None */ = g_test_dbus_stop(this.raw.asInstanceOf)
+  def stop(): Unit /* None */ = g_test_dbus_stop(
+    this.raw.asInstanceOf[Ptr[GTestDBus]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -152,7 +158,9 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
     * If this function is called from unit test's main(), then
     * g_test_dbus_down() must be called after g_test_run().
     */
-  def up(): Unit /* None */ = g_test_dbus_up(this.raw.asInstanceOf)
+  def up(): Unit /* None */ = g_test_dbus_up(
+    this.raw.asInstanceOf[Ptr[GTestDBus]]
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

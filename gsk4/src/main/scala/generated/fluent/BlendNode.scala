@@ -21,7 +21,7 @@ class BlendNode(raw: Ptr[GskBlendNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the blend mode used by @node.
     */
   def getBlendMode(): GskBlendMode /* None */ = gsk_blend_node_get_blend_mode(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -29,7 +29,9 @@ class BlendNode(raw: Ptr[GskBlendNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the bottom `GskRenderNode` child of the @node.
     */
   def getBottomChild(): RenderNode /* None */ = new RenderNode(
-    gsk_blend_node_get_bottom_child(this.raw.asInstanceOf).asInstanceOf
+    gsk_blend_node_get_bottom_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -37,7 +39,9 @@ class BlendNode(raw: Ptr[GskBlendNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the top `GskRenderNode` child of the @node.
     */
   def getTopChild(): RenderNode /* None */ = new RenderNode(
-    gsk_blend_node_get_top_child(this.raw.asInstanceOf).asInstanceOf
+    gsk_blend_node_get_top_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
 end BlendNode

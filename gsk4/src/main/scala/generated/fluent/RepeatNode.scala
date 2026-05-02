@@ -21,7 +21,9 @@ class RepeatNode(raw: Ptr[GskRepeatNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the child of @node.
     */
   def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_repeat_node_get_child(this.raw.asInstanceOf).asInstanceOf
+    gsk_repeat_node_get_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -29,7 +31,7 @@ class RepeatNode(raw: Ptr[GskRepeatNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the bounding rectangle of the child of @node.
     */
   def getChildBounds(): Ptr[graphene_rect_t] /* None */ =
-    gsk_repeat_node_get_child_bounds(this.raw.asInstanceOf)
+    gsk_repeat_node_get_child_bounds(this.raw.asInstanceOf[Ptr[GskRenderNode]])
 
 end RepeatNode
 

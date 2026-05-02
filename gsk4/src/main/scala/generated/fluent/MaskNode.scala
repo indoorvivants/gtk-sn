@@ -21,7 +21,9 @@ class MaskNode(raw: Ptr[GskMaskNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the mask `GskRenderNode` child of the @node.
     */
   def getMask(): RenderNode /* None */ = new RenderNode(
-    gsk_mask_node_get_mask(this.raw.asInstanceOf).asInstanceOf
+    gsk_mask_node_get_mask(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -29,7 +31,7 @@ class MaskNode(raw: Ptr[GskMaskNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the mask mode used by @node.
     */
   def getMaskMode(): GskMaskMode /* None */ = gsk_mask_node_get_mask_mode(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -37,7 +39,9 @@ class MaskNode(raw: Ptr[GskMaskNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the source `GskRenderNode` child of the @node.
     */
   def getSource(): RenderNode /* None */ = new RenderNode(
-    gsk_mask_node_get_source(this.raw.asInstanceOf).asInstanceOf
+    gsk_mask_node_get_source(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
 end MaskNode

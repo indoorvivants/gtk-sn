@@ -28,7 +28,7 @@ class GestureZoom(raw: Ptr[GtkGestureZoom]) extends Gesture(raw.asInstanceOf):
     * If @gesture is not active, 1 is returned.
     */
   def getScaleDelta(): Double /* None */ = gtk_gesture_zoom_get_scale_delta(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkGestureZoom]]
   )
 
 end GestureZoom

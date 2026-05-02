@@ -98,7 +98,7 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     */
   def addWidget(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_size_group_add_widget(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkSizeGroup]],
       widget.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -107,7 +107,7 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     * Gets the current mode of the size group.
     */
   def getMode(): GtkSizeGroupMode /* None */ = gtk_size_group_get_mode(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkSizeGroup]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -115,7 +115,7 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     * Returns the list of widgets associated with @size_group.
     */
   def getWidgets(): Ptr[GSList] /* None */ = gtk_size_group_get_widgets(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkSizeGroup]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -125,7 +125,7 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
   def removeWidget(
       widget: Widget /* Some(Ptr[GtkWidget]) */
   ): Unit /* None */ = gtk_size_group_remove_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSizeGroup]],
     widget.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -141,7 +141,8 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     */
   def setMode(
       mode: GtkSizeGroupMode /* Some(GtkSizeGroupMode) */
-  ): Unit /* None */ = gtk_size_group_set_mode(this.raw.asInstanceOf, mode)
+  ): Unit /* None */ =
+    gtk_size_group_set_mode(this.raw.asInstanceOf[Ptr[GtkSizeGroup]], mode)
 
 end SizeGroup
 

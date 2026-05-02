@@ -127,7 +127,7 @@ class Grid(raw: Ptr[GtkGrid])
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
   ): Unit /* None */ = gtk_grid_attach(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkGrid]],
     child.getUnsafeRawPointer().asInstanceOf,
     column,
     row,
@@ -155,7 +155,7 @@ class Grid(raw: Ptr[GtkGrid])
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
   ): Unit /* None */ = gtk_grid_attach_next_to(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkGrid]],
     child.getUnsafeRawPointer().asInstanceOf,
     sibling
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -170,7 +170,7 @@ class Grid(raw: Ptr[GtkGrid])
     * Returns which row defines the global baseline of @grid.
     */
   def getBaselineRow(): Int /* None */ = gtk_grid_get_baseline_row(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkGrid]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -181,7 +181,11 @@ class Grid(raw: Ptr[GtkGrid])
       column: Int /* Some(CInt) */,
       row: Int /* Some(CInt) */
   ): Widget /* None */ = new Widget(
-    gtk_grid_get_child_at(this.raw.asInstanceOf, column, row).asInstanceOf
+    gtk_grid_get_child_at(
+      this.raw.asInstanceOf[Ptr[GtkGrid]],
+      column,
+      row
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -189,14 +193,15 @@ class Grid(raw: Ptr[GtkGrid])
     * Returns whether all columns of @grid have the same width.
     */
   def getColumnHomogeneous(): Boolean /* None */ =
-    gtk_grid_get_column_homogeneous(this.raw.asInstanceOf).value.!=(0)
+    gtk_grid_get_column_homogeneous(this.raw.asInstanceOf[Ptr[GtkGrid]]).value
+      .!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the amount of space between the columns of @grid.
     */
   def getColumnSpacing(): UInt /* None */ = gtk_grid_get_column_spacing(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkGrid]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -208,21 +213,22 @@ class Grid(raw: Ptr[GtkGrid])
   def getRowBaselinePosition(
       row: Int /* Some(CInt) */
   ): GtkBaselinePosition /* None */ =
-    gtk_grid_get_row_baseline_position(this.raw.asInstanceOf, row)
+    gtk_grid_get_row_baseline_position(this.raw.asInstanceOf[Ptr[GtkGrid]], row)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether all rows of @grid have the same height.
     */
-  def getRowHomogeneous(): Boolean /* None */ =
-    gtk_grid_get_row_homogeneous(this.raw.asInstanceOf).value.!=(0)
+  def getRowHomogeneous(): Boolean /* None */ = gtk_grid_get_row_homogeneous(
+    this.raw.asInstanceOf[Ptr[GtkGrid]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the amount of space between the rows of @grid.
     */
   def getRowSpacing(): UInt /* None */ = gtk_grid_get_row_spacing(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkGrid]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -234,7 +240,7 @@ class Grid(raw: Ptr[GtkGrid])
     * grown to span the new column.
     */
   def insertColumn(position: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_grid_insert_column(this.raw.asInstanceOf, position)
+    gtk_grid_insert_column(this.raw.asInstanceOf[Ptr[GtkGrid]], position)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -248,7 +254,7 @@ class Grid(raw: Ptr[GtkGrid])
       sibling: Widget /* Some(Ptr[GtkWidget]) */,
       side: GtkPositionType /* Some(GtkPositionType) */
   ): Unit /* None */ = gtk_grid_insert_next_to(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkGrid]],
     sibling.getUnsafeRawPointer().asInstanceOf,
     side
   )
@@ -262,7 +268,7 @@ class Grid(raw: Ptr[GtkGrid])
     * row.
     */
   def insertRow(position: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_grid_insert_row(this.raw.asInstanceOf, position)
+    gtk_grid_insert_row(this.raw.asInstanceOf[Ptr[GtkGrid]], position)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -282,7 +288,7 @@ class Grid(raw: Ptr[GtkGrid])
     */
   def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_grid_remove(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkGrid]],
       child.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -295,7 +301,7 @@ class Grid(raw: Ptr[GtkGrid])
     * after the column are moved to the left.
     */
   def removeColumn(position: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_grid_remove_column(this.raw.asInstanceOf, position)
+    gtk_grid_remove_column(this.raw.asInstanceOf[Ptr[GtkGrid]], position)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -306,7 +312,7 @@ class Grid(raw: Ptr[GtkGrid])
     * row are moved up.
     */
   def removeRow(position: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_grid_remove_row(this.raw.asInstanceOf, position)
+    gtk_grid_remove_row(this.raw.asInstanceOf[Ptr[GtkGrid]], position)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -316,7 +322,7 @@ class Grid(raw: Ptr[GtkGrid])
     * those is global, meaning it will be the baseline in the parent of the @grid.
     */
   def setBaselineRow(row: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_grid_set_baseline_row(this.raw.asInstanceOf, row)
+    gtk_grid_set_baseline_row(this.raw.asInstanceOf[Ptr[GtkGrid]], row)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -325,7 +331,7 @@ class Grid(raw: Ptr[GtkGrid])
   def setColumnHomogeneous(
       homogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_grid_set_column_homogeneous(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkGrid]],
     gboolean(gint((if homogeneous == true then 1 else 0)))
   )
 
@@ -335,8 +341,10 @@ class Grid(raw: Ptr[GtkGrid])
     */
   def setColumnSpacing(
       spacing: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_grid_set_column_spacing(this.raw.asInstanceOf, guint(spacing))
+  ): Unit /* None */ = gtk_grid_set_column_spacing(
+    this.raw.asInstanceOf[Ptr[GtkGrid]],
+    guint(spacing)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -348,8 +356,11 @@ class Grid(raw: Ptr[GtkGrid])
   def setRowBaselinePosition(
       row: Int /* Some(CInt) */,
       pos: GtkBaselinePosition /* Some(GtkBaselinePosition) */
-  ): Unit /* None */ =
-    gtk_grid_set_row_baseline_position(this.raw.asInstanceOf, row, pos)
+  ): Unit /* None */ = gtk_grid_set_row_baseline_position(
+    this.raw.asInstanceOf[Ptr[GtkGrid]],
+    row,
+    pos
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -358,7 +369,7 @@ class Grid(raw: Ptr[GtkGrid])
   def setRowHomogeneous(
       homogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_grid_set_row_homogeneous(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkGrid]],
     gboolean(gint((if homogeneous == true then 1 else 0)))
   )
 
@@ -368,8 +379,10 @@ class Grid(raw: Ptr[GtkGrid])
     */
   def setRowSpacing(
       spacing: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_grid_set_row_spacing(this.raw.asInstanceOf, guint(spacing))
+  ): Unit /* None */ = gtk_grid_set_row_spacing(
+    this.raw.asInstanceOf[Ptr[GtkGrid]],
+    guint(spacing)
+  )
 
 end Grid
 

@@ -72,7 +72,9 @@ class Scrollbar(raw: Ptr[GtkScrollbar])
     * Returns the scrollbar's adjustment.
     */
   def getAdjustment(): Adjustment /* None */ = new Adjustment(
-    gtk_scrollbar_get_adjustment(this.raw.asInstanceOf).asInstanceOf
+    gtk_scrollbar_get_adjustment(
+      this.raw.asInstanceOf[Ptr[GtkScrollbar]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -82,7 +84,7 @@ class Scrollbar(raw: Ptr[GtkScrollbar])
   def setAdjustment(
       adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
   ): Unit /* None */ = gtk_scrollbar_set_adjustment(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkScrollbar]],
     adjustment
       .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])

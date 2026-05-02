@@ -26,7 +26,9 @@ class NumericSorter(raw: Ptr[GtkNumericSorter])
     * Gets the expression that is evaluated to obtain numbers from items.
     */
   def getExpression(): Expression /* None */ = new Expression(
-    gtk_numeric_sorter_get_expression(this.raw.asInstanceOf).asInstanceOf
+    gtk_numeric_sorter_get_expression(
+      this.raw.asInstanceOf[Ptr[GtkNumericSorter]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -34,7 +36,9 @@ class NumericSorter(raw: Ptr[GtkNumericSorter])
     * Gets whether this sorter will sort smaller numbers first.
     */
   def getSortOrder(): GtkSortType /* None */ =
-    gtk_numeric_sorter_get_sort_order(this.raw.asInstanceOf)
+    gtk_numeric_sorter_get_sort_order(
+      this.raw.asInstanceOf[Ptr[GtkNumericSorter]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -49,7 +53,7 @@ class NumericSorter(raw: Ptr[GtkNumericSorter])
   def setExpression(
       expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
   ): Unit /* None */ = gtk_numeric_sorter_set_expression(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkNumericSorter]],
     expression
       .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
@@ -61,8 +65,10 @@ class NumericSorter(raw: Ptr[GtkNumericSorter])
     */
   def setSortOrder(
       sort_order: GtkSortType /* Some(GtkSortType) */
-  ): Unit /* None */ =
-    gtk_numeric_sorter_set_sort_order(this.raw.asInstanceOf, sort_order)
+  ): Unit /* None */ = gtk_numeric_sorter_set_sort_order(
+    this.raw.asInstanceOf[Ptr[GtkNumericSorter]],
+    sort_order
+  )
 
 end NumericSorter
 

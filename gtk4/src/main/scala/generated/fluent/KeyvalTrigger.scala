@@ -25,7 +25,7 @@ class KeyvalTrigger(raw: Ptr[GtkKeyvalTrigger])
     * Gets the keyval that must be pressed to succeed triggering @self.
     */
   def getKeyval(): UInt /* None */ = gtk_keyval_trigger_get_keyval(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkKeyvalTrigger]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -33,7 +33,9 @@ class KeyvalTrigger(raw: Ptr[GtkKeyvalTrigger])
     * Gets the modifiers that must be present to succeed triggering @self.
     */
   def getModifiers(): GdkModifierType /* None */ =
-    gtk_keyval_trigger_get_modifiers(this.raw.asInstanceOf)
+    gtk_keyval_trigger_get_modifiers(
+      this.raw.asInstanceOf[Ptr[GtkKeyvalTrigger]]
+    )
 
 end KeyvalTrigger
 

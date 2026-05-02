@@ -46,7 +46,11 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
   def append(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
-    g_unix_fd_list_append(this.raw.asInstanceOf, gint(fd), __errorPtr).value
+    g_unix_fd_list_append(
+      this.raw.asInstanceOf[Ptr[GUnixFDList]],
+      gint(fd),
+      __errorPtr
+    ).value
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -66,7 +70,11 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
   def get(
       `index_`: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
-    g_unix_fd_list_get(this.raw.asInstanceOf, gint(`index_`), __errorPtr).value
+    g_unix_fd_list_get(
+      this.raw.asInstanceOf[Ptr[GUnixFDList]],
+      gint(`index_`),
+      __errorPtr
+    ).value
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -75,7 +83,7 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     * within).
     */
   def getLength(): Int /* None */ = g_unix_fd_list_get_length(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GUnixFDList]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

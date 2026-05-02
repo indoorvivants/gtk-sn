@@ -176,7 +176,7 @@ class Expression(raw: Ptr[GtkExpression]):
         Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Ptr[GtkExpressionWatch] /* None */ = gtk_expression_bind(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkExpression]],
     gpointer(target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
     __sn_extract_string(property),
     `this_`
@@ -205,7 +205,7 @@ class Expression(raw: Ptr[GtkExpression]):
         GValue
       ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
   ): Boolean /* None */ = gtk_expression_evaluate(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkExpression]],
     `this_`
       .map[_root_.sn.gnome.glib.internal.gpointer](o =>
         gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
@@ -222,7 +222,7 @@ class Expression(raw: Ptr[GtkExpression]):
     * expression.
     */
   def getValueType(): GType /* None */ = gtk_expression_get_value_type(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkExpression]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -235,15 +235,16 @@ class Expression(raw: Ptr[GtkExpression]):
     * That means a call to [method@Gtk.Expression.watch] is not necessary
     * because it will never trigger a notify.
     */
-  def isStatic(): Boolean /* None */ =
-    gtk_expression_is_static(this.raw.asInstanceOf).value.!=(0)
+  def isStatic(): Boolean /* None */ = gtk_expression_is_static(
+    this.raw.asInstanceOf[Ptr[GtkExpression]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Acquires a reference on the given `GtkExpression`.
     */
   def ref(): Expression /* None */ = new Expression(
-    gtk_expression_ref(this.raw.asInstanceOf).asInstanceOf
+    gtk_expression_ref(this.raw.asInstanceOf[Ptr[GtkExpression]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -253,7 +254,9 @@ class Expression(raw: Ptr[GtkExpression]):
     * If the reference was the last, the resources associated to the `self` are
     * freed.
     */
-  def unref(): Unit /* None */ = gtk_expression_unref(this.raw.asInstanceOf)
+  def unref(): Unit /* None */ = gtk_expression_unref(
+    this.raw.asInstanceOf[Ptr[GtkExpression]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -276,7 +279,7 @@ class Expression(raw: Ptr[GtkExpression]):
       ],
       user_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): Ptr[GtkExpressionWatch] /* None */ = gtk_expression_watch(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkExpression]],
     `this_`
       .map[_root_.sn.gnome.glib.internal.gpointer](o =>
         gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])

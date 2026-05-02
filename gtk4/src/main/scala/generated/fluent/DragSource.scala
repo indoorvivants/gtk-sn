@@ -96,7 +96,7 @@ class DragSource(raw: Ptr[GtkDragSource])
     * Cancels a currently ongoing drag operation.
     */
   def dragCancel(): Unit /* None */ = gtk_drag_source_drag_cancel(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkDragSource]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -104,7 +104,7 @@ class DragSource(raw: Ptr[GtkDragSource])
     * Gets the actions that are currently set on the `GtkDragSource`.
     */
   def getActions(): GdkDragAction /* None */ = gtk_drag_source_get_actions(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkDragSource]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -112,7 +112,9 @@ class DragSource(raw: Ptr[GtkDragSource])
     * Gets the current content provider of a `GtkDragSource`.
     */
   def getContent(): ContentProvider /* None */ = new ContentProvider(
-    gtk_drag_source_get_content(this.raw.asInstanceOf).asInstanceOf
+    gtk_drag_source_get_content(
+      this.raw.asInstanceOf[Ptr[GtkDragSource]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -120,7 +122,9 @@ class DragSource(raw: Ptr[GtkDragSource])
     * Returns the underlying `GdkDrag` object for an ongoing drag.
     */
   def getDrag(): Drag /* None */ = new Drag(
-    gtk_drag_source_get_drag(this.raw.asInstanceOf).asInstanceOf
+    gtk_drag_source_get_drag(
+      this.raw.asInstanceOf[Ptr[GtkDragSource]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -137,8 +141,10 @@ class DragSource(raw: Ptr[GtkDragSource])
     */
   def setActions(
       actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
-  ): Unit /* None */ =
-    gtk_drag_source_set_actions(this.raw.asInstanceOf, actions)
+  ): Unit /* None */ = gtk_drag_source_set_actions(
+    this.raw.asInstanceOf[Ptr[GtkDragSource]],
+    actions
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -158,7 +164,7 @@ class DragSource(raw: Ptr[GtkDragSource])
         ContentProvider /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]) */
       ]
   ): Unit /* None */ = gtk_drag_source_set_content(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDragSource]],
     content
       .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -188,7 +194,7 @@ class DragSource(raw: Ptr[GtkDragSource])
       hot_x: Int /* Some(CInt) */,
       hot_y: Int /* Some(CInt) */
   ): Unit /* None */ = gtk_drag_source_set_icon(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDragSource]],
     paintable
       .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
         o.getUnsafeRawPointer().asInstanceOf

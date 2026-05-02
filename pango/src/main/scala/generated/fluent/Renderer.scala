@@ -45,7 +45,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * only be initialized and deinitialized once.
     */
   def activate(): Unit /* None */ = pango_renderer_activate(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[PangoRenderer]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -55,7 +55,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * See docs for [method@Pango.Renderer.activate].
     */
   def deactivate(): Unit /* None */ = pango_renderer_deactivate(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[PangoRenderer]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -76,7 +76,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
   ): Unit /* None */ = pango_renderer_draw_error_underline(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoRenderer]],
     x,
     y,
     width,
@@ -93,7 +93,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */
   ): Unit /* None */ = pango_renderer_draw_glyph(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoRenderer]],
     font.getUnsafeRawPointer().asInstanceOf,
     glyph,
     x,
@@ -127,7 +127,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
       x: Int /* Some(CInt) */,
       y: Int /* Some(CInt) */
   )(using Zone): Unit /* None */ = pango_renderer_draw_glyph_item(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoRenderer]],
     text
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString]),
@@ -146,7 +146,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
       x: Int /* Some(CInt) */,
       y: Int /* Some(CInt) */
   ): Unit /* None */ = pango_renderer_draw_glyphs(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoRenderer]],
     font.getUnsafeRawPointer().asInstanceOf,
     glyphs,
     x,
@@ -165,7 +165,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
       x: Int /* Some(CInt) */,
       y: Int /* Some(CInt) */
   ): Unit /* None */ = pango_renderer_draw_layout(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoRenderer]],
     layout.getUnsafeRawPointer().asInstanceOf,
     x,
     y
@@ -182,8 +182,12 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
       line: Ptr[PangoLayoutLine] /* Some(Ptr[PangoLayoutLine]) */,
       x: Int /* Some(CInt) */,
       y: Int /* Some(CInt) */
-  ): Unit /* None */ =
-    pango_renderer_draw_layout_line(this.raw.asInstanceOf, line, x, y)
+  ): Unit /* None */ = pango_renderer_draw_layout_line(
+    this.raw.asInstanceOf[Ptr[PangoRenderer]],
+    line,
+    x,
+    y
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -200,7 +204,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
   ): Unit /* None */ = pango_renderer_draw_rectangle(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoRenderer]],
     part,
     x,
     y,
@@ -222,7 +226,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
       x12: Double /* Some(Double) */,
       x22: Double /* Some(Double) */
   ): Unit /* None */ = pango_renderer_draw_trapezoid(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoRenderer]],
     part,
     `y1_`,
     x11,
@@ -238,8 +242,10 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     */
   def getAlpha(
       part: PangoRenderPart /* Some(PangoRenderPart) */
-  ): UShort /* None */ =
-    pango_renderer_get_alpha(this.raw.asInstanceOf, part).value
+  ): UShort /* None */ = pango_renderer_get_alpha(
+    this.raw.asInstanceOf[Ptr[PangoRenderer]],
+    part
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -248,7 +254,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
   def getColor(
       part: PangoRenderPart /* Some(PangoRenderPart) */
   ): Ptr[PangoColor] /* None */ =
-    pango_renderer_get_color(this.raw.asInstanceOf, part)
+    pango_renderer_get_color(this.raw.asInstanceOf[Ptr[PangoRenderer]], part)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -260,7 +266,9 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * The returned layout should not be modified while still being rendered.
     */
   def getLayout(): Layout /* None */ = new Layout(
-    pango_renderer_get_layout(this.raw.asInstanceOf).asInstanceOf
+    pango_renderer_get_layout(
+      this.raw.asInstanceOf[Ptr[PangoRenderer]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -274,7 +282,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * rendered.
     */
   def getLayoutLine(): Ptr[PangoLayoutLine] /* None */ =
-    pango_renderer_get_layout_line(this.raw.asInstanceOf)
+    pango_renderer_get_layout_line(this.raw.asInstanceOf[Ptr[PangoRenderer]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -283,7 +291,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * See [method@Pango.Renderer.set_matrix].
     */
   def getMatrix(): Ptr[PangoMatrix] /* None */ = pango_renderer_get_matrix(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[PangoRenderer]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -306,7 +314,8 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     */
   def partChanged(
       part: PangoRenderPart /* Some(PangoRenderPart) */
-  ): Unit /* None */ = pango_renderer_part_changed(this.raw.asInstanceOf, part)
+  ): Unit /* None */ =
+    pango_renderer_part_changed(this.raw.asInstanceOf[Ptr[PangoRenderer]], part)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -318,8 +327,11 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
   def setAlpha(
       part: PangoRenderPart /* Some(PangoRenderPart) */,
       alpha: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
-  ): Unit /* None */ =
-    pango_renderer_set_alpha(this.raw.asInstanceOf, part, guint16(alpha))
+  ): Unit /* None */ = pango_renderer_set_alpha(
+    this.raw.asInstanceOf[Ptr[PangoRenderer]],
+    part,
+    guint16(alpha)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -331,7 +343,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
       part: PangoRenderPart /* Some(PangoRenderPart) */,
       color: Option[Ptr[PangoColor] /* Some(Ptr[PangoColor]) */ ]
   ): Unit /* None */ = pango_renderer_set_color(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoRenderer]],
     part,
     color
       .map[Ptr[PangoColor]](o => o)
@@ -345,7 +357,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
   def setMatrix(
       matrix: Option[Ptr[PangoMatrix] /* Some(Ptr[PangoMatrix]) */ ]
   ): Unit /* None */ = pango_renderer_set_matrix(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[PangoRenderer]],
     matrix
       .map[Ptr[PangoMatrix]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[PangoMatrix]])

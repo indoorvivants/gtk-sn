@@ -28,7 +28,9 @@ class MultiSelection(raw: Ptr[GtkMultiSelection])
     * Returns the underlying model of @self.
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_multi_selection_get_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_multi_selection_get_model(
+      this.raw.asInstanceOf[Ptr[GtkMultiSelection]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -42,7 +44,7 @@ class MultiSelection(raw: Ptr[GtkMultiSelection])
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   ): Unit /* None */ = gtk_multi_selection_set_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkMultiSelection]],
     model
       .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
         o.getUnsafeRawPointer().asInstanceOf

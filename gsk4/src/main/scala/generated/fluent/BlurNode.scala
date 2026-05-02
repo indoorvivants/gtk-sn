@@ -20,7 +20,9 @@ class BlurNode(raw: Ptr[GskBlurNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the child `GskRenderNode` of the blur @node.
     */
   def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_blur_node_get_child(this.raw.asInstanceOf).asInstanceOf
+    gsk_blur_node_get_child(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -28,7 +30,7 @@ class BlurNode(raw: Ptr[GskBlurNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the blur radius of the @node.
     */
   def getRadius(): Float /* None */ = gsk_blur_node_get_radius(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
 end BlurNode

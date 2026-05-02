@@ -168,7 +168,9 @@ class FileChooserNative(raw: Ptr[GtkFileChooserNative])
     * Retrieves the custom label text for the accept button.
     */
   def getAcceptLabel()(using Zone): String /* None */ = fromCString(
-    gtk_file_chooser_native_get_accept_label(this.raw.asInstanceOf).asInstanceOf
+    gtk_file_chooser_native_get_accept_label(
+      this.raw.asInstanceOf[Ptr[GtkFileChooserNative]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -176,7 +178,9 @@ class FileChooserNative(raw: Ptr[GtkFileChooserNative])
     * Retrieves the custom label text for the cancel button.
     */
   def getCancelLabel()(using Zone): String /* None */ = fromCString(
-    gtk_file_chooser_native_get_cancel_label(this.raw.asInstanceOf).asInstanceOf
+    gtk_file_chooser_native_get_cancel_label(
+      this.raw.asInstanceOf[Ptr[GtkFileChooserNative]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -193,7 +197,7 @@ class FileChooserNative(raw: Ptr[GtkFileChooserNative])
   def setAcceptLabel(
       accept_label: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_file_chooser_native_set_accept_label(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFileChooserNative]],
     accept_label
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -213,7 +217,7 @@ class FileChooserNative(raw: Ptr[GtkFileChooserNative])
   def setCancelLabel(
       cancel_label: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_file_chooser_native_set_cancel_label(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkFileChooserNative]],
     cancel_label
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])

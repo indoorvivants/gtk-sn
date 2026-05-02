@@ -71,7 +71,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * The completion list view will be updated accordingly.
     */
   def complete(): Unit /* None */ = gtk_entry_completion_complete(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkEntryCompletion]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -87,7 +87,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
       key: String | CString /* Some(CString) */
   )(using Zone): String /* None */ = fromCString(
     gtk_entry_completion_compute_prefix(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkEntryCompletion]],
       __sn_extract_string(key)
     ).asInstanceOf
   )
@@ -99,7 +99,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     */
   def getCompletionPrefix()(using Zone): String /* None */ = fromCString(
     gtk_entry_completion_get_completion_prefix(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GtkEntryCompletion]]
     ).asInstanceOf
   )
 
@@ -108,7 +108,9 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * Gets the entry @completion has been attached to.
     */
   def getEntry(): Widget /* None */ = new Widget(
-    gtk_entry_completion_get_entry(this.raw.asInstanceOf).asInstanceOf
+    gtk_entry_completion_get_entry(
+      this.raw.asInstanceOf[Ptr[GtkEntryCompletion]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -117,22 +119,27 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * automatically inserted in the entry.
     */
   def getInlineCompletion(): Boolean /* None */ =
-    gtk_entry_completion_get_inline_completion(this.raw.asInstanceOf).value
-      .!=(0)
+    gtk_entry_completion_get_inline_completion(
+      this.raw.asInstanceOf[Ptr[GtkEntryCompletion]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns %TRUE if inline-selection mode is turned on.
     */
   def getInlineSelection(): Boolean /* None */ =
-    gtk_entry_completion_get_inline_selection(this.raw.asInstanceOf).value.!=(0)
+    gtk_entry_completion_get_inline_selection(
+      this.raw.asInstanceOf[Ptr[GtkEntryCompletion]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the minimum key length as set for @completion.
     */
   def getMinimumKeyLength(): Int /* None */ =
-    gtk_entry_completion_get_minimum_key_length(this.raw.asInstanceOf)
+    gtk_entry_completion_get_minimum_key_length(
+      this.raw.asInstanceOf[Ptr[GtkEntryCompletion]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -141,7 +148,9 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * Returns %NULL if the model is unset.
     */
   def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
-    gtk_entry_completion_get_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_entry_completion_get_model(
+      this.raw.asInstanceOf[Ptr[GtkEntryCompletion]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -149,7 +158,9 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * Returns whether the completions should be presented in a popup window.
     */
   def getPopupCompletion(): Boolean /* None */ =
-    gtk_entry_completion_get_popup_completion(this.raw.asInstanceOf).value.!=(0)
+    gtk_entry_completion_get_popup_completion(
+      this.raw.asInstanceOf[Ptr[GtkEntryCompletion]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -157,7 +168,9 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * of the entry.
     */
   def getPopupSetWidth(): Boolean /* None */ =
-    gtk_entry_completion_get_popup_set_width(this.raw.asInstanceOf).value.!=(0)
+    gtk_entry_completion_get_popup_set_width(
+      this.raw.asInstanceOf[Ptr[GtkEntryCompletion]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -165,15 +178,16 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * only a single match.
     */
   def getPopupSingleMatch(): Boolean /* None */ =
-    gtk_entry_completion_get_popup_single_match(this.raw.asInstanceOf).value
-      .!=(0)
+    gtk_entry_completion_get_popup_single_match(
+      this.raw.asInstanceOf[Ptr[GtkEntryCompletion]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the column in the model of @completion to get strings from.
     */
   def getTextColumn(): Int /* None */ = gtk_entry_completion_get_text_column(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkEntryCompletion]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -181,7 +195,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * Requests a prefix insertion.
     */
   def insertPrefix(): Unit /* None */ = gtk_entry_completion_insert_prefix(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkEntryCompletion]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -192,7 +206,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
   def setInlineCompletion(
       inline_completion: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_entry_completion_set_inline_completion(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntryCompletion]],
     gboolean(gint((if inline_completion == true then 1 else 0)))
   )
 
@@ -204,7 +218,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
   def setInlineSelection(
       inline_selection: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_entry_completion_set_inline_selection(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntryCompletion]],
     gboolean(gint((if inline_selection == true then 1 else 0)))
   )
 
@@ -222,7 +236,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
       ],
       func_notify: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): Unit /* None */ = gtk_entry_completion_set_match_func(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntryCompletion]],
     func,
     func_data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -240,7 +254,10 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * large dataset).
     */
   def setMinimumKeyLength(length: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_entry_completion_set_minimum_key_length(this.raw.asInstanceOf, length)
+    gtk_entry_completion_set_minimum_key_length(
+      this.raw.asInstanceOf[Ptr[GtkEntryCompletion]],
+      length
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -252,7 +269,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
   def setModel(
       model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
   ): Unit /* None */ = gtk_entry_completion_set_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntryCompletion]],
     model
       .map[Ptr[GtkTreeModel]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkTreeModel]])
@@ -265,7 +282,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
   def setPopupCompletion(
       popup_completion: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_entry_completion_set_popup_completion(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntryCompletion]],
     gboolean(gint((if popup_completion == true then 1 else 0)))
   )
 
@@ -277,7 +294,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
   def setPopupSetWidth(
       popup_set_width: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_entry_completion_set_popup_set_width(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntryCompletion]],
     gboolean(gint((if popup_set_width == true then 1 else 0)))
   )
 
@@ -292,7 +309,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
   def setPopupSingleMatch(
       popup_single_match: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_entry_completion_set_popup_single_match(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntryCompletion]],
     gboolean(gint((if popup_single_match == true then 1 else 0)))
   )
 
@@ -311,7 +328,10 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * [property@Gtk.EntryCompletion:text-column] property directly.
     */
   def setTextColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_entry_completion_set_text_column(this.raw.asInstanceOf, column)
+    gtk_entry_completion_set_text_column(
+      this.raw.asInstanceOf[Ptr[GtkEntryCompletion]],
+      column
+    )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

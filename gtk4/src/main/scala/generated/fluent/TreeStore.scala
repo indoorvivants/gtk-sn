@@ -81,7 +81,9 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     *
     * Removes all rows from @tree_store
     */
-  def clear(): Unit /* None */ = gtk_tree_store_clear(this.raw.asInstanceOf)
+  def clear(): Unit /* None */ = gtk_tree_store_clear(
+    this.raw.asInstanceOf[Ptr[GtkTreeStore]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -198,9 +200,11 @@ class TreeStore(raw: Ptr[GtkTreeStore])
   def isAncestor(
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
       descendant: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Boolean /* None */ =
-    gtk_tree_store_is_ancestor(this.raw.asInstanceOf, iter, descendant).value
-      .!=(0)
+  ): Boolean /* None */ = gtk_tree_store_is_ancestor(
+    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
+    iter,
+    descendant
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -211,7 +215,8 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     */
   def iterDepth(
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Int /* None */ = gtk_tree_store_iter_depth(this.raw.asInstanceOf, iter)
+  ): Int /* None */ =
+    gtk_tree_store_iter_depth(this.raw.asInstanceOf[Ptr[GtkTreeStore]], iter)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -221,8 +226,10 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     */
   def iterIsValid(
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Boolean /* None */ =
-    gtk_tree_store_iter_is_valid(this.raw.asInstanceOf, iter).value.!=(0)
+  ): Boolean /* None */ = gtk_tree_store_iter_is_valid(
+    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
+    iter
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -239,7 +246,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
       position: Option[Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */ ]
   ): Unit /* None */ = gtk_tree_store_move_after(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
     iter,
     position
       .map[Ptr[GtkTreeIter]](o => o)
@@ -261,7 +268,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
       position: Option[Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */ ]
   ): Unit /* None */ = gtk_tree_store_move_before(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
     iter,
     position
       .map[Ptr[GtkTreeIter]](o => o)
@@ -293,7 +300,8 @@ class TreeStore(raw: Ptr[GtkTreeStore])
   def remove(
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
   ): Boolean /* None */ =
-    gtk_tree_store_remove(this.raw.asInstanceOf, iter).value.!=(0)
+    gtk_tree_store_remove(this.raw.asInstanceOf[Ptr[GtkTreeStore]], iter).value
+      .!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -306,7 +314,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
       parent: Option[Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */ ],
       new_order: Ptr[Int /* None */ ] /* Some(Ptr[CInt]) */
   ): Unit /* None */ = gtk_tree_store_reorder(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
     parent
       .map[Ptr[GtkTreeIter]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[GtkTreeIter]]),
@@ -335,7 +343,8 @@ class TreeStore(raw: Ptr[GtkTreeStore])
   inline def set(
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
       args: Any*
-  ): Unit /* None */ = gtk_tree_store_set(this.raw.asInstanceOf, iter, args*)
+  ): Unit /* None */ =
+    gtk_tree_store_set(this.raw.asInstanceOf[Ptr[GtkTreeStore]], iter, args*)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -353,8 +362,11 @@ class TreeStore(raw: Ptr[GtkTreeStore])
       types: Ptr[
         GType /* None */
       ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GType]) */
-  ): Unit /* None */ =
-    gtk_tree_store_set_column_types(this.raw.asInstanceOf, n_columns, types)
+  ): Unit /* None */ = gtk_tree_store_set_column_types(
+    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
+    n_columns,
+    types
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -363,8 +375,11 @@ class TreeStore(raw: Ptr[GtkTreeStore])
   def setValist(
       iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
       var_args: CVarArgList /* Some(va_list) */
-  ): Unit /* None */ =
-    gtk_tree_store_set_valist(this.raw.asInstanceOf, iter, var_args)
+  ): Unit /* None */ = gtk_tree_store_set_valist(
+    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
+    iter,
+    var_args
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -378,8 +393,12 @@ class TreeStore(raw: Ptr[GtkTreeStore])
       value: Ptr[
         GValue
       ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  ): Unit /* None */ =
-    gtk_tree_store_set_value(this.raw.asInstanceOf, iter, column, value)
+  ): Unit /* None */ = gtk_tree_store_set_value(
+    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
+    iter,
+    column,
+    value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -397,7 +416,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
       ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
       n_values: Int /* Some(CInt) */
   ): Unit /* None */ = gtk_tree_store_set_valuesv(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
     iter,
     columns,
     values,
@@ -413,7 +432,8 @@ class TreeStore(raw: Ptr[GtkTreeStore])
   def swap(
       a: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
       b: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Unit /* None */ = gtk_tree_store_swap(this.raw.asInstanceOf, a, b)
+  ): Unit /* None */ =
+    gtk_tree_store_swap(this.raw.asInstanceOf[Ptr[GtkTreeStore]], a, b)
 
 end TreeStore
 

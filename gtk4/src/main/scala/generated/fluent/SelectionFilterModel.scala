@@ -25,7 +25,9 @@ class SelectionFilterModel(raw: Ptr[GtkSelectionFilterModel])
     * Gets the model currently filtered or %NULL if none.
     */
   def getModel(): SelectionModel /* None */ = new SelectionModel.Abstract(
-    gtk_selection_filter_model_get_model(this.raw.asInstanceOf).asInstanceOf
+    gtk_selection_filter_model_get_model(
+      this.raw.asInstanceOf[Ptr[GtkSelectionFilterModel]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -39,7 +41,7 @@ class SelectionFilterModel(raw: Ptr[GtkSelectionFilterModel])
   def setModel(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
   ): Unit /* None */ = gtk_selection_filter_model_set_model(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSelectionFilterModel]],
     model
       .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])

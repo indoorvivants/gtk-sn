@@ -49,7 +49,9 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * Gets the attributes queried on the children.
     */
   def getAttributes()(using Zone): String /* None */ = fromCString(
-    gtk_directory_list_get_attributes(this.raw.asInstanceOf).asInstanceOf
+    gtk_directory_list_get_attributes(
+      this.raw.asInstanceOf[Ptr[GtkDirectoryList]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -64,7 +66,7 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * successfully queried files will remain in the list.
     */
   def getError(): Ptr[GError] /* None */ = gtk_directory_list_get_error(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkDirectoryList]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -72,7 +74,9 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * Gets the file whose children are currently enumerated.
     */
   def getFile(): File /* None */ = new File.Abstract(
-    gtk_directory_list_get_file(this.raw.asInstanceOf).asInstanceOf
+    gtk_directory_list_get_file(
+      this.raw.asInstanceOf[Ptr[GtkDirectoryList]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -80,7 +84,7 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * Gets the IO priority set via gtk_directory_list_set_io_priority().
     */
   def getIoPriority(): Int /* None */ = gtk_directory_list_get_io_priority(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkDirectoryList]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -88,8 +92,9 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * Returns whether the directory list is monitoring the directory for
     * changes.
     */
-  def getMonitored(): Boolean /* None */ =
-    gtk_directory_list_get_monitored(this.raw.asInstanceOf).value.!=(0)
+  def getMonitored(): Boolean /* None */ = gtk_directory_list_get_monitored(
+    this.raw.asInstanceOf[Ptr[GtkDirectoryList]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -98,8 +103,9 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * Files will be added to @self from time to time while loading is going on.
     * The order in which are added is undefined and may change in between runs.
     */
-  def isLoading(): Boolean /* None */ =
-    gtk_directory_list_is_loading(this.raw.asInstanceOf).value.!=(0)
+  def isLoading(): Boolean /* None */ = gtk_directory_list_is_loading(
+    this.raw.asInstanceOf[Ptr[GtkDirectoryList]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -111,7 +117,7 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
   def setAttributes(
       attributes: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_directory_list_set_attributes(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDirectoryList]],
     attributes
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -126,7 +132,7 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
   def setFile(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
   ): Unit /* None */ = gtk_directory_list_set_file(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDirectoryList]],
     file
       .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -147,7 +153,10 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * responsiveness.
     */
   def setIoPriority(io_priority: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_directory_list_set_io_priority(this.raw.asInstanceOf, io_priority)
+    gtk_directory_list_set_io_priority(
+      this.raw.asInstanceOf[Ptr[GtkDirectoryList]],
+      io_priority
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -163,7 +172,7 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
   def setMonitored(
       monitored: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_directory_list_set_monitored(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkDirectoryList]],
     gboolean(gint((if monitored == true then 1 else 0)))
   )
 

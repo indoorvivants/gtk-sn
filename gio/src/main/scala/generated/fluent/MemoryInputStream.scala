@@ -30,8 +30,10 @@ class MemoryInputStream(raw: Ptr[GMemoryInputStream])
     */
   def addBytes(
       bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
-  ): Unit /* None */ =
-    g_memory_input_stream_add_bytes(this.raw.asInstanceOf, bytes)
+  ): Unit /* None */ = g_memory_input_stream_add_bytes(
+    this.raw.asInstanceOf[Ptr[GMemoryInputStream]],
+    bytes
+  )
 
 end MemoryInputStream
 

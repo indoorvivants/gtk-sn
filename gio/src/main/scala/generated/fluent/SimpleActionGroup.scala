@@ -38,7 +38,7 @@ class SimpleActionGroup(raw: Ptr[GSimpleActionGroup])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_simple_action_group_add_entries(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleActionGroup]],
     entries,
     gint(n_entries),
     user_data
@@ -58,7 +58,7 @@ class SimpleActionGroup(raw: Ptr[GSimpleActionGroup])
     */
   def insert(action: Action /* Some(Ptr[GAction]) */ ): Unit /* None */ =
     g_simple_action_group_insert(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSimpleActionGroup]],
       action.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -73,7 +73,7 @@ class SimpleActionGroup(raw: Ptr[GSimpleActionGroup])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Action /* None */ = new Action.Abstract(
     g_simple_action_group_lookup(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GSimpleActionGroup]],
       __sn_extract_string(action_name).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
@@ -88,7 +88,7 @@ class SimpleActionGroup(raw: Ptr[GSimpleActionGroup])
       action_name: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_simple_action_group_remove(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleActionGroup]],
     __sn_extract_string(action_name).asInstanceOf[Ptr[gchar]]
   )
 

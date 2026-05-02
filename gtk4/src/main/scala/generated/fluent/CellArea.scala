@@ -358,7 +358,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       flags: GtkCellRendererState /* Some(GtkCellRendererState) */,
       edit_only: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Boolean /* None */ = gtk_cell_area_activate(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     context.getUnsafeRawPointer().asInstanceOf,
     widget.getUnsafeRawPointer().asInstanceOf,
     cell_area,
@@ -381,7 +381,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
       flags: GtkCellRendererState /* Some(GtkCellRendererState) */
   ): Boolean /* None */ = gtk_cell_area_activate_cell(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     widget.getUnsafeRawPointer().asInstanceOf,
     renderer.getUnsafeRawPointer().asInstanceOf,
     event.getUnsafeRawPointer().asInstanceOf,
@@ -396,7 +396,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   def add(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
   ): Unit /* None */ = gtk_cell_area_add(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -411,7 +411,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       sibling: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
   ): Unit /* None */ = gtk_cell_area_add_focus_sibling(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf,
     sibling.getUnsafeRawPointer().asInstanceOf
   )
@@ -426,7 +426,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       first_prop_name: String | CString /* Some(CString) */,
       args: Any*
   )(using Zone): Unit /* None */ = gtk_cell_area_add_with_properties(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(first_prop_name),
     args*
@@ -444,7 +444,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       is_expander: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       is_expanded: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_cell_area_apply_attributes(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     tree_model.getUnsafeRawPointer().asInstanceOf,
     iter,
     gboolean(gint((if is_expander == true then 1 else 0))),
@@ -461,7 +461,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       attribute: String | CString /* Some(CString) */,
       column: Int /* Some(CInt) */
   )(using Zone): Unit /* None */ = gtk_cell_area_attribute_connect(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(attribute),
     column
@@ -476,7 +476,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       attribute: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_cell_area_attribute_disconnect(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(attribute)
   )
@@ -490,7 +490,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       attribute: String | CString /* Some(CString) */
   )(using Zone): Int /* None */ = gtk_cell_area_attribute_get_column(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(attribute)
   )
@@ -504,7 +504,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       first_prop_name: String | CString /* Some(CString) */,
       args: Any*
   )(using Zone): Unit /* None */ = gtk_cell_area_cell_get(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(first_prop_name),
     args*
@@ -521,7 +521,7 @@ class CellArea(raw: Ptr[GtkCellArea])
         GValue
       ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
   )(using Zone): Unit /* None */ = gtk_cell_area_cell_get_property(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(property_name),
     value
@@ -536,7 +536,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       first_property_name: String | CString /* Some(CString) */,
       var_args: CVarArgList /* Some(va_list) */
   )(using Zone): Unit /* None */ = gtk_cell_area_cell_get_valist(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(first_property_name),
     var_args
@@ -551,7 +551,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       first_prop_name: String | CString /* Some(CString) */,
       args: Any*
   )(using Zone): Unit /* None */ = gtk_cell_area_cell_set(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(first_prop_name),
     args*
@@ -568,7 +568,7 @@ class CellArea(raw: Ptr[GtkCellArea])
         GValue
       ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
   )(using Zone): Unit /* None */ = gtk_cell_area_cell_set_property(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(property_name),
     value
@@ -583,7 +583,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       first_property_name: String | CString /* Some(CString) */,
       var_args: CVarArgList /* Some(va_list) */
   )(using Zone): Unit /* None */ = gtk_cell_area_cell_set_valist(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(first_property_name),
     var_args
@@ -605,7 +605,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       context: CellAreaContext /* Some(Ptr[GtkCellAreaContext]) */
   ): CellAreaContext /* None */ = new CellAreaContext(
     gtk_cell_area_copy_context(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkCellArea]],
       context.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
   )
@@ -620,7 +620,9 @@ class CellArea(raw: Ptr[GtkCellArea])
     * data).
     */
   def createContext(): CellAreaContext /* None */ = new CellAreaContext(
-    gtk_cell_area_create_context(this.raw.asInstanceOf).asInstanceOf
+    gtk_cell_area_create_context(
+      this.raw.asInstanceOf[Ptr[GtkCellArea]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -636,7 +638,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
       flags: GtkCellRendererState /* Some(GtkCellRendererState) */
   ): Int /* None */ = gtk_cell_area_event(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     context.getUnsafeRawPointer().asInstanceOf,
     widget.getUnsafeRawPointer().asInstanceOf,
     event.getUnsafeRawPointer().asInstanceOf,
@@ -655,8 +657,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     */
   def focus(
       direction: GtkDirectionType /* Some(GtkDirectionType) */
-  ): Boolean /* None */ =
-    gtk_cell_area_focus(this.raw.asInstanceOf, direction).value.!=(0)
+  ): Boolean /* None */ = gtk_cell_area_focus(
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
+    direction
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -668,7 +672,7 @@ class CellArea(raw: Ptr[GtkCellArea])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gtk_cell_area_foreach(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     callback,
     callback_data
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -694,7 +698,7 @@ class CellArea(raw: Ptr[GtkCellArea])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gtk_cell_area_foreach_alloc(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     context.getUnsafeRawPointer().asInstanceOf,
     widget.getUnsafeRawPointer().asInstanceOf,
     cell_area,
@@ -733,7 +737,9 @@ class CellArea(raw: Ptr[GtkCellArea])
     * with renderers from `GtkCellArea` subclasses.
     */
   def getCurrentPathString()(using Zone): String /* None */ = fromCString(
-    gtk_cell_area_get_current_path_string(this.raw.asInstanceOf).asInstanceOf
+    gtk_cell_area_get_current_path_string(
+      this.raw.asInstanceOf[Ptr[GtkCellArea]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -742,7 +748,9 @@ class CellArea(raw: Ptr[GtkCellArea])
     * edited cell.
     */
   def getEditWidget(): CellEditable /* None */ = new CellEditable.Abstract(
-    gtk_cell_area_get_edit_widget(this.raw.asInstanceOf).asInstanceOf
+    gtk_cell_area_get_edit_widget(
+      this.raw.asInstanceOf[Ptr[GtkCellArea]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -750,7 +758,9 @@ class CellArea(raw: Ptr[GtkCellArea])
     * Gets the `GtkCellRenderer` in @area that is currently being edited.
     */
   def getEditedCell(): CellRenderer /* None */ = new CellRenderer(
-    gtk_cell_area_get_edited_cell(this.raw.asInstanceOf).asInstanceOf
+    gtk_cell_area_get_edited_cell(
+      this.raw.asInstanceOf[Ptr[GtkCellArea]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -758,7 +768,9 @@ class CellArea(raw: Ptr[GtkCellArea])
     * Retrieves the currently focused cell for @area
     */
   def getFocusCell(): CellRenderer /* None */ = new CellRenderer(
-    gtk_cell_area_get_focus_cell(this.raw.asInstanceOf).asInstanceOf
+    gtk_cell_area_get_focus_cell(
+      this.raw.asInstanceOf[Ptr[GtkCellArea]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -774,7 +786,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
   ): CellRenderer /* None */ = new CellRenderer(
     gtk_cell_area_get_focus_from_sibling(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkCellArea]],
       renderer.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
   )
@@ -786,7 +798,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   def getFocusSiblings(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
   ): Ptr[GList] /* None */ = gtk_cell_area_get_focus_siblings(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -876,7 +888,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * width-for-height layout.
     */
   def getRequestMode(): GtkSizeRequestMode /* None */ =
-    gtk_cell_area_get_request_mode(this.raw.asInstanceOf)
+    gtk_cell_area_get_request_mode(this.raw.asInstanceOf[Ptr[GtkCellArea]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -885,7 +897,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   def hasRenderer(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
   ): Boolean /* None */ = gtk_cell_area_has_renderer(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -905,8 +917,9 @@ class CellArea(raw: Ptr[GtkCellArea])
     * Returns whether the area can do anything when activated, after applying
     * new attributes to @area.
     */
-  def isActivatable(): Boolean /* None */ =
-    gtk_cell_area_is_activatable(this.raw.asInstanceOf).value.!=(0)
+  def isActivatable(): Boolean /* None */ = gtk_cell_area_is_activatable(
+    this.raw.asInstanceOf[Ptr[GtkCellArea]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -917,7 +930,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       sibling: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
   ): Boolean /* None */ = gtk_cell_area_is_focus_sibling(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf,
     sibling.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
@@ -929,7 +942,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   def remove(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
   ): Unit /* None */ = gtk_cell_area_remove(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -942,7 +955,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       sibling: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
   ): Unit /* None */ = gtk_cell_area_remove_focus_sibling(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer.getUnsafeRawPointer().asInstanceOf,
     sibling.getUnsafeRawPointer().asInstanceOf
   )
@@ -971,7 +984,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   def setFocusCell(
       renderer: Option[CellRenderer /* Some(Ptr[GtkCellRenderer]) */ ]
   ): Unit /* None */ = gtk_cell_area_set_focus_cell(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     renderer
       .map[Ptr[GtkCellRenderer]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkCellRenderer]])
@@ -995,7 +1008,7 @@ class CellArea(raw: Ptr[GtkCellArea])
       flags: GtkCellRendererState /* Some(GtkCellRendererState) */,
       paint_focus: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_cell_area_snapshot(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     context.getUnsafeRawPointer().asInstanceOf,
     widget.getUnsafeRawPointer().asInstanceOf,
     snapshot.getUnsafeRawPointer().asInstanceOf,
@@ -1018,7 +1031,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   def stopEditing(
       canceled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_cell_area_stop_editing(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellArea]],
     gboolean(gint((if canceled == true then 1 else 0)))
   )
 

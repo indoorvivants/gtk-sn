@@ -40,7 +40,7 @@ class SimpleAction(raw: Ptr[GSimpleAction])
   def setEnabled(
       enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_simple_action_set_enabled(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleAction]],
     gboolean(gint((if enabled == true then 1 else 0)))
   )
 
@@ -60,7 +60,8 @@ class SimpleAction(raw: Ptr[GSimpleAction])
       value: Ptr[
         GVariant
       ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-  ): Unit /* None */ = g_simple_action_set_state(this.raw.asInstanceOf, value)
+  ): Unit /* None */ =
+    g_simple_action_set_state(this.raw.asInstanceOf[Ptr[GSimpleAction]], value)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -74,7 +75,7 @@ class SimpleAction(raw: Ptr[GSimpleAction])
         Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
       ]
   ): Unit /* None */ = g_simple_action_set_state_hint(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleAction]],
     state_hint
       .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])

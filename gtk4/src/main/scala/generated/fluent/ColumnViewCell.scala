@@ -43,7 +43,9 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     * %NULL if none was set.
     */
   override def getChild(): Widget /* None */ = new Widget(
-    gtk_column_view_cell_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_column_view_cell_get_child(
+      this.raw.asInstanceOf[Ptr[GtkColumnViewCell]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -52,7 +54,9 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     * gtk_column_view_cell_set_focusable().
     */
   override def getFocusable(): Boolean /* None */ =
-    gtk_column_view_cell_get_focusable(this.raw.asInstanceOf).value.!=(0)
+    gtk_column_view_cell_get_focusable(
+      this.raw.asInstanceOf[Ptr[GtkColumnViewCell]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -61,7 +65,9 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     * If @self is unbound, this function returns %NULL.
     */
   override def getItem(): Object /* None */ = new Object(
-    gtk_column_view_cell_get_item(this.raw.asInstanceOf).asInstanceOf
+    gtk_column_view_cell_get_item(
+      this.raw.asInstanceOf[Ptr[GtkColumnViewCell]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -71,7 +77,9 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     * If @self is unbound, %GTK_INVALID_LIST_POSITION is returned.
     */
   override def getPosition(): UInt /* None */ =
-    gtk_column_view_cell_get_position(this.raw.asInstanceOf).value
+    gtk_column_view_cell_get_position(
+      this.raw.asInstanceOf[Ptr[GtkColumnViewCell]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -81,7 +89,9 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     * cannot be set otherwise.
     */
   override def getSelected(): Boolean /* None */ =
-    gtk_column_view_cell_get_selected(this.raw.asInstanceOf).value.!=(0)
+    gtk_column_view_cell_get_selected(
+      this.raw.asInstanceOf[Ptr[GtkColumnViewCell]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -93,7 +103,7 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
   override def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_column_view_cell_set_child(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnViewCell]],
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -115,7 +125,7 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
   override def setFocusable(
       focusable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_column_view_cell_set_focusable(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnViewCell]],
     gboolean(gint((if focusable == true then 1 else 0)))
   )
 

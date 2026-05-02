@@ -52,7 +52,9 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
     * process, %NULL will be returned.
     */
   def getContent(): ContentProvider /* None */ = new ContentProvider(
-    gdk_clipboard_get_content(this.raw.asInstanceOf).asInstanceOf
+    gdk_clipboard_get_content(
+      this.raw.asInstanceOf[Ptr[GdkClipboard]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -60,7 +62,9 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
     * Gets the `GdkDisplay` that the clipboard was created for.
     */
   def getDisplay(): Display /* None */ = new Display(
-    gdk_clipboard_get_display(this.raw.asInstanceOf).asInstanceOf
+    gdk_clipboard_get_display(
+      this.raw.asInstanceOf[Ptr[GdkClipboard]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -68,7 +72,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
     * Gets the formats that the clipboard can provide its current contents in.
     */
   def getFormats(): Ptr[GdkContentFormats] /* None */ =
-    gdk_clipboard_get_formats(this.raw.asInstanceOf)
+    gdk_clipboard_get_formats(this.raw.asInstanceOf[Ptr[GdkClipboard]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -81,7 +85,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
     * local clipboard. In this case the clipboard is empty.
     */
   def isLocal(): Boolean /* None */ =
-    gdk_clipboard_is_local(this.raw.asInstanceOf).value.!=(0)
+    gdk_clipboard_is_local(this.raw.asInstanceOf[Ptr[GdkClipboard]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -108,7 +112,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Zone): Unit /* None */ = gdk_clipboard_read_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkClipboard]],
     mime_types,
     io_priority,
     cancellable
@@ -161,7 +165,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gdk_clipboard_read_text_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkClipboard]],
     cancellable
       .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -190,7 +194,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
   )(using Zone): GResult[String /* None */ ] = GResult.wrap(__errorPtr =>
     fromCString(
       gdk_clipboard_read_text_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GdkClipboard]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf
@@ -219,7 +223,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gdk_clipboard_read_texture_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkClipboard]],
     cancellable
       .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -248,7 +252,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
   ): GResult[Texture /* None */ ] = GResult.wrap(__errorPtr =>
     new Texture(
       gdk_clipboard_read_texture_finish(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GdkClipboard]],
         result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).asInstanceOf
@@ -281,7 +285,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gdk_clipboard_read_value_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkClipboard]],
     `type`,
     io_priority,
     cancellable
@@ -311,7 +315,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Ptr[GValue] /* None */ ] = GResult.wrap(__errorPtr =>
     gdk_clipboard_read_value_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkClipboard]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -334,7 +338,8 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
   inline def set(
       `type`: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
       args: Any*
-  ): Unit /* None */ = gdk_clipboard_set(this.raw.asInstanceOf, `type`, args*)
+  ): Unit /* None */ =
+    gdk_clipboard_set(this.raw.asInstanceOf[Ptr[GdkClipboard]], `type`, args*)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -355,7 +360,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
   def setContent(
       provider: Option[ContentProvider /* Some(Ptr[GdkContentProvider]) */ ]
   ): Boolean /* None */ = gdk_clipboard_set_content(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkClipboard]],
     provider
       .map[Ptr[GdkContentProvider]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GdkContentProvider]])
@@ -367,8 +372,10 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
     */
   def setText(
       text: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ =
-    gdk_clipboard_set_text(this.raw.asInstanceOf, __sn_extract_string(text))
+  )(using Zone): Unit /* None */ = gdk_clipboard_set_text(
+    this.raw.asInstanceOf[Ptr[GdkClipboard]],
+    __sn_extract_string(text)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -377,7 +384,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
   def setTexture(
       texture: Texture /* Some(Ptr[GdkTexture]) */
   ): Unit /* None */ = gdk_clipboard_set_texture(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkClipboard]],
     texture.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -388,8 +395,11 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
   def setValist(
       `type`: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
       args: CVarArgList /* Some(va_list) */
-  ): Unit /* None */ =
-    gdk_clipboard_set_valist(this.raw.asInstanceOf, `type`, args)
+  ): Unit /* None */ = gdk_clipboard_set_valist(
+    this.raw.asInstanceOf[Ptr[GdkClipboard]],
+    `type`,
+    args
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -399,7 +409,8 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
       value: Ptr[
         GValue
       ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  ): Unit /* None */ = gdk_clipboard_set_value(this.raw.asInstanceOf, value)
+  ): Unit /* None */ =
+    gdk_clipboard_set_value(this.raw.asInstanceOf[Ptr[GdkClipboard]], value)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -430,7 +441,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = gdk_clipboard_store_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GdkClipboard]],
     io_priority,
     cancellable
       .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
@@ -459,7 +470,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gdk_clipboard_store_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GdkClipboard]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)

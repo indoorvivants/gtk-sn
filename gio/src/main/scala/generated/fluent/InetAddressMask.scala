@@ -37,7 +37,7 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
   def equal(
       mask2: InetAddressMask /* Some(Ptr[GInetAddressMask]) */
   ): Boolean /* None */ = g_inet_address_mask_equal(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GInetAddressMask]],
     mask2.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -46,7 +46,9 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     * Gets @mask's base address
     */
   def getAddress(): InetAddress /* None */ = new InetAddress(
-    g_inet_address_mask_get_address(this.raw.asInstanceOf).asInstanceOf
+    g_inet_address_mask_get_address(
+      this.raw.asInstanceOf[Ptr[GInetAddressMask]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -54,7 +56,7 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     * Gets the #GSocketFamily of @mask's address
     */
   def getFamily(): GSocketFamily /* None */ = g_inet_address_mask_get_family(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GInetAddressMask]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -62,7 +64,7 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     * Gets @mask's length
     */
   def getLength(): UInt /* None */ = g_inet_address_mask_get_length(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GInetAddressMask]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -72,7 +74,7 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
   def matches(
       address: InetAddress /* Some(Ptr[GInetAddress]) */
   ): Boolean /* None */ = g_inet_address_mask_matches(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GInetAddressMask]],
     address.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -81,7 +83,9 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     * Converts @mask back to its corresponding string form.
     */
   def toString()(using Zone): String /* None */ = fromCString(
-    g_inet_address_mask_to_string(this.raw.asInstanceOf).asInstanceOf
+    g_inet_address_mask_to_string(
+      this.raw.asInstanceOf[Ptr[GInetAddressMask]]
+    ).asInstanceOf
   )
 
 end InetAddressMask

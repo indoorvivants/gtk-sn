@@ -204,7 +204,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     * needed to complete the call.
     */
   def complete(): Unit /* None */ = g_simple_async_result_complete(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -218,35 +218,45 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     * needed to complete the call.
     */
   def completeInIdle(): Unit /* None */ =
-    g_simple_async_result_complete_in_idle(this.raw.asInstanceOf)
+    g_simple_async_result_complete_in_idle(
+      this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the operation result boolean from within the asynchronous result.
     */
   def getOpResGboolean(): Boolean /* None */ =
-    g_simple_async_result_get_op_res_gboolean(this.raw.asInstanceOf).value.!=(0)
+    g_simple_async_result_get_op_res_gboolean(
+      this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets a pointer result as returned by the asynchronous function.
     */
   def getOpResGpointer(): Ptr[Byte] /* None */ =
-    g_simple_async_result_get_op_res_gpointer(this.raw.asInstanceOf).value
+    g_simple_async_result_get_op_res_gpointer(
+      this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets a gssize from the asynchronous result.
     */
   def getOpResGssize(): CLongInt /* None */ =
-    g_simple_async_result_get_op_res_gssize(this.raw.asInstanceOf).value
+    g_simple_async_result_get_op_res_gssize(
+      this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the source tag for the #GSimpleAsyncResult.
     */
   def getSourceTag(): Ptr[Byte] /* None */ =
-    g_simple_async_result_get_source_tag(this.raw.asInstanceOf).value
+    g_simple_async_result_get_source_tag(
+      this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -260,7 +270,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
   def propagateError(): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_simple_async_result_propagate_error(
-        this.raw.asInstanceOf,
+        this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
         __errorPtr
       ).value.!=(0)
     )
@@ -279,7 +289,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
       io_priority: Int /* Some(CInt) */,
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): Unit /* None */ = g_simple_async_result_run_in_thread(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
     func,
     io_priority,
     cancellable
@@ -308,7 +318,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
   def setCheckCancellable(
       check_cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): Unit /* None */ = g_simple_async_result_set_check_cancellable(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
     check_cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GCancellable]])
@@ -324,7 +334,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
       format: String | CString /* Some(CString) */,
       args: Any*
   )(using Zone): Unit /* None */ = g_simple_async_result_set_error(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
     domain,
     gint(code),
     __sn_extract_string(format),
@@ -342,7 +352,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
       format: String | CString /* Some(CString) */,
       args: CVarArgList /* Some(va_list) */
   )(using Zone): Unit /* None */ = g_simple_async_result_set_error_va(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
     domain,
     gint(code),
     __sn_extract_string(format),
@@ -355,8 +365,10 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     */
   def setFromError(
       error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): Unit /* None */ =
-    g_simple_async_result_set_from_error(this.raw.asInstanceOf, error)
+  ): Unit /* None */ = g_simple_async_result_set_from_error(
+    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
+    error
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -369,7 +381,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
   def setHandleCancellation(
       handle_cancellation: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_simple_async_result_set_handle_cancellation(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
     gboolean(gint((if handle_cancellation == true then 1 else 0)))
   )
 
@@ -380,7 +392,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
   def setOpResGboolean(
       op_res: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_simple_async_result_set_op_res_gboolean(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
     gboolean(gint((if op_res == true then 1 else 0)))
   )
 
@@ -394,7 +406,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
       ],
       destroy_op_res: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): Unit /* None */ = g_simple_async_result_set_op_res_gpointer(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
     op_res
       .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
       .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
@@ -408,7 +420,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
   def setOpResGssize(
       op_res: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
   ): Unit /* None */ = g_simple_async_result_set_op_res_gssize(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
     gssize(op_res)
   )
 
@@ -419,8 +431,10 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     */
   def takeError(
       error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): Unit /* None */ =
-    g_simple_async_result_take_error(this.raw.asInstanceOf, error)
+  ): Unit /* None */ = g_simple_async_result_take_error(
+    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
+    error
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

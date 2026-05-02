@@ -35,21 +35,25 @@ class LinearGradientNode(raw: Ptr[GskLinearGradientNode])
     * Retrieves the final point of the linear gradient.
     */
   def getEnd(): Ptr[graphene_point_t] /* None */ =
-    gsk_linear_gradient_node_get_end(this.raw.asInstanceOf)
+    gsk_linear_gradient_node_get_end(this.raw.asInstanceOf[Ptr[GskRenderNode]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the number of color stops in the gradient.
     */
   def getNColorStops(): CUnsignedLongInt /* None */ =
-    gsk_linear_gradient_node_get_n_color_stops(this.raw.asInstanceOf).value
+    gsk_linear_gradient_node_get_n_color_stops(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the initial point of the linear gradient.
     */
   def getStart(): Ptr[graphene_point_t] /* None */ =
-    gsk_linear_gradient_node_get_start(this.raw.asInstanceOf)
+    gsk_linear_gradient_node_get_start(
+      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+    )
 
 end LinearGradientNode
 

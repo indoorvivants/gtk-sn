@@ -41,7 +41,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * Clears the pending flag on @stream.
     */
   def clearPending(): Unit /* None */ = g_input_stream_clear_pending(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GInputStream]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -75,7 +75,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_input_stream_close(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GInputStream]],
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -104,7 +104,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_input_stream_close_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GInputStream]],
     io_priority,
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -126,7 +126,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_input_stream_close_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GInputStream]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value.!=(0)
@@ -136,15 +136,17 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     *
     * Checks if an input stream has pending actions.
     */
-  def hasPending(): Boolean /* None */ =
-    g_input_stream_has_pending(this.raw.asInstanceOf).value.!=(0)
+  def hasPending(): Boolean /* None */ = g_input_stream_has_pending(
+    this.raw.asInstanceOf[Ptr[GInputStream]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if an input stream is closed.
     */
-  def isClosed(): Boolean /* None */ =
-    g_input_stream_is_closed(this.raw.asInstanceOf).value.!=(0)
+  def isClosed(): Boolean /* None */ = g_input_stream_is_closed(
+    this.raw.asInstanceOf[Ptr[GInputStream]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -302,7 +304,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Ptr[GBytes] /* None */ ] = GResult.wrap(__errorPtr =>
     g_input_stream_read_bytes(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GInputStream]],
       gsize(count),
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -344,7 +346,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_input_stream_read_bytes_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GInputStream]],
     gsize(count),
     io_priority,
     cancellable
@@ -366,7 +368,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Ptr[GBytes] /* None */ ] = GResult.wrap(__errorPtr =>
     g_input_stream_read_bytes_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GInputStream]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     )
@@ -380,7 +382,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_input_stream_read_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GInputStream]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value
@@ -393,7 +395,10 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * @error.
     */
   def setPending(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_input_stream_set_pending(this.raw.asInstanceOf, __errorPtr).value.!=(0)
+    g_input_stream_set_pending(
+      this.raw.asInstanceOf[Ptr[GInputStream]],
+      __errorPtr
+    ).value.!=(0)
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -419,7 +424,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_input_stream_skip(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GInputStream]],
       gsize(count),
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -463,7 +468,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   ): Unit /* None */ = g_input_stream_skip_async(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GInputStream]],
     gsize(count),
     io_priority,
     cancellable
@@ -485,7 +490,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_input_stream_skip_finish(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GInputStream]],
       result.getUnsafeRawPointer().asInstanceOf,
       __errorPtr
     ).value

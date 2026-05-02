@@ -37,14 +37,14 @@ class TouchpadEvent(raw: Ptr[GdkTouchpadEvent]) extends Event(raw.asInstanceOf):
     * Extracts the touchpad gesture phase from a touchpad event.
     */
   def getGesturePhase(): GdkTouchpadGesturePhase /* None */ =
-    gdk_touchpad_event_get_gesture_phase(this.raw.asInstanceOf)
+    gdk_touchpad_event_get_gesture_phase(this.raw.asInstanceOf[Ptr[GdkEvent]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts the number of fingers from a touchpad event.
     */
   def getNFingers(): UInt /* None */ = gdk_touchpad_event_get_n_fingers(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -52,14 +52,16 @@ class TouchpadEvent(raw: Ptr[GdkTouchpadEvent]) extends Event(raw.asInstanceOf):
     * Extracts the angle delta from a touchpad pinch event.
     */
   def getPinchAngleDelta(): Double /* None */ =
-    gdk_touchpad_event_get_pinch_angle_delta(this.raw.asInstanceOf)
+    gdk_touchpad_event_get_pinch_angle_delta(
+      this.raw.asInstanceOf[Ptr[GdkEvent]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts the scale from a touchpad pinch event.
     */
   def getPinchScale(): Double /* None */ = gdk_touchpad_event_get_pinch_scale(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
   )
 
 end TouchpadEvent

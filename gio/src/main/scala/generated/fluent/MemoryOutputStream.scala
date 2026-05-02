@@ -38,7 +38,7 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     * truncate operation on the stream.
     */
   def getData(): Ptr[Byte] /* None */ = g_memory_output_stream_get_data(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GMemoryOutputStream]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -47,7 +47,9 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     * written in the stream that has not been truncated away.
     */
   def getDataSize(): CUnsignedLongInt /* None */ =
-    g_memory_output_stream_get_data_size(this.raw.asInstanceOf).value
+    g_memory_output_stream_get_data_size(
+      this.raw.asInstanceOf[Ptr[GMemoryOutputStream]]
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -67,7 +69,7 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     * stream, use g_memory_output_stream_get_data_size().
     */
   def getSize(): CUnsignedLongInt /* None */ = g_memory_output_stream_get_size(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GMemoryOutputStream]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -76,7 +78,9 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     * before calling this function.
     */
   def stealAsBytes(): Ptr[GBytes] /* None */ =
-    g_memory_output_stream_steal_as_bytes(this.raw.asInstanceOf)
+    g_memory_output_stream_steal_as_bytes(
+      this.raw.asInstanceOf[Ptr[GMemoryOutputStream]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -89,7 +93,7 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     *   must be closed before calling this function.
     */
   def stealData(): Ptr[Byte] /* None */ = g_memory_output_stream_steal_data(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GMemoryOutputStream]]
   ).value
 
 end MemoryOutputStream

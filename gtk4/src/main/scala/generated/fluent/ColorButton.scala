@@ -48,15 +48,18 @@ class ColorButton(raw: Ptr[GtkColorButton])
     *
     * Gets whether the dialog is modal.
     */
-  def getModal(): Boolean /* None */ =
-    gtk_color_button_get_modal(this.raw.asInstanceOf).value.!=(0)
+  def getModal(): Boolean /* None */ = gtk_color_button_get_modal(
+    this.raw.asInstanceOf[Ptr[GtkColorButton]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the title of the color chooser dialog.
     */
   def getTitle()(using Zone): String /* None */ = fromCString(
-    gtk_color_button_get_title(this.raw.asInstanceOf).asInstanceOf
+    gtk_color_button_get_title(
+      this.raw.asInstanceOf[Ptr[GtkColorButton]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -66,7 +69,7 @@ class ColorButton(raw: Ptr[GtkColorButton])
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_color_button_set_modal(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColorButton]],
     gboolean(gint((if modal == true then 1 else 0)))
   )
 
@@ -77,7 +80,7 @@ class ColorButton(raw: Ptr[GtkColorButton])
   def setTitle(
       title: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_color_button_set_title(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColorButton]],
     __sn_extract_string(title)
   )
 

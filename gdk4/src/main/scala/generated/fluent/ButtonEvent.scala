@@ -22,7 +22,7 @@ class ButtonEvent(raw: Ptr[GdkButtonEvent]) extends Event(raw.asInstanceOf):
     * Extract the button number from a button event.
     */
   def getButton(): UInt /* None */ = gdk_button_event_get_button(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value
 
 end ButtonEvent

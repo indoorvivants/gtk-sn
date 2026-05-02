@@ -29,7 +29,9 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     * The iterator is not advanced.
     */
   def getName()(using Zone): String /* None */ = fromCString(
-    g_menu_attribute_iter_get_name(this.raw.asInstanceOf).asInstanceOf
+    g_menu_attribute_iter_get_name(
+      this.raw.asInstanceOf[Ptr[GMenuAttributeIter]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -61,7 +63,7 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     * The iterator is not advanced.
     */
   def getValue(): Ptr[GVariant] /* None */ = g_menu_attribute_iter_get_value(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GMenuAttributeIter]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -74,7 +76,8 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     * it to the first attribute (and determine if the first attribute exists at
     * all).
     */
-  def next(): Boolean /* None */ =
-    g_menu_attribute_iter_next(this.raw.asInstanceOf).value.!=(0)
+  def next(): Boolean /* None */ = g_menu_attribute_iter_next(
+    this.raw.asInstanceOf[Ptr[GMenuAttributeIter]]
+  ).value.!=(0)
 
 end MenuAttributeIter

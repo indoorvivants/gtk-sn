@@ -42,7 +42,7 @@ class Spinner(raw: Ptr[GtkSpinner])
     * Returns whether the spinner is spinning.
     */
   def getSpinning(): Boolean /* None */ =
-    gtk_spinner_get_spinning(this.raw.asInstanceOf).value.!=(0)
+    gtk_spinner_get_spinning(this.raw.asInstanceOf[Ptr[GtkSpinner]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -51,7 +51,7 @@ class Spinner(raw: Ptr[GtkSpinner])
   def setSpinning(
       spinning: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_spinner_set_spinning(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkSpinner]],
     gboolean(gint((if spinning == true then 1 else 0)))
   )
 
@@ -59,13 +59,17 @@ class Spinner(raw: Ptr[GtkSpinner])
     *
     * Starts the animation of the spinner.
     */
-  def start(): Unit /* None */ = gtk_spinner_start(this.raw.asInstanceOf)
+  def start(): Unit /* None */ = gtk_spinner_start(
+    this.raw.asInstanceOf[Ptr[GtkSpinner]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Stops the animation of the spinner.
     */
-  def stop(): Unit /* None */ = gtk_spinner_stop(this.raw.asInstanceOf)
+  def stop(): Unit /* None */ = gtk_spinner_stop(
+    this.raw.asInstanceOf[Ptr[GtkSpinner]]
+  )
 
 end Spinner
 

@@ -21,7 +21,9 @@ class NamedAction(raw: Ptr[GtkNamedAction])
     * Returns the name of the action that will be activated.
     */
   def getActionName()(using Zone): String /* None */ = fromCString(
-    gtk_named_action_get_action_name(this.raw.asInstanceOf).asInstanceOf
+    gtk_named_action_get_action_name(
+      this.raw.asInstanceOf[Ptr[GtkNamedAction]]
+    ).asInstanceOf
   )
 
 end NamedAction

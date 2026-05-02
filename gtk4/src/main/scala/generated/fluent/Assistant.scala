@@ -78,7 +78,7 @@ class Assistant(raw: Ptr[GtkAssistant])
   def addActionWidget(
       child: Widget /* Some(Ptr[GtkWidget]) */
   ): Unit /* None */ = gtk_assistant_add_action_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAssistant]],
     child.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -88,7 +88,7 @@ class Assistant(raw: Ptr[GtkAssistant])
     */
   def appendPage(page: Widget /* Some(Ptr[GtkWidget]) */ ): Int /* None */ =
     gtk_assistant_append_page(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkAssistant]],
       page.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -104,14 +104,16 @@ class Assistant(raw: Ptr[GtkAssistant])
     * progress page to track a long-running, unreversible operation after the
     * user has clicked apply on a confirmation page.
     */
-  def commit(): Unit /* None */ = gtk_assistant_commit(this.raw.asInstanceOf)
+  def commit(): Unit /* None */ = gtk_assistant_commit(
+    this.raw.asInstanceOf[Ptr[GtkAssistant]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the page number of the current page.
     */
   def getCurrentPage(): Int /* None */ = gtk_assistant_get_current_page(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAssistant]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -119,7 +121,7 @@ class Assistant(raw: Ptr[GtkAssistant])
     * Returns the number of pages in the @assistant
     */
   def getNPages(): Int /* None */ = gtk_assistant_get_n_pages(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAssistant]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -128,7 +130,10 @@ class Assistant(raw: Ptr[GtkAssistant])
     */
   def getNthPage(page_num: Int /* Some(CInt) */ ): Widget /* None */ =
     new Widget(
-      gtk_assistant_get_nth_page(this.raw.asInstanceOf, page_num).asInstanceOf
+      gtk_assistant_get_nth_page(
+        this.raw.asInstanceOf[Ptr[GtkAssistant]],
+        page_num
+      ).asInstanceOf
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -139,7 +144,7 @@ class Assistant(raw: Ptr[GtkAssistant])
       child: Widget /* Some(Ptr[GtkWidget]) */
   ): AssistantPage /* None */ = new AssistantPage(
     gtk_assistant_get_page(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkAssistant]],
       child.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
   )
@@ -151,7 +156,7 @@ class Assistant(raw: Ptr[GtkAssistant])
   def getPageComplete(
       page: Widget /* Some(Ptr[GtkWidget]) */
   ): Boolean /* None */ = gtk_assistant_get_page_complete(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAssistant]],
     page.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
@@ -163,7 +168,7 @@ class Assistant(raw: Ptr[GtkAssistant])
       page: Widget /* Some(Ptr[GtkWidget]) */
   )(using Zone): String /* None */ = fromCString(
     gtk_assistant_get_page_title(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkAssistant]],
       page.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
   )
@@ -175,7 +180,7 @@ class Assistant(raw: Ptr[GtkAssistant])
   def getPageType(
       page: Widget /* Some(Ptr[GtkWidget]) */
   ): GtkAssistantPageType /* None */ = gtk_assistant_get_page_type(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAssistant]],
     page.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -184,7 +189,9 @@ class Assistant(raw: Ptr[GtkAssistant])
     * Gets a list model of the assistant pages.
     */
   def getPages(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_assistant_get_pages(this.raw.asInstanceOf).asInstanceOf
+    gtk_assistant_get_pages(
+      this.raw.asInstanceOf[Ptr[GtkAssistant]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -195,7 +202,7 @@ class Assistant(raw: Ptr[GtkAssistant])
       page: Widget /* Some(Ptr[GtkWidget]) */,
       position: Int /* Some(CInt) */
   ): Int /* None */ = gtk_assistant_insert_page(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAssistant]],
     page.getUnsafeRawPointer().asInstanceOf,
     position
   )
@@ -211,7 +218,7 @@ class Assistant(raw: Ptr[GtkAssistant])
     * %GTK_ASSISTANT_PAGE_CUSTOM type.
     */
   def nextPage(): Unit /* None */ = gtk_assistant_next_page(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAssistant]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -220,7 +227,7 @@ class Assistant(raw: Ptr[GtkAssistant])
     */
   def prependPage(page: Widget /* Some(Ptr[GtkWidget]) */ ): Int /* None */ =
     gtk_assistant_prepend_page(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkAssistant]],
       page.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -235,7 +242,7 @@ class Assistant(raw: Ptr[GtkAssistant])
     * %GTK_ASSISTANT_PAGE_CUSTOM type.
     */
   def previousPage(): Unit /* None */ = gtk_assistant_previous_page(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAssistant]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -245,7 +252,7 @@ class Assistant(raw: Ptr[GtkAssistant])
   def removeActionWidget(
       child: Widget /* Some(Ptr[GtkWidget]) */
   ): Unit /* None */ = gtk_assistant_remove_action_widget(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAssistant]],
     child.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -254,7 +261,10 @@ class Assistant(raw: Ptr[GtkAssistant])
     * Removes the @page_num’s page from @assistant.
     */
   def removePage(page_num: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_assistant_remove_page(this.raw.asInstanceOf, page_num)
+    gtk_assistant_remove_page(
+      this.raw.asInstanceOf[Ptr[GtkAssistant]],
+      page_num
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -264,7 +274,10 @@ class Assistant(raw: Ptr[GtkAssistant])
     * flow can be set with gtk_assistant_set_forward_page_func().
     */
   def setCurrentPage(page_num: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_assistant_set_current_page(this.raw.asInstanceOf, page_num)
+    gtk_assistant_set_current_page(
+      this.raw.asInstanceOf[Ptr[GtkAssistant]],
+      page_num
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -282,7 +295,7 @@ class Assistant(raw: Ptr[GtkAssistant])
       ],
       destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): Unit /* None */ = gtk_assistant_set_forward_page_func(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAssistant]],
     page_func
       .map[GtkAssistantPageFunc](o => o)
       .getOrElse(null.asInstanceOf[GtkAssistantPageFunc]),
@@ -303,7 +316,7 @@ class Assistant(raw: Ptr[GtkAssistant])
       page: Widget /* Some(Ptr[GtkWidget]) */,
       complete: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_assistant_set_page_complete(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAssistant]],
     page.getUnsafeRawPointer().asInstanceOf,
     gboolean(gint((if complete == true then 1 else 0)))
   )
@@ -319,7 +332,7 @@ class Assistant(raw: Ptr[GtkAssistant])
       page: Widget /* Some(Ptr[GtkWidget]) */,
       title: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_assistant_set_page_title(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAssistant]],
     page.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(title)
   )
@@ -334,7 +347,7 @@ class Assistant(raw: Ptr[GtkAssistant])
       page: Widget /* Some(Ptr[GtkWidget]) */,
       `type`: GtkAssistantPageType /* Some(GtkAssistantPageType) */
   ): Unit /* None */ = gtk_assistant_set_page_type(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAssistant]],
     page.getUnsafeRawPointer().asInstanceOf,
     `type`
   )
@@ -352,7 +365,7 @@ class Assistant(raw: Ptr[GtkAssistant])
     * assistant.
     */
   def updateButtonsState(): Unit /* None */ =
-    gtk_assistant_update_buttons_state(this.raw.asInstanceOf)
+    gtk_assistant_update_buttons_state(this.raw.asInstanceOf[Ptr[GtkAssistant]])
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

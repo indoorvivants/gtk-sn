@@ -41,8 +41,11 @@ class Adjustment(raw: Ptr[GtkAdjustment])
   def clampPage(
       lower: Double /* Some(Double) */,
       upper: Double /* Some(Double) */
-  ): Unit /* None */ =
-    gtk_adjustment_clamp_page(this.raw.asInstanceOf, lower, upper)
+  ): Unit /* None */ = gtk_adjustment_clamp_page(
+    this.raw.asInstanceOf[Ptr[GtkAdjustment]],
+    lower,
+    upper
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -61,7 +64,7 @@ class Adjustment(raw: Ptr[GtkAdjustment])
       page_increment: Double /* Some(Double) */,
       page_size: Double /* Some(Double) */
   ): Unit /* None */ = gtk_adjustment_configure(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkAdjustment]],
     value,
     lower,
     upper,
@@ -75,7 +78,7 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     * Retrieves the minimum value of the adjustment.
     */
   def getLower(): Double /* None */ = gtk_adjustment_get_lower(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAdjustment]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -83,14 +86,16 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     * Gets the smaller of step increment and page increment.
     */
   def getMinimumIncrement(): Double /* None */ =
-    gtk_adjustment_get_minimum_increment(this.raw.asInstanceOf)
+    gtk_adjustment_get_minimum_increment(
+      this.raw.asInstanceOf[Ptr[GtkAdjustment]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the page increment of the adjustment.
     */
   def getPageIncrement(): Double /* None */ = gtk_adjustment_get_page_increment(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAdjustment]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -98,7 +103,7 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     * Retrieves the page size of the adjustment.
     */
   def getPageSize(): Double /* None */ = gtk_adjustment_get_page_size(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAdjustment]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -106,7 +111,7 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     * Retrieves the step increment of the adjustment.
     */
   def getStepIncrement(): Double /* None */ = gtk_adjustment_get_step_increment(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAdjustment]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -114,7 +119,7 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     * Retrieves the maximum value of the adjustment.
     */
   def getUpper(): Double /* None */ = gtk_adjustment_get_upper(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAdjustment]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -122,7 +127,7 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     * Gets the current value of the adjustment.
     */
   def getValue(): Double /* None */ = gtk_adjustment_get_value(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkAdjustment]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -141,7 +146,7 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     * change, or using [method@Gtk.Adjustment.configure] has the same effect.
     */
   def setLower(lower: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_adjustment_set_lower(this.raw.asInstanceOf, lower)
+    gtk_adjustment_set_lower(this.raw.asInstanceOf[Ptr[GtkAdjustment]], lower)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -153,8 +158,10 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     */
   def setPageIncrement(
       page_increment: Double /* Some(Double) */
-  ): Unit /* None */ =
-    gtk_adjustment_set_page_increment(this.raw.asInstanceOf, page_increment)
+  ): Unit /* None */ = gtk_adjustment_set_page_increment(
+    this.raw.asInstanceOf[Ptr[GtkAdjustment]],
+    page_increment
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -165,7 +172,10 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     * multiple adjustment properties.
     */
   def setPageSize(page_size: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_adjustment_set_page_size(this.raw.asInstanceOf, page_size)
+    gtk_adjustment_set_page_size(
+      this.raw.asInstanceOf[Ptr[GtkAdjustment]],
+      page_size
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -177,8 +187,10 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     */
   def setStepIncrement(
       step_increment: Double /* Some(Double) */
-  ): Unit /* None */ =
-    gtk_adjustment_set_step_increment(this.raw.asInstanceOf, step_increment)
+  ): Unit /* None */ = gtk_adjustment_set_step_increment(
+    this.raw.asInstanceOf[Ptr[GtkAdjustment]],
+    step_increment
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -192,7 +204,7 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     * multiple adjustment properties.
     */
   def setUpper(upper: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_adjustment_set_upper(this.raw.asInstanceOf, upper)
+    gtk_adjustment_set_upper(this.raw.asInstanceOf[Ptr[GtkAdjustment]], upper)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -207,7 +219,7 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     * [property@Gtk.Adjustment:page-size].
     */
   def setValue(value: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_adjustment_set_value(this.raw.asInstanceOf, value)
+    gtk_adjustment_set_value(this.raw.asInstanceOf[Ptr[GtkAdjustment]], value)
 
 end Adjustment
 

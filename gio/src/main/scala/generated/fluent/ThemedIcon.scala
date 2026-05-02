@@ -31,7 +31,7 @@ class ThemedIcon(raw: Ptr[GThemedIcon]) extends Object(raw.asInstanceOf), Icon:
   def appendName(
       iconname: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = g_themed_icon_append_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GThemedIcon]],
     __sn_extract_string(iconname)
   )
 
@@ -45,7 +45,7 @@ class ThemedIcon(raw: Ptr[GThemedIcon]) extends Object(raw.asInstanceOf), Icon:
   def prependName(
       iconname: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = g_themed_icon_prepend_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GThemedIcon]],
     __sn_extract_string(iconname)
   )
 

@@ -85,7 +85,7 @@ class PadController(raw: Ptr[GtkPadController])
       label: String | CString /* Some(CString) */,
       action_name: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_pad_controller_set_action(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPadController]],
     `type`,
     index,
     mode,
@@ -106,7 +106,7 @@ class PadController(raw: Ptr[GtkPadController])
       ] /* Some(Ptr[GtkPadActionEntry]) */,
       n_entries: Int /* Some(CInt) */
   ): Unit /* None */ = gtk_pad_controller_set_action_entries(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkPadController]],
     entries,
     n_entries
   )

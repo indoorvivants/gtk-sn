@@ -32,7 +32,7 @@ class ColumnViewRow(raw: Ptr[GtkColumnViewRow])
     */
   def getAccessibleDescription()(using Zone): String /* None */ = fromCString(
     gtk_column_view_row_get_accessible_description(
-      this.raw.asInstanceOf
+      this.raw.asInstanceOf[Ptr[GtkColumnViewRow]]
     ).asInstanceOf
   )
 
@@ -41,7 +41,9 @@ class ColumnViewRow(raw: Ptr[GtkColumnViewRow])
     * Gets the accessible label of @self.
     */
   def getAccessibleLabel()(using Zone): String /* None */ = fromCString(
-    gtk_column_view_row_get_accessible_label(this.raw.asInstanceOf).asInstanceOf
+    gtk_column_view_row_get_accessible_label(
+      this.raw.asInstanceOf[Ptr[GtkColumnViewRow]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -50,15 +52,18 @@ class ColumnViewRow(raw: Ptr[GtkColumnViewRow])
     * gtk_column_view_row_set_activatable().
     */
   def getActivatable(): Boolean /* None */ =
-    gtk_column_view_row_get_activatable(this.raw.asInstanceOf).value.!=(0)
+    gtk_column_view_row_get_activatable(
+      this.raw.asInstanceOf[Ptr[GtkColumnViewRow]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if a row item has been set to be focusable via
     * gtk_column_view_row_set_focusable().
     */
-  def getFocusable(): Boolean /* None */ =
-    gtk_column_view_row_get_focusable(this.raw.asInstanceOf).value.!=(0)
+  def getFocusable(): Boolean /* None */ = gtk_column_view_row_get_focusable(
+    this.raw.asInstanceOf[Ptr[GtkColumnViewRow]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -67,7 +72,9 @@ class ColumnViewRow(raw: Ptr[GtkColumnViewRow])
     * If @self is unbound, this function returns %NULL.
     */
   def getItem(): Object /* None */ = new Object(
-    gtk_column_view_row_get_item(this.raw.asInstanceOf).asInstanceOf
+    gtk_column_view_row_get_item(
+      this.raw.asInstanceOf[Ptr[GtkColumnViewRow]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -77,7 +84,7 @@ class ColumnViewRow(raw: Ptr[GtkColumnViewRow])
     * If @self is unbound, %GTK_INVALID_LIST_POSITION is returned.
     */
   def getPosition(): UInt /* None */ = gtk_column_view_row_get_position(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkColumnViewRow]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -87,8 +94,9 @@ class ColumnViewRow(raw: Ptr[GtkColumnViewRow])
     *
     * Do not confuse this function with [method@Gtk.ColumnViewRow.get_selected].
     */
-  def getSelectable(): Boolean /* None */ =
-    gtk_column_view_row_get_selectable(this.raw.asInstanceOf).value.!=(0)
+  def getSelectable(): Boolean /* None */ = gtk_column_view_row_get_selectable(
+    this.raw.asInstanceOf[Ptr[GtkColumnViewRow]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -97,8 +105,9 @@ class ColumnViewRow(raw: Ptr[GtkColumnViewRow])
     * The selected state is maintained by the list widget and its model and
     * cannot be set otherwise.
     */
-  def getSelected(): Boolean /* None */ =
-    gtk_column_view_row_get_selected(this.raw.asInstanceOf).value.!=(0)
+  def getSelected(): Boolean /* None */ = gtk_column_view_row_get_selected(
+    this.raw.asInstanceOf[Ptr[GtkColumnViewRow]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -109,7 +118,7 @@ class ColumnViewRow(raw: Ptr[GtkColumnViewRow])
       description: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ =
     gtk_column_view_row_set_accessible_description(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkColumnViewRow]],
       __sn_extract_string(description)
     )
 
@@ -121,7 +130,7 @@ class ColumnViewRow(raw: Ptr[GtkColumnViewRow])
   def setAccessibleLabel(
       label: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_column_view_row_set_accessible_label(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnViewRow]],
     __sn_extract_string(label)
   )
 
@@ -139,7 +148,7 @@ class ColumnViewRow(raw: Ptr[GtkColumnViewRow])
   def setActivatable(
       activatable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_column_view_row_set_activatable(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnViewRow]],
     gboolean(gint((if activatable == true then 1 else 0)))
   )
 
@@ -158,7 +167,7 @@ class ColumnViewRow(raw: Ptr[GtkColumnViewRow])
   def setFocusable(
       focusable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_column_view_row_set_focusable(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnViewRow]],
     gboolean(gint((if focusable == true then 1 else 0)))
   )
 
@@ -178,7 +187,7 @@ class ColumnViewRow(raw: Ptr[GtkColumnViewRow])
   def setSelectable(
       selectable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_column_view_row_set_selectable(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkColumnViewRow]],
     gboolean(gint((if selectable == true then 1 else 0)))
   )
 

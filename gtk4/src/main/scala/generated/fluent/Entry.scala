@@ -134,7 +134,8 @@ class Entry(raw: Ptr[GtkEntry])
     * Retrieves the value set by gtk_entry_set_activates_default().
     */
   def getActivatesDefault(): Boolean /* None */ =
-    gtk_entry_get_activates_default(this.raw.asInstanceOf).value.!=(0)
+    gtk_entry_get_activates_default(this.raw.asInstanceOf[Ptr[GtkEntry]]).value
+      .!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -143,7 +144,7 @@ class Entry(raw: Ptr[GtkEntry])
     * See also: [property@Gtk.Editable:xalign]
     */
   def getAlignment(): Float /* None */ = gtk_entry_get_alignment(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkEntry]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -153,7 +154,7 @@ class Entry(raw: Ptr[GtkEntry])
     * See [method@Gtk.Entry.set_attributes].
     */
   def getAttributes(): Ptr[PangoAttrList] /* None */ = gtk_entry_get_attributes(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkEntry]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -161,7 +162,7 @@ class Entry(raw: Ptr[GtkEntry])
     * Get the `GtkEntryBuffer` object which holds the text for this widget.
     */
   def getBuffer(): EntryBuffer /* None */ = new EntryBuffer(
-    gtk_entry_get_buffer(this.raw.asInstanceOf).asInstanceOf
+    gtk_entry_get_buffer(this.raw.asInstanceOf[Ptr[GtkEntry]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -169,7 +170,7 @@ class Entry(raw: Ptr[GtkEntry])
     * Returns the auxiliary completion object currently in use by @entry.
     */
   def getCompletion(): EntryCompletion /* None */ = new EntryCompletion(
-    gtk_entry_get_completion(this.raw.asInstanceOf).asInstanceOf
+    gtk_entry_get_completion(this.raw.asInstanceOf[Ptr[GtkEntry]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -178,14 +179,14 @@ class Entry(raw: Ptr[GtkEntry])
     * operation, or -1.
     */
   def getCurrentIconDragSource(): Int /* None */ =
-    gtk_entry_get_current_icon_drag_source(this.raw.asInstanceOf)
+    gtk_entry_get_current_icon_drag_source(this.raw.asInstanceOf[Ptr[GtkEntry]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the menu model set with gtk_entry_set_extra_menu().
     */
   def getExtraMenu(): MenuModel /* None */ = new MenuModel(
-    gtk_entry_get_extra_menu(this.raw.asInstanceOf).asInstanceOf
+    gtk_entry_get_extra_menu(this.raw.asInstanceOf[Ptr[GtkEntry]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -193,7 +194,7 @@ class Entry(raw: Ptr[GtkEntry])
     * Gets the value set by gtk_entry_set_has_frame().
     */
   def getHasFrame(): Boolean /* None */ =
-    gtk_entry_get_has_frame(this.raw.asInstanceOf).value.!=(0)
+    gtk_entry_get_has_frame(this.raw.asInstanceOf[Ptr[GtkEntry]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -201,8 +202,10 @@ class Entry(raw: Ptr[GtkEntry])
     */
   def getIconActivatable(
       icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
-  ): Boolean /* None */ =
-    gtk_entry_get_icon_activatable(this.raw.asInstanceOf, icon_pos).value.!=(0)
+  ): Boolean /* None */ = gtk_entry_get_icon_activatable(
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
+    icon_pos
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -233,7 +236,8 @@ class Entry(raw: Ptr[GtkEntry])
   def getIconAtPos(
       x: Int /* Some(CInt) */,
       y: Int /* Some(CInt) */
-  ): Int /* None */ = gtk_entry_get_icon_at_pos(this.raw.asInstanceOf, x, y)
+  ): Int /* None */ =
+    gtk_entry_get_icon_at_pos(this.raw.asInstanceOf[Ptr[GtkEntry]], x, y)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -245,7 +249,10 @@ class Entry(raw: Ptr[GtkEntry])
   def getIconGicon(
       icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
   ): Icon /* None */ = new Icon.Abstract(
-    gtk_entry_get_icon_gicon(this.raw.asInstanceOf, icon_pos).asInstanceOf
+    gtk_entry_get_icon_gicon(
+      this.raw.asInstanceOf[Ptr[GtkEntry]],
+      icon_pos
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -258,7 +265,10 @@ class Entry(raw: Ptr[GtkEntry])
   def getIconName(
       icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
   )(using Zone): String /* None */ = fromCString(
-    gtk_entry_get_icon_name(this.raw.asInstanceOf, icon_pos).asInstanceOf
+    gtk_entry_get_icon_name(
+      this.raw.asInstanceOf[Ptr[GtkEntry]],
+      icon_pos
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -270,7 +280,10 @@ class Entry(raw: Ptr[GtkEntry])
   def getIconPaintable(
       icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
   ): Paintable /* None */ = new Paintable.Abstract(
-    gtk_entry_get_icon_paintable(this.raw.asInstanceOf, icon_pos).asInstanceOf
+    gtk_entry_get_icon_paintable(
+      this.raw.asInstanceOf[Ptr[GtkEntry]],
+      icon_pos
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -279,8 +292,10 @@ class Entry(raw: Ptr[GtkEntry])
     */
   def getIconSensitive(
       icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
-  ): Boolean /* None */ =
-    gtk_entry_get_icon_sensitive(this.raw.asInstanceOf, icon_pos).value.!=(0)
+  ): Boolean /* None */ = gtk_entry_get_icon_sensitive(
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
+    icon_pos
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -291,8 +306,10 @@ class Entry(raw: Ptr[GtkEntry])
     */
   def getIconStorageType(
       icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
-  ): GtkImageType /* None */ =
-    gtk_entry_get_icon_storage_type(this.raw.asInstanceOf, icon_pos)
+  ): GtkImageType /* None */ = gtk_entry_get_icon_storage_type(
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
+    icon_pos
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -302,7 +319,7 @@ class Entry(raw: Ptr[GtkEntry])
       icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
   )(using Zone): String /* None */ = fromCString(
     gtk_entry_get_icon_tooltip_markup(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkEntry]],
       icon_pos
     ).asInstanceOf
   )
@@ -315,7 +332,7 @@ class Entry(raw: Ptr[GtkEntry])
       icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
   )(using Zone): String /* None */ = fromCString(
     gtk_entry_get_icon_tooltip_text(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkEntry]],
       icon_pos
     ).asInstanceOf
   )
@@ -325,7 +342,7 @@ class Entry(raw: Ptr[GtkEntry])
     * Gets the input hints of this `GtkEntry`.
     */
   def getInputHints(): GtkInputHints /* None */ = gtk_entry_get_input_hints(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkEntry]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -333,7 +350,7 @@ class Entry(raw: Ptr[GtkEntry])
     * Gets the input purpose of the `GtkEntry`.
     */
   def getInputPurpose(): GtkInputPurpose /* None */ =
-    gtk_entry_get_input_purpose(this.raw.asInstanceOf)
+    gtk_entry_get_input_purpose(this.raw.asInstanceOf[Ptr[GtkEntry]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -341,7 +358,7 @@ class Entry(raw: Ptr[GtkEntry])
     * mode”.
     */
   def getInvisibleChar(): CUnsignedInt /* None */ =
-    gtk_entry_get_invisible_char(this.raw.asInstanceOf).value
+    gtk_entry_get_invisible_char(this.raw.asInstanceOf[Ptr[GtkEntry]]).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -350,15 +367,16 @@ class Entry(raw: Ptr[GtkEntry])
     * See [method@Gtk.Entry.set_max_length].
     */
   def getMaxLength(): Int /* None */ = gtk_entry_get_max_length(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkEntry]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether the `GtkEntry` is in overwrite mode.
     */
-  def getOverwriteMode(): Boolean /* None */ =
-    gtk_entry_get_overwrite_mode(this.raw.asInstanceOf).value.!=(0)
+  def getOverwriteMode(): Boolean /* None */ = gtk_entry_get_overwrite_mode(
+    this.raw.asInstanceOf[Ptr[GtkEntry]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -366,7 +384,9 @@ class Entry(raw: Ptr[GtkEntry])
     * unfocused
     */
   def getPlaceholderText()(using Zone): String /* None */ = fromCString(
-    gtk_entry_get_placeholder_text(this.raw.asInstanceOf).asInstanceOf
+    gtk_entry_get_placeholder_text(
+      this.raw.asInstanceOf[Ptr[GtkEntry]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -376,14 +396,14 @@ class Entry(raw: Ptr[GtkEntry])
     * See [method@Gtk.Entry.set_progress_fraction].
     */
   def getProgressFraction(): Double /* None */ =
-    gtk_entry_get_progress_fraction(this.raw.asInstanceOf)
+    gtk_entry_get_progress_fraction(this.raw.asInstanceOf[Ptr[GtkEntry]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the pulse step set with gtk_entry_set_progress_pulse_step().
     */
   def getProgressPulseStep(): Double /* None */ =
-    gtk_entry_get_progress_pulse_step(this.raw.asInstanceOf)
+    gtk_entry_get_progress_pulse_step(this.raw.asInstanceOf[Ptr[GtkEntry]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -392,7 +412,7 @@ class Entry(raw: Ptr[GtkEntry])
     * See [method@Gtk.Entry.set_tabs].
     */
   def getTabs(): Ptr[PangoTabArray] /* None */ = gtk_entry_get_tabs(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkEntry]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -403,7 +423,7 @@ class Entry(raw: Ptr[GtkEntry])
     * [method@Gtk.EntryBuffer.get_length] on it.
     */
   def getTextLength(): UShort /* None */ = gtk_entry_get_text_length(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkEntry]]
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -413,7 +433,7 @@ class Entry(raw: Ptr[GtkEntry])
     * See [method@Gtk.Entry.set_visibility].
     */
   def getVisibility(): Boolean /* None */ =
-    gtk_entry_get_visibility(this.raw.asInstanceOf).value.!=(0)
+    gtk_entry_get_visibility(this.raw.asInstanceOf[Ptr[GtkEntry]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -425,7 +445,9 @@ class Entry(raw: Ptr[GtkEntry])
     * in, such as search-as-you-type entries.
     */
   def grabFocusWithoutSelecting(): Boolean /* None */ =
-    gtk_entry_grab_focus_without_selecting(this.raw.asInstanceOf).value.!=(0)
+    gtk_entry_grab_focus_without_selecting(
+      this.raw.asInstanceOf[Ptr[GtkEntry]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -437,7 +459,7 @@ class Entry(raw: Ptr[GtkEntry])
     * is determined by [method@Gtk.Entry.set_progress_pulse_step]).
     */
   def progressPulse(): Unit /* None */ = gtk_entry_progress_pulse(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkEntry]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -448,7 +470,7 @@ class Entry(raw: Ptr[GtkEntry])
     * on-going input method behavior.
     */
   def resetImContext(): Unit /* None */ = gtk_entry_reset_im_context(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkEntry]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -462,7 +484,7 @@ class Entry(raw: Ptr[GtkEntry])
   def setActivatesDefault(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_entry_set_activates_default(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
@@ -476,7 +498,10 @@ class Entry(raw: Ptr[GtkEntry])
     * See also: [property@Gtk.Editable:xalign]
     */
   def setAlignment(xalign: Float /* Some(Float) */ ): Unit /* None */ =
-    gtk_entry_set_alignment(this.raw.asInstanceOf, xalign.asInstanceOf)
+    gtk_entry_set_alignment(
+      this.raw.asInstanceOf[Ptr[GtkEntry]],
+      xalign.asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -491,7 +516,8 @@ class Entry(raw: Ptr[GtkEntry])
       attrs: Ptr[
         PangoAttrList
       ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]) */
-  ): Unit /* None */ = gtk_entry_set_attributes(this.raw.asInstanceOf, attrs)
+  ): Unit /* None */ =
+    gtk_entry_set_attributes(this.raw.asInstanceOf[Ptr[GtkEntry]], attrs)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -500,7 +526,7 @@ class Entry(raw: Ptr[GtkEntry])
   def setBuffer(
       buffer: EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */
   ): Unit /* None */ = gtk_entry_set_buffer(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     buffer.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -515,7 +541,7 @@ class Entry(raw: Ptr[GtkEntry])
   def setCompletion(
       completion: Option[EntryCompletion /* Some(Ptr[GtkEntryCompletion]) */ ]
   ): Unit /* None */ = gtk_entry_set_completion(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     completion
       .map[Ptr[GtkEntryCompletion]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkEntryCompletion]])
@@ -530,7 +556,7 @@ class Entry(raw: Ptr[GtkEntry])
         MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   ): Unit /* None */ = gtk_entry_set_extra_menu(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     model
       .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -547,7 +573,7 @@ class Entry(raw: Ptr[GtkEntry])
   def setHasFrame(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_entry_set_has_frame(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
@@ -559,7 +585,7 @@ class Entry(raw: Ptr[GtkEntry])
       icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */,
       activatable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_entry_set_icon_activatable(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     icon_pos,
     gboolean(gint((if activatable == true then 1 else 0)))
   )
@@ -576,7 +602,7 @@ class Entry(raw: Ptr[GtkEntry])
       provider: ContentProvider /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]) */,
       actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
   ): Unit /* None */ = gtk_entry_set_icon_drag_source(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     icon_pos,
     provider.getUnsafeRawPointer().asInstanceOf,
     actions
@@ -595,7 +621,7 @@ class Entry(raw: Ptr[GtkEntry])
       icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */,
       icon: Option[Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */ ]
   ): Unit /* None */ = gtk_entry_set_icon_from_gicon(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     icon_pos,
     icon
       .map[Ptr[_root_.sn.gnome.gio.internal.GIcon]](o =>
@@ -618,7 +644,7 @@ class Entry(raw: Ptr[GtkEntry])
       icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */,
       icon_name: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_entry_set_icon_from_icon_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     icon_pos,
     icon_name
       .map[CString](o => __sn_extract_string(o))
@@ -637,7 +663,7 @@ class Entry(raw: Ptr[GtkEntry])
         Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
       ]
   ): Unit /* None */ = gtk_entry_set_icon_from_paintable(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     icon_pos,
     paintable
       .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
@@ -656,7 +682,7 @@ class Entry(raw: Ptr[GtkEntry])
       icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */,
       sensitive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_entry_set_icon_sensitive(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     icon_pos,
     gboolean(gint((if sensitive == true then 1 else 0)))
   )
@@ -678,7 +704,7 @@ class Entry(raw: Ptr[GtkEntry])
       icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */,
       tooltip: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_entry_set_icon_tooltip_markup(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     icon_pos,
     tooltip
       .map[CString](o => __sn_extract_string(o))
@@ -707,7 +733,7 @@ class Entry(raw: Ptr[GtkEntry])
       icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */,
       tooltip: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_entry_set_icon_tooltip_text(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     icon_pos,
     tooltip
       .map[CString](o => __sn_extract_string(o))
@@ -721,7 +747,8 @@ class Entry(raw: Ptr[GtkEntry])
     */
   def setInputHints(
       hints: GtkInputHints /* Some(GtkInputHints) */
-  ): Unit /* None */ = gtk_entry_set_input_hints(this.raw.asInstanceOf, hints)
+  ): Unit /* None */ =
+    gtk_entry_set_input_hints(this.raw.asInstanceOf[Ptr[GtkEntry]], hints)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -731,7 +758,7 @@ class Entry(raw: Ptr[GtkEntry])
   def setInputPurpose(
       purpose: GtkInputPurpose /* Some(GtkInputPurpose) */
   ): Unit /* None */ =
-    gtk_entry_set_input_purpose(this.raw.asInstanceOf, purpose)
+    gtk_entry_set_input_purpose(this.raw.asInstanceOf[Ptr[GtkEntry]], purpose)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -745,8 +772,10 @@ class Entry(raw: Ptr[GtkEntry])
     */
   def setInvisibleChar(
       ch: CUnsignedInt /* Some(_root_.sn.gnome.glib.internal.gunichar) */
-  ): Unit /* None */ =
-    gtk_entry_set_invisible_char(this.raw.asInstanceOf, gunichar(guint32(ch)))
+  ): Unit /* None */ = gtk_entry_set_invisible_char(
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
+    gunichar(guint32(ch))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -759,7 +788,7 @@ class Entry(raw: Ptr[GtkEntry])
     * [method@Gtk.EntryBuffer.set_max_length] on it.
     */
   def setMaxLength(max: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_entry_set_max_length(this.raw.asInstanceOf, max)
+    gtk_entry_set_max_length(this.raw.asInstanceOf[Ptr[GtkEntry]], max)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -768,7 +797,7 @@ class Entry(raw: Ptr[GtkEntry])
   def setOverwriteMode(
       overwrite: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_entry_set_overwrite_mode(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     gboolean(gint((if overwrite == true then 1 else 0)))
   )
 
@@ -782,7 +811,7 @@ class Entry(raw: Ptr[GtkEntry])
   def setPlaceholderText(
       text: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_entry_set_placeholder_text(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     text
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -797,8 +826,10 @@ class Entry(raw: Ptr[GtkEntry])
     */
   def setProgressFraction(
       fraction: Double /* Some(Double) */
-  ): Unit /* None */ =
-    gtk_entry_set_progress_fraction(this.raw.asInstanceOf, fraction)
+  ): Unit /* None */ = gtk_entry_set_progress_fraction(
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
+    fraction
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -809,8 +840,10 @@ class Entry(raw: Ptr[GtkEntry])
     */
   def setProgressPulseStep(
       fraction: Double /* Some(Double) */
-  ): Unit /* None */ =
-    gtk_entry_set_progress_pulse_step(this.raw.asInstanceOf, fraction)
+  ): Unit /* None */ = gtk_entry_set_progress_pulse_step(
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
+    fraction
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -823,7 +856,7 @@ class Entry(raw: Ptr[GtkEntry])
         PangoTabArray
       ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]) */ ]
   ): Unit /* None */ = gtk_entry_set_tabs(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     tabs
       .map[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]](o => o)
       .getOrElse(
@@ -851,7 +884,7 @@ class Entry(raw: Ptr[GtkEntry])
   def setVisibility(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_entry_set_visibility(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
     gboolean(gint((if visible == true then 1 else 0)))
   )
 
@@ -861,7 +894,7 @@ class Entry(raw: Ptr[GtkEntry])
     * again. See [method@Gtk.Entry.set_invisible_char].
     */
   def unsetInvisibleChar(): Unit /* None */ = gtk_entry_unset_invisible_char(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkEntry]]
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

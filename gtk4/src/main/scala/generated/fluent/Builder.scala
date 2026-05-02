@@ -335,7 +335,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
       filename: String | CString /* Some(CString) */
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_builder_add_from_file(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkBuilder]],
       __sn_extract_string(filename),
       __errorPtr
     ).value.!=(0)
@@ -363,7 +363,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
       resource_path: String | CString /* Some(CString) */
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_builder_add_from_resource(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkBuilder]],
       __sn_extract_string(resource_path),
       __errorPtr
     ).value.!=(0)
@@ -392,7 +392,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_builder_add_from_string(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkBuilder]],
       __sn_extract_string(buffer),
       gssize(length),
       __errorPtr
@@ -417,7 +417,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
       ]
   )(using Zone): GResult[Ptr[GClosure] /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_builder_create_closure(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkBuilder]],
       __sn_extract_string(function_name),
       flags,
       `object`
@@ -444,7 +444,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
       name: String | CString /* Some(CString) */,
       `object`: Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
   )(using Zone): Unit /* None */ = gtk_builder_expose_object(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkBuilder]],
     __sn_extract_string(name),
     `object`.getUnsafeRawPointer().asInstanceOf
   )
@@ -464,7 +464,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_builder_extend_with_template(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkBuilder]],
       `object`.getUnsafeRawPointer().asInstanceOf,
       template_type,
       __sn_extract_string(buffer),
@@ -478,7 +478,9 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * Gets the current object set via gtk_builder_set_current_object().
     */
   def getCurrentObject(): Object /* None */ = new Object(
-    gtk_builder_get_current_object(this.raw.asInstanceOf).asInstanceOf
+    gtk_builder_get_current_object(
+      this.raw.asInstanceOf[Ptr[GtkBuilder]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -492,7 +494,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
       name: String | CString /* Some(CString) */
   )(using Zone): Object /* None */ = new Object(
     gtk_builder_get_object(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkBuilder]],
       __sn_extract_string(name)
     ).asInstanceOf
   )
@@ -505,7 +507,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * returned objects.
     */
   def getObjects(): Ptr[GSList] /* None */ = gtk_builder_get_objects(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkBuilder]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -513,7 +515,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * Gets the scope in use that was set via gtk_builder_set_scope().
     */
   def getScope(): BuilderScope /* None */ = new BuilderScope.Abstract(
-    gtk_builder_get_scope(this.raw.asInstanceOf).asInstanceOf
+    gtk_builder_get_scope(this.raw.asInstanceOf[Ptr[GtkBuilder]]).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -521,7 +523,9 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * Gets the translation domain of @builder.
     */
   def getTranslationDomain()(using Zone): String /* None */ = fromCString(
-    gtk_builder_get_translation_domain(this.raw.asInstanceOf).asInstanceOf
+    gtk_builder_get_translation_domain(
+      this.raw.asInstanceOf[Ptr[GtkBuilder]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -535,7 +539,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
   def getTypeFromName(
       type_name: String | CString /* Some(CString) */
   )(using Zone): GType /* None */ = gtk_builder_get_type_from_name(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkBuilder]],
     __sn_extract_string(type_name)
   )
 
@@ -556,7 +560,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
         Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
       ]
   ): Unit /* None */ = gtk_builder_set_current_object(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkBuilder]],
     current_object
       .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -575,7 +579,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
   def setScope(
       scope: Option[BuilderScope /* Some(Ptr[GtkBuilderScope]) */ ]
   ): Unit /* None */ = gtk_builder_set_scope(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkBuilder]],
     scope
       .map[Ptr[GtkBuilderScope]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkBuilderScope]])
@@ -588,7 +592,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
   def setTranslationDomain(
       domain: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_builder_set_translation_domain(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkBuilder]],
     domain
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])

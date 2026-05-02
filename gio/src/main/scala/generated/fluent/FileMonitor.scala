@@ -34,7 +34,7 @@ class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
     * Cancels a file monitor.
     */
   def cancel(): Boolean /* None */ =
-    g_file_monitor_cancel(this.raw.asInstanceOf).value.!=(0)
+    g_file_monitor_cancel(this.raw.asInstanceOf[Ptr[GFileMonitor]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -50,7 +50,7 @@ class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
       other_file: File /* Some(Ptr[GFile]) */,
       event_type: GFileMonitorEvent /* Some(GFileMonitorEvent) */
   ): Unit /* None */ = g_file_monitor_emit_event(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GFileMonitor]],
     child.getUnsafeRawPointer().asInstanceOf,
     other_file.getUnsafeRawPointer().asInstanceOf,
     event_type
@@ -60,8 +60,9 @@ class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
     *
     * Returns whether the monitor is canceled.
     */
-  def isCancelled(): Boolean /* None */ =
-    g_file_monitor_is_cancelled(this.raw.asInstanceOf).value.!=(0)
+  def isCancelled(): Boolean /* None */ = g_file_monitor_is_cancelled(
+    this.raw.asInstanceOf[Ptr[GFileMonitor]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -70,7 +71,9 @@ class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
     */
   def setRateLimit(
       limit_msecs: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ =
-    g_file_monitor_set_rate_limit(this.raw.asInstanceOf, gint(limit_msecs))
+  ): Unit /* None */ = g_file_monitor_set_rate_limit(
+    this.raw.asInstanceOf[Ptr[GFileMonitor]],
+    gint(limit_msecs)
+  )
 
 end FileMonitor

@@ -113,7 +113,7 @@ class Application(raw: Ptr[GtkApplication])
     */
   def addWindow(window: Window /* Some(Ptr[GtkWindow]) */ ): Unit /* None */ =
     gtk_application_add_window(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkApplication]],
       window.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -125,7 +125,7 @@ class Application(raw: Ptr[GtkApplication])
       detailed_action_name: String | CString /* Some(CString) */
   )(using Zone): Array[String] /* None */ = __decode_nullable_ptrs(
     gtk_application_get_accels_for_action(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkApplication]],
       __sn_extract_string(detailed_action_name)
     )
   ).map(fromCString(_))
@@ -153,7 +153,7 @@ class Application(raw: Ptr[GtkApplication])
       accel: String | CString /* Some(CString) */
   )(using Zone): Array[String] /* None */ = __decode_nullable_ptrs(
     gtk_application_get_actions_for_accel(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkApplication]],
       __sn_extract_string(accel)
     )
   ).map(fromCString(_))
@@ -168,7 +168,9 @@ class Application(raw: Ptr[GtkApplication])
     * this application.
     */
   def getActiveWindow(): Window /* None */ = new Window(
-    gtk_application_get_active_window(this.raw.asInstanceOf).asInstanceOf
+    gtk_application_get_active_window(
+      this.raw.asInstanceOf[Ptr[GtkApplication]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -183,7 +185,7 @@ class Application(raw: Ptr[GtkApplication])
       id: String | CString /* Some(CString) */
   )(using Zone): Menu /* None */ = new Menu(
     gtk_application_get_menu_by_id(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkApplication]],
       __sn_extract_string(id)
     ).asInstanceOf
   )
@@ -194,7 +196,9 @@ class Application(raw: Ptr[GtkApplication])
     * [method@Gtk.Application.set_menubar].
     */
   def getMenubar(): MenuModel /* None */ = new MenuModel(
-    gtk_application_get_menubar(this.raw.asInstanceOf).asInstanceOf
+    gtk_application_get_menubar(
+      this.raw.asInstanceOf[Ptr[GtkApplication]]
+    ).asInstanceOf
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -208,7 +212,7 @@ class Application(raw: Ptr[GtkApplication])
       id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Window /* None */ = new Window(
     gtk_application_get_window_by_id(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkApplication]],
       guint(id)
     ).asInstanceOf
   )
@@ -226,7 +230,7 @@ class Application(raw: Ptr[GtkApplication])
     * remain valid until the next focus change or window creation or deletion.
     */
   def getWindows(): Ptr[GList] /* None */ = gtk_application_get_windows(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkApplication]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -260,7 +264,7 @@ class Application(raw: Ptr[GtkApplication])
       flags: GtkApplicationInhibitFlags /* Some(GtkApplicationInhibitFlags) */,
       reason: Option[String | CString /* Some(CString) */ ]
   )(using Zone): UInt /* None */ = gtk_application_inhibit(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkApplication]],
     window
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
@@ -278,7 +282,9 @@ class Application(raw: Ptr[GtkApplication])
     */
   def listActionDescriptions()(using Zone): Array[String] /* None */ =
     __decode_nullable_ptrs(
-      gtk_application_list_action_descriptions(this.raw.asInstanceOf)
+      gtk_application_list_action_descriptions(
+        this.raw.asInstanceOf[Ptr[GtkApplication]]
+      )
     ).map(fromCString(_))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -295,7 +301,7 @@ class Application(raw: Ptr[GtkApplication])
   def removeWindow(
       window: Window /* Some(Ptr[GtkWindow]) */
   ): Unit /* None */ = gtk_application_remove_window(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkApplication]],
     window.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -317,7 +323,7 @@ class Application(raw: Ptr[GtkApplication])
       detailed_action_name: String | CString /* Some(CString) */,
       accels: Ptr[CString] /* Some(Ptr[CString]) */
   )(using Zone): Unit /* None */ = gtk_application_set_accels_for_action(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkApplication]],
     __sn_extract_string(detailed_action_name),
     accels
   )
@@ -347,7 +353,7 @@ class Application(raw: Ptr[GtkApplication])
         MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   ): Unit /* None */ = gtk_application_set_menubar(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkApplication]],
     menubar
       .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -367,8 +373,10 @@ class Application(raw: Ptr[GtkApplication])
     */
   def uninhibit(
       cookie: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ =
-    gtk_application_uninhibit(this.raw.asInstanceOf, guint(cookie))
+  ): Unit /* None */ = gtk_application_uninhibit(
+    this.raw.asInstanceOf[Ptr[GtkApplication]],
+    guint(cookie)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

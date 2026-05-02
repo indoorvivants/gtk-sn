@@ -68,7 +68,7 @@ class Box(raw: Ptr[GtkBox])
     */
   def append(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_box_append(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkBox]],
       child.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -77,7 +77,7 @@ class Box(raw: Ptr[GtkBox])
     * Gets the value set by gtk_box_set_baseline_child().
     */
   def getBaselineChild(): Int /* None */ = gtk_box_get_baseline_child(
-    this.raw.asInstanceOf
+    this.raw.asInstanceOf[Ptr[GtkBox]]
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -85,20 +85,22 @@ class Box(raw: Ptr[GtkBox])
     * Gets the value set by gtk_box_set_baseline_position().
     */
   def getBaselinePosition(): GtkBaselinePosition /* None */ =
-    gtk_box_get_baseline_position(this.raw.asInstanceOf)
+    gtk_box_get_baseline_position(this.raw.asInstanceOf[Ptr[GtkBox]])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the box is homogeneous (all children are the same size).
     */
   def getHomogeneous(): Boolean /* None */ =
-    gtk_box_get_homogeneous(this.raw.asInstanceOf).value.!=(0)
+    gtk_box_get_homogeneous(this.raw.asInstanceOf[Ptr[GtkBox]]).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the value set by gtk_box_set_spacing().
     */
-  def getSpacing(): Int /* None */ = gtk_box_get_spacing(this.raw.asInstanceOf)
+  def getSpacing(): Int /* None */ = gtk_box_get_spacing(
+    this.raw.asInstanceOf[Ptr[GtkBox]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -111,7 +113,7 @@ class Box(raw: Ptr[GtkBox])
       child: Widget /* Some(Ptr[GtkWidget]) */,
       sibling: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_box_insert_child_after(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkBox]],
     child.getUnsafeRawPointer().asInstanceOf,
     sibling
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -124,7 +126,7 @@ class Box(raw: Ptr[GtkBox])
     */
   def prepend(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_box_prepend(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkBox]],
       child.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -137,7 +139,7 @@ class Box(raw: Ptr[GtkBox])
     */
   def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_box_remove(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkBox]],
       child.getUnsafeRawPointer().asInstanceOf
     )
 
@@ -151,7 +153,7 @@ class Box(raw: Ptr[GtkBox])
       child: Widget /* Some(Ptr[GtkWidget]) */,
       sibling: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_box_reorder_child_after(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkBox]],
     child.getUnsafeRawPointer().asInstanceOf,
     sibling
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -165,7 +167,7 @@ class Box(raw: Ptr[GtkBox])
     * This affects only vertical boxes.
     */
   def setBaselineChild(child: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_box_set_baseline_child(this.raw.asInstanceOf, child)
+    gtk_box_set_baseline_child(this.raw.asInstanceOf[Ptr[GtkBox]], child)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -181,7 +183,7 @@ class Box(raw: Ptr[GtkBox])
   def setBaselinePosition(
       position: GtkBaselinePosition /* Some(GtkBaselinePosition) */
   ): Unit /* None */ =
-    gtk_box_set_baseline_position(this.raw.asInstanceOf, position)
+    gtk_box_set_baseline_position(this.raw.asInstanceOf[Ptr[GtkBox]], position)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -190,7 +192,7 @@ class Box(raw: Ptr[GtkBox])
   def setHomogeneous(
       homogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_box_set_homogeneous(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkBox]],
     gboolean(gint((if homogeneous == true then 1 else 0)))
   )
 
@@ -199,7 +201,7 @@ class Box(raw: Ptr[GtkBox])
     * Sets the number of pixels to place between children of @box.
     */
   def setSpacing(spacing: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_box_set_spacing(this.raw.asInstanceOf, spacing)
+    gtk_box_set_spacing(this.raw.asInstanceOf[Ptr[GtkBox]], spacing)
 
 end Box
 

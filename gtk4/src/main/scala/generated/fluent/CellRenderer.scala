@@ -78,7 +78,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
       ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
       flags: GtkCellRendererState /* Some(GtkCellRendererState) */
   )(using Zone): Boolean /* None */ = gtk_cell_renderer_activate(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
     event.getUnsafeRawPointer().asInstanceOf,
     widget.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(path),
@@ -119,15 +119,17 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     *
     * Checks whether the given `GtkCellRenderer` is expanded.
     */
-  def getIsExpanded(): Boolean /* None */ =
-    gtk_cell_renderer_get_is_expanded(this.raw.asInstanceOf).value.!=(0)
+  def getIsExpanded(): Boolean /* None */ = gtk_cell_renderer_get_is_expanded(
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks whether the given `GtkCellRenderer` is an expander.
     */
-  def getIsExpander(): Boolean /* None */ =
-    gtk_cell_renderer_get_is_expander(this.raw.asInstanceOf).value.!=(0)
+  def getIsExpander(): Boolean /* None */ = gtk_cell_renderer_get_is_expander(
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -196,14 +198,17 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     * width-for-height layout.
     */
   def getRequestMode(): GtkSizeRequestMode /* None */ =
-    gtk_cell_renderer_get_request_mode(this.raw.asInstanceOf)
+    gtk_cell_renderer_get_request_mode(
+      this.raw.asInstanceOf[Ptr[GtkCellRenderer]]
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the cell renderer’s sensitivity.
     */
-  def getSensitive(): Boolean /* None */ =
-    gtk_cell_renderer_get_sensitive(this.raw.asInstanceOf).value.!=(0)
+  def getSensitive(): Boolean /* None */ = gtk_cell_renderer_get_sensitive(
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -214,7 +219,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ],
       cell_state: GtkCellRendererState /* Some(GtkCellRendererState) */
   ): GtkStateFlags /* None */ = gtk_cell_renderer_get_state(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
     widget
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]]),
@@ -225,15 +230,17 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     *
     * Returns the cell renderer’s visibility.
     */
-  def getVisible(): Boolean /* None */ =
-    gtk_cell_renderer_get_visible(this.raw.asInstanceOf).value.!=(0)
+  def getVisible(): Boolean /* None */ = gtk_cell_renderer_get_visible(
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks whether the cell renderer can do something when activated.
     */
-  def isActivatable(): Boolean /* None */ =
-    gtk_cell_renderer_is_activatable(this.raw.asInstanceOf).value.!=(0)
+  def isActivatable(): Boolean /* None */ = gtk_cell_renderer_is_activatable(
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]]
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -243,7 +250,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
       xalign: Float /* Some(Float) */,
       yalign: Float /* Some(Float) */
   ): Unit /* None */ = gtk_cell_renderer_set_alignment(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
     xalign.asInstanceOf,
     yalign.asInstanceOf
   )
@@ -255,8 +262,11 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   def setFixedSize(
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Unit /* None */ =
-    gtk_cell_renderer_set_fixed_size(this.raw.asInstanceOf, width, height)
+  ): Unit /* None */ = gtk_cell_renderer_set_fixed_size(
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
+    width,
+    height
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -265,7 +275,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   def setIsExpanded(
       is_expanded: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_cell_renderer_set_is_expanded(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
     gboolean(gint((if is_expanded == true then 1 else 0)))
   )
 
@@ -276,7 +286,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   def setIsExpander(
       is_expander: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_cell_renderer_set_is_expander(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
     gboolean(gint((if is_expander == true then 1 else 0)))
   )
 
@@ -287,8 +297,11 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   def setPadding(
       xpad: Int /* Some(CInt) */,
       ypad: Int /* Some(CInt) */
-  ): Unit /* None */ =
-    gtk_cell_renderer_set_padding(this.raw.asInstanceOf, xpad, ypad)
+  ): Unit /* None */ = gtk_cell_renderer_set_padding(
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
+    xpad,
+    ypad
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -297,7 +310,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   def setSensitive(
       sensitive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_cell_renderer_set_sensitive(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
     gboolean(gint((if sensitive == true then 1 else 0)))
   )
 
@@ -308,7 +321,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   def setVisible(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_cell_renderer_set_visible(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
     gboolean(gint((if visible == true then 1 else 0)))
   )
 
@@ -335,7 +348,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
       ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
       flags: GtkCellRendererState /* Some(GtkCellRendererState) */
   ): Unit /* None */ = gtk_cell_renderer_snapshot(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
     snapshot.getUnsafeRawPointer().asInstanceOf,
     widget.getUnsafeRawPointer().asInstanceOf,
     background_area,
@@ -364,7 +377,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
       flags: GtkCellRendererState /* Some(GtkCellRendererState) */
   )(using Zone): CellEditable /* None */ = new CellEditable.Abstract(
     gtk_cell_renderer_start_editing(
-      this.raw.asInstanceOf,
+      this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
       event
         .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -393,7 +406,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   def stopEditing(
       canceled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_cell_renderer_stop_editing(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
     gboolean(gint((if canceled == true then 1 else 0)))
   )
 

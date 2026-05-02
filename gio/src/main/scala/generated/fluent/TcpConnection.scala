@@ -25,7 +25,9 @@ class TcpConnection(raw: Ptr[GTcpConnection])
     * g_tcp_connection_set_graceful_disconnect().
     */
   def getGracefulDisconnect(): Boolean /* None */ =
-    g_tcp_connection_get_graceful_disconnect(this.raw.asInstanceOf).value.!=(0)
+    g_tcp_connection_get_graceful_disconnect(
+      this.raw.asInstanceOf[Ptr[GTcpConnection]]
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -42,7 +44,7 @@ class TcpConnection(raw: Ptr[GTcpConnection])
   def setGracefulDisconnect(
       graceful_disconnect: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = g_tcp_connection_set_graceful_disconnect(
-    this.raw.asInstanceOf,
+    this.raw.asInstanceOf[Ptr[GTcpConnection]],
     gboolean(gint((if graceful_disconnect == true then 1 else 0)))
   )
 

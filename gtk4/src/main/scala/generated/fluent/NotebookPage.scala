@@ -21,7 +21,9 @@ class NotebookPage(raw: Ptr[GtkNotebookPage]) extends Object(raw.asInstanceOf):
     * Returns the notebook child to which @page belongs.
     */
   def getChild(): Widget /* None */ = new Widget(
-    gtk_notebook_page_get_child(this.raw.asInstanceOf).asInstanceOf
+    gtk_notebook_page_get_child(
+      this.raw.asInstanceOf[Ptr[GtkNotebookPage]]
+    ).asInstanceOf
   )
 
 end NotebookPage
