@@ -122,6 +122,7 @@ class LevelBar(raw: Ptr[GtkLevelBar])
       Buildable,
       ConstraintTarget,
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -135,37 +136,45 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     *
     * If another offset marker named @name exists, its value will be replaced by @value.
     */
-  def addOffsetValue(name: String | CString, value: Double)(using Zone): Unit =
-    gtk_level_bar_add_offset_value(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name),
-      value
-    )
+  def addOffsetValue(
+      name: String | CString /* Some(CString) */,
+      value: Double /* Some(Double) */
+  )(using Zone): Unit /* None */ = gtk_level_bar_add_offset_value(
+    this.raw.asInstanceOf,
+    __sn_extract_string(name),
+    value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the levelbar is inverted.
     */
-  def getInverted(): Boolean =
+  def getInverted(): Boolean /* None */ =
     gtk_level_bar_get_inverted(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `max-value` of the `GtkLevelBar`.
     */
-  def getMaxValue(): Double = gtk_level_bar_get_max_value(this.raw.asInstanceOf)
+  def getMaxValue(): Double /* None */ = gtk_level_bar_get_max_value(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `min-value` of the `GtkLevelBar`.
     */
-  def getMinValue(): Double = gtk_level_bar_get_min_value(this.raw.asInstanceOf)
+  def getMinValue(): Double /* None */ = gtk_level_bar_get_min_value(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `mode` of the `GtkLevelBar`.
     */
-  def getMode(): GtkLevelBarMode = gtk_level_bar_get_mode(this.raw.asInstanceOf)
+  def getMode(): GtkLevelBarMode /* None */ = gtk_level_bar_get_mode(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -174,13 +183,15 @@ class LevelBar(raw: Ptr[GtkLevelBar])
   @annotation.compileTimeOnly(
     "Method get_offset_value contains an OUT parameter, which is not supported yet"
   )
-  def getOffsetValue(using DummyImplicit) = ???
+  private def getOffsetValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `value` of the `GtkLevelBar`.
     */
-  def getValue(): Double = gtk_level_bar_get_value(this.raw.asInstanceOf)
+  def getValue(): Double /* None */ = gtk_level_bar_get_value(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -189,17 +200,22 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     * The marker must have been previously added with
     * [method@Gtk.LevelBar.add_offset_value].
     */
-  def removeOffsetValue(name: String | CString)(using Zone): Unit =
-    gtk_level_bar_remove_offset_value(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name)
-    )
+  def removeOffsetValue(
+      name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_level_bar_remove_offset_value(
+    this.raw.asInstanceOf,
+    name
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the `GtkLevelBar` is inverted.
     */
-  def setInverted(inverted: Boolean): Unit = gtk_level_bar_set_inverted(
+  def setInverted(
+      inverted: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_level_bar_set_inverted(
     this.raw.asInstanceOf,
     gboolean(gint((if inverted == true then 1 else 0)))
   )
@@ -211,7 +227,7 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     * You probably want to update preexisting level offsets after calling this
     * function.
     */
-  def setMaxValue(value: Double): Unit =
+  def setMaxValue(value: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_level_bar_set_max_value(this.raw.asInstanceOf, value)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -221,21 +237,22 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     * You probably want to update preexisting level offsets after calling this
     * function.
     */
-  def setMinValue(value: Double): Unit =
+  def setMinValue(value: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_level_bar_set_min_value(this.raw.asInstanceOf, value)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the `mode` of the `GtkLevelBar`.
     */
-  def setMode(mode: GtkLevelBarMode): Unit =
-    gtk_level_bar_set_mode(this.raw.asInstanceOf, mode)
+  def setMode(
+      mode: GtkLevelBarMode /* Some(GtkLevelBarMode) */
+  ): Unit /* None */ = gtk_level_bar_set_mode(this.raw.asInstanceOf, mode)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the value of the `GtkLevelBar`.
     */
-  def setValue(value: Double): Unit =
+  def setValue(value: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_level_bar_set_value(this.raw.asInstanceOf, value)
 
   private inline def __sn_extract_string(str: String | CString)(using
@@ -259,8 +276,10 @@ object LevelBar:
     *
     * Creates a new `GtkLevelBar` for the specified interval.
     */
-  def forInterval(min_value: Double, max_value: Double): LevelBar =
-    new LevelBar(
-      gtk_level_bar_new_for_interval(min_value, max_value).asInstanceOf
-    )
+  def forInterval(
+      min_value: Double /* Some(Double) */,
+      max_value: Double /* Some(Double) */
+  ): LevelBar = new LevelBar(
+    gtk_level_bar_new_for_interval(min_value, max_value).asInstanceOf
+  )
 end LevelBar

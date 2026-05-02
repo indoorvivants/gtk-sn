@@ -85,6 +85,7 @@ import sn.gnome.gtk4.internal.GtkUnit
 class PrintOperation(raw: Ptr[GtkPrintOperation])
     extends Object(raw.asInstanceOf),
       PrintOperationPreview:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -97,7 +98,9 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * [signal@Gtk.PrintOperation::draw-page] signal handler to stop the
     * currently running print operation.
     */
-  def cancel(): Unit = gtk_print_operation_cancel(this.raw.asInstanceOf)
+  def cancel(): Unit /* None */ = gtk_print_operation_cancel(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -108,7 +111,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * before, then this function has to be called by application. Otherwise it
     * is called by GTK itself.
     */
-  def drawPageFinish(): Unit = gtk_print_operation_draw_page_finish(
+  def drawPageFinish(): Unit /* None */ = gtk_print_operation_draw_page_finish(
     this.raw.asInstanceOf
   )
 
@@ -116,7 +119,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     *
     * Returns the default page setup.
     */
-  def getDefaultPageSetup(): PageSetup = new PageSetup(
+  def getDefaultPageSetup(): PageSetup /* None */ = new PageSetup(
     gtk_print_operation_get_default_page_setup(
       this.raw.asInstanceOf
     ).asInstanceOf
@@ -126,7 +129,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     *
     * Gets whether page setup selection combos are embedded
     */
-  def getEmbedPageSetup(): Boolean =
+  def getEmbedPageSetup(): Boolean /* None */ =
     gtk_print_operation_get_embed_page_setup(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -139,7 +142,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     *
     * The returned `GError` will contain more details on what went wrong.
     */
-  def getError(): GResult[Unit] = GResult.wrap(__errorPtr =>
+  def getError(): GResult[Unit /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_print_operation_get_error(this.raw.asInstanceOf, __errorPtr)
   )
 
@@ -147,7 +150,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     *
     * Gets whether there is a selection.
     */
-  def getHasSelection(): Boolean =
+  def getHasSelection(): Boolean /* None */ =
     gtk_print_operation_get_has_selection(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -163,9 +166,8 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     *
     * This is typically used to track the progress of print operation.
     */
-  def getNPagesToPrint(): Int = gtk_print_operation_get_n_pages_to_print(
-    this.raw.asInstanceOf
-  )
+  def getNPagesToPrint(): Int /* None */ =
+    gtk_print_operation_get_n_pages_to_print(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -175,7 +177,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * [method@Gtk.PrintOperation.set_print_settings] or
     * [method@Gtk.PrintOperation.run] have been called.
     */
-  def getPrintSettings(): PrintSettings = new PrintSettings(
+  def getPrintSettings(): PrintSettings /* None */ = new PrintSettings(
     gtk_print_operation_get_print_settings(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -185,7 +187,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     *
     * Also see [method@Gtk.PrintOperation.get_status_string].
     */
-  def getStatus(): GtkPrintStatus = gtk_print_operation_get_status(
+  def getStatus(): GtkPrintStatus /* None */ = gtk_print_operation_get_status(
     this.raw.asInstanceOf
   )
 
@@ -199,7 +201,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * Use [method@Gtk.PrintOperation.get_status] to obtain a status value that
     * is suitable for programmatic use.
     */
-  def getStatusString()(using Zone): String = fromCString(
+  def getStatusString()(using Zone): String /* None */ = fromCString(
     gtk_print_operation_get_status_string(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -207,7 +209,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     *
     * Gets whether the application supports print of selection
     */
-  def getSupportSelection(): Boolean =
+  def getSupportSelection(): Boolean /* None */ =
     gtk_print_operation_get_support_selection(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -221,7 +223,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * a non-finished state even after done has been called, as the operation
     * status then tracks the print job status on the printer.
     */
-  def isFinished(): Boolean =
+  def isFinished(): Boolean /* None */ =
     gtk_print_operation_is_finished(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -283,13 +285,15 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * `GtkPrintOperation`.
     */
   def run(
-      action: GtkPrintOperationAction,
-      parent: Window
-  ): GResult[GtkPrintOperationResult] = GResult.wrap(__errorPtr =>
+      action: GtkPrintOperationAction /* Some(GtkPrintOperationAction) */,
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
+  ): GResult[GtkPrintOperationResult /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_print_operation_run(
       this.raw.asInstanceOf,
       action,
-      parent.getUnsafeRawPointer().asInstanceOf,
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       __errorPtr
     )
   )
@@ -301,11 +305,12 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     *
     * Note that some platforms may not allow asynchronous operation.
     */
-  def setAllowAsync(allow_async: Boolean): Unit =
-    gtk_print_operation_set_allow_async(
-      this.raw.asInstanceOf,
-      gboolean(gint((if allow_async == true then 1 else 0)))
-    )
+  def setAllowAsync(
+      allow_async: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_print_operation_set_allow_async(
+    this.raw.asInstanceOf,
+    gboolean(gint((if allow_async == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -316,18 +321,21 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     *
     * Note that this only makes sense for pre-paginated documents.
     */
-  def setCurrentPage(current_page: Int): Unit =
+  def setCurrentPage(current_page: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_print_operation_set_current_page(this.raw.asInstanceOf, current_page)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the label for the tab holding custom widgets.
     */
-  def setCustomTabLabel(label: String | CString)(using Zone): Unit =
-    gtk_print_operation_set_custom_tab_label(
-      this.raw.asInstanceOf,
-      __sn_extract_string(label)
-    )
+  def setCustomTabLabel(
+      label: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_print_operation_set_custom_tab_label(
+    this.raw.asInstanceOf,
+    label
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -337,11 +345,14 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * can be overridden on a per-page basis by connecting to the
     * [signal@Gtk.PrintOperation::request-page-setup] signal.
     */
-  def setDefaultPageSetup(default_page_setup: PageSetup): Unit =
-    gtk_print_operation_set_default_page_setup(
-      this.raw.asInstanceOf,
-      default_page_setup.getUnsafeRawPointer().asInstanceOf
-    )
+  def setDefaultPageSetup(
+      default_page_setup: Option[PageSetup /* Some(Ptr[GtkPageSetup]) */ ]
+  ): Unit /* None */ = gtk_print_operation_set_default_page_setup(
+    this.raw.asInstanceOf,
+    default_page_setup
+      .map[Ptr[GtkPageSetup]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkPageSetup]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -353,9 +364,8 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * This function must be called in the callback of the
     * [signal@Gtk.PrintOperation::draw-page] signal.
     */
-  def setDeferDrawing(): Unit = gtk_print_operation_set_defer_drawing(
-    this.raw.asInstanceOf
-  )
+  def setDeferDrawing(): Unit /* None */ =
+    gtk_print_operation_set_defer_drawing(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -364,11 +374,12 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * Selected page setup is stored as default page setup in
     * `GtkPrintOperation`.
     */
-  def setEmbedPageSetup(embed: Boolean): Unit =
-    gtk_print_operation_set_embed_page_setup(
-      this.raw.asInstanceOf,
-      gboolean(gint((if embed == true then 1 else 0)))
-    )
+  def setEmbedPageSetup(
+      embed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_print_operation_set_embed_page_setup(
+    this.raw.asInstanceOf,
+    gboolean(gint((if embed == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -382,11 +393,12 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * user pick the “Print to PDF” item from the list of printers in the print
     * dialog.
     */
-  def setExportFilename(filename: String | CString)(using Zone): Unit =
-    gtk_print_operation_set_export_filename(
-      this.raw.asInstanceOf,
-      __sn_extract_string(filename)
-    )
+  def setExportFilename(
+      filename: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_print_operation_set_export_filename(
+    this.raw.asInstanceOf,
+    __sn_extract_string(filename)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -396,11 +408,12 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * [method@Gtk.PrintOperation.set_n_pages] in a handler for the
     * [signal@Gtk.PrintOperation::begin-print] signal.
     */
-  def setHasSelection(has_selection: Boolean): Unit =
-    gtk_print_operation_set_has_selection(
-      this.raw.asInstanceOf,
-      gboolean(gint((if has_selection == true then 1 else 0)))
-    )
+  def setHasSelection(
+      has_selection: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_print_operation_set_has_selection(
+    this.raw.asInstanceOf,
+    gboolean(gint((if has_selection == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -412,11 +425,12 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * If you don’t set a job name, GTK picks a default one by numbering
     * successive print jobs.
     */
-  def setJobName(job_name: String | CString)(using Zone): Unit =
-    gtk_print_operation_set_job_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(job_name)
-    )
+  def setJobName(
+      job_name: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_print_operation_set_job_name(
+    this.raw.asInstanceOf,
+    __sn_extract_string(job_name)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -431,7 +445,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * user chooses to print all pages, the last ::draw-page signal will be for
     * page @n_pages - 1.
     */
-  def setNPages(n_pages: Int): Unit =
+  def setNPages(n_pages: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_print_operation_set_n_pages(this.raw.asInstanceOf, n_pages)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -441,32 +455,37 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * This is typically used to re-establish print settings from a previous
     * print operation, see [method@Gtk.PrintOperation.run].
     */
-  def setPrintSettings(print_settings: PrintSettings): Unit =
-    gtk_print_operation_set_print_settings(
-      this.raw.asInstanceOf,
-      print_settings.getUnsafeRawPointer().asInstanceOf
-    )
+  def setPrintSettings(
+      print_settings: Option[PrintSettings /* Some(Ptr[GtkPrintSettings]) */ ]
+  ): Unit /* None */ = gtk_print_operation_set_print_settings(
+    this.raw.asInstanceOf,
+    print_settings
+      .map[Ptr[GtkPrintSettings]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkPrintSettings]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * If @show_progress is %TRUE, the print operation will show a progress
     * dialog during the print operation.
     */
-  def setShowProgress(show_progress: Boolean): Unit =
-    gtk_print_operation_set_show_progress(
-      this.raw.asInstanceOf,
-      gboolean(gint((if show_progress == true then 1 else 0)))
-    )
+  def setShowProgress(
+      show_progress: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_print_operation_set_show_progress(
+    this.raw.asInstanceOf,
+    gboolean(gint((if show_progress == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether selection is supported by `GtkPrintOperation`.
     */
-  def setSupportSelection(support_selection: Boolean): Unit =
-    gtk_print_operation_set_support_selection(
-      this.raw.asInstanceOf,
-      gboolean(gint((if support_selection == true then 1 else 0)))
-    )
+  def setSupportSelection(
+      support_selection: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_print_operation_set_support_selection(
+    this.raw.asInstanceOf,
+    gboolean(gint((if support_selection == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -479,18 +498,19 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * This function is often implemented using some form of polling, so it
     * should not be enabled unless needed.
     */
-  def setTrackPrintStatus(track_status: Boolean): Unit =
-    gtk_print_operation_set_track_print_status(
-      this.raw.asInstanceOf,
-      gboolean(gint((if track_status == true then 1 else 0)))
-    )
+  def setTrackPrintStatus(
+      track_status: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_print_operation_set_track_print_status(
+    this.raw.asInstanceOf,
+    gboolean(gint((if track_status == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets up the transformation for the cairo context obtained from
     * `GtkPrintContext` in such a way that distances are measured in units of @unit.
     */
-  def setUnit(unit: GtkUnit): Unit =
+  def setUnit(unit: GtkUnit /* Some(GtkUnit) */ ): Unit /* None */ =
     gtk_print_operation_set_unit(this.raw.asInstanceOf, unit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -502,11 +522,12 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * orientation and the number of pages per sheet). Otherwise, the origin is
     * at the top left corner of the imageable area (i.e. inside the margins).
     */
-  def setUseFullPage(full_page: Boolean): Unit =
-    gtk_print_operation_set_use_full_page(
-      this.raw.asInstanceOf,
-      gboolean(gint((if full_page == true then 1 else 0)))
-    )
+  def setUseFullPage(
+      full_page: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_print_operation_set_use_full_page(
+    this.raw.asInstanceOf,
+    gboolean(gint((if full_page == true then 1 else 0)))
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

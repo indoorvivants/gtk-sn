@@ -98,6 +98,7 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
       Actionable,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -107,7 +108,7 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
     * Returns %TRUE if the toggle button is pressed in and %FALSE if it is
     * raised.
     */
-  def getActive(): Boolean =
+  def getActive(): Boolean /* None */ =
     gtk_toggle_button_get_active(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -120,7 +121,9 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
     * If the status of the button changes, this action causes the
     * [signal@Gtk.ToggleButton::toggled] signal to be emitted.
     */
-  def setActive(is_active: Boolean): Unit = gtk_toggle_button_set_active(
+  def setActive(
+      is_active: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_toggle_button_set_active(
     this.raw.asInstanceOf,
     gboolean(gint((if is_active == true then 1 else 0)))
   )
@@ -138,16 +141,22 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
     * API, by using the same action with parameter type and state type 's' for
     * all buttons in the group, and giving each button its own target value.
     */
-  def setGroup(group: ToggleButton): Unit = gtk_toggle_button_set_group(
+  def setGroup(
+      group: Option[ToggleButton /* Some(Ptr[GtkToggleButton]) */ ]
+  ): Unit /* None */ = gtk_toggle_button_set_group(
     this.raw.asInstanceOf,
-    group.getUnsafeRawPointer().asInstanceOf
+    group
+      .map[Ptr[GtkToggleButton]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkToggleButton]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Emits the ::toggled signal on the `GtkToggleButton`.
     */
-  def toggled(): Unit = gtk_toggle_button_toggled(this.raw.asInstanceOf)
+  def toggled(): Unit /* None */ = gtk_toggle_button_toggled(
+    this.raw.asInstanceOf
+  )
 
 end ToggleButton
 
@@ -166,10 +175,11 @@ object ToggleButton:
     *
     * Creates a new toggle button with a text label.
     */
-  def withLabel(label: String | CString)(using Zone): ToggleButton =
-    new ToggleButton(
-      gtk_toggle_button_new_with_label(__sn_extract_string(label)).asInstanceOf
-    )
+  def withLabel(
+      label: String | CString /* Some(CString) */
+  )(using Zone): ToggleButton = new ToggleButton(
+    gtk_toggle_button_new_with_label(__sn_extract_string(label)).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -178,12 +188,11 @@ object ToggleButton:
     * The label will be created using [ctor@Gtk.Label.new_with_mnemonic], so
     * underscores in @label indicate the mnemonic for the button.
     */
-  def withMnemonic(label: String | CString)(using Zone): ToggleButton =
-    new ToggleButton(
-      gtk_toggle_button_new_with_mnemonic(
-        __sn_extract_string(label)
-      ).asInstanceOf
-    )
+  def withMnemonic(
+      label: String | CString /* Some(CString) */
+  )(using Zone): ToggleButton = new ToggleButton(
+    gtk_toggle_button_new_with_mnemonic(__sn_extract_string(label)).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

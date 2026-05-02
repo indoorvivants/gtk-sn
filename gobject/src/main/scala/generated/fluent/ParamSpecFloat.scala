@@ -14,6 +14,7 @@ import sn.gnome.gobject.internal.GParamSpecFloat
   */
 class ParamSpecFloat(raw: Ptr[GParamSpecFloat])
     extends ParamSpec(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ParamSpecFloat

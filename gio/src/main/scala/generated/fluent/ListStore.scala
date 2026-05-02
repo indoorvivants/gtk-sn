@@ -24,6 +24,7 @@ import sn.gnome.gobject.internal.GType
 class ListStore(raw: Ptr[GListStore])
     extends Object(raw.asInstanceOf),
       ListModel:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -35,7 +36,9 @@ class ListStore(raw: Ptr[GListStore])
     * Use g_list_store_splice() to append multiple items at the same time
     * efficiently.
     */
-  def append(item: Object): Unit = g_list_store_append(
+  def append(
+      item: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+  ): Unit /* None */ = g_list_store_append(
     this.raw.asInstanceOf,
     gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
   )
@@ -52,7 +55,7 @@ class ListStore(raw: Ptr[GListStore])
   @annotation.compileTimeOnly(
     "Method find contains an OUT parameter, which is not supported yet"
   )
-  def find(using DummyImplicit) = ???
+  private def find__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -69,7 +72,7 @@ class ListStore(raw: Ptr[GListStore])
   @annotation.compileTimeOnly(
     "Method find_with_equal_func contains an OUT parameter, which is not supported yet"
   )
-  def findWithEqualFunc(using DummyImplicit) = ???
+  private def findWithEqualFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -84,7 +87,7 @@ class ListStore(raw: Ptr[GListStore])
   @annotation.compileTimeOnly(
     "Method find_with_equal_func_full contains an OUT parameter, which is not supported yet"
   )
-  def findWithEqualFuncFull(using DummyImplicit) = ???
+  private def findWithEqualFuncFull__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -97,7 +100,10 @@ class ListStore(raw: Ptr[GListStore])
     * Use g_list_store_splice() to insert multiple items at the same time
     * efficiently.
     */
-  def insert(position: UInt, item: Object): Unit = g_list_store_insert(
+  def insert(
+      position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      item: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+  ): Unit /* None */ = g_list_store_insert(
     this.raw.asInstanceOf,
     guint(position),
     gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
@@ -115,14 +121,18 @@ class ListStore(raw: Ptr[GListStore])
     * This function takes a ref on @item.
     */
   def insertSorted(
-      item: Object,
-      compare_func: GCompareDataFunc,
-      user_data: Ptr[Byte]
-  ): UInt = g_list_store_insert_sorted(
+      item: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      compare_func: GCompareDataFunc /* Some(_root_.sn.gnome.glib.internal.GCompareDataFunc) */,
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): UInt /* None */ = g_list_store_insert_sorted(
     this.raw.asInstanceOf,
     gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
     compare_func,
-    gpointer(user_data)
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -133,21 +143,35 @@ class ListStore(raw: Ptr[GListStore])
     * Use g_list_store_splice() to remove multiple items at the same time
     * efficiently.
     */
-  def remove(position: UInt): Unit =
+  def remove(
+      position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     g_list_store_remove(this.raw.asInstanceOf, guint(position))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes all items from @store.
     */
-  def removeAll(): Unit = g_list_store_remove_all(this.raw.asInstanceOf)
+  def removeAll(): Unit /* None */ = g_list_store_remove_all(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sort the items in @store according to @compare_func.
     */
-  def sort(compare_func: GCompareDataFunc, user_data: Ptr[Byte]): Unit =
-    g_list_store_sort(this.raw.asInstanceOf, compare_func, gpointer(user_data))
+  def sort(
+      compare_func: GCompareDataFunc /* Some(_root_.sn.gnome.glib.internal.GCompareDataFunc) */,
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_list_store_sort(
+    this.raw.asInstanceOf,
+    compare_func,
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
 
 end ListStore
 
@@ -157,7 +181,7 @@ object ListStore:
     * Creates a new #GListStore with items of type @item_type. @item_type must
     * be a subclass of #GObject.
     */
-  def apply(item_type: GType): ListStore = new ListStore(
-    g_list_store_new(item_type).asInstanceOf
-  )
+  def apply(
+      item_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */
+  ): ListStore = new ListStore(g_list_store_new(item_type).asInstanceOf)
 end ListStore

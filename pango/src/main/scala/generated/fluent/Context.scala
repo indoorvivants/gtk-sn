@@ -33,6 +33,7 @@ import sn.gnome.pango.internal.PangoMatrix
   * To obtain a `PangoContext`, use [method@Pango.FontMap.create_context].
   */
 class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -44,7 +45,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * something applications won't do. Backends should call this function if
     * they have attached extra data to the context and such data is changed.
     */
-  def changed(): Unit = pango_context_changed(this.raw.asInstanceOf)
+  def changed(): Unit /* None */ = pango_context_changed(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -52,7 +53,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     *
     * See [method@Pango.Context.set_base_dir].
     */
-  def getBaseDir(): PangoDirection = pango_context_get_base_dir(
+  def getBaseDir(): PangoDirection /* None */ = pango_context_get_base_dir(
     this.raw.asInstanceOf
   )
 
@@ -62,22 +63,21 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     *
     * See [method@Pango.Context.set_base_gravity].
     */
-  def getBaseGravity(): PangoGravity = pango_context_get_base_gravity(
-    this.raw.asInstanceOf
-  )
+  def getBaseGravity(): PangoGravity /* None */ =
+    pango_context_get_base_gravity(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieve the default font description for the context.
     */
-  def getFontDescription(): Ptr[PangoFontDescription] =
+  def getFontDescription(): Ptr[PangoFontDescription] /* None */ =
     pango_context_get_font_description(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the `PangoFontMap` used to look up fonts for this context.
     */
-  def getFontMap(): FontMap = new FontMap(
+  def getFontMap(): FontMap /* None */ = new FontMap(
     pango_context_get_font_map(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -90,7 +90,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * [func@Pango.Gravity.get_for_matrix] is used to return the gravity from the
     * current context matrix.
     */
-  def getGravity(): PangoGravity = pango_context_get_gravity(
+  def getGravity(): PangoGravity /* None */ = pango_context_get_gravity(
     this.raw.asInstanceOf
   )
 
@@ -100,15 +100,14 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     *
     * See [method@Pango.Context.set_gravity_hint] for details.
     */
-  def getGravityHint(): PangoGravityHint = pango_context_get_gravity_hint(
-    this.raw.asInstanceOf
-  )
+  def getGravityHint(): PangoGravityHint /* None */ =
+    pango_context_get_gravity_hint(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the global language tag for the context.
     */
-  def getLanguage(): Ptr[PangoLanguage] = pango_context_get_language(
+  def getLanguage(): Ptr[PangoLanguage] /* None */ = pango_context_get_language(
     this.raw.asInstanceOf
   )
 
@@ -119,7 +118,7 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     *
     * See [method@Pango.Context.set_matrix].
     */
-  def getMatrix(): Ptr[PangoMatrix] = pango_context_get_matrix(
+  def getMatrix(): Ptr[PangoMatrix] /* None */ = pango_context_get_matrix(
     this.raw.asInstanceOf
   )
 
@@ -138,17 +137,26 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * metrics for the fonts loaded for the individual families.
     */
   def getMetrics(
-      desc: Ptr[PangoFontDescription],
-      language: Ptr[PangoLanguage]
-  ): Ptr[PangoFontMetrics] =
-    pango_context_get_metrics(this.raw.asInstanceOf, desc, language)
+      desc: Option[
+        Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */
+      ],
+      language: Option[Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */ ]
+  ): Ptr[PangoFontMetrics] /* None */ = pango_context_get_metrics(
+    this.raw.asInstanceOf,
+    desc
+      .map[Ptr[PangoFontDescription]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[PangoFontDescription]]),
+    language
+      .map[Ptr[PangoLanguage]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[PangoLanguage]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether font rendering with this context should round glyph
     * positions and widths.
     */
-  def getRoundGlyphPositions(): Boolean =
+  def getRoundGlyphPositions(): Boolean /* None */ =
     pango_context_get_round_glyph_positions(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -166,7 +174,9 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * is only useful when implementing objects that need update when their
     * `PangoContext` changes, like `PangoLayout`.
     */
-  def getSerial(): UInt = pango_context_get_serial(this.raw.asInstanceOf).value
+  def getSerial(): UInt /* None */ = pango_context_get_serial(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -175,14 +185,16 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method list_families contains an OUT parameter, which is not supported yet"
   )
-  def listFamilies(using DummyImplicit) = ???
+  private def listFamilies__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Loads the font in one of the fontmaps in the context that is the closest
     * match for @desc.
     */
-  def loadFont(desc: Ptr[PangoFontDescription]): Font = new Font(
+  def loadFont(
+      desc: Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */
+  ): Font /* None */ = new Font(
     pango_context_load_font(this.raw.asInstanceOf, desc).asInstanceOf
   )
 
@@ -192,9 +204,9 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * matching @desc.
     */
   def loadFontset(
-      desc: Ptr[PangoFontDescription],
-      language: Ptr[PangoLanguage]
-  ): Fontset = new Fontset(
+      desc: Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */,
+      language: Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */
+  ): Fontset /* None */ = new Fontset(
     pango_context_load_fontset(
       this.raw.asInstanceOf,
       desc,
@@ -213,7 +225,9 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * %PANGO_DIRECTION_WEAK_LTR or %PANGO_DIRECTION_WEAK_RTL is used only for
     * paragraphs that do not contain any strong characters themselves.
     */
-  def setBaseDir(direction: PangoDirection): Unit =
+  def setBaseDir(
+      direction: PangoDirection /* Some(PangoDirection) */
+  ): Unit /* None */ =
     pango_context_set_base_dir(this.raw.asInstanceOf, direction)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -222,15 +236,25 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     *
     * The base gravity is used in laying vertical text out.
     */
-  def setBaseGravity(gravity: PangoGravity): Unit =
+  def setBaseGravity(
+      gravity: PangoGravity /* Some(PangoGravity) */
+  ): Unit /* None */ =
     pango_context_set_base_gravity(this.raw.asInstanceOf, gravity)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Set the default font description for the context
     */
-  def setFontDescription(desc: Ptr[PangoFontDescription]): Unit =
-    pango_context_set_font_description(this.raw.asInstanceOf, desc)
+  def setFontDescription(
+      desc: Option[
+        Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */
+      ]
+  ): Unit /* None */ = pango_context_set_font_description(
+    this.raw.asInstanceOf,
+    desc
+      .map[Ptr[PangoFontDescription]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[PangoFontDescription]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -240,9 +264,13 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * via one of the recommended methods should already have a suitable font
     * map.
     */
-  def setFontMap(font_map: FontMap): Unit = pango_context_set_font_map(
+  def setFontMap(
+      font_map: Option[FontMap /* Some(Ptr[PangoFontMap]) */ ]
+  ): Unit /* None */ = pango_context_set_font_map(
     this.raw.asInstanceOf,
-    font_map.getUnsafeRawPointer().asInstanceOf
+    font_map
+      .map[Ptr[PangoFontMap]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[PangoFontMap]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -254,7 +282,9 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * [method@Pango.Context.get_gravity] is set to %PANGO_GRAVITY_EAST or
     * %PANGO_GRAVITY_WEST.
     */
-  def setGravityHint(hint: PangoGravityHint): Unit =
+  def setGravityHint(
+      hint: PangoGravityHint /* Some(PangoGravityHint) */
+  ): Unit /* None */ =
     pango_context_set_gravity_hint(this.raw.asInstanceOf, hint)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -264,8 +294,14 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * The default language for the locale of the running process can be found
     * using [func@Pango.Language.get_default].
     */
-  def setLanguage(language: Ptr[PangoLanguage]): Unit =
-    pango_context_set_language(this.raw.asInstanceOf, language)
+  def setLanguage(
+      language: Option[Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */ ]
+  ): Unit /* None */ = pango_context_set_language(
+    this.raw.asInstanceOf,
+    language
+      .map[Ptr[PangoLanguage]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[PangoLanguage]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -278,8 +314,14 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * they may change slightly for different matrices, depending on how the text
     * is fit to the pixel grid.
     */
-  def setMatrix(matrix: Ptr[PangoMatrix]): Unit =
-    pango_context_set_matrix(this.raw.asInstanceOf, matrix)
+  def setMatrix(
+      matrix: Option[Ptr[PangoMatrix] /* Some(Ptr[PangoMatrix]) */ ]
+  ): Unit /* None */ = pango_context_set_matrix(
+    this.raw.asInstanceOf,
+    matrix
+      .map[Ptr[PangoMatrix]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[PangoMatrix]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -292,11 +334,12 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * The default value is to round glyph positions, to remain compatible with
     * previous Pango behavior.
     */
-  def setRoundGlyphPositions(round_positions: Boolean): Unit =
-    pango_context_set_round_glyph_positions(
-      this.raw.asInstanceOf,
-      gboolean(gint((if round_positions == true then 1 else 0)))
-    )
+  def setRoundGlyphPositions(
+      round_positions: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = pango_context_set_round_glyph_positions(
+    this.raw.asInstanceOf,
+    gboolean(gint((if round_positions == true then 1 else 0)))
+  )
 
 end Context
 

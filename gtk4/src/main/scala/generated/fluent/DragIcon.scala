@@ -33,13 +33,14 @@ class DragIcon(raw: Ptr[GtkDragIcon])
       ConstraintTarget,
       Native,
       Root:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the widget currently used as drag icon.
     */
-  def getChild(): Widget = new Widget(
+  def getChild(): Widget /* None */ = new Widget(
     gtk_drag_icon_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -47,9 +48,13 @@ class DragIcon(raw: Ptr[GtkDragIcon])
     *
     * Sets the widget to display as the drag icon.
     */
-  def setChild(child: Widget): Unit = gtk_drag_icon_set_child(
+  def setChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_drag_icon_set_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
 end DragIcon

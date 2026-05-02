@@ -1,19 +1,18 @@
-package sn.gnome.gtk4.fluent
-import sn.gnome.gtk4.fluent.*
-import sn.gnome.gtk4.internal.*
-import sn.gnome.gio.internal.*
-import sn.gnome.gio.fluent.Application as GioApplication
+package sn.gnome.gobject.runtime
+
 import sn.gnome.glib.internal.*
 import sn.gnome.gobject.internal.*
 import scalanative.unsafe.*
 
 import Captures.*
 
+opaque type SignalHandleID = CUnsignedLongInt
+
 extension [T <: sn.gnome.gobject.fluent.Object](app: T)
   def connectSignal(
       signal: String,
       flags: GConnectFlags = GConnectFlags.G_CONNECT_DEFAULT
-  )(f: T => Unit)(using Zone) =
+  )(f: T => Unit)(using Zone): SignalHandleID =
     val c_handler = CFuncPtr2.fromScalaFunction {
       (ptr: Ptr[Byte], data: Ptr[SignalRegistration[T]]) =>
         val sr = !data
@@ -22,27 +21,35 @@ extension [T <: sn.gnome.gobject.fluent.Object](app: T)
     }
 
     val sr = SignalRegistration(app, f)
+
+    // TODO: mem is leaked
     val (ptr, mem) = Captured.unsafe(sr)
 
     import scalanative.runtime.*
+
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegistration[T]]]
+        GCRoots.removeRoot(sr.ref)
+    }
 
     g_signal_connect_data(
       gpointer(app.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
       toCString(signal).asInstanceOf[Ptr[gchar]],
       c_handler.asGCallback,
       gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
-      null.asInstanceOf[GClosureNotify],
+      GClosureNotify(destroy_data), // destroy_data
       flags
-    )
+    ).value
 end extension
 
 extension [T <: CFuncPtr](inline ptr: T)
-  private[fluent] inline def asGCallback: GCallback =
+  private[runtime] inline def asGCallback: GCallback =
     GCallback(
       CFuncPtr.fromPtr[CFuncPtr0[Unit]](CFuncPtr.toPtr(ptr))
     )
 
-private[fluent] object Captures:
+private[runtime] object Captures:
   case class SignalRegistration[T](
       ref: T,
       handler: T => Unit
@@ -59,12 +66,12 @@ private[fluent] object Captures:
       id
 end Captures
 
-private[fluent] object GCRoots:
+private[runtime] object GCRoots:
   private val references = new java.util.IdentityHashMap[Object, Unit]
   def addRoot(o: Object): Unit = references.put(o, ())
   def removeRoot(o: Object): Unit = references.remove(o)
 
-private[fluent] object Captured:
+private[runtime] object Captured:
   def unsafe[D <: AnyRef: Tag](value: D): (Ptr[D], Memory) =
     import scalanative.runtime.*, ffi.*
 

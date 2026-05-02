@@ -43,13 +43,14 @@ class Viewport(raw: Ptr[GtkViewport])
       Buildable,
       ConstraintTarget,
       Scrollable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the child widget of @viewport.
     */
-  def getChild(): Widget = new Widget(
+  def getChild(): Widget /* None */ = new Widget(
     gtk_viewport_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -57,7 +58,7 @@ class Viewport(raw: Ptr[GtkViewport])
     *
     * Gets whether the viewport is scrolling to keep the focused child in view.
     */
-  def getScrollToFocus(): Boolean =
+  def getScrollToFocus(): Boolean /* None */ =
     gtk_viewport_get_scroll_to_focus(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -67,20 +68,28 @@ class Viewport(raw: Ptr[GtkViewport])
     * The viewport and the descendant must be visible and mapped for this
     * function to work, otherwise no scrolling will be performed.
     */
-  def scrollTo(descendant: Widget, scroll: Ptr[GtkScrollInfo]): Unit =
-    gtk_viewport_scroll_to(
-      this.raw.asInstanceOf,
-      descendant.getUnsafeRawPointer().asInstanceOf,
-      scroll
-    )
+  def scrollTo(
+      descendant: Widget /* Some(Ptr[GtkWidget]) */,
+      scroll: Option[Ptr[GtkScrollInfo] /* Some(Ptr[GtkScrollInfo]) */ ]
+  ): Unit /* None */ = gtk_viewport_scroll_to(
+    this.raw.asInstanceOf,
+    descendant.getUnsafeRawPointer().asInstanceOf,
+    scroll
+      .map[Ptr[GtkScrollInfo]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[GtkScrollInfo]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the child widget of @viewport.
     */
-  def setChild(child: Widget): Unit = gtk_viewport_set_child(
+  def setChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_viewport_set_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -88,11 +97,12 @@ class Viewport(raw: Ptr[GtkViewport])
     * Sets whether the viewport should automatically scroll to keep the focused
     * child in view.
     */
-  def setScrollToFocus(scroll_to_focus: Boolean): Unit =
-    gtk_viewport_set_scroll_to_focus(
-      this.raw.asInstanceOf,
-      gboolean(gint((if scroll_to_focus == true then 1 else 0)))
-    )
+  def setScrollToFocus(
+      scroll_to_focus: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_viewport_set_scroll_to_focus(
+    this.raw.asInstanceOf,
+    gboolean(gint((if scroll_to_focus == true then 1 else 0)))
+  )
 
 end Viewport
 
@@ -104,11 +114,17 @@ object Viewport:
     * The new viewport uses the given adjustments, or default adjustments if
     * none are given.
     */
-  def apply(hadjustment: Adjustment, vadjustment: Adjustment): Viewport =
-    new Viewport(
-      gtk_viewport_new(
-        hadjustment.getUnsafeRawPointer().asInstanceOf,
-        vadjustment.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def apply(
+      hadjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ],
+      vadjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
+  ): Viewport = new Viewport(
+    gtk_viewport_new(
+      hadjustment
+        .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]]),
+      vadjustment
+        .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
+    ).asInstanceOf
+  )
 end Viewport

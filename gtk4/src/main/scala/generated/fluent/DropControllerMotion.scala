@@ -23,6 +23,7 @@ import sn.gnome.gtk4.internal.GtkDropControllerMotion
   */
 class DropControllerMotion(raw: Ptr[GtkDropControllerMotion])
     extends EventController(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -31,16 +32,16 @@ class DropControllerMotion(raw: Ptr[GtkDropControllerMotion])
     * @self
     *   or one of its children.
     */
-  def containsPointer(): Boolean = gtk_drop_controller_motion_contains_pointer(
-    this.raw.asInstanceOf
-  ).value.!=(0)
+  def containsPointer(): Boolean /* None */ =
+    gtk_drop_controller_motion_contains_pointer(this.raw.asInstanceOf).value
+      .!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `GdkDrop` of a current Drag-and-Drop operation over the widget
     * of @self.
     */
-  def getDrop(): Drop = new Drop(
+  def getDrop(): Drop /* None */ = new Drop(
     gtk_drop_controller_motion_get_drop(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -50,7 +51,7 @@ class DropControllerMotion(raw: Ptr[GtkDropControllerMotion])
     * @self,
     *   not one of its children.
     */
-  def isPointer(): Boolean =
+  def isPointer(): Boolean /* None */ =
     gtk_drop_controller_motion_is_pointer(this.raw.asInstanceOf).value.!=(0)
 
 end DropControllerMotion

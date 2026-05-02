@@ -64,13 +64,14 @@ class Scrollbar(raw: Ptr[GtkScrollbar])
       Buildable,
       ConstraintTarget,
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the scrollbar's adjustment.
     */
-  def getAdjustment(): Adjustment = new Adjustment(
+  def getAdjustment(): Adjustment /* None */ = new Adjustment(
     gtk_scrollbar_get_adjustment(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -78,11 +79,14 @@ class Scrollbar(raw: Ptr[GtkScrollbar])
     *
     * Makes the scrollbar use the given adjustment.
     */
-  def setAdjustment(adjustment: Adjustment): Unit =
-    gtk_scrollbar_set_adjustment(
-      this.raw.asInstanceOf,
-      adjustment.getUnsafeRawPointer().asInstanceOf
-    )
+  def setAdjustment(
+      adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
+  ): Unit /* None */ = gtk_scrollbar_set_adjustment(
+    this.raw.asInstanceOf,
+    adjustment
+      .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
+  )
 
 end Scrollbar
 
@@ -91,11 +95,15 @@ object Scrollbar:
     *
     * Creates a new scrollbar with the given orientation.
     */
-  def apply(orientation: GtkOrientation, adjustment: Adjustment): Scrollbar =
-    new Scrollbar(
-      gtk_scrollbar_new(
-        orientation,
-        adjustment.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def apply(
+      orientation: GtkOrientation /* Some(GtkOrientation) */,
+      adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
+  ): Scrollbar = new Scrollbar(
+    gtk_scrollbar_new(
+      orientation,
+      adjustment
+        .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
+    ).asInstanceOf
+  )
 end Scrollbar

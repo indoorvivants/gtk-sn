@@ -28,6 +28,7 @@ import sn.gnome.gtk4.internal.GtkStringFilterMatchMode
   * [method@Gtk.StringFilter.set_ignore_case].
   */
 class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -35,7 +36,7 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
     * Gets the expression that the string filter uses to obtain strings from
     * items.
     */
-  def getExpression(): Expression = new Expression(
+  def getExpression(): Expression /* None */ = new Expression(
     gtk_string_filter_get_expression(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -43,21 +44,21 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
     *
     * Returns whether the filter ignores case differences.
     */
-  def getIgnoreCase(): Boolean =
+  def getIgnoreCase(): Boolean /* None */ =
     gtk_string_filter_get_ignore_case(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the match mode that the filter is using.
     */
-  def getMatchMode(): GtkStringFilterMatchMode =
+  def getMatchMode(): GtkStringFilterMatchMode /* None */ =
     gtk_string_filter_get_match_mode(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the search term.
     */
-  def getSearch()(using Zone): String = fromCString(
+  def getSearch()(using Zone): String /* None */ = fromCString(
     gtk_string_filter_get_search(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -68,38 +69,47 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
     *
     * The expression must have a value type of %G_TYPE_STRING.
     */
-  def setExpression(expression: Expression): Unit =
-    gtk_string_filter_set_expression(
-      this.raw.asInstanceOf,
-      expression.getUnsafeRawPointer().asInstanceOf
-    )
+  def setExpression(
+      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
+  ): Unit /* None */ = gtk_string_filter_set_expression(
+    this.raw.asInstanceOf,
+    expression
+      .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the filter ignores case differences.
     */
-  def setIgnoreCase(ignore_case: Boolean): Unit =
-    gtk_string_filter_set_ignore_case(
-      this.raw.asInstanceOf,
-      gboolean(gint((if ignore_case == true then 1 else 0)))
-    )
+  def setIgnoreCase(
+      ignore_case: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_string_filter_set_ignore_case(
+    this.raw.asInstanceOf,
+    gboolean(gint((if ignore_case == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the match mode for the filter.
     */
-  def setMatchMode(mode: GtkStringFilterMatchMode): Unit =
+  def setMatchMode(
+      mode: GtkStringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
+  ): Unit /* None */ =
     gtk_string_filter_set_match_mode(this.raw.asInstanceOf, mode)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the string to search for.
     */
-  def setSearch(search: String | CString)(using Zone): Unit =
-    gtk_string_filter_set_search(
-      this.raw.asInstanceOf,
-      __sn_extract_string(search)
-    )
+  def setSearch(
+      search: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_string_filter_set_search(
+    this.raw.asInstanceOf,
+    search
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -119,9 +129,13 @@ object StringFilter:
     * You will want to set up the filter by providing a string to search for and
     * by providing a property to look up on the item.
     */
-  def apply(expression: Expression): StringFilter = new StringFilter(
+  def apply(
+      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
+  ): StringFilter = new StringFilter(
     gtk_string_filter_new(
-      expression.getUnsafeRawPointer().asInstanceOf
+      expression
+        .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
     ).asInstanceOf
   )
 end StringFilter

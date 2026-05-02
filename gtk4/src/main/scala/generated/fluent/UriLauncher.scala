@@ -31,13 +31,14 @@ import sn.gnome.gtk4.internal.GtkUriLauncher
   * To launch a file, use [class@Gtk.FileLauncher].
   */
 class UriLauncher(raw: Ptr[GtkUriLauncher]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the uri that will be opened.
     */
-  def getUri()(using Zone): String = fromCString(
+  def getUri()(using Zone): String /* None */ = fromCString(
     gtk_uri_launcher_get_uri(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -51,37 +52,64 @@ class UriLauncher(raw: Ptr[GtkUriLauncher]) extends Object(raw.asInstanceOf):
     * call [method@Gtk.UriLauncher.launch_finish] to obtain the result.
     */
   def launch(
-      parent: Window,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = gtk_uri_launcher_launch(
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      cancellable: Option[
+        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+      ],
+      callback: Option[
+        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gtk_uri_launcher_launch(
     this.raw.asInstanceOf,
-    parent.getUnsafeRawPointer().asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    parent
+      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
+    cancellable
+      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
+      ),
+    callback
+      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
+      ),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes the [method@Gtk.UriLauncher.launch] call and returns the result.
     */
-  def launchFinish(result: AsyncResult): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      gtk_uri_launcher_launch_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def launchFinish(
+      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    gtk_uri_launcher_launch_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the uri that will be opened.
     */
-  def setUri(uri: String | CString)(using Zone): Unit =
-    gtk_uri_launcher_set_uri(this.raw.asInstanceOf, __sn_extract_string(uri))
+  def setUri(
+      uri: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_uri_launcher_set_uri(
+    this.raw.asInstanceOf,
+    uri
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -98,8 +126,14 @@ object UriLauncher:
     *
     * Creates a new `GtkUriLauncher` object.
     */
-  def apply(uri: String | CString)(using Zone): UriLauncher = new UriLauncher(
-    gtk_uri_launcher_new(__sn_extract_string(uri)).asInstanceOf
+  def apply(
+      uri: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): UriLauncher = new UriLauncher(
+    gtk_uri_launcher_new(
+      uri
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString])
+    ).asInstanceOf
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

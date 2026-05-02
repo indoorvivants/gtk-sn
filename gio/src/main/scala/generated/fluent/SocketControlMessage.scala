@@ -33,6 +33,7 @@ import sn.gnome.gobject.fluent.Object
   */
 class SocketControlMessage(raw: Ptr[GSocketControlMessage])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -40,7 +41,7 @@ class SocketControlMessage(raw: Ptr[GSocketControlMessage])
     * Returns the "level" (i.e. the originating protocol) of the control
     * message. This is often SOL_SOCKET.
     */
-  def getLevel(): Int = g_socket_control_message_get_level(
+  def getLevel(): Int /* None */ = g_socket_control_message_get_level(
     this.raw.asInstanceOf
   )
 
@@ -49,7 +50,7 @@ class SocketControlMessage(raw: Ptr[GSocketControlMessage])
     * Returns the protocol specific type of the control message. For instance,
     * for UNIX fd passing this would be SCM_RIGHTS.
     */
-  def getMsgType(): Int = g_socket_control_message_get_msg_type(
+  def getMsgType(): Int /* None */ = g_socket_control_message_get_msg_type(
     this.raw.asInstanceOf
   )
 
@@ -58,9 +59,8 @@ class SocketControlMessage(raw: Ptr[GSocketControlMessage])
     * Returns the space required for the control message, not including headers
     * or alignment.
     */
-  def getSize(): CUnsignedLongInt = g_socket_control_message_get_size(
-    this.raw.asInstanceOf
-  ).value
+  def getSize(): CUnsignedLongInt /* None */ =
+    g_socket_control_message_get_size(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -70,7 +70,9 @@ class SocketControlMessage(raw: Ptr[GSocketControlMessage])
     *   is guaranteed to have enough space to fit the size returned by
     *   g_socket_control_message_get_size() on this object.
     */
-  def serialize(data: Ptr[Byte]): Unit =
+  def serialize(
+      data: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+  ): Unit /* None */ =
     g_socket_control_message_serialize(this.raw.asInstanceOf, gpointer(data))
 
 end SocketControlMessage

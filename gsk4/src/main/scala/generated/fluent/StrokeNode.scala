@@ -15,13 +15,14 @@ import sn.gnome.gsk4.internal.GskStrokeNode
   * [struct@Gsk.Path] using the [struct@Gsk.Stroke] attributes.
   */
 class StrokeNode(raw: Ptr[GskStrokeNode]) extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the child node that is getting drawn by the given @node.
     */
-  def getChild(): RenderNode = new RenderNode(
+  def getChild(): RenderNode /* None */ = new RenderNode(
     gsk_stroke_node_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -29,13 +30,15 @@ class StrokeNode(raw: Ptr[GskStrokeNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the path that will be stroked with the contents of the @node.
     */
-  def getPath(): Ptr[GskPath] = gsk_stroke_node_get_path(this.raw.asInstanceOf)
+  def getPath(): Ptr[GskPath] /* None */ = gsk_stroke_node_get_path(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the stroke attributes used in this @node.
     */
-  def getStroke(): Ptr[GskStroke] = gsk_stroke_node_get_stroke(
+  def getStroke(): Ptr[GskStroke] /* None */ = gsk_stroke_node_get_stroke(
     this.raw.asInstanceOf
   )
 
@@ -50,9 +53,9 @@ object StrokeNode:
     * The area is filled with @child.
     */
   def apply(
-      child: RenderNode,
-      path: Ptr[GskPath],
-      stroke: Ptr[GskStroke]
+      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      path: Ptr[GskPath] /* Some(Ptr[GskPath]) */,
+      stroke: Ptr[GskStroke] /* Some(Ptr[GskStroke]) */
   ): StrokeNode = new StrokeNode(
     gsk_stroke_node_new(
       child.getUnsafeRawPointer().asInstanceOf,

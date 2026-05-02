@@ -45,6 +45,7 @@ class SortListModel(raw: Ptr[GtkSortListModel])
     extends Object(raw.asInstanceOf),
       ListModel,
       SectionModel:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -53,14 +54,14 @@ class SortListModel(raw: Ptr[GtkSortListModel])
     *
     * See [method@Gtk.SortListModel.set_incremental].
     */
-  def getIncremental(): Boolean =
+  def getIncremental(): Boolean /* None */ =
     gtk_sort_list_model_get_incremental(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the model currently sorted or %NULL if none.
     */
-  def getModel(): ListModel = new ListModel.Abstract(
+  def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_sort_list_model_get_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -82,7 +83,7 @@ class SortListModel(raw: Ptr[GtkSortListModel])
     * If no sort operation is ongoing - in particular when
     * [property@Gtk.SortListModel:incremental] is %FALSE - this function returns 0.
     */
-  def getPending(): UInt = gtk_sort_list_model_get_pending(
+  def getPending(): UInt /* None */ = gtk_sort_list_model_get_pending(
     this.raw.asInstanceOf
   ).value
 
@@ -90,7 +91,7 @@ class SortListModel(raw: Ptr[GtkSortListModel])
     *
     * Gets the section sorter that is used to sort items of @self into sections.
     */
-  def getSectionSorter(): Sorter = new Sorter(
+  def getSectionSorter(): Sorter /* None */ = new Sorter(
     gtk_sort_list_model_get_section_sorter(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -98,7 +99,7 @@ class SortListModel(raw: Ptr[GtkSortListModel])
     *
     * Gets the sorter that is used to sort @self.
     */
-  def getSorter(): Sorter = new Sorter(
+  def getSorter(): Sorter /* None */ = new Sorter(
     gtk_sort_list_model_get_sorter(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -121,11 +122,12 @@ class SortListModel(raw: Ptr[GtkSortListModel])
     * See [method@Gtk.SortListModel.get_pending] for progress information about
     * an ongoing incremental sorting operation.
     */
-  def setIncremental(incremental: Boolean): Unit =
-    gtk_sort_list_model_set_incremental(
-      this.raw.asInstanceOf,
-      gboolean(gint((if incremental == true then 1 else 0)))
-    )
+  def setIncremental(
+      incremental: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_sort_list_model_set_incremental(
+    this.raw.asInstanceOf,
+    gboolean(gint((if incremental == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -133,28 +135,45 @@ class SortListModel(raw: Ptr[GtkSortListModel])
     *
     * The @model's item type must conform to the item type of @self.
     */
-  def setModel(model: ListModel): Unit = gtk_sort_list_model_set_model(
+  def setModel(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ]
+  ): Unit /* None */ = gtk_sort_list_model_set_model(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf
+    model
+      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets a new section sorter on @self.
     */
-  def setSectionSorter(sorter: Sorter): Unit =
-    gtk_sort_list_model_set_section_sorter(
-      this.raw.asInstanceOf,
-      sorter.getUnsafeRawPointer().asInstanceOf
-    )
+  def setSectionSorter(
+      sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ]
+  ): Unit /* None */ = gtk_sort_list_model_set_section_sorter(
+    this.raw.asInstanceOf,
+    sorter
+      .map[Ptr[GtkSorter]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkSorter]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets a new sorter on @self.
     */
-  def setSorter(sorter: Sorter): Unit = gtk_sort_list_model_set_sorter(
+  def setSorter(
+      sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ]
+  ): Unit /* None */ = gtk_sort_list_model_set_sorter(
     this.raw.asInstanceOf,
-    sorter.getUnsafeRawPointer().asInstanceOf
+    sorter
+      .map[Ptr[GtkSorter]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkSorter]])
   )
 
 end SortListModel
@@ -164,11 +183,23 @@ object SortListModel:
     *
     * Creates a new sort list model that uses the @sorter to sort @model.
     */
-  def apply(model: ListModel, sorter: Sorter): SortListModel =
-    new SortListModel(
-      gtk_sort_list_model_new(
-        model.getUnsafeRawPointer().asInstanceOf,
-        sorter.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def apply(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ],
+      sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ]
+  ): SortListModel = new SortListModel(
+    gtk_sort_list_model_new(
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        ),
+      sorter
+        .map[Ptr[GtkSorter]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkSorter]])
+    ).asInstanceOf
+  )
 end SortListModel

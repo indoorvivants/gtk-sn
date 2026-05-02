@@ -14,6 +14,7 @@ import sn.gnome.gobject.internal.GParamSpecUnichar
   */
 class ParamSpecUnichar(raw: Ptr[GParamSpecUnichar])
     extends ParamSpec(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ParamSpecUnichar

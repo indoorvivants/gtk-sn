@@ -38,6 +38,7 @@ import sn.gnome.gobject.fluent.Object
   */
 class MountOperation(raw: Ptr[GMountOperation])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -45,20 +46,22 @@ class MountOperation(raw: Ptr[GMountOperation])
     * Check to see whether the mount operation is being used for an anonymous
     * user.
     */
-  def getAnonymous(): Boolean =
+  def getAnonymous(): Boolean /* None */ =
     g_mount_operation_get_anonymous(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets a choice from the mount operation.
     */
-  def getChoice(): Int = g_mount_operation_get_choice(this.raw.asInstanceOf)
+  def getChoice(): Int /* None */ = g_mount_operation_get_choice(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the domain of the mount operation.
     */
-  def getDomain()(using Zone): String = fromCString(
+  def getDomain()(using Zone): String /* None */ = fromCString(
     g_mount_operation_get_domain(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -67,7 +70,7 @@ class MountOperation(raw: Ptr[GMountOperation])
     * Check to see whether the mount operation is being used for a TCRYPT hidden
     * volume.
     */
-  def getIsTcryptHiddenVolume(): Boolean =
+  def getIsTcryptHiddenVolume(): Boolean /* None */ =
     g_mount_operation_get_is_tcrypt_hidden_volume(this.raw.asInstanceOf).value
       .!=(0)
 
@@ -76,7 +79,7 @@ class MountOperation(raw: Ptr[GMountOperation])
     * Check to see whether the mount operation is being used for a TCRYPT system
     * volume.
     */
-  def getIsTcryptSystemVolume(): Boolean =
+  def getIsTcryptSystemVolume(): Boolean /* None */ =
     g_mount_operation_get_is_tcrypt_system_volume(this.raw.asInstanceOf).value
       .!=(0)
 
@@ -84,7 +87,7 @@ class MountOperation(raw: Ptr[GMountOperation])
     *
     * Gets a password from the mount operation.
     */
-  def getPassword()(using Zone): String = fromCString(
+  def getPassword()(using Zone): String /* None */ = fromCString(
     g_mount_operation_get_password(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -92,21 +95,22 @@ class MountOperation(raw: Ptr[GMountOperation])
     *
     * Gets the state of saving passwords for the mount operation.
     */
-  def getPasswordSave(): GPasswordSave = g_mount_operation_get_password_save(
-    this.raw.asInstanceOf
-  )
+  def getPasswordSave(): GPasswordSave /* None */ =
+    g_mount_operation_get_password_save(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets a PIM from the mount operation.
     */
-  def getPim(): UInt = g_mount_operation_get_pim(this.raw.asInstanceOf).value
+  def getPim(): UInt /* None */ = g_mount_operation_get_pim(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Get the user name from the mount operation.
     */
-  def getUsername()(using Zone): String = fromCString(
+  def getUsername()(using Zone): String /* None */ = fromCString(
     g_mount_operation_get_username(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -114,14 +118,17 @@ class MountOperation(raw: Ptr[GMountOperation])
     *
     * Emits the #GMountOperation::reply signal.
     */
-  def reply(result: GMountOperationResult): Unit =
-    g_mount_operation_reply(this.raw.asInstanceOf, result)
+  def reply(
+      result: GMountOperationResult /* Some(GMountOperationResult) */
+  ): Unit /* None */ = g_mount_operation_reply(this.raw.asInstanceOf, result)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the mount operation to use an anonymous user if @anonymous is %TRUE.
     */
-  def setAnonymous(anonymous: Boolean): Unit = g_mount_operation_set_anonymous(
+  def setAnonymous(
+      anonymous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = g_mount_operation_set_anonymous(
     this.raw.asInstanceOf,
     gboolean(gint((if anonymous == true then 1 else 0)))
   )
@@ -130,74 +137,89 @@ class MountOperation(raw: Ptr[GMountOperation])
     *
     * Sets a default choice for the mount operation.
     */
-  def setChoice(choice: Int): Unit =
+  def setChoice(choice: Int /* Some(CInt) */ ): Unit /* None */ =
     g_mount_operation_set_choice(this.raw.asInstanceOf, choice)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the mount operation's domain.
     */
-  def setDomain(domain: String | CString)(using Zone): Unit =
-    g_mount_operation_set_domain(
-      this.raw.asInstanceOf,
-      __sn_extract_string(domain)
-    )
+  def setDomain(
+      domain: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = g_mount_operation_set_domain(
+    this.raw.asInstanceOf,
+    domain
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the mount operation to use a hidden volume if @hidden_volume is
     * %TRUE.
     */
-  def setIsTcryptHiddenVolume(hidden_volume: Boolean): Unit =
-    g_mount_operation_set_is_tcrypt_hidden_volume(
-      this.raw.asInstanceOf,
-      gboolean(gint((if hidden_volume == true then 1 else 0)))
-    )
+  def setIsTcryptHiddenVolume(
+      hidden_volume: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = g_mount_operation_set_is_tcrypt_hidden_volume(
+    this.raw.asInstanceOf,
+    gboolean(gint((if hidden_volume == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the mount operation to use a system volume if @system_volume is
     * %TRUE.
     */
-  def setIsTcryptSystemVolume(system_volume: Boolean): Unit =
-    g_mount_operation_set_is_tcrypt_system_volume(
-      this.raw.asInstanceOf,
-      gboolean(gint((if system_volume == true then 1 else 0)))
-    )
+  def setIsTcryptSystemVolume(
+      system_volume: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = g_mount_operation_set_is_tcrypt_system_volume(
+    this.raw.asInstanceOf,
+    gboolean(gint((if system_volume == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the mount operation's password to @password.
     */
-  def setPassword(password: String | CString)(using Zone): Unit =
-    g_mount_operation_set_password(
-      this.raw.asInstanceOf,
-      __sn_extract_string(password)
-    )
+  def setPassword(
+      password: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = g_mount_operation_set_password(
+    this.raw.asInstanceOf,
+    password
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the state of saving passwords for the mount operation.
     */
-  def setPasswordSave(save: GPasswordSave): Unit =
+  def setPasswordSave(
+      save: GPasswordSave /* Some(GPasswordSave) */
+  ): Unit /* None */ =
     g_mount_operation_set_password_save(this.raw.asInstanceOf, save)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the mount operation's PIM to @pim.
     */
-  def setPim(pim: UInt): Unit =
+  def setPim(
+      pim: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     g_mount_operation_set_pim(this.raw.asInstanceOf, guint(pim))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the user name within @op to @username.
     */
-  def setUsername(username: String | CString)(using Zone): Unit =
-    g_mount_operation_set_username(
-      this.raw.asInstanceOf,
-      __sn_extract_string(username)
-    )
+  def setUsername(
+      username: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = g_mount_operation_set_username(
+    this.raw.asInstanceOf,
+    username
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

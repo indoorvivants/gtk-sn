@@ -29,6 +29,7 @@ import sn.gnome.gobject.fluent.Object
   * section of the GTK documentation for more information.
   */
 class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -44,7 +45,9 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     * effective, if this function is called multiple times, all subsequent calls
     * will be ignored.
     */
-  def dropDone(success: Boolean): Unit = gdk_drag_drop_done(
+  def dropDone(
+      success: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gdk_drag_drop_done(
     this.raw.asInstanceOf,
     gboolean(gint((if success == true then 1 else 0)))
   )
@@ -53,13 +56,15 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     *
     * Determines the bitmask of possible actions proposed by the source.
     */
-  def getActions(): GdkDragAction = gdk_drag_get_actions(this.raw.asInstanceOf)
+  def getActions(): GdkDragAction /* None */ = gdk_drag_get_actions(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `GdkContentProvider` associated to the `GdkDrag` object.
     */
-  def getContent(): ContentProvider = new ContentProvider(
+  def getContent(): ContentProvider /* None */ = new ContentProvider(
     gdk_drag_get_content(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -67,7 +72,7 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     *
     * Returns the `GdkDevice` associated to the `GdkDrag` object.
     */
-  def getDevice(): Device = new Device(
+  def getDevice(): Device /* None */ = new Device(
     gdk_drag_get_device(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -75,7 +80,7 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     *
     * Gets the `GdkDisplay` that the drag object was created for.
     */
-  def getDisplay(): Display = new Display(
+  def getDisplay(): Display /* None */ = new Display(
     gdk_drag_get_display(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -89,7 +94,7 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     * operation. The surface is owned by @drag and will be destroyed when the
     * drag operation is over.
     */
-  def getDragSurface(): Surface = new Surface(
+  def getDragSurface(): Surface /* None */ = new Surface(
     gdk_drag_get_drag_surface(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -97,7 +102,7 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     *
     * Retrieves the formats supported by this `GdkDrag` object.
     */
-  def getFormats(): Ptr[GdkContentFormats] = gdk_drag_get_formats(
+  def getFormats(): Ptr[GdkContentFormats] /* None */ = gdk_drag_get_formats(
     this.raw.asInstanceOf
   )
 
@@ -105,15 +110,14 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     *
     * Determines the action chosen by the drag destination.
     */
-  def getSelectedAction(): GdkDragAction = gdk_drag_get_selected_action(
-    this.raw.asInstanceOf
-  )
+  def getSelectedAction(): GdkDragAction /* None */ =
+    gdk_drag_get_selected_action(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `GdkSurface` where the drag originates.
     */
-  def getSurface(): Surface = new Surface(
+  def getSurface(): Surface /* None */ = new Surface(
     gdk_drag_get_surface(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -124,7 +128,9 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     *
     * Initially, the hotspot is at the top left corner of the drag surface.
     */
-  def setHotspot(hot_x: Int, hot_y: Int): Unit =
-    gdk_drag_set_hotspot(this.raw.asInstanceOf, hot_x, hot_y)
+  def setHotspot(
+      hot_x: Int /* Some(CInt) */,
+      hot_y: Int /* Some(CInt) */
+  ): Unit /* None */ = gdk_drag_set_hotspot(this.raw.asInstanceOf, hot_x, hot_y)
 
 end Drag

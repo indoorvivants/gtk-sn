@@ -14,13 +14,14 @@ import sn.gnome.gsk4.internal.GskRoundedRect
   * A render node for a border.
   */
 class BorderNode(raw: Ptr[GskBorderNode]) extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the colors of the border.
     */
-  def getColors(): Ptr[GdkRGBA] = gsk_border_node_get_colors(
+  def getColors(): Ptr[GdkRGBA] /* None */ = gsk_border_node_get_colors(
     this.raw.asInstanceOf
   )
 
@@ -28,17 +29,15 @@ class BorderNode(raw: Ptr[GskBorderNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the outline of the border.
     */
-  def getOutline(): Ptr[GskRoundedRect] = gsk_border_node_get_outline(
-    this.raw.asInstanceOf
-  )
+  def getOutline(): Ptr[GskRoundedRect] /* None */ =
+    gsk_border_node_get_outline(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the stroke widths of the border.
     */
-  def getWidths(): Ptr[Float] = gsk_border_node_get_widths(
-    this.raw.asInstanceOf
-  )
+  def getWidths(): Ptr[Float /* None */ ] /* None */ =
+    gsk_border_node_get_widths(this.raw.asInstanceOf)
 
 end BorderNode
 

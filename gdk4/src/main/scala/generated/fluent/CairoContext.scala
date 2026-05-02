@@ -19,6 +19,7 @@ import sn.gnome.gdk4.internal.GdkCairoContext
   */
 class CairoContext(raw: Ptr[GdkCairoContext])
     extends DrawContext(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -32,7 +33,7 @@ class CairoContext(raw: Ptr[GdkCairoContext])
     * The returned context is guaranteed to be valid until
     * [method@Gdk.DrawContext.end_frame] is called.
     */
-  def cairoCreate(): Ptr[cairo_t] = gdk_cairo_context_cairo_create(
+  def cairoCreate(): Ptr[cairo_t] /* None */ = gdk_cairo_context_cairo_create(
     this.raw.asInstanceOf
   )
 

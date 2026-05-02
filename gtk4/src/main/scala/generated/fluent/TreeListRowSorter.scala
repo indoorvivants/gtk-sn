@@ -25,13 +25,14 @@ import sn.gnome.gtk4.internal.GtkTreeListRowSorter
   */
 class TreeListRowSorter(raw: Ptr[GtkTreeListRowSorter])
     extends Sorter(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the sorter used by @self.
     */
-  def getSorter(): Sorter = new Sorter(
+  def getSorter(): Sorter /* None */ = new Sorter(
     gtk_tree_list_row_sorter_get_sorter(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -42,9 +43,13 @@ class TreeListRowSorter(raw: Ptr[GtkTreeListRowSorter])
     * This sorter will be passed the [property@Gtk.TreeListRow:item] of the tree
     * list rows passed to @self.
     */
-  def setSorter(sorter: Sorter): Unit = gtk_tree_list_row_sorter_set_sorter(
+  def setSorter(
+      sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ]
+  ): Unit /* None */ = gtk_tree_list_row_sorter_set_sorter(
     this.raw.asInstanceOf,
-    sorter.getUnsafeRawPointer().asInstanceOf
+    sorter
+      .map[Ptr[GtkSorter]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkSorter]])
   )
 
 end TreeListRowSorter
@@ -58,9 +63,13 @@ object TreeListRowSorter:
     * Note that this sorter relies on [property@Gtk.TreeListModel:passthrough]
     * being %FALSE as it can only sort [class@Gtk.TreeListRow]s.
     */
-  def apply(sorter: Sorter): TreeListRowSorter = new TreeListRowSorter(
+  def apply(
+      sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ]
+  ): TreeListRowSorter = new TreeListRowSorter(
     gtk_tree_list_row_sorter_new(
-      sorter.getUnsafeRawPointer().asInstanceOf
+      sorter
+        .map[Ptr[GtkSorter]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkSorter]])
     ).asInstanceOf
   )
 end TreeListRowSorter

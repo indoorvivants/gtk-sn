@@ -21,6 +21,7 @@ import sn.gnome.gtk4.internal.GtkCellRendererText
   */
 class CellRendererText(raw: Ptr[GtkCellRendererText])
     extends CellRenderer(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -33,11 +34,12 @@ class CellRendererText(raw: Ptr[GtkCellRendererText])
     * number of cells displayed). If @number_of_rows is -1, then the fixed
     * height is unset, and the height is determined by the properties again.
     */
-  def setFixedHeightFromFont(number_of_rows: Int): Unit =
-    gtk_cell_renderer_text_set_fixed_height_from_font(
-      this.raw.asInstanceOf,
-      number_of_rows
-    )
+  def setFixedHeightFromFont(
+      number_of_rows: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_cell_renderer_text_set_fixed_height_from_font(
+    this.raw.asInstanceOf,
+    number_of_rows
+  )
 
 end CellRendererText
 

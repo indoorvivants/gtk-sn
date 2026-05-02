@@ -46,6 +46,7 @@ import sn.gnome.gtk4.internal.GtkCssProvider
 class CssProvider(raw: Ptr[GtkCssProvider])
     extends Object(raw.asInstanceOf),
       StyleProvider:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -54,7 +55,9 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     *
     * This clears any previously loaded information.
     */
-  def loadFromBytes(data: Ptr[GBytes]): Unit =
+  def loadFromBytes(
+      data: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  ): Unit /* None */ =
     gtk_css_provider_load_from_bytes(this.raw.asInstanceOf, data)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -63,12 +66,14 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     *
     * This clears any previously loaded information.
     */
-  def loadFromData(data: String | CString, length: CLongInt)(using Zone): Unit =
-    gtk_css_provider_load_from_data(
-      this.raw.asInstanceOf,
-      __sn_extract_string(data),
-      gssize(length)
-    )
+  def loadFromData(
+      data: String | CString /* Some(CString) */,
+      length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
+  )(using Zone): Unit /* None */ = gtk_css_provider_load_from_data(
+    this.raw.asInstanceOf,
+    __sn_extract_string(data),
+    gssize(length)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -76,7 +81,9 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     *
     * This clears any previously loaded information.
     */
-  def loadFromFile(file: File): Unit = gtk_css_provider_load_from_file(
+  def loadFromFile(
+      file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+  ): Unit /* None */ = gtk_css_provider_load_from_file(
     this.raw.asInstanceOf,
     file.getUnsafeRawPointer().asInstanceOf
   )
@@ -87,11 +94,12 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     *
     * This clears any previously loaded information.
     */
-  def loadFromPath(path: String | CString)(using Zone): Unit =
-    gtk_css_provider_load_from_path(
-      this.raw.asInstanceOf,
-      __sn_extract_string(path)
-    )
+  def loadFromPath(
+      path: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_css_provider_load_from_path(
+    this.raw.asInstanceOf,
+    __sn_extract_string(path)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -99,11 +107,12 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     *
     * This clears any previously loaded information.
     */
-  def loadFromResource(resource_path: String | CString)(using Zone): Unit =
-    gtk_css_provider_load_from_resource(
-      this.raw.asInstanceOf,
-      __sn_extract_string(resource_path)
-    )
+  def loadFromResource(
+      resource_path: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_css_provider_load_from_resource(
+    this.raw.asInstanceOf,
+    __sn_extract_string(resource_path)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -111,11 +120,12 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     *
     * This clears any previously loaded information.
     */
-  def loadFromString(string: String | CString)(using Zone): Unit =
-    gtk_css_provider_load_from_string(
-      this.raw.asInstanceOf,
-      __sn_extract_string(string)
-    )
+  def loadFromString(
+      string: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_css_provider_load_from_string(
+    this.raw.asInstanceOf,
+    __sn_extract_string(string)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -125,12 +135,15 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     * it is guaranteed that this function uses the same mechanism to load the
     * theme that GTK uses for loading its own theme.
     */
-  def loadNamed(name: String | CString, variant: String | CString)(using
-      Zone
-  ): Unit = gtk_css_provider_load_named(
+  def loadNamed(
+      name: String | CString /* Some(CString) */,
+      variant: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_css_provider_load_named(
     this.raw.asInstanceOf,
     __sn_extract_string(name),
-    __sn_extract_string(variant)
+    variant
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -141,7 +154,7 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     * this function on a new provider created with [ctor@Gtk.CssProvider.new]
     * will basically create a duplicate of this @provider.
     */
-  def toString()(using Zone): String = fromCString(
+  def toString()(using Zone): String /* None */ = fromCString(
     gtk_css_provider_to_string(this.raw.asInstanceOf).asInstanceOf
   )
 

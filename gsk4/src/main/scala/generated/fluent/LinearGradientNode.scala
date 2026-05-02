@@ -18,6 +18,7 @@ import sn.gnome.gsk4.internal.GskLinearGradientNode
   */
 class LinearGradientNode(raw: Ptr[GskLinearGradientNode])
     extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -27,30 +28,28 @@ class LinearGradientNode(raw: Ptr[GskLinearGradientNode])
   @annotation.compileTimeOnly(
     "Method get_color_stops contains an OUT parameter, which is not supported yet"
   )
-  def getColorStops(using DummyImplicit) = ???
+  private def getColorStops__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the final point of the linear gradient.
     */
-  def getEnd(): Ptr[graphene_point_t] = gsk_linear_gradient_node_get_end(
-    this.raw.asInstanceOf
-  )
+  def getEnd(): Ptr[graphene_point_t] /* None */ =
+    gsk_linear_gradient_node_get_end(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the number of color stops in the gradient.
     */
-  def getNColorStops(): CUnsignedLongInt =
+  def getNColorStops(): CUnsignedLongInt /* None */ =
     gsk_linear_gradient_node_get_n_color_stops(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the initial point of the linear gradient.
     */
-  def getStart(): Ptr[graphene_point_t] = gsk_linear_gradient_node_get_start(
-    this.raw.asInstanceOf
-  )
+  def getStart(): Ptr[graphene_point_t] /* None */ =
+    gsk_linear_gradient_node_get_start(this.raw.asInstanceOf)
 
 end LinearGradientNode
 
@@ -61,11 +60,17 @@ object LinearGradientNode:
     * given points and color stops, and render that into the area given by @bounds.
     */
   def apply(
-      bounds: Ptr[graphene_rect_t],
-      start: Ptr[graphene_point_t],
-      end: Ptr[graphene_point_t],
-      color_stops: Ptr[GskColorStop],
-      n_color_stops: CUnsignedLongInt
+      bounds: Ptr[
+        graphene_rect_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
+      start: Ptr[
+        graphene_point_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
+      end: Ptr[
+        graphene_point_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
+      color_stops: Ptr[GskColorStop /* None */ ] /* Some(Ptr[GskColorStop]) */,
+      n_color_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): LinearGradientNode = new LinearGradientNode(
     gsk_linear_gradient_node_new(
       bounds,

@@ -19,6 +19,7 @@ class EveryFilter(raw: Ptr[GtkEveryFilter])
     extends MultiFilter(raw.asInstanceOf),
       ListModel,
       Buildable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end EveryFilter

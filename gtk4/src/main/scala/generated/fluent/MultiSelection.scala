@@ -20,13 +20,14 @@ class MultiSelection(raw: Ptr[GtkMultiSelection])
       ListModel,
       SectionModel,
       SelectionModel:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the underlying model of @self.
     */
-  def getModel(): ListModel = new ListModel.Abstract(
+  def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_multi_selection_get_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -36,9 +37,19 @@ class MultiSelection(raw: Ptr[GtkMultiSelection])
     *
     * If @model is %NULL, @self will be empty.
     */
-  def setModel(model: ListModel): Unit = gtk_multi_selection_set_model(
+  def setModel(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ]
+  ): Unit /* None */ = gtk_multi_selection_set_model(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf
+    model
+      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+      )
   )
 
 end MultiSelection
@@ -48,9 +59,19 @@ object MultiSelection:
     *
     * Creates a new selection to handle @model.
     */
-  def apply(model: ListModel): MultiSelection = new MultiSelection(
+  def apply(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ]
+  ): MultiSelection = new MultiSelection(
     gtk_multi_selection_new(
-      model.getUnsafeRawPointer().asInstanceOf
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        )
     ).asInstanceOf
   )
 end MultiSelection

@@ -51,17 +51,19 @@ import sn.gnome.gtk4.internal.GtkIMContextSimple
   */
 class IMContextSimple(raw: Ptr[GtkIMContextSimple])
     extends IMContext(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Adds an additional table from the X11 compose file.
     */
-  def addComposeFile(compose_file: String | CString)(using Zone): Unit =
-    gtk_im_context_simple_add_compose_file(
-      this.raw.asInstanceOf,
-      __sn_extract_string(compose_file)
-    )
+  def addComposeFile(
+      compose_file: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_im_context_simple_add_compose_file(
+    this.raw.asInstanceOf,
+    __sn_extract_string(compose_file)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -77,7 +79,7 @@ class IMContextSimple(raw: Ptr[GtkIMContextSimple])
   @annotation.compileTimeOnly(
     "Method add_table is weird: non NULL-terminated arrays require special handling"
   )
-  def addTable(using DummyImplicit) = ???
+  private def addTable__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

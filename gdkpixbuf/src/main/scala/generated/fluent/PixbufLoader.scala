@@ -65,6 +65,7 @@ import sn.gnome.gobject.fluent.Object
   * time stamp.
   */
 class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -85,7 +86,7 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * Remember that this function does not release a reference on the loader, so
     * you will need to explicitly release any reference you hold.
     */
-  def close(): GResult[Boolean] = GResult.wrap(__errorPtr =>
+  def close(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gdk_pixbuf_loader_close(this.raw.asInstanceOf, __errorPtr).value.!=(0)
   )
 
@@ -101,7 +102,7 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * If the loader doesn't have enough bytes yet, and hasn't emitted the
     * `area-prepared` signal, this function will return `NULL`.
     */
-  def getAnimation(): PixbufAnimation = new PixbufAnimation(
+  def getAnimation(): PixbufAnimation /* None */ = new PixbufAnimation(
     gdk_pixbuf_loader_get_animation(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -110,9 +111,8 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * Obtains the available information about the format of the currently
     * loading image file.
     */
-  def getFormat(): Ptr[GdkPixbufFormat] = gdk_pixbuf_loader_get_format(
-    this.raw.asInstanceOf
-  )
+  def getFormat(): Ptr[GdkPixbufFormat] /* None */ =
+    gdk_pixbuf_loader_get_format(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -132,7 +132,7 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * Additionally, if the loader is an animation, it will return the "static
     * image" of the animation (see gdk_pixbuf_animation_get_static_image()).
     */
-  def getPixbuf(): Pixbuf = new Pixbuf(
+  def getPixbuf(): Pixbuf /* None */ = new Pixbuf(
     gdk_pixbuf_loader_get_pixbuf(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -147,35 +147,41 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * Attempts to set the desired image size are ignored after the emission of
     * the ::size-prepared signal.
     */
-  def setSize(width: Int, height: Int): Unit =
+  def setSize(
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */
+  ): Unit /* None */ =
     gdk_pixbuf_loader_set_size(this.raw.asInstanceOf, width, height)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Parses the next `count` bytes in the given image buffer.
     */
-  def write(buf: Ptr[UByte], count: CUnsignedLongInt): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      gdk_pixbuf_loader_write(
-        this.raw.asInstanceOf,
-        buf.asInstanceOf,
-        gsize(count),
-        __errorPtr
-      ).value.!=(0)
-    )
+  def write(
+      buf: Ptr[UByte] /* Some(Ptr[_root_.sn.gnome.glib.internal.guchar]) */,
+      count: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    gdk_pixbuf_loader_write(
+      this.raw.asInstanceOf,
+      buf.asInstanceOf,
+      gsize(count),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Parses the next contents of the given image buffer.
     */
-  def writeBytes(buffer: Ptr[GBytes]): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      gdk_pixbuf_loader_write_bytes(
-        this.raw.asInstanceOf,
-        buffer,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def writeBytes(
+      buffer: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    gdk_pixbuf_loader_write_bytes(
+      this.raw.asInstanceOf,
+      buffer,
+      __errorPtr
+    ).value.!=(0)
+  )
 
 end PixbufLoader
 
@@ -207,7 +213,7 @@ object PixbufLoader:
     * returned by gdk_pixbuf_get_formats().
     */
   def withMimeType(
-      mime_type: String | CString
+      mime_type: String | CString /* Some(CString) */
   )(using Zone): GResult[PixbufLoader] = GResult.wrap(__errorPtr =>
     new PixbufLoader(
       gdk_pixbuf_loader_new_with_mime_type(
@@ -234,7 +240,7 @@ object PixbufLoader:
     * returned by gdk_pixbuf_get_formats().
     */
   def withType(
-      image_type: String | CString
+      image_type: String | CString /* Some(CString) */
   )(using Zone): GResult[PixbufLoader] = GResult.wrap(__errorPtr =>
     new PixbufLoader(
       gdk_pixbuf_loader_new_with_type(

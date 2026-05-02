@@ -91,13 +91,14 @@ class Paned(raw: Ptr[GtkPaned])
       Buildable,
       ConstraintTarget,
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the end child of the given `GtkPaned`.
     */
-  def getEndChild(): Widget = new Widget(
+  def getEndChild(): Widget /* None */ = new Widget(
     gtk_paned_get_end_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -105,41 +106,43 @@ class Paned(raw: Ptr[GtkPaned])
     *
     * Obtains the position of the divider between the two panes.
     */
-  def getPosition(): Int = gtk_paned_get_position(this.raw.asInstanceOf)
+  def getPosition(): Int /* None */ = gtk_paned_get_position(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the [property@Gtk.Paned:end-child] can be resized.
     */
-  def getResizeEndChild(): Boolean =
+  def getResizeEndChild(): Boolean /* None */ =
     gtk_paned_get_resize_end_child(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the [property@Gtk.Paned:start-child] can be resized.
     */
-  def getResizeStartChild(): Boolean =
+  def getResizeStartChild(): Boolean /* None */ =
     gtk_paned_get_resize_start_child(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the [property@Gtk.Paned:end-child] can shrink.
     */
-  def getShrinkEndChild(): Boolean =
+  def getShrinkEndChild(): Boolean /* None */ =
     gtk_paned_get_shrink_end_child(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the [property@Gtk.Paned:start-child] can shrink.
     */
-  def getShrinkStartChild(): Boolean =
+  def getShrinkStartChild(): Boolean /* None */ =
     gtk_paned_get_shrink_start_child(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the start child of the given `GtkPaned`.
     */
-  def getStartChild(): Widget = new Widget(
+  def getStartChild(): Widget /* None */ = new Widget(
     gtk_paned_get_start_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -147,7 +150,7 @@ class Paned(raw: Ptr[GtkPaned])
     *
     * Gets whether the separator should be wide.
     */
-  def getWideHandle(): Boolean =
+  def getWideHandle(): Boolean /* None */ =
     gtk_paned_get_wide_handle(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -156,23 +159,29 @@ class Paned(raw: Ptr[GtkPaned])
     *
     * If @child is `NULL`, the existing child will be removed.
     */
-  def setEndChild(child: Widget): Unit = gtk_paned_set_end_child(
+  def setEndChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_paned_set_end_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the position of the divider between the two panes.
     */
-  def setPosition(position: Int): Unit =
+  def setPosition(position: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_paned_set_position(this.raw.asInstanceOf, position)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the [property@Gtk.Paned:end-child] can be resized.
     */
-  def setResizeEndChild(resize: Boolean): Unit = gtk_paned_set_resize_end_child(
+  def setResizeEndChild(
+      resize: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_paned_set_resize_end_child(
     this.raw.asInstanceOf,
     gboolean(gint((if resize == true then 1 else 0)))
   )
@@ -181,17 +190,20 @@ class Paned(raw: Ptr[GtkPaned])
     *
     * Sets whether the [property@Gtk.Paned:start-child] can be resized.
     */
-  def setResizeStartChild(resize: Boolean): Unit =
-    gtk_paned_set_resize_start_child(
-      this.raw.asInstanceOf,
-      gboolean(gint((if resize == true then 1 else 0)))
-    )
+  def setResizeStartChild(
+      resize: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_paned_set_resize_start_child(
+    this.raw.asInstanceOf,
+    gboolean(gint((if resize == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the [property@Gtk.Paned:end-child] can shrink.
     */
-  def setShrinkEndChild(resize: Boolean): Unit = gtk_paned_set_shrink_end_child(
+  def setShrinkEndChild(
+      resize: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_paned_set_shrink_end_child(
     this.raw.asInstanceOf,
     gboolean(gint((if resize == true then 1 else 0)))
   )
@@ -200,11 +212,12 @@ class Paned(raw: Ptr[GtkPaned])
     *
     * Sets whether the [property@Gtk.Paned:start-child] can shrink.
     */
-  def setShrinkStartChild(resize: Boolean): Unit =
-    gtk_paned_set_shrink_start_child(
-      this.raw.asInstanceOf,
-      gboolean(gint((if resize == true then 1 else 0)))
-    )
+  def setShrinkStartChild(
+      resize: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_paned_set_shrink_start_child(
+    this.raw.asInstanceOf,
+    gboolean(gint((if resize == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -212,16 +225,22 @@ class Paned(raw: Ptr[GtkPaned])
     *
     * If @child is `NULL`, the existing child will be removed.
     */
-  def setStartChild(child: Widget): Unit = gtk_paned_set_start_child(
+  def setStartChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_paned_set_start_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the separator should be wide.
     */
-  def setWideHandle(wide: Boolean): Unit = gtk_paned_set_wide_handle(
+  def setWideHandle(
+      wide: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_paned_set_wide_handle(
     this.raw.asInstanceOf,
     gboolean(gint((if wide == true then 1 else 0)))
   )
@@ -233,7 +252,6 @@ object Paned:
     *
     * Creates a new `GtkPaned` widget.
     */
-  def apply(orientation: GtkOrientation): Paned = new Paned(
-    gtk_paned_new(orientation).asInstanceOf
-  )
+  def apply(orientation: GtkOrientation /* Some(GtkOrientation) */ ): Paned =
+    new Paned(gtk_paned_new(orientation).asInstanceOf)
 end Paned

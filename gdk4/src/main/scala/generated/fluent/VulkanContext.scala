@@ -23,6 +23,7 @@ import sn.gnome.gio.fluent.Initable
 class VulkanContext(raw: Ptr[GdkVulkanContext])
     extends DrawContext(raw.asInstanceOf),
       Initable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end VulkanContext

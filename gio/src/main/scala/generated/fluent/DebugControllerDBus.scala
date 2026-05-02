@@ -126,6 +126,7 @@ class DebugControllerDBus(raw: Ptr[GDebugControllerDBus])
     extends Object(raw.asInstanceOf),
       DebugController,
       Initable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -148,7 +149,9 @@ class DebugControllerDBus(raw: Ptr[GDebugControllerDBus])
     * Calling this method from within a #GDebugControllerDBus::authorize signal
     * handler will cause a deadlock and must not be done.
     */
-  def stop(): Unit = g_debug_controller_dbus_stop(this.raw.asInstanceOf)
+  def stop(): Unit /* None */ = g_debug_controller_dbus_stop(
+    this.raw.asInstanceOf
+  )
 
 end DebugControllerDBus
 
@@ -164,13 +167,15 @@ object DebugControllerDBus:
     * Initialization may fail if registering the object on @connection fails.
     */
   def apply(
-      connection: DBusConnection,
-      cancellable: Cancellable
+      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[DebugControllerDBus] = GResult.wrap(__errorPtr =>
     new DebugControllerDBus(
       g_debug_controller_dbus_new(
         connection.getUnsafeRawPointer().asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
         __errorPtr
       ).asInstanceOf
     )

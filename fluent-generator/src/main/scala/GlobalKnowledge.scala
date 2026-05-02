@@ -52,7 +52,8 @@ end GlobalName
 case class GlobalKnowledge(
     reader: Reader,
     repository: AugmentedRepository,
-    policy: NamingPolicy
+    policy: NamingPolicy,
+    targetTypes: TargetTypes
 ):
 
   given NamingPolicy = policy
@@ -70,9 +71,11 @@ case class GlobalKnowledge(
               val cl = Map.newBuilder[String, Method]
               cls.methods.foreach: m =>
                 cl += (m.name -> m)
-              val name = names(ns.name
-                .map(_ + ".")
-                .getOrElse("") + cls.name)
+              val name = names(
+                ns.name
+                  .map(_ + ".")
+                  .getOrElse("") + cls.name
+              )
 
               b += name -> cl.result()
           val deps =
@@ -222,6 +225,8 @@ case class GlobalKnowledge(
     go(Seq(repository), Map.empty, Set.empty)
   end names
 end GlobalKnowledge
+
+inline def globalKnowledge(using gk: GlobalKnowledge) = gk
 
 object GlobalKnowledge:
   inline def apply()(using gk: GlobalKnowledge) = gk

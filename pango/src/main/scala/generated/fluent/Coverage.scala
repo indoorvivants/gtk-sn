@@ -20,13 +20,14 @@ import sn.gnome.pango.internal.PangoCoverageLevel
   * that information. It is an opaque structure with no public fields.
   */
 class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Copy an existing `PangoCoverage`.
     */
-  def copy(): Coverage = new Coverage(
+  def copy(): Coverage /* None */ = new Coverage(
     pango_coverage_copy(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -34,7 +35,7 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     *
     * Determine whether a particular index is covered by @coverage.
     */
-  def get(`index_`: Int): PangoCoverageLevel =
+  def get(`index_`: Int /* Some(CInt) */ ): PangoCoverageLevel /* None */ =
     pango_coverage_get(this.raw.asInstanceOf, `index_`)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -43,16 +44,17 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     * of the current coverage for the index and the coverage for the
     * corresponding index in @other.
     */
-  def max(other: Coverage): Unit = pango_coverage_max(
-    this.raw.asInstanceOf,
-    other.getUnsafeRawPointer().asInstanceOf
-  )
+  def max(other: Coverage /* Some(Ptr[PangoCoverage]) */ ): Unit /* None */ =
+    pango_coverage_max(
+      this.raw.asInstanceOf,
+      other.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Increase the reference count on the `PangoCoverage` by one.
     */
-  override def ref(): Coverage = new Coverage(
+  override def ref(): Coverage /* None */ = new Coverage(
     pango_coverage_ref(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -60,7 +62,10 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     *
     * Modify a particular index within @coverage
     */
-  def set(`index_`: Int, level: PangoCoverageLevel): Unit =
+  def set(
+      `index_`: Int /* Some(CInt) */,
+      level: PangoCoverageLevel /* Some(PangoCoverageLevel) */
+  ): Unit /* None */ =
     pango_coverage_set(this.raw.asInstanceOf, `index_`, level)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -70,7 +75,7 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method to_bytes contains an OUT parameter, which is not supported yet"
   )
-  def toBytes(using DummyImplicit) = ???
+  private def toBytes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -78,7 +83,9 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     *
     * If the result is zero, free the coverage and all associated memory.
     */
-  override def unref(): Unit = pango_coverage_unref(this.raw.asInstanceOf)
+  override def unref(): Unit /* None */ = pango_coverage_unref(
+    this.raw.asInstanceOf
+  )
 
 end Coverage
 

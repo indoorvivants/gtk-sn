@@ -91,13 +91,14 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the decoration layout of the `GtkHeaderBar`.
     */
-  def getDecorationLayout()(using Zone): String = fromCString(
+  def getDecorationLayout()(using Zone): String /* None */ = fromCString(
     gtk_header_bar_get_decoration_layout(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -105,7 +106,7 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     *
     * Returns whether this header bar shows the standard window title buttons.
     */
-  def getShowTitleButtons(): Boolean =
+  def getShowTitleButtons(): Boolean /* None */ =
     gtk_header_bar_get_show_title_buttons(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -114,7 +115,7 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     *
     * See [method@Gtk.HeaderBar.set_title_widget].
     */
-  def getTitleWidget(): Widget = new Widget(
+  def getTitleWidget(): Widget /* None */ = new Widget(
     gtk_header_bar_get_title_widget(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -122,19 +123,21 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     *
     * Adds @child to @bar, packed with reference to the end of the @bar.
     */
-  def packEnd(child: Widget): Unit = gtk_header_bar_pack_end(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def packEnd(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_header_bar_pack_end(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Adds @child to @bar, packed with reference to the start of the @bar.
     */
-  def packStart(child: Widget): Unit = gtk_header_bar_pack_start(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def packStart(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_header_bar_pack_start(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -144,10 +147,11 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     * [method@Gtk.HeaderBar.pack_end] or
     * [method@Gtk.HeaderBar.set_title_widget].
     */
-  def remove(child: Widget): Unit = gtk_header_bar_remove(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_header_bar_remove(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -169,21 +173,25 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     * For example, “icon:minimize,maximize,close” specifies an icon on the left,
     * and minimize, maximize and close buttons on the right.
     */
-  def setDecorationLayout(layout: String | CString)(using Zone): Unit =
-    gtk_header_bar_set_decoration_layout(
-      this.raw.asInstanceOf,
-      __sn_extract_string(layout)
-    )
+  def setDecorationLayout(
+      layout: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_header_bar_set_decoration_layout(
+    this.raw.asInstanceOf,
+    layout
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether this header bar shows the standard window title buttons.
     */
-  def setShowTitleButtons(setting: Boolean): Unit =
-    gtk_header_bar_set_show_title_buttons(
-      this.raw.asInstanceOf,
-      gboolean(gint((if setting == true then 1 else 0)))
-    )
+  def setShowTitleButtons(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_header_bar_set_show_title_buttons(
+    this.raw.asInstanceOf,
+    gboolean(gint((if setting == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -198,11 +206,14 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     * You should set the title widget to %NULL, for the window title label to be
     * visible again.
     */
-  def setTitleWidget(title_widget: Widget): Unit =
-    gtk_header_bar_set_title_widget(
-      this.raw.asInstanceOf,
-      title_widget.getUnsafeRawPointer().asInstanceOf
-    )
+  def setTitleWidget(
+      title_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_header_bar_set_title_widget(
+    this.raw.asInstanceOf,
+    title_widget
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

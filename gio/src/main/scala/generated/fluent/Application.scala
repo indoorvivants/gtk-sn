@@ -141,6 +141,7 @@ class Application(raw: Ptr[GApplication])
     extends Object(raw.asInstanceOf),
       ActionGroup,
       ActionMap:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -152,7 +153,9 @@ class Application(raw: Ptr[GApplication])
     *
     * The application must be registered before calling this function.
     */
-  def activate(): Unit = g_application_activate(this.raw.asInstanceOf)
+  def activate(): Unit /* None */ = g_application_activate(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -171,20 +174,22 @@ class Application(raw: Ptr[GApplication])
     * See #GOptionEntry for more documentation of the arguments.
     */
   def addMainOption(
-      long_name: String | CString,
-      short_name: Byte,
-      flags: GOptionFlags,
-      arg: GOptionArg,
-      description: String | CString,
-      arg_description: String | CString
-  )(using Zone): Unit = g_application_add_main_option(
+      long_name: String | CString /* Some(CString) */,
+      short_name: Byte /* Some(CChar) */,
+      flags: GOptionFlags /* Some(_root_.sn.gnome.glib.internal.GOptionFlags) */,
+      arg: GOptionArg /* Some(_root_.sn.gnome.glib.internal.GOptionArg) */,
+      description: String | CString /* Some(CString) */,
+      arg_description: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = g_application_add_main_option(
     this.raw.asInstanceOf,
     __sn_extract_string(long_name),
     gchar(short_name).asInstanceOf,
     flags,
     arg,
     __sn_extract_string(description),
-    __sn_extract_string(arg_description)
+    arg_description
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -214,7 +219,11 @@ class Application(raw: Ptr[GApplication])
     * functionality whereby unrecognised options are rejected even if
     * %G_APPLICATION_HANDLES_COMMAND_LINE was given.
     */
-  def addOptionGroup(group: Ptr[GOptionGroup]): Unit =
+  def addOptionGroup(
+      group: Ptr[
+        GOptionGroup
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GOptionGroup]) */
+  ): Unit /* None */ =
     g_application_add_option_group(this.raw.asInstanceOf, group)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -226,9 +235,11 @@ class Application(raw: Ptr[GApplication])
     * The binding holds a reference to @application while it is active, but not
     * to @object. Instead, the binding is destroyed when @object is finalized.
     */
-  def bindBusyProperty(`object`: Object, property: String | CString)(using
-      Zone
-  ): Unit = g_application_bind_busy_property(
+  def bindBusyProperty(
+      `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      property: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_application_bind_busy_property(
     this.raw.asInstanceOf,
     gpointer(
       `object`.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
@@ -240,7 +251,7 @@ class Application(raw: Ptr[GApplication])
     *
     * Gets the unique identifier for @application.
     */
-  def getApplicationId()(using Zone): String = fromCString(
+  def getApplicationId()(using Zone): String /* None */ = fromCString(
     g_application_get_application_id(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -259,7 +270,7 @@ class Application(raw: Ptr[GApplication])
     * This function must not be called before the application has been
     * registered. See g_application_get_is_registered().
     */
-  def getDbusConnection(): DBusConnection = new DBusConnection(
+  def getDbusConnection(): DBusConnection /* None */ = new DBusConnection(
     g_application_get_dbus_connection(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -280,7 +291,7 @@ class Application(raw: Ptr[GApplication])
     * This function must not be called before the application has been
     * registered. See g_application_get_is_registered().
     */
-  def getDbusObjectPath()(using Zone): String = fromCString(
+  def getDbusObjectPath()(using Zone): String /* None */ = fromCString(
     g_application_get_dbus_object_path(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -290,7 +301,7 @@ class Application(raw: Ptr[GApplication])
     *
     * See #GApplicationFlags.
     */
-  def getFlags(): GApplicationFlags = g_application_get_flags(
+  def getFlags(): GApplicationFlags /* None */ = g_application_get_flags(
     this.raw.asInstanceOf
   )
 
@@ -301,16 +312,15 @@ class Application(raw: Ptr[GApplication])
     * This is the amount of time (in milliseconds) after the last call to
     * g_application_release() before the application stops running.
     */
-  def getInactivityTimeout(): UInt = g_application_get_inactivity_timeout(
-    this.raw.asInstanceOf
-  ).value
+  def getInactivityTimeout(): UInt /* None */ =
+    g_application_get_inactivity_timeout(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the application's current busy state, as set through
     * g_application_mark_busy() or g_application_bind_busy_property().
     */
-  def getIsBusy(): Boolean =
+  def getIsBusy(): Boolean /* None */ =
     g_application_get_is_busy(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -320,7 +330,7 @@ class Application(raw: Ptr[GApplication])
     * An application is registered if g_application_register() has been
     * successfully called.
     */
-  def getIsRegistered(): Boolean =
+  def getIsRegistered(): Boolean /* None */ =
     g_application_get_is_registered(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -336,7 +346,7 @@ class Application(raw: Ptr[GApplication])
     * g_application_register() has been called. See
     * g_application_get_is_registered().
     */
-  def getIsRemote(): Boolean =
+  def getIsRemote(): Boolean /* None */ =
     g_application_get_is_remote(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -345,7 +355,7 @@ class Application(raw: Ptr[GApplication])
     *
     * See g_application_set_resource_base_path() for more information.
     */
-  def getResourceBasePath()(using Zone): String = fromCString(
+  def getResourceBasePath()(using Zone): String /* None */ = fromCString(
     g_application_get_resource_base_path(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -359,7 +369,7 @@ class Application(raw: Ptr[GApplication])
     *
     * To cancel the hold, call g_application_release().
     */
-  def hold(): Unit = g_application_hold(this.raw.asInstanceOf)
+  def hold(): Unit /* None */ = g_application_hold(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -376,7 +386,9 @@ class Application(raw: Ptr[GApplication])
     *
     * The application must be registered before calling this function.
     */
-  def markBusy(): Unit = g_application_mark_busy(this.raw.asInstanceOf)
+  def markBusy(): Unit /* None */ = g_application_mark_busy(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -400,7 +412,7 @@ class Application(raw: Ptr[GApplication])
   @annotation.compileTimeOnly(
     "Method open is weird: non NULL-terminated arrays require special handling"
   )
-  def open(using DummyImplicit) = ???
+  private def open__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -417,7 +429,7 @@ class Application(raw: Ptr[GApplication])
     * The result of calling g_application_run() again after it returns is
     * unspecified.
     */
-  def quit(): Unit = g_application_quit(this.raw.asInstanceOf)
+  def quit(): Unit /* None */ = g_application_quit(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -450,14 +462,17 @@ class Application(raw: Ptr[GApplication])
     * instance is or is not the primary instance of the application. See
     * g_application_get_is_remote() for that.
     */
-  def register(cancellable: Cancellable): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_application_register(
-        this.raw.asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def register(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_application_register(
+      this.raw.asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -468,7 +483,7 @@ class Application(raw: Ptr[GApplication])
     * Never call this function except to cancel the effect of a previous call to
     * g_application_hold().
     */
-  def release(): Unit = g_application_release(this.raw.asInstanceOf)
+  def release(): Unit /* None */ = g_application_release(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -545,10 +560,15 @@ class Application(raw: Ptr[GApplication])
     * control over when processes invoked via the commandline will exit and what
     * their exit status will be.
     */
-  def run(argc: Int, argv: Array[String])(using Zone): Int = g_application_run(
+  def run(
+      argc: Int /* Some(CInt) */,
+      argv: Option[Array[String] /* Some(Ptr[CString]) */ ]
+  )(using Zone): Int /* None */ = g_application_run(
     this.raw.asInstanceOf,
     argc,
-    argv.map(__sn_extract_string).atUnsafe(0)
+    argv
+      .map[Ptr[CString]](o => o.map(__sn_extract_string).atUnsafe(0))
+      .getOrElse(null.asInstanceOf[Ptr[CString]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -581,11 +601,16 @@ class Application(raw: Ptr[GApplication])
     * If @notification is no longer relevant, it can be withdrawn with
     * g_application_withdraw_notification().
     */
-  def sendNotification(id: String | CString, notification: Notification)(using
-      Zone
-  ): Unit = g_application_send_notification(
+  def sendNotification(
+      id: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
+      notification: Notification /* Some(Ptr[GNotification]) */
+  )(using Zone): Unit /* None */ = g_application_send_notification(
     this.raw.asInstanceOf,
-    __sn_extract_string(id).asInstanceOf[Ptr[gchar]],
+    id.map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+      __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+    ).getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
     notification.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -594,11 +619,14 @@ class Application(raw: Ptr[GApplication])
     * This used to be how actions were associated with a #GApplication. Now
     * there is #GActionMap for that.
     */
-  def setActionGroup(action_group: ActionGroup): Unit =
-    g_application_set_action_group(
-      this.raw.asInstanceOf,
-      action_group.getUnsafeRawPointer().asInstanceOf
-    )
+  def setActionGroup(
+      action_group: Option[ActionGroup /* Some(Ptr[GActionGroup]) */ ]
+  ): Unit /* None */ = g_application_set_action_group(
+    this.raw.asInstanceOf,
+    action_group
+      .map[Ptr[GActionGroup]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GActionGroup]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -610,11 +638,18 @@ class Application(raw: Ptr[GApplication])
     * If non-%NULL, the application id must be valid. See
     * g_application_id_is_valid().
     */
-  def setApplicationId(application_id: String | CString)(using Zone): Unit =
-    g_application_set_application_id(
-      this.raw.asInstanceOf,
-      __sn_extract_string(application_id).asInstanceOf[Ptr[gchar]]
-    )
+  def setApplicationId(
+      application_id: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
+  )(using Zone): Unit /* None */ = g_application_set_application_id(
+    this.raw.asInstanceOf,
+    application_id
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -625,7 +660,9 @@ class Application(raw: Ptr[GApplication])
     * @application
     *   is destroyed then the default application will revert back to %NULL.
     */
-  def setDefault(): Unit = g_application_set_default(this.raw.asInstanceOf)
+  def setDefault(): Unit /* None */ = g_application_set_default(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -636,8 +673,9 @@ class Application(raw: Ptr[GApplication])
     *
     * See #GApplicationFlags.
     */
-  def setFlags(flags: GApplicationFlags): Unit =
-    g_application_set_flags(this.raw.asInstanceOf, flags)
+  def setFlags(
+      flags: GApplicationFlags /* Some(GApplicationFlags) */
+  ): Unit /* None */ = g_application_set_flags(this.raw.asInstanceOf, flags)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -650,11 +688,12 @@ class Application(raw: Ptr[GApplication])
     * for next time g_application_release() drops the use count to zero. Any
     * timeouts currently in progress are not impacted.
     */
-  def setInactivityTimeout(inactivity_timeout: UInt): Unit =
-    g_application_set_inactivity_timeout(
-      this.raw.asInstanceOf,
-      guint(inactivity_timeout)
-    )
+  def setInactivityTimeout(
+      inactivity_timeout: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ = g_application_set_inactivity_timeout(
+    this.raw.asInstanceOf,
+    guint(inactivity_timeout)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -663,10 +702,16 @@ class Application(raw: Ptr[GApplication])
     * See g_option_context_set_description() for more information.
     */
   def setOptionContextDescription(
-      description: String | CString
-  )(using Zone): Unit = g_application_set_option_context_description(
+      description: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
+  )(using Zone): Unit /* None */ = g_application_set_option_context_description(
     this.raw.asInstanceOf,
-    __sn_extract_string(description).asInstanceOf[Ptr[gchar]]
+    description
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -680,11 +725,18 @@ class Application(raw: Ptr[GApplication])
     * See g_option_context_new() for more information about @parameter_string.
     */
   def setOptionContextParameterString(
-      parameter_string: String | CString
-  )(using Zone): Unit = g_application_set_option_context_parameter_string(
-    this.raw.asInstanceOf,
-    __sn_extract_string(parameter_string).asInstanceOf[Ptr[gchar]]
-  )
+      parameter_string: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
+  )(using Zone): Unit /* None */ =
+    g_application_set_option_context_parameter_string(
+      this.raw.asInstanceOf,
+      parameter_string
+        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -692,11 +744,18 @@ class Application(raw: Ptr[GApplication])
     *
     * See g_option_context_set_summary() for more information.
     */
-  def setOptionContextSummary(summary: String | CString)(using Zone): Unit =
-    g_application_set_option_context_summary(
-      this.raw.asInstanceOf,
-      __sn_extract_string(summary).asInstanceOf[Ptr[gchar]]
-    )
+  def setOptionContextSummary(
+      summary: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
+  )(using Zone): Unit /* None */ = g_application_set_option_context_summary(
+    this.raw.asInstanceOf,
+    summary
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -733,11 +792,18 @@ class Application(raw: Ptr[GApplication])
     * #GApplicationClass.startup virtual function, before chaining up to the
     * parent implementation.
     */
-  def setResourceBasePath(resource_path: String | CString)(using Zone): Unit =
-    g_application_set_resource_base_path(
-      this.raw.asInstanceOf,
-      __sn_extract_string(resource_path).asInstanceOf[Ptr[gchar]]
-    )
+  def setResourceBasePath(
+      resource_path: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
+  )(using Zone): Unit /* None */ = g_application_set_resource_base_path(
+    this.raw.asInstanceOf,
+    resource_path
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -745,9 +811,11 @@ class Application(raw: Ptr[GApplication])
     * @application
     *   that was previously created with g_application_bind_busy_property().
     */
-  def unbindBusyProperty(`object`: Object, property: String | CString)(using
-      Zone
-  ): Unit = g_application_unbind_busy_property(
+  def unbindBusyProperty(
+      `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      property: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_application_unbind_busy_property(
     this.raw.asInstanceOf,
     gpointer(
       `object`.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
@@ -765,7 +833,9 @@ class Application(raw: Ptr[GApplication])
     * This function must only be called to cancel the effect of a previous call
     * to g_application_mark_busy().
     */
-  def unmarkBusy(): Unit = g_application_unmark_busy(this.raw.asInstanceOf)
+  def unmarkBusy(): Unit /* None */ = g_application_unmark_busy(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -783,11 +853,12 @@ class Application(raw: Ptr[GApplication])
     * buttons in a notification or triggers its default action, so there is no
     * need to explicitly withdraw the notification in that case.
     */
-  def withdrawNotification(id: String | CString)(using Zone): Unit =
-    g_application_withdraw_notification(
-      this.raw.asInstanceOf,
-      __sn_extract_string(id).asInstanceOf[Ptr[gchar]]
-    )
+  def withdrawNotification(
+      id: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_application_withdraw_notification(
+    this.raw.asInstanceOf,
+    __sn_extract_string(id).asInstanceOf[Ptr[gchar]]
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -810,11 +881,18 @@ object Application:
     * If no application ID is given then some features of #GApplication (most
     * notably application uniqueness) will be disabled.
     */
-  def apply(application_id: String | CString, flags: GApplicationFlags)(using
-      Zone
-  ): Application = new Application(
+  def apply(
+      application_id: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
+      flags: GApplicationFlags /* Some(GApplicationFlags) */
+  )(using Zone): Application = new Application(
     g_application_new(
-      __sn_extract_string(application_id).asInstanceOf[Ptr[gchar]],
+      application_id
+        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       flags
     ).asInstanceOf
   )

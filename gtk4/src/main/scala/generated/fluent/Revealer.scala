@@ -45,13 +45,14 @@ class Revealer(raw: Ptr[GtkRevealer])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the child widget of @revealer.
     */
-  def getChild(): Widget = new Widget(
+  def getChild(): Widget /* None */ = new Widget(
     gtk_revealer_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -62,7 +63,7 @@ class Revealer(raw: Ptr[GtkRevealer])
     * In other words, this returns whether the transition to the revealed state
     * is completed.
     */
-  def getChildRevealed(): Boolean =
+  def getChildRevealed(): Boolean /* None */ =
     gtk_revealer_get_child_revealed(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -73,31 +74,34 @@ class Revealer(raw: Ptr[GtkRevealer])
     * state is started. To learn whether the child is fully revealed (ie the
     * transition is completed), use [method@Gtk.Revealer.get_child_revealed].
     */
-  def getRevealChild(): Boolean =
+  def getRevealChild(): Boolean /* None */ =
     gtk_revealer_get_reveal_child(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the amount of time (in milliseconds) that transitions will take.
     */
-  def getTransitionDuration(): UInt = gtk_revealer_get_transition_duration(
-    this.raw.asInstanceOf
-  ).value
+  def getTransitionDuration(): UInt /* None */ =
+    gtk_revealer_get_transition_duration(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the type of animation that will be used for transitions in @revealer.
     */
-  def getTransitionType(): GtkRevealerTransitionType =
+  def getTransitionType(): GtkRevealerTransitionType /* None */ =
     gtk_revealer_get_transition_type(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the child widget of @revealer.
     */
-  def setChild(child: Widget): Unit = gtk_revealer_set_child(
+  def setChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_revealer_set_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -106,17 +110,20 @@ class Revealer(raw: Ptr[GtkRevealer])
     *
     * The transition will be animated with the current transition type of @revealer.
     */
-  def setRevealChild(reveal_child: Boolean): Unit =
-    gtk_revealer_set_reveal_child(
-      this.raw.asInstanceOf,
-      gboolean(gint((if reveal_child == true then 1 else 0)))
-    )
+  def setRevealChild(
+      reveal_child: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_revealer_set_reveal_child(
+    this.raw.asInstanceOf,
+    gboolean(gint((if reveal_child == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the duration that transitions will take.
     */
-  def setTransitionDuration(duration: UInt): Unit =
+  def setTransitionDuration(
+      duration: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_revealer_set_transition_duration(this.raw.asInstanceOf, guint(duration))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -125,7 +132,9 @@ class Revealer(raw: Ptr[GtkRevealer])
     *
     * Available types include various kinds of fades and slides.
     */
-  def setTransitionType(transition: GtkRevealerTransitionType): Unit =
+  def setTransitionType(
+      transition: GtkRevealerTransitionType /* Some(GtkRevealerTransitionType) */
+  ): Unit /* None */ =
     gtk_revealer_set_transition_type(this.raw.asInstanceOf, transition)
 
 end Revealer

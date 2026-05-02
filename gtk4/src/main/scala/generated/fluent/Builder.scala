@@ -307,6 +307,7 @@ import sn.gnome.gtk4.internal.GtkBuilderClosureFlags
   * for details.
   */
 class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -330,14 +331,15 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * reported failure. The only reasonable thing to do when an error is
     * detected is to call `g_error()`.
     */
-  def addFromFile(filename: String | CString)(using Zone): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      gtk_builder_add_from_file(
-        this.raw.asInstanceOf,
-        __sn_extract_string(filename),
-        __errorPtr
-      ).value.!=(0)
-    )
+  def addFromFile(
+      filename: String | CString /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    gtk_builder_add_from_file(
+      this.raw.asInstanceOf,
+      __sn_extract_string(filename),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -358,8 +360,8 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * g_error().
     */
   def addFromResource(
-      resource_path: String | CString
-  )(using Zone): GResult[Boolean] = GResult.wrap(__errorPtr =>
+      resource_path: String | CString /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_builder_add_from_resource(
       this.raw.asInstanceOf,
       __sn_extract_string(resource_path),
@@ -385,9 +387,10 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * only reasonable thing to do when an error is detected is to call
     * g_error().
     */
-  def addFromString(buffer: String | CString, length: CLongInt)(using
-      Zone
-  ): GResult[Boolean] = GResult.wrap(__errorPtr =>
+  def addFromString(
+      buffer: String | CString /* Some(CString) */,
+      length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_builder_add_from_string(
       this.raw.asInstanceOf,
       __sn_extract_string(buffer),
@@ -407,15 +410,23 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * set.
     */
   def createClosure(
-      function_name: String | CString,
-      flags: GtkBuilderClosureFlags,
-      `object`: Object
-  )(using Zone): GResult[Ptr[GClosure]] = GResult.wrap(__errorPtr =>
+      function_name: String | CString /* Some(CString) */,
+      flags: GtkBuilderClosureFlags /* Some(GtkBuilderClosureFlags) */,
+      `object`: Option[
+        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+      ]
+  )(using Zone): GResult[Ptr[GClosure] /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_builder_create_closure(
       this.raw.asInstanceOf,
       __sn_extract_string(function_name),
       flags,
-      `object`.getUnsafeRawPointer().asInstanceOf,
+      `object`
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
+        ),
       __errorPtr
     )
   )
@@ -429,12 +440,14 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * to expose the same object under multiple names. `gtk_builder_get_object()`
     * may be used to determine if an object has already been added with @name.
     */
-  def exposeObject(name: String | CString, `object`: Object)(using Zone): Unit =
-    gtk_builder_expose_object(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name),
-      `object`.getUnsafeRawPointer().asInstanceOf
-    )
+  def exposeObject(
+      name: String | CString /* Some(CString) */,
+      `object`: Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+  )(using Zone): Unit /* None */ = gtk_builder_expose_object(
+    this.raw.asInstanceOf,
+    __sn_extract_string(name),
+    `object`.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -445,11 +458,11 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * templates are handled by `GtkWidget`.
     */
   def extendWithTemplate(
-      `object`: Object,
-      template_type: GType,
-      buffer: String | CString,
-      length: CLongInt
-  )(using Zone): GResult[Boolean] = GResult.wrap(__errorPtr =>
+      `object`: Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */,
+      template_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
+      buffer: String | CString /* Some(CString) */,
+      length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_builder_extend_with_template(
       this.raw.asInstanceOf,
       `object`.getUnsafeRawPointer().asInstanceOf,
@@ -464,7 +477,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     *
     * Gets the current object set via gtk_builder_set_current_object().
     */
-  def getCurrentObject(): Object = new Object(
+  def getCurrentObject(): Object /* None */ = new Object(
     gtk_builder_get_current_object(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -475,7 +488,9 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * Note that this function does not increment the reference count of the
     * returned object.
     */
-  def getObject(name: String | CString)(using Zone): Object = new Object(
+  def getObject(
+      name: String | CString /* Some(CString) */
+  )(using Zone): Object /* None */ = new Object(
     gtk_builder_get_object(
       this.raw.asInstanceOf,
       __sn_extract_string(name)
@@ -489,13 +504,15 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * Note that this function does not increment the reference counts of the
     * returned objects.
     */
-  def getObjects(): Ptr[GSList] = gtk_builder_get_objects(this.raw.asInstanceOf)
+  def getObjects(): Ptr[GSList] /* None */ = gtk_builder_get_objects(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the scope in use that was set via gtk_builder_set_scope().
     */
-  def getScope(): BuilderScope = new BuilderScope.Abstract(
+  def getScope(): BuilderScope /* None */ = new BuilderScope.Abstract(
     gtk_builder_get_scope(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -503,7 +520,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     *
     * Gets the translation domain of @builder.
     */
-  def getTranslationDomain()(using Zone): String = fromCString(
+  def getTranslationDomain()(using Zone): String /* None */ = fromCString(
     gtk_builder_get_translation_domain(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -515,11 +532,12 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * This is mainly used when implementing the `GtkBuildable` interface on a
     * type.
     */
-  def getTypeFromName(type_name: String | CString)(using Zone): GType =
-    gtk_builder_get_type_from_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(type_name)
-    )
+  def getTypeFromName(
+      type_name: String | CString /* Some(CString) */
+  )(using Zone): GType /* None */ = gtk_builder_get_type_from_name(
+    this.raw.asInstanceOf,
+    __sn_extract_string(type_name)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -533,11 +551,20 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * to the widget the template is inited for. For functions like
     * [ctor@Gtk.Builder.new_from_resource], the current object will be %NULL.
     */
-  def setCurrentObject(current_object: Object): Unit =
-    gtk_builder_set_current_object(
-      this.raw.asInstanceOf,
-      current_object.getUnsafeRawPointer().asInstanceOf
-    )
+  def setCurrentObject(
+      current_object: Option[
+        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+      ]
+  ): Unit /* None */ = gtk_builder_set_current_object(
+    this.raw.asInstanceOf,
+    current_object
+      .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
+      )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -545,20 +572,27 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     *
     * If @scope is %NULL, a new [class@Gtk.BuilderCScope] will be created.
     */
-  def setScope(scope: BuilderScope): Unit = gtk_builder_set_scope(
+  def setScope(
+      scope: Option[BuilderScope /* Some(Ptr[GtkBuilderScope]) */ ]
+  ): Unit /* None */ = gtk_builder_set_scope(
     this.raw.asInstanceOf,
-    scope.getUnsafeRawPointer().asInstanceOf
+    scope
+      .map[Ptr[GtkBuilderScope]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkBuilderScope]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the translation domain of @builder.
     */
-  def setTranslationDomain(domain: String | CString)(using Zone): Unit =
-    gtk_builder_set_translation_domain(
-      this.raw.asInstanceOf,
-      __sn_extract_string(domain)
-    )
+  def setTranslationDomain(
+      domain: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_builder_set_translation_domain(
+    this.raw.asInstanceOf,
+    domain
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -576,7 +610,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method value_from_string contains an OUT parameter, which is not supported yet"
   )
-  def valueFromString(using DummyImplicit) = ???
+  private def valueFromString__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -594,7 +628,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method value_from_string_type contains an OUT parameter, which is not supported yet"
   )
-  def valueFromStringType(using DummyImplicit) = ???
+  private def valueFromStringType__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -626,7 +660,9 @@ object Builder:
     * program will be aborted. You should only ever attempt to parse user
     * interface descriptions that are shipped as part of your program.
     */
-  def fromFile(filename: String | CString)(using Zone): Builder = new Builder(
+  def fromFile(
+      filename: String | CString /* Some(CString) */
+  )(using Zone): Builder = new Builder(
     gtk_builder_new_from_file(__sn_extract_string(filename)).asInstanceOf
   )
 
@@ -637,12 +673,13 @@ object Builder:
     * If there is an error locating the resource or parsing the description,
     * then the program will be aborted.
     */
-  def fromResource(resource_path: String | CString)(using Zone): Builder =
-    new Builder(
-      gtk_builder_new_from_resource(
-        __sn_extract_string(resource_path)
-      ).asInstanceOf
-    )
+  def fromResource(
+      resource_path: String | CString /* Some(CString) */
+  )(using Zone): Builder = new Builder(
+    gtk_builder_new_from_resource(
+      __sn_extract_string(resource_path)
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -655,9 +692,10 @@ object Builder:
     * should not attempt to parse user interface description from untrusted
     * sources.
     */
-  def fromString(string: String | CString, length: CLongInt)(using
-      Zone
-  ): Builder = new Builder(
+  def fromString(
+      string: String | CString /* Some(CString) */,
+      length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
+  )(using Zone): Builder = new Builder(
     gtk_builder_new_from_string(
       __sn_extract_string(string),
       gssize(length)

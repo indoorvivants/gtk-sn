@@ -13,6 +13,7 @@ import sn.gnome.gtk4.internal.GtkNeverTrigger
   */
 class NeverTrigger(raw: Ptr[GtkNeverTrigger])
     extends ShortcutTrigger(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end NeverTrigger

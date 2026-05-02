@@ -58,17 +58,19 @@ import sn.gnome.gtk4.internal.GtkFileFilter
 class FileFilter(raw: Ptr[GtkFileFilter])
     extends Filter(raw.asInstanceOf),
       Buildable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Adds a rule allowing a given mime type to @filter.
     */
-  def addMimeType(mime_type: String | CString)(using Zone): Unit =
-    gtk_file_filter_add_mime_type(
-      this.raw.asInstanceOf,
-      __sn_extract_string(mime_type)
-    )
+  def addMimeType(
+      mime_type: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_file_filter_add_mime_type(
+    this.raw.asInstanceOf,
+    __sn_extract_string(mime_type)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -77,11 +79,12 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * Note that it depends on the platform whether pattern matching ignores case
     * or not. On Windows, it does, on other platforms, it doesn't.
     */
-  def addPattern(pattern: String | CString)(using Zone): Unit =
-    gtk_file_filter_add_pattern(
-      this.raw.asInstanceOf,
-      __sn_extract_string(pattern)
-    )
+  def addPattern(
+      pattern: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_file_filter_add_pattern(
+    this.raw.asInstanceOf,
+    __sn_extract_string(pattern)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -90,7 +93,7 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * This is equivalent to calling [method@Gtk.FileFilter.add_mime_type] for
     * all the supported mime types.
     */
-  def addPixbufFormats(): Unit = gtk_file_filter_add_pixbuf_formats(
+  def addPixbufFormats(): Unit /* None */ = gtk_file_filter_add_pixbuf_formats(
     this.raw.asInstanceOf
   )
 
@@ -103,11 +106,12 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * In contrast to pattern matches, suffix matches are *always*
     * case-insensitive.
     */
-  def addSuffix(suffix: String | CString)(using Zone): Unit =
-    gtk_file_filter_add_suffix(
-      this.raw.asInstanceOf,
-      __sn_extract_string(suffix)
-    )
+  def addSuffix(
+      suffix: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_file_filter_add_suffix(
+    this.raw.asInstanceOf,
+    __sn_extract_string(suffix)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -115,7 +119,7 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     *
     * See [method@Gtk.FileFilter.set_name].
     */
-  def getName()(using Zone): String = fromCString(
+  def getName()(using Zone): String /* None */ = fromCString(
     gtk_file_filter_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -126,14 +130,20 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * This is the string that will be displayed in the file chooser if there is
     * a selectable list of filters.
     */
-  def setName(name: String | CString)(using Zone): Unit =
-    gtk_file_filter_set_name(this.raw.asInstanceOf, __sn_extract_string(name))
+  def setName(
+      name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_file_filter_set_name(
+    this.raw.asInstanceOf,
+    name
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Serialize a file filter to an `a{sv}` variant.
     */
-  def toGvariant(): Ptr[GVariant] = gtk_file_filter_to_gvariant(
+  def toGvariant(): Ptr[GVariant] /* None */ = gtk_file_filter_to_gvariant(
     this.raw.asInstanceOf
   )
 
@@ -172,7 +182,11 @@ object FileFilter:
     * The variant must be in the format produced by
     * [method@Gtk.FileFilter.to_gvariant].
     */
-  def fromGvariant(variant: Ptr[GVariant]): FileFilter = new FileFilter(
+  def fromGvariant(
+      variant: Ptr[
+        GVariant
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  ): FileFilter = new FileFilter(
     gtk_file_filter_new_from_gvariant(variant).asInstanceOf
   )
 end FileFilter

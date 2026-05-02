@@ -34,6 +34,7 @@ import sn.gnome.gtk4.internal.GtkFilterMatch
   * possible to subclass `GtkFilter` and provide one's own filter.
   */
 class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -49,8 +50,9 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
     * This function is intended for implementors of `GtkFilter` subclasses and
     * should not be called from other functions.
     */
-  def changed(change: GtkFilterChange): Unit =
-    gtk_filter_changed(this.raw.asInstanceOf, change)
+  def changed(
+      change: GtkFilterChange /* Some(GtkFilterChange) */
+  ): Unit /* None */ = gtk_filter_changed(this.raw.asInstanceOf, change)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -64,7 +66,7 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
     * This function is meant purely for optimization purposes, filters can
     * choose to omit implementing it, but `GtkFilterListModel` uses it.
     */
-  def getStrictness(): GtkFilterMatch = gtk_filter_get_strictness(
+  def getStrictness(): GtkFilterMatch /* None */ = gtk_filter_get_strictness(
     this.raw.asInstanceOf
   )
 
@@ -72,7 +74,9 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
     *
     * Checks if the given @item is matched by the filter or not.
     */
-  def `match`(item: Object): Boolean = gtk_filter_match(
+  def `match`(
+      item: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+  ): Boolean /* None */ = gtk_filter_match(
     this.raw.asInstanceOf,
     gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
   ).value.!=(0)

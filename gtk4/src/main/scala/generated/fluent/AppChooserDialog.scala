@@ -46,13 +46,14 @@ class AppChooserDialog(raw: Ptr[GtkAppChooserDialog])
       Native,
       Root,
       ShortcutManager:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the text to display at the top of the dialog.
     */
-  def getHeading()(using Zone): String = fromCString(
+  def getHeading()(using Zone): String /* None */ = fromCString(
     gtk_app_chooser_dialog_get_heading(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -60,7 +61,7 @@ class AppChooserDialog(raw: Ptr[GtkAppChooserDialog])
     *
     * Returns the `GtkAppChooserWidget` of this dialog.
     */
-  def getWidget(): Widget = new Widget(
+  def getWidget(): Widget /* None */ = new Widget(
     gtk_app_chooser_dialog_get_widget(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -70,11 +71,12 @@ class AppChooserDialog(raw: Ptr[GtkAppChooserDialog])
     *
     * If the heading is not set, the dialog displays a default text.
     */
-  def setHeading(heading: String | CString)(using Zone): Unit =
-    gtk_app_chooser_dialog_set_heading(
-      this.raw.asInstanceOf,
-      __sn_extract_string(heading)
-    )
+  def setHeading(
+      heading: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_app_chooser_dialog_set_heading(
+    this.raw.asInstanceOf,
+    __sn_extract_string(heading)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -94,12 +96,14 @@ object AppChooserDialog:
     * The dialog will show applications that can open the file.
     */
   def apply(
-      parent: Window,
-      flags: GtkDialogFlags,
-      file: File
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      flags: GtkDialogFlags /* Some(GtkDialogFlags) */,
+      file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
   ): AppChooserDialog = new AppChooserDialog(
     gtk_app_chooser_dialog_new(
-      parent.getUnsafeRawPointer().asInstanceOf,
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       flags,
       file.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
@@ -112,12 +116,14 @@ object AppChooserDialog:
     * The dialog will show applications that can open the content type.
     */
   def forContentType(
-      parent: Window,
-      flags: GtkDialogFlags,
-      content_type: String | CString
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      flags: GtkDialogFlags /* Some(GtkDialogFlags) */,
+      content_type: String | CString /* Some(CString) */
   )(using Zone): AppChooserDialog = new AppChooserDialog(
     gtk_app_chooser_dialog_new_for_content_type(
-      parent.getUnsafeRawPointer().asInstanceOf,
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       flags,
       __sn_extract_string(content_type)
     ).asInstanceOf

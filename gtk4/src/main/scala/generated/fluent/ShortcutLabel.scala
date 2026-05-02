@@ -22,13 +22,14 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the current accelerator of @self.
     */
-  def getAccelerator()(using Zone): String = fromCString(
+  def getAccelerator()(using Zone): String /* None */ = fromCString(
     gtk_shortcut_label_get_accelerator(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -36,7 +37,7 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
     *
     * Retrieves the text that is displayed when no accelerator is set.
     */
-  def getDisabledText()(using Zone): String = fromCString(
+  def getDisabledText()(using Zone): String /* None */ = fromCString(
     gtk_shortcut_label_get_disabled_text(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -44,21 +45,23 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
     *
     * Sets the accelerator to be displayed by @self.
     */
-  def setAccelerator(accelerator: String | CString)(using Zone): Unit =
-    gtk_shortcut_label_set_accelerator(
-      this.raw.asInstanceOf,
-      __sn_extract_string(accelerator)
-    )
+  def setAccelerator(
+      accelerator: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_shortcut_label_set_accelerator(
+    this.raw.asInstanceOf,
+    __sn_extract_string(accelerator)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the text to be displayed by @self when no accelerator is set.
     */
-  def setDisabledText(disabled_text: String | CString)(using Zone): Unit =
-    gtk_shortcut_label_set_disabled_text(
-      this.raw.asInstanceOf,
-      __sn_extract_string(disabled_text)
-    )
+  def setDisabledText(
+      disabled_text: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_shortcut_label_set_disabled_text(
+    this.raw.asInstanceOf,
+    __sn_extract_string(disabled_text)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -75,10 +78,11 @@ object ShortcutLabel:
     *
     * Creates a new `GtkShortcutLabel` with @accelerator set.
     */
-  def apply(accelerator: String | CString)(using Zone): ShortcutLabel =
-    new ShortcutLabel(
-      gtk_shortcut_label_new(__sn_extract_string(accelerator)).asInstanceOf
-    )
+  def apply(
+      accelerator: String | CString /* Some(CString) */
+  )(using Zone): ShortcutLabel = new ShortcutLabel(
+    gtk_shortcut_label_new(__sn_extract_string(accelerator)).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -15,13 +15,14 @@ import sn.gnome.gsk4.internal.GskShadowNode
   * A render node drawing one or more shadows behind its single child node.
   */
 class ShadowNode(raw: Ptr[GskShadowNode]) extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the child `GskRenderNode` of the shadow @node.
     */
-  def getChild(): RenderNode = new RenderNode(
+  def getChild(): RenderNode /* None */ = new RenderNode(
     gsk_shadow_node_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -29,15 +30,16 @@ class ShadowNode(raw: Ptr[GskShadowNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the number of shadows in the @node.
     */
-  def getNShadows(): CUnsignedLongInt = gsk_shadow_node_get_n_shadows(
-    this.raw.asInstanceOf
-  ).value
+  def getNShadows(): CUnsignedLongInt /* None */ =
+    gsk_shadow_node_get_n_shadows(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the shadow data at the given index @i.
     */
-  def getShadow(i: CUnsignedLongInt): Ptr[GskShadow] =
+  def getShadow(
+      i: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
+  ): Ptr[GskShadow] /* None */ =
     gsk_shadow_node_get_shadow(this.raw.asInstanceOf, gsize(i))
 
 end ShadowNode
@@ -50,9 +52,9 @@ object ShadowNode:
     *   below it.
     */
   def apply(
-      child: RenderNode,
-      shadows: Ptr[GskShadow],
-      n_shadows: CUnsignedLongInt
+      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      shadows: Ptr[GskShadow /* None */ ] /* Some(Ptr[GskShadow]) */,
+      n_shadows: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): ShadowNode = new ShadowNode(
     gsk_shadow_node_new(
       child.getUnsafeRawPointer().asInstanceOf,

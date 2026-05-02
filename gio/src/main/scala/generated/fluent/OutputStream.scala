@@ -36,13 +36,14 @@ import sn.gnome.gobject.fluent.Object
   * All of these functions have async variants too.
   */
 class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Clears the pending flag on @stream.
     */
-  def clearPending(): Unit = g_output_stream_clear_pending(
+  def clearPending(): Unit /* None */ = g_output_stream_clear_pending(
     this.raw.asInstanceOf
   )
 
@@ -79,14 +80,17 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * cancellation (as with any error) there is no guarantee that all written
     * data will reach the target.
     */
-  def close(cancellable: Cancellable): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_output_stream_close(
-        this.raw.asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def close(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_output_stream_close(
+      this.raw.asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -102,30 +106,39 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * However, if you override one you must override all.
     */
   def closeAsync(
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_output_stream_close_async(
+      io_priority: Int /* Some(CInt) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_output_stream_close_async(
     this.raw.asInstanceOf,
     io_priority,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Closes an output stream.
     */
-  def closeFinish(result: AsyncResult): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_output_stream_close_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def closeFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_output_stream_close_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -140,14 +153,17 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * triggering the cancellable object from another thread. If the operation
     * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
     */
-  def flush(cancellable: Cancellable): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_output_stream_flush(
-        this.raw.asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def flush(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_output_stream_flush(
+      this.raw.asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -158,43 +174,52 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * g_output_stream_flush_finish() to get the result of the operation.
     */
   def flushAsync(
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_output_stream_flush_async(
+      io_priority: Int /* Some(CInt) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_output_stream_flush_async(
     this.raw.asInstanceOf,
     io_priority,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes flushing an output stream.
     */
-  def flushFinish(result: AsyncResult): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_output_stream_flush_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def flushFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_output_stream_flush_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if an output stream has pending actions.
     */
-  def hasPending(): Boolean =
+  def hasPending(): Boolean /* None */ =
     g_output_stream_has_pending(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if an output stream has already been closed.
     */
-  def isClosed(): Boolean =
+  def isClosed(): Boolean /* None */ =
     g_output_stream_is_closed(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -203,7 +228,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * flush implementation to see if the flush (or other i/o operation) is
     * called from within the closing operation.
     */
-  def isClosing(): Boolean =
+  def isClosing(): Boolean /* None */ =
     g_output_stream_is_closing(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -223,7 +248,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method printf contains an OUT parameter, which is not supported yet"
   )
-  def printf(using DummyImplicit) = ???
+  private def printf__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -231,7 +256,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * or @stream is closed, it will return %FALSE and set
     * @error.
     */
-  def setPending(): GResult[Boolean] = GResult.wrap(__errorPtr =>
+  def setPending(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_output_stream_set_pending(this.raw.asInstanceOf, __errorPtr).value.!=(0)
   )
 
@@ -240,15 +265,17 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * Splices an input stream into an output stream.
     */
   def splice(
-      source: InputStream,
-      flags: GOutputStreamSpliceFlags,
-      cancellable: Cancellable
-  ): GResult[CLongInt] = GResult.wrap(__errorPtr =>
+      source: InputStream /* Some(Ptr[GInputStream]) */,
+      flags: GOutputStreamSpliceFlags /* Some(GOutputStreamSpliceFlags) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_output_stream_splice(
       this.raw.asInstanceOf,
       source.getUnsafeRawPointer().asInstanceOf,
       flags,
-      cancellable.getUnsafeRawPointer().asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
       __errorPtr
     ).value
   )
@@ -263,34 +290,43 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * g_output_stream_splice().
     */
   def spliceAsync(
-      source: InputStream,
-      flags: GOutputStreamSpliceFlags,
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_output_stream_splice_async(
+      source: InputStream /* Some(Ptr[GInputStream]) */,
+      flags: GOutputStreamSpliceFlags /* Some(GOutputStreamSpliceFlags) */,
+      io_priority: Int /* Some(CInt) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_output_stream_splice_async(
     this.raw.asInstanceOf,
     source.getUnsafeRawPointer().asInstanceOf,
     flags,
     io_priority,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes an asynchronous stream splice operation.
     */
-  def spliceFinish(result: AsyncResult): GResult[CLongInt] =
-    GResult.wrap(__errorPtr =>
-      g_output_stream_splice_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value
-    )
+  def spliceFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
+    g_output_stream_splice_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -309,7 +345,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method vprintf contains an OUT parameter, which is not supported yet"
   )
-  def vprintf(using DummyImplicit) = ???
+  private def vprintf__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -336,7 +372,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method write_all contains an OUT parameter, which is not supported yet"
   )
-  def writeAll(using DummyImplicit) = ???
+  private def writeAll__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -354,7 +390,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method write_all_finish contains an OUT parameter, which is not supported yet"
   )
-  def writeAllFinish(using DummyImplicit) = ???
+  private def writeAllFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -370,13 +406,15 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * times potentially can result in duplicated data in the output stream.
     */
   def writeBytes(
-      bytes: Ptr[GBytes],
-      cancellable: Cancellable
-  ): GResult[CLongInt] = GResult.wrap(__errorPtr =>
+      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_output_stream_write_bytes(
       this.raw.asInstanceOf,
       bytes,
-      cancellable.getUnsafeRawPointer().asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
       __errorPtr
     ).value
   )
@@ -397,45 +435,55 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * g_output_stream_write_bytes().
     */
   def writeBytesAsync(
-      bytes: Ptr[GBytes],
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_output_stream_write_bytes_async(
+      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      io_priority: Int /* Some(CInt) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_output_stream_write_bytes_async(
     this.raw.asInstanceOf,
     bytes,
     io_priority,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes a stream write-from-#GBytes operation.
     */
-  def writeBytesFinish(result: AsyncResult): GResult[CLongInt] =
-    GResult.wrap(__errorPtr =>
-      g_output_stream_write_bytes_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value
-    )
+  def writeBytesFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
+    g_output_stream_write_bytes_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes a stream write operation.
     */
-  def writeFinish(result: AsyncResult): GResult[CLongInt] =
-    GResult.wrap(__errorPtr =>
-      g_output_stream_write_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value
-    )
+  def writeFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
+    g_output_stream_write_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -467,7 +515,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method writev contains an OUT parameter, which is not supported yet"
   )
-  def writev(using DummyImplicit) = ???
+  private def writev__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -498,7 +546,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method writev_all contains an OUT parameter, which is not supported yet"
   )
-  def writevAll(using DummyImplicit) = ???
+  private def writevAll__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -520,20 +568,28 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * changed by this function.
     */
   def writevAllAsync(
-      vectors: Ptr[GOutputVector],
-      n_vectors: CUnsignedLongInt,
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_output_stream_writev_all_async(
+      vectors: Ptr[GOutputVector /* None */ ] /* Some(Ptr[GOutputVector]) */,
+      n_vectors: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
+      io_priority: Int /* Some(CInt) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_output_stream_writev_all_async(
     this.raw.asInstanceOf,
     vectors,
     gsize(n_vectors),
     io_priority,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -552,7 +608,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method writev_all_finish contains an OUT parameter, which is not supported yet"
   )
-  def writevAllFinish(using DummyImplicit) = ???
+  private def writevAllFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -589,20 +645,28 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * is called.
     */
   def writevAsync(
-      vectors: Ptr[GOutputVector],
-      n_vectors: CUnsignedLongInt,
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_output_stream_writev_async(
+      vectors: Ptr[GOutputVector /* None */ ] /* Some(Ptr[GOutputVector]) */,
+      n_vectors: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
+      io_priority: Int /* Some(CInt) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_output_stream_writev_async(
     this.raw.asInstanceOf,
     vectors,
     gsize(n_vectors),
     io_priority,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -612,6 +676,6 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method writev_finish contains an OUT parameter, which is not supported yet"
   )
-  def writevFinish(using DummyImplicit) = ???
+  private def writevFinish__ = ???
 
 end OutputStream

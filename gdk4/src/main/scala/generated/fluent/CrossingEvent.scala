@@ -16,13 +16,14 @@ import sn.gnome.glib.internal.gint
   * An event caused by a pointing device moving between surfaces.
   */
 class CrossingEvent(raw: Ptr[GdkCrossingEvent]) extends Event(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts the notify detail from a crossing event.
     */
-  def getDetail(): GdkNotifyType = gdk_crossing_event_get_detail(
+  def getDetail(): GdkNotifyType /* None */ = gdk_crossing_event_get_detail(
     this.raw.asInstanceOf
   )
 
@@ -30,14 +31,14 @@ class CrossingEvent(raw: Ptr[GdkCrossingEvent]) extends Event(raw.asInstanceOf):
     *
     * Checks if the @event surface is the focus surface.
     */
-  def getFocus(): Boolean =
+  def getFocus(): Boolean /* None */ =
     gdk_crossing_event_get_focus(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts the crossing mode from a crossing event.
     */
-  def getMode(): GdkCrossingMode = gdk_crossing_event_get_mode(
+  def getMode(): GdkCrossingMode /* None */ = gdk_crossing_event_get_mode(
     this.raw.asInstanceOf
   )
 

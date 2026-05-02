@@ -28,13 +28,14 @@ import sn.gnome.gtk4.internal.GtkShortcut
   * purposes or by allowing shortcuts to be configured.
   */
 class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the action that is activated by this shortcut.
     */
-  def getAction(): ShortcutAction = new ShortcutAction(
+  def getAction(): ShortcutAction /* None */ = new ShortcutAction(
     gtk_shortcut_get_action(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -42,7 +43,7 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
     *
     * Gets the arguments that are passed when activating the shortcut.
     */
-  def getArguments(): Ptr[GVariant] = gtk_shortcut_get_arguments(
+  def getArguments(): Ptr[GVariant] /* None */ = gtk_shortcut_get_arguments(
     this.raw.asInstanceOf
   )
 
@@ -50,7 +51,7 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
     *
     * Gets the trigger used to trigger @self.
     */
-  def getTrigger(): ShortcutTrigger = new ShortcutTrigger(
+  def getTrigger(): ShortcutTrigger /* None */ = new ShortcutTrigger(
     gtk_shortcut_get_trigger(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -58,25 +59,41 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
     *
     * Sets the new action for @self to be @action.
     */
-  def setAction(action: ShortcutAction): Unit = gtk_shortcut_set_action(
+  def setAction(
+      action: Option[ShortcutAction /* Some(Ptr[GtkShortcutAction]) */ ]
+  ): Unit /* None */ = gtk_shortcut_set_action(
     this.raw.asInstanceOf,
-    action.getUnsafeRawPointer().asInstanceOf
+    action
+      .map[Ptr[GtkShortcutAction]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkShortcutAction]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the arguments to pass when activating the shortcut.
     */
-  def setArguments(args: Ptr[GVariant]): Unit =
-    gtk_shortcut_set_arguments(this.raw.asInstanceOf, args)
+  def setArguments(
+      args: Option[
+        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  ): Unit /* None */ = gtk_shortcut_set_arguments(
+    this.raw.asInstanceOf,
+    args
+      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the new trigger for @self to be @trigger.
     */
-  def setTrigger(trigger: ShortcutTrigger): Unit = gtk_shortcut_set_trigger(
+  def setTrigger(
+      trigger: Option[ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */ ]
+  ): Unit /* None */ = gtk_shortcut_set_trigger(
     this.raw.asInstanceOf,
-    trigger.getUnsafeRawPointer().asInstanceOf
+    trigger
+      .map[Ptr[GtkShortcutTrigger]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkShortcutTrigger]])
   )
 
 end Shortcut
@@ -88,13 +105,19 @@ object Shortcut:
     * @trigger
     *   and then activates @action.
     */
-  def apply(trigger: ShortcutTrigger, action: ShortcutAction): Shortcut =
-    new Shortcut(
-      gtk_shortcut_new(
-        trigger.getUnsafeRawPointer().asInstanceOf,
-        action.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def apply(
+      trigger: Option[ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */ ],
+      action: Option[ShortcutAction /* Some(Ptr[GtkShortcutAction]) */ ]
+  ): Shortcut = new Shortcut(
+    gtk_shortcut_new(
+      trigger
+        .map[Ptr[GtkShortcutTrigger]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkShortcutTrigger]]),
+      action
+        .map[Ptr[GtkShortcutAction]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkShortcutAction]])
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -104,15 +127,21 @@ object Shortcut:
     *   with arguments given by @format_string.
     */
   inline def withArguments(
-      trigger: ShortcutTrigger,
-      action: ShortcutAction,
-      format_string: String | CString,
+      trigger: Option[ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */ ],
+      action: Option[ShortcutAction /* Some(Ptr[GtkShortcutAction]) */ ],
+      format_string: Option[String | CString /* Some(CString) */ ],
       args: Any*
   )(using Zone): Shortcut = new Shortcut(
     gtk_shortcut_new_with_arguments(
-      trigger.getUnsafeRawPointer().asInstanceOf,
-      action.getUnsafeRawPointer().asInstanceOf,
-      __sn_extract_string(format_string),
+      trigger
+        .map[Ptr[GtkShortcutTrigger]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkShortcutTrigger]]),
+      action
+        .map[Ptr[GtkShortcutAction]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkShortcutAction]]),
+      format_string
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf
   )

@@ -35,13 +35,14 @@ import sn.gnome.gtk4.internal.GtkWidgetPaintable
 class WidgetPaintable(raw: Ptr[GtkWidgetPaintable])
     extends Object(raw.asInstanceOf),
       Paintable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the widget that is observed or %NULL if none.
     */
-  def getWidget(): Widget = new Widget(
+  def getWidget(): Widget /* None */ = new Widget(
     gtk_widget_paintable_get_widget(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -49,9 +50,13 @@ class WidgetPaintable(raw: Ptr[GtkWidgetPaintable])
     *
     * Sets the widget that should be observed.
     */
-  def setWidget(widget: Widget): Unit = gtk_widget_paintable_set_widget(
+  def setWidget(
+      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_widget_paintable_set_widget(
     this.raw.asInstanceOf,
-    widget.getUnsafeRawPointer().asInstanceOf
+    widget
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
 end WidgetPaintable
@@ -61,9 +66,13 @@ object WidgetPaintable:
     *
     * Creates a new widget paintable observing the given widget.
     */
-  def apply(widget: Widget): WidgetPaintable = new WidgetPaintable(
+  def apply(
+      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): WidgetPaintable = new WidgetPaintable(
     gtk_widget_paintable_new(
-      widget.getUnsafeRawPointer().asInstanceOf
+      widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
     ).asInstanceOf
   )
 end WidgetPaintable

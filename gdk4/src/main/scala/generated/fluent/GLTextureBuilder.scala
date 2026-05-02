@@ -34,6 +34,7 @@ import sn.gnome.gobject.fluent.Object
   */
 class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -53,11 +54,24 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * It is possible to call this function multiple times to create multiple
     * textures, possibly with changing properties in between.
     */
-  def build(destroy: GDestroyNotify, data: Ptr[Byte]): Texture = new Texture(
+  def build(
+      destroy: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ],
+      data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Texture /* None */ = new Texture(
     gdk_gl_texture_builder_build(
       this.raw.asInstanceOf,
-      destroy,
-      gpointer(data)
+      destroy
+        .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+        .getOrElse(
+          null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+        ),
+      data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
     ).asInstanceOf
   )
 
@@ -66,7 +80,7 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * Gets the context previously set via gdk_gl_texture_builder_set_context()
     * or %NULL if none was set.
     */
-  def getContext(): GLContext = new GLContext(
+  def getContext(): GLContext /* None */ = new GLContext(
     gdk_gl_texture_builder_get_context(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -74,15 +88,14 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     *
     * Gets the format previously set via gdk_gl_texture_builder_set_format().
     */
-  def getFormat(): GdkMemoryFormat = gdk_gl_texture_builder_get_format(
-    this.raw.asInstanceOf
-  )
+  def getFormat(): GdkMemoryFormat /* None */ =
+    gdk_gl_texture_builder_get_format(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether the texture has a mipmap.
     */
-  def getHasMipmap(): Boolean =
+  def getHasMipmap(): Boolean /* None */ =
     gdk_gl_texture_builder_get_has_mipmap(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -90,7 +103,7 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * Gets the height previously set via gdk_gl_texture_builder_set_height() or
     * 0 if the height wasn't set.
     */
-  def getHeight(): Int = gdk_gl_texture_builder_get_height(
+  def getHeight(): Int /* None */ = gdk_gl_texture_builder_get_height(
     this.raw.asInstanceOf
   )
 
@@ -99,13 +112,15 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * Gets the texture id previously set via gdk_gl_texture_builder_set_id() or
     * 0 if the id wasn't set.
     */
-  def getId(): UInt = gdk_gl_texture_builder_get_id(this.raw.asInstanceOf).value
+  def getId(): UInt /* None */ = gdk_gl_texture_builder_get_id(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the `GLsync` previously set via gdk_gl_texture_builder_set_sync().
     */
-  def getSync(): Ptr[Byte] = gdk_gl_texture_builder_get_sync(
+  def getSync(): Ptr[Byte] /* None */ = gdk_gl_texture_builder_get_sync(
     this.raw.asInstanceOf
   ).value
 
@@ -114,7 +129,7 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * Gets the region previously set via
     * gdk_gl_texture_builder_set_update_region() or %NULL if none was set.
     */
-  def getUpdateRegion(): Ptr[cairo_region_t] =
+  def getUpdateRegion(): Ptr[cairo_region_t] /* None */ =
     gdk_gl_texture_builder_get_update_region(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -122,7 +137,7 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * Gets the texture previously set via
     * gdk_gl_texture_builder_set_update_texture() or %NULL if none was set.
     */
-  def getUpdateTexture(): Texture = new Texture(
+  def getUpdateTexture(): Texture /* None */ = new Texture(
     gdk_gl_texture_builder_get_update_texture(
       this.raw.asInstanceOf
     ).asInstanceOf
@@ -133,7 +148,9 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * Gets the width previously set via gdk_gl_texture_builder_set_width() or 0
     * if the width wasn't set.
     */
-  def getWidth(): Int = gdk_gl_texture_builder_get_width(this.raw.asInstanceOf)
+  def getWidth(): Int /* None */ = gdk_gl_texture_builder_get_width(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -143,9 +160,13 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * The context must be set before calling
     * [method@Gdk.GLTextureBuilder.build].
     */
-  def setContext(context: GLContext): Unit = gdk_gl_texture_builder_set_context(
+  def setContext(
+      context: Option[GLContext /* Some(Ptr[GdkGLContext]) */ ]
+  ): Unit /* None */ = gdk_gl_texture_builder_set_context(
     this.raw.asInstanceOf,
-    context.getUnsafeRawPointer().asInstanceOf
+    context
+      .map[Ptr[GdkGLContext]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GdkGLContext]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -171,7 +192,9 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * Non-RGBA textures need to have swizzling parameters set up properly to be
     * usable in GSK's shaders.
     */
-  def setFormat(format: GdkMemoryFormat): Unit =
+  def setFormat(
+      format: GdkMemoryFormat /* Some(GdkMemoryFormat) */
+  ): Unit /* None */ =
     gdk_gl_texture_builder_set_format(this.raw.asInstanceOf, format)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -181,11 +204,12 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     *
     * Typically, the `glGenerateMipmap` function is used to generate a mimap.
     */
-  def setHasMipmap(has_mipmap: Boolean): Unit =
-    gdk_gl_texture_builder_set_has_mipmap(
-      this.raw.asInstanceOf,
-      gboolean(gint((if has_mipmap == true then 1 else 0)))
-    )
+  def setHasMipmap(
+      has_mipmap: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gdk_gl_texture_builder_set_has_mipmap(
+    this.raw.asInstanceOf,
+    gboolean(gint((if has_mipmap == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -193,7 +217,7 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     *
     * The height must be set before calling [method@Gdk.GLTextureBuilder.build].
     */
-  def setHeight(height: Int): Unit =
+  def setHeight(height: Int /* Some(CInt) */ ): Unit /* None */ =
     gdk_gl_texture_builder_set_height(this.raw.asInstanceOf, height)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -204,7 +228,9 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     *
     * The id must be set before calling [method@Gdk.GLTextureBuilder.build].
     */
-  def setId(id: UInt): Unit =
+  def setId(
+      id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gdk_gl_texture_builder_set_id(this.raw.asInstanceOf, guint(id))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -218,8 +244,16 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * object when it is no longer needed. The texture builder does not destroy
     * it and it is the callers responsibility to make sure it doesn't leak.
     */
-  def setSync(sync: Ptr[Byte]): Unit =
-    gdk_gl_texture_builder_set_sync(this.raw.asInstanceOf, gpointer(sync))
+  def setSync(
+      sync: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gdk_gl_texture_builder_set_sync(
+    this.raw.asInstanceOf,
+    sync
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -234,19 +268,32 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     *
     * An example would be a screen recording where only the mouse pointer moves.
     */
-  def setUpdateRegion(region: Ptr[cairo_region_t]): Unit =
-    gdk_gl_texture_builder_set_update_region(this.raw.asInstanceOf, region)
+  def setUpdateRegion(
+      region: Option[Ptr[
+        cairo_region_t
+      ] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */ ]
+  ): Unit /* None */ = gdk_gl_texture_builder_set_update_region(
+    this.raw.asInstanceOf,
+    region
+      .map[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]](o => o)
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]]
+      )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the texture to be updated by this texture. See
     * [method@Gdk.GLTextureBuilder.set_update_region] for an explanation.
     */
-  def setUpdateTexture(texture: Texture): Unit =
-    gdk_gl_texture_builder_set_update_texture(
-      this.raw.asInstanceOf,
-      texture.getUnsafeRawPointer().asInstanceOf
-    )
+  def setUpdateTexture(
+      texture: Option[Texture /* Some(Ptr[GdkTexture]) */ ]
+  ): Unit /* None */ = gdk_gl_texture_builder_set_update_texture(
+    this.raw.asInstanceOf,
+    texture
+      .map[Ptr[GdkTexture]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GdkTexture]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -254,7 +301,7 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     *
     * The width must be set before calling [method@Gdk.GLTextureBuilder.build].
     */
-  def setWidth(width: Int): Unit =
+  def setWidth(width: Int /* Some(CInt) */ ): Unit /* None */ =
     gdk_gl_texture_builder_set_width(this.raw.asInstanceOf, width)
 
 end GLTextureBuilder

@@ -38,13 +38,14 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `GtkColorDialog` of @self.
     */
-  def getDialog(): ColorDialog = new ColorDialog(
+  def getDialog(): ColorDialog /* None */ = new ColorDialog(
     gtk_color_dialog_button_get_dialog(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -55,7 +56,7 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
     * This function is what should be used to obtain the color that was chosen
     * by the user. To get informed about changes, listen to "notify::color".
     */
-  def getRgba(): Ptr[GdkRGBA] = gtk_color_dialog_button_get_rgba(
+  def getRgba(): Ptr[GdkRGBA] /* None */ = gtk_color_dialog_button_get_rgba(
     this.raw.asInstanceOf
   )
 
@@ -64,7 +65,9 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
     * Sets a `GtkColorDialog` object to use for creating the color chooser
     * dialog that is presented when the user clicks the button.
     */
-  def setDialog(dialog: ColorDialog): Unit = gtk_color_dialog_button_set_dialog(
+  def setDialog(
+      dialog: ColorDialog /* Some(Ptr[GtkColorDialog]) */
+  ): Unit /* None */ = gtk_color_dialog_button_set_dialog(
     this.raw.asInstanceOf,
     dialog.getUnsafeRawPointer().asInstanceOf
   )
@@ -73,7 +76,9 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
     *
     * Sets the color of the button.
     */
-  def setRgba(color: Ptr[GdkRGBA]): Unit =
+  def setRgba(
+      color: Ptr[GdkRGBA] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
+  ): Unit /* None */ =
     gtk_color_dialog_button_set_rgba(this.raw.asInstanceOf, color)
 
 end ColorDialogButton
@@ -86,9 +91,13 @@ object ColorDialogButton:
     * You can pass `NULL` to this function and set a `GtkColorDialog` later. The
     * button will be insensitive until that happens.
     */
-  def apply(dialog: ColorDialog): ColorDialogButton = new ColorDialogButton(
+  def apply(
+      dialog: Option[ColorDialog /* Some(Ptr[GtkColorDialog]) */ ]
+  ): ColorDialogButton = new ColorDialogButton(
     gtk_color_dialog_button_new(
-      dialog.getUnsafeRawPointer().asInstanceOf
+      dialog
+        .map[Ptr[GtkColorDialog]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkColorDialog]])
     ).asInstanceOf
   )
 end ColorDialogButton

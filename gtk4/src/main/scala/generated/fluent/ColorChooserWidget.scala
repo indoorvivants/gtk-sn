@@ -44,6 +44,7 @@ class ColorChooserWidget(raw: Ptr[GtkColorChooserWidget])
       Buildable,
       ColorChooser,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ColorChooserWidget

@@ -20,9 +20,14 @@ enum Massage:
   case New(cls: String)
   case Compare(reference: String, ifTrue: String, ifFalse: String)
   case Splat(what: String)
+  case Map(name: String, cast: Option[String], rest: Seq[Massage])
 
-  def render(around: String) =
+  def render(around: String): String =
     this match
+      case Map(name, cast, rest) =>
+        val folded = rest.foldLeft(name): (cur, m) =>
+          m.render(cur)
+        s"$around.map${cast.map(t => s"[$t]").getOrElse("")}($name => $folded)"
       case Apply(what)           => s"$what($around)"
       case Field(what)           => s"$around.$what"
       case Cast(what)            => s"$around.asInstanceOf[$what]"

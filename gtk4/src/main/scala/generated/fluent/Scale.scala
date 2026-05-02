@@ -112,6 +112,7 @@ class Scale(raw: Ptr[GtkScale])
       Buildable,
       ConstraintTarget,
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -127,41 +128,45 @@ class Scale(raw: Ptr[GtkScale])
     * To remove marks from a scale, use [method@Gtk.Scale.clear_marks].
     */
   def addMark(
-      value: Double,
-      position: GtkPositionType,
-      markup: String | CString
-  )(using Zone): Unit = gtk_scale_add_mark(
+      value: Double /* Some(Double) */,
+      position: GtkPositionType /* Some(GtkPositionType) */,
+      markup: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_scale_add_mark(
     this.raw.asInstanceOf,
     value,
     position,
-    __sn_extract_string(markup)
+    markup
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes any marks that have been added.
     */
-  def clearMarks(): Unit = gtk_scale_clear_marks(this.raw.asInstanceOf)
+  def clearMarks(): Unit /* None */ = gtk_scale_clear_marks(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the number of decimal places that are displayed in the value.
     */
-  def getDigits(): Int = gtk_scale_get_digits(this.raw.asInstanceOf)
+  def getDigits(): Int /* None */ = gtk_scale_get_digits(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the current value is displayed as a string next to the
     * slider.
     */
-  def getDrawValue(): Boolean =
+  def getDrawValue(): Boolean /* None */ =
     gtk_scale_get_draw_value(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the scale has an origin.
     */
-  def getHasOrigin(): Boolean =
+  def getHasOrigin(): Boolean /* None */ =
     gtk_scale_get_has_origin(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -171,7 +176,7 @@ class Scale(raw: Ptr[GtkScale])
     * The returned object is owned by the scale so does not need to be freed by
     * the caller.
     */
-  def getLayout(): Layout = new Layout(
+  def getLayout(): Layout /* None */ = new Layout(
     gtk_scale_get_layout(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -189,13 +194,13 @@ class Scale(raw: Ptr[GtkScale])
   @annotation.compileTimeOnly(
     "Method get_layout_offsets contains an OUT parameter, which is not supported yet"
   )
-  def getLayoutOffsets(using DummyImplicit) = ???
+  private def getLayoutOffsets__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the position in which the current value is displayed.
     */
-  def getValuePos(): GtkPositionType = gtk_scale_get_value_pos(
+  def getValuePos(): GtkPositionType /* None */ = gtk_scale_get_value_pos(
     this.raw.asInstanceOf
   )
 
@@ -214,7 +219,7 @@ class Scale(raw: Ptr[GtkScale])
     * can use [method@Gtk.Scale.set_format_value_func] to format the displayed
     * value yourself.
     */
-  def setDigits(digits: Int): Unit =
+  def setDigits(digits: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_scale_set_digits(this.raw.asInstanceOf, digits)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -222,7 +227,9 @@ class Scale(raw: Ptr[GtkScale])
     * Specifies whether the current value is displayed as a string next to the
     * slider.
     */
-  def setDrawValue(draw_value: Boolean): Unit = gtk_scale_set_draw_value(
+  def setDrawValue(
+      draw_value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_scale_set_draw_value(
     this.raw.asInstanceOf,
     gboolean(gint((if draw_value == true then 1 else 0)))
   )
@@ -241,14 +248,28 @@ class Scale(raw: Ptr[GtkScale])
     * property.
     */
   def setFormatValueFunc(
-      func: GtkScaleFormatValueFunc,
-      user_data: Ptr[Byte],
-      destroy_notify: GDestroyNotify
-  ): Unit = gtk_scale_set_format_value_func(
+      func: Option[
+        GtkScaleFormatValueFunc /* Some(GtkScaleFormatValueFunc) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      destroy_notify: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ]
+  ): Unit /* None */ = gtk_scale_set_format_value_func(
     this.raw.asInstanceOf,
-    func,
-    gpointer(user_data),
+    func
+      .map[GtkScaleFormatValueFunc](o => o)
+      .getOrElse(null.asInstanceOf[GtkScaleFormatValueFunc]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     destroy_notify
+      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -259,7 +280,9 @@ class Scale(raw: Ptr[GtkScale])
     * scale will highlight the part of the trough between the origin (bottom or
     * left side) and the current value.
     */
-  def setHasOrigin(has_origin: Boolean): Unit = gtk_scale_set_has_origin(
+  def setHasOrigin(
+      has_origin: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_scale_set_has_origin(
     this.raw.asInstanceOf,
     gboolean(gint((if has_origin == true then 1 else 0)))
   )
@@ -268,8 +291,9 @@ class Scale(raw: Ptr[GtkScale])
     *
     * Sets the position in which the current value is displayed.
     */
-  def setValuePos(pos: GtkPositionType): Unit =
-    gtk_scale_set_value_pos(this.raw.asInstanceOf, pos)
+  def setValuePos(
+      pos: GtkPositionType /* Some(GtkPositionType) */
+  ): Unit /* None */ = gtk_scale_set_value_pos(this.raw.asInstanceOf, pos)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -286,13 +310,17 @@ object Scale:
     *
     * Creates a new `GtkScale`.
     */
-  def apply(orientation: GtkOrientation, adjustment: Adjustment): Scale =
-    new Scale(
-      gtk_scale_new(
-        orientation,
-        adjustment.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def apply(
+      orientation: GtkOrientation /* Some(GtkOrientation) */,
+      adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
+  ): Scale = new Scale(
+    gtk_scale_new(
+      orientation,
+      adjustment
+        .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -309,10 +337,10 @@ object Scale:
     *   needs, use [method@Gtk.Scale.set_digits] to correct it.
     */
   def withRange(
-      orientation: GtkOrientation,
-      min: Double,
-      max: Double,
-      step: Double
+      orientation: GtkOrientation /* Some(GtkOrientation) */,
+      min: Double /* Some(Double) */,
+      max: Double /* Some(Double) */,
+      step: Double /* Some(Double) */
   ): Scale = new Scale(
     gtk_scale_new_with_range(orientation, min, max, step).asInstanceOf
   )

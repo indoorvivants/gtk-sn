@@ -81,13 +81,14 @@ class CheckButton(raw: Ptr[GtkCheckButton])
       Actionable,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the check button is active.
     */
-  def getActive(): Boolean =
+  def getActive(): Boolean /* None */ =
     gtk_check_button_get_active(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -95,7 +96,7 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     * Gets the child widget of @button or `NULL` if [property@CheckButton:label]
     * is set.
     */
-  def getChild(): Widget = new Widget(
+  def getChild(): Widget /* None */ = new Widget(
     gtk_check_button_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -103,7 +104,7 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     *
     * Returns whether the check button is in an inconsistent state.
     */
-  def getInconsistent(): Boolean =
+  def getInconsistent(): Boolean /* None */ =
     gtk_check_button_get_inconsistent(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -111,7 +112,7 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     * Returns the label of the check button or `NULL` if
     * [property@CheckButton:child] is set.
     */
-  def getLabel()(using Zone): String = fromCString(
+  def getLabel()(using Zone): String /* None */ = fromCString(
     gtk_check_button_get_label(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -119,14 +120,16 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     *
     * Returns whether underlines in the label indicate mnemonics.
     */
-  def getUseUnderline(): Boolean =
+  def getUseUnderline(): Boolean /* None */ =
     gtk_check_button_get_use_underline(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Changes the check buttons active state.
     */
-  def setActive(setting: Boolean): Unit = gtk_check_button_set_active(
+  def setActive(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_check_button_set_active(
     this.raw.asInstanceOf,
     gboolean(gint((if setting == true then 1 else 0)))
   )
@@ -141,9 +144,13 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     * explicitly, or you'll set a labelled-by or described-by relations from @child
     * to @button.
     */
-  def setChild(child: Widget): Unit = gtk_check_button_set_child(
+  def setChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_check_button_set_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -163,9 +170,13 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     * API, by using the same action with parameter type and state type 's' for
     * all buttons in the group, and giving each button its own target value.
     */
-  def setGroup(group: CheckButton): Unit = gtk_check_button_set_group(
+  def setGroup(
+      group: Option[CheckButton /* Some(Ptr[GtkCheckButton]) */ ]
+  ): Unit /* None */ = gtk_check_button_set_group(
     this.raw.asInstanceOf,
-    group.getUnsafeRawPointer().asInstanceOf
+    group
+      .map[Ptr[GtkCheckButton]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkCheckButton]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -175,11 +186,12 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     * You should turn off the inconsistent state again if the user checks the
     * check button. This has to be done manually.
     */
-  def setInconsistent(inconsistent: Boolean): Unit =
-    gtk_check_button_set_inconsistent(
-      this.raw.asInstanceOf,
-      gboolean(gint((if inconsistent == true then 1 else 0)))
-    )
+  def setInconsistent(
+      inconsistent: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_check_button_set_inconsistent(
+    this.raw.asInstanceOf,
+    gboolean(gint((if inconsistent == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -189,11 +201,14 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     * is interpreted as mnemonic indicator, see
     * [method@Gtk.CheckButton.set_use_underline] for details on this behavior.
     */
-  def setLabel(label: String | CString)(using Zone): Unit =
-    gtk_check_button_set_label(
-      this.raw.asInstanceOf,
-      __sn_extract_string(label)
-    )
+  def setLabel(
+      label: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_check_button_set_label(
+    this.raw.asInstanceOf,
+    label
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -203,11 +218,12 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     * mnemonic accelerator key. This behavior is similar to
     * [property@Gtk.Label:use-underline].
     */
-  def setUseUnderline(setting: Boolean): Unit =
-    gtk_check_button_set_use_underline(
-      this.raw.asInstanceOf,
-      gboolean(gint((if setting == true then 1 else 0)))
-    )
+  def setUseUnderline(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_check_button_set_use_underline(
+    this.raw.asInstanceOf,
+    gboolean(gint((if setting == true then 1 else 0)))
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -232,21 +248,29 @@ object CheckButton:
     *
     * Creates a new `GtkCheckButton` with the given text.
     */
-  def withLabel(label: String | CString)(using Zone): CheckButton =
-    new CheckButton(
-      gtk_check_button_new_with_label(__sn_extract_string(label)).asInstanceOf
-    )
+  def withLabel(
+      label: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): CheckButton = new CheckButton(
+    gtk_check_button_new_with_label(
+      label
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString])
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a new `GtkCheckButton` with the given text and a mnemonic.
     */
-  def withMnemonic(label: String | CString)(using Zone): CheckButton =
-    new CheckButton(
-      gtk_check_button_new_with_mnemonic(
-        __sn_extract_string(label)
-      ).asInstanceOf
-    )
+  def withMnemonic(
+      label: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): CheckButton = new CheckButton(
+    gtk_check_button_new_with_mnemonic(
+      label
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString])
+    ).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

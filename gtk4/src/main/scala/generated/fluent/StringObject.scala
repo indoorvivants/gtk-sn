@@ -16,13 +16,14 @@ import sn.gnome.gtk4.internal.GtkStringObject
   * bindings and expressions.
   */
 class StringObject(raw: Ptr[GtkStringObject]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the string contained in a `GtkStringObject`.
     */
-  def getString()(using Zone): String = fromCString(
+  def getString()(using Zone): String /* None */ = fromCString(
     gtk_string_object_get_string(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -33,10 +34,11 @@ object StringObject:
     *
     * Wraps a string in an object for use with `GListModel`.
     */
-  def apply(string: String | CString)(using Zone): StringObject =
-    new StringObject(
-      gtk_string_object_new(__sn_extract_string(string)).asInstanceOf
-    )
+  def apply(
+      string: String | CString /* Some(CString) */
+  )(using Zone): StringObject = new StringObject(
+    gtk_string_object_new(__sn_extract_string(string)).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

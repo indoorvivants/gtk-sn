@@ -25,6 +25,7 @@ import sn.gnome.gtk4.internal.GtkCellAreaContext
   */
 class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -39,7 +40,10 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     * a homogeneous effect of the rows. This is generally the case for
     * `GtkTreeView` when `GtkTreeView:fixed-height-mode` is enabled.
     */
-  def allocate(width: Int, height: Int): Unit =
+  def allocate(
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */
+  ): Unit /* None */ =
     gtk_cell_area_context_allocate(this.raw.asInstanceOf, width, height)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -53,7 +57,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
   @annotation.compileTimeOnly(
     "Method get_allocation contains an OUT parameter, which is not supported yet"
   )
-  def getAllocation(using DummyImplicit) = ???
+  private def getAllocation__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -67,7 +71,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     * to know details about any cell spacing that the `GtkCellArea` is
     * configured with in order to compute a proper allocation.
     */
-  def getArea(): CellArea = new CellArea(
+  def getArea(): CellArea /* None */ = new CellArea(
     gtk_cell_area_context_get_area(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -82,7 +86,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
   @annotation.compileTimeOnly(
     "Method get_preferred_height contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredHeight(using DummyImplicit) = ???
+  private def getPreferredHeight__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -95,7 +99,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
   @annotation.compileTimeOnly(
     "Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredHeightForWidth(using DummyImplicit) = ???
+  private def getPreferredHeightForWidth__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -108,7 +112,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
   @annotation.compileTimeOnly(
     "Method get_preferred_width contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredWidth(using DummyImplicit) = ???
+  private def getPreferredWidth__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -121,7 +125,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
   @annotation.compileTimeOnly(
     "Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredWidthForHeight(using DummyImplicit) = ???
+  private def getPreferredWidthForHeight__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -133,12 +137,14 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     * requested height over a series of gtk_cell_area_get_preferred_height()
     * requests.
     */
-  def pushPreferredHeight(minimum_height: Int, natural_height: Int): Unit =
-    gtk_cell_area_context_push_preferred_height(
-      this.raw.asInstanceOf,
-      minimum_height,
-      natural_height
-    )
+  def pushPreferredHeight(
+      minimum_height: Int /* Some(CInt) */,
+      natural_height: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_cell_area_context_push_preferred_height(
+    this.raw.asInstanceOf,
+    minimum_height,
+    natural_height
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -150,12 +156,14 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     * requested width over a series of gtk_cell_area_get_preferred_width()
     * requests.
     */
-  def pushPreferredWidth(minimum_width: Int, natural_width: Int): Unit =
-    gtk_cell_area_context_push_preferred_width(
-      this.raw.asInstanceOf,
-      minimum_width,
-      natural_width
-    )
+  def pushPreferredWidth(
+      minimum_width: Int /* Some(CInt) */,
+      natural_width: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_cell_area_context_push_preferred_width(
+    this.raw.asInstanceOf,
+    minimum_width,
+    natural_width
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -177,6 +185,8 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     * recalculation of all the displayed row heights using
     * gtk_cell_area_get_preferred_height_for_width().
     */
-  def reset(): Unit = gtk_cell_area_context_reset(this.raw.asInstanceOf)
+  def reset(): Unit /* None */ = gtk_cell_area_context_reset(
+    this.raw.asInstanceOf
+  )
 
 end CellAreaContext

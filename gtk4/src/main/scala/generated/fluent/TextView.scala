@@ -70,18 +70,21 @@ class TextView(raw: Ptr[GtkTextView])
       Buildable,
       ConstraintTarget,
       Scrollable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Adds a child widget in the text buffer, at the given @anchor.
     */
-  def addChildAtAnchor(child: Widget, anchor: TextChildAnchor): Unit =
-    gtk_text_view_add_child_at_anchor(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf,
-      anchor.getUnsafeRawPointer().asInstanceOf
-    )
+  def addChildAtAnchor(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      anchor: TextChildAnchor /* Some(Ptr[GtkTextChildAnchor]) */
+  ): Unit /* None */ = gtk_text_view_add_child_at_anchor(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf,
+    anchor.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -96,13 +99,16 @@ class TextView(raw: Ptr[GtkTextView])
     * If instead you want a widget that will not move with the `GtkTextView`
     * contents see `GtkOverlay`.
     */
-  def addOverlay(child: Widget, xpos: Int, ypos: Int): Unit =
-    gtk_text_view_add_overlay(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf,
-      xpos,
-      ypos
-    )
+  def addOverlay(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      xpos: Int /* Some(CInt) */,
+      ypos: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_text_view_add_overlay(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf,
+    xpos,
+    ypos
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -116,7 +122,9 @@ class TextView(raw: Ptr[GtkTextView])
     * paragraphs are the same in all views, since they depend on the contents of
     * the `GtkTextBuffer`.
     */
-  def backwardDisplayLine(iter: Ptr[GtkTextIter]): Boolean =
+  def backwardDisplayLine(
+      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
+  ): Boolean /* None */ =
     gtk_text_view_backward_display_line(this.raw.asInstanceOf, iter).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -131,7 +139,9 @@ class TextView(raw: Ptr[GtkTextView])
     * paragraphs are the same in all views, since they depend on the contents of
     * the `GtkTextBuffer`.
     */
-  def backwardDisplayLineStart(iter: Ptr[GtkTextIter]): Boolean =
+  def backwardDisplayLineStart(
+      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
+  ): Boolean /* None */ =
     gtk_text_view_backward_display_line_start(this.raw.asInstanceOf, iter).value
       .!=(0)
 
@@ -142,7 +152,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method buffer_to_window_coords contains an OUT parameter, which is not supported yet"
   )
-  def bufferToWindowCoords(using DummyImplicit) = ???
+  private def bufferToWindowCoords__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -156,7 +166,9 @@ class TextView(raw: Ptr[GtkTextView])
     * paragraphs are the same in all views, since they depend on the contents of
     * the `GtkTextBuffer`.
     */
-  def forwardDisplayLine(iter: Ptr[GtkTextIter]): Boolean =
+  def forwardDisplayLine(
+      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
+  ): Boolean /* None */ =
     gtk_text_view_forward_display_line(this.raw.asInstanceOf, iter).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -171,7 +183,9 @@ class TextView(raw: Ptr[GtkTextView])
     * paragraphs are the same in all views, since they depend on the contents of
     * the `GtkTextBuffer`.
     */
-  def forwardDisplayLineEnd(iter: Ptr[GtkTextIter]): Boolean =
+  def forwardDisplayLineEnd(
+      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
+  ): Boolean /* None */ =
     gtk_text_view_forward_display_line_end(this.raw.asInstanceOf, iter).value
       .!=(0)
 
@@ -181,14 +195,14 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * See [method@Gtk.TextView.set_accepts_tab].
     */
-  def getAcceptsTab(): Boolean =
+  def getAcceptsTab(): Boolean /* None */ =
     gtk_text_view_get_accepts_tab(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the bottom margin for text in the @text_view.
     */
-  def getBottomMargin(): Int = gtk_text_view_get_bottom_margin(
+  def getBottomMargin(): Int /* None */ = gtk_text_view_get_bottom_margin(
     this.raw.asInstanceOf
   )
 
@@ -199,7 +213,7 @@ class TextView(raw: Ptr[GtkTextView])
     * The reference count on the buffer is not incremented; the caller of this
     * function won’t own a new reference.
     */
-  def getBuffer(): TextBuffer = new TextBuffer(
+  def getBuffer(): TextBuffer /* None */ = new TextBuffer(
     gtk_text_view_get_buffer(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -229,13 +243,13 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_cursor_locations contains an OUT parameter, which is not supported yet"
   )
-  def getCursorLocations(using DummyImplicit) = ???
+  private def getCursorLocations__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Find out whether the cursor should be displayed.
     */
-  def getCursorVisible(): Boolean =
+  def getCursorVisible(): Boolean /* None */ =
     gtk_text_view_get_cursor_visible(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -244,7 +258,7 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Tags in the buffer may override this setting for some ranges of text.
     */
-  def getEditable(): Boolean =
+  def getEditable(): Boolean /* None */ =
     gtk_text_view_get_editable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -252,7 +266,7 @@ class TextView(raw: Ptr[GtkTextView])
     * Gets the menu model that gets added to the context menu or %NULL if none
     * has been set.
     */
-  def getExtraMenu(): MenuModel = new MenuModel(
+  def getExtraMenu(): MenuModel /* None */ = new MenuModel(
     gtk_text_view_get_extra_menu(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -266,7 +280,9 @@ class TextView(raw: Ptr[GtkTextView])
     *   must be one of %GTK_TEXT_WINDOW_LEFT, %GTK_TEXT_WINDOW_RIGHT,
     *   %GTK_TEXT_WINDOW_TOP, or %GTK_TEXT_WINDOW_BOTTOM.
     */
-  def getGutter(win: GtkTextWindowType): Widget = new Widget(
+  def getGutter(
+      win: GtkTextWindowType /* Some(GtkTextWindowType) */
+  ): Widget /* None */ = new Widget(
     gtk_text_view_get_gutter(this.raw.asInstanceOf, win).asInstanceOf
   )
 
@@ -277,13 +293,15 @@ class TextView(raw: Ptr[GtkTextView])
     * Tags in the view’s buffer may override the default. The indentation may be
     * negative.
     */
-  def getIndent(): Int = gtk_text_view_get_indent(this.raw.asInstanceOf)
+  def getIndent(): Int /* None */ = gtk_text_view_get_indent(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the `input-hints` of the `GtkTextView`.
     */
-  def getInputHints(): GtkInputHints = gtk_text_view_get_input_hints(
+  def getInputHints(): GtkInputHints /* None */ = gtk_text_view_get_input_hints(
     this.raw.asInstanceOf
   )
 
@@ -291,9 +309,8 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Gets the `input-purpose` of the `GtkTextView`.
     */
-  def getInputPurpose(): GtkInputPurpose = gtk_text_view_get_input_purpose(
-    this.raw.asInstanceOf
-  )
+  def getInputPurpose(): GtkInputPurpose /* None */ =
+    gtk_text_view_get_input_purpose(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -307,7 +324,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_iter_at_location contains an OUT parameter, which is not supported yet"
   )
-  def getIterAtLocation(using DummyImplicit) = ???
+  private def getIterAtLocation__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -326,7 +343,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_iter_at_position contains an OUT parameter, which is not supported yet"
   )
-  def getIterAtPosition(using DummyImplicit) = ???
+  private def getIterAtPosition__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -339,7 +356,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_iter_location contains an OUT parameter, which is not supported yet"
   )
-  def getIterLocation(using DummyImplicit) = ???
+  private def getIterLocation__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -347,9 +364,8 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Tags in the buffer may override the default.
     */
-  def getJustification(): GtkJustification = gtk_text_view_get_justification(
-    this.raw.asInstanceOf
-  )
+  def getJustification(): GtkJustification /* None */ =
+    gtk_text_view_get_justification(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -357,7 +373,7 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Tags in the buffer may override the default.
     */
-  def getLeftMargin(): Int = gtk_text_view_get_left_margin(
+  def getLeftMargin(): Int /* None */ = gtk_text_view_get_left_margin(
     this.raw.asInstanceOf
   )
 
@@ -374,7 +390,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_line_at_y contains an OUT parameter, which is not supported yet"
   )
-  def getLineAtY(using DummyImplicit) = ???
+  private def getLineAtY__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -387,7 +403,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_line_yrange contains an OUT parameter, which is not supported yet"
   )
-  def getLineYrange(using DummyImplicit) = ???
+  private def getLineYrange__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -396,7 +412,7 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * The context may be replaced when CSS changes occur.
     */
-  def getLtrContext(): Context = new Context(
+  def getLtrContext(): Context /* None */ = new Context(
     gtk_text_view_get_ltr_context(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -404,14 +420,14 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Gets whether the `GtkTextView` uses monospace styling.
     */
-  def getMonospace(): Boolean =
+  def getMonospace(): Boolean /* None */ =
     gtk_text_view_get_monospace(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the `GtkTextView` is in overwrite mode or not.
     */
-  def getOverwrite(): Boolean =
+  def getOverwrite(): Boolean /* None */ =
     gtk_text_view_get_overwrite(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -421,9 +437,8 @@ class TextView(raw: Ptr[GtkTextView])
     * Adding this function with [method@Gtk.TextView.get_pixels_below_lines] is
     * equal to the line space between each paragraph.
     */
-  def getPixelsAboveLines(): Int = gtk_text_view_get_pixels_above_lines(
-    this.raw.asInstanceOf
-  )
+  def getPixelsAboveLines(): Int /* None */ =
+    gtk_text_view_get_pixels_above_lines(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -432,18 +447,16 @@ class TextView(raw: Ptr[GtkTextView])
     * The line space is the sum of the value returned by this function and the
     * value returned by [method@Gtk.TextView.get_pixels_above_lines].
     */
-  def getPixelsBelowLines(): Int = gtk_text_view_get_pixels_below_lines(
-    this.raw.asInstanceOf
-  )
+  def getPixelsBelowLines(): Int /* None */ =
+    gtk_text_view_get_pixels_below_lines(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the default number of pixels to put between wrapped lines inside a
     * paragraph.
     */
-  def getPixelsInsideWrap(): Int = gtk_text_view_get_pixels_inside_wrap(
-    this.raw.asInstanceOf
-  )
+  def getPixelsInsideWrap(): Int /* None */ =
+    gtk_text_view_get_pixels_inside_wrap(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -451,7 +464,7 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Tags in the buffer may override the default.
     */
-  def getRightMargin(): Int = gtk_text_view_get_right_margin(
+  def getRightMargin(): Int /* None */ = gtk_text_view_get_right_margin(
     this.raw.asInstanceOf
   )
 
@@ -462,7 +475,7 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * The context may be replaced when CSS changes occur.
     */
-  def getRtlContext(): Context = new Context(
+  def getRtlContext(): Context /* None */ = new Context(
     gtk_text_view_get_rtl_context(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -474,7 +487,7 @@ class TextView(raw: Ptr[GtkTextView])
     * %NULL if “standard” (8-space) tabs are used. Free the return value with
     * [method@Pango.TabArray.free].
     */
-  def getTabs(): Ptr[PangoTabArray] = gtk_text_view_get_tabs(
+  def getTabs(): Ptr[PangoTabArray] /* None */ = gtk_text_view_get_tabs(
     this.raw.asInstanceOf
   )
 
@@ -482,7 +495,9 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Gets the top margin for text in the @text_view.
     */
-  def getTopMargin(): Int = gtk_text_view_get_top_margin(this.raw.asInstanceOf)
+  def getTopMargin(): Int /* None */ = gtk_text_view_get_top_margin(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -495,13 +510,13 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_visible_rect contains an OUT parameter, which is not supported yet"
   )
-  def getVisibleRect(using DummyImplicit) = ???
+  private def getVisibleRect__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the line wrapping for the view.
     */
-  def getWrapMode(): GtkWrapMode = gtk_text_view_get_wrap_mode(
+  def getWrapMode(): GtkWrapMode /* None */ = gtk_text_view_get_wrap_mode(
     this.raw.asInstanceOf
   )
 
@@ -539,22 +554,24 @@ class TextView(raw: Ptr[GtkTextView])
     * }
     * ```
     */
-  def imContextFilterKeypress(event: Event): Boolean =
-    gtk_text_view_im_context_filter_keypress(
-      this.raw.asInstanceOf,
-      event.getUnsafeRawPointer().asInstanceOf
-    ).value.!=(0)
+  def imContextFilterKeypress(
+      event: Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */
+  ): Boolean /* None */ = gtk_text_view_im_context_filter_keypress(
+    this.raw.asInstanceOf,
+    event.getUnsafeRawPointer().asInstanceOf
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Moves a mark within the buffer so that it's located within the
     * currently-visible text area.
     */
-  def moveMarkOnscreen(mark: TextMark): Boolean =
-    gtk_text_view_move_mark_onscreen(
-      this.raw.asInstanceOf,
-      mark.getUnsafeRawPointer().asInstanceOf
-    ).value.!=(0)
+  def moveMarkOnscreen(
+      mark: TextMark /* Some(Ptr[GtkTextMark]) */
+  ): Boolean /* None */ = gtk_text_view_move_mark_onscreen(
+    this.raw.asInstanceOf,
+    mark.getUnsafeRawPointer().asInstanceOf
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -562,13 +579,16 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * See [method@Gtk.TextView.add_overlay].
     */
-  def moveOverlay(child: Widget, xpos: Int, ypos: Int): Unit =
-    gtk_text_view_move_overlay(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf,
-      xpos,
-      ypos
-    )
+  def moveOverlay(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      xpos: Int /* Some(CInt) */,
+      ypos: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_text_view_move_overlay(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf,
+    xpos,
+    ypos
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -584,24 +604,28 @@ class TextView(raw: Ptr[GtkTextView])
     * and visual order will depend on the direction of the current run, and
     * there may be jumps when the cursor is moved off of the end of a run.
     */
-  def moveVisually(iter: Ptr[GtkTextIter], count: Int): Boolean =
+  def moveVisually(
+      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
+      count: Int /* Some(CInt) */
+  ): Boolean /* None */ =
     gtk_text_view_move_visually(this.raw.asInstanceOf, iter, count).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Moves the cursor to the currently visible region of the buffer.
     */
-  def placeCursorOnscreen(): Boolean =
+  def placeCursorOnscreen(): Boolean /* None */ =
     gtk_text_view_place_cursor_onscreen(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes a child widget from @text_view.
     */
-  def remove(child: Widget): Unit = gtk_text_view_remove(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_text_view_remove(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -613,7 +637,7 @@ class TextView(raw: Ptr[GtkTextView])
     * This function should be called in response to user input (e.g. from
     * derived classes that override the textview's event handlers).
     */
-  def resetCursorBlink(): Unit = gtk_text_view_reset_cursor_blink(
+  def resetCursorBlink(): Unit /* None */ = gtk_text_view_reset_cursor_blink(
     this.raw.asInstanceOf
   )
 
@@ -624,7 +648,7 @@ class TextView(raw: Ptr[GtkTextView])
     * This can be necessary in the case where modifying the buffer would confuse
     * on-going input method behavior.
     */
-  def resetImContext(): Unit = gtk_text_view_reset_im_context(
+  def resetImContext(): Unit /* None */ = gtk_text_view_reset_im_context(
     this.raw.asInstanceOf
   )
 
@@ -633,11 +657,12 @@ class TextView(raw: Ptr[GtkTextView])
     * Scrolls @text_view the minimum distance such that @mark is contained
     * within the visible area of the widget.
     */
-  def scrollMarkOnscreen(mark: TextMark): Unit =
-    gtk_text_view_scroll_mark_onscreen(
-      this.raw.asInstanceOf,
-      mark.getUnsafeRawPointer().asInstanceOf
-    )
+  def scrollMarkOnscreen(
+      mark: TextMark /* Some(Ptr[GtkTextMark]) */
+  ): Unit /* None */ = gtk_text_view_scroll_mark_onscreen(
+    this.raw.asInstanceOf,
+    mark.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -658,12 +683,12 @@ class TextView(raw: Ptr[GtkTextView])
     * after line validation.
     */
   def scrollToIter(
-      iter: Ptr[GtkTextIter],
-      within_margin: Double,
-      use_align: Boolean,
-      xalign: Double,
-      yalign: Double
-  ): Boolean = gtk_text_view_scroll_to_iter(
+      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
+      within_margin: Double /* Some(Double) */,
+      use_align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      xalign: Double /* Some(Double) */,
+      yalign: Double /* Some(Double) */
+  ): Boolean /* None */ = gtk_text_view_scroll_to_iter(
     this.raw.asInstanceOf,
     iter,
     within_margin,
@@ -684,12 +709,12 @@ class TextView(raw: Ptr[GtkTextView])
     * size @within_margin.
     */
   def scrollToMark(
-      mark: TextMark,
-      within_margin: Double,
-      use_align: Boolean,
-      xalign: Double,
-      yalign: Double
-  ): Unit = gtk_text_view_scroll_to_mark(
+      mark: TextMark /* Some(Ptr[GtkTextMark]) */,
+      within_margin: Double /* Some(Double) */,
+      use_align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      xalign: Double /* Some(Double) */,
+      yalign: Double /* Some(Double) */
+  ): Unit /* None */ = gtk_text_view_scroll_to_mark(
     this.raw.asInstanceOf,
     mark.getUnsafeRawPointer().asInstanceOf,
     within_margin,
@@ -708,7 +733,9 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Focus can always be moved using <kbd>Ctrl</kbd>+<kbd>Tab</kbd>.
     */
-  def setAcceptsTab(accepts_tab: Boolean): Unit = gtk_text_view_set_accepts_tab(
+  def setAcceptsTab(
+      accepts_tab: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_text_view_set_accepts_tab(
     this.raw.asInstanceOf,
     gboolean(gint((if accepts_tab == true then 1 else 0)))
   )
@@ -720,7 +747,7 @@ class TextView(raw: Ptr[GtkTextView])
     * Note that this function is confusingly named. In CSS terms, the value set
     * here is padding.
     */
-  def setBottomMargin(bottom_margin: Int): Unit =
+  def setBottomMargin(bottom_margin: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_text_view_set_bottom_margin(this.raw.asInstanceOf, bottom_margin)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -732,9 +759,13 @@ class TextView(raw: Ptr[GtkTextView])
     * passing it to this function, you must remove that reference yourself;
     * `GtkTextView` will not “adopt” it.
     */
-  def setBuffer(buffer: TextBuffer): Unit = gtk_text_view_set_buffer(
+  def setBuffer(
+      buffer: Option[TextBuffer /* Some(Ptr[GtkTextBuffer]) */ ]
+  ): Unit /* None */ = gtk_text_view_set_buffer(
     this.raw.asInstanceOf,
-    buffer.getUnsafeRawPointer().asInstanceOf
+    buffer
+      .map[Ptr[GtkTextBuffer]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkTextBuffer]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -747,11 +778,12 @@ class TextView(raw: Ptr[GtkTextView])
     * Note that this property may be overridden by the
     * [property@Gtk.Settings:gtk-keynav-use-caret] setting.
     */
-  def setCursorVisible(setting: Boolean): Unit =
-    gtk_text_view_set_cursor_visible(
-      this.raw.asInstanceOf,
-      gboolean(gint((if setting == true then 1 else 0)))
-    )
+  def setCursorVisible(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_text_view_set_cursor_visible(
+    this.raw.asInstanceOf,
+    gboolean(gint((if setting == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -760,7 +792,9 @@ class TextView(raw: Ptr[GtkTextView])
     * You can override this default setting with tags in the buffer, using the
     * “editable” attribute of tags.
     */
-  def setEditable(setting: Boolean): Unit = gtk_text_view_set_editable(
+  def setEditable(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_text_view_set_editable(
     this.raw.asInstanceOf,
     gboolean(gint((if setting == true then 1 else 0)))
   )
@@ -771,9 +805,19 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * You can pass %NULL to remove a previously set extra menu.
     */
-  def setExtraMenu(model: MenuModel): Unit = gtk_text_view_set_extra_menu(
+  def setExtraMenu(
+      model: Option[
+        MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+      ]
+  ): Unit /* None */ = gtk_text_view_set_extra_menu(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf
+    model
+      .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -784,12 +828,16 @@ class TextView(raw: Ptr[GtkTextView])
     *   must be one of %GTK_TEXT_WINDOW_LEFT, %GTK_TEXT_WINDOW_RIGHT,
     *   %GTK_TEXT_WINDOW_TOP, or %GTK_TEXT_WINDOW_BOTTOM.
     */
-  def setGutter(win: GtkTextWindowType, widget: Widget): Unit =
-    gtk_text_view_set_gutter(
-      this.raw.asInstanceOf,
-      win,
-      widget.getUnsafeRawPointer().asInstanceOf
-    )
+  def setGutter(
+      win: GtkTextWindowType /* Some(GtkTextWindowType) */,
+      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_text_view_set_gutter(
+    this.raw.asInstanceOf,
+    win,
+    widget
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -797,7 +845,7 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Tags in the buffer may override the default.
     */
-  def setIndent(indent: Int): Unit =
+  def setIndent(indent: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_text_view_set_indent(this.raw.asInstanceOf, indent)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -806,7 +854,9 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * The `input-hints` allow input methods to fine-tune their behaviour.
     */
-  def setInputHints(hints: GtkInputHints): Unit =
+  def setInputHints(
+      hints: GtkInputHints /* Some(GtkInputHints) */
+  ): Unit /* None */ =
     gtk_text_view_set_input_hints(this.raw.asInstanceOf, hints)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -816,7 +866,9 @@ class TextView(raw: Ptr[GtkTextView])
     * The `input-purpose` can be used by on-screen keyboards and other input
     * methods to adjust their behaviour.
     */
-  def setInputPurpose(purpose: GtkInputPurpose): Unit =
+  def setInputPurpose(
+      purpose: GtkInputPurpose /* Some(GtkInputPurpose) */
+  ): Unit /* None */ =
     gtk_text_view_set_input_purpose(this.raw.asInstanceOf, purpose)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -825,7 +877,9 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Tags in the view’s buffer may override the default.
     */
-  def setJustification(justification: GtkJustification): Unit =
+  def setJustification(
+      justification: GtkJustification /* Some(GtkJustification) */
+  ): Unit /* None */ =
     gtk_text_view_set_justification(this.raw.asInstanceOf, justification)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -837,14 +891,16 @@ class TextView(raw: Ptr[GtkTextView])
     * Note that this function is confusingly named. In CSS terms, the value set
     * here is padding.
     */
-  def setLeftMargin(left_margin: Int): Unit =
+  def setLeftMargin(left_margin: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_text_view_set_left_margin(this.raw.asInstanceOf, left_margin)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the `GtkTextView` should display text in monospace styling.
     */
-  def setMonospace(monospace: Boolean): Unit = gtk_text_view_set_monospace(
+  def setMonospace(
+      monospace: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_text_view_set_monospace(
     this.raw.asInstanceOf,
     gboolean(gint((if monospace == true then 1 else 0)))
   )
@@ -853,7 +909,9 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Changes the `GtkTextView` overwrite mode.
     */
-  def setOverwrite(overwrite: Boolean): Unit = gtk_text_view_set_overwrite(
+  def setOverwrite(
+      overwrite: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_text_view_set_overwrite(
     this.raw.asInstanceOf,
     gboolean(gint((if overwrite == true then 1 else 0)))
   )
@@ -864,11 +922,12 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Tags in the buffer for @text_view may override the defaults.
     */
-  def setPixelsAboveLines(pixels_above_lines: Int): Unit =
-    gtk_text_view_set_pixels_above_lines(
-      this.raw.asInstanceOf,
-      pixels_above_lines
-    )
+  def setPixelsAboveLines(
+      pixels_above_lines: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_text_view_set_pixels_above_lines(
+    this.raw.asInstanceOf,
+    pixels_above_lines
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -877,11 +936,12 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * May be overridden by tags applied to @text_view’s buffer.
     */
-  def setPixelsBelowLines(pixels_below_lines: Int): Unit =
-    gtk_text_view_set_pixels_below_lines(
-      this.raw.asInstanceOf,
-      pixels_below_lines
-    )
+  def setPixelsBelowLines(
+      pixels_below_lines: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_text_view_set_pixels_below_lines(
+    this.raw.asInstanceOf,
+    pixels_below_lines
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -890,11 +950,12 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * May be overridden by tags in @text_view’s buffer.
     */
-  def setPixelsInsideWrap(pixels_inside_wrap: Int): Unit =
-    gtk_text_view_set_pixels_inside_wrap(
-      this.raw.asInstanceOf,
-      pixels_inside_wrap
-    )
+  def setPixelsInsideWrap(
+      pixels_inside_wrap: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_text_view_set_pixels_inside_wrap(
+    this.raw.asInstanceOf,
+    pixels_inside_wrap
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -905,7 +966,7 @@ class TextView(raw: Ptr[GtkTextView])
     * Note that this function is confusingly named. In CSS terms, the value set
     * here is padding.
     */
-  def setRightMargin(right_margin: Int): Unit =
+  def setRightMargin(right_margin: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_text_view_set_right_margin(this.raw.asInstanceOf, right_margin)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -914,8 +975,11 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Tags in the buffer may override the default.
     */
-  def setTabs(tabs: Ptr[PangoTabArray]): Unit =
-    gtk_text_view_set_tabs(this.raw.asInstanceOf, tabs)
+  def setTabs(
+      tabs: Ptr[
+        PangoTabArray
+      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]) */
+  ): Unit /* None */ = gtk_text_view_set_tabs(this.raw.asInstanceOf, tabs)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -924,14 +988,16 @@ class TextView(raw: Ptr[GtkTextView])
     * Note that this function is confusingly named. In CSS terms, the value set
     * here is padding.
     */
-  def setTopMargin(top_margin: Int): Unit =
+  def setTopMargin(top_margin: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_text_view_set_top_margin(this.raw.asInstanceOf, top_margin)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the line wrapping for the view.
     */
-  def setWrapMode(wrap_mode: GtkWrapMode): Unit =
+  def setWrapMode(
+      wrap_mode: GtkWrapMode /* Some(GtkWrapMode) */
+  ): Unit /* None */ =
     gtk_text_view_set_wrap_mode(this.raw.asInstanceOf, wrap_mode)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -941,7 +1007,9 @@ class TextView(raw: Ptr[GtkTextView])
     * See [method@Gtk.TextView.forward_display_line] for an explanation of
     * display lines vs. paragraphs.
     */
-  def startsDisplayLine(iter: Ptr[GtkTextIter]): Boolean =
+  def startsDisplayLine(
+      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
+  ): Boolean /* None */ =
     gtk_text_view_starts_display_line(this.raw.asInstanceOf, iter).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -952,7 +1020,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method window_to_buffer_coords contains an OUT parameter, which is not supported yet"
   )
-  def windowToBufferCoords(using DummyImplicit) = ???
+  private def windowToBufferCoords__ = ???
 
 end TextView
 
@@ -977,9 +1045,10 @@ object TextView:
     * [ctor@Gtk.TextView.new]. The text view adds its own reference count to the
     * buffer; it does not take over an existing reference.
     */
-  def withBuffer(buffer: TextBuffer): TextView = new TextView(
-    gtk_text_view_new_with_buffer(
-      buffer.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+  def withBuffer(buffer: TextBuffer /* Some(Ptr[GtkTextBuffer]) */ ): TextView =
+    new TextView(
+      gtk_text_view_new_with_buffer(
+        buffer.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 end TextView

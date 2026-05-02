@@ -116,18 +116,23 @@ class Notebook(raw: Ptr[GtkNotebook])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Appends a page to @notebook.
     */
-  def appendPage(child: Widget, tab_label: Widget): Int =
-    gtk_notebook_append_page(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf,
-      tab_label.getUnsafeRawPointer().asInstanceOf
-    )
+  def appendPage(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      tab_label: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Int /* None */ = gtk_notebook_append_page(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf,
+    tab_label
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -135,14 +140,18 @@ class Notebook(raw: Ptr[GtkNotebook])
     * the popup menu.
     */
   def appendPageMenu(
-      child: Widget,
-      tab_label: Widget,
-      menu_label: Widget
-  ): Int = gtk_notebook_append_page_menu(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      tab_label: Option[Widget /* Some(Ptr[GtkWidget]) */ ],
+      menu_label: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Int /* None */ = gtk_notebook_append_page_menu(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf,
-    tab_label.getUnsafeRawPointer().asInstanceOf,
-    menu_label.getUnsafeRawPointer().asInstanceOf
+    tab_label
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]]),
+    menu_label
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -153,10 +162,11 @@ class Notebook(raw: Ptr[GtkNotebook])
     * additionally informs the notebook that the removal is happening as part of
     * a tab DND operation, which should not be cancelled.
     */
-  def detachTab(child: Widget): Unit = gtk_notebook_detach_tab(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def detachTab(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_notebook_detach_tab(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -164,7 +174,9 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * See [method@Gtk.Notebook.set_action_widget].
     */
-  def getActionWidget(pack_type: GtkPackType): Widget = new Widget(
+  def getActionWidget(
+      pack_type: GtkPackType /* Some(GtkPackType) */
+  ): Widget /* None */ = new Widget(
     gtk_notebook_get_action_widget(
       this.raw.asInstanceOf,
       pack_type
@@ -175,7 +187,7 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * Returns the page number of the current page.
     */
-  def getCurrentPage(): Int = gtk_notebook_get_current_page(
+  def getCurrentPage(): Int /* None */ = gtk_notebook_get_current_page(
     this.raw.asInstanceOf
   )
 
@@ -183,7 +195,7 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * Gets the current group name for @notebook.
     */
-  def getGroupName()(using Zone): String = fromCString(
+  def getGroupName()(using Zone): String /* None */ = fromCString(
     gtk_notebook_get_group_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -191,7 +203,9 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * Retrieves the menu label widget of the page containing @child.
     */
-  def getMenuLabel(child: Widget): Widget = new Widget(
+  def getMenuLabel(
+      child: Widget /* Some(Ptr[GtkWidget]) */
+  ): Widget /* None */ = new Widget(
     gtk_notebook_get_menu_label(
       this.raw.asInstanceOf,
       child.getUnsafeRawPointer().asInstanceOf
@@ -203,7 +217,9 @@ class Notebook(raw: Ptr[GtkNotebook])
     * Retrieves the text of the menu label for the page containing
     * @child.
     */
-  def getMenuLabelText(child: Widget)(using Zone): String = fromCString(
+  def getMenuLabelText(
+      child: Widget /* Some(Ptr[GtkWidget]) */
+  )(using Zone): String /* None */ = fromCString(
     gtk_notebook_get_menu_label_text(
       this.raw.asInstanceOf,
       child.getUnsafeRawPointer().asInstanceOf
@@ -214,21 +230,26 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * Gets the number of pages in a notebook.
     */
-  def getNPages(): Int = gtk_notebook_get_n_pages(this.raw.asInstanceOf)
+  def getNPages(): Int /* None */ = gtk_notebook_get_n_pages(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the child widget contained in page number @page_num.
     */
-  def getNthPage(page_num: Int): Widget = new Widget(
-    gtk_notebook_get_nth_page(this.raw.asInstanceOf, page_num).asInstanceOf
-  )
+  def getNthPage(page_num: Int /* Some(CInt) */ ): Widget /* None */ =
+    new Widget(
+      gtk_notebook_get_nth_page(this.raw.asInstanceOf, page_num).asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `GtkNotebookPage` for @child.
     */
-  def getPage(child: Widget): NotebookPage = new NotebookPage(
+  def getPage(
+      child: Widget /* Some(Ptr[GtkWidget]) */
+  ): NotebookPage /* None */ = new NotebookPage(
     gtk_notebook_get_page(
       this.raw.asInstanceOf,
       child.getUnsafeRawPointer().asInstanceOf
@@ -243,7 +264,7 @@ class Notebook(raw: Ptr[GtkNotebook])
     * [iface@Gtk.SelectionModel] and can be used to track and modify the visible
     * page.
     */
-  def getPages(): ListModel = new ListModel.Abstract(
+  def getPages(): ListModel /* None */ = new ListModel.Abstract(
     gtk_notebook_get_pages(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -251,32 +272,33 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * Returns whether the tab label area has arrows for scrolling.
     */
-  def getScrollable(): Boolean =
+  def getScrollable(): Boolean /* None */ =
     gtk_notebook_get_scrollable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether a bevel will be drawn around the notebook pages.
     */
-  def getShowBorder(): Boolean =
+  def getShowBorder(): Boolean /* None */ =
     gtk_notebook_get_show_border(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the tabs of the notebook are shown.
     */
-  def getShowTabs(): Boolean =
+  def getShowTabs(): Boolean /* None */ =
     gtk_notebook_get_show_tabs(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the tab contents can be detached from @notebook.
     */
-  def getTabDetachable(child: Widget): Boolean =
-    gtk_notebook_get_tab_detachable(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf
-    ).value.!=(0)
+  def getTabDetachable(
+      child: Widget /* Some(Ptr[GtkWidget]) */
+  ): Boolean /* None */ = gtk_notebook_get_tab_detachable(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -285,7 +307,9 @@ class Notebook(raw: Ptr[GtkNotebook])
     * %NULL is returned if @child is not in @notebook or if no tab label has
     * specifically been set for @child.
     */
-  def getTabLabel(child: Widget): Widget = new Widget(
+  def getTabLabel(
+      child: Widget /* Some(Ptr[GtkWidget]) */
+  ): Widget /* None */ = new Widget(
     gtk_notebook_get_tab_label(
       this.raw.asInstanceOf,
       child.getUnsafeRawPointer().asInstanceOf
@@ -297,7 +321,9 @@ class Notebook(raw: Ptr[GtkNotebook])
     * Retrieves the text of the tab label for the page containing
     * @child.
     */
-  def getTabLabelText(child: Widget)(using Zone): String = fromCString(
+  def getTabLabelText(
+      child: Widget /* Some(Ptr[GtkWidget]) */
+  )(using Zone): String /* None */ = fromCString(
     gtk_notebook_get_tab_label_text(
       this.raw.asInstanceOf,
       child.getUnsafeRawPointer().asInstanceOf
@@ -308,7 +334,7 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * Gets the edge at which the tabs are drawn.
     */
-  def getTabPos(): GtkPositionType = gtk_notebook_get_tab_pos(
+  def getTabPos(): GtkPositionType /* None */ = gtk_notebook_get_tab_pos(
     this.raw.asInstanceOf
   )
 
@@ -316,23 +342,29 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * Gets whether the tab can be reordered via drag and drop or not.
     */
-  def getTabReorderable(child: Widget): Boolean =
-    gtk_notebook_get_tab_reorderable(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf
-    ).value.!=(0)
+  def getTabReorderable(
+      child: Widget /* Some(Ptr[GtkWidget]) */
+  ): Boolean /* None */ = gtk_notebook_get_tab_reorderable(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Insert a page into @notebook at the given position.
     */
-  def insertPage(child: Widget, tab_label: Widget, position: Int): Int =
-    gtk_notebook_insert_page(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf,
-      tab_label.getUnsafeRawPointer().asInstanceOf,
-      position
-    )
+  def insertPage(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      tab_label: Option[Widget /* Some(Ptr[GtkWidget]) */ ],
+      position: Int /* Some(CInt) */
+  ): Int /* None */ = gtk_notebook_insert_page(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf,
+    tab_label
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]]),
+    position
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -340,15 +372,19 @@ class Notebook(raw: Ptr[GtkNotebook])
     * to use as the label in the popup menu.
     */
   def insertPageMenu(
-      child: Widget,
-      tab_label: Widget,
-      menu_label: Widget,
-      position: Int
-  ): Int = gtk_notebook_insert_page_menu(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      tab_label: Option[Widget /* Some(Ptr[GtkWidget]) */ ],
+      menu_label: Option[Widget /* Some(Ptr[GtkWidget]) */ ],
+      position: Int /* Some(CInt) */
+  ): Int /* None */ = gtk_notebook_insert_page_menu(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf,
-    tab_label.getUnsafeRawPointer().asInstanceOf,
-    menu_label.getUnsafeRawPointer().asInstanceOf,
+    tab_label
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]]),
+    menu_label
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]]),
     position
   )
 
@@ -358,22 +394,27 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * Nothing happens if the current page is the last page.
     */
-  def nextPage(): Unit = gtk_notebook_next_page(this.raw.asInstanceOf)
+  def nextPage(): Unit /* None */ = gtk_notebook_next_page(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finds the index of the page which contains the given child widget.
     */
-  def pageNum(child: Widget): Int = gtk_notebook_page_num(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def pageNum(child: Widget /* Some(Ptr[GtkWidget]) */ ): Int /* None */ =
+    gtk_notebook_page_num(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Disables the popup menu.
     */
-  def popupDisable(): Unit = gtk_notebook_popup_disable(this.raw.asInstanceOf)
+  def popupDisable(): Unit /* None */ = gtk_notebook_popup_disable(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -382,18 +423,24 @@ class Notebook(raw: Ptr[GtkNotebook])
     * If the user clicks with the right mouse button on the tab labels, a menu
     * with all the pages will be popped up.
     */
-  def popupEnable(): Unit = gtk_notebook_popup_enable(this.raw.asInstanceOf)
+  def popupEnable(): Unit /* None */ = gtk_notebook_popup_enable(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Prepends a page to @notebook.
     */
-  def prependPage(child: Widget, tab_label: Widget): Int =
-    gtk_notebook_prepend_page(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf,
-      tab_label.getUnsafeRawPointer().asInstanceOf
-    )
+  def prependPage(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      tab_label: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Int /* None */ = gtk_notebook_prepend_page(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf,
+    tab_label
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -401,14 +448,18 @@ class Notebook(raw: Ptr[GtkNotebook])
     * the popup menu.
     */
   def prependPageMenu(
-      child: Widget,
-      tab_label: Widget,
-      menu_label: Widget
-  ): Int = gtk_notebook_prepend_page_menu(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      tab_label: Option[Widget /* Some(Ptr[GtkWidget]) */ ],
+      menu_label: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Int /* None */ = gtk_notebook_prepend_page_menu(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf,
-    tab_label.getUnsafeRawPointer().asInstanceOf,
-    menu_label.getUnsafeRawPointer().asInstanceOf
+    tab_label
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]]),
+    menu_label
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -417,13 +468,15 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * Nothing happens if the current page is the first page.
     */
-  def prevPage(): Unit = gtk_notebook_prev_page(this.raw.asInstanceOf)
+  def prevPage(): Unit /* None */ = gtk_notebook_prev_page(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes a page from the notebook given its index in the notebook.
     */
-  def removePage(page_num: Int): Unit =
+  def removePage(page_num: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_notebook_remove_page(this.raw.asInstanceOf, page_num)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -434,12 +487,14 @@ class Notebook(raw: Ptr[GtkNotebook])
     * If @position is greater than or equal to the number of children in the
     * list or negative, @child will be moved to the end of the list.
     */
-  def reorderChild(child: Widget, position: Int): Unit =
-    gtk_notebook_reorder_child(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf,
-      position
-    )
+  def reorderChild(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      position: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_notebook_reorder_child(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf,
+    position
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -449,12 +504,14 @@ class Notebook(raw: Ptr[GtkNotebook])
     * tabs. You can use a `GtkBox` if you need to pack more than one widget on
     * the same side.
     */
-  def setActionWidget(widget: Widget, pack_type: GtkPackType): Unit =
-    gtk_notebook_set_action_widget(
-      this.raw.asInstanceOf,
-      widget.getUnsafeRawPointer().asInstanceOf,
-      pack_type
-    )
+  def setActionWidget(
+      widget: Widget /* Some(Ptr[GtkWidget]) */,
+      pack_type: GtkPackType /* Some(GtkPackType) */
+  ): Unit /* None */ = gtk_notebook_set_action_widget(
+    this.raw.asInstanceOf,
+    widget.getUnsafeRawPointer().asInstanceOf,
+    pack_type
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -464,7 +521,7 @@ class Notebook(raw: Ptr[GtkNotebook])
     * page unless the child widget is visible. Therefore, it is recommended to
     * show child widgets before adding them to a notebook.
     */
-  def setCurrentPage(page_num: Int): Unit =
+  def setCurrentPage(page_num: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_notebook_set_current_page(this.raw.asInstanceOf, page_num)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -475,30 +532,38 @@ class Notebook(raw: Ptr[GtkNotebook])
     * drop. A notebook with a %NULL group name will not be able to exchange tabs
     * with any other notebook.
     */
-  def setGroupName(group_name: String | CString)(using Zone): Unit =
-    gtk_notebook_set_group_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(group_name)
-    )
+  def setGroupName(
+      group_name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_notebook_set_group_name(
+    this.raw.asInstanceOf,
+    group_name
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Changes the menu label for the page containing @child.
     */
-  def setMenuLabel(child: Widget, menu_label: Widget): Unit =
-    gtk_notebook_set_menu_label(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf,
-      menu_label.getUnsafeRawPointer().asInstanceOf
-    )
+  def setMenuLabel(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      menu_label: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_notebook_set_menu_label(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf,
+    menu_label
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a new label and sets it as the menu label of @child.
     */
-  def setMenuLabelText(child: Widget, menu_text: String | CString)(using
-      Zone
-  ): Unit = gtk_notebook_set_menu_label_text(
+  def setMenuLabelText(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      menu_text: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_notebook_set_menu_label_text(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(menu_text)
@@ -509,7 +574,9 @@ class Notebook(raw: Ptr[GtkNotebook])
     * Sets whether the tab label area will have arrows for scrolling if there
     * are too many tabs to fit in the area.
     */
-  def setScrollable(scrollable: Boolean): Unit = gtk_notebook_set_scrollable(
+  def setScrollable(
+      scrollable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_notebook_set_scrollable(
     this.raw.asInstanceOf,
     gboolean(gint((if scrollable == true then 1 else 0)))
   )
@@ -520,7 +587,9 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * This only has a visual effect when the tabs are not shown.
     */
-  def setShowBorder(show_border: Boolean): Unit = gtk_notebook_set_show_border(
+  def setShowBorder(
+      show_border: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_notebook_set_show_border(
     this.raw.asInstanceOf,
     gboolean(gint((if show_border == true then 1 else 0)))
   )
@@ -529,7 +598,9 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * Sets whether to show the tabs for the notebook or not.
     */
-  def setShowTabs(show_tabs: Boolean): Unit = gtk_notebook_set_show_tabs(
+  def setShowTabs(
+      show_tabs: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_notebook_set_show_tabs(
     this.raw.asInstanceOf,
     gboolean(gint((if show_tabs == true then 1 else 0)))
   )
@@ -580,12 +651,14 @@ class Notebook(raw: Ptr[GtkNotebook])
     * If you want a notebook to accept drags from other widgets, you will have
     * to set your own DnD code to do it.
     */
-  def setTabDetachable(child: Widget, detachable: Boolean): Unit =
-    gtk_notebook_set_tab_detachable(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf,
-      gboolean(gint((if detachable == true then 1 else 0)))
-    )
+  def setTabDetachable(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      detachable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_notebook_set_tab_detachable(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf,
+    gboolean(gint((if detachable == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -594,20 +667,25 @@ class Notebook(raw: Ptr[GtkNotebook])
     * If %NULL is specified for @tab_label, then the page will have the label
     * “page N”.
     */
-  def setTabLabel(child: Widget, tab_label: Widget): Unit =
-    gtk_notebook_set_tab_label(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf,
-      tab_label.getUnsafeRawPointer().asInstanceOf
-    )
+  def setTabLabel(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      tab_label: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_notebook_set_tab_label(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf,
+    tab_label
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a new label and sets it as the tab label for the page containing @child.
     */
-  def setTabLabelText(child: Widget, tab_text: String | CString)(using
-      Zone
-  ): Unit = gtk_notebook_set_tab_label_text(
+  def setTabLabelText(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      tab_text: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_notebook_set_tab_label_text(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(tab_text)
@@ -617,19 +695,22 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * Sets the edge at which the tabs are drawn.
     */
-  def setTabPos(pos: GtkPositionType): Unit =
-    gtk_notebook_set_tab_pos(this.raw.asInstanceOf, pos)
+  def setTabPos(
+      pos: GtkPositionType /* Some(GtkPositionType) */
+  ): Unit /* None */ = gtk_notebook_set_tab_pos(this.raw.asInstanceOf, pos)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the notebook tab can be reordered via drag and drop or not.
     */
-  def setTabReorderable(child: Widget, reorderable: Boolean): Unit =
-    gtk_notebook_set_tab_reorderable(
-      this.raw.asInstanceOf,
-      child.getUnsafeRawPointer().asInstanceOf,
-      gboolean(gint((if reorderable == true then 1 else 0)))
-    )
+  def setTabReorderable(
+      child: Widget /* Some(Ptr[GtkWidget]) */,
+      reorderable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_notebook_set_tab_reorderable(
+    this.raw.asInstanceOf,
+    child.getUnsafeRawPointer().asInstanceOf,
+    gboolean(gint((if reorderable == true then 1 else 0)))
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

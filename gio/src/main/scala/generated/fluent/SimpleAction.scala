@@ -24,6 +24,7 @@ import sn.gnome.gobject.fluent.Object
 class SimpleAction(raw: Ptr[GSimpleAction])
     extends Object(raw.asInstanceOf),
       Action:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -36,7 +37,9 @@ class SimpleAction(raw: Ptr[GSimpleAction])
     * This should only be called by the implementor of the action. Users of the
     * action should not attempt to modify its enabled flag.
     */
-  def setEnabled(enabled: Boolean): Unit = g_simple_action_set_enabled(
+  def setEnabled(
+      enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = g_simple_action_set_enabled(
     this.raw.asInstanceOf,
     gboolean(gint((if enabled == true then 1 else 0)))
   )
@@ -53,8 +56,11 @@ class SimpleAction(raw: Ptr[GSimpleAction])
     *
     * If the @value GVariant is floating, it is consumed.
     */
-  def setState(value: Ptr[GVariant]): Unit =
-    g_simple_action_set_state(this.raw.asInstanceOf, value)
+  def setState(
+      value: Ptr[
+        GVariant
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  ): Unit /* None */ = g_simple_action_set_state(this.raw.asInstanceOf, value)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -63,8 +69,16 @@ class SimpleAction(raw: Ptr[GSimpleAction])
     * See g_action_get_state_hint() for more information about action state
     * hints.
     */
-  def setStateHint(state_hint: Ptr[GVariant]): Unit =
-    g_simple_action_set_state_hint(this.raw.asInstanceOf, state_hint)
+  def setStateHint(
+      state_hint: Option[
+        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  ): Unit /* None */ = g_simple_action_set_state_hint(
+    this.raw.asInstanceOf,
+    state_hint
+      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
+  )
 
 end SimpleAction
 
@@ -76,12 +90,20 @@ object SimpleAction:
     * The created action is stateless. See g_simple_action_new_stateful() to
     * create an action that has state.
     */
-  def apply(name: String | CString, parameter_type: Ptr[GVariantType])(using
-      Zone
-  ): SimpleAction = new SimpleAction(
+  def apply(
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      parameter_type: Option[Ptr[
+        GVariantType
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */ ]
+  )(using Zone): SimpleAction = new SimpleAction(
     g_simple_action_new(
       __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
       parameter_type
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariantType]](o => o)
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariantType]]
+        )
     ).asInstanceOf
   )
 
@@ -95,13 +117,22 @@ object SimpleAction:
     * If the @state #GVariant is floating, it is consumed.
     */
   def stateful(
-      name: String | CString,
-      parameter_type: Ptr[GVariantType],
-      state: Ptr[GVariant]
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      parameter_type: Option[Ptr[
+        GVariantType
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */ ],
+      state: Ptr[
+        GVariant
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
   )(using Zone): SimpleAction = new SimpleAction(
     g_simple_action_new_stateful(
       __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      parameter_type,
+      parameter_type
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariantType]](o => o)
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariantType]]
+        ),
       state
     ).asInstanceOf
   )

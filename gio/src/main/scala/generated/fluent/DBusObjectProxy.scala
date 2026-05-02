@@ -20,13 +20,14 @@ import sn.gnome.gobject.fluent.Object
 class DBusObjectProxy(raw: Ptr[GDBusObjectProxy])
     extends Object(raw.asInstanceOf),
       DBusObject:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the connection that @proxy is for.
     */
-  def getConnection(): DBusConnection = new DBusConnection(
+  def getConnection(): DBusConnection /* None */ = new DBusConnection(
     g_dbus_object_proxy_get_connection(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -37,9 +38,11 @@ object DBusObjectProxy:
     *
     * Creates a new #GDBusObjectProxy for the given connection and object path.
     */
-  def apply(connection: DBusConnection, object_path: String | CString)(using
-      Zone
-  ): DBusObjectProxy = new DBusObjectProxy(
+  def apply(
+      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      object_path: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): DBusObjectProxy = new DBusObjectProxy(
     g_dbus_object_proxy_new(
       connection.getUnsafeRawPointer().asInstanceOf,
       __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]]

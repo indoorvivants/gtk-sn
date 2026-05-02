@@ -51,6 +51,7 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
       AppChooser,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -66,10 +67,10 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     * See also [method@Gtk.AppChooserButton.append_separator].
     */
   def appendCustomItem(
-      name: String | CString,
-      label: String | CString,
-      icon: Icon
-  )(using Zone): Unit = gtk_app_chooser_button_append_custom_item(
+      name: String | CString /* Some(CString) */,
+      label: String | CString /* Some(CString) */,
+      icon: Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
+  )(using Zone): Unit /* None */ = gtk_app_chooser_button_append_custom_item(
     this.raw.asInstanceOf,
     __sn_extract_string(name),
     __sn_extract_string(label),
@@ -81,15 +82,14 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     * Appends a separator to the list of applications that is shown in the
     * popup.
     */
-  def appendSeparator(): Unit = gtk_app_chooser_button_append_separator(
-    this.raw.asInstanceOf
-  )
+  def appendSeparator(): Unit /* None */ =
+    gtk_app_chooser_button_append_separator(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the text to display at the top of the dialog.
     */
-  def getHeading()(using Zone): String = fromCString(
+  def getHeading()(using Zone): String /* None */ = fromCString(
     gtk_app_chooser_button_get_heading(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -97,7 +97,7 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     *
     * Gets whether the dialog is modal.
     */
-  def getModal(): Boolean =
+  def getModal(): Boolean /* None */ =
     gtk_app_chooser_button_get_modal(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -105,7 +105,7 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     * Returns whether the dropdown menu should show the default application at
     * the top.
     */
-  def getShowDefaultItem(): Boolean =
+  def getShowDefaultItem(): Boolean /* None */ =
     gtk_app_chooser_button_get_show_default_item(this.raw.asInstanceOf).value
       .!=(0)
 
@@ -114,7 +114,7 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     * Returns whether the dropdown menu shows an item for a
     * `GtkAppChooserDialog`.
     */
-  def getShowDialogItem(): Boolean =
+  def getShowDialogItem(): Boolean /* None */ =
     gtk_app_chooser_button_get_show_dialog_item(this.raw.asInstanceOf).value
       .!=(0)
 
@@ -127,11 +127,12 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     * Use [method@Gtk.AppChooser.refresh] to bring the selection to its initial
     * state.
     */
-  def setActiveCustomItem(name: String | CString)(using Zone): Unit =
-    gtk_app_chooser_button_set_active_custom_item(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name)
-    )
+  def setActiveCustomItem(name: String | CString /* Some(CString) */ )(using
+      Zone
+  ): Unit /* None */ = gtk_app_chooser_button_set_active_custom_item(
+    this.raw.asInstanceOf,
+    __sn_extract_string(name)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -139,17 +140,20 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     *
     * If the heading is not set, the dialog displays a default text.
     */
-  def setHeading(heading: String | CString)(using Zone): Unit =
-    gtk_app_chooser_button_set_heading(
-      this.raw.asInstanceOf,
-      __sn_extract_string(heading)
-    )
+  def setHeading(
+      heading: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_app_chooser_button_set_heading(
+    this.raw.asInstanceOf,
+    __sn_extract_string(heading)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the dialog should be modal.
     */
-  def setModal(modal: Boolean): Unit = gtk_app_chooser_button_set_modal(
+  def setModal(
+      modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_app_chooser_button_set_modal(
     this.raw.asInstanceOf,
     gboolean(gint((if modal == true then 1 else 0)))
   )
@@ -159,22 +163,24 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     * Sets whether the dropdown menu of this button should show the default
     * application for the given content type at top.
     */
-  def setShowDefaultItem(setting: Boolean): Unit =
-    gtk_app_chooser_button_set_show_default_item(
-      this.raw.asInstanceOf,
-      gboolean(gint((if setting == true then 1 else 0)))
-    )
+  def setShowDefaultItem(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_app_chooser_button_set_show_default_item(
+    this.raw.asInstanceOf,
+    gboolean(gint((if setting == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether the dropdown menu of this button should show an entry to
     * trigger a `GtkAppChooserDialog`.
     */
-  def setShowDialogItem(setting: Boolean): Unit =
-    gtk_app_chooser_button_set_show_dialog_item(
-      this.raw.asInstanceOf,
-      gboolean(gint((if setting == true then 1 else 0)))
-    )
+  def setShowDialogItem(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_app_chooser_button_set_show_dialog_item(
+    this.raw.asInstanceOf,
+    gboolean(gint((if setting == true then 1 else 0)))
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -192,10 +198,11 @@ object AppChooserButton:
     * Creates a new `GtkAppChooserButton` for applications that can handle
     * content of the given type.
     */
-  def apply(content_type: String | CString)(using Zone): AppChooserButton =
-    new AppChooserButton(
-      gtk_app_chooser_button_new(__sn_extract_string(content_type)).asInstanceOf
-    )
+  def apply(
+      content_type: String | CString /* Some(CString) */
+  )(using Zone): AppChooserButton = new AppChooserButton(
+    gtk_app_chooser_button_new(__sn_extract_string(content_type)).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

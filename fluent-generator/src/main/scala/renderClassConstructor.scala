@@ -21,11 +21,16 @@ def renderClassConstructor(cls: AugmentedClass, constructor: Constructor)(using
     val cConstructor = constructor.identifier
     val sanitisedName = safeConstructorName(constructor.name)
 
+    val methodContext = globalKnowledge.targetTypes
+      .inMethod(constructor.identifier)
+      .getOrElse(break(FluentErr.TargetTypesMissing(constructor.identifier)))
+
     val renderedParameters =
       coll.observe(
         renderParameters(
           constructor.parameters,
-          s"constructor: ${constructor.name}"
+          s"constructor: ${constructor.name}",
+          methodContext
         )
       )
 

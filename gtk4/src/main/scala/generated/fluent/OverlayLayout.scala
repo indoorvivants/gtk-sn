@@ -19,6 +19,7 @@ import sn.gnome.gtk4.internal.GtkOverlayLayout
   */
 class OverlayLayout(raw: Ptr[GtkOverlayLayout])
     extends LayoutManager(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end OverlayLayout

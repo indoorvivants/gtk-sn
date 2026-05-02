@@ -20,13 +20,14 @@ import sn.gnome.gio.internal.GConverterInputStream
 class ConverterInputStream(raw: Ptr[GConverterInputStream])
     extends FilterInputStream(raw.asInstanceOf),
       PollableInputStream:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the #GConverter that is used by @converter_stream.
     */
-  def getConverter(): Converter = new Converter.Abstract(
+  def getConverter(): Converter /* None */ = new Converter.Abstract(
     g_converter_input_stream_get_converter(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -38,8 +39,8 @@ object ConverterInputStream:
     * Creates a new converter input stream for the @base_stream.
     */
   def apply(
-      base_stream: InputStream,
-      converter: Converter
+      base_stream: InputStream /* Some(Ptr[GInputStream]) */,
+      converter: Converter /* Some(Ptr[GConverter]) */
   ): ConverterInputStream = new ConverterInputStream(
     g_converter_input_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf,

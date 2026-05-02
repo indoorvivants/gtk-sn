@@ -48,13 +48,14 @@ class LinkButton(raw: Ptr[GtkLinkButton])
       Actionable,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the URI of the `GtkLinkButton`.
     */
-  def getUri()(using Zone): String = fromCString(
+  def getUri()(using Zone): String /* None */ = fromCString(
     gtk_link_button_get_uri(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -67,7 +68,7 @@ class LinkButton(raw: Ptr[GtkLinkButton])
     *
     * The state may also be changed using [method@Gtk.LinkButton.set_visited].
     */
-  def getVisited(): Boolean =
+  def getVisited(): Boolean /* None */ =
     gtk_link_button_get_visited(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -76,7 +77,9 @@ class LinkButton(raw: Ptr[GtkLinkButton])
     *
     * As a side-effect this unsets the “visited” state of the button.
     */
-  def setUri(uri: String | CString)(using Zone): Unit =
+  def setUri(
+      uri: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ =
     gtk_link_button_set_uri(this.raw.asInstanceOf, __sn_extract_string(uri))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -85,7 +88,9 @@ class LinkButton(raw: Ptr[GtkLinkButton])
     *
     * See [method@Gtk.LinkButton.get_visited] for more details.
     */
-  def setVisited(visited: Boolean): Unit = gtk_link_button_set_visited(
+  def setVisited(
+      visited: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_link_button_set_visited(
     this.raw.asInstanceOf,
     gboolean(gint((if visited == true then 1 else 0)))
   )
@@ -105,7 +110,9 @@ object LinkButton:
     *
     * Creates a new `GtkLinkButton` with the URI as its text.
     */
-  def apply(uri: String | CString)(using Zone): LinkButton = new LinkButton(
+  def apply(
+      uri: String | CString /* Some(CString) */
+  )(using Zone): LinkButton = new LinkButton(
     gtk_link_button_new(__sn_extract_string(uri)).asInstanceOf
   )
 
@@ -113,12 +120,15 @@ object LinkButton:
     *
     * Creates a new `GtkLinkButton` containing a label.
     */
-  def withLabel(uri: String | CString, label: String | CString)(using
-      Zone
-  ): LinkButton = new LinkButton(
+  def withLabel(
+      uri: String | CString /* Some(CString) */,
+      label: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): LinkButton = new LinkButton(
     gtk_link_button_new_with_label(
       __sn_extract_string(uri),
-      __sn_extract_string(label)
+      label
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
   )
 

@@ -55,13 +55,14 @@ import sn.gnome.gobject.fluent.Object
   */
 class DisplayManager(raw: Ptr[GdkDisplayManager])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the default `GdkDisplay`.
     */
-  def getDefaultDisplay(): Display = new Display(
+  def getDefaultDisplay(): Display /* None */ = new Display(
     gdk_display_manager_get_default_display(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -69,18 +70,21 @@ class DisplayManager(raw: Ptr[GdkDisplayManager])
     *
     * List all currently open displays.
     */
-  def listDisplays(): Ptr[GSList] = gdk_display_manager_list_displays(
-    this.raw.asInstanceOf
-  )
+  def listDisplays(): Ptr[GSList] /* None */ =
+    gdk_display_manager_list_displays(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Opens a display.
     */
-  def openDisplay(name: String | CString)(using Zone): Display = new Display(
+  def openDisplay(
+      name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Display /* None */ = new Display(
     gdk_display_manager_open_display(
       this.raw.asInstanceOf,
-      __sn_extract_string(name)
+      name
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
   )
 
@@ -88,11 +92,12 @@ class DisplayManager(raw: Ptr[GdkDisplayManager])
     *
     * Sets @display as the default display.
     */
-  def setDefaultDisplay(display: Display): Unit =
-    gdk_display_manager_set_default_display(
-      this.raw.asInstanceOf,
-      display.getUnsafeRawPointer().asInstanceOf
-    )
+  def setDefaultDisplay(
+      display: Display /* Some(Ptr[GdkDisplay]) */
+  ): Unit /* None */ = gdk_display_manager_set_default_display(
+    this.raw.asInstanceOf,
+    display.getUnsafeRawPointer().asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

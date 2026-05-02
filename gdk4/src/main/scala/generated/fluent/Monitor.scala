@@ -21,6 +21,7 @@ import sn.gnome.gobject.fluent.Object
   * [method@Gdk.Display.get_monitor_at_surface] to find a particular monitor.
   */
 class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -31,7 +32,7 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * and hardware configuration, and should not be relied on as stable
     * identifiers of a specific monitor.
     */
-  def getConnector()(using Zone): String = fromCString(
+  def getConnector()(using Zone): String /* None */ = fromCString(
     gdk_monitor_get_connector(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -41,7 +42,7 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     *
     * This can be used to identify a monitor in the UI.
     */
-  def getDescription()(using Zone): String = fromCString(
+  def getDescription()(using Zone): String /* None */ = fromCString(
     gdk_monitor_get_description(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -49,7 +50,7 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     *
     * Gets the display that this monitor belongs to.
     */
-  def getDisplay(): Display = new Display(
+  def getDisplay(): Display /* None */ = new Display(
     gdk_monitor_get_display(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -64,13 +65,15 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_geometry contains an OUT parameter, which is not supported yet"
   )
-  def getGeometry(using DummyImplicit) = ???
+  private def getGeometry__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the height in millimeters of the monitor.
     */
-  def getHeightMm(): Int = gdk_monitor_get_height_mm(this.raw.asInstanceOf)
+  def getHeightMm(): Int /* None */ = gdk_monitor_get_height_mm(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -81,7 +84,7 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * The PNP ID registry is located at
     * [https://uefi.org/pnp_id_list](https://uefi.org/pnp_id_list).
     */
-  def getManufacturer()(using Zone): String = fromCString(
+  def getManufacturer()(using Zone): String /* None */ = fromCString(
     gdk_monitor_get_manufacturer(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -89,7 +92,7 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     *
     * Gets the string identifying the monitor model, if available.
     */
-  def getModel()(using Zone): String = fromCString(
+  def getModel()(using Zone): String /* None */ = fromCString(
     gdk_monitor_get_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -100,7 +103,7 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * The value is in milli-Hertz, so a refresh rate of 60Hz is returned as
     * 60000.
     */
-  def getRefreshRate(): Int = gdk_monitor_get_refresh_rate(
+  def getRefreshRate(): Int /* None */ = gdk_monitor_get_refresh_rate(
     this.raw.asInstanceOf
   )
 
@@ -116,7 +119,7 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * monitor, but most of the time you’re drawing to a surface where it is
     * better to use [method@Gdk.Surface.get_scale_factor] instead.
     */
-  def getScaleFactor(): Int = gdk_monitor_get_scale_factor(
+  def getScaleFactor(): Int /* None */ = gdk_monitor_get_scale_factor(
     this.raw.asInstanceOf
   )
 
@@ -125,15 +128,16 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * Gets information about the layout of red, green and blue primaries for
     * pixels.
     */
-  def getSubpixelLayout(): GdkSubpixelLayout = gdk_monitor_get_subpixel_layout(
-    this.raw.asInstanceOf
-  )
+  def getSubpixelLayout(): GdkSubpixelLayout /* None */ =
+    gdk_monitor_get_subpixel_layout(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the width in millimeters of the monitor.
     */
-  def getWidthMm(): Int = gdk_monitor_get_width_mm(this.raw.asInstanceOf)
+  def getWidthMm(): Int /* None */ = gdk_monitor_get_width_mm(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -142,7 +146,7 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * The @monitor becomes invalid when the physical monitor is unplugged or
     * removed.
     */
-  def isValid(): Boolean =
+  def isValid(): Boolean /* None */ =
     gdk_monitor_is_valid(this.raw.asInstanceOf).value.!=(0)
 
 end Monitor

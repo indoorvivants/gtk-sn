@@ -34,13 +34,14 @@ class Range(raw: Ptr[GtkRange])
       Buildable,
       ConstraintTarget,
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Get the adjustment which is the “model” object for `GtkRange`.
     */
-  def getAdjustment(): Adjustment = new Adjustment(
+  def getAdjustment(): Adjustment /* None */ = new Adjustment(
     gtk_range_get_adjustment(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -48,7 +49,9 @@ class Range(raw: Ptr[GtkRange])
     *
     * Gets the current position of the fill level indicator.
     */
-  def getFillLevel(): Double = gtk_range_get_fill_level(this.raw.asInstanceOf)
+  def getFillLevel(): Double /* None */ = gtk_range_get_fill_level(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -56,7 +59,7 @@ class Range(raw: Ptr[GtkRange])
     *
     * See [method@Gtk.Range.set_flippable].
     */
-  def getFlippable(): Boolean =
+  def getFlippable(): Boolean /* None */ =
     gtk_range_get_flippable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -65,7 +68,7 @@ class Range(raw: Ptr[GtkRange])
     *
     * See [method@Gtk.Range.set_inverted].
     */
-  def getInverted(): Boolean =
+  def getInverted(): Boolean /* None */ =
     gtk_range_get_inverted(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -78,13 +81,13 @@ class Range(raw: Ptr[GtkRange])
   @annotation.compileTimeOnly(
     "Method get_range_rect contains an OUT parameter, which is not supported yet"
   )
-  def getRangeRect(using DummyImplicit) = ???
+  private def getRangeRect__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether the range is restricted to the fill level.
     */
-  def getRestrictToFillLevel(): Boolean =
+  def getRestrictToFillLevel(): Boolean /* None */ =
     gtk_range_get_restrict_to_fill_level(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -93,13 +96,15 @@ class Range(raw: Ptr[GtkRange])
     *
     * See [signal@Gtk.Range::change-value].
     */
-  def getRoundDigits(): Int = gtk_range_get_round_digits(this.raw.asInstanceOf)
+  def getRoundDigits(): Int /* None */ = gtk_range_get_round_digits(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether the range displays the fill level graphically.
     */
-  def getShowFillLevel(): Boolean =
+  def getShowFillLevel(): Boolean /* None */ =
     gtk_range_get_show_fill_level(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -112,7 +117,7 @@ class Range(raw: Ptr[GtkRange])
   @annotation.compileTimeOnly(
     "Method get_slider_range contains an OUT parameter, which is not supported yet"
   )
-  def getSliderRange(using DummyImplicit) = ???
+  private def getSliderRange__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -120,14 +125,14 @@ class Range(raw: Ptr[GtkRange])
     *
     * See [method@Gtk.Range.set_slider_size_fixed].
     */
-  def getSliderSizeFixed(): Boolean =
+  def getSliderSizeFixed(): Boolean /* None */ =
     gtk_range_get_slider_size_fixed(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the current value of the range.
     */
-  def getValue(): Double = gtk_range_get_value(this.raw.asInstanceOf)
+  def getValue(): Double /* None */ = gtk_range_get_value(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -141,7 +146,9 @@ class Range(raw: Ptr[GtkRange])
     * and indicates the size of the visible area of the widget being scrolled.
     * The page size affects the size of the scrollbar slider.
     */
-  def setAdjustment(adjustment: Adjustment): Unit = gtk_range_set_adjustment(
+  def setAdjustment(
+      adjustment: Adjustment /* Some(Ptr[GtkAdjustment]) */
+  ): Unit /* None */ = gtk_range_set_adjustment(
     this.raw.asInstanceOf,
     adjustment.getUnsafeRawPointer().asInstanceOf
   )
@@ -165,7 +172,7 @@ class Range(raw: Ptr[GtkRange])
     * values which are smaller than the fill level. This is controlled by
     * [method@Gtk.Range.set_restrict_to_fill_level] and is by default enabled.
     */
-  def setFillLevel(fill_level: Double): Unit =
+  def setFillLevel(fill_level: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_range_set_fill_level(this.raw.asInstanceOf, fill_level)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -177,7 +184,9 @@ class Range(raw: Ptr[GtkRange])
     *
     * See [method@Gtk.Widget.get_direction].
     */
-  def setFlippable(flippable: Boolean): Unit = gtk_range_set_flippable(
+  def setFlippable(
+      flippable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_range_set_flippable(
     this.raw.asInstanceOf,
     gboolean(gint((if flippable == true then 1 else 0)))
   )
@@ -190,7 +199,10 @@ class Range(raw: Ptr[GtkRange])
     * moves a `GtkScale` via arrow keys. The page size is used for example when
     * moving via Page Up or Page Down keys.
     */
-  def setIncrements(step: Double, page: Double): Unit =
+  def setIncrements(
+      step: Double /* Some(Double) */,
+      page: Double /* Some(Double) */
+  ): Unit /* None */ =
     gtk_range_set_increments(this.raw.asInstanceOf, step, page)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -201,7 +213,9 @@ class Range(raw: Ptr[GtkRange])
     * top to bottom or left to right. Inverted ranges have higher values at the
     * top or on the right rather than on the bottom or left.
     */
-  def setInverted(setting: Boolean): Unit = gtk_range_set_inverted(
+  def setInverted(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_range_set_inverted(
     this.raw.asInstanceOf,
     gboolean(gint((if setting == true then 1 else 0)))
   )
@@ -213,8 +227,10 @@ class Range(raw: Ptr[GtkRange])
     * The range value is clamped to be between @min and @max. (If the range has
     * a non-zero page size, it is clamped between @min and @max - page-size.)
     */
-  def setRange(min: Double, max: Double): Unit =
-    gtk_range_set_range(this.raw.asInstanceOf, min, max)
+  def setRange(
+      min: Double /* Some(Double) */,
+      max: Double /* Some(Double) */
+  ): Unit /* None */ = gtk_range_set_range(this.raw.asInstanceOf, min, max)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -223,11 +239,12 @@ class Range(raw: Ptr[GtkRange])
     * See [method@Gtk.Range.set_fill_level] for a general description of the
     * fill level concept.
     */
-  def setRestrictToFillLevel(restrict_to_fill_level: Boolean): Unit =
-    gtk_range_set_restrict_to_fill_level(
-      this.raw.asInstanceOf,
-      gboolean(gint((if restrict_to_fill_level == true then 1 else 0)))
-    )
+  def setRestrictToFillLevel(
+      restrict_to_fill_level: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_range_set_restrict_to_fill_level(
+    this.raw.asInstanceOf,
+    gboolean(gint((if restrict_to_fill_level == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -235,7 +252,7 @@ class Range(raw: Ptr[GtkRange])
     *
     * See [signal@Gtk.Range::change-value].
     */
-  def setRoundDigits(round_digits: Int): Unit =
+  def setRoundDigits(round_digits: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_range_set_round_digits(this.raw.asInstanceOf, round_digits)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -245,11 +262,12 @@ class Range(raw: Ptr[GtkRange])
     * See [method@Gtk.Range.set_fill_level] for a general description of the
     * fill level concept.
     */
-  def setShowFillLevel(show_fill_level: Boolean): Unit =
-    gtk_range_set_show_fill_level(
-      this.raw.asInstanceOf,
-      gboolean(gint((if show_fill_level == true then 1 else 0)))
-    )
+  def setShowFillLevel(
+      show_fill_level: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_range_set_show_fill_level(
+    this.raw.asInstanceOf,
+    gboolean(gint((if show_fill_level == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -258,11 +276,12 @@ class Range(raw: Ptr[GtkRange])
     *
     * This function is useful mainly for `GtkRange` subclasses.
     */
-  def setSliderSizeFixed(size_fixed: Boolean): Unit =
-    gtk_range_set_slider_size_fixed(
-      this.raw.asInstanceOf,
-      gboolean(gint((if size_fixed == true then 1 else 0)))
-    )
+  def setSliderSizeFixed(
+      size_fixed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_range_set_slider_size_fixed(
+    this.raw.asInstanceOf,
+    gboolean(gint((if size_fixed == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -272,7 +291,7 @@ class Range(raw: Ptr[GtkRange])
     * clamped to fit inside them. The range emits the
     * [signal@Gtk.Range::value-changed] signal if the value changes.
     */
-  def setValue(value: Double): Unit =
+  def setValue(value: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_range_set_value(this.raw.asInstanceOf, value)
 
 end Range

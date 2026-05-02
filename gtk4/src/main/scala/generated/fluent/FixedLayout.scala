@@ -39,6 +39,7 @@ import sn.gnome.gtk4.internal.GtkFixedLayout
   */
 class FixedLayout(raw: Ptr[GtkFixedLayout])
     extends LayoutManager(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end FixedLayout

@@ -48,6 +48,7 @@ import sn.gnome.gobject.fluent.Object
   * be supported, the default cursor will be the ultimate fallback.
   */
 class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -60,7 +61,7 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     * can happen when the texture is too large or when the `GdkDisplay` it is
     * used on does not support textured cursors.
     */
-  def getFallback(): Cursor = new Cursor(
+  def getFallback(): Cursor /* None */ = new Cursor(
     gdk_cursor_get_fallback(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -74,7 +75,9 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     * only return the hotspot position for cursors created with
     * [ctor@Gdk.Cursor.new_from_texture].
     */
-  def getHotspotX(): Int = gdk_cursor_get_hotspot_x(this.raw.asInstanceOf)
+  def getHotspotX(): Int /* None */ = gdk_cursor_get_hotspot_x(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -86,7 +89,9 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     * only return the hotspot position for cursors created with
     * [ctor@Gdk.Cursor.new_from_texture].
     */
-  def getHotspotY(): Int = gdk_cursor_get_hotspot_y(this.raw.asInstanceOf)
+  def getHotspotY(): Int /* None */ = gdk_cursor_get_hotspot_y(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -94,7 +99,7 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     *
     * If the cursor is not a named cursor, %NULL will be returned.
     */
-  def getName()(using Zone): String = fromCString(
+  def getName()(using Zone): String /* None */ = fromCString(
     gdk_cursor_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -104,7 +109,7 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     *
     * If the cursor is a named cursor, %NULL will be returned.
     */
-  def getTexture(): Texture = new Texture(
+  def getTexture(): Texture /* None */ = new Texture(
     gdk_cursor_get_texture(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -130,29 +135,35 @@ object Cursor:
     * | ![](se_resize_cursor.png) "se-resize"       | ![](ew_resize_cursor.png) "ew-resize" | ![](ns_resize_cursor.png) "ns-resize"         | ![](nesw_resize_cursor.png) "nesw-resize" |
     * | ![](nwse_resize_cursor.png) "nwse-resize"   | ![](zoom_in_cursor.png) "zoom-in"     | ![](zoom_out_cursor.png) "zoom-out"           |                                           |
     */
-  def fromName(name: String | CString, fallback: Cursor)(using Zone): Cursor =
-    new Cursor(
-      gdk_cursor_new_from_name(
-        __sn_extract_string(name),
-        fallback.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def fromName(
+      name: String | CString /* Some(CString) */,
+      fallback: Option[Cursor /* Some(Ptr[GdkCursor]) */ ]
+  )(using Zone): Cursor = new Cursor(
+    gdk_cursor_new_from_name(
+      __sn_extract_string(name),
+      fallback
+        .map[Ptr[GdkCursor]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GdkCursor]])
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a new cursor from a `GdkTexture`.
     */
   def fromTexture(
-      texture: Texture,
-      hotspot_x: Int,
-      hotspot_y: Int,
-      fallback: Cursor
+      texture: Texture /* Some(Ptr[GdkTexture]) */,
+      hotspot_x: Int /* Some(CInt) */,
+      hotspot_y: Int /* Some(CInt) */,
+      fallback: Option[Cursor /* Some(Ptr[GdkCursor]) */ ]
   ): Cursor = new Cursor(
     gdk_cursor_new_from_texture(
       texture.getUnsafeRawPointer().asInstanceOf,
       hotspot_x,
       hotspot_y,
-      fallback.getUnsafeRawPointer().asInstanceOf
+      fallback
+        .map[Ptr[GdkCursor]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GdkCursor]])
     ).asInstanceOf
   )
 

@@ -52,6 +52,7 @@ class Button(raw: Ptr[GtkButton])
       Actionable,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -59,14 +60,14 @@ class Button(raw: Ptr[GtkButton])
     * Retrieves whether the button can be smaller than the natural size of its
     * contents.
     */
-  def getCanShrink(): Boolean =
+  def getCanShrink(): Boolean /* None */ =
     gtk_button_get_can_shrink(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the child widget of @button.
     */
-  def getChild(): Widget = new Widget(
+  def getChild(): Widget /* None */ = new Widget(
     gtk_button_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -74,7 +75,7 @@ class Button(raw: Ptr[GtkButton])
     *
     * Returns whether the button has a frame.
     */
-  def getHasFrame(): Boolean =
+  def getHasFrame(): Boolean /* None */ =
     gtk_button_get_has_frame(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -85,7 +86,7 @@ class Button(raw: Ptr[GtkButton])
     * the return value will be %NULL. This will be the case if you create an
     * empty button with [ctor@Gtk.Button.new] to use as a container.
     */
-  def getIconName()(using Zone): String = fromCString(
+  def getIconName()(using Zone): String /* None */ = fromCString(
     gtk_button_get_icon_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -97,7 +98,7 @@ class Button(raw: Ptr[GtkButton])
     * return value will be %NULL. This will be the case if you create an empty
     * button with [ctor@Gtk.Button.new] to use as a container.
     */
-  def getLabel()(using Zone): String = fromCString(
+  def getLabel()(using Zone): String /* None */ = fromCString(
     gtk_button_get_label(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -107,7 +108,7 @@ class Button(raw: Ptr[GtkButton])
     *
     * See [method@Gtk.Button.set_use_underline].
     */
-  def getUseUnderline(): Boolean =
+  def getUseUnderline(): Boolean /* None */ =
     gtk_button_get_use_underline(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -119,7 +120,9 @@ class Button(raw: Ptr[GtkButton])
     *
     * For icons and custom children, this function has no effect.
     */
-  def setCanShrink(can_shrink: Boolean): Unit = gtk_button_set_can_shrink(
+  def setCanShrink(
+      can_shrink: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_button_set_can_shrink(
     this.raw.asInstanceOf,
     gboolean(gint((if can_shrink == true then 1 else 0)))
   )
@@ -134,9 +137,13 @@ class Button(raw: Ptr[GtkButton])
     * explicitly, or you'll set a labelled-by or described-by relations from @child
     * to @button.
     */
-  def setChild(child: Widget): Unit = gtk_button_set_child(
+  def setChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_button_set_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -145,7 +152,9 @@ class Button(raw: Ptr[GtkButton])
     *
     * Buttons can have a flat appearance or have a frame drawn around them.
     */
-  def setHasFrame(has_frame: Boolean): Unit = gtk_button_set_has_frame(
+  def setHasFrame(
+      has_frame: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_button_set_has_frame(
     this.raw.asInstanceOf,
     gboolean(gint((if has_frame == true then 1 else 0)))
   )
@@ -157,11 +166,12 @@ class Button(raw: Ptr[GtkButton])
     * If @button already contains a child widget, that child widget will be
     * removed and replaced with the image.
     */
-  def setIconName(icon_name: String | CString)(using Zone): Unit =
-    gtk_button_set_icon_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(icon_name)
-    )
+  def setIconName(
+      icon_name: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_button_set_icon_name(
+    this.raw.asInstanceOf,
+    __sn_extract_string(icon_name)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -169,7 +179,9 @@ class Button(raw: Ptr[GtkButton])
     *
     * This will also clear any previously set labels.
     */
-  def setLabel(label: String | CString)(using Zone): Unit =
+  def setLabel(
+      label: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ =
     gtk_button_set_label(this.raw.asInstanceOf, __sn_extract_string(label))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -179,11 +191,12 @@ class Button(raw: Ptr[GtkButton])
     * If true, an underline in the text of the button label indicates the next
     * character should be used for the mnemonic accelerator key.
     */
-  def setUseUnderline(use_underline: Boolean): Unit =
-    gtk_button_set_use_underline(
-      this.raw.asInstanceOf,
-      gboolean(gint((if use_underline == true then 1 else 0)))
-    )
+  def setUseUnderline(
+      use_underline: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_button_set_use_underline(
+    this.raw.asInstanceOf,
+    gboolean(gint((if use_underline == true then 1 else 0)))
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -212,16 +225,19 @@ object Button:
     * instead. If the current icon theme is changed, the icon will be updated
     * appropriately.
     */
-  def fromIconName(icon_name: String | CString)(using Zone): Button =
-    new Button(
-      gtk_button_new_from_icon_name(__sn_extract_string(icon_name)).asInstanceOf
-    )
+  def fromIconName(
+      icon_name: String | CString /* Some(CString) */
+  )(using Zone): Button = new Button(
+    gtk_button_new_from_icon_name(__sn_extract_string(icon_name)).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a `GtkButton` widget with a `GtkLabel` child.
     */
-  def withLabel(label: String | CString)(using Zone): Button = new Button(
+  def withLabel(
+      label: String | CString /* Some(CString) */
+  )(using Zone): Button = new Button(
     gtk_button_new_with_label(__sn_extract_string(label)).asInstanceOf
   )
 
@@ -235,7 +251,9 @@ object Button:
     * keyboard accelerator called a mnemonic. Pressing <kbd>Alt</kbd> and that
     * key activates the button.
     */
-  def withMnemonic(label: String | CString)(using Zone): Button = new Button(
+  def withMnemonic(
+      label: String | CString /* Some(CString) */
+  )(using Zone): Button = new Button(
     gtk_button_new_with_mnemonic(__sn_extract_string(label)).asInstanceOf
   )
 

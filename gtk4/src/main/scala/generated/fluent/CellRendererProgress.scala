@@ -18,6 +18,7 @@ import sn.gnome.gtk4.internal.GtkCellRendererProgress
 class CellRendererProgress(raw: Ptr[GtkCellRendererProgress])
     extends CellRenderer(raw.asInstanceOf),
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end CellRendererProgress

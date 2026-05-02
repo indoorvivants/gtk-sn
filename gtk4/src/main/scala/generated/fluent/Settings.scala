@@ -40,6 +40,7 @@ import sn.gnome.gtk4.internal.GtkSettings
 class Settings(raw: Ptr[GtkSettings])
     extends Object(raw.asInstanceOf),
       StyleProvider:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -50,11 +51,12 @@ class Settings(raw: Ptr[GtkSettings])
     * After this call, the setting will again follow the session-wide value for
     * this setting.
     */
-  def resetProperty(name: String | CString)(using Zone): Unit =
-    gtk_settings_reset_property(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name)
-    )
+  def resetProperty(
+      name: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_settings_reset_property(
+    this.raw.asInstanceOf,
+    __sn_extract_string(name)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

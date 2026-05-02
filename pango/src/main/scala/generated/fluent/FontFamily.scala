@@ -21,16 +21,21 @@ import sn.gnome.pango.internal.PangoFontFamily
 class FontFamily(raw: Ptr[PangoFontFamily])
     extends Object(raw.asInstanceOf),
       ListModel:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the `PangoFontFace` of @family with the given name.
     */
-  def getFace(name: String | CString)(using Zone): FontFace = new FontFace(
+  def getFace(
+      name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): FontFace /* None */ = new FontFace(
     pango_font_family_get_face(
       this.raw.asInstanceOf,
-      __sn_extract_string(name)
+      name
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
   )
 
@@ -42,7 +47,7 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     * a `PangoFontDescription` to specify that a face from this family is
     * desired.
     */
-  def getName()(using Zone): String = fromCString(
+  def getName()(using Zone): String /* None */ = fromCString(
     pango_font_family_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -62,7 +67,7 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     * of [method@Pango.FontMetrics.get_approximate_char_width] may be affected
     * by double-width characters.
     */
-  def isMonospace(): Boolean =
+  def isMonospace(): Boolean /* None */ =
     pango_font_family_is_monospace(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -73,7 +78,7 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     * Such axes are also known as _variations_; see
     * [method@Pango.FontDescription.set_variations] for more information.
     */
-  def isVariable(): Boolean =
+  def isVariable(): Boolean /* None */ =
     pango_font_family_is_variable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -92,7 +97,7 @@ class FontFamily(raw: Ptr[PangoFontFamily])
   @annotation.compileTimeOnly(
     "Method list_faces contains an OUT parameter, which is not supported yet"
   )
-  def listFaces(using DummyImplicit) = ???
+  private def listFaces__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

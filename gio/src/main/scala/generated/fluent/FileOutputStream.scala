@@ -32,6 +32,7 @@ import sn.gnome.glib.internal.gpointer
 class FileOutputStream(raw: Ptr[GFileOutputStream])
     extends OutputStream(raw.asInstanceOf),
       Seekable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -40,7 +41,7 @@ class FileOutputStream(raw: Ptr[GFileOutputStream])
     * called after the stream has been written and closed, as the etag can
     * change while writing.
     */
-  def getEtag()(using Zone): String = fromCString(
+  def getEtag()(using Zone): String /* None */ = fromCString(
     g_file_output_stream_get_etag(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -63,14 +64,17 @@ class FileOutputStream(raw: Ptr[GFileOutputStream])
     * was cancelled, the error %G_IO_ERROR_CANCELLED will be set, and %NULL will
     * be returned.
     */
-  def queryInfo(attributes: String | CString, cancellable: Cancellable)(using
-      Zone
-  ): GResult[FileInfo] = GResult.wrap(__errorPtr =>
+  def queryInfo(
+      attributes: String | CString /* Some(CString) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  )(using Zone): GResult[FileInfo /* None */ ] = GResult.wrap(__errorPtr =>
     new FileInfo(
       g_file_output_stream_query_info(
         this.raw.asInstanceOf,
         __sn_extract_string(attributes),
-        cancellable.getUnsafeRawPointer().asInstanceOf,
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
         __errorPtr
       ).asInstanceOf
     )
@@ -87,18 +91,26 @@ class FileOutputStream(raw: Ptr[GFileOutputStream])
     * g_file_output_stream_query_info().
     */
   def queryInfoAsync(
-      attributes: String | CString,
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  )(using Zone): Unit = g_file_output_stream_query_info_async(
+      attributes: String | CString /* Some(CString) */,
+      io_priority: Int /* Some(CInt) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_file_output_stream_query_info_async(
     this.raw.asInstanceOf,
     __sn_extract_string(attributes),
     io_priority,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -106,16 +118,17 @@ class FileOutputStream(raw: Ptr[GFileOutputStream])
     * Finalizes the asynchronous query started by
     * g_file_output_stream_query_info_async().
     */
-  def queryInfoFinish(result: AsyncResult): GResult[FileInfo] =
-    GResult.wrap(__errorPtr =>
-      new FileInfo(
-        g_file_output_stream_query_info_finish(
-          this.raw.asInstanceOf,
-          result.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def queryInfoFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[FileInfo /* None */ ] = GResult.wrap(__errorPtr =>
+    new FileInfo(
+      g_file_output_stream_query_info_finish(
+        this.raw.asInstanceOf,
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

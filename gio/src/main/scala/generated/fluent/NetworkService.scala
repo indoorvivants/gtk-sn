@@ -22,6 +22,7 @@ import sn.gnome.gobject.fluent.Object
 class NetworkService(raw: Ptr[GNetworkService])
     extends Object(raw.asInstanceOf),
       SocketConnectable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -29,7 +30,7 @@ class NetworkService(raw: Ptr[GNetworkService])
     * Gets the domain that @srv serves. This might be either UTF-8 or
     * ASCII-encoded, depending on what @srv was created with.
     */
-  def getDomain()(using Zone): String = fromCString(
+  def getDomain()(using Zone): String /* None */ = fromCString(
     g_network_service_get_domain(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -37,7 +38,7 @@ class NetworkService(raw: Ptr[GNetworkService])
     *
     * Gets @srv's protocol name (eg, "tcp").
     */
-  def getProtocol()(using Zone): String = fromCString(
+  def getProtocol()(using Zone): String /* None */ = fromCString(
     g_network_service_get_protocol(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -46,7 +47,7 @@ class NetworkService(raw: Ptr[GNetworkService])
     * Gets the URI scheme used to resolve proxies. By default, the service name
     * is used as scheme.
     */
-  def getScheme()(using Zone): String = fromCString(
+  def getScheme()(using Zone): String /* None */ = fromCString(
     g_network_service_get_scheme(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -54,7 +55,7 @@ class NetworkService(raw: Ptr[GNetworkService])
     *
     * Gets @srv's service name (eg, "ldap").
     */
-  def getService()(using Zone): String = fromCString(
+  def getService()(using Zone): String /* None */ = fromCString(
     g_network_service_get_service(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -63,11 +64,13 @@ class NetworkService(raw: Ptr[GNetworkService])
     * Set's the URI scheme used to resolve proxies. By default, the service name
     * is used as scheme.
     */
-  def setScheme(scheme: String | CString)(using Zone): Unit =
-    g_network_service_set_scheme(
-      this.raw.asInstanceOf,
-      __sn_extract_string(scheme).asInstanceOf[Ptr[gchar]]
-    )
+  def setScheme(
+      scheme: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_network_service_set_scheme(
+    this.raw.asInstanceOf,
+    __sn_extract_string(scheme).asInstanceOf[Ptr[gchar]]
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -88,9 +91,12 @@ object NetworkService:
     *   #GSocketConnectable interface to resolve it.
     */
   def apply(
-      service: String | CString,
-      protocol: String | CString,
-      domain: String | CString
+      service: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      protocol: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      domain: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): NetworkService = new NetworkService(
     g_network_service_new(
       __sn_extract_string(service).asInstanceOf[Ptr[gchar]],

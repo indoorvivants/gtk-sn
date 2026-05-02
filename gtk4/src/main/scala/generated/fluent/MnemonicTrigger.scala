@@ -18,13 +18,14 @@ import sn.gnome.gtk4.internal.GtkMnemonicTrigger
   */
 class MnemonicTrigger(raw: Ptr[GtkMnemonicTrigger])
     extends ShortcutTrigger(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the keyval that must be pressed to succeed triggering @self.
     */
-  def getKeyval(): UInt = gtk_mnemonic_trigger_get_keyval(
+  def getKeyval(): UInt /* None */ = gtk_mnemonic_trigger_get_keyval(
     this.raw.asInstanceOf
   ).value
 
@@ -39,7 +40,9 @@ object MnemonicTrigger:
     * Mnemonics are activated by calling code when a key event with the right
     * modifiers is detected.
     */
-  def apply(keyval: UInt): MnemonicTrigger = new MnemonicTrigger(
+  def apply(
+      keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): MnemonicTrigger = new MnemonicTrigger(
     gtk_mnemonic_trigger_new(guint(keyval)).asInstanceOf
   )
 end MnemonicTrigger

@@ -8,7 +8,8 @@ def renderTrait(ns: AugmentedNamespace, iface: AugmentedInterface)(using
     Label[FluentErr]
 ) =
   WithEffects.collect: coll =>
-    val extensions = coll.observe(renderClassExtensions(iface.name, None, iface.implements))
+    val extensions =
+      coll.observe(renderClassExtensions(iface.name, None, iface.implements))
     transact[String]:
       block(
         s"trait ${iface.name}${extensions}:",
@@ -17,8 +18,6 @@ def renderTrait(ns: AugmentedNamespace, iface: AugmentedInterface)(using
         line("def getUnsafeRawPointer(): Ptr[Byte]")
 
       emptyLine()
-
-      // if iface.name == "Icon" then println(iface.virtualMethods)
 
       block(s"object ${iface.name}:", s"end ${iface.name}"):
         block(

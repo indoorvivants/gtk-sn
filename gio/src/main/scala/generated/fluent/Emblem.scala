@@ -19,20 +19,23 @@ import sn.gnome.gobject.fluent.Object
   * may be added in the future.
   */
 class Emblem(raw: Ptr[GEmblem]) extends Object(raw.asInstanceOf), Icon:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gives back the icon from @emblem.
     */
-  def getIcon(): Icon =
+  def getIcon(): Icon /* None */ =
     new Icon.Abstract(g_emblem_get_icon(this.raw.asInstanceOf).asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the origin of the emblem.
     */
-  def getOrigin(): GEmblemOrigin = g_emblem_get_origin(this.raw.asInstanceOf)
+  def getOrigin(): GEmblemOrigin /* None */ = g_emblem_get_origin(
+    this.raw.asInstanceOf
+  )
 
 end Emblem
 
@@ -41,7 +44,7 @@ object Emblem:
     *
     * Creates a new emblem for @icon.
     */
-  def apply(icon: Icon): Emblem = new Emblem(
+  def apply(icon: Icon /* Some(Ptr[GIcon]) */ ): Emblem = new Emblem(
     g_emblem_new(icon.getUnsafeRawPointer().asInstanceOf).asInstanceOf
   )
 
@@ -49,7 +52,10 @@ object Emblem:
     *
     * Creates a new emblem for @icon.
     */
-  def withOrigin(icon: Icon, origin: GEmblemOrigin): Emblem = new Emblem(
+  def withOrigin(
+      icon: Icon /* Some(Ptr[GIcon]) */,
+      origin: GEmblemOrigin /* Some(GEmblemOrigin) */
+  ): Emblem = new Emblem(
     g_emblem_new_with_origin(
       icon.getUnsafeRawPointer().asInstanceOf,
       origin

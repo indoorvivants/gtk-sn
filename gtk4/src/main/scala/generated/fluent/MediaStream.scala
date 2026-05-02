@@ -33,6 +33,7 @@ import sn.gnome.gtk4.internal.GtkMediaStream
 class MediaStream(raw: Ptr[GtkMediaStream])
     extends Object(raw.asInstanceOf),
       Paintable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -44,7 +45,7 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * The media stream must be prepared when this function is called.
     */
-  def ended(): Unit = gtk_media_stream_ended(this.raw.asInstanceOf)
+  def ended(): Unit /* None */ = gtk_media_stream_ended(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -54,11 +55,11 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * that function for details.
     */
   inline def error(
-      domain: GQuark,
-      code: Int,
-      format: String | CString,
+      domain: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
+      code: Int /* Some(CInt) */,
+      format: String | CString /* Some(CString) */,
       args: Any*
-  )(using Zone): Unit = gtk_media_stream_error(
+  )(using Zone): Unit /* None */ = gtk_media_stream_error(
     this.raw.asInstanceOf,
     domain,
     code,
@@ -74,11 +75,11 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * that function for details.
     */
   def errorValist(
-      domain: GQuark,
-      code: Int,
-      format: String | CString,
-      args: CVarArgList
-  )(using Zone): Unit = gtk_media_stream_error_valist(
+      domain: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
+      code: Int /* Some(CInt) */,
+      format: String | CString /* Some(CString) */,
+      args: CVarArgList /* Some(va_list) */
+  )(using Zone): Unit /* None */ = gtk_media_stream_error_valist(
     this.raw.asInstanceOf,
     domain,
     code,
@@ -100,8 +101,9 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * To unset an error, the stream must be reset via a call to
     * [method@Gtk.MediaStream.unprepared].
     */
-  def gerror(error: Ptr[GError]): Unit =
-    gtk_media_stream_gerror(this.raw.asInstanceOf, error)
+  def gerror(
+      error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+  ): Unit /* None */ = gtk_media_stream_gerror(this.raw.asInstanceOf, error)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -109,7 +111,7 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * If the duration is not known, 0 will be returned.
     */
-  def getDuration(): CLongInt = gtk_media_stream_get_duration(
+  def getDuration(): CLongInt /* None */ = gtk_media_stream_get_duration(
     this.raw.asInstanceOf
   ).value
 
@@ -117,7 +119,7 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * Returns whether the streams playback is finished.
     */
-  def getEnded(): Boolean =
+  def getEnded(): Boolean /* None */ =
     gtk_media_stream_get_ended(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -137,7 +139,7 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * will unset errors when a new source is set, e.g. with
     * [method@Gtk.MediaFile.set_file].
     */
-  def getError(): Ptr[GError] = gtk_media_stream_get_error(
+  def getError(): Ptr[GError] /* None */ = gtk_media_stream_get_error(
     this.raw.asInstanceOf
   )
 
@@ -147,7 +149,7 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * See [method@Gtk.MediaStream.set_loop] for details.
     */
-  def getLoop(): Boolean =
+  def getLoop(): Boolean /* None */ =
     gtk_media_stream_get_loop(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -156,21 +158,21 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * See [method@Gtk.MediaStream.set_muted] for details.
     */
-  def getMuted(): Boolean =
+  def getMuted(): Boolean /* None */ =
     gtk_media_stream_get_muted(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Return whether the stream is currently playing.
     */
-  def getPlaying(): Boolean =
+  def getPlaying(): Boolean /* None */ =
     gtk_media_stream_get_playing(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the current presentation timestamp in microseconds.
     */
-  def getTimestamp(): CLongInt = gtk_media_stream_get_timestamp(
+  def getTimestamp(): CLongInt /* None */ = gtk_media_stream_get_timestamp(
     this.raw.asInstanceOf
   ).value
 
@@ -180,20 +182,22 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * See [method@Gtk.MediaStream.set_volume] for details.
     */
-  def getVolume(): Double = gtk_media_stream_get_volume(this.raw.asInstanceOf)
+  def getVolume(): Double /* None */ = gtk_media_stream_get_volume(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the stream has audio.
     */
-  def hasAudio(): Boolean =
+  def hasAudio(): Boolean /* None */ =
     gtk_media_stream_has_audio(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the stream has video.
     */
-  def hasVideo(): Boolean =
+  def hasVideo(): Boolean /* None */ =
     gtk_media_stream_has_video(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -202,7 +206,7 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * At this point the existence of audio and video is known.
     */
-  def isPrepared(): Boolean =
+  def isPrepared(): Boolean /* None */ =
     gtk_media_stream_is_prepared(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -217,14 +221,14 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * It is allowed to call [method@Gtk.MediaStream.seek] on a non-seekable
     * stream, though it will not do anything.
     */
-  def isSeekable(): Boolean =
+  def isSeekable(): Boolean /* None */ =
     gtk_media_stream_is_seekable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if there is currently a seek operation going on.
     */
-  def isSeeking(): Boolean =
+  def isSeeking(): Boolean /* None */ =
     gtk_media_stream_is_seeking(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -233,7 +237,7 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * If the stream is not playing, do nothing.
     */
-  def pause(): Unit = gtk_media_stream_pause(this.raw.asInstanceOf)
+  def pause(): Unit /* None */ = gtk_media_stream_pause(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -241,18 +245,18 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * If the stream is in error or already playing, do nothing.
     */
-  def play(): Unit = gtk_media_stream_play(this.raw.asInstanceOf)
+  def play(): Unit /* None */ = gtk_media_stream_play(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Same as gtk_media_stream_stream_prepared().
     */
   def prepared(
-      has_audio: Boolean,
-      has_video: Boolean,
-      seekable: Boolean,
-      duration: CLongInt
-  ): Unit = gtk_media_stream_prepared(
+      has_audio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      has_video: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      seekable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      duration: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
+  ): Unit /* None */ = gtk_media_stream_prepared(
     this.raw.asInstanceOf,
     gboolean(gint((if has_audio == true then 1 else 0))),
     gboolean(gint((if has_video == true then 1 else 0))),
@@ -278,7 +282,9 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * It is not required to call this function to make a media stream work.
     */
-  def realize(surface: Surface): Unit = gtk_media_stream_realize(
+  def realize(
+      surface: Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
+  ): Unit /* None */ = gtk_media_stream_realize(
     this.raw.asInstanceOf,
     surface.getUnsafeRawPointer().asInstanceOf
   )
@@ -295,7 +301,9 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * When calling gtk_media_stream_seek() during an ongoing seek operation, the
     * new seek will override any pending seek.
     */
-  def seek(timestamp: CLongInt): Unit =
+  def seek(
+      timestamp: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
+  ): Unit /* None */ =
     gtk_media_stream_seek(this.raw.asInstanceOf, gint64(timestamp))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -308,7 +316,9 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * See [method@Gtk.MediaStream.seek_success] for the other way of ending a
     * seek.
     */
-  def seekFailed(): Unit = gtk_media_stream_seek_failed(this.raw.asInstanceOf)
+  def seekFailed(): Unit /* None */ = gtk_media_stream_seek_failed(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -319,7 +329,9 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * See [method@Gtk.MediaStream.seek_failed] for the other way of ending a
     * seek.
     */
-  def seekSuccess(): Unit = gtk_media_stream_seek_success(this.raw.asInstanceOf)
+  def seekSuccess(): Unit /* None */ = gtk_media_stream_seek_success(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -331,7 +343,9 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * Not all streams may support looping, in particular non-seekable streams.
     * Those streams will ignore the loop setting and just end.
     */
-  def setLoop(loop: Boolean): Unit = gtk_media_stream_set_loop(
+  def setLoop(
+      loop: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_media_stream_set_loop(
     this.raw.asInstanceOf,
     gboolean(gint((if loop == true then 1 else 0)))
   )
@@ -347,7 +361,9 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * If the stream has no audio, calling this function will still work but it
     * will not have an audible effect.
     */
-  def setMuted(muted: Boolean): Unit = gtk_media_stream_set_muted(
+  def setMuted(
+      muted: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_media_stream_set_muted(
     this.raw.asInstanceOf,
     gboolean(gint((if muted == true then 1 else 0)))
   )
@@ -356,7 +372,9 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * Starts or pauses playback of the stream.
     */
-  def setPlaying(playing: Boolean): Unit = gtk_media_stream_set_playing(
+  def setPlaying(
+      playing: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_media_stream_set_playing(
     this.raw.asInstanceOf,
     gboolean(gint((if playing == true then 1 else 0)))
   )
@@ -375,7 +393,7 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * work but it will not have an immediate audible effect. When the stream is
     * unmuted, the new volume setting will take effect.
     */
-  def setVolume(volume: Double): Unit =
+  def setVolume(volume: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_media_stream_set_volume(this.raw.asInstanceOf, volume)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -387,7 +405,9 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * The media stream must be prepared when this function is called.
     */
-  def streamEnded(): Unit = gtk_media_stream_stream_ended(this.raw.asInstanceOf)
+  def streamEnded(): Unit /* None */ = gtk_media_stream_stream_ended(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -403,11 +423,11 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * [method@Gtk.MediaStream.stream_unprepared].
     */
   def streamPrepared(
-      has_audio: Boolean,
-      has_video: Boolean,
-      seekable: Boolean,
-      duration: CLongInt
-  ): Unit = gtk_media_stream_stream_prepared(
+      has_audio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      has_video: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      seekable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      duration: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
+  ): Unit /* None */ = gtk_media_stream_stream_prepared(
     this.raw.asInstanceOf,
     gboolean(gint((if has_audio == true then 1 else 0))),
     gboolean(gint((if has_video == true then 1 else 0))),
@@ -423,7 +443,7 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * This function will also reset any error state the stream was in.
     */
-  def streamUnprepared(): Unit = gtk_media_stream_stream_unprepared(
+  def streamUnprepared(): Unit /* None */ = gtk_media_stream_stream_unprepared(
     this.raw.asInstanceOf
   )
 
@@ -431,7 +451,9 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * Same as gtk_media_stream_stream_unprepared().
     */
-  def unprepared(): Unit = gtk_media_stream_unprepared(this.raw.asInstanceOf)
+  def unprepared(): Unit /* None */ = gtk_media_stream_unprepared(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -439,7 +461,9 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * This causes the stream to release all resources it had allocated from @surface.
     */
-  def unrealize(surface: Surface): Unit = gtk_media_stream_unrealize(
+  def unrealize(
+      surface: Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
+  ): Unit /* None */ = gtk_media_stream_unrealize(
     this.raw.asInstanceOf,
     surface.getUnsafeRawPointer().asInstanceOf
   )
@@ -454,7 +478,9 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     *
     * The media stream must be prepared when this function is called.
     */
-  def update(timestamp: CLongInt): Unit =
+  def update(
+      timestamp: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
+  ): Unit /* None */ =
     gtk_media_stream_update(this.raw.asInstanceOf, gint64(timestamp))
 
   private inline def __sn_extract_string(str: String | CString)(using

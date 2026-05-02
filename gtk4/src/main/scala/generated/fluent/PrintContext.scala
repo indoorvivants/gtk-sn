@@ -86,13 +86,14 @@ import sn.gnome.pango.fluent.Layout
   * ```
   */
 class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a new `PangoContext` that can be used with the `GtkPrintContext`.
     */
-  def createPangoContext(): Context = new Context(
+  def createPangoContext(): Context /* None */ = new Context(
     gtk_print_context_create_pango_context(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -101,7 +102,7 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     * Creates a new `PangoLayout` that is suitable for use with the
     * `GtkPrintContext`.
     */
-  def createPangoLayout(): Layout = new Layout(
+  def createPangoLayout(): Layout /* None */ = new Layout(
     gtk_print_context_create_pango_layout(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -109,23 +110,26 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     *
     * Obtains the cairo context that is associated with the `GtkPrintContext`.
     */
-  def getCairoContext(): Ptr[cairo_t] = gtk_print_context_get_cairo_context(
-    this.raw.asInstanceOf
-  )
+  def getCairoContext(): Ptr[cairo_t] /* None */ =
+    gtk_print_context_get_cairo_context(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Obtains the horizontal resolution of the `GtkPrintContext`, in dots per
     * inch.
     */
-  def getDpiX(): Double = gtk_print_context_get_dpi_x(this.raw.asInstanceOf)
+  def getDpiX(): Double /* None */ = gtk_print_context_get_dpi_x(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Obtains the vertical resolution of the `GtkPrintContext`, in dots per
     * inch.
     */
-  def getDpiY(): Double = gtk_print_context_get_dpi_y(this.raw.asInstanceOf)
+  def getDpiY(): Double /* None */ = gtk_print_context_get_dpi_y(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -134,20 +138,22 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_hard_margins contains an OUT parameter, which is not supported yet"
   )
-  def getHardMargins(using DummyImplicit) = ???
+  private def getHardMargins__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Obtains the height of the `GtkPrintContext`, in pixels.
     */
-  def getHeight(): Double = gtk_print_context_get_height(this.raw.asInstanceOf)
+  def getHeight(): Double /* None */ = gtk_print_context_get_height(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Obtains the `GtkPageSetup` that determines the page dimensions of the
     * `GtkPrintContext`.
     */
-  def getPageSetup(): PageSetup = new PageSetup(
+  def getPageSetup(): PageSetup /* None */ = new PageSetup(
     gtk_print_context_get_page_setup(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -156,7 +162,7 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     * Returns a `PangoFontMap` that is suitable for use with the
     * `GtkPrintContext`.
     */
-  def getPangoFontmap(): FontMap = new FontMap(
+  def getPangoFontmap(): FontMap /* None */ = new FontMap(
     gtk_print_context_get_pango_fontmap(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -164,7 +170,9 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     *
     * Obtains the width of the `GtkPrintContext`, in pixels.
     */
-  def getWidth(): Double = gtk_print_context_get_width(this.raw.asInstanceOf)
+  def getWidth(): Double /* None */ = gtk_print_context_get_width(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -174,7 +182,11 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     * preview, it is not needed for printing, since GTK itself creates a
     * suitable cairo context in that case.
     */
-  def setCairoContext(cr: Ptr[cairo_t], dpi_x: Double, dpi_y: Double): Unit =
+  def setCairoContext(
+      cr: Ptr[cairo_t] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      dpi_x: Double /* Some(Double) */,
+      dpi_y: Double /* Some(Double) */
+  ): Unit /* None */ =
     gtk_print_context_set_cairo_context(this.raw.asInstanceOf, cr, dpi_x, dpi_y)
 
 end PrintContext

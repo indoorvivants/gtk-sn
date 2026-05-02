@@ -64,13 +64,14 @@ class Frame(raw: Ptr[GtkFrame])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the child widget of @frame.
     */
-  def getChild(): Widget = new Widget(
+  def getChild(): Widget /* None */ = new Widget(
     gtk_frame_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -80,7 +81,7 @@ class Frame(raw: Ptr[GtkFrame])
     *
     * If the frame's label widget is not a `GtkLabel`, %NULL is returned.
     */
-  def getLabel()(using Zone): String = fromCString(
+  def getLabel()(using Zone): String /* None */ = fromCString(
     gtk_frame_get_label(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -88,13 +89,15 @@ class Frame(raw: Ptr[GtkFrame])
     *
     * Retrieves the X alignment of the frame’s label.
     */
-  def getLabelAlign(): Float = gtk_frame_get_label_align(this.raw.asInstanceOf)
+  def getLabelAlign(): Float /* None */ = gtk_frame_get_label_align(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the label widget for the frame.
     */
-  def getLabelWidget(): Widget = new Widget(
+  def getLabelWidget(): Widget /* None */ = new Widget(
     gtk_frame_get_label_widget(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -102,9 +105,13 @@ class Frame(raw: Ptr[GtkFrame])
     *
     * Sets the child widget of @frame.
     */
-  def setChild(child: Widget): Unit = gtk_frame_set_child(
+  def setChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_frame_set_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -112,8 +119,14 @@ class Frame(raw: Ptr[GtkFrame])
     * Creates a new `GtkLabel` with the @label and sets it as the frame's label
     * widget.
     */
-  def setLabel(label: String | CString)(using Zone): Unit =
-    gtk_frame_set_label(this.raw.asInstanceOf, __sn_extract_string(label))
+  def setLabel(
+      label: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_frame_set_label(
+    this.raw.asInstanceOf,
+    label
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -121,7 +134,7 @@ class Frame(raw: Ptr[GtkFrame])
     *
     * The default value for a newly created frame is 0.0.
     */
-  def setLabelAlign(xalign: Float): Unit =
+  def setLabelAlign(xalign: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_frame_set_label_align(this.raw.asInstanceOf, xalign.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -131,9 +144,13 @@ class Frame(raw: Ptr[GtkFrame])
     * This is the widget that will appear embedded in the top edge of the frame
     * as a title.
     */
-  def setLabelWidget(label_widget: Widget): Unit = gtk_frame_set_label_widget(
+  def setLabelWidget(
+      label_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_frame_set_label_widget(
     this.raw.asInstanceOf,
-    label_widget.getUnsafeRawPointer().asInstanceOf
+    label_widget
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   private inline def __sn_extract_string(str: String | CString)(using
@@ -153,8 +170,14 @@ object Frame:
     *
     * If @label is %NULL, the label is omitted.
     */
-  def apply(label: String | CString)(using Zone): Frame = new Frame(
-    gtk_frame_new(__sn_extract_string(label)).asInstanceOf
+  def apply(
+      label: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Frame = new Frame(
+    gtk_frame_new(
+      label
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString])
+    ).asInstanceOf
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

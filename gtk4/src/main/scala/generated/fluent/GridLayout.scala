@@ -31,13 +31,14 @@ import sn.gnome.gtk4.internal.GtkGridLayout
   */
 class GridLayout(raw: Ptr[GtkGridLayout])
     extends LayoutManager(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the row set with gtk_grid_layout_set_baseline_row().
     */
-  def getBaselineRow(): Int = gtk_grid_layout_get_baseline_row(
+  def getBaselineRow(): Int /* None */ = gtk_grid_layout_get_baseline_row(
     this.raw.asInstanceOf
   )
 
@@ -45,14 +46,14 @@ class GridLayout(raw: Ptr[GtkGridLayout])
     *
     * Checks whether all columns of @grid should have the same width.
     */
-  def getColumnHomogeneous(): Boolean =
+  def getColumnHomogeneous(): Boolean /* None */ =
     gtk_grid_layout_get_column_homogeneous(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the spacing set with gtk_grid_layout_set_column_spacing().
     */
-  def getColumnSpacing(): UInt = gtk_grid_layout_get_column_spacing(
+  def getColumnSpacing(): UInt /* None */ = gtk_grid_layout_get_column_spacing(
     this.raw.asInstanceOf
   ).value
 
@@ -64,21 +65,23 @@ class GridLayout(raw: Ptr[GtkGridLayout])
     * [method@Gtk.GridLayout.set_row_baseline_position], the default value of
     * %GTK_BASELINE_POSITION_CENTER is returned.
     */
-  def getRowBaselinePosition(row: Int): GtkBaselinePosition =
+  def getRowBaselinePosition(
+      row: Int /* Some(CInt) */
+  ): GtkBaselinePosition /* None */ =
     gtk_grid_layout_get_row_baseline_position(this.raw.asInstanceOf, row)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks whether all rows of @grid should have the same height.
     */
-  def getRowHomogeneous(): Boolean =
+  def getRowHomogeneous(): Boolean /* None */ =
     gtk_grid_layout_get_row_homogeneous(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the spacing set with gtk_grid_layout_set_row_spacing().
     */
-  def getRowSpacing(): UInt = gtk_grid_layout_get_row_spacing(
+  def getRowSpacing(): UInt /* None */ = gtk_grid_layout_get_row_spacing(
     this.raw.asInstanceOf
   ).value
 
@@ -89,24 +92,27 @@ class GridLayout(raw: Ptr[GtkGridLayout])
     * Each row in the grid can have its own local baseline, but only one of
     * those is global, meaning it will be the baseline in the parent of the @grid.
     */
-  def setBaselineRow(row: Int): Unit =
+  def setBaselineRow(row: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_grid_layout_set_baseline_row(this.raw.asInstanceOf, row)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether all columns of @grid should have the same width.
     */
-  def setColumnHomogeneous(homogeneous: Boolean): Unit =
-    gtk_grid_layout_set_column_homogeneous(
-      this.raw.asInstanceOf,
-      gboolean(gint((if homogeneous == true then 1 else 0)))
-    )
+  def setColumnHomogeneous(
+      homogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_grid_layout_set_column_homogeneous(
+    this.raw.asInstanceOf,
+    gboolean(gint((if homogeneous == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the amount of space to insert between consecutive columns.
     */
-  def setColumnSpacing(spacing: UInt): Unit =
+  def setColumnSpacing(
+      spacing: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_grid_layout_set_column_spacing(this.raw.asInstanceOf, guint(spacing))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -114,24 +120,30 @@ class GridLayout(raw: Ptr[GtkGridLayout])
     * Sets how the baseline should be positioned on @row of the grid, in case
     * that row is assigned more space than is requested.
     */
-  def setRowBaselinePosition(row: Int, pos: GtkBaselinePosition): Unit =
+  def setRowBaselinePosition(
+      row: Int /* Some(CInt) */,
+      pos: GtkBaselinePosition /* Some(GtkBaselinePosition) */
+  ): Unit /* None */ =
     gtk_grid_layout_set_row_baseline_position(this.raw.asInstanceOf, row, pos)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether all rows of @grid should have the same height.
     */
-  def setRowHomogeneous(homogeneous: Boolean): Unit =
-    gtk_grid_layout_set_row_homogeneous(
-      this.raw.asInstanceOf,
-      gboolean(gint((if homogeneous == true then 1 else 0)))
-    )
+  def setRowHomogeneous(
+      homogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_grid_layout_set_row_homogeneous(
+    this.raw.asInstanceOf,
+    gboolean(gint((if homogeneous == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the amount of space to insert between consecutive rows.
     */
-  def setRowSpacing(spacing: UInt): Unit =
+  def setRowSpacing(
+      spacing: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_grid_layout_set_row_spacing(this.raw.asInstanceOf, guint(spacing))
 
 end GridLayout

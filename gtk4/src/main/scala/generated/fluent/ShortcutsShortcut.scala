@@ -22,6 +22,7 @@ class ShortcutsShortcut(raw: Ptr[GtkShortcutsShortcut])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ShortcutsShortcut

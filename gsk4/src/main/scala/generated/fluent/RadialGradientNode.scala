@@ -18,15 +18,15 @@ import sn.gnome.gsk4.internal.GskRadialGradientNode
   */
 class RadialGradientNode(raw: Ptr[GskRadialGradientNode])
     extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the center pointer for the gradient.
     */
-  def getCenter(): Ptr[graphene_point_t] = gsk_radial_gradient_node_get_center(
-    this.raw.asInstanceOf
-  )
+  def getCenter(): Ptr[graphene_point_t] /* None */ =
+    gsk_radial_gradient_node_get_center(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -35,19 +35,21 @@ class RadialGradientNode(raw: Ptr[GskRadialGradientNode])
   @annotation.compileTimeOnly(
     "Method get_color_stops contains an OUT parameter, which is not supported yet"
   )
-  def getColorStops(using DummyImplicit) = ???
+  private def getColorStops__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the end value for the gradient.
     */
-  def getEnd(): Float = gsk_radial_gradient_node_get_end(this.raw.asInstanceOf)
+  def getEnd(): Float /* None */ = gsk_radial_gradient_node_get_end(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the horizontal radius for the gradient.
     */
-  def getHradius(): Float = gsk_radial_gradient_node_get_hradius(
+  def getHradius(): Float /* None */ = gsk_radial_gradient_node_get_hradius(
     this.raw.asInstanceOf
   )
 
@@ -55,14 +57,14 @@ class RadialGradientNode(raw: Ptr[GskRadialGradientNode])
     *
     * Retrieves the number of color stops in the gradient.
     */
-  def getNColorStops(): CUnsignedLongInt =
+  def getNColorStops(): CUnsignedLongInt /* None */ =
     gsk_radial_gradient_node_get_n_color_stops(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the start value for the gradient.
     */
-  def getStart(): Float = gsk_radial_gradient_node_get_start(
+  def getStart(): Float /* None */ = gsk_radial_gradient_node_get_start(
     this.raw.asInstanceOf
   )
 
@@ -70,7 +72,7 @@ class RadialGradientNode(raw: Ptr[GskRadialGradientNode])
     *
     * Retrieves the vertical radius for the gradient.
     */
-  def getVradius(): Float = gsk_radial_gradient_node_get_vradius(
+  def getVradius(): Float /* None */ = gsk_radial_gradient_node_get_vradius(
     this.raw.asInstanceOf
   )
 
@@ -86,14 +88,18 @@ object RadialGradientNode:
     * orientation.
     */
   def apply(
-      bounds: Ptr[graphene_rect_t],
-      center: Ptr[graphene_point_t],
-      hradius: Float,
-      vradius: Float,
-      start: Float,
-      end: Float,
-      color_stops: Ptr[GskColorStop],
-      n_color_stops: CUnsignedLongInt
+      bounds: Ptr[
+        graphene_rect_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
+      center: Ptr[
+        graphene_point_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
+      hradius: Float /* Some(Float) */,
+      vradius: Float /* Some(Float) */,
+      start: Float /* Some(Float) */,
+      end: Float /* Some(Float) */,
+      color_stops: Ptr[GskColorStop /* None */ ] /* Some(Ptr[GskColorStop]) */,
+      n_color_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): RadialGradientNode = new RadialGradientNode(
     gsk_radial_gradient_node_new(
       bounds,

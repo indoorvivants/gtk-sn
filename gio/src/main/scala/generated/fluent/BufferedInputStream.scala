@@ -37,6 +37,7 @@ import sn.gnome.glib.internal.gssize
 class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     extends FilterInputStream(raw.asInstanceOf),
       Seekable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -66,15 +67,19 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     * For the asynchronous, non-blocking, version of this function, see
     * g_buffered_input_stream_fill_async().
     */
-  def fill(count: CLongInt, cancellable: Cancellable): GResult[CLongInt] =
-    GResult.wrap(__errorPtr =>
-      g_buffered_input_stream_fill(
-        this.raw.asInstanceOf,
-        gssize(count),
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value
-    )
+  def fill(
+      count: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
+    g_buffered_input_stream_fill(
+      this.raw.asInstanceOf,
+      gssize(count),
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
+    ).value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -87,46 +92,54 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     * bytes that are required to fill the buffer.
     */
   def fillAsync(
-      count: CLongInt,
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_buffered_input_stream_fill_async(
+      count: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */,
+      io_priority: Int /* Some(CInt) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_buffered_input_stream_fill_async(
     this.raw.asInstanceOf,
     gssize(count),
     io_priority,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes an asynchronous read.
     */
-  def fillFinish(result: AsyncResult): GResult[CLongInt] =
-    GResult.wrap(__errorPtr =>
-      g_buffered_input_stream_fill_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value
-    )
+  def fillFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
+    g_buffered_input_stream_fill_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the size of the available data within the stream.
     */
-  def getAvailable(): CUnsignedLongInt = g_buffered_input_stream_get_available(
-    this.raw.asInstanceOf
-  ).value
+  def getAvailable(): CUnsignedLongInt /* None */ =
+    g_buffered_input_stream_get_available(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the size of the input buffer.
     */
-  def getBufferSize(): CUnsignedLongInt =
+  def getBufferSize(): CUnsignedLongInt /* None */ =
     g_buffered_input_stream_get_buffer_size(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -138,7 +151,7 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
   @annotation.compileTimeOnly(
     "Method peek_buffer contains an OUT parameter, which is not supported yet"
   )
-  def peekBuffer(using DummyImplicit) = ???
+  private def peekBuffer__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -156,14 +169,17 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     *
     * On error -1 is returned and @error is set accordingly.
     */
-  def readByte(cancellable: Cancellable): GResult[Int] =
-    GResult.wrap(__errorPtr =>
-      g_buffered_input_stream_read_byte(
-        this.raw.asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      )
+  def readByte(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
+    g_buffered_input_stream_read_byte(
+      this.raw.asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -171,7 +187,9 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     * of the contents of the buffer. The buffer can never be resized smaller
     * than its current contents.
     */
-  def setBufferSize(size: CUnsignedLongInt): Unit =
+  def setBufferSize(
+      size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
+  ): Unit /* None */ =
     g_buffered_input_stream_set_buffer_size(this.raw.asInstanceOf, gsize(size))
 
 end BufferedInputStream
@@ -182,12 +200,13 @@ object BufferedInputStream:
     * Creates a new #GInputStream from the given @base_stream, with a buffer set
     * to the default size (4 kilobytes).
     */
-  def apply(base_stream: InputStream): BufferedInputStream =
-    new BufferedInputStream(
-      g_buffered_input_stream_new(
-        base_stream.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def apply(
+      base_stream: InputStream /* Some(Ptr[GInputStream]) */
+  ): BufferedInputStream = new BufferedInputStream(
+    g_buffered_input_stream_new(
+      base_stream.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -195,8 +214,8 @@ object BufferedInputStream:
     * buffer set to @size.
     */
   def sized(
-      base_stream: InputStream,
-      size: CUnsignedLongInt
+      base_stream: InputStream /* Some(Ptr[GInputStream]) */,
+      size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): BufferedInputStream = new BufferedInputStream(
     g_buffered_input_stream_new_sized(
       base_stream.getUnsafeRawPointer().asInstanceOf,

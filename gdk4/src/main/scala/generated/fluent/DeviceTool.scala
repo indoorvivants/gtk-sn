@@ -16,13 +16,16 @@ import sn.gnome.gobject.fluent.Object
   * A physical tool associated to a `GdkDevice`.
   */
 class DeviceTool(raw: Ptr[GdkDeviceTool]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the axes of the tool.
     */
-  def getAxes(): GdkAxisFlags = gdk_device_tool_get_axes(this.raw.asInstanceOf)
+  def getAxes(): GdkAxisFlags /* None */ = gdk_device_tool_get_axes(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -37,9 +40,8 @@ class DeviceTool(raw: Ptr[GdkDeviceTool]) extends Object(raw.asInstanceOf):
     * may support multiple devices with the same `GdkDeviceToolType`, but
     * different hardware identifiers.
     */
-  def getHardwareId(): CUnsignedLongInt = gdk_device_tool_get_hardware_id(
-    this.raw.asInstanceOf
-  ).value
+  def getHardwareId(): CUnsignedLongInt /* None */ =
+    gdk_device_tool_get_hardware_id(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -48,7 +50,7 @@ class DeviceTool(raw: Ptr[GdkDeviceTool]) extends Object(raw.asInstanceOf):
     * This value can be used to identify a physical tool (eg. a tablet pen)
     * across program executions.
     */
-  def getSerial(): CUnsignedLongInt = gdk_device_tool_get_serial(
+  def getSerial(): CUnsignedLongInt /* None */ = gdk_device_tool_get_serial(
     this.raw.asInstanceOf
   ).value
 
@@ -56,8 +58,7 @@ class DeviceTool(raw: Ptr[GdkDeviceTool]) extends Object(raw.asInstanceOf):
     *
     * Gets the `GdkDeviceToolType` of the tool.
     */
-  def getToolType(): GdkDeviceToolType = gdk_device_tool_get_tool_type(
-    this.raw.asInstanceOf
-  )
+  def getToolType(): GdkDeviceToolType /* None */ =
+    gdk_device_tool_get_tool_type(this.raw.asInstanceOf)
 
 end DeviceTool

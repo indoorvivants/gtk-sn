@@ -61,6 +61,7 @@ import sn.gnome.gobject.fluent.Object
   *  A notification can be sent with g_application_send_notification().
   */
 class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -73,9 +74,12 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     *
     * See g_action_parse_detailed_name() for a description of the format for @detailed_action.
     */
-  def addButton(label: String | CString, detailed_action: String | CString)(
-      using Zone
-  ): Unit = g_notification_add_button(
+  def addButton(
+      label: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      detailed_action: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_notification_add_button(
     this.raw.asInstanceOf,
     __sn_extract_string(label).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(detailed_action).asInstanceOf[Ptr[gchar]]
@@ -92,15 +96,23 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * will be activated with that #GVariant as its parameter.
     */
   inline def addButtonWithTarget(
-      label: String | CString,
-      action: String | CString,
-      target_format: String | CString,
+      label: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      action: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      target_format: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
       args: Any*
-  )(using Zone): Unit = g_notification_add_button_with_target(
+  )(using Zone): Unit /* None */ = g_notification_add_button_with_target(
     this.raw.asInstanceOf,
     __sn_extract_string(label).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(action).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(target_format).asInstanceOf[Ptr[gchar]],
+    target_format
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
     args*
   )
 
@@ -114,25 +126,38 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * parameter.
     */
   def addButtonWithTargetValue(
-      label: String | CString,
-      action: String | CString,
-      target: Ptr[GVariant]
-  )(using Zone): Unit = g_notification_add_button_with_target_value(
+      label: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      action: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      target: Option[
+        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  )(using Zone): Unit /* None */ = g_notification_add_button_with_target_value(
     this.raw.asInstanceOf,
     __sn_extract_string(label).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(action).asInstanceOf[Ptr[gchar]],
     target
+      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the body of @notification to @body.
     */
-  def setBody(body: String | CString)(using Zone): Unit =
-    g_notification_set_body(
-      this.raw.asInstanceOf,
-      __sn_extract_string(body).asInstanceOf[Ptr[gchar]]
-    )
+  def setBody(
+      body: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
+  )(using Zone): Unit /* None */ = g_notification_set_body(
+    this.raw.asInstanceOf,
+    body
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -144,11 +169,18 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * Standard categories are [listed in the
     * specification](https://specifications.freedesktop.org/notification-spec/latest/ar01s06.html).
     */
-  def setCategory(category: String | CString)(using Zone): Unit =
-    g_notification_set_category(
-      this.raw.asInstanceOf,
-      __sn_extract_string(category).asInstanceOf[Ptr[gchar]]
-    )
+  def setCategory(
+      category: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
+  )(using Zone): Unit /* None */ = g_notification_set_category(
+    this.raw.asInstanceOf,
+    category
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -163,11 +195,13 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * When no default action is set, the application that the notification was
     * sent on is activated.
     */
-  def setDefaultAction(detailed_action: String | CString)(using Zone): Unit =
-    g_notification_set_default_action(
-      this.raw.asInstanceOf,
-      __sn_extract_string(detailed_action).asInstanceOf[Ptr[gchar]]
-    )
+  def setDefaultAction(
+      detailed_action: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_notification_set_default_action(
+    this.raw.asInstanceOf,
+    __sn_extract_string(detailed_action).asInstanceOf[Ptr[gchar]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -183,13 +217,20 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * sent on is activated.
     */
   inline def setDefaultActionAndTarget(
-      action: String | CString,
-      target_format: String | CString,
+      action: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      target_format: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
       args: Any*
-  )(using Zone): Unit = g_notification_set_default_action_and_target(
+  )(using Zone): Unit /* None */ = g_notification_set_default_action_and_target(
     this.raw.asInstanceOf,
     __sn_extract_string(action).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(target_format).asInstanceOf[Ptr[gchar]],
+    target_format
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
     args*
   )
 
@@ -206,46 +247,61 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * sent on is activated.
     */
   def setDefaultActionAndTargetValue(
-      action: String | CString,
-      target: Ptr[GVariant]
-  )(using Zone): Unit = g_notification_set_default_action_and_target_value(
-    this.raw.asInstanceOf,
-    __sn_extract_string(action).asInstanceOf[Ptr[gchar]],
-    target
-  )
+      action: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      target: Option[
+        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  )(using Zone): Unit /* None */ =
+    g_notification_set_default_action_and_target_value(
+      this.raw.asInstanceOf,
+      __sn_extract_string(action).asInstanceOf[Ptr[gchar]],
+      target
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the icon of @notification to @icon.
     */
-  def setIcon(icon: Icon): Unit = g_notification_set_icon(
-    this.raw.asInstanceOf,
-    icon.getUnsafeRawPointer().asInstanceOf
-  )
+  def setIcon(icon: Icon /* Some(Ptr[GIcon]) */ ): Unit /* None */ =
+    g_notification_set_icon(
+      this.raw.asInstanceOf,
+      icon.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the priority of @notification to @priority. See
     * #GNotificationPriority for possible values.
     */
-  def setPriority(priority: GNotificationPriority): Unit =
+  def setPriority(
+      priority: GNotificationPriority /* Some(GNotificationPriority) */
+  ): Unit /* None */ =
     g_notification_set_priority(this.raw.asInstanceOf, priority)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the title of @notification to @title.
     */
-  def setTitle(title: String | CString)(using Zone): Unit =
-    g_notification_set_title(
-      this.raw.asInstanceOf,
-      __sn_extract_string(title).asInstanceOf[Ptr[gchar]]
-    )
+  def setTitle(
+      title: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ = g_notification_set_title(
+    this.raw.asInstanceOf,
+    __sn_extract_string(title).asInstanceOf[Ptr[gchar]]
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Deprecated in favor of g_notification_set_priority().
     */
-  def setUrgent(urgent: Boolean): Unit = g_notification_set_urgent(
+  def setUrgent(
+      urgent: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = g_notification_set_urgent(
     this.raw.asInstanceOf,
     gboolean(gint((if urgent == true then 1 else 0)))
   )
@@ -269,12 +325,14 @@ object Notification:
     * desktop shell with g_application_send_notification(). Changing any
     * properties after this call will not have any effect until resending @notification.
     */
-  def apply(title: String | CString)(using Zone): Notification =
-    new Notification(
-      g_notification_new(
-        __sn_extract_string(title).asInstanceOf[Ptr[gchar]]
-      ).asInstanceOf
-    )
+  def apply(
+      title: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Notification = new Notification(
+    g_notification_new(
+      __sn_extract_string(title).asInstanceOf[Ptr[gchar]]
+    ).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

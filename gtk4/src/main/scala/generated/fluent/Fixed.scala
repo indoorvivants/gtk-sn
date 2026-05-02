@@ -52,6 +52,7 @@ class Fixed(raw: Ptr[GtkFixed])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -64,25 +65,30 @@ class Fixed(raw: Ptr[GtkFixed])
   @annotation.compileTimeOnly(
     "Method get_child_position contains an OUT parameter, which is not supported yet"
   )
-  def getChildPosition(using DummyImplicit) = ???
+  private def getChildPosition__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the transformation for @widget set using
     * gtk_fixed_set_child_transform().
     */
-  def getChildTransform(widget: Widget): Ptr[GskTransform] =
-    gtk_fixed_get_child_transform(
-      this.raw.asInstanceOf,
-      widget.getUnsafeRawPointer().asInstanceOf
-    )
+  def getChildTransform(
+      widget: Widget /* Some(Ptr[GtkWidget]) */
+  ): Ptr[GskTransform] /* None */ = gtk_fixed_get_child_transform(
+    this.raw.asInstanceOf,
+    widget.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets a translation transformation to the given @x and @y coordinates to
     * the child @widget of the `GtkFixed`.
     */
-  def move(widget: Widget, x: Double, y: Double): Unit = gtk_fixed_move(
+  def move(
+      widget: Widget /* Some(Ptr[GtkWidget]) */,
+      x: Double /* Some(Double) */,
+      y: Double /* Some(Double) */
+  ): Unit /* None */ = gtk_fixed_move(
     this.raw.asInstanceOf,
     widget.getUnsafeRawPointer().asInstanceOf,
     x,
@@ -93,7 +99,11 @@ class Fixed(raw: Ptr[GtkFixed])
     *
     * Adds a widget to a `GtkFixed` at the given position.
     */
-  def put(widget: Widget, x: Double, y: Double): Unit = gtk_fixed_put(
+  def put(
+      widget: Widget /* Some(Ptr[GtkWidget]) */,
+      x: Double /* Some(Double) */,
+      y: Double /* Some(Double) */
+  ): Unit /* None */ = gtk_fixed_put(
     this.raw.asInstanceOf,
     widget.getUnsafeRawPointer().asInstanceOf,
     x,
@@ -104,10 +114,11 @@ class Fixed(raw: Ptr[GtkFixed])
     *
     * Removes a child from @fixed.
     */
-  def remove(widget: Widget): Unit = gtk_fixed_remove(
-    this.raw.asInstanceOf,
-    widget.getUnsafeRawPointer().asInstanceOf
-  )
+  def remove(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_fixed_remove(
+      this.raw.asInstanceOf,
+      widget.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -118,12 +129,20 @@ class Fixed(raw: Ptr[GtkFixed])
     * @widget
     *   and calls [method@Gtk.FixedLayoutChild.set_transform].
     */
-  def setChildTransform(widget: Widget, transform: Ptr[GskTransform]): Unit =
-    gtk_fixed_set_child_transform(
-      this.raw.asInstanceOf,
-      widget.getUnsafeRawPointer().asInstanceOf,
-      transform
-    )
+  def setChildTransform(
+      widget: Widget /* Some(Ptr[GtkWidget]) */,
+      transform: Option[Ptr[
+        GskTransform
+      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]) */ ]
+  ): Unit /* None */ = gtk_fixed_set_child_transform(
+    this.raw.asInstanceOf,
+    widget.getUnsafeRawPointer().asInstanceOf,
+    transform
+      .map[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]](o => o)
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]]
+      )
+  )
 
 end Fixed
 

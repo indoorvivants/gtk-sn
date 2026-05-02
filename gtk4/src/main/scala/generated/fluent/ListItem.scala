@@ -31,13 +31,14 @@ import sn.gnome.gtk4.internal.GtkListItem
   *      The [property@Gtk.ListItem:item] property is not %NULL.
   */
 class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the accessible description of @self.
     */
-  def getAccessibleDescription()(using Zone): String = fromCString(
+  def getAccessibleDescription()(using Zone): String /* None */ = fromCString(
     gtk_list_item_get_accessible_description(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -45,7 +46,7 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     *
     * Gets the accessible label of @self.
     */
-  def getAccessibleLabel()(using Zone): String = fromCString(
+  def getAccessibleLabel()(using Zone): String /* None */ = fromCString(
     gtk_list_item_get_accessible_label(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -54,7 +55,7 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * Checks if a list item has been set to be activatable via
     * gtk_list_item_set_activatable().
     */
-  def getActivatable(): Boolean =
+  def getActivatable(): Boolean /* None */ =
     gtk_list_item_get_activatable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -62,7 +63,7 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * Gets the child previously set via gtk_list_item_set_child() or %NULL if
     * none was set.
     */
-  def getChild(): Widget = new Widget(
+  def getChild(): Widget /* None */ = new Widget(
     gtk_list_item_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -71,7 +72,7 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * Checks if a list item has been set to be focusable via
     * gtk_list_item_set_focusable().
     */
-  def getFocusable(): Boolean =
+  def getFocusable(): Boolean /* None */ =
     gtk_list_item_get_focusable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -80,7 +81,7 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     *
     * If @self is unbound, this function returns %NULL.
     */
-  def getItem(): Object = new Object(
+  def getItem(): Object /* None */ = new Object(
     gtk_list_item_get_item(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -90,7 +91,7 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     *
     * If @self is unbound, %GTK_INVALID_LIST_POSITION is returned.
     */
-  def getPosition(): UInt = gtk_list_item_get_position(
+  def getPosition(): UInt /* None */ = gtk_list_item_get_position(
     this.raw.asInstanceOf
   ).value
 
@@ -101,7 +102,7 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     *
     * Do not confuse this function with [method@Gtk.ListItem.get_selected].
     */
-  def getSelectable(): Boolean =
+  def getSelectable(): Boolean /* None */ =
     gtk_list_item_get_selectable(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -111,7 +112,7 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * The selected state is maintained by the liste widget and its model and
     * cannot be set otherwise.
     */
-  def getSelected(): Boolean =
+  def getSelected(): Boolean /* None */ =
     gtk_list_item_get_selected(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -120,8 +121,8 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * e.g. screen readers.
     */
   def setAccessibleDescription(
-      description: String | CString
-  )(using Zone): Unit = gtk_list_item_set_accessible_description(
+      description: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_list_item_set_accessible_description(
     this.raw.asInstanceOf,
     __sn_extract_string(description)
   )
@@ -131,11 +132,12 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * Sets the accessible label for the list item, which may be used by e.g.
     * screen readers.
     */
-  def setAccessibleLabel(label: String | CString)(using Zone): Unit =
-    gtk_list_item_set_accessible_label(
-      this.raw.asInstanceOf,
-      __sn_extract_string(label)
-    )
+  def setAccessibleLabel(
+      label: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_list_item_set_accessible_label(
+    this.raw.asInstanceOf,
+    __sn_extract_string(label)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -148,11 +150,12 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     *
     * By default, list items are activatable.
     */
-  def setActivatable(activatable: Boolean): Unit =
-    gtk_list_item_set_activatable(
-      this.raw.asInstanceOf,
-      gboolean(gint((if activatable == true then 1 else 0)))
-    )
+  def setActivatable(
+      activatable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_list_item_set_activatable(
+    this.raw.asInstanceOf,
+    gboolean(gint((if activatable == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -161,9 +164,13 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * This function is typically called by applications when setting up a
     * listitem so that the widget can be reused when binding it multiple times.
     */
-  def setChild(child: Widget): Unit = gtk_list_item_set_child(
+  def setChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_list_item_set_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -179,7 +186,9 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     *
     * By default, list items are focusable.
     */
-  def setFocusable(focusable: Boolean): Unit = gtk_list_item_set_focusable(
+  def setFocusable(
+      focusable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_list_item_set_focusable(
     this.raw.asInstanceOf,
     gboolean(gint((if focusable == true then 1 else 0)))
   )
@@ -198,7 +207,9 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * By default, list items are selectable. When rebinding them to a new item,
     * they will also be reset to be selectable by GTK.
     */
-  def setSelectable(selectable: Boolean): Unit = gtk_list_item_set_selectable(
+  def setSelectable(
+      selectable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_list_item_set_selectable(
     this.raw.asInstanceOf,
     gboolean(gint((if selectable == true then 1 else 0)))
   )

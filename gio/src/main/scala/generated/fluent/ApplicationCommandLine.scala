@@ -179,6 +179,7 @@ import sn.gnome.gobject.fluent.Object
   */
 class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -190,13 +191,14 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * relative pathnames using the current working directory of the invoking
     * process rather than the local process.
     */
-  def createFileForArg(arg: String | CString)(using Zone): File =
-    new File.Abstract(
-      g_application_command_line_create_file_for_arg(
-        this.raw.asInstanceOf,
-        __sn_extract_string(arg).asInstanceOf[Ptr[gchar]]
-      ).asInstanceOf
-    )
+  def createFileForArg(
+      arg: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): File /* None */ = new File.Abstract(
+    g_application_command_line_create_file_for_arg(
+      this.raw.asInstanceOf,
+      __sn_extract_string(arg).asInstanceOf[Ptr[gchar]]
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -215,7 +217,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
   @annotation.compileTimeOnly(
     "Method get_arguments contains an OUT parameter, which is not supported yet"
   )
-  def getArguments(using DummyImplicit) = ???
+  private def getArguments__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -228,7 +230,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * The return value should not be modified or freed and is valid for as long
     * as @cmdline exists.
     */
-  def getCwd()(using Zone): String = fromCString(
+  def getCwd()(using Zone): String /* None */ = fromCString(
     g_application_command_line_get_cwd(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -237,15 +239,14 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * Gets the exit status of @cmdline. See
     * g_application_command_line_set_exit_status() for more information.
     */
-  def getExitStatus(): Int = g_application_command_line_get_exit_status(
-    this.raw.asInstanceOf
-  )
+  def getExitStatus(): Int /* None */ =
+    g_application_command_line_get_exit_status(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Determines if @cmdline represents a remote invocation.
     */
-  def getIsRemote(): Boolean =
+  def getIsRemote(): Boolean /* None */ =
     g_application_command_line_get_is_remote(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -263,7 +264,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * The data has been passed via an untrusted external process, so the types
     * of all values must be checked before being used.
     */
-  def getOptionsDict(): Ptr[GVariantDict] =
+  def getOptionsDict(): Ptr[GVariantDict] /* None */ =
     g_application_command_line_get_options_dict(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -279,7 +280,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     *
     * For local invocation, it will be %NULL.
     */
-  def getPlatformData(): Ptr[GVariant] =
+  def getPlatformData(): Ptr[GVariant] /* None */ =
     g_application_command_line_get_platform_data(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -294,7 +295,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     *
     * You must only call this function once per commandline invocation.
     */
-  def getStdin(): InputStream = new InputStream(
+  def getStdin(): InputStream /* None */ = new InputStream(
     g_application_command_line_get_stdin(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -312,7 +313,10 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * The return value should not be modified or freed and is valid for as long
     * as @cmdline exists.
     */
-  def getenv(name: String | CString)(using Zone): String = fromCString(
+  def getenv(
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): String /* None */ = fromCString(
     g_application_command_line_getenv(
       this.raw.asInstanceOf,
       __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
@@ -328,12 +332,15 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * g_print(). If @cmdline is remote then this is equivalent to calling
     * g_print() in the invoking process.
     */
-  inline def print(format: String | CString, args: Any*)(using Zone): Unit =
-    g_application_command_line_print(
-      this.raw.asInstanceOf,
-      __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
-      args*
-    )
+  inline def print(
+      format: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      args: Any*
+  )(using Zone): Unit /* None */ = g_application_command_line_print(
+    this.raw.asInstanceOf,
+    __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
+    args*
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -344,12 +351,15 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * g_printerr(). If @cmdline is remote then this is equivalent to calling
     * g_printerr() in the invoking process.
     */
-  inline def printerr(format: String | CString, args: Any*)(using Zone): Unit =
-    g_application_command_line_printerr(
-      this.raw.asInstanceOf,
-      __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
-      args*
-    )
+  inline def printerr(
+      format: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      args: Any*
+  )(using Zone): Unit /* None */ = g_application_command_line_printerr(
+    this.raw.asInstanceOf,
+    __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
+    args*
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -374,7 +384,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * the application use count is zero, though, the exit status of the local
     * #GApplicationCommandLine is used.
     */
-  def setExitStatus(exit_status: Int): Unit =
+  def setExitStatus(exit_status: Int /* Some(CInt) */ ): Unit /* None */ =
     g_application_command_line_set_exit_status(
       this.raw.asInstanceOf,
       exit_status

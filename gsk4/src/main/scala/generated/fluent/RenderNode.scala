@@ -30,6 +30,7 @@ import sn.gnome.gsk4.internal.GskRenderNodeType
   * properties during construction.
   */
 class RenderNode(raw: Ptr[GskRenderNode]):
+
   def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -43,8 +44,9 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * For advanced nodes that cannot be supported using Cairo, in particular for
     * nodes doing 3D operations, this function may fail.
     */
-  def draw(cr: Ptr[cairo_t]): Unit =
-    gsk_render_node_draw(this.raw.asInstanceOf, cr)
+  def draw(
+      cr: Ptr[cairo_t] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */
+  ): Unit /* None */ = gsk_render_node_draw(this.raw.asInstanceOf, cr)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -55,21 +57,20 @@ class RenderNode(raw: Ptr[GskRenderNode]):
   @annotation.compileTimeOnly(
     "Method get_bounds contains an OUT parameter, which is not supported yet"
   )
-  def getBounds(using DummyImplicit) = ???
+  private def getBounds__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the type of the @node.
     */
-  def getNodeType(): GskRenderNodeType = gsk_render_node_get_node_type(
-    this.raw.asInstanceOf
-  )
+  def getNodeType(): GskRenderNodeType /* None */ =
+    gsk_render_node_get_node_type(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Acquires a reference on the given `GskRenderNode`.
     */
-  def ref(): RenderNode = new RenderNode(
+  def ref(): RenderNode /* None */ = new RenderNode(
     gsk_render_node_ref(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -85,7 +86,7 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * The intended use of this functions is testing, benchmarking and debugging.
     * The format is not meant as a permanent storage format.
     */
-  def serialize(): Ptr[GBytes] = gsk_render_node_serialize(
+  def serialize(): Ptr[GBytes] /* None */ = gsk_render_node_serialize(
     this.raw.asInstanceOf
   )
 
@@ -96,7 +97,7 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * If the reference was the last, the resources associated to the @node are
     * freed.
     */
-  def unref(): Unit = gsk_render_node_unref(this.raw.asInstanceOf)
+  def unref(): Unit /* None */ = gsk_render_node_unref(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -108,14 +109,15 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * It is mostly intended for use inside a debugger to quickly dump a render
     * node to a file for later inspection.
     */
-  def writeToFile(filename: String | CString)(using Zone): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      gsk_render_node_write_to_file(
-        this.raw.asInstanceOf,
-        __sn_extract_string(filename),
-        __errorPtr
-      ).value.!=(0)
-    )
+  def writeToFile(
+      filename: String | CString /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    gsk_render_node_write_to_file(
+      this.raw.asInstanceOf,
+      __sn_extract_string(filename),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

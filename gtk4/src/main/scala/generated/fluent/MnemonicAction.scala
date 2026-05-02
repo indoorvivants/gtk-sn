@@ -13,6 +13,7 @@ import sn.gnome.gtk4.internal.GtkMnemonicAction
   */
 class MnemonicAction(raw: Ptr[GtkMnemonicAction])
     extends ShortcutAction(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end MnemonicAction

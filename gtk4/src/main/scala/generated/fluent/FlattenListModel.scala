@@ -23,13 +23,14 @@ class FlattenListModel(raw: Ptr[GtkFlattenListModel])
     extends Object(raw.asInstanceOf),
       ListModel,
       SectionModel:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the model set via gtk_flatten_list_model_set_model().
     */
-  def getModel(): ListModel = new ListModel.Abstract(
+  def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_flatten_list_model_get_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -37,7 +38,9 @@ class FlattenListModel(raw: Ptr[GtkFlattenListModel])
     *
     * Returns the model containing the item at the given position.
     */
-  def getModelForItem(position: UInt): ListModel = new ListModel.Abstract(
+  def getModelForItem(
+      position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): ListModel /* None */ = new ListModel.Abstract(
     gtk_flatten_list_model_get_model_for_item(
       this.raw.asInstanceOf,
       guint(position)
@@ -48,9 +51,19 @@ class FlattenListModel(raw: Ptr[GtkFlattenListModel])
     *
     * Sets a new model to be flattened.
     */
-  def setModel(model: ListModel): Unit = gtk_flatten_list_model_set_model(
+  def setModel(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ]
+  ): Unit /* None */ = gtk_flatten_list_model_set_model(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf
+    model
+      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+      )
   )
 
 end FlattenListModel
@@ -60,9 +73,19 @@ object FlattenListModel:
     *
     * Creates a new `GtkFlattenListModel` that flattens @list.
     */
-  def apply(model: ListModel): FlattenListModel = new FlattenListModel(
+  def apply(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ]
+  ): FlattenListModel = new FlattenListModel(
     gtk_flatten_list_model_new(
-      model.getUnsafeRawPointer().asInstanceOf
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        )
     ).asInstanceOf
   )
 end FlattenListModel

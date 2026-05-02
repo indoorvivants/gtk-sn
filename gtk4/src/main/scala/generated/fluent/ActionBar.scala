@@ -58,13 +58,14 @@ class ActionBar(raw: Ptr[GtkActionBar])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the center bar widget of the bar.
     */
-  def getCenterWidget(): Widget = new Widget(
+  def getCenterWidget(): Widget /* None */ = new Widget(
     gtk_action_bar_get_center_widget(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -72,45 +73,51 @@ class ActionBar(raw: Ptr[GtkActionBar])
     *
     * Gets whether the contents of the action bar are revealed.
     */
-  def getRevealed(): Boolean =
+  def getRevealed(): Boolean /* None */ =
     gtk_action_bar_get_revealed(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Adds @child to @action_bar, packed with reference to the end of the @action_bar.
     */
-  def packEnd(child: Widget): Unit = gtk_action_bar_pack_end(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def packEnd(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_action_bar_pack_end(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Adds @child to @action_bar, packed with reference to the start of the @action_bar.
     */
-  def packStart(child: Widget): Unit = gtk_action_bar_pack_start(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def packStart(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_action_bar_pack_start(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes a child from @action_bar.
     */
-  def remove(child: Widget): Unit = gtk_action_bar_remove(
-    this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+  def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_action_bar_remove(
+      this.raw.asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the center widget for the `GtkActionBar`.
     */
-  def setCenterWidget(center_widget: Widget): Unit =
-    gtk_action_bar_set_center_widget(
-      this.raw.asInstanceOf,
-      center_widget.getUnsafeRawPointer().asInstanceOf
-    )
+  def setCenterWidget(
+      center_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_action_bar_set_center_widget(
+    this.raw.asInstanceOf,
+    center_widget
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -120,7 +127,9 @@ class ActionBar(raw: Ptr[GtkActionBar])
     * [property@Gtk.Widget:visible] sense, so revealing has no effect if the
     * action bar is hidden.
     */
-  def setRevealed(revealed: Boolean): Unit = gtk_action_bar_set_revealed(
+  def setRevealed(
+      revealed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_action_bar_set_revealed(
     this.raw.asInstanceOf,
     gboolean(gint((if revealed == true then 1 else 0)))
   )

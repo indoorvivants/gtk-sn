@@ -22,6 +22,7 @@ import sn.gnome.gio.internal.GSimpleIOStream
   */
 class SimpleIOStream(raw: Ptr[GSimpleIOStream])
     extends IOStream(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end SimpleIOStream
@@ -33,8 +34,8 @@ object SimpleIOStream:
     * See also #GIOStream.
     */
   def apply(
-      input_stream: InputStream,
-      output_stream: OutputStream
+      input_stream: InputStream /* Some(Ptr[GInputStream]) */,
+      output_stream: OutputStream /* Some(Ptr[GOutputStream]) */
   ): SimpleIOStream = new SimpleIOStream(
     g_simple_io_stream_new(
       input_stream.getUnsafeRawPointer().asInstanceOf,

@@ -29,6 +29,7 @@ import sn.gnome.gtk4.internal.GtkNativeDialog
   * a reference until you are done with the object.
   */
 class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -45,20 +46,22 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
     * destroying a `GtkWindow`) because there is no reference from the windowing
     * system to the `GtkNativeDialog`.
     */
-  def destroy(): Unit = gtk_native_dialog_destroy(this.raw.asInstanceOf)
+  def destroy(): Unit /* None */ = gtk_native_dialog_destroy(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the dialog is modal.
     */
-  def getModal(): Boolean =
+  def getModal(): Boolean /* None */ =
     gtk_native_dialog_get_modal(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the title of the `GtkNativeDialog`.
     */
-  def getTitle()(using Zone): String = fromCString(
+  def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_native_dialog_get_title(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -66,7 +69,7 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
     *
     * Fetches the transient parent for this window.
     */
-  def getTransientFor(): Window = new Window(
+  def getTransientFor(): Window /* None */ = new Window(
     gtk_native_dialog_get_transient_for(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -74,7 +77,7 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
     *
     * Determines whether the dialog is visible.
     */
-  def getVisible(): Boolean =
+  def getVisible(): Boolean /* None */ =
     gtk_native_dialog_get_visible(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -87,7 +90,7 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
     *
     * If the dialog is not visible this does nothing.
     */
-  def hide(): Unit = gtk_native_dialog_hide(this.raw.asInstanceOf)
+  def hide(): Unit /* None */ = gtk_native_dialog_hide(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -99,7 +102,9 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
     * for the parent; most window managers will then disallow lowering the
     * dialog below the parent.
     */
-  def setModal(modal: Boolean): Unit = gtk_native_dialog_set_modal(
+  def setModal(
+      modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_native_dialog_set_modal(
     this.raw.asInstanceOf,
     gboolean(gint((if modal == true then 1 else 0)))
   )
@@ -108,11 +113,12 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
     *
     * Sets the title of the `GtkNativeDialog.`
     */
-  def setTitle(title: String | CString)(using Zone): Unit =
-    gtk_native_dialog_set_title(
-      this.raw.asInstanceOf,
-      __sn_extract_string(title)
-    )
+  def setTitle(
+      title: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_native_dialog_set_title(
+    this.raw.asInstanceOf,
+    __sn_extract_string(title)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -124,11 +130,14 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
     *
     * Passing %NULL for @parent unsets the current transient window.
     */
-  def setTransientFor(parent: Window): Unit =
-    gtk_native_dialog_set_transient_for(
-      this.raw.asInstanceOf,
-      parent.getUnsafeRawPointer().asInstanceOf
-    )
+  def setTransientFor(
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
+  ): Unit /* None */ = gtk_native_dialog_set_transient_for(
+    this.raw.asInstanceOf,
+    parent
+      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -140,7 +149,7 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
     *
     * Multiple calls while the dialog is visible will be ignored.
     */
-  def show(): Unit = gtk_native_dialog_show(this.raw.asInstanceOf)
+  def show(): Unit /* None */ = gtk_native_dialog_show(this.raw.asInstanceOf)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

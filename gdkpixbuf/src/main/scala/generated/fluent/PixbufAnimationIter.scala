@@ -18,6 +18,7 @@ import sn.gnome.gobject.fluent.Object
   */
 class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -45,9 +46,16 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     * `TRUE`, you need to call gdk_pixbuf_animation_iter_get_pixbuf() and update
     * the display with the new pixbuf.
     */
-  def advance(current_time: Ptr[GTimeVal]): Boolean =
-    gdk_pixbuf_animation_iter_advance(this.raw.asInstanceOf, current_time).value
-      .!=(0)
+  def advance(
+      current_time: Option[
+        Ptr[GTimeVal] /* Some(Ptr[_root_.sn.gnome.glib.internal.GTimeVal]) */
+      ]
+  ): Boolean /* None */ = gdk_pixbuf_animation_iter_advance(
+    this.raw.asInstanceOf,
+    current_time
+      .map[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]])
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -61,7 +69,7 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     * image file to avoid updates that are just too quick. The minimum timeout
     * for GIF images is currently 20 milliseconds.
     */
-  def getDelayTime(): Int = gdk_pixbuf_animation_iter_get_delay_time(
+  def getDelayTime(): Int /* None */ = gdk_pixbuf_animation_iter_get_delay_time(
     this.raw.asInstanceOf
   )
 
@@ -83,7 +91,7 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     * Copy the pixbuf to keep it (don't just add a reference), as it may get
     * recycled as you advance the iterator.
     */
-  def getPixbuf(): Pixbuf = new Pixbuf(
+  def getPixbuf(): Pixbuf /* None */ = new Pixbuf(
     gdk_pixbuf_animation_iter_get_pixbuf(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -96,7 +104,7 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     * streaming in to the loader. So if you're on the currently loading frame,
     * you will need to redraw the screen for the updated area.
     */
-  def onCurrentlyLoadingFrame(): Boolean =
+  def onCurrentlyLoadingFrame(): Boolean /* None */ =
     gdk_pixbuf_animation_iter_on_currently_loading_frame(
       this.raw.asInstanceOf
     ).value.!=(0)

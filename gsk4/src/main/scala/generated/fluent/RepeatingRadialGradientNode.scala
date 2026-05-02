@@ -18,6 +18,7 @@ import sn.gnome.gsk4.internal.GskRepeatingRadialGradientNode
   */
 class RepeatingRadialGradientNode(raw: Ptr[GskRepeatingRadialGradientNode])
     extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end RepeatingRadialGradientNode
@@ -32,14 +33,18 @@ object RepeatingRadialGradientNode:
     * orientation.
     */
   def apply(
-      bounds: Ptr[graphene_rect_t],
-      center: Ptr[graphene_point_t],
-      hradius: Float,
-      vradius: Float,
-      start: Float,
-      end: Float,
-      color_stops: Ptr[GskColorStop],
-      n_color_stops: CUnsignedLongInt
+      bounds: Ptr[
+        graphene_rect_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
+      center: Ptr[
+        graphene_point_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
+      hradius: Float /* Some(Float) */,
+      vradius: Float /* Some(Float) */,
+      start: Float /* Some(Float) */,
+      end: Float /* Some(Float) */,
+      color_stops: Ptr[GskColorStop /* None */ ] /* Some(Ptr[GskColorStop]) */,
+      n_color_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): RepeatingRadialGradientNode = new RepeatingRadialGradientNode(
     gsk_repeating_radial_gradient_node_new(
       bounds,

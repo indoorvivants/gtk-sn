@@ -16,6 +16,7 @@ import sn.gnome.glib.internal.gint
   */
 class TcpConnection(raw: Ptr[GTcpConnection])
     extends SocketConnection(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -23,7 +24,7 @@ class TcpConnection(raw: Ptr[GTcpConnection])
     * Checks if graceful disconnects are used. See
     * g_tcp_connection_set_graceful_disconnect().
     */
-  def getGracefulDisconnect(): Boolean =
+  def getGracefulDisconnect(): Boolean /* None */ =
     g_tcp_connection_get_graceful_disconnect(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -38,10 +39,11 @@ class TcpConnection(raw: Ptr[GTcpConnection])
     * side and for it to acknowledge this by closing the socket, which may take
     * a while. For this reason it is disabled by default.
     */
-  def setGracefulDisconnect(graceful_disconnect: Boolean): Unit =
-    g_tcp_connection_set_graceful_disconnect(
-      this.raw.asInstanceOf,
-      gboolean(gint((if graceful_disconnect == true then 1 else 0)))
-    )
+  def setGracefulDisconnect(
+      graceful_disconnect: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = g_tcp_connection_set_graceful_disconnect(
+    this.raw.asInstanceOf,
+    gboolean(gint((if graceful_disconnect == true then 1 else 0)))
+  )
 
 end TcpConnection

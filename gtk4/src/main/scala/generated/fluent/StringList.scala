@@ -44,6 +44,7 @@ class StringList(raw: Ptr[GtkStringList])
     extends Object(raw.asInstanceOf),
       ListModel,
       Buildable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -53,7 +54,9 @@ class StringList(raw: Ptr[GtkStringList])
     * The @string will be copied. See [method@Gtk.StringList.take] for a way to
     * avoid that.
     */
-  def append(string: String | CString)(using Zone): Unit =
+  def append(
+      string: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ =
     gtk_string_list_append(this.raw.asInstanceOf, __sn_extract_string(string))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -65,7 +68,9 @@ class StringList(raw: Ptr[GtkStringList])
     * This function returns the const char *. To get the object wrapping it, use
     * g_list_model_get_item().
     */
-  def getString(position: UInt)(using Zone): String = fromCString(
+  def getString(
+      position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  )(using Zone): String /* None */ = fromCString(
     gtk_string_list_get_string(
       this.raw.asInstanceOf,
       guint(position)
@@ -79,7 +84,9 @@ class StringList(raw: Ptr[GtkStringList])
     * @position
     *   must be smaller than the current length of the list.
     */
-  def remove(position: UInt): Unit =
+  def remove(
+      position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_string_list_remove(this.raw.asInstanceOf, guint(position))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -97,13 +104,17 @@ class StringList(raw: Ptr[GtkStringList])
     *   + @n_removals must be less than or equal to the length of the list at
     *   the time this function is called).
     */
-  def splice(position: UInt, n_removals: UInt, additions: Ptr[CString])(using
-      Zone
-  ): Unit = gtk_string_list_splice(
+  def splice(
+      position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      n_removals: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      additions: Option[Ptr[CString] /* Some(Ptr[CString]) */ ]
+  )(using Zone): Unit /* None */ = gtk_string_list_splice(
     this.raw.asInstanceOf,
     guint(position),
     guint(n_removals),
     additions
+      .map[Ptr[CString]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[CString]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -117,7 +128,9 @@ class StringList(raw: Ptr[GtkStringList])
     * gtk_string_list_take (self, g_strdup_print ("%d dollars", lots));
     * ```
     */
-  def take(string: String | CString)(using Zone): Unit =
+  def take(
+      string: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ =
     gtk_string_list_take(this.raw.asInstanceOf, __sn_extract_string(string))
 
   private inline def __sn_extract_string(str: String | CString)(using
@@ -135,8 +148,14 @@ object StringList:
     *
     * Creates a new `GtkStringList` with the given @strings.
     */
-  def apply(strings: Ptr[CString])(using Zone): StringList = new StringList(
-    gtk_string_list_new(strings).asInstanceOf
+  def apply(
+      strings: Option[Ptr[CString] /* Some(Ptr[CString]) */ ]
+  )(using Zone): StringList = new StringList(
+    gtk_string_list_new(
+      strings
+        .map[Ptr[CString]](o => o)
+        .getOrElse(null.asInstanceOf[Ptr[CString]])
+    ).asInstanceOf
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

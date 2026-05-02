@@ -32,6 +32,7 @@ import sn.gnome.gtk4.internal.GtkPropagationPhase
   */
 class EventController(raw: Ptr[GtkEventController])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -40,7 +41,7 @@ class EventController(raw: Ptr[GtkEventController])
     *
     * At other times, %NULL is returned.
     */
-  def getCurrentEvent(): Event = new Event(
+  def getCurrentEvent(): Event /* None */ = new Event(
     gtk_event_controller_get_current_event(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -51,7 +52,7 @@ class EventController(raw: Ptr[GtkEventController])
     *
     * At other times, %NULL is returned.
     */
-  def getCurrentEventDevice(): Device = new Device(
+  def getCurrentEventDevice(): Device /* None */ = new Device(
     gtk_event_controller_get_current_event_device(
       this.raw.asInstanceOf
     ).asInstanceOf
@@ -64,7 +65,7 @@ class EventController(raw: Ptr[GtkEventController])
     *
     * At other times, 0 is returned.
     */
-  def getCurrentEventState(): GdkModifierType =
+  def getCurrentEventState(): GdkModifierType /* None */ =
     gtk_event_controller_get_current_event_state(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -74,15 +75,14 @@ class EventController(raw: Ptr[GtkEventController])
     *
     * At other times, 0 is returned.
     */
-  def getCurrentEventTime(): UInt = gtk_event_controller_get_current_event_time(
-    this.raw.asInstanceOf
-  ).value
+  def getCurrentEventTime(): UInt /* None */ =
+    gtk_event_controller_get_current_event_time(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the name of @controller.
     */
-  def getName()(using Zone): String = fromCString(
+  def getName()(using Zone): String /* None */ = fromCString(
     gtk_event_controller_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -90,21 +90,21 @@ class EventController(raw: Ptr[GtkEventController])
     *
     * Gets the propagation limit of the event controller.
     */
-  def getPropagationLimit(): GtkPropagationLimit =
+  def getPropagationLimit(): GtkPropagationLimit /* None */ =
     gtk_event_controller_get_propagation_limit(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the propagation phase at which @controller handles events.
     */
-  def getPropagationPhase(): GtkPropagationPhase =
+  def getPropagationPhase(): GtkPropagationPhase /* None */ =
     gtk_event_controller_get_propagation_phase(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `GtkWidget` this controller relates to.
     */
-  def getWidget(): Widget = new Widget(
+  def getWidget(): Widget /* None */ = new Widget(
     gtk_event_controller_get_widget(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -112,17 +112,22 @@ class EventController(raw: Ptr[GtkEventController])
     *
     * Resets the @controller to a clean state.
     */
-  def reset(): Unit = gtk_event_controller_reset(this.raw.asInstanceOf)
+  def reset(): Unit /* None */ = gtk_event_controller_reset(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets a name on the controller that can be used for debugging.
     */
-  def setName(name: String | CString)(using Zone): Unit =
-    gtk_event_controller_set_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name)
-    )
+  def setName(
+      name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_event_controller_set_name(
+    this.raw.asInstanceOf,
+    name
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -132,7 +137,9 @@ class EventController(raw: Ptr[GtkEventController])
     * events that are targeted at widgets on a different surface, such as
     * popovers.
     */
-  def setPropagationLimit(limit: GtkPropagationLimit): Unit =
+  def setPropagationLimit(
+      limit: GtkPropagationLimit /* Some(GtkPropagationLimit) */
+  ): Unit /* None */ =
     gtk_event_controller_set_propagation_limit(this.raw.asInstanceOf, limit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -142,18 +149,23 @@ class EventController(raw: Ptr[GtkEventController])
     * If @phase is %GTK_PHASE_NONE, no automatic event handling will be
     * performed, but other additional gesture maintenance will.
     */
-  def setPropagationPhase(phase: GtkPropagationPhase): Unit =
+  def setPropagationPhase(
+      phase: GtkPropagationPhase /* Some(GtkPropagationPhase) */
+  ): Unit /* None */ =
     gtk_event_controller_set_propagation_phase(this.raw.asInstanceOf, phase)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets a name on the controller that can be used for debugging.
     */
-  def setStaticName(name: String | CString)(using Zone): Unit =
-    gtk_event_controller_set_static_name(
-      this.raw.asInstanceOf,
-      __sn_extract_string(name)
-    )
+  def setStaticName(
+      name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_event_controller_set_static_name(
+    this.raw.asInstanceOf,
+    name
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

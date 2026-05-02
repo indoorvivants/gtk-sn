@@ -49,6 +49,7 @@ class CellView(raw: Ptr[GtkCellView])
       CellLayout,
       ConstraintTarget,
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -56,16 +57,15 @@ class CellView(raw: Ptr[GtkCellView])
     * Returns a `GtkTreePath` referring to the currently displayed row. If no
     * row is currently displayed, %NULL is returned.
     */
-  def getDisplayedRow(): Ptr[GtkTreePath] = gtk_cell_view_get_displayed_row(
-    this.raw.asInstanceOf
-  )
+  def getDisplayedRow(): Ptr[GtkTreePath] /* None */ =
+    gtk_cell_view_get_displayed_row(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether @cell_view is configured to draw all of its cells in a
     * sensitive state.
     */
-  def getDrawSensitive(): Boolean =
+  def getDrawSensitive(): Boolean /* None */ =
     gtk_cell_view_get_draw_sensitive(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -73,14 +73,14 @@ class CellView(raw: Ptr[GtkCellView])
     * Gets whether @cell_view is configured to request space to fit the entire
     * `GtkTreeModel`.
     */
-  def getFitModel(): Boolean =
+  def getFitModel(): Boolean /* None */ =
     gtk_cell_view_get_fit_model(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the model for @cell_view. If no model is used %NULL is returned.
     */
-  def getModel(): TreeModel = new TreeModel.Abstract(
+  def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
     gtk_cell_view_get_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -92,8 +92,14 @@ class CellView(raw: Ptr[GtkCellView])
     * may be a needed intermediate state if say, the model for the `GtkCellView`
     * becomes temporarily empty.
     */
-  def setDisplayedRow(path: Ptr[GtkTreePath]): Unit =
-    gtk_cell_view_set_displayed_row(this.raw.asInstanceOf, path)
+  def setDisplayedRow(
+      path: Option[Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */ ]
+  ): Unit /* None */ = gtk_cell_view_set_displayed_row(
+    this.raw.asInstanceOf,
+    path
+      .map[Ptr[GtkTreePath]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -101,11 +107,12 @@ class CellView(raw: Ptr[GtkCellView])
     * this is used by `GtkComboBox` menus to ensure that rows with insensitive
     * cells that contain children appear sensitive in the parent menu item.
     */
-  def setDrawSensitive(draw_sensitive: Boolean): Unit =
-    gtk_cell_view_set_draw_sensitive(
-      this.raw.asInstanceOf,
-      gboolean(gint((if draw_sensitive == true then 1 else 0)))
-    )
+  def setDrawSensitive(
+      draw_sensitive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_cell_view_set_draw_sensitive(
+    this.raw.asInstanceOf,
+    gboolean(gint((if draw_sensitive == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -116,7 +123,9 @@ class CellView(raw: Ptr[GtkCellView])
     * the combo box’s button always gets enough space and does not resize when
     * selection changes.
     */
-  def setFitModel(fit_model: Boolean): Unit = gtk_cell_view_set_fit_model(
+  def setFitModel(
+      fit_model: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_cell_view_set_fit_model(
     this.raw.asInstanceOf,
     gboolean(gint((if fit_model == true then 1 else 0)))
   )
@@ -127,9 +136,13 @@ class CellView(raw: Ptr[GtkCellView])
     * will remove it before setting the new model. If @model is %NULL, then it
     * will unset the old model.
     */
-  def setModel(model: TreeModel): Unit = gtk_cell_view_set_model(
+  def setModel(
+      model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
+  ): Unit /* None */ = gtk_cell_view_set_model(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf
+    model
+      .map[Ptr[GtkTreeModel]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkTreeModel]])
   )
 
 end CellView
@@ -150,13 +163,15 @@ object CellView:
     * area synchronize the geometry for those cells, in this way alignments with
     * cellviews for other rows are possible.
     */
-  def withContext(area: CellArea, context: CellAreaContext): CellView =
-    new CellView(
-      gtk_cell_view_new_with_context(
-        area.getUnsafeRawPointer().asInstanceOf,
-        context.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def withContext(
+      area: CellArea /* Some(Ptr[GtkCellArea]) */,
+      context: CellAreaContext /* Some(Ptr[GtkCellAreaContext]) */
+  ): CellView = new CellView(
+    gtk_cell_view_new_with_context(
+      area.getUnsafeRawPointer().asInstanceOf,
+      context.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -164,7 +179,9 @@ object CellView:
     * and makes it show @markup. The text can be marked up with the [Pango text
     * markup language](https://docs.gtk.org/Pango/pango_markup.html).
     */
-  def withMarkup(markup: String | CString)(using Zone): CellView = new CellView(
+  def withMarkup(
+      markup: String | CString /* Some(CString) */
+  )(using Zone): CellView = new CellView(
     gtk_cell_view_new_with_markup(__sn_extract_string(markup)).asInstanceOf
   )
 
@@ -173,7 +190,9 @@ object CellView:
     * Creates a new `GtkCellView` widget, adds a `GtkCellRendererText` to it,
     * and makes it show @text.
     */
-  def withText(text: String | CString)(using Zone): CellView = new CellView(
+  def withText(
+      text: String | CString /* Some(CString) */
+  )(using Zone): CellView = new CellView(
     gtk_cell_view_new_with_text(__sn_extract_string(text)).asInstanceOf
   )
 
@@ -182,7 +201,9 @@ object CellView:
     * Creates a new `GtkCellView` widget, adds a `GtkCellRendererPixbuf` to it,
     * and makes it show @texture.
     */
-  def withTexture(texture: Texture): CellView = new CellView(
+  def withTexture(
+      texture: Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */
+  ): CellView = new CellView(
     gtk_cell_view_new_with_texture(
       texture.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

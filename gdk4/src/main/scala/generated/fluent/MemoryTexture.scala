@@ -23,6 +23,7 @@ class MemoryTexture(raw: Ptr[GdkMemoryTexture])
       Paintable,
       Icon,
       LoadableIcon:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end MemoryTexture
@@ -35,11 +36,11 @@ object MemoryTexture:
     * The `GBytes` must contain @stride × @height pixels in the given format.
     */
   def apply(
-      width: Int,
-      height: Int,
-      format: GdkMemoryFormat,
-      bytes: Ptr[GBytes],
-      stride: CUnsignedLongInt
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */,
+      format: GdkMemoryFormat /* Some(GdkMemoryFormat) */,
+      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      stride: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): MemoryTexture = new MemoryTexture(
     gdk_memory_texture_new(
       width,

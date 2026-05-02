@@ -61,13 +61,14 @@ import sn.gnome.gtk4.internal.GtkUnit
   * ```
   */
 class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Copies a `GtkPageSetup`.
     */
-  def copy(): PageSetup = new PageSetup(
+  def copy(): PageSetup /* None */ = new PageSetup(
     gtk_page_setup_copy(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -75,23 +76,22 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     *
     * Gets the bottom margin in units of @unit.
     */
-  def getBottomMargin(unit: GtkUnit): Double =
+  def getBottomMargin(unit: GtkUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_bottom_margin(this.raw.asInstanceOf, unit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the left margin in units of @unit.
     */
-  def getLeftMargin(unit: GtkUnit): Double =
+  def getLeftMargin(unit: GtkUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_left_margin(this.raw.asInstanceOf, unit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the page orientation of the `GtkPageSetup`.
     */
-  def getOrientation(): GtkPageOrientation = gtk_page_setup_get_orientation(
-    this.raw.asInstanceOf
-  )
+  def getOrientation(): GtkPageOrientation /* None */ =
+    gtk_page_setup_get_orientation(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -100,7 +100,7 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     * Note that this function takes orientation and margins into consideration.
     * See [method@Gtk.PageSetup.get_paper_height].
     */
-  def getPageHeight(unit: GtkUnit): Double =
+  def getPageHeight(unit: GtkUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_page_height(this.raw.asInstanceOf, unit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -110,7 +110,7 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     * Note that this function takes orientation and margins into consideration.
     * See [method@Gtk.PageSetup.get_paper_width].
     */
-  def getPageWidth(unit: GtkUnit): Double =
+  def getPageWidth(unit: GtkUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_page_width(this.raw.asInstanceOf, unit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -120,16 +120,15 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     * Note that this function takes orientation, but not margins into
     * consideration. See [method@Gtk.PageSetup.get_page_height].
     */
-  def getPaperHeight(unit: GtkUnit): Double =
+  def getPaperHeight(unit: GtkUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_paper_height(this.raw.asInstanceOf, unit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the paper size of the `GtkPageSetup`.
     */
-  def getPaperSize(): Ptr[GtkPaperSize] = gtk_page_setup_get_paper_size(
-    this.raw.asInstanceOf
-  )
+  def getPaperSize(): Ptr[GtkPaperSize] /* None */ =
+    gtk_page_setup_get_paper_size(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -138,21 +137,21 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     * Note that this function takes orientation, but not margins into
     * consideration. See [method@Gtk.PageSetup.get_page_width].
     */
-  def getPaperWidth(unit: GtkUnit): Double =
+  def getPaperWidth(unit: GtkUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_paper_width(this.raw.asInstanceOf, unit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the right margin in units of @unit.
     */
-  def getRightMargin(unit: GtkUnit): Double =
+  def getRightMargin(unit: GtkUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_right_margin(this.raw.asInstanceOf, unit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the top margin in units of @unit.
     */
-  def getTopMargin(unit: GtkUnit): Double =
+  def getTopMargin(unit: GtkUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_top_margin(this.raw.asInstanceOf, unit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -161,27 +160,33 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     *
     * See [method@Gtk.PageSetup.to_file].
     */
-  def loadFile(file_name: String | CString)(using Zone): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      gtk_page_setup_load_file(
-        this.raw.asInstanceOf,
-        __sn_extract_string(file_name),
-        __errorPtr
-      ).value.!=(0)
-    )
+  def loadFile(
+      file_name: String | CString /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    gtk_page_setup_load_file(
+      this.raw.asInstanceOf,
+      __sn_extract_string(file_name),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Reads the page setup from the group @group_name in the key file
     * @key_file.
     */
-  def loadKeyFile(key_file: Ptr[GKeyFile], group_name: String | CString)(using
-      Zone
-  ): GResult[Boolean] = GResult.wrap(__errorPtr =>
+  def loadKeyFile(
+      key_file: Ptr[
+        GKeyFile
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GKeyFile]) */,
+      group_name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_page_setup_load_key_file(
       this.raw.asInstanceOf,
       key_file,
-      __sn_extract_string(group_name),
+      group_name
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
       __errorPtr
     ).value.!=(0)
   )
@@ -190,21 +195,29 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     *
     * Sets the bottom margin of the `GtkPageSetup`.
     */
-  def setBottomMargin(margin: Double, unit: GtkUnit): Unit =
+  def setBottomMargin(
+      margin: Double /* Some(Double) */,
+      unit: GtkUnit /* Some(GtkUnit) */
+  ): Unit /* None */ =
     gtk_page_setup_set_bottom_margin(this.raw.asInstanceOf, margin, unit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the left margin of the `GtkPageSetup`.
     */
-  def setLeftMargin(margin: Double, unit: GtkUnit): Unit =
+  def setLeftMargin(
+      margin: Double /* Some(Double) */,
+      unit: GtkUnit /* Some(GtkUnit) */
+  ): Unit /* None */ =
     gtk_page_setup_set_left_margin(this.raw.asInstanceOf, margin, unit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the page orientation of the `GtkPageSetup`.
     */
-  def setOrientation(orientation: GtkPageOrientation): Unit =
+  def setOrientation(
+      orientation: GtkPageOrientation /* Some(GtkPageOrientation) */
+  ): Unit /* None */ =
     gtk_page_setup_set_orientation(this.raw.asInstanceOf, orientation)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -213,7 +226,9 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     *
     * See [method@Gtk.PageSetup.set_paper_size_and_default_margins].
     */
-  def setPaperSize(size: Ptr[GtkPaperSize]): Unit =
+  def setPaperSize(
+      size: Ptr[GtkPaperSize] /* Some(Ptr[GtkPaperSize]) */
+  ): Unit /* None */ =
     gtk_page_setup_set_paper_size(this.raw.asInstanceOf, size)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -221,44 +236,52 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     * Sets the paper size of the `GtkPageSetup` and modifies the margins
     * according to the new paper size.
     */
-  def setPaperSizeAndDefaultMargins(size: Ptr[GtkPaperSize]): Unit =
-    gtk_page_setup_set_paper_size_and_default_margins(
-      this.raw.asInstanceOf,
-      size
-    )
+  def setPaperSizeAndDefaultMargins(
+      size: Ptr[GtkPaperSize] /* Some(Ptr[GtkPaperSize]) */
+  ): Unit /* None */ = gtk_page_setup_set_paper_size_and_default_margins(
+    this.raw.asInstanceOf,
+    size
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the right margin of the `GtkPageSetup`.
     */
-  def setRightMargin(margin: Double, unit: GtkUnit): Unit =
+  def setRightMargin(
+      margin: Double /* Some(Double) */,
+      unit: GtkUnit /* Some(GtkUnit) */
+  ): Unit /* None */ =
     gtk_page_setup_set_right_margin(this.raw.asInstanceOf, margin, unit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the top margin of the `GtkPageSetup`.
     */
-  def setTopMargin(margin: Double, unit: GtkUnit): Unit =
+  def setTopMargin(
+      margin: Double /* Some(Double) */,
+      unit: GtkUnit /* Some(GtkUnit) */
+  ): Unit /* None */ =
     gtk_page_setup_set_top_margin(this.raw.asInstanceOf, margin, unit)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * This function saves the information from @setup to @file_name.
     */
-  def toFile(file_name: String | CString)(using Zone): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      gtk_page_setup_to_file(
-        this.raw.asInstanceOf,
-        __sn_extract_string(file_name),
-        __errorPtr
-      ).value.!=(0)
-    )
+  def toFile(
+      file_name: String | CString /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    gtk_page_setup_to_file(
+      this.raw.asInstanceOf,
+      __sn_extract_string(file_name),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Serialize page setup to an a{sv} variant.
     */
-  def toGvariant(): Ptr[GVariant] = gtk_page_setup_to_gvariant(
+  def toGvariant(): Ptr[GVariant] /* None */ = gtk_page_setup_to_gvariant(
     this.raw.asInstanceOf
   )
 
@@ -266,12 +289,17 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     *
     * This function adds the page setup from @setup to @key_file.
     */
-  def toKeyFile(key_file: Ptr[GKeyFile], group_name: String | CString)(using
-      Zone
-  ): Unit = gtk_page_setup_to_key_file(
+  def toKeyFile(
+      key_file: Ptr[
+        GKeyFile
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GKeyFile]) */,
+      group_name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ = gtk_page_setup_to_key_file(
     this.raw.asInstanceOf,
     key_file,
-    __sn_extract_string(group_name)
+    group_name
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
   )
 
   private inline def __sn_extract_string(str: String | CString)(using
@@ -298,15 +326,16 @@ object PageSetup:
     * Returns a new `GtkPageSetup` object with the restored page setup, or %NULL
     * if an error occurred. See [method@Gtk.PageSetup.to_file].
     */
-  def fromFile(file_name: String | CString)(using Zone): GResult[PageSetup] =
-    GResult.wrap(__errorPtr =>
-      new PageSetup(
-        gtk_page_setup_new_from_file(
-          __sn_extract_string(file_name),
-          __errorPtr
-        ).asInstanceOf
-      )
+  def fromFile(
+      file_name: String | CString /* Some(CString) */
+  )(using Zone): GResult[PageSetup] = GResult.wrap(__errorPtr =>
+    new PageSetup(
+      gtk_page_setup_new_from_file(
+        __sn_extract_string(file_name),
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -315,7 +344,11 @@ object PageSetup:
     * The variant must be in the format produced by
     * [method@Gtk.PageSetup.to_gvariant].
     */
-  def fromGvariant(variant: Ptr[GVariant]): PageSetup = new PageSetup(
+  def fromGvariant(
+      variant: Ptr[
+        GVariant
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  ): PageSetup = new PageSetup(
     gtk_page_setup_new_from_gvariant(variant).asInstanceOf
   )
 
@@ -327,13 +360,18 @@ object PageSetup:
     * Returns a new `GtkPageSetup` object with the restored page setup, or %NULL
     * if an error occurred.
     */
-  def fromKeyFile(key_file: Ptr[GKeyFile], group_name: String | CString)(using
-      Zone
-  ): GResult[PageSetup] = GResult.wrap(__errorPtr =>
+  def fromKeyFile(
+      key_file: Ptr[
+        GKeyFile
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GKeyFile]) */,
+      group_name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): GResult[PageSetup] = GResult.wrap(__errorPtr =>
     new PageSetup(
       gtk_page_setup_new_from_key_file(
         key_file,
-        __sn_extract_string(group_name),
+        group_name
+          .map[CString](o => __sn_extract_string(o))
+          .getOrElse(null.asInstanceOf[CString]),
         __errorPtr
       ).asInstanceOf
     )

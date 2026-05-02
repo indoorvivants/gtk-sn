@@ -16,13 +16,14 @@ import sn.gnome.gtk4.internal.GtkSignalAction
   */
 class SignalAction(raw: Ptr[GtkSignalAction])
     extends ShortcutAction(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the name of the signal that will be emitted.
     */
-  def getSignalName()(using Zone): String = fromCString(
+  def getSignalName()(using Zone): String /* None */ = fromCString(
     gtk_signal_action_get_signal_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -36,10 +37,11 @@ object SignalAction:
     *
     * It will also unpack the args into arguments passed to the signal.
     */
-  def apply(signal_name: String | CString)(using Zone): SignalAction =
-    new SignalAction(
-      gtk_signal_action_new(__sn_extract_string(signal_name)).asInstanceOf
-    )
+  def apply(
+      signal_name: String | CString /* Some(CString) */
+  )(using Zone): SignalAction = new SignalAction(
+    gtk_signal_action_new(__sn_extract_string(signal_name)).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

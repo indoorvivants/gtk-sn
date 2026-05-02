@@ -85,6 +85,7 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
       Native,
       Root,
       ShortcutManager:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -108,9 +109,9 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
     * ```
     */
   inline def formatSecondaryMarkup(
-      message_format: String | CString,
+      message_format: String | CString /* Some(CString) */,
       args: Any*
-  )(using Zone): Unit = gtk_message_dialog_format_secondary_markup(
+  )(using Zone): Unit /* None */ = gtk_message_dialog_format_secondary_markup(
     this.raw.asInstanceOf,
     __sn_extract_string(message_format),
     args*
@@ -120,11 +121,14 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
     *
     * Sets the secondary text of the message dialog.
     */
-  inline def formatSecondaryText(message_format: String | CString, args: Any*)(
-      using Zone
-  ): Unit = gtk_message_dialog_format_secondary_text(
+  inline def formatSecondaryText(
+      message_format: Option[String | CString /* Some(CString) */ ],
+      args: Any*
+  )(using Zone): Unit /* None */ = gtk_message_dialog_format_secondary_text(
     this.raw.asInstanceOf,
-    __sn_extract_string(message_format),
+    message_format
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString]),
     args*
   )
 
@@ -137,7 +141,7 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
     * below those labels. See [method@Gtk.Dialog.get_content_area] for the
     * corresponding function in the parent [class@Gtk.Dialog].
     */
-  def getMessageArea(): Widget = new Widget(
+  def getMessageArea(): Widget /* None */ = new Widget(
     gtk_message_dialog_get_message_area(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -145,11 +149,12 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
     *
     * Sets the text of the message dialog.
     */
-  def setMarkup(str: String | CString)(using Zone): Unit =
-    gtk_message_dialog_set_markup(
-      this.raw.asInstanceOf,
-      __sn_extract_string(str)
-    )
+  def setMarkup(
+      str: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_message_dialog_set_markup(
+    this.raw.asInstanceOf,
+    __sn_extract_string(str)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -171,19 +176,23 @@ object MessageDialog:
     * [enum@Gtk.ResponseType]. See [class@Gtk.Dialog] for more details.
     */
   inline def apply(
-      parent: Window,
-      flags: GtkDialogFlags,
-      `type`: GtkMessageType,
-      buttons: GtkButtonsType,
-      message_format: String | CString,
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      flags: GtkDialogFlags /* Some(GtkDialogFlags) */,
+      `type`: GtkMessageType /* Some(GtkMessageType) */,
+      buttons: GtkButtonsType /* Some(GtkButtonsType) */,
+      message_format: Option[String | CString /* Some(CString) */ ],
       args: Any*
   )(using Zone): MessageDialog = new MessageDialog(
     gtk_message_dialog_new(
-      parent.getUnsafeRawPointer().asInstanceOf,
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       flags,
       `type`,
       buttons,
-      __sn_extract_string(message_format),
+      message_format
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf
   )
@@ -218,19 +227,23 @@ object MessageDialog:
     * ```
     */
   inline def withMarkup(
-      parent: Window,
-      flags: GtkDialogFlags,
-      `type`: GtkMessageType,
-      buttons: GtkButtonsType,
-      message_format: String | CString,
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      flags: GtkDialogFlags /* Some(GtkDialogFlags) */,
+      `type`: GtkMessageType /* Some(GtkMessageType) */,
+      buttons: GtkButtonsType /* Some(GtkButtonsType) */,
+      message_format: Option[String | CString /* Some(CString) */ ],
       args: Any*
   )(using Zone): MessageDialog = new MessageDialog(
     gtk_message_dialog_new_with_markup(
-      parent.getUnsafeRawPointer().asInstanceOf,
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       flags,
       `type`,
       buttons,
-      __sn_extract_string(message_format),
+      message_format
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf
   )

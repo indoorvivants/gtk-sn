@@ -17,6 +17,7 @@ import sn.gnome.gtk4.internal.GtkAlternativeTrigger
   */
 class AlternativeTrigger(raw: Ptr[GtkAlternativeTrigger])
     extends ShortcutTrigger(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -25,7 +26,7 @@ class AlternativeTrigger(raw: Ptr[GtkAlternativeTrigger])
     *
     * [method@Gtk.AlternativeTrigger.get_second] will return the other one.
     */
-  def getFirst(): ShortcutTrigger = new ShortcutTrigger(
+  def getFirst(): ShortcutTrigger /* None */ = new ShortcutTrigger(
     gtk_alternative_trigger_get_first(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -35,7 +36,7 @@ class AlternativeTrigger(raw: Ptr[GtkAlternativeTrigger])
     *
     * [method@Gtk.AlternativeTrigger.get_first] will return the other one.
     */
-  def getSecond(): ShortcutTrigger = new ShortcutTrigger(
+  def getSecond(): ShortcutTrigger /* None */ = new ShortcutTrigger(
     gtk_alternative_trigger_get_second(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -51,8 +52,8 @@ object AlternativeTrigger:
     * create a new alternative trigger for each option.
     */
   def apply(
-      first: ShortcutTrigger,
-      second: ShortcutTrigger
+      first: ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */,
+      second: ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
   ): AlternativeTrigger = new AlternativeTrigger(
     gtk_alternative_trigger_new(
       first.getUnsafeRawPointer().asInstanceOf,

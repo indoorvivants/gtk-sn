@@ -37,6 +37,7 @@ class ShortcutsGroup(raw: Ptr[GtkShortcutsGroup])
       Buildable,
       ConstraintTarget,
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -47,10 +48,11 @@ class ShortcutsGroup(raw: Ptr[GtkShortcutsGroup])
     * `<child>` tag to add the child. Adding children with other API is not
     * appropriate as `GtkShortcutsGroup` manages its children internally.
     */
-  def addShortcut(shortcut: ShortcutsShortcut): Unit =
-    gtk_shortcuts_group_add_shortcut(
-      this.raw.asInstanceOf,
-      shortcut.getUnsafeRawPointer().asInstanceOf
-    )
+  def addShortcut(
+      shortcut: ShortcutsShortcut /* Some(Ptr[GtkShortcutsShortcut]) */
+  ): Unit /* None */ = gtk_shortcuts_group_add_shortcut(
+    this.raw.asInstanceOf,
+    shortcut.getUnsafeRawPointer().asInstanceOf
+  )
 
 end ShortcutsGroup

@@ -35,13 +35,14 @@ import sn.gnome.gobject.fluent.Object
   * timeouts.
   */
 class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Get the timeout applied to all resolver lookups. See #GResolver:timeout.
     */
-  def getTimeout(): UInt = g_resolver_get_timeout(
+  def getTimeout(): UInt /* None */ = g_resolver_get_timeout(
     this.raw.asInstanceOf
   ).asInstanceOf
 
@@ -56,14 +57,17 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * If @cancellable is non-%NULL, it can be used to cancel the operation, in
     * which case @error (if non-%NULL) will be set to %G_IO_ERROR_CANCELLED.
     */
-  def lookupByAddress(address: InetAddress, cancellable: Cancellable)(using
-      Zone
-  ): GResult[String] = GResult.wrap(__errorPtr =>
+  def lookupByAddress(
+      address: InetAddress /* Some(Ptr[GInetAddress]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  )(using Zone): GResult[String /* None */ ] = GResult.wrap(__errorPtr =>
     fromCString(
       g_resolver_lookup_by_address(
         this.raw.asInstanceOf,
         address.getUnsafeRawPointer().asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
         __errorPtr
       ).asInstanceOf
     )
@@ -76,16 +80,24 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * g_resolver_lookup_by_address_finish() to get the final result.
     */
   def lookupByAddressAsync(
-      address: InetAddress,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_resolver_lookup_by_address_async(
+      address: InetAddress /* Some(Ptr[GInetAddress]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_resolver_lookup_by_address_async(
     this.raw.asInstanceOf,
     address.getUnsafeRawPointer().asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -98,16 +110,17 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * @error
     *   will be set to %G_IO_ERROR_CANCELLED.
     */
-  def lookupByAddressFinish(result: AsyncResult)(using Zone): GResult[String] =
-    GResult.wrap(__errorPtr =>
-      fromCString(
-        g_resolver_lookup_by_address_finish(
-          this.raw.asInstanceOf,
-          result.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def lookupByAddressFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  )(using Zone): GResult[String /* None */ ] = GResult.wrap(__errorPtr =>
+    fromCString(
+      g_resolver_lookup_by_address_finish(
+        this.raw.asInstanceOf,
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -135,13 +148,17 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * may be easier to create a #GNetworkAddress and use its #GSocketConnectable
     * interface.
     */
-  def lookupByName(hostname: String | CString, cancellable: Cancellable)(using
-      Zone
-  ): GResult[Ptr[GList]] = GResult.wrap(__errorPtr =>
+  def lookupByName(
+      hostname: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  )(using Zone): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_resolver_lookup_by_name(
       this.raw.asInstanceOf,
       __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]],
-      cancellable.getUnsafeRawPointer().asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
       __errorPtr
     )
   )
@@ -154,16 +171,25 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * g_resolver_lookup_by_name() for more details.
     */
   def lookupByNameAsync(
-      hostname: String | CString,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  )(using Zone): Unit = g_resolver_lookup_by_name_async(
+      hostname: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_resolver_lookup_by_name_async(
     this.raw.asInstanceOf,
     __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]],
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -175,14 +201,15 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * @error
     *   will be set to %G_IO_ERROR_CANCELLED.
     */
-  def lookupByNameFinish(result: AsyncResult): GResult[Ptr[GList]] =
-    GResult.wrap(__errorPtr =>
-      g_resolver_lookup_by_name_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      )
+  def lookupByNameFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
+    g_resolver_lookup_by_name_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -191,15 +218,18 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * with %G_RESOLVER_NAME_LOOKUP_FLAGS_IPV4_ONLY.
     */
   def lookupByNameWithFlags(
-      hostname: String | CString,
-      flags: GResolverNameLookupFlags,
-      cancellable: Cancellable
-  )(using Zone): GResult[Ptr[GList]] = GResult.wrap(__errorPtr =>
+      hostname: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: GResolverNameLookupFlags /* Some(GResolverNameLookupFlags) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  )(using Zone): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_resolver_lookup_by_name_with_flags(
       this.raw.asInstanceOf,
       __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]],
       flags,
-      cancellable.getUnsafeRawPointer().asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
       __errorPtr
     )
   )
@@ -212,18 +242,27 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * g_resolver_lookup_by_name() for more details.
     */
   def lookupByNameWithFlagsAsync(
-      hostname: String | CString,
-      flags: GResolverNameLookupFlags,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  )(using Zone): Unit = g_resolver_lookup_by_name_with_flags_async(
+      hostname: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: GResolverNameLookupFlags /* Some(GResolverNameLookupFlags) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_resolver_lookup_by_name_with_flags_async(
     this.raw.asInstanceOf,
     __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]],
     flags,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -236,14 +275,15 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * @error
     *   will be set to %G_IO_ERROR_CANCELLED.
     */
-  def lookupByNameWithFlagsFinish(result: AsyncResult): GResult[Ptr[GList]] =
-    GResult.wrap(__errorPtr =>
-      g_resolver_lookup_by_name_with_flags_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      )
+  def lookupByNameWithFlagsFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
+    g_resolver_lookup_by_name_with_flags_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -258,15 +298,18 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * which case @error (if non-%NULL) will be set to %G_IO_ERROR_CANCELLED.
     */
   def lookupRecords(
-      rrname: String | CString,
-      record_type: GResolverRecordType,
-      cancellable: Cancellable
-  )(using Zone): GResult[Ptr[GList]] = GResult.wrap(__errorPtr =>
+      rrname: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      record_type: GResolverRecordType /* Some(GResolverRecordType) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  )(using Zone): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_resolver_lookup_records(
       this.raw.asInstanceOf,
       __sn_extract_string(rrname).asInstanceOf[Ptr[gchar]],
       record_type,
-      cancellable.getUnsafeRawPointer().asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
       __errorPtr
     )
   )
@@ -280,18 +323,27 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     *   g_resolver_lookup_records() for more details.
     */
   def lookupRecordsAsync(
-      rrname: String | CString,
-      record_type: GResolverRecordType,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  )(using Zone): Unit = g_resolver_lookup_records_async(
+      rrname: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      record_type: GResolverRecordType /* Some(GResolverRecordType) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_resolver_lookup_records_async(
     this.raw.asInstanceOf,
     __sn_extract_string(rrname).asInstanceOf[Ptr[gchar]],
     record_type,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -306,14 +358,15 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * @error
     *   will be set to %G_IO_ERROR_CANCELLED.
     */
-  def lookupRecordsFinish(result: AsyncResult): GResult[Ptr[GList]] =
-    GResult.wrap(__errorPtr =>
-      g_resolver_lookup_records_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      )
+  def lookupRecordsFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
+    g_resolver_lookup_records_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -341,17 +394,22 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * create a #GNetworkService and use its #GSocketConnectable interface.
     */
   def lookupService(
-      service: String | CString,
-      protocol: String | CString,
-      domain: String | CString,
-      cancellable: Cancellable
-  )(using Zone): GResult[Ptr[GList]] = GResult.wrap(__errorPtr =>
+      service: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      protocol: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      domain: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  )(using Zone): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_resolver_lookup_service(
       this.raw.asInstanceOf,
       __sn_extract_string(service).asInstanceOf[Ptr[gchar]],
       __sn_extract_string(protocol).asInstanceOf[Ptr[gchar]],
       __sn_extract_string(domain).asInstanceOf[Ptr[gchar]],
-      cancellable.getUnsafeRawPointer().asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
       __errorPtr
     )
   )
@@ -366,20 +424,31 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     *   result. See g_resolver_lookup_service() for more details.
     */
   def lookupServiceAsync(
-      service: String | CString,
-      protocol: String | CString,
-      domain: String | CString,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  )(using Zone): Unit = g_resolver_lookup_service_async(
+      service: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      protocol: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      domain: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_resolver_lookup_service_async(
     this.raw.asInstanceOf,
     __sn_extract_string(service).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(protocol).asInstanceOf[Ptr[gchar]],
     __sn_extract_string(domain).asInstanceOf[Ptr[gchar]],
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -392,14 +461,15 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * @error
     *   will be set to %G_IO_ERROR_CANCELLED.
     */
-  def lookupServiceFinish(result: AsyncResult): GResult[Ptr[GList]] =
-    GResult.wrap(__errorPtr =>
-      g_resolver_lookup_service_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      )
+  def lookupServiceFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
+    g_resolver_lookup_service_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -414,16 +484,19 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * policies on top of that, and then set itself as the default resolver for
     * all later code to use.
     */
-  def setDefault(): Unit = g_resolver_set_default(this.raw.asInstanceOf)
+  def setDefault(): Unit /* None */ = g_resolver_set_default(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Set the timeout applied to all resolver lookups. See #GResolver:timeout.
     */
-  def setTimeout(timeout_ms: UInt): Unit = g_resolver_set_timeout(
-    this.raw.asInstanceOf,
-    guint(timeout_ms).asInstanceOf
-  )
+  def setTimeout(timeout_ms: UInt /* Some(CUnsignedInt) */ ): Unit /* None */ =
+    g_resolver_set_timeout(
+      this.raw.asInstanceOf,
+      guint(timeout_ms).asInstanceOf
+    )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

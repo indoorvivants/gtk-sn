@@ -61,6 +61,7 @@ import sn.gnome.gtk4.internal.GtkListItemFactory
   */
 class ListItemFactory(raw: Ptr[GtkListItemFactory])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ListItemFactory

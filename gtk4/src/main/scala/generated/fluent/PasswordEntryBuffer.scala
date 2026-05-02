@@ -16,6 +16,7 @@ import sn.gnome.gtk4.internal.GtkPasswordEntryBuffer
   */
 class PasswordEntryBuffer(raw: Ptr[GtkPasswordEntryBuffer])
     extends EntryBuffer(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end PasswordEntryBuffer

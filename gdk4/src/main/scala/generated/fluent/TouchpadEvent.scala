@@ -20,6 +20,7 @@ import sn.gnome.glib.internal.guint
   * events.
   */
 class TouchpadEvent(raw: Ptr[GdkTouchpadEvent]) extends Event(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -29,20 +30,20 @@ class TouchpadEvent(raw: Ptr[GdkTouchpadEvent]) extends Event(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_deltas contains an OUT parameter, which is not supported yet"
   )
-  def getDeltas(using DummyImplicit) = ???
+  private def getDeltas__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts the touchpad gesture phase from a touchpad event.
     */
-  def getGesturePhase(): GdkTouchpadGesturePhase =
+  def getGesturePhase(): GdkTouchpadGesturePhase /* None */ =
     gdk_touchpad_event_get_gesture_phase(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts the number of fingers from a touchpad event.
     */
-  def getNFingers(): UInt = gdk_touchpad_event_get_n_fingers(
+  def getNFingers(): UInt /* None */ = gdk_touchpad_event_get_n_fingers(
     this.raw.asInstanceOf
   ).value
 
@@ -50,15 +51,14 @@ class TouchpadEvent(raw: Ptr[GdkTouchpadEvent]) extends Event(raw.asInstanceOf):
     *
     * Extracts the angle delta from a touchpad pinch event.
     */
-  def getPinchAngleDelta(): Double = gdk_touchpad_event_get_pinch_angle_delta(
-    this.raw.asInstanceOf
-  )
+  def getPinchAngleDelta(): Double /* None */ =
+    gdk_touchpad_event_get_pinch_angle_delta(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts the scale from a touchpad pinch event.
     */
-  def getPinchScale(): Double = gdk_touchpad_event_get_pinch_scale(
+  def getPinchScale(): Double /* None */ = gdk_touchpad_event_get_pinch_scale(
     this.raw.asInstanceOf
   )
 

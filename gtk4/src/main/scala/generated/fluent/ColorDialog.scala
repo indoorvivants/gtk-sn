@@ -30,6 +30,7 @@ import sn.gnome.gtk4.internal.GtkColorDialog
   * `GtkColorDialog` and presents the results.
   */
 class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -41,18 +42,42 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
     * [method@Gtk.ColorDialog.choose_rgba_finish] to obtain the result.
     */
   def chooseRgba(
-      parent: Window,
-      initial_color: Ptr[GdkRGBA],
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = gtk_color_dialog_choose_rgba(
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      initial_color: Option[
+        Ptr[GdkRGBA] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
+      ],
+      cancellable: Option[
+        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+      ],
+      callback: Option[
+        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gtk_color_dialog_choose_rgba(
     this.raw.asInstanceOf,
-    parent.getUnsafeRawPointer().asInstanceOf,
-    initial_color,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    parent
+      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
+    initial_color
+      .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]]),
+    cancellable
+      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
+      ),
+    callback
+      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
+      ),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -60,28 +85,29 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
     * Finishes the [method@Gtk.ColorDialog.choose_rgba] call and returns the
     * resulting color.
     */
-  def chooseRgbaFinish(result: AsyncResult): GResult[Ptr[GdkRGBA]] =
-    GResult.wrap(__errorPtr =>
-      gtk_color_dialog_choose_rgba_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      )
+  def chooseRgbaFinish(
+      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[Ptr[GdkRGBA] /* None */ ] = GResult.wrap(__errorPtr =>
+    gtk_color_dialog_choose_rgba_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the color chooser dialog blocks interaction with the
     * parent window while it is presented.
     */
-  def getModal(): Boolean =
+  def getModal(): Boolean /* None */ =
     gtk_color_dialog_get_modal(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the title that will be shown on the color chooser dialog.
     */
-  def getTitle()(using Zone): String = fromCString(
+  def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_color_dialog_get_title(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -89,7 +115,7 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
     *
     * Returns whether colors may have alpha.
     */
-  def getWithAlpha(): Boolean =
+  def getWithAlpha(): Boolean /* None */ =
     gtk_color_dialog_get_with_alpha(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -97,7 +123,9 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
     * Sets whether the color chooser dialog blocks interaction with the parent
     * window while it is presented.
     */
-  def setModal(modal: Boolean): Unit = gtk_color_dialog_set_modal(
+  def setModal(
+      modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_color_dialog_set_modal(
     this.raw.asInstanceOf,
     gboolean(gint((if modal == true then 1 else 0)))
   )
@@ -106,17 +134,20 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
     *
     * Sets the title that will be shown on the color chooser dialog.
     */
-  def setTitle(title: String | CString)(using Zone): Unit =
-    gtk_color_dialog_set_title(
-      this.raw.asInstanceOf,
-      __sn_extract_string(title)
-    )
+  def setTitle(
+      title: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_color_dialog_set_title(
+    this.raw.asInstanceOf,
+    __sn_extract_string(title)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether colors may have alpha.
     */
-  def setWithAlpha(with_alpha: Boolean): Unit = gtk_color_dialog_set_with_alpha(
+  def setWithAlpha(
+      with_alpha: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_color_dialog_set_with_alpha(
     this.raw.asInstanceOf,
     gboolean(gint((if with_alpha == true then 1 else 0)))
   )

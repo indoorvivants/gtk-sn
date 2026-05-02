@@ -6,7 +6,6 @@ import scala.util.boundary
 val StringExtractorName = "__sn_extract_string"
 
 val stringExtractor =
-
   val f: () => RenderingContext ?=> Unit = () =>
     block(
       s"private inline def $StringExtractorName(str: String | CString)(using Zone): CString = ",
@@ -41,7 +40,8 @@ enum TypePosition:
 
 def renderType(
     tpe: Type | ArrayType,
-    position: TypePosition = TypePosition.ParameterType
+    position: TypePosition = TypePosition.ParameterType,
+    expectedRawType: Option[String] = None
 )(using
     global: GlobalKnowledge,
     policy: NamingPolicy
@@ -329,7 +329,7 @@ def renderType(
       case exc: NoSuchElementException =>
         boundary.break(FluentErr.TypeMissingValue(tpe))
 
-  tpe match
+  val result = tpe match
     case tpe: Type =>
       lazy val typeValue = safeGetTypeValue(tpe)
       tpe.name
@@ -408,8 +408,6 @@ def renderType(
                 )
 
         case _ =>
-          if elementType.name == Some("File") then
-            scribe.info(renderedElementType.toString())
           if typeValue.endsWith("gchar*") then
             TypeMapping(s"Ptr[CString]", effects = renderedElementType.effects)
               .withMassageIntoUnsafe(Massage.InferredCast)
@@ -434,5 +432,6 @@ def renderType(
             )
           end if
       end match
-  end match
+
+  result.copy(scalaRepr = s"${result.scalaRepr} /* ${expectedRawType} */")
 end renderType

@@ -23,6 +23,7 @@ import sn.gnome.gobject.internal.GCallback
   * GIO to allow for cancellation of synchronous and asynchronous operations.
   */
 class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -44,7 +45,7 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * #GAsyncReadyCallback will not be invoked until the application returns to
     * the main loop.
     */
-  def cancel(): Unit = g_cancellable_cancel(this.raw.asInstanceOf)
+  def cancel(): Unit /* None */ = g_cancellable_cancel(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -69,14 +70,24 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     *   invokes e.g. g_cancellable_cancel().
     */
   def connect(
-      callback: GCallback,
-      data: Ptr[Byte],
-      data_destroy_func: GDestroyNotify
-  ): CUnsignedLongInt = g_cancellable_connect(
+      callback: GCallback /* Some(_root_.sn.gnome.gobject.internal.GCallback) */,
+      data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      data_destroy_func: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ]
+  ): CUnsignedLongInt /* None */ = g_cancellable_connect(
     this.raw.asInstanceOf,
     callback,
-    gpointer(data),
+    data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     data_destroy_func
+      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+      )
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -93,7 +104,9 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     *
     * If @cancellable is %NULL or @handler_id is `0` this function does nothing.
     */
-  def disconnect(handler_id: CUnsignedLongInt): Unit =
+  def disconnect(
+      handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
+  ): Unit /* None */ =
     g_cancellable_disconnect(this.raw.asInstanceOf, gulong(handler_id))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -112,13 +125,13 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     *
     * See also g_cancellable_make_pollfd().
     */
-  def getFd(): Int = g_cancellable_get_fd(this.raw.asInstanceOf)
+  def getFd(): Int /* None */ = g_cancellable_get_fd(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if a cancellable job has been cancelled.
     */
-  def isCancelled(): Boolean =
+  def isCancelled(): Boolean /* None */ =
     g_cancellable_is_cancelled(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -142,7 +155,11 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * status. Reading to unset the readable status is done with
     * g_cancellable_reset().
     */
-  def makePollfd(pollfd: Ptr[GPollFD]): Boolean =
+  def makePollfd(
+      pollfd: Ptr[
+        GPollFD
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GPollFD]) */
+  ): Boolean /* None */ =
     g_cancellable_make_pollfd(this.raw.asInstanceOf, pollfd).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -150,7 +167,9 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * Pops @cancellable off the cancellable stack (verifying that @cancellable
     * is on the top of the stack).
     */
-  def popCurrent(): Unit = g_cancellable_pop_current(this.raw.asInstanceOf)
+  def popCurrent(): Unit /* None */ = g_cancellable_pop_current(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -163,7 +182,9 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * This is typically called automatically by e.g. #GFile operations, so you
     * rarely have to call this yourself.
     */
-  def pushCurrent(): Unit = g_cancellable_push_current(this.raw.asInstanceOf)
+  def pushCurrent(): Unit /* None */ = g_cancellable_push_current(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -177,7 +198,9 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * application to run out of file descriptors when many #GCancellables are
     * used at the same time.
     */
-  def releaseFd(): Unit = g_cancellable_release_fd(this.raw.asInstanceOf)
+  def releaseFd(): Unit /* None */ = g_cancellable_release_fd(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -193,19 +216,20 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * async operations. You should create a fresh cancellable for further async
     * operations.
     */
-  def reset(): Unit = g_cancellable_reset(this.raw.asInstanceOf)
+  def reset(): Unit /* None */ = g_cancellable_reset(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * If the @cancellable is cancelled, sets the error to notify that the
     * operation was cancelled.
     */
-  def setErrorIfCancelled(): GResult[Boolean] = GResult.wrap(__errorPtr =>
-    g_cancellable_set_error_if_cancelled(
-      this.raw.asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  def setErrorIfCancelled(): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_cancellable_set_error_if_cancelled(
+        this.raw.asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -219,7 +243,7 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     *
     * The new #GSource will hold a reference to the #GCancellable.
     */
-  def sourceNew(): Ptr[GSource] = g_cancellable_source_new(
+  def sourceNew(): Ptr[GSource] /* None */ = g_cancellable_source_new(
     this.raw.asInstanceOf
   )
 

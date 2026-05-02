@@ -91,6 +91,7 @@ class Application(raw: Ptr[GtkApplication])
     extends _Application(raw.asInstanceOf),
       ActionGroup,
       ActionMap:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -110,18 +111,19 @@ class Application(raw: Ptr[GtkApplication])
     *
     * GTK will keep the `application` running as long as it has any windows.
     */
-  def addWindow(window: Window): Unit = gtk_application_add_window(
-    this.raw.asInstanceOf,
-    window.getUnsafeRawPointer().asInstanceOf
-  )
+  def addWindow(window: Window /* Some(Ptr[GtkWindow]) */ ): Unit /* None */ =
+    gtk_application_add_window(
+      this.raw.asInstanceOf,
+      window.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the accelerators that are currently associated with the given action.
     */
   def getAccelsForAction(
-      detailed_action_name: String | CString
-  )(using Zone): Array[String] = __decode_nullable_ptrs(
+      detailed_action_name: String | CString /* Some(CString) */
+  )(using Zone): Array[String] /* None */ = __decode_nullable_ptrs(
     gtk_application_get_accels_for_action(
       this.raw.asInstanceOf,
       __sn_extract_string(detailed_action_name)
@@ -147,13 +149,14 @@ class Application(raw: Ptr[GtkApplication])
     *
     * If you are unsure, check it with [func@Gtk.accelerator_parse] first.
     */
-  def getActionsForAccel(accel: String | CString)(using Zone): Array[String] =
-    __decode_nullable_ptrs(
-      gtk_application_get_actions_for_accel(
-        this.raw.asInstanceOf,
-        __sn_extract_string(accel)
-      )
-    ).map(fromCString(_))
+  def getActionsForAccel(
+      accel: String | CString /* Some(CString) */
+  )(using Zone): Array[String] /* None */ = __decode_nullable_ptrs(
+    gtk_application_get_actions_for_accel(
+      this.raw.asInstanceOf,
+      __sn_extract_string(accel)
+    )
+  ).map(fromCString(_))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -164,7 +167,7 @@ class Application(raw: Ptr[GtkApplication])
     * application has it — this is just the most recently-focused window within
     * this application.
     */
-  def getActiveWindow(): Window = new Window(
+  def getActiveWindow(): Window /* None */ = new Window(
     gtk_application_get_active_window(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -176,7 +179,9 @@ class Application(raw: Ptr[GtkApplication])
     * resources](class.Application.html#automatic-resources) for more
     * information.
     */
-  def getMenuById(id: String | CString)(using Zone): Menu = new Menu(
+  def getMenuById(
+      id: String | CString /* Some(CString) */
+  )(using Zone): Menu /* None */ = new Menu(
     gtk_application_get_menu_by_id(
       this.raw.asInstanceOf,
       __sn_extract_string(id)
@@ -188,7 +193,7 @@ class Application(raw: Ptr[GtkApplication])
     * Returns the menu model that has been set with
     * [method@Gtk.Application.set_menubar].
     */
-  def getMenubar(): MenuModel = new MenuModel(
+  def getMenubar(): MenuModel /* None */ = new MenuModel(
     gtk_application_get_menubar(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -199,7 +204,9 @@ class Application(raw: Ptr[GtkApplication])
     * The ID of a `GtkApplicationWindow` can be retrieved with
     * [method@Gtk.ApplicationWindow.get_id].
     */
-  def getWindowById(id: UInt): Window = new Window(
+  def getWindowById(
+      id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Window /* None */ = new Window(
     gtk_application_get_window_by_id(
       this.raw.asInstanceOf,
       guint(id)
@@ -218,7 +225,7 @@ class Application(raw: Ptr[GtkApplication])
     * The list that is returned should not be modified in any way. It will only
     * remain valid until the next focus change or window creation or deletion.
     */
-  def getWindows(): Ptr[GList] = gtk_application_get_windows(
+  def getWindows(): Ptr[GList] /* None */ = gtk_application_get_windows(
     this.raw.asInstanceOf
   )
 
@@ -249,14 +256,18 @@ class Application(raw: Ptr[GtkApplication])
     * window to find out more about why the action is inhibited.
     */
   def inhibit(
-      window: Window,
-      flags: GtkApplicationInhibitFlags,
-      reason: String | CString
-  )(using Zone): UInt = gtk_application_inhibit(
+      window: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      flags: GtkApplicationInhibitFlags /* Some(GtkApplicationInhibitFlags) */,
+      reason: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): UInt /* None */ = gtk_application_inhibit(
     this.raw.asInstanceOf,
-    window.getUnsafeRawPointer().asInstanceOf,
+    window
+      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
     flags,
-    __sn_extract_string(reason)
+    reason
+      .map[CString](o => __sn_extract_string(o))
+      .getOrElse(null.asInstanceOf[CString])
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -265,7 +276,7 @@ class Application(raw: Ptr[GtkApplication])
     *
     * See [method@Gtk.Application.set_accels_for_action].
     */
-  def listActionDescriptions()(using Zone): Array[String] =
+  def listActionDescriptions()(using Zone): Array[String] /* None */ =
     __decode_nullable_ptrs(
       gtk_application_list_action_descriptions(this.raw.asInstanceOf)
     ).map(fromCString(_))
@@ -281,7 +292,9 @@ class Application(raw: Ptr[GtkApplication])
     * The application may stop running as a result of a call to this function,
     * if `window` was the last window of the `application`.
     */
-  def removeWindow(window: Window): Unit = gtk_application_remove_window(
+  def removeWindow(
+      window: Window /* Some(Ptr[GtkWindow]) */
+  ): Unit /* None */ = gtk_application_remove_window(
     this.raw.asInstanceOf,
     window.getUnsafeRawPointer().asInstanceOf
   )
@@ -301,9 +314,9 @@ class Application(raw: Ptr[GtkApplication])
     * `g_action_print_detailed_name()`.
     */
   def setAccelsForAction(
-      detailed_action_name: String | CString,
-      accels: Ptr[CString]
-  )(using Zone): Unit = gtk_application_set_accels_for_action(
+      detailed_action_name: String | CString /* Some(CString) */,
+      accels: Ptr[CString] /* Some(Ptr[CString]) */
+  )(using Zone): Unit /* None */ = gtk_application_set_accels_for_action(
     this.raw.asInstanceOf,
     __sn_extract_string(detailed_action_name),
     accels
@@ -329,9 +342,19 @@ class Application(raw: Ptr[GtkApplication])
     * Use the base `GActionMap` interface to add actions, to respond to the user
     * selecting these menu items.
     */
-  def setMenubar(menubar: MenuModel): Unit = gtk_application_set_menubar(
+  def setMenubar(
+      menubar: Option[
+        MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+      ]
+  ): Unit /* None */ = gtk_application_set_menubar(
     this.raw.asInstanceOf,
-    menubar.getUnsafeRawPointer().asInstanceOf
+    menubar
+      .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -342,7 +365,9 @@ class Application(raw: Ptr[GtkApplication])
     *
     * Inhibitors are also cleared when the application exits.
     */
-  def uninhibit(cookie: UInt): Unit =
+  def uninhibit(
+      cookie: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_application_uninhibit(this.raw.asInstanceOf, guint(cookie))
 
   private inline def __sn_extract_string(str: String | CString)(using
@@ -390,10 +415,16 @@ object Application:
     * If no application ID is given then some features (most notably application
     * uniqueness) will be disabled.
     */
-  def apply(application_id: String | CString, flags: GApplicationFlags)(using
-      Zone
-  ): Application = new Application(
-    gtk_application_new(__sn_extract_string(application_id), flags).asInstanceOf
+  def apply(
+      application_id: Option[String | CString /* Some(CString) */ ],
+      flags: GApplicationFlags /* Some(_root_.sn.gnome.gio.internal.GApplicationFlags) */
+  )(using Zone): Application = new Application(
+    gtk_application_new(
+      application_id
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
+      flags
+    ).asInstanceOf
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

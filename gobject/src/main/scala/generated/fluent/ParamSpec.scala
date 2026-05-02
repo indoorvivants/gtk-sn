@@ -29,13 +29,14 @@ import sn.gnome.gobject.internal.GValue
   * the ‘canonical form’. Using `_` is discouraged.
   */
 class ParamSpec(raw: Ptr[GParamSpec]):
+
   def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Get the short description of a #GParamSpec.
     */
-  def getBlurb()(using Zone): String = fromCString(
+  def getBlurb()(using Zone): String /* None */ = fromCString(
     g_param_spec_get_blurb(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -45,9 +46,8 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     *
     * The #GValue will remain valid for the life of @pspec.
     */
-  def getDefaultValue(): Ptr[GValue] = g_param_spec_get_default_value(
-    this.raw.asInstanceOf
-  )
+  def getDefaultValue(): Ptr[GValue] /* None */ =
+    g_param_spec_get_default_value(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -56,7 +56,7 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * The name is always an "interned" string (as per g_intern_string()). This
     * allows for pointer-value comparisons.
     */
-  def getName()(using Zone): String = fromCString(
+  def getName()(using Zone): String /* None */ = fromCString(
     g_param_spec_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -64,7 +64,7 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     *
     * Gets the GQuark for the name.
     */
-  def getNameQuark(): GQuark = g_param_spec_get_name_quark(
+  def getNameQuark(): GQuark /* None */ = g_param_spec_get_name_quark(
     this.raw.asInstanceOf
   )
 
@@ -72,7 +72,7 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     *
     * Get the nickname of a #GParamSpec.
     */
-  def getNick()(using Zone): String = fromCString(
+  def getNick()(using Zone): String /* None */ = fromCString(
     g_param_spec_get_nick(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -80,7 +80,9 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     *
     * Gets back user data pointers stored via g_param_spec_set_qdata().
     */
-  def getQdata(quark: GQuark): Ptr[Byte] =
+  def getQdata(
+      quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */
+  ): Ptr[Byte] /* None */ =
     g_param_spec_get_qdata(this.raw.asInstanceOf, quark).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -92,7 +94,7 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * #GParamSpecOverride. See g_object_class_override_property() for an example
     * of the use of this capability.
     */
-  def getRedirectTarget(): ParamSpec = new ParamSpec(
+  def getRedirectTarget(): ParamSpec /* None */ = new ParamSpec(
     g_param_spec_get_redirect_target(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -100,7 +102,7 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     *
     * Increments the reference count of @pspec.
     */
-  def ref(): ParamSpec = new ParamSpec(
+  def ref(): ParamSpec /* None */ = new ParamSpec(
     g_param_spec_ref(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -108,7 +110,7 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     *
     * Convenience function to ref and sink a #GParamSpec.
     */
-  def refSink(): ParamSpec = new ParamSpec(
+  def refSink(): ParamSpec /* None */ = new ParamSpec(
     g_param_spec_ref_sink(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -121,8 +123,18 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * overrides (frees) the old pointer set, using %NULL as pointer essentially
     * removes the data stored.
     */
-  def setQdata(quark: GQuark, data: Ptr[Byte]): Unit =
-    g_param_spec_set_qdata(this.raw.asInstanceOf, quark, gpointer(data))
+  def setQdata(
+      quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
+      data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_param_spec_set_qdata(
+    this.raw.asInstanceOf,
+    quark,
+    data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -132,14 +144,24 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * overwritten by a call to g_param_spec_set_qdata() with the same @quark.
     */
   def setQdataFull(
-      quark: GQuark,
-      data: Ptr[Byte],
-      destroy: GDestroyNotify
-  ): Unit = g_param_spec_set_qdata_full(
+      quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
+      data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      destroy: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ]
+  ): Unit /* None */ = g_param_spec_set_qdata_full(
     this.raw.asInstanceOf,
     quark,
-    gpointer(data),
+    data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     destroy
+      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -151,7 +173,7 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * taking over the initial reference count (thus ending up with a @pspec that
     * has a reference count of 1 still, but is not flagged "floating" anymore).
     */
-  def sink(): Unit = g_param_spec_sink(this.raw.asInstanceOf)
+  def sink(): Unit /* None */ = g_param_spec_sink(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -160,13 +182,15 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * any was set). Usually, calling this function is only required to update
     * user data pointers with a destroy notifier.
     */
-  def stealQdata(quark: GQuark): Ptr[Byte] =
+  def stealQdata(
+      quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */
+  ): Ptr[Byte] /* None */ =
     g_param_spec_steal_qdata(this.raw.asInstanceOf, quark).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Decrements the reference count of a @pspec.
     */
-  def unref(): Unit = g_param_spec_unref(this.raw.asInstanceOf)
+  def unref(): Unit /* None */ = g_param_spec_unref(this.raw.asInstanceOf)
 
 end ParamSpec

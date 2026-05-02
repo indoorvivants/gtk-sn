@@ -17,13 +17,14 @@ import sn.gnome.gtk4.internal.GtkKeyvalTrigger
   */
 class KeyvalTrigger(raw: Ptr[GtkKeyvalTrigger])
     extends ShortcutTrigger(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the keyval that must be pressed to succeed triggering @self.
     */
-  def getKeyval(): UInt = gtk_keyval_trigger_get_keyval(
+  def getKeyval(): UInt /* None */ = gtk_keyval_trigger_get_keyval(
     this.raw.asInstanceOf
   ).value
 
@@ -31,9 +32,8 @@ class KeyvalTrigger(raw: Ptr[GtkKeyvalTrigger])
     *
     * Gets the modifiers that must be present to succeed triggering @self.
     */
-  def getModifiers(): GdkModifierType = gtk_keyval_trigger_get_modifiers(
-    this.raw.asInstanceOf
-  )
+  def getModifiers(): GdkModifierType /* None */ =
+    gtk_keyval_trigger_get_modifiers(this.raw.asInstanceOf)
 
 end KeyvalTrigger
 
@@ -43,8 +43,10 @@ object KeyvalTrigger:
     * Creates a `GtkShortcutTrigger` that will trigger whenever the key with the
     * given @keyval and @modifiers is pressed.
     */
-  def apply(keyval: UInt, modifiers: GdkModifierType): KeyvalTrigger =
-    new KeyvalTrigger(
-      gtk_keyval_trigger_new(guint(keyval), modifiers).asInstanceOf
-    )
+  def apply(
+      keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      modifiers: GdkModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
+  ): KeyvalTrigger = new KeyvalTrigger(
+    gtk_keyval_trigger_new(guint(keyval), modifiers).asInstanceOf
+  )
 end KeyvalTrigger

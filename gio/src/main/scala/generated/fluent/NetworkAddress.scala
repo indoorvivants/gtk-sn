@@ -26,6 +26,7 @@ import sn.gnome.gobject.fluent.Object
 class NetworkAddress(raw: Ptr[GNetworkAddress])
     extends Object(raw.asInstanceOf),
       SocketConnectable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -33,7 +34,7 @@ class NetworkAddress(raw: Ptr[GNetworkAddress])
     * Gets @addr's hostname. This might be either UTF-8 or ASCII-encoded,
     * depending on what @addr was created with.
     */
-  def getHostname()(using Zone): String = fromCString(
+  def getHostname()(using Zone): String /* None */ = fromCString(
     g_network_address_get_hostname(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -41,7 +42,7 @@ class NetworkAddress(raw: Ptr[GNetworkAddress])
     *
     * Gets @addr's port number
     */
-  def getPort(): UShort = g_network_address_get_port(
+  def getPort(): UShort /* None */ = g_network_address_get_port(
     this.raw.asInstanceOf
   ).value
 
@@ -49,7 +50,7 @@ class NetworkAddress(raw: Ptr[GNetworkAddress])
     *
     * Gets @addr's scheme
     */
-  def getScheme()(using Zone): String = fromCString(
+  def getScheme()(using Zone): String /* None */ = fromCString(
     g_network_address_get_scheme(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -68,9 +69,11 @@ object NetworkAddress:
     *   IPv4 and IPv6; use g_network_address_new_loopback() to create a
     *   #GNetworkAddress that is guaranteed to resolve to both addresses.
     */
-  def apply(hostname: String | CString, port: UShort)(using
-      Zone
-  ): NetworkAddress = new NetworkAddress(
+  def apply(
+      hostname: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
+  )(using Zone): NetworkAddress = new NetworkAddress(
     g_network_address_new(
       __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]],
       guint16(port)
@@ -91,7 +94,9 @@ object NetworkAddress:
     * g_network_address_get_hostname() will always return `localhost` for a
     * #GNetworkAddress created with this constructor.
     */
-  def loopback(port: UShort): NetworkAddress = new NetworkAddress(
+  def loopback(
+      port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
+  ): NetworkAddress = new NetworkAddress(
     g_network_address_new_loopback(guint16(port)).asInstanceOf
   )
 

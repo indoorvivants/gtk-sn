@@ -50,6 +50,7 @@ import sn.gnome.gtk4.internal.GtkSignalListItemFactory
   */
 class SignalListItemFactory(raw: Ptr[GtkSignalListItemFactory])
     extends ListItemFactory(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end SignalListItemFactory

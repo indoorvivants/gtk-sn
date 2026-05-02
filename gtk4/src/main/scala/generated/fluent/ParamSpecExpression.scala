@@ -13,6 +13,7 @@ import sn.gnome.gtk4.internal.GtkParamSpecExpression
   */
 class ParamSpecExpression(raw: Ptr[GtkParamSpecExpression])
     extends ParamSpec(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ParamSpecExpression

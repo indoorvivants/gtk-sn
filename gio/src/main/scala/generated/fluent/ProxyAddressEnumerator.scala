@@ -21,6 +21,7 @@ import sn.gnome.gio.internal.GProxyAddressEnumerator
   */
 class ProxyAddressEnumerator(raw: Ptr[GProxyAddressEnumerator])
     extends SocketAddressEnumerator(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ProxyAddressEnumerator

@@ -37,6 +37,7 @@ import sn.gnome.glib.internal.gpointer
   */
 class SocketConnection(raw: Ptr[GSocketConnection])
     extends IOStream(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -44,13 +45,15 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     * Connect @connection to the specified remote address.
     */
   def connect(
-      address: SocketAddress,
-      cancellable: Cancellable
-  ): GResult[Boolean] = GResult.wrap(__errorPtr =>
+      address: SocketAddress /* Some(Ptr[GSocketAddress]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_connection_connect(
       this.raw.asInstanceOf,
       address.getUnsafeRawPointer().asInstanceOf,
-      cancellable.getUnsafeRawPointer().asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
       __errorPtr
     ).value.!=(0)
   )
@@ -65,43 +68,53 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     * Use g_socket_connection_connect_finish() to retrieve the result.
     */
   def connectAsync(
-      address: SocketAddress,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_socket_connection_connect_async(
+      address: SocketAddress /* Some(Ptr[GSocketAddress]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_socket_connection_connect_async(
     this.raw.asInstanceOf,
     address.getUnsafeRawPointer().asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the result of a g_socket_connection_connect_async() call.
     */
-  def connectFinish(result: AsyncResult): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_socket_connection_connect_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def connectFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_socket_connection_connect_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Try to get the local address of a socket connection.
     */
-  def getLocalAddress(): GResult[SocketAddress] = GResult.wrap(__errorPtr =>
-    new SocketAddress(
-      g_socket_connection_get_local_address(
-        this.raw.asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  def getLocalAddress(): GResult[SocketAddress /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      new SocketAddress(
+        g_socket_connection_get_local_address(
+          this.raw.asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -113,14 +126,15 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     * that will be used for the connection. This allows applications to print
     * e.g. "Connecting to example.com (10.42.77.3)...".
     */
-  def getRemoteAddress(): GResult[SocketAddress] = GResult.wrap(__errorPtr =>
-    new SocketAddress(
-      g_socket_connection_get_remote_address(
-        this.raw.asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  def getRemoteAddress(): GResult[SocketAddress /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      new SocketAddress(
+        g_socket_connection_get_remote_address(
+          this.raw.asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -128,7 +142,7 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     * if you want to do something unusual on it not supported by the
     * #GSocketConnection APIs.
     */
-  def getSocket(): Socket = new Socket(
+  def getSocket(): Socket /* None */ = new Socket(
     g_socket_connection_get_socket(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -137,7 +151,7 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     * Checks if @connection is connected. This is equivalent to calling
     * g_socket_is_connected() on @connection's underlying #GSocket.
     */
-  def isConnected(): Boolean =
+  def isConnected(): Boolean /* None */ =
     g_socket_connection_is_connected(this.raw.asInstanceOf).value.!=(0)
 
 end SocketConnection

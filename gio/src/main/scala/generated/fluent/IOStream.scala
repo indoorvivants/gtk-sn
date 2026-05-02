@@ -68,13 +68,16 @@ import sn.gnome.gobject.fluent.Object
   * stream in (though they are guaranteed not to crash).
   */
 class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Clears the pending flag on @stream.
     */
-  def clearPending(): Unit = g_io_stream_clear_pending(this.raw.asInstanceOf)
+  def clearPending(): Unit /* None */ = g_io_stream_clear_pending(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -111,14 +114,17 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * The default implementation of this method just calls close on the
     * individual input/output streams.
     */
-  def close(cancellable: Cancellable): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_io_stream_close(
-        this.raw.asInstanceOf,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def close(
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_io_stream_close(
+      this.raw.asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -133,36 +139,45 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * However, if you override one you must override all.
     */
   def closeAsync(
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_io_stream_close_async(
+      io_priority: Int /* Some(CInt) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_io_stream_close_async(
     this.raw.asInstanceOf,
     io_priority,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Closes a stream.
     */
-  def closeFinish(result: AsyncResult): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_io_stream_close_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def closeFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_io_stream_close_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the input stream for this object. This is used for reading.
     */
-  def getInputStream(): InputStream = new InputStream(
+  def getInputStream(): InputStream /* None */ = new InputStream(
     g_io_stream_get_input_stream(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -170,7 +185,7 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     *
     * Gets the output stream for this object. This is used for writing.
     */
-  def getOutputStream(): OutputStream = new OutputStream(
+  def getOutputStream(): OutputStream /* None */ = new OutputStream(
     g_io_stream_get_output_stream(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -178,14 +193,14 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     *
     * Checks if a stream has pending actions.
     */
-  def hasPending(): Boolean =
+  def hasPending(): Boolean /* None */ =
     g_io_stream_has_pending(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if a stream is closed.
     */
-  def isClosed(): Boolean =
+  def isClosed(): Boolean /* None */ =
     g_io_stream_is_closed(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -194,7 +209,7 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * or @stream is closed, it will return %FALSE and set
     * @error.
     */
-  def setPending(): GResult[Boolean] = GResult.wrap(__errorPtr =>
+  def setPending(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_io_stream_set_pending(this.raw.asInstanceOf, __errorPtr).value.!=(0)
   )
 
@@ -209,20 +224,28 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * g_io_stream_splice_finish() to get the result of the operation.
     */
   def spliceAsync(
-      stream2: IOStream,
-      flags: GIOStreamSpliceFlags,
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_io_stream_splice_async(
+      stream2: IOStream /* Some(Ptr[GIOStream]) */,
+      flags: GIOStreamSpliceFlags /* Some(GIOStreamSpliceFlags) */,
+      io_priority: Int /* Some(CInt) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_io_stream_splice_async(
     this.raw.asInstanceOf,
     stream2.getUnsafeRawPointer().asInstanceOf,
     flags,
     io_priority,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
 end IOStream

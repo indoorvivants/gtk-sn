@@ -25,21 +25,23 @@ import sn.gnome.gtk4.internal.GtkOrientation
   * received, containing the offset in the given axis.
   */
 class GesturePan(raw: Ptr[GtkGesturePan]) extends GestureDrag(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the orientation of the pan gestures that this @gesture expects.
     */
-  def getOrientation(): GtkOrientation = gtk_gesture_pan_get_orientation(
-    this.raw.asInstanceOf
-  )
+  def getOrientation(): GtkOrientation /* None */ =
+    gtk_gesture_pan_get_orientation(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the orientation to be expected on pan gestures.
     */
-  def setOrientation(orientation: GtkOrientation): Unit =
+  def setOrientation(
+      orientation: GtkOrientation /* Some(GtkOrientation) */
+  ): Unit /* None */ =
     gtk_gesture_pan_set_orientation(this.raw.asInstanceOf, orientation)
 
 end GesturePan
@@ -49,7 +51,7 @@ object GesturePan:
     *
     * Returns a newly created `GtkGesture` that recognizes pan gestures.
     */
-  def apply(orientation: GtkOrientation): GesturePan = new GesturePan(
-    gtk_gesture_pan_new(orientation).asInstanceOf
-  )
+  def apply(
+      orientation: GtkOrientation /* Some(GtkOrientation) */
+  ): GesturePan = new GesturePan(gtk_gesture_pan_new(orientation).asInstanceOf)
 end GesturePan

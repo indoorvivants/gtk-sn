@@ -17,6 +17,7 @@ import sn.gnome.gobject.fluent.Object
   * functions below.
   */
 class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -25,7 +26,7 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
     *
     * The iterator is not advanced.
     */
-  def getName()(using Zone): String = fromCString(
+  def getName()(using Zone): String /* None */ = fromCString(
     g_menu_link_iter_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -49,7 +50,7 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_next contains an OUT parameter, which is not supported yet"
   )
-  def getNext(using DummyImplicit) = ???
+  private def getNext__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -57,7 +58,7 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
     *
     * The iterator is not advanced.
     */
-  def getValue(): MenuModel = new MenuModel(
+  def getValue(): MenuModel /* None */ = new MenuModel(
     g_menu_link_iter_get_value(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -70,6 +71,7 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
     * You must call this function when you first acquire the iterator to advance
     * it to the first link (and determine if the first link exists at all).
     */
-  def next(): Boolean = g_menu_link_iter_next(this.raw.asInstanceOf).value.!=(0)
+  def next(): Boolean /* None */ =
+    g_menu_link_iter_next(this.raw.asInstanceOf).value.!=(0)
 
 end MenuLinkIter

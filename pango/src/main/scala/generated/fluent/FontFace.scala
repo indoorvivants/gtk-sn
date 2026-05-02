@@ -17,6 +17,7 @@ import sn.gnome.pango.internal.PangoFontFace
   * family, slant, weight, and width, but varying sizes.
   */
 class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -26,9 +27,8 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
     * The resulting font description will have the family, style, variant,
     * weight and stretch of the face, but its size field will be unset.
     */
-  def describe(): Ptr[PangoFontDescription] = pango_font_face_describe(
-    this.raw.asInstanceOf
-  )
+  def describe(): Ptr[PangoFontDescription] /* None */ =
+    pango_font_face_describe(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -37,7 +37,7 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
     * Note that a font family may contain multiple faces with the same name
     * (e.g. a variable and a non-variable face for the same style).
     */
-  def getFaceName()(using Zone): String = fromCString(
+  def getFaceName()(using Zone): String /* None */ = fromCString(
     pango_font_face_get_face_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -45,7 +45,7 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
     *
     * Gets the `PangoFontFamily` that @face belongs to.
     */
-  def getFamily(): FontFamily = new FontFamily(
+  def getFamily(): FontFamily /* None */ = new FontFamily(
     pango_font_face_get_family(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -57,7 +57,7 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
     * face from another face, by shearing, emboldening, lightening or modifying
     * it in some other way.
     */
-  def isSynthesized(): Boolean =
+  def isSynthesized(): Boolean /* None */ =
     pango_font_face_is_synthesized(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -71,6 +71,6 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method list_sizes contains an OUT parameter, which is not supported yet"
   )
-  def listSizes(using DummyImplicit) = ???
+  private def listSizes__ = ???
 
 end FontFace

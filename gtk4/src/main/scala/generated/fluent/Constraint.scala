@@ -31,20 +31,23 @@ import sn.gnome.gtk4.internal.GtkConstraintRelation
   * instance are immutable after creation.
   */
 class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the constant factor added to the source attributes' value.
     */
-  def getConstant(): Double = gtk_constraint_get_constant(this.raw.asInstanceOf)
+  def getConstant(): Double /* None */ = gtk_constraint_get_constant(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the multiplication factor applied to the source attribute's
     * value.
     */
-  def getMultiplier(): Double = gtk_constraint_get_multiplier(
+  def getMultiplier(): Double /* None */ = gtk_constraint_get_multiplier(
     this.raw.asInstanceOf
   )
 
@@ -52,9 +55,8 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     *
     * The order relation between the terms of the constraint.
     */
-  def getRelation(): GtkConstraintRelation = gtk_constraint_get_relation(
-    this.raw.asInstanceOf
-  )
+  def getRelation(): GtkConstraintRelation /* None */ =
+    gtk_constraint_get_relation(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -64,7 +66,7 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * If the source is set to `NULL` at creation, the constraint will use the
     * widget using the [class@Gtk.ConstraintLayout] as the source.
     */
-  def getSource(): ConstraintTarget = new ConstraintTarget.Abstract(
+  def getSource(): ConstraintTarget /* None */ = new ConstraintTarget.Abstract(
     gtk_constraint_get_source(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -72,14 +74,16 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     *
     * Retrieves the attribute of the source to be read by the constraint.
     */
-  def getSourceAttribute(): GtkConstraintAttribute =
+  def getSourceAttribute(): GtkConstraintAttribute /* None */ =
     gtk_constraint_get_source_attribute(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the strength of the constraint.
     */
-  def getStrength(): Int = gtk_constraint_get_strength(this.raw.asInstanceOf)
+  def getStrength(): Int /* None */ = gtk_constraint_get_strength(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -89,7 +93,7 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * If the targe is set to `NULL` at creation, the constraint will use the
     * widget using the [class@Gtk.ConstraintLayout] as the target.
     */
-  def getTarget(): ConstraintTarget = new ConstraintTarget.Abstract(
+  def getTarget(): ConstraintTarget /* None */ = new ConstraintTarget.Abstract(
     gtk_constraint_get_target(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -97,7 +101,7 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     *
     * Retrieves the attribute of the target to be set by the constraint.
     */
-  def getTargetAttribute(): GtkConstraintAttribute =
+  def getTargetAttribute(): GtkConstraintAttribute /* None */ =
     gtk_constraint_get_target_attribute(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -105,7 +109,7 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * Checks whether the constraint is attached to a
     * [class@Gtk.ConstraintLayout], and it is contributing to the layout.
     */
-  def isAttached(): Boolean =
+  def isAttached(): Boolean /* None */ =
     gtk_constraint_is_attached(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -113,7 +117,7 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * Checks whether the constraint describes a relation between an attribute on
     * the [property@Gtk.Constraint:target] and a constant value.
     */
-  def isConstant(): Boolean =
+  def isConstant(): Boolean /* None */ =
     gtk_constraint_is_constant(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -121,7 +125,7 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * Checks whether the constraint is a required relation for solving the
     * constraint layout.
     */
-  def isRequired(): Boolean =
+  def isRequired(): Boolean /* None */ =
     gtk_constraint_is_required(this.raw.asInstanceOf).value.!=(0)
 
 end Constraint
@@ -133,20 +137,32 @@ object Constraint:
     * attribute on a source and a layout attribute on a target.
     */
   def apply(
-      target: ConstraintTarget,
-      target_attribute: GtkConstraintAttribute,
-      relation: GtkConstraintRelation,
-      source: ConstraintTarget,
-      source_attribute: GtkConstraintAttribute,
-      multiplier: Double,
-      constant: Double,
-      strength: Int
+      target: Option[
+        ConstraintTarget /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      target_attribute: GtkConstraintAttribute /* Some(GtkConstraintAttribute) */,
+      relation: GtkConstraintRelation /* Some(GtkConstraintRelation) */,
+      source: Option[
+        ConstraintTarget /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      source_attribute: GtkConstraintAttribute /* Some(GtkConstraintAttribute) */,
+      multiplier: Double /* Some(Double) */,
+      constant: Double /* Some(Double) */,
+      strength: Int /* Some(CInt) */
   ): Constraint = new Constraint(
     gtk_constraint_new(
-      target.getUnsafeRawPointer().asInstanceOf,
+      target
+        .map[_root_.sn.gnome.glib.internal.gpointer](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
       target_attribute,
       relation,
-      source.getUnsafeRawPointer().asInstanceOf,
+      source
+        .map[_root_.sn.gnome.glib.internal.gpointer](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
       source_attribute,
       multiplier,
       constant,
@@ -160,14 +176,20 @@ object Constraint:
     * attribute on a target and a constant value.
     */
   def constant(
-      target: ConstraintTarget,
-      target_attribute: GtkConstraintAttribute,
-      relation: GtkConstraintRelation,
-      constant: Double,
-      strength: Int
+      target: Option[
+        ConstraintTarget /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      target_attribute: GtkConstraintAttribute /* Some(GtkConstraintAttribute) */,
+      relation: GtkConstraintRelation /* Some(GtkConstraintRelation) */,
+      constant: Double /* Some(Double) */,
+      strength: Int /* Some(CInt) */
   ): Constraint = new Constraint(
     gtk_constraint_new_constant(
-      target.getUnsafeRawPointer().asInstanceOf,
+      target
+        .map[_root_.sn.gnome.glib.internal.gpointer](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
       target_attribute,
       relation,
       constant,

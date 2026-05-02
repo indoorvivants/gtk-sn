@@ -80,13 +80,14 @@ class DropDown(raw: Ptr[GtkDropDown])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether search is enabled.
     */
-  def getEnableSearch(): Boolean =
+  def getEnableSearch(): Boolean /* None */ =
     gtk_drop_down_get_enable_search(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -95,7 +96,7 @@ class DropDown(raw: Ptr[GtkDropDown])
     *
     * See [method@Gtk.DropDown.set_expression].
     */
-  def getExpression(): Expression = new Expression(
+  def getExpression(): Expression /* None */ = new Expression(
     gtk_drop_down_get_expression(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -107,7 +108,7 @@ class DropDown(raw: Ptr[GtkDropDown])
     * button. It is also used for items in the popup if
     * [property@Gtk.DropDown:list-factory] is not set.
     */
-  def getFactory(): ListItemFactory = new ListItemFactory(
+  def getFactory(): ListItemFactory /* None */ = new ListItemFactory(
     gtk_drop_down_get_factory(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -116,7 +117,7 @@ class DropDown(raw: Ptr[GtkDropDown])
     * Gets the factory that's currently used to create header widgets for the
     * popup.
     */
-  def getHeaderFactory(): ListItemFactory = new ListItemFactory(
+  def getHeaderFactory(): ListItemFactory /* None */ = new ListItemFactory(
     gtk_drop_down_get_header_factory(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -125,7 +126,7 @@ class DropDown(raw: Ptr[GtkDropDown])
     * Gets the factory that's currently used to populate list items in the
     * popup.
     */
-  def getListFactory(): ListItemFactory = new ListItemFactory(
+  def getListFactory(): ListItemFactory /* None */ = new ListItemFactory(
     gtk_drop_down_get_list_factory(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -133,7 +134,7 @@ class DropDown(raw: Ptr[GtkDropDown])
     *
     * Gets the model that provides the displayed items.
     */
-  def getModel(): ListModel = new ListModel.Abstract(
+  def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_drop_down_get_model(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -141,14 +142,14 @@ class DropDown(raw: Ptr[GtkDropDown])
     *
     * Returns the match mode that the search filter is using.
     */
-  def getSearchMatchMode(): GtkStringFilterMatchMode =
+  def getSearchMatchMode(): GtkStringFilterMatchMode /* None */ =
     gtk_drop_down_get_search_match_mode(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the position of the selected item.
     */
-  def getSelected(): UInt = gtk_drop_down_get_selected(
+  def getSelected(): UInt /* None */ = gtk_drop_down_get_selected(
     this.raw.asInstanceOf
   ).value
 
@@ -156,7 +157,7 @@ class DropDown(raw: Ptr[GtkDropDown])
     *
     * Gets the selected item. If no item is selected, %NULL is returned.
     */
-  def getSelectedItem(): Object = new Object(
+  def getSelectedItem(): Object /* None */ = new Object(
     gtk_drop_down_get_selected_item(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -164,7 +165,7 @@ class DropDown(raw: Ptr[GtkDropDown])
     *
     * Returns whether to show an arrow within the widget.
     */
-  def getShowArrow(): Boolean =
+  def getShowArrow(): Boolean /* None */ =
     gtk_drop_down_get_show_arrow(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -175,11 +176,12 @@ class DropDown(raw: Ptr[GtkDropDown])
     * Note that [property@Gtk.DropDown:expression] must be set for search to
     * work.
     */
-  def setEnableSearch(enable_search: Boolean): Unit =
-    gtk_drop_down_set_enable_search(
-      this.raw.asInstanceOf,
-      gboolean(gint((if enable_search == true then 1 else 0)))
-    )
+  def setEnableSearch(
+      enable_search: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_drop_down_set_enable_search(
+    this.raw.asInstanceOf,
+    gboolean(gint((if enable_search == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -188,19 +190,26 @@ class DropDown(raw: Ptr[GtkDropDown])
     * This is used for search in the popup. The expression must have a value
     * type of %G_TYPE_STRING.
     */
-  def setExpression(expression: Expression): Unit =
-    gtk_drop_down_set_expression(
-      this.raw.asInstanceOf,
-      expression.getUnsafeRawPointer().asInstanceOf
-    )
+  def setExpression(
+      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
+  ): Unit /* None */ = gtk_drop_down_set_expression(
+    this.raw.asInstanceOf,
+    expression
+      .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the `GtkListItemFactory` to use for populating list items.
     */
-  def setFactory(factory: ListItemFactory): Unit = gtk_drop_down_set_factory(
+  def setFactory(
+      factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
+  ): Unit /* None */ = gtk_drop_down_set_factory(
     this.raw.asInstanceOf,
-    factory.getUnsafeRawPointer().asInstanceOf
+    factory
+      .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -208,54 +217,75 @@ class DropDown(raw: Ptr[GtkDropDown])
     * Sets the `GtkListItemFactory` to use for creating header widgets for the
     * popup.
     */
-  def setHeaderFactory(factory: ListItemFactory): Unit =
-    gtk_drop_down_set_header_factory(
-      this.raw.asInstanceOf,
-      factory.getUnsafeRawPointer().asInstanceOf
-    )
+  def setHeaderFactory(
+      factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
+  ): Unit /* None */ = gtk_drop_down_set_header_factory(
+    this.raw.asInstanceOf,
+    factory
+      .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the `GtkListItemFactory` to use for populating list items in the
     * popup.
     */
-  def setListFactory(factory: ListItemFactory): Unit =
-    gtk_drop_down_set_list_factory(
-      this.raw.asInstanceOf,
-      factory.getUnsafeRawPointer().asInstanceOf
-    )
+  def setListFactory(
+      factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
+  ): Unit /* None */ = gtk_drop_down_set_list_factory(
+    this.raw.asInstanceOf,
+    factory
+      .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the `GListModel` to use.
     */
-  def setModel(model: ListModel): Unit = gtk_drop_down_set_model(
+  def setModel(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ]
+  ): Unit /* None */ = gtk_drop_down_set_model(
     this.raw.asInstanceOf,
-    model.getUnsafeRawPointer().asInstanceOf
+    model
+      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+      )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the match mode for the search filter.
     */
-  def setSearchMatchMode(search_match_mode: GtkStringFilterMatchMode): Unit =
-    gtk_drop_down_set_search_match_mode(
-      this.raw.asInstanceOf,
-      search_match_mode
-    )
+  def setSearchMatchMode(
+      search_match_mode: GtkStringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
+  ): Unit /* None */ = gtk_drop_down_set_search_match_mode(
+    this.raw.asInstanceOf,
+    search_match_mode
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Selects the item at the given position.
     */
-  def setSelected(position: UInt): Unit =
+  def setSelected(
+      position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ =
     gtk_drop_down_set_selected(this.raw.asInstanceOf, guint(position))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets whether an arrow will be displayed within the widget.
     */
-  def setShowArrow(show_arrow: Boolean): Unit = gtk_drop_down_set_show_arrow(
+  def setShowArrow(
+      show_arrow: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_drop_down_set_show_arrow(
     this.raw.asInstanceOf,
     gboolean(gint((if show_arrow == true then 1 else 0)))
   )
@@ -270,10 +300,23 @@ object DropDown:
     * You may want to call [method@Gtk.DropDown.set_factory] to set up a way to
     * map its items to widgets.
     */
-  def apply(model: ListModel, expression: Expression): DropDown = new DropDown(
+  def apply(
+      model: Option[
+        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      ],
+      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
+  ): DropDown = new DropDown(
     gtk_drop_down_new(
-      model.getUnsafeRawPointer().asInstanceOf,
-      expression.getUnsafeRawPointer().asInstanceOf
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        ),
+      expression
+        .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
     ).asInstanceOf
   )
 
@@ -281,7 +324,9 @@ object DropDown:
     *
     * Creates a new `GtkDropDown` that is populated with the strings.
     */
-  def fromStrings(strings: Ptr[CString])(using Zone): DropDown = new DropDown(
+  def fromStrings(
+      strings: Ptr[CString] /* Some(Ptr[CString]) */
+  )(using Zone): DropDown = new DropDown(
     gtk_drop_down_new_from_strings(strings).asInstanceOf
   )
 

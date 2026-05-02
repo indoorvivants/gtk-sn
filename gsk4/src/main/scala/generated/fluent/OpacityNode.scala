@@ -13,13 +13,14 @@ import sn.gnome.gsk4.internal.GskOpacityNode
   */
 class OpacityNode(raw: Ptr[GskOpacityNode])
     extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the child node that is getting opacityed by the given @node.
     */
-  def getChild(): RenderNode = new RenderNode(
+  def getChild(): RenderNode /* None */ = new RenderNode(
     gsk_opacity_node_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -27,7 +28,9 @@ class OpacityNode(raw: Ptr[GskOpacityNode])
     *
     * Gets the transparency factor for an opacity node.
     */
-  def getOpacity(): Float = gsk_opacity_node_get_opacity(this.raw.asInstanceOf)
+  def getOpacity(): Float /* None */ = gsk_opacity_node_get_opacity(
+    this.raw.asInstanceOf
+  )
 
 end OpacityNode
 
@@ -37,7 +40,10 @@ object OpacityNode:
     * Creates a `GskRenderNode` that will drawn the @child with reduced
     * @opacity.
     */
-  def apply(child: RenderNode, opacity: Float): OpacityNode = new OpacityNode(
+  def apply(
+      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      opacity: Float /* Some(Float) */
+  ): OpacityNode = new OpacityNode(
     gsk_opacity_node_new(
       child.getUnsafeRawPointer().asInstanceOf,
       opacity.asInstanceOf

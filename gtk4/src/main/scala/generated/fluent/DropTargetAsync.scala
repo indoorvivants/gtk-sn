@@ -48,15 +48,15 @@ import sn.gnome.gtk4.internal.GtkDropTargetAsync
   */
 class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     extends EventController(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the actions that this drop target supports.
     */
-  def getActions(): GdkDragAction = gtk_drop_target_async_get_actions(
-    this.raw.asInstanceOf
-  )
+  def getActions(): GdkDragAction /* None */ =
+    gtk_drop_target_async_get_actions(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -64,9 +64,8 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     *
     * If the result is %NULL, all formats are expected to be supported.
     */
-  def getFormats(): Ptr[GdkContentFormats] = gtk_drop_target_async_get_formats(
-    this.raw.asInstanceOf
-  )
+  def getFormats(): Ptr[GdkContentFormats] /* None */ =
+    gtk_drop_target_async_get_formats(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -75,7 +74,9 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     * This function should be used when delaying the decision on whether to
     * accept a drag or not until after reading the data.
     */
-  def rejectDrop(drop: Drop): Unit = gtk_drop_target_async_reject_drop(
+  def rejectDrop(
+      drop: Drop /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrop]) */
+  ): Unit /* None */ = gtk_drop_target_async_reject_drop(
     this.raw.asInstanceOf,
     drop.getUnsafeRawPointer().asInstanceOf
   )
@@ -84,15 +85,27 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     *
     * Sets the actions that this drop target supports.
     */
-  def setActions(actions: GdkDragAction): Unit =
+  def setActions(
+      actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+  ): Unit /* None */ =
     gtk_drop_target_async_set_actions(this.raw.asInstanceOf, actions)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the data formats that this drop target will accept.
     */
-  def setFormats(formats: Ptr[GdkContentFormats]): Unit =
-    gtk_drop_target_async_set_formats(this.raw.asInstanceOf, formats)
+  def setFormats(
+      formats: Option[Ptr[
+        GdkContentFormats
+      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */ ]
+  ): Unit /* None */ = gtk_drop_target_async_set_formats(
+    this.raw.asInstanceOf,
+    formats
+      .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]](o => o)
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]]
+      )
+  )
 
 end DropTargetAsync
 
@@ -102,9 +115,19 @@ object DropTargetAsync:
     * Creates a new `GtkDropTargetAsync` object.
     */
   def apply(
-      formats: Ptr[GdkContentFormats],
-      actions: GdkDragAction
+      formats: Option[Ptr[
+        GdkContentFormats
+      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */ ],
+      actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
   ): DropTargetAsync = new DropTargetAsync(
-    gtk_drop_target_async_new(formats, actions).asInstanceOf
+    gtk_drop_target_async_new(
+      formats
+        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]](o => o)
+        .getOrElse(
+          null
+            .asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]]
+        ),
+      actions
+    ).asInstanceOf
   )
 end DropTargetAsync

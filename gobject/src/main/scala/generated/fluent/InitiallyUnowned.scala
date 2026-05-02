@@ -16,6 +16,7 @@ import sn.gnome.gobject.internal.GInitiallyUnowned
   */
 class InitiallyUnowned(raw: Ptr[GInitiallyUnowned])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end InitiallyUnowned

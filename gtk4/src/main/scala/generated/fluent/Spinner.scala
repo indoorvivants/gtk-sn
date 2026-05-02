@@ -34,20 +34,23 @@ class Spinner(raw: Ptr[GtkSpinner])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the spinner is spinning.
     */
-  def getSpinning(): Boolean =
+  def getSpinning(): Boolean /* None */ =
     gtk_spinner_get_spinning(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the activity of the spinner.
     */
-  def setSpinning(spinning: Boolean): Unit = gtk_spinner_set_spinning(
+  def setSpinning(
+      spinning: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_spinner_set_spinning(
     this.raw.asInstanceOf,
     gboolean(gint((if spinning == true then 1 else 0)))
   )
@@ -56,13 +59,13 @@ class Spinner(raw: Ptr[GtkSpinner])
     *
     * Starts the animation of the spinner.
     */
-  def start(): Unit = gtk_spinner_start(this.raw.asInstanceOf)
+  def start(): Unit /* None */ = gtk_spinner_start(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Stops the animation of the spinner.
     */
-  def stop(): Unit = gtk_spinner_stop(this.raw.asInstanceOf)
+  def stop(): Unit /* None */ = gtk_spinner_stop(this.raw.asInstanceOf)
 
 end Spinner
 

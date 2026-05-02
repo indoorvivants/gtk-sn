@@ -59,6 +59,7 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     extends EventController(raw.asInstanceOf),
       ListModel,
       Buildable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -68,18 +69,19 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     * If this controller uses an external shortcut list, this function does
     * nothing.
     */
-  def addShortcut(shortcut: Shortcut): Unit =
-    gtk_shortcut_controller_add_shortcut(
-      this.raw.asInstanceOf,
-      shortcut.getUnsafeRawPointer().asInstanceOf
-    )
+  def addShortcut(
+      shortcut: Shortcut /* Some(Ptr[GtkShortcut]) */
+  ): Unit /* None */ = gtk_shortcut_controller_add_shortcut(
+    this.raw.asInstanceOf,
+    shortcut.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the mnemonics modifiers for when this controller activates its
     * shortcuts.
     */
-  def getMnemonicsModifiers(): GdkModifierType =
+  def getMnemonicsModifiers(): GdkModifierType /* None */ =
     gtk_shortcut_controller_get_mnemonics_modifiers(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -88,9 +90,8 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     *
     * See [method@Gtk.ShortcutController.set_scope] for details.
     */
-  def getScope(): GtkShortcutScope = gtk_shortcut_controller_get_scope(
-    this.raw.asInstanceOf
-  )
+  def getScope(): GtkShortcutScope /* None */ =
+    gtk_shortcut_controller_get_scope(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -99,11 +100,12 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     * If @shortcut had not been added to @controller or this controller uses an
     * external shortcut list, this function does nothing.
     */
-  def removeShortcut(shortcut: Shortcut): Unit =
-    gtk_shortcut_controller_remove_shortcut(
-      this.raw.asInstanceOf,
-      shortcut.getUnsafeRawPointer().asInstanceOf
-    )
+  def removeShortcut(
+      shortcut: Shortcut /* Some(Ptr[GtkShortcut]) */
+  ): Unit /* None */ = gtk_shortcut_controller_remove_shortcut(
+    this.raw.asInstanceOf,
+    shortcut.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -121,11 +123,12 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     * managed shortcut controllers will have their shortcuts activated from
     * other places which have their own modifiers for activating mnemonics.
     */
-  def setMnemonicsModifiers(modifiers: GdkModifierType): Unit =
-    gtk_shortcut_controller_set_mnemonics_modifiers(
-      this.raw.asInstanceOf,
-      modifiers
-    )
+  def setMnemonicsModifiers(
+      modifiers: GdkModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
+  ): Unit /* None */ = gtk_shortcut_controller_set_mnemonics_modifiers(
+    this.raw.asInstanceOf,
+    modifiers
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -138,7 +141,9 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     * With %GTK_SHORTCUT_SCOPE_LOCAL, shortcuts will only be activated when the
     * widget has focus.
     */
-  def setScope(scope: GtkShortcutScope): Unit =
+  def setScope(
+      scope: GtkShortcutScope /* Some(GtkShortcutScope) */
+  ): Unit /* None */ =
     gtk_shortcut_controller_set_scope(this.raw.asInstanceOf, scope)
 
 end ShortcutController
@@ -161,7 +166,9 @@ object ShortcutController:
     * individual shortcuts using the shortcut controller api, but you can change
     * the contents of the model.
     */
-  def forModel(model: ListModel): ShortcutController = new ShortcutController(
+  def forModel(
+      model: ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+  ): ShortcutController = new ShortcutController(
     gtk_shortcut_controller_new_for_model(
       model.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

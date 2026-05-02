@@ -14,21 +14,25 @@ import sn.gnome.gtk4.internal.GtkFixedLayoutChild
   */
 class FixedLayoutChild(raw: Ptr[GtkFixedLayoutChild])
     extends LayoutChild(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the transformation of the child.
     */
-  def getTransform(): Ptr[GskTransform] = gtk_fixed_layout_child_get_transform(
-    this.raw.asInstanceOf
-  )
+  def getTransform(): Ptr[GskTransform] /* None */ =
+    gtk_fixed_layout_child_get_transform(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the transformation of the child of a `GtkFixedLayout`.
     */
-  def setTransform(transform: Ptr[GskTransform]): Unit =
+  def setTransform(
+      transform: Ptr[
+        GskTransform
+      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]) */
+  ): Unit /* None */ =
     gtk_fixed_layout_child_set_transform(this.raw.asInstanceOf, transform)
 
 end FixedLayoutChild

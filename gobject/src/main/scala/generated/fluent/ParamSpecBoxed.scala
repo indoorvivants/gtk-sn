@@ -14,6 +14,7 @@ import sn.gnome.gobject.internal.GParamSpecBoxed
   */
 class ParamSpecBoxed(raw: Ptr[GParamSpecBoxed])
     extends ParamSpec(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ParamSpecBoxed

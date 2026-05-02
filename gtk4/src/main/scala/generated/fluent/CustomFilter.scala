@@ -15,6 +15,7 @@ import sn.gnome.gtk4.internal.GtkCustomFilterFunc
   * `GtkCustomFilter` determines whether to include items with a callback.
   */
 class CustomFilter(raw: Ptr[GtkCustomFilter]) extends Filter(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -29,13 +30,19 @@ class CustomFilter(raw: Ptr[GtkCustomFilter]) extends Filter(raw.asInstanceOf):
     * If a previous function was set, its @user_destroy will be called now.
     */
   def setFilterFunc(
-      match_func: GtkCustomFilterFunc,
-      user_data: Ptr[Byte],
-      user_destroy: GDestroyNotify
-  ): Unit = gtk_custom_filter_set_filter_func(
+      match_func: Option[GtkCustomFilterFunc /* Some(GtkCustomFilterFunc) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      user_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+  ): Unit /* None */ = gtk_custom_filter_set_filter_func(
     this.raw.asInstanceOf,
-    match_func,
-    gpointer(user_data),
+    match_func
+      .map[GtkCustomFilterFunc](o => o)
+      .getOrElse(null.asInstanceOf[GtkCustomFilterFunc]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
     user_destroy
   )
 
@@ -52,13 +59,19 @@ object CustomFilter:
     * needs to be called.
     */
   def apply(
-      match_func: GtkCustomFilterFunc,
-      user_data: Ptr[Byte],
-      user_destroy: GDestroyNotify
+      match_func: Option[GtkCustomFilterFunc /* Some(GtkCustomFilterFunc) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      user_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
   ): CustomFilter = new CustomFilter(
     gtk_custom_filter_new(
-      match_func,
-      gpointer(user_data),
+      match_func
+        .map[GtkCustomFilterFunc](o => o)
+        .getOrElse(null.asInstanceOf[GtkCustomFilterFunc]),
+      user_data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
       user_destroy
     ).asInstanceOf
   )

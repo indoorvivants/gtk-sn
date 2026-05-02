@@ -37,6 +37,7 @@ import sn.gnome.glib.internal.gint
   */
 class SocketService(raw: Ptr[GSocketService])
     extends SocketListener(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -45,7 +46,7 @@ class SocketService(raw: Ptr[GSocketService])
     * new clients that connect, while a non-active service will let connecting
     * clients queue up until the service is started.
     */
-  def isActive(): Boolean =
+  def isActive(): Boolean /* None */ =
     g_socket_service_is_active(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -57,7 +58,7 @@ class SocketService(raw: Ptr[GSocketService])
     * This call is thread-safe, so it may be called from a thread handling an
     * incoming client request.
     */
-  def start(): Unit = g_socket_service_start(this.raw.asInstanceOf)
+  def start(): Unit /* None */ = g_socket_service_start(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -77,7 +78,7 @@ class SocketService(raw: Ptr[GSocketService])
     * service will start accepting connections immediately when a new socket is
     * added.
     */
-  def stop(): Unit = g_socket_service_stop(this.raw.asInstanceOf)
+  def stop(): Unit /* None */ = g_socket_service_stop(this.raw.asInstanceOf)
 
 end SocketService
 

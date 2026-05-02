@@ -52,13 +52,14 @@ class StackSwitcher(raw: Ptr[GtkStackSwitcher])
       Buildable,
       ConstraintTarget,
       Orientable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the stack.
     */
-  def getStack(): Stack = new Stack(
+  def getStack(): Stack /* None */ = new Stack(
     gtk_stack_switcher_get_stack(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -66,9 +67,13 @@ class StackSwitcher(raw: Ptr[GtkStackSwitcher])
     *
     * Sets the stack to control.
     */
-  def setStack(stack: Stack): Unit = gtk_stack_switcher_set_stack(
+  def setStack(
+      stack: Option[Stack /* Some(Ptr[GtkStack]) */ ]
+  ): Unit /* None */ = gtk_stack_switcher_set_stack(
     this.raw.asInstanceOf,
-    stack.getUnsafeRawPointer().asInstanceOf
+    stack
+      .map[Ptr[GtkStack]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkStack]])
   )
 
 end StackSwitcher

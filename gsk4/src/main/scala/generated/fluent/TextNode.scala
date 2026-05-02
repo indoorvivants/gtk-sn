@@ -20,19 +20,22 @@ import sn.gnome.pango.internal.PangoGlyphString
   * A render node drawing a set of glyphs.
   */
 class TextNode(raw: Ptr[GskTextNode]) extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the color used by the text @node.
     */
-  def getColor(): Ptr[GdkRGBA] = gsk_text_node_get_color(this.raw.asInstanceOf)
+  def getColor(): Ptr[GdkRGBA] /* None */ = gsk_text_node_get_color(
+    this.raw.asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the font used by the text @node.
     */
-  def getFont(): Font = new Font(
+  def getFont(): Font /* None */ = new Font(
     gsk_text_node_get_font(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -43,13 +46,13 @@ class TextNode(raw: Ptr[GskTextNode]) extends RenderNode(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_glyphs contains an OUT parameter, which is not supported yet"
   )
-  def getGlyphs(using DummyImplicit) = ???
+  private def getGlyphs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the number of glyphs in the text node.
     */
-  def getNumGlyphs(): UInt = gsk_text_node_get_num_glyphs(
+  def getNumGlyphs(): UInt /* None */ = gsk_text_node_get_num_glyphs(
     this.raw.asInstanceOf
   ).value
 
@@ -57,7 +60,7 @@ class TextNode(raw: Ptr[GskTextNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the offset applied to the text.
     */
-  def getOffset(): Ptr[graphene_point_t] = gsk_text_node_get_offset(
+  def getOffset(): Ptr[graphene_point_t] /* None */ = gsk_text_node_get_offset(
     this.raw.asInstanceOf
   )
 
@@ -65,7 +68,7 @@ class TextNode(raw: Ptr[GskTextNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Checks whether the text @node has color glyphs.
     */
-  def hasColorGlyphs(): Boolean =
+  def hasColorGlyphs(): Boolean /* None */ =
     gsk_text_node_has_color_glyphs(this.raw.asInstanceOf).value.!=(0)
 
 end TextNode
@@ -78,10 +81,16 @@ object TextNode:
     * Note that @color may not be used if the font contains color glyphs.
     */
   def apply(
-      font: Font,
-      glyphs: Ptr[PangoGlyphString],
-      color: Ptr[GdkRGBA],
-      offset: Ptr[graphene_point_t]
+      font: Font /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFont]) */,
+      glyphs: Ptr[
+        PangoGlyphString
+      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoGlyphString]) */,
+      color: Ptr[
+        GdkRGBA
+      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */,
+      offset: Ptr[
+        graphene_point_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */
   ): TextNode = new TextNode(
     gsk_text_node_new(
       font.getUnsafeRawPointer().asInstanceOf,

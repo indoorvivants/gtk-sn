@@ -47,6 +47,7 @@ class ColorChooserDialog(raw: Ptr[GtkColorChooserDialog])
       Native,
       Root,
       ShortcutManager:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ColorChooserDialog
@@ -56,12 +57,17 @@ object ColorChooserDialog:
     *
     * Creates a new `GtkColorChooserDialog`.
     */
-  def apply(title: String | CString, parent: Window)(using
-      Zone
-  ): ColorChooserDialog = new ColorChooserDialog(
+  def apply(
+      title: Option[String | CString /* Some(CString) */ ],
+      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
+  )(using Zone): ColorChooserDialog = new ColorChooserDialog(
     gtk_color_chooser_dialog_new(
-      __sn_extract_string(title),
-      parent.getUnsafeRawPointer().asInstanceOf
+      title
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString]),
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])
     ).asInstanceOf
   )
 

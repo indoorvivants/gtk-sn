@@ -33,20 +33,21 @@ import sn.gnome.glib.internal.gsize
 class BufferedOutputStream(raw: Ptr[GBufferedOutputStream])
     extends FilterOutputStream(raw.asInstanceOf),
       Seekable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if the buffer automatically grows as data is added.
     */
-  def getAutoGrow(): Boolean =
+  def getAutoGrow(): Boolean /* None */ =
     g_buffered_output_stream_get_auto_grow(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the size of the buffer in the @stream.
     */
-  def getBufferSize(): CUnsignedLongInt =
+  def getBufferSize(): CUnsignedLongInt /* None */ =
     g_buffered_output_stream_get_buffer_size(this.raw.asInstanceOf).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -56,17 +57,20 @@ class BufferedOutputStream(raw: Ptr[GBufferedOutputStream])
     * manually flush the buffer to actually write out the data to the underlying
     * stream.
     */
-  def setAutoGrow(auto_grow: Boolean): Unit =
-    g_buffered_output_stream_set_auto_grow(
-      this.raw.asInstanceOf,
-      gboolean(gint((if auto_grow == true then 1 else 0)))
-    )
+  def setAutoGrow(
+      auto_grow: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = g_buffered_output_stream_set_auto_grow(
+    this.raw.asInstanceOf,
+    gboolean(gint((if auto_grow == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the size of the internal buffer to @size.
     */
-  def setBufferSize(size: CUnsignedLongInt): Unit =
+  def setBufferSize(
+      size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
+  ): Unit /* None */ =
     g_buffered_output_stream_set_buffer_size(this.raw.asInstanceOf, gsize(size))
 
 end BufferedOutputStream
@@ -76,20 +80,21 @@ object BufferedOutputStream:
     *
     * Creates a new buffered output stream for a base stream.
     */
-  def apply(base_stream: OutputStream): BufferedOutputStream =
-    new BufferedOutputStream(
-      g_buffered_output_stream_new(
-        base_stream.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def apply(
+      base_stream: OutputStream /* Some(Ptr[GOutputStream]) */
+  ): BufferedOutputStream = new BufferedOutputStream(
+    g_buffered_output_stream_new(
+      base_stream.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a new buffered output stream with a given buffer size.
     */
   def sized(
-      base_stream: OutputStream,
-      size: CUnsignedLongInt
+      base_stream: OutputStream /* Some(Ptr[GOutputStream]) */,
+      size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): BufferedOutputStream = new BufferedOutputStream(
     g_buffered_output_stream_new_sized(
       base_stream.getUnsafeRawPointer().asInstanceOf,

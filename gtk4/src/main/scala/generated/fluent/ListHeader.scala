@@ -21,6 +21,7 @@ import sn.gnome.gtk4.internal.GtkListHeader
   * managing the header instead of individual items.
   */
 class ListHeader(raw: Ptr[GtkListHeader]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -28,7 +29,7 @@ class ListHeader(raw: Ptr[GtkListHeader]) extends Object(raw.asInstanceOf):
     * Gets the child previously set via gtk_list_header_set_child() or %NULL if
     * none was set.
     */
-  def getChild(): Widget = new Widget(
+  def getChild(): Widget /* None */ = new Widget(
     gtk_list_header_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -39,7 +40,9 @@ class ListHeader(raw: Ptr[GtkListHeader]) extends Object(raw.asInstanceOf):
     *
     * If @self is unbound, %GTK_INVALID_LIST_POSITION is returned.
     */
-  def getEnd(): UInt = gtk_list_header_get_end(this.raw.asInstanceOf).value
+  def getEnd(): UInt /* None */ = gtk_list_header_get_end(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -48,7 +51,7 @@ class ListHeader(raw: Ptr[GtkListHeader]) extends Object(raw.asInstanceOf):
     *
     * If @self is unbound, this function returns %NULL.
     */
-  def getItem(): Object = new Object(
+  def getItem(): Object /* None */ = new Object(
     gtk_list_header_get_item(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -58,7 +61,7 @@ class ListHeader(raw: Ptr[GtkListHeader]) extends Object(raw.asInstanceOf):
     *
     * If @self is unbound, 0 is returned.
     */
-  def getNItems(): UInt = gtk_list_header_get_n_items(
+  def getNItems(): UInt /* None */ = gtk_list_header_get_n_items(
     this.raw.asInstanceOf
   ).value
 
@@ -69,7 +72,9 @@ class ListHeader(raw: Ptr[GtkListHeader]) extends Object(raw.asInstanceOf):
     *
     * If @self is unbound, %GTK_INVALID_LIST_POSITION is returned.
     */
-  def getStart(): UInt = gtk_list_header_get_start(this.raw.asInstanceOf).value
+  def getStart(): UInt /* None */ = gtk_list_header_get_start(
+    this.raw.asInstanceOf
+  ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -78,9 +83,13 @@ class ListHeader(raw: Ptr[GtkListHeader]) extends Object(raw.asInstanceOf):
     * This function is typically called by applications when setting up a header
     * so that the widget can be reused when binding it multiple times.
     */
-  def setChild(child: Widget): Unit = gtk_list_header_set_child(
+  def setChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_list_header_set_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
 end ListHeader

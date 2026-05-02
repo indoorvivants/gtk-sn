@@ -64,6 +64,7 @@ class SearchBar(raw: Ptr[GtkSearchBar])
       Accessible,
       Buildable,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -75,7 +76,9 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     * manually is only required if the entry isn’t the direct child of the
     * search bar (as in our main example).
     */
-  def connectEntry(entry: Editable): Unit = gtk_search_bar_connect_entry(
+  def connectEntry(
+      entry: Editable /* Some(Ptr[GtkEditable]) */
+  ): Unit /* None */ = gtk_search_bar_connect_entry(
     this.raw.asInstanceOf,
     entry.getUnsafeRawPointer().asInstanceOf
   )
@@ -84,7 +87,7 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     *
     * Gets the child widget of @bar.
     */
-  def getChild(): Widget = new Widget(
+  def getChild(): Widget /* None */ = new Widget(
     gtk_search_bar_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -92,7 +95,7 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     *
     * Gets the widget that @bar is capturing key events from.
     */
-  def getKeyCaptureWidget(): Widget = new Widget(
+  def getKeyCaptureWidget(): Widget /* None */ = new Widget(
     gtk_search_bar_get_key_capture_widget(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -100,23 +103,27 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     *
     * Returns whether the search mode is on or off.
     */
-  def getSearchMode(): Boolean =
+  def getSearchMode(): Boolean /* None */ =
     gtk_search_bar_get_search_mode(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns whether the close button is shown.
     */
-  def getShowCloseButton(): Boolean =
+  def getShowCloseButton(): Boolean /* None */ =
     gtk_search_bar_get_show_close_button(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the child widget of @bar.
     */
-  def setChild(child: Widget): Unit = gtk_search_bar_set_child(
+  def setChild(
+      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_search_bar_set_child(
     this.raw.asInstanceOf,
-    child.getUnsafeRawPointer().asInstanceOf
+    child
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -132,21 +139,25 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     * you can capture and forward the events yourself with
     * [method@Gtk.EventControllerKey.forward].
     */
-  def setKeyCaptureWidget(widget: Widget): Unit =
-    gtk_search_bar_set_key_capture_widget(
-      this.raw.asInstanceOf,
-      widget.getUnsafeRawPointer().asInstanceOf
-    )
+  def setKeyCaptureWidget(
+      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
+  ): Unit /* None */ = gtk_search_bar_set_key_capture_widget(
+    this.raw.asInstanceOf,
+    widget
+      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Switches the search mode on or off.
     */
-  def setSearchMode(search_mode: Boolean): Unit =
-    gtk_search_bar_set_search_mode(
-      this.raw.asInstanceOf,
-      gboolean(gint((if search_mode == true then 1 else 0)))
-    )
+  def setSearchMode(
+      search_mode: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_search_bar_set_search_mode(
+    this.raw.asInstanceOf,
+    gboolean(gint((if search_mode == true then 1 else 0)))
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -156,11 +167,12 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     * close button in their search bar, as it duplicates the role of the toggle
     * button.
     */
-  def setShowCloseButton(visible: Boolean): Unit =
-    gtk_search_bar_set_show_close_button(
-      this.raw.asInstanceOf,
-      gboolean(gint((if visible == true then 1 else 0)))
-    )
+  def setShowCloseButton(
+      visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_search_bar_set_show_close_button(
+    this.raw.asInstanceOf,
+    gboolean(gint((if visible == true then 1 else 0)))
+  )
 
 end SearchBar
 

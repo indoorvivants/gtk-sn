@@ -55,6 +55,7 @@ import sn.gnome.gobject.fluent.Object
   * process. This corresponds to %G_CREDENTIALS_TYPE_WIN32_PID.
   */
 class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -66,7 +67,9 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * this method if there is no #GCredentials support for the OS or if @native_type
     * isn't supported by the OS.
     */
-  def getNative(native_type: GCredentialsType): Ptr[Byte] =
+  def getNative(
+      native_type: GCredentialsType /* Some(GCredentialsType) */
+  ): Ptr[Byte] /* None */ =
     g_credentials_get_native(this.raw.asInstanceOf, native_type).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -78,7 +81,7 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * the native credentials type does not contain information about the UNIX
     * process ID.
     */
-  def getUnixPid(): GResult[pid_t] = GResult.wrap(__errorPtr =>
+  def getUnixPid(): GResult[pid_t /* None */ ] = GResult.wrap(__errorPtr =>
     g_credentials_get_unix_pid(this.raw.asInstanceOf, __errorPtr)
   )
 
@@ -91,7 +94,7 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * the native credentials type does not contain information about the UNIX
     * user.
     */
-  def getUnixUser(): GResult[uid_t] = GResult.wrap(__errorPtr =>
+  def getUnixUser(): GResult[uid_t /* None */ ] = GResult.wrap(__errorPtr =>
     g_credentials_get_unix_user(this.raw.asInstanceOf, __errorPtr)
   )
 
@@ -101,14 +104,15 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     *
     * This operation can fail if #GCredentials is not supported on the the OS.
     */
-  def isSameUser(other_credentials: Credentials): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      g_credentials_is_same_user(
-        this.raw.asInstanceOf,
-        other_credentials.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def isSameUser(
+      other_credentials: Credentials /* Some(Ptr[GCredentials]) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_credentials_is_same_user(
+      this.raw.asInstanceOf,
+      other_credentials.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -118,12 +122,14 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * this method if there is no #GCredentials support for the OS or if @native_type
     * isn't supported by the OS.
     */
-  def setNative(native_type: GCredentialsType, native: Ptr[Byte]): Unit =
-    g_credentials_set_native(
-      this.raw.asInstanceOf,
-      native_type,
-      gpointer(native)
-    )
+  def setNative(
+      native_type: GCredentialsType /* Some(GCredentialsType) */,
+      native: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+  ): Unit /* None */ = g_credentials_set_native(
+    this.raw.asInstanceOf,
+    native_type,
+    gpointer(native)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -135,10 +141,11 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * user. It can also fail if the OS does not allow the use of "spoofed"
     * credentials.
     */
-  def setUnixUser(uid: uid_t): GResult[Boolean] = GResult.wrap(__errorPtr =>
-    g_credentials_set_unix_user(this.raw.asInstanceOf, uid, __errorPtr).value
-      .!=(0)
-  )
+  def setUnixUser(uid: uid_t /* Some(uid_t) */ ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_credentials_set_unix_user(this.raw.asInstanceOf, uid, __errorPtr).value
+        .!=(0)
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -146,7 +153,7 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * be used in logging and debug messages. The format of the returned string
     * may change in future GLib release.
     */
-  def toString()(using Zone): String = fromCString(
+  def toString()(using Zone): String /* None */ = fromCString(
     g_credentials_to_string(this.raw.asInstanceOf).asInstanceOf
   )
 

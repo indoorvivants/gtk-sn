@@ -56,5 +56,7 @@ trait ClassLike:
 
   lazy val constructors: Seq[Constructor] =
     collect[Constructor]
-end ClassLike
 
+  lazy val signals: Seq[Signal] =
+    collect[Signal]
+end ClassLike

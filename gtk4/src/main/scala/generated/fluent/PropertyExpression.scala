@@ -15,13 +15,14 @@ import sn.gnome.gtk4.internal.GtkPropertyExpression
   */
 class PropertyExpression(raw: Ptr[GtkPropertyExpression])
     extends Expression(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the expression specifying the object of a property expression.
     */
-  def getExpression(): Expression = new Expression(
+  def getExpression(): Expression /* None */ = new Expression(
     gtk_property_expression_get_expression(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -29,7 +30,7 @@ class PropertyExpression(raw: Ptr[GtkPropertyExpression])
     *
     * Gets the `GParamSpec` specifying the property of a property expression.
     */
-  def getPspec(): ParamSpec = new ParamSpec(
+  def getPspec(): ParamSpec /* None */ = new ParamSpec(
     gtk_property_expression_get_pspec(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -50,13 +51,15 @@ object PropertyExpression:
     * The given `this_type` must have a property with `property_name`.
     */
   def apply(
-      this_type: GType,
-      expression: Expression,
-      property_name: String | CString
+      this_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
+      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ],
+      property_name: String | CString /* Some(CString) */
   )(using Zone): PropertyExpression = new PropertyExpression(
     gtk_property_expression_new(
       this_type,
-      expression.getUnsafeRawPointer().asInstanceOf,
+      expression
+        .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkExpression]]),
       __sn_extract_string(property_name)
     ).asInstanceOf
   )
@@ -72,13 +75,17 @@ object PropertyExpression:
     * `pspec` will be queried. Otherwise, this expression's evaluation will
     * fail.
     */
-  def forPspec(expression: Expression, pspec: ParamSpec): PropertyExpression =
-    new PropertyExpression(
-      gtk_property_expression_new_for_pspec(
-        expression.getUnsafeRawPointer().asInstanceOf,
-        pspec.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def forPspec(
+      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ],
+      pspec: ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */
+  ): PropertyExpression = new PropertyExpression(
+    gtk_property_expression_new_for_pspec(
+      expression
+        .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkExpression]]),
+      pspec.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

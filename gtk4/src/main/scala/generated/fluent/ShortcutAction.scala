@@ -44,6 +44,7 @@ import sn.gnome.gtk4.internal.GtkShortcutActionFlags
   */
 class ShortcutAction(raw: Ptr[GtkShortcutAction])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -57,14 +58,18 @@ class ShortcutAction(raw: Ptr[GtkShortcutAction])
     * activation otherwise had no effect, %FALSE will be returned.
     */
   def activate(
-      flags: GtkShortcutActionFlags,
-      widget: Widget,
-      args: Ptr[GVariant]
-  ): Boolean = gtk_shortcut_action_activate(
+      flags: GtkShortcutActionFlags /* Some(GtkShortcutActionFlags) */,
+      widget: Widget /* Some(Ptr[GtkWidget]) */,
+      args: Option[
+        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  ): Boolean /* None */ = gtk_shortcut_action_activate(
     this.raw.asInstanceOf,
     flags,
     widget.getUnsafeRawPointer().asInstanceOf,
     args
+      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
   ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -76,8 +81,11 @@ class ShortcutAction(raw: Ptr[GtkShortcutAction])
     * The form of the representation may change at any time and is not
     * guaranteed to stay identical.
     */
-  def print(string: Ptr[GString]): Unit =
-    gtk_shortcut_action_print(this.raw.asInstanceOf, string)
+  def print(
+      string: Ptr[
+        GString
+      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GString]) */
+  ): Unit /* None */ = gtk_shortcut_action_print(this.raw.asInstanceOf, string)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -86,7 +94,7 @@ class ShortcutAction(raw: Ptr[GtkShortcutAction])
     * This is a small wrapper around [method@Gtk.ShortcutAction.print] to help
     * when debugging.
     */
-  def toString()(using Zone): String = fromCString(
+  def toString()(using Zone): String /* None */ = fromCString(
     gtk_shortcut_action_to_string(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -108,10 +116,11 @@ object ShortcutAction:
     *   - `action(NAME)`, for a `GtkNamedAction` for the action named `NAME`
     *   - `signal(NAME)`, for a `GtkSignalAction` for the signal `NAME`
     */
-  def parseString(string: String | CString)(using Zone): ShortcutAction =
-    new ShortcutAction(
-      gtk_shortcut_action_parse_string(__sn_extract_string(string)).asInstanceOf
-    )
+  def parseString(
+      string: String | CString /* Some(CString) */
+  )(using Zone): ShortcutAction = new ShortcutAction(
+    gtk_shortcut_action_parse_string(__sn_extract_string(string)).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

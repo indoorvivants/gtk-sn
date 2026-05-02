@@ -41,20 +41,21 @@ class ColorButton(raw: Ptr[GtkColorButton])
       Buildable,
       ColorChooser,
       ConstraintTarget:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets whether the dialog is modal.
     */
-  def getModal(): Boolean =
+  def getModal(): Boolean /* None */ =
     gtk_color_button_get_modal(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the title of the color chooser dialog.
     */
-  def getTitle()(using Zone): String = fromCString(
+  def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_color_button_get_title(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -62,7 +63,9 @@ class ColorButton(raw: Ptr[GtkColorButton])
     *
     * Sets whether the dialog should be modal.
     */
-  def setModal(modal: Boolean): Unit = gtk_color_button_set_modal(
+  def setModal(
+      modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_color_button_set_modal(
     this.raw.asInstanceOf,
     gboolean(gint((if modal == true then 1 else 0)))
   )
@@ -71,11 +74,12 @@ class ColorButton(raw: Ptr[GtkColorButton])
     *
     * Sets the title for the color chooser dialog.
     */
-  def setTitle(title: String | CString)(using Zone): Unit =
-    gtk_color_button_set_title(
-      this.raw.asInstanceOf,
-      __sn_extract_string(title)
-    )
+  def setTitle(
+      title: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_color_button_set_title(
+    this.raw.asInstanceOf,
+    __sn_extract_string(title)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -105,7 +109,9 @@ object ColorButton:
     *
     * Creates a new color button showing the given color.
     */
-  def withRgba(rgba: Ptr[GdkRGBA]): ColorButton = new ColorButton(
+  def withRgba(
+      rgba: Ptr[GdkRGBA] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
+  ): ColorButton = new ColorButton(
     gtk_color_button_new_with_rgba(rgba).asInstanceOf
   )
 end ColorButton

@@ -170,6 +170,7 @@ class ListStore(raw: Ptr[GtkListStore])
       TreeDragSource,
       TreeModel,
       TreeSortable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -182,13 +183,13 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method append contains an OUT parameter, which is not supported yet"
   )
-  def append(using DummyImplicit) = ???
+  private def append__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes all rows from the list store.
     */
-  def clear(): Unit = gtk_list_store_clear(this.raw.asInstanceOf)
+  def clear(): Unit /* None */ = gtk_list_store_clear(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -201,7 +202,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method insert contains an OUT parameter, which is not supported yet"
   )
-  def insert(using DummyImplicit) = ???
+  private def insert__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -214,7 +215,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method insert_after contains an OUT parameter, which is not supported yet"
   )
-  def insertAfter(using DummyImplicit) = ???
+  private def insertAfter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -227,7 +228,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method insert_before contains an OUT parameter, which is not supported yet"
   )
-  def insertBefore(using DummyImplicit) = ???
+  private def insertBefore__ = ???
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -266,7 +267,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method insert_with_values contains an OUT parameter, which is not supported yet"
   )
-  def insertWithValues(using DummyImplicit) = ???
+  private def insertWithValues__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -278,7 +279,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method insert_with_valuesv contains an OUT parameter, which is not supported yet"
   )
-  def insertWithValuesv(using DummyImplicit) = ???
+  private def insertWithValuesv__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -286,7 +287,9 @@ class ListStore(raw: Ptr[GtkListStore])
     *
     * This function is slow. Only use it for debugging and/or testing purposes.
     */
-  def iterIsValid(iter: Ptr[GtkTreeIter]): Boolean =
+  def iterIsValid(
+      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
+  ): Boolean /* None */ =
     gtk_list_store_iter_is_valid(this.raw.asInstanceOf, iter).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -295,8 +298,16 @@ class ListStore(raw: Ptr[GtkListStore])
     * function only works with unsorted stores. If @position is %NULL, @iter
     * will be moved to the start of the list.
     */
-  def moveAfter(iter: Ptr[GtkTreeIter], position: Ptr[GtkTreeIter]): Unit =
-    gtk_list_store_move_after(this.raw.asInstanceOf, iter, position)
+  def moveAfter(
+      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
+      position: Option[Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */ ]
+  ): Unit /* None */ = gtk_list_store_move_after(
+    this.raw.asInstanceOf,
+    iter,
+    position
+      .map[Ptr[GtkTreeIter]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[GtkTreeIter]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -304,8 +315,16 @@ class ListStore(raw: Ptr[GtkListStore])
     * function only works with unsorted stores. If @position is %NULL, @iter
     * will be moved to the end of the list.
     */
-  def moveBefore(iter: Ptr[GtkTreeIter], position: Ptr[GtkTreeIter]): Unit =
-    gtk_list_store_move_before(this.raw.asInstanceOf, iter, position)
+  def moveBefore(
+      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
+      position: Option[Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */ ]
+  ): Unit /* None */ = gtk_list_store_move_before(
+    this.raw.asInstanceOf,
+    iter,
+    position
+      .map[Ptr[GtkTreeIter]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[GtkTreeIter]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -317,7 +336,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method prepend contains an OUT parameter, which is not supported yet"
   )
-  def prepend(using DummyImplicit) = ???
+  private def prepend__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -326,7 +345,9 @@ class ListStore(raw: Ptr[GtkListStore])
     *   is set to be the next valid row, or invalidated if it pointed to the
     *   last row in @list_store.
     */
-  def remove(iter: Ptr[GtkTreeIter]): Boolean =
+  def remove(
+      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
+  ): Boolean /* None */ =
     gtk_list_store_remove(this.raw.asInstanceOf, iter).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -334,8 +355,9 @@ class ListStore(raw: Ptr[GtkListStore])
     * Reorders @store to follow the order indicated by @new_order. Note that
     * this function only works with unsorted stores.
     */
-  def reorder(new_order: Ptr[Int]): Unit =
-    gtk_list_store_reorder(this.raw.asInstanceOf, new_order)
+  def reorder(
+      new_order: Ptr[Int /* None */ ] /* Some(Ptr[CInt]) */
+  ): Unit /* None */ = gtk_list_store_reorder(this.raw.asInstanceOf, new_order)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -348,8 +370,10 @@ class ListStore(raw: Ptr[GtkListStore])
     * The value will be referenced by the store if it is a %G_TYPE_OBJECT, and
     * it will be copied if it is a %G_TYPE_STRING or %G_TYPE_BOXED.
     */
-  inline def set(iter: Ptr[GtkTreeIter], args: Any*): Unit =
-    gtk_list_store_set(this.raw.asInstanceOf, iter, args*)
+  inline def set(
+      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
+      args: Any*
+  ): Unit /* None */ = gtk_list_store_set(this.raw.asInstanceOf, iter, args*)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -361,7 +385,12 @@ class ListStore(raw: Ptr[GtkListStore])
     * This function cannot be called after a row has been added, or a method on
     * the `GtkTreeModel` interface is called.
     */
-  def setColumnTypes(n_columns: Int, types: Ptr[GType]): Unit =
+  def setColumnTypes(
+      n_columns: Int /* Some(CInt) */,
+      types: Ptr[
+        GType /* None */
+      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GType]) */
+  ): Unit /* None */ =
     gtk_list_store_set_column_types(this.raw.asInstanceOf, n_columns, types)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -369,7 +398,10 @@ class ListStore(raw: Ptr[GtkListStore])
     * See gtk_list_store_set(); this version takes a va_list for use by language
     * bindings.
     */
-  def setValist(iter: Ptr[GtkTreeIter], var_args: CVarArgList): Unit =
+  def setValist(
+      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
+      var_args: CVarArgList /* Some(va_list) */
+  ): Unit /* None */ =
     gtk_list_store_set_valist(this.raw.asInstanceOf, iter, var_args)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -377,7 +409,13 @@ class ListStore(raw: Ptr[GtkListStore])
     * Sets the data in the cell specified by @iter and @column. The type of @value
     * must be convertible to the type of the column.
     */
-  def setValue(iter: Ptr[GtkTreeIter], column: Int, value: Ptr[GValue]): Unit =
+  def setValue(
+      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
+      column: Int /* Some(CInt) */,
+      value: Ptr[
+        GValue
+      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  ): Unit /* None */ =
     gtk_list_store_set_value(this.raw.asInstanceOf, iter, column, value)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -388,11 +426,13 @@ class ListStore(raw: Ptr[GtkListStore])
     * known until run-time.
     */
   def setValuesv(
-      iter: Ptr[GtkTreeIter],
-      columns: Ptr[Int],
-      values: Ptr[GValue],
-      n_values: Int
-  ): Unit = gtk_list_store_set_valuesv(
+      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
+      columns: Ptr[Int /* None */ ] /* Some(Ptr[CInt]) */,
+      values: Ptr[
+        GValue /* None */
+      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
+      n_values: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_list_store_set_valuesv(
     this.raw.asInstanceOf,
     iter,
     columns,
@@ -405,8 +445,10 @@ class ListStore(raw: Ptr[GtkListStore])
     * Swaps @a and @b in @store. Note that this function only works with
     * unsorted stores.
     */
-  def swap(a: Ptr[GtkTreeIter], b: Ptr[GtkTreeIter]): Unit =
-    gtk_list_store_swap(this.raw.asInstanceOf, a, b)
+  def swap(
+      a: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
+      b: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
+  ): Unit /* None */ = gtk_list_store_swap(this.raw.asInstanceOf, a, b)
 
 end ListStore
 
@@ -430,9 +472,8 @@ object ListStore:
     * will create a new `GtkListStore` with three columns, of type `int`,
     * `gchararray` and `GdkTexture`, respectively.
     */
-  inline def apply(n_columns: Int, args: Any*): ListStore = new ListStore(
-    gtk_list_store_new(n_columns, args*).asInstanceOf
-  )
+  inline def apply(n_columns: Int /* Some(CInt) */, args: Any*): ListStore =
+    new ListStore(gtk_list_store_new(n_columns, args*).asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -440,7 +481,12 @@ object ListStore:
     *
     * This function is meant to be used by language bindings.
     */
-  def newv(n_columns: Int, types: Ptr[GType]): ListStore = new ListStore(
+  def newv(
+      n_columns: Int /* Some(CInt) */,
+      types: Ptr[
+        GType /* None */
+      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GType]) */
+  ): ListStore = new ListStore(
     gtk_list_store_newv(n_columns, types).asInstanceOf
   )
 end ListStore

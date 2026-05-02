@@ -13,6 +13,7 @@ import sn.gnome.gdk4.internal.GdkProximityEvent
   */
 class ProximityEvent(raw: Ptr[GdkProximityEvent])
     extends Event(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ProximityEvent

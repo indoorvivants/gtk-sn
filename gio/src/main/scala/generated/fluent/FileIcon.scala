@@ -19,13 +19,14 @@ class FileIcon(raw: Ptr[GFileIcon])
     extends Object(raw.asInstanceOf),
       Icon,
       LoadableIcon:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the #GFile associated with the given @icon.
     */
-  def getFile(): File =
+  def getFile(): File /* None */ =
     new File.Abstract(g_file_icon_get_file(this.raw.asInstanceOf).asInstanceOf)
 
 end FileIcon
@@ -35,7 +36,7 @@ object FileIcon:
     *
     * Creates a new icon for a file.
     */
-  def apply(file: File): FileIcon = new FileIcon(
+  def apply(file: File /* Some(Ptr[GFile]) */ ): FileIcon = new FileIcon(
     g_file_icon_new(file.getUnsafeRawPointer().asInstanceOf).asInstanceOf
   )
 end FileIcon

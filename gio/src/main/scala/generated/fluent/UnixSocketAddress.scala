@@ -38,20 +38,21 @@ import sn.gnome.glib.internal.gsize
 class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
     extends SocketAddress(raw.asInstanceOf),
       SocketConnectable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets @address's type.
     */
-  def getAddressType(): GUnixSocketAddressType =
+  def getAddressType(): GUnixSocketAddressType /* None */ =
     g_unix_socket_address_get_address_type(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Tests if @address is abstract.
     */
-  def getIsAbstract(): Boolean =
+  def getIsAbstract(): Boolean /* None */ =
     g_unix_socket_address_get_is_abstract(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -63,7 +64,7 @@ class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
     * g_unix_socket_address_get_path_len() to get the true length of this
     * string.
     */
-  def getPath()(using Zone): String = fromCString(
+  def getPath()(using Zone): String /* None */ = fromCString(
     g_unix_socket_address_get_path(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -73,9 +74,8 @@ class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
     *
     * For details, see g_unix_socket_address_get_path().
     */
-  def getPathLen(): CUnsignedLongInt = g_unix_socket_address_get_path_len(
-    this.raw.asInstanceOf
-  ).value
+  def getPathLen(): CUnsignedLongInt /* None */ =
+    g_unix_socket_address_get_path_len(this.raw.asInstanceOf).value
 
 end UnixSocketAddress
 
@@ -87,12 +87,14 @@ object UnixSocketAddress:
     * To create abstract socket addresses, on systems that support that, use
     * g_unix_socket_address_new_abstract().
     */
-  def apply(path: String | CString)(using Zone): UnixSocketAddress =
-    new UnixSocketAddress(
-      g_unix_socket_address_new(
-        __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
-      ).asInstanceOf
-    )
+  def apply(
+      path: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): UnixSocketAddress = new UnixSocketAddress(
+    g_unix_socket_address_new(
+      __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
+    ).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

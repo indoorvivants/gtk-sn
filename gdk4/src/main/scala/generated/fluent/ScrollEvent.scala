@@ -16,6 +16,7 @@ import sn.gnome.glib.internal.gint
   * An event related to a scrolling motion.
   */
 class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -30,15 +31,14 @@ class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_deltas contains an OUT parameter, which is not supported yet"
   )
-  def getDeltas(using DummyImplicit) = ???
+  private def getDeltas__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Extracts the direction of a scroll event.
     */
-  def getDirection(): GdkScrollDirection = gdk_scroll_event_get_direction(
-    this.raw.asInstanceOf
-  )
+  def getDirection(): GdkScrollDirection /* None */ =
+    gdk_scroll_event_get_direction(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -47,7 +47,7 @@ class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
     * The unit will always be %GDK_SCROLL_UNIT_WHEEL if the scroll direction is
     * not %GDK_SCROLL_SMOOTH.
     */
-  def getUnit(): GdkScrollUnit = gdk_scroll_event_get_unit(
+  def getUnit(): GdkScrollUnit /* None */ = gdk_scroll_event_get_unit(
     this.raw.asInstanceOf
   )
 
@@ -62,7 +62,7 @@ class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
     *
     * Stop scroll events always have a delta of 0/0.
     */
-  def isStop(): Boolean =
+  def isStop(): Boolean /* None */ =
     gdk_scroll_event_is_stop(this.raw.asInstanceOf).value.!=(0)
 
 end ScrollEvent

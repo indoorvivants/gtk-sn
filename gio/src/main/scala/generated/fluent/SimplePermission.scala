@@ -19,6 +19,7 @@ import sn.gnome.glib.internal.gint
   */
 class SimplePermission(raw: Ptr[GSimplePermission])
     extends Permission(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end SimplePermission
@@ -29,7 +30,9 @@ object SimplePermission:
     * Creates a new #GPermission instance that represents an action that is
     * either always or never allowed.
     */
-  def apply(allowed: Boolean): SimplePermission = new SimplePermission(
+  def apply(
+      allowed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): SimplePermission = new SimplePermission(
     g_simple_permission_new(
       gboolean(gint((if allowed == true then 1 else 0)))
     ).asInstanceOf

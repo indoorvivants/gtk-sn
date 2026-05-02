@@ -13,6 +13,7 @@ import sn.gnome.gtk4.internal.GtkActivateAction
   */
 class ActivateAction(raw: Ptr[GtkActivateAction])
     extends ShortcutAction(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end ActivateAction

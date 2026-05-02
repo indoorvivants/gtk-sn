@@ -94,13 +94,14 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
       AsyncInitable,
       DBusObjectManager,
       Initable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the #GDBusConnection used by @manager.
     */
-  def getConnection(): DBusConnection = new DBusConnection(
+  def getConnection(): DBusConnection /* None */ = new DBusConnection(
     g_dbus_object_manager_client_get_connection(
       this.raw.asInstanceOf
     ).asInstanceOf
@@ -110,7 +111,7 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     *
     * Gets the flags that @manager was constructed with.
     */
-  def getFlags(): GDBusObjectManagerClientFlags =
+  def getFlags(): GDBusObjectManagerClientFlags /* None */ =
     g_dbus_object_manager_client_get_flags(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -118,7 +119,7 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     * Gets the name that @manager is for, or %NULL if not a message bus
     * connection.
     */
-  def getName()(using Zone): String = fromCString(
+  def getName()(using Zone): String /* None */ = fromCString(
     g_dbus_object_manager_client_get_name(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -128,7 +129,7 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     * currently owns that name. You can connect to the #GObject::notify signal
     * to track changes to the #GDBusObjectManagerClient:name-owner property.
     */
-  def getNameOwner()(using Zone): String = fromCString(
+  def getNameOwner()(using Zone): String /* None */ = fromCString(
     g_dbus_object_manager_client_get_name_owner(
       this.raw.asInstanceOf
     ).asInstanceOf
@@ -141,30 +142,32 @@ object DBusObjectManagerClient:
     *
     * Finishes an operation started with g_dbus_object_manager_client_new().
     */
-  def finish(res: AsyncResult): GResult[DBusObjectManagerClient] =
-    GResult.wrap(__errorPtr =>
-      new DBusObjectManagerClient(
-        g_dbus_object_manager_client_new_finish(
-          res.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def finish(
+      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[DBusObjectManagerClient] = GResult.wrap(__errorPtr =>
+    new DBusObjectManagerClient(
+      g_dbus_object_manager_client_new_finish(
+        res.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes an operation started with
     * g_dbus_object_manager_client_new_for_bus().
     */
-  def forBusFinish(res: AsyncResult): GResult[DBusObjectManagerClient] =
-    GResult.wrap(__errorPtr =>
-      new DBusObjectManagerClient(
-        g_dbus_object_manager_client_new_for_bus_finish(
-          res.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def forBusFinish(
+      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[DBusObjectManagerClient] = GResult.wrap(__errorPtr =>
+    new DBusObjectManagerClient(
+      g_dbus_object_manager_client_new_for_bus_finish(
+        res.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -176,14 +179,22 @@ object DBusObjectManagerClient:
     * for the asynchronous version.
     */
   def forBusSync(
-      bus_type: GBusType,
-      flags: GDBusObjectManagerClientFlags,
-      name: String | CString,
-      object_path: String | CString,
-      get_proxy_type_func: GDBusProxyTypeFunc,
-      get_proxy_type_user_data: Ptr[Byte],
-      get_proxy_type_destroy_notify: GDestroyNotify,
-      cancellable: Cancellable
+      bus_type: GBusType /* Some(GBusType) */,
+      flags: GDBusObjectManagerClientFlags /* Some(GDBusObjectManagerClientFlags) */,
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      object_path: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      get_proxy_type_func: Option[
+        GDBusProxyTypeFunc /* Some(GDBusProxyTypeFunc) */
+      ],
+      get_proxy_type_user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      get_proxy_type_destroy_notify: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ],
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   )(using Zone): GResult[DBusObjectManagerClient] = GResult.wrap(__errorPtr =>
     new DBusObjectManagerClient(
       g_dbus_object_manager_client_new_for_bus_sync(
@@ -191,10 +202,20 @@ object DBusObjectManagerClient:
         flags,
         __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
         __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-        get_proxy_type_func,
-        gpointer(get_proxy_type_user_data),
-        get_proxy_type_destroy_notify,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
+        get_proxy_type_func
+          .map[GDBusProxyTypeFunc](o => o)
+          .getOrElse(null.asInstanceOf[GDBusProxyTypeFunc]),
+        get_proxy_type_user_data
+          .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+          .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+        get_proxy_type_destroy_notify
+          .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+          .getOrElse(
+            null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+          ),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
         __errorPtr
       ).asInstanceOf
     )
@@ -209,25 +230,50 @@ object DBusObjectManagerClient:
     * asynchronous version.
     */
   def sync(
-      connection: DBusConnection,
-      flags: GDBusObjectManagerClientFlags,
-      name: String | CString,
-      object_path: String | CString,
-      get_proxy_type_func: GDBusProxyTypeFunc,
-      get_proxy_type_user_data: Ptr[Byte],
-      get_proxy_type_destroy_notify: GDestroyNotify,
-      cancellable: Cancellable
+      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      flags: GDBusObjectManagerClientFlags /* Some(GDBusObjectManagerClientFlags) */,
+      name: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
+      object_path: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      get_proxy_type_func: Option[
+        GDBusProxyTypeFunc /* Some(GDBusProxyTypeFunc) */
+      ],
+      get_proxy_type_user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      get_proxy_type_destroy_notify: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ],
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   )(using Zone): GResult[DBusObjectManagerClient] = GResult.wrap(__errorPtr =>
     new DBusObjectManagerClient(
       g_dbus_object_manager_client_new_sync(
         connection.getUnsafeRawPointer().asInstanceOf,
         flags,
-        __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
+        name
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
         __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-        get_proxy_type_func,
-        gpointer(get_proxy_type_user_data),
-        get_proxy_type_destroy_notify,
-        cancellable.getUnsafeRawPointer().asInstanceOf,
+        get_proxy_type_func
+          .map[GDBusProxyTypeFunc](o => o)
+          .getOrElse(null.asInstanceOf[GDBusProxyTypeFunc]),
+        get_proxy_type_user_data
+          .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+          .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+        get_proxy_type_destroy_notify
+          .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+          .getOrElse(
+            null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+          ),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
         __errorPtr
       ).asInstanceOf
     )

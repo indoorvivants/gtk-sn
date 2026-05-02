@@ -44,6 +44,7 @@ import sn.gnome.gobject.fluent.Object
   */
 class AppInfoMonitor(raw: Ptr[GAppInfoMonitor])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end AppInfoMonitor

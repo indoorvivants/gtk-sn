@@ -14,6 +14,7 @@ import sn.gnome.gobject.fluent.Object
   * The subclass of `GdkSnapshot` used by GTK is [class@Gtk.Snapshot].
   */
 class Snapshot(raw: Ptr[GdkSnapshot]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end Snapshot

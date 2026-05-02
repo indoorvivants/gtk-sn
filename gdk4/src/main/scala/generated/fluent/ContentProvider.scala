@@ -34,13 +34,14 @@ import sn.gnome.gobject.internal.GValue
   */
 class ContentProvider(raw: Ptr[GdkContentProvider])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Emits the ::content-changed signal.
     */
-  def contentChanged(): Unit = gdk_content_provider_content_changed(
+  def contentChanged(): Unit /* None */ = gdk_content_provider_content_changed(
     this.raw.asInstanceOf
   )
 
@@ -57,15 +58,14 @@ class ContentProvider(raw: Ptr[GdkContentProvider])
   @annotation.compileTimeOnly(
     "Method get_value contains an OUT parameter, which is not supported yet"
   )
-  def getValue(using DummyImplicit) = ???
+  private def getValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the formats that the provider can provide its current contents in.
     */
-  def refFormats(): Ptr[GdkContentFormats] = gdk_content_provider_ref_formats(
-    this.raw.asInstanceOf
-  )
+  def refFormats(): Ptr[GdkContentFormats] /* None */ =
+    gdk_content_provider_ref_formats(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -77,7 +77,7 @@ class ContentProvider(raw: Ptr[GdkContentProvider])
     * This can be assumed to be a subset of
     * [method@Gdk.ContentProvider.ref_formats].
     */
-  def refStorableFormats(): Ptr[GdkContentFormats] =
+  def refStorableFormats(): Ptr[GdkContentFormats] /* None */ =
     gdk_content_provider_ref_storable_formats(this.raw.asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -96,20 +96,38 @@ class ContentProvider(raw: Ptr[GdkContentProvider])
     * The given @stream will not be closed.
     */
   def writeMimeTypeAsync(
-      mime_type: String | CString,
-      stream: OutputStream,
-      io_priority: Int,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  )(using Zone): Unit = gdk_content_provider_write_mime_type_async(
+      mime_type: String | CString /* Some(CString) */,
+      stream: OutputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GOutputStream]) */,
+      io_priority: Int /* Some(CInt) */,
+      cancellable: Option[
+        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+      ],
+      callback: Option[
+        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = gdk_content_provider_write_mime_type_async(
     this.raw.asInstanceOf,
     __sn_extract_string(mime_type),
     stream.getUnsafeRawPointer().asInstanceOf,
     io_priority,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
+      ),
+    callback
+      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
+      ),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -118,14 +136,15 @@ class ContentProvider(raw: Ptr[GdkContentProvider])
     *
     * See [method@Gdk.ContentProvider.write_mime_type_async].
     */
-  def writeMimeTypeFinish(result: AsyncResult): GResult[Boolean] =
-    GResult.wrap(__errorPtr =>
-      gdk_content_provider_write_mime_type_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).value.!=(0)
-    )
+  def writeMimeTypeFinish(
+      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    gdk_content_provider_write_mime_type_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value.!=(0)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -143,9 +162,10 @@ object ContentProvider:
     * Create a content provider that provides the given @bytes as data for the
     * given @mime_type.
     */
-  def forBytes(mime_type: String | CString, bytes: Ptr[GBytes])(using
-      Zone
-  ): ContentProvider = new ContentProvider(
+  def forBytes(
+      mime_type: String | CString /* Some(CString) */,
+      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  )(using Zone): ContentProvider = new ContentProvider(
     gdk_content_provider_new_for_bytes(
       __sn_extract_string(mime_type),
       bytes
@@ -156,7 +176,11 @@ object ContentProvider:
     *
     * Create a content provider that provides the given @value.
     */
-  def forValue(value: Ptr[GValue]): ContentProvider = new ContentProvider(
+  def forValue(
+      value: Ptr[
+        GValue
+      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  ): ContentProvider = new ContentProvider(
     gdk_content_provider_new_for_value(value).asInstanceOf
   )
 
@@ -168,10 +192,12 @@ object ContentProvider:
     * The value is provided using G_VALUE_COLLECT(), so the same rules apply as
     * when calling g_object_new() or g_object_set().
     */
-  inline def typed(`type`: GType, args: Any*): ContentProvider =
-    new ContentProvider(
-      gdk_content_provider_new_typed(`type`, args*).asInstanceOf
-    )
+  inline def typed(
+      `type`: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
+      args: Any*
+  ): ContentProvider = new ContentProvider(
+    gdk_content_provider_new_typed(`type`, args*).asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

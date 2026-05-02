@@ -23,6 +23,7 @@ import sn.gnome.gtk4.internal.GtkGestureSwipe
   */
 class GestureSwipe(raw: Ptr[GtkGestureSwipe])
     extends GestureSingle(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -36,7 +37,7 @@ class GestureSwipe(raw: Ptr[GtkGestureSwipe])
   @annotation.compileTimeOnly(
     "Method get_velocity contains an OUT parameter, which is not supported yet"
   )
-  def getVelocity(using DummyImplicit) = ???
+  private def getVelocity__ = ???
 
 end GestureSwipe
 

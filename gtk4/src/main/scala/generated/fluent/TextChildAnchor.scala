@@ -18,6 +18,7 @@ import sn.gnome.gtk4.internal.GtkTextChildAnchor
   */
 class TextChildAnchor(raw: Ptr[GtkTextChildAnchor])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -29,7 +30,7 @@ class TextChildAnchor(raw: Ptr[GtkTextChildAnchor])
     * if you plan to use this function — otherwise all deleted child anchors
     * will also be finalized.
     */
-  def getDeleted(): Boolean =
+  def getDeleted(): Boolean /* None */ =
     gtk_text_child_anchor_get_deleted(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -41,7 +42,7 @@ class TextChildAnchor(raw: Ptr[GtkTextChildAnchor])
   @annotation.compileTimeOnly(
     "Method get_widgets contains an OUT parameter, which is not supported yet"
   )
-  def getWidgets(using DummyImplicit) = ???
+  private def getWidgets__ = ???
 
 end TextChildAnchor
 
@@ -67,7 +68,7 @@ object TextChildAnchor:
     * [method@Gtk.TextBuffer.insert_child_anchor].
     */
   def withReplacement(
-      character: String | CString
+      character: String | CString /* Some(CString) */
   )(using Zone): TextChildAnchor = new TextChildAnchor(
     gtk_text_child_anchor_new_with_replacement(
       __sn_extract_string(character)

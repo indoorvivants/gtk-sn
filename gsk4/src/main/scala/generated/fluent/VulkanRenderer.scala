@@ -13,6 +13,7 @@ import sn.gnome.gsk4.internal.GskVulkanRenderer
   */
 class VulkanRenderer(raw: Ptr[GskVulkanRenderer])
     extends Renderer(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end VulkanRenderer

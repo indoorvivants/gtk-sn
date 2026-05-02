@@ -80,6 +80,7 @@ import sn.gnome.gtk4.internal.GtkSizeGroupMode
 class SizeGroup(raw: Ptr[GtkSizeGroup])
     extends Object(raw.asInstanceOf),
       Buildable:
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -95,16 +96,17 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     * When the widget is destroyed or no longer referenced elsewhere, it will be
     * removed from the size group.
     */
-  def addWidget(widget: Widget): Unit = gtk_size_group_add_widget(
-    this.raw.asInstanceOf,
-    widget.getUnsafeRawPointer().asInstanceOf
-  )
+  def addWidget(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+    gtk_size_group_add_widget(
+      this.raw.asInstanceOf,
+      widget.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the current mode of the size group.
     */
-  def getMode(): GtkSizeGroupMode = gtk_size_group_get_mode(
+  def getMode(): GtkSizeGroupMode /* None */ = gtk_size_group_get_mode(
     this.raw.asInstanceOf
   )
 
@@ -112,7 +114,7 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     *
     * Returns the list of widgets associated with @size_group.
     */
-  def getWidgets(): Ptr[GSList] = gtk_size_group_get_widgets(
+  def getWidgets(): Ptr[GSList] /* None */ = gtk_size_group_get_widgets(
     this.raw.asInstanceOf
   )
 
@@ -120,7 +122,9 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     *
     * Removes a widget from a `GtkSizeGroup`.
     */
-  def removeWidget(widget: Widget): Unit = gtk_size_group_remove_widget(
+  def removeWidget(
+      widget: Widget /* Some(Ptr[GtkWidget]) */
+  ): Unit /* None */ = gtk_size_group_remove_widget(
     this.raw.asInstanceOf,
     widget.getUnsafeRawPointer().asInstanceOf
   )
@@ -135,8 +139,9 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     * (%GTK_SIZE_GROUP_VERTICAL), or should all have the same requisition in
     * both directions (%GTK_SIZE_GROUP_BOTH).
     */
-  def setMode(mode: GtkSizeGroupMode): Unit =
-    gtk_size_group_set_mode(this.raw.asInstanceOf, mode)
+  def setMode(
+      mode: GtkSizeGroupMode /* Some(GtkSizeGroupMode) */
+  ): Unit /* None */ = gtk_size_group_set_mode(this.raw.asInstanceOf, mode)
 
 end SizeGroup
 
@@ -145,7 +150,6 @@ object SizeGroup:
     *
     * Create a new `GtkSizeGroup`.
     */
-  def apply(mode: GtkSizeGroupMode): SizeGroup = new SizeGroup(
-    gtk_size_group_new(mode).asInstanceOf
-  )
+  def apply(mode: GtkSizeGroupMode /* Some(GtkSizeGroupMode) */ ): SizeGroup =
+    new SizeGroup(gtk_size_group_new(mode).asInstanceOf)
 end SizeGroup

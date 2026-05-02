@@ -26,13 +26,14 @@ import sn.gnome.gobject.fluent.Object
   * thread-default context is still running).
   */
 class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Cancels a file monitor.
     */
-  def cancel(): Boolean =
+  def cancel(): Boolean /* None */ =
     g_file_monitor_cancel(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -45,10 +46,10 @@ class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
     * thread that the monitor was created in.
     */
   def emitEvent(
-      child: File,
-      other_file: File,
-      event_type: GFileMonitorEvent
-  ): Unit = g_file_monitor_emit_event(
+      child: File /* Some(Ptr[GFile]) */,
+      other_file: File /* Some(Ptr[GFile]) */,
+      event_type: GFileMonitorEvent /* Some(GFileMonitorEvent) */
+  ): Unit /* None */ = g_file_monitor_emit_event(
     this.raw.asInstanceOf,
     child.getUnsafeRawPointer().asInstanceOf,
     other_file.getUnsafeRawPointer().asInstanceOf,
@@ -59,7 +60,7 @@ class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
     *
     * Returns whether the monitor is canceled.
     */
-  def isCancelled(): Boolean =
+  def isCancelled(): Boolean /* None */ =
     g_file_monitor_is_cancelled(this.raw.asInstanceOf).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -67,7 +68,9 @@ class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
     * Sets the rate limit to which the @monitor will report consecutive change
     * events to the same file.
     */
-  def setRateLimit(limit_msecs: Int): Unit =
+  def setRateLimit(
+      limit_msecs: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  ): Unit /* None */ =
     g_file_monitor_set_rate_limit(this.raw.asInstanceOf, gint(limit_msecs))
 
 end FileMonitor

@@ -12,13 +12,14 @@ import sn.gnome.gsk4.internal.GskBlurNode
   * A render node applying a blur effect to its single child.
   */
 class BlurNode(raw: Ptr[GskBlurNode]) extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the child `GskRenderNode` of the blur @node.
     */
-  def getChild(): RenderNode = new RenderNode(
+  def getChild(): RenderNode /* None */ = new RenderNode(
     gsk_blur_node_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -26,7 +27,9 @@ class BlurNode(raw: Ptr[GskBlurNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the blur radius of the @node.
     */
-  def getRadius(): Float = gsk_blur_node_get_radius(this.raw.asInstanceOf)
+  def getRadius(): Float /* None */ = gsk_blur_node_get_radius(
+    this.raw.asInstanceOf
+  )
 
 end BlurNode
 
@@ -35,7 +38,10 @@ object BlurNode:
     *
     * Creates a render node that blurs the child.
     */
-  def apply(child: RenderNode, radius: Float): BlurNode = new BlurNode(
+  def apply(
+      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      radius: Float /* Some(Float) */
+  ): BlurNode = new BlurNode(
     gsk_blur_node_new(
       child.getUnsafeRawPointer().asInstanceOf,
       radius.asInstanceOf

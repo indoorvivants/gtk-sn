@@ -13,13 +13,14 @@ import sn.gnome.gsk4.internal.GskRepeatNode
   * A render node repeating its single child node.
   */
 class RepeatNode(raw: Ptr[GskRepeatNode]) extends RenderNode(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the child of @node.
     */
-  def getChild(): RenderNode = new RenderNode(
+  def getChild(): RenderNode /* None */ = new RenderNode(
     gsk_repeat_node_get_child(this.raw.asInstanceOf).asInstanceOf
   )
 
@@ -27,9 +28,8 @@ class RepeatNode(raw: Ptr[GskRepeatNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the bounding rectangle of the child of @node.
     */
-  def getChildBounds(): Ptr[graphene_rect_t] = gsk_repeat_node_get_child_bounds(
-    this.raw.asInstanceOf
-  )
+  def getChildBounds(): Ptr[graphene_rect_t] /* None */ =
+    gsk_repeat_node_get_child_bounds(this.raw.asInstanceOf)
 
 end RepeatNode
 
@@ -40,14 +40,24 @@ object RepeatNode:
     * the given @bounds.
     */
   def apply(
-      bounds: Ptr[graphene_rect_t],
-      child: RenderNode,
-      child_bounds: Ptr[graphene_rect_t]
+      bounds: Ptr[
+        graphene_rect_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
+      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      child_bounds: Option[Ptr[
+        graphene_rect_t
+      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */ ]
   ): RepeatNode = new RepeatNode(
     gsk_repeat_node_new(
       bounds,
       child.getUnsafeRawPointer().asInstanceOf,
       child_bounds
+        .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]](o => o)
+        .getOrElse(
+          null.asInstanceOf[Ptr[
+            _root_.sn.gnome.graphene.internal.graphene_rect_t
+          ]]
+        )
     ).asInstanceOf
   )
 end RepeatNode

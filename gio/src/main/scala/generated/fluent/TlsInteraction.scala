@@ -41,6 +41,7 @@ import sn.gnome.gobject.fluent.Object
   */
 class TlsInteraction(raw: Ptr[GTlsInteraction])
     extends Object(raw.asInstanceOf):
+
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -60,13 +61,15 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * not support immediate cancellation.
     */
   def askPassword(
-      password: TlsPassword,
-      cancellable: Cancellable
-  ): GResult[GTlsInteractionResult] = GResult.wrap(__errorPtr =>
+      password: TlsPassword /* Some(Ptr[GTlsPassword]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[GTlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_interaction_ask_password(
       this.raw.asInstanceOf,
       password.getUnsafeRawPointer().asInstanceOf,
-      cancellable.getUnsafeRawPointer().asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
       __errorPtr
     )
   )
@@ -90,16 +93,24 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * Certain implementations may not support immediate cancellation.
     */
   def askPasswordAsync(
-      password: TlsPassword,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_tls_interaction_ask_password_async(
+      password: TlsPassword /* Some(Ptr[GTlsPassword]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_tls_interaction_ask_password_async(
     this.raw.asInstanceOf,
     password.getUnsafeRawPointer().asInstanceOf,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -114,14 +125,15 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * then %G_TLS_INTERACTION_FAILED will be returned with an error that
     * contains a %G_IO_ERROR_CANCELLED error code.
     */
-  def askPasswordFinish(result: AsyncResult): GResult[GTlsInteractionResult] =
-    GResult.wrap(__errorPtr =>
-      g_tls_interaction_ask_password_finish(
-        this.raw.asInstanceOf,
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      )
+  def askPasswordFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[GTlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
+    g_tls_interaction_ask_password_finish(
+      this.raw.asInstanceOf,
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -146,13 +158,15 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * not support immediate cancellation.
     */
   def invokeAskPassword(
-      password: TlsPassword,
-      cancellable: Cancellable
-  ): GResult[GTlsInteractionResult] = GResult.wrap(__errorPtr =>
+      password: TlsPassword /* Some(Ptr[GTlsPassword]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[GTlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_interaction_invoke_ask_password(
       this.raw.asInstanceOf,
       password.getUnsafeRawPointer().asInstanceOf,
-      cancellable.getUnsafeRawPointer().asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
       __errorPtr
     )
   )
@@ -180,15 +194,17 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * not support immediate cancellation.
     */
   def invokeRequestCertificate(
-      connection: TlsConnection,
-      flags: GTlsCertificateRequestFlags,
-      cancellable: Cancellable
-  ): GResult[GTlsInteractionResult] = GResult.wrap(__errorPtr =>
+      connection: TlsConnection /* Some(Ptr[GTlsConnection]) */,
+      flags: GTlsCertificateRequestFlags /* Some(GTlsCertificateRequestFlags) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[GTlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_interaction_invoke_request_certificate(
       this.raw.asInstanceOf,
       connection.getUnsafeRawPointer().asInstanceOf,
       flags,
-      cancellable.getUnsafeRawPointer().asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
       __errorPtr
     )
   )
@@ -215,15 +231,17 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * not support immediate cancellation.
     */
   def requestCertificate(
-      connection: TlsConnection,
-      flags: GTlsCertificateRequestFlags,
-      cancellable: Cancellable
-  ): GResult[GTlsInteractionResult] = GResult.wrap(__errorPtr =>
+      connection: TlsConnection /* Some(Ptr[GTlsConnection]) */,
+      flags: GTlsCertificateRequestFlags /* Some(GTlsCertificateRequestFlags) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+  ): GResult[GTlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_interaction_request_certificate(
       this.raw.asInstanceOf,
       connection.getUnsafeRawPointer().asInstanceOf,
       flags,
-      cancellable.getUnsafeRawPointer().asInstanceOf,
+      cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
       __errorPtr
     )
   )
@@ -240,18 +258,26 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * certificate request, which will usually abort the TLS connection.
     */
   def requestCertificateAsync(
-      connection: TlsConnection,
-      flags: GTlsCertificateRequestFlags,
-      cancellable: Cancellable,
-      callback: GAsyncReadyCallback,
-      user_data: Ptr[Byte]
-  ): Unit = g_tls_interaction_request_certificate_async(
+      connection: TlsConnection /* Some(Ptr[GTlsConnection]) */,
+      flags: GTlsCertificateRequestFlags /* Some(GTlsCertificateRequestFlags) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = g_tls_interaction_request_certificate_async(
     this.raw.asInstanceOf,
     connection.getUnsafeRawPointer().asInstanceOf,
     flags,
-    cancellable.getUnsafeRawPointer().asInstanceOf,
-    callback,
-    gpointer(user_data)
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -269,8 +295,8 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * contains a %G_IO_ERROR_CANCELLED error code.
     */
   def requestCertificateFinish(
-      result: AsyncResult
-  ): GResult[GTlsInteractionResult] = GResult.wrap(__errorPtr =>
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[GTlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_interaction_request_certificate_finish(
       this.raw.asInstanceOf,
       result.getUnsafeRawPointer().asInstanceOf,
