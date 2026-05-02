@@ -62,6 +62,36 @@ lazy val root = project
       (ThisBuild / baseDirectory).value / "Dockerfile"
     ),
     docker / imageNames := Seq(ImageName("scala-native-gtk/generator:latest")),
+    generateTargetTypes := Def.inputTaskDyn {
+      val out =
+        (`fluent-generator` / Compile / resourceDirectory).value / "target-types.json"
+
+      println("yo")
+
+      val modules = Seq(
+        (gtk4 / Compile / sourceDirectory).value -> "gtk4",
+        (gdk4 / Compile / sourceDirectory).value -> "gdk4",
+        (gsk4 / Compile / sourceDirectory).value -> "gsk4",
+        (gobject / Compile / sourceDirectory).value -> "gobject",
+        (gio / Compile / sourceDirectory).value -> "gio",
+        (glib / Compile / sourceDirectory).value -> "glib",
+        (cairo / Compile / sourceDirectory).value -> "cairo",
+        (pango / Compile / sourceDirectory).value -> "pango",
+        (harfbuzz / Compile / sourceDirectory).value -> "harfbuzz",
+        (gdkpixbuf / Compile / sourceDirectory).value -> "gdkpixbuf"
+      ).map { case (path, pkg) =>
+        path / "scala" / "generated" / s"sn.gnome.$pkg.internal" / "functions.scala"
+      }
+
+      println(modules)
+
+      Def.sequential(Def.taskDyn {
+        (`fluent-generator` / Compile / run)
+          .toTask(
+            s" target-types --out $out ${modules.mkString(" ")}"
+          )
+      })
+    }.evaluated,
     generateRawBindings := Def.inputTask {
       import sys.process.*
       import complete.DefaultParsers.*
@@ -610,10 +640,14 @@ lazy val `fluent-generator` = project
   .dependsOn(`gir-schema`)
   .settings(scalaVersion := "3.3.7")
   .settings(
-    libraryDependencies += "com.outr" %%% "scribe" % "3.13.0",
+    libraryDependencies += "com.outr" %%% "scribe" % "3.17.0",
     libraryDependencies += "com.indoorvivants" %%% "rendition" % "0.0.4",
-    libraryDependencies += "com.monovore" %%% "decline" % "2.4.1",
+    libraryDependencies += "com.indoorvivants" %%% "decline-derive" % "0.3.6",
     libraryDependencies += "com.lihaoyi" %%% "os-lib" % "0.9.1",
+    libraryDependencies += "com.lihaoyi" %%% "upickle" % "4.2.1",
+    libraryDependencies += ("org.scalameta" %% "scalameta" % "4.16.1")
+      .cross(CrossVersion.for3Use2_13)
+      .exclude("com.lihaoyi", "sourcecode_2.13"),
     fork := true,
     run / baseDirectory := (ThisBuild / baseDirectory).value
   )
@@ -623,6 +657,7 @@ lazy val girModuleName = settingKey[String]("")
 lazy val generateRawBindings = inputKey[Unit]("")
 lazy val generateFluentBindings = inputKey[Unit]("")
 lazy val generateIntrospectionSchema = inputKey[Unit]("")
+lazy val generateTargetTypes = inputKey[Unit]("")
 
 val withFluentBindings = Seq(
   generateFluentBindings := Def.inputTaskDyn {
@@ -642,7 +677,7 @@ val withFluentBindings = Seq(
         .taskDyn {
           (`fluent-generator` / Compile / run)
             .toTask(
-              s" --module $girModule --gir-files $girFiles --out $out --dump-files-list $generatedFiles"
+              s" fluent --module $girModule --gir-files $girFiles --out $out --dump-files-list $generatedFiles"
             )
         },
       Def.taskDyn {
