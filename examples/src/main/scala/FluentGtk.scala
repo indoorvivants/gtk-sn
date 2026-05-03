@@ -32,6 +32,15 @@ class FluentGtk(using Runtime, Zone):
         println("Clicked!")
       box.append(button)
 
+      val textView = TextView()
+      val buffer = textView.getBuffer()
+      buffer.setText("Hello from Scala Native", -1)
+
+      val scroll = ScrolledWindow()
+      scroll.setVexpand(true)
+      scroll.setChild(Some(textView))
+      box.append(scroll)
+
       window.show()
 
     app.run(0, None)
