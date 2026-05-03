@@ -6,8 +6,8 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.pango.fluent.Coverage
+import sn.gnome.pango.fluent.CoverageLevel
 import sn.gnome.pango.internal.PangoCoverage
-import sn.gnome.pango.internal.PangoCoverageLevel
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -35,8 +35,10 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     *
     * Determine whether a particular index is covered by @coverage.
     */
-  def get(`index_`: Int /* Some(CInt) */ ): PangoCoverageLevel /* None */ =
-    pango_coverage_get(this.raw.asInstanceOf[Ptr[PangoCoverage]], `index_`)
+  def get(`index_`: Int /* Some(CInt) */ ): CoverageLevel /* None */ =
+    CoverageLevel.fromRaw(
+      pango_coverage_get(this.raw.asInstanceOf[Ptr[PangoCoverage]], `index_`)
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -64,11 +66,11 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     */
   def set(
       `index_`: Int /* Some(CInt) */,
-      level: PangoCoverageLevel /* Some(PangoCoverageLevel) */
+      level: CoverageLevel /* Some(PangoCoverageLevel) */
   ): Unit /* None */ = pango_coverage_set(
     this.raw.asInstanceOf[Ptr[PangoCoverage]],
     `index_`,
-    level
+    level.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

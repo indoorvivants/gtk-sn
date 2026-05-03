@@ -5,8 +5,8 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.File
+import sn.gnome.gio.fluent.FileMonitorEvent
 import sn.gnome.gio.internal.GFileMonitor
-import sn.gnome.gio.internal.GFileMonitorEvent
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
@@ -48,12 +48,12 @@ class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
   def emitEvent(
       child: File /* Some(Ptr[GFile]) */,
       other_file: File /* Some(Ptr[GFile]) */,
-      event_type: GFileMonitorEvent /* Some(GFileMonitorEvent) */
+      event_type: FileMonitorEvent /* Some(GFileMonitorEvent) */
   ): Unit /* None */ = g_file_monitor_emit_event(
     this.raw.asInstanceOf[Ptr[GFileMonitor]],
     child.getUnsafeRawPointer().asInstanceOf,
     other_file.getUnsafeRawPointer().asInstanceOf,
-    event_type
+    event_type.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

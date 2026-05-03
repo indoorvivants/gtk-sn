@@ -4,7 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.internal.GdkScrollUnit
+import sn.gnome.gdk4.fluent.ScrollUnit
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkEventControllerScroll
 import sn.gnome.gtk4.internal.GtkEventControllerScrollFlags
@@ -69,10 +69,11 @@ class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
     * Always returns %GDK_SCROLL_UNIT_WHEEL if the
     * %GTK_EVENT_CONTROLLER_SCROLL_DISCRETE flag is set.
     */
-  def getUnit(): GdkScrollUnit /* None */ =
+  def getUnit(): ScrollUnit /* None */ = ScrollUnit.fromRaw(
     gtk_event_controller_scroll_get_unit(
       this.raw.asInstanceOf[Ptr[GtkEventControllerScroll]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

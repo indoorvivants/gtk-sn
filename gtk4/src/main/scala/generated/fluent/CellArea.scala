@@ -17,6 +17,8 @@ import sn.gnome.gtk4.fluent.CellAreaContext
 import sn.gnome.gtk4.fluent.CellEditable
 import sn.gnome.gtk4.fluent.CellLayout
 import sn.gnome.gtk4.fluent.CellRenderer
+import sn.gnome.gtk4.fluent.DirectionType
+import sn.gnome.gtk4.fluent.SizeRequestMode
 import sn.gnome.gtk4.fluent.Snapshot
 import sn.gnome.gtk4.fluent.TreeModel
 import sn.gnome.gtk4.fluent.Widget
@@ -24,8 +26,6 @@ import sn.gnome.gtk4.internal.GtkCellAllocCallback
 import sn.gnome.gtk4.internal.GtkCellArea
 import sn.gnome.gtk4.internal.GtkCellCallback
 import sn.gnome.gtk4.internal.GtkCellRendererState
-import sn.gnome.gtk4.internal.GtkDirectionType
-import sn.gnome.gtk4.internal.GtkSizeRequestMode
 import sn.gnome.gtk4.internal.GtkTreeIter
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -656,10 +656,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     * and navigate focus in its own way particular to how it lays out cells.
     */
   def focus(
-      direction: GtkDirectionType /* Some(GtkDirectionType) */
+      direction: DirectionType /* Some(GtkDirectionType) */
   ): Boolean /* None */ = gtk_cell_area_focus(
     this.raw.asInstanceOf[Ptr[GtkCellArea]],
-    direction
+    direction.raw
   ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -887,8 +887,9 @@ class CellArea(raw: Ptr[GtkCellArea])
     * Gets whether the area prefers a height-for-width layout or a
     * width-for-height layout.
     */
-  def getRequestMode(): GtkSizeRequestMode /* None */ =
+  def getRequestMode(): SizeRequestMode /* None */ = SizeRequestMode.fromRaw(
     gtk_cell_area_get_request_mode(this.raw.asInstanceOf[Ptr[GtkCellArea]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

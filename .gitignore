@@ -16,4 +16,4 @@ target
 **/target/**
 project/project
 project/metals.sbt
-
+pango.sh

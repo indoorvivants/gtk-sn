@@ -9,11 +9,11 @@ import sn.gnome.glib.internal.guint
 import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.InscriptionOverflow
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkInscription
-import sn.gnome.gtk4.internal.GtkInscriptionOverflow
+import sn.gnome.pango.fluent.WrapMode
 import sn.gnome.pango.internal.PangoAttrList
-import sn.gnome.pango.internal.PangoWrapMode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -99,9 +99,11 @@ class Inscription(raw: Ptr[GtkInscription])
     *
     * Gets the inscription's overflow method.
     */
-  def getTextOverflow(): GtkInscriptionOverflow /* None */ =
-    gtk_inscription_get_text_overflow(
-      this.raw.asInstanceOf[Ptr[GtkInscription]]
+  def getTextOverflow(): InscriptionOverflow /* None */ =
+    InscriptionOverflow.fromRaw(
+      gtk_inscription_get_text_overflow(
+        this.raw.asInstanceOf[Ptr[GtkInscription]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -110,8 +112,8 @@ class Inscription(raw: Ptr[GtkInscription])
     *
     * See [method@Gtk.Inscription.set_wrap_mode].
     */
-  def getWrapMode(): PangoWrapMode /* None */ = gtk_inscription_get_wrap_mode(
-    this.raw.asInstanceOf[Ptr[GtkInscription]]
+  def getWrapMode(): WrapMode /* None */ = WrapMode.fromRaw(
+    gtk_inscription_get_wrap_mode(this.raw.asInstanceOf[Ptr[GtkInscription]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -238,10 +240,10 @@ class Inscription(raw: Ptr[GtkInscription])
     * Sets what to do when the text doesn't fit.
     */
   def setTextOverflow(
-      overflow: GtkInscriptionOverflow /* Some(GtkInscriptionOverflow) */
+      overflow: InscriptionOverflow /* Some(GtkInscriptionOverflow) */
   ): Unit /* None */ = gtk_inscription_set_text_overflow(
     this.raw.asInstanceOf[Ptr[GtkInscription]],
-    overflow
+    overflow.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -249,10 +251,10 @@ class Inscription(raw: Ptr[GtkInscription])
     * Controls how line wrapping is done.
     */
   def setWrapMode(
-      wrap_mode: PangoWrapMode /* Some(_root_.sn.gnome.pango.internal.PangoWrapMode) */
+      wrap_mode: WrapMode /* Some(_root_.sn.gnome.pango.internal.PangoWrapMode) */
   ): Unit /* None */ = gtk_inscription_set_wrap_mode(
     this.raw.asInstanceOf[Ptr[GtkInscription]],
-    wrap_mode
+    wrap_mode.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

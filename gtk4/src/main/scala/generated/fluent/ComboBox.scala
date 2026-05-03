@@ -14,10 +14,10 @@ import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.CellEditable
 import sn.gnome.gtk4.fluent.CellLayout
 import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.SensitivityType
 import sn.gnome.gtk4.fluent.TreeModel
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkComboBox
-import sn.gnome.gtk4.internal.GtkSensitivityType
 import sn.gnome.gtk4.internal.GtkTreeIter
 import sn.gnome.gtk4.internal.GtkTreeViewRowSeparatorFunc
 
@@ -144,9 +144,11 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * Returns whether the combo box sets the dropdown button sensitive or not
     * when there are no items in the model.
     */
-  def getButtonSensitivity(): GtkSensitivityType /* None */ =
-    gtk_combo_box_get_button_sensitivity(
-      this.raw.asInstanceOf[Ptr[GtkComboBox]]
+  def getButtonSensitivity(): SensitivityType /* None */ =
+    SensitivityType.fromRaw(
+      gtk_combo_box_get_button_sensitivity(
+        this.raw.asInstanceOf[Ptr[GtkComboBox]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -301,10 +303,10 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * sensitivity depending on the model contents.
     */
   def setButtonSensitivity(
-      sensitivity: GtkSensitivityType /* Some(GtkSensitivityType) */
+      sensitivity: SensitivityType /* Some(GtkSensitivityType) */
   ): Unit /* None */ = gtk_combo_box_set_button_sensitivity(
     this.raw.asInstanceOf[Ptr[GtkComboBox]],
-    sensitivity
+    sensitivity.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

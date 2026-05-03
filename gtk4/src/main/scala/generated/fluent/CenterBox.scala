@@ -7,11 +7,11 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.gtk4.fluent.Accessible
+import sn.gnome.gtk4.fluent.BaselinePosition
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Orientable
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkBaselinePosition
 import sn.gnome.gtk4.internal.GtkCenterBox
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -66,9 +66,11 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     *
     * Gets the value set by gtk_center_box_set_baseline_position().
     */
-  def getBaselinePosition(): GtkBaselinePosition /* None */ =
-    gtk_center_box_get_baseline_position(
-      this.raw.asInstanceOf[Ptr[GtkCenterBox]]
+  def getBaselinePosition(): BaselinePosition /* None */ =
+    BaselinePosition.fromRaw(
+      gtk_center_box_get_baseline_position(
+        this.raw.asInstanceOf[Ptr[GtkCenterBox]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -121,10 +123,10 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     *   is used to allocate the baseline wrt. the extra space available.
     */
   def setBaselinePosition(
-      position: GtkBaselinePosition /* Some(GtkBaselinePosition) */
+      position: BaselinePosition /* Some(GtkBaselinePosition) */
   ): Unit /* None */ = gtk_center_box_set_baseline_position(
     this.raw.asInstanceOf[Ptr[GtkCenterBox]],
-    position
+    position.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

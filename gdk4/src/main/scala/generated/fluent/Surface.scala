@@ -4,7 +4,7 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.cairo.internal.cairo_content_t
+import sn.gnome.cairo.fluent.Content
 import sn.gnome.cairo.internal.cairo_region_t
 import sn.gnome.cairo.internal.cairo_surface_t
 import sn.gnome.gdk4.fluent.CairoContext
@@ -96,12 +96,12 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * error occurs.
     */
   def createSimilarSurface(
-      content: cairo_content_t /* Some(_root_.sn.gnome.cairo.internal.cairo_content_t) */,
+      content: Content /* Some(_root_.sn.gnome.cairo.internal.cairo_content_t) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
   ): Ptr[cairo_surface_t] /* None */ = gdk_surface_create_similar_surface(
     this.raw.asInstanceOf[Ptr[GdkSurface]],
-    content,
+    content.raw,
     width,
     height
   )

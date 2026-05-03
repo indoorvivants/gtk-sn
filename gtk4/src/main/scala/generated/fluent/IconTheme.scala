@@ -10,9 +10,9 @@ import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.IconPaintable
+import sn.gnome.gtk4.fluent.TextDirection
 import sn.gnome.gtk4.internal.GtkIconLookupFlags
 import sn.gnome.gtk4.internal.GtkIconTheme
-import sn.gnome.gtk4.internal.GtkTextDirection
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -185,7 +185,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
       icon: Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */,
       size: Int /* Some(CInt) */,
       scale: Int /* Some(CInt) */,
-      direction: GtkTextDirection /* Some(GtkTextDirection) */,
+      direction: TextDirection /* Some(GtkTextDirection) */,
       flags: GtkIconLookupFlags /* Some(GtkIconLookupFlags) */
   ): IconPaintable /* None */ = new IconPaintable(
     gtk_icon_theme_lookup_by_gicon(
@@ -193,7 +193,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
       icon.getUnsafeRawPointer().asInstanceOf,
       size,
       scale,
-      direction,
+      direction.raw,
       flags
     ).asInstanceOf
   )
@@ -222,7 +222,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
       fallbacks: Option[Ptr[CString] /* Some(Ptr[CString]) */ ],
       size: Int /* Some(CInt) */,
       scale: Int /* Some(CInt) */,
-      direction: GtkTextDirection /* Some(GtkTextDirection) */,
+      direction: TextDirection /* Some(GtkTextDirection) */,
       flags: GtkIconLookupFlags /* Some(GtkIconLookupFlags) */
   )(using Zone): IconPaintable /* None */ = new IconPaintable(
     gtk_icon_theme_lookup_icon(
@@ -233,7 +233,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
         .getOrElse(null.asInstanceOf[Ptr[CString]]),
       size,
       scale,
-      direction,
+      direction.raw,
       flags
     ).asInstanceOf
   )

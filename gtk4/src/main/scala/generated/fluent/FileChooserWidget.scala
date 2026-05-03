@@ -8,8 +8,8 @@ import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.FileChooser
+import sn.gnome.gtk4.fluent.FileChooserAction
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkFileChooserAction
 import sn.gnome.gtk4.internal.GtkFileChooserWidget
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -43,8 +43,8 @@ object FileChooserWidget:
     * it is the same widget that is used by `GtkFileChooserDialog`.
     */
   def apply(
-      action: GtkFileChooserAction /* Some(GtkFileChooserAction) */
+      action: FileChooserAction /* Some(GtkFileChooserAction) */
   ): FileChooserWidget = new FileChooserWidget(
-    gtk_file_chooser_widget_new(action).asInstanceOf
+    gtk_file_chooser_widget_new(action.raw).asInstanceOf
   )
 end FileChooserWidget

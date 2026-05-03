@@ -5,9 +5,9 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gtk4.fluent.ConstraintStrength
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.internal.GtkConstraintGuide
-import sn.gnome.gtk4.internal.GtkConstraintStrength
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -70,10 +70,11 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     *
     * Retrieves the strength set using gtk_constraint_guide_set_strength().
     */
-  def getStrength(): GtkConstraintStrength /* None */ =
+  def getStrength(): ConstraintStrength /* None */ = ConstraintStrength.fromRaw(
     gtk_constraint_guide_get_strength(
       this.raw.asInstanceOf[Ptr[GtkConstraintGuide]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -144,10 +145,10 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     * `GtkConstraintGuide`.
     */
   def setStrength(
-      strength: GtkConstraintStrength /* Some(GtkConstraintStrength) */
+      strength: ConstraintStrength /* Some(GtkConstraintStrength) */
   ): Unit /* None */ = gtk_constraint_guide_set_strength(
     this.raw.asInstanceOf[Ptr[GtkConstraintGuide]],
-    strength
+    strength.raw
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

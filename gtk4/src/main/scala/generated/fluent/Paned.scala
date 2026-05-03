@@ -11,8 +11,8 @@ import sn.gnome.gtk4.fluent.AccessibleRange
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Orientable
+import sn.gnome.gtk4.fluent.Orientation
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkOrientation
 import sn.gnome.gtk4.internal.GtkPaned
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -256,6 +256,6 @@ object Paned:
     *
     * Creates a new `GtkPaned` widget.
     */
-  def apply(orientation: GtkOrientation /* Some(GtkOrientation) */ ): Paned =
-    new Paned(gtk_paned_new(orientation).asInstanceOf)
+  def apply(orientation: Orientation /* Some(GtkOrientation) */ ): Paned =
+    new Paned(gtk_paned_new(orientation.raw).asInstanceOf)
 end Paned

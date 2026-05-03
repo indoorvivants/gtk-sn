@@ -9,8 +9,8 @@ import sn.gnome.gio.fluent.ListModel
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.fluent.Shortcut
+import sn.gnome.gtk4.fluent.ShortcutScope
 import sn.gnome.gtk4.internal.GtkShortcutController
-import sn.gnome.gtk4.internal.GtkShortcutScope
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -92,10 +92,11 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     *
     * See [method@Gtk.ShortcutController.set_scope] for details.
     */
-  def getScope(): GtkShortcutScope /* None */ =
+  def getScope(): ShortcutScope /* None */ = ShortcutScope.fromRaw(
     gtk_shortcut_controller_get_scope(
       this.raw.asInstanceOf[Ptr[GtkShortcutController]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -146,10 +147,10 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     * widget has focus.
     */
   def setScope(
-      scope: GtkShortcutScope /* Some(GtkShortcutScope) */
+      scope: ShortcutScope /* Some(GtkShortcutScope) */
   ): Unit /* None */ = gtk_shortcut_controller_set_scope(
     this.raw.asInstanceOf[Ptr[GtkShortcutController]],
-    scope
+    scope.raw
   )
 
 end ShortcutController

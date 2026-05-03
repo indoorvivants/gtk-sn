@@ -6,13 +6,13 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.AsyncInitable
 import sn.gnome.gio.fluent.AsyncResult
+import sn.gnome.gio.fluent.BusType
 import sn.gnome.gio.fluent.Cancellable
 import sn.gnome.gio.fluent.DBusConnection
 import sn.gnome.gio.fluent.DBusInterface
 import sn.gnome.gio.fluent.Initable
 import sn.gnome.gio.fluent.UnixFDList
 import sn.gnome.gio.internal.GAsyncReadyCallback
-import sn.gnome.gio.internal.GBusType
 import sn.gnome.gio.internal.GDBusCallFlags
 import sn.gnome.gio.internal.GDBusInterfaceInfo
 import sn.gnome.gio.internal.GDBusProxy
@@ -525,7 +525,7 @@ object DBusProxy:
     * #GDBusProxy is used in this [example][gdbus-wellknown-proxy].
     */
   def forBusSync(
-      bus_type: GBusType /* Some(GBusType) */,
+      bus_type: BusType /* Some(GBusType) */,
       flags: GDBusProxyFlags /* Some(GDBusProxyFlags) */,
       info: Option[
         Ptr[GDBusInterfaceInfo] /* Some(Ptr[GDBusInterfaceInfo]) */
@@ -540,7 +540,7 @@ object DBusProxy:
   )(using Zone): GResult[DBusProxy] = GResult.wrap(__errorPtr =>
     new DBusProxy(
       g_dbus_proxy_new_for_bus_sync(
-        bus_type,
+        bus_type.raw,
         flags,
         info
           .map[Ptr[GDBusInterfaceInfo]](o => o)

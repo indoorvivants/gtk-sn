@@ -9,15 +9,15 @@ import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.pango.fluent.Direction
 import sn.gnome.pango.fluent.Font
 import sn.gnome.pango.fluent.FontMap
 import sn.gnome.pango.fluent.Fontset
+import sn.gnome.pango.fluent.Gravity
+import sn.gnome.pango.fluent.GravityHint
 import sn.gnome.pango.internal.PangoContext
-import sn.gnome.pango.internal.PangoDirection
 import sn.gnome.pango.internal.PangoFontDescription
 import sn.gnome.pango.internal.PangoFontMetrics
-import sn.gnome.pango.internal.PangoGravity
-import sn.gnome.pango.internal.PangoGravityHint
 import sn.gnome.pango.internal.PangoLanguage
 import sn.gnome.pango.internal.PangoMatrix
 
@@ -55,8 +55,8 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     *
     * See [method@Pango.Context.set_base_dir].
     */
-  def getBaseDir(): PangoDirection /* None */ = pango_context_get_base_dir(
-    this.raw.asInstanceOf[Ptr[PangoContext]]
+  def getBaseDir(): Direction /* None */ = Direction.fromRaw(
+    pango_context_get_base_dir(this.raw.asInstanceOf[Ptr[PangoContext]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -65,8 +65,9 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     *
     * See [method@Pango.Context.set_base_gravity].
     */
-  def getBaseGravity(): PangoGravity /* None */ =
+  def getBaseGravity(): Gravity /* None */ = Gravity.fromRaw(
     pango_context_get_base_gravity(this.raw.asInstanceOf[Ptr[PangoContext]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -94,8 +95,8 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * [func@Pango.Gravity.get_for_matrix] is used to return the gravity from the
     * current context matrix.
     */
-  def getGravity(): PangoGravity /* None */ = pango_context_get_gravity(
-    this.raw.asInstanceOf[Ptr[PangoContext]]
+  def getGravity(): Gravity /* None */ = Gravity.fromRaw(
+    pango_context_get_gravity(this.raw.asInstanceOf[Ptr[PangoContext]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -104,8 +105,9 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     *
     * See [method@Pango.Context.set_gravity_hint] for details.
     */
-  def getGravityHint(): PangoGravityHint /* None */ =
+  def getGravityHint(): GravityHint /* None */ = GravityHint.fromRaw(
     pango_context_get_gravity_hint(this.raw.asInstanceOf[Ptr[PangoContext]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -235,10 +237,10 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * paragraphs that do not contain any strong characters themselves.
     */
   def setBaseDir(
-      direction: PangoDirection /* Some(PangoDirection) */
+      direction: Direction /* Some(PangoDirection) */
   ): Unit /* None */ = pango_context_set_base_dir(
     this.raw.asInstanceOf[Ptr[PangoContext]],
-    direction
+    direction.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -248,10 +250,10 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * The base gravity is used in laying vertical text out.
     */
   def setBaseGravity(
-      gravity: PangoGravity /* Some(PangoGravity) */
+      gravity: Gravity /* Some(PangoGravity) */
   ): Unit /* None */ = pango_context_set_base_gravity(
     this.raw.asInstanceOf[Ptr[PangoContext]],
-    gravity
+    gravity.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -296,10 +298,10 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * %PANGO_GRAVITY_WEST.
     */
   def setGravityHint(
-      hint: PangoGravityHint /* Some(PangoGravityHint) */
+      hint: GravityHint /* Some(PangoGravityHint) */
   ): Unit /* None */ = pango_context_set_gravity_hint(
     this.raw.asInstanceOf[Ptr[PangoContext]],
-    hint
+    hint.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

@@ -13,7 +13,7 @@ import sn.gnome.gio.fluent.Notification
 import sn.gnome.gio.internal.GApplication
 import sn.gnome.gio.internal.GApplicationFlags
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GOptionArg
+import sn.gnome.glib.fluent.OptionArg
 import sn.gnome.glib.internal.GOptionFlags
 import sn.gnome.glib.internal.GOptionGroup
 import sn.gnome.glib.internal.gboolean
@@ -177,7 +177,7 @@ class Application(raw: Ptr[GApplication])
       long_name: String | CString /* Some(CString) */,
       short_name: Byte /* Some(CChar) */,
       flags: GOptionFlags /* Some(_root_.sn.gnome.glib.internal.GOptionFlags) */,
-      arg: GOptionArg /* Some(_root_.sn.gnome.glib.internal.GOptionArg) */,
+      arg: OptionArg /* Some(_root_.sn.gnome.glib.internal.GOptionArg) */,
       description: String | CString /* Some(CString) */,
       arg_description: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = g_application_add_main_option(
@@ -185,7 +185,7 @@ class Application(raw: Ptr[GApplication])
     __sn_extract_string(long_name),
     gchar(short_name).asInstanceOf,
     flags,
-    arg,
+    arg.raw,
     __sn_extract_string(description),
     arg_description
       .map[CString](o => __sn_extract_string(o))

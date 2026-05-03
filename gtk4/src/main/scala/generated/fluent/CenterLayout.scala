@@ -6,11 +6,11 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
+import sn.gnome.gtk4.fluent.BaselinePosition
 import sn.gnome.gtk4.fluent.LayoutManager
+import sn.gnome.gtk4.fluent.Orientation
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkBaselinePosition
 import sn.gnome.gtk4.internal.GtkCenterLayout
-import sn.gnome.gtk4.internal.GtkOrientation
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -31,9 +31,11 @@ class CenterLayout(raw: Ptr[GtkCenterLayout])
     *
     * Returns the baseline position of the layout.
     */
-  def getBaselinePosition(): GtkBaselinePosition /* None */ =
-    gtk_center_layout_get_baseline_position(
-      this.raw.asInstanceOf[Ptr[GtkCenterLayout]]
+  def getBaselinePosition(): BaselinePosition /* None */ =
+    BaselinePosition.fromRaw(
+      gtk_center_layout_get_baseline_position(
+        this.raw.asInstanceOf[Ptr[GtkCenterLayout]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -60,10 +62,11 @@ class CenterLayout(raw: Ptr[GtkCenterLayout])
     *
     * Gets the current orienration of the layout manager.
     */
-  def getOrientation(): GtkOrientation /* None */ =
+  def getOrientation(): Orientation /* None */ = Orientation.fromRaw(
     gtk_center_layout_get_orientation(
       this.raw.asInstanceOf[Ptr[GtkCenterLayout]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -89,10 +92,10 @@ class CenterLayout(raw: Ptr[GtkCenterLayout])
     * Sets the new baseline position of @self
     */
   def setBaselinePosition(
-      baseline_position: GtkBaselinePosition /* Some(GtkBaselinePosition) */
+      baseline_position: BaselinePosition /* Some(GtkBaselinePosition) */
   ): Unit /* None */ = gtk_center_layout_set_baseline_position(
     this.raw.asInstanceOf[Ptr[GtkCenterLayout]],
-    baseline_position
+    baseline_position.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -130,10 +133,10 @@ class CenterLayout(raw: Ptr[GtkCenterLayout])
     * Sets the orientation of @self.
     */
   def setOrientation(
-      orientation: GtkOrientation /* Some(GtkOrientation) */
+      orientation: Orientation /* Some(GtkOrientation) */
   ): Unit /* None */ = gtk_center_layout_set_orientation(
     this.raw.asInstanceOf[Ptr[GtkCenterLayout]],
-    orientation
+    orientation.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

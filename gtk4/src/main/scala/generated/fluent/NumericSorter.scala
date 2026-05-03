@@ -5,9 +5,9 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gtk4.fluent.Expression
+import sn.gnome.gtk4.fluent.SortType
 import sn.gnome.gtk4.fluent.Sorter
 import sn.gnome.gtk4.internal.GtkNumericSorter
-import sn.gnome.gtk4.internal.GtkSortType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -35,10 +35,11 @@ class NumericSorter(raw: Ptr[GtkNumericSorter])
     *
     * Gets whether this sorter will sort smaller numbers first.
     */
-  def getSortOrder(): GtkSortType /* None */ =
+  def getSortOrder(): SortType /* None */ = SortType.fromRaw(
     gtk_numeric_sorter_get_sort_order(
       this.raw.asInstanceOf[Ptr[GtkNumericSorter]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -64,10 +65,10 @@ class NumericSorter(raw: Ptr[GtkNumericSorter])
     * Sets whether to sort smaller numbers before larger ones.
     */
   def setSortOrder(
-      sort_order: GtkSortType /* Some(GtkSortType) */
+      sort_order: SortType /* Some(GtkSortType) */
   ): Unit /* None */ = gtk_numeric_sorter_set_sort_order(
     this.raw.asInstanceOf[Ptr[GtkNumericSorter]],
-    sort_order
+    sort_order.raw
   )
 
 end NumericSorter

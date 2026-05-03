@@ -15,6 +15,7 @@ import sn.gnome.gtk4.fluent.Adjustment
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.ListBoxRow
+import sn.gnome.gtk4.fluent.SelectionMode
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkListBox
 import sn.gnome.gtk4.internal.GtkListBoxCreateWidgetFunc
@@ -22,7 +23,6 @@ import sn.gnome.gtk4.internal.GtkListBoxFilterFunc
 import sn.gnome.gtk4.internal.GtkListBoxForeachFunc
 import sn.gnome.gtk4.internal.GtkListBoxSortFunc
 import sn.gnome.gtk4.internal.GtkListBoxUpdateHeaderFunc
-import sn.gnome.gtk4.internal.GtkSelectionMode
 
 /**  COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -247,8 +247,9 @@ class ListBox(raw: Ptr[GtkListBox])
     *
     * Gets the selection mode of the listbox.
     */
-  def getSelectionMode(): GtkSelectionMode /* None */ =
+  def getSelectionMode(): SelectionMode /* None */ = SelectionMode.fromRaw(
     gtk_list_box_get_selection_mode(this.raw.asInstanceOf[Ptr[GtkListBox]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -522,10 +523,10 @@ class ListBox(raw: Ptr[GtkListBox])
     * Sets how selection works in the listbox.
     */
   def setSelectionMode(
-      mode: GtkSelectionMode /* Some(GtkSelectionMode) */
+      mode: SelectionMode /* Some(GtkSelectionMode) */
   ): Unit /* None */ = gtk_list_box_set_selection_mode(
     this.raw.asInstanceOf[Ptr[GtkListBox]],
-    mode
+    mode.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

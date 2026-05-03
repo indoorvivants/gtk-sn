@@ -7,9 +7,9 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.cairo.internal.cairo_region_t
 import sn.gnome.gdk4.fluent.GLContext
+import sn.gnome.gdk4.fluent.MemoryFormat
 import sn.gnome.gdk4.fluent.Texture
 import sn.gnome.gdk4.internal.GdkGLTextureBuilder
-import sn.gnome.gdk4.internal.GdkMemoryFormat
 import sn.gnome.glib.internal.GDestroyNotify
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
@@ -90,10 +90,11 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     *
     * Gets the format previously set via gdk_gl_texture_builder_set_format().
     */
-  def getFormat(): GdkMemoryFormat /* None */ =
+  def getFormat(): MemoryFormat /* None */ = MemoryFormat.fromRaw(
     gdk_gl_texture_builder_get_format(
       this.raw.asInstanceOf[Ptr[GdkGLTextureBuilder]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -201,10 +202,10 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * usable in GSK's shaders.
     */
   def setFormat(
-      format: GdkMemoryFormat /* Some(GdkMemoryFormat) */
+      format: MemoryFormat /* Some(GdkMemoryFormat) */
   ): Unit /* None */ = gdk_gl_texture_builder_set_format(
     this.raw.asInstanceOf[Ptr[GdkGLTextureBuilder]],
-    format
+    format.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

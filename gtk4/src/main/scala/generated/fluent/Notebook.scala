@@ -11,10 +11,10 @@ import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.NotebookPage
+import sn.gnome.gtk4.fluent.PackType
+import sn.gnome.gtk4.fluent.PositionType
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkNotebook
-import sn.gnome.gtk4.internal.GtkPackType
-import sn.gnome.gtk4.internal.GtkPositionType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -175,11 +175,11 @@ class Notebook(raw: Ptr[GtkNotebook])
     * See [method@Gtk.Notebook.set_action_widget].
     */
   def getActionWidget(
-      pack_type: GtkPackType /* Some(GtkPackType) */
+      pack_type: PackType /* Some(GtkPackType) */
   ): Widget /* None */ = new Widget(
     gtk_notebook_get_action_widget(
       this.raw.asInstanceOf[Ptr[GtkNotebook]],
-      pack_type
+      pack_type.raw
     ).asInstanceOf
   )
 
@@ -342,8 +342,8 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * Gets the edge at which the tabs are drawn.
     */
-  def getTabPos(): GtkPositionType /* None */ = gtk_notebook_get_tab_pos(
-    this.raw.asInstanceOf[Ptr[GtkNotebook]]
+  def getTabPos(): PositionType /* None */ = PositionType.fromRaw(
+    gtk_notebook_get_tab_pos(this.raw.asInstanceOf[Ptr[GtkNotebook]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -514,11 +514,11 @@ class Notebook(raw: Ptr[GtkNotebook])
     */
   def setActionWidget(
       widget: Widget /* Some(Ptr[GtkWidget]) */,
-      pack_type: GtkPackType /* Some(GtkPackType) */
+      pack_type: PackType /* Some(GtkPackType) */
   ): Unit /* None */ = gtk_notebook_set_action_widget(
     this.raw.asInstanceOf[Ptr[GtkNotebook]],
     widget.getUnsafeRawPointer().asInstanceOf,
-    pack_type
+    pack_type.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -707,9 +707,9 @@ class Notebook(raw: Ptr[GtkNotebook])
     * Sets the edge at which the tabs are drawn.
     */
   def setTabPos(
-      pos: GtkPositionType /* Some(GtkPositionType) */
+      pos: PositionType /* Some(GtkPositionType) */
   ): Unit /* None */ =
-    gtk_notebook_set_tab_pos(this.raw.asInstanceOf[Ptr[GtkNotebook]], pos)
+    gtk_notebook_set_tab_pos(this.raw.asInstanceOf[Ptr[GtkNotebook]], pos.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

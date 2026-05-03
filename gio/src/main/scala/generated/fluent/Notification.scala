@@ -5,8 +5,8 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.Icon
+import sn.gnome.gio.fluent.NotificationPriority
 import sn.gnome.gio.internal.GNotification
-import sn.gnome.gio.internal.GNotificationPriority
 import sn.gnome.glib.internal.GVariant
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gchar
@@ -279,10 +279,10 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * #GNotificationPriority for possible values.
     */
   def setPriority(
-      priority: GNotificationPriority /* Some(GNotificationPriority) */
+      priority: NotificationPriority /* Some(GNotificationPriority) */
   ): Unit /* None */ = g_notification_set_priority(
     this.raw.asInstanceOf[Ptr[GNotification]],
-    priority
+    priority.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

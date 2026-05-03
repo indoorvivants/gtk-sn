@@ -8,8 +8,8 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.guint
+import sn.gnome.gtk4.fluent.BaselinePosition
 import sn.gnome.gtk4.fluent.LayoutManager
-import sn.gnome.gtk4.internal.GtkBaselinePosition
 import sn.gnome.gtk4.internal.GtkGridLayout
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -69,9 +69,11 @@ class GridLayout(raw: Ptr[GtkGridLayout])
     */
   def getRowBaselinePosition(
       row: Int /* Some(CInt) */
-  ): GtkBaselinePosition /* None */ = gtk_grid_layout_get_row_baseline_position(
-    this.raw.asInstanceOf[Ptr[GtkGridLayout]],
-    row
+  ): BaselinePosition /* None */ = BaselinePosition.fromRaw(
+    gtk_grid_layout_get_row_baseline_position(
+      this.raw.asInstanceOf[Ptr[GtkGridLayout]],
+      row
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -133,11 +135,11 @@ class GridLayout(raw: Ptr[GtkGridLayout])
     */
   def setRowBaselinePosition(
       row: Int /* Some(CInt) */,
-      pos: GtkBaselinePosition /* Some(GtkBaselinePosition) */
+      pos: BaselinePosition /* Some(GtkBaselinePosition) */
   ): Unit /* None */ = gtk_grid_layout_set_row_baseline_position(
     this.raw.asInstanceOf[Ptr[GtkGridLayout]],
     row,
-    pos
+    pos.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

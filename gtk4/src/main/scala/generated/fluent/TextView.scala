@@ -11,18 +11,18 @@ import sn.gnome.glib.internal.gint
 import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.InputPurpose
+import sn.gnome.gtk4.fluent.Justification
 import sn.gnome.gtk4.fluent.Scrollable
 import sn.gnome.gtk4.fluent.TextBuffer
 import sn.gnome.gtk4.fluent.TextChildAnchor
 import sn.gnome.gtk4.fluent.TextMark
+import sn.gnome.gtk4.fluent.TextWindowType
 import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.WrapMode
 import sn.gnome.gtk4.internal.GtkInputHints
-import sn.gnome.gtk4.internal.GtkInputPurpose
-import sn.gnome.gtk4.internal.GtkJustification
 import sn.gnome.gtk4.internal.GtkTextIter
 import sn.gnome.gtk4.internal.GtkTextView
-import sn.gnome.gtk4.internal.GtkTextWindowType
-import sn.gnome.gtk4.internal.GtkWrapMode
 import sn.gnome.pango.fluent.Context
 import sn.gnome.pango.internal.PangoTabArray
 
@@ -294,11 +294,11 @@ class TextView(raw: Ptr[GtkTextView])
     *   %GTK_TEXT_WINDOW_TOP, or %GTK_TEXT_WINDOW_BOTTOM.
     */
   def getGutter(
-      win: GtkTextWindowType /* Some(GtkTextWindowType) */
+      win: TextWindowType /* Some(GtkTextWindowType) */
   ): Widget /* None */ = new Widget(
     gtk_text_view_get_gutter(
       this.raw.asInstanceOf[Ptr[GtkTextView]],
-      win
+      win.raw
     ).asInstanceOf
   )
 
@@ -325,8 +325,9 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Gets the `input-purpose` of the `GtkTextView`.
     */
-  def getInputPurpose(): GtkInputPurpose /* None */ =
+  def getInputPurpose(): InputPurpose /* None */ = InputPurpose.fromRaw(
     gtk_text_view_get_input_purpose(this.raw.asInstanceOf[Ptr[GtkTextView]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -380,8 +381,9 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Tags in the buffer may override the default.
     */
-  def getJustification(): GtkJustification /* None */ =
+  def getJustification(): Justification /* None */ = Justification.fromRaw(
     gtk_text_view_get_justification(this.raw.asInstanceOf[Ptr[GtkTextView]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -544,8 +546,8 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Gets the line wrapping for the view.
     */
-  def getWrapMode(): GtkWrapMode /* None */ = gtk_text_view_get_wrap_mode(
-    this.raw.asInstanceOf[Ptr[GtkTextView]]
+  def getWrapMode(): WrapMode /* None */ = WrapMode.fromRaw(
+    gtk_text_view_get_wrap_mode(this.raw.asInstanceOf[Ptr[GtkTextView]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -865,11 +867,11 @@ class TextView(raw: Ptr[GtkTextView])
     *   %GTK_TEXT_WINDOW_TOP, or %GTK_TEXT_WINDOW_BOTTOM.
     */
   def setGutter(
-      win: GtkTextWindowType /* Some(GtkTextWindowType) */,
+      win: TextWindowType /* Some(GtkTextWindowType) */,
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
   ): Unit /* None */ = gtk_text_view_set_gutter(
     this.raw.asInstanceOf[Ptr[GtkTextView]],
-    win,
+    win.raw,
     widget
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
@@ -905,10 +907,10 @@ class TextView(raw: Ptr[GtkTextView])
     * methods to adjust their behaviour.
     */
   def setInputPurpose(
-      purpose: GtkInputPurpose /* Some(GtkInputPurpose) */
+      purpose: InputPurpose /* Some(GtkInputPurpose) */
   ): Unit /* None */ = gtk_text_view_set_input_purpose(
     this.raw.asInstanceOf[Ptr[GtkTextView]],
-    purpose
+    purpose.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -918,10 +920,10 @@ class TextView(raw: Ptr[GtkTextView])
     * Tags in the view’s buffer may override the default.
     */
   def setJustification(
-      justification: GtkJustification /* Some(GtkJustification) */
+      justification: Justification /* Some(GtkJustification) */
   ): Unit /* None */ = gtk_text_view_set_justification(
     this.raw.asInstanceOf[Ptr[GtkTextView]],
-    justification
+    justification.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1048,10 +1050,10 @@ class TextView(raw: Ptr[GtkTextView])
     * Sets the line wrapping for the view.
     */
   def setWrapMode(
-      wrap_mode: GtkWrapMode /* Some(GtkWrapMode) */
+      wrap_mode: WrapMode /* Some(GtkWrapMode) */
   ): Unit /* None */ = gtk_text_view_set_wrap_mode(
     this.raw.asInstanceOf[Ptr[GtkTextView]],
-    wrap_mode
+    wrap_mode.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

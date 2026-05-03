@@ -6,8 +6,8 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.Event
+import sn.gnome.gdk4.fluent.TouchpadGesturePhase
 import sn.gnome.gdk4.internal.GdkTouchpadEvent
-import sn.gnome.gdk4.internal.GdkTouchpadGesturePhase
 import sn.gnome.glib.internal.guint
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -36,8 +36,10 @@ class TouchpadEvent(raw: Ptr[GdkTouchpadEvent]) extends Event(raw.asInstanceOf):
     *
     * Extracts the touchpad gesture phase from a touchpad event.
     */
-  def getGesturePhase(): GdkTouchpadGesturePhase /* None */ =
-    gdk_touchpad_event_get_gesture_phase(this.raw.asInstanceOf[Ptr[GdkEvent]])
+  def getGesturePhase(): TouchpadGesturePhase /* None */ =
+    TouchpadGesturePhase.fromRaw(
+      gdk_touchpad_event_get_gesture_phase(this.raw.asInstanceOf[Ptr[GdkEvent]])
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

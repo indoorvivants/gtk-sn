@@ -18,15 +18,15 @@ import sn.gnome.gtk4.fluent.CellArea
 import sn.gnome.gtk4.fluent.CellLayout
 import sn.gnome.gtk4.fluent.CellRenderer
 import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.IconViewDropPosition
+import sn.gnome.gtk4.fluent.Orientation
 import sn.gnome.gtk4.fluent.Scrollable
+import sn.gnome.gtk4.fluent.SelectionMode
 import sn.gnome.gtk4.fluent.Tooltip
 import sn.gnome.gtk4.fluent.TreeModel
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkIconView
-import sn.gnome.gtk4.internal.GtkIconViewDropPosition
 import sn.gnome.gtk4.internal.GtkIconViewForeachFunc
-import sn.gnome.gtk4.internal.GtkOrientation
-import sn.gnome.gtk4.internal.GtkSelectionMode
 import sn.gnome.gtk4.internal.GtkTreePath
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -206,8 +206,9 @@ class IconView(raw: Ptr[GtkIconView])
     * Returns the value of the ::item-orientation property which determines
     * whether the labels are drawn beside the icons instead of below.
     */
-  def getItemOrientation(): GtkOrientation /* None */ =
+  def getItemOrientation(): Orientation /* None */ = Orientation.fromRaw(
     gtk_icon_view_get_item_orientation(this.raw.asInstanceOf[Ptr[GtkIconView]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -323,8 +324,9 @@ class IconView(raw: Ptr[GtkIconView])
     *
     * Gets the selection mode of the @icon_view.
     */
-  def getSelectionMode(): GtkSelectionMode /* None */ =
+  def getSelectionMode(): SelectionMode /* None */ = SelectionMode.fromRaw(
     gtk_icon_view_get_selection_mode(this.raw.asInstanceOf[Ptr[GtkIconView]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -532,13 +534,13 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def setDragDestItem(
       path: Option[Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */ ],
-      pos: GtkIconViewDropPosition /* Some(GtkIconViewDropPosition) */
+      pos: IconViewDropPosition /* Some(GtkIconViewDropPosition) */
   ): Unit /* None */ = gtk_icon_view_set_drag_dest_item(
     this.raw.asInstanceOf[Ptr[GtkIconView]],
     path
       .map[Ptr[GtkTreePath]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]]),
-    pos
+    pos.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -547,10 +549,10 @@ class IconView(raw: Ptr[GtkIconView])
     * are drawn beside the icons instead of below.
     */
   def setItemOrientation(
-      orientation: GtkOrientation /* Some(GtkOrientation) */
+      orientation: Orientation /* Some(GtkOrientation) */
   ): Unit /* None */ = gtk_icon_view_set_item_orientation(
     this.raw.asInstanceOf[Ptr[GtkIconView]],
-    orientation
+    orientation.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -662,10 +664,10 @@ class IconView(raw: Ptr[GtkIconView])
     * Sets the selection mode of the @icon_view.
     */
   def setSelectionMode(
-      mode: GtkSelectionMode /* Some(GtkSelectionMode) */
+      mode: SelectionMode /* Some(GtkSelectionMode) */
   ): Unit /* None */ = gtk_icon_view_set_selection_mode(
     this.raw.asInstanceOf[Ptr[GtkIconView]],
-    mode
+    mode.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

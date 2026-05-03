@@ -5,8 +5,8 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gtk4.fluent.GestureDrag
+import sn.gnome.gtk4.fluent.Orientation
 import sn.gnome.gtk4.internal.GtkGesturePan
-import sn.gnome.gtk4.internal.GtkOrientation
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -32,18 +32,19 @@ class GesturePan(raw: Ptr[GtkGesturePan]) extends GestureDrag(raw.asInstanceOf):
     *
     * Returns the orientation of the pan gestures that this @gesture expects.
     */
-  def getOrientation(): GtkOrientation /* None */ =
+  def getOrientation(): Orientation /* None */ = Orientation.fromRaw(
     gtk_gesture_pan_get_orientation(this.raw.asInstanceOf[Ptr[GtkGesturePan]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the orientation to be expected on pan gestures.
     */
   def setOrientation(
-      orientation: GtkOrientation /* Some(GtkOrientation) */
+      orientation: Orientation /* Some(GtkOrientation) */
   ): Unit /* None */ = gtk_gesture_pan_set_orientation(
     this.raw.asInstanceOf[Ptr[GtkGesturePan]],
-    orientation
+    orientation.raw
   )
 
 end GesturePan
@@ -53,7 +54,6 @@ object GesturePan:
     *
     * Returns a newly created `GtkGesture` that recognizes pan gestures.
     */
-  def apply(
-      orientation: GtkOrientation /* Some(GtkOrientation) */
-  ): GesturePan = new GesturePan(gtk_gesture_pan_new(orientation).asInstanceOf)
+  def apply(orientation: Orientation /* Some(GtkOrientation) */ ): GesturePan =
+    new GesturePan(gtk_gesture_pan_new(orientation.raw).asInstanceOf)
 end GesturePan

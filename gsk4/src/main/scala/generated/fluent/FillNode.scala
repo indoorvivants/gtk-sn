@@ -4,9 +4,9 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gsk4.fluent.FillRule
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskFillNode
-import sn.gnome.gsk4.internal.GskFillRule
 import sn.gnome.gsk4.internal.GskPath
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -32,8 +32,8 @@ class FillNode(raw: Ptr[GskFillNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the fill rule used to determine how the path is filled.
     */
-  def getFillRule(): GskFillRule /* None */ = gsk_fill_node_get_fill_rule(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
+  def getFillRule(): FillRule /* None */ = FillRule.fromRaw(
+    gsk_fill_node_get_fill_rule(this.raw.asInstanceOf[Ptr[GskRenderNode]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -56,12 +56,12 @@ object FillNode:
   def apply(
       child: RenderNode /* Some(Ptr[GskRenderNode]) */,
       path: Ptr[GskPath] /* Some(Ptr[GskPath]) */,
-      fill_rule: GskFillRule /* Some(GskFillRule) */
+      fill_rule: FillRule /* Some(GskFillRule) */
   ): FillNode = new FillNode(
     gsk_fill_node_new(
       child.getUnsafeRawPointer().asInstanceOf,
       path,
-      fill_rule
+      fill_rule.raw
     ).asInstanceOf
   )
 end FillNode

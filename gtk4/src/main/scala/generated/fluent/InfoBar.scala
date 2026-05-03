@@ -10,10 +10,10 @@ import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.Button
 import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.MessageType
+import sn.gnome.gtk4.fluent.ResponseType
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkInfoBar
-import sn.gnome.gtk4.internal.GtkMessageType
-import sn.gnome.gtk4.internal.GtkResponseType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -109,11 +109,11 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     */
   def addActionWidget(
       child: Widget /* Some(Ptr[GtkWidget]) */,
-      response_id: GtkResponseType /* Some(CInt) */
+      response_id: ResponseType /* Some(CInt) */
   ): Unit /* None */ = gtk_info_bar_add_action_widget(
     this.raw.asInstanceOf[Ptr[GtkInfoBar]],
     child.getUnsafeRawPointer().asInstanceOf,
-    response_id.value
+    response_id.raw.value
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -127,12 +127,12 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     */
   def addButton(
       button_text: String | CString /* Some(CString) */,
-      response_id: GtkResponseType /* Some(CInt) */
+      response_id: ResponseType /* Some(CInt) */
   )(using Zone): Button /* None */ = new Button(
     gtk_info_bar_add_button(
       this.raw.asInstanceOf[Ptr[GtkInfoBar]],
       __sn_extract_string(button_text),
-      response_id.value
+      response_id.raw.value
     ).asInstanceOf
   )
 
@@ -168,8 +168,9 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     *
     * Returns the message type of the message area.
     */
-  def getMessageType(): GtkMessageType /* None */ =
+  def getMessageType(): MessageType /* None */ = MessageType.fromRaw(
     gtk_info_bar_get_message_type(this.raw.asInstanceOf[Ptr[GtkInfoBar]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -216,12 +217,11 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     *
     * Emits the “response” signal with the given @response_id.
     */
-  def response(
-      response_id: GtkResponseType /* Some(CInt) */
-  ): Unit /* None */ = gtk_info_bar_response(
-    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
-    response_id.value
-  )
+  def response(response_id: ResponseType /* Some(CInt) */ ): Unit /* None */ =
+    gtk_info_bar_response(
+      this.raw.asInstanceOf[Ptr[GtkInfoBar]],
+      response_id.raw.value
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -234,10 +234,10 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     * widget hierarchy.
     */
   def setDefaultResponse(
-      response_id: GtkResponseType /* Some(CInt) */
+      response_id: ResponseType /* Some(CInt) */
   ): Unit /* None */ = gtk_info_bar_set_default_response(
     this.raw.asInstanceOf[Ptr[GtkInfoBar]],
-    response_id.value
+    response_id.raw.value
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -247,10 +247,10 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     * GTK uses this type to determine how the message is displayed.
     */
   def setMessageType(
-      message_type: GtkMessageType /* Some(GtkMessageType) */
+      message_type: MessageType /* Some(GtkMessageType) */
   ): Unit /* None */ = gtk_info_bar_set_message_type(
     this.raw.asInstanceOf[Ptr[GtkInfoBar]],
-    message_type
+    message_type.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -262,11 +262,11 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     * sensitize/desensitize buttons.
     */
   def setResponseSensitive(
-      response_id: GtkResponseType /* Some(CInt) */,
+      response_id: ResponseType /* Some(CInt) */,
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_info_bar_set_response_sensitive(
     this.raw.asInstanceOf[Ptr[GtkInfoBar]],
-    response_id.value,
+    response_id.raw.value,
     gboolean(gint((if setting == true then 1 else 0)))
   )
 

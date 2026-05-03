@@ -1,0 +1,29 @@
+package sn.gnome.gtk4.fluent
+
+import _root_.sn.gnome.gtk4.internal.GtkNotebookTab
+
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * The parameter used in the action signals of `GtkNotebook`.
+  */
+enum NotebookTab(val raw: GtkNotebookTab):
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * the first tab in the notebook
+    */
+  case FIRST extends NotebookTab(GtkNotebookTab.GTK_NOTEBOOK_TAB_FIRST)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * the last tab in the notebook
+    */
+  case LAST extends NotebookTab(GtkNotebookTab.GTK_NOTEBOOK_TAB_LAST)
+end NotebookTab
+
+object NotebookTab:
+  def fromRaw(raw: GtkNotebookTab): NotebookTab =
+    raw match
+      case GtkNotebookTab.GTK_NOTEBOOK_TAB_FIRST => NotebookTab.FIRST
+      case GtkNotebookTab.GTK_NOTEBOOK_TAB_LAST  => NotebookTab.LAST
+  end fromRaw
+end NotebookTab

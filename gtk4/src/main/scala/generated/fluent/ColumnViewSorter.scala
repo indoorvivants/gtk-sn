@@ -7,9 +7,9 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
 import sn.gnome.gtk4.fluent.ColumnViewColumn
+import sn.gnome.gtk4.fluent.SortType
 import sn.gnome.gtk4.fluent.Sorter
 import sn.gnome.gtk4.internal.GtkColumnViewSorter
-import sn.gnome.gtk4.internal.GtkSortType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -101,9 +101,10 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
     * If there is no primary sort column, then this function returns
     * `GTK_SORT_ASCENDING`.
     */
-  def getPrimarySortOrder(): GtkSortType /* None */ =
+  def getPrimarySortOrder(): SortType /* None */ = SortType.fromRaw(
     gtk_column_view_sorter_get_primary_sort_order(
       this.raw.asInstanceOf[Ptr[GtkColumnViewSorter]]
     )
+  )
 
 end ColumnViewSorter

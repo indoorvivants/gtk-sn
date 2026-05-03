@@ -53,6 +53,7 @@ def sanitation(name: String) =
   else if reserved(name) then Sanitation.Renamed(s"_$name")
   else if scalaKeyWords.contains(name) || name.endsWith("_") then
     Sanitation.Escaped
+  else if name.takeWhile(_.isDigit).nonEmpty then Sanitation.Escaped
   else Sanitation.Good
 
 def escape(name: String) =

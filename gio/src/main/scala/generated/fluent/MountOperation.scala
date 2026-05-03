@@ -5,9 +5,9 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.gio.fluent.MountOperationResult
+import sn.gnome.gio.fluent.PasswordSave
 import sn.gnome.gio.internal.GMountOperation
-import sn.gnome.gio.internal.GMountOperationResult
-import sn.gnome.gio.internal.GPasswordSave
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.guint
@@ -102,10 +102,11 @@ class MountOperation(raw: Ptr[GMountOperation])
     *
     * Gets the state of saving passwords for the mount operation.
     */
-  def getPasswordSave(): GPasswordSave /* None */ =
+  def getPasswordSave(): PasswordSave /* None */ = PasswordSave.fromRaw(
     g_mount_operation_get_password_save(
       this.raw.asInstanceOf[Ptr[GMountOperation]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -130,9 +131,11 @@ class MountOperation(raw: Ptr[GMountOperation])
     * Emits the #GMountOperation::reply signal.
     */
   def reply(
-      result: GMountOperationResult /* Some(GMountOperationResult) */
-  ): Unit /* None */ =
-    g_mount_operation_reply(this.raw.asInstanceOf[Ptr[GMountOperation]], result)
+      result: MountOperationResult /* Some(GMountOperationResult) */
+  ): Unit /* None */ = g_mount_operation_reply(
+    this.raw.asInstanceOf[Ptr[GMountOperation]],
+    result.raw
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -210,10 +213,10 @@ class MountOperation(raw: Ptr[GMountOperation])
     * Sets the state of saving passwords for the mount operation.
     */
   def setPasswordSave(
-      save: GPasswordSave /* Some(GPasswordSave) */
+      save: PasswordSave /* Some(GPasswordSave) */
   ): Unit /* None */ = g_mount_operation_set_password_save(
     this.raw.asInstanceOf[Ptr[GMountOperation]],
-    save
+    save.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

@@ -12,19 +12,19 @@ import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.pango.fluent.Alignment
 import sn.gnome.pango.fluent.Context
+import sn.gnome.pango.fluent.Direction
+import sn.gnome.pango.fluent.EllipsizeMode
 import sn.gnome.pango.fluent.Layout
-import sn.gnome.pango.internal.PangoAlignment
+import sn.gnome.pango.fluent.WrapMode
 import sn.gnome.pango.internal.PangoAttrList
-import sn.gnome.pango.internal.PangoDirection
-import sn.gnome.pango.internal.PangoEllipsizeMode
 import sn.gnome.pango.internal.PangoFontDescription
 import sn.gnome.pango.internal.PangoLayout
 import sn.gnome.pango.internal.PangoLayoutIter
 import sn.gnome.pango.internal.PangoLayoutLine
 import sn.gnome.pango.internal.PangoLayoutSerializeFlags
 import sn.gnome.pango.internal.PangoTabArray
-import sn.gnome.pango.internal.PangoWrapMode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -95,8 +95,8 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Gets the alignment for the layout: how partial lines are positioned within
     * the horizontal space available.
     */
-  def getAlignment(): PangoAlignment /* None */ = pango_layout_get_alignment(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
+  def getAlignment(): Alignment /* None */ = Alignment.fromRaw(
+    pango_layout_get_alignment(this.raw.asInstanceOf[Ptr[PangoLayout]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -198,8 +198,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * Gets the text direction at the given character position in @layout.
     */
-  def getDirection(index: Int /* Some(CInt) */ ): PangoDirection /* None */ =
-    pango_layout_get_direction(this.raw.asInstanceOf[Ptr[PangoLayout]], index)
+  def getDirection(index: Int /* Some(CInt) */ ): Direction /* None */ =
+    Direction.fromRaw(
+      pango_layout_get_direction(this.raw.asInstanceOf[Ptr[PangoLayout]], index)
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -210,8 +212,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Use [method@Pango.Layout.is_ellipsized] to query whether any paragraphs
     * were actually ellipsized.
     */
-  def getEllipsize(): PangoEllipsizeMode /* None */ =
+  def getEllipsize(): EllipsizeMode /* None */ = EllipsizeMode.fromRaw(
     pango_layout_get_ellipsize(this.raw.asInstanceOf[Ptr[PangoLayout]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -506,8 +509,8 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Use [method@Pango.Layout.is_wrapped] to query whether any paragraphs were
     * actually wrapped.
     */
-  def getWrap(): PangoWrapMode /* None */ = pango_layout_get_wrap(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
+  def getWrap(): WrapMode /* None */ = WrapMode.fromRaw(
+    pango_layout_get_wrap(this.raw.asInstanceOf[Ptr[PangoLayout]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -606,10 +609,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * The default alignment is %PANGO_ALIGN_LEFT.
     */
   def setAlignment(
-      alignment: PangoAlignment /* Some(PangoAlignment) */
+      alignment: Alignment /* Some(PangoAlignment) */
   ): Unit /* None */ = pango_layout_set_alignment(
     this.raw.asInstanceOf[Ptr[PangoLayout]],
-    alignment
+    alignment.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -672,10 +675,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * See [method@Pango.Layout.set_height] for details.
     */
   def setEllipsize(
-      ellipsize: PangoEllipsizeMode /* Some(PangoEllipsizeMode) */
+      ellipsize: EllipsizeMode /* Some(PangoEllipsizeMode) */
   ): Unit /* None */ = pango_layout_set_ellipsize(
     this.raw.asInstanceOf[Ptr[PangoLayout]],
-    ellipsize
+    ellipsize.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -956,8 +959,8 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * The default value is %PANGO_WRAP_WORD.
     */
-  def setWrap(wrap: PangoWrapMode /* Some(PangoWrapMode) */ ): Unit /* None */ =
-    pango_layout_set_wrap(this.raw.asInstanceOf[Ptr[PangoLayout]], wrap)
+  def setWrap(wrap: WrapMode /* Some(PangoWrapMode) */ ): Unit /* None */ =
+    pango_layout_set_wrap(this.raw.asInstanceOf[Ptr[PangoLayout]], wrap.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

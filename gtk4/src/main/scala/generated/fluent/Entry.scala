@@ -22,12 +22,12 @@ import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Editable
 import sn.gnome.gtk4.fluent.EntryBuffer
 import sn.gnome.gtk4.fluent.EntryCompletion
+import sn.gnome.gtk4.fluent.EntryIconPosition
+import sn.gnome.gtk4.fluent.ImageType
+import sn.gnome.gtk4.fluent.InputPurpose
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkEntry
-import sn.gnome.gtk4.internal.GtkEntryIconPosition
-import sn.gnome.gtk4.internal.GtkImageType
 import sn.gnome.gtk4.internal.GtkInputHints
-import sn.gnome.gtk4.internal.GtkInputPurpose
 import sn.gnome.pango.internal.PangoAttrList
 import sn.gnome.pango.internal.PangoTabArray
 
@@ -201,10 +201,10 @@ class Entry(raw: Ptr[GtkEntry])
     * Returns whether the icon is activatable.
     */
   def getIconActivatable(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
   ): Boolean /* None */ = gtk_entry_get_icon_activatable(
     this.raw.asInstanceOf[Ptr[GtkEntry]],
-    icon_pos
+    icon_pos.raw
   ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -247,11 +247,11 @@ class Entry(raw: Ptr[GtkEntry])
     * other method (e.g., by `GdkPaintable` or icon name).
     */
   def getIconGicon(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
   ): Icon /* None */ = new Icon.Abstract(
     gtk_entry_get_icon_gicon(
       this.raw.asInstanceOf[Ptr[GtkEntry]],
-      icon_pos
+      icon_pos.raw
     ).asInstanceOf
   )
 
@@ -263,11 +263,11 @@ class Entry(raw: Ptr[GtkEntry])
     * method (e.g., by `GdkPaintable` or gicon).
     */
   def getIconName(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
   )(using Zone): String /* None */ = fromCString(
     gtk_entry_get_icon_name(
       this.raw.asInstanceOf[Ptr[GtkEntry]],
-      icon_pos
+      icon_pos.raw
     ).asInstanceOf
   )
 
@@ -278,11 +278,11 @@ class Entry(raw: Ptr[GtkEntry])
     * If no `GdkPaintable` was used for the icon, %NULL is returned.
     */
   def getIconPaintable(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
   ): Paintable /* None */ = new Paintable.Abstract(
     gtk_entry_get_icon_paintable(
       this.raw.asInstanceOf[Ptr[GtkEntry]],
-      icon_pos
+      icon_pos.raw
     ).asInstanceOf
   )
 
@@ -291,10 +291,10 @@ class Entry(raw: Ptr[GtkEntry])
     * Returns whether the icon appears sensitive or insensitive.
     */
   def getIconSensitive(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
   ): Boolean /* None */ = gtk_entry_get_icon_sensitive(
     this.raw.asInstanceOf[Ptr[GtkEntry]],
-    icon_pos
+    icon_pos.raw
   ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -305,10 +305,12 @@ class Entry(raw: Ptr[GtkEntry])
     * If the icon has no image data, the return value will be %GTK_IMAGE_EMPTY.
     */
   def getIconStorageType(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
-  ): GtkImageType /* None */ = gtk_entry_get_icon_storage_type(
-    this.raw.asInstanceOf[Ptr[GtkEntry]],
-    icon_pos
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
+  ): ImageType /* None */ = ImageType.fromRaw(
+    gtk_entry_get_icon_storage_type(
+      this.raw.asInstanceOf[Ptr[GtkEntry]],
+      icon_pos.raw
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -316,11 +318,11 @@ class Entry(raw: Ptr[GtkEntry])
     * Gets the contents of the tooltip on the icon at the specified position in @entry.
     */
   def getIconTooltipMarkup(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
   )(using Zone): String /* None */ = fromCString(
     gtk_entry_get_icon_tooltip_markup(
       this.raw.asInstanceOf[Ptr[GtkEntry]],
-      icon_pos
+      icon_pos.raw
     ).asInstanceOf
   )
 
@@ -329,11 +331,11 @@ class Entry(raw: Ptr[GtkEntry])
     * Gets the contents of the tooltip on the icon at the specified position in @entry.
     */
   def getIconTooltipText(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
   )(using Zone): String /* None */ = fromCString(
     gtk_entry_get_icon_tooltip_text(
       this.raw.asInstanceOf[Ptr[GtkEntry]],
-      icon_pos
+      icon_pos.raw
     ).asInstanceOf
   )
 
@@ -349,8 +351,9 @@ class Entry(raw: Ptr[GtkEntry])
     *
     * Gets the input purpose of the `GtkEntry`.
     */
-  def getInputPurpose(): GtkInputPurpose /* None */ =
+  def getInputPurpose(): InputPurpose /* None */ = InputPurpose.fromRaw(
     gtk_entry_get_input_purpose(this.raw.asInstanceOf[Ptr[GtkEntry]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -582,11 +585,11 @@ class Entry(raw: Ptr[GtkEntry])
     * Sets whether the icon is activatable.
     */
   def setIconActivatable(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */,
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
       activatable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_entry_set_icon_activatable(
     this.raw.asInstanceOf[Ptr[GtkEntry]],
-    icon_pos,
+    icon_pos.raw,
     gboolean(gint((if activatable == true then 1 else 0)))
   )
 
@@ -598,12 +601,12 @@ class Entry(raw: Ptr[GtkEntry])
     * and drags the icon.
     */
   def setIconDragSource(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */,
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
       provider: ContentProvider /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]) */,
       actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
   ): Unit /* None */ = gtk_entry_set_icon_drag_source(
     this.raw.asInstanceOf[Ptr[GtkEntry]],
-    icon_pos,
+    icon_pos.raw,
     provider.getUnsafeRawPointer().asInstanceOf,
     actions
   )
@@ -618,11 +621,11 @@ class Entry(raw: Ptr[GtkEntry])
     * If @icon is %NULL, no icon will be shown in the specified position.
     */
   def setIconFromGicon(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */,
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
       icon: Option[Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */ ]
   ): Unit /* None */ = gtk_entry_set_icon_from_gicon(
     this.raw.asInstanceOf[Ptr[GtkEntry]],
-    icon_pos,
+    icon_pos.raw,
     icon
       .map[Ptr[_root_.sn.gnome.gio.internal.GIcon]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -641,11 +644,11 @@ class Entry(raw: Ptr[GtkEntry])
     * If @icon_name is %NULL, no icon will be shown in the specified position.
     */
   def setIconFromIconName(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */,
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
       icon_name: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_entry_set_icon_from_icon_name(
     this.raw.asInstanceOf[Ptr[GtkEntry]],
-    icon_pos,
+    icon_pos.raw,
     icon_name
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -658,13 +661,13 @@ class Entry(raw: Ptr[GtkEntry])
     * If @paintable is %NULL, no icon will be shown in the specified position.
     */
   def setIconFromPaintable(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */,
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
       paintable: Option[
         Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
       ]
   ): Unit /* None */ = gtk_entry_set_icon_from_paintable(
     this.raw.asInstanceOf[Ptr[GtkEntry]],
-    icon_pos,
+    icon_pos.raw,
     paintable
       .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
         o.getUnsafeRawPointer().asInstanceOf
@@ -679,11 +682,11 @@ class Entry(raw: Ptr[GtkEntry])
     * Sets the sensitivity for the specified icon.
     */
   def setIconSensitive(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */,
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
       sensitive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_entry_set_icon_sensitive(
     this.raw.asInstanceOf[Ptr[GtkEntry]],
-    icon_pos,
+    icon_pos.raw,
     gboolean(gint((if sensitive == true then 1 else 0)))
   )
 
@@ -701,11 +704,11 @@ class Entry(raw: Ptr[GtkEntry])
     * [method@Gtk.Entry.set_icon_tooltip_text].
     */
   def setIconTooltipMarkup(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */,
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
       tooltip: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_entry_set_icon_tooltip_markup(
     this.raw.asInstanceOf[Ptr[GtkEntry]],
-    icon_pos,
+    icon_pos.raw,
     tooltip
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -730,11 +733,11 @@ class Entry(raw: Ptr[GtkEntry])
     * non-empty tooltip on any icon achieves the same result.
     */
   def setIconTooltipText(
-      icon_pos: GtkEntryIconPosition /* Some(GtkEntryIconPosition) */,
+      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
       tooltip: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_entry_set_icon_tooltip_text(
     this.raw.asInstanceOf[Ptr[GtkEntry]],
-    icon_pos,
+    icon_pos.raw,
     tooltip
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -756,9 +759,11 @@ class Entry(raw: Ptr[GtkEntry])
     * behavior.
     */
   def setInputPurpose(
-      purpose: GtkInputPurpose /* Some(GtkInputPurpose) */
-  ): Unit /* None */ =
-    gtk_entry_set_input_purpose(this.raw.asInstanceOf[Ptr[GtkEntry]], purpose)
+      purpose: InputPurpose /* Some(GtkInputPurpose) */
+  ): Unit /* None */ = gtk_entry_set_input_purpose(
+    this.raw.asInstanceOf[Ptr[GtkEntry]],
+    purpose.raw
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

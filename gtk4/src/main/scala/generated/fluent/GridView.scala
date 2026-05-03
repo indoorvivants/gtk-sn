@@ -13,12 +13,12 @@ import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.ListBase
 import sn.gnome.gtk4.fluent.ListItemFactory
+import sn.gnome.gtk4.fluent.ListTabBehavior
 import sn.gnome.gtk4.fluent.Orientable
 import sn.gnome.gtk4.fluent.Scrollable
 import sn.gnome.gtk4.fluent.SelectionModel
 import sn.gnome.gtk4.internal.GtkGridView
 import sn.gnome.gtk4.internal.GtkListScrollFlags
-import sn.gnome.gtk4.internal.GtkListTabBehavior
 import sn.gnome.gtk4.internal.GtkScrollInfo
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -129,8 +129,9 @@ class GridView(raw: Ptr[GtkGridView])
     *
     * Gets the behavior set for the <kbd>Tab</kbd> key.
     */
-  def getTabBehavior(): GtkListTabBehavior /* None */ =
+  def getTabBehavior(): ListTabBehavior /* None */ = ListTabBehavior.fromRaw(
     gtk_grid_view_get_tab_behavior(this.raw.asInstanceOf[Ptr[GtkGridView]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -242,10 +243,10 @@ class GridView(raw: Ptr[GtkGridView])
     * <kbd>Shift</kbd>+<kbd>Tab</kbd> keys.
     */
   def setTabBehavior(
-      tab_behavior: GtkListTabBehavior /* Some(GtkListTabBehavior) */
+      tab_behavior: ListTabBehavior /* Some(GtkListTabBehavior) */
   ): Unit /* None */ = gtk_grid_view_set_tab_behavior(
     this.raw.asInstanceOf[Ptr[GtkGridView]],
-    tab_behavior
+    tab_behavior.raw
   )
 
 end GridView

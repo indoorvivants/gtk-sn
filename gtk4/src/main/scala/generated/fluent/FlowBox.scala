@@ -18,13 +18,13 @@ import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.FlowBoxChild
 import sn.gnome.gtk4.fluent.Orientable
+import sn.gnome.gtk4.fluent.SelectionMode
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkFlowBox
 import sn.gnome.gtk4.internal.GtkFlowBoxCreateWidgetFunc
 import sn.gnome.gtk4.internal.GtkFlowBoxFilterFunc
 import sn.gnome.gtk4.internal.GtkFlowBoxForeachFunc
 import sn.gnome.gtk4.internal.GtkFlowBoxSortFunc
-import sn.gnome.gtk4.internal.GtkSelectionMode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -230,8 +230,9 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * Gets the selection mode of @box.
     */
-  def getSelectionMode(): GtkSelectionMode /* None */ =
+  def getSelectionMode(): SelectionMode /* None */ = SelectionMode.fromRaw(
     gtk_flow_box_get_selection_mode(this.raw.asInstanceOf[Ptr[GtkFlowBox]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -482,10 +483,10 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * Sets how selection works in @box.
     */
   def setSelectionMode(
-      mode: GtkSelectionMode /* Some(GtkSelectionMode) */
+      mode: SelectionMode /* Some(GtkSelectionMode) */
   ): Unit /* None */ = gtk_flow_box_set_selection_mode(
     this.raw.asInstanceOf[Ptr[GtkFlowBox]],
-    mode
+    mode.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

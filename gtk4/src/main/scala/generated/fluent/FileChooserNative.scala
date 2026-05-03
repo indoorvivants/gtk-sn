@@ -5,9 +5,9 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gtk4.fluent.FileChooser
+import sn.gnome.gtk4.fluent.FileChooserAction
 import sn.gnome.gtk4.fluent.NativeDialog
 import sn.gnome.gtk4.fluent.Window
-import sn.gnome.gtk4.internal.GtkFileChooserAction
 import sn.gnome.gtk4.internal.GtkFileChooserNative
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -241,7 +241,7 @@ object FileChooserNative:
   def apply(
       title: Option[String | CString /* Some(CString) */ ],
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      action: GtkFileChooserAction /* Some(GtkFileChooserAction) */,
+      action: FileChooserAction /* Some(GtkFileChooserAction) */,
       accept_label: Option[String | CString /* Some(CString) */ ],
       cancel_label: Option[String | CString /* Some(CString) */ ]
   )(using Zone): FileChooserNative = new FileChooserNative(
@@ -252,7 +252,7 @@ object FileChooserNative:
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-      action,
+      action.raw,
       accept_label
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),

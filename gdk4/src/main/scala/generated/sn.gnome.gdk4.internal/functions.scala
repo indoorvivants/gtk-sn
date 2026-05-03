@@ -1,6 +1,6 @@
 package sn.gnome.gdk4.internal
 
-// This file was generated using sn-bindgen 0.4.4: https://sn-bindgen.indoorvivants.com/
+// This file was generated using sn-bindgen 0.4.4+1-3da9c949-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
@@ -1267,6 +1267,8 @@ import _root_.scala.scalanative.*
 
 @extern def glib_autoptr_cleanup_GdkDisplayManager(_ptr : Ptr[Ptr[GdkDisplayManager]]): Unit = extern
 
+@extern def glib_autoptr_cleanup_GdkDmabufFormats(_ptr : Ptr[Ptr[GdkDmabufFormats]]): Unit = extern
+
 @extern def glib_autoptr_cleanup_GdkDmabufTexture(_ptr : Ptr[Ptr[GdkDmabufTexture]]): Unit = extern
 
 @extern def glib_autoptr_cleanup_GdkDmabufTextureBuilder(_ptr : Ptr[Ptr[GdkDmabufTextureBuilder]]): Unit = extern
@@ -1338,6 +1340,8 @@ import _root_.scala.scalanative.*
 @extern def glib_autoptr_clear_GdkDisplay(_ptr : Ptr[GdkDisplay]): Unit = extern
 
 @extern def glib_autoptr_clear_GdkDisplayManager(_ptr : Ptr[GdkDisplayManager]): Unit = extern
+
+@extern def glib_autoptr_clear_GdkDmabufFormats(_ptr : Ptr[GdkDmabufFormats]): Unit = extern
 
 @extern def glib_autoptr_clear_GdkDmabufTexture(_ptr : Ptr[GdkDmabufTexture]): Unit = extern
 
@@ -1411,6 +1415,8 @@ import _root_.scala.scalanative.*
 
 @extern def glib_listautoptr_cleanup_GdkDisplayManager(_l : Ptr[Ptr[_root_.sn.gnome.glib.internal.GList]]): Unit = extern
 
+@extern def glib_listautoptr_cleanup_GdkDmabufFormats(_l : Ptr[Ptr[_root_.sn.gnome.glib.internal.GList]]): Unit = extern
+
 @extern def glib_listautoptr_cleanup_GdkDmabufTexture(_l : Ptr[Ptr[_root_.sn.gnome.glib.internal.GList]]): Unit = extern
 
 @extern def glib_listautoptr_cleanup_GdkDmabufTextureBuilder(_l : Ptr[Ptr[_root_.sn.gnome.glib.internal.GList]]): Unit = extern
@@ -1483,6 +1489,8 @@ import _root_.scala.scalanative.*
 
 @extern def glib_queueautoptr_cleanup_GdkDisplayManager(_q : Ptr[Ptr[_root_.sn.gnome.glib.internal.GQueue]]): Unit = extern
 
+@extern def glib_queueautoptr_cleanup_GdkDmabufFormats(_q : Ptr[Ptr[_root_.sn.gnome.glib.internal.GQueue]]): Unit = extern
+
 @extern def glib_queueautoptr_cleanup_GdkDmabufTexture(_q : Ptr[Ptr[_root_.sn.gnome.glib.internal.GQueue]]): Unit = extern
 
 @extern def glib_queueautoptr_cleanup_GdkDmabufTextureBuilder(_q : Ptr[Ptr[_root_.sn.gnome.glib.internal.GQueue]]): Unit = extern
@@ -1554,6 +1562,8 @@ import _root_.scala.scalanative.*
 @extern def glib_slistautoptr_cleanup_GdkDisplay(_l : Ptr[Ptr[_root_.sn.gnome.glib.internal.GSList]]): Unit = extern
 
 @extern def glib_slistautoptr_cleanup_GdkDisplayManager(_l : Ptr[Ptr[_root_.sn.gnome.glib.internal.GSList]]): Unit = extern
+
+@extern def glib_slistautoptr_cleanup_GdkDmabufFormats(_l : Ptr[Ptr[_root_.sn.gnome.glib.internal.GSList]]): Unit = extern
 
 @extern def glib_slistautoptr_cleanup_GdkDmabufTexture(_l : Ptr[Ptr[_root_.sn.gnome.glib.internal.GSList]]): Unit = extern
 

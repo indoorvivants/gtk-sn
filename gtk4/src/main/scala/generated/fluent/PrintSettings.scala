@@ -11,18 +11,18 @@ import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gtk4.fluent.GTKUnit
+import sn.gnome.gtk4.fluent.NumberUpLayout
+import sn.gnome.gtk4.fluent.PageOrientation
+import sn.gnome.gtk4.fluent.PageSet
+import sn.gnome.gtk4.fluent.PrintDuplex
+import sn.gnome.gtk4.fluent.PrintPages
+import sn.gnome.gtk4.fluent.PrintQuality
 import sn.gnome.gtk4.fluent.PrintSettings
-import sn.gnome.gtk4.internal.GtkNumberUpLayout
-import sn.gnome.gtk4.internal.GtkPageOrientation
 import sn.gnome.gtk4.internal.GtkPageRange
-import sn.gnome.gtk4.internal.GtkPageSet
 import sn.gnome.gtk4.internal.GtkPaperSize
-import sn.gnome.gtk4.internal.GtkPrintDuplex
-import sn.gnome.gtk4.internal.GtkPrintPages
-import sn.gnome.gtk4.internal.GtkPrintQuality
 import sn.gnome.gtk4.internal.GtkPrintSettings
 import sn.gnome.gtk4.internal.GtkPrintSettingsFunc
-import sn.gnome.gtk4.internal.GtkUnit
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -157,8 +157,8 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     *
     * Gets the value of %GTK_PRINT_SETTINGS_DUPLEX.
     */
-  def getDuplex(): GtkPrintDuplex /* None */ = gtk_print_settings_get_duplex(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
+  def getDuplex(): PrintDuplex /* None */ = PrintDuplex.fromRaw(
+    gtk_print_settings_get_duplex(this.raw.asInstanceOf[Ptr[GtkPrintSettings]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -204,11 +204,11 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def getLength(
       key: String | CString /* Some(CString) */,
-      unit: GtkUnit /* Some(GtkUnit) */
+      unit: GTKUnit /* Some(GtkUnit) */
   )(using Zone): Double /* None */ = gtk_print_settings_get_length(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
     __sn_extract_string(key),
-    unit
+    unit.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -243,20 +243,22 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     *
     * Gets the value of %GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT.
     */
-  def getNumberUpLayout(): GtkNumberUpLayout /* None */ =
+  def getNumberUpLayout(): NumberUpLayout /* None */ = NumberUpLayout.fromRaw(
     gtk_print_settings_get_number_up_layout(
       this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Get the value of %GTK_PRINT_SETTINGS_ORIENTATION, converted to a
     * `GtkPageOrientation`.
     */
-  def getOrientation(): GtkPageOrientation /* None */ =
+  def getOrientation(): PageOrientation /* None */ = PageOrientation.fromRaw(
     gtk_print_settings_get_orientation(
       this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -281,18 +283,20 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     *
     * Gets the value of %GTK_PRINT_SETTINGS_PAGE_SET.
     */
-  def getPageSet(): GtkPageSet /* None */ = gtk_print_settings_get_page_set(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
+  def getPageSet(): PageSet /* None */ = PageSet.fromRaw(
+    gtk_print_settings_get_page_set(
+      this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the value of %GTK_PRINT_SETTINGS_PAPER_HEIGHT, converted to @unit.
     */
-  def getPaperHeight(unit: GtkUnit /* Some(GtkUnit) */ ): Double /* None */ =
+  def getPaperHeight(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_print_settings_get_paper_height(
       this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-      unit
+      unit.raw
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -309,20 +313,21 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     *
     * Gets the value of %GTK_PRINT_SETTINGS_PAPER_WIDTH, converted to @unit.
     */
-  def getPaperWidth(unit: GtkUnit /* Some(GtkUnit) */ ): Double /* None */ =
+  def getPaperWidth(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_print_settings_get_paper_width(
       this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-      unit
+      unit.raw
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the value of %GTK_PRINT_SETTINGS_PRINT_PAGES.
     */
-  def getPrintPages(): GtkPrintPages /* None */ =
+  def getPrintPages(): PrintPages /* None */ = PrintPages.fromRaw(
     gtk_print_settings_get_print_pages(
       this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -346,8 +351,8 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     *
     * Gets the value of %GTK_PRINT_SETTINGS_QUALITY.
     */
-  def getQuality(): GtkPrintQuality /* None */ = gtk_print_settings_get_quality(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
+  def getQuality(): PrintQuality /* None */ = PrintQuality.fromRaw(
+    gtk_print_settings_get_quality(this.raw.asInstanceOf[Ptr[GtkPrintSettings]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -530,10 +535,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * Sets the value of %GTK_PRINT_SETTINGS_DUPLEX.
     */
   def setDuplex(
-      duplex: GtkPrintDuplex /* Some(GtkPrintDuplex) */
+      duplex: PrintDuplex /* Some(GtkPrintDuplex) */
   ): Unit /* None */ = gtk_print_settings_set_duplex(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    duplex
+    duplex.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -567,12 +572,12 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
   def setLength(
       key: String | CString /* Some(CString) */,
       value: Double /* Some(Double) */,
-      unit: GtkUnit /* Some(GtkUnit) */
+      unit: GTKUnit /* Some(GtkUnit) */
   )(using Zone): Unit /* None */ = gtk_print_settings_set_length(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
     __sn_extract_string(key),
     value,
-    unit
+    unit.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -613,10 +618,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * Sets the value of %GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT.
     */
   def setNumberUpLayout(
-      number_up_layout: GtkNumberUpLayout /* Some(GtkNumberUpLayout) */
+      number_up_layout: NumberUpLayout /* Some(GtkNumberUpLayout) */
   ): Unit /* None */ = gtk_print_settings_set_number_up_layout(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    number_up_layout
+    number_up_layout.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -624,10 +629,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * Sets the value of %GTK_PRINT_SETTINGS_ORIENTATION.
     */
   def setOrientation(
-      orientation: GtkPageOrientation /* Some(GtkPageOrientation) */
+      orientation: PageOrientation /* Some(GtkPageOrientation) */
   ): Unit /* None */ = gtk_print_settings_set_orientation(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    orientation
+    orientation.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -658,12 +663,11 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     *
     * Sets the value of %GTK_PRINT_SETTINGS_PAGE_SET.
     */
-  def setPageSet(
-      page_set: GtkPageSet /* Some(GtkPageSet) */
-  ): Unit /* None */ = gtk_print_settings_set_page_set(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    page_set
-  )
+  def setPageSet(page_set: PageSet /* Some(GtkPageSet) */ ): Unit /* None */ =
+    gtk_print_settings_set_page_set(
+      this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
+      page_set.raw
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -671,11 +675,11 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setPaperHeight(
       height: Double /* Some(Double) */,
-      unit: GtkUnit /* Some(GtkUnit) */
+      unit: GTKUnit /* Some(GtkUnit) */
   ): Unit /* None */ = gtk_print_settings_set_paper_height(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
     height,
-    unit
+    unit.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -696,11 +700,11 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setPaperWidth(
       width: Double /* Some(Double) */,
-      unit: GtkUnit /* Some(GtkUnit) */
+      unit: GTKUnit /* Some(GtkUnit) */
   ): Unit /* None */ = gtk_print_settings_set_paper_width(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
     width,
-    unit
+    unit.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -708,10 +712,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * Sets the value of %GTK_PRINT_SETTINGS_PRINT_PAGES.
     */
   def setPrintPages(
-      pages: GtkPrintPages /* Some(GtkPrintPages) */
+      pages: PrintPages /* Some(GtkPrintPages) */
   ): Unit /* None */ = gtk_print_settings_set_print_pages(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    pages
+    pages.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -740,10 +744,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * Sets the value of %GTK_PRINT_SETTINGS_QUALITY.
     */
   def setQuality(
-      quality: GtkPrintQuality /* Some(GtkPrintQuality) */
+      quality: PrintQuality /* Some(GtkPrintQuality) */
   ): Unit /* None */ = gtk_print_settings_set_quality(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    quality
+    quality.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

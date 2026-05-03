@@ -10,9 +10,9 @@ import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.FontDialog
+import sn.gnome.gtk4.fluent.FontLevel
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkFontDialogButton
-import sn.gnome.gtk4.internal.GtkFontLevel
 import sn.gnome.pango.internal.PangoFontDescription
 import sn.gnome.pango.internal.PangoLanguage
 
@@ -97,8 +97,10 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     * Returns the level of detail at which this dialog lets the user select
     * fonts.
     */
-  def getLevel(): GtkFontLevel /* None */ = gtk_font_dialog_button_get_level(
-    this.raw.asInstanceOf[Ptr[GtkFontDialogButton]]
+  def getLevel(): FontLevel /* None */ = FontLevel.fromRaw(
+    gtk_font_dialog_button_get_level(
+      this.raw.asInstanceOf[Ptr[GtkFontDialogButton]]
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -176,10 +178,10 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     *
     * Sets the level of detail at which this dialog lets the user select fonts.
     */
-  def setLevel(level: GtkFontLevel /* Some(GtkFontLevel) */ ): Unit /* None */ =
+  def setLevel(level: FontLevel /* Some(GtkFontLevel) */ ): Unit /* None */ =
     gtk_font_dialog_button_set_level(
       this.raw.asInstanceOf[Ptr[GtkFontDialogButton]],
-      level
+      level.raw
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

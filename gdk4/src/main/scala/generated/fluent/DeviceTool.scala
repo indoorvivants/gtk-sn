@@ -5,9 +5,9 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.gdk4.fluent.DeviceToolType
 import sn.gnome.gdk4.internal.GdkAxisFlags
 import sn.gnome.gdk4.internal.GdkDeviceTool
-import sn.gnome.gdk4.internal.GdkDeviceToolType
 import sn.gnome.glib.internal.guint64
 import sn.gnome.gobject.fluent.Object
 
@@ -60,7 +60,8 @@ class DeviceTool(raw: Ptr[GdkDeviceTool]) extends Object(raw.asInstanceOf):
     *
     * Gets the `GdkDeviceToolType` of the tool.
     */
-  def getToolType(): GdkDeviceToolType /* None */ =
+  def getToolType(): DeviceToolType /* None */ = DeviceToolType.fromRaw(
     gdk_device_tool_get_tool_type(this.raw.asInstanceOf[Ptr[GdkDeviceTool]])
+  )
 
 end DeviceTool

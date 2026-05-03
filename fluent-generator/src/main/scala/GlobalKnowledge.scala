@@ -12,6 +12,7 @@ import boundary.break
 import scala.annotation.tailrec
 
 case class GlobalName(
+    fluent: String,
     namespace: String,
     short: String,
     effects: List[Effect],
@@ -19,10 +20,11 @@ case class GlobalName(
 )
 
 object GlobalName:
-  def internal(short: String, namespace: String, tpe: NameType)(using
-      NamingPolicy
+  def internal(fluent: String, short: String, namespace: String, tpe: NameType)(
+      using NamingPolicy
   ) =
     GlobalName(
+      fluent,
       namespace,
       short,
       List(
@@ -37,6 +39,7 @@ object GlobalName:
       NamingPolicy
   ) =
     GlobalName(
+      short,
       namespace,
       short,
       List(
@@ -156,10 +159,10 @@ case class GlobalKnowledge(
                 names ++= variants.map(v =>
                   v(
                     enumeration.name
-                  ) -> internal(
-                    enumeration.typeValue,
+                  ) -> fluent(
+                    enumeration.name.capitalize,
                     namespaceName,
-                    NameType.Enumeration
+                    NameType.Enumeration(enumeration.typeValue)
                   )
                 )
 
@@ -169,6 +172,7 @@ case class GlobalKnowledge(
                   v(
                     bitfield.name
                   ) -> internal(
+                    bitfield.name,
                     bitfield.typeValue,
                     namespaceName,
                     NameType.Bitfield
@@ -180,6 +184,7 @@ case class GlobalKnowledge(
                   v(
                     callback.name
                   ) -> internal(
+                    callback.name,
                     callback.typeValue,
                     namespaceName,
                     NameType.Callback
@@ -190,6 +195,7 @@ case class GlobalKnowledge(
                   v(
                     callback.typeValue
                   ) -> internal(
+                    callback.name,
                     callback.typeValue,
                     namespaceName,
                     NameType.Callback
@@ -200,7 +206,12 @@ case class GlobalKnowledge(
                 names ++= allVariants.map(v =>
                   v(
                     alias.typeValue
-                  ) -> internal(alias.typeValue, namespaceName, NameType.Alias)
+                  ) -> internal(
+                    alias.name,
+                    alias.typeValue,
+                    namespaceName,
+                    NameType.Alias
+                  )
                 )
 
             namespace.records
@@ -209,6 +220,7 @@ case class GlobalKnowledge(
                   v(
                     record.typeValue
                   ) -> internal(
+                    record.name,
                     record.typeValue,
                     namespaceName,
                     NameType.Record

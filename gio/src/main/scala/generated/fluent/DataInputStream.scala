@@ -8,12 +8,12 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.BufferedInputStream
 import sn.gnome.gio.fluent.Cancellable
+import sn.gnome.gio.fluent.DataStreamByteOrder
+import sn.gnome.gio.fluent.DataStreamNewlineType
 import sn.gnome.gio.fluent.InputStream
 import sn.gnome.gio.fluent.Seekable
 import sn.gnome.gio.internal.GAsyncReadyCallback
 import sn.gnome.gio.internal.GDataInputStream
-import sn.gnome.gio.internal.GDataStreamByteOrder
-import sn.gnome.gio.internal.GDataStreamNewlineType
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gchar
 import sn.gnome.glib.internal.gint
@@ -41,18 +41,22 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     *
     * Gets the byte order for the data input stream.
     */
-  def getByteOrder(): GDataStreamByteOrder /* None */ =
-    g_data_input_stream_get_byte_order(
-      this.raw.asInstanceOf[Ptr[GDataInputStream]]
+  def getByteOrder(): DataStreamByteOrder /* None */ =
+    DataStreamByteOrder.fromRaw(
+      g_data_input_stream_get_byte_order(
+        this.raw.asInstanceOf[Ptr[GDataInputStream]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the current newline type for the @stream.
     */
-  def getNewlineType(): GDataStreamNewlineType /* None */ =
-    g_data_input_stream_get_newline_type(
-      this.raw.asInstanceOf[Ptr[GDataInputStream]]
+  def getNewlineType(): DataStreamNewlineType /* None */ =
+    DataStreamNewlineType.fromRaw(
+      g_data_input_stream_get_newline_type(
+        this.raw.asInstanceOf[Ptr[GDataInputStream]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -431,10 +435,10 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * reads from the @stream will be read in the given @order.
     */
   def setByteOrder(
-      order: GDataStreamByteOrder /* Some(GDataStreamByteOrder) */
+      order: DataStreamByteOrder /* Some(GDataStreamByteOrder) */
   ): Unit /* None */ = g_data_input_stream_set_byte_order(
     this.raw.asInstanceOf[Ptr[GDataInputStream]],
-    order
+    order.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -446,10 +450,10 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * "CR" or "CR LF", and this might block if there is no more data available.
     */
   def setNewlineType(
-      `type`: GDataStreamNewlineType /* Some(GDataStreamNewlineType) */
+      `type`: DataStreamNewlineType /* Some(GDataStreamNewlineType) */
   ): Unit /* None */ = g_data_input_stream_set_newline_type(
     this.raw.asInstanceOf[Ptr[GDataInputStream]],
-    `type`
+    `type`.raw
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

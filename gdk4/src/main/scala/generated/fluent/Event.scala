@@ -9,11 +9,11 @@ import sn.gnome.gdk4.fluent.Device
 import sn.gnome.gdk4.fluent.DeviceTool
 import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gdk4.fluent.Event
+import sn.gnome.gdk4.fluent.EventType
 import sn.gnome.gdk4.fluent.Seat
 import sn.gnome.gdk4.fluent.Surface
 import sn.gnome.gdk4.internal.GdkEvent
 import sn.gnome.gdk4.internal.GdkEventSequence
-import sn.gnome.gdk4.internal.GdkEventType
 import sn.gnome.gdk4.internal.GdkModifierType
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
@@ -141,8 +141,8 @@ class Event(raw: Ptr[GdkEvent]):
     *
     * Retrieves the type of the event.
     */
-  def getEventType(): GdkEventType /* None */ = gdk_event_get_event_type(
-    this.raw.asInstanceOf[Ptr[GdkEvent]]
+  def getEventType(): EventType /* None */ = EventType.fromRaw(
+    gdk_event_get_event_type(this.raw.asInstanceOf[Ptr[GdkEvent]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

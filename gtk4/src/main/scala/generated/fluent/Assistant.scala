@@ -11,6 +11,7 @@ import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.AssistantPage
+import sn.gnome.gtk4.fluent.AssistantPageType
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Native
@@ -20,7 +21,6 @@ import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkAssistant
 import sn.gnome.gtk4.internal.GtkAssistantPageFunc
-import sn.gnome.gtk4.internal.GtkAssistantPageType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -179,9 +179,11 @@ class Assistant(raw: Ptr[GtkAssistant])
     */
   def getPageType(
       page: Widget /* Some(Ptr[GtkWidget]) */
-  ): GtkAssistantPageType /* None */ = gtk_assistant_get_page_type(
-    this.raw.asInstanceOf[Ptr[GtkAssistant]],
-    page.getUnsafeRawPointer().asInstanceOf
+  ): AssistantPageType /* None */ = AssistantPageType.fromRaw(
+    gtk_assistant_get_page_type(
+      this.raw.asInstanceOf[Ptr[GtkAssistant]],
+      page.getUnsafeRawPointer().asInstanceOf
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -345,11 +347,11 @@ class Assistant(raw: Ptr[GtkAssistant])
     */
   def setPageType(
       page: Widget /* Some(Ptr[GtkWidget]) */,
-      `type`: GtkAssistantPageType /* Some(GtkAssistantPageType) */
+      `type`: AssistantPageType /* Some(GtkAssistantPageType) */
   ): Unit /* None */ = gtk_assistant_set_page_type(
     this.raw.asInstanceOf[Ptr[GtkAssistant]],
     page.getUnsafeRawPointer().asInstanceOf,
-    `type`
+    `type`.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

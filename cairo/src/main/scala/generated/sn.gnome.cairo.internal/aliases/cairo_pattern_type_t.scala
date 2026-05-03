@@ -1,6 +1,6 @@
 package sn.gnome.cairo.internal
 
-// This file was generated using sn-bindgen 0.4.4: https://sn-bindgen.indoorvivants.com/
+// This file was generated using sn-bindgen 0.4.4+1-3da9c949-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
@@ -12,7 +12,5 @@ import _root_.scala.scalanative.*
 */
 type cairo_pattern_type_t = _cairo_pattern_type
 object cairo_pattern_type_t:
-  given _tag: Tag[cairo_pattern_type_t] = _cairo_pattern_type._tag
   inline def apply(inline o: _cairo_pattern_type): cairo_pattern_type_t = o
-  extension (v: cairo_pattern_type_t)
-    inline def value: _cairo_pattern_type = v
+  export _cairo_pattern_type.{apply => _, *, given}

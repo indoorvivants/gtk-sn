@@ -5,8 +5,8 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Display
+import sn.gnome.gdk4.fluent.SubpixelLayout
 import sn.gnome.gdk4.internal.GdkMonitor
-import sn.gnome.gdk4.internal.GdkSubpixelLayout
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
@@ -134,8 +134,9 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * Gets information about the layout of red, green and blue primaries for
     * pixels.
     */
-  def getSubpixelLayout(): GdkSubpixelLayout /* None */ =
+  def getSubpixelLayout(): SubpixelLayout /* None */ = SubpixelLayout.fromRaw(
     gdk_monitor_get_subpixel_layout(this.raw.asInstanceOf[Ptr[GdkMonitor]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -12,13 +12,13 @@ import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.HeaderBar
 import sn.gnome.gtk4.fluent.Native
+import sn.gnome.gtk4.fluent.ResponseType
 import sn.gnome.gtk4.fluent.Root
 import sn.gnome.gtk4.fluent.ShortcutManager
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkDialog
 import sn.gnome.gtk4.internal.GtkDialogFlags
-import sn.gnome.gtk4.internal.GtkResponseType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -165,11 +165,11 @@ class Dialog(raw: Ptr[GtkDialog])
     */
   def addActionWidget(
       child: Widget /* Some(Ptr[GtkWidget]) */,
-      response_id: GtkResponseType /* Some(CInt) */
+      response_id: ResponseType /* Some(CInt) */
   ): Unit /* None */ = gtk_dialog_add_action_widget(
     this.raw.asInstanceOf[Ptr[GtkDialog]],
     child.getUnsafeRawPointer().asInstanceOf,
-    response_id.value
+    response_id.raw.value
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -183,12 +183,12 @@ class Dialog(raw: Ptr[GtkDialog])
     */
   def addButton(
       button_text: String | CString /* Some(CString) */,
-      response_id: GtkResponseType /* Some(CInt) */
+      response_id: ResponseType /* Some(CInt) */
   )(using Zone): Widget /* None */ = new Widget(
     gtk_dialog_add_button(
       this.raw.asInstanceOf[Ptr[GtkDialog]],
       __sn_extract_string(button_text),
-      response_id.value
+      response_id.raw.value
     ).asInstanceOf
   )
 
@@ -250,11 +250,11 @@ class Dialog(raw: Ptr[GtkDialog])
     * of a dialog.
     */
   def getWidgetForResponse(
-      response_id: GtkResponseType /* Some(CInt) */
+      response_id: ResponseType /* Some(CInt) */
   ): Widget /* None */ = new Widget(
     gtk_dialog_get_widget_for_response(
       this.raw.asInstanceOf[Ptr[GtkDialog]],
-      response_id.value
+      response_id.raw.value
     ).asInstanceOf
   )
 
@@ -264,12 +264,11 @@ class Dialog(raw: Ptr[GtkDialog])
     *
     * Used to indicate that the user has responded to the dialog in some way.
     */
-  def response(
-      response_id: GtkResponseType /* Some(CInt) */
-  ): Unit /* None */ = gtk_dialog_response(
-    this.raw.asInstanceOf[Ptr[GtkDialog]],
-    response_id.value
-  )
+  def response(response_id: ResponseType /* Some(CInt) */ ): Unit /* None */ =
+    gtk_dialog_response(
+      this.raw.asInstanceOf[Ptr[GtkDialog]],
+      response_id.raw.value
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -278,10 +277,10 @@ class Dialog(raw: Ptr[GtkDialog])
     * Pressing “Enter” normally activates the default widget.
     */
   def setDefaultResponse(
-      response_id: GtkResponseType /* Some(CInt) */
+      response_id: ResponseType /* Some(CInt) */
   ): Unit /* None */ = gtk_dialog_set_default_response(
     this.raw.asInstanceOf[Ptr[GtkDialog]],
-    response_id.value
+    response_id.raw.value
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -292,11 +291,11 @@ class Dialog(raw: Ptr[GtkDialog])
     * dialog’s action area with the given @response_id.
     */
   def setResponseSensitive(
-      response_id: GtkResponseType /* Some(CInt) */,
+      response_id: ResponseType /* Some(CInt) */,
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_dialog_set_response_sensitive(
     this.raw.asInstanceOf[Ptr[GtkDialog]],
-    response_id.value,
+    response_id.raw.value,
     gboolean(gint((if setting == true then 1 else 0)))
   )
 

@@ -9,8 +9,8 @@ import sn.gnome.glib.internal.gint
 import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.PackType
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkPackType
 import sn.gnome.gtk4.internal.GtkWindowControls
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -96,8 +96,8 @@ class WindowControls(raw: Ptr[GtkWindowControls])
     *
     * Gets the side to which this `GtkWindowControls` instance belongs.
     */
-  def getSide(): GtkPackType /* None */ = gtk_window_controls_get_side(
-    this.raw.asInstanceOf[Ptr[GtkWindowControls]]
+  def getSide(): PackType /* None */ = PackType.fromRaw(
+    gtk_window_controls_get_side(this.raw.asInstanceOf[Ptr[GtkWindowControls]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -132,10 +132,10 @@ class WindowControls(raw: Ptr[GtkWindowControls])
     *
     * See [property@Gtk.WindowControls:decoration-layout].
     */
-  def setSide(side: GtkPackType /* Some(GtkPackType) */ ): Unit /* None */ =
+  def setSide(side: PackType /* Some(GtkPackType) */ ): Unit /* None */ =
     gtk_window_controls_set_side(
       this.raw.asInstanceOf[Ptr[GtkWindowControls]],
-      side
+      side.raw
     )
 
   private inline def __sn_extract_string(str: String | CString)(using
@@ -153,6 +153,6 @@ object WindowControls:
     *
     * Creates a new `GtkWindowControls`.
     */
-  def apply(side: GtkPackType /* Some(GtkPackType) */ ): WindowControls =
-    new WindowControls(gtk_window_controls_new(side).asInstanceOf)
+  def apply(side: PackType /* Some(GtkPackType) */ ): WindowControls =
+    new WindowControls(gtk_window_controls_new(side.raw).asInstanceOf)
 end WindowControls

@@ -5,9 +5,9 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.gdk4.fluent.MemoryFormat
 import sn.gnome.gdk4.fluent.Paintable
 import sn.gnome.gdk4.fluent.Texture
-import sn.gnome.gdk4.internal.GdkMemoryFormat
 import sn.gnome.gdk4.internal.GdkMemoryTexture
 import sn.gnome.gio.fluent.Icon
 import sn.gnome.gio.fluent.LoadableIcon
@@ -38,14 +38,14 @@ object MemoryTexture:
   def apply(
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */,
-      format: GdkMemoryFormat /* Some(GdkMemoryFormat) */,
+      format: MemoryFormat /* Some(GdkMemoryFormat) */,
       bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
       stride: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   ): MemoryTexture = new MemoryTexture(
     gdk_memory_texture_new(
       width,
       height,
-      format,
+      format.raw,
       bytes,
       gsize(stride)
     ).asInstanceOf

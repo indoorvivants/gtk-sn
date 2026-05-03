@@ -5,12 +5,12 @@ import _root_.sn.gnome.gdkpixbuf.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.gdkpixbuf.fluent.Colorspace
+import sn.gnome.gdkpixbuf.fluent.InterpType
 import sn.gnome.gdkpixbuf.fluent.Pixbuf
-import sn.gnome.gdkpixbuf.internal.GdkColorspace
-import sn.gnome.gdkpixbuf.internal.GdkInterpType
+import sn.gnome.gdkpixbuf.fluent.PixbufRotation
 import sn.gnome.gdkpixbuf.internal.GdkPixbuf
 import sn.gnome.gdkpixbuf.internal.GdkPixbufDestroyNotify
-import sn.gnome.gdkpixbuf.internal.GdkPixbufRotation
 import sn.gnome.gdkpixbuf.internal.GdkPixbufSaveFunc
 import sn.gnome.gio.fluent.AsyncResult
 import sn.gnome.gio.fluent.Cancellable
@@ -250,7 +250,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       offset_y: Double /* Some(Double) */,
       scale_x: Double /* Some(Double) */,
       scale_y: Double /* Some(Double) */,
-      interp_type: GdkInterpType /* Some(GdkInterpType) */,
+      interp_type: InterpType /* Some(GdkInterpType) */,
       overall_alpha: Int /* Some(CInt) */
   ): Unit /* None */ = gdk_pixbuf_composite(
     this.raw.asInstanceOf[Ptr[GdkPixbuf]],
@@ -263,7 +263,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     offset_y,
     scale_x,
     scale_y,
-    interp_type,
+    interp_type.raw,
     overall_alpha
   )
 
@@ -294,7 +294,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       offset_y: Double /* Some(Double) */,
       scale_x: Double /* Some(Double) */,
       scale_y: Double /* Some(Double) */,
-      interp_type: GdkInterpType /* Some(GdkInterpType) */,
+      interp_type: InterpType /* Some(GdkInterpType) */,
       overall_alpha: Int /* Some(CInt) */,
       check_x: Int /* Some(CInt) */,
       check_y: Int /* Some(CInt) */,
@@ -312,7 +312,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     offset_y,
     scale_x,
     scale_y,
-    interp_type,
+    interp_type.raw,
     overall_alpha,
     check_x,
     check_y,
@@ -330,7 +330,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
   def compositeColorSimple(
       dest_width: Int /* Some(CInt) */,
       dest_height: Int /* Some(CInt) */,
-      interp_type: GdkInterpType /* Some(GdkInterpType) */,
+      interp_type: InterpType /* Some(GdkInterpType) */,
       overall_alpha: Int /* Some(CInt) */,
       check_size: Int /* Some(CInt) */,
       color1: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
@@ -340,7 +340,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       this.raw.asInstanceOf[Ptr[GdkPixbuf]],
       dest_width,
       dest_height,
-      interp_type,
+      interp_type.raw,
       overall_alpha,
       check_size,
       guint32(color1),
@@ -452,8 +452,8 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     *
     * Queries the color space of a pixbuf.
     */
-  def getColorspace(): GdkColorspace /* None */ = gdk_pixbuf_get_colorspace(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
+  def getColorspace(): Colorspace /* None */ = Colorspace.fromRaw(
+    gdk_pixbuf_get_colorspace(this.raw.asInstanceOf[Ptr[GdkPixbuf]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -638,11 +638,11 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * If `angle` is 0, this function will return a copy of `src`.
     */
   def rotateSimple(
-      angle: GdkPixbufRotation /* Some(GdkPixbufRotation) */
+      angle: PixbufRotation /* Some(GdkPixbufRotation) */
   ): Pixbuf /* None */ = new Pixbuf(
     gdk_pixbuf_rotate_simple(
       this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-      angle
+      angle.raw
     ).asInstanceOf
   )
 
@@ -1065,7 +1065,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       offset_y: Double /* Some(Double) */,
       scale_x: Double /* Some(Double) */,
       scale_y: Double /* Some(Double) */,
-      interp_type: GdkInterpType /* Some(GdkInterpType) */
+      interp_type: InterpType /* Some(GdkInterpType) */
   ): Unit /* None */ = gdk_pixbuf_scale(
     this.raw.asInstanceOf[Ptr[GdkPixbuf]],
     dest.getUnsafeRawPointer().asInstanceOf,
@@ -1077,7 +1077,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     offset_y,
     scale_x,
     scale_y,
-    interp_type
+    interp_type.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1104,13 +1104,13 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
   def scaleSimple(
       dest_width: Int /* Some(CInt) */,
       dest_height: Int /* Some(CInt) */,
-      interp_type: GdkInterpType /* Some(GdkInterpType) */
+      interp_type: InterpType /* Some(GdkInterpType) */
   ): Pixbuf /* None */ = new Pixbuf(
     gdk_pixbuf_scale_simple(
       this.raw.asInstanceOf[Ptr[GdkPixbuf]],
       dest_width,
       dest_height,
-      interp_type
+      interp_type.raw
     ).asInstanceOf
   )
 
@@ -1161,14 +1161,14 @@ object Pixbuf:
     * you will have to fill it completely yourself.
     */
   def apply(
-      colorspace: GdkColorspace /* Some(GdkColorspace) */,
+      colorspace: Colorspace /* Some(GdkColorspace) */,
       has_alpha: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       bits_per_sample: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
   ): Pixbuf = new Pixbuf(
     gdk_pixbuf_new(
-      colorspace,
+      colorspace.raw,
       gboolean(gint((if has_alpha == true then 1 else 0))),
       bits_per_sample,
       width,
@@ -1187,7 +1187,7 @@ object Pixbuf:
     */
   def fromBytes(
       data: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
-      colorspace: GdkColorspace /* Some(GdkColorspace) */,
+      colorspace: Colorspace /* Some(GdkColorspace) */,
       has_alpha: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       bits_per_sample: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
@@ -1196,7 +1196,7 @@ object Pixbuf:
   ): Pixbuf = new Pixbuf(
     gdk_pixbuf_new_from_bytes(
       data,
-      colorspace,
+      colorspace.raw,
       gboolean(gint((if has_alpha == true then 1 else 0))),
       bits_per_sample,
       width,
@@ -1221,7 +1221,7 @@ object Pixbuf:
     */
   def fromData(
       data: Ptr[UByte] /* Some(Ptr[_root_.sn.gnome.glib.internal.guchar]) */,
-      colorspace: GdkColorspace /* Some(GdkColorspace) */,
+      colorspace: Colorspace /* Some(GdkColorspace) */,
       has_alpha: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       bits_per_sample: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
@@ -1236,7 +1236,7 @@ object Pixbuf:
   ): Pixbuf = new Pixbuf(
     gdk_pixbuf_new_from_data(
       data.asInstanceOf,
-      colorspace,
+      colorspace.raw,
       gboolean(gint((if has_alpha == true then 1 else 0))),
       bits_per_sample,
       width,

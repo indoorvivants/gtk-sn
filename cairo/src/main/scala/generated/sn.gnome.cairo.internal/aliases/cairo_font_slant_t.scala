@@ -1,6 +1,6 @@
 package sn.gnome.cairo.internal
 
-// This file was generated using sn-bindgen 0.4.4: https://sn-bindgen.indoorvivants.com/
+// This file was generated using sn-bindgen 0.4.4+1-3da9c949-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
@@ -12,7 +12,5 @@ import _root_.scala.scalanative.*
 */
 type cairo_font_slant_t = _cairo_font_slant
 object cairo_font_slant_t:
-  given _tag: Tag[cairo_font_slant_t] = _cairo_font_slant._tag
   inline def apply(inline o: _cairo_font_slant): cairo_font_slant_t = o
-  extension (v: cairo_font_slant_t)
-    inline def value: _cairo_font_slant = v
+  export _cairo_font_slant.{apply => _, *, given}

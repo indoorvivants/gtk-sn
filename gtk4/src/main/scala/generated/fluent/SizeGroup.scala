@@ -7,9 +7,9 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.glib.internal.GSList
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Buildable
+import sn.gnome.gtk4.fluent.SizeGroupMode
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkSizeGroup
-import sn.gnome.gtk4.internal.GtkSizeGroupMode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -106,8 +106,8 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     *
     * Gets the current mode of the size group.
     */
-  def getMode(): GtkSizeGroupMode /* None */ = gtk_size_group_get_mode(
-    this.raw.asInstanceOf[Ptr[GtkSizeGroup]]
+  def getMode(): SizeGroupMode /* None */ = SizeGroupMode.fromRaw(
+    gtk_size_group_get_mode(this.raw.asInstanceOf[Ptr[GtkSizeGroup]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -140,9 +140,9 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     * both directions (%GTK_SIZE_GROUP_BOTH).
     */
   def setMode(
-      mode: GtkSizeGroupMode /* Some(GtkSizeGroupMode) */
+      mode: SizeGroupMode /* Some(GtkSizeGroupMode) */
   ): Unit /* None */ =
-    gtk_size_group_set_mode(this.raw.asInstanceOf[Ptr[GtkSizeGroup]], mode)
+    gtk_size_group_set_mode(this.raw.asInstanceOf[Ptr[GtkSizeGroup]], mode.raw)
 
 end SizeGroup
 
@@ -151,6 +151,6 @@ object SizeGroup:
     *
     * Create a new `GtkSizeGroup`.
     */
-  def apply(mode: GtkSizeGroupMode /* Some(GtkSizeGroupMode) */ ): SizeGroup =
-    new SizeGroup(gtk_size_group_new(mode).asInstanceOf)
+  def apply(mode: SizeGroupMode /* Some(GtkSizeGroupMode) */ ): SizeGroup =
+    new SizeGroup(gtk_size_group_new(mode.raw).asInstanceOf)
 end SizeGroup

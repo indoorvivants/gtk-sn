@@ -10,11 +10,11 @@ import sn.gnome.gio.fluent.IOStream
 import sn.gnome.gio.fluent.TlsCertificate
 import sn.gnome.gio.fluent.TlsDatabase
 import sn.gnome.gio.fluent.TlsInteraction
+import sn.gnome.gio.fluent.TlsProtocolVersion
+import sn.gnome.gio.fluent.TlsRehandshakeMode
 import sn.gnome.gio.internal.GAsyncReadyCallback
 import sn.gnome.gio.internal.GTlsCertificateFlags
 import sn.gnome.gio.internal.GTlsConnection
-import sn.gnome.gio.internal.GTlsProtocolVersion
-import sn.gnome.gio.internal.GTlsRehandshakeMode
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gchar
@@ -168,9 +168,11 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * has been closed, or if the TLS backend has implemented a protocol version
     * that is not a recognized #GTlsProtocolVersion.
     */
-  def getProtocolVersion(): GTlsProtocolVersion /* None */ =
-    g_tls_connection_get_protocol_version(
-      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+  def getProtocolVersion(): TlsProtocolVersion /* None */ =
+    TlsProtocolVersion.fromRaw(
+      g_tls_connection_get_protocol_version(
+        this.raw.asInstanceOf[Ptr[GTlsConnection]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -178,9 +180,11 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * Gets @conn rehandshaking mode. See g_tls_connection_set_rehandshake_mode()
     * for details.
     */
-  def getRehandshakeMode(): GTlsRehandshakeMode /* None */ =
-    g_tls_connection_get_rehandshake_mode(
-      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+  def getRehandshakeMode(): TlsRehandshakeMode /* None */ =
+    TlsRehandshakeMode.fromRaw(
+      g_tls_connection_get_rehandshake_mode(
+        this.raw.asInstanceOf[Ptr[GTlsConnection]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -388,10 +392,10 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * operations.
     */
   def setRehandshakeMode(
-      mode: GTlsRehandshakeMode /* Some(GTlsRehandshakeMode) */
+      mode: TlsRehandshakeMode /* Some(GTlsRehandshakeMode) */
   ): Unit /* None */ = g_tls_connection_set_rehandshake_mode(
     this.raw.asInstanceOf[Ptr[GTlsConnection]],
-    mode
+    mode.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

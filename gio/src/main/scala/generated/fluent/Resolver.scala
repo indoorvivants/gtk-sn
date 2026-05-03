@@ -8,10 +8,10 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.AsyncResult
 import sn.gnome.gio.fluent.Cancellable
 import sn.gnome.gio.fluent.InetAddress
+import sn.gnome.gio.fluent.ResolverRecordType
 import sn.gnome.gio.internal.GAsyncReadyCallback
 import sn.gnome.gio.internal.GResolver
 import sn.gnome.gio.internal.GResolverNameLookupFlags
-import sn.gnome.gio.internal.GResolverRecordType
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.GList
 import sn.gnome.glib.internal.gchar
@@ -300,13 +300,13 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
   def lookupRecords(
       rrname: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      record_type: GResolverRecordType /* Some(GResolverRecordType) */,
+      record_type: ResolverRecordType /* Some(GResolverRecordType) */,
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   )(using Zone): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_resolver_lookup_records(
       this.raw.asInstanceOf[Ptr[GResolver]],
       __sn_extract_string(rrname).asInstanceOf[Ptr[gchar]],
-      record_type,
+      record_type.raw,
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -325,7 +325,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
   def lookupRecordsAsync(
       rrname: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      record_type: GResolverRecordType /* Some(GResolverRecordType) */,
+      record_type: ResolverRecordType /* Some(GResolverRecordType) */,
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
       callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
       user_data: Option[
@@ -334,7 +334,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
   )(using Zone): Unit /* None */ = g_resolver_lookup_records_async(
     this.raw.asInstanceOf[Ptr[GResolver]],
     __sn_extract_string(rrname).asInstanceOf[Ptr[gchar]],
-    record_type,
+    record_type.raw,
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),

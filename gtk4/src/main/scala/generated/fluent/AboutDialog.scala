@@ -10,12 +10,12 @@ import sn.gnome.glib.internal.gint
 import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.License
 import sn.gnome.gtk4.fluent.Native
 import sn.gnome.gtk4.fluent.Root
 import sn.gnome.gtk4.fluent.ShortcutManager
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkAboutDialog
-import sn.gnome.gtk4.internal.GtkLicense
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -125,10 +125,11 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * Retrieves the license type.
     */
-  def getLicenseType(): GtkLicense /* None */ =
+  def getLicenseType(): License /* None */ = License.fromRaw(
     gtk_about_dialog_get_license_type(
       this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -309,10 +310,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * [method@Gtk.AboutDialog.set_license].
     */
   def setLicenseType(
-      license_type: GtkLicense /* Some(GtkLicense) */
+      license_type: License /* Some(GtkLicense) */
   ): Unit /* None */ = gtk_about_dialog_set_license_type(
     this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    license_type
+    license_type.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

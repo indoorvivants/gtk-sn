@@ -7,8 +7,8 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Accessible
+import sn.gnome.gtk4.fluent.AccessibleRole
 import sn.gnome.gtk4.internal.GtkATContext
-import sn.gnome.gtk4.internal.GtkAccessibleRole
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -37,8 +37,9 @@ class ATContext(raw: Ptr[GtkATContext]) extends Object(raw.asInstanceOf):
     *
     * Retrieves the accessible role of this context.
     */
-  def getAccessibleRole(): GtkAccessibleRole /* None */ =
+  def getAccessibleRole(): AccessibleRole /* None */ = AccessibleRole.fromRaw(
     gtk_at_context_get_accessible_role(this.raw.asInstanceOf[Ptr[GtkATContext]])
+  )
 
 end ATContext
 
@@ -52,12 +53,12 @@ object ATContext:
     * platform.
     */
   def create(
-      accessible_role: GtkAccessibleRole /* Some(GtkAccessibleRole) */,
+      accessible_role: AccessibleRole /* Some(GtkAccessibleRole) */,
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
       display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
   ): ATContext = new ATContext(
     gtk_at_context_create(
-      accessible_role,
+      accessible_role.raw,
       accessible.getUnsafeRawPointer().asInstanceOf,
       display.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

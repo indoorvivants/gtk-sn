@@ -1,0 +1,42 @@
+package sn.gnome.glib.fluent
+
+import _root_.sn.gnome.glib.internal.GTestFileType
+
+/** COMMENT FOR THE ORIGINAL C DEFINITION
+  *
+  * The type of file to return the filename for, when used with
+  * g_test_build_filename().
+  *
+  * These two options correspond rather directly to the 'dist' and 'built'
+  * terminology that automake uses and are explicitly used to distinguish
+  * between the 'srcdir' and 'builddir' being separate. All files in your
+  * project should either be dist (in the `EXTRA_DIST` or `dist_schema_DATA`
+  * sense, in which case they will always be in the srcdir) or built (in the
+  * `BUILT_SOURCES` sense, in which case they will always be in the builddir).
+  *
+  * Note: as a general rule of automake, files that are generated only as part
+  * of the build-from-git process (but then are distributed with the tarball)
+  * always go in srcdir (even if doing a srcdir != builddir build from git) and
+  * are considered as distributed files.
+  */
+enum TestFileType(val raw: GTestFileType):
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * a file that was included in the distribution tarball
+    */
+  case DIST extends TestFileType(GTestFileType.G_TEST_DIST)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * a file that was built on the compiling machine
+    */
+  case BUILT extends TestFileType(GTestFileType.G_TEST_BUILT)
+end TestFileType
+
+object TestFileType:
+  def fromRaw(raw: GTestFileType): TestFileType =
+    raw match
+      case GTestFileType.G_TEST_DIST  => TestFileType.DIST
+      case GTestFileType.G_TEST_BUILT => TestFileType.BUILT
+  end fromRaw
+end TestFileType

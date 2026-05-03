@@ -9,8 +9,8 @@ import sn.gnome.gtk4.fluent.Adjustment
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Orientable
+import sn.gnome.gtk4.fluent.Orientation
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkOrientation
 import sn.gnome.gtk4.internal.GtkScrollbar
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -98,11 +98,11 @@ object Scrollbar:
     * Creates a new scrollbar with the given orientation.
     */
   def apply(
-      orientation: GtkOrientation /* Some(GtkOrientation) */,
+      orientation: Orientation /* Some(GtkOrientation) */,
       adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
   ): Scrollbar = new Scrollbar(
     gtk_scrollbar_new(
-      orientation,
+      orientation.raw,
       adjustment
         .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])

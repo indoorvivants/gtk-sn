@@ -6,8 +6,8 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.InetAddress
+import sn.gnome.gio.fluent.SocketFamily
 import sn.gnome.gio.internal.GInetAddress
-import sn.gnome.gio.internal.GSocketFamily
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gchar
 import sn.gnome.glib.internal.gint
@@ -45,8 +45,8 @@ class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
     *
     * Gets @address's family
     */
-  def getFamily(): GSocketFamily /* None */ = g_inet_address_get_family(
-    this.raw.asInstanceOf[Ptr[GInetAddress]]
+  def getFamily(): SocketFamily /* None */ = SocketFamily.fromRaw(
+    g_inet_address_get_family(this.raw.asInstanceOf[Ptr[GInetAddress]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -173,8 +173,8 @@ object InetAddress:
     * Creates a #GInetAddress for the "any" address (unassigned/"don't care")
     * for @family.
     */
-  def any(family: GSocketFamily /* Some(GSocketFamily) */ ): InetAddress =
-    new InetAddress(g_inet_address_new_any(family).asInstanceOf)
+  def any(family: SocketFamily /* Some(GSocketFamily) */ ): InetAddress =
+    new InetAddress(g_inet_address_new_any(family.raw).asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -193,8 +193,8 @@ object InetAddress:
     *
     * Creates a #GInetAddress for the loopback address for @family.
     */
-  def loopback(family: GSocketFamily /* Some(GSocketFamily) */ ): InetAddress =
-    new InetAddress(g_inet_address_new_loopback(family).asInstanceOf)
+  def loopback(family: SocketFamily /* Some(GSocketFamily) */ ): InetAddress =
+    new InetAddress(g_inet_address_new_loopback(family.raw).asInstanceOf)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

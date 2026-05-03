@@ -9,13 +9,13 @@ import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.guint
 import sn.gnome.gtk4.fluent.Accessible
+import sn.gnome.gtk4.fluent.BaselinePosition
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Orientable
+import sn.gnome.gtk4.fluent.PositionType
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkBaselinePosition
 import sn.gnome.gtk4.internal.GtkGrid
-import sn.gnome.gtk4.internal.GtkPositionType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -151,7 +151,7 @@ class Grid(raw: Ptr[GtkGrid])
   def attachNextTo(
       child: Widget /* Some(Ptr[GtkWidget]) */,
       sibling: Option[Widget /* Some(Ptr[GtkWidget]) */ ],
-      side: GtkPositionType /* Some(GtkPositionType) */,
+      side: PositionType /* Some(GtkPositionType) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
   ): Unit /* None */ = gtk_grid_attach_next_to(
@@ -160,7 +160,7 @@ class Grid(raw: Ptr[GtkGrid])
     sibling
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]]),
-    side,
+    side.raw,
     width,
     height
   )
@@ -212,8 +212,9 @@ class Grid(raw: Ptr[GtkGrid])
     */
   def getRowBaselinePosition(
       row: Int /* Some(CInt) */
-  ): GtkBaselinePosition /* None */ =
+  ): BaselinePosition /* None */ = BaselinePosition.fromRaw(
     gtk_grid_get_row_baseline_position(this.raw.asInstanceOf[Ptr[GtkGrid]], row)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -252,11 +253,11 @@ class Grid(raw: Ptr[GtkGrid])
     */
   def insertNextTo(
       sibling: Widget /* Some(Ptr[GtkWidget]) */,
-      side: GtkPositionType /* Some(GtkPositionType) */
+      side: PositionType /* Some(GtkPositionType) */
   ): Unit /* None */ = gtk_grid_insert_next_to(
     this.raw.asInstanceOf[Ptr[GtkGrid]],
     sibling.getUnsafeRawPointer().asInstanceOf,
-    side
+    side.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -355,11 +356,11 @@ class Grid(raw: Ptr[GtkGrid])
     */
   def setRowBaselinePosition(
       row: Int /* Some(CInt) */,
-      pos: GtkBaselinePosition /* Some(GtkBaselinePosition) */
+      pos: BaselinePosition /* Some(GtkBaselinePosition) */
   ): Unit /* None */ = gtk_grid_set_row_baseline_position(
     this.raw.asInstanceOf[Ptr[GtkGrid]],
     row,
-    pos
+    pos.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

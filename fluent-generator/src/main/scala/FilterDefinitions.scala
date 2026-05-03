@@ -7,7 +7,8 @@ def filterDefinitions(
     cls: Option[AugmentedClass] = None,
     iface: Option[AugmentedInterface] = None,
     method: Option[Method] = None,
-    constructor: Option[Constructor] = None
+    constructor: Option[Constructor] = None,
+    enumer: Option[Enumeration] = None
 ): Option[String] =
 
   def isNamespace(name: String) =
@@ -73,6 +74,9 @@ def filterDefinitions(
     def weirdClass(name: String, msg: String = "") =
       check(isClass(name), s"Class $name is weird: $msg")
 
+    def weirdEnum(name: String, msg: String = "") =
+      check(enumer.exists(_.name == name), s"Enum $name is weird: $msg")
+
     weirdClass("UnixInputStream")
     weirdClass("UnixMountMonitor")
     weirdClass("UnixOutputStream")
@@ -84,6 +88,21 @@ def filterDefinitions(
     weirdClass("Printer", "Missing in raw bindings")
     weirdClass("PrintUnixDialog", "Missing in raw bindings")
     weirdClass("PageSetupUnixDialog", "Missing in raw bindings")
+
+    // Something about harfbuzz on apple may be
+    val weirdEnums = Seq(
+      "ot_layout_glyph_class_t",
+      "aat_layout_feature_selector_t",
+      "aat_layout_feature_type_t",
+      "ot_layout_baseline_tag_t",
+      "ot_math_constant_t",
+      "ot_math_kern_t",
+      "ot_meta_tag_t",
+      "ot_metrics_tag_t",
+      "ot_name_id_predefined_t"
+    )
+
+    weirdEnums.foreach(weirdEnum(_))
 
     def weirdMethod(cName: String, msg: String) =
       method.foreach: meth =>

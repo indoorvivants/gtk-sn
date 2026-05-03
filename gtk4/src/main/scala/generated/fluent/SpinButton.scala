@@ -16,10 +16,10 @@ import sn.gnome.gtk4.fluent.CellEditable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Editable
 import sn.gnome.gtk4.fluent.Orientable
+import sn.gnome.gtk4.fluent.SpinButtonUpdatePolicy
+import sn.gnome.gtk4.fluent.SpinType
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkSpinButton
-import sn.gnome.gtk4.internal.GtkSpinButtonUpdatePolicy
-import sn.gnome.gtk4.internal.GtkSpinType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -237,8 +237,12 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     *
     * See [method@Gtk.SpinButton.set_update_policy].
     */
-  def getUpdatePolicy(): GtkSpinButtonUpdatePolicy /* None */ =
-    gtk_spin_button_get_update_policy(this.raw.asInstanceOf[Ptr[GtkSpinButton]])
+  def getUpdatePolicy(): SpinButtonUpdatePolicy /* None */ =
+    SpinButtonUpdatePolicy.fromRaw(
+      gtk_spin_button_get_update_policy(
+        this.raw.asInstanceOf[Ptr[GtkSpinButton]]
+      )
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -365,10 +369,10 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     * valid value is set.
     */
   def setUpdatePolicy(
-      policy: GtkSpinButtonUpdatePolicy /* Some(GtkSpinButtonUpdatePolicy) */
+      policy: SpinButtonUpdatePolicy /* Some(GtkSpinButtonUpdatePolicy) */
   ): Unit /* None */ = gtk_spin_button_set_update_policy(
     this.raw.asInstanceOf[Ptr[GtkSpinButton]],
-    policy
+    policy.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -396,11 +400,11 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     * specified amount.
     */
   def spin(
-      direction: GtkSpinType /* Some(GtkSpinType) */,
+      direction: SpinType /* Some(GtkSpinType) */,
       increment: Double /* Some(Double) */
   ): Unit /* None */ = gtk_spin_button_spin(
     this.raw.asInstanceOf[Ptr[GtkSpinButton]],
-    direction,
+    direction.raw,
     increment
   )
 

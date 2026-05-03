@@ -6,13 +6,13 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.gio.fluent.FileAttributeStatus
+import sn.gnome.gio.fluent.FileAttributeType
 import sn.gnome.gio.fluent.FileInfo
+import sn.gnome.gio.fluent.FileType
 import sn.gnome.gio.fluent.Icon
 import sn.gnome.gio.internal.GFileAttributeMatcher
-import sn.gnome.gio.internal.GFileAttributeStatus
-import sn.gnome.gio.internal.GFileAttributeType
 import sn.gnome.gio.internal.GFileInfo
-import sn.gnome.gio.internal.GFileType
 import sn.gnome.glib.internal.GDateTime
 import sn.gnome.glib.internal.GTimeVal
 import sn.gnome.glib.internal.gboolean
@@ -220,11 +220,13 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     *
     * Gets the attribute status for an attribute key.
     */
-  def getAttributeStatus(attribute: String | CString /* Some(CString) */ )(using
-      Zone
-  ): GFileAttributeStatus /* None */ = g_file_info_get_attribute_status(
-    this.raw.asInstanceOf[Ptr[GFileInfo]],
-    __sn_extract_string(attribute)
+  def getAttributeStatus(
+      attribute: String | CString /* Some(CString) */
+  )(using Zone): FileAttributeStatus /* None */ = FileAttributeStatus.fromRaw(
+    g_file_info_get_attribute_status(
+      this.raw.asInstanceOf[Ptr[GFileInfo]],
+      __sn_extract_string(attribute)
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -261,9 +263,11 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     */
   def getAttributeType(
       attribute: String | CString /* Some(CString) */
-  )(using Zone): GFileAttributeType /* None */ = g_file_info_get_attribute_type(
-    this.raw.asInstanceOf[Ptr[GFileInfo]],
-    __sn_extract_string(attribute)
+  )(using Zone): FileAttributeType /* None */ = FileAttributeType.fromRaw(
+    g_file_info_get_attribute_type(
+      this.raw.asInstanceOf[Ptr[GFileInfo]],
+      __sn_extract_string(attribute)
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -378,8 +382,8 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_TYPE.
     */
-  def getFileType(): GFileType /* None */ = g_file_info_get_file_type(
-    this.raw.asInstanceOf[Ptr[GFileInfo]]
+  def getFileType(): FileType /* None */ = FileType.fromRaw(
+    g_file_info_get_file_type(this.raw.asInstanceOf[Ptr[GFileInfo]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -589,12 +593,12 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     */
   def setAttribute(
       attribute: String | CString /* Some(CString) */,
-      `type`: GFileAttributeType /* Some(GFileAttributeType) */,
+      `type`: FileAttributeType /* Some(GFileAttributeType) */,
       value_p: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   )(using Zone): Unit /* None */ = g_file_info_set_attribute(
     this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
-    `type`,
+    `type`.raw,
     gpointer(value_p)
   )
 
@@ -699,11 +703,11 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     */
   def setAttributeStatus(
       attribute: String | CString /* Some(CString) */,
-      status: GFileAttributeStatus /* Some(GFileAttributeStatus) */
+      status: FileAttributeStatus /* Some(GFileAttributeStatus) */
   )(using Zone): Boolean /* None */ = g_file_info_set_attribute_status(
     this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
-    status
+    status.raw
   ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -818,8 +822,8 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * Sets the file type in a #GFileInfo to @type. See
     * %G_FILE_ATTRIBUTE_STANDARD_TYPE.
     */
-  def setFileType(`type`: GFileType /* Some(GFileType) */ ): Unit /* None */ =
-    g_file_info_set_file_type(this.raw.asInstanceOf[Ptr[GFileInfo]], `type`)
+  def setFileType(`type`: FileType /* Some(GFileType) */ ): Unit /* None */ =
+    g_file_info_set_file_type(this.raw.asInstanceOf[Ptr[GFileInfo]], `type`.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

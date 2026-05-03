@@ -4,8 +4,8 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gsk4.fluent.MaskMode
 import sn.gnome.gsk4.fluent.RenderNode
-import sn.gnome.gsk4.internal.GskMaskMode
 import sn.gnome.gsk4.internal.GskMaskNode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -30,8 +30,8 @@ class MaskNode(raw: Ptr[GskMaskNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the mask mode used by @node.
     */
-  def getMaskMode(): GskMaskMode /* None */ = gsk_mask_node_get_mask_mode(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
+  def getMaskMode(): MaskMode /* None */ = MaskMode.fromRaw(
+    gsk_mask_node_get_mask_mode(this.raw.asInstanceOf[Ptr[GskRenderNode]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -58,12 +58,12 @@ object MaskNode:
   def apply(
       source: RenderNode /* Some(Ptr[GskRenderNode]) */,
       mask: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      mask_mode: GskMaskMode /* Some(GskMaskMode) */
+      mask_mode: MaskMode /* Some(GskMaskMode) */
   ): MaskNode = new MaskNode(
     gsk_mask_node_new(
       source.getUnsafeRawPointer().asInstanceOf,
       mask.getUnsafeRawPointer().asInstanceOf,
-      mask_mode
+      mask_mode.raw
     ).asInstanceOf
   )
 end MaskNode

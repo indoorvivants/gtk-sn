@@ -5,8 +5,8 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.Credentials
+import sn.gnome.gio.fluent.CredentialsType
 import sn.gnome.gio.internal.GCredentials
-import sn.gnome.gio.internal.GCredentialsType
 import sn.gnome.gio.internal.pid_t
 import sn.gnome.gio.internal.uid_t
 import sn.gnome.glib.fluent.GResult
@@ -68,10 +68,10 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * isn't supported by the OS.
     */
   def getNative(
-      native_type: GCredentialsType /* Some(GCredentialsType) */
+      native_type: CredentialsType /* Some(GCredentialsType) */
   ): Ptr[Byte] /* None */ = g_credentials_get_native(
     this.raw.asInstanceOf[Ptr[GCredentials]],
-    native_type
+    native_type.raw
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -131,11 +131,11 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * isn't supported by the OS.
     */
   def setNative(
-      native_type: GCredentialsType /* Some(GCredentialsType) */,
+      native_type: CredentialsType /* Some(GCredentialsType) */,
       native: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   ): Unit /* None */ = g_credentials_set_native(
     this.raw.asInstanceOf[Ptr[GCredentials]],
-    native_type,
+    native_type.raw,
     gpointer(native)
   )
 

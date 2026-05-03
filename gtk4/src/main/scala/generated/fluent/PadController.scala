@@ -7,8 +7,8 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.fluent.Device
 import sn.gnome.gio.fluent.ActionGroup
 import sn.gnome.gtk4.fluent.EventController
+import sn.gnome.gtk4.fluent.PadActionType
 import sn.gnome.gtk4.internal.GtkPadActionEntry
-import sn.gnome.gtk4.internal.GtkPadActionType
 import sn.gnome.gtk4.internal.GtkPadController
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -79,14 +79,14 @@ class PadController(raw: Ptr[GtkPadController])
     * use those for user feedback.
     */
   def setAction(
-      `type`: GtkPadActionType /* Some(GtkPadActionType) */,
+      `type`: PadActionType /* Some(GtkPadActionType) */,
       index: Int /* Some(CInt) */,
       mode: Int /* Some(CInt) */,
       label: String | CString /* Some(CString) */,
       action_name: String | CString /* Some(CString) */
   )(using Zone): Unit /* None */ = gtk_pad_controller_set_action(
     this.raw.asInstanceOf[Ptr[GtkPadController]],
-    `type`,
+    `type`.raw,
     index,
     mode,
     __sn_extract_string(label),

@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.fluent.Texture
 import sn.gnome.graphene.internal.graphene_rect_t
 import sn.gnome.gsk4.fluent.RenderNode
-import sn.gnome.gsk4.internal.GskScalingFilter
+import sn.gnome.gsk4.fluent.ScalingFilter
 import sn.gnome.gsk4.internal.GskTextureScaleNode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -23,8 +23,9 @@ class TextureScaleNode(raw: Ptr[GskTextureScaleNode])
     *
     * Retrieves the `GskScalingFilter` used when creating this `GskRenderNode`.
     */
-  def getFilter(): GskScalingFilter /* None */ =
+  def getFilter(): ScalingFilter /* None */ = ScalingFilter.fromRaw(
     gsk_texture_scale_node_get_filter(this.raw.asInstanceOf[Ptr[GskRenderNode]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -57,12 +58,12 @@ object TextureScaleNode:
       bounds: Ptr[
         graphene_rect_t
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
-      filter: GskScalingFilter /* Some(GskScalingFilter) */
+      filter: ScalingFilter /* Some(GskScalingFilter) */
   ): TextureScaleNode = new TextureScaleNode(
     gsk_texture_scale_node_new(
       texture.getUnsafeRawPointer().asInstanceOf,
       bounds,
-      filter
+      filter.raw
     ).asInstanceOf
   )
 end TextureScaleNode
