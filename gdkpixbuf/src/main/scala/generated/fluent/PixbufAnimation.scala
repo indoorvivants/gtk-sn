@@ -11,10 +11,12 @@ import sn.gnome.gdkpixbuf.internal.GdkPixbufAnimation
 import sn.gnome.gio.fluent.AsyncResult
 import sn.gnome.gio.fluent.Cancellable
 import sn.gnome.gio.fluent.InputStream
+import sn.gnome.gio.internal.GAsyncReadyCallback
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.GTimeVal
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -249,6 +251,48 @@ object PixbufAnimation:
         __errorPtr
       ).asInstanceOf
     )
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new animation by asynchronously loading an image from an input
+    * stream.
+    *
+    * For more details see gdk_pixbuf_new_from_stream(), which is the
+    * synchronous version of this function.
+    *
+    * When the operation is finished, `callback` will be called in the main
+    * thread. You can then call gdk_pixbuf_animation_new_from_stream_finish() to
+    * get the result of the operation.
+    */
+  def newFromStreamAsync(
+      stream: InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
+      cancellable: Option[
+        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+      ],
+      callback: Option[
+        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gdk_pixbuf_animation_new_from_stream_async(
+    stream.getUnsafeRawPointer().asInstanceOf,
+    cancellable
+      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
+      ),
+    callback
+      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
+      ),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

@@ -8,7 +8,8 @@ def filterDefinitions(
     iface: Option[AugmentedInterface] = None,
     method: Option[Method] = None,
     constructor: Option[Constructor] = None,
-    enumer: Option[Enumeration] = None
+    enumer: Option[Enumeration] = None,
+    function: Option[FunctionType] = None
 ): Option[String] =
 
   def isNamespace(name: String) =
@@ -108,6 +109,10 @@ def filterDefinitions(
       method.foreach: meth =>
         check(meth.identifier == cName, s"Method ${meth.name} is weird: $msg")
 
+    def weirdFunction(cName: String, msg: String) =
+      function.foreach: meth =>
+        check(meth.identifier == cName, s"Function ${meth.name} is weird: $msg")
+
     def weirdConstructor(cName: String, msg: String) =
       constructor.foreach: meth =>
         check(
@@ -127,17 +132,17 @@ def filterDefinitions(
       "gdk_content_provider_new_union",
       "gsk_container_node_new",
       "gsk_border_node_new",
-      "gsk_gl_shader_node_new"
+      "gsk_gl_shader_node_new",
+      "g_object_interface_list_properties"
     )
 
     weirdArrays.foreach: ar =>
       weirdMethod(ar, "non NULL-terminated arrays require special handling")
-
-    weirdArrays.foreach: ar =>
       weirdConstructor(
         ar,
         "non NULL-terminated arrays require special handling"
       )
+      weirdFunction(ar, "non NULL-terminated arrays require special handling")
 
     method.foreach: meth =>
       weirdMethod(

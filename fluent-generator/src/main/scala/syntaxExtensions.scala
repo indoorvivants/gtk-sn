@@ -48,6 +48,30 @@ extension (c: Virtualu45method)
         case d if d.value.isInstanceOf[ArrayType] => d.as[ArrayType]
 end extension
 
+
+extension (c: FunctionType)
+  def isThrowing = c.throws.exists(_.toString == "1")
+  def parameters: Seq[Parameter | Instanceu45parameter] = extractParams(
+    c.functiontypeoption
+  )
+  def instanceParameter: Option[Instanceu45parameter] =
+    c.functiontypeoption.collectFirst:
+      case d if d.value.isInstanceOf[Instanceu45parameter] =>
+        d.as[Instanceu45parameter]
+
+  def returnType: Option[Type | ArrayType] = c.functiontypeoption
+    .collectFirst:
+      case d if d.value.isInstanceOf[Returnu45value] => d.as[Returnu45value]
+    .flatMap: rv =>
+      rv.returnu45valueoption.collectFirst:
+        case d if d.value.isInstanceOf[Type]      => d.as[Type]
+        case d if d.value.isInstanceOf[ArrayType] => d.as[ArrayType]
+  def doc =
+    c.functiontypeoption.collectFirst:
+      case d if d.value.isInstanceOf[Doc] => d.as[Doc]
+end extension
+
+
 extension (c: Method)
   def isThrowing = c.throws.exists(_.toString == "1")
   def parameters: Seq[Parameter | Instanceu45parameter] = extractParams(

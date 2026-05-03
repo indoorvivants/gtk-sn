@@ -6,10 +6,14 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.GDestroyNotify
 import sn.gnome.glib.internal.GQuark
+import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gchar
+import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.ParamSpec
+import sn.gnome.gobject.internal.GParamFlags
 import sn.gnome.gobject.internal.GParamSpec
+import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.internal.GValue
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -201,4 +205,76 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     this.raw.asInstanceOf[Ptr[GParamSpec]]
   )
 
+end ParamSpec
+
+object ParamSpec:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GParamSpec instance.
+    *
+    * See [canonical parameter names][canonical-parameter-names] for details of
+    * the rules for @name. Names which violate these rules lead to undefined
+    * behaviour.
+    *
+    * Beyond the name, #GParamSpecs have two more descriptive strings, the
+    * @nick
+    *   and @blurb, which may be used as a localized label and description. For
+    *   GTK and related libraries these are considered deprecated and may be
+    *   omitted, while for other libraries such as GStreamer and its plugins
+    *   they are essential. When in doubt, follow the conventions used in the
+    *   surrounding code and supporting libraries.
+    */
+  def internal(
+      param_type: GType /* Some(GType) */,
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      nick: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
+      blurb: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
+      flags: GParamFlags /* Some(GParamFlags) */
+  )(using Zone): ParamSpec /* None */ = new ParamSpec(
+    g_param_spec_internal(
+      param_type,
+      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
+      nick
+        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
+      blurb
+        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
+      flags
+    ).asInstanceOf
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Validate a property name for a #GParamSpec. This can be useful for
+    * dynamically-generated properties which need to be validated at run-time
+    * before actually trying to create them.
+    *
+    * See [canonical parameter names][canonical-parameter-names] for details of
+    * the rules for valid names.
+    */
+  def isValidName(
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Boolean /* None */ = g_param_spec_is_valid_name(
+    __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
+  ).value.!=(0)
+
+  private inline def __sn_extract_string(str: String | CString)(using
+      Zone
+  ): CString =
+    str match
+      case s: String  => toCString(s)
+      case s: CString => s
+    end match
+  end __sn_extract_string
 end ParamSpec

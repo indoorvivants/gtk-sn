@@ -5,6 +5,7 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Display
+import sn.gnome.gdk4.fluent.DisplayManager
 import sn.gnome.gdk4.internal.GdkDisplayManager
 import sn.gnome.glib.internal.GSList
 import sn.gnome.gobject.fluent.Object
@@ -111,4 +112,22 @@ class DisplayManager(raw: Ptr[GdkDisplayManager])
       case s: CString => s
     end match
   end __sn_extract_string
+end DisplayManager
+
+object DisplayManager:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the singleton `GdkDisplayManager` object.
+    *
+    * When called for the first time, this function consults the `GDK_BACKEND`
+    * environment variable to find out which of the supported GDK backends to
+    * use (in case GDK has been compiled with multiple backends).
+    *
+    * Applications can use [func@set_allowed_backends] to limit what backends
+    * will be used.
+    */
+  def get(): DisplayManager /* None */ = new DisplayManager(
+    gdk_display_manager_get().asInstanceOf
+  )
+
 end DisplayManager

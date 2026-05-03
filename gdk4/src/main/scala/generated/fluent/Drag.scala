@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.fluent.ContentProvider
 import sn.gnome.gdk4.fluent.Device
 import sn.gnome.gdk4.fluent.Display
+import sn.gnome.gdk4.fluent.Drag
 import sn.gnome.gdk4.fluent.Surface
 import sn.gnome.gdk4.internal.GdkContentFormats
 import sn.gnome.gdk4.internal.GdkDrag
@@ -133,5 +134,41 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
       hot_y: Int /* Some(CInt) */
   ): Unit /* None */ =
     gdk_drag_set_hotspot(this.raw.asInstanceOf[Ptr[GdkDrag]], hot_x, hot_y)
+
+end Drag
+
+object Drag:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Starts a drag and creates a new drag context for it.
+    *
+    * This function is called by the drag source. After this call, you probably
+    * want to set up the drag icon using the surface returned by
+    * [method@Gdk.Drag.get_drag_surface].
+    *
+    * This function returns a reference to the [class@Gdk.Drag] object, but GTK
+    * keeps its own reference as well, as long as the DND operation is going on.
+    *
+    * Note: if @actions include %GDK_ACTION_MOVE, you need to listen for the
+    * [signal@Gdk.Drag::dnd-finished] signal and delete the data at the source
+    * if [method@Gdk.Drag.get_selected_action] returns %GDK_ACTION_MOVE.
+    */
+  def begin(
+      surface: Surface /* Some(Ptr[GdkSurface]) */,
+      device: Device /* Some(Ptr[GdkDevice]) */,
+      content: ContentProvider /* Some(Ptr[GdkContentProvider]) */,
+      actions: GdkDragAction /* Some(GdkDragAction) */,
+      dx: Double /* Some(Double) */,
+      dy: Double /* Some(Double) */
+  ): Drag /* None */ = new Drag(
+    gdk_drag_begin(
+      surface.getUnsafeRawPointer().asInstanceOf,
+      device.getUnsafeRawPointer().asInstanceOf,
+      content.getUnsafeRawPointer().asInstanceOf,
+      actions,
+      dx,
+      dy
+    ).asInstanceOf
+  )
 
 end Drag

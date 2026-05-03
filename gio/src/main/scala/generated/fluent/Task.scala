@@ -1144,4 +1144,121 @@ object Task:
         .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
     ).asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Checks that @result is a #GTask, and that @source_object is its source
+    * object (or that @source_object is %NULL and @result has no source object).
+    * This can be used in g_return_if_fail() checks.
+    */
+  def isValid(
+      result: AsyncResult /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      source_object: Option[
+        Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Boolean /* None */ = g_task_is_valid(
+    result.getUnsafeRawPointer().asInstanceOf,
+    source_object
+      .map[_root_.sn.gnome.glib.internal.gpointer](o =>
+        gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
+      )
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  ).value.!=(0)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a #GTask and then immediately calls g_task_return_error() on it.
+    * Use this in the wrapper function of an asynchronous method when you want
+    * to avoid even calling the virtual method. You can then use
+    * g_async_result_is_tagged() in the finish method wrapper to check if the
+    * result there is tagged as having been created by the wrapper method, and
+    * deal with it appropriately if so.
+    *
+    * See also g_task_report_new_error().
+    */
+  def reportError(
+      source_object: Option[
+        Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      callback_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      source_tag: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+  ): Unit /* None */ = g_task_report_error(
+    source_object
+      .map[_root_.sn.gnome.glib.internal.gpointer](o =>
+        gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
+      )
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    callback_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    source_tag
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    error
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a #GTask and then immediately calls g_task_return_new_error() on
+    * it. Use this in the wrapper function of an asynchronous method when you
+    * want to avoid even calling the virtual method. You can then use
+    * g_async_result_is_tagged() in the finish method wrapper to check if the
+    * result there is tagged as having been created by the wrapper method, and
+    * deal with it appropriately if so.
+    *
+    * See also g_task_report_error().
+    */
+  inline def reportNewError(
+      source_object: Option[
+        Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      callback_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      source_tag: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      domain: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
+      code: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
+      format: String | CString /* Some(CString) */,
+      args: Any*
+  )(using Zone): Unit /* None */ = g_task_report_new_error(
+    source_object
+      .map[_root_.sn.gnome.glib.internal.gpointer](o =>
+        gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
+      )
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    callback_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    source_tag
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    domain,
+    gint(code),
+    __sn_extract_string(format),
+    args*
+  )
+
+  private inline def __sn_extract_string(str: String | CString)(using
+      Zone
+  ): CString =
+    str match
+      case s: String  => toCString(s)
+      case s: CString => s
+    end match
+  end __sn_extract_string
 end Task

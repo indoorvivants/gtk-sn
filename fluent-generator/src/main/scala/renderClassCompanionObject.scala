@@ -11,7 +11,7 @@ def renderClassCompanionObject(
 ) =
   WithEffects.collect: coll =>
     val objectHeader = s"object ${cls.name}"
-    val objectHasAnyMembers = cls.constructors.nonEmpty
+    val objectHasAnyMembers = cls.constructors.nonEmpty || cls.functions.nonEmpty
 
     if objectHasAnyMembers then
       emptyLine()
@@ -39,6 +39,31 @@ def renderClassCompanionObject(
               line(s"@annotation.compileTimeOnly(\"$value\")")
               line(s"def ${safeConstructorName(constructor.name)}() = ???")
               emptyLine()
+
+        cls.functions.foreach: function =>
+          filterDefinitions(
+            namespace = Some(ns),
+            cls = Some(cls),
+            function = Some(function)
+          ) match
+            case None =>
+              val result =
+                transact[FluentErr]:
+                  handleExceptions(
+                    coll.observe(renderStaticMethod(cls, function))
+                  )
+
+              result.foreach: msg =>
+                scribe.warn(
+                  s"Failed to render static method for class ${cls.name}, ${function.name}: `$msg`"
+                )
+
+            case Some(value) =>
+              renderComment(function.doc)
+              line(s"@annotation.compileTimeOnly(\"$value\")")
+              line(s"def ${function.name}() = ???")
+              emptyLine()
+
 
         coll
           .effectsSoFar()

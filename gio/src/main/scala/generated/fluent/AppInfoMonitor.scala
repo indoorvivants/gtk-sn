@@ -4,6 +4,7 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gio.fluent.AppInfoMonitor
 import sn.gnome.gio.internal.GAppInfoMonitor
 import sn.gnome.gobject.fluent.Object
 
@@ -46,5 +47,27 @@ class AppInfoMonitor(raw: Ptr[GAppInfoMonitor])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+end AppInfoMonitor
+
+object AppInfoMonitor:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the #GAppInfoMonitor for the current thread-default main context.
+    *
+    * The #GAppInfoMonitor will emit a "changed" signal in the thread-default
+    * main context whenever the list of installed applications (as reported by
+    * g_app_info_get_all()) may have changed.
+    *
+    * The #GAppInfoMonitor::changed signal will only be emitted once until
+    * g_app_info_get_all() (or another `g_app_info_*()` function) is called.
+    * Doing so will re-arm the signal ready to notify about the next change.
+    *
+    * You must only call g_object_unref() on the return value from under the
+    * same main context as you created it.
+    */
+  def get(): AppInfoMonitor /* None */ = new AppInfoMonitor(
+    g_app_info_monitor_get().asInstanceOf
+  )
 
 end AppInfoMonitor

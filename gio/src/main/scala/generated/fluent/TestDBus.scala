@@ -179,4 +179,16 @@ object TestDBus:
     */
   def apply(flags: GTestDBusFlags /* Some(GTestDBusFlags) */ ): TestDBus =
     new TestDBus(g_test_dbus_new(flags).asInstanceOf)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Unset DISPLAY and DBUS_SESSION_BUS_ADDRESS env variables to ensure the
+    * test won't use user's session bus.
+    *
+    * This is useful for unit tests that want to verify behaviour when no
+    * session bus is running. It is not necessary to call this if unit test
+    * already calls g_test_dbus_up() before acquiring the session bus.
+    */
+  def unset(): Unit /* None */ = g_test_dbus_unset()
+
 end TestDBus

@@ -256,3 +256,19 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
   )
 
 end IOStream
+
+object IOStream:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes an asynchronous io stream splice operation.
+    */
+  def spliceFinish(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    g_io_stream_splice_finish(
+      result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value.!=(0)
+  )
+
+end IOStream

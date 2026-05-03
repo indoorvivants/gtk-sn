@@ -1491,6 +1491,112 @@ object DBusConnection:
     )
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Asynchronously sets up a D-Bus connection for exchanging D-Bus messages
+    * with the end represented by @stream.
+    *
+    * If @stream is a #GSocketConnection, then the corresponding #GSocket will
+    * be put into non-blocking mode.
+    *
+    * The D-Bus connection will interact with @stream from a worker thread. As a
+    * result, the caller should not interact with @stream after this method has
+    * been called, except by calling g_object_unref() on it.
+    *
+    * If @observer is not %NULL it may be used to control the authentication
+    * process.
+    *
+    * When the operation is finished, @callback will be invoked. You can then
+    * call g_dbus_connection_new_finish() to get the result of the operation.
+    *
+    * This is an asynchronous failable constructor. See
+    * g_dbus_connection_new_sync() for the synchronous version.
+    */
+  def `new`(
+      stream: IOStream /* Some(Ptr[GIOStream]) */,
+      guid: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
+      flags: GDBusConnectionFlags /* Some(GDBusConnectionFlags) */,
+      observer: Option[DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */ ],
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_dbus_connection_new(
+    stream.getUnsafeRawPointer().asInstanceOf,
+    guid
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
+    flags,
+    observer
+      .map[Ptr[GDBusAuthObserver]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GDBusAuthObserver]]),
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Asynchronously connects and sets up a D-Bus client connection for
+    * exchanging D-Bus messages with an endpoint specified by @address which
+    * must be in the [D-Bus address
+    * format](https://dbus.freedesktop.org/doc/dbus-specification.html#addresses).
+    *
+    * This constructor can only be used to initiate client-side connections -
+    * use g_dbus_connection_new() if you need to act as the server. In
+    * particular, @flags cannot contain the
+    * %G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_SERVER,
+    * %G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_ALLOW_ANONYMOUS or
+    * %G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_REQUIRE_SAME_USER flags.
+    *
+    * When the operation is finished, @callback will be invoked. You can then
+    * call g_dbus_connection_new_for_address_finish() to get the result of the
+    * operation.
+    *
+    * If @observer is not %NULL it may be used to control the authentication
+    * process.
+    *
+    * This is an asynchronous failable constructor. See
+    * g_dbus_connection_new_for_address_sync() for the synchronous version.
+    */
+  def newForAddress(
+      address: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: GDBusConnectionFlags /* Some(GDBusConnectionFlags) */,
+      observer: Option[DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */ ],
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_dbus_connection_new_for_address(
+    __sn_extract_string(address).asInstanceOf[Ptr[gchar]],
+    flags,
+    observer
+      .map[Ptr[GDBusAuthObserver]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GDBusAuthObserver]]),
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =

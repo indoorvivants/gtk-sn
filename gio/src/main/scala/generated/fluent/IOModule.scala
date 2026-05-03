@@ -77,6 +77,42 @@ object IOModule:
     ).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Optional API for GIO modules to implement.
+    *
+    * Should return a list of all the extension points that may be implemented
+    * in this module.
+    *
+    * This method will not be called in normal use, however it may be called
+    * when probing existing modules and recording which extension points that
+    * this model is used for. This means we won't have to load and initialize
+    * this module unless its needed.
+    *
+    * If this function is not implemented by the module the module will always
+    * be loaded, initialized and then unloaded on application startup so that it
+    * can register its extension points during init.
+    *
+    * Note that a module need not actually implement all the extension points
+    * that g_io_module_query() returns, since the exact list of extension may
+    * depend on runtime issues. However all extension points actually
+    * implemented must be returned by g_io_module_query() (if defined).
+    *
+    * When installing a module that implements g_io_module_query() you must run
+    * gio-querymodules in order to build the cache files required for lazy
+    * loading.
+    *
+    * Since 2.56, this function should be named `g_io_<modulename>_query`, where
+    * `modulename` is the plugin’s filename with the `lib` or `libgio` prefix
+    * and everything after the first dot removed, and with `-` replaced with `_`
+    * throughout. For example, `libgiognutls-helper.so` becomes `gnutls_helper`.
+    * Using the new symbol names avoids name clashes when building modules
+    * statically. The old symbol names continue to be supported, but cannot be
+    * used for static builds.
+    */
+  def query()(using Zone): Array[String] /* None */ =
+    __decode_nullable_ptrs(g_io_module_query()).map(fromCString(_))
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =
@@ -85,4 +121,17 @@ object IOModule:
       case s: CString => s
     end match
   end __sn_extract_string
+
+  private inline def __decode_nullable_ptrs[T](p: Ptr[Ptr[T]])(using
+      ptag: Tag[T]
+  ): Array[Ptr[T]] =
+    val ab = Array.newBuilder[Ptr[T]]
+    var offset = 0
+    val tg = Tag.materializePtrTag(ptag)
+    while p(offset)(using tg) != null do
+      ab += p(offset)(using tg)
+      offset += 1
+    end while
+    ab.result()
+  end __decode_nullable_ptrs
 end IOModule

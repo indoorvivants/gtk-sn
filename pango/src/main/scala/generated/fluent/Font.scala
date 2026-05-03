@@ -4,13 +4,16 @@ import _root_.sn.gnome.pango.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.GBytes
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.guint32
 import sn.gnome.glib.internal.gunichar
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.pango.fluent.Context
 import sn.gnome.pango.fluent.Coverage
+import sn.gnome.pango.fluent.Font
 import sn.gnome.pango.fluent.FontFace
 import sn.gnome.pango.fluent.FontMap
 import sn.gnome.pango.internal.PangoFont
@@ -181,6 +184,48 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     */
   def serialize(): Ptr[GBytes] /* None */ = pango_font_serialize(
     this.raw.asInstanceOf[Ptr[PangoFont]]
+  )
+
+end Font
+
+object Font:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Frees an array of font descriptions.
+    */
+  def descriptionsFree(
+      descs: Option[Ptr[
+        Ptr[PangoFontDescription] /* None */
+      ] /* Some(Ptr[Ptr[PangoFontDescription]]) */ ],
+      n_descs: Int /* Some(CInt) */
+  ): Unit /* None */ = pango_font_descriptions_free(
+    descs
+      .map[Ptr[Ptr[PangoFontDescription]]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[Ptr[PangoFontDescription]]]),
+    n_descs
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Loads data previously created via [method@Pango.Font.serialize].
+    *
+    * For a discussion of the supported format, see that function.
+    *
+    * Note: to verify that the returned font is identical to the one that was
+    * serialized, you can compare @bytes to the result of serializing the font
+    * again.
+    */
+  def deserialize(
+      context: Context /* Some(Ptr[PangoContext]) */,
+      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  ): GResult[Font /* None */ ] = GResult.wrap(__errorPtr =>
+    new Font(
+      pango_font_deserialize(
+        context.getUnsafeRawPointer().asInstanceOf,
+        bytes,
+        __errorPtr
+      ).asInstanceOf
+    )
   )
 
 end Font

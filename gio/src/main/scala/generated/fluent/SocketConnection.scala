@@ -9,12 +9,15 @@ import sn.gnome.gio.fluent.Cancellable
 import sn.gnome.gio.fluent.IOStream
 import sn.gnome.gio.fluent.Socket
 import sn.gnome.gio.fluent.SocketAddress
+import sn.gnome.gio.fluent.SocketFamily
+import sn.gnome.gio.fluent.SocketType
 import sn.gnome.gio.internal.GAsyncReadyCallback
 import sn.gnome.gio.internal.GSocketConnection
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.gpointer
+import sn.gnome.gobject.internal.GType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -156,5 +159,44 @@ class SocketConnection(raw: Ptr[GSocketConnection])
   def isConnected(): Boolean /* None */ = g_socket_connection_is_connected(
     this.raw.asInstanceOf[Ptr[GSocketConnection]]
   ).value.!=(0)
+
+end SocketConnection
+
+object SocketConnection:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Looks up the #GType to be used when creating socket connections on sockets
+    * with the specified @family, @type and @protocol_id.
+    *
+    * If no type is registered, the #GSocketConnection base type is returned.
+    */
+  def factoryLookupType(
+      family: SocketFamily /* Some(GSocketFamily) */,
+      `type`: SocketType /* Some(GSocketType) */,
+      protocol_id: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  ): GType /* None */ = g_socket_connection_factory_lookup_type(
+    family.raw,
+    `type`.raw,
+    gint(protocol_id)
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Looks up the #GType to be used when creating socket connections on sockets
+    * with the specified @family, @type and @protocol.
+    *
+    * If no type is registered, the #GSocketConnection base type is returned.
+    */
+  def factoryRegisterType(
+      g_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
+      family: SocketFamily /* Some(GSocketFamily) */,
+      `type`: SocketType /* Some(GSocketType) */,
+      protocol: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  ): Unit /* None */ = g_socket_connection_factory_register_type(
+    g_type,
+    family.raw,
+    `type`.raw,
+    gint(protocol)
+  )
 
 end SocketConnection

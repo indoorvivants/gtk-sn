@@ -4,7 +4,9 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gtk4.fluent.Settings
 import sn.gnome.gtk4.fluent.StyleProvider
 import sn.gnome.gtk4.internal.GtkSettings
 
@@ -66,4 +68,30 @@ class Settings(raw: Ptr[GtkSettings])
       case s: CString => s
     end match
   end __sn_extract_string
+end Settings
+
+object Settings:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the `GtkSettings` object for the default display, creating it if
+    * necessary.
+    *
+    * See [func@Gtk.Settings.get_for_display].
+    */
+  def getDefault(): Settings /* None */ = new Settings(
+    gtk_settings_get_default().asInstanceOf
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the `GtkSettings` object for @display, creating it if necessary.
+    */
+  def getForDisplay(
+      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+  ): Settings /* None */ = new Settings(
+    gtk_settings_get_for_display(
+      display.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+  )
+
 end Settings

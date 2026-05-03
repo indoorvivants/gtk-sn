@@ -2968,3 +2968,25 @@ class Widget(raw: Ptr[GtkWidget])
     ab.result()
   end __decode_nullable_ptrs
 end Widget
+
+object Widget:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Obtains the current default reading direction.
+    *
+    * See [func@Gtk.Widget.set_default_direction].
+    */
+  def getDefaultDirection(): TextDirection /* None */ =
+    TextDirection.fromRaw(gtk_widget_get_default_direction())
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the default reading direction for widgets.
+    *
+    * See [method@Gtk.Widget.set_direction].
+    */
+  def setDefaultDirection(
+      dir: TextDirection /* Some(GtkTextDirection) */
+  ): Unit /* None */ = gtk_widget_set_default_direction(dir.raw)
+
+end Widget

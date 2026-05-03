@@ -620,6 +620,123 @@ object DBusProxy:
     )
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a proxy for accessing @interface_name on the remote object at @object_path
+    * owned by @name at @connection and asynchronously loads D-Bus properties
+    * unless the %G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES flag is used.
+    * Connect to the #GDBusProxy::g-properties-changed signal to get notified
+    * about property changes.
+    *
+    * If the %G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS flag is not set, also
+    * sets up match rules for signals. Connect to the #GDBusProxy::g-signal
+    * signal to handle signals from the remote object.
+    *
+    * If both %G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES and
+    * %G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS are set, this constructor is
+    * guaranteed to complete immediately without blocking.
+    *
+    * If @name is a well-known name and the
+    * %G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START and
+    * %G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START_AT_CONSTRUCTION flags aren't set and
+    * no name owner currently exists, the message bus will be requested to
+    * launch a name owner for the name.
+    *
+    * This is a failable asynchronous constructor - when the proxy is ready, @callback
+    * will be invoked and you can use g_dbus_proxy_new_finish() to get the
+    * result.
+    *
+    * See g_dbus_proxy_new_sync() and for a synchronous version of this
+    * constructor.
+    *
+    * #GDBusProxy is used in this [example][gdbus-wellknown-proxy].
+    */
+  def `new`(
+      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      flags: GDBusProxyFlags /* Some(GDBusProxyFlags) */,
+      info: Option[
+        Ptr[GDBusInterfaceInfo] /* Some(Ptr[GDBusInterfaceInfo]) */
+      ],
+      name: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
+      object_path: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      interface_name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_dbus_proxy_new(
+    connection.getUnsafeRawPointer().asInstanceOf,
+    flags,
+    info
+      .map[Ptr[GDBusInterfaceInfo]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[GDBusInterfaceInfo]]),
+    name
+      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+      )
+      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
+    __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
+    __sn_extract_string(interface_name).asInstanceOf[Ptr[gchar]],
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Like g_dbus_proxy_new() but takes a #GBusType instead of a
+    * #GDBusConnection.
+    *
+    * #GDBusProxy is used in this [example][gdbus-wellknown-proxy].
+    */
+  def newForBus(
+      bus_type: BusType /* Some(GBusType) */,
+      flags: GDBusProxyFlags /* Some(GDBusProxyFlags) */,
+      info: Option[
+        Ptr[GDBusInterfaceInfo] /* Some(Ptr[GDBusInterfaceInfo]) */
+      ],
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      object_path: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      interface_name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_dbus_proxy_new_for_bus(
+    bus_type.raw,
+    flags,
+    info
+      .map[Ptr[GDBusInterfaceInfo]](o => o)
+      .getOrElse(null.asInstanceOf[Ptr[GDBusInterfaceInfo]]),
+    __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
+    __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
+    __sn_extract_string(interface_name).asInstanceOf[Ptr[gchar]],
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =

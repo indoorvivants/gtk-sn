@@ -308,3 +308,39 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     end match
   end __sn_extract_string
 end StyleContext
+
+object StyleContext:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Adds a global style provider to @display, which will be used in style
+    * construction for all `GtkStyleContexts` under @display.
+    *
+    * GTK uses this to make styling information from `GtkSettings` available.
+    *
+    * Note: If both priorities are the same, A `GtkStyleProvider` added through
+    * [method@Gtk.StyleContext.add_provider] takes precedence over another added
+    * through this function.
+    */
+  def addProviderForDisplay(
+      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
+      provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */,
+      priority: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): Unit /* None */ = gtk_style_context_add_provider_for_display(
+    display.getUnsafeRawPointer().asInstanceOf,
+    provider.getUnsafeRawPointer().asInstanceOf,
+    guint(priority)
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Removes @provider from the global style providers list in @display.
+    */
+  def removeProviderForDisplay(
+      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
+      provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */
+  ): Unit /* None */ = gtk_style_context_remove_provider_for_display(
+    display.getUnsafeRawPointer().asInstanceOf,
+    provider.getUnsafeRawPointer().asInstanceOf
+  )
+
+end StyleContext

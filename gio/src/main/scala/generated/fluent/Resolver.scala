@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.AsyncResult
 import sn.gnome.gio.fluent.Cancellable
 import sn.gnome.gio.fluent.InetAddress
+import sn.gnome.gio.fluent.Resolver
 import sn.gnome.gio.fluent.ResolverRecordType
 import sn.gnome.gio.internal.GAsyncReadyCallback
 import sn.gnome.gio.internal.GResolver
@@ -506,4 +507,37 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
       case s: CString => s
     end match
   end __sn_extract_string
+end Resolver
+
+object Resolver:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Frees @addresses (which should be the return value from
+    * g_resolver_lookup_by_name() or g_resolver_lookup_by_name_finish()). (This
+    * is a convenience method; you can also simply free the results by hand.)
+    */
+  def freeAddresses(
+      addresses: Ptr[GList] /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
+  ): Unit /* None */ = g_resolver_free_addresses(addresses)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Frees @targets (which should be the return value from
+    * g_resolver_lookup_service() or g_resolver_lookup_service_finish()). (This
+    * is a convenience method; you can also simply free the results by hand.)
+    */
+  def freeTargets(
+      targets: Ptr[GList] /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
+  ): Unit /* None */ = g_resolver_free_targets(targets)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the default #GResolver. You should unref it when you are done with
+    * it. #GResolver may use its reference count as a hint about how many
+    * threads it should allocate for concurrent DNS resolutions.
+    */
+  def getDefault(): Resolver /* None */ = new Resolver(
+    g_resolver_get_default().asInstanceOf
+  )
+
 end Resolver

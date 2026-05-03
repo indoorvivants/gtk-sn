@@ -5,6 +5,7 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.gio.fluent.Cancellable
 import sn.gnome.gio.internal.GCancellable
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.GDestroyNotify
@@ -272,4 +273,13 @@ object Cancellable:
     * multiple concurrent operations.
     */
   def apply(): Cancellable = new Cancellable(g_cancellable_new().asInstanceOf)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the top cancellable from the stack.
+    */
+  def getCurrent(): Cancellable /* None */ = new Cancellable(
+    g_cancellable_get_current().asInstanceOf
+  )
+
 end Cancellable

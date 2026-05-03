@@ -4,6 +4,9 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.fluent.Drag
+import sn.gnome.gdk4.fluent.Paintable
+import sn.gnome.gobject.internal.GValue
 import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
@@ -57,6 +60,64 @@ class DragIcon(raw: Ptr[GtkDragIcon])
     child
       .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+  )
+
+end DragIcon
+
+object DragIcon:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a widget that can be used as a drag icon for the given
+    * @value.
+    *
+    * Supported types include strings, `GdkRGBA` and `GtkTextBuffer`. If GTK
+    * does not know how to create a widget for a given value, it will return
+    * %NULL.
+    *
+    * This method is used to set the default drag icon on drag-and-drop
+    * operations started by `GtkDragSource`, so you don't need to set a drag
+    * icon using this function there.
+    */
+  def createWidgetForValue(
+      value: Ptr[
+        GValue
+      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  ): Widget /* None */ = new Widget(
+    gtk_drag_icon_create_widget_for_value(value).asInstanceOf
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the `GtkDragIcon` in use with @drag.
+    *
+    * If no drag icon exists yet, a new one will be created and shown.
+    */
+  def getForDrag(
+      drag: Drag /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]) */
+  ): Widget /* None */ = new Widget(
+    gtk_drag_icon_get_for_drag(
+      drag.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a `GtkDragIcon` that shows @paintable, and associates it with the
+    * drag operation.
+    *
+    * The hotspot position on the paintable is aligned with the hotspot of the
+    * cursor.
+    */
+  def setFromPaintable(
+      drag: Drag /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]) */,
+      paintable: Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */,
+      hot_x: Int /* Some(CInt) */,
+      hot_y: Int /* Some(CInt) */
+  ): Unit /* None */ = gtk_drag_icon_set_from_paintable(
+    drag.getUnsafeRawPointer().asInstanceOf,
+    paintable.getUnsafeRawPointer().asInstanceOf,
+    hot_x,
+    hot_y
   )
 
 end DragIcon
