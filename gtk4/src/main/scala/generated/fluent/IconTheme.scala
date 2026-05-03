@@ -10,6 +10,7 @@ import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.IconPaintable
+import sn.gnome.gtk4.fluent.IconTheme
 import sn.gnome.gtk4.fluent.TextDirection
 import sn.gnome.gtk4.internal.GtkIconLookupFlags
 import sn.gnome.gtk4.internal.GtkIconTheme
@@ -289,4 +290,24 @@ object IconTheme:
     * object for scratch.
     */
   def apply(): IconTheme = new IconTheme(gtk_icon_theme_new().asInstanceOf)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the icon theme object associated with @display.
+    *
+    * If this function has not previously been called for the given display, a
+    * new icon theme object will be created and associated with the display.
+    * Icon theme objects are fairly expensive to create, so using this function
+    * is usually a better choice than calling [ctor@Gtk.IconTheme.new] and
+    * setting the display yourself; by using this function a single icon theme
+    * object will be shared between users.
+    */
+  def getForDisplay(
+      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+  ): IconTheme /* None */ = new IconTheme(
+    gtk_icon_theme_get_for_display(
+      display.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+  )
+
 end IconTheme

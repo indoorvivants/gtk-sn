@@ -11,6 +11,7 @@ import sn.gnome.gio.fluent.Cancellable
 import sn.gnome.gio.fluent.DBusConnection
 import sn.gnome.gio.fluent.DBusObjectManager
 import sn.gnome.gio.fluent.Initable
+import sn.gnome.gio.internal.GAsyncReadyCallback
 import sn.gnome.gio.internal.GDBusObjectManagerClient
 import sn.gnome.gio.internal.GDBusObjectManagerClientFlags
 import sn.gnome.gio.internal.GDBusProxyTypeFunc
@@ -281,6 +282,126 @@ object DBusObjectManagerClient:
         __errorPtr
       ).asInstanceOf
     )
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Asynchronously creates a new #GDBusObjectManagerClient object.
+    *
+    * This is an asynchronous failable constructor. When the result is ready, @callback
+    * will be invoked in the [thread-default main
+    * context][g-main-context-push-thread-default] of the thread you are calling
+    * this method from. You can then call
+    * g_dbus_object_manager_client_new_finish() to get the result. See
+    * g_dbus_object_manager_client_new_sync() for the synchronous version.
+    */
+  def `new`(
+      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      flags: GDBusObjectManagerClientFlags /* Some(GDBusObjectManagerClientFlags) */,
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      object_path: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      get_proxy_type_func: Option[
+        GDBusProxyTypeFunc /* Some(GDBusProxyTypeFunc) */
+      ],
+      get_proxy_type_user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      get_proxy_type_destroy_notify: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ],
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_dbus_object_manager_client_new(
+    connection.getUnsafeRawPointer().asInstanceOf,
+    flags,
+    __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
+    __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
+    get_proxy_type_func
+      .map[GDBusProxyTypeFunc](o => o)
+      .getOrElse(null.asInstanceOf[GDBusProxyTypeFunc]),
+    get_proxy_type_user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    get_proxy_type_destroy_notify
+      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+      ),
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Like g_dbus_object_manager_client_new() but takes a #GBusType instead of a
+    * #GDBusConnection.
+    *
+    * This is an asynchronous failable constructor. When the result is ready, @callback
+    * will be invoked in the [thread-default main
+    * loop][g-main-context-push-thread-default] of the thread you are calling
+    * this method from. You can then call
+    * g_dbus_object_manager_client_new_for_bus_finish() to get the result. See
+    * g_dbus_object_manager_client_new_for_bus_sync() for the synchronous
+    * version.
+    */
+  def newForBus(
+      bus_type: BusType /* Some(GBusType) */,
+      flags: GDBusObjectManagerClientFlags /* Some(GDBusObjectManagerClientFlags) */,
+      name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      object_path: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      get_proxy_type_func: Option[
+        GDBusProxyTypeFunc /* Some(GDBusProxyTypeFunc) */
+      ],
+      get_proxy_type_user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      get_proxy_type_destroy_notify: Option[
+        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
+      ],
+      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
+      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = g_dbus_object_manager_client_new_for_bus(
+    bus_type.raw,
+    flags,
+    __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
+    __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
+    get_proxy_type_func
+      .map[GDBusProxyTypeFunc](o => o)
+      .getOrElse(null.asInstanceOf[GDBusProxyTypeFunc]),
+    get_proxy_type_user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    get_proxy_type_destroy_notify
+      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
+      ),
+    cancellable
+      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+    callback
+      .map[GAsyncReadyCallback](o => o)
+      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

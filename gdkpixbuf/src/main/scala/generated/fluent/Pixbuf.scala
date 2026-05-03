@@ -11,6 +11,7 @@ import sn.gnome.gdkpixbuf.fluent.Pixbuf
 import sn.gnome.gdkpixbuf.fluent.PixbufRotation
 import sn.gnome.gdkpixbuf.internal.GdkPixbuf
 import sn.gnome.gdkpixbuf.internal.GdkPixbufDestroyNotify
+import sn.gnome.gdkpixbuf.internal.GdkPixbufFormat
 import sn.gnome.gdkpixbuf.internal.GdkPixbufSaveFunc
 import sn.gnome.gio.fluent.AsyncResult
 import sn.gnome.gio.fluent.Cancellable
@@ -23,6 +24,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.GBytes
 import sn.gnome.glib.internal.GError
 import sn.gnome.glib.internal.GHashTable
+import sn.gnome.glib.internal.GSList
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gchar
 import sn.gnome.glib.internal.gfloat
@@ -1574,6 +1576,237 @@ object Pixbuf:
   def fromXpmData(data: Ptr[CString] /* Some(Ptr[CString]) */ )(using
       Zone
   ): Pixbuf = new Pixbuf(gdk_pixbuf_new_from_xpm_data(data).asInstanceOf)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Calculates the rowstride that an image created with those values would
+    * have.
+    *
+    * This function is useful for front-ends and backends that want to check
+    * image values without needing to create a `GdkPixbuf`.
+    */
+  def calculateRowstride(
+      colorspace: Colorspace /* Some(GdkColorspace) */,
+      has_alpha: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      bits_per_sample: Int /* Some(CInt) */,
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */
+  ): Int /* None */ = gdk_pixbuf_calculate_rowstride(
+    colorspace.raw,
+    gboolean(gint((if has_alpha == true then 1 else 0))),
+    bits_per_sample,
+    width,
+    height
+  ).value
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Parses an image file far enough to determine its format and size.
+    */
+  def getFileInfo(
+      filename: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      width: Ptr[Int] /* Some(Ptr[_root_.sn.gnome.glib.internal.gint]) */,
+      height: Ptr[Int] /* Some(Ptr[_root_.sn.gnome.glib.internal.gint]) */
+  )(using Zone): Ptr[GdkPixbufFormat] /* None */ = gdk_pixbuf_get_file_info(
+    __sn_extract_string(filename).asInstanceOf[Ptr[gchar]],
+    width.asInstanceOf,
+    height.asInstanceOf
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Asynchronously parses an image file far enough to determine its format and
+    * size.
+    *
+    * For more details see gdk_pixbuf_get_file_info(), which is the synchronous
+    * version of this function.
+    *
+    * When the operation is finished, @callback will be called in the main
+    * thread. You can then call gdk_pixbuf_get_file_info_finish() to get the
+    * result of the operation.
+    */
+  def getFileInfoAsync(
+      filename: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cancellable: Option[
+        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+      ],
+      callback: Option[
+        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Zone): Unit /* None */ = gdk_pixbuf_get_file_info_async(
+    __sn_extract_string(filename).asInstanceOf[Ptr[gchar]],
+    cancellable
+      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
+      ),
+    callback
+      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
+      ),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes an asynchronous pixbuf parsing operation started with
+    * gdk_pixbuf_get_file_info_async().
+    */
+  def getFileInfoFinish(
+      async_result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */,
+      width: Ptr[Int] /* Some(Ptr[_root_.sn.gnome.glib.internal.gint]) */,
+      height: Ptr[Int] /* Some(Ptr[_root_.sn.gnome.glib.internal.gint]) */
+  ): GResult[Ptr[GdkPixbufFormat] /* None */ ] = GResult.wrap(__errorPtr =>
+    gdk_pixbuf_get_file_info_finish(
+      async_result.getUnsafeRawPointer().asInstanceOf,
+      width.asInstanceOf,
+      height.asInstanceOf,
+      __errorPtr
+    )
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Obtains the available information about the image formats supported by
+    * GdkPixbuf.
+    */
+  def getFormats(): Ptr[GSList] /* None */ = gdk_pixbuf_get_formats()
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Initalizes the gdk-pixbuf loader modules referenced by the `loaders.cache`
+    * file present inside that directory.
+    *
+    * This is to be used by applications that want to ship certain loaders in a
+    * different location from the system ones.
+    *
+    * This is needed when the OS or runtime ships a minimal number of loaders so
+    * as to reduce the potential attack surface of carefully crafted image
+    * files, especially for uncommon file types. Applications that require
+    * broader image file types coverage, such as image viewers, would be
+    * expected to ship the gdk-pixbuf modules in a separate location, bundled
+    * with the application in a separate directory from the OS or runtime-
+    * provided modules.
+    */
+  def initModules(
+      path: String | CString /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    gdk_pixbuf_init_modules(__sn_extract_string(path), __errorPtr).value.!=(0)
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new pixbuf by asynchronously loading an image from an input
+    * stream.
+    *
+    * For more details see gdk_pixbuf_new_from_stream(), which is the
+    * synchronous version of this function.
+    *
+    * When the operation is finished, @callback will be called in the main
+    * thread. You can then call gdk_pixbuf_new_from_stream_finish() to get the
+    * result of the operation.
+    */
+  def newFromStreamAsync(
+      stream: InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
+      cancellable: Option[
+        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+      ],
+      callback: Option[
+        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gdk_pixbuf_new_from_stream_async(
+    stream.getUnsafeRawPointer().asInstanceOf,
+    cancellable
+      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
+      ),
+    callback
+      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
+      ),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new pixbuf by asynchronously loading an image from an input
+    * stream.
+    *
+    * For more details see gdk_pixbuf_new_from_stream_at_scale(), which is the
+    * synchronous version of this function.
+    *
+    * When the operation is finished, @callback will be called in the main
+    * thread. You can then call gdk_pixbuf_new_from_stream_finish() to get the
+    * result of the operation.
+    */
+  def newFromStreamAtScaleAsync(
+      stream: InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
+      width: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
+      height: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
+      preserve_aspect_ratio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      cancellable: Option[
+        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+      ],
+      callback: Option[
+        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
+      ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Unit /* None */ = gdk_pixbuf_new_from_stream_at_scale_async(
+    stream.getUnsafeRawPointer().asInstanceOf,
+    gint(width),
+    gint(height),
+    gboolean(gint((if preserve_aspect_ratio == true then 1 else 0))),
+    cancellable
+      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
+      ),
+    callback
+      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
+      .getOrElse(
+        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
+      ),
+    user_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Finishes an asynchronous pixbuf save operation started with
+    * gdk_pixbuf_save_to_stream_async().
+    */
+  def saveToStreamFinish(
+      async_result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    gdk_pixbuf_save_to_stream_finish(
+      async_result.getUnsafeRawPointer().asInstanceOf,
+      __errorPtr
+    ).value.!=(0)
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

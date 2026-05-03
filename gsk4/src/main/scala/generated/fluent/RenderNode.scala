@@ -9,8 +9,10 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.GBytes
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.gpointer
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.fluent.RenderNodeType
+import sn.gnome.gsk4.internal.GskParseErrorFunc
 import sn.gnome.gsk4.internal.GskRenderNode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -131,4 +133,31 @@ class RenderNode(raw: Ptr[GskRenderNode]):
       case s: CString => s
     end match
   end __sn_extract_string
+end RenderNode
+
+object RenderNode:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Loads data previously created via [method@Gsk.RenderNode.serialize].
+    *
+    * For a discussion of the supported format, see that function.
+    */
+  def deserialize(
+      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      error_func: Option[GskParseErrorFunc /* Some(GskParseErrorFunc) */ ],
+      user_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): RenderNode /* None */ = new RenderNode(
+    gsk_render_node_deserialize(
+      bytes,
+      error_func
+        .map[GskParseErrorFunc](o => o)
+        .getOrElse(null.asInstanceOf[GskParseErrorFunc]),
+      user_data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+    ).asInstanceOf
+  )
+
 end RenderNode

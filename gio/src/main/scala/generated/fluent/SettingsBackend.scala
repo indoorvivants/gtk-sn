@@ -151,3 +151,6 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
   private def writableChanged__ = ???
 
 end SettingsBackend
+
+object SettingsBackend:
+end SettingsBackend

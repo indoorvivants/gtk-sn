@@ -7,6 +7,8 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.Credentials
 import sn.gnome.gio.fluent.SocketControlMessage
 import sn.gnome.gio.internal.GUnixCredentialsMessage
+import sn.gnome.glib.internal.gboolean
+import sn.gnome.glib.internal.gint
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -66,4 +68,13 @@ object UnixCredentialsMessage:
       credentials.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Checks if passing #GCredentials on a #GSocket is supported on this
+    * platform.
+    */
+  def isSupported(): Boolean /* None */ =
+    g_unix_credentials_message_is_supported().value.!=(0)
+
 end UnixCredentialsMessage

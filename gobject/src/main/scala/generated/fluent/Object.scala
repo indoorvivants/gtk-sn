@@ -12,6 +12,7 @@ import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gchar
 import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.gsize
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.fluent.Binding
 import sn.gnome.gobject.fluent.Object
@@ -1222,6 +1223,73 @@ object Object:
   ): Object = new Object(
     g_object_newv(object_type, guint(n_parameters), parameters).asInstanceOf
   )
+  def compatControl(
+      what: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
+      data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): CUnsignedLongInt /* None */ = g_object_compat_control(
+    gsize(what),
+    data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  ).value
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Find the #GParamSpec with the given name for an interface. Generally, the
+    * interface vtable passed in as @g_iface will be the default vtable from
+    * g_type_default_interface_ref(), or, if you know the interface has already
+    * been loaded, g_type_default_interface_peek().
+    */
+  def interfaceFindProperty(
+      g_iface: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      property_name: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): ParamSpec /* None */ = new ParamSpec(
+    g_object_interface_find_property(
+      gpointer(g_iface),
+      __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]]
+    ).asInstanceOf
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Add a property to an interface; this is only useful for interfaces that
+    * are added to GObject-derived types. Adding a property to an interface
+    * forces all objects classes with that interface to have a compatible
+    * property. The compatible property could be a newly created #GParamSpec,
+    * but normally g_object_class_override_property() will be used so that the
+    * object class only needs to provide an implementation and inherits the
+    * property description, default value, bounds, and so forth from the
+    * interface property.
+    *
+    * This function is meant to be called from the interface's default vtable
+    * initialization function (the @class_init member of #GTypeInfo.) It must
+    * not be called after after @class_init has been called for any object types
+    * implementing this interface.
+    *
+    * If @pspec is a floating reference, it will be consumed.
+    */
+  def interfaceInstallProperty(
+      g_iface: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      pspec: ParamSpec /* Some(Ptr[GParamSpec]) */
+  ): Unit /* None */ = g_object_interface_install_property(
+    gpointer(g_iface),
+    pspec.getUnsafeRawPointer().asInstanceOf
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Lists the properties of an interface.Generally, the interface vtable
+    * passed in as @g_iface will be the default vtable from
+    * g_type_default_interface_ref(), or, if you know the interface has already
+    * been loaded, g_type_default_interface_peek().
+    */
+  @annotation.compileTimeOnly(
+    "Function interface_list_properties is weird: non NULL-terminated arrays require special handling"
+  )
+  def interface_list_properties() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

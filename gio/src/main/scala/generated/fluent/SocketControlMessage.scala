@@ -80,3 +80,6 @@ class SocketControlMessage(raw: Ptr[GSocketControlMessage])
   )
 
 end SocketControlMessage
+
+object SocketControlMessage:
+end SocketControlMessage

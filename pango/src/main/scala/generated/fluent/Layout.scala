@@ -21,6 +21,7 @@ import sn.gnome.pango.fluent.WrapMode
 import sn.gnome.pango.internal.PangoAttrList
 import sn.gnome.pango.internal.PangoFontDescription
 import sn.gnome.pango.internal.PangoLayout
+import sn.gnome.pango.internal.PangoLayoutDeserializeFlags
 import sn.gnome.pango.internal.PangoLayoutIter
 import sn.gnome.pango.internal.PangoLayoutLine
 import sn.gnome.pango.internal.PangoLayoutSerializeFlags
@@ -1023,4 +1024,30 @@ object Layout:
     new Layout(
       pango_layout_new(context.getUnsafeRawPointer().asInstanceOf).asInstanceOf
     )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Loads data previously created via [method@Pango.Layout.serialize].
+    *
+    * For a discussion of the supported format, see that function.
+    *
+    * Note: to verify that the returned layout is identical to the one that was
+    * serialized, you can compare @bytes to the result of serializing the layout
+    * again.
+    */
+  def deserialize(
+      context: Context /* Some(Ptr[PangoContext]) */,
+      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      flags: PangoLayoutDeserializeFlags /* Some(PangoLayoutDeserializeFlags) */
+  ): GResult[Layout /* None */ ] = GResult.wrap(__errorPtr =>
+    new Layout(
+      pango_layout_deserialize(
+        context.getUnsafeRawPointer().asInstanceOf,
+        bytes,
+        flags,
+        __errorPtr
+      ).asInstanceOf
+    )
+  )
+
 end Layout

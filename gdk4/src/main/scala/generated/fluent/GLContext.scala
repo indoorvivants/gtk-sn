@@ -337,3 +337,23 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     gdk_gl_context_set_use_es(this.raw.asInstanceOf[Ptr[GdkGLContext]], use_es)
 
 end GLContext
+
+object GLContext:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Clears the current `GdkGLContext`.
+    *
+    * Any OpenGL call after this function returns will be ignored until
+    * [method@Gdk.GLContext.make_current] is called.
+    */
+  def clearCurrent(): Unit /* None */ = gdk_gl_context_clear_current()
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Retrieves the current `GdkGLContext`.
+    */
+  def getCurrent(): GLContext /* None */ = new GLContext(
+    gdk_gl_context_get_current().asInstanceOf
+  )
+
+end GLContext

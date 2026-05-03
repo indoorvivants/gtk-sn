@@ -11,6 +11,7 @@ import sn.gnome.gio.internal.GTlsCertificate
 import sn.gnome.gio.internal.GTlsCertificateFlags
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.GDateTime
+import sn.gnome.glib.internal.GList
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gchar
 import sn.gnome.glib.internal.gint
@@ -342,6 +343,23 @@ object TlsCertificate:
           ),
         __errorPtr
       ).asInstanceOf
+    )
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates one or more #GTlsCertificates from the PEM-encoded data in @file.
+    * If @file cannot be read or parsed, the function will return %NULL and set @error.
+    * If @file does not contain any PEM-encoded certificates, this will return
+    * an empty list and not set @error.
+    */
+  def listNewFromFile(
+      file: String |
+        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
+    g_tls_certificate_list_new_from_file(
+      __sn_extract_string(file).asInstanceOf[Ptr[gchar]],
+      __errorPtr
     )
   )
 

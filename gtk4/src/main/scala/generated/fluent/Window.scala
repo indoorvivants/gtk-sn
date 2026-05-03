@@ -7,6 +7,8 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gdk4.fluent.Monitor
+import sn.gnome.gio.fluent.ListModel
+import sn.gnome.glib.internal.GList
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.guint32
@@ -916,4 +918,94 @@ object Window:
     * To delete a `GtkWindow`, call [method@Gtk.Window.destroy].
     */
   def apply(): Window = new Window(gtk_window_new().asInstanceOf)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the fallback icon name for windows.
+    *
+    * The returned string is owned by GTK and should not be modified. It is only
+    * valid until the next call to [func@Gtk.Window.set_default_icon_name].
+    */
+  def getDefaultIconName()(using Zone): String /* None */ = fromCString(
+    gtk_window_get_default_icon_name().asInstanceOf
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns a list of all existing toplevel windows.
+    *
+    * If you want to iterate through the list and perform actions involving
+    * callbacks that might destroy the widgets or add new ones, be aware that
+    * the list of toplevels will change and emit the "items-changed" signal.
+    */
+  def getToplevels(): ListModel /* None */ =
+    new ListModel.Abstract(gtk_window_get_toplevels().asInstanceOf)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns a list of all existing toplevel windows.
+    *
+    * The widgets in the list are not individually referenced. If you want to
+    * iterate through the list and perform actions involving callbacks that
+    * might destroy the widgets, you must call
+    * `g_list_foreach (result, (GFunc)g_object_ref, NULL)` first, and then unref
+    * all the widgets afterwards.
+    */
+  def listToplevels(): Ptr[GList] /* None */ = gtk_window_list_toplevels()
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets whether the window should request startup notification.
+    *
+    * By default, after showing the first `GtkWindow`, GTK calls
+    * [method@Gdk.Toplevel.set_startup_id]. Call this function to disable the
+    * automatic startup notification. You might do this if your first window is
+    * a splash screen, and you want to delay notification until after your real
+    * main window has been shown, for example.
+    *
+    * In that example, you would disable startup notification temporarily, show
+    * your splash screen, then re-enable it so that showing the main window
+    * would automatically result in notification.
+    */
+  def setAutoStartupNotification(
+      setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_window_set_auto_startup_notification(
+    gboolean(gint((if setting == true then 1 else 0)))
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets an icon to be used as fallback.
+    *
+    * The fallback icon is used for windows that haven't had
+    * [method@Gtk.Window.set_icon_name] called on them.
+    */
+  def setDefaultIconName(
+      name: String | CString /* Some(CString) */
+  )(using Zone): Unit /* None */ = gtk_window_set_default_icon_name(
+    __sn_extract_string(name)
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Opens or closes the [interactive
+    * debugger](running.html#interactive-debugging).
+    *
+    * The debugger offers access to the widget hierarchy of the application and
+    * to useful debugging tools.
+    */
+  def setInteractiveDebugging(
+      enable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ = gtk_window_set_interactive_debugging(
+    gboolean(gint((if enable == true then 1 else 0)))
+  )
+
+  private inline def __sn_extract_string(str: String | CString)(using
+      Zone
+  ): CString =
+    str match
+      case s: String  => toCString(s)
+      case s: CString => s
+    end match
+  end __sn_extract_string
 end Window

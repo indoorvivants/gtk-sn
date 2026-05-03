@@ -5,6 +5,7 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.File
+import sn.gnome.gio.fluent.Vfs
 import sn.gnome.gio.internal.GVfs
 import sn.gnome.gio.internal.GVfsFileLookupFunc
 import sn.gnome.glib.internal.GDestroyNotify
@@ -164,4 +165,19 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
       case s: CString => s
     end match
   end __sn_extract_string
+end Vfs
+
+object Vfs:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the default #GVfs for the system.
+    */
+  def getDefault(): Vfs /* None */ = new Vfs(g_vfs_get_default().asInstanceOf)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the local #GVfs for the system.
+    */
+  def getLocal(): Vfs /* None */ = new Vfs(g_vfs_get_local().asInstanceOf)
+
 end Vfs

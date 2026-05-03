@@ -106,6 +106,13 @@ object UnixSocketAddress:
     ).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Checks if abstract UNIX domain socket names are supported.
+    */
+  def abstractNamesSupported(): Boolean /* None */ =
+    g_unix_socket_address_abstract_names_supported().value.!=(0)
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =

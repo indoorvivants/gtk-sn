@@ -96,3 +96,42 @@ class SimpleProxyResolver(raw: Ptr[GSimpleProxyResolver])
     end match
   end __sn_extract_string
 end SimpleProxyResolver
+
+object SimpleProxyResolver:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GSimpleProxyResolver. See
+    * #GSimpleProxyResolver:default-proxy and #GSimpleProxyResolver:ignore-hosts
+    * for more details on how the arguments are interpreted.
+    */
+  def `new`(
+      default_proxy: Option[
+        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
+      ignore_hosts: Option[
+        Ptr[CString] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]) */
+      ]
+  )(using Zone): ProxyResolver /* None */ = new ProxyResolver.Abstract(
+    g_simple_proxy_resolver_new(
+      default_proxy
+        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
+      ignore_hosts
+        .map[Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]](o => o.asInstanceOf)
+        .getOrElse(
+          null.asInstanceOf[Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]]
+        )
+    ).asInstanceOf
+  )
+
+  private inline def __sn_extract_string(str: String | CString)(using
+      Zone
+  ): CString =
+    str match
+      case s: String  => toCString(s)
+      case s: CString => s
+    end match
+  end __sn_extract_string
+end SimpleProxyResolver

@@ -595,6 +595,43 @@ object SimpleAsyncResult:
     ).asInstanceOf
   )
 
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Ensures that the data passed to the _finish function of an async operation
+    * is consistent. Three checks are performed.
+    *
+    * First, @result is checked to ensure that it is really a
+    * #GSimpleAsyncResult. Second, @source is checked to ensure that it matches
+    * the source object of @result. Third, @source_tag is checked to ensure that
+    * it is equal to the @source_tag argument given to
+    * g_simple_async_result_new() (which, by convention, is a pointer to the
+    * _async function corresponding to the _finish function from which this
+    * function is called). (Alternatively, if either
+    * @source_tag
+    *   or @result's source tag is %NULL, then the source tag check is skipped.)
+    */
+  def isValid(
+      result: AsyncResult /* Some(Ptr[GAsyncResult]) */,
+      source: Option[
+        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+      ],
+      source_tag: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  ): Boolean /* None */ = g_simple_async_result_is_valid(
+    result.getUnsafeRawPointer().asInstanceOf,
+    source
+      .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
+        o.getUnsafeRawPointer().asInstanceOf
+      )
+      .getOrElse(
+        null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
+      ),
+    source_tag
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  ).value.!=(0)
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =

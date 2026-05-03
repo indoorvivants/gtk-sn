@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.fluent.AppLaunchContext
 import sn.gnome.gdk4.fluent.Clipboard
 import sn.gnome.gdk4.fluent.Device
+import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gdk4.fluent.Event
 import sn.gnome.gdk4.fluent.GLContext
 import sn.gnome.gdk4.fluent.Monitor
@@ -417,6 +418,45 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     "Method translate_key contains an OUT parameter, which is not supported yet"
   )
   private def translateKey__ = ???
+
+  private inline def __sn_extract_string(str: String | CString)(using
+      Zone
+  ): CString =
+    str match
+      case s: String  => toCString(s)
+      case s: CString => s
+    end match
+  end __sn_extract_string
+end Display
+
+object Display:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the default `GdkDisplay`.
+    *
+    * This is a convenience function for:
+    *
+    * gdk_display_manager_get_default_display (gdk_display_manager_get ())
+    */
+  def getDefault(): Display /* None */ = new Display(
+    gdk_display_get_default().asInstanceOf
+  )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Opens a display.
+    *
+    * If opening the display fails, `NULL` is returned.
+    */
+  def open(
+      display_name: Option[String | CString /* Some(CString) */ ]
+  )(using Zone): Display /* None */ = new Display(
+    gdk_display_open(
+      display_name
+        .map[CString](o => __sn_extract_string(o))
+        .getOrElse(null.asInstanceOf[CString])
+    ).asInstanceOf
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

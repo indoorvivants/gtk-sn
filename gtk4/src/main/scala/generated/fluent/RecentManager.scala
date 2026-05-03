@@ -9,6 +9,7 @@ import sn.gnome.glib.internal.GList
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gtk4.fluent.RecentManager
 import sn.gnome.gtk4.internal.GtkRecentData
 import sn.gnome.gtk4.internal.GtkRecentInfo
 import sn.gnome.gtk4.internal.GtkRecentManager
@@ -231,4 +232,14 @@ object RecentManager:
   def apply(): RecentManager = new RecentManager(
     gtk_recent_manager_new().asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets a unique instance of `GtkRecentManager` that you can share in your
+    * application without caring about memory management.
+    */
+  def getDefault(): RecentManager /* None */ = new RecentManager(
+    gtk_recent_manager_get_default().asInstanceOf
+  )
+
 end RecentManager
