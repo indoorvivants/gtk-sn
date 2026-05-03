@@ -21,9 +21,9 @@ class FluentGtk(using Runtime, Zone):
       window.setTitle(Some("Hello from Scala Native"))
       window.setDefaultSize(640, 480)
 
-      val box = Box(GtkOrientation.GTK_ORIENTATION_VERTICAL, 10)
-      box.setHalign(GtkAlign.GTK_ALIGN_CENTER)
-      box.setValign(GtkAlign.GTK_ALIGN_CENTER)
+      val box = Box(Orientation.VERTICAL, 10)
+      box.setHalign(Align.CENTER)
+      box.setValign(Align.CENTER)
 
       window.setChild(Some(box))
 
