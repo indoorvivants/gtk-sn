@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.internal.GdkKeyMatch
+import sn.gnome.gdk4.fluent.KeyMatch
 import sn.gnome.glib.internal.GString
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
@@ -164,10 +164,12 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
   def trigger(
       event: Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */,
       enable_mnemonics: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): GdkKeyMatch /* None */ = gtk_shortcut_trigger_trigger(
-    this.raw.asInstanceOf[Ptr[GtkShortcutTrigger]],
-    event.getUnsafeRawPointer().asInstanceOf,
-    gboolean(gint((if enable_mnemonics == true then 1 else 0)))
+  ): KeyMatch /* None */ = KeyMatch.fromRaw(
+    gtk_shortcut_trigger_trigger(
+      this.raw.asInstanceOf[Ptr[GtkShortcutTrigger]],
+      event.getUnsafeRawPointer().asInstanceOf,
+      gboolean(gint((if enable_mnemonics == true then 1 else 0)))
+    )
   )
 
 end ShortcutTrigger

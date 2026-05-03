@@ -8,8 +8,8 @@ import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Orientable
+import sn.gnome.gtk4.fluent.Orientation
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkOrientation
 import sn.gnome.gtk4.internal.GtkSeparator
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -46,7 +46,6 @@ object Separator:
     *
     * Creates a new `GtkSeparator` with the given orientation.
     */
-  def apply(
-      orientation: GtkOrientation /* Some(GtkOrientation) */
-  ): Separator = new Separator(gtk_separator_new(orientation).asInstanceOf)
+  def apply(orientation: Orientation /* Some(GtkOrientation) */ ): Separator =
+    new Separator(gtk_separator_new(orientation.raw).asInstanceOf)
 end Separator

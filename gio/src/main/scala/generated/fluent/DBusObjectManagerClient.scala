@@ -6,11 +6,11 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.AsyncInitable
 import sn.gnome.gio.fluent.AsyncResult
+import sn.gnome.gio.fluent.BusType
 import sn.gnome.gio.fluent.Cancellable
 import sn.gnome.gio.fluent.DBusConnection
 import sn.gnome.gio.fluent.DBusObjectManager
 import sn.gnome.gio.fluent.Initable
-import sn.gnome.gio.internal.GBusType
 import sn.gnome.gio.internal.GDBusObjectManagerClient
 import sn.gnome.gio.internal.GDBusObjectManagerClientFlags
 import sn.gnome.gio.internal.GDBusProxyTypeFunc
@@ -183,7 +183,7 @@ object DBusObjectManagerClient:
     * for the asynchronous version.
     */
   def forBusSync(
-      bus_type: GBusType /* Some(GBusType) */,
+      bus_type: BusType /* Some(GBusType) */,
       flags: GDBusObjectManagerClientFlags /* Some(GDBusObjectManagerClientFlags) */,
       name: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
@@ -202,7 +202,7 @@ object DBusObjectManagerClient:
   )(using Zone): GResult[DBusObjectManagerClient] = GResult.wrap(__errorPtr =>
     new DBusObjectManagerClient(
       g_dbus_object_manager_client_new_for_bus_sync(
-        bus_type,
+        bus_type.raw,
         flags,
         __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
         __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],

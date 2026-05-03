@@ -11,8 +11,8 @@ import sn.gnome.glib.internal.GList
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.gtk4.fluent.EventController
+import sn.gnome.gtk4.fluent.EventSequenceState
 import sn.gnome.gtk4.fluent.Gesture
-import sn.gnome.gtk4.internal.GtkEventSequenceState
 import sn.gnome.gtk4.internal.GtkGesture
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -212,9 +212,11 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
       sequence: Ptr[
         GdkEventSequence
       ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]) */
-  ): GtkEventSequenceState /* None */ = gtk_gesture_get_sequence_state(
-    this.raw.asInstanceOf[Ptr[GtkGesture]],
-    sequence
+  ): EventSequenceState /* None */ = EventSequenceState.fromRaw(
+    gtk_gesture_get_sequence_state(
+      this.raw.asInstanceOf[Ptr[GtkGesture]],
+      sequence
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -342,11 +344,11 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
       sequence: Ptr[
         GdkEventSequence
       ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]) */,
-      state: GtkEventSequenceState /* Some(GtkEventSequenceState) */
+      state: EventSequenceState /* Some(GtkEventSequenceState) */
   ): Boolean /* None */ = gtk_gesture_set_sequence_state(
     this.raw.asInstanceOf[Ptr[GtkGesture]],
     sequence,
-    state
+    state.raw
   ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -392,10 +394,11 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * group's global state when the second gesture processes the event.
     */
   def setState(
-      state: GtkEventSequenceState /* Some(GtkEventSequenceState) */
-  ): Boolean /* None */ =
-    gtk_gesture_set_state(this.raw.asInstanceOf[Ptr[GtkGesture]], state).value
-      .!=(0)
+      state: EventSequenceState /* Some(GtkEventSequenceState) */
+  ): Boolean /* None */ = gtk_gesture_set_state(
+    this.raw.asInstanceOf[Ptr[GtkGesture]],
+    state.raw
+  ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

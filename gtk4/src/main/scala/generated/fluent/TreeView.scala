@@ -25,13 +25,13 @@ import sn.gnome.gtk4.fluent.Tooltip
 import sn.gnome.gtk4.fluent.TreeModel
 import sn.gnome.gtk4.fluent.TreeSelection
 import sn.gnome.gtk4.fluent.TreeViewColumn
+import sn.gnome.gtk4.fluent.TreeViewDropPosition
+import sn.gnome.gtk4.fluent.TreeViewGridLines
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkTreeCellDataFunc
 import sn.gnome.gtk4.internal.GtkTreePath
 import sn.gnome.gtk4.internal.GtkTreeView
 import sn.gnome.gtk4.internal.GtkTreeViewColumnDropFunc
-import sn.gnome.gtk4.internal.GtkTreeViewDropPosition
-import sn.gnome.gtk4.internal.GtkTreeViewGridLines
 import sn.gnome.gtk4.internal.GtkTreeViewMappingFunc
 import sn.gnome.gtk4.internal.GtkTreeViewRowSeparatorFunc
 import sn.gnome.gtk4.internal.GtkTreeViewSearchEqualFunc
@@ -461,8 +461,9 @@ class TreeView(raw: Ptr[GtkTreeView])
     *
     * Returns which grid lines are enabled in @tree_view.
     */
-  def getGridLines(): GtkTreeViewGridLines /* None */ =
+  def getGridLines(): TreeViewGridLines /* None */ = TreeViewGridLines.fromRaw(
     gtk_tree_view_get_grid_lines(this.raw.asInstanceOf[Ptr[GtkTreeView]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1030,13 +1031,13 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setDragDestRow(
       path: Option[Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */ ],
-      pos: GtkTreeViewDropPosition /* Some(GtkTreeViewDropPosition) */
+      pos: TreeViewDropPosition /* Some(GtkTreeViewDropPosition) */
   ): Unit /* None */ = gtk_tree_view_set_drag_dest_row(
     this.raw.asInstanceOf[Ptr[GtkTreeView]],
     path
       .map[Ptr[GtkTreePath]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]]),
-    pos
+    pos.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1103,10 +1104,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     * Sets which grid lines to draw in @tree_view.
     */
   def setGridLines(
-      grid_lines: GtkTreeViewGridLines /* Some(GtkTreeViewGridLines) */
+      grid_lines: TreeViewGridLines /* Some(GtkTreeViewGridLines) */
   ): Unit /* None */ = gtk_tree_view_set_grid_lines(
     this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    grid_lines
+    grid_lines.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

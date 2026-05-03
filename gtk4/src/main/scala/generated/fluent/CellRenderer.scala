@@ -10,11 +10,11 @@ import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.InitiallyUnowned
 import sn.gnome.gtk4.fluent.CellEditable
+import sn.gnome.gtk4.fluent.SizeRequestMode
 import sn.gnome.gtk4.fluent.Snapshot
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkCellRenderer
 import sn.gnome.gtk4.internal.GtkCellRendererState
-import sn.gnome.gtk4.internal.GtkSizeRequestMode
 import sn.gnome.gtk4.internal.GtkStateFlags
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -197,10 +197,11 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     * Gets whether the cell renderer prefers a height-for-width layout or a
     * width-for-height layout.
     */
-  def getRequestMode(): GtkSizeRequestMode /* None */ =
+  def getRequestMode(): SizeRequestMode /* None */ = SizeRequestMode.fromRaw(
     gtk_cell_renderer_get_request_mode(
       this.raw.asInstanceOf[Ptr[GtkCellRenderer]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

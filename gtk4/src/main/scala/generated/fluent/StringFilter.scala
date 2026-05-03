@@ -8,8 +8,8 @@ import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.fluent.Filter
+import sn.gnome.gtk4.fluent.StringFilterMatchMode
 import sn.gnome.gtk4.internal.GtkStringFilter
-import sn.gnome.gtk4.internal.GtkStringFilterMatchMode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -54,9 +54,11 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
     *
     * Returns the match mode that the filter is using.
     */
-  def getMatchMode(): GtkStringFilterMatchMode /* None */ =
-    gtk_string_filter_get_match_mode(
-      this.raw.asInstanceOf[Ptr[GtkStringFilter]]
+  def getMatchMode(): StringFilterMatchMode /* None */ =
+    StringFilterMatchMode.fromRaw(
+      gtk_string_filter_get_match_mode(
+        this.raw.asInstanceOf[Ptr[GtkStringFilter]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -101,10 +103,10 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
     * Sets the match mode for the filter.
     */
   def setMatchMode(
-      mode: GtkStringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
+      mode: StringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
   ): Unit /* None */ = gtk_string_filter_set_match_mode(
     this.raw.asInstanceOf[Ptr[GtkStringFilter]],
-    mode
+    mode.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

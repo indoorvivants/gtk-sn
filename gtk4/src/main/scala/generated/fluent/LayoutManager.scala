@@ -6,9 +6,9 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.LayoutChild
+import sn.gnome.gtk4.fluent.SizeRequestMode
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkLayoutManager
-import sn.gnome.gtk4.internal.GtkSizeRequestMode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -108,10 +108,11 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     *
     * Retrieves the request mode of @manager.
     */
-  def getRequestMode(): GtkSizeRequestMode /* None */ =
+  def getRequestMode(): SizeRequestMode /* None */ = SizeRequestMode.fromRaw(
     gtk_layout_manager_get_request_mode(
       this.raw.asInstanceOf[Ptr[GtkLayoutManager]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

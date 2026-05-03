@@ -24,25 +24,25 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gsk4.internal.GskTransform
 import sn.gnome.gtk4.fluent.Accessible
+import sn.gnome.gtk4.fluent.Align
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.DirectionType
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.fluent.LayoutManager
 import sn.gnome.gtk4.fluent.Native
+import sn.gnome.gtk4.fluent.Orientation
+import sn.gnome.gtk4.fluent.Overflow
 import sn.gnome.gtk4.fluent.Root
 import sn.gnome.gtk4.fluent.Settings
+import sn.gnome.gtk4.fluent.SizeRequestMode
 import sn.gnome.gtk4.fluent.Snapshot
 import sn.gnome.gtk4.fluent.StyleContext
+import sn.gnome.gtk4.fluent.TextDirection
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkAlign
 import sn.gnome.gtk4.internal.GtkAllocation
-import sn.gnome.gtk4.internal.GtkDirectionType
-import sn.gnome.gtk4.internal.GtkOrientation
-import sn.gnome.gtk4.internal.GtkOverflow
 import sn.gnome.gtk4.internal.GtkPickFlags
-import sn.gnome.gtk4.internal.GtkSizeRequestMode
 import sn.gnome.gtk4.internal.GtkStateFlags
-import sn.gnome.gtk4.internal.GtkTextDirection
 import sn.gnome.gtk4.internal.GtkTickCallback
 import sn.gnome.gtk4.internal.GtkWidget
 import sn.gnome.pango.fluent.Context
@@ -672,10 +672,10 @@ class Widget(raw: Ptr[GtkWidget])
     * particular widget.
     */
   def childFocus(
-      direction: GtkDirectionType /* Some(GtkDirectionType) */
+      direction: DirectionType /* Some(GtkDirectionType) */
   ): Boolean /* None */ = gtk_widget_child_focus(
     this.raw.asInstanceOf[Ptr[GtkWidget]],
-    direction
+    direction.raw
   ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -715,10 +715,10 @@ class Widget(raw: Ptr[GtkWidget])
     * expand if some of its children do.
     */
   def computeExpand(
-      orientation: GtkOrientation /* Some(GtkOrientation) */
+      orientation: Orientation /* Some(GtkOrientation) */
   ): Boolean /* None */ = gtk_widget_compute_expand(
     this.raw.asInstanceOf[Ptr[GtkWidget]],
-    orientation
+    orientation.raw
   ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1043,8 +1043,8 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * See [method@Gtk.Widget.set_direction].
     */
-  def getDirection(): GtkTextDirection /* None */ = gtk_widget_get_direction(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  def getDirection(): TextDirection /* None */ = TextDirection.fromRaw(
+    gtk_widget_get_direction(this.raw.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1164,9 +1164,8 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * Baselines are not supported for horizontal alignment.
     */
-  def getHalign(): GtkAlign /* None */ = gtk_widget_get_halign(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def getHalign(): Align /* None */ =
+    Align.fromRaw(gtk_widget_get_halign(this.raw.asInstanceOf[Ptr[GtkWidget]]))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1342,8 +1341,8 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * Returns the widget’s overflow value.
     */
-  def getOverflow(): GtkOverflow /* None */ = gtk_widget_get_overflow(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  def getOverflow(): Overflow /* None */ = Overflow.fromRaw(
+    gtk_widget_get_overflow(this.raw.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1449,8 +1448,9 @@ class Widget(raw: Ptr[GtkWidget])
     * more complex widgets need to request something either in context of their
     * children or in context of their allocation capabilities.
     */
-  def getRequestMode(): GtkSizeRequestMode /* None */ =
+  def getRequestMode(): SizeRequestMode /* None */ = SizeRequestMode.fromRaw(
     gtk_widget_get_request_mode(this.raw.asInstanceOf[Ptr[GtkWidget]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1522,9 +1522,9 @@ class Widget(raw: Ptr[GtkWidget])
     * [overview](coordinates.html).
     */
   def getSize(
-      orientation: GtkOrientation /* Some(GtkOrientation) */
+      orientation: Orientation /* Some(GtkOrientation) */
   ): Int /* None */ =
-    gtk_widget_get_size(this.raw.asInstanceOf[Ptr[GtkWidget]], orientation)
+    gtk_widget_get_size(this.raw.asInstanceOf[Ptr[GtkWidget]], orientation.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1624,9 +1624,8 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * Gets the vertical alignment of @widget.
     */
-  def getValign(): GtkAlign /* None */ = gtk_widget_get_valign(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def getValign(): Align /* None */ =
+    Align.fromRaw(gtk_widget_get_valign(this.raw.asInstanceOf[Ptr[GtkWidget]]))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1954,10 +1953,10 @@ class Widget(raw: Ptr[GtkWidget])
     * require entering license keys.
     */
   def keynavFailed(
-      direction: GtkDirectionType /* Some(GtkDirectionType) */
+      direction: DirectionType /* Some(GtkDirectionType) */
   ): Boolean /* None */ = gtk_widget_keynav_failed(
     this.raw.asInstanceOf[Ptr[GtkWidget]],
-    direction
+    direction.raw
   ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -2330,9 +2329,9 @@ class Widget(raw: Ptr[GtkWidget])
     * [func@Gtk.Widget.set_default_direction] will be used.
     */
   def setDirection(
-      dir: GtkTextDirection /* Some(GtkTextDirection) */
+      dir: TextDirection /* Some(GtkTextDirection) */
   ): Unit /* None */ =
-    gtk_widget_set_direction(this.raw.asInstanceOf[Ptr[GtkWidget]], dir)
+    gtk_widget_set_direction(this.raw.asInstanceOf[Ptr[GtkWidget]], dir.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2439,8 +2438,8 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * Sets the horizontal alignment of @widget.
     */
-  def setHalign(align: GtkAlign /* Some(GtkAlign) */ ): Unit /* None */ =
-    gtk_widget_set_halign(this.raw.asInstanceOf[Ptr[GtkWidget]], align)
+  def setHalign(align: Align /* Some(GtkAlign) */ ): Unit /* None */ =
+    gtk_widget_set_halign(this.raw.asInstanceOf[Ptr[GtkWidget]], align.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2612,9 +2611,9 @@ class Widget(raw: Ptr[GtkWidget])
     * The default value is %GTK_OVERFLOW_VISIBLE.
     */
   def setOverflow(
-      overflow: GtkOverflow /* Some(GtkOverflow) */
+      overflow: Overflow /* Some(GtkOverflow) */
   ): Unit /* None */ =
-    gtk_widget_set_overflow(this.raw.asInstanceOf[Ptr[GtkWidget]], overflow)
+    gtk_widget_set_overflow(this.raw.asInstanceOf[Ptr[GtkWidget]], overflow.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2767,8 +2766,8 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * Sets the vertical alignment of @widget.
     */
-  def setValign(align: GtkAlign /* Some(GtkAlign) */ ): Unit /* None */ =
-    gtk_widget_set_valign(this.raw.asInstanceOf[Ptr[GtkWidget]], align)
+  def setValign(align: Align /* Some(GtkAlign) */ ): Unit /* None */ =
+    gtk_widget_set_valign(this.raw.asInstanceOf[Ptr[GtkWidget]], align.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -8,15 +8,15 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gtk4.fluent.GTKUnit
 import sn.gnome.gtk4.fluent.PageSetup
+import sn.gnome.gtk4.fluent.PrintOperationAction
 import sn.gnome.gtk4.fluent.PrintOperationPreview
+import sn.gnome.gtk4.fluent.PrintOperationResult
 import sn.gnome.gtk4.fluent.PrintSettings
+import sn.gnome.gtk4.fluent.PrintStatus
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkPrintOperation
-import sn.gnome.gtk4.internal.GtkPrintOperationAction
-import sn.gnome.gtk4.internal.GtkPrintOperationResult
-import sn.gnome.gtk4.internal.GtkPrintStatus
-import sn.gnome.gtk4.internal.GtkUnit
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -198,8 +198,10 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     *
     * Also see [method@Gtk.PrintOperation.get_status_string].
     */
-  def getStatus(): GtkPrintStatus /* None */ = gtk_print_operation_get_status(
-    this.raw.asInstanceOf[Ptr[GtkPrintOperation]]
+  def getStatus(): PrintStatus /* None */ = PrintStatus.fromRaw(
+    gtk_print_operation_get_status(
+      this.raw.asInstanceOf[Ptr[GtkPrintOperation]]
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -301,16 +303,18 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * `GtkPrintOperation`.
     */
   def run(
-      action: GtkPrintOperationAction /* Some(GtkPrintOperationAction) */,
+      action: PrintOperationAction /* Some(GtkPrintOperationAction) */,
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
-  ): GResult[GtkPrintOperationResult /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_print_operation_run(
-      this.raw.asInstanceOf[Ptr[GtkPrintOperation]],
-      action,
-      parent
-        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-      __errorPtr
+  ): GResult[PrintOperationResult /* None */ ] = GResult.wrap(__errorPtr =>
+    PrintOperationResult.fromRaw(
+      gtk_print_operation_run(
+        this.raw.asInstanceOf[Ptr[GtkPrintOperation]],
+        action.raw,
+        parent
+          .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
+        __errorPtr
+      )
     )
   )
 
@@ -534,10 +538,10 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * Sets up the transformation for the cairo context obtained from
     * `GtkPrintContext` in such a way that distances are measured in units of @unit.
     */
-  def setUnit(unit: GtkUnit /* Some(GtkUnit) */ ): Unit /* None */ =
+  def setUnit(unit: GTKUnit /* Some(GtkUnit) */ ): Unit /* None */ =
     gtk_print_operation_set_unit(
       this.raw.asInstanceOf[Ptr[GtkPrintOperation]],
-      unit
+      unit.raw
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

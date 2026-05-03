@@ -14,15 +14,15 @@ import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ColumnViewColumn
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.ListItemFactory
+import sn.gnome.gtk4.fluent.ListTabBehavior
 import sn.gnome.gtk4.fluent.Scrollable
 import sn.gnome.gtk4.fluent.SelectionModel
+import sn.gnome.gtk4.fluent.SortType
 import sn.gnome.gtk4.fluent.Sorter
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkColumnView
 import sn.gnome.gtk4.internal.GtkListScrollFlags
-import sn.gnome.gtk4.internal.GtkListTabBehavior
 import sn.gnome.gtk4.internal.GtkScrollInfo
-import sn.gnome.gtk4.internal.GtkSortType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -234,8 +234,9 @@ class ColumnView(raw: Ptr[GtkColumnView])
     *
     * Gets the behavior set for the <kbd>Tab</kbd> key.
     */
-  def getTabBehavior(): GtkListTabBehavior /* None */ =
+  def getTabBehavior(): ListTabBehavior /* None */ = ListTabBehavior.fromRaw(
     gtk_column_view_get_tab_behavior(this.raw.asInstanceOf[Ptr[GtkColumnView]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -402,10 +403,10 @@ class ColumnView(raw: Ptr[GtkColumnView])
     * <kbd>Shift</kbd>+<kbd>Tab</kbd> keys.
     */
   def setTabBehavior(
-      tab_behavior: GtkListTabBehavior /* Some(GtkListTabBehavior) */
+      tab_behavior: ListTabBehavior /* Some(GtkListTabBehavior) */
   ): Unit /* None */ = gtk_column_view_set_tab_behavior(
     this.raw.asInstanceOf[Ptr[GtkColumnView]],
-    tab_behavior
+    tab_behavior.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -425,13 +426,13 @@ class ColumnView(raw: Ptr[GtkColumnView])
     */
   def sortByColumn(
       column: Option[ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */ ],
-      direction: GtkSortType /* Some(GtkSortType) */
+      direction: SortType /* Some(GtkSortType) */
   ): Unit /* None */ = gtk_column_view_sort_by_column(
     this.raw.asInstanceOf[Ptr[GtkColumnView]],
     column
       .map[Ptr[GtkColumnViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkColumnViewColumn]]),
-    direction
+    direction.raw
   )
 
 end ColumnView

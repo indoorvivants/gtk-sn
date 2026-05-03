@@ -8,11 +8,11 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.guint
+import sn.gnome.gtk4.fluent.BaselinePosition
 import sn.gnome.gtk4.fluent.LayoutManager
 import sn.gnome.gtk4.fluent.Orientable
-import sn.gnome.gtk4.internal.GtkBaselinePosition
+import sn.gnome.gtk4.fluent.Orientation
 import sn.gnome.gtk4.internal.GtkBoxLayout
-import sn.gnome.gtk4.internal.GtkOrientation
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -49,9 +49,11 @@ class BoxLayout(raw: Ptr[GtkBoxLayout])
     *
     * Gets the value set by gtk_box_layout_set_baseline_position().
     */
-  def getBaselinePosition(): GtkBaselinePosition /* None */ =
-    gtk_box_layout_get_baseline_position(
-      this.raw.asInstanceOf[Ptr[GtkBoxLayout]]
+  def getBaselinePosition(): BaselinePosition /* None */ =
+    BaselinePosition.fromRaw(
+      gtk_box_layout_get_baseline_position(
+        this.raw.asInstanceOf[Ptr[GtkBoxLayout]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -91,10 +93,10 @@ class BoxLayout(raw: Ptr[GtkBoxLayout])
     * is used to allocate the baseline within the extra space available.
     */
   def setBaselinePosition(
-      position: GtkBaselinePosition /* Some(GtkBaselinePosition) */
+      position: BaselinePosition /* Some(GtkBaselinePosition) */
   ): Unit /* None */ = gtk_box_layout_set_baseline_position(
     this.raw.asInstanceOf[Ptr[GtkBoxLayout]],
-    position
+    position.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -126,7 +128,6 @@ object BoxLayout:
     *
     * Creates a new `GtkBoxLayout`.
     */
-  def apply(
-      orientation: GtkOrientation /* Some(GtkOrientation) */
-  ): BoxLayout = new BoxLayout(gtk_box_layout_new(orientation).asInstanceOf)
+  def apply(orientation: Orientation /* Some(GtkOrientation) */ ): BoxLayout =
+    new BoxLayout(gtk_box_layout_new(orientation.raw).asInstanceOf)
 end BoxLayout

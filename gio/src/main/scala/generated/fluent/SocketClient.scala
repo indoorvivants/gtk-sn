@@ -11,11 +11,11 @@ import sn.gnome.gio.fluent.ProxyResolver
 import sn.gnome.gio.fluent.SocketAddress
 import sn.gnome.gio.fluent.SocketConnectable
 import sn.gnome.gio.fluent.SocketConnection
+import sn.gnome.gio.fluent.SocketFamily
+import sn.gnome.gio.fluent.SocketProtocol
+import sn.gnome.gio.fluent.SocketType
 import sn.gnome.gio.internal.GAsyncReadyCallback
 import sn.gnome.gio.internal.GSocketClient
-import sn.gnome.gio.internal.GSocketFamily
-import sn.gnome.gio.internal.GSocketProtocol
-import sn.gnome.gio.internal.GSocketType
 import sn.gnome.gio.internal.GTlsCertificateFlags
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gboolean
@@ -461,8 +461,8 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *
     * See g_socket_client_set_family() for details.
     */
-  def getFamily(): GSocketFamily /* None */ = g_socket_client_get_family(
-    this.raw.asInstanceOf[Ptr[GSocketClient]]
+  def getFamily(): SocketFamily /* None */ = SocketFamily.fromRaw(
+    g_socket_client_get_family(this.raw.asInstanceOf[Ptr[GSocketClient]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -483,8 +483,8 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *
     * See g_socket_client_set_protocol() for details.
     */
-  def getProtocol(): GSocketProtocol /* None */ = g_socket_client_get_protocol(
-    this.raw.asInstanceOf[Ptr[GSocketClient]]
+  def getProtocol(): SocketProtocol /* None */ = SocketProtocol.fromRaw(
+    g_socket_client_get_protocol(this.raw.asInstanceOf[Ptr[GSocketClient]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -505,8 +505,8 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *
     * See g_socket_client_set_socket_type() for details.
     */
-  def getSocketType(): GSocketType /* None */ = g_socket_client_get_socket_type(
-    this.raw.asInstanceOf[Ptr[GSocketClient]]
+  def getSocketType(): SocketType /* None */ = SocketType.fromRaw(
+    g_socket_client_get_socket_type(this.raw.asInstanceOf[Ptr[GSocketClient]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -569,10 +569,10 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * mapped to ipv4 address.
     */
   def setFamily(
-      family: GSocketFamily /* Some(GSocketFamily) */
+      family: SocketFamily /* Some(GSocketFamily) */
   ): Unit /* None */ = g_socket_client_set_family(
     this.raw.asInstanceOf[Ptr[GSocketClient]],
-    family
+    family.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -602,10 +602,10 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * protocol for the socket family and type.
     */
   def setProtocol(
-      protocol: GSocketProtocol /* Some(GSocketProtocol) */
+      protocol: SocketProtocol /* Some(GSocketProtocol) */
   ): Unit /* None */ = g_socket_client_set_protocol(
     this.raw.asInstanceOf[Ptr[GSocketClient]],
-    protocol
+    protocol.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -636,10 +636,10 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * GSocketClient is used for connection oriented services.
     */
   def setSocketType(
-      `type`: GSocketType /* Some(GSocketType) */
+      `type`: SocketType /* Some(GSocketType) */
   ): Unit /* None */ = g_socket_client_set_socket_type(
     this.raw.asInstanceOf[Ptr[GSocketClient]],
-    `type`
+    `type`.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

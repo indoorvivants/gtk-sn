@@ -7,8 +7,8 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.SocketAddress
 import sn.gnome.gio.fluent.SocketConnectable
+import sn.gnome.gio.fluent.UnixSocketAddressType
 import sn.gnome.gio.internal.GUnixSocketAddress
-import sn.gnome.gio.internal.GUnixSocketAddressType
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gchar
 import sn.gnome.glib.internal.gint
@@ -45,9 +45,11 @@ class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
     *
     * Gets @address's type.
     */
-  def getAddressType(): GUnixSocketAddressType /* None */ =
-    g_unix_socket_address_get_address_type(
-      this.raw.asInstanceOf[Ptr[GUnixSocketAddress]]
+  def getAddressType(): UnixSocketAddressType /* None */ =
+    UnixSocketAddressType.fromRaw(
+      g_unix_socket_address_get_address_type(
+        this.raw.asInstanceOf[Ptr[GUnixSocketAddress]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

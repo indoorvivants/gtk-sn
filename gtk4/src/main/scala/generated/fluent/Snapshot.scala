@@ -17,22 +17,22 @@ import sn.gnome.graphene.internal.graphene_rect_t
 import sn.gnome.graphene.internal.graphene_size_t
 import sn.gnome.graphene.internal.graphene_vec3_t
 import sn.gnome.graphene.internal.graphene_vec4_t
+import sn.gnome.gsk4.fluent.BlendMode
+import sn.gnome.gsk4.fluent.FillRule
 import sn.gnome.gsk4.fluent.GLShader
+import sn.gnome.gsk4.fluent.MaskMode
 import sn.gnome.gsk4.fluent.RenderNode
-import sn.gnome.gsk4.internal.GskBlendMode
+import sn.gnome.gsk4.fluent.ScalingFilter
 import sn.gnome.gsk4.internal.GskColorStop
-import sn.gnome.gsk4.internal.GskFillRule
-import sn.gnome.gsk4.internal.GskMaskMode
 import sn.gnome.gsk4.internal.GskPath
 import sn.gnome.gsk4.internal.GskRoundedRect
-import sn.gnome.gsk4.internal.GskScalingFilter
 import sn.gnome.gsk4.internal.GskShadow
 import sn.gnome.gsk4.internal.GskStroke
 import sn.gnome.gsk4.internal.GskTransform
 import sn.gnome.gtk4.fluent.StyleContext
 import sn.gnome.gtk4.internal.GtkSnapshot
+import sn.gnome.pango.fluent.Direction
 import sn.gnome.pango.fluent.Layout
-import sn.gnome.pango.internal.PangoDirection
 import sn.gnome.gdk4.fluent.Snapshot as _Snapshot
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -131,12 +131,12 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     */
   def appendFill(
       path: Ptr[GskPath] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskPath]) */,
-      fill_rule: GskFillRule /* Some(_root_.sn.gnome.gsk4.internal.GskFillRule) */,
+      fill_rule: FillRule /* Some(_root_.sn.gnome.gsk4.internal.GskFillRule) */,
       color: Ptr[GdkRGBA] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
   ): Unit /* None */ = gtk_snapshot_append_fill(
     this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     path,
-    fill_rule,
+    fill_rule.raw,
     color
   )
 
@@ -340,14 +340,14 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     */
   def appendScaledTexture(
       texture: Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */,
-      filter: GskScalingFilter /* Some(_root_.sn.gnome.gsk4.internal.GskScalingFilter) */,
+      filter: ScalingFilter /* Some(_root_.sn.gnome.gsk4.internal.GskScalingFilter) */,
       bounds: Ptr[
         graphene_rect_t
       ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
   ): Unit /* None */ = gtk_snapshot_append_scaled_texture(
     this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     texture.getUnsafeRawPointer().asInstanceOf,
-    filter,
+    filter.raw,
     bounds
   )
 
@@ -470,9 +470,11 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * [method@Gtk.Snapshot.pop].
     */
   def pushBlend(
-      blend_mode: GskBlendMode /* Some(_root_.sn.gnome.gsk4.internal.GskBlendMode) */
-  ): Unit /* None */ =
-    gtk_snapshot_push_blend(this.raw.asInstanceOf[Ptr[GtkSnapshot]], blend_mode)
+      blend_mode: BlendMode /* Some(_root_.sn.gnome.gsk4.internal.GskBlendMode) */
+  ): Unit /* None */ = gtk_snapshot_push_blend(
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
+    blend_mode.raw
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -569,11 +571,11 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     */
   def pushFill(
       path: Ptr[GskPath] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskPath]) */,
-      fill_rule: GskFillRule /* Some(_root_.sn.gnome.gsk4.internal.GskFillRule) */
+      fill_rule: FillRule /* Some(_root_.sn.gnome.gsk4.internal.GskFillRule) */
   ): Unit /* None */ = gtk_snapshot_push_fill(
     this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     path,
-    fill_rule
+    fill_rule.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -639,9 +641,11 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * Calling this function requires 2 subsequent calls to gtk_snapshot_pop().
     */
   def pushMask(
-      mask_mode: GskMaskMode /* Some(_root_.sn.gnome.gsk4.internal.GskMaskMode) */
-  ): Unit /* None */ =
-    gtk_snapshot_push_mask(this.raw.asInstanceOf[Ptr[GtkSnapshot]], mask_mode)
+      mask_mode: MaskMode /* Some(_root_.sn.gnome.gsk4.internal.GskMaskMode) */
+  ): Unit /* None */ = gtk_snapshot_push_mask(
+    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
+    mask_mode.raw
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -805,7 +809,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       y: Double /* Some(Double) */,
       layout: Layout /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoLayout]) */,
       index: Int /* Some(CInt) */,
-      direction: PangoDirection /* Some(_root_.sn.gnome.pango.internal.PangoDirection) */
+      direction: Direction /* Some(_root_.sn.gnome.pango.internal.PangoDirection) */
   ): Unit /* None */ = gtk_snapshot_render_insertion_cursor(
     this.raw.asInstanceOf[Ptr[GtkSnapshot]],
     context.getUnsafeRawPointer().asInstanceOf,
@@ -813,7 +817,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     y,
     layout.getUnsafeRawPointer().asInstanceOf,
     index,
-    direction
+    direction.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

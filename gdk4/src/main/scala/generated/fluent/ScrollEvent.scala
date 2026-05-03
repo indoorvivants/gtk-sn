@@ -5,9 +5,9 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.internal.GdkScrollDirection
+import sn.gnome.gdk4.fluent.ScrollDirection
+import sn.gnome.gdk4.fluent.ScrollUnit
 import sn.gnome.gdk4.internal.GdkScrollEvent
-import sn.gnome.gdk4.internal.GdkScrollUnit
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 
@@ -37,8 +37,9 @@ class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
     *
     * Extracts the direction of a scroll event.
     */
-  def getDirection(): GdkScrollDirection /* None */ =
+  def getDirection(): ScrollDirection /* None */ = ScrollDirection.fromRaw(
     gdk_scroll_event_get_direction(this.raw.asInstanceOf[Ptr[GdkEvent]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -47,8 +48,8 @@ class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
     * The unit will always be %GDK_SCROLL_UNIT_WHEEL if the scroll direction is
     * not %GDK_SCROLL_SMOOTH.
     */
-  def getUnit(): GdkScrollUnit /* None */ = gdk_scroll_event_get_unit(
-    this.raw.asInstanceOf[Ptr[GdkEvent]]
+  def getUnit(): ScrollUnit /* None */ = ScrollUnit.fromRaw(
+    gdk_scroll_event_get_unit(this.raw.asInstanceOf[Ptr[GdkEvent]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

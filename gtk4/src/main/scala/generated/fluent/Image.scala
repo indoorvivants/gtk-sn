@@ -10,10 +10,10 @@ import sn.gnome.gio.fluent.Icon
 import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.IconSize
+import sn.gnome.gtk4.fluent.ImageType
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkIconSize
 import sn.gnome.gtk4.internal.GtkImage
-import sn.gnome.gtk4.internal.GtkImageType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -101,8 +101,8 @@ class Image(raw: Ptr[GtkImage])
     *
     * Gets the icon size used by the @image when rendering icons.
     */
-  def getIconSize(): GtkIconSize /* None */ = gtk_image_get_icon_size(
-    this.raw.asInstanceOf[Ptr[GtkImage]]
+  def getIconSize(): IconSize /* None */ = IconSize.fromRaw(
+    gtk_image_get_icon_size(this.raw.asInstanceOf[Ptr[GtkImage]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -133,8 +133,8 @@ class Image(raw: Ptr[GtkImage])
     * If the `GtkImage` has no image data, the return value will be
     * %GTK_IMAGE_EMPTY.
     */
-  def getStorageType(): GtkImageType /* None */ = gtk_image_get_storage_type(
-    this.raw.asInstanceOf[Ptr[GtkImage]]
+  def getStorageType(): ImageType /* None */ = ImageType.fromRaw(
+    gtk_image_get_storage_type(this.raw.asInstanceOf[Ptr[GtkImage]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -245,9 +245,9 @@ class Image(raw: Ptr[GtkImage])
     * Suggests an icon size to the theme for named icons.
     */
   def setIconSize(
-      icon_size: GtkIconSize /* Some(GtkIconSize) */
+      icon_size: IconSize /* Some(GtkIconSize) */
   ): Unit /* None */ =
-    gtk_image_set_icon_size(this.raw.asInstanceOf[Ptr[GtkImage]], icon_size)
+    gtk_image_set_icon_size(this.raw.asInstanceOf[Ptr[GtkImage]], icon_size.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

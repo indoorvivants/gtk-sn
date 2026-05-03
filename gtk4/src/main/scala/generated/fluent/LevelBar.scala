@@ -10,10 +10,10 @@ import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.AccessibleRange
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.LevelBarMode
 import sn.gnome.gtk4.fluent.Orientable
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkLevelBar
-import sn.gnome.gtk4.internal.GtkLevelBarMode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -173,8 +173,8 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     *
     * Returns the `mode` of the `GtkLevelBar`.
     */
-  def getMode(): GtkLevelBarMode /* None */ = gtk_level_bar_get_mode(
-    this.raw.asInstanceOf[Ptr[GtkLevelBar]]
+  def getMode(): LevelBarMode /* None */ = LevelBarMode.fromRaw(
+    gtk_level_bar_get_mode(this.raw.asInstanceOf[Ptr[GtkLevelBar]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -246,9 +246,9 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     * Sets the `mode` of the `GtkLevelBar`.
     */
   def setMode(
-      mode: GtkLevelBarMode /* Some(GtkLevelBarMode) */
+      mode: LevelBarMode /* Some(GtkLevelBarMode) */
   ): Unit /* None */ =
-    gtk_level_bar_set_mode(this.raw.asInstanceOf[Ptr[GtkLevelBar]], mode)
+    gtk_level_bar_set_mode(this.raw.asInstanceOf[Ptr[GtkLevelBar]], mode.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

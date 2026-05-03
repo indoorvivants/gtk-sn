@@ -13,7 +13,7 @@ import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Orientable
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkProgressBar
-import sn.gnome.pango.internal.PangoEllipsizeMode
+import sn.gnome.pango.fluent.EllipsizeMode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -81,8 +81,9 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     *
     * See [method@Gtk.ProgressBar.set_ellipsize].
     */
-  def getEllipsize(): PangoEllipsizeMode /* None */ =
+  def getEllipsize(): EllipsizeMode /* None */ = EllipsizeMode.fromRaw(
     gtk_progress_bar_get_ellipsize(this.raw.asInstanceOf[Ptr[GtkProgressBar]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -154,10 +155,10 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * string.
     */
   def setEllipsize(
-      mode: PangoEllipsizeMode /* Some(_root_.sn.gnome.pango.internal.PangoEllipsizeMode) */
+      mode: EllipsizeMode /* Some(_root_.sn.gnome.pango.internal.PangoEllipsizeMode) */
   ): Unit /* None */ = gtk_progress_bar_set_ellipsize(
     this.raw.asInstanceOf[Ptr[GtkProgressBar]],
-    mode
+    mode.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

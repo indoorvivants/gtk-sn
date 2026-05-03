@@ -1,6 +1,6 @@
 package sn.gnome.gio.internal
 
-// This file was generated using sn-bindgen 0.4.4: https://sn-bindgen.indoorvivants.com/
+// This file was generated using sn-bindgen 0.4.4+1-3da9c949-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
@@ -12,7 +12,5 @@ import _root_.scala.scalanative.*
 */
 type GTlsPasswordFlags = _GTlsPasswordFlags
 object GTlsPasswordFlags:
-  given _tag: Tag[GTlsPasswordFlags] = _GTlsPasswordFlags._tag
   inline def apply(inline o: _GTlsPasswordFlags): GTlsPasswordFlags = o
-  extension (v: GTlsPasswordFlags)
-    inline def value: _GTlsPasswordFlags = v
+  export _GTlsPasswordFlags.{apply => _, *, given}

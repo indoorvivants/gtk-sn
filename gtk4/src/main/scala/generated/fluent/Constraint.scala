@@ -7,10 +7,10 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gtk4.fluent.ConstraintAttribute
+import sn.gnome.gtk4.fluent.ConstraintRelation
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.internal.GtkConstraint
-import sn.gnome.gtk4.internal.GtkConstraintAttribute
-import sn.gnome.gtk4.internal.GtkConstraintRelation
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -55,8 +55,9 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     *
     * The order relation between the terms of the constraint.
     */
-  def getRelation(): GtkConstraintRelation /* None */ =
+  def getRelation(): ConstraintRelation /* None */ = ConstraintRelation.fromRaw(
     gtk_constraint_get_relation(this.raw.asInstanceOf[Ptr[GtkConstraint]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -76,9 +77,11 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     *
     * Retrieves the attribute of the source to be read by the constraint.
     */
-  def getSourceAttribute(): GtkConstraintAttribute /* None */ =
-    gtk_constraint_get_source_attribute(
-      this.raw.asInstanceOf[Ptr[GtkConstraint]]
+  def getSourceAttribute(): ConstraintAttribute /* None */ =
+    ConstraintAttribute.fromRaw(
+      gtk_constraint_get_source_attribute(
+        this.raw.asInstanceOf[Ptr[GtkConstraint]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -107,9 +110,11 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     *
     * Retrieves the attribute of the target to be set by the constraint.
     */
-  def getTargetAttribute(): GtkConstraintAttribute /* None */ =
-    gtk_constraint_get_target_attribute(
-      this.raw.asInstanceOf[Ptr[GtkConstraint]]
+  def getTargetAttribute(): ConstraintAttribute /* None */ =
+    ConstraintAttribute.fromRaw(
+      gtk_constraint_get_target_attribute(
+        this.raw.asInstanceOf[Ptr[GtkConstraint]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -151,12 +156,12 @@ object Constraint:
       target: Option[
         ConstraintTarget /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ],
-      target_attribute: GtkConstraintAttribute /* Some(GtkConstraintAttribute) */,
-      relation: GtkConstraintRelation /* Some(GtkConstraintRelation) */,
+      target_attribute: ConstraintAttribute /* Some(GtkConstraintAttribute) */,
+      relation: ConstraintRelation /* Some(GtkConstraintRelation) */,
       source: Option[
         ConstraintTarget /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ],
-      source_attribute: GtkConstraintAttribute /* Some(GtkConstraintAttribute) */,
+      source_attribute: ConstraintAttribute /* Some(GtkConstraintAttribute) */,
       multiplier: Double /* Some(Double) */,
       constant: Double /* Some(Double) */,
       strength: Int /* Some(CInt) */
@@ -167,14 +172,14 @@ object Constraint:
           o.getUnsafeRawPointer().asInstanceOf
         )
         .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      target_attribute,
-      relation,
+      target_attribute.raw,
+      relation.raw,
       source
         .map[_root_.sn.gnome.glib.internal.gpointer](o =>
           o.getUnsafeRawPointer().asInstanceOf
         )
         .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      source_attribute,
+      source_attribute.raw,
       multiplier,
       constant,
       strength
@@ -190,8 +195,8 @@ object Constraint:
       target: Option[
         ConstraintTarget /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ],
-      target_attribute: GtkConstraintAttribute /* Some(GtkConstraintAttribute) */,
-      relation: GtkConstraintRelation /* Some(GtkConstraintRelation) */,
+      target_attribute: ConstraintAttribute /* Some(GtkConstraintAttribute) */,
+      relation: ConstraintRelation /* Some(GtkConstraintRelation) */,
       constant: Double /* Some(Double) */,
       strength: Int /* Some(CInt) */
   ): Constraint = new Constraint(
@@ -201,8 +206,8 @@ object Constraint:
           o.getUnsafeRawPointer().asInstanceOf
         )
         .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      target_attribute,
-      relation,
+      target_attribute.raw,
+      relation.raw,
       constant,
       strength
     ).asInstanceOf

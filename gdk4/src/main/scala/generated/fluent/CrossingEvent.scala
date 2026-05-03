@@ -4,10 +4,10 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.fluent.CrossingMode
 import sn.gnome.gdk4.fluent.Event
+import sn.gnome.gdk4.fluent.NotifyType
 import sn.gnome.gdk4.internal.GdkCrossingEvent
-import sn.gnome.gdk4.internal.GdkCrossingMode
-import sn.gnome.gdk4.internal.GdkNotifyType
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 
@@ -23,8 +23,8 @@ class CrossingEvent(raw: Ptr[GdkCrossingEvent]) extends Event(raw.asInstanceOf):
     *
     * Extracts the notify detail from a crossing event.
     */
-  def getDetail(): GdkNotifyType /* None */ = gdk_crossing_event_get_detail(
-    this.raw.asInstanceOf[Ptr[GdkEvent]]
+  def getDetail(): NotifyType /* None */ = NotifyType.fromRaw(
+    gdk_crossing_event_get_detail(this.raw.asInstanceOf[Ptr[GdkEvent]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -39,8 +39,8 @@ class CrossingEvent(raw: Ptr[GdkCrossingEvent]) extends Event(raw.asInstanceOf):
     *
     * Extracts the crossing mode from a crossing event.
     */
-  def getMode(): GdkCrossingMode /* None */ = gdk_crossing_event_get_mode(
-    this.raw.asInstanceOf[Ptr[GdkEvent]]
+  def getMode(): CrossingMode /* None */ = CrossingMode.fromRaw(
+    gdk_crossing_event_get_mode(this.raw.asInstanceOf[Ptr[GdkEvent]])
   )
 
 end CrossingEvent

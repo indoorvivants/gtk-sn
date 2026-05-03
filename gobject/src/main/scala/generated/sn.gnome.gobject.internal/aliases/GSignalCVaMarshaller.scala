@@ -1,6 +1,6 @@
 package sn.gnome.gobject.internal
 
-// This file was generated using sn-bindgen 0.4.4: https://sn-bindgen.indoorvivants.com/
+// This file was generated using sn-bindgen 0.4.4+1-3da9c949-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
@@ -12,7 +12,5 @@ import _root_.scala.scalanative.*
 */
 type GSignalCVaMarshaller = GVaClosureMarshal
 object GSignalCVaMarshaller:
-  given _tag: Tag[GSignalCVaMarshaller] = GVaClosureMarshal._tag
   inline def apply(inline o: GVaClosureMarshal): GSignalCVaMarshaller = o
-  extension (v: GSignalCVaMarshaller)
-    inline def value: GVaClosureMarshal = v
+  export GVaClosureMarshal.{apply => _, *, given}

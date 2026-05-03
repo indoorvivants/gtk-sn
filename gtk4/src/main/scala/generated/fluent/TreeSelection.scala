@@ -9,8 +9,8 @@ import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gtk4.fluent.SelectionMode
 import sn.gnome.gtk4.fluent.TreeView
-import sn.gnome.gtk4.internal.GtkSelectionMode
 import sn.gnome.gtk4.internal.GtkTreeIter
 import sn.gnome.gtk4.internal.GtkTreePath
 import sn.gnome.gtk4.internal.GtkTreeSelection
@@ -62,8 +62,8 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     *
     * Gets the selection mode for @selection. See gtk_tree_selection_set_mode().
     */
-  def getMode(): GtkSelectionMode /* None */ = gtk_tree_selection_get_mode(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
+  def getMode(): SelectionMode /* None */ = SelectionMode.fromRaw(
+    gtk_tree_selection_get_mode(this.raw.asInstanceOf[Ptr[GtkTreeSelection]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -219,10 +219,10 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * previously selected.
     */
   def setMode(
-      `type`: GtkSelectionMode /* Some(GtkSelectionMode) */
+      `type`: SelectionMode /* Some(GtkSelectionMode) */
   ): Unit /* None */ = gtk_tree_selection_set_mode(
     this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
-    `type`
+    `type`.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

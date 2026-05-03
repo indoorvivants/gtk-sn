@@ -12,15 +12,15 @@ import sn.gnome.glib.internal.guint
 import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.Justification
+import sn.gnome.gtk4.fluent.NaturalWrapMode
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkJustification
 import sn.gnome.gtk4.internal.GtkLabel
-import sn.gnome.gtk4.internal.GtkNaturalWrapMode
+import sn.gnome.pango.fluent.EllipsizeMode
 import sn.gnome.pango.fluent.Layout
+import sn.gnome.pango.fluent.WrapMode
 import sn.gnome.pango.internal.PangoAttrList
-import sn.gnome.pango.internal.PangoEllipsizeMode
 import sn.gnome.pango.internal.PangoTabArray
-import sn.gnome.pango.internal.PangoWrapMode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -246,8 +246,8 @@ class Label(raw: Ptr[GtkLabel])
     *
     * See [method@Gtk.Label.set_ellipsize].
     */
-  def getEllipsize(): PangoEllipsizeMode /* None */ = gtk_label_get_ellipsize(
-    this.raw.asInstanceOf[Ptr[GtkLabel]]
+  def getEllipsize(): EllipsizeMode /* None */ = EllipsizeMode.fromRaw(
+    gtk_label_get_ellipsize(this.raw.asInstanceOf[Ptr[GtkLabel]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -266,8 +266,8 @@ class Label(raw: Ptr[GtkLabel])
     *
     * See [method@Gtk.Label.set_justify].
     */
-  def getJustify(): GtkJustification /* None */ = gtk_label_get_justify(
-    this.raw.asInstanceOf[Ptr[GtkLabel]]
+  def getJustify(): Justification /* None */ = Justification.fromRaw(
+    gtk_label_get_justify(this.raw.asInstanceOf[Ptr[GtkLabel]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -361,8 +361,10 @@ class Label(raw: Ptr[GtkLabel])
     *
     * See [method@Gtk.Label.set_natural_wrap_mode].
     */
-  def getNaturalWrapMode(): GtkNaturalWrapMode /* None */ =
-    gtk_label_get_natural_wrap_mode(this.raw.asInstanceOf[Ptr[GtkLabel]])
+  def getNaturalWrapMode(): NaturalWrapMode /* None */ =
+    NaturalWrapMode.fromRaw(
+      gtk_label_get_natural_wrap_mode(this.raw.asInstanceOf[Ptr[GtkLabel]])
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -455,8 +457,8 @@ class Label(raw: Ptr[GtkLabel])
     *
     * See [method@Gtk.Label.set_wrap_mode].
     */
-  def getWrapMode(): PangoWrapMode /* None */ = gtk_label_get_wrap_mode(
-    this.raw.asInstanceOf[Ptr[GtkLabel]]
+  def getWrapMode(): WrapMode /* None */ = WrapMode.fromRaw(
+    gtk_label_get_wrap_mode(this.raw.asInstanceOf[Ptr[GtkLabel]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -529,9 +531,9 @@ class Label(raw: Ptr[GtkLabel])
     * entire string.
     */
   def setEllipsize(
-      mode: PangoEllipsizeMode /* Some(_root_.sn.gnome.pango.internal.PangoEllipsizeMode) */
+      mode: EllipsizeMode /* Some(_root_.sn.gnome.pango.internal.PangoEllipsizeMode) */
   ): Unit /* None */ =
-    gtk_label_set_ellipsize(this.raw.asInstanceOf[Ptr[GtkLabel]], mode)
+    gtk_label_set_ellipsize(this.raw.asInstanceOf[Ptr[GtkLabel]], mode.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -564,9 +566,9 @@ class Label(raw: Ptr[GtkLabel])
     * single line.
     */
   def setJustify(
-      jtype: GtkJustification /* Some(GtkJustification) */
+      jtype: Justification /* Some(GtkJustification) */
   ): Unit /* None */ =
-    gtk_label_set_justify(this.raw.asInstanceOf[Ptr[GtkLabel]], jtype)
+    gtk_label_set_justify(this.raw.asInstanceOf[Ptr[GtkLabel]], jtype.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -695,10 +697,10 @@ class Label(raw: Ptr[GtkLabel])
     * used, see the [property@Gtk.Label:wrap-mode] property.
     */
   def setNaturalWrapMode(
-      wrap_mode: GtkNaturalWrapMode /* Some(GtkNaturalWrapMode) */
+      wrap_mode: NaturalWrapMode /* Some(GtkNaturalWrapMode) */
   ): Unit /* None */ = gtk_label_set_natural_wrap_mode(
     this.raw.asInstanceOf[Ptr[GtkLabel]],
-    wrap_mode
+    wrap_mode.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -845,9 +847,9 @@ class Label(raw: Ptr[GtkLabel])
     * [property@Gtk.Label:natural-wrap-mode] property.
     */
   def setWrapMode(
-      wrap_mode: PangoWrapMode /* Some(_root_.sn.gnome.pango.internal.PangoWrapMode) */
+      wrap_mode: WrapMode /* Some(_root_.sn.gnome.pango.internal.PangoWrapMode) */
   ): Unit /* None */ =
-    gtk_label_set_wrap_mode(this.raw.asInstanceOf[Ptr[GtkLabel]], wrap_mode)
+    gtk_label_set_wrap_mode(this.raw.asInstanceOf[Ptr[GtkLabel]], wrap_mode.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

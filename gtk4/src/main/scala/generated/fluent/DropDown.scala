@@ -16,9 +16,9 @@ import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.fluent.ListItemFactory
+import sn.gnome.gtk4.fluent.StringFilterMatchMode
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkDropDown
-import sn.gnome.gtk4.internal.GtkStringFilterMatchMode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -153,8 +153,12 @@ class DropDown(raw: Ptr[GtkDropDown])
     *
     * Returns the match mode that the search filter is using.
     */
-  def getSearchMatchMode(): GtkStringFilterMatchMode /* None */ =
-    gtk_drop_down_get_search_match_mode(this.raw.asInstanceOf[Ptr[GtkDropDown]])
+  def getSearchMatchMode(): StringFilterMatchMode /* None */ =
+    StringFilterMatchMode.fromRaw(
+      gtk_drop_down_get_search_match_mode(
+        this.raw.asInstanceOf[Ptr[GtkDropDown]]
+      )
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -278,10 +282,10 @@ class DropDown(raw: Ptr[GtkDropDown])
     * Sets the match mode for the search filter.
     */
   def setSearchMatchMode(
-      search_match_mode: GtkStringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
+      search_match_mode: StringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
   ): Unit /* None */ = gtk_drop_down_set_search_match_mode(
     this.raw.asInstanceOf[Ptr[GtkDropDown]],
-    search_match_mode
+    search_match_mode.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

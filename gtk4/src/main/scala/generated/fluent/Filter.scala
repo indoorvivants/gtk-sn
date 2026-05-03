@@ -8,9 +8,9 @@ import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gtk4.fluent.FilterChange
+import sn.gnome.gtk4.fluent.FilterMatch
 import sn.gnome.gtk4.internal.GtkFilter
-import sn.gnome.gtk4.internal.GtkFilterChange
-import sn.gnome.gtk4.internal.GtkFilterMatch
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -51,9 +51,9 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
     * should not be called from other functions.
     */
   def changed(
-      change: GtkFilterChange /* Some(GtkFilterChange) */
+      change: FilterChange /* Some(GtkFilterChange) */
   ): Unit /* None */ =
-    gtk_filter_changed(this.raw.asInstanceOf[Ptr[GtkFilter]], change)
+    gtk_filter_changed(this.raw.asInstanceOf[Ptr[GtkFilter]], change.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -67,8 +67,8 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
     * This function is meant purely for optimization purposes, filters can
     * choose to omit implementing it, but `GtkFilterListModel` uses it.
     */
-  def getStrictness(): GtkFilterMatch /* None */ = gtk_filter_get_strictness(
-    this.raw.asInstanceOf[Ptr[GtkFilter]]
+  def getStrictness(): FilterMatch /* None */ = FilterMatch.fromRaw(
+    gtk_filter_get_strictness(this.raw.asInstanceOf[Ptr[GtkFilter]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

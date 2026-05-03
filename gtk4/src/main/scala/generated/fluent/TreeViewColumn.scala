@@ -13,13 +13,13 @@ import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.CellArea
 import sn.gnome.gtk4.fluent.CellLayout
 import sn.gnome.gtk4.fluent.CellRenderer
+import sn.gnome.gtk4.fluent.SortType
 import sn.gnome.gtk4.fluent.TreeModel
+import sn.gnome.gtk4.fluent.TreeViewColumnSizing
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkSortType
 import sn.gnome.gtk4.internal.GtkTreeCellDataFunc
 import sn.gnome.gtk4.internal.GtkTreeIter
 import sn.gnome.gtk4.internal.GtkTreeViewColumn
-import sn.gnome.gtk4.internal.GtkTreeViewColumnSizing
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -241,9 +241,11 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     *
     * Returns the current type of @tree_column.
     */
-  def getSizing(): GtkTreeViewColumnSizing /* None */ =
-    gtk_tree_view_column_get_sizing(
-      this.raw.asInstanceOf[Ptr[GtkTreeViewColumn]]
+  def getSizing(): TreeViewColumnSizing /* None */ =
+    TreeViewColumnSizing.fromRaw(
+      gtk_tree_view_column_get_sizing(
+        this.raw.asInstanceOf[Ptr[GtkTreeViewColumn]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -271,10 +273,11 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     *
     * Gets the value set by gtk_tree_view_column_set_sort_order().
     */
-  def getSortOrder(): GtkSortType /* None */ =
+  def getSortOrder(): SortType /* None */ = SortType.fromRaw(
     gtk_tree_view_column_get_sort_order(
       this.raw.asInstanceOf[Ptr[GtkTreeViewColumn]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -543,10 +546,10 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * Sets the growth behavior of @tree_column to @type.
     */
   def setSizing(
-      `type`: GtkTreeViewColumnSizing /* Some(GtkTreeViewColumnSizing) */
+      `type`: TreeViewColumnSizing /* Some(GtkTreeViewColumnSizing) */
   ): Unit /* None */ = gtk_tree_view_column_set_sizing(
     this.raw.asInstanceOf[Ptr[GtkTreeViewColumn]],
-    `type`
+    `type`.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -589,12 +592,11 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * sort. Note that you must have the sort indicator enabled to see anything
     * when calling this function; see gtk_tree_view_column_set_sort_indicator().
     */
-  def setSortOrder(
-      order: GtkSortType /* Some(GtkSortType) */
-  ): Unit /* None */ = gtk_tree_view_column_set_sort_order(
-    this.raw.asInstanceOf[Ptr[GtkTreeViewColumn]],
-    order
-  )
+  def setSortOrder(order: SortType /* Some(GtkSortType) */ ): Unit /* None */ =
+    gtk_tree_view_column_set_sort_order(
+      this.raw.asInstanceOf[Ptr[GtkTreeViewColumn]],
+      order.raw
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

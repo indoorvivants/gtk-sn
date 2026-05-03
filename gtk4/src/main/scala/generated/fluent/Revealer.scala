@@ -11,9 +11,9 @@ import sn.gnome.glib.internal.guint
 import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.RevealerTransitionType
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkRevealer
-import sn.gnome.gtk4.internal.GtkRevealerTransitionType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -92,8 +92,10 @@ class Revealer(raw: Ptr[GtkRevealer])
     *
     * Gets the type of animation that will be used for transitions in @revealer.
     */
-  def getTransitionType(): GtkRevealerTransitionType /* None */ =
-    gtk_revealer_get_transition_type(this.raw.asInstanceOf[Ptr[GtkRevealer]])
+  def getTransitionType(): RevealerTransitionType /* None */ =
+    RevealerTransitionType.fromRaw(
+      gtk_revealer_get_transition_type(this.raw.asInstanceOf[Ptr[GtkRevealer]])
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -139,10 +141,10 @@ class Revealer(raw: Ptr[GtkRevealer])
     * Available types include various kinds of fades and slides.
     */
   def setTransitionType(
-      transition: GtkRevealerTransitionType /* Some(GtkRevealerTransitionType) */
+      transition: RevealerTransitionType /* Some(GtkRevealerTransitionType) */
   ): Unit /* None */ = gtk_revealer_set_transition_type(
     this.raw.asInstanceOf[Ptr[GtkRevealer]],
-    transition
+    transition.raw
   )
 
 end Revealer

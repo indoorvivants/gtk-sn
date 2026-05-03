@@ -6,8 +6,8 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.Event
+import sn.gnome.gdk4.fluent.KeyMatch
 import sn.gnome.gdk4.internal.GdkKeyEvent
-import sn.gnome.gdk4.internal.GdkKeyMatch
 import sn.gnome.gdk4.internal.GdkModifierType
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
@@ -92,10 +92,12 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
   def matches(
       keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       modifiers: GdkModifierType /* Some(GdkModifierType) */
-  ): GdkKeyMatch /* None */ = gdk_key_event_matches(
-    this.raw.asInstanceOf[Ptr[GdkEvent]],
-    guint(keyval),
-    modifiers
+  ): KeyMatch /* None */ = KeyMatch.fromRaw(
+    gdk_key_event_matches(
+      this.raw.asInstanceOf[Ptr[GdkEvent]],
+      guint(keyval),
+      modifiers
+    )
   )
 
 end KeyEvent

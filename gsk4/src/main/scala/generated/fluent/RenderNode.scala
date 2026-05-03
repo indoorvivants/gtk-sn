@@ -10,8 +10,8 @@ import sn.gnome.glib.internal.GBytes
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.gsk4.fluent.RenderNode
+import sn.gnome.gsk4.fluent.RenderNodeType
 import sn.gnome.gsk4.internal.GskRenderNode
-import sn.gnome.gsk4.internal.GskRenderNodeType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -64,8 +64,9 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     *
     * Returns the type of the @node.
     */
-  def getNodeType(): GskRenderNodeType /* None */ =
+  def getNodeType(): RenderNodeType /* None */ = RenderNodeType.fromRaw(
     gsk_render_node_get_node_type(this.raw.asInstanceOf[Ptr[GskRenderNode]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

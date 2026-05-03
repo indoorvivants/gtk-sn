@@ -14,9 +14,9 @@ import sn.gnome.gtk4.fluent.Adjustment
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Orientable
+import sn.gnome.gtk4.fluent.Orientation
+import sn.gnome.gtk4.fluent.PositionType
 import sn.gnome.gtk4.fluent.Range
-import sn.gnome.gtk4.internal.GtkOrientation
-import sn.gnome.gtk4.internal.GtkPositionType
 import sn.gnome.gtk4.internal.GtkScale
 import sn.gnome.gtk4.internal.GtkScaleFormatValueFunc
 import sn.gnome.pango.fluent.Layout
@@ -129,12 +129,12 @@ class Scale(raw: Ptr[GtkScale])
     */
   def addMark(
       value: Double /* Some(Double) */,
-      position: GtkPositionType /* Some(GtkPositionType) */,
+      position: PositionType /* Some(GtkPositionType) */,
       markup: Option[String | CString /* Some(CString) */ ]
   )(using Zone): Unit /* None */ = gtk_scale_add_mark(
     this.raw.asInstanceOf[Ptr[GtkScale]],
     value,
-    position,
+    position.raw,
     markup
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -202,8 +202,8 @@ class Scale(raw: Ptr[GtkScale])
     *
     * Gets the position in which the current value is displayed.
     */
-  def getValuePos(): GtkPositionType /* None */ = gtk_scale_get_value_pos(
-    this.raw.asInstanceOf[Ptr[GtkScale]]
+  def getValuePos(): PositionType /* None */ = PositionType.fromRaw(
+    gtk_scale_get_value_pos(this.raw.asInstanceOf[Ptr[GtkScale]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -294,9 +294,9 @@ class Scale(raw: Ptr[GtkScale])
     * Sets the position in which the current value is displayed.
     */
   def setValuePos(
-      pos: GtkPositionType /* Some(GtkPositionType) */
+      pos: PositionType /* Some(GtkPositionType) */
   ): Unit /* None */ =
-    gtk_scale_set_value_pos(this.raw.asInstanceOf[Ptr[GtkScale]], pos)
+    gtk_scale_set_value_pos(this.raw.asInstanceOf[Ptr[GtkScale]], pos.raw)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -314,11 +314,11 @@ object Scale:
     * Creates a new `GtkScale`.
     */
   def apply(
-      orientation: GtkOrientation /* Some(GtkOrientation) */,
+      orientation: Orientation /* Some(GtkOrientation) */,
       adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
   ): Scale = new Scale(
     gtk_scale_new(
-      orientation,
+      orientation.raw,
       adjustment
         .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
@@ -340,11 +340,11 @@ object Scale:
     *   needs, use [method@Gtk.Scale.set_digits] to correct it.
     */
   def withRange(
-      orientation: GtkOrientation /* Some(GtkOrientation) */,
+      orientation: Orientation /* Some(GtkOrientation) */,
       min: Double /* Some(Double) */,
       max: Double /* Some(Double) */,
       step: Double /* Some(Double) */
   ): Scale = new Scale(
-    gtk_scale_new_with_range(orientation, min, max, step).asInstanceOf
+    gtk_scale_new_with_range(orientation.raw, min, max, step).asInstanceOf
   )
 end Scale

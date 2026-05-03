@@ -10,10 +10,10 @@ import sn.gnome.gdk4.fluent.Event
 import sn.gnome.gdk4.internal.GdkModifierType
 import sn.gnome.glib.internal.guint32
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gtk4.fluent.PropagationLimit
+import sn.gnome.gtk4.fluent.PropagationPhase
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkEventController
-import sn.gnome.gtk4.internal.GtkPropagationLimit
-import sn.gnome.gtk4.internal.GtkPropagationPhase
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -98,18 +98,22 @@ class EventController(raw: Ptr[GtkEventController])
     *
     * Gets the propagation limit of the event controller.
     */
-  def getPropagationLimit(): GtkPropagationLimit /* None */ =
-    gtk_event_controller_get_propagation_limit(
-      this.raw.asInstanceOf[Ptr[GtkEventController]]
+  def getPropagationLimit(): PropagationLimit /* None */ =
+    PropagationLimit.fromRaw(
+      gtk_event_controller_get_propagation_limit(
+        this.raw.asInstanceOf[Ptr[GtkEventController]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the propagation phase at which @controller handles events.
     */
-  def getPropagationPhase(): GtkPropagationPhase /* None */ =
-    gtk_event_controller_get_propagation_phase(
-      this.raw.asInstanceOf[Ptr[GtkEventController]]
+  def getPropagationPhase(): PropagationPhase /* None */ =
+    PropagationPhase.fromRaw(
+      gtk_event_controller_get_propagation_phase(
+        this.raw.asInstanceOf[Ptr[GtkEventController]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -152,10 +156,10 @@ class EventController(raw: Ptr[GtkEventController])
     * popovers.
     */
   def setPropagationLimit(
-      limit: GtkPropagationLimit /* Some(GtkPropagationLimit) */
+      limit: PropagationLimit /* Some(GtkPropagationLimit) */
   ): Unit /* None */ = gtk_event_controller_set_propagation_limit(
     this.raw.asInstanceOf[Ptr[GtkEventController]],
-    limit
+    limit.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -166,10 +170,10 @@ class EventController(raw: Ptr[GtkEventController])
     * performed, but other additional gesture maintenance will.
     */
   def setPropagationPhase(
-      phase: GtkPropagationPhase /* Some(GtkPropagationPhase) */
+      phase: PropagationPhase /* Some(GtkPropagationPhase) */
   ): Unit /* None */ = gtk_event_controller_set_propagation_phase(
     this.raw.asInstanceOf[Ptr[GtkEventController]],
-    phase
+    phase.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

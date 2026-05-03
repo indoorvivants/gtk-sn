@@ -5,8 +5,8 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.gdk4.fluent.MemoryFormat
 import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gdk4.internal.GdkMemoryFormat
 import sn.gnome.gdk4.internal.GdkTexture
 import sn.gnome.gdkpixbuf.fluent.Pixbuf
 import sn.gnome.gio.fluent.File
@@ -92,8 +92,8 @@ class Texture(raw: Ptr[GdkTexture])
     * texture and is useful to determine the best format for downloading the
     * texture.
     */
-  def getFormat(): GdkMemoryFormat /* None */ = gdk_texture_get_format(
-    this.raw.asInstanceOf[Ptr[GdkTexture]]
+  def getFormat(): MemoryFormat /* None */ = MemoryFormat.fromRaw(
+    gdk_texture_get_format(this.raw.asInstanceOf[Ptr[GdkTexture]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

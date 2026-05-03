@@ -4,8 +4,8 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gsk4.fluent.BlendMode
 import sn.gnome.gsk4.fluent.RenderNode
-import sn.gnome.gsk4.internal.GskBlendMode
 import sn.gnome.gsk4.internal.GskBlendNode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -20,8 +20,8 @@ class BlendNode(raw: Ptr[GskBlendNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the blend mode used by @node.
     */
-  def getBlendMode(): GskBlendMode /* None */ = gsk_blend_node_get_blend_mode(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
+  def getBlendMode(): BlendMode /* None */ = BlendMode.fromRaw(
+    gsk_blend_node_get_blend_mode(this.raw.asInstanceOf[Ptr[GskRenderNode]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -55,12 +55,12 @@ object BlendNode:
   def apply(
       bottom: RenderNode /* Some(Ptr[GskRenderNode]) */,
       top: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      blend_mode: GskBlendMode /* Some(GskBlendMode) */
+      blend_mode: BlendMode /* Some(GskBlendMode) */
   ): BlendNode = new BlendNode(
     gsk_blend_node_new(
       bottom.getUnsafeRawPointer().asInstanceOf,
       top.getUnsafeRawPointer().asInstanceOf,
-      blend_mode
+      blend_mode.raw
     ).asInstanceOf
   )
 end BlendNode

@@ -12,8 +12,8 @@ import sn.gnome.glib.internal.gint
 import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.ContentFit
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkContentFit
 import sn.gnome.gtk4.internal.GtkPicture
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -99,8 +99,8 @@ class Picture(raw: Ptr[GtkPicture])
     *
     * See [enum@Gtk.ContentFit] for details.
     */
-  def getContentFit(): GtkContentFit /* None */ = gtk_picture_get_content_fit(
-    this.raw.asInstanceOf[Ptr[GtkPicture]]
+  def getContentFit(): ContentFit /* None */ = ContentFit.fromRaw(
+    gtk_picture_get_content_fit(this.raw.asInstanceOf[Ptr[GtkPicture]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -179,10 +179,10 @@ class Picture(raw: Ptr[GtkPicture])
     * See [enum@Gtk.ContentFit] for details.
     */
   def setContentFit(
-      content_fit: GtkContentFit /* Some(GtkContentFit) */
+      content_fit: ContentFit /* Some(GtkContentFit) */
   ): Unit /* None */ = gtk_picture_set_content_fit(
     this.raw.asInstanceOf[Ptr[GtkPicture]],
-    content_fit
+    content_fit.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

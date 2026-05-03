@@ -348,6 +348,30 @@ def renderType(
                 Massage.New(name.short + ".Abstract")
               )
 
+          case name @ GlobalName(
+                _,
+                _,
+                short,
+                effects,
+                NameType.Enumeration(typeValue)
+              ) =>
+            val enumName =
+              if name.fluent == "Unit" then "GTKUnit" else name.fluent
+
+            val nameEffects = name.effects.map:
+              case Effect.RequiresImport(ns, "Unit") =>
+                Effect.RequiresImport(ns, "GTKUnit")
+              case other => other
+
+            val base = TypeMapping(enumName)
+              .withMassageIntoUnsafe(Massage.Field("raw"))
+              .withMassageFromUnsafe(Massage.Apply(s"$enumName.fromRaw"))
+              .withEffect(nameEffects*)
+
+            if !expectedRawType.exists(_.endsWith(typeValue)) then
+              base.withMassageIntoUnsafe(Massage.Field("value"))
+            else base
+
           case name if name.tpe == NameType.Class =>
             val base =
               TypeMapping(name.short)
@@ -368,10 +392,6 @@ def renderType(
                   .withMassageIntoUnsafe(Massage.Apply("gpointer"))
                   .withEffect(importGlib("gpointer"))
               case _ => base
-          case name if name.short == "GtkResponseType" =>
-            TypeMapping(name.short)
-              .withEffect(name.effects*)
-              .withMassageIntoUnsafe(Massage.Field("value"))
           case other =>
             TypeMapping(other.short).withEffect(other.effects*)
         .orElse(getCType(tpe.name, typeValue))

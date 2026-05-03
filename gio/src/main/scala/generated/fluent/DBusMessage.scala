@@ -6,12 +6,12 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.DBusMessage
+import sn.gnome.gio.fluent.DBusMessageByteOrder
+import sn.gnome.gio.fluent.DBusMessageHeaderField
+import sn.gnome.gio.fluent.DBusMessageType
 import sn.gnome.gio.fluent.UnixFDList
 import sn.gnome.gio.internal.GDBusMessage
-import sn.gnome.gio.internal.GDBusMessageByteOrder
 import sn.gnome.gio.internal.GDBusMessageFlags
-import sn.gnome.gio.internal.GDBusMessageHeaderField
-import sn.gnome.gio.internal.GDBusMessageType
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.GVariant
 import sn.gnome.glib.internal.gboolean
@@ -70,8 +70,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     *
     * Gets the byte order of @message.
     */
-  def getByteOrder(): GDBusMessageByteOrder /* None */ =
-    g_dbus_message_get_byte_order(this.raw.asInstanceOf[Ptr[GDBusMessage]])
+  def getByteOrder(): DBusMessageByteOrder /* None */ =
+    DBusMessageByteOrder.fromRaw(
+      g_dbus_message_get_byte_order(this.raw.asInstanceOf[Ptr[GDBusMessage]])
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -111,10 +113,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * matches what is expected.
     */
   def getHeader(
-      header_field: GDBusMessageHeaderField /* Some(GDBusMessageHeaderField) */
+      header_field: DBusMessageHeaderField /* Some(GDBusMessageHeaderField) */
   ): Ptr[GVariant] /* None */ = g_dbus_message_get_header(
     this.raw.asInstanceOf[Ptr[GDBusMessage]],
-    header_field
+    header_field.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -162,8 +164,9 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     *
     * Gets the type of @message.
     */
-  def getMessageType(): GDBusMessageType /* None */ =
+  def getMessageType(): DBusMessageType /* None */ = DBusMessageType.fromRaw(
     g_dbus_message_get_message_type(this.raw.asInstanceOf[Ptr[GDBusMessage]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -379,10 +382,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * Sets the byte order of @message.
     */
   def setByteOrder(
-      byte_order: GDBusMessageByteOrder /* Some(GDBusMessageByteOrder) */
+      byte_order: DBusMessageByteOrder /* Some(GDBusMessageByteOrder) */
   ): Unit /* None */ = g_dbus_message_set_byte_order(
     this.raw.asInstanceOf[Ptr[GDBusMessage]],
-    byte_order
+    byte_order.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -432,13 +435,13 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * If @value is floating, @message assumes ownership of @value.
     */
   def setHeader(
-      header_field: GDBusMessageHeaderField /* Some(GDBusMessageHeaderField) */,
+      header_field: DBusMessageHeaderField /* Some(GDBusMessageHeaderField) */,
       value: Option[
         Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
       ]
   ): Unit /* None */ = g_dbus_message_set_header(
     this.raw.asInstanceOf[Ptr[GDBusMessage]],
-    header_field,
+    header_field.raw,
     value
       .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
@@ -485,10 +488,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * Sets @message to be of @type.
     */
   def setMessageType(
-      `type`: GDBusMessageType /* Some(GDBusMessageType) */
+      `type`: DBusMessageType /* Some(GDBusMessageType) */
   ): Unit /* None */ = g_dbus_message_set_message_type(
     this.raw.asInstanceOf[Ptr[GDBusMessage]],
-    `type`
+    `type`.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

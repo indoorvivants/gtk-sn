@@ -10,9 +10,9 @@ import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Adjustment
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.CornerType
+import sn.gnome.gtk4.fluent.PolicyType
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkCornerType
-import sn.gnome.gtk4.internal.GtkPolicyType
 import sn.gnome.gtk4.internal.GtkScrolledWindow
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -196,10 +196,11 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     *
     * Gets the placement of the contents with respect to the scrollbars.
     */
-  def getPlacement(): GtkCornerType /* None */ =
+  def getPlacement(): CornerType /* None */ = CornerType.fromRaw(
     gtk_scrolled_window_get_placement(
       this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -396,10 +397,10 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * [method@Gtk.ScrolledWindow.unset_placement].
     */
   def setPlacement(
-      window_placement: GtkCornerType /* Some(GtkCornerType) */
+      window_placement: CornerType /* Some(GtkCornerType) */
   ): Unit /* None */ = gtk_scrolled_window_set_placement(
     this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
-    window_placement
+    window_placement.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -414,12 +415,12 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * the display is larger than the page size).
     */
   def setPolicy(
-      hscrollbar_policy: GtkPolicyType /* Some(GtkPolicyType) */,
-      vscrollbar_policy: GtkPolicyType /* Some(GtkPolicyType) */
+      hscrollbar_policy: PolicyType /* Some(GtkPolicyType) */,
+      vscrollbar_policy: PolicyType /* Some(GtkPolicyType) */
   ): Unit /* None */ = gtk_scrolled_window_set_policy(
     this.raw.asInstanceOf[Ptr[GtkScrolledWindow]],
-    hscrollbar_policy,
-    vscrollbar_policy
+    hscrollbar_policy.raw,
+    vscrollbar_policy.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

@@ -14,12 +14,12 @@ import sn.gnome.gio.fluent.Initable
 import sn.gnome.gio.fluent.Socket
 import sn.gnome.gio.fluent.SocketAddress
 import sn.gnome.gio.fluent.SocketConnection
+import sn.gnome.gio.fluent.SocketFamily
+import sn.gnome.gio.fluent.SocketProtocol
+import sn.gnome.gio.fluent.SocketType
 import sn.gnome.gio.internal.GInputMessage
 import sn.gnome.gio.internal.GOutputMessage
 import sn.gnome.gio.internal.GSocket
-import sn.gnome.gio.internal.GSocketFamily
-import sn.gnome.gio.internal.GSocketProtocol
-import sn.gnome.gio.internal.GSocketType
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.GIOCondition
 import sn.gnome.glib.internal.GSource
@@ -435,8 +435,8 @@ class Socket(raw: Ptr[GSocket])
     *
     * Gets the socket family of the socket.
     */
-  def getFamily(): GSocketFamily /* None */ = g_socket_get_family(
-    this.raw.asInstanceOf[Ptr[GSocket]]
+  def getFamily(): SocketFamily /* None */ = SocketFamily.fromRaw(
+    g_socket_get_family(this.raw.asInstanceOf[Ptr[GSocket]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -528,8 +528,8 @@ class Socket(raw: Ptr[GSocket])
     * Gets the socket protocol id the socket was created with. In case the
     * protocol is unknown, -1 is returned.
     */
-  def getProtocol(): GSocketProtocol /* None */ = g_socket_get_protocol(
-    this.raw.asInstanceOf[Ptr[GSocket]]
+  def getProtocol(): SocketProtocol /* None */ = SocketProtocol.fromRaw(
+    g_socket_get_protocol(this.raw.asInstanceOf[Ptr[GSocket]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -551,8 +551,8 @@ class Socket(raw: Ptr[GSocket])
     *
     * Gets the socket type of the socket.
     */
-  def getSocketType(): GSocketType /* None */ = g_socket_get_socket_type(
-    this.raw.asInstanceOf[Ptr[GSocket]]
+  def getSocketType(): SocketType /* None */ = SocketType.fromRaw(
+    g_socket_get_socket_type(this.raw.asInstanceOf[Ptr[GSocket]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1308,11 +1308,18 @@ object Socket:
     * used for it.
     */
   def apply(
-      family: GSocketFamily /* Some(GSocketFamily) */,
-      `type`: GSocketType /* Some(GSocketType) */,
-      protocol: GSocketProtocol /* Some(GSocketProtocol) */
+      family: SocketFamily /* Some(GSocketFamily) */,
+      `type`: SocketType /* Some(GSocketType) */,
+      protocol: SocketProtocol /* Some(GSocketProtocol) */
   ): GResult[Socket] = GResult.wrap(__errorPtr =>
-    new Socket(g_socket_new(family, `type`, protocol, __errorPtr).asInstanceOf)
+    new Socket(
+      g_socket_new(
+        family.raw,
+        `type`.raw,
+        protocol.raw,
+        __errorPtr
+      ).asInstanceOf
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

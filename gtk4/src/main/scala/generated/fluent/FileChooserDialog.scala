@@ -9,11 +9,11 @@ import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Dialog
 import sn.gnome.gtk4.fluent.FileChooser
+import sn.gnome.gtk4.fluent.FileChooserAction
 import sn.gnome.gtk4.fluent.Native
 import sn.gnome.gtk4.fluent.Root
 import sn.gnome.gtk4.fluent.ShortcutManager
 import sn.gnome.gtk4.fluent.Window
-import sn.gnome.gtk4.internal.GtkFileChooserAction
 import sn.gnome.gtk4.internal.GtkFileChooserDialog
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -214,7 +214,7 @@ object FileChooserDialog:
   inline def apply(
       title: Option[String | CString /* Some(CString) */ ],
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      action: GtkFileChooserAction /* Some(GtkFileChooserAction) */,
+      action: FileChooserAction /* Some(GtkFileChooserAction) */,
       first_button_text: Option[String | CString /* Some(CString) */ ],
       args: Any*
   )(using Zone): FileChooserDialog = new FileChooserDialog(
@@ -225,7 +225,7 @@ object FileChooserDialog:
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-      action,
+      action.raw,
       first_button_text
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),

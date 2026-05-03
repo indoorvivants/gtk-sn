@@ -6,9 +6,9 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
+import sn.gnome.gtk4.fluent.Collation
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.fluent.Sorter
-import sn.gnome.gtk4.internal.GtkCollation
 import sn.gnome.gtk4.internal.GtkStringSorter
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -30,8 +30,8 @@ class StringSorter(raw: Ptr[GtkStringSorter]) extends Sorter(raw.asInstanceOf):
     *
     * Gets which collation method the sorter uses.
     */
-  def getCollation(): GtkCollation /* None */ = gtk_string_sorter_get_collation(
-    this.raw.asInstanceOf[Ptr[GtkStringSorter]]
+  def getCollation(): Collation /* None */ = Collation.fromRaw(
+    gtk_string_sorter_get_collation(this.raw.asInstanceOf[Ptr[GtkStringSorter]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -57,10 +57,10 @@ class StringSorter(raw: Ptr[GtkStringSorter]) extends Sorter(raw.asInstanceOf):
     * Sets the collation method to use for sorting.
     */
   def setCollation(
-      collation: GtkCollation /* Some(GtkCollation) */
+      collation: Collation /* Some(GtkCollation) */
   ): Unit /* None */ = gtk_string_sorter_set_collation(
     this.raw.asInstanceOf[Ptr[GtkStringSorter]],
-    collation
+    collation.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

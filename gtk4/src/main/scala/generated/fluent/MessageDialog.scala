@@ -6,17 +6,17 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
+import sn.gnome.gtk4.fluent.ButtonsType
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Dialog
+import sn.gnome.gtk4.fluent.MessageType
 import sn.gnome.gtk4.fluent.Native
 import sn.gnome.gtk4.fluent.Root
 import sn.gnome.gtk4.fluent.ShortcutManager
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.fluent.Window
-import sn.gnome.gtk4.internal.GtkButtonsType
 import sn.gnome.gtk4.internal.GtkDialogFlags
 import sn.gnome.gtk4.internal.GtkMessageDialog
-import sn.gnome.gtk4.internal.GtkMessageType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -180,8 +180,8 @@ object MessageDialog:
   inline def apply(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
       flags: GtkDialogFlags /* Some(GtkDialogFlags) */,
-      `type`: GtkMessageType /* Some(GtkMessageType) */,
-      buttons: GtkButtonsType /* Some(GtkButtonsType) */,
+      `type`: MessageType /* Some(GtkMessageType) */,
+      buttons: ButtonsType /* Some(GtkButtonsType) */,
       message_format: Option[String | CString /* Some(CString) */ ],
       args: Any*
   )(using Zone): MessageDialog = new MessageDialog(
@@ -190,8 +190,8 @@ object MessageDialog:
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       flags,
-      `type`,
-      buttons,
+      `type`.raw,
+      buttons.raw,
       message_format
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),
@@ -231,8 +231,8 @@ object MessageDialog:
   inline def withMarkup(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
       flags: GtkDialogFlags /* Some(GtkDialogFlags) */,
-      `type`: GtkMessageType /* Some(GtkMessageType) */,
-      buttons: GtkButtonsType /* Some(GtkButtonsType) */,
+      `type`: MessageType /* Some(GtkMessageType) */,
+      buttons: ButtonsType /* Some(GtkButtonsType) */,
       message_format: Option[String | CString /* Some(CString) */ ],
       args: Any*
   )(using Zone): MessageDialog = new MessageDialog(
@@ -241,8 +241,8 @@ object MessageDialog:
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       flags,
-      `type`,
-      buttons,
+      `type`.raw,
+      buttons.raw,
       message_format
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),

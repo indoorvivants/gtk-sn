@@ -13,9 +13,9 @@ import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.SelectionModel
 import sn.gnome.gtk4.fluent.StackPage
+import sn.gnome.gtk4.fluent.StackTransitionType
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkStack
-import sn.gnome.gtk4.internal.GtkStackTransitionType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -208,8 +208,10 @@ class Stack(raw: Ptr[GtkStack])
     * Gets the type of animation that will be used for transitions between pages
     * in @stack.
     */
-  def getTransitionType(): GtkStackTransitionType /* None */ =
-    gtk_stack_get_transition_type(this.raw.asInstanceOf[Ptr[GtkStack]])
+  def getTransitionType(): StackTransitionType /* None */ =
+    StackTransitionType.fromRaw(
+      gtk_stack_get_transition_type(this.raw.asInstanceOf[Ptr[GtkStack]])
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -307,10 +309,10 @@ class Stack(raw: Ptr[GtkStack])
     * current.
     */
   def setTransitionType(
-      transition: GtkStackTransitionType /* Some(GtkStackTransitionType) */
+      transition: StackTransitionType /* Some(GtkStackTransitionType) */
   ): Unit /* None */ = gtk_stack_set_transition_type(
     this.raw.asInstanceOf[Ptr[GtkStack]],
-    transition
+    transition.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -354,11 +356,11 @@ class Stack(raw: Ptr[GtkStack])
     */
   def setVisibleChildFull(
       name: String | CString /* Some(CString) */,
-      transition: GtkStackTransitionType /* Some(GtkStackTransitionType) */
+      transition: StackTransitionType /* Some(GtkStackTransitionType) */
   )(using Zone): Unit /* None */ = gtk_stack_set_visible_child_full(
     this.raw.asInstanceOf[Ptr[GtkStack]],
     __sn_extract_string(name),
-    transition
+    transition.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

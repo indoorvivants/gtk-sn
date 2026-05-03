@@ -6,10 +6,10 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.internal.GtkOrdering
+import sn.gnome.gtk4.fluent.Ordering
+import sn.gnome.gtk4.fluent.SorterChange
+import sn.gnome.gtk4.fluent.SorterOrder
 import sn.gnome.gtk4.internal.GtkSorter
-import sn.gnome.gtk4.internal.GtkSorterChange
-import sn.gnome.gtk4.internal.GtkSorterOrder
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -52,9 +52,9 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
     * should not be called from other functions.
     */
   def changed(
-      change: GtkSorterChange /* Some(GtkSorterChange) */
+      change: SorterChange /* Some(GtkSorterChange) */
   ): Unit /* None */ =
-    gtk_sorter_changed(this.raw.asInstanceOf[Ptr[GtkSorter]], change)
+    gtk_sorter_changed(this.raw.asInstanceOf[Ptr[GtkSorter]], change.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -73,10 +73,14 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
   def compare(
       item1: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       item2: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-  ): GtkOrdering /* None */ = gtk_sorter_compare(
-    this.raw.asInstanceOf[Ptr[GtkSorter]],
-    gpointer(item1.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
-    gpointer(item2.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
+  ): Ordering /* None */ = Ordering.fromRaw(
+    gtk_sorter_compare(
+      this.raw.asInstanceOf[Ptr[GtkSorter]],
+      gpointer(
+        item1.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
+      ),
+      gpointer(item2.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -87,8 +91,8 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
     *
     * This function is intended to allow optimizations.
     */
-  def getOrder(): GtkSorterOrder /* None */ = gtk_sorter_get_order(
-    this.raw.asInstanceOf[Ptr[GtkSorter]]
+  def getOrder(): SorterOrder /* None */ = SorterOrder.fromRaw(
+    gtk_sorter_get_order(this.raw.asInstanceOf[Ptr[GtkSorter]])
   )
 
 end Sorter

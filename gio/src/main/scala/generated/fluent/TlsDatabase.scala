@@ -9,11 +9,11 @@ import sn.gnome.gio.fluent.AsyncResult
 import sn.gnome.gio.fluent.Cancellable
 import sn.gnome.gio.fluent.SocketConnectable
 import sn.gnome.gio.fluent.TlsCertificate
+import sn.gnome.gio.fluent.TlsDatabaseLookupFlags
 import sn.gnome.gio.fluent.TlsInteraction
 import sn.gnome.gio.internal.GAsyncReadyCallback
 import sn.gnome.gio.internal.GTlsCertificateFlags
 import sn.gnome.gio.internal.GTlsDatabase
-import sn.gnome.gio.internal.GTlsDatabaseLookupFlags
 import sn.gnome.gio.internal.GTlsDatabaseVerifyFlags
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.GList
@@ -78,7 +78,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
       handle: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ],
-      flags: GTlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
+      flags: TlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   )(using Zone): GResult[TlsCertificate /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -91,7 +91,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
               o.getUnsafeRawPointer().asInstanceOf
             )
             .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]]),
-          flags,
+          flags.raw,
           cancellable
             .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
             .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -109,7 +109,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
       handle: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ],
-      flags: GTlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
+      flags: TlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
       callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
       user_data: Option[
@@ -122,7 +122,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
       interaction
         .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]]),
-      flags,
+      flags.raw,
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -181,7 +181,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
   def lookupCertificateIssuer(
       certificate: TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
       interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ],
-      flags: GTlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
+      flags: TlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[TlsCertificate /* None */ ] = GResult.wrap(__errorPtr =>
     new TlsCertificate(
@@ -191,7 +191,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
         interaction
           .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
           .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]]),
-        flags,
+        flags.raw,
         cancellable
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
           .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -208,7 +208,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
   def lookupCertificateIssuerAsync(
       certificate: TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
       interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ],
-      flags: GTlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
+      flags: TlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
       callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
       user_data: Option[
@@ -220,7 +220,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     interaction
       .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]]),
-    flags,
+    flags.raw,
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -262,7 +262,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
         guint8
       ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GByteArray]) */,
       interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ],
-      flags: GTlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
+      flags: TlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
     g_tls_database_lookup_certificates_issued_by(
@@ -271,7 +271,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
       interaction
         .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]]),
-      flags,
+      flags.raw,
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -293,7 +293,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
         guint8
       ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GByteArray]) */,
       interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ],
-      flags: GTlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
+      flags: TlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
       callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
       user_data: Option[
@@ -305,7 +305,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     interaction
       .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]]),
-    flags,
+    flags.raw,
     cancellable
       .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),

@@ -1,6 +1,6 @@
 package sn.gnome.gtk4.internal
 
-// This file was generated using sn-bindgen 0.4.4: https://sn-bindgen.indoorvivants.com/
+// This file was generated using sn-bindgen 0.4.4+1-3da9c949-SNAPSHOT: https://sn-bindgen.indoorvivants.com/
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
@@ -12,7 +12,5 @@ import _root_.scala.scalanative.*
 */
 type GtkAllocation = _root_.sn.gnome.gdk4.internal.GdkRectangle
 object GtkAllocation:
-  given _tag: Tag[GtkAllocation] = _root_.sn.gnome.gdk4.internal.GdkRectangle._tag
   inline def apply(inline o: _root_.sn.gnome.gdk4.internal.GdkRectangle): GtkAllocation = o
-  extension (v: GtkAllocation)
-    inline def value: _root_.sn.gnome.gdk4.internal.GdkRectangle = v
+  export _root_.sn.gnome.gdk4.internal.GdkRectangle.{apply => _, *, given}

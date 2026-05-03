@@ -11,10 +11,10 @@ import sn.gnome.gtk4.fluent.Accessible
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Native
+import sn.gnome.gtk4.fluent.PositionType
 import sn.gnome.gtk4.fluent.ShortcutManager
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkPopover
-import sn.gnome.gtk4.internal.GtkPositionType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -174,8 +174,8 @@ class Popover(raw: Ptr[GtkPopover])
     *
     * Returns the preferred position of @popover.
     */
-  def getPosition(): GtkPositionType /* None */ = gtk_popover_get_position(
-    this.raw.asInstanceOf[Ptr[GtkPopover]]
+  def getPosition(): PositionType /* None */ = PositionType.fromRaw(
+    gtk_popover_get_position(this.raw.asInstanceOf[Ptr[GtkPopover]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -342,9 +342,11 @@ class Popover(raw: Ptr[GtkPopover])
     * appear on the opposite side.
     */
   def setPosition(
-      position: GtkPositionType /* Some(GtkPositionType) */
-  ): Unit /* None */ =
-    gtk_popover_set_position(this.raw.asInstanceOf[Ptr[GtkPopover]], position)
+      position: PositionType /* Some(GtkPositionType) */
+  ): Unit /* None */ = gtk_popover_set_position(
+    this.raw.asInstanceOf[Ptr[GtkPopover]],
+    position.raw
+  )
 
 end Popover
 

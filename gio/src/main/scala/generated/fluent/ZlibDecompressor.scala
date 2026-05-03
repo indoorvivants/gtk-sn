@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.Converter
 import sn.gnome.gio.fluent.FileInfo
-import sn.gnome.gio.internal.GZlibCompressorFormat
+import sn.gnome.gio.fluent.ZlibCompressorFormat
 import sn.gnome.gio.internal.GZlibDecompressor
 import sn.gnome.gobject.fluent.Object
 
@@ -43,8 +43,8 @@ object ZlibDecompressor:
     * Creates a new #GZlibDecompressor.
     */
   def apply(
-      format: GZlibCompressorFormat /* Some(GZlibCompressorFormat) */
+      format: ZlibCompressorFormat /* Some(GZlibCompressorFormat) */
   ): ZlibDecompressor = new ZlibDecompressor(
-    g_zlib_decompressor_new(format).asInstanceOf
+    g_zlib_decompressor_new(format.raw).asInstanceOf
   )
 end ZlibDecompressor

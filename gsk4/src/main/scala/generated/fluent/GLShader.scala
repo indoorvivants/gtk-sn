@@ -16,9 +16,9 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.graphene.internal.graphene_vec2_t
 import sn.gnome.graphene.internal.graphene_vec3_t
 import sn.gnome.graphene.internal.graphene_vec4_t
+import sn.gnome.gsk4.fluent.GLUniformType
 import sn.gnome.gsk4.fluent.Renderer
 import sn.gnome.gsk4.internal.GskGLShader
-import sn.gnome.gsk4.internal.GskGLUniformType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -398,8 +398,13 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * Get the type of the declared uniform for this shader at index @idx.
     */
-  def getUniformType(idx: Int /* Some(CInt) */ ): GskGLUniformType /* None */ =
-    gsk_gl_shader_get_uniform_type(this.raw.asInstanceOf[Ptr[GskGLShader]], idx)
+  def getUniformType(idx: Int /* Some(CInt) */ ): GLUniformType /* None */ =
+    GLUniformType.fromRaw(
+      gsk_gl_shader_get_uniform_type(
+        this.raw.asInstanceOf[Ptr[GskGLShader]],
+        idx
+      )
+    )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

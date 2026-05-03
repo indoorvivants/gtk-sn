@@ -8,8 +8,8 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.InetAddress
 import sn.gnome.gio.fluent.InetAddressMask
 import sn.gnome.gio.fluent.Initable
+import sn.gnome.gio.fluent.SocketFamily
 import sn.gnome.gio.internal.GInetAddressMask
-import sn.gnome.gio.internal.GSocketFamily
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gchar
@@ -55,8 +55,8 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     *
     * Gets the #GSocketFamily of @mask's address
     */
-  def getFamily(): GSocketFamily /* None */ = g_inet_address_mask_get_family(
-    this.raw.asInstanceOf[Ptr[GInetAddressMask]]
+  def getFamily(): SocketFamily /* None */ = SocketFamily.fromRaw(
+    g_inet_address_mask_get_family(this.raw.asInstanceOf[Ptr[GInetAddressMask]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

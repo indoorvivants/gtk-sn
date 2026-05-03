@@ -16,9 +16,9 @@ import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Editable
 import sn.gnome.gtk4.fluent.EntryBuffer
+import sn.gnome.gtk4.fluent.InputPurpose
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkInputHints
-import sn.gnome.gtk4.internal.GtkInputPurpose
 import sn.gnome.gtk4.internal.GtkText
 import sn.gnome.pango.internal.PangoAttrList
 import sn.gnome.pango.internal.PangoTabArray
@@ -174,8 +174,9 @@ class Text(raw: Ptr[GtkText])
     *
     * Gets the input purpose of the `GtkText`.
     */
-  def getInputPurpose(): GtkInputPurpose /* None */ =
+  def getInputPurpose(): InputPurpose /* None */ = InputPurpose.fromRaw(
     gtk_text_get_input_purpose(this.raw.asInstanceOf[Ptr[GtkText]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -377,9 +378,9 @@ class Text(raw: Ptr[GtkText])
     * their behaviour.
     */
   def setInputPurpose(
-      purpose: GtkInputPurpose /* Some(GtkInputPurpose) */
+      purpose: InputPurpose /* Some(GtkInputPurpose) */
   ): Unit /* None */ =
-    gtk_text_set_input_purpose(this.raw.asInstanceOf[Ptr[GtkText]], purpose)
+    gtk_text_set_input_purpose(this.raw.asInstanceOf[Ptr[GtkText]], purpose.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -6,8 +6,8 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.SocketConnectable
+import sn.gnome.gio.fluent.SocketFamily
 import sn.gnome.gio.internal.GSocketAddress
-import sn.gnome.gio.internal.GSocketFamily
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
@@ -32,8 +32,8 @@ class SocketAddress(raw: Ptr[GSocketAddress])
     *
     * Gets the socket family type of @address.
     */
-  def getFamily(): GSocketFamily /* None */ = g_socket_address_get_family(
-    this.raw.asInstanceOf[Ptr[GSocketAddress]]
+  def getFamily(): SocketFamily /* None */ = SocketFamily.fromRaw(
+    g_socket_address_get_family(this.raw.asInstanceOf[Ptr[GSocketAddress]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

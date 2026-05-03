@@ -7,13 +7,13 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
 import sn.gnome.gtk4.fluent.Accessible
+import sn.gnome.gtk4.fluent.BaselinePosition
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.fluent.ConstraintTarget
 import sn.gnome.gtk4.fluent.Orientable
+import sn.gnome.gtk4.fluent.Orientation
 import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkBaselinePosition
 import sn.gnome.gtk4.internal.GtkBox
-import sn.gnome.gtk4.internal.GtkOrientation
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -84,8 +84,10 @@ class Box(raw: Ptr[GtkBox])
     *
     * Gets the value set by gtk_box_set_baseline_position().
     */
-  def getBaselinePosition(): GtkBaselinePosition /* None */ =
-    gtk_box_get_baseline_position(this.raw.asInstanceOf[Ptr[GtkBox]])
+  def getBaselinePosition(): BaselinePosition /* None */ =
+    BaselinePosition.fromRaw(
+      gtk_box_get_baseline_position(this.raw.asInstanceOf[Ptr[GtkBox]])
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -181,9 +183,11 @@ class Box(raw: Ptr[GtkBox])
     *   available.
     */
   def setBaselinePosition(
-      position: GtkBaselinePosition /* Some(GtkBaselinePosition) */
-  ): Unit /* None */ =
-    gtk_box_set_baseline_position(this.raw.asInstanceOf[Ptr[GtkBox]], position)
+      position: BaselinePosition /* Some(GtkBaselinePosition) */
+  ): Unit /* None */ = gtk_box_set_baseline_position(
+    this.raw.asInstanceOf[Ptr[GtkBox]],
+    position.raw
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -211,7 +215,7 @@ object Box:
     * Creates a new `GtkBox`.
     */
   def apply(
-      orientation: GtkOrientation /* Some(GtkOrientation) */,
+      orientation: Orientation /* Some(GtkOrientation) */,
       spacing: Int /* Some(CInt) */
-  ): Box = new Box(gtk_box_new(orientation, spacing).asInstanceOf)
+  ): Box = new Box(gtk_box_new(orientation.raw, spacing).asInstanceOf)
 end Box

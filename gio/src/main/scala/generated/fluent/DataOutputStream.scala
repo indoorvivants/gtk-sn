@@ -7,11 +7,11 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.Cancellable
+import sn.gnome.gio.fluent.DataStreamByteOrder
 import sn.gnome.gio.fluent.FilterOutputStream
 import sn.gnome.gio.fluent.OutputStream
 import sn.gnome.gio.fluent.Seekable
 import sn.gnome.gio.internal.GDataOutputStream
-import sn.gnome.gio.internal.GDataStreamByteOrder
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gboolean
 import sn.gnome.glib.internal.gint
@@ -38,9 +38,11 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     *
     * Gets the byte order for the stream.
     */
-  def getByteOrder(): GDataStreamByteOrder /* None */ =
-    g_data_output_stream_get_byte_order(
-      this.raw.asInstanceOf[Ptr[GDataOutputStream]]
+  def getByteOrder(): DataStreamByteOrder /* None */ =
+    DataStreamByteOrder.fromRaw(
+      g_data_output_stream_get_byte_order(
+        this.raw.asInstanceOf[Ptr[GDataOutputStream]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -192,10 +194,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     * Sets the byte order of the data output stream to @order.
     */
   def setByteOrder(
-      order: GDataStreamByteOrder /* Some(GDataStreamByteOrder) */
+      order: DataStreamByteOrder /* Some(GDataStreamByteOrder) */
   ): Unit /* None */ = g_data_output_stream_set_byte_order(
     this.raw.asInstanceOf[Ptr[GDataOutputStream]],
-    order
+    order.raw
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

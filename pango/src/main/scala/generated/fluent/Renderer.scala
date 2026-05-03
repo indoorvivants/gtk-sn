@@ -9,13 +9,13 @@ import sn.gnome.glib.internal.guint16
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.pango.fluent.Font
 import sn.gnome.pango.fluent.Layout
+import sn.gnome.pango.fluent.RenderPart
 import sn.gnome.pango.internal.PangoColor
 import sn.gnome.pango.internal.PangoGlyph
 import sn.gnome.pango.internal.PangoGlyphItem
 import sn.gnome.pango.internal.PangoGlyphString
 import sn.gnome.pango.internal.PangoLayoutLine
 import sn.gnome.pango.internal.PangoMatrix
-import sn.gnome.pango.internal.PangoRenderPart
 import sn.gnome.pango.internal.PangoRenderer
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -198,14 +198,14 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * [method@Pango.Renderer.activate] to activate a renderer.
     */
   def drawRectangle(
-      part: PangoRenderPart /* Some(PangoRenderPart) */,
+      part: RenderPart /* Some(PangoRenderPart) */,
       x: Int /* Some(CInt) */,
       y: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
   ): Unit /* None */ = pango_renderer_draw_rectangle(
     this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    part,
+    part.raw,
     x,
     y,
     width,
@@ -218,7 +218,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * the given `PangoRenderer`; coordinates are in device space.
     */
   def drawTrapezoid(
-      part: PangoRenderPart /* Some(PangoRenderPart) */,
+      part: RenderPart /* Some(PangoRenderPart) */,
       `y1_`: Double /* Some(Double) */,
       x11: Double /* Some(Double) */,
       x21: Double /* Some(Double) */,
@@ -227,7 +227,7 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
       x22: Double /* Some(Double) */
   ): Unit /* None */ = pango_renderer_draw_trapezoid(
     this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    part,
+    part.raw,
     `y1_`,
     x11,
     x21,
@@ -241,10 +241,10 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * Gets the current alpha for the specified part.
     */
   def getAlpha(
-      part: PangoRenderPart /* Some(PangoRenderPart) */
+      part: RenderPart /* Some(PangoRenderPart) */
   ): UShort /* None */ = pango_renderer_get_alpha(
     this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    part
+    part.raw
   ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -252,9 +252,11 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * Gets the current rendering color for the specified part.
     */
   def getColor(
-      part: PangoRenderPart /* Some(PangoRenderPart) */
-  ): Ptr[PangoColor] /* None */ =
-    pango_renderer_get_color(this.raw.asInstanceOf[Ptr[PangoRenderer]], part)
+      part: RenderPart /* Some(PangoRenderPart) */
+  ): Ptr[PangoColor] /* None */ = pango_renderer_get_color(
+    this.raw.asInstanceOf[Ptr[PangoRenderer]],
+    part.raw
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -313,9 +315,11 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * (See [method@Pango.Renderer.set_color])
     */
   def partChanged(
-      part: PangoRenderPart /* Some(PangoRenderPart) */
-  ): Unit /* None */ =
-    pango_renderer_part_changed(this.raw.asInstanceOf[Ptr[PangoRenderer]], part)
+      part: RenderPart /* Some(PangoRenderPart) */
+  ): Unit /* None */ = pango_renderer_part_changed(
+    this.raw.asInstanceOf[Ptr[PangoRenderer]],
+    part.raw
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -325,11 +329,11 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * well.
     */
   def setAlpha(
-      part: PangoRenderPart /* Some(PangoRenderPart) */,
+      part: RenderPart /* Some(PangoRenderPart) */,
       alpha: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
   ): Unit /* None */ = pango_renderer_set_alpha(
     this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    part,
+    part.raw,
     guint16(alpha)
   )
 
@@ -340,11 +344,11 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * Also see [method@Pango.Renderer.set_alpha].
     */
   def setColor(
-      part: PangoRenderPart /* Some(PangoRenderPart) */,
+      part: RenderPart /* Some(PangoRenderPart) */,
       color: Option[Ptr[PangoColor] /* Some(Ptr[PangoColor]) */ ]
   ): Unit /* None */ = pango_renderer_set_color(
     this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    part,
+    part.raw,
     color
       .map[Ptr[PangoColor]](o => o)
       .getOrElse(null.asInstanceOf[Ptr[PangoColor]])
