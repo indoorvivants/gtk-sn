@@ -7,6 +7,7 @@ import sn.gnome.gobject.internal.*
 import sn.gnome.gobject.runtime.*
 
 import scalanative.unsafe.*
+import scalanative.unsigned.*
 
 class FluentGtk(using Runtime, Zone):
   def run() =
@@ -20,6 +21,16 @@ class FluentGtk(using Runtime, Zone):
       val window = ApplicationWindow(app)
       window.setTitle(Some("Hello from Scala Native"))
       window.setDefaultSize(640, 480)
+      val styleContext = window.getStyleContext()
+
+      styleContext.addClass("my-window")
+
+      val provider = CssProvider()
+      provider.loadFromString(".my-window { background-color: maroon; }")
+      styleContext.addProvider(
+        provider,
+        600.toUInt
+      )
 
       val box = Box(Orientation.VERTICAL, 10)
       box.setHalign(Align.CENTER)
