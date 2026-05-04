@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GParamFlags: _PARAM_READABLE: the parameter is readable _PARAM_WRITABLE: the parameter is writable _PARAM_READWRITE: alias for %G_PARAM_READABLE | %G_PARAM_WRITABLE _PARAM_CONSTRUCT: the parameter will be set upon object construction _PARAM_CONSTRUCT_ONLY: the parameter can only be set upon object construction _PARAM_LAX_VALIDATION: upon parameter conversion (see g_param_value_convert()) strict validation is not required _PARAM_STATIC_NAME: the string used as name when constructing the parameter is guaranteed to remain valid and unmodified for the lifetime of the parameter. Since 2.8 _PARAM_STATIC_NICK: the string used as nick when constructing the parameter is guaranteed to remain valid and unmmodified for the lifetime of the parameter. Since 2.8 _PARAM_STATIC_BLURB: the string used as blurb when constructing the parameter is guaranteed to remain valid and unmodified for the lifetime of the parameter. Since 2.8 _PARAM_EXPLICIT_NOTIFY: calls to g_object_set_property() for this property will not automatically result in a "notify" signal being emitted: the implementation must call g_object_notify() themselves in case the property actually changes. Since: 2.42. _PARAM_PRIVATE: internal _PARAM_DEPRECATED: the parameter is deprecated and will be removed in a future version. A warning will be generated if it is used while running with G_ENABLE_DIAGNOSTIC=1. Since 2.26
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparam.h
 */
 opaque type GParamFlags = CInt
 object GParamFlags extends _BindgenEnumCInt[GParamFlags]:

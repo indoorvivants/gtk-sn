@@ -7,6 +7,9 @@ import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gbindinggroup.h
+*/
 opaque type GBindingGroup = CStruct0
 
 object GBindingGroup:

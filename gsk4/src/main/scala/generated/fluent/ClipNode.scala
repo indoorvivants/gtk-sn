@@ -4,7 +4,6 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.graphene.internal.graphene_rect_t
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskClipNode
 
@@ -30,9 +29,10 @@ class ClipNode(raw: Ptr[GskClipNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the clip rectangle for @node.
     */
-  def getClip(): Ptr[graphene_rect_t] /* None */ = gsk_clip_node_get_clip(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def getClip__ = ???
 
 end ClipNode
 
@@ -41,15 +41,9 @@ object ClipNode:
     *
     * Creates a `GskRenderNode` that will clip the @child to the area given by @clip.
     */
-  def apply(
-      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      clip: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
-  ): ClipNode = new ClipNode(
-    gsk_clip_node_new(
-      child.getUnsafeRawPointer().asInstanceOf,
-      clip
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def `new`() = ???
+
 end ClipNode

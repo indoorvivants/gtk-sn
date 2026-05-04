@@ -4,8 +4,7 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Cursor
-import sn.gnome.gdk4.fluent.Texture
+import sn.gnome.gdk4.fluent.{Cursor, Texture}
 import sn.gnome.gdk4.internal.GdkCursor
 import sn.gnome.gobject.fluent.Object
 

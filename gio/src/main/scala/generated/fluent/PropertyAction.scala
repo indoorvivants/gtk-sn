@@ -6,8 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.Action
 import sn.gnome.gio.internal.GPropertyAction
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

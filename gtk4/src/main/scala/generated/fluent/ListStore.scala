@@ -4,18 +4,15 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gobject.internal.GType
-import sn.gnome.gobject.internal.GValue
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.TreeDragDest
-import sn.gnome.gtk4.fluent.TreeDragSource
-import sn.gnome.gtk4.fluent.TreeModel
-import sn.gnome.gtk4.fluent.TreeSortable
+import sn.gnome.gtk4.fluent.{
+  Buildable,
+  TreeDragDest,
+  TreeDragSource,
+  TreeModel,
+  TreeSortable
+}
 import sn.gnome.gtk4.internal.GtkListStore
-import sn.gnome.gtk4.internal.GtkTreeIter
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -183,7 +180,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method append contains an OUT parameter, which is not supported yet"
   )
-  private def append__ = ???
+  def append__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -204,7 +201,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method insert contains an OUT parameter, which is not supported yet"
   )
-  private def insert__ = ???
+  def insert__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -217,7 +214,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method insert_after contains an OUT parameter, which is not supported yet"
   )
-  private def insertAfter__ = ???
+  def insertAfter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -230,7 +227,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method insert_before contains an OUT parameter, which is not supported yet"
   )
-  private def insertBefore__ = ???
+  def insertBefore__ = ???
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -269,7 +266,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method insert_with_values contains an OUT parameter, which is not supported yet"
   )
-  private def insertWithValues__ = ???
+  def insertWithValues__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -281,7 +278,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method insert_with_valuesv contains an OUT parameter, which is not supported yet"
   )
-  private def insertWithValuesv__ = ???
+  def insertWithValuesv__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -289,12 +286,10 @@ class ListStore(raw: Ptr[GtkListStore])
     *
     * This function is slow. Only use it for debugging and/or testing purposes.
     */
-  def iterIsValid(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Boolean /* None */ = gtk_list_store_iter_is_valid(
-    this.raw.asInstanceOf[Ptr[GtkListStore]],
-    iter
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+  )
+  def iterIsValid__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -302,16 +297,10 @@ class ListStore(raw: Ptr[GtkListStore])
     * function only works with unsorted stores. If @position is %NULL, @iter
     * will be moved to the start of the list.
     */
-  def moveAfter(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      position: Option[Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */ ]
-  ): Unit /* None */ = gtk_list_store_move_after(
-    this.raw.asInstanceOf[Ptr[GtkListStore]],
-    iter,
-    position
-      .map[Ptr[GtkTreeIter]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeIter]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def moveAfter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -319,16 +308,10 @@ class ListStore(raw: Ptr[GtkListStore])
     * function only works with unsorted stores. If @position is %NULL, @iter
     * will be moved to the end of the list.
     */
-  def moveBefore(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      position: Option[Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */ ]
-  ): Unit /* None */ = gtk_list_store_move_before(
-    this.raw.asInstanceOf[Ptr[GtkListStore]],
-    iter,
-    position
-      .map[Ptr[GtkTreeIter]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeIter]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def moveBefore__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -340,7 +323,7 @@ class ListStore(raw: Ptr[GtkListStore])
   @annotation.compileTimeOnly(
     "Method prepend contains an OUT parameter, which is not supported yet"
   )
-  private def prepend__ = ???
+  def prepend__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -349,21 +332,20 @@ class ListStore(raw: Ptr[GtkListStore])
     *   is set to be the next valid row, or invalidated if it pointed to the
     *   last row in @list_store.
     */
-  def remove(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Boolean /* None */ =
-    gtk_list_store_remove(this.raw.asInstanceOf[Ptr[GtkListStore]], iter).value
-      .!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+  )
+  def remove__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Reorders @store to follow the order indicated by @new_order. Note that
     * this function only works with unsorted stores.
     */
-  def reorder(
-      new_order: Ptr[Int /* None */ ] /* Some(Ptr[CInt]) */
-  ): Unit /* None */ =
-    gtk_list_store_reorder(this.raw.asInstanceOf[Ptr[GtkListStore]], new_order)
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(int)))),ListMap(@type -> DataRecord(int*)))"
+  )
+  def reorder__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -376,11 +358,10 @@ class ListStore(raw: Ptr[GtkListStore])
     * The value will be referenced by the store if it is a %G_TYPE_OBJECT, and
     * it will be copied if it is a %G_TYPE_STRING or %G_TYPE_BOXED.
     */
-  inline def set(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      args: Any*
-  ): Unit /* None */ =
-    gtk_list_store_set(this.raw.asInstanceOf[Ptr[GtkListStore]], iter, args*)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+  )
+  def set__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -392,48 +373,30 @@ class ListStore(raw: Ptr[GtkListStore])
     * This function cannot be called after a row has been added, or a method on
     * the `GtkTreeModel` interface is called.
     */
-  def setColumnTypes(
-      n_columns: Int /* Some(CInt) */,
-      types: Ptr[
-        GType /* None */
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GType]) */
-  ): Unit /* None */ = gtk_list_store_set_column_types(
-    this.raw.asInstanceOf[Ptr[GtkListStore]],
-    n_columns,
-    types
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(GType*)))"
   )
+  def setColumnTypes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * See gtk_list_store_set(); this version takes a va_list for use by language
     * bindings.
     */
-  def setValist(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      var_args: CVarArgList /* Some(va_list) */
-  ): Unit /* None */ = gtk_list_store_set_valist(
-    this.raw.asInstanceOf[Ptr[GtkListStore]],
-    iter,
-    var_args
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def setValist__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the data in the cell specified by @iter and @column. The type of @value
     * must be convertible to the type of the column.
     */
-  def setValue(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      column: Int /* Some(CInt) */,
-      value: Ptr[
-        GValue
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  ): Unit /* None */ = gtk_list_store_set_value(
-    this.raw.asInstanceOf[Ptr[GtkListStore]],
-    iter,
-    column,
-    value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def setValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -442,31 +405,20 @@ class ListStore(raw: Ptr[GtkListStore])
     * for language-bindings and in case the number of columns to change is not
     * known until run-time.
     */
-  def setValuesv(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      columns: Ptr[Int /* None */ ] /* Some(Ptr[CInt]) */,
-      values: Ptr[
-        GValue /* None */
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
-      n_values: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_list_store_set_valuesv(
-    this.raw.asInstanceOf[Ptr[GtkListStore]],
-    iter,
-    columns,
-    values,
-    n_values
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def setValuesv__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Swaps @a and @b in @store. Note that this function only works with
     * unsorted stores.
     */
-  def swap(
-      a: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      b: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Unit /* None */ =
-    gtk_list_store_swap(this.raw.asInstanceOf[Ptr[GtkListStore]], a, b)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+  )
+  def swap__ = ???
 
 end ListStore
 
@@ -499,12 +451,9 @@ object ListStore:
     *
     * This function is meant to be used by language bindings.
     */
-  def newv(
-      n_columns: Int /* Some(CInt) */,
-      types: Ptr[
-        GType /* None */
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GType]) */
-  ): ListStore = new ListStore(
-    gtk_list_store_newv(n_columns, types).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(GType*)))"
   )
+  def newv() = ???
+
 end ListStore

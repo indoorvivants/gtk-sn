@@ -5,13 +5,9 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GList
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.RecentManager
-import sn.gnome.gtk4.internal.GtkRecentData
-import sn.gnome.gtk4.internal.GtkRecentInfo
 import sn.gnome.gtk4.internal.GtkRecentManager
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -95,14 +91,10 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * that is, should be displayed only by the applications that have registered
     * it.
     */
-  def addFull(
-      uri: String | CString /* Some(CString) */,
-      recent_data: Ptr[GtkRecentData] /* Some(Ptr[GtkRecentData]) */
-  )(using Zone): Boolean /* None */ = gtk_recent_manager_add_full(
-    this.raw.asInstanceOf[Ptr[GtkRecentManager]],
-    __sn_extract_string(uri),
-    recent_data
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(RecentData), @type -> DataRecord(const GtkRecentData*)))"
+  )
+  def addFull__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -127,9 +119,10 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     *
     * Gets the list of recently used resources.
     */
-  def getItems(): Ptr[GList] /* None */ = gtk_recent_manager_get_items(
-    this.raw.asInstanceOf[Ptr[GtkRecentManager]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(RecentInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def getItems__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -149,15 +142,10 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * `GtkRecentInfo` containing information about the resource like its MIME
     * type, or its display name.
     */
-  def lookupItem(uri: String | CString /* Some(CString) */ )(using
-      Zone
-  ): GResult[Ptr[GtkRecentInfo] /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_recent_manager_lookup_item(
-      this.raw.asInstanceOf[Ptr[GtkRecentManager]],
-      __sn_extract_string(uri),
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(RecentInfo), @type -> DataRecord(GtkRecentInfo*)))"
   )
+  def lookupItem__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -238,8 +226,7 @@ object RecentManager:
     * Gets a unique instance of `GtkRecentManager` that you can share in your
     * application without caring about memory management.
     */
-  def getDefault(): RecentManager /* None */ = new RecentManager(
-    gtk_recent_manager_get_default().asInstanceOf
-  )
+  def getDefault(): RecentManager /* Some(Ptr[GtkRecentManager]) */ =
+    new RecentManager(gtk_recent_manager_get_default().asInstanceOf)
 
 end RecentManager

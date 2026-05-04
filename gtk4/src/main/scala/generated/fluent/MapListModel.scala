@@ -5,14 +5,10 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.SectionModel
 import sn.gnome.gtk4.internal.GtkMapListModel
-import sn.gnome.gtk4.internal.GtkMapListModelMapFunc
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -85,24 +81,10 @@ class MapListModel(raw: Ptr[GtkMapListModel])
     * It assumes that the caller knows what they are doing and the map function
     * returns items of the appropriate type.
     */
-  def setMapFunc(
-      map_func: Option[
-        GtkMapListModelMapFunc /* Some(GtkMapListModelMapFunc) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      user_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = gtk_map_list_model_set_map_func(
-    this.raw.asInstanceOf[Ptr[GtkMapListModel]],
-    map_func
-      .map[GtkMapListModelMapFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkMapListModelMapFunc]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    user_destroy
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(MapListModelMapFunc), @type -> DataRecord(GtkMapListModelMapFunc)))"
   )
+  def setMapFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -134,33 +116,9 @@ object MapListModel:
     *
     * Creates a new `GtkMapListModel` for the given arguments.
     */
-  def apply(
-      model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
-      ],
-      map_func: Option[
-        GtkMapListModelMapFunc /* Some(GtkMapListModelMapFunc) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      user_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): MapListModel = new MapListModel(
-    gtk_map_list_model_new(
-      model
-        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
-          o.getUnsafeRawPointer().asInstanceOf
-        )
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
-        ),
-      map_func
-        .map[GtkMapListModelMapFunc](o => o)
-        .getOrElse(null.asInstanceOf[GtkMapListModelMapFunc]),
-      user_data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      user_destroy
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(MapListModelMapFunc), @type -> DataRecord(GtkMapListModelMapFunc)))"
   )
+  def `new`() = ???
+
 end MapListModel

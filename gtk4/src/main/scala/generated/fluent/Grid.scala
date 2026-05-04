@@ -5,16 +5,16 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.BaselinePosition
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Orientable
-import sn.gnome.gtk4.fluent.PositionType
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  BaselinePosition,
+  Buildable,
+  ConstraintTarget,
+  Orientable,
+  PositionType,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkGrid
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -278,7 +278,7 @@ class Grid(raw: Ptr[GtkGrid])
   @annotation.compileTimeOnly(
     "Method query_child contains an OUT parameter, which is not supported yet"
   )
-  private def queryChild__ = ???
+  def queryChild__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

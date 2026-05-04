@@ -4,14 +4,10 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.TextTag
+import sn.gnome.gtk4.fluent.{Buildable, TextTag}
 import sn.gnome.gtk4.internal.GtkTextTagTable
-import sn.gnome.gtk4.internal.GtkTextTagTableForeach
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -66,18 +62,10 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     * Note that the table may not be modified while iterating over it (you can’t
     * add/remove tags).
     */
-  def foreach(
-      func: GtkTextTagTableForeach /* Some(GtkTextTagTableForeach) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_text_tag_table_foreach(
-    this.raw.asInstanceOf[Ptr[GtkTextTagTable]],
-    func,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextTagTableForeach), @type -> DataRecord(GtkTextTagTableForeach)))"
   )
+  def foreach__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

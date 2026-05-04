@@ -5,14 +5,10 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.Device
-import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.internal.GdkModifierType
+import sn.gnome.gdk4.fluent.{Device, Event, ModifierType}
 import sn.gnome.glib.internal.guint32
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.PropagationLimit
-import sn.gnome.gtk4.fluent.PropagationPhase
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.{PropagationLimit, PropagationPhase, Widget}
 import sn.gnome.gtk4.internal.GtkEventController
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -67,10 +63,11 @@ class EventController(raw: Ptr[GtkEventController])
     *
     * At other times, 0 is returned.
     */
-  def getCurrentEventState(): GdkModifierType /* None */ =
+  def getCurrentEventState(): ModifierType /* None */ = ModifierType.fromRaw(
     gtk_event_controller_get_current_event_state(
       this.raw.asInstanceOf[Ptr[GtkEventController]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

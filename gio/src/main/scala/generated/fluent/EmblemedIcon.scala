@@ -4,10 +4,8 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Emblem
-import sn.gnome.gio.fluent.Icon
+import sn.gnome.gio.fluent.{Emblem, Icon}
 import sn.gnome.gio.internal.GEmblemedIcon
-import sn.gnome.glib.internal.GList
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -47,9 +45,10 @@ class EmblemedIcon(raw: Ptr[GEmblemedIcon])
     *
     * Gets the list of emblems for the @icon.
     */
-  def getEmblems(): Ptr[GList] /* None */ = g_emblemed_icon_get_emblems(
-    this.raw.asInstanceOf[Ptr[GEmblemedIcon]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Emblem))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def getEmblems__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

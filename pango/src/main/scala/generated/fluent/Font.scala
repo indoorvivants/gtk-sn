@@ -4,22 +4,10 @@ import _root_.sn.gnome.pango.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GBytes
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint32
-import sn.gnome.glib.internal.gunichar
+import sn.gnome.glib.internal.{gboolean, gint, guint32, gunichar}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.pango.fluent.Context
-import sn.gnome.pango.fluent.Coverage
-import sn.gnome.pango.fluent.Font
-import sn.gnome.pango.fluent.FontFace
-import sn.gnome.pango.fluent.FontMap
+import sn.gnome.pango.fluent.{FontFace, FontMap}
 import sn.gnome.pango.internal.PangoFont
-import sn.gnome.pango.internal.PangoFontDescription
-import sn.gnome.pango.internal.PangoFontMetrics
-import sn.gnome.pango.internal.PangoLanguage
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -37,9 +25,10 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * Use [method@Pango.Font.describe_with_absolute_size] if you want the font
     * size in device units.
     */
-  def describe(): Ptr[PangoFontDescription] /* None */ = pango_font_describe(
-    this.raw.asInstanceOf[Ptr[PangoFont]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
+  def describe__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -48,23 +37,19 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     *
     * Use [method@Pango.Font.describe] if you want the font size in points.
     */
-  def describeWithAbsoluteSize(): Ptr[PangoFontDescription] /* None */ =
-    pango_font_describe_with_absolute_size(
-      this.raw.asInstanceOf[Ptr[PangoFont]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+  )
+  def describeWithAbsoluteSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Computes the coverage map for a given font and language tag.
     */
-  def getCoverage(
-      language: Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */
-  ): Coverage /* None */ = new Coverage(
-    pango_font_get_coverage(
-      this.raw.asInstanceOf[Ptr[PangoFont]],
-      language
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
+  def getCoverage__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -87,7 +72,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_features contains an OUT parameter, which is not supported yet"
   )
-  private def getFeatures__ = ???
+  def getFeatures__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -123,7 +108,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_glyph_extents contains an OUT parameter, which is not supported yet"
   )
-  private def getGlyphExtents__ = ???
+  def getGlyphExtents__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -136,7 +121,23 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_hb_font is weird: refers to HarfBuzz.font_t as gconstpointer"
   )
-  private def getHbFont__ = ???
+  def getHbFont__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the languages that are supported by @font.
+    *
+    * If the font backend does not provide this information, %NULL is returned.
+    * For the fontconfig backend, this corresponds to the FC_LANG member of the
+    * FcPattern.
+    *
+    * The returned array is only valid as long as the font and its fontmap are
+    * valid.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Language)))),ListMap(@type -> DataRecord(PangoLanguage**)))"
+  )
+  def getLanguages__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -149,14 +150,10 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * If @font is %NULL, this function gracefully sets some sane values in the
     * output variables and returns.
     */
-  def getMetrics(
-      language: Option[Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */ ]
-  ): Ptr[PangoFontMetrics] /* None */ = pango_font_get_metrics(
-    this.raw.asInstanceOf[Ptr[PangoFont]],
-    language
-      .map[Ptr[PangoLanguage]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[PangoLanguage]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
+  def getMetrics__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -182,9 +179,10 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * To recreate a font from its serialized form, use
     * [func@Pango.Font.deserialize].
     */
-  def serialize(): Ptr[GBytes] /* None */ = pango_font_serialize(
-    this.raw.asInstanceOf[Ptr[PangoFont]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def serialize__ = ???
 
 end Font
 
@@ -193,17 +191,10 @@ object Font:
     *
     * Frees an array of font descriptions.
     */
-  def descriptionsFree(
-      descs: Option[Ptr[
-        Ptr[PangoFontDescription] /* None */
-      ] /* Some(Ptr[Ptr[PangoFontDescription]]) */ ],
-      n_descs: Int /* Some(CInt) */
-  ): Unit /* None */ = pango_font_descriptions_free(
-    descs
-      .map[Ptr[Ptr[PangoFontDescription]]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[Ptr[PangoFontDescription]]]),
-    n_descs
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(PangoFontDescription**)))"
   )
+  def descriptionsFree() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -215,17 +206,9 @@ object Font:
     * serialized, you can compare @bytes to the result of serializing the font
     * again.
     */
-  def deserialize(
-      context: Context /* Some(Ptr[PangoContext]) */,
-      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
-  ): GResult[Font /* None */ ] = GResult.wrap(__errorPtr =>
-    new Font(
-      pango_font_deserialize(
-        context.getUnsafeRawPointer().asInstanceOf,
-        bytes,
-        __errorPtr
-      ).asInstanceOf
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def deserialize() = ???
 
 end Font

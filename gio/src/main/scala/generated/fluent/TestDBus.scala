@@ -4,8 +4,8 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gio.fluent.TestDBusFlags
 import sn.gnome.gio.internal.GTestDBus
-import sn.gnome.gio.internal.GTestDBusFlags
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
 
@@ -129,8 +129,8 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
     *
     * Get the flags of the #GTestDBus object.
     */
-  def getFlags(): GTestDBusFlags /* None */ = g_test_dbus_get_flags(
-    this.raw.asInstanceOf[Ptr[GTestDBus]]
+  def getFlags(): TestDBusFlags /* None */ = TestDBusFlags.fromRaw(
+    g_test_dbus_get_flags(this.raw.asInstanceOf[Ptr[GTestDBus]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -177,8 +177,8 @@ object TestDBus:
     *
     * Create a new #GTestDBus object.
     */
-  def apply(flags: GTestDBusFlags /* Some(GTestDBusFlags) */ ): TestDBus =
-    new TestDBus(g_test_dbus_new(flags).asInstanceOf)
+  def apply(flags: TestDBusFlags /* Some(GTestDBusFlags) */ ): TestDBus =
+    new TestDBus(g_test_dbus_new(flags.raw).asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -189,6 +189,6 @@ object TestDBus:
     * session bus is running. It is not necessary to call this if unit test
     * already calls g_test_dbus_up() before acquiring the session bus.
     */
-  def unset(): Unit /* None */ = g_test_dbus_unset()
+  def unset(): Unit /* Some(Unit) */ = g_test_dbus_unset()
 
 end TestDBus

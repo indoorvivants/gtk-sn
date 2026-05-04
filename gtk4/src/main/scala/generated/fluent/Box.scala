@@ -4,15 +4,16 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.BaselinePosition
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Orientable
-import sn.gnome.gtk4.fluent.Orientation
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  BaselinePosition,
+  Buildable,
+  ConstraintTarget,
+  Orientable,
+  Orientation,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkBox
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

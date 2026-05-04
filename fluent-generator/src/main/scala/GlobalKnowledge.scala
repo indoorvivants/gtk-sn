@@ -171,11 +171,10 @@ case class GlobalKnowledge(
                 names ++= variants.map(v =>
                   v(
                     bitfield.name
-                  ) -> internal(
+                  ) -> fluent(
                     bitfield.name,
-                    bitfield.typeValue,
                     namespaceName,
-                    NameType.Bitfield
+                    NameType.Bitfield(bitfield.typeValue)
                   )
                 )
             namespace.callbacks

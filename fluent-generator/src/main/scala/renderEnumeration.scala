@@ -14,7 +14,7 @@ def renderEnumeration(enumeration: Enumeration)(using
         case d if d.value.isInstanceOf[Member] =>
           d.value.asInstanceOf[Member]
 
-    val enumName = enumeration.name
+    val enumName = enumeration.name.capitalize
 
     renderComment(enumeration.enumerationoption.doc)
     block(

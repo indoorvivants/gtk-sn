@@ -7,6 +7,9 @@ import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gobject-autocleanups.h
+*/
 opaque type GTypeClass_autoptr = Ptr[GTypeClass]
 object GTypeClass_autoptr:
   given _tag: Tag[GTypeClass_autoptr] = Tag.Ptr[GTypeClass](GTypeClass._tag)

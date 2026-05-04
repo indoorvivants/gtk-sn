@@ -6,9 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdkpixbuf.fluent.Pixbuf
 import sn.gnome.gdkpixbuf.internal.GdkPixbufAnimationIter
-import sn.gnome.glib.internal.GTimeVal
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -46,16 +44,10 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     * `TRUE`, you need to call gdk_pixbuf_animation_iter_get_pixbuf() and update
     * the display with the new pixbuf.
     */
-  def advance(
-      current_time: Option[
-        Ptr[GTimeVal] /* Some(Ptr[_root_.sn.gnome.glib.internal.GTimeVal]) */
-      ]
-  ): Boolean /* None */ = gdk_pixbuf_animation_iter_advance(
-    this.raw.asInstanceOf[Ptr[GdkPixbufAnimationIter]],
-    current_time
-      .map[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]])
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(const GTimeVal*)))"
+  )
+  def advance__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

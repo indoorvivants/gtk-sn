@@ -4,16 +4,16 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.internal.GdkRectangle
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Native
-import sn.gnome.gtk4.fluent.PositionType
-import sn.gnome.gtk4.fluent.ShortcutManager
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  Native,
+  PositionType,
+  ShortcutManager,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkPopover
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -155,7 +155,7 @@ class Popover(raw: Ptr[GtkPopover])
   @annotation.compileTimeOnly(
     "Method get_offset contains an OUT parameter, which is not supported yet"
   )
-  private def getOffset__ = ???
+  def getOffset__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -168,7 +168,7 @@ class Popover(raw: Ptr[GtkPopover])
   @annotation.compileTimeOnly(
     "Method get_pointing_to contains an OUT parameter, which is not supported yet"
   )
-  private def getPointingTo__ = ???
+  def getPointingTo__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -318,18 +318,10 @@ class Popover(raw: Ptr[GtkPopover])
     *
     * This is in the coordinate space of the @popover parent.
     */
-  def setPointingTo(
-      rect: Option[Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */ ]
-  ): Unit /* None */ = gtk_popover_set_pointing_to(
-    this.raw.asInstanceOf[Ptr[GtkPopover]],
-    rect
-      .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
+  def setPointingTo__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

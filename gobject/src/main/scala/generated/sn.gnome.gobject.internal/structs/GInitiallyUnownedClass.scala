@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GObjectClass: _type_class: the parent class : the function is called by g_object_new () to complete the object initialization after all the construction properties are set. The first thing a implementation must do is chain up to the of the parent class. Overriding should be rarely needed, e.g. to handle construct properties, or to implement singletons.
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gobject.h
 */
 opaque type GInitiallyUnownedClass = CStruct15[GTypeClass, Ptr[Byte], CFuncPtr3[GType, _root_.sn.gnome.glib.internal.guint, Ptr[GObjectConstructParam], Ptr[GObject]], CFuncPtr4[Ptr[GObject], _root_.sn.gnome.glib.internal.guint, Ptr[GValue], Ptr[GParamSpec], Unit], CFuncPtr4[Ptr[GObject], _root_.sn.gnome.glib.internal.guint, Ptr[GValue], Ptr[GParamSpec], Unit], CFuncPtr1[Ptr[GObject], Unit], CFuncPtr1[Ptr[GObject], Unit], CFuncPtr3[Ptr[GObject], _root_.sn.gnome.glib.internal.guint, Ptr[Ptr[GParamSpec]], Unit], CFuncPtr2[Ptr[GObject], Ptr[GParamSpec], Unit], CFuncPtr1[Ptr[GObject], Unit], _root_.sn.gnome.glib.internal.gsize, _root_.sn.gnome.glib.internal.gsize, _root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gsize, CArray[_root_.sn.gnome.glib.internal.gpointer, Nat._3]]
 

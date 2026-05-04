@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeInfo: _init: Location of the base initialization function (optional) _finalize: Location of the base finalization function (optional) classed and instantiatable types. Location of the default vtable inititalization function for interface types. (optional) This function is used both to fill in virtual functions in the class or default vtable, and to do type-specific setup such as registering signals and object properties. classed and instantiatable types. Location of the default vtable finalization function for interface types. (optional) _size: Size of the instance (object) structure (required for instantiatable types only) _preallocs: Prior to GLib 2.10, it specified the number of pre-allocated (cached) instances to reserve memory for (0 indicates no caching). Since GLib 2.10 this field is ignored. _init: Location of the instance initialization function (optional, for instantiatable types only) _table: A #GTypeValueTable function table for generic handling of GValues of this type (usually only useful for fundamental types)
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type _GTypeInfo = CStruct10[_root_.sn.gnome.glib.internal.guint16, GBaseInitFunc, GBaseFinalizeFunc, GClassInitFunc, GClassFinalizeFunc, _root_.sn.gnome.glib.internal.gconstpointer, _root_.sn.gnome.glib.internal.guint16, _root_.sn.gnome.glib.internal.guint16, GInstanceInitFunc, Ptr[GTypeValueTable]]
 

@@ -4,17 +4,10 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.File
-import sn.gnome.gio.fluent.FileInfo
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{AsyncResult, Cancellable, File, FileInfo}
 import sn.gnome.gio.internal.GFileEnumerator
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GList
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -79,26 +72,10 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned in
     * g_file_enumerator_close_finish().
     */
-  def closeAsync(
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_file_enumerator_close_async(
-    this.raw.asInstanceOf[Ptr[GFileEnumerator]],
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def closeAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -219,7 +196,7 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
   @annotation.compileTimeOnly(
     "Method iterate contains an OUT parameter, which is not supported yet"
   )
-  private def iterate__ = ???
+  def iterate__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -315,43 +292,20 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     *  be executed before an outstanding request with lower priority. Default
     *  priority is %G_PRIORITY_DEFAULT.
     */
-  def nextFilesAsync(
-      num_files: Int /* Some(CInt) */,
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_file_enumerator_next_files_async(
-    this.raw.asInstanceOf[Ptr[GFileEnumerator]],
-    num_files,
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def nextFilesAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes the asynchronous operation started with
     * g_file_enumerator_next_files_async().
     */
-  def nextFilesFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
-    g_file_enumerator_next_files_finish(
-      this.raw.asInstanceOf[Ptr[GFileEnumerator]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FileInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def nextFilesFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

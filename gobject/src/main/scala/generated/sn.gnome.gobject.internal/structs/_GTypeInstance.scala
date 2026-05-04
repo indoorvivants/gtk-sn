@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeInstance:
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type _GTypeInstance = CStruct1[Ptr[GTypeClass]]
 

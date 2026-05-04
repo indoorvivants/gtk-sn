@@ -5,31 +5,24 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.ContentProvider
-import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gdk4.internal.GdkDragAction
-import sn.gnome.gio.fluent.Icon
-import sn.gnome.gio.fluent.MenuModel
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint16
-import sn.gnome.glib.internal.guint32
-import sn.gnome.glib.internal.gunichar
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.CellEditable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Editable
-import sn.gnome.gtk4.fluent.EntryBuffer
-import sn.gnome.gtk4.fluent.EntryCompletion
-import sn.gnome.gtk4.fluent.EntryIconPosition
-import sn.gnome.gtk4.fluent.ImageType
-import sn.gnome.gtk4.fluent.InputPurpose
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gdk4.fluent.{ContentProvider, DragAction, Paintable}
+import sn.gnome.gio.fluent.{Icon, MenuModel}
+import sn.gnome.glib.internal.{gboolean, gint, guint16, guint32, gunichar}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  CellEditable,
+  ConstraintTarget,
+  Editable,
+  EntryBuffer,
+  EntryCompletion,
+  EntryIconPosition,
+  ImageType,
+  InputHints,
+  InputPurpose,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkEntry
-import sn.gnome.gtk4.internal.GtkInputHints
-import sn.gnome.pango.internal.PangoAttrList
-import sn.gnome.pango.internal.PangoTabArray
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -153,9 +146,10 @@ class Entry(raw: Ptr[GtkEntry])
     *
     * See [method@Gtk.Entry.set_attributes].
     */
-  def getAttributes(): Ptr[PangoAttrList] /* None */ = gtk_entry_get_attributes(
-    this.raw.asInstanceOf[Ptr[GtkEntry]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
+  def getAttributes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -223,7 +217,7 @@ class Entry(raw: Ptr[GtkEntry])
   @annotation.compileTimeOnly(
     "Method get_icon_area contains an OUT parameter, which is not supported yet"
   )
-  private def getIconArea__ = ???
+  def getIconArea__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -343,8 +337,8 @@ class Entry(raw: Ptr[GtkEntry])
     *
     * Gets the input hints of this `GtkEntry`.
     */
-  def getInputHints(): GtkInputHints /* None */ = gtk_entry_get_input_hints(
-    this.raw.asInstanceOf[Ptr[GtkEntry]]
+  def getInputHints(): InputHints /* None */ = InputHints.fromRaw(
+    gtk_entry_get_input_hints(this.raw.asInstanceOf[Ptr[GtkEntry]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -414,9 +408,10 @@ class Entry(raw: Ptr[GtkEntry])
     *
     * See [method@Gtk.Entry.set_tabs].
     */
-  def getTabs(): Ptr[PangoTabArray] /* None */ = gtk_entry_get_tabs(
-    this.raw.asInstanceOf[Ptr[GtkEntry]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
+  def getTabs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -515,12 +510,10 @@ class Entry(raw: Ptr[GtkEntry])
     * Since the attributes will be applied to text that changes as the user
     * types, it makes most sense to use attributes with unlimited extent.
     */
-  def setAttributes(
-      attrs: Ptr[
-        PangoAttrList
-      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]) */
-  ): Unit /* None */ =
-    gtk_entry_set_attributes(this.raw.asInstanceOf[Ptr[GtkEntry]], attrs)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
+  )
+  def setAttributes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -603,12 +596,12 @@ class Entry(raw: Ptr[GtkEntry])
   def setIconDragSource(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
       provider: ContentProvider /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]) */,
-      actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+      actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
   ): Unit /* None */ = gtk_entry_set_icon_drag_source(
     this.raw.asInstanceOf[Ptr[GtkEntry]],
     icon_pos.raw,
     provider.getUnsafeRawPointer().asInstanceOf,
-    actions
+    actions.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -749,9 +742,9 @@ class Entry(raw: Ptr[GtkEntry])
     * behavior.
     */
   def setInputHints(
-      hints: GtkInputHints /* Some(GtkInputHints) */
+      hints: InputHints /* Some(GtkInputHints) */
   ): Unit /* None */ =
-    gtk_entry_set_input_hints(this.raw.asInstanceOf[Ptr[GtkEntry]], hints)
+    gtk_entry_set_input_hints(this.raw.asInstanceOf[Ptr[GtkEntry]], hints.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -856,18 +849,10 @@ class Entry(raw: Ptr[GtkEntry])
     *
     * The tabstops in the array are applied to the entry text.
     */
-  def setTabs(
-      tabs: Option[Ptr[
-        PangoTabArray
-      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]) */ ]
-  ): Unit /* None */ = gtk_entry_set_tabs(
-    this.raw.asInstanceOf[Ptr[GtkEntry]],
-    tabs
-      .map[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
+  def setTabs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

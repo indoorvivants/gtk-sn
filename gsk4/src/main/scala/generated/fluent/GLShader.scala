@@ -6,18 +6,9 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GBytes
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gint32
-import sn.gnome.glib.internal.gsize
-import sn.gnome.glib.internal.guint32
+import sn.gnome.glib.internal.{gboolean, gint, gsize}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.graphene.internal.graphene_vec2_t
-import sn.gnome.graphene.internal.graphene_vec3_t
-import sn.gnome.graphene.internal.graphene_vec4_t
-import sn.gnome.gsk4.fluent.GLUniformType
-import sn.gnome.gsk4.fluent.Renderer
+import sn.gnome.gsk4.fluent.{GLUniformType, Renderer}
 import sn.gnome.gsk4.internal.GskGLShader
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -183,8 +174,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * Any uniforms of the shader that are not included in the argument list are
     * zero-initialized.
     */
-  inline def formatArgs(args: Any*): Ptr[GBytes] /* None */ =
-    gsk_gl_shader_format_args(this.raw.asInstanceOf[Ptr[GskGLShader]], args*)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+  )
+  def formatArgs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -200,12 +193,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * Any uniforms of the shader that are not included in the argument list are
     * zero-initialized.
     */
-  def formatArgsVa(
-      uniforms: CVarArgList /* Some(va_list) */
-  ): Ptr[GBytes] /* None */ = gsk_gl_shader_format_args_va(
-    this.raw.asInstanceOf[Ptr[GskGLShader]],
-    uniforms
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def formatArgsVa__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -213,14 +204,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * The uniform must be of bool type.
     */
-  def getArgBool(
-      args: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
-      idx: Int /* Some(CInt) */
-  ): Boolean /* None */ = gsk_gl_shader_get_arg_bool(
-    this.raw.asInstanceOf[Ptr[GskGLShader]],
-    args,
-    idx
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+  )
+  def getArgBool__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -228,14 +215,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * The uniform must be of float type.
     */
-  def getArgFloat(
-      args: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
-      idx: Int /* Some(CInt) */
-  ): Float /* None */ = gsk_gl_shader_get_arg_float(
-    this.raw.asInstanceOf[Ptr[GskGLShader]],
-    args,
-    idx
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def getArgFloat__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -243,14 +226,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * The uniform must be of int type.
     */
-  def getArgInt(
-      args: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
-      idx: Int /* Some(CInt) */
-  ): CInt /* None */ = gsk_gl_shader_get_arg_int(
-    this.raw.asInstanceOf[Ptr[GskGLShader]],
-    args,
-    idx
-  ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+  )
+  def getArgInt__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -258,14 +237,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * The uniform must be of uint type.
     */
-  def getArgUint(
-      args: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
-      idx: Int /* Some(CInt) */
-  ): UInt /* None */ = gsk_gl_shader_get_arg_uint(
-    this.raw.asInstanceOf[Ptr[GskGLShader]],
-    args,
-    idx
-  ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+  )
+  def getArgUint__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -273,18 +248,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * The uniform must be of vec2 type.
     */
-  def getArgVec2(
-      args: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
-      idx: Int /* Some(CInt) */,
-      out_value: Ptr[
-        graphene_vec2_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec2_t]) */
-  ): Unit /* None */ = gsk_gl_shader_get_arg_vec2(
-    this.raw.asInstanceOf[Ptr[GskGLShader]],
-    args,
-    idx,
-    out_value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def getArgVec2__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -292,18 +259,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * The uniform must be of vec3 type.
     */
-  def getArgVec3(
-      args: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
-      idx: Int /* Some(CInt) */,
-      out_value: Ptr[
-        graphene_vec3_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec3_t]) */
-  ): Unit /* None */ = gsk_gl_shader_get_arg_vec3(
-    this.raw.asInstanceOf[Ptr[GskGLShader]],
-    args,
-    idx,
-    out_value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def getArgVec3__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -311,18 +270,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * The uniform must be of vec4 type.
     */
-  def getArgVec4(
-      args: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
-      idx: Int /* Some(CInt) */,
-      out_value: Ptr[
-        graphene_vec4_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec4_t]) */
-  ): Unit /* None */ = gsk_gl_shader_get_arg_vec4(
-    this.raw.asInstanceOf[Ptr[GskGLShader]],
-    args,
-    idx,
-    out_value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def getArgVec4__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -367,9 +318,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * Gets the GLSL sourcecode being used to render this shader.
     */
-  def getSource(): Ptr[GBytes] /* None */ = gsk_gl_shader_get_source(
-    this.raw.asInstanceOf[Ptr[GskGLShader]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def getSource__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -421,13 +373,10 @@ object GLShader:
     *
     * Creates a `GskGLShader` that will render pixels using the specified code.
     */
-  def fromBytes(
-      sourcecode: Ptr[
-        GBytes
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
-  ): GLShader = new GLShader(
-    gsk_gl_shader_new_from_bytes(sourcecode).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def new_from_bytes() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

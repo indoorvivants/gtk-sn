@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.gio.internal.GListStore
-import sn.gnome.glib.internal.GCompareDataFunc
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gpointer, guint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GType
 
@@ -55,7 +53,7 @@ class ListStore(raw: Ptr[GListStore])
   @annotation.compileTimeOnly(
     "Method find contains an OUT parameter, which is not supported yet"
   )
-  private def find__ = ???
+  def find__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -72,7 +70,7 @@ class ListStore(raw: Ptr[GListStore])
   @annotation.compileTimeOnly(
     "Method find_with_equal_func contains an OUT parameter, which is not supported yet"
   )
-  private def findWithEqualFunc__ = ???
+  def findWithEqualFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -87,7 +85,7 @@ class ListStore(raw: Ptr[GListStore])
   @annotation.compileTimeOnly(
     "Method find_with_equal_func_full contains an OUT parameter, which is not supported yet"
   )
-  private def findWithEqualFuncFull__ = ???
+  def findWithEqualFuncFull__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -120,20 +118,10 @@ class ListStore(raw: Ptr[GListStore])
     *
     * This function takes a ref on @item.
     */
-  def insertSorted(
-      item: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      compare_func: GCompareDataFunc /* Some(_root_.sn.gnome.glib.internal.GCompareDataFunc) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): UInt /* None */ = g_list_store_insert_sorted(
-    this.raw.asInstanceOf[Ptr[GListStore]],
-    gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
-    compare_func,
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-  ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
+  )
+  def insertSorted__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -160,18 +148,32 @@ class ListStore(raw: Ptr[GListStore])
     *
     * Sort the items in @store according to @compare_func.
     */
-  def sort(
-      compare_func: GCompareDataFunc /* Some(_root_.sn.gnome.glib.internal.GCompareDataFunc) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_list_store_sort(
-    this.raw.asInstanceOf[Ptr[GListStore]],
-    compare_func,
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
   )
+  def sort__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Changes @store by removing @n_removals items and adding @n_additions items
+    * to it. @additions must contain @n_additions items of type
+    * #GListStore:item-type. %NULL is not permitted.
+    *
+    * This function is more efficient than g_list_store_insert() and
+    * g_list_store_remove(), because it only emits #GListModel::items-changed
+    * once for the change.
+    *
+    * This function takes a ref on each item in @additions.
+    *
+    * The parameters @position and @n_removals must be correct (ie:
+    * @position
+    *   + @n_removals must be less than or equal to the length of the list at
+    *   the time this function is called).
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GObject.Object)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(3), @type -> DataRecord(gpointer*)))"
+  )
+  def splice__ = ???
 
 end ListStore
 

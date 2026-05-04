@@ -64,7 +64,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * that was passed to that call.
     */
   @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  private def changed__ = ???
+  def changed__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -74,7 +74,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     *   g_settings_backend_changed().
     */
   @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  private def changedTree__ = ???
+  def changedTree__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -100,7 +100,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * were changed) but this is not strictly required.
     */
   @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  private def keysChanged__ = ???
+  def keysChanged__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -127,7 +127,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * application will be notified of a possible change.
     */
   @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  private def pathChanged__ = ???
+  def pathChanged__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -138,7 +138,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * always be made in response to external events.
     */
   @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  private def pathWritableChanged__ = ???
+  def pathWritableChanged__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -148,9 +148,38 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * always be made in response to external events.
     */
   @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  private def writableChanged__ = ???
+  def writableChanged__ = ???
 
 end SettingsBackend
 
 object SettingsBackend:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Calculate the longest common prefix of all keys in a tree and write out an
+    * array of the key names relative to that prefix and, optionally, the value
+    * to store at each of those keys.
+    *
+    * You must free the value returned in @path, @keys and @values using
+    * g_free(). You should not attempt to free or unref the contents of
+    * @keys
+    *   or @values.
+    */
+  @annotation.compileTimeOnly(
+    "Function flatten_tree contains an OUT parameter, which is not supported yet"
+  )
+  def flattenTree() = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the default #GSettingsBackend. It is possible to override the
+    * default by setting the `GSETTINGS_BACKEND` environment variable to the
+    * name of a settings backend.
+    *
+    * The user gets a reference to the backend.
+    */
+  @annotation.compileTimeOnly(
+    "Method g_settings_backend_get_default has no target types"
+  )
+  def getDefault() = ???
+
 end SettingsBackend

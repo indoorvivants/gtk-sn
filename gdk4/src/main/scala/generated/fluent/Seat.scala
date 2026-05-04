@@ -4,11 +4,8 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Device
-import sn.gnome.gdk4.fluent.Display
+import sn.gnome.gdk4.fluent.{Device, Display, SeatCapabilities}
 import sn.gnome.gdk4.internal.GdkSeat
-import sn.gnome.gdk4.internal.GdkSeatCapabilities
-import sn.gnome.glib.internal.GList
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -24,17 +21,18 @@ class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     *
     * Returns the capabilities this `GdkSeat` currently has.
     */
-  def getCapabilities(): GdkSeatCapabilities /* None */ =
+  def getCapabilities(): SeatCapabilities /* None */ = SeatCapabilities.fromRaw(
     gdk_seat_get_capabilities(this.raw.asInstanceOf[Ptr[GdkSeat]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the devices that match the given capabilities.
     */
-  def getDevices(
-      capabilities: GdkSeatCapabilities /* Some(GdkSeatCapabilities) */
-  ): Ptr[GList] /* None */ =
-    gdk_seat_get_devices(this.raw.asInstanceOf[Ptr[GdkSeat]], capabilities)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Device))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+  )
+  def getDevices__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -64,8 +62,9 @@ class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     *
     * Returns all `GdkDeviceTools` that are known to the application.
     */
-  def getTools(): Ptr[GList] /* None */ = gdk_seat_get_tools(
-    this.raw.asInstanceOf[Ptr[GdkSeat]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DeviceTool))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def getTools__ = ???
 
 end Seat

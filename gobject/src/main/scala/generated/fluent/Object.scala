@@ -5,27 +5,9 @@ import _root_.sn.gnome.gobject.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.GDuplicateFunc
-import sn.gnome.glib.internal.GQuark
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.gsize
-import sn.gnome.glib.internal.guint
-import sn.gnome.gobject.fluent.Binding
-import sn.gnome.gobject.fluent.Object
-import sn.gnome.gobject.fluent.ParamSpec
-import sn.gnome.gobject.internal.GBindingFlags
-import sn.gnome.gobject.internal.GBindingTransformFunc
-import sn.gnome.gobject.internal.GClosure
-import sn.gnome.gobject.internal.GObject
-import sn.gnome.gobject.internal.GParameter
-import sn.gnome.gobject.internal.GToggleNotify
-import sn.gnome.gobject.internal.GType
-import sn.gnome.gobject.internal.GValue
-import sn.gnome.gobject.internal.GWeakNotify
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, gsize}
+import sn.gnome.gobject.fluent.{Binding, BindingFlags, Object, ParamSpec}
+import sn.gnome.gobject.internal.{GObject, GType}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -78,18 +60,10 @@ class Object(raw: Ptr[GObject]):
     * only ever use a toggle reference if there is important state in the proxy
     * object.
     */
-  def addToggleRef(
-      _notify: GToggleNotify /* Some(GToggleNotify) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_object_add_toggle_ref(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    _notify,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ToggleNotify), @type -> DataRecord(GToggleNotify)))"
   )
+  def addToggleRef__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -107,7 +81,7 @@ class Object(raw: Ptr[GObject]):
   @annotation.compileTimeOnly(
     "Method add_weak_pointer contains an INOUT parameter, which is not supported yet"
   )
-  private def addWeakPointer__ = ???
+  def addWeakPointer__ = ???
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -149,7 +123,7 @@ class Object(raw: Ptr[GObject]):
       target: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       target_property: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: GBindingFlags /* Some(GBindingFlags) */
+      flags: BindingFlags /* Some(GBindingFlags) */
   )(using Zone): Binding /* None */ = new Binding(
     g_object_bind_property(
       this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
@@ -158,7 +132,7 @@ class Object(raw: Ptr[GObject]):
         target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
       ),
       __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
-      flags
+      flags.raw
     ).asInstanceOf
   )
 
@@ -190,50 +164,10 @@ class Object(raw: Ptr[GObject]):
     * the binding is removed. If you need different data for each transformation
     * function, please use g_object_bind_property_with_closures() instead.
     */
-  def bindPropertyFull(
-      source_property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      target: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      target_property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: GBindingFlags /* Some(GBindingFlags) */,
-      transform_to: Option[
-        GBindingTransformFunc /* Some(GBindingTransformFunc) */
-      ],
-      transform_from: Option[
-        GBindingTransformFunc /* Some(GBindingTransformFunc) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      _notify: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  )(using Zone): Binding /* None */ = new Binding(
-    g_object_bind_property_full(
-      this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
-      __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
-      gpointer(
-        target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-      ),
-      __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
-      flags,
-      transform_to
-        .map[GBindingTransformFunc](o => o)
-        .getOrElse(null.asInstanceOf[GBindingTransformFunc]),
-      transform_from
-        .map[GBindingTransformFunc](o => o)
-        .getOrElse(null.asInstanceOf[GBindingTransformFunc]),
-      user_data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      _notify
-        .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-        .getOrElse(
-          null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-        )
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(BindingTransformFunc), @type -> DataRecord(GBindingTransformFunc)))"
   )
+  def bindPropertyFull__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -245,28 +179,10 @@ class Object(raw: Ptr[GObject]):
     * g_object_bind_property_full(), using #GClosures instead of function
     * pointers.
     */
-  def bindPropertyWithClosures(
-      source_property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      target: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      target_property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: GBindingFlags /* Some(GBindingFlags) */,
-      transform_to: Ptr[GClosure] /* Some(Ptr[GClosure]) */,
-      transform_from: Ptr[GClosure] /* Some(Ptr[GClosure]) */
-  )(using Zone): Binding /* None */ = new Binding(
-    g_object_bind_property_with_closures(
-      this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
-      __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
-      gpointer(
-        target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-      ),
-      __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
-      flags,
-      transform_to,
-      transform_from
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
+  def bindPropertyWithClosures__ = ???
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -339,27 +255,10 @@ class Object(raw: Ptr[GObject]):
     * This function can be useful to avoid races when multiple threads are using
     * object data on the same key on the same object.
     */
-  def dupData(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      dup_func: Option[
-        GDuplicateFunc /* Some(_root_.sn.gnome.glib.internal.GDuplicateFunc) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Ptr[Byte] /* None */ = g_object_dup_data(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    dup_func
-      .map[_root_.sn.gnome.glib.internal.GDuplicateFunc](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDuplicateFunc]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-  ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DuplicateFunc), @type -> DataRecord(GDuplicateFunc)))"
+  )
+  def dupData__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -375,26 +274,10 @@ class Object(raw: Ptr[GObject]):
     * This function can be useful to avoid races when multiple threads are using
     * object data on the same key on the same object.
     */
-  def dupQdata(
-      quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      dup_func: Option[
-        GDuplicateFunc /* Some(_root_.sn.gnome.glib.internal.GDuplicateFunc) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Ptr[Byte] /* None */ = g_object_dup_qdata(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    quark,
-    dup_func
-      .map[_root_.sn.gnome.glib.internal.GDuplicateFunc](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDuplicateFunc]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-  ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+  )
+  def dupQdata__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -492,25 +375,20 @@ class Object(raw: Ptr[GObject]):
     * Note that g_object_get_property() is really intended for language
     * bindings, g_object_get() is much more convenient for C programming.
     */
-  def getProperty(
-      property_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: Ptr[GValue] /* Some(Ptr[GValue]) */
-  )(using Zone): Unit /* None */ = g_object_get_property(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]],
-    value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(GValue*)))"
   )
+  def getProperty__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * This function gets back user data pointers stored via
     * g_object_set_qdata().
     */
-  def getQdata(
-      quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */
-  ): Ptr[Byte] /* None */ =
-    g_object_get_qdata(this.raw.asInstanceOf[Ptr[GObject]], quark).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+  )
+  def getQdata__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -538,18 +416,10 @@ class Object(raw: Ptr[GObject]):
     * set to @values. All properties must be valid. Warnings will be emitted and
     * undefined behaviour may result if invalid properties are passed in.
     */
-  def getv(
-      n_properties: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      names: Ptr[
-        CString
-      ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]) */,
-      values: Ptr[GValue /* None */ ] /* Some(Ptr[GValue]) */
-  )(using Zone): Unit /* None */ = g_object_getv(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    guint(n_properties),
-    names.asInstanceOf,
-    values
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(const gchar**)))"
   )
+  def getv__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -667,18 +537,10 @@ class Object(raw: Ptr[GObject]):
     * Removes a reference added with g_object_add_toggle_ref(). The reference
     * count of the object is decreased by one.
     */
-  def removeToggleRef(
-      _notify: GToggleNotify /* Some(GToggleNotify) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_object_remove_toggle_ref(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    _notify,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ToggleNotify), @type -> DataRecord(GToggleNotify)))"
   )
+  def removeToggleRef__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -689,7 +551,7 @@ class Object(raw: Ptr[GObject]):
   @annotation.compileTimeOnly(
     "Method remove_weak_pointer contains an INOUT parameter, which is not supported yet"
   )
-  private def removeWeakPointer__ = ???
+  def removeWeakPointer__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -713,7 +575,7 @@ class Object(raw: Ptr[GObject]):
   @annotation.compileTimeOnly(
     "Method replace_data contains an OUT parameter, which is not supported yet"
   )
-  private def replaceData__ = ???
+  def replaceData__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -734,7 +596,7 @@ class Object(raw: Ptr[GObject]):
   @annotation.compileTimeOnly(
     "Method replace_qdata contains an OUT parameter, which is not supported yet"
   )
-  private def replaceQdata__ = ???
+  def replaceQdata__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -805,41 +667,19 @@ class Object(raw: Ptr[GObject]):
     *
     * Note that the @destroy callback is not called if @data is %NULL.
     */
-  def setDataFull(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  )(using Zone): Unit /* None */ = g_object_set_data_full(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
+  def setDataFull__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets a property on an object.
     */
-  def setProperty(
-      property_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: Ptr[GValue] /* Some(Ptr[GValue]) */
-  )(using Zone): Unit /* None */ = g_object_set_property(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]],
-    value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
   )
+  def setProperty__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -850,18 +690,10 @@ class Object(raw: Ptr[GObject]):
     * pointer, overrides (frees) the old pointer set, using #NULL as pointer
     * essentially removes the data stored.
     */
-  def setQdata(
-      quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_object_set_qdata(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    quark,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
+  def setQdata__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -870,26 +702,10 @@ class Object(raw: Ptr[GObject]):
     * as argument when the @object is finalized, or the data is being
     * overwritten by a call to g_object_set_qdata() with the same @quark.
     */
-  def setQdataFull(
-      quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  ): Unit /* None */ = g_object_set_qdata_full(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    quark,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
+  def setQdataFull__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -911,18 +727,10 @@ class Object(raw: Ptr[GObject]):
     * taken from @values. All properties must be valid. Warnings will be emitted
     * and undefined behaviour may result if invalid properties are passed in.
     */
-  def setv(
-      n_properties: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      names: Ptr[
-        CString
-      ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]) */,
-      values: Ptr[GValue /* None */ ] /* Some(Ptr[GValue]) */
-  )(using Zone): Unit /* None */ = g_object_setv(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    guint(n_properties),
-    names.asInstanceOf,
-    values
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(const gchar**)))"
   )
+  def setv__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -974,10 +782,10 @@ class Object(raw: Ptr[GObject]):
     *  and thus the partial string list would have been freed upon
     *  g_object_set_qdata_full().
     */
-  def stealQdata(
-      quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */
-  ): Ptr[Byte] /* None */ =
-    g_object_steal_qdata(this.raw.asInstanceOf[Ptr[GObject]], quark).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+  )
+  def stealQdata__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1064,10 +872,10 @@ class Object(raw: Ptr[GObject]):
     *   Usually, this function will be called on closures that use this @object
     *   as closure data.
     */
-  def watchClosure(
-      closure: Ptr[GClosure] /* Some(Ptr[GClosure]) */
-  ): Unit /* None */ =
-    g_object_watch_closure(this.raw.asInstanceOf[Ptr[GObject]], closure)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  )
+  def watchClosure__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1082,35 +890,19 @@ class Object(raw: Ptr[GObject]):
     * g_object_unref() might happen in another thread. Use #GWeakRef if
     * thread-safety is required.
     */
-  def weakRef(
-      _notify: GWeakNotify /* Some(GWeakNotify) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_object_weak_ref(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    _notify,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(WeakNotify), @type -> DataRecord(GWeakNotify)))"
   )
+  def weakRef__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Removes a weak reference callback to an object.
     */
-  def weakUnref(
-      _notify: GWeakNotify /* Some(GWeakNotify) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_object_weak_unref(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    _notify,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(WeakNotify), @type -> DataRecord(GWeakNotify)))"
   )
+  def weakUnref__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -1195,19 +987,10 @@ object Object:
     * Construction parameters (see %G_PARAM_CONSTRUCT, %G_PARAM_CONSTRUCT_ONLY)
     * which are not explicitly specified are set to their default values.
     */
-  def withProperties(
-      object_type: GType /* Some(GType) */,
-      n_properties: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      names: Ptr[CString] /* Some(Ptr[CString]) */,
-      values: Ptr[GValue /* None */ ] /* Some(Ptr[GValue]) */
-  )(using Zone): Object = new Object(
-    g_object_new_with_properties(
-      object_type,
-      guint(n_properties),
-      names,
-      values
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char**)))"
   )
+  def new_with_properties() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1216,24 +999,23 @@ object Object:
     * Construction parameters (see %G_PARAM_CONSTRUCT, %G_PARAM_CONSTRUCT_ONLY)
     * which are not explicitly specified are set to their default values.
     */
-  def newv(
-      object_type: GType /* Some(GType) */,
-      n_parameters: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      parameters: Ptr[GParameter /* None */ ] /* Some(Ptr[GParameter]) */
-  ): Object = new Object(
-    g_object_newv(object_type, guint(n_parameters), parameters).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Parameter), @type -> DataRecord(GParameter)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GParameter*)))"
   )
+  def newv() = ???
+
   def compatControl(
       what: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
       data: Option[
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
-  ): CUnsignedLongInt /* None */ = g_object_compat_control(
-    gsize(what),
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-  ).value
+  ): CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */ =
+    g_object_compat_control(
+      gsize(what),
+      data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1246,7 +1028,7 @@ object Object:
       g_iface: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property_name: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): ParamSpec /* None */ = new ParamSpec(
+  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
     g_object_interface_find_property(
       gpointer(g_iface),
       __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]]
@@ -1274,7 +1056,7 @@ object Object:
   def interfaceInstallProperty(
       g_iface: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       pspec: ParamSpec /* Some(Ptr[GParamSpec]) */
-  ): Unit /* None */ = g_object_interface_install_property(
+  ): Unit /* Some(Unit) */ = g_object_interface_install_property(
     gpointer(g_iface),
     pspec.getUnsafeRawPointer().asInstanceOf
   )
@@ -1289,7 +1071,7 @@ object Object:
   @annotation.compileTimeOnly(
     "Function interface_list_properties is weird: non NULL-terminated arrays require special handling"
   )
-  def interface_list_properties() = ???
+  def interfaceListProperties() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

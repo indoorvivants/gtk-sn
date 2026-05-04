@@ -4,12 +4,9 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.cairo.internal.cairo_region_t
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gdk4.fluent.Surface
+import sn.gnome.gdk4.fluent.{Display, Surface}
 import sn.gnome.gdk4.internal.GdkDrawContext
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -55,14 +52,10 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
     * use of [class@Gsk.Renderer]s, so application code does not need to call
     * these functions explicitly.
     */
-  def beginFrame(
-      region: Ptr[
-        cairo_region_t
-      ] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */
-  ): Unit /* None */ = gdk_draw_context_begin_frame(
-    this.raw.asInstanceOf[Ptr[GdkDrawContext]],
-    region
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))"
   )
+  def beginFrame__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -101,10 +94,10 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
     * [method@Gdk.DrawContext.begin_frame] and
     * [method@Gdk.DrawContext.end_frame], %NULL will be returned.
     */
-  def getFrameRegion(): Ptr[cairo_region_t] /* None */ =
-    gdk_draw_context_get_frame_region(
-      this.raw.asInstanceOf[Ptr[GdkDrawContext]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))"
+  )
+  def getFrameRegion__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

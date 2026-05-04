@@ -4,12 +4,9 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.CrossingMode
-import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.fluent.NotifyType
+import sn.gnome.gdk4.fluent.{CrossingMode, Event, NotifyType}
 import sn.gnome.gdk4.internal.GdkCrossingEvent
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *

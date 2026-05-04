@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GToggleNotify:
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gobject.h
 */
 opaque type GToggleNotify = CFuncPtr3[_root_.sn.gnome.glib.internal.gpointer, Ptr[GObject], _root_.sn.gnome.glib.internal.gboolean, Unit]
 object GToggleNotify:

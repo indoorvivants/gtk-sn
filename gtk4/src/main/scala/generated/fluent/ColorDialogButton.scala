@@ -4,12 +4,13 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.internal.GdkRGBA
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ColorDialog
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ColorDialog,
+  ConstraintTarget,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkColorDialogButton
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -58,9 +59,10 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
     * This function is what should be used to obtain the color that was chosen
     * by the user. To get informed about changes, listen to "notify::color".
     */
-  def getRgba(): Ptr[GdkRGBA] /* None */ = gtk_color_dialog_button_get_rgba(
-    this.raw.asInstanceOf[Ptr[GtkColorDialogButton]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
+  def getRgba__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -78,12 +80,10 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
     *
     * Sets the color of the button.
     */
-  def setRgba(
-      color: Ptr[GdkRGBA] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
-  ): Unit /* None */ = gtk_color_dialog_button_set_rgba(
-    this.raw.asInstanceOf[Ptr[GtkColorDialogButton]],
-    color
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
+  def setRgba__ = ???
 
 end ColorDialogButton
 

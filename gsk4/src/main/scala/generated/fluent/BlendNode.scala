@@ -4,8 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gsk4.fluent.BlendMode
-import sn.gnome.gsk4.fluent.RenderNode
+import sn.gnome.gsk4.fluent.{BlendMode, RenderNode}
 import sn.gnome.gsk4.internal.GskBlendNode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

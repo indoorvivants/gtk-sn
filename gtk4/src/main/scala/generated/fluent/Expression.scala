@@ -4,17 +4,10 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.internal.GType
-import sn.gnome.gobject.internal.GValue
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.internal.GtkExpression
-import sn.gnome.gtk4.internal.GtkExpressionNotify
-import sn.gnome.gtk4.internal.GtkExpressionWatch
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -169,22 +162,10 @@ class Expression(raw: Ptr[GtkExpression]):
     * Note that this function takes ownership of `self`. If you want to keep it
     * around, you should [method@Gtk.Expression.ref] it beforehand.
     */
-  def bind(
-      target: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      property: String | CString /* Some(CString) */,
-      `this_`: Option[
-        Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Ptr[GtkExpressionWatch] /* None */ = gtk_expression_bind(
-    this.raw.asInstanceOf[Ptr[GtkExpression]],
-    gpointer(target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
-    __sn_extract_string(property),
-    `this_`
-      .map[_root_.sn.gnome.glib.internal.gpointer](o =>
-        gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
-      )
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ExpressionWatch), @type -> DataRecord(GtkExpressionWatch*)))"
   )
+  def bind__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -197,22 +178,10 @@ class Expression(raw: Ptr[GtkExpression]):
     * expression references objects that have been destroyed or set to `NULL`.
     * In that case `value` will remain empty and `FALSE` will be returned.
     */
-  def evaluate(
-      `this_`: Option[
-        Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      value: Ptr[
-        GValue
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  ): Boolean /* None */ = gtk_expression_evaluate(
-    this.raw.asInstanceOf[Ptr[GtkExpression]],
-    `this_`
-      .map[_root_.sn.gnome.glib.internal.gpointer](o =>
-        gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
-      )
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    value
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+  )
+  def evaluate__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -269,35 +238,9 @@ class Expression(raw: Ptr[GtkExpression]):
     * gets invoked, but it guarantees the opposite: When it did in fact change,
     * the @notify will be invoked.
     */
-  def watch(
-      `this_`: Option[
-        Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      _notify: GtkExpressionNotify /* Some(GtkExpressionNotify) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      user_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Ptr[GtkExpressionWatch] /* None */ = gtk_expression_watch(
-    this.raw.asInstanceOf[Ptr[GtkExpression]],
-    `this_`
-      .map[_root_.sn.gnome.glib.internal.gpointer](o =>
-        gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
-      )
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    _notify,
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    user_destroy
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ExpressionNotify), @type -> DataRecord(GtkExpressionNotify)))"
   )
+  def watch__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Expression

@@ -7,6 +7,9 @@ import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtypemodule.h
+*/
 opaque type GTypeModule_autoptr = Ptr[GTypeModule]
 object GTypeModule_autoptr:
   given _tag: Tag[GTypeModule_autoptr] = Tag.Ptr[GTypeModule](GTypeModule._tag)

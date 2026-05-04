@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GParamSpecValueArray: _instance: private #GParamSpec portion _spec: a #GParamSpec describing the elements contained in arrays of this property, may be %NULL _n_elements: if greater than 0, arrays of this property will always have this many elements
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparamspecs.h
 */
 opaque type _GParamSpecValueArray = CStruct3[GParamSpec, Ptr[GParamSpec], _root_.sn.gnome.glib.internal.guint]
 

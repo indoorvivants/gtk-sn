@@ -5,13 +5,9 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.FilterOutputStream
-import sn.gnome.gio.fluent.OutputStream
-import sn.gnome.gio.fluent.Seekable
+import sn.gnome.gio.fluent.{FilterOutputStream, OutputStream, Seekable}
 import sn.gnome.gio.internal.GBufferedOutputStream
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gsize
+import sn.gnome.glib.internal.{gboolean, gint, gsize}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *

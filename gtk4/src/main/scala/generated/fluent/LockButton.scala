@@ -5,11 +5,13 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.Permission
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Actionable
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.Button
-import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Actionable,
+  Buildable,
+  Button,
+  ConstraintTarget
+}
 import sn.gnome.gtk4.internal.GtkLockButton
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

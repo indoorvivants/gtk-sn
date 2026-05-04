@@ -5,15 +5,9 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.OutputStream
-import sn.gnome.gio.fluent.PollableOutputStream
-import sn.gnome.gio.fluent.Seekable
+import sn.gnome.gio.fluent.{OutputStream, PollableOutputStream, Seekable}
 import sn.gnome.gio.internal.GMemoryOutputStream
-import sn.gnome.gio.internal.GReallocFunc
-import sn.gnome.glib.internal.GBytes
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.gsize
+import sn.gnome.glib.internal.{gpointer, gsize}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -77,10 +71,10 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     * Returns data from the @ostream as a #GBytes. @ostream must be closed
     * before calling this function.
     */
-  def stealAsBytes(): Ptr[GBytes] /* None */ =
-    g_memory_output_stream_steal_as_bytes(
-      this.raw.asInstanceOf[Ptr[GMemoryOutputStream]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+  )
+  def stealAsBytes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -143,31 +137,10 @@ object MemoryOutputStream:
     *  stream3 = g_memory_output_stream_new (data, 200, NULL, free);
     *  ]|
     */
-  def apply(
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
-      realloc_function: Option[GReallocFunc /* Some(GReallocFunc) */ ],
-      destroy_function: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  ): MemoryOutputStream = new MemoryOutputStream(
-    g_memory_output_stream_new(
-      data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      gsize(size),
-      realloc_function
-        .map[GReallocFunc](o => o)
-        .getOrElse(null.asInstanceOf[GReallocFunc]),
-      destroy_function
-        .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-        .getOrElse(
-          null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-        )
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ReallocFunc), @type -> DataRecord(GReallocFunc)))"
   )
+  def `new`() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

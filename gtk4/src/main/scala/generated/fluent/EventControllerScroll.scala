@@ -5,9 +5,8 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.ScrollUnit
-import sn.gnome.gtk4.fluent.EventController
+import sn.gnome.gtk4.fluent.{EventController, EventControllerScrollFlags}
 import sn.gnome.gtk4.internal.GtkEventControllerScroll
-import sn.gnome.gtk4.internal.GtkEventControllerScrollFlags
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -56,9 +55,11 @@ class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
     *
     * Gets the flags conditioning the scroll controller behavior.
     */
-  def getFlags(): GtkEventControllerScrollFlags /* None */ =
-    gtk_event_controller_scroll_get_flags(
-      this.raw.asInstanceOf[Ptr[GtkEventControllerScroll]]
+  def getFlags(): EventControllerScrollFlags /* None */ =
+    EventControllerScrollFlags.fromRaw(
+      gtk_event_controller_scroll_get_flags(
+        this.raw.asInstanceOf[Ptr[GtkEventControllerScroll]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -80,10 +81,10 @@ class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
     * Sets the flags conditioning scroll controller behavior.
     */
   def setFlags(
-      flags: GtkEventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */
+      flags: EventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */
   ): Unit /* None */ = gtk_event_controller_scroll_set_flags(
     this.raw.asInstanceOf[Ptr[GtkEventControllerScroll]],
-    flags
+    flags.raw
   )
 
 end EventControllerScroll
@@ -94,8 +95,8 @@ object EventControllerScroll:
     * Creates a new event controller that will handle scroll events.
     */
   def apply(
-      flags: GtkEventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */
+      flags: EventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */
   ): EventControllerScroll = new EventControllerScroll(
-    gtk_event_controller_scroll_new(flags).asInstanceOf
+    gtk_event_controller_scroll_new(flags.raw).asInstanceOf
   )
 end EventControllerScroll

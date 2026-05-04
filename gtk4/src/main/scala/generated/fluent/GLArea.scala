@@ -4,15 +4,9 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.GLContext
-import sn.gnome.gdk4.internal.GdkGLAPI
-import sn.gnome.glib.internal.GError
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gdk4.fluent.{GLAPI, GLContext}
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkGLArea
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -150,8 +144,8 @@ class GLArea(raw: Ptr[GtkGLArea])
     *
     * See [method@Gtk.GLArea.set_allowed_apis].
     */
-  def getAllowedApis(): GdkGLAPI /* None */ = gtk_gl_area_get_allowed_apis(
-    this.raw.asInstanceOf[Ptr[GtkGLArea]]
+  def getAllowedApis(): GLAPI /* None */ = GLAPI.fromRaw(
+    gtk_gl_area_get_allowed_apis(this.raw.asInstanceOf[Ptr[GtkGLArea]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -160,9 +154,8 @@ class GLArea(raw: Ptr[GtkGLArea])
     *
     * If the GL area has not been realized yet, 0 is returned.
     */
-  def getApi(): GdkGLAPI /* None */ = gtk_gl_area_get_api(
-    this.raw.asInstanceOf[Ptr[GtkGLArea]]
-  )
+  def getApi(): GLAPI /* None */ =
+    GLAPI.fromRaw(gtk_gl_area_get_api(this.raw.asInstanceOf[Ptr[GtkGLArea]]))
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -184,9 +177,10 @@ class GLArea(raw: Ptr[GtkGLArea])
     *
     * Gets the current error set on the @area.
     */
-  def getError(): Ptr[GError] /* None */ = gtk_gl_area_get_error(
-    this.raw.asInstanceOf[Ptr[GtkGLArea]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
+  def getError__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -215,7 +209,7 @@ class GLArea(raw: Ptr[GtkGLArea])
   @annotation.compileTimeOnly(
     "Method get_required_version contains an OUT parameter, which is not supported yet"
   )
-  private def getRequiredVersion__ = ???
+  def getRequiredVersion__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -264,9 +258,11 @@ class GLArea(raw: Ptr[GtkGLArea])
     * By default, all APIs are allowed.
     */
   def setAllowedApis(
-      apis: GdkGLAPI /* Some(_root_.sn.gnome.gdk4.internal.GdkGLAPI) */
-  ): Unit /* None */ =
-    gtk_gl_area_set_allowed_apis(this.raw.asInstanceOf[Ptr[GtkGLArea]], apis)
+      apis: GLAPI /* Some(_root_.sn.gnome.gdk4.internal.GdkGLAPI) */
+  ): Unit /* None */ = gtk_gl_area_set_allowed_apis(
+    this.raw.asInstanceOf[Ptr[GtkGLArea]],
+    apis.raw
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -296,16 +292,10 @@ class GLArea(raw: Ptr[GtkGLArea])
     * This is useful in the [signal@Gtk.GLArea::create-context] signal if GL
     * context creation fails.
     */
-  def setError(
-      error: Option[
-        Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-      ]
-  ): Unit /* None */ = gtk_gl_area_set_error(
-    this.raw.asInstanceOf[Ptr[GtkGLArea]],
-    error
-      .map[Ptr[_root_.sn.gnome.glib.internal.GError]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GError]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
+  def setError__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

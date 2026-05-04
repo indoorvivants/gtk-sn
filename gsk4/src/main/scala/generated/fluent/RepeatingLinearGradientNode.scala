@@ -4,12 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.gsize
-import sn.gnome.graphene.internal.graphene_point_t
-import sn.gnome.graphene.internal.graphene_rect_t
 import sn.gnome.gsk4.fluent.RenderNode
-import sn.gnome.gsk4.internal.GskColorStop
 import sn.gnome.gsk4.internal.GskRepeatingLinearGradientNode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -30,25 +25,9 @@ object RepeatingLinearGradientNode:
     * from the given points and color stops, and render that into the area given
     * by @bounds.
     */
-  def apply(
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
-      start: Ptr[
-        graphene_point_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
-      end: Ptr[
-        graphene_point_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
-      color_stops: Ptr[GskColorStop /* None */ ] /* Some(Ptr[GskColorStop]) */,
-      n_color_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): RepeatingLinearGradientNode = new RepeatingLinearGradientNode(
-    gsk_repeating_linear_gradient_node_new(
-      bounds,
-      start,
-      end,
-      color_stops,
-      gsize(n_color_stops)
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def `new`() = ???
+
 end RepeatingLinearGradientNode

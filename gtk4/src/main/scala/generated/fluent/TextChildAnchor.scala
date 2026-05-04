@@ -4,8 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.internal.GtkTextChildAnchor
 
@@ -43,7 +42,7 @@ class TextChildAnchor(raw: Ptr[GtkTextChildAnchor])
   @annotation.compileTimeOnly(
     "Method get_widgets contains an OUT parameter, which is not supported yet"
   )
-  private def getWidgets__ = ???
+  def getWidgets__ = ???
 
 end TextChildAnchor
 

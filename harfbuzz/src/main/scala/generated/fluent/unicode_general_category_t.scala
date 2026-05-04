@@ -7,13 +7,13 @@ import _root_.sn.gnome.harfbuzz.internal.hb_unicode_general_category_t
   * Data type for the "General_Category" (gc) property from the Unicode
   * Character Database.
   */
-enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
+enum Unicode_general_category_t(val raw: hb_unicode_general_category_t):
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * [Cc]
     */
   case CONTROL
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_CONTROL
       )
 
@@ -22,7 +22,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Cf]
     */
   case FORMAT
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_FORMAT
       )
 
@@ -31,7 +31,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Cn]
     */
   case UNASSIGNED
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_UNASSIGNED
       )
 
@@ -40,7 +40,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Co]
     */
   case PRIVATE_USE
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_PRIVATE_USE
       )
 
@@ -49,7 +49,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Cs]
     */
   case SURROGATE
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_SURROGATE
       )
 
@@ -58,7 +58,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Ll]
     */
   case LOWERCASE_LETTER
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_LOWERCASE_LETTER
       )
 
@@ -67,7 +67,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Lm]
     */
   case MODIFIER_LETTER
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_MODIFIER_LETTER
       )
 
@@ -76,7 +76,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Lo]
     */
   case OTHER_LETTER
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OTHER_LETTER
       )
 
@@ -85,7 +85,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Lt]
     */
   case TITLECASE_LETTER
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_TITLECASE_LETTER
       )
 
@@ -94,7 +94,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Lu]
     */
   case UPPERCASE_LETTER
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_UPPERCASE_LETTER
       )
 
@@ -103,7 +103,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Mc]
     */
   case SPACING_MARK
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_SPACING_MARK
       )
 
@@ -112,7 +112,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Me]
     */
   case ENCLOSING_MARK
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_ENCLOSING_MARK
       )
 
@@ -121,7 +121,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Mn]
     */
   case NON_SPACING_MARK
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_NON_SPACING_MARK
       )
 
@@ -130,7 +130,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Nd]
     */
   case DECIMAL_NUMBER
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_DECIMAL_NUMBER
       )
 
@@ -139,7 +139,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Nl]
     */
   case LETTER_NUMBER
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_LETTER_NUMBER
       )
 
@@ -148,7 +148,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [No]
     */
   case OTHER_NUMBER
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OTHER_NUMBER
       )
 
@@ -157,7 +157,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Pc]
     */
   case CONNECT_PUNCTUATION
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_CONNECT_PUNCTUATION
       )
 
@@ -166,7 +166,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Pd]
     */
   case DASH_PUNCTUATION
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_DASH_PUNCTUATION
       )
 
@@ -175,7 +175,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Pe]
     */
   case CLOSE_PUNCTUATION
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_CLOSE_PUNCTUATION
       )
 
@@ -184,7 +184,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Pf]
     */
   case FINAL_PUNCTUATION
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_FINAL_PUNCTUATION
       )
 
@@ -193,7 +193,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Pi]
     */
   case INITIAL_PUNCTUATION
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_INITIAL_PUNCTUATION
       )
 
@@ -202,7 +202,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Po]
     */
   case OTHER_PUNCTUATION
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OTHER_PUNCTUATION
       )
 
@@ -211,7 +211,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Ps]
     */
   case OPEN_PUNCTUATION
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OPEN_PUNCTUATION
       )
 
@@ -220,7 +220,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Sc]
     */
   case CURRENCY_SYMBOL
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_CURRENCY_SYMBOL
       )
 
@@ -229,7 +229,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Sk]
     */
   case MODIFIER_SYMBOL
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_MODIFIER_SYMBOL
       )
 
@@ -238,7 +238,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Sm]
     */
   case MATH_SYMBOL
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_MATH_SYMBOL
       )
 
@@ -247,7 +247,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [So]
     */
   case OTHER_SYMBOL
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OTHER_SYMBOL
       )
 
@@ -256,7 +256,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Zl]
     */
   case LINE_SEPARATOR
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_LINE_SEPARATOR
       )
 
@@ -265,7 +265,7 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Zp]
     */
   case PARAGRAPH_SEPARATOR
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_PARAGRAPH_SEPARATOR
       )
 
@@ -274,73 +274,73 @@ enum unicode_general_category_t(val raw: hb_unicode_general_category_t):
     * [Zs]
     */
   case SPACE_SEPARATOR
-      extends unicode_general_category_t(
+      extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_SPACE_SEPARATOR
       )
-end unicode_general_category_t
+end Unicode_general_category_t
 
-object unicode_general_category_t:
-  def fromRaw(raw: hb_unicode_general_category_t): unicode_general_category_t =
+object Unicode_general_category_t:
+  def fromRaw(raw: hb_unicode_general_category_t): Unicode_general_category_t =
     raw match
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_CONTROL =>
-        unicode_general_category_t.CONTROL
+        Unicode_general_category_t.CONTROL
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_FORMAT =>
-        unicode_general_category_t.FORMAT
+        Unicode_general_category_t.FORMAT
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_UNASSIGNED =>
-        unicode_general_category_t.UNASSIGNED
+        Unicode_general_category_t.UNASSIGNED
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_PRIVATE_USE =>
-        unicode_general_category_t.PRIVATE_USE
+        Unicode_general_category_t.PRIVATE_USE
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_SURROGATE =>
-        unicode_general_category_t.SURROGATE
+        Unicode_general_category_t.SURROGATE
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_LOWERCASE_LETTER =>
-        unicode_general_category_t.LOWERCASE_LETTER
+        Unicode_general_category_t.LOWERCASE_LETTER
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_MODIFIER_LETTER =>
-        unicode_general_category_t.MODIFIER_LETTER
+        Unicode_general_category_t.MODIFIER_LETTER
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OTHER_LETTER =>
-        unicode_general_category_t.OTHER_LETTER
+        Unicode_general_category_t.OTHER_LETTER
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_TITLECASE_LETTER =>
-        unicode_general_category_t.TITLECASE_LETTER
+        Unicode_general_category_t.TITLECASE_LETTER
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_UPPERCASE_LETTER =>
-        unicode_general_category_t.UPPERCASE_LETTER
+        Unicode_general_category_t.UPPERCASE_LETTER
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_SPACING_MARK =>
-        unicode_general_category_t.SPACING_MARK
+        Unicode_general_category_t.SPACING_MARK
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_ENCLOSING_MARK =>
-        unicode_general_category_t.ENCLOSING_MARK
+        Unicode_general_category_t.ENCLOSING_MARK
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_NON_SPACING_MARK =>
-        unicode_general_category_t.NON_SPACING_MARK
+        Unicode_general_category_t.NON_SPACING_MARK
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_DECIMAL_NUMBER =>
-        unicode_general_category_t.DECIMAL_NUMBER
+        Unicode_general_category_t.DECIMAL_NUMBER
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_LETTER_NUMBER =>
-        unicode_general_category_t.LETTER_NUMBER
+        Unicode_general_category_t.LETTER_NUMBER
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OTHER_NUMBER =>
-        unicode_general_category_t.OTHER_NUMBER
+        Unicode_general_category_t.OTHER_NUMBER
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_CONNECT_PUNCTUATION =>
-        unicode_general_category_t.CONNECT_PUNCTUATION
+        Unicode_general_category_t.CONNECT_PUNCTUATION
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_DASH_PUNCTUATION =>
-        unicode_general_category_t.DASH_PUNCTUATION
+        Unicode_general_category_t.DASH_PUNCTUATION
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_CLOSE_PUNCTUATION =>
-        unicode_general_category_t.CLOSE_PUNCTUATION
+        Unicode_general_category_t.CLOSE_PUNCTUATION
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_FINAL_PUNCTUATION =>
-        unicode_general_category_t.FINAL_PUNCTUATION
+        Unicode_general_category_t.FINAL_PUNCTUATION
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_INITIAL_PUNCTUATION =>
-        unicode_general_category_t.INITIAL_PUNCTUATION
+        Unicode_general_category_t.INITIAL_PUNCTUATION
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OTHER_PUNCTUATION =>
-        unicode_general_category_t.OTHER_PUNCTUATION
+        Unicode_general_category_t.OTHER_PUNCTUATION
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OPEN_PUNCTUATION =>
-        unicode_general_category_t.OPEN_PUNCTUATION
+        Unicode_general_category_t.OPEN_PUNCTUATION
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_CURRENCY_SYMBOL =>
-        unicode_general_category_t.CURRENCY_SYMBOL
+        Unicode_general_category_t.CURRENCY_SYMBOL
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_MODIFIER_SYMBOL =>
-        unicode_general_category_t.MODIFIER_SYMBOL
+        Unicode_general_category_t.MODIFIER_SYMBOL
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_MATH_SYMBOL =>
-        unicode_general_category_t.MATH_SYMBOL
+        Unicode_general_category_t.MATH_SYMBOL
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OTHER_SYMBOL =>
-        unicode_general_category_t.OTHER_SYMBOL
+        Unicode_general_category_t.OTHER_SYMBOL
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_LINE_SEPARATOR =>
-        unicode_general_category_t.LINE_SEPARATOR
+        Unicode_general_category_t.LINE_SEPARATOR
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_PARAGRAPH_SEPARATOR =>
-        unicode_general_category_t.PARAGRAPH_SEPARATOR
+        Unicode_general_category_t.PARAGRAPH_SEPARATOR
       case hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_SPACE_SEPARATOR =>
-        unicode_general_category_t.SPACE_SEPARATOR
+        Unicode_general_category_t.SPACE_SEPARATOR
   end fromRaw
-end unicode_general_category_t
+end Unicode_general_category_t

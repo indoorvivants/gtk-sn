@@ -5,16 +5,10 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GKeyFile
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.GTKUnit
-import sn.gnome.gtk4.fluent.PageOrientation
-import sn.gnome.gtk4.fluent.PageSetup
+import sn.gnome.gtk4.fluent.{GTKUnit, PageOrientation, PageSetup}
 import sn.gnome.gtk4.internal.GtkPageSetup
-import sn.gnome.gtk4.internal.GtkPaperSize
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -143,8 +137,10 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     *
     * Gets the paper size of the `GtkPageSetup`.
     */
-  def getPaperSize(): Ptr[GtkPaperSize] /* None */ =
-    gtk_page_setup_get_paper_size(this.raw.asInstanceOf[Ptr[GtkPageSetup]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
+  )
+  def getPaperSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -200,21 +196,10 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     * Reads the page setup from the group @group_name in the key file
     * @key_file.
     */
-  def loadKeyFile(
-      key_file: Ptr[
-        GKeyFile
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GKeyFile]) */,
-      group_name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_page_setup_load_key_file(
-      this.raw.asInstanceOf[Ptr[GtkPageSetup]],
-      key_file,
-      group_name
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString]),
-      __errorPtr
-    ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
+  def loadKeyFile__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -259,24 +244,20 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     *
     * See [method@Gtk.PageSetup.set_paper_size_and_default_margins].
     */
-  def setPaperSize(
-      size: Ptr[GtkPaperSize] /* Some(Ptr[GtkPaperSize]) */
-  ): Unit /* None */ = gtk_page_setup_set_paper_size(
-    this.raw.asInstanceOf[Ptr[GtkPageSetup]],
-    size
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
   )
+  def setPaperSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the paper size of the `GtkPageSetup` and modifies the margins
     * according to the new paper size.
     */
-  def setPaperSizeAndDefaultMargins(
-      size: Ptr[GtkPaperSize] /* Some(Ptr[GtkPaperSize]) */
-  ): Unit /* None */ = gtk_page_setup_set_paper_size_and_default_margins(
-    this.raw.asInstanceOf[Ptr[GtkPageSetup]],
-    size
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
   )
+  def setPaperSizeAndDefaultMargins__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -322,26 +303,19 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     *
     * Serialize page setup to an a{sv} variant.
     */
-  def toGvariant(): Ptr[GVariant] /* None */ = gtk_page_setup_to_gvariant(
-    this.raw.asInstanceOf[Ptr[GtkPageSetup]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def toGvariant__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * This function adds the page setup from @setup to @key_file.
     */
-  def toKeyFile(
-      key_file: Ptr[
-        GKeyFile
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GKeyFile]) */,
-      group_name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_page_setup_to_key_file(
-    this.raw.asInstanceOf[Ptr[GtkPageSetup]],
-    key_file,
-    group_name
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
+  def toKeyFile__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -385,13 +359,10 @@ object PageSetup:
     * The variant must be in the format produced by
     * [method@Gtk.PageSetup.to_gvariant].
     */
-  def fromGvariant(
-      variant: Ptr[
-        GVariant
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-  ): PageSetup = new PageSetup(
-    gtk_page_setup_new_from_gvariant(variant).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def new_from_gvariant() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -401,22 +372,10 @@ object PageSetup:
     * Returns a new `GtkPageSetup` object with the restored page setup, or %NULL
     * if an error occurred.
     */
-  def fromKeyFile(
-      key_file: Ptr[
-        GKeyFile
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GKeyFile]) */,
-      group_name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): GResult[PageSetup] = GResult.wrap(__errorPtr =>
-    new PageSetup(
-      gtk_page_setup_new_from_key_file(
-        key_file,
-        group_name
-          .map[CString](o => __sn_extract_string(o))
-          .getOrElse(null.asInstanceOf[CString]),
-        __errorPtr
-      ).asInstanceOf
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
+  def new_from_key_file() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

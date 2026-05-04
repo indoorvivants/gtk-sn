@@ -5,17 +5,18 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.GTKUnit
-import sn.gnome.gtk4.fluent.PageSetup
-import sn.gnome.gtk4.fluent.PrintOperationAction
-import sn.gnome.gtk4.fluent.PrintOperationPreview
-import sn.gnome.gtk4.fluent.PrintOperationResult
-import sn.gnome.gtk4.fluent.PrintSettings
-import sn.gnome.gtk4.fluent.PrintStatus
-import sn.gnome.gtk4.fluent.Window
+import sn.gnome.gtk4.fluent.{
+  GTKUnit,
+  PageSetup,
+  PrintOperationAction,
+  PrintOperationPreview,
+  PrintOperationResult,
+  PrintSettings,
+  PrintStatus,
+  Window
+}
 import sn.gnome.gtk4.internal.GtkPrintOperation
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

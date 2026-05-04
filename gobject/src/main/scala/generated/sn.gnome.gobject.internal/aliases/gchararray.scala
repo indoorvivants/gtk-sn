@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * gchararray:
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gvaluetypes.h
 */
 opaque type gchararray = Ptr[_root_.sn.gnome.glib.internal.gchar]
 object gchararray:

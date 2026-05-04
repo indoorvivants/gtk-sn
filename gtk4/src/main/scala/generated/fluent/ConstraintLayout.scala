@@ -4,17 +4,13 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GError
-import sn.gnome.glib.internal.GHashTable
-import sn.gnome.glib.internal.GList
-import sn.gnome.glib.internal.gsize
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.Constraint
-import sn.gnome.gtk4.fluent.ConstraintGuide
-import sn.gnome.gtk4.fluent.LayoutManager
+import sn.gnome.gtk4.fluent.{
+  Buildable,
+  Constraint,
+  ConstraintGuide,
+  LayoutManager
+}
 import sn.gnome.gtk4.internal.GtkConstraintLayout
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -220,27 +216,10 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * [method@Gtk.ConstraintLayout.add_constraints_from_descriptionv], using
     * variadic arguments to populate the view/target map.
     */
-  inline def addConstraintsFromDescription(
-      lines: Ptr[CString] /* Some(Ptr[CString]) */,
-      n_lines: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
-      hspacing: Int /* Some(CInt) */,
-      vspacing: Int /* Some(CInt) */,
-      error: Ptr[
-        Ptr[GError]
-      ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]) */,
-      first_view: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Ptr[GList] /* None */ =
-    gtk_constraint_layout_add_constraints_from_description(
-      this.raw.asInstanceOf[Ptr[GtkConstraintLayout]],
-      lines,
-      gsize(n_lines),
-      hspacing,
-      vspacing,
-      error,
-      __sn_extract_string(first_view),
-      args*
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char* const*)))"
+  )
+  def addConstraintsFromDescription__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -323,25 +302,10 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     *   [button1(==button2.height)]
     * ```
     */
-  def addConstraintsFromDescriptionv(
-      lines: Ptr[CString] /* Some(Ptr[CString]) */,
-      n_lines: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
-      hspacing: Int /* Some(CInt) */,
-      vspacing: Int /* Some(CInt) */,
-      views: Ptr[
-        GHashTable
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GHashTable]) */
-  )(using Zone): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_constraint_layout_add_constraints_from_descriptionv(
-      this.raw.asInstanceOf[Ptr[GtkConstraintLayout]],
-      lines,
-      gsize(n_lines),
-      hspacing,
-      vspacing,
-      views,
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char* const*)))"
   )
+  def addConstraintsFromDescriptionv__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -428,14 +392,6 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     guide.getUnsafeRawPointer().asInstanceOf
   )
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ConstraintLayout
 
 object ConstraintLayout:

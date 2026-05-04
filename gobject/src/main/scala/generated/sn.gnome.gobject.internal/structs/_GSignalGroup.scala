@@ -7,6 +7,9 @@ import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gsignalgroup.h
+*/
 opaque type _GSignalGroup = CStruct0
 
 object _GSignalGroup:

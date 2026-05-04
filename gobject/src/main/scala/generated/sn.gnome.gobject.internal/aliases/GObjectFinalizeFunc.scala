@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GObjectFinalizeFunc: : the #GObject being finalized
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gobject.h
 */
 opaque type GObjectFinalizeFunc = CFuncPtr1[Ptr[GObject], Unit]
 object GObjectFinalizeFunc:

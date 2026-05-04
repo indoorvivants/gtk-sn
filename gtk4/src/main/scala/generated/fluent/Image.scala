@@ -7,12 +7,14 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.fluent.Paintable
 import sn.gnome.gdkpixbuf.fluent.Pixbuf
 import sn.gnome.gio.fluent.Icon
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.IconSize
-import sn.gnome.gtk4.fluent.ImageType
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  IconSize,
+  ImageType,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkImage
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

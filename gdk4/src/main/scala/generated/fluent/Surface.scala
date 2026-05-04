@@ -4,21 +4,19 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.cairo.fluent.Content
-import sn.gnome.cairo.internal.cairo_region_t
-import sn.gnome.cairo.internal.cairo_surface_t
-import sn.gnome.gdk4.fluent.CairoContext
-import sn.gnome.gdk4.fluent.Cursor
-import sn.gnome.gdk4.fluent.Device
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gdk4.fluent.FrameClock
-import sn.gnome.gdk4.fluent.GLContext
-import sn.gnome.gdk4.fluent.Surface
-import sn.gnome.gdk4.fluent.VulkanContext
+import sn.gnome.gdk4.fluent.{
+  CairoContext,
+  Cursor,
+  Device,
+  Display,
+  FrameClock,
+  GLContext,
+  Surface,
+  VulkanContext
+}
 import sn.gnome.gdk4.internal.GdkSurface
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -95,16 +93,10 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * to a “nil” surface if @other is already in an error state or any other
     * error occurs.
     */
-  def createSimilarSurface(
-      content: Content /* Some(_root_.sn.gnome.cairo.internal.cairo_content_t) */,
-      width: Int /* Some(CInt) */,
-      height: Int /* Some(CInt) */
-  ): Ptr[cairo_surface_t] /* None */ = gdk_surface_create_similar_surface(
-    this.raw.asInstanceOf[Ptr[GdkSurface]],
-    content.raw,
-    width,
-    height
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
   )
+  def createSimilarSurface__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -180,7 +172,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_device_position contains an OUT parameter, which is not supported yet"
   )
-  private def getDevicePosition__ = ???
+  def getDevicePosition__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -368,12 +360,10 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * Use [method@Gdk.Display.supports_input_shapes] to find out if a particular
     * backend supports input regions.
     */
-  def setInputRegion(
-      region: Ptr[
-        cairo_region_t
-      ] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */
-  ): Unit /* None */ =
-    gdk_surface_set_input_region(this.raw.asInstanceOf[Ptr[GdkSurface]], region)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
+  )
+  def setInputRegion__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -392,18 +382,10 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * background is not opaque, please update this property in your
     * [vfunc@Gtk.Widget.css_changed] handler.
     */
-  def setOpaqueRegion(
-      region: Option[Ptr[
-        cairo_region_t
-      ] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */ ]
-  ): Unit /* None */ = gdk_surface_set_opaque_region(
-    this.raw.asInstanceOf[Ptr[GdkSurface]],
-    region
-      .map[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
   )
+  def setOpaqueRegion__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -415,7 +397,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method translate_coordinates contains an INOUT parameter, which is not supported yet"
   )
-  private def translateCoordinates__ = ???
+  def translateCoordinates__ = ???
 
 end Surface
 

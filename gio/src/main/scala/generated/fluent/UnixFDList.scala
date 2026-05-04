@@ -103,7 +103,7 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method peek_fds contains an OUT parameter, which is not supported yet"
   )
-  private def peekFds__ = ???
+  def peekFds__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -127,7 +127,7 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method steal_fds contains an OUT parameter, which is not supported yet"
   )
-  private def stealFds__ = ???
+  def stealFds__ = ???
 
 end UnixFDList
 
@@ -149,10 +149,9 @@ object UnixFDList:
     *
     * If @n_fds is -1 then @fds must be terminated with -1.
     */
-  def fromArray(
-      fds: Ptr[Int] /* Some(Ptr[_root_.sn.gnome.glib.internal.gint]) */,
-      n_fds: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): UnixFDList = new UnixFDList(
-    g_unix_fd_list_new_from_array(fds.asInstanceOf, gint(n_fds)).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(gint)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gint*)))"
   )
+  def new_from_array() = ???
+
 end UnixFDList

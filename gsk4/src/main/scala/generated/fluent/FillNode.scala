@@ -4,10 +4,8 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gsk4.fluent.FillRule
-import sn.gnome.gsk4.fluent.RenderNode
+import sn.gnome.gsk4.fluent.{FillRule, RenderNode}
 import sn.gnome.gsk4.internal.GskFillNode
-import sn.gnome.gsk4.internal.GskPath
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -41,9 +39,10 @@ class FillNode(raw: Ptr[GskFillNode]) extends RenderNode(raw.asInstanceOf):
     * Retrieves the path used to describe the area filled with the contents of
     * the @node.
     */
-  def getPath(): Ptr[GskPath] /* None */ = gsk_fill_node_get_path(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
   )
+  def getPath__ = ???
 
 end FillNode
 
@@ -53,15 +52,9 @@ object FillNode:
     * Creates a `GskRenderNode` that will fill the @child in the area given by @path
     * and @fill_rule.
     */
-  def apply(
-      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      path: Ptr[GskPath] /* Some(Ptr[GskPath]) */,
-      fill_rule: FillRule /* Some(GskFillRule) */
-  ): FillNode = new FillNode(
-    gsk_fill_node_new(
-      child.getUnsafeRawPointer().asInstanceOf,
-      path,
-      fill_rule.raw
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
   )
+  def `new`() = ???
+
 end FillNode

@@ -5,21 +5,18 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Device
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.CellEditable
-import sn.gnome.gtk4.fluent.CellLayout
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.SensitivityType
-import sn.gnome.gtk4.fluent.TreeModel
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  CellEditable,
+  CellLayout,
+  ConstraintTarget,
+  SensitivityType,
+  TreeModel,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkComboBox
-import sn.gnome.gtk4.internal.GtkTreeIter
-import sn.gnome.gtk4.internal.GtkTreeViewRowSeparatorFunc
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -137,7 +134,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
   @annotation.compileTimeOnly(
     "Method get_active_iter contains an OUT parameter, which is not supported yet"
   )
-  private def getActiveIter__ = ???
+  def getActiveIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -209,10 +206,10 @@ class ComboBox(raw: Ptr[GtkComboBox])
     *
     * Returns the current row separator function.
     */
-  def getRowSeparatorFunc(): GtkTreeViewRowSeparatorFunc /* None */ =
-    gtk_combo_box_get_row_separator_func(
-      this.raw.asInstanceOf[Ptr[GtkComboBox]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
+  )
+  def getRowSeparatorFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -288,14 +285,10 @@ class ComboBox(raw: Ptr[GtkComboBox])
     *
     * If @iter is %NULL, the active item is unset.
     */
-  def setActiveIter(
-      iter: Option[Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */ ]
-  ): Unit /* None */ = gtk_combo_box_set_active_iter(
-    this.raw.asInstanceOf[Ptr[GtkComboBox]],
-    iter
-      .map[Ptr[GtkTreeIter]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeIter]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def setActiveIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -397,30 +390,10 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * If the row separator function is %NULL, no separators are drawn. This is
     * the default value.
     */
-  def setRowSeparatorFunc(
-      func: Option[
-        GtkTreeViewRowSeparatorFunc /* Some(GtkTreeViewRowSeparatorFunc) */
-      ],
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  ): Unit /* None */ = gtk_combo_box_set_row_separator_func(
-    this.raw.asInstanceOf[Ptr[GtkComboBox]],
-    func
-      .map[GtkTreeViewRowSeparatorFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkTreeViewRowSeparatorFunc]),
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
   )
+  def setRowSeparatorFunc__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

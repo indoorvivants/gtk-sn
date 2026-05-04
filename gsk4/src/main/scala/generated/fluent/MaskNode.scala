@@ -4,8 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gsk4.fluent.MaskMode
-import sn.gnome.gsk4.fluent.RenderNode
+import sn.gnome.gsk4.fluent.{MaskMode, RenderNode}
 import sn.gnome.gsk4.internal.GskMaskNode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

@@ -4,11 +4,8 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Mount
-import sn.gnome.gio.fluent.Volume
-import sn.gnome.gio.fluent.VolumeMonitor
+import sn.gnome.gio.fluent.{Mount, Volume, VolumeMonitor}
 import sn.gnome.gio.internal.GVolumeMonitor
-import sn.gnome.glib.internal.GList
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -35,10 +32,10 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * The returned list should be freed with g_list_free(), after its elements
     * have been unreffed with g_object_unref().
     */
-  def getConnectedDrives(): Ptr[GList] /* None */ =
-    g_volume_monitor_get_connected_drives(
-      this.raw.asInstanceOf[Ptr[GVolumeMonitor]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Drive))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+  )
+  def getConnectedDrives__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -60,9 +57,10 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * The returned list should be freed with g_list_free(), after its elements
     * have been unreffed with g_object_unref().
     */
-  def getMounts(): Ptr[GList] /* None */ = g_volume_monitor_get_mounts(
-    this.raw.asInstanceOf[Ptr[GVolumeMonitor]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Mount))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def getMounts__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -84,9 +82,10 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * The returned list should be freed with g_list_free(), after its elements
     * have been unreffed with g_object_unref().
     */
-  def getVolumes(): Ptr[GList] /* None */ = g_volume_monitor_get_volumes(
-    this.raw.asInstanceOf[Ptr[GVolumeMonitor]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Volume))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def getVolumes__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -131,7 +130,7 @@ object VolumeMonitor:
     */
   def adoptOrphanMount(
       mount: Mount /* Some(Ptr[GMount]) */
-  ): Volume /* None */ = new Volume.Abstract(
+  ): Volume /* Some(Ptr[GVolume]) */ = new Volume.Abstract(
     g_volume_monitor_adopt_orphan_mount(
       mount.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
@@ -141,7 +140,7 @@ object VolumeMonitor:
     *
     * Gets the volume monitor used by gio.
     */
-  def get(): VolumeMonitor /* None */ = new VolumeMonitor(
+  def get(): VolumeMonitor /* Some(Ptr[GVolumeMonitor]) */ = new VolumeMonitor(
     g_volume_monitor_get().asInstanceOf
   )
 

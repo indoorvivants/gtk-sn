@@ -4,11 +4,9 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.MenuItem
-import sn.gnome.gio.fluent.MenuModel
+import sn.gnome.gio.fluent.{MenuItem, MenuModel}
 import sn.gnome.gio.internal.GMenu
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gchar, gint}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *

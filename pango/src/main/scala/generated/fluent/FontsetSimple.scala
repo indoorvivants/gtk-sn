@@ -4,10 +4,8 @@ import _root_.sn.gnome.pango.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.pango.fluent.Font
-import sn.gnome.pango.fluent.Fontset
+import sn.gnome.pango.fluent.{Font, Fontset}
 import sn.gnome.pango.internal.PangoFontsetSimple
-import sn.gnome.pango.internal.PangoLanguage
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -49,9 +47,9 @@ object FontsetSimple:
     *
     * Creates a new `PangoFontsetSimple` for the given language.
     */
-  def apply(
-      language: Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */
-  ): FontsetSimple = new FontsetSimple(
-    pango_fontset_simple_new(language).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
+  def `new`() = ???
+
 end FontsetSimple

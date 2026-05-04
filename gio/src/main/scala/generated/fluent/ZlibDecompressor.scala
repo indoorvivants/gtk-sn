@@ -4,9 +4,7 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Converter
-import sn.gnome.gio.fluent.FileInfo
-import sn.gnome.gio.fluent.ZlibCompressorFormat
+import sn.gnome.gio.fluent.{Converter, FileInfo, ZlibCompressorFormat}
 import sn.gnome.gio.internal.GZlibDecompressor
 import sn.gnome.gobject.fluent.Object
 

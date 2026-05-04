@@ -5,17 +5,18 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.MenuModel
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Native
-import sn.gnome.gtk4.fluent.Popover
-import sn.gnome.gtk4.fluent.ShortcutManager
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  Native,
+  Popover,
+  PopoverMenuFlags,
+  ShortcutManager,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkPopoverMenu
-import sn.gnome.gtk4.internal.GtkPopoverMenuFlags
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -163,8 +164,8 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     * Returns the flags that @popover uses to create/display a menu from its
     * model.
     */
-  def getFlags(): GtkPopoverMenuFlags /* None */ = gtk_popover_menu_get_flags(
-    this.raw.asInstanceOf[Ptr[GtkPopoverMenu]]
+  def getFlags(): PopoverMenuFlags /* None */ = PopoverMenuFlags.fromRaw(
+    gtk_popover_menu_get_flags(this.raw.asInstanceOf[Ptr[GtkPopoverMenu]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -198,10 +199,10 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     * redundant rebuild.
     */
   def setFlags(
-      flags: GtkPopoverMenuFlags /* Some(GtkPopoverMenuFlags) */
+      flags: PopoverMenuFlags /* Some(GtkPopoverMenuFlags) */
   ): Unit /* None */ = gtk_popover_menu_set_flags(
     this.raw.asInstanceOf[Ptr[GtkPopoverMenu]],
-    flags
+    flags.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -284,11 +285,11 @@ object PopoverMenu:
     */
   def fromModelFull(
       model: MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */,
-      flags: GtkPopoverMenuFlags /* Some(GtkPopoverMenuFlags) */
+      flags: PopoverMenuFlags /* Some(GtkPopoverMenuFlags) */
   ): PopoverMenu = new PopoverMenu(
     gtk_popover_menu_new_from_model_full(
       model.getUnsafeRawPointer().asInstanceOf,
-      flags
+      flags.raw
     ).asInstanceOf
   )
 end PopoverMenu

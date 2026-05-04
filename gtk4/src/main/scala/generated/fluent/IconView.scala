@@ -4,30 +4,20 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gdk4.internal.GdkContentFormats
-import sn.gnome.gdk4.internal.GdkDragAction
-import sn.gnome.gdk4.internal.GdkModifierType
-import sn.gnome.glib.internal.GList
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.CellArea
-import sn.gnome.gtk4.fluent.CellLayout
-import sn.gnome.gtk4.fluent.CellRenderer
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.IconViewDropPosition
-import sn.gnome.gtk4.fluent.Orientation
-import sn.gnome.gtk4.fluent.Scrollable
-import sn.gnome.gtk4.fluent.SelectionMode
-import sn.gnome.gtk4.fluent.Tooltip
-import sn.gnome.gtk4.fluent.TreeModel
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  CellArea,
+  CellLayout,
+  ConstraintTarget,
+  Orientation,
+  Scrollable,
+  SelectionMode,
+  TreeModel,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkIconView
-import sn.gnome.gtk4.internal.GtkIconViewForeachFunc
-import sn.gnome.gtk4.internal.GtkTreePath
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -69,48 +59,30 @@ class IconView(raw: Ptr[GtkIconView])
     * Creates a `GdkPaintable` representation of the item at @path. This image
     * is used for a drag icon.
     */
-  def createDragIcon(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Paintable /* None */ = new Paintable.Abstract(
-    gtk_icon_view_create_drag_icon(
-      this.raw.asInstanceOf[Ptr[GtkIconView]],
-      path
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def createDragIcon__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Turns @icon_view into a drop destination for automatic DND. Calling this
     * method sets `GtkIconView`:reorderable to %FALSE.
     */
-  def enableModelDragDest(
-      formats: Ptr[
-        GdkContentFormats
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */,
-      actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
-  ): Unit /* None */ = gtk_icon_view_enable_model_drag_dest(
-    this.raw.asInstanceOf[Ptr[GtkIconView]],
-    formats,
-    actions
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
+  def enableModelDragDest__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Turns @icon_view into a drag source for automatic DND. Calling this method
     * sets `GtkIconView`:reorderable to %FALSE.
     */
-  def enableModelDragSource(
-      start_button_mask: GdkModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */,
-      formats: Ptr[
-        GdkContentFormats
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */,
-      actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
-  ): Unit /* None */ = gtk_icon_view_enable_model_drag_source(
-    this.raw.asInstanceOf[Ptr[GtkIconView]],
-    start_button_mask,
-    formats,
-    actions
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
+  def enableModelDragSource__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -133,7 +105,7 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_cell_rect contains an OUT parameter, which is not supported yet"
   )
-  private def getCellRect__ = ???
+  def getCellRect__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -162,7 +134,7 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_cursor contains an OUT parameter, which is not supported yet"
   )
-  private def getCursor__ = ???
+  def getCursor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -171,7 +143,7 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_dest_item_at_pos contains an OUT parameter, which is not supported yet"
   )
-  private def getDestItemAtPos__ = ???
+  def getDestItemAtPos__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -180,7 +152,7 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_drag_dest_item contains an OUT parameter, which is not supported yet"
   )
-  private def getDragDestItem__ = ???
+  def getDragDestItem__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -189,17 +161,17 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_item_at_pos contains an OUT parameter, which is not supported yet"
   )
-  private def getItemAtPos__ = ???
+  def getItemAtPos__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the column in which the item @path is currently displayed. Column
     * numbers start at 0.
     */
-  def getItemColumn(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Int /* None */ =
-    gtk_icon_view_get_item_column(this.raw.asInstanceOf[Ptr[GtkIconView]], path)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def getItemColumn__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -223,10 +195,10 @@ class IconView(raw: Ptr[GtkIconView])
     * Gets the row in which the item @path is currently displayed. Row numbers
     * start at 0.
     */
-  def getItemRow(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Int /* None */ =
-    gtk_icon_view_get_item_row(this.raw.asInstanceOf[Ptr[GtkIconView]], path)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def getItemRow__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -267,11 +239,10 @@ class IconView(raw: Ptr[GtkIconView])
     *
     * Gets the path for the icon at the given position.
     */
-  def getPathAtPos(
-      x: Int /* Some(CInt) */,
-      y: Int /* Some(CInt) */
-  ): Ptr[GtkTreePath] /* None */ =
-    gtk_icon_view_get_path_at_pos(this.raw.asInstanceOf[Ptr[GtkIconView]], x, y)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def getPathAtPos__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -317,8 +288,10 @@ class IconView(raw: Ptr[GtkIconView])
     *  g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);
     *  ]|
     */
-  def getSelectedItems(): Ptr[GList] /* None */ =
-    gtk_icon_view_get_selected_items(this.raw.asInstanceOf[Ptr[GtkIconView]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreePath))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+  )
+  def getSelectedItems__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -369,7 +342,7 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_tooltip_context contains an OUT parameter, which is not supported yet"
   )
-  private def getTooltipContext__ = ???
+  def getTooltipContext__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -381,28 +354,26 @@ class IconView(raw: Ptr[GtkIconView])
   @annotation.compileTimeOnly(
     "Method get_visible_range contains an OUT parameter, which is not supported yet"
   )
-  private def getVisibleRange__ = ???
+  def getVisibleRange__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Activates the item determined by @path.
     */
-  def itemActivated(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Unit /* None */ =
-    gtk_icon_view_item_activated(this.raw.asInstanceOf[Ptr[GtkIconView]], path)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def itemActivated__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns %TRUE if the icon pointed to by @path is currently selected. If @path
     * does not point to a valid location, %FALSE is returned.
     */
-  def pathIsSelected(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Boolean /* None */ = gtk_icon_view_path_is_selected(
-    this.raw.asInstanceOf[Ptr[GtkIconView]],
-    path
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def pathIsSelected__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -422,18 +393,10 @@ class IconView(raw: Ptr[GtkIconView])
     * the model. If the model changes before the @icon_view is realized, the
     * centered path will be modified to reflect this change.
     */
-  def scrollToPath(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */,
-      use_align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      row_align: Float /* Some(Float) */,
-      col_align: Float /* Some(Float) */
-  ): Unit /* None */ = gtk_icon_view_scroll_to_path(
-    this.raw.asInstanceOf[Ptr[GtkIconView]],
-    path,
-    gboolean(gint((if use_align == true then 1 else 0))),
-    row_align.asInstanceOf,
-    col_align.asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def scrollToPath__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -448,28 +411,20 @@ class IconView(raw: Ptr[GtkIconView])
     *
     * Selects the row at @path.
     */
-  def selectPath(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Unit /* None */ =
-    gtk_icon_view_select_path(this.raw.asInstanceOf[Ptr[GtkIconView]], path)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def selectPath__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Calls a function for each selected icon. Note that the model or selection
     * cannot be modified from within this function.
     */
-  def selectedForeach(
-      func: GtkIconViewForeachFunc /* Some(GtkIconViewForeachFunc) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_icon_view_selected_foreach(
-    this.raw.asInstanceOf[Ptr[GtkIconView]],
-    func,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(IconViewForeachFunc), @type -> DataRecord(GtkIconViewForeachFunc)))"
   )
+  def selectedForeach__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -515,33 +470,19 @@ class IconView(raw: Ptr[GtkIconView])
     * order to give keyboard focus to the widget. Please note that editing can
     * only happen when the widget is realized.
     */
-  def setCursor(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */,
-      cell: Option[CellRenderer /* Some(Ptr[GtkCellRenderer]) */ ],
-      start_editing: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_icon_view_set_cursor(
-    this.raw.asInstanceOf[Ptr[GtkIconView]],
-    path,
-    cell
-      .map[Ptr[GtkCellRenderer]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkCellRenderer]]),
-    gboolean(gint((if start_editing == true then 1 else 0)))
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def setCursor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the item that is highlighted for feedback.
     */
-  def setDragDestItem(
-      path: Option[Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */ ],
-      pos: IconViewDropPosition /* Some(GtkIconViewDropPosition) */
-  ): Unit /* None */ = gtk_icon_view_set_drag_dest_item(
-    this.raw.asInstanceOf[Ptr[GtkIconView]],
-    path
-      .map[Ptr[GtkTreePath]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]]),
-    pos.raw
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def setDragDestItem__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -696,18 +637,10 @@ class IconView(raw: Ptr[GtkIconView])
     *
     * See also gtk_icon_view_set_tooltip_column() for a simpler alternative.
     */
-  def setTooltipCell(
-      tooltip: Tooltip /* Some(Ptr[GtkTooltip]) */,
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */,
-      cell: Option[CellRenderer /* Some(Ptr[GtkCellRenderer]) */ ]
-  ): Unit /* None */ = gtk_icon_view_set_tooltip_cell(
-    this.raw.asInstanceOf[Ptr[GtkIconView]],
-    tooltip.getUnsafeRawPointer().asInstanceOf,
-    path,
-    cell
-      .map[Ptr[GtkCellRenderer]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkCellRenderer]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def setTooltipCell__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -735,14 +668,10 @@ class IconView(raw: Ptr[GtkIconView])
     * See also gtk_icon_view_set_tooltip_column() for a simpler alternative. See
     * also gtk_tooltip_set_tip_area().
     */
-  def setTooltipItem(
-      tooltip: Tooltip /* Some(Ptr[GtkTooltip]) */,
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Unit /* None */ = gtk_icon_view_set_tooltip_item(
-    this.raw.asInstanceOf[Ptr[GtkIconView]],
-    tooltip.getUnsafeRawPointer().asInstanceOf,
-    path
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def setTooltipItem__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -756,10 +685,10 @@ class IconView(raw: Ptr[GtkIconView])
     *
     * Unselects the row at @path.
     */
-  def unselectPath(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Unit /* None */ =
-    gtk_icon_view_unselect_path(this.raw.asInstanceOf[Ptr[GtkIconView]], path)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def unselectPath__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

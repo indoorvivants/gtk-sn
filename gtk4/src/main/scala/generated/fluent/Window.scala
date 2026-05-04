@@ -5,23 +5,21 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gdk4.fluent.Monitor
+import sn.gnome.gdk4.fluent.{Display, Monitor}
 import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.internal.GList
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint32
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Application
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Native
-import sn.gnome.gtk4.fluent.Root
-import sn.gnome.gtk4.fluent.ShortcutManager
-import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.fluent.Window
-import sn.gnome.gtk4.fluent.WindowGroup
+import sn.gnome.glib.internal.{gboolean, gint, guint32}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Application,
+  Buildable,
+  ConstraintTarget,
+  Native,
+  Root,
+  ShortcutManager,
+  Widget,
+  Window,
+  WindowGroup
+}
 import sn.gnome.gtk4.internal.GtkWindow
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -193,7 +191,7 @@ class Window(raw: Ptr[GtkWindow])
   @annotation.compileTimeOnly(
     "Method get_default_size contains an OUT parameter, which is not supported yet"
   )
-  private def getDefaultSize__ = ???
+  def getDefaultSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -926,9 +924,8 @@ object Window:
     * The returned string is owned by GTK and should not be modified. It is only
     * valid until the next call to [func@Gtk.Window.set_default_icon_name].
     */
-  def getDefaultIconName()(using Zone): String /* None */ = fromCString(
-    gtk_window_get_default_icon_name().asInstanceOf
-  )
+  def getDefaultIconName()(using Zone): String /* Some(CString) */ =
+    fromCString(gtk_window_get_default_icon_name().asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -938,7 +935,8 @@ object Window:
     * callbacks that might destroy the widgets or add new ones, be aware that
     * the list of toplevels will change and emit the "items-changed" signal.
     */
-  def getToplevels(): ListModel /* None */ =
+  def getToplevels()
+      : ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */ =
     new ListModel.Abstract(gtk_window_get_toplevels().asInstanceOf)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -951,7 +949,10 @@ object Window:
     * `g_list_foreach (result, (GFunc)g_object_ref, NULL)` first, and then unref
     * all the widgets afterwards.
     */
-  def listToplevels(): Ptr[GList] /* None */ = gtk_window_list_toplevels()
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+  )
+  def listToplevels() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -969,7 +970,7 @@ object Window:
     */
   def setAutoStartupNotification(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_window_set_auto_startup_notification(
+  ): Unit /* Some(Unit) */ = gtk_window_set_auto_startup_notification(
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
@@ -982,7 +983,7 @@ object Window:
     */
   def setDefaultIconName(
       name: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_window_set_default_icon_name(
+  )(using Zone): Unit /* Some(Unit) */ = gtk_window_set_default_icon_name(
     __sn_extract_string(name)
   )
 
@@ -996,7 +997,7 @@ object Window:
     */
   def setInteractiveDebugging(
       enable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_window_set_interactive_debugging(
+  ): Unit /* Some(Unit) */ = gtk_window_set_interactive_debugging(
     gboolean(gint((if enable == true then 1 else 0)))
   )
 

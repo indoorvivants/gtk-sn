@@ -5,21 +5,16 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.DBusMessage
-import sn.gnome.gio.fluent.DBusMessageByteOrder
-import sn.gnome.gio.fluent.DBusMessageHeaderField
-import sn.gnome.gio.fluent.DBusMessageType
-import sn.gnome.gio.fluent.UnixFDList
+import sn.gnome.gio.fluent.{
+  DBusMessage,
+  DBusMessageByteOrder,
+  DBusMessageFlags,
+  DBusMessageType,
+  UnixFDList
+}
 import sn.gnome.gio.internal.GDBusMessage
-import sn.gnome.gio.internal.GDBusMessageFlags
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guchar
-import sn.gnome.glib.internal.guint
-import sn.gnome.glib.internal.guint32
+import sn.gnome.glib.internal.{gboolean, gchar, gint, guint, guint32}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -62,9 +57,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     *
     * Gets the body of a message.
     */
-  def getBody(): Ptr[GVariant] /* None */ = g_dbus_message_get_body(
-    this.raw.asInstanceOf[Ptr[GDBusMessage]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def getBody__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -101,8 +97,8 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     *
     * Gets the flags for @message.
     */
-  def getFlags(): GDBusMessageFlags /* None */ = g_dbus_message_get_flags(
-    this.raw.asInstanceOf[Ptr[GDBusMessage]]
+  def getFlags(): DBusMessageFlags /* None */ = DBusMessageFlags.fromRaw(
+    g_dbus_message_get_flags(this.raw.asInstanceOf[Ptr[GDBusMessage]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -112,21 +108,19 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * The caller is responsible for checking the type of the returned #GVariant
     * matches what is expected.
     */
-  def getHeader(
-      header_field: DBusMessageHeaderField /* Some(GDBusMessageHeaderField) */
-  ): Ptr[GVariant] /* None */ = g_dbus_message_get_header(
-    this.raw.asInstanceOf[Ptr[GDBusMessage]],
-    header_field.raw
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def getHeader__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets an array of all header fields on @message that are set.
     */
-  def getHeaderFields(): Ptr[UByte] /* None */ =
-    g_dbus_message_get_header_fields(
-      this.raw.asInstanceOf[Ptr[GDBusMessage]]
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@type -> DataRecord(guchar*)))"
+  )
+  def getHeaderFields__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -370,12 +364,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     *
     * If @body is floating, @message assumes ownership of @body.
     */
-  def setBody(
-      body: Ptr[
-        GVariant
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-  ): Unit /* None */ =
-    g_dbus_message_set_body(this.raw.asInstanceOf[Ptr[GDBusMessage]], body)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+  )
+  def setBody__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -424,9 +416,11 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     * Sets the flags to set on @message.
     */
   def setFlags(
-      flags: GDBusMessageFlags /* Some(GDBusMessageFlags) */
-  ): Unit /* None */ =
-    g_dbus_message_set_flags(this.raw.asInstanceOf[Ptr[GDBusMessage]], flags)
+      flags: DBusMessageFlags /* Some(GDBusMessageFlags) */
+  ): Unit /* None */ = g_dbus_message_set_flags(
+    this.raw.asInstanceOf[Ptr[GDBusMessage]],
+    flags.raw
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -434,18 +428,10 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
     *
     * If @value is floating, @message assumes ownership of @value.
     */
-  def setHeader(
-      header_field: DBusMessageHeaderField /* Some(GDBusMessageHeaderField) */,
-      value: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ]
-  ): Unit /* None */ = g_dbus_message_set_header(
-    this.raw.asInstanceOf[Ptr[GDBusMessage]],
-    header_field.raw,
-    value
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def setHeader__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -614,7 +600,7 @@ class DBusMessage(raw: Ptr[GDBusMessage]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method to_blob contains an OUT parameter, which is not supported yet"
   )
-  private def toBlob__ = ???
+  def toBlob__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -649,6 +635,20 @@ object DBusMessage:
     * Creates a new empty #GDBusMessage.
     */
   def apply(): DBusMessage = new DBusMessage(g_dbus_message_new().asInstanceOf)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GDBusMessage from the data stored at @blob. The byte order
+    * that the message was in can be retrieved using
+    * g_dbus_message_get_byte_order().
+    *
+    * If the @blob cannot be parsed, contains invalid fields, or contains
+    * invalid headers, %G_IO_ERROR_INVALID_ARGUMENT will be returned.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
+  )
+  def new_from_blob() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -700,6 +700,16 @@ object DBusMessage:
       __sn_extract_string(signal).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Utility function to calculate how many bytes are needed to completely
+    * deserialize the D-Bus message stored at @blob.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
+  )
+  def bytesNeeded() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

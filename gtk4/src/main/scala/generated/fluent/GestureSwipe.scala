@@ -37,7 +37,7 @@ class GestureSwipe(raw: Ptr[GtkGestureSwipe])
   @annotation.compileTimeOnly(
     "Method get_velocity contains an OUT parameter, which is not supported yet"
   )
-  private def getVelocity__ = ???
+  def getVelocity__ = ???
 
 end GestureSwipe
 

@@ -4,11 +4,9 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gdk4.fluent.SubpixelLayout
+import sn.gnome.gdk4.fluent.{Display, SubpixelLayout}
 import sn.gnome.gdk4.internal.GdkMonitor
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -69,7 +67,7 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_geometry contains an OUT parameter, which is not supported yet"
   )
-  private def getGeometry__ = ???
+  def getGeometry__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

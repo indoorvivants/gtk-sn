@@ -4,16 +4,9 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.GLContext
-import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gdk4.fluent.Texture
+import sn.gnome.gdk4.fluent.{Paintable, Texture}
 import sn.gnome.gdk4.internal.GdkGLTexture
-import sn.gnome.gio.fluent.Icon
-import sn.gnome.gio.fluent.LoadableIcon
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint
+import sn.gnome.gio.fluent.{Icon, LoadableIcon}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -50,25 +43,9 @@ object GLTexture:
     * which will happen when the GdkTexture object is finalized, or due to an
     * explicit call of [method@Gdk.GLTexture.release].
     */
-  def apply(
-      context: GLContext /* Some(Ptr[GdkGLContext]) */,
-      id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      width: Int /* Some(CInt) */,
-      height: Int /* Some(CInt) */,
-      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): GLTexture = new GLTexture(
-    gdk_gl_texture_new(
-      context.getUnsafeRawPointer().asInstanceOf,
-      guint(id),
-      width,
-      height,
-      destroy,
-      data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
+  def `new`() = ???
+
 end GLTexture

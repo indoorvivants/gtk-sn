@@ -4,14 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.internal.GdkRGBA
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ColorChooser
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ColorChooser,
+  ConstraintTarget,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkColorButton
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -112,9 +112,9 @@ object ColorButton:
     *
     * Creates a new color button showing the given color.
     */
-  def withRgba(
-      rgba: Ptr[GdkRGBA] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
-  ): ColorButton = new ColorButton(
-    gtk_color_button_new_with_rgba(rgba).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
+  def new_with_rgba() = ???
+
 end ColorButton

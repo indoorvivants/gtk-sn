@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GVaClosureMarshal: : the #GClosure to which the marshaller belongs
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gclosure.h
 */
 opaque type GVaClosureMarshal = CFuncPtr7[Ptr[GClosure], Ptr[GValue], _root_.sn.gnome.glib.internal.gpointer, va_list, _root_.sn.gnome.glib.internal.gpointer, CInt, Ptr[GType], Unit]
 object GVaClosureMarshal:

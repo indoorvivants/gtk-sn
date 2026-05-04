@@ -5,8 +5,7 @@ import _root_.sn.gnome.pango.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.pango.fluent.FontFace
 import sn.gnome.pango.internal.PangoFontFamily
@@ -101,7 +100,7 @@ class FontFamily(raw: Ptr[PangoFontFamily])
   @annotation.compileTimeOnly(
     "Method list_faces contains an OUT parameter, which is not supported yet"
   )
-  private def listFaces__ = ???
+  def listFaces__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

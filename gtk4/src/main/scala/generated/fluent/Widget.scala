@@ -5,49 +5,34 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.cairo.internal.cairo_font_options_t
-import sn.gnome.gdk4.fluent.Clipboard
-import sn.gnome.gdk4.fluent.Cursor
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gdk4.fluent.FrameClock
-import sn.gnome.gio.fluent.ActionGroup
-import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.GList
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint
-import sn.gnome.gobject.fluent.InitiallyUnowned
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gdk4.fluent.{Clipboard, Cursor, Display, FrameClock}
+import sn.gnome.gio.fluent.{ActionGroup, ListModel}
+import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gobject.fluent.{InitiallyUnowned, Object}
 import sn.gnome.gobject.internal.GType
-import sn.gnome.gsk4.internal.GskTransform
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Align
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.DirectionType
-import sn.gnome.gtk4.fluent.EventController
-import sn.gnome.gtk4.fluent.LayoutManager
-import sn.gnome.gtk4.fluent.Native
-import sn.gnome.gtk4.fluent.Orientation
-import sn.gnome.gtk4.fluent.Overflow
-import sn.gnome.gtk4.fluent.Root
-import sn.gnome.gtk4.fluent.Settings
-import sn.gnome.gtk4.fluent.SizeRequestMode
-import sn.gnome.gtk4.fluent.Snapshot
-import sn.gnome.gtk4.fluent.StyleContext
-import sn.gnome.gtk4.fluent.TextDirection
-import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkAllocation
-import sn.gnome.gtk4.internal.GtkPickFlags
-import sn.gnome.gtk4.internal.GtkStateFlags
-import sn.gnome.gtk4.internal.GtkTickCallback
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Align,
+  Buildable,
+  ConstraintTarget,
+  DirectionType,
+  EventController,
+  LayoutManager,
+  Native,
+  Orientation,
+  Overflow,
+  PickFlags,
+  Root,
+  Settings,
+  SizeRequestMode,
+  Snapshot,
+  StateFlags,
+  StyleContext,
+  TextDirection,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkWidget
-import sn.gnome.pango.fluent.Context
-import sn.gnome.pango.fluent.FontMap
-import sn.gnome.pango.fluent.Layout
+import sn.gnome.pango.fluent.{Context, FontMap, Layout}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -512,18 +497,10 @@ class Widget(raw: Ptr[GtkWidget])
     * The arguments must match the actions expected parameter type, as returned
     * by `g_action_get_parameter_type()`.
     */
-  def activateActionVariant(
-      name: String | CString /* Some(CString) */,
-      args: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ]
-  )(using Zone): Boolean /* None */ = gtk_widget_activate_action_variant(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    __sn_extract_string(name),
-    args
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+  )
+  def activateActionVariant__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -602,20 +579,10 @@ class Widget(raw: Ptr[GtkWidget])
     * [signal@Gdk.FrameClock::update] signal of `GdkFrameClock`, since you don't
     * have to worry about when a `GdkFrameClock` is assigned to a widget.
     */
-  def addTickCallback(
-      callback: GtkTickCallback /* Some(GtkTickCallback) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      _notify: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): UInt /* None */ = gtk_widget_add_tick_callback(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    callback,
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    _notify
-  ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TickCallback), @type -> DataRecord(GtkTickCallback)))"
+  )
+  def addTickCallback__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -629,24 +596,10 @@ class Widget(raw: Ptr[GtkWidget])
     * For a version that does not take a transform, see
     * [method@Gtk.Widget.size_allocate].
     */
-  def allocate(
-      width: Int /* Some(CInt) */,
-      height: Int /* Some(CInt) */,
-      baseline: Int /* Some(CInt) */,
-      transform: Option[Ptr[
-        GskTransform
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]) */ ]
-  ): Unit /* None */ = gtk_widget_allocate(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    width,
-    height,
-    baseline,
-    transform
-      .map[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
+  def allocate__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -696,7 +649,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method compute_bounds contains an OUT parameter, which is not supported yet"
   )
-  private def computeBounds__ = ???
+  def computeBounds__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -732,7 +685,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method compute_point contains an OUT parameter, which is not supported yet"
   )
-  private def computePoint__ = ???
+  def computePoint__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -750,7 +703,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method compute_transform contains an OUT parameter, which is not supported yet"
   )
-  private def computeTransform__ = ???
+  def computeTransform__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -919,7 +872,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method get_allocation contains an OUT parameter, which is not supported yet"
   )
-  private def getAllocation__ = ???
+  def getAllocation__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1008,7 +961,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method get_color contains an OUT parameter, which is not supported yet"
   )
-  private def getColor__ = ???
+  def getColor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1120,8 +1073,10 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * Seee [method@Gtk.Widget.set_font_options].
     */
-  def getFontOptions(): Ptr[cairo_font_options_t] /* None */ =
-    gtk_widget_get_font_options(this.raw.asInstanceOf[Ptr[GtkWidget]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
+  )
+  def getFontOptions__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1391,7 +1346,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method get_preferred_size contains an OUT parameter, which is not supported yet"
   )
-  private def getPreferredSize__ = ???
+  def getPreferredSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1540,7 +1495,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method get_size_request contains an OUT parameter, which is not supported yet"
   )
-  private def getSizeRequest__ = ???
+  def getSizeRequest__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1554,8 +1509,8 @@ class Widget(raw: Ptr[GtkWidget])
     * [flags@Gtk.StateFlags] to pass to a [class@Gtk.StyleContext] method, you
     * should look at [method@Gtk.StyleContext.get_state].
     */
-  def getStateFlags(): GtkStateFlags /* None */ = gtk_widget_get_state_flags(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
+  def getStateFlags(): StateFlags /* None */ = StateFlags.fromRaw(
+    gtk_widget_get_state_flags(this.raw.asInstanceOf[Ptr[GtkWidget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1972,8 +1927,10 @@ class Widget(raw: Ptr[GtkWidget])
     * `g_list_foreach (result, (GFunc)g_object_ref, NULL)` first, and then unref
     * all the widgets afterwards.
     */
-  def listMnemonicLabels(): Ptr[GList] /* None */ =
-    gtk_widget_list_mnemonic_labels(this.raw.asInstanceOf[Ptr[GtkWidget]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+  )
+  def listMnemonicLabels__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2000,7 +1957,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method measure contains an OUT parameter, which is not supported yet"
   )
-  private def measure__ = ???
+  def measure__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2067,13 +2024,13 @@ class Widget(raw: Ptr[GtkWidget])
   def pick(
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */,
-      flags: GtkPickFlags /* Some(GtkPickFlags) */
+      flags: PickFlags /* Some(GtkPickFlags) */
   ): Widget /* None */ = new Widget(
     gtk_widget_pick(
       this.raw.asInstanceOf[Ptr[GtkWidget]],
       x,
       y,
-      flags
+      flags.raw
     ).asInstanceOf
   )
 
@@ -2265,10 +2222,10 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * Clear all style classes applied to @widget and replace them with @classes.
     */
-  def setCssClasses(
-      classes: Ptr[CString] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ =
-    gtk_widget_set_css_classes(this.raw.asInstanceOf[Ptr[GtkWidget]], classes)
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+  )
+  def setCssClasses__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2419,20 +2376,10 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * When not set, the default font options for the `GdkDisplay` will be used.
     */
-  def setFontOptions(
-      options: Option[Ptr[
-        cairo_font_options_t
-      ] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_font_options_t]) */ ]
-  ): Unit /* None */ = gtk_widget_set_font_options(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    options
-      .map[Ptr[_root_.sn.gnome.cairo.internal.cairo_font_options_t]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[
-          _root_.sn.gnome.cairo.internal.cairo_font_options_t
-        ]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
   )
+  def setFontOptions__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2713,11 +2660,11 @@ class Widget(raw: Ptr[GtkWidget])
     * This function is for use in widget implementations.
     */
   def setStateFlags(
-      flags: GtkStateFlags /* Some(GtkStateFlags) */,
+      flags: StateFlags /* Some(GtkStateFlags) */,
       clear: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ = gtk_widget_set_state_flags(
     this.raw.asInstanceOf[Ptr[GtkWidget]],
-    flags,
+    flags.raw,
     gboolean(gint((if clear == true then 1 else 0)))
   )
 
@@ -2844,14 +2791,10 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * This is a simple form of [method@Gtk.Widget.allocate].
     */
-  def sizeAllocate(
-      allocation: Ptr[GtkAllocation] /* Some(Ptr[GtkAllocation]) */,
-      baseline: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_widget_size_allocate(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    allocation,
-    baseline
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Allocation), @type -> DataRecord(const GtkAllocation*)))"
   )
+  def sizeAllocate__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2890,7 +2833,7 @@ class Widget(raw: Ptr[GtkWidget])
   @annotation.compileTimeOnly(
     "Method translate_coordinates contains an OUT parameter, which is not supported yet"
   )
-  private def translateCoordinates__ = ???
+  def translateCoordinates__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -2942,9 +2885,11 @@ class Widget(raw: Ptr[GtkWidget])
     * This function is for use in widget implementations.
     */
   def unsetStateFlags(
-      flags: GtkStateFlags /* Some(GtkStateFlags) */
-  ): Unit /* None */ =
-    gtk_widget_unset_state_flags(this.raw.asInstanceOf[Ptr[GtkWidget]], flags)
+      flags: StateFlags /* Some(GtkStateFlags) */
+  ): Unit /* None */ = gtk_widget_unset_state_flags(
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
+    flags.raw
+  )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -2976,7 +2921,7 @@ object Widget:
     *
     * See [func@Gtk.Widget.set_default_direction].
     */
-  def getDefaultDirection(): TextDirection /* None */ =
+  def getDefaultDirection(): TextDirection /* Some(GtkTextDirection) */ =
     TextDirection.fromRaw(gtk_widget_get_default_direction())
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -2987,6 +2932,6 @@ object Widget:
     */
   def setDefaultDirection(
       dir: TextDirection /* Some(GtkTextDirection) */
-  ): Unit /* None */ = gtk_widget_set_default_direction(dir.raw)
+  ): Unit /* Some(Unit) */ = gtk_widget_set_default_direction(dir.raw)
 
 end Widget

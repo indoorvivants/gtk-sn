@@ -7,6 +7,9 @@ import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
+*/
 opaque type GTypeCValue = CArray[Byte, Nat._0]
 object GTypeCValue:
   given _tag: Tag[GTypeCValue] = Tag.CArray[CChar, Nat._0](Tag.Byte, Tag.Nat0)

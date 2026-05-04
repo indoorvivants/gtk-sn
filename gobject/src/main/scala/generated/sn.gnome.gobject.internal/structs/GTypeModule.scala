@@ -7,6 +7,9 @@ import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtypemodule.h
+*/
 opaque type GTypeModule = CStruct5[GObject, _root_.sn.gnome.glib.internal.guint, Ptr[Byte], Ptr[Byte], Ptr[_root_.sn.gnome.glib.internal.gchar]]
 
 object GTypeModule:

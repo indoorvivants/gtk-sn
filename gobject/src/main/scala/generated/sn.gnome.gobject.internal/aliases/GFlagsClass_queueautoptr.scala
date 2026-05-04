@@ -7,6 +7,9 @@ import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gobject-autocleanups.h
+*/
 opaque type GFlagsClass_queueautoptr = Ptr[_root_.sn.gnome.glib.internal.GQueue]
 object GFlagsClass_queueautoptr:
   given _tag: Tag[GFlagsClass_queueautoptr] = Tag.Ptr[_root_.sn.gnome.glib.internal.GQueue](_root_.sn.gnome.glib.internal.GQueue._tag)

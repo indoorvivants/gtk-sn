@@ -6,14 +6,10 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.Display
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.StyleProvider
-import sn.gnome.gtk4.internal.GtkStateFlags
+import sn.gnome.gtk4.fluent.{StateFlags, StyleContextPrintFlags, StyleProvider}
 import sn.gnome.gtk4.internal.GtkStyleContext
-import sn.gnome.gtk4.internal.GtkStyleContextPrintFlags
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -110,7 +106,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_border contains an OUT parameter, which is not supported yet"
   )
-  private def getBorder__ = ???
+  def getBorder__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -119,7 +115,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_color contains an OUT parameter, which is not supported yet"
   )
-  private def getColor__ = ???
+  def getColor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -138,7 +134,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_margin contains an OUT parameter, which is not supported yet"
   )
-  private def getMargin__ = ???
+  def getMargin__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -147,7 +143,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_padding contains an OUT parameter, which is not supported yet"
   )
-  private def getPadding__ = ???
+  def getPadding__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -166,8 +162,8 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * you need to retrieve the current state of a `GtkWidget`, use
     * [method@Gtk.Widget.get_state_flags].
     */
-  def getState(): GtkStateFlags /* None */ = gtk_style_context_get_state(
-    this.raw.asInstanceOf[Ptr[GtkStyleContext]]
+  def getState(): StateFlags /* None */ = StateFlags.fromRaw(
+    gtk_style_context_get_state(this.raw.asInstanceOf[Ptr[GtkStyleContext]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -188,7 +184,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method lookup_color contains an OUT parameter, which is not supported yet"
   )
-  private def lookupColor__ = ???
+  def lookupColor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -271,12 +267,11 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     *
     * Sets the state to be used for style matching.
     */
-  def setState(
-      flags: GtkStateFlags /* Some(GtkStateFlags) */
-  ): Unit /* None */ = gtk_style_context_set_state(
-    this.raw.asInstanceOf[Ptr[GtkStyleContext]],
-    flags
-  )
+  def setState(flags: StateFlags /* Some(GtkStateFlags) */ ): Unit /* None */ =
+    gtk_style_context_set_state(
+      this.raw.asInstanceOf[Ptr[GtkStyleContext]],
+      flags.raw
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -291,11 +286,11 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * returned string, it may change.
     */
   def toString(
-      flags: GtkStyleContextPrintFlags /* Some(GtkStyleContextPrintFlags) */
+      flags: StyleContextPrintFlags /* Some(GtkStyleContextPrintFlags) */
   )(using Zone): String /* None */ = fromCString(
     gtk_style_context_to_string(
       this.raw.asInstanceOf[Ptr[GtkStyleContext]],
-      flags
+      flags.raw
     ).asInstanceOf
   )
 
@@ -325,7 +320,7 @@ object StyleContext:
       display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
       provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */,
       priority: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_style_context_add_provider_for_display(
+  ): Unit /* Some(Unit) */ = gtk_style_context_add_provider_for_display(
     display.getUnsafeRawPointer().asInstanceOf,
     provider.getUnsafeRawPointer().asInstanceOf,
     guint(priority)
@@ -338,7 +333,7 @@ object StyleContext:
   def removeProviderForDisplay(
       display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
       provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */
-  ): Unit /* None */ = gtk_style_context_remove_provider_for_display(
+  ): Unit /* Some(Unit) */ = gtk_style_context_remove_provider_for_display(
     display.getUnsafeRawPointer().asInstanceOf,
     provider.getUnsafeRawPointer().asInstanceOf
   )

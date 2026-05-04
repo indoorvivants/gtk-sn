@@ -23,13 +23,13 @@ import _root_.sn.gnome.harfbuzz.internal.hb_buffer_cluster_level_t
   * @HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS
   *   instead of the default.
   */
-enum buffer_cluster_level_t(val raw: hb_buffer_cluster_level_t):
+enum Buffer_cluster_level_t(val raw: hb_buffer_cluster_level_t):
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Return cluster values grouped by graphemes into monotone order.
     */
   case MONOTONE_GRAPHEMES
-      extends buffer_cluster_level_t(
+      extends Buffer_cluster_level_t(
         hb_buffer_cluster_level_t.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES
       )
 
@@ -38,7 +38,7 @@ enum buffer_cluster_level_t(val raw: hb_buffer_cluster_level_t):
     * Return cluster values grouped into monotone order.
     */
   case MONOTONE_CHARACTERS
-      extends buffer_cluster_level_t(
+      extends Buffer_cluster_level_t(
         hb_buffer_cluster_level_t.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS
       )
 
@@ -47,7 +47,7 @@ enum buffer_cluster_level_t(val raw: hb_buffer_cluster_level_t):
     * Don't group cluster values.
     */
   case CHARACTERS
-      extends buffer_cluster_level_t(
+      extends Buffer_cluster_level_t(
         hb_buffer_cluster_level_t.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS
       )
 
@@ -56,21 +56,21 @@ enum buffer_cluster_level_t(val raw: hb_buffer_cluster_level_t):
     * Default cluster level, equal to @HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES.
     */
   case DEFAULT
-      extends buffer_cluster_level_t(
+      extends Buffer_cluster_level_t(
         hb_buffer_cluster_level_t.HB_BUFFER_CLUSTER_LEVEL_DEFAULT
       )
-end buffer_cluster_level_t
+end Buffer_cluster_level_t
 
-object buffer_cluster_level_t:
-  def fromRaw(raw: hb_buffer_cluster_level_t): buffer_cluster_level_t =
+object Buffer_cluster_level_t:
+  def fromRaw(raw: hb_buffer_cluster_level_t): Buffer_cluster_level_t =
     raw match
       case hb_buffer_cluster_level_t.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES =>
-        buffer_cluster_level_t.MONOTONE_GRAPHEMES
+        Buffer_cluster_level_t.MONOTONE_GRAPHEMES
       case hb_buffer_cluster_level_t.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS =>
-        buffer_cluster_level_t.MONOTONE_CHARACTERS
+        Buffer_cluster_level_t.MONOTONE_CHARACTERS
       case hb_buffer_cluster_level_t.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS =>
-        buffer_cluster_level_t.CHARACTERS
+        Buffer_cluster_level_t.CHARACTERS
       case hb_buffer_cluster_level_t.HB_BUFFER_CLUSTER_LEVEL_DEFAULT =>
-        buffer_cluster_level_t.DEFAULT
+        Buffer_cluster_level_t.DEFAULT
   end fromRaw
-end buffer_cluster_level_t
+end Buffer_cluster_level_t

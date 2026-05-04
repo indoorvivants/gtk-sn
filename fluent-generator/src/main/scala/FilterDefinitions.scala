@@ -9,8 +9,9 @@ def filterDefinitions(
     method: Option[Method] = None,
     constructor: Option[Constructor] = None,
     enumer: Option[Enumeration] = None,
-    function: Option[FunctionType] = None
-): Option[String] =
+    function: Option[FunctionType] = None,
+    bitfield: Option[Bitfield] = None
+)(using boundary.Label[FluentErr]): Unit =
 
   def isNamespace(name: String) =
     namespace.exists(_.name.exists(n => n.equalsIgnoreCase(name)))
@@ -68,7 +69,7 @@ def filterDefinitions(
         case p: Instanceu45parameter if p.direction.contains(InoutValue) => true
       .contains(true)
 
-  boundary[Option[String]]:
+  val msg = boundary[Option[String]]:
     def check(b: Boolean, msg: String) =
       if b then break(Some(msg))
 
@@ -77,6 +78,9 @@ def filterDefinitions(
 
     def weirdEnum(name: String, msg: String = "") =
       check(enumer.exists(_.name == name), s"Enum $name is weird: $msg")
+
+    def weirdBitfield(name: String, msg: String = "") =
+      check(bitfield.exists(_.name == name), s"Bitfield $name is weird: $msg")
 
     weirdClass("UnixInputStream")
     weirdClass("UnixMountMonitor")
@@ -104,6 +108,16 @@ def filterDefinitions(
     )
 
     weirdEnums.foreach(weirdEnum(_))
+
+    val weirdBitfields = Seq(
+      "ot_color_palette_flags_t",
+      "ot_math_glyph_part_flags_t",
+      "ot_var_axis_flags_t",
+      "PixbufFormatFlags",
+      "PrintCapabilities"
+    )
+
+    weirdBitfields.foreach(weirdBitfield(_))
 
     def weirdMethod(cName: String, msg: String) =
       method.foreach: meth =>
@@ -136,6 +150,12 @@ def filterDefinitions(
       "g_object_interface_list_properties"
     )
 
+    weirdFunction("g_strv_get_type", "Incorrectly sitting in gobject bindings?")
+    weirdFunction(
+      "g_variant_get_gtype",
+      "Incorrectly sitting in gobject bindings?"
+    )
+
     weirdArrays.foreach: ar =>
       weirdMethod(ar, "non NULL-terminated arrays require special handling")
       weirdConstructor(
@@ -143,6 +163,17 @@ def filterDefinitions(
         "non NULL-terminated arrays require special handling"
       )
       weirdFunction(ar, "non NULL-terminated arrays require special handling")
+
+    val weirdFunctions = Seq(
+      "g_assertion_message_cmpstrv",
+      "g_atomic_",
+      "g_bit_trylock",
+      "g_bit_unlock",
+      "cairo_image_surface_create"
+    )
+
+    weirdFunctions.foreach: f =>
+      check(function.exists(_.identifier.startsWith(f)), "weird")
 
     method.foreach: meth =>
       weirdMethod(
@@ -180,7 +211,18 @@ def filterDefinitions(
         hasInoutParamaters(constr.parameters),
         s"Constructor ${constr.name} contains an INOUT parameter, which is not supported yet"
       )
+    function.foreach: func =>
+      check(
+        hasOutParameters(func.parameters),
+        s"Function ${func.name} contains an OUT parameter, which is not supported yet"
+      )
+      check(
+        hasInoutParamaters(func.parameters),
+        s"Function ${func.name} contains an INOUT parameter, which is not supported yet"
+      )
 
     None
 
+  msg.foreach: m =>
+    boundary.break(FluentErr.Other(m))
 end filterDefinitions

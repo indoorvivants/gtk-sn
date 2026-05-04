@@ -6,21 +6,17 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.MenuModel
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Justification
-import sn.gnome.gtk4.fluent.NaturalWrapMode
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  Justification,
+  NaturalWrapMode,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkLabel
-import sn.gnome.pango.fluent.EllipsizeMode
-import sn.gnome.pango.fluent.Layout
-import sn.gnome.pango.fluent.WrapMode
-import sn.gnome.pango.internal.PangoAttrList
-import sn.gnome.pango.internal.PangoTabArray
+import sn.gnome.pango.fluent.{EllipsizeMode, Layout, WrapMode}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -222,9 +218,10 @@ class Label(raw: Ptr[GtkLabel])
     * attributes for the label, use
     * `pango_layout_get_attributes (gtk_label_get_layout (self))`.
     */
-  def getAttributes(): Ptr[PangoAttrList] /* None */ = gtk_label_get_attributes(
-    this.raw.asInstanceOf[Ptr[GtkLabel]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
+  def getAttributes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -308,7 +305,7 @@ class Label(raw: Ptr[GtkLabel])
   @annotation.compileTimeOnly(
     "Method get_layout_offsets contains an OUT parameter, which is not supported yet"
   )
-  private def getLayoutOffsets__ = ???
+  def getLayoutOffsets__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -380,7 +377,7 @@ class Label(raw: Ptr[GtkLabel])
   @annotation.compileTimeOnly(
     "Method get_selection_bounds contains an OUT parameter, which is not supported yet"
   )
-  private def getSelectionBounds__ = ???
+  def getSelectionBounds__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -397,9 +394,10 @@ class Label(raw: Ptr[GtkLabel])
     * The returned array will be %NULL if “standard” (8-space) tabs are used.
     * Free the return value with [method@Pango.TabArray.free].
     */
-  def getTabs(): Ptr[PangoTabArray] /* None */ = gtk_label_get_tabs(
-    this.raw.asInstanceOf[Ptr[GtkLabel]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
+  def getTabs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -510,18 +508,10 @@ class Label(raw: Ptr[GtkLabel])
     * manually set attributes, if you must; know that the attributes will be
     * applied to the label after the markup string is parsed.
     */
-  def setAttributes(
-      attrs: Option[Ptr[
-        PangoAttrList
-      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]) */ ]
-  ): Unit /* None */ = gtk_label_set_attributes(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    attrs
-      .map[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
+  def setAttributes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -732,18 +722,10 @@ class Label(raw: Ptr[GtkLabel])
     *
     * Sets the default tab stops for paragraphs in @self.
     */
-  def setTabs(
-      tabs: Option[Ptr[
-        PangoTabArray
-      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]) */ ]
-  ): Unit /* None */ = gtk_label_set_tabs(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    tabs
-      .map[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
+  def setTabs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

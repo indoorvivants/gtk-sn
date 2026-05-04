@@ -6,8 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.internal.GIOModule
 import sn.gnome.glib.internal.gchar
-import sn.gnome.gobject.fluent.TypeModule
-import sn.gnome.gobject.fluent.TypePlugin
+import sn.gnome.gobject.fluent.{TypeModule, TypePlugin}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -110,7 +109,7 @@ object IOModule:
     * statically. The old symbol names continue to be supported, but cannot be
     * used for static builds.
     */
-  def query()(using Zone): Array[String] /* None */ =
+  def query()(using Zone): Array[String] /* Some(Ptr[CString]) */ =
     __decode_nullable_ptrs(g_io_module_query()).map(fromCString(_))
 
   private inline def __sn_extract_string(str: String | CString)(using

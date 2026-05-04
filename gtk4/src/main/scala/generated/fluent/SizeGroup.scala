@@ -4,11 +4,8 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.GSList
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.SizeGroupMode
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.{Buildable, SizeGroupMode, Widget}
 import sn.gnome.gtk4.internal.GtkSizeGroup
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -114,9 +111,10 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     *
     * Returns the list of widgets associated with @size_group.
     */
-  def getWidgets(): Ptr[GSList] /* None */ = gtk_size_group_get_widgets(
-    this.raw.asInstanceOf[Ptr[GtkSizeGroup]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
+  def getWidgets__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

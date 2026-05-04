@@ -6,9 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Device
 import sn.gnome.gio.fluent.ActionGroup
-import sn.gnome.gtk4.fluent.EventController
-import sn.gnome.gtk4.fluent.PadActionType
-import sn.gnome.gtk4.internal.GtkPadActionEntry
+import sn.gnome.gtk4.fluent.{EventController, PadActionType}
 import sn.gnome.gtk4.internal.GtkPadController
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -100,16 +98,10 @@ class PadController(raw: Ptr[GtkPadController])
     *
     * See [struct@Gtk.PadActionEntry] and [method@Gtk.PadController.set_action].
     */
-  def setActionEntries(
-      entries: Ptr[
-        GtkPadActionEntry /* None */
-      ] /* Some(Ptr[GtkPadActionEntry]) */,
-      n_entries: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_pad_controller_set_action_entries(
-    this.raw.asInstanceOf[Ptr[GtkPadController]],
-    entries,
-    n_entries
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PadActionEntry), @type -> DataRecord(GtkPadActionEntry)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GtkPadActionEntry*)))"
   )
+  def setActionEntries__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

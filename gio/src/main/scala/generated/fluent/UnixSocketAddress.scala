@@ -5,14 +5,13 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.SocketAddress
-import sn.gnome.gio.fluent.SocketConnectable
-import sn.gnome.gio.fluent.UnixSocketAddressType
+import sn.gnome.gio.fluent.{
+  SocketAddress,
+  SocketConnectable,
+  UnixSocketAddressType
+}
 import sn.gnome.gio.internal.GUnixSocketAddress
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gsize
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gsize}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -108,9 +107,60 @@ object UnixSocketAddress:
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
+    * Creates a new %G_UNIX_SOCKET_ADDRESS_ABSTRACT_PADDED #GUnixSocketAddress
+    * for @path.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
+  )
+  def new_abstract() = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GUnixSocketAddress of type @type with name @path.
+    *
+    * If @type is %G_UNIX_SOCKET_ADDRESS_PATH, this is equivalent to calling
+    * g_unix_socket_address_new().
+    *
+    * If @type is %G_UNIX_SOCKET_ADDRESS_ANONYMOUS, @path and @path_len will be
+    * ignored.
+    *
+    * If @path_type is %G_UNIX_SOCKET_ADDRESS_ABSTRACT, then @path_len bytes of @path
+    * will be copied to the socket's path, and only those bytes will be
+    * considered part of the name. (If @path_len is -1, then @path is assumed to
+    * be NUL-terminated.) For example, if @path was "test", then calling
+    * g_socket_address_get_native_size() on the returned socket would return 7
+    * (2 bytes of overhead, 1 byte for the abstract-socket indicator byte, and 4
+    * bytes for the name "test").
+    *
+    * If @path_type is %G_UNIX_SOCKET_ADDRESS_ABSTRACT_PADDED, then
+    * @path_len
+    *   bytes of @path will be copied to the socket's path, the rest of the path
+    *   will be padded with 0 bytes, and the entire zero-padded buffer will be
+    *   considered the name. (As above, if
+    * @path_len
+    *   is -1, then @path is assumed to be NUL-terminated.) In this case,
+    *   g_socket_address_get_native_size() will always return the full size of a
+    *   `struct sockaddr_un`, although g_unix_socket_address_get_path_len() will
+    *   still return just the length of @path.
+    *
+    * %G_UNIX_SOCKET_ADDRESS_ABSTRACT is preferred over
+    * %G_UNIX_SOCKET_ADDRESS_ABSTRACT_PADDED for new programs. Of course, when
+    * connecting to a server created by another process, you must use the
+    * appropriate type corresponding to how that process created its listening
+    * socket.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
+  )
+  def new_with_type() = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
     * Checks if abstract UNIX domain socket names are supported.
     */
-  def abstractNamesSupported(): Boolean /* None */ =
+  def abstractNamesSupported()
+      : Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_unix_socket_address_abstract_names_supported().value.!=(0)
 
   private inline def __sn_extract_string(str: String | CString)(using

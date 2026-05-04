@@ -4,9 +4,7 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.AppInfo
 import sn.gnome.gio.internal.GAppLaunchContext
-import sn.gnome.glib.internal.GList
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -26,16 +24,10 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * applications are started on the same display as the launching application,
     * by setting the `DISPLAY` environment variable.
     */
-  def getDisplay(
-      info: AppInfo /* Some(Ptr[GAppInfo]) */,
-      files: Ptr[GList] /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
-  )(using Zone): String /* None */ = fromCString(
-    g_app_launch_context_get_display(
-      this.raw.asInstanceOf[Ptr[GAppLaunchContext]],
-      info.getUnsafeRawPointer().asInstanceOf,
-      files
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def getDisplay__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -69,16 +61,10 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     *
     * Support for the XDG Activation Protocol was added in GLib 2.76.
     */
-  def getStartupNotifyId(
-      info: AppInfo /* Some(Ptr[GAppInfo]) */,
-      files: Ptr[GList] /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
-  )(using Zone): String /* None */ = fromCString(
-    g_app_launch_context_get_startup_notify_id(
-      this.raw.asInstanceOf[Ptr[GAppLaunchContext]],
-      info.getUnsafeRawPointer().asInstanceOf,
-      files
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def getStartupNotifyId__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

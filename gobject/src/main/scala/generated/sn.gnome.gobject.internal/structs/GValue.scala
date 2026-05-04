@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GValue:
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gvalue.h
 */
 opaque type GValue = CStruct2[GType, CArray[GValue_Data, Nat._2]]
 
@@ -33,6 +35,9 @@ object GValue:
     ____ptr
   
   
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gvalue.h
+*/
 opaque type GValue_Data = CArray[Byte, Nat._8]
 object GValue_Data:
   given _tag: Tag[GValue_Data] = Tag.CArray[CChar, Nat._8](Tag.Byte, Tag.Nat8)

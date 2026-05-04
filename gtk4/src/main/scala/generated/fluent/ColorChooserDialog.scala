@@ -4,15 +4,17 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ColorChooser
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Dialog
-import sn.gnome.gtk4.fluent.Native
-import sn.gnome.gtk4.fluent.Root
-import sn.gnome.gtk4.fluent.ShortcutManager
-import sn.gnome.gtk4.fluent.Window
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ColorChooser,
+  ConstraintTarget,
+  Dialog,
+  Native,
+  Root,
+  ShortcutManager,
+  Window
+}
 import sn.gnome.gtk4.internal.GtkColorChooserDialog
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GSignalCVaMarshaller:
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gsignal.h
 */
 type GSignalCVaMarshaller = GVaClosureMarshal
 object GSignalCVaMarshaller:

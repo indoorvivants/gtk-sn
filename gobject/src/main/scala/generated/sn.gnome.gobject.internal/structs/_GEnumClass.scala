@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GEnumClass: _type_class: the parent class : the smallest possible value. : the largest possible value. _values: the number of possible values. : an array of #GEnumValue structs describing the individual values.
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/genums.h
 */
 opaque type _GEnumClass = CStruct5[GTypeClass, _root_.sn.gnome.glib.internal.gint, _root_.sn.gnome.glib.internal.gint, _root_.sn.gnome.glib.internal.guint, Ptr[GEnumValue]]
 

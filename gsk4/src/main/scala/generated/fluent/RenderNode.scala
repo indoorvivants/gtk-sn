@@ -4,15 +4,9 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.cairo.internal.cairo_t
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GBytes
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.gsk4.fluent.RenderNode
-import sn.gnome.gsk4.fluent.RenderNodeType
-import sn.gnome.gsk4.internal.GskParseErrorFunc
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gsk4.fluent.{RenderNode, RenderNodeType}
 import sn.gnome.gsk4.internal.GskRenderNode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -46,10 +40,10 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * For advanced nodes that cannot be supported using Cairo, in particular for
     * nodes doing 3D operations, this function may fail.
     */
-  def draw(
-      cr: Ptr[cairo_t] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */
-  ): Unit /* None */ =
-    gsk_render_node_draw(this.raw.asInstanceOf[Ptr[GskRenderNode]], cr)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  )
+  def draw__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -60,7 +54,7 @@ class RenderNode(raw: Ptr[GskRenderNode]):
   @annotation.compileTimeOnly(
     "Method get_bounds contains an OUT parameter, which is not supported yet"
   )
-  private def getBounds__ = ???
+  def getBounds__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -90,9 +84,10 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * The intended use of this functions is testing, benchmarking and debugging.
     * The format is not meant as a permanent storage format.
     */
-  def serialize(): Ptr[GBytes] /* None */ = gsk_render_node_serialize(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def serialize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -142,22 +137,9 @@ object RenderNode:
     *
     * For a discussion of the supported format, see that function.
     */
-  def deserialize(
-      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
-      error_func: Option[GskParseErrorFunc /* Some(GskParseErrorFunc) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): RenderNode /* None */ = new RenderNode(
-    gsk_render_node_deserialize(
-      bytes,
-      error_func
-        .map[GskParseErrorFunc](o => o)
-        .getOrElse(null.asInstanceOf[GskParseErrorFunc]),
-      user_data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def deserialize() = ???
 
 end RenderNode

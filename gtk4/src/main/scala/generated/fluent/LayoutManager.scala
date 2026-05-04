@@ -5,9 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.LayoutChild
-import sn.gnome.gtk4.fluent.SizeRequestMode
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.{LayoutChild, SizeRequestMode, Widget}
 import sn.gnome.gtk4.internal.GtkLayoutManager
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -146,6 +144,6 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
   @annotation.compileTimeOnly(
     "Method measure contains an OUT parameter, which is not supported yet"
   )
-  private def measure__ = ???
+  def measure__ = ???
 
 end LayoutManager

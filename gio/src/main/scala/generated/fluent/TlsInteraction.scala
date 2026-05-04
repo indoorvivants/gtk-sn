@@ -4,16 +4,16 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.TlsCertificateRequestFlags
-import sn.gnome.gio.fluent.TlsConnection
-import sn.gnome.gio.fluent.TlsInteractionResult
-import sn.gnome.gio.fluent.TlsPassword
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{
+  AsyncResult,
+  Cancellable,
+  TlsCertificateRequestFlags,
+  TlsConnection,
+  TlsInteractionResult,
+  TlsPassword
+}
 import sn.gnome.gio.internal.GTlsInteraction
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -94,26 +94,10 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     *
     * Certain implementations may not support immediate cancellation.
     */
-  def askPasswordAsync(
-      password: TlsPassword /* Some(Ptr[GTlsPassword]) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_tls_interaction_ask_password_async(
-    this.raw.asInstanceOf[Ptr[GTlsInteraction]],
-    password.getUnsafeRawPointer().asInstanceOf,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def askPasswordAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -267,28 +251,10 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * called when the operation completes. Alternatively the user may abort this
     * certificate request, which will usually abort the TLS connection.
     */
-  def requestCertificateAsync(
-      connection: TlsConnection /* Some(Ptr[GTlsConnection]) */,
-      flags: TlsCertificateRequestFlags /* Some(GTlsCertificateRequestFlags) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_tls_interaction_request_certificate_async(
-    this.raw.asInstanceOf[Ptr[GTlsInteraction]],
-    connection.getUnsafeRawPointer().asInstanceOf,
-    flags.raw,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def requestCertificateAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

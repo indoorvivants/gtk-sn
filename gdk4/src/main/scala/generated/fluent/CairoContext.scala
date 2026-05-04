@@ -4,7 +4,6 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.cairo.internal.cairo_t
 import sn.gnome.gdk4.fluent.DrawContext
 import sn.gnome.gdk4.internal.GdkCairoContext
 
@@ -33,8 +32,9 @@ class CairoContext(raw: Ptr[GdkCairoContext])
     * The returned context is guaranteed to be valid until
     * [method@Gdk.DrawContext.end_frame] is called.
     */
-  def cairoCreate(): Ptr[cairo_t] /* None */ = gdk_cairo_context_cairo_create(
-    this.raw.asInstanceOf[Ptr[GdkCairoContext]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
+  def cairoCreate__ = ???
 
 end CairoContext

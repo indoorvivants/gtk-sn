@@ -5,15 +5,8 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.Device
-import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.fluent.Surface
-import sn.gnome.gdk4.internal.GdkModifierType
-import sn.gnome.gdk4.internal.GdkRectangle
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
-import sn.gnome.glib.internal.guint32
+import sn.gnome.gdk4.fluent.{Device, Event, ModifierType, Surface}
+import sn.gnome.glib.internal.{gboolean, gint, guint, guint32}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkIMContext
@@ -94,7 +87,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
       device: Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */,
       time: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
       keycode: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      state: GdkModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */,
+      state: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */,
       group: Int /* Some(CInt) */
   ): Boolean /* None */ = gtk_im_context_filter_key(
     this.raw.asInstanceOf[Ptr[GtkIMContext]],
@@ -103,7 +96,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     device.getUnsafeRawPointer().asInstanceOf,
     guint32(time),
     guint(keycode),
-    state,
+    state.raw,
     group
   ).value.!=(0)
 
@@ -155,7 +148,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_preedit_string contains an OUT parameter, which is not supported yet"
   )
-  private def getPreeditString__ = ???
+  def getPreeditString__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -178,7 +171,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_surrounding contains an OUT parameter, which is not supported yet"
   )
-  private def getSurrounding__ = ???
+  def getSurrounding__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -201,7 +194,7 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_surrounding_with_selection contains an OUT parameter, which is not supported yet"
   )
-  private def getSurroundingWithSelection__ = ???
+  def getSurroundingWithSelection__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -237,14 +230,10 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     *
     * The location is relative to the client widget.
     */
-  def setCursorLocation(
-      area: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */
-  ): Unit /* None */ = gtk_im_context_set_cursor_location(
-    this.raw.asInstanceOf[Ptr[GtkIMContext]],
-    area
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
+  def setCursorLocation__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GValueTransform: _value: Source value.
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gvalue.h
 */
 opaque type GValueTransform = CFuncPtr2[Ptr[GValue], Ptr[GValue], Unit]
 object GValueTransform:

@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GBaseInitFunc: _class: (type GObject.TypeClass): The #GTypeClass structure to initialize
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GBaseInitFunc = CFuncPtr1[_root_.sn.gnome.glib.internal.gpointer, Unit]
 object GBaseInitFunc:

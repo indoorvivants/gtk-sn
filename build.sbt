@@ -173,7 +173,7 @@ lazy val gio = project
           .withClangFlags(pkgConfig("gio-2.0", "cflags") :+ "-fsigned-char")
           .addCImport("gio.h")
           .withOpaqueStructs(Set("G*"))
-          .withNoLocation(true)
+          // .withNoLocation(true)
           .addExcludedSystemPath(headerPath.toPath.getParent())
           .withMultiFile(true)
 
@@ -191,7 +191,7 @@ lazy val glib = project
       Binding(headerPath, bindingPackage("glib"))
         .withClangFlags(pkgConfig("glib-2.0", "cflags") :+ "-fsigned-char")
         .addCImport("glib.h")
-        .withNoLocation(true)
+        // .withNoLocation(true)
         .withMultiFile(true)
         .addExcludedSystemPath(headerPath.toPath().getParent())
     },
@@ -236,7 +236,7 @@ lazy val gtk4 = project
         )
           .withClangFlags(pkgConfig("gtk4", "cflags") :+ "-fsigned-char")
           .addCImport("graphene.h")
-          .withNoLocation(true)
+          // .withNoLocation(true)
           .withMultiFile(true)
           .addExcludedSystemPath(headerPath.toPath.getParent())
       },
@@ -268,7 +268,7 @@ lazy val gdk4 = project
         )
           .withClangFlags(pkgConfig("gtk4", "cflags") :+ "-fsigned-char")
           // .addCImport("graphene.h")
-          .withNoLocation(true)
+          // .withNoLocation(true)
           .withMultiFile(true)
           .addExcludedSystemPath(headerPath.toPath.getParent())
       },
@@ -301,7 +301,7 @@ lazy val gsk4 = project
         )
           .withClangFlags(pkgConfig("gtk4", "cflags") :+ "-fsigned-char")
           // .addCImport("graphene.h")
-          .withNoLocation(true)
+          // .withNoLocation(true)
           .withMultiFile(true)
           .addExcludedSystemPath(headerPath.toPath.getParent())
       },
@@ -326,7 +326,7 @@ lazy val gobject =
               pkgConfig("gobject-2.0", "cflags") :+ "-fsigned-char"
             )
             .addCImport("glib-object.h")
-            .withNoLocation(true)
+            // .withNoLocation(true)
             .withMultiFile(true)
             .addExcludedSystemPath(headerPath.toPath.getParent())
         },
@@ -374,7 +374,7 @@ lazy val gdkpixbuf =
             .withClangFlags(
               pkgConfig("gdk-pixbuf-2.0", "cflags") :+ "-fsigned-char"
             )
-            .withNoLocation(true)
+            // .withNoLocation(true)
             .withMultiFile(true)
             .addExcludedSystemPath(headerPath.toPath.getParent())
         },
@@ -393,7 +393,7 @@ lazy val cairo =
         Binding(headerPath, bindingPackage("cairo"))
           .withClangFlags(pkgConfig("cairo", "cflags") :+ "-fsigned-char")
           .addCImport("cairo.h")
-          .withNoLocation(true)
+          // .withNoLocation(true)
           .withMultiFile(true)
           .addExcludedSystemPath(headerPath.toPath.getParent())
       },
@@ -419,7 +419,7 @@ lazy val graphene =
             List("-Dsse2=false", "-Darm_neon=false", "-Dgcc_vector=false")
           )
           .addExternalName("graphene_simd4f_get", "<nopackage>")
-          .withNoLocation(true)
+          // .withNoLocation(true)
           .withMultiFile(true)
           .addExcludedSystemPath(headerPath.toPath.getParent())
       }
@@ -594,7 +594,7 @@ def buildWithDependencies(deps: String*)(bb: Binding) = {
         "*/glib-2.0/glib/*",
         "*/glib-2.0/glib.h",
         "*/glibconfig.h",
-        "*/glib-2.0/gmodule.h"
+        "*/glib-2.0/gmodule.h",
       )
     case "gio" =>
       List(

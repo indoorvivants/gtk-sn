@@ -4,18 +4,10 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.SelectionMode
-import sn.gnome.gtk4.fluent.TreeView
-import sn.gnome.gtk4.internal.GtkTreeIter
-import sn.gnome.gtk4.internal.GtkTreePath
+import sn.gnome.gtk4.fluent.{SelectionMode, TreeView}
 import sn.gnome.gtk4.internal.GtkTreeSelection
-import sn.gnome.gtk4.internal.GtkTreeSelectionForeachFunc
-import sn.gnome.gtk4.internal.GtkTreeSelectionFunc
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -70,10 +62,10 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     *
     * Returns the current selection function.
     */
-  def getSelectFunction(): GtkTreeSelectionFunc /* None */ =
-    gtk_tree_selection_get_select_function(
-      this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionFunc), @type -> DataRecord(GtkTreeSelectionFunc)))"
+  )
+  def getSelectFunction__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -86,7 +78,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
   @annotation.compileTimeOnly(
     "Method get_selected contains an OUT parameter, which is not supported yet"
   )
-  private def getSelected__ = ???
+  def getSelected__ = ???
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -103,7 +95,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
   @annotation.compileTimeOnly(
     "Method get_selected_rows contains an OUT parameter, which is not supported yet"
   )
-  private def getSelectedRows__ = ???
+  def getSelectedRows__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -127,24 +119,20 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     *
     * Returns %TRUE if the row at @iter is currently selected.
     */
-  def iterIsSelected(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Boolean /* None */ = gtk_tree_selection_iter_is_selected(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
-    iter
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+  )
+  def iterIsSelected__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns %TRUE if the row pointed to by @path is currently selected. If @path
     * does not point to a valid location, %FALSE is returned
     */
-  def pathIsSelected(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Boolean /* None */ = gtk_tree_selection_path_is_selected(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
-    path
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def pathIsSelected__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -159,23 +147,19 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     *
     * Selects the specified iterator.
     */
-  def selectIter(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Unit /* None */ = gtk_tree_selection_select_iter(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
-    iter
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def selectIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Select the row at @path.
     */
-  def selectPath(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Unit /* None */ = gtk_tree_selection_select_path(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
-    path
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def selectPath__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -184,14 +168,10 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * @selection
     *   must be set to %GTK_SELECTION_MULTIPLE mode.
     */
-  def selectRange(
-      start_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */,
-      end_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Unit /* None */ = gtk_tree_selection_select_range(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
-    start_path,
-    end_path
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def selectRange__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -199,18 +179,10 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * tree or selection from within this function. As a result,
     * gtk_tree_selection_get_selected_rows() might be more useful.
     */
-  def selectedForeach(
-      func: GtkTreeSelectionForeachFunc /* Some(GtkTreeSelectionForeachFunc) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_tree_selection_selected_foreach(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
-    func,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionForeachFunc), @type -> DataRecord(GtkTreeSelectionForeachFunc)))"
   )
+  def selectedForeach__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -234,22 +206,10 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * should return %TRUE if the state of the node may be toggled, and %FALSE if
     * the state of the node should be left unchanged.
     */
-  def setSelectFunction(
-      func: Option[GtkTreeSelectionFunc /* Some(GtkTreeSelectionFunc) */ ],
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = gtk_tree_selection_set_select_function(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
-    func
-      .map[GtkTreeSelectionFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkTreeSelectionFunc]),
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionFunc), @type -> DataRecord(GtkTreeSelectionFunc)))"
   )
+  def setSelectFunction__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -263,36 +223,28 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     *
     * Unselects the specified iterator.
     */
-  def unselectIter(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Unit /* None */ = gtk_tree_selection_unselect_iter(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
-    iter
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def unselectIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Unselects the row at @path.
     */
-  def unselectPath(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Unit /* None */ = gtk_tree_selection_unselect_path(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
-    path
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def unselectPath__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Unselects a range of nodes, determined by @start_path and @end_path
     * inclusive.
     */
-  def unselectRange(
-      start_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */,
-      end_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Unit /* None */ = gtk_tree_selection_unselect_range(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
-    start_path,
-    end_path
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def unselectRange__ = ???
 
 end TreeSelection

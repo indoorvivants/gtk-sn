@@ -5,25 +5,11 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{AsyncResult, Cancellable}
 import sn.gnome.gio.internal.GTask
-import sn.gnome.gio.internal.GTaskThreadFunc
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.GError
-import sn.gnome.glib.internal.GMainContext
-import sn.gnome.glib.internal.GQuark
-import sn.gnome.glib.internal.GSource
-import sn.gnome.glib.internal.GSourceFunc
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.gssize
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, gssize}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gobject.internal.GValue
 
 /**  COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -566,13 +552,10 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * This takes a reference on @task until @source is destroyed.
     */
-  def attachSource(
-      source: Ptr[
-        GSource
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GSource]) */,
-      callback: GSourceFunc /* Some(_root_.sn.gnome.glib.internal.GSourceFunc) */
-  ): Unit /* None */ =
-    g_task_attach_source(this.raw.asInstanceOf[Ptr[GTask]], source, callback)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+  )
+  def attachSource__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -609,9 +592,10 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * This will always return a non-%NULL value, even if the task's context is
     * the default #GMainContext.
     */
-  def getContext(): Ptr[GMainContext] /* None */ = g_task_get_context(
-    this.raw.asInstanceOf[Ptr[GTask]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.MainContext), @type -> DataRecord(GMainContext*)))"
   )
+  def getContext__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -736,7 +720,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
   @annotation.compileTimeOnly(
     "Method propagate_value contains an OUT parameter, which is not supported yet"
   )
-  private def propagateValue__ = ???
+  def propagateValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -763,10 +747,10 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * See also g_task_return_new_error().
     */
-  def returnError(
-      error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): Unit /* None */ =
-    g_task_return_error(this.raw.asInstanceOf[Ptr[GTask]], error)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+  )
+  def returnError__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -798,18 +782,10 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * See also g_task_return_error().
     */
-  inline def returnNewError(
-      domain: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      code: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      format: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = g_task_return_new_error(
-    this.raw.asInstanceOf[Ptr[GTask]],
-    domain,
-    gint(code),
-    __sn_extract_string(format),
-    args*
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
+  def returnNewError__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -829,24 +805,10 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * g_task_return_pointer(), you cannot assume that @result is still valid
     * after calling this, unless you are still holding another reference on it.
     */
-  def returnPointer(
-      result: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      result_destroy: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  ): Unit /* None */ = g_task_return_pointer(
-    this.raw.asInstanceOf[Ptr[GTask]],
-    result
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    result_destroy
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
+  def returnPointer__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -859,18 +821,10 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * language bindings; for C code, g_task_return_pointer() and the like will
     * normally be much easier to use.
     */
-  def returnValue(
-      result: Option[
-        Ptr[GValue] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-      ]
-  ): Unit /* None */ = g_task_return_value(
-    this.raw.asInstanceOf[Ptr[GTask]],
-    result
-      .map[Ptr[_root_.sn.gnome.gobject.internal.GValue]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GValue]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
+  def returnValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -894,10 +848,10 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * using a separate worker thread or thread pool explicitly, rather than
     * using g_task_run_in_thread().
     */
-  def runInThread(
-      task_func: GTaskThreadFunc /* Some(GTaskThreadFunc) */
-  ): Unit /* None */ =
-    g_task_run_in_thread(this.raw.asInstanceOf[Ptr[GTask]], task_func)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TaskThreadFunc), @type -> DataRecord(GTaskThreadFunc)))"
+  )
+  def runInThread__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -918,10 +872,10 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * to all run at once, you should only queue a limited number of them at a
     * time.
     */
-  def runInThreadSync(
-      task_func: GTaskThreadFunc /* Some(GTaskThreadFunc) */
-  ): Unit /* None */ =
-    g_task_run_in_thread_sync(this.raw.asInstanceOf[Ptr[GTask]], task_func)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TaskThreadFunc), @type -> DataRecord(GTaskThreadFunc)))"
+  )
+  def runInThreadSync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1069,24 +1023,10 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * Sets @task's task data (freeing the existing task data, if any).
     */
-  def setTaskData(
-      task_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      task_data_destroy: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  ): Unit /* None */ = g_task_set_task_data(
-    this.raw.asInstanceOf[Ptr[GTask]],
-    task_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    task_data_destroy
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
+  def setTaskData__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -1117,33 +1057,10 @@ object Task:
     * depends on have been destroyed. If you do not want this behavior, you can
     * use g_task_set_check_cancellable() to change it.
     */
-  def apply(
-      source_object: Option[
-        Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      callback_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Task = new Task(
-    g_task_new(
-      source_object
-        .map[_root_.sn.gnome.glib.internal.gpointer](o =>
-          gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
-        )
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      callback
-        .map[GAsyncReadyCallback](o => o)
-        .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-      callback_data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def `new`() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1156,14 +1073,15 @@ object Task:
       source_object: Option[
         Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
-  ): Boolean /* None */ = g_task_is_valid(
-    result.getUnsafeRawPointer().asInstanceOf,
-    source_object
-      .map[_root_.sn.gnome.glib.internal.gpointer](o =>
-        gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
-      )
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-  ).value.!=(0)
+  ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_task_is_valid(
+      result.getUnsafeRawPointer().asInstanceOf,
+      source_object
+        .map[_root_.sn.gnome.glib.internal.gpointer](o =>
+          gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
+        )
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+    ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1176,35 +1094,10 @@ object Task:
     *
     * See also g_task_report_new_error().
     */
-  def reportError(
-      source_object: Option[
-        Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      callback_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      source_tag: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): Unit /* None */ = g_task_report_error(
-    source_object
-      .map[_root_.sn.gnome.glib.internal.gpointer](o =>
-        gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
-      )
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    callback_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    source_tag
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    error
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def reportError() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1217,48 +1110,9 @@ object Task:
     *
     * See also g_task_report_error().
     */
-  inline def reportNewError(
-      source_object: Option[
-        Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      callback_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      source_tag: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      domain: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      code: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      format: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = g_task_report_new_error(
-    source_object
-      .map[_root_.sn.gnome.glib.internal.gpointer](o =>
-        gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
-      )
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    callback_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    source_tag
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    domain,
-    gint(code),
-    __sn_extract_string(format),
-    args*
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def reportNewError() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Task

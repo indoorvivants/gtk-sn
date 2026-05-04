@@ -7,15 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint16
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.pango.fluent.Font
-import sn.gnome.pango.fluent.Layout
-import sn.gnome.pango.fluent.RenderPart
-import sn.gnome.pango.internal.PangoColor
-import sn.gnome.pango.internal.PangoGlyph
-import sn.gnome.pango.internal.PangoGlyphItem
-import sn.gnome.pango.internal.PangoGlyphString
-import sn.gnome.pango.internal.PangoLayoutLine
-import sn.gnome.pango.internal.PangoMatrix
+import sn.gnome.pango.fluent.{Layout, RenderPart}
 import sn.gnome.pango.internal.PangoRenderer
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -87,18 +79,10 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     *
     * Draws a single glyph with coordinates in device space.
     */
-  def drawGlyph(
-      font: Font /* Some(Ptr[PangoFont]) */,
-      glyph: PangoGlyph /* Some(PangoGlyph) */,
-      x: Double /* Some(Double) */,
-      y: Double /* Some(Double) */
-  ): Unit /* None */ = pango_renderer_draw_glyph(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    font.getUnsafeRawPointer().asInstanceOf,
-    glyph,
-    x,
-    y
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Glyph), @type -> DataRecord(PangoGlyph)))"
   )
+  def drawGlyph__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -121,37 +105,19 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * The default implementation of this method simply falls back to
     * [method@Pango.Renderer.draw_glyphs].
     */
-  def drawGlyphItem(
-      text: Option[String | CString /* Some(CString) */ ],
-      glyph_item: Ptr[PangoGlyphItem] /* Some(Ptr[PangoGlyphItem]) */,
-      x: Int /* Some(CInt) */,
-      y: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ = pango_renderer_draw_glyph_item(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    text
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString]),
-    glyph_item,
-    x,
-    y
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GlyphItem), @type -> DataRecord(PangoGlyphItem*)))"
   )
+  def drawGlyphItem__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Draws the glyphs in @glyphs with the specified `PangoRenderer`.
     */
-  def drawGlyphs(
-      font: Font /* Some(Ptr[PangoFont]) */,
-      glyphs: Ptr[PangoGlyphString] /* Some(Ptr[PangoGlyphString]) */,
-      x: Int /* Some(CInt) */,
-      y: Int /* Some(CInt) */
-  ): Unit /* None */ = pango_renderer_draw_glyphs(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    font.getUnsafeRawPointer().asInstanceOf,
-    glyphs,
-    x,
-    y
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GlyphString), @type -> DataRecord(PangoGlyphString*)))"
   )
+  def drawGlyphs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -178,16 +144,10 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * This draws the glyph items that make up the line, as well as shapes,
     * backgrounds and lines that are specified by the attributes of those items.
     */
-  def drawLayoutLine(
-      line: Ptr[PangoLayoutLine] /* Some(Ptr[PangoLayoutLine]) */,
-      x: Int /* Some(CInt) */,
-      y: Int /* Some(CInt) */
-  ): Unit /* None */ = pango_renderer_draw_layout_line(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    line,
-    x,
-    y
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
   )
+  def drawLayoutLine__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -251,12 +211,10 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     *
     * Gets the current rendering color for the specified part.
     */
-  def getColor(
-      part: RenderPart /* Some(PangoRenderPart) */
-  ): Ptr[PangoColor] /* None */ = pango_renderer_get_color(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    part.raw
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(PangoColor*)))"
   )
+  def getColor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -283,8 +241,10 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * The returned layout line should not be modified while still being
     * rendered.
     */
-  def getLayoutLine(): Ptr[PangoLayoutLine] /* None */ =
-    pango_renderer_get_layout_line(this.raw.asInstanceOf[Ptr[PangoRenderer]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
+  )
+  def getLayoutLine__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -292,9 +252,10 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     *
     * See [method@Pango.Renderer.set_matrix].
     */
-  def getMatrix(): Ptr[PangoMatrix] /* None */ = pango_renderer_get_matrix(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
   )
+  def getMatrix__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -343,36 +304,18 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     *
     * Also see [method@Pango.Renderer.set_alpha].
     */
-  def setColor(
-      part: RenderPart /* Some(PangoRenderPart) */,
-      color: Option[Ptr[PangoColor] /* Some(Ptr[PangoColor]) */ ]
-  ): Unit /* None */ = pango_renderer_set_color(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    part.raw,
-    color
-      .map[Ptr[PangoColor]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[PangoColor]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(const PangoColor*)))"
   )
+  def setColor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the transformation matrix that will be applied when rendering.
     */
-  def setMatrix(
-      matrix: Option[Ptr[PangoMatrix] /* Some(Ptr[PangoMatrix]) */ ]
-  ): Unit /* None */ = pango_renderer_set_matrix(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    matrix
-      .map[Ptr[PangoMatrix]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[PangoMatrix]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
   )
+  def setMatrix__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Renderer

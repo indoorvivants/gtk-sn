@@ -66,8 +66,7 @@ object AppInfoMonitor:
     * You must only call g_object_unref() on the return value from under the
     * same main context as you created it.
     */
-  def get(): AppInfoMonitor /* None */ = new AppInfoMonitor(
-    g_app_info_monitor_get().asInstanceOf
-  )
+  def get(): AppInfoMonitor /* Some(Ptr[GAppInfoMonitor]) */ =
+    new AppInfoMonitor(g_app_info_monitor_get().asInstanceOf)
 
 end AppInfoMonitor

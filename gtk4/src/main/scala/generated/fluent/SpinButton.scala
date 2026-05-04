@@ -5,20 +5,20 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.AccessibleRange
-import sn.gnome.gtk4.fluent.Adjustment
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.CellEditable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Editable
-import sn.gnome.gtk4.fluent.Orientable
-import sn.gnome.gtk4.fluent.SpinButtonUpdatePolicy
-import sn.gnome.gtk4.fluent.SpinType
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  AccessibleRange,
+  Adjustment,
+  Buildable,
+  CellEditable,
+  ConstraintTarget,
+  Editable,
+  Orientable,
+  SpinButtonUpdatePolicy,
+  SpinType,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkSpinButton
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -202,7 +202,7 @@ class SpinButton(raw: Ptr[GtkSpinButton])
   @annotation.compileTimeOnly(
     "Method get_increments contains an OUT parameter, which is not supported yet"
   )
-  private def getIncrements__ = ???
+  def getIncrements__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -221,7 +221,7 @@ class SpinButton(raw: Ptr[GtkSpinButton])
   @annotation.compileTimeOnly(
     "Method get_range contains an OUT parameter, which is not supported yet"
   )
-  private def getRange__ = ???
+  def getRange__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

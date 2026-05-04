@@ -4,17 +4,8 @@ import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.gobject.fluent.Object
-import sn.gnome.gobject.fluent.TypePlugin
-import sn.gnome.gobject.internal.GEnumValue
-import sn.gnome.gobject.internal.GFlagsValue
-import sn.gnome.gobject.internal.GInterfaceInfo
-import sn.gnome.gobject.internal.GType
-import sn.gnome.gobject.internal.GTypeFlags
-import sn.gnome.gobject.internal.GTypeInfo
+import sn.gnome.glib.internal.{gboolean, gchar, gint}
+import sn.gnome.gobject.fluent.{Object, TypePlugin}
 import sn.gnome.gobject.internal.GTypeModule
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -67,16 +58,10 @@ class TypeModule(raw: Ptr[GTypeModule])
     * g_type_add_interface_static() instead. This can be used when making a
     * static build of the module.
     */
-  def addInterface(
-      instance_type: GType /* Some(GType) */,
-      interface_type: GType /* Some(GType) */,
-      interface_info: Ptr[GInterfaceInfo] /* Some(Ptr[GInterfaceInfo]) */
-  ): Unit /* None */ = g_type_module_add_interface(
-    this.raw.asInstanceOf[Ptr[GTypeModule]],
-    instance_type,
-    interface_type,
-    interface_info
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(const GInterfaceInfo*)))"
   )
+  def addInterface__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -91,15 +76,10 @@ class TypeModule(raw: Ptr[GTypeModule])
     * Since 2.56 if @module is %NULL this will call g_type_register_static()
     * instead. This can be used when making a static build of the module.
     */
-  def registerEnum(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      const_static_values: Ptr[GEnumValue] /* Some(Ptr[GEnumValue]) */
-  )(using Zone): GType /* None */ = g_type_module_register_enum(
-    this.raw.asInstanceOf[Ptr[GTypeModule]],
-    __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-    const_static_values
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(EnumValue), @type -> DataRecord(const GEnumValue*)))"
   )
+  def registerEnum__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -114,15 +94,10 @@ class TypeModule(raw: Ptr[GTypeModule])
     * Since 2.56 if @module is %NULL this will call g_type_register_static()
     * instead. This can be used when making a static build of the module.
     */
-  def registerFlags(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      const_static_values: Ptr[GFlagsValue] /* Some(Ptr[GFlagsValue]) */
-  )(using Zone): GType /* None */ = g_type_module_register_flags(
-    this.raw.asInstanceOf[Ptr[GTypeModule]],
-    __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-    const_static_values
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FlagsValue), @type -> DataRecord(const GFlagsValue*)))"
   )
+  def registerFlags__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -141,19 +116,10 @@ class TypeModule(raw: Ptr[GTypeModule])
     * Since 2.56 if @module is %NULL this will call g_type_register_static()
     * instead. This can be used when making a static build of the module.
     */
-  def registerType(
-      parent_type: GType /* Some(GType) */,
-      type_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      type_info: Ptr[GTypeInfo] /* Some(Ptr[GTypeInfo]) */,
-      flags: GTypeFlags /* Some(GTypeFlags) */
-  )(using Zone): GType /* None */ = g_type_module_register_type(
-    this.raw.asInstanceOf[Ptr[GTypeModule]],
-    parent_type,
-    __sn_extract_string(type_name).asInstanceOf[Ptr[gchar]],
-    type_info,
-    flags
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(const GTypeInfo*)))"
   )
+  def registerType__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

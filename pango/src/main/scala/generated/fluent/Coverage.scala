@@ -5,8 +5,7 @@ import _root_.sn.gnome.pango.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.pango.fluent.Coverage
-import sn.gnome.pango.fluent.CoverageLevel
+import sn.gnome.pango.fluent.{Coverage, CoverageLevel}
 import sn.gnome.pango.internal.PangoCoverage
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -80,7 +79,7 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method to_bytes contains an OUT parameter, which is not supported yet"
   )
-  private def toBytes__ = ???
+  def toBytes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -100,4 +99,15 @@ object Coverage:
     * Create a new `PangoCoverage`
     */
   def apply(): Coverage = new Coverage(pango_coverage_new().asInstanceOf)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Convert data generated from [method@Pango.Coverage.to_bytes] back to a
+    * `PangoCoverage`.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
+  )
+  def fromBytes() = ???
+
 end Coverage

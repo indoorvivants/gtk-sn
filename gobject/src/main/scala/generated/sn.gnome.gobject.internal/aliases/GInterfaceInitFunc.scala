@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GInterfaceInitFunc: _iface: (type GObject.TypeInterface): The interface structure to initialize _data: The
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GInterfaceInitFunc = CFuncPtr2[_root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gpointer, Unit]
 object GInterfaceInitFunc:

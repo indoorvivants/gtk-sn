@@ -5,8 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.gsize
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gsize, guint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.internal.GtkEntryBuffer
 

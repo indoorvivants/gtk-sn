@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GWeakNotify:
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gobject.h
 */
 opaque type GWeakNotify = CFuncPtr2[_root_.sn.gnome.glib.internal.gpointer, Ptr[GObject], Unit]
 object GWeakNotify:

@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeValueInitFunc: : the value to initialize
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GTypeValueInitFunc = CFuncPtr1[Ptr[GValue], Unit]
 object GTypeValueInitFunc:

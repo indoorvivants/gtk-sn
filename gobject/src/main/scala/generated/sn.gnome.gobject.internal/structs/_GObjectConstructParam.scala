@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GObjectConstructParam: : the #GParamSpec of the construct parameter : the value to set the parameter to
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gobject.h
 */
 opaque type _GObjectConstructParam = CStruct2[Ptr[GParamSpec], Ptr[GValue]]
 

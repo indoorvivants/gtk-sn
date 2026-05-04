@@ -4,7 +4,6 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.GList
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkWindowGroup
@@ -45,9 +44,10 @@ class WindowGroup(raw: Ptr[GtkWindowGroup]) extends Object(raw.asInstanceOf):
     *
     * Returns a list of the `GtkWindows` that belong to @window_group.
     */
-  def listWindows(): Ptr[GList] /* None */ = gtk_window_group_list_windows(
-    this.raw.asInstanceOf[Ptr[GtkWindowGroup]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Window))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def listWindows__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

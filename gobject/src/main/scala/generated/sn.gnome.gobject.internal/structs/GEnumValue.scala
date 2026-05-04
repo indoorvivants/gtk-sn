@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GEnumValue: : the enum value _name: the name of the value _nick: the nickname of the value
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/genums.h
 */
 opaque type GEnumValue = CStruct3[_root_.sn.gnome.glib.internal.gint, Ptr[_root_.sn.gnome.glib.internal.gchar], Ptr[_root_.sn.gnome.glib.internal.gchar]]
 

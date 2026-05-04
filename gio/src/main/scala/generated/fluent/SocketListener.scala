@@ -5,15 +5,10 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.Cancellable
 import sn.gnome.gio.fluent.Socket
-import sn.gnome.gio.internal.GAsyncReadyCallback
 import sn.gnome.gio.internal.GSocketListener
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint16
+import sn.gnome.glib.internal.{gboolean, gint, guint16}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -53,7 +48,7 @@ class SocketListener(raw: Ptr[GSocketListener])
   @annotation.compileTimeOnly(
     "Method accept contains an OUT parameter, which is not supported yet"
   )
-  private def accept__ = ???
+  def accept__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -62,24 +57,10 @@ class SocketListener(raw: Ptr[GSocketListener])
     * When the operation is finished @callback will be called. You can then call
     * g_socket_listener_accept_finish() to get the result of the operation.
     */
-  def acceptAsync(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_socket_listener_accept_async(
-    this.raw.asInstanceOf[Ptr[GSocketListener]],
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def acceptAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -88,7 +69,7 @@ class SocketListener(raw: Ptr[GSocketListener])
   @annotation.compileTimeOnly(
     "Method accept_finish contains an OUT parameter, which is not supported yet"
   )
-  private def acceptFinish__ = ???
+  def acceptFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -110,7 +91,7 @@ class SocketListener(raw: Ptr[GSocketListener])
   @annotation.compileTimeOnly(
     "Method accept_socket contains an OUT parameter, which is not supported yet"
   )
-  private def acceptSocket__ = ???
+  def acceptSocket__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -120,24 +101,10 @@ class SocketListener(raw: Ptr[GSocketListener])
     * g_socket_listener_accept_socket_finish() to get the result of the
     * operation.
     */
-  def acceptSocketAsync(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_socket_listener_accept_socket_async(
-    this.raw.asInstanceOf[Ptr[GSocketListener]],
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def acceptSocketAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -147,7 +114,7 @@ class SocketListener(raw: Ptr[GSocketListener])
   @annotation.compileTimeOnly(
     "Method accept_socket_finish contains an OUT parameter, which is not supported yet"
   )
-  private def acceptSocketFinish__ = ???
+  def acceptSocketFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -177,7 +144,7 @@ class SocketListener(raw: Ptr[GSocketListener])
   @annotation.compileTimeOnly(
     "Method add_address contains an OUT parameter, which is not supported yet"
   )
-  private def addAddress__ = ???
+  def addAddress__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

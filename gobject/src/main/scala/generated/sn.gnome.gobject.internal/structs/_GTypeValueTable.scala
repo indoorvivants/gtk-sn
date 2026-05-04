@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeValueTable: _init: Function to initialize a GValue _free: Function to free a GValue _copy: Function to copy a GValue _peek_pointer: Function to peek the contents of a GValue if they fit into a pointer _format: A string format describing how to collect the contents of this value bit-by-bit. Each character in the format represents an argument to be collected, and the characters themselves indicate the type of the argument. Currently supported arguments are: - `'i'`: Integers, passed as `collect_values[].v_int` - `'l'`: Longs, passed as `collect_values[].v_long` - `'d'`: Doubles, passed as `collect_values[].v_double` - `'p'`: Pointers, passed as `collect_values[].v_pointer` It should be noted that for variable argument list construction, ANSI C promotes every type smaller than an integer to an int, and floats to doubles. So for collection of short int or char, `'i'` needs to be used, and for collection of floats `'d'`. _value: Function to initialize a GValue from the values collected from variadic arguments _format: Format description of the arguments to collect for _value, analogous to _format. Usually, _format string consists only of `'p'`s to provide lcopy_value() with pointers to storage locations. _value: Function to store the contents of a value into the locations collected from variadic arguments
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type _GTypeValueTable = CStruct8[GTypeValueInitFunc, GTypeValueFreeFunc, GTypeValueCopyFunc, GTypeValuePeekPointerFunc, Ptr[_root_.sn.gnome.glib.internal.gchar], GTypeValueCollectFunc, Ptr[_root_.sn.gnome.glib.internal.gchar], GTypeValueLCopyFunc]
 

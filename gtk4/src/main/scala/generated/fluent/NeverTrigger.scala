@@ -4,8 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gtk4.fluent.NeverTrigger
-import sn.gnome.gtk4.fluent.ShortcutTrigger
+import sn.gnome.gtk4.fluent.{NeverTrigger, ShortcutTrigger}
 import sn.gnome.gtk4.internal.GtkNeverTrigger
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -27,8 +26,7 @@ object NeverTrigger:
     * This is a singleton for a trigger that never triggers. Use this trigger
     * instead of %NULL because it implements all virtual functions.
     */
-  def get(): NeverTrigger /* None */ = new NeverTrigger(
-    gtk_never_trigger_get().asInstanceOf
-  )
+  def get(): NeverTrigger /* Some(Ptr[GtkShortcutTrigger]) */ =
+    new NeverTrigger(gtk_never_trigger_get().asInstanceOf)
 
 end NeverTrigger

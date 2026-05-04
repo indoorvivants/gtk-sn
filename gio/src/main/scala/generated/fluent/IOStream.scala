@@ -4,18 +4,10 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.IOStream
-import sn.gnome.gio.fluent.InputStream
-import sn.gnome.gio.fluent.OutputStream
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{AsyncResult, Cancellable, InputStream, OutputStream}
 import sn.gnome.gio.internal.GIOStream
-import sn.gnome.gio.internal.GIOStreamSpliceFlags
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -138,26 +130,10 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * implement asynchronicity, so they are optional for inheriting classes.
     * However, if you override one you must override all.
     */
-  def closeAsync(
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_io_stream_close_async(
-    this.raw.asInstanceOf[Ptr[GIOStream]],
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def closeAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -230,30 +206,10 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * When the operation is finished @callback will be called. You can then call
     * g_io_stream_splice_finish() to get the result of the operation.
     */
-  def spliceAsync(
-      stream2: IOStream /* Some(Ptr[GIOStream]) */,
-      flags: GIOStreamSpliceFlags /* Some(GIOStreamSpliceFlags) */,
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_io_stream_splice_async(
-    this.raw.asInstanceOf[Ptr[GIOStream]],
-    stream2.getUnsafeRawPointer().asInstanceOf,
-    flags,
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def spliceAsync__ = ???
 
 end IOStream
 
@@ -264,11 +220,12 @@ object IOStream:
     */
   def spliceFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_io_stream_splice_finish(
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
+    GResult.wrap(__errorPtr =>
+      g_io_stream_splice_finish(
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
 
 end IOStream

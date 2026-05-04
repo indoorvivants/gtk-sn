@@ -5,8 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Display
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkMountOperation
 import sn.gnome.gio.fluent.MountOperation as _MountOperation

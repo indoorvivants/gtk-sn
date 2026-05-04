@@ -7,6 +7,9 @@ import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gobject-autocleanups.h
+*/
 opaque type GParamSpec_listautoptr = Ptr[_root_.sn.gnome.glib.internal.GList]
 object GParamSpec_listautoptr:
   given _tag: Tag[GParamSpec_listautoptr] = Tag.Ptr[_root_.sn.gnome.glib.internal.GList](_root_.sn.gnome.glib.internal.GList._tag)

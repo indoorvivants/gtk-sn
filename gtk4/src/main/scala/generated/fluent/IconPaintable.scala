@@ -6,8 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Paintable
 import sn.gnome.gio.fluent.File
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.SymbolicPaintable
 import sn.gnome.gtk4.internal.GtkIconPaintable

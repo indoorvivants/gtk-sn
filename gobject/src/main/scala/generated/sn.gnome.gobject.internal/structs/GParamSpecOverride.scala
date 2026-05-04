@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GParamSpecOverride:
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparamspecs.h
 */
 opaque type GParamSpecOverride = CStruct2[GParamSpec, Ptr[GParamSpec]]
 

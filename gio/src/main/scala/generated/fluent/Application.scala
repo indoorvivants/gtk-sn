@@ -5,23 +5,18 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ActionGroup
-import sn.gnome.gio.fluent.ActionMap
-import sn.gnome.gio.fluent.Application
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.DBusConnection
-import sn.gnome.gio.fluent.Notification
+import sn.gnome.gio.fluent.{
+  ActionGroup,
+  ActionMap,
+  Application,
+  ApplicationFlags,
+  Cancellable,
+  DBusConnection,
+  Notification
+}
 import sn.gnome.gio.internal.GApplication
-import sn.gnome.gio.internal.GApplicationFlags
-import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.fluent.OptionArg
-import sn.gnome.glib.internal.GOptionFlags
-import sn.gnome.glib.internal.GOptionGroup
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.fluent.{GResult, OptionArg, OptionFlags}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -177,7 +172,7 @@ class Application(raw: Ptr[GApplication])
   def addMainOption(
       long_name: String | CString /* Some(CString) */,
       short_name: Byte /* Some(CChar) */,
-      flags: GOptionFlags /* Some(_root_.sn.gnome.glib.internal.GOptionFlags) */,
+      flags: OptionFlags /* Some(_root_.sn.gnome.glib.internal.GOptionFlags) */,
       arg: OptionArg /* Some(_root_.sn.gnome.glib.internal.GOptionArg) */,
       description: String | CString /* Some(CString) */,
       arg_description: Option[String | CString /* Some(CString) */ ]
@@ -185,13 +180,79 @@ class Application(raw: Ptr[GApplication])
     this.raw.asInstanceOf[Ptr[GApplication]],
     __sn_extract_string(long_name),
     gchar(short_name).asInstanceOf,
-    flags,
+    flags.raw,
     arg.raw,
     __sn_extract_string(description),
     arg_description
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Adds main option entries to be handled by @application.
+    *
+    * This function is comparable to g_option_context_add_main_entries().
+    *
+    * After the commandline arguments are parsed, the
+    * #GApplication::handle-local-options signal will be emitted. At this point,
+    * the application can inspect the values pointed to by @arg_data in the
+    * given #GOptionEntrys.
+    *
+    * Unlike #GOptionContext, #GApplication supports giving a %NULL
+    * @arg_data
+    *   for a non-callback #GOptionEntry. This results in the argument in
+    *   question being packed into a #GVariantDict which is also passed to
+    *   #GApplication::handle-local-options, where it can be inspected and
+    *   modified. If %G_APPLICATION_HANDLES_COMMAND_LINE is set, then the
+    *   resulting dictionary is sent to the primary instance, where
+    *   g_application_command_line_get_options_dict() will return it. As it has
+    *   been passed outside the process at this point, the types of all values
+    *   in the options dict must be checked before being used. This "packing" is
+    *   done according to the type of the argument -- booleans for normal flags,
+    *   strings for strings, bytestrings for filenames, etc. The packing only
+    *   occurs if the flag is given (ie: we do not pack a "false" #GVariant in
+    *   the case that a flag is missing).
+    *
+    * In general, it is recommended that all commandline arguments are parsed
+    * locally. The options dictionary should then be used to transmit the result
+    * of the parsing to the primary instance, where g_variant_dict_lookup() can
+    * be used. For local options, it is possible to either use @arg_data in the
+    * usual way, or to consult (and potentially remove) the option from the
+    * options dictionary.
+    *
+    * This function is new in GLib 2.40. Before then, the only real choice was
+    * to send all of the commandline arguments (options and all) to the primary
+    * instance for handling. #GApplication ignored them completely on the local
+    * side. Calling this function "opts in" to the new behaviour, and in
+    * particular, means that unrecognised options will be treated as errors.
+    * Unrecognised options have never been ignored when
+    * %G_APPLICATION_HANDLES_COMMAND_LINE is unset.
+    *
+    * If #GApplication::handle-local-options needs to see the list of filenames,
+    * then the use of %G_OPTION_REMAINING is recommended. If
+    * @arg_data
+    *   is %NULL then %G_OPTION_REMAINING can be used as a key into the options
+    *   dictionary. If you do use %G_OPTION_REMAINING then you need to handle
+    *   these arguments for yourself because once they are consumed, they will
+    *   no longer be visible to the default handling (which treats them as
+    *   filenames to be opened).
+    *
+    * It is important to use the proper GVariant format when retrieving the
+    * options with g_variant_dict_lookup():
+    *   - for %G_OPTION_ARG_NONE, use `b`
+    *   - for %G_OPTION_ARG_STRING, use `&s`
+    *   - for %G_OPTION_ARG_INT, use `i`
+    *   - for %G_OPTION_ARG_INT64, use `x`
+    *   - for %G_OPTION_ARG_DOUBLE, use `d`
+    *   - for %G_OPTION_ARG_FILENAME, use `^&ay`
+    *   - for %G_OPTION_ARG_STRING_ARRAY, use `^a&s`
+    *   - for %G_OPTION_ARG_FILENAME_ARRAY, use `^a&ay`
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.OptionEntry)))),ListMap(@type -> DataRecord(const GOptionEntry*)))"
+  )
+  def addMainOptionEntries__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -220,14 +281,10 @@ class Application(raw: Ptr[GApplication])
     * functionality whereby unrecognised options are rejected even if
     * %G_APPLICATION_HANDLES_COMMAND_LINE was given.
     */
-  def addOptionGroup(
-      group: Ptr[
-        GOptionGroup
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GOptionGroup]) */
-  ): Unit /* None */ = g_application_add_option_group(
-    this.raw.asInstanceOf[Ptr[GApplication]],
-    group
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.OptionGroup), @type -> DataRecord(GOptionGroup*)))"
   )
+  def addOptionGroup__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -310,8 +367,8 @@ class Application(raw: Ptr[GApplication])
     *
     * See #GApplicationFlags.
     */
-  def getFlags(): GApplicationFlags /* None */ = g_application_get_flags(
-    this.raw.asInstanceOf[Ptr[GApplication]]
+  def getFlags(): ApplicationFlags /* None */ = ApplicationFlags.fromRaw(
+    g_application_get_flags(this.raw.asInstanceOf[Ptr[GApplication]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -430,7 +487,7 @@ class Application(raw: Ptr[GApplication])
   @annotation.compileTimeOnly(
     "Method open is weird: non NULL-terminated arrays require special handling"
   )
-  private def open__ = ???
+  def open__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -696,9 +753,9 @@ class Application(raw: Ptr[GApplication])
     * See #GApplicationFlags.
     */
   def setFlags(
-      flags: GApplicationFlags /* Some(GApplicationFlags) */
+      flags: ApplicationFlags /* Some(GApplicationFlags) */
   ): Unit /* None */ =
-    g_application_set_flags(this.raw.asInstanceOf[Ptr[GApplication]], flags)
+    g_application_set_flags(this.raw.asInstanceOf[Ptr[GApplication]], flags.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -908,7 +965,7 @@ object Application:
       application_id: Option[
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      flags: GApplicationFlags /* Some(GApplicationFlags) */
+      flags: ApplicationFlags /* Some(GApplicationFlags) */
   )(using Zone): Application = new Application(
     g_application_new(
       application_id
@@ -916,7 +973,7 @@ object Application:
           __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      flags
+      flags.raw
     ).asInstanceOf
   )
 
@@ -930,7 +987,7 @@ object Application:
     *
     * If there is no default application then %NULL is returned.
     */
-  def getDefault(): Application /* None */ = new Application(
+  def getDefault(): Application /* Some(Ptr[GApplication]) */ = new Application(
     g_application_get_default().asInstanceOf
   )
 
@@ -983,9 +1040,10 @@ object Application:
   def idIsValid(
       application_id: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ = g_application_id_is_valid(
-    __sn_extract_string(application_id).asInstanceOf[Ptr[gchar]]
-  ).value.!=(0)
+  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_application_id_is_valid(
+      __sn_extract_string(application_id).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

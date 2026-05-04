@@ -4,8 +4,7 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.DBusConnection
-import sn.gnome.gio.fluent.DBusObject
+import sn.gnome.gio.fluent.{DBusConnection, DBusObject}
 import sn.gnome.gio.internal.GDBusObjectProxy
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object

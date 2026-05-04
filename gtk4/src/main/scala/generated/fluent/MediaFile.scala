@@ -5,8 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gio.fluent.File
-import sn.gnome.gio.fluent.InputStream
+import sn.gnome.gio.fluent.{File, InputStream}
 import sn.gnome.gtk4.fluent.MediaStream
 import sn.gnome.gtk4.internal.GtkMediaFile
 

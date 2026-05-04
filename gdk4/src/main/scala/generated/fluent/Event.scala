@@ -5,19 +5,18 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.Device
-import sn.gnome.gdk4.fluent.DeviceTool
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.fluent.EventType
-import sn.gnome.gdk4.fluent.Seat
-import sn.gnome.gdk4.fluent.Surface
+import sn.gnome.gdk4.fluent.{
+  Device,
+  DeviceTool,
+  Display,
+  Event,
+  EventType,
+  ModifierType,
+  Seat,
+  Surface
+}
 import sn.gnome.gdk4.internal.GdkEvent
-import sn.gnome.gdk4.internal.GdkEventSequence
-import sn.gnome.gdk4.internal.GdkModifierType
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint32
+import sn.gnome.glib.internal.{gboolean, gint, guint32}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -46,7 +45,7 @@ class Event(raw: Ptr[GdkEvent]):
   @annotation.compileTimeOnly(
     "Method _get_angle contains an OUT parameter, which is not supported yet"
   )
-  private def GetAngle__ = ???
+  def GetAngle__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -58,7 +57,7 @@ class Event(raw: Ptr[GdkEvent]):
   @annotation.compileTimeOnly(
     "Method _get_center contains an OUT parameter, which is not supported yet"
   )
-  private def GetCenter__ = ???
+  def GetCenter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -70,7 +69,7 @@ class Event(raw: Ptr[GdkEvent]):
   @annotation.compileTimeOnly(
     "Method _get_distance contains an OUT parameter, which is not supported yet"
   )
-  private def GetDistance__ = ???
+  def GetDistance__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -82,7 +81,7 @@ class Event(raw: Ptr[GdkEvent]):
   @annotation.compileTimeOnly(
     "Method get_axes contains an OUT parameter, which is not supported yet"
   )
-  private def getAxes__ = ???
+  def getAxes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -94,7 +93,7 @@ class Event(raw: Ptr[GdkEvent]):
   @annotation.compileTimeOnly(
     "Method get_axis contains an OUT parameter, which is not supported yet"
   )
-  private def getAxis__ = ???
+  def getAxis__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -134,8 +133,10 @@ class Event(raw: Ptr[GdkEvent]):
     * Related touch events are connected in a sequence. Other events typically
     * don't have event sequence information.
     */
-  def getEventSequence(): Ptr[GdkEventSequence] /* None */ =
-    gdk_event_get_event_sequence(this.raw.asInstanceOf[Ptr[GdkEvent]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(EventSequence), @type -> DataRecord(GdkEventSequence*)))"
+  )
+  def getEventSequence__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -159,14 +160,15 @@ class Event(raw: Ptr[GdkEvent]):
   @annotation.compileTimeOnly(
     "Method get_history contains an OUT parameter, which is not supported yet"
   )
-  private def getHistory__ = ???
+  def getHistory__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the modifier state field of an event.
     */
-  def getModifierState(): GdkModifierType /* None */ =
+  def getModifierState(): ModifierType /* None */ = ModifierType.fromRaw(
     gdk_event_get_modifier_state(this.raw.asInstanceOf[Ptr[GdkEvent]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -187,7 +189,7 @@ class Event(raw: Ptr[GdkEvent]):
   @annotation.compileTimeOnly(
     "Method get_position contains an OUT parameter, which is not supported yet"
   )
-  private def getPosition__ = ???
+  def getPosition__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

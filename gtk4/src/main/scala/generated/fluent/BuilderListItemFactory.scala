@@ -4,9 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.GBytes
-import sn.gnome.gtk4.fluent.BuilderScope
-import sn.gnome.gtk4.fluent.ListItemFactory
+import sn.gnome.gtk4.fluent.{BuilderScope, ListItemFactory}
 import sn.gnome.gtk4.internal.GtkBuilderListItemFactory
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -45,10 +43,10 @@ class BuilderListItemFactory(raw: Ptr[GtkBuilderListItemFactory])
     * Gets the data used as the `GtkBuilder` UI template for constructing
     * listitems.
     */
-  def getBytes(): Ptr[GBytes] /* None */ =
-    gtk_builder_list_item_factory_get_bytes(
-      this.raw.asInstanceOf[Ptr[GtkBuilderListItemFactory]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+  )
+  def getBytes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -78,17 +76,10 @@ object BuilderListItemFactory:
     * Creates a new `GtkBuilderListItemFactory` that instantiates widgets using @bytes
     * as the data to pass to `GtkBuilder`.
     */
-  def fromBytes(
-      scope: Option[BuilderScope /* Some(Ptr[GtkBuilderScope]) */ ],
-      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
-  ): BuilderListItemFactory = new BuilderListItemFactory(
-    gtk_builder_list_item_factory_new_from_bytes(
-      scope
-        .map[Ptr[GtkBuilderScope]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GtkBuilderScope]]),
-      bytes
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def new_from_bytes() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

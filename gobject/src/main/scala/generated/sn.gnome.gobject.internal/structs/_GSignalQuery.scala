@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GSignalQuery: _id: The signal id of the signal being queried, or 0 if the signal to be queried was unknown. _name: The signal name. : The interface/instance type that this signal can be emitted for. _flags: The signal flags as passed in to g_signal_new().
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gsignal.h
 */
 opaque type _GSignalQuery = CStruct7[_root_.sn.gnome.glib.internal.guint, Ptr[_root_.sn.gnome.glib.internal.gchar], GType, GSignalFlags, GType, _root_.sn.gnome.glib.internal.guint, Ptr[GType]]
 

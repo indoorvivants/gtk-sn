@@ -4,10 +4,8 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gdk4.fluent.DisplayManager
+import sn.gnome.gdk4.fluent.{Display, DisplayManager}
 import sn.gnome.gdk4.internal.GdkDisplayManager
-import sn.gnome.glib.internal.GSList
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -73,10 +71,10 @@ class DisplayManager(raw: Ptr[GdkDisplayManager])
     *
     * List all currently open displays.
     */
-  def listDisplays(): Ptr[GSList] /* None */ =
-    gdk_display_manager_list_displays(
-      this.raw.asInstanceOf[Ptr[GdkDisplayManager]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Display))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+  )
+  def listDisplays__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -126,8 +124,7 @@ object DisplayManager:
     * Applications can use [func@set_allowed_backends] to limit what backends
     * will be used.
     */
-  def get(): DisplayManager /* None */ = new DisplayManager(
-    gdk_display_manager_get().asInstanceOf
-  )
+  def get(): DisplayManager /* Some(Ptr[GdkDisplayManager]) */ =
+    new DisplayManager(gdk_display_manager_get().asInstanceOf)
 
 end DisplayManager

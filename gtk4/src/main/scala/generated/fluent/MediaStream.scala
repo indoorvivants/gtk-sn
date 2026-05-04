@@ -5,13 +5,8 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
-import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gdk4.fluent.Surface
-import sn.gnome.glib.internal.GError
-import sn.gnome.glib.internal.GQuark
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gint64
+import sn.gnome.gdk4.fluent.{Paintable, Surface}
+import sn.gnome.glib.internal.{gboolean, gint, gint64}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.internal.GtkMediaStream
 
@@ -56,18 +51,10 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * This is a utility function that calls [method@Gtk.MediaStream.gerror]. See
     * that function for details.
     */
-  inline def error(
-      domain: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      code: Int /* Some(CInt) */,
-      format: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = gtk_media_stream_error(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]],
-    domain,
-    code,
-    __sn_extract_string(format),
-    args*
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
+  def error__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -76,18 +63,10 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * This is a utility function that calls [method@Gtk.MediaStream.gerror]. See
     * that function for details.
     */
-  def errorValist(
-      domain: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      code: Int /* Some(CInt) */,
-      format: String | CString /* Some(CString) */,
-      args: CVarArgList /* Some(va_list) */
-  )(using Zone): Unit /* None */ = gtk_media_stream_error_valist(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]],
-    domain,
-    code,
-    __sn_extract_string(format),
-    args
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
+  def errorValist__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -103,10 +82,10 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * To unset an error, the stream must be reset via a call to
     * [method@Gtk.MediaStream.unprepared].
     */
-  def gerror(
-      error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): Unit /* None */ =
-    gtk_media_stream_gerror(this.raw.asInstanceOf[Ptr[GtkMediaStream]], error)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+  )
+  def gerror__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -143,9 +122,10 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * will unset errors when a new source is set, e.g. with
     * [method@Gtk.MediaFile.set_file].
     */
-  def getError(): Ptr[GError] /* None */ = gtk_media_stream_get_error(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
+  def getError__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -506,12 +486,4 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     gint64(timestamp)
   )
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end MediaStream

@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GParamSpecGType: _instance: private #GParamSpec portion
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparamspecs.h
 */
 opaque type _GParamSpecGType = CStruct2[GParamSpec, GType]
 

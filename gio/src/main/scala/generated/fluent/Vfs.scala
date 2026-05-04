@@ -4,14 +4,9 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.File
-import sn.gnome.gio.fluent.Vfs
+import sn.gnome.gio.fluent.{File, Vfs}
 import sn.gnome.gio.internal.GVfs
-import sn.gnome.gio.internal.GVfsFileLookupFunc
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -51,6 +46,15 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
       __sn_extract_string(uri)
     ).asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets a list of URI schemes supported by @vfs.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+  )
+  def getSupportedUriSchemes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -100,50 +104,10 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     * It's an error to call this function twice with the same scheme. To
     * unregister a custom URI scheme, use g_vfs_unregister_uri_scheme().
     */
-  def registerUriScheme(
-      scheme: String | CString /* Some(CString) */,
-      uri_func: Option[GVfsFileLookupFunc /* Some(GVfsFileLookupFunc) */ ],
-      uri_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      uri_destroy: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ],
-      parse_name_func: Option[
-        GVfsFileLookupFunc /* Some(GVfsFileLookupFunc) */
-      ],
-      parse_name_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      parse_name_destroy: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  )(using Zone): Boolean /* None */ = g_vfs_register_uri_scheme(
-    this.raw.asInstanceOf[Ptr[GVfs]],
-    __sn_extract_string(scheme),
-    uri_func
-      .map[GVfsFileLookupFunc](o => o)
-      .getOrElse(null.asInstanceOf[GVfsFileLookupFunc]),
-    uri_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    uri_destroy
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      ),
-    parse_name_func
-      .map[GVfsFileLookupFunc](o => o)
-      .getOrElse(null.asInstanceOf[GVfsFileLookupFunc]),
-    parse_name_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    parse_name_destroy
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(VfsFileLookupFunc), @type -> DataRecord(GVfsFileLookupFunc)))"
+  )
+  def registerUriScheme__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -172,12 +136,16 @@ object Vfs:
     *
     * Gets the default #GVfs for the system.
     */
-  def getDefault(): Vfs /* None */ = new Vfs(g_vfs_get_default().asInstanceOf)
+  def getDefault(): Vfs /* Some(Ptr[GVfs]) */ = new Vfs(
+    g_vfs_get_default().asInstanceOf
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the local #GVfs for the system.
     */
-  def getLocal(): Vfs /* None */ = new Vfs(g_vfs_get_local().asInstanceOf)
+  def getLocal(): Vfs /* Some(Ptr[GVfs]) */ = new Vfs(
+    g_vfs_get_local().asInstanceOf
+  )
 
 end Vfs

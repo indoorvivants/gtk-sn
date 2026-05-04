@@ -5,21 +5,10 @@ import _root_.sn.gnome.pango.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.pango.fluent.Direction
-import sn.gnome.pango.fluent.Font
-import sn.gnome.pango.fluent.FontMap
-import sn.gnome.pango.fluent.Fontset
-import sn.gnome.pango.fluent.Gravity
-import sn.gnome.pango.fluent.GravityHint
+import sn.gnome.pango.fluent.{Direction, FontMap, Gravity, GravityHint}
 import sn.gnome.pango.internal.PangoContext
-import sn.gnome.pango.internal.PangoFontDescription
-import sn.gnome.pango.internal.PangoFontMetrics
-import sn.gnome.pango.internal.PangoLanguage
-import sn.gnome.pango.internal.PangoMatrix
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -73,8 +62,10 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     *
     * Retrieve the default font description for the context.
     */
-  def getFontDescription(): Ptr[PangoFontDescription] /* None */ =
-    pango_context_get_font_description(this.raw.asInstanceOf[Ptr[PangoContext]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+  )
+  def getFontDescription__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -113,9 +104,10 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     *
     * Retrieves the global language tag for the context.
     */
-  def getLanguage(): Ptr[PangoLanguage] /* None */ = pango_context_get_language(
-    this.raw.asInstanceOf[Ptr[PangoContext]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
+  def getLanguage__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -124,9 +116,10 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     *
     * See [method@Pango.Context.set_matrix].
     */
-  def getMatrix(): Ptr[PangoMatrix] /* None */ = pango_context_get_matrix(
-    this.raw.asInstanceOf[Ptr[PangoContext]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
   )
+  def getMatrix__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -142,20 +135,10 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * render the string, then the returned fonts would be a composite of the
     * metrics for the fonts loaded for the individual families.
     */
-  def getMetrics(
-      desc: Option[
-        Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */
-      ],
-      language: Option[Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */ ]
-  ): Ptr[PangoFontMetrics] /* None */ = pango_context_get_metrics(
-    this.raw.asInstanceOf[Ptr[PangoContext]],
-    desc
-      .map[Ptr[PangoFontDescription]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[PangoFontDescription]]),
-    language
-      .map[Ptr[PangoLanguage]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[PangoLanguage]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
+  def getMetrics__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -193,37 +176,27 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method list_families contains an OUT parameter, which is not supported yet"
   )
-  private def listFamilies__ = ???
+  def listFamilies__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Loads the font in one of the fontmaps in the context that is the closest
     * match for @desc.
     */
-  def loadFont(
-      desc: Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */
-  ): Font /* None */ = new Font(
-    pango_context_load_font(
-      this.raw.asInstanceOf[Ptr[PangoContext]],
-      desc
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
+  def loadFont__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Load a set of fonts in the context that can be used to render a font
     * matching @desc.
     */
-  def loadFontset(
-      desc: Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */,
-      language: Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */
-  ): Fontset /* None */ = new Fontset(
-    pango_context_load_fontset(
-      this.raw.asInstanceOf[Ptr[PangoContext]],
-      desc,
-      language
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
+  def loadFontset__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -260,16 +233,10 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     *
     * Set the default font description for the context
     */
-  def setFontDescription(
-      desc: Option[
-        Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */
-      ]
-  ): Unit /* None */ = pango_context_set_font_description(
-    this.raw.asInstanceOf[Ptr[PangoContext]],
-    desc
-      .map[Ptr[PangoFontDescription]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[PangoFontDescription]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
+  def setFontDescription__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -311,14 +278,10 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * The default language for the locale of the running process can be found
     * using [func@Pango.Language.get_default].
     */
-  def setLanguage(
-      language: Option[Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */ ]
-  ): Unit /* None */ = pango_context_set_language(
-    this.raw.asInstanceOf[Ptr[PangoContext]],
-    language
-      .map[Ptr[PangoLanguage]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[PangoLanguage]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
+  def setLanguage__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -331,14 +294,10 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * they may change slightly for different matrices, depending on how the text
     * is fit to the pixel grid.
     */
-  def setMatrix(
-      matrix: Option[Ptr[PangoMatrix] /* Some(Ptr[PangoMatrix]) */ ]
-  ): Unit /* None */ = pango_context_set_matrix(
-    this.raw.asInstanceOf[Ptr[PangoContext]],
-    matrix
-      .map[Ptr[PangoMatrix]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[PangoMatrix]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
   )
+  def setMatrix__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

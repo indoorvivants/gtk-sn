@@ -4,10 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.ContentProvider
-import sn.gnome.gdk4.fluent.Drag
-import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gdk4.internal.GdkDragAction
+import sn.gnome.gdk4.fluent.{ContentProvider, Drag, DragAction, Paintable}
 import sn.gnome.gtk4.fluent.GestureSingle
 import sn.gnome.gtk4.internal.GtkDragSource
 
@@ -103,8 +100,8 @@ class DragSource(raw: Ptr[GtkDragSource])
     *
     * Gets the actions that are currently set on the `GtkDragSource`.
     */
-  def getActions(): GdkDragAction /* None */ = gtk_drag_source_get_actions(
-    this.raw.asInstanceOf[Ptr[GtkDragSource]]
+  def getActions(): DragAction /* None */ = DragAction.fromRaw(
+    gtk_drag_source_get_actions(this.raw.asInstanceOf[Ptr[GtkDragSource]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -140,10 +137,10 @@ class DragSource(raw: Ptr[GtkDragSource])
     * the [signal@Gtk.DragSource::prepare] signal.
     */
   def setActions(
-      actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+      actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
   ): Unit /* None */ = gtk_drag_source_set_actions(
     this.raw.asInstanceOf[Ptr[GtkDragSource]],
-    actions
+    actions.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

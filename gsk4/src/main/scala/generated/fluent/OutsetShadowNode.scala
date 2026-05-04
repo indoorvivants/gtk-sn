@@ -4,10 +4,8 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.internal.GdkRGBA
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskOutsetShadowNode
-import sn.gnome.gsk4.internal.GskRoundedRect
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -31,9 +29,10 @@ class OutsetShadowNode(raw: Ptr[GskOutsetShadowNode])
     *
     * Retrieves the color of the outset shadow.
     */
-  def getColor(): Ptr[GdkRGBA] /* None */ = gsk_outset_shadow_node_get_color(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
+  def getColor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -55,10 +54,10 @@ class OutsetShadowNode(raw: Ptr[GskOutsetShadowNode])
     *
     * Retrieves the outline rectangle of the outset shadow.
     */
-  def getOutline(): Ptr[GskRoundedRect] /* None */ =
-    gsk_outset_shadow_node_get_outline(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
+  )
+  def getOutline__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -76,23 +75,9 @@ object OutsetShadowNode:
     * Creates a `GskRenderNode` that will render an outset shadow around the box
     * given by @outline.
     */
-  def apply(
-      outline: Ptr[GskRoundedRect] /* Some(Ptr[GskRoundedRect]) */,
-      color: Ptr[
-        GdkRGBA
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */,
-      dx: Float /* Some(Float) */,
-      dy: Float /* Some(Float) */,
-      spread: Float /* Some(Float) */,
-      blur_radius: Float /* Some(Float) */
-  ): OutsetShadowNode = new OutsetShadowNode(
-    gsk_outset_shadow_node_new(
-      outline,
-      color,
-      dx.asInstanceOf,
-      dy.asInstanceOf,
-      spread.asInstanceOf,
-      blur_radius.asInstanceOf
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
   )
+  def `new`() = ???
+
 end OutsetShadowNode

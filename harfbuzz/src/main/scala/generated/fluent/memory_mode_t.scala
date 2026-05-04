@@ -25,45 +25,45 @@ import _root_.sn.gnome.harfbuzz.internal.hb_memory_mode_t
   *    @HB_MEMORY_MODE_READONLY_MAY_MAKE_WRITABLE, however, using that mode
   *    correctly is very tricky.  Use @HB_MEMORY_MODE_READONLY instead.
   */
-enum memory_mode_t(val raw: hb_memory_mode_t):
+enum Memory_mode_t(val raw: hb_memory_mode_t):
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * HarfBuzz immediately makes a copy of the data.
     */
   case DUPLICATE
-      extends memory_mode_t(hb_memory_mode_t.HB_MEMORY_MODE_DUPLICATE)
+      extends Memory_mode_t(hb_memory_mode_t.HB_MEMORY_MODE_DUPLICATE)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * HarfBuzz client will never modify the data, and HarfBuzz will never modify
     * the data.
     */
-  case READONLY extends memory_mode_t(hb_memory_mode_t.HB_MEMORY_MODE_READONLY)
+  case READONLY extends Memory_mode_t(hb_memory_mode_t.HB_MEMORY_MODE_READONLY)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * HarfBuzz client made a copy of the data solely for HarfBuzz, so HarfBuzz
     * may modify the data.
     */
-  case WRITABLE extends memory_mode_t(hb_memory_mode_t.HB_MEMORY_MODE_WRITABLE)
+  case WRITABLE extends Memory_mode_t(hb_memory_mode_t.HB_MEMORY_MODE_WRITABLE)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * See above
     */
   case READONLY_MAY_MAKE_WRITABLE
-      extends memory_mode_t(
+      extends Memory_mode_t(
         hb_memory_mode_t.HB_MEMORY_MODE_READONLY_MAY_MAKE_WRITABLE
       )
-end memory_mode_t
+end Memory_mode_t
 
-object memory_mode_t:
-  def fromRaw(raw: hb_memory_mode_t): memory_mode_t =
+object Memory_mode_t:
+  def fromRaw(raw: hb_memory_mode_t): Memory_mode_t =
     raw match
-      case hb_memory_mode_t.HB_MEMORY_MODE_DUPLICATE => memory_mode_t.DUPLICATE
-      case hb_memory_mode_t.HB_MEMORY_MODE_READONLY  => memory_mode_t.READONLY
-      case hb_memory_mode_t.HB_MEMORY_MODE_WRITABLE  => memory_mode_t.WRITABLE
+      case hb_memory_mode_t.HB_MEMORY_MODE_DUPLICATE => Memory_mode_t.DUPLICATE
+      case hb_memory_mode_t.HB_MEMORY_MODE_READONLY  => Memory_mode_t.READONLY
+      case hb_memory_mode_t.HB_MEMORY_MODE_WRITABLE  => Memory_mode_t.WRITABLE
       case hb_memory_mode_t.HB_MEMORY_MODE_READONLY_MAY_MAKE_WRITABLE =>
-        memory_mode_t.READONLY_MAY_MAKE_WRITABLE
+        Memory_mode_t.READONLY_MAY_MAKE_WRITABLE
   end fromRaw
-end memory_mode_t
+end Memory_mode_t

@@ -5,15 +5,10 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.internal.GdkContentDeserializer
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.InputStream
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.GError
+import sn.gnome.gio.fluent.{AsyncResult, Cancellable, InputStream}
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GType
-import sn.gnome.gobject.internal.GValue
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -114,9 +109,10 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     *
     * Gets the `GValue` to store the deserialized object in.
     */
-  def getValue(): Ptr[GValue] /* None */ = gdk_content_deserializer_get_value(
-    this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
+  def getValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -124,12 +120,10 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     *
     * This function consumes @error.
     */
-  def returnError(
-      error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): Unit /* None */ = gdk_content_deserializer_return_error(
-    this.raw.asInstanceOf[Ptr[GdkContentDeserializer]],
-    error
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
+  def returnError__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -144,17 +138,9 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     *
     * Associate data with the current deserialization operation.
     */
-  def setTaskData(
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      _notify: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = gdk_content_deserializer_set_task_data(
-    this.raw.asInstanceOf[Ptr[GdkContentDeserializer]],
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    _notify
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
+  def setTaskData__ = ???
 
 end ContentDeserializer

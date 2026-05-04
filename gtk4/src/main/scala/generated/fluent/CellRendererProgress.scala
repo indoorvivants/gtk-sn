@@ -4,8 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gtk4.fluent.CellRenderer
-import sn.gnome.gtk4.fluent.Orientable
+import sn.gnome.gtk4.fluent.{CellRenderer, Orientable}
 import sn.gnome.gtk4.internal.GtkCellRendererProgress
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

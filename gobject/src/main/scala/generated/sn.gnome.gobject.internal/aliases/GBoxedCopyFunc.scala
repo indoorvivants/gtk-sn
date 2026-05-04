@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GBoxedCopyFunc: : (not nullable): The boxed structure to be copied.
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gboxed.h
 */
 opaque type GBoxedCopyFunc = CFuncPtr1[_root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gpointer]
 object GBoxedCopyFunc:

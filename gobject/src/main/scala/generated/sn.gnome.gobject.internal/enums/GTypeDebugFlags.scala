@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeDebugFlags: _TYPE_DEBUG_NONE: Print no messages _TYPE_DEBUG_OBJECTS: Print messages about object bookkeeping _TYPE_DEBUG_SIGNALS: Print messages about signal emissions _TYPE_DEBUG_MASK: Mask covering all debug flags _TYPE_DEBUG_INSTANCE_COUNT: Keep a count of instances of each type
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GTypeDebugFlags = CUnsignedInt
 object GTypeDebugFlags extends _BindgenEnumCUnsignedInt[GTypeDebugFlags]:

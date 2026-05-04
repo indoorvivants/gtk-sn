@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GParamSpecTypeInfo: _size: Size of the instance (object) structure. _preallocs: Prior to GLib 2.10, it specified the number of pre-allocated (cached) instances to reserve memory for (0 indicates no caching). Since GLib 2.10, it is ignored, since instances are allocated with the [slice allocator][glib-Memory-Slices] now. _init: Location of the instance initialization function (optional). _type: The #GType of values conforming to this #GParamSpec : The instance finalization function (optional). _set_default: Resets a to the default value for (recommended, the default is g_value_reset()), see g_param_value_set_default(). _validate: Ensures that the contents of comply with the specifications set out by (optional), see g_param_value_validate(). _cmp: Compares with according to (recommended, the default is memcmp()), see g_param_values_cmp().
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparam.h
 */
 opaque type GParamSpecTypeInfo = CStruct8[_root_.sn.gnome.glib.internal.guint16, _root_.sn.gnome.glib.internal.guint16, CFuncPtr1[Ptr[GParamSpec], Unit], GType, CFuncPtr1[Ptr[GParamSpec], Unit], CFuncPtr2[Ptr[GParamSpec], Ptr[GValue], Unit], CFuncPtr2[Ptr[GParamSpec], Ptr[GValue], _root_.sn.gnome.glib.internal.gboolean], CFuncPtr3[Ptr[GParamSpec], Ptr[GValue], Ptr[GValue], _root_.sn.gnome.glib.internal.gint]]
 

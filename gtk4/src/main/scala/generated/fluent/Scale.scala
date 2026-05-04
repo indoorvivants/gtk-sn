@@ -4,21 +4,19 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.AccessibleRange
-import sn.gnome.gtk4.fluent.Adjustment
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Orientable
-import sn.gnome.gtk4.fluent.Orientation
-import sn.gnome.gtk4.fluent.PositionType
-import sn.gnome.gtk4.fluent.Range
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  AccessibleRange,
+  Adjustment,
+  Buildable,
+  ConstraintTarget,
+  Orientable,
+  Orientation,
+  PositionType,
+  Range
+}
 import sn.gnome.gtk4.internal.GtkScale
-import sn.gnome.gtk4.internal.GtkScaleFormatValueFunc
 import sn.gnome.pango.fluent.Layout
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -196,7 +194,7 @@ class Scale(raw: Ptr[GtkScale])
   @annotation.compileTimeOnly(
     "Method get_layout_offsets contains an OUT parameter, which is not supported yet"
   )
-  private def getLayoutOffsets__ = ???
+  def getLayoutOffsets__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -249,30 +247,10 @@ class Scale(raw: Ptr[GtkScale])
     * rounded according to the value of the [property@Gtk.Scale:digits]
     * property.
     */
-  def setFormatValueFunc(
-      func: Option[
-        GtkScaleFormatValueFunc /* Some(GtkScaleFormatValueFunc) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy_notify: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  ): Unit /* None */ = gtk_scale_set_format_value_func(
-    this.raw.asInstanceOf[Ptr[GtkScale]],
-    func
-      .map[GtkScaleFormatValueFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkScaleFormatValueFunc]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy_notify
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ScaleFormatValueFunc), @type -> DataRecord(GtkScaleFormatValueFunc)))"
   )
+  def setFormatValueFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

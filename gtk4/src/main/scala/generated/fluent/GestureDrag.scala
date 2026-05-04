@@ -33,7 +33,7 @@ class GestureDrag(raw: Ptr[GtkGestureDrag])
   @annotation.compileTimeOnly(
     "Method get_offset contains an OUT parameter, which is not supported yet"
   )
-  private def getOffset__ = ???
+  def getOffset__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -45,7 +45,7 @@ class GestureDrag(raw: Ptr[GtkGestureDrag])
   @annotation.compileTimeOnly(
     "Method get_start_point contains an OUT parameter, which is not supported yet"
   )
-  private def getStartPoint__ = ???
+  def getStartPoint__ = ???
 
 end GestureDrag
 

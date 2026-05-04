@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypePluginUse: : the #GTypePlugin whose use count should be increased
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtypeplugin.h
 */
 opaque type GTypePluginUse = CFuncPtr1[Ptr[GTypePlugin], Unit]
 object GTypePluginUse:

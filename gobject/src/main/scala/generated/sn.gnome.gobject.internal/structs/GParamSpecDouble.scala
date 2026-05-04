@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GParamSpecDouble: _instance: private #GParamSpec portion : minimum value for the property specified : maximum value for the property specified _value: default value for the property specified : values closer than will be considered identical by g_param_values_cmp(); the default value is 1e-90.
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparamspecs.h
 */
 opaque type GParamSpecDouble = CStruct5[GParamSpec, _root_.sn.gnome.glib.internal.gdouble, _root_.sn.gnome.glib.internal.gdouble, _root_.sn.gnome.glib.internal.gdouble, _root_.sn.gnome.glib.internal.gdouble]
 

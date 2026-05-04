@@ -4,14 +4,8 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkDrawingArea
-import sn.gnome.gtk4.internal.GtkDrawingAreaDrawFunc
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -167,24 +161,10 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     * on the drawing area. This will cause a redraw and will call @draw_func
     * again.
     */
-  def setDrawFunc(
-      draw_func: Option[
-        GtkDrawingAreaDrawFunc /* Some(GtkDrawingAreaDrawFunc) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = gtk_drawing_area_set_draw_func(
-    this.raw.asInstanceOf[Ptr[GtkDrawingArea]],
-    draw_func
-      .map[GtkDrawingAreaDrawFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkDrawingAreaDrawFunc]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DrawingAreaDrawFunc), @type -> DataRecord(GtkDrawingAreaDrawFunc)))"
   )
+  def setDrawFunc__ = ???
 
 end DrawingArea
 

@@ -6,7 +6,6 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskRoundedClipNode
-import sn.gnome.gsk4.internal.GskRoundedRect
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -31,8 +30,10 @@ class RoundedClipNode(raw: Ptr[GskRoundedClipNode])
     *
     * Retrieves the rounded rectangle used to clip the contents of the @node.
     */
-  def getClip(): Ptr[GskRoundedRect] /* None */ =
-    gsk_rounded_clip_node_get_clip(this.raw.asInstanceOf[Ptr[GskRenderNode]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
+  )
+  def getClip__ = ???
 
 end RoundedClipNode
 
@@ -41,13 +42,9 @@ object RoundedClipNode:
     *
     * Creates a `GskRenderNode` that will clip the @child to the area given by @clip.
     */
-  def apply(
-      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      clip: Ptr[GskRoundedRect] /* Some(Ptr[GskRoundedRect]) */
-  ): RoundedClipNode = new RoundedClipNode(
-    gsk_rounded_clip_node_new(
-      child.getUnsafeRawPointer().asInstanceOf,
-      clip
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
   )
+  def `new`() = ???
+
 end RoundedClipNode

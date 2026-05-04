@@ -6,10 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.gsize
-import sn.gnome.graphene.internal.graphene_point_t
-import sn.gnome.graphene.internal.graphene_rect_t
 import sn.gnome.gsk4.fluent.RenderNode
-import sn.gnome.gsk4.internal.GskColorStop
 import sn.gnome.gsk4.internal.GskLinearGradientNode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -28,14 +25,16 @@ class LinearGradientNode(raw: Ptr[GskLinearGradientNode])
   @annotation.compileTimeOnly(
     "Method get_color_stops contains an OUT parameter, which is not supported yet"
   )
-  private def getColorStops__ = ???
+  def getColorStops__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the final point of the linear gradient.
     */
-  def getEnd(): Ptr[graphene_point_t] /* None */ =
-    gsk_linear_gradient_node_get_end(this.raw.asInstanceOf[Ptr[GskRenderNode]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
+  )
+  def getEnd__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -50,10 +49,10 @@ class LinearGradientNode(raw: Ptr[GskLinearGradientNode])
     *
     * Retrieves the initial point of the linear gradient.
     */
-  def getStart(): Ptr[graphene_point_t] /* None */ =
-    gsk_linear_gradient_node_get_start(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
+  )
+  def getStart__ = ???
 
 end LinearGradientNode
 
@@ -63,25 +62,9 @@ object LinearGradientNode:
     * Creates a `GskRenderNode` that will create a linear gradient from the
     * given points and color stops, and render that into the area given by @bounds.
     */
-  def apply(
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
-      start: Ptr[
-        graphene_point_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
-      end: Ptr[
-        graphene_point_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
-      color_stops: Ptr[GskColorStop /* None */ ] /* Some(Ptr[GskColorStop]) */,
-      n_color_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): LinearGradientNode = new LinearGradientNode(
-    gsk_linear_gradient_node_new(
-      bounds,
-      start,
-      end,
-      color_stops,
-      gsize(n_color_stops)
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def `new`() = ???
+
 end LinearGradientNode

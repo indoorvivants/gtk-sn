@@ -7,8 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.guint
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.Sorter
+import sn.gnome.gtk4.fluent.{Buildable, Sorter}
 import sn.gnome.gtk4.internal.GtkMultiSorter
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

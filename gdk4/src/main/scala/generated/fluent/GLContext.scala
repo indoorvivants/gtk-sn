@@ -4,15 +4,10 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gdk4.fluent.DrawContext
-import sn.gnome.gdk4.fluent.GLContext
-import sn.gnome.gdk4.fluent.Surface
-import sn.gnome.gdk4.internal.GdkGLAPI
+import sn.gnome.gdk4.fluent.{Display, DrawContext, GLAPI, GLContext, Surface}
 import sn.gnome.gdk4.internal.GdkGLContext
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -75,8 +70,8 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     *
     * Gets the allowed APIs set via gdk_gl_context_set_allowed_apis().
     */
-  def getAllowedApis(): GdkGLAPI /* None */ = gdk_gl_context_get_allowed_apis(
-    this.raw.asInstanceOf[Ptr[GdkGLContext]]
+  def getAllowedApis(): GLAPI /* None */ = GLAPI.fromRaw(
+    gdk_gl_context_get_allowed_apis(this.raw.asInstanceOf[Ptr[GdkGLContext]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -85,8 +80,8 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     *
     * If the renderer has not been realized yet, 0 is returned.
     */
-  def getApi(): GdkGLAPI /* None */ = gdk_gl_context_get_api(
-    this.raw.asInstanceOf[Ptr[GdkGLContext]]
+  def getApi(): GLAPI /* None */ = GLAPI.fromRaw(
+    gdk_gl_context_get_api(this.raw.asInstanceOf[Ptr[GdkGLContext]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -133,7 +128,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_required_version contains an OUT parameter, which is not supported yet"
   )
-  private def getRequiredVersion__ = ???
+  def getRequiredVersion__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -175,7 +170,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_version contains an OUT parameter, which is not supported yet"
   )
-  private def getVersion__ = ???
+  def getVersion__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -254,10 +249,10 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     *
     * By default, all APIs are allowed.
     */
-  def setAllowedApis(apis: GdkGLAPI /* Some(GdkGLAPI) */ ): Unit /* None */ =
+  def setAllowedApis(apis: GLAPI /* Some(GdkGLAPI) */ ): Unit /* None */ =
     gdk_gl_context_set_allowed_apis(
       this.raw.asInstanceOf[Ptr[GdkGLContext]],
-      apis
+      apis.raw
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -346,13 +341,13 @@ object GLContext:
     * Any OpenGL call after this function returns will be ignored until
     * [method@Gdk.GLContext.make_current] is called.
     */
-  def clearCurrent(): Unit /* None */ = gdk_gl_context_clear_current()
+  def clearCurrent(): Unit /* Some(Unit) */ = gdk_gl_context_clear_current()
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the current `GdkGLContext`.
     */
-  def getCurrent(): GLContext /* None */ = new GLContext(
+  def getCurrent(): GLContext /* Some(Ptr[GdkGLContext]) */ = new GLContext(
     gdk_gl_context_get_current().asInstanceOf
   )
 

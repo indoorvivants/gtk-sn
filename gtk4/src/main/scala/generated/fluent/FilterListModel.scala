@@ -6,12 +6,9 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.Filter
-import sn.gnome.gtk4.fluent.SectionModel
+import sn.gnome.gtk4.fluent.{Filter, SectionModel}
 import sn.gnome.gtk4.internal.GtkFilterListModel
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

@@ -4,15 +4,15 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Adjustment
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Scrollable
-import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkScrollInfo
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Adjustment,
+  Buildable,
+  ConstraintTarget,
+  Scrollable,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkViewport
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -69,16 +69,10 @@ class Viewport(raw: Ptr[GtkViewport])
     * The viewport and the descendant must be visible and mapped for this
     * function to work, otherwise no scrolling will be performed.
     */
-  def scrollTo(
-      descendant: Widget /* Some(Ptr[GtkWidget]) */,
-      scroll: Option[Ptr[GtkScrollInfo] /* Some(Ptr[GtkScrollInfo]) */ ]
-  ): Unit /* None */ = gtk_viewport_scroll_to(
-    this.raw.asInstanceOf[Ptr[GtkViewport]],
-    descendant.getUnsafeRawPointer().asInstanceOf,
-    scroll
-      .map[Ptr[GtkScrollInfo]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkScrollInfo]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
   )
+  def scrollTo__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

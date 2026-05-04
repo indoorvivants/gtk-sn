@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GSignalAccumulator: : Signal invocation hint, see #GSignalInvocationHint.
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gsignal.h
 */
 opaque type GSignalAccumulator = CFuncPtr4[Ptr[GSignalInvocationHint], Ptr[GValue], Ptr[GValue], _root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gboolean]
 object GSignalAccumulator:

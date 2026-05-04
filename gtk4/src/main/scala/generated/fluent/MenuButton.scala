@@ -5,17 +5,15 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.MenuModel
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Popover
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  Popover,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkMenuButton
-import sn.gnome.gtk4.internal.GtkMenuButtonCreatePopupFunc
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -134,7 +132,7 @@ class MenuButton(raw: Ptr[GtkMenuButton])
   @annotation.compileTimeOnly(
     "Method get_direction is weird: conflicting override"
   )
-  private def getDirection__ = ???
+  def getDirection__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -294,30 +292,10 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     * @menu_button.
     *   Instead, this can be done manually in @func.
     */
-  def setCreatePopupFunc(
-      func: Option[
-        GtkMenuButtonCreatePopupFunc /* Some(GtkMenuButtonCreatePopupFunc) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy_notify: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  ): Unit /* None */ = gtk_menu_button_set_create_popup_func(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]],
-    func
-      .map[GtkMenuButtonCreatePopupFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkMenuButtonCreatePopupFunc]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy_notify
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(MenuButtonCreatePopupFunc), @type -> DataRecord(GtkMenuButtonCreatePopupFunc)))"
   )
+  def setCreatePopupFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -335,7 +313,7 @@ class MenuButton(raw: Ptr[GtkMenuButton])
   @annotation.compileTimeOnly(
     "Method set_direction is weird: conflicting override"
   )
-  private def setDirection__ = ???
+  def setDirection__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

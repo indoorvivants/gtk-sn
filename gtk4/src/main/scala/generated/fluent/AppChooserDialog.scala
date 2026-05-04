@@ -5,18 +5,20 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.File
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.AppChooser
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Dialog
-import sn.gnome.gtk4.fluent.Native
-import sn.gnome.gtk4.fluent.Root
-import sn.gnome.gtk4.fluent.ShortcutManager
-import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.fluent.Window
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  AppChooser,
+  Buildable,
+  ConstraintTarget,
+  Dialog,
+  DialogFlags,
+  Native,
+  Root,
+  ShortcutManager,
+  Widget,
+  Window
+}
 import sn.gnome.gtk4.internal.GtkAppChooserDialog
-import sn.gnome.gtk4.internal.GtkDialogFlags
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -101,14 +103,14 @@ object AppChooserDialog:
     */
   def apply(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: GtkDialogFlags /* Some(GtkDialogFlags) */,
+      flags: DialogFlags /* Some(GtkDialogFlags) */,
       file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
   ): AppChooserDialog = new AppChooserDialog(
     gtk_app_chooser_dialog_new(
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-      flags,
+      flags.raw,
       file.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
   )
@@ -121,14 +123,14 @@ object AppChooserDialog:
     */
   def forContentType(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: GtkDialogFlags /* Some(GtkDialogFlags) */,
+      flags: DialogFlags /* Some(GtkDialogFlags) */,
       content_type: String | CString /* Some(CString) */
   )(using Zone): AppChooserDialog = new AppChooserDialog(
     gtk_app_chooser_dialog_new_for_content_type(
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-      flags,
+      flags.raw,
       __sn_extract_string(content_type)
     ).asInstanceOf
   )

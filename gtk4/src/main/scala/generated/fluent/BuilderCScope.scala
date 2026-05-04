@@ -5,7 +5,6 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gobject.internal.GCallback
 import sn.gnome.gtk4.fluent.BuilderScope
 import sn.gnome.gtk4.internal.GtkBuilderCScope
 
@@ -42,14 +41,10 @@ class BuilderCScope(raw: Ptr[GtkBuilderCScope])
     * added. Using this method allows for better encapsulation as it does not
     * require that callback symbols be declared in the global namespace.
     */
-  def addCallbackSymbol(
-      callback_name: String | CString /* Some(CString) */,
-      callback_symbol: GCallback /* Some(_root_.sn.gnome.gobject.internal.GCallback) */
-  )(using Zone): Unit /* None */ = gtk_builder_cscope_add_callback_symbol(
-    this.raw.asInstanceOf[Ptr[GtkBuilderCScope]],
-    __sn_extract_string(callback_name),
-    callback_symbol
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Callback), @type -> DataRecord(GCallback)))"
   )
+  def addCallbackSymbol__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -58,38 +53,21 @@ class BuilderCScope(raw: Ptr[GtkBuilderCScope])
     * This is equivalent to calling
     * [method@Gtk.BuilderCScope.add_callback_symbol] for each symbol.
     */
-  inline def addCallbackSymbols(
-      first_callback_name: String | CString /* Some(CString) */,
-      first_callback_symbol: GCallback /* Some(_root_.sn.gnome.gobject.internal.GCallback) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = gtk_builder_cscope_add_callback_symbols(
-    this.raw.asInstanceOf[Ptr[GtkBuilderCScope]],
-    __sn_extract_string(first_callback_name),
-    first_callback_symbol,
-    args*
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Callback), @type -> DataRecord(GCallback)))"
   )
+  def addCallbackSymbols__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Fetches a symbol previously added with
     * gtk_builder_cscope_add_callback_symbol().
     */
-  def lookupCallbackSymbol(
-      callback_name: String | CString /* Some(CString) */
-  )(using Zone): GCallback /* None */ =
-    gtk_builder_cscope_lookup_callback_symbol(
-      this.raw.asInstanceOf[Ptr[GtkBuilderCScope]],
-      __sn_extract_string(callback_name)
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Callback), @type -> DataRecord(GCallback)))"
+  )
+  def lookupCallbackSymbol__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end BuilderCScope
 
 object BuilderCScope:

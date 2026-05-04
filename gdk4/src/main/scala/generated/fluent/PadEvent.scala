@@ -24,7 +24,7 @@ class PadEvent(raw: Ptr[GdkPadEvent]) extends Event(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_axis_value contains an OUT parameter, which is not supported yet"
   )
-  private def getAxisValue__ = ???
+  def getAxisValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -41,6 +41,6 @@ class PadEvent(raw: Ptr[GdkPadEvent]) extends Event(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_group_mode contains an OUT parameter, which is not supported yet"
   )
-  private def getGroupMode__ = ???
+  def getGroupMode__ = ???
 
 end PadEvent

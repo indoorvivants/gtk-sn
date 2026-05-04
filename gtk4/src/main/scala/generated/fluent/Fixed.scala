@@ -4,11 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gsk4.internal.GskTransform
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkFixed
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -65,19 +61,17 @@ class Fixed(raw: Ptr[GtkFixed])
   @annotation.compileTimeOnly(
     "Method get_child_position contains an OUT parameter, which is not supported yet"
   )
-  private def getChildPosition__ = ???
+  def getChildPosition__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the transformation for @widget set using
     * gtk_fixed_set_child_transform().
     */
-  def getChildTransform(
-      widget: Widget /* Some(Ptr[GtkWidget]) */
-  ): Ptr[GskTransform] /* None */ = gtk_fixed_get_child_transform(
-    this.raw.asInstanceOf[Ptr[GtkFixed]],
-    widget.getUnsafeRawPointer().asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
+  def getChildTransform__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -129,20 +123,10 @@ class Fixed(raw: Ptr[GtkFixed])
     * @widget
     *   and calls [method@Gtk.FixedLayoutChild.set_transform].
     */
-  def setChildTransform(
-      widget: Widget /* Some(Ptr[GtkWidget]) */,
-      transform: Option[Ptr[
-        GskTransform
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]) */ ]
-  ): Unit /* None */ = gtk_fixed_set_child_transform(
-    this.raw.asInstanceOf[Ptr[GtkFixed]],
-    widget.getUnsafeRawPointer().asInstanceOf,
-    transform
-      .map[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
+  def setChildTransform__ = ???
 
 end Fixed
 

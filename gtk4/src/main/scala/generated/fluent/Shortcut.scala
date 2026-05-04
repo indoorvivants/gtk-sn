@@ -4,10 +4,8 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.GVariant
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.ShortcutAction
-import sn.gnome.gtk4.fluent.ShortcutTrigger
+import sn.gnome.gtk4.fluent.{ShortcutAction, ShortcutTrigger}
 import sn.gnome.gtk4.internal.GtkShortcut
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -45,9 +43,10 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
     *
     * Gets the arguments that are passed when activating the shortcut.
     */
-  def getArguments(): Ptr[GVariant] /* None */ = gtk_shortcut_get_arguments(
-    this.raw.asInstanceOf[Ptr[GtkShortcut]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def getArguments__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -76,16 +75,10 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
     *
     * Sets the arguments to pass when activating the shortcut.
     */
-  def setArguments(
-      args: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ]
-  ): Unit /* None */ = gtk_shortcut_set_arguments(
-    this.raw.asInstanceOf[Ptr[GtkShortcut]],
-    args
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def setArguments__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -6,9 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.MenuModel
 import sn.gnome.gio.internal.GMenuLinkIter
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -52,7 +50,7 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_next contains an OUT parameter, which is not supported yet"
   )
-  private def getNext__ = ???
+  def getNext__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -4,10 +4,12 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Converter
-import sn.gnome.gio.fluent.FilterInputStream
-import sn.gnome.gio.fluent.InputStream
-import sn.gnome.gio.fluent.PollableInputStream
+import sn.gnome.gio.fluent.{
+  Converter,
+  FilterInputStream,
+  InputStream,
+  PollableInputStream
+}
 import sn.gnome.gio.internal.GConverterInputStream
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypePluginCompleteTypeInfo: : the #GTypePlugin _type: the #GType whose info is completed : the #GTypeInfo struct to fill in _table: the #GTypeValueTable to fill in
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtypeplugin.h
 */
 opaque type GTypePluginCompleteTypeInfo = CFuncPtr4[Ptr[GTypePlugin], GType, Ptr[GTypeInfo], Ptr[GTypeValueTable], Unit]
 object GTypePluginCompleteTypeInfo:

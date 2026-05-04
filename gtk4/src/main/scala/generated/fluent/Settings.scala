@@ -6,8 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.Settings
-import sn.gnome.gtk4.fluent.StyleProvider
+import sn.gnome.gtk4.fluent.{Settings, StyleProvider}
 import sn.gnome.gtk4.internal.GtkSettings
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -78,7 +77,7 @@ object Settings:
     *
     * See [func@Gtk.Settings.get_for_display].
     */
-  def getDefault(): Settings /* None */ = new Settings(
+  def getDefault(): Settings /* Some(Ptr[GtkSettings]) */ = new Settings(
     gtk_settings_get_default().asInstanceOf
   )
 
@@ -88,7 +87,7 @@ object Settings:
     */
   def getForDisplay(
       display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
-  ): Settings /* None */ = new Settings(
+  ): Settings /* Some(Ptr[GtkSettings]) */ = new Settings(
     gtk_settings_get_for_display(
       display.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

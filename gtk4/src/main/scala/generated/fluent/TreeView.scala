@@ -5,36 +5,21 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gdk4.internal.GdkContentFormats
-import sn.gnome.gdk4.internal.GdkDragAction
-import sn.gnome.gdk4.internal.GdkModifierType
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.GList
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.CellRenderer
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Editable
-import sn.gnome.gtk4.fluent.Scrollable
-import sn.gnome.gtk4.fluent.Tooltip
-import sn.gnome.gtk4.fluent.TreeModel
-import sn.gnome.gtk4.fluent.TreeSelection
-import sn.gnome.gtk4.fluent.TreeViewColumn
-import sn.gnome.gtk4.fluent.TreeViewDropPosition
-import sn.gnome.gtk4.fluent.TreeViewGridLines
-import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkTreeCellDataFunc
-import sn.gnome.gtk4.internal.GtkTreePath
+import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  CellRenderer,
+  ConstraintTarget,
+  Editable,
+  Scrollable,
+  TreeModel,
+  TreeSelection,
+  TreeViewColumn,
+  TreeViewGridLines,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkTreeView
-import sn.gnome.gtk4.internal.GtkTreeViewColumnDropFunc
-import sn.gnome.gtk4.internal.GtkTreeViewMappingFunc
-import sn.gnome.gtk4.internal.GtkTreeViewRowSeparatorFunc
-import sn.gnome.gtk4.internal.GtkTreeViewSearchEqualFunc
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -162,12 +147,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     *
     * Collapses a row (hides its child rows, if they exist).
     */
-  def collapseRow(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Boolean /* None */ = gtk_tree_view_collapse_row(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    path
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def collapseRow__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -186,7 +169,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method convert_bin_window_to_tree_coords contains an OUT parameter, which is not supported yet"
   )
-  private def convertBinWindowToTreeCoords__ = ???
+  def convertBinWindowToTreeCoords__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -195,7 +178,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method convert_bin_window_to_widget_coords contains an OUT parameter, which is not supported yet"
   )
-  private def convertBinWindowToWidgetCoords__ = ???
+  def convertBinWindowToWidgetCoords__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -205,7 +188,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method convert_tree_to_bin_window_coords contains an OUT parameter, which is not supported yet"
   )
-  private def convertTreeToBinWindowCoords__ = ???
+  def convertTreeToBinWindowCoords__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -215,7 +198,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method convert_tree_to_widget_coords contains an OUT parameter, which is not supported yet"
   )
-  private def convertTreeToWidgetCoords__ = ???
+  def convertTreeToWidgetCoords__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -224,7 +207,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method convert_widget_to_bin_window_coords contains an OUT parameter, which is not supported yet"
   )
-  private def convertWidgetToBinWindowCoords__ = ???
+  def convertWidgetToBinWindowCoords__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -234,55 +217,37 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method convert_widget_to_tree_coords contains an OUT parameter, which is not supported yet"
   )
-  private def convertWidgetToTreeCoords__ = ???
+  def convertWidgetToTreeCoords__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a `cairo_surface_t` representation of the row at @path. This image
     * is used for a drag icon.
     */
-  def createRowDragIcon(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Paintable /* None */ = new Paintable.Abstract(
-    gtk_tree_view_create_row_drag_icon(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]],
-      path
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def createRowDragIcon__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Turns @tree_view into a drop destination for automatic DND. Calling this
     * method sets `GtkTreeView`:reorderable to %FALSE.
     */
-  def enableModelDragDest(
-      formats: Ptr[
-        GdkContentFormats
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */,
-      actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
-  ): Unit /* None */ = gtk_tree_view_enable_model_drag_dest(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    formats,
-    actions
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
+  def enableModelDragDest__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Turns @tree_view into a drag source for automatic DND. Calling this method
     * sets `GtkTreeView`:reorderable to %FALSE.
     */
-  def enableModelDragSource(
-      start_button_mask: GdkModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */,
-      formats: Ptr[
-        GdkContentFormats
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */,
-      actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
-  ): Unit /* None */ = gtk_tree_view_enable_model_drag_source(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    start_button_mask,
-    formats,
-    actions
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
+  def enableModelDragSource__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -296,14 +261,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     *
     * Opens the row so its children are visible.
     */
-  def expandRow(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */,
-      open_all: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Boolean /* None */ = gtk_tree_view_expand_row(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    path,
-    gboolean(gint((if open_all == true then 1 else 0)))
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def expandRow__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -311,10 +272,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     * @path
     *   as necessary.
     */
-  def expandToPath(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Unit /* None */ =
-    gtk_tree_view_expand_to_path(this.raw.asInstanceOf[Ptr[GtkTreeView]], path)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def expandToPath__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -342,7 +303,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method get_background_area contains an OUT parameter, which is not supported yet"
   )
-  private def getBackgroundArea__ = ???
+  def getBackgroundArea__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -359,7 +320,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method get_cell_area contains an OUT parameter, which is not supported yet"
   )
-  private def getCellArea__ = ???
+  def getCellArea__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -378,9 +339,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     * Returns a `GList` of all the `GtkTreeViewColumn`s currently in @tree_view.
     * The returned list must be freed with g_list_free ().
     */
-  def getColumns(): Ptr[GList] /* None */ = gtk_tree_view_get_columns(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreeViewColumn))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def getColumns__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -394,7 +356,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method get_cursor contains an OUT parameter, which is not supported yet"
   )
-  private def getCursor__ = ???
+  def getCursor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -408,7 +370,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method get_dest_row_at_pos contains an OUT parameter, which is not supported yet"
   )
-  private def getDestRowAtPos__ = ???
+  def getDestRowAtPos__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -417,7 +379,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method get_drag_dest_row contains an OUT parameter, which is not supported yet"
   )
-  private def getDragDestRow__ = ???
+  def getDragDestRow__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -549,7 +511,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method get_path_at_pos contains an OUT parameter, which is not supported yet"
   )
-  private def getPathAtPos__ = ???
+  def getPathAtPos__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -564,10 +526,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     *
     * Returns the current row separator function.
     */
-  def getRowSeparatorFunc(): GtkTreeViewRowSeparatorFunc /* None */ =
-    gtk_tree_view_get_row_separator_func(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
+  )
+  def getRowSeparatorFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -603,8 +565,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     *
     * Returns the compare function currently in use.
     */
-  def getSearchEqualFunc(): GtkTreeViewSearchEqualFunc /* None */ =
-    gtk_tree_view_get_search_equal_func(this.raw.asInstanceOf[Ptr[GtkTreeView]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewSearchEqualFunc), @type -> DataRecord(GtkTreeViewSearchEqualFunc)))"
+  )
+  def getSearchEqualFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -650,7 +614,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method get_tooltip_context contains an OUT parameter, which is not supported yet"
   )
-  private def getTooltipContext__ = ???
+  def getTooltipContext__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -662,7 +626,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method get_visible_range contains an OUT parameter, which is not supported yet"
   )
-  private def getVisibleRange__ = ???
+  def getVisibleRange__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -675,7 +639,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method get_visible_rect contains an OUT parameter, which is not supported yet"
   )
-  private def getVisibleRect__ = ???
+  def getVisibleRect__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -725,26 +689,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     * enabled, then the new column will have its “sizing” property set to be
     * GTK_TREE_VIEW_COLUMN_FIXED.
     */
-  def insertColumnWithDataFunc(
-      position: Int /* Some(CInt) */,
-      title: String | CString /* Some(CString) */,
-      cell: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
-      func: GtkTreeCellDataFunc /* Some(GtkTreeCellDataFunc) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      dnotify: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  )(using Zone): Int /* None */ = gtk_tree_view_insert_column_with_data_func(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    position,
-    __sn_extract_string(title),
-    cell.getUnsafeRawPointer().asInstanceOf,
-    func,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    dnotify
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeCellDataFunc), @type -> DataRecord(GtkTreeCellDataFunc)))"
   )
+  def insertColumnWithDataFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -769,7 +717,7 @@ class TreeView(raw: Ptr[GtkTreeView])
   @annotation.compileTimeOnly(
     "Method is_blank_at_pos contains an OUT parameter, which is not supported yet"
   )
-  private def isBlankAtPos__ = ???
+  def isBlankAtPos__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -784,18 +732,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     *
     * Calls @func on all expanded rows.
     */
-  def mapExpandedRows(
-      func: GtkTreeViewMappingFunc /* Some(GtkTreeViewMappingFunc) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_tree_view_map_expanded_rows(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    func,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewMappingFunc), @type -> DataRecord(GtkTreeViewMappingFunc)))"
   )
+  def mapExpandedRows__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -829,27 +769,19 @@ class TreeView(raw: Ptr[GtkTreeView])
     *
     * Activates the cell determined by @path and @column.
     */
-  def rowActivated(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */,
-      column: Option[TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */ ]
-  ): Unit /* None */ = gtk_tree_view_row_activated(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    path,
-    column
-      .map[Ptr[GtkTreeViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def rowActivated__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns %TRUE if the node pointed to by @path is expanded in @tree_view.
     */
-  def rowExpanded(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Boolean /* None */ = gtk_tree_view_row_expanded(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    path
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def rowExpanded__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -873,24 +805,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     * the model. If the model changes before the @tree_view is realized, the
     * centered path will be modified to reflect this change.
     */
-  def scrollToCell(
-      path: Option[Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */ ],
-      column: Option[TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */ ],
-      use_align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      row_align: Float /* Some(Float) */,
-      col_align: Float /* Some(Float) */
-  ): Unit /* None */ = gtk_tree_view_scroll_to_cell(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    path
-      .map[Ptr[GtkTreePath]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]]),
-    column
-      .map[Ptr[GtkTreeViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]]),
-    gboolean(gint((if use_align == true then 1 else 0))),
-    row_align.asInstanceOf,
-    col_align.asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def scrollToCell__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -936,30 +854,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     *   reverts to the default behavior of allowing all columns to be dropped
     *   everywhere.
     */
-  def setColumnDragFunction(
-      func: Option[
-        GtkTreeViewColumnDropFunc /* Some(GtkTreeViewColumnDropFunc) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  ): Unit /* None */ = gtk_tree_view_set_column_drag_function(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    func
-      .map[GtkTreeViewColumnDropFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkTreeViewColumnDropFunc]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewColumnDropFunc), @type -> DataRecord(GtkTreeViewColumnDropFunc)))"
   )
+  def setColumnDragFunction__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -976,18 +874,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     * If @path is invalid for @model, the current cursor (if any) will be unset
     * and the function will return without failing.
     */
-  def setCursor(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */,
-      focus_column: Option[TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */ ],
-      start_editing: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_view_set_cursor(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    path,
-    focus_column
-      .map[Ptr[GtkTreeViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]]),
-    gboolean(gint((if start_editing == true then 1 else 0)))
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def setCursor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1007,38 +897,20 @@ class TreeView(raw: Ptr[GtkTreeView])
     * If @path is invalid for @model, the current cursor (if any) will be unset
     * and the function will return without failing.
     */
-  def setCursorOnCell(
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */,
-      focus_column: Option[TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */ ],
-      focus_cell: Option[CellRenderer /* Some(Ptr[GtkCellRenderer]) */ ],
-      start_editing: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_view_set_cursor_on_cell(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    path,
-    focus_column
-      .map[Ptr[GtkTreeViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]]),
-    focus_cell
-      .map[Ptr[GtkCellRenderer]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkCellRenderer]]),
-    gboolean(gint((if start_editing == true then 1 else 0)))
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def setCursorOnCell__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the row that is highlighted for feedback. If @path is %NULL, an
     * existing highlight is removed.
     */
-  def setDragDestRow(
-      path: Option[Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */ ],
-      pos: TreeViewDropPosition /* Some(GtkTreeViewDropPosition) */
-  ): Unit /* None */ = gtk_tree_view_set_drag_dest_row(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    path
-      .map[Ptr[GtkTreePath]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]]),
-    pos.raw
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def setDragDestRow__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1216,30 +1088,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     * should be drawn as a separator. If the row separator function is %NULL, no
     * separators are drawn. This is the default value.
     */
-  def setRowSeparatorFunc(
-      func: Option[
-        GtkTreeViewRowSeparatorFunc /* Some(GtkTreeViewRowSeparatorFunc) */
-      ],
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  ): Unit /* None */ = gtk_tree_view_set_row_separator_func(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    func
-      .map[GtkTreeViewRowSeparatorFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkTreeViewRowSeparatorFunc]),
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
   )
+  def setRowSeparatorFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1297,26 +1149,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     * that somewhat like strcmp() returning 0 for equality
     * `GtkTreeView`SearchEqualFunc returns %FALSE on matches.
     */
-  def setSearchEqualFunc(
-      search_equal_func: GtkTreeViewSearchEqualFunc /* Some(GtkTreeViewSearchEqualFunc) */,
-      search_user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      search_destroy: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  ): Unit /* None */ = gtk_tree_view_set_search_equal_func(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    search_equal_func,
-    search_user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    search_destroy
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewSearchEqualFunc), @type -> DataRecord(GtkTreeViewSearchEqualFunc)))"
   )
+  def setSearchEqualFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1349,24 +1185,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     *
     * See also gtk_tree_view_set_tooltip_column() for a simpler alternative.
     */
-  def setTooltipCell(
-      tooltip: Tooltip /* Some(Ptr[GtkTooltip]) */,
-      path: Option[Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */ ],
-      column: Option[TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */ ],
-      cell: Option[CellRenderer /* Some(Ptr[GtkCellRenderer]) */ ]
-  ): Unit /* None */ = gtk_tree_view_set_tooltip_cell(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    tooltip.getUnsafeRawPointer().asInstanceOf,
-    path
-      .map[Ptr[GtkTreePath]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]]),
-    column
-      .map[Ptr[GtkTreeViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]]),
-    cell
-      .map[Ptr[GtkCellRenderer]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkCellRenderer]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def setTooltipCell__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1394,14 +1216,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     * See also gtk_tree_view_set_tooltip_column() for a simpler alternative. See
     * also gtk_tooltip_set_tip_area().
     */
-  def setTooltipRow(
-      tooltip: Tooltip /* Some(Ptr[GtkTooltip]) */,
-      path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Unit /* None */ = gtk_tree_view_set_tooltip_row(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    tooltip.getUnsafeRawPointer().asInstanceOf,
-    path
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def setTooltipRow__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

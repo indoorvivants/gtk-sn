@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GParameter: : the parameter value
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparam.h
 */
 opaque type _GParameter = CStruct2[Ptr[_root_.sn.gnome.glib.internal.gchar], GValue]
 

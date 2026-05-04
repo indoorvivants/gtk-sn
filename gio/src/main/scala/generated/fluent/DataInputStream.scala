@@ -6,25 +6,24 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.BufferedInputStream
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.DataStreamByteOrder
-import sn.gnome.gio.fluent.DataStreamNewlineType
-import sn.gnome.gio.fluent.InputStream
-import sn.gnome.gio.fluent.Seekable
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{
+  BufferedInputStream,
+  Cancellable,
+  DataStreamByteOrder,
+  DataStreamNewlineType,
+  InputStream,
+  Seekable
+}
 import sn.gnome.gio.internal.GDataInputStream
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gint16
-import sn.gnome.glib.internal.gint32
-import sn.gnome.glib.internal.gint64
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.gssize
-import sn.gnome.glib.internal.guint16
-import sn.gnome.glib.internal.guint32
-import sn.gnome.glib.internal.guint64
+import sn.gnome.glib.internal.{
+  gint16,
+  gint32,
+  gint64,
+  guint16,
+  guint32,
+  guint64
+}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -66,7 +65,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_byte is weird: there are conflicting versions of it in DataInputStream and BufferedInputStream"
   )
-  private def readByte__ = ???
+  def readByte__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -149,7 +148,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_line contains an OUT parameter, which is not supported yet"
   )
-  private def readLine__ = ???
+  def readLine__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -160,26 +159,10 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * call g_data_input_stream_read_line_finish() to get the result of the
     * operation.
     */
-  def readLineAsync(
-      io_priority: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_data_input_stream_read_line_async(
-    this.raw.asInstanceOf[Ptr[GDataInputStream]],
-    gint(io_priority),
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def readLineAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -190,7 +173,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_line_finish contains an OUT parameter, which is not supported yet"
   )
-  private def readLineFinish__ = ???
+  def readLineFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -200,7 +183,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_line_finish_utf8 contains an OUT parameter, which is not supported yet"
   )
-  private def readLineFinishUtf8__ = ???
+  def readLineFinishUtf8__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -213,7 +196,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_line_utf8 contains an OUT parameter, which is not supported yet"
   )
-  private def readLineUtf8__ = ???
+  def readLineUtf8__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -298,7 +281,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_until contains an OUT parameter, which is not supported yet"
   )
-  private def readUntil__ = ???
+  def readUntil__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -318,29 +301,10 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * deprecated in a future release. Use g_data_input_stream_read_upto_async()
     * instead.
     */
-  def readUntilAsync(
-      stop_chars: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      io_priority: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_data_input_stream_read_until_async(
-    this.raw.asInstanceOf[Ptr[GDataInputStream]],
-    __sn_extract_string(stop_chars).asInstanceOf[Ptr[gchar]],
-    gint(io_priority),
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def readUntilAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -350,7 +314,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_until_finish contains an OUT parameter, which is not supported yet"
   )
-  private def readUntilFinish__ = ???
+  def readUntilFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -369,7 +333,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_upto contains an OUT parameter, which is not supported yet"
   )
-  private def readUpto__ = ???
+  def readUpto__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -387,31 +351,10 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * call g_data_input_stream_read_upto_finish() to get the result of the
     * operation.
     */
-  def readUptoAsync(
-      stop_chars: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      stop_chars_len: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */,
-      io_priority: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_data_input_stream_read_upto_async(
-    this.raw.asInstanceOf[Ptr[GDataInputStream]],
-    __sn_extract_string(stop_chars).asInstanceOf[Ptr[gchar]],
-    gssize(stop_chars_len),
-    gint(io_priority),
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def readUptoAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -427,7 +370,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   @annotation.compileTimeOnly(
     "Method read_upto_finish contains an OUT parameter, which is not supported yet"
   )
-  private def readUptoFinish__ = ???
+  def readUptoFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -456,14 +399,6 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     `type`.raw
   )
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DataInputStream
 
 object DataInputStream:

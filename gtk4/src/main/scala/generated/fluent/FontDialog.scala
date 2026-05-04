@@ -5,21 +5,12 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.internal.GAsyncReadyCallback
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Filter
-import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkFontDialog
-import sn.gnome.pango.fluent.FontFace
-import sn.gnome.pango.fluent.FontFamily
-import sn.gnome.pango.fluent.FontMap
-import sn.gnome.pango.internal.PangoFontDescription
-import sn.gnome.pango.internal.PangoLanguage
+import sn.gnome.pango.fluent.{FontFace, FontFamily, FontMap}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -48,48 +39,10 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     * The @callback will be called when the dialog is dismissed. It should call
     * [method@Gtk.FontDialog.choose_face_finish] to obtain the result.
     */
-  def chooseFace(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      initial_value: Option[
-        FontFace /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontFace]) */
-      ],
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_font_dialog_choose_face(
-    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
-    parent
-      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    initial_value
-      .map[Ptr[_root_.sn.gnome.pango.internal.PangoFontFace]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoFontFace]]
-      ),
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def chooseFace__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -116,48 +69,10 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     * The @callback will be called when the dialog is dismissed. It should call
     * [method@Gtk.FontDialog.choose_family_finish] to obtain the result.
     */
-  def chooseFamily(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      initial_value: Option[
-        FontFamily /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontFamily]) */
-      ],
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_font_dialog_choose_family(
-    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
-    parent
-      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    initial_value
-      .map[Ptr[_root_.sn.gnome.pango.internal.PangoFontFamily]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoFontFamily]]
-      ),
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def chooseFamily__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -191,48 +106,10 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     * If you want to let the user select font features as well, use
     * [method@Gtk.FontDialog.choose_font_and_features] instead.
     */
-  def chooseFont(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      initial_value: Option[Ptr[
-        PangoFontDescription
-      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontDescription]) */ ],
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_font_dialog_choose_font(
-    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
-    parent
-      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    initial_value
-      .map[Ptr[_root_.sn.gnome.pango.internal.PangoFontDescription]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[
-          _root_.sn.gnome.pango.internal.PangoFontDescription
-        ]]
-      ),
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
+  def chooseFont__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -246,48 +123,10 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     * [method@Gtk.FontDialog.choose_font_and_features_finish] to obtain the
     * result.
     */
-  def chooseFontAndFeatures(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      initial_value: Option[Ptr[
-        PangoFontDescription
-      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontDescription]) */ ],
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_font_dialog_choose_font_and_features(
-    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
-    parent
-      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    initial_value
-      .map[Ptr[_root_.sn.gnome.pango.internal.PangoFontDescription]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[
-          _root_.sn.gnome.pango.internal.PangoFontDescription
-        ]]
-      ),
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
+  def chooseFontAndFeatures__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -297,22 +136,17 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method choose_font_and_features_finish contains an OUT parameter, which is not supported yet"
   )
-  private def chooseFontAndFeaturesFinish__ = ???
+  def chooseFontAndFeaturesFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes the [method@Gtk.FontDialog.choose_font] call and returns the
     * resulting font description.
     */
-  def chooseFontFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[Ptr[PangoFontDescription] /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_font_dialog_choose_font_finish(
-      this.raw.asInstanceOf[Ptr[GtkFontDialog]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
+  def chooseFontFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -340,8 +174,10 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     *
     * Returns the language for which font features are applied.
     */
-  def getLanguage(): Ptr[PangoLanguage] /* None */ =
-    gtk_font_dialog_get_language(this.raw.asInstanceOf[Ptr[GtkFontDialog]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
+  )
+  def getLanguage__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -404,14 +240,10 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     *
     * Sets the language for which font features are applied.
     */
-  def setLanguage(
-      language: Ptr[
-        PangoLanguage
-      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoLanguage]) */
-  ): Unit /* None */ = gtk_font_dialog_set_language(
-    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
-    language
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
   )
+  def setLanguage__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

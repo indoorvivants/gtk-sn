@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GFlagsValue: : the flags value _name: the name of the value _nick: the nickname of the value
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/genums.h
 */
 opaque type _GFlagsValue = CStruct3[_root_.sn.gnome.glib.internal.guint, Ptr[_root_.sn.gnome.glib.internal.gchar], Ptr[_root_.sn.gnome.glib.internal.gchar]]
 

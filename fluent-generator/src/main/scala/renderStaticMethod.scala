@@ -3,7 +3,7 @@ import rendition.*
 import com.indoorvivants.gnome.gir_schema.*
 import util.boundary.*
 
-def renderStaticMethod(cls: AugmentedClass, meth: FunctionType)(using
+def renderStaticMethod(meth: FunctionType)(using
     RenderingContext,
     GlobalKnowledge,
     NamingPolicy,
@@ -37,7 +37,8 @@ def renderStaticMethod(cls: AugmentedClass, meth: FunctionType)(using
       meth.returnType.getOrElse(
         break(FluentErr.MethodHasNoReturnType(meth.name))
       ),
-      position = TypePosition.ReturnType
+      position = TypePosition.ReturnType,
+      expectedRawType = Some(methodContext.getReturnType)
     )
 
     coll.addAll(returnType.effects)
@@ -74,4 +75,3 @@ def renderStaticMethod(cls: AugmentedClass, meth: FunctionType)(using
       s"${inlining}def ${escape(camelName)}(${serialisedParams})$requiresZone: ${returnTypeRepr} = $finalBody"
     )
     emptyLine()
-

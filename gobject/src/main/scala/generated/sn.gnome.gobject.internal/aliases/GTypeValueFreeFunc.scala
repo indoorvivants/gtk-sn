@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeValueFreeFunc: : the value to free
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GTypeValueFreeFunc = CFuncPtr1[Ptr[GValue], Unit]
 object GTypeValueFreeFunc:

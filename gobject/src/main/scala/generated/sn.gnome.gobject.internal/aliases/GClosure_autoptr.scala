@@ -7,6 +7,9 @@ import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gobject-autocleanups.h
+*/
 opaque type GClosure_autoptr = Ptr[GClosure]
 object GClosure_autoptr:
   given _tag: Tag[GClosure_autoptr] = Tag.Ptr[GClosure](GClosure._tag)

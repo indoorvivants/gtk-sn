@@ -108,18 +108,10 @@ class StringList(raw: Ptr[GtkStringList])
     *   + @n_removals must be less than or equal to the length of the list at
     *   the time this function is called).
     */
-  def splice(
-      position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      n_removals: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      additions: Option[Ptr[CString] /* Some(Ptr[CString]) */ ]
-  )(using Zone): Unit /* None */ = gtk_string_list_splice(
-    this.raw.asInstanceOf[Ptr[GtkStringList]],
-    guint(position),
-    guint(n_removals),
-    additions
-      .map[Ptr[CString]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[CString]])
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
+  def splice__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -154,22 +146,9 @@ object StringList:
     *
     * Creates a new `GtkStringList` with the given @strings.
     */
-  def apply(
-      strings: Option[Ptr[CString] /* Some(Ptr[CString]) */ ]
-  )(using Zone): StringList = new StringList(
-    gtk_string_list_new(
-      strings
-        .map[Ptr[CString]](o => o)
-        .getOrElse(null.asInstanceOf[Ptr[CString]])
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
+  def `new`() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end StringList

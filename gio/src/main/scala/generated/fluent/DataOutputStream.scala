@@ -6,22 +6,26 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.DataStreamByteOrder
-import sn.gnome.gio.fluent.FilterOutputStream
-import sn.gnome.gio.fluent.OutputStream
-import sn.gnome.gio.fluent.Seekable
+import sn.gnome.gio.fluent.{
+  Cancellable,
+  DataStreamByteOrder,
+  FilterOutputStream,
+  OutputStream,
+  Seekable
+}
 import sn.gnome.gio.internal.GDataOutputStream
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gint16
-import sn.gnome.glib.internal.gint32
-import sn.gnome.glib.internal.gint64
-import sn.gnome.glib.internal.guchar
-import sn.gnome.glib.internal.guint16
-import sn.gnome.glib.internal.guint32
-import sn.gnome.glib.internal.guint64
+import sn.gnome.glib.internal.{
+  gboolean,
+  gint,
+  gint16,
+  gint32,
+  gint64,
+  guchar,
+  guint16,
+  guint32,
+  guint64
+}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *

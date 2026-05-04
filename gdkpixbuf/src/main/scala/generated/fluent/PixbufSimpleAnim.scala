@@ -4,12 +4,9 @@ import _root_.sn.gnome.gdkpixbuf.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdkpixbuf.fluent.Pixbuf
-import sn.gnome.gdkpixbuf.fluent.PixbufAnimation
+import sn.gnome.gdkpixbuf.fluent.{Pixbuf, PixbufAnimation}
 import sn.gnome.gdkpixbuf.internal.GdkPixbufSimpleAnim
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gfloat
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gfloat, gint}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *

@@ -8,15 +8,8 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.Cancellable
 import sn.gnome.gio.internal.GCancellable
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.GPollFD
-import sn.gnome.glib.internal.GSource
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.gulong
+import sn.gnome.glib.internal.{gboolean, gint, gulong}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gobject.internal.GCallback
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -72,26 +65,10 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     *   which now makes it easier to write cleanup code that unconditionally
     *   invokes e.g. g_cancellable_cancel().
     */
-  def connect(
-      callback: GCallback /* Some(_root_.sn.gnome.gobject.internal.GCallback) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      data_destroy_func: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  ): CUnsignedLongInt /* None */ = g_cancellable_connect(
-    this.raw.asInstanceOf[Ptr[GCancellable]],
-    callback,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    data_destroy_func
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
-  ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Callback), @type -> DataRecord(GCallback)))"
+  )
+  def connect__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -163,14 +140,10 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * status. Reading to unset the readable status is done with
     * g_cancellable_reset().
     */
-  def makePollfd(
-      pollfd: Ptr[
-        GPollFD
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GPollFD]) */
-  ): Boolean /* None */ = g_cancellable_make_pollfd(
-    this.raw.asInstanceOf[Ptr[GCancellable]],
-    pollfd
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.PollFD), @type -> DataRecord(GPollFD*)))"
+  )
+  def makePollfd__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -255,9 +228,10 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     *
     * The new #GSource will hold a reference to the #GCancellable.
     */
-  def sourceNew(): Ptr[GSource] /* None */ = g_cancellable_source_new(
-    this.raw.asInstanceOf[Ptr[GCancellable]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
   )
+  def sourceNew__ = ???
 
 end Cancellable
 
@@ -278,7 +252,7 @@ object Cancellable:
     *
     * Gets the top cancellable from the stack.
     */
-  def getCurrent(): Cancellable /* None */ = new Cancellable(
+  def getCurrent(): Cancellable /* Some(Ptr[GCancellable]) */ = new Cancellable(
     g_cancellable_get_current().asInstanceOf
   )
 

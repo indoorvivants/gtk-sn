@@ -5,8 +5,6 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gsk4.fluent.RenderNode
-import sn.gnome.gsk4.internal.GskPath
-import sn.gnome.gsk4.internal.GskStroke
 import sn.gnome.gsk4.internal.GskStrokeNode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -32,17 +30,19 @@ class StrokeNode(raw: Ptr[GskStrokeNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the path that will be stroked with the contents of the @node.
     */
-  def getPath(): Ptr[GskPath] /* None */ = gsk_stroke_node_get_path(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
   )
+  def getPath__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the stroke attributes used in this @node.
     */
-  def getStroke(): Ptr[GskStroke] /* None */ = gsk_stroke_node_get_stroke(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Stroke), @type -> DataRecord(const GskStroke*)))"
   )
+  def getStroke__ = ???
 
 end StrokeNode
 
@@ -54,15 +54,9 @@ object StrokeNode:
     *
     * The area is filled with @child.
     */
-  def apply(
-      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      path: Ptr[GskPath] /* Some(Ptr[GskPath]) */,
-      stroke: Ptr[GskStroke] /* Some(Ptr[GskStroke]) */
-  ): StrokeNode = new StrokeNode(
-    gsk_stroke_node_new(
-      child.getUnsafeRawPointer().asInstanceOf,
-      path,
-      stroke
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
   )
+  def `new`() = ???
+
 end StrokeNode

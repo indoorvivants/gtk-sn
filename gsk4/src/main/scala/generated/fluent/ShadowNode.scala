@@ -7,7 +7,6 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.gsize
 import sn.gnome.gsk4.fluent.RenderNode
-import sn.gnome.gsk4.internal.GskShadow
 import sn.gnome.gsk4.internal.GskShadowNode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -41,12 +40,10 @@ class ShadowNode(raw: Ptr[GskShadowNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the shadow data at the given index @i.
     */
-  def getShadow(
-      i: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): Ptr[GskShadow] /* None */ = gsk_shadow_node_get_shadow(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]],
-    gsize(i)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Shadow), @type -> DataRecord(const GskShadow*)))"
   )
+  def getShadow__ = ???
 
 end ShadowNode
 
@@ -57,15 +54,9 @@ object ShadowNode:
     * @shadows
     *   below it.
     */
-  def apply(
-      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      shadows: Ptr[GskShadow /* None */ ] /* Some(Ptr[GskShadow]) */,
-      n_shadows: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): ShadowNode = new ShadowNode(
-    gsk_shadow_node_new(
-      child.getUnsafeRawPointer().asInstanceOf,
-      shadows,
-      gsize(n_shadows)
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Shadow), @type -> DataRecord(GskShadow)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GskShadow*)))"
   )
+  def `new`() = ???
+
 end ShadowNode

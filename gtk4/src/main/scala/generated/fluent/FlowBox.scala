@@ -5,26 +5,18 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.GList
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Adjustment
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.FlowBoxChild
-import sn.gnome.gtk4.fluent.Orientable
-import sn.gnome.gtk4.fluent.SelectionMode
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Adjustment,
+  Buildable,
+  ConstraintTarget,
+  FlowBoxChild,
+  Orientable,
+  SelectionMode,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkFlowBox
-import sn.gnome.gtk4.internal.GtkFlowBoxCreateWidgetFunc
-import sn.gnome.gtk4.internal.GtkFlowBoxFilterFunc
-import sn.gnome.gtk4.internal.GtkFlowBoxForeachFunc
-import sn.gnome.gtk4.internal.GtkFlowBoxSortFunc
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -114,30 +106,10 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * functionality in `GtkFlowBox`. When using a model, filtering and sorting
     * should be implemented by the model.
     */
-  def bindModel(
-      model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
-      ],
-      create_widget_func: GtkFlowBoxCreateWidgetFunc /* Some(GtkFlowBoxCreateWidgetFunc) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      user_data_free_func: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = gtk_flow_box_bind_model(
-    this.raw.asInstanceOf[Ptr[GtkFlowBox]],
-    model
-      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
-      ),
-    create_widget_func,
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    user_data_free_func
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxCreateWidgetFunc), @type -> DataRecord(GtkFlowBoxCreateWidgetFunc)))"
   )
+  def bindModel__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -223,8 +195,10 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * Creates a list of all selected children.
     */
-  def getSelectedChildren(): Ptr[GList] /* None */ =
-    gtk_flow_box_get_selected_children(this.raw.asInstanceOf[Ptr[GtkFlowBox]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FlowBoxChild))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+  )
+  def getSelectedChildren__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -338,18 +312,10 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * Note that the selection cannot be modified from within this function.
     */
-  def selectedForeach(
-      func: GtkFlowBoxForeachFunc /* Some(GtkFlowBoxForeachFunc) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_flow_box_selected_foreach(
-    this.raw.asInstanceOf[Ptr[GtkFlowBox]],
-    func,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxForeachFunc), @type -> DataRecord(GtkFlowBoxForeachFunc)))"
   )
+  def selectedForeach__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -390,24 +356,10 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * Note that using a filter function is incompatible with using a model (see
     * [method@Gtk.FlowBox.bind_model]).
     */
-  def setFilterFunc(
-      filter_func: Option[
-        GtkFlowBoxFilterFunc /* Some(GtkFlowBoxFilterFunc) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = gtk_flow_box_set_filter_func(
-    this.raw.asInstanceOf[Ptr[GtkFlowBox]],
-    filter_func
-      .map[GtkFlowBoxFilterFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkFlowBoxFilterFunc]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxFilterFunc), @type -> DataRecord(GtkFlowBoxFilterFunc)))"
   )
+  def setFilterFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -502,22 +454,10 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * Note that using a sort function is incompatible with using a model (see
     * [method@Gtk.FlowBox.bind_model]).
     */
-  def setSortFunc(
-      sort_func: Option[GtkFlowBoxSortFunc /* Some(GtkFlowBoxSortFunc) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = gtk_flow_box_set_sort_func(
-    this.raw.asInstanceOf[Ptr[GtkFlowBox]],
-    sort_func
-      .map[GtkFlowBoxSortFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkFlowBoxSortFunc]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxSortFunc), @type -> DataRecord(GtkFlowBoxSortFunc)))"
   )
+  def setSortFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

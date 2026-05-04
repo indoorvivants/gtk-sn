@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GInterfaceFinalizeFunc: _iface: (type GObject.TypeInterface): The interface structure to finalize _data: The
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GInterfaceFinalizeFunc = CFuncPtr2[_root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gpointer, Unit]
 object GInterfaceFinalizeFunc:

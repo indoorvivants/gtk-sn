@@ -6,8 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.internal.GSocketControlMessage
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.gsize
+import sn.gnome.glib.internal.{gpointer, gsize}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -82,4 +81,20 @@ class SocketControlMessage(raw: Ptr[GSocketControlMessage])
 end SocketControlMessage
 
 object SocketControlMessage:
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Tries to deserialize a socket control message of a given
+    * @level
+    *   and @type. This will ask all known (to GType) subclasses of
+    *   #GSocketControlMessage if they can understand this kind of message and
+    *   if so deserialize it into a #GSocketControlMessage.
+    *
+    * If there is no implementation for this kind of control message, %NULL will
+    * be returned.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(gpointer)))"
+  )
+  def deserialize() = ???
+
 end SocketControlMessage

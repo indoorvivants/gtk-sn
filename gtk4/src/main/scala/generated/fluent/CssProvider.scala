@@ -6,7 +6,6 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.File
-import sn.gnome.glib.internal.GBytes
 import sn.gnome.glib.internal.gssize
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.StyleProvider
@@ -55,12 +54,10 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     *
     * This clears any previously loaded information.
     */
-  def loadFromBytes(
-      data: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
-  ): Unit /* None */ = gtk_css_provider_load_from_bytes(
-    this.raw.asInstanceOf[Ptr[GtkCssProvider]],
-    data
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def loadFromBytes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

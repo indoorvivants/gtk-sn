@@ -4,10 +4,12 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.DBusConnection
-import sn.gnome.gio.fluent.DebugController
-import sn.gnome.gio.fluent.Initable
+import sn.gnome.gio.fluent.{
+  Cancellable,
+  DBusConnection,
+  DebugController,
+  Initable
+}
 import sn.gnome.gio.internal.GDebugControllerDBus
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.gobject.fluent.Object

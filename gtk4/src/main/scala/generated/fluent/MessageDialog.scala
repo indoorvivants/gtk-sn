@@ -4,18 +4,20 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ButtonsType
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Dialog
-import sn.gnome.gtk4.fluent.MessageType
-import sn.gnome.gtk4.fluent.Native
-import sn.gnome.gtk4.fluent.Root
-import sn.gnome.gtk4.fluent.ShortcutManager
-import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.fluent.Window
-import sn.gnome.gtk4.internal.GtkDialogFlags
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ButtonsType,
+  ConstraintTarget,
+  Dialog,
+  DialogFlags,
+  MessageType,
+  Native,
+  Root,
+  ShortcutManager,
+  Widget,
+  Window
+}
 import sn.gnome.gtk4.internal.GtkMessageDialog
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -179,7 +181,7 @@ object MessageDialog:
     */
   inline def apply(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: GtkDialogFlags /* Some(GtkDialogFlags) */,
+      flags: DialogFlags /* Some(GtkDialogFlags) */,
       `type`: MessageType /* Some(GtkMessageType) */,
       buttons: ButtonsType /* Some(GtkButtonsType) */,
       message_format: Option[String | CString /* Some(CString) */ ],
@@ -189,7 +191,7 @@ object MessageDialog:
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-      flags,
+      flags.raw,
       `type`.raw,
       buttons.raw,
       message_format
@@ -230,7 +232,7 @@ object MessageDialog:
     */
   inline def withMarkup(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: GtkDialogFlags /* Some(GtkDialogFlags) */,
+      flags: DialogFlags /* Some(GtkDialogFlags) */,
       `type`: MessageType /* Some(GtkMessageType) */,
       buttons: ButtonsType /* Some(GtkButtonsType) */,
       message_format: Option[String | CString /* Some(CString) */ ],
@@ -240,7 +242,7 @@ object MessageDialog:
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-      flags,
+      flags.raw,
       `type`.raw,
       buttons.raw,
       message_format

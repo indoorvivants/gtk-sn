@@ -4,14 +4,9 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.File
-import sn.gnome.gio.fluent.InputStream
+import sn.gnome.gio.fluent.{File, InputStream}
 import sn.gnome.gio.internal.GApplicationCommandLine
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.GVariantDict
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
 /**  COMMENT FOR THE ORIGINAL C DEFINITION
@@ -217,7 +212,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
   @annotation.compileTimeOnly(
     "Method get_arguments contains an OUT parameter, which is not supported yet"
   )
-  private def getArguments__ = ???
+  def getArguments__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -235,6 +230,29 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
       this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
     ).asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the contents of the 'environ' variable of the command line
+    * invocation, as would be returned by g_get_environ(), ie as a
+    * %NULL-terminated list of strings in the form 'NAME=VALUE'. The strings may
+    * contain non-utf8 data.
+    *
+    * The remote application usually does not send an environment. Use
+    * %G_APPLICATION_SEND_ENVIRONMENT to affect that. Even with this flag set it
+    * is possible that the environment is still not available (due to invocation
+    * messages from other applications).
+    *
+    * The return value should not be modified or freed and is valid for as long
+    * as @cmdline exists.
+    *
+    * See g_application_command_line_getenv() if you are only interested in the
+    * value of a single environment variable.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+  )
+  def getEnviron__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -270,10 +288,10 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * The data has been passed via an untrusted external process, so the types
     * of all values must be checked before being used.
     */
-  def getOptionsDict(): Ptr[GVariantDict] /* None */ =
-    g_application_command_line_get_options_dict(
-      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantDict), @type -> DataRecord(GVariantDict*)))"
+  )
+  def getOptionsDict__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -288,10 +306,10 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     *
     * For local invocation, it will be %NULL.
     */
-  def getPlatformData(): Ptr[GVariant] /* None */ =
-    g_application_command_line_get_platform_data(
-      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+  )
+  def getPlatformData__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

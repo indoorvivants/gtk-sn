@@ -37,6 +37,15 @@ class ThemedIcon(raw: Ptr[GThemedIcon]) extends Object(raw.asInstanceOf), Icon:
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
+    * Gets the names of icons from within @icon.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+  )
+  def getNames__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
     * Prepend a name to the list of icons from within @icon.
     *
     * Note that doing so invalidates the hash computed by prior calls to

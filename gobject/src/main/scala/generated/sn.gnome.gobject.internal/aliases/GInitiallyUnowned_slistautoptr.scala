@@ -7,6 +7,9 @@ import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gobject-autocleanups.h
+*/
 opaque type GInitiallyUnowned_slistautoptr = Ptr[_root_.sn.gnome.glib.internal.GSList]
 object GInitiallyUnowned_slistautoptr:
   given _tag: Tag[GInitiallyUnowned_slistautoptr] = Tag.Ptr[_root_.sn.gnome.glib.internal.GSList](_root_.sn.gnome.glib.internal.GSList._tag)

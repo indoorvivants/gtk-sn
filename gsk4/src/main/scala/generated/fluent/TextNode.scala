@@ -5,15 +5,10 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.internal.GdkRGBA
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
-import sn.gnome.graphene.internal.graphene_point_t
+import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskTextNode
 import sn.gnome.pango.fluent.Font
-import sn.gnome.pango.internal.PangoGlyphString
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -27,9 +22,10 @@ class TextNode(raw: Ptr[GskTextNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the color used by the text @node.
     */
-  def getColor(): Ptr[GdkRGBA] /* None */ = gsk_text_node_get_color(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
+  def getColor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -48,7 +44,7 @@ class TextNode(raw: Ptr[GskTextNode]) extends RenderNode(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_glyphs contains an OUT parameter, which is not supported yet"
   )
-  private def getGlyphs__ = ???
+  def getGlyphs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -62,9 +58,10 @@ class TextNode(raw: Ptr[GskTextNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the offset applied to the text.
     */
-  def getOffset(): Ptr[graphene_point_t] /* None */ = gsk_text_node_get_offset(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
   )
+  def getOffset__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -83,23 +80,9 @@ object TextNode:
     *
     * Note that @color may not be used if the font contains color glyphs.
     */
-  def apply(
-      font: Font /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFont]) */,
-      glyphs: Ptr[
-        PangoGlyphString
-      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoGlyphString]) */,
-      color: Ptr[
-        GdkRGBA
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */,
-      offset: Ptr[
-        graphene_point_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */
-  ): TextNode = new TextNode(
-    gsk_text_node_new(
-      font.getUnsafeRawPointer().asInstanceOf,
-      glyphs,
-      color,
-      offset
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.GlyphString), @type -> DataRecord(PangoGlyphString*)))"
   )
+  def `new`() = ???
+
 end TextNode

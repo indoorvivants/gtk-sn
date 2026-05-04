@@ -5,7 +5,6 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gsk4.fluent.RenderNode
-import sn.gnome.gsk4.internal.GskTransform
 import sn.gnome.gsk4.internal.GskTransformNode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -31,8 +30,10 @@ class TransformNode(raw: Ptr[GskTransformNode])
     *
     * Retrieves the `GskTransform` used by the @node.
     */
-  def getTransform(): Ptr[GskTransform] /* None */ =
-    gsk_transform_node_get_transform(this.raw.asInstanceOf[Ptr[GskRenderNode]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))"
+  )
+  def getTransform__ = ???
 
 end TransformNode
 
@@ -42,13 +43,9 @@ object TransformNode:
     * Creates a `GskRenderNode` that will transform the given @child with the
     * given @transform.
     */
-  def apply(
-      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      transform: Ptr[GskTransform] /* Some(Ptr[GskTransform]) */
-  ): TransformNode = new TransformNode(
-    gsk_transform_node_new(
-      child.getUnsafeRawPointer().asInstanceOf,
-      transform
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))"
   )
+  def `new`() = ???
+
 end TransformNode

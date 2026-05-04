@@ -4,12 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Box
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Orientable
-import sn.gnome.gtk4.fluent.ShortcutsGroup
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Box,
+  Buildable,
+  ConstraintTarget,
+  Orientable,
+  ShortcutsGroup
+}
 import sn.gnome.gtk4.internal.GtkShortcutsSection
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

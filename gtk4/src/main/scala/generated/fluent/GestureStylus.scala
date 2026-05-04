@@ -5,8 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.DeviceTool
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.GestureSingle
 import sn.gnome.gtk4.internal.GtkGestureStylus
 
@@ -33,7 +32,7 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
   @annotation.compileTimeOnly(
     "Method get_axes contains an OUT parameter, which is not supported yet"
   )
-  private def getAxes__ = ???
+  def getAxes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -47,7 +46,7 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
   @annotation.compileTimeOnly(
     "Method get_axis contains an OUT parameter, which is not supported yet"
   )
-  private def getAxis__ = ???
+  def getAxis__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -68,7 +67,7 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
   @annotation.compileTimeOnly(
     "Method get_backlog contains an OUT parameter, which is not supported yet"
   )
-  private def getBacklog__ = ???
+  def getBacklog__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

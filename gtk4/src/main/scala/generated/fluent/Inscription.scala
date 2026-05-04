@@ -6,14 +6,15 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.InscriptionOverflow
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  InscriptionOverflow,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkInscription
 import sn.gnome.pango.fluent.WrapMode
-import sn.gnome.pango.internal.PangoAttrList
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -42,8 +43,10 @@ class Inscription(raw: Ptr[GtkInscription])
     *
     * Gets the inscription's attribute list.
     */
-  def getAttributes(): Ptr[PangoAttrList] /* None */ =
-    gtk_inscription_get_attributes(this.raw.asInstanceOf[Ptr[GtkInscription]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
+  )
+  def getAttributes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -142,18 +145,10 @@ class Inscription(raw: Ptr[GtkInscription])
     *
     * These attributes will not be evaluated for sizing the inscription.
     */
-  def setAttributes(
-      attrs: Option[Ptr[
-        PangoAttrList
-      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]) */ ]
-  ): Unit /* None */ = gtk_inscription_set_attributes(
-    this.raw.asInstanceOf[Ptr[GtkInscription]],
-    attrs
-      .map[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
+  def setAttributes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

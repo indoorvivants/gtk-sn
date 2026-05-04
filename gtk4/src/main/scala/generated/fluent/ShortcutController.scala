@@ -4,12 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.internal.GdkModifierType
+import sn.gnome.gdk4.fluent.ModifierType
 import sn.gnome.gio.fluent.ListModel
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.EventController
-import sn.gnome.gtk4.fluent.Shortcut
-import sn.gnome.gtk4.fluent.ShortcutScope
+import sn.gnome.gtk4.fluent.{
+  Buildable,
+  EventController,
+  Shortcut,
+  ShortcutScope
+}
 import sn.gnome.gtk4.internal.GtkShortcutController
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -81,10 +83,11 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     * Gets the mnemonics modifiers for when this controller activates its
     * shortcuts.
     */
-  def getMnemonicsModifiers(): GdkModifierType /* None */ =
+  def getMnemonicsModifiers(): ModifierType /* None */ = ModifierType.fromRaw(
     gtk_shortcut_controller_get_mnemonics_modifiers(
       this.raw.asInstanceOf[Ptr[GtkShortcutController]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -129,10 +132,10 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     * other places which have their own modifiers for activating mnemonics.
     */
   def setMnemonicsModifiers(
-      modifiers: GdkModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
+      modifiers: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
   ): Unit /* None */ = gtk_shortcut_controller_set_mnemonics_modifiers(
     this.raw.asInstanceOf[Ptr[GtkShortcutController]],
-    modifiers
+    modifiers.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

@@ -5,10 +5,8 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.GBytes
 import sn.gnome.glib.internal.guint
-import sn.gnome.gsk4.fluent.GLShader
-import sn.gnome.gsk4.fluent.RenderNode
+import sn.gnome.gsk4.fluent.{GLShader, RenderNode}
 import sn.gnome.gsk4.internal.GskGLShaderNode
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -24,9 +22,10 @@ class GLShaderNode(raw: Ptr[GskGLShaderNode])
     *
     * Gets args for the node.
     */
-  def getArgs(): Ptr[GBytes] /* None */ = gsk_gl_shader_node_get_args(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def getArgs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -86,6 +85,6 @@ object GLShaderNode:
   @annotation.compileTimeOnly(
     "Constructor new is weird: non NULL-terminated arrays require special handling"
   )
-  def apply() = ???
+  def `new`() = ???
 
 end GLShaderNode

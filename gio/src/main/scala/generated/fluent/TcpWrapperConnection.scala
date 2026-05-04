@@ -4,9 +4,7 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.IOStream
-import sn.gnome.gio.fluent.Socket
-import sn.gnome.gio.fluent.TcpConnection
+import sn.gnome.gio.fluent.{IOStream, Socket, TcpConnection}
 import sn.gnome.gio.internal.GTcpWrapperConnection
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

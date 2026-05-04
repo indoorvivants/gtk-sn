@@ -4,16 +4,16 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.ContentProvider
-import sn.gnome.gdk4.fluent.Device
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gdk4.fluent.Drag
-import sn.gnome.gdk4.fluent.Surface
-import sn.gnome.gdk4.internal.GdkContentFormats
+import sn.gnome.gdk4.fluent.{
+  ContentProvider,
+  Device,
+  Display,
+  Drag,
+  DragAction,
+  Surface
+}
 import sn.gnome.gdk4.internal.GdkDrag
-import sn.gnome.gdk4.internal.GdkDragAction
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -57,8 +57,8 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     *
     * Determines the bitmask of possible actions proposed by the source.
     */
-  def getActions(): GdkDragAction /* None */ = gdk_drag_get_actions(
-    this.raw.asInstanceOf[Ptr[GdkDrag]]
+  def getActions(): DragAction /* None */ = DragAction.fromRaw(
+    gdk_drag_get_actions(this.raw.asInstanceOf[Ptr[GdkDrag]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -103,16 +103,18 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     *
     * Retrieves the formats supported by this `GdkDrag` object.
     */
-  def getFormats(): Ptr[GdkContentFormats] /* None */ = gdk_drag_get_formats(
-    this.raw.asInstanceOf[Ptr[GdkDrag]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
+  def getFormats__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Determines the action chosen by the drag destination.
     */
-  def getSelectedAction(): GdkDragAction /* None */ =
+  def getSelectedAction(): DragAction /* None */ = DragAction.fromRaw(
     gdk_drag_get_selected_action(this.raw.asInstanceOf[Ptr[GdkDrag]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -157,15 +159,15 @@ object Drag:
       surface: Surface /* Some(Ptr[GdkSurface]) */,
       device: Device /* Some(Ptr[GdkDevice]) */,
       content: ContentProvider /* Some(Ptr[GdkContentProvider]) */,
-      actions: GdkDragAction /* Some(GdkDragAction) */,
+      actions: DragAction /* Some(GdkDragAction) */,
       dx: Double /* Some(Double) */,
       dy: Double /* Some(Double) */
-  ): Drag /* None */ = new Drag(
+  ): Drag /* Some(Ptr[GdkDrag]) */ = new Drag(
     gdk_drag_begin(
       surface.getUnsafeRawPointer().asInstanceOf,
       device.getUnsafeRawPointer().asInstanceOf,
       content.getUnsafeRawPointer().asInstanceOf,
-      actions,
+      actions.raw,
       dx,
       dy
     ).asInstanceOf

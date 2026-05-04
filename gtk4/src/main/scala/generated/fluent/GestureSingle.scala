@@ -5,10 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.internal.GdkEventSequence
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gtk4.fluent.Gesture
 import sn.gnome.gtk4.internal.GtkGestureSingle
 
@@ -60,10 +57,10 @@ class GestureSingle(raw: Ptr[GtkGestureSingle])
     *
     * This is only meaningful if [method@Gtk.Gesture.is_active] returns %TRUE.
     */
-  def getCurrentSequence(): Ptr[GdkEventSequence] /* None */ =
-    gtk_gesture_single_get_current_sequence(
-      this.raw.asInstanceOf[Ptr[GtkGestureSingle]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
+  )
+  def getCurrentSequence__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

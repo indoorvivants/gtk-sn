@@ -4,18 +4,9 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.DBusConnection
-import sn.gnome.gio.fluent.DBusMessage
-import sn.gnome.gio.fluent.UnixFDList
-import sn.gnome.gio.internal.GDBusMethodInfo
+import sn.gnome.gio.fluent.{DBusConnection, DBusMessage}
 import sn.gnome.gio.internal.GDBusMethodInvocation
-import sn.gnome.gio.internal.GDBusPropertyInfo
-import sn.gnome.glib.internal.GError
-import sn.gnome.glib.internal.GQuark
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -82,10 +73,10 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * See g_dbus_method_invocation_get_property_info() and #GDBusInterfaceVTable
     * for more information.
     */
-  def getMethodInfo(): Ptr[GDBusMethodInfo] /* None */ =
-    g_dbus_method_invocation_get_method_info(
-      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusMethodInfo), @type -> DataRecord(const GDBusMethodInfo*)))"
+  )
+  def getMethodInfo__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -113,10 +104,10 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * parameters then this will return a GVariant with 0 children rather than
     * NULL.
     */
-  def getParameters(): Ptr[GVariant] /* None */ =
-    g_dbus_method_invocation_get_parameters(
-      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+  )
+  def getParameters__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -131,10 +122,10 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     *
     * If the call was GetAll, %NULL will be returned.
     */
-  def getPropertyInfo(): Ptr[GDBusPropertyInfo] /* None */ =
-    g_dbus_method_invocation_get_property_info(
-      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusPropertyInfo), @type -> DataRecord(const GDBusPropertyInfo*)))"
+  )
+  def getPropertyInfo__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -198,19 +189,10 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * this call will free @invocation but otherwise do nothing (as per the
     * recommendations of the D-Bus specification).
     */
-  inline def returnError(
-      domain: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      code: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      format: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = g_dbus_method_invocation_return_error(
-    this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
-    domain,
-    gint(code),
-    __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
-    args*
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
+  def returnError__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -221,18 +203,10 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * for more information about the ownership of
     * @invocation.
     */
-  def returnErrorLiteral(
-      domain: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      code: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      message: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
-    g_dbus_method_invocation_return_error_literal(
-      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
-      domain,
-      gint(code),
-      __sn_extract_string(message).asInstanceOf[Ptr[gchar]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+  )
+  def returnErrorLiteral__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -243,19 +217,10 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * for more information about the ownership of
     * @invocation.
     */
-  def returnErrorValist(
-      domain: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      code: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      format: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      var_args: CVarArgList /* Some(va_list) */
-  )(using Zone): Unit /* None */ = g_dbus_method_invocation_return_error_valist(
-    this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
-    domain,
-    gint(code),
-    __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
-    var_args
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
+  def returnErrorValist__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -266,12 +231,10 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * for more information about the ownership of
     * @invocation.
     */
-  def returnGerror(
-      error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): Unit /* None */ = g_dbus_method_invocation_return_gerror(
-    this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
-    error
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
+  def returnGerror__ = ???
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -308,16 +271,10 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     *  otherwise do nothing (as per the recommendations of the D-Bus
     *  specification).
     */
-  def returnValue(
-      parameters: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ]
-  ): Unit /* None */ = g_dbus_method_invocation_return_value(
-    this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
-    parameters
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def returnValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -330,22 +287,10 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * for more information about the ownership of
     * @invocation.
     */
-  def returnValueWithUnixFdList(
-      parameters: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ],
-      fd_list: Option[UnixFDList /* Some(Ptr[GUnixFDList]) */ ]
-  ): Unit /* None */ = g_dbus_method_invocation_return_value_with_unix_fd_list(
-    this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
-    parameters
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
-      ),
-    fd_list
-      .map[Ptr[GUnixFDList]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GUnixFDList]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def returnValueWithUnixFdList__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -356,12 +301,10 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * for more information about the ownership of
     * @invocation.
     */
-  def takeError(
-      error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): Unit /* None */ = g_dbus_method_invocation_take_error(
-    this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
-    error
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
+  def takeError__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
