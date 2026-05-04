@@ -4,15 +4,15 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.DBusAuthObserver
-import sn.gnome.gio.fluent.Initable
+import sn.gnome.gio.fluent.{
+  Cancellable,
+  DBusAuthObserver,
+  DBusServerFlags,
+  Initable
+}
 import sn.gnome.gio.internal.GDBusServer
-import sn.gnome.gio.internal.GDBusServerFlags
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -60,8 +60,8 @@ class DBusServer(raw: Ptr[GDBusServer])
     *
     * Gets the flags for @server.
     */
-  def getFlags(): GDBusServerFlags /* None */ = g_dbus_server_get_flags(
-    this.raw.asInstanceOf[Ptr[GDBusServer]]
+  def getFlags(): DBusServerFlags /* None */ = DBusServerFlags.fromRaw(
+    g_dbus_server_get_flags(this.raw.asInstanceOf[Ptr[GDBusServer]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -125,7 +125,7 @@ object DBusServer:
   def sync(
       address: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: GDBusServerFlags /* Some(GDBusServerFlags) */,
+      flags: DBusServerFlags /* Some(GDBusServerFlags) */,
       guid: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       observer: Option[DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */ ],
@@ -134,7 +134,7 @@ object DBusServer:
     new DBusServer(
       g_dbus_server_new_sync(
         __sn_extract_string(address).asInstanceOf[Ptr[gchar]],
-        flags,
+        flags.raw,
         __sn_extract_string(guid).asInstanceOf[Ptr[gchar]],
         observer
           .map[Ptr[GDBusAuthObserver]](o =>

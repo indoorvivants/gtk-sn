@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GBoxedFreeFunc: : (not nullable): The boxed structure to be freed.
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gboxed.h
 */
 opaque type GBoxedFreeFunc = CFuncPtr1[_root_.sn.gnome.glib.internal.gpointer, Unit]
 object GBoxedFreeFunc:

@@ -6,26 +6,18 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GBytes
-import sn.gnome.glib.internal.GSList
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.pango.fluent.Alignment
-import sn.gnome.pango.fluent.Context
-import sn.gnome.pango.fluent.Direction
-import sn.gnome.pango.fluent.EllipsizeMode
-import sn.gnome.pango.fluent.Layout
-import sn.gnome.pango.fluent.WrapMode
-import sn.gnome.pango.internal.PangoAttrList
-import sn.gnome.pango.internal.PangoFontDescription
+import sn.gnome.pango.fluent.{
+  Alignment,
+  Context,
+  Direction,
+  EllipsizeMode,
+  Layout,
+  LayoutSerializeFlags,
+  WrapMode
+}
 import sn.gnome.pango.internal.PangoLayout
-import sn.gnome.pango.internal.PangoLayoutDeserializeFlags
-import sn.gnome.pango.internal.PangoLayoutIter
-import sn.gnome.pango.internal.PangoLayoutLine
-import sn.gnome.pango.internal.PangoLayoutSerializeFlags
-import sn.gnome.pango.internal.PangoTabArray
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -104,8 +96,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * Gets the attribute list for the layout, if any.
     */
-  def getAttributes(): Ptr[PangoAttrList] /* None */ =
-    pango_layout_get_attributes(this.raw.asInstanceOf[Ptr[PangoLayout]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
+  )
+  def getAttributes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -142,7 +136,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_caret_pos contains an OUT parameter, which is not supported yet"
   )
-  private def getCaretPos__ = ???
+  def getCaretPos__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -193,7 +187,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_cursor_pos contains an OUT parameter, which is not supported yet"
   )
-  private def getCursorPos__ = ???
+  def getCursorPos__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -233,14 +227,16 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_extents contains an OUT parameter, which is not supported yet"
   )
-  private def getExtents__ = ???
+  def getExtents__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the font description for the layout, if any.
     */
-  def getFontDescription(): Ptr[PangoFontDescription] /* None */ =
-    pango_layout_get_font_description(this.raw.asInstanceOf[Ptr[PangoLayout]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
+  )
+  def getFontDescription__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -266,9 +262,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * Returns an iterator to iterate over the visual extents of the layout.
     */
-  def getIter(): Ptr[PangoLayoutIter] /* None */ = pango_layout_get_iter(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutIter), @type -> DataRecord(PangoLayoutIter*)))"
   )
+  def getIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -296,8 +293,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Use the faster [method@Pango.Layout.get_line_readonly] if you do not plan
     * to modify the contents of the line (glyphs, glyph widths, etc.).
     */
-  def getLine(line: Int /* Some(CInt) */ ): Ptr[PangoLayoutLine] /* None */ =
-    pango_layout_get_line(this.raw.asInstanceOf[Ptr[PangoLayout]], line)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
+  )
+  def getLine__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -315,12 +314,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * user is not expected to modify the contents of the line (glyphs, glyph
     * widths, etc.).
     */
-  def getLineReadonly(
-      line: Int /* Some(CInt) */
-  ): Ptr[PangoLayoutLine] /* None */ = pango_layout_get_line_readonly(
-    this.raw.asInstanceOf[Ptr[PangoLayout]],
-    line
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
   )
+  def getLineReadonly__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -339,9 +336,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Use the faster [method@Pango.Layout.get_lines_readonly] if you do not plan
     * to modify the contents of the lines (glyphs, glyph widths, etc.).
     */
-  def getLines(): Ptr[GSList] /* None */ = pango_layout_get_lines(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
+  def getLines__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -351,8 +349,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * user is not expected to modify the contents of the lines (glyphs, glyph
     * widths, etc.).
     */
-  def getLinesReadonly(): Ptr[GSList] /* None */ =
-    pango_layout_get_lines_readonly(this.raw.asInstanceOf[Ptr[PangoLayout]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+  )
+  def getLinesReadonly__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -361,7 +361,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_log_attrs contains an OUT parameter, which is not supported yet"
   )
-  private def getLogAttrs__ = ???
+  def getLogAttrs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -379,7 +379,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_log_attrs_readonly contains an OUT parameter, which is not supported yet"
   )
-  private def getLogAttrsReadonly__ = ???
+  def getLogAttrsReadonly__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -393,7 +393,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_pixel_extents contains an OUT parameter, which is not supported yet"
   )
-  private def getPixelExtents__ = ???
+  def getPixelExtents__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -407,7 +407,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_pixel_size contains an OUT parameter, which is not supported yet"
   )
-  private def getPixelSize__ = ???
+  def getPixelSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -448,7 +448,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_size contains an OUT parameter, which is not supported yet"
   )
-  private def getSize__ = ???
+  def getSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -467,9 +467,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * The return value should be freed with [method@Pango.TabArray.free].
     */
-  def getTabs(): Ptr[PangoTabArray] /* None */ = pango_layout_get_tabs(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
+  def getTabs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -523,7 +524,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method index_to_line_x contains an OUT parameter, which is not supported yet"
   )
-  private def indexToLineX__ = ???
+  def indexToLineX__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -538,7 +539,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method index_to_pos contains an OUT parameter, which is not supported yet"
   )
-  private def indexToPos__ = ???
+  def indexToPos__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -583,7 +584,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method move_cursor_visually contains an OUT parameter, which is not supported yet"
   )
-  private def moveCursorVisually__ = ???
+  def moveCursorVisually__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -597,10 +598,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * The intended use of this function is testing, benchmarking and debugging.
     * The format is not meant as a permanent storage format.
     */
-  def serialize(
-      flags: PangoLayoutSerializeFlags /* Some(PangoLayoutSerializeFlags) */
-  ): Ptr[GBytes] /* None */ =
-    pango_layout_serialize(this.raw.asInstanceOf[Ptr[PangoLayout]], flags)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+  )
+  def serialize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -622,14 +623,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * References @attrs, so the caller can unref its reference.
     */
-  def setAttributes(
-      attrs: Option[Ptr[PangoAttrList] /* Some(Ptr[PangoAttrList]) */ ]
-  ): Unit /* None */ = pango_layout_set_attributes(
-    this.raw.asInstanceOf[Ptr[PangoLayout]],
-    attrs
-      .map[Ptr[PangoAttrList]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[PangoAttrList]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
+  def setAttributes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -689,16 +686,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * If no font description is set on the layout, the font description from the
     * layout's context is used.
     */
-  def setFontDescription(
-      desc: Option[
-        Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */
-      ]
-  ): Unit /* None */ = pango_layout_set_font_description(
-    this.raw.asInstanceOf[Ptr[PangoLayout]],
-    desc
-      .map[Ptr[PangoFontDescription]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[PangoFontDescription]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
+  def setFontDescription__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -853,7 +844,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method set_markup_with_accel contains an OUT parameter, which is not supported yet"
   )
-  private def setMarkupWithAccel__ = ???
+  def setMarkupWithAccel__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -909,14 +900,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * will move content away from its tab-aligned positions. The same is true
     * for alignments other than %PANGO_ALIGN_LEFT.
     */
-  def setTabs(
-      tabs: Option[Ptr[PangoTabArray] /* Some(Ptr[PangoTabArray]) */ ]
-  ): Unit /* None */ = pango_layout_set_tabs(
-    this.raw.asInstanceOf[Ptr[PangoLayout]],
-    tabs
-      .map[Ptr[PangoTabArray]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[PangoTabArray]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
+  def setTabs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -976,12 +963,12 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * to a file for later inspection.
     */
   def writeToFile(
-      flags: PangoLayoutSerializeFlags /* Some(PangoLayoutSerializeFlags) */,
+      flags: LayoutSerializeFlags /* Some(PangoLayoutSerializeFlags) */,
       filename: String | CString /* Some(CString) */
   )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     pango_layout_write_to_file(
       this.raw.asInstanceOf[Ptr[PangoLayout]],
-      flags,
+      flags.raw,
       __sn_extract_string(filename),
       __errorPtr
     ).value.!=(0)
@@ -1002,7 +989,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method xy_to_index contains an OUT parameter, which is not supported yet"
   )
-  private def xyToIndex__ = ???
+  def xyToIndex__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -1035,19 +1022,9 @@ object Layout:
     * serialized, you can compare @bytes to the result of serializing the layout
     * again.
     */
-  def deserialize(
-      context: Context /* Some(Ptr[PangoContext]) */,
-      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
-      flags: PangoLayoutDeserializeFlags /* Some(PangoLayoutDeserializeFlags) */
-  ): GResult[Layout /* None */ ] = GResult.wrap(__errorPtr =>
-    new Layout(
-      pango_layout_deserialize(
-        context.getUnsafeRawPointer().asInstanceOf,
-        bytes,
-        flags,
-        __errorPtr
-      ).asInstanceOf
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def deserialize() = ???
 
 end Layout

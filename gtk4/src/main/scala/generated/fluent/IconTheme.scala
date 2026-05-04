@@ -6,13 +6,14 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gio.fluent.Icon
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.IconPaintable
-import sn.gnome.gtk4.fluent.IconTheme
-import sn.gnome.gtk4.fluent.TextDirection
-import sn.gnome.gtk4.internal.GtkIconLookupFlags
+import sn.gnome.gtk4.fluent.{
+  IconLookupFlags,
+  IconPaintable,
+  IconTheme,
+  TextDirection
+}
 import sn.gnome.gtk4.internal.GtkIconTheme
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -112,12 +113,10 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * A size of -1 means that the icon is available in a scalable format. The
     * array is zero-terminated.
     */
-  def getIconSizes(icon_name: String | CString /* Some(CString) */ )(using
-      Zone
-  ): Ptr[Int /* None */ ] /* None */ = gtk_icon_theme_get_icon_sizes(
-    this.raw.asInstanceOf[Ptr[GtkIconTheme]],
-    __sn_extract_string(icon_name)
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(int)))),ListMap(@type -> DataRecord(int*)))"
   )
+  def getIconSizes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -187,7 +186,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
       size: Int /* Some(CInt) */,
       scale: Int /* Some(CInt) */,
       direction: TextDirection /* Some(GtkTextDirection) */,
-      flags: GtkIconLookupFlags /* Some(GtkIconLookupFlags) */
+      flags: IconLookupFlags /* Some(GtkIconLookupFlags) */
   ): IconPaintable /* None */ = new IconPaintable(
     gtk_icon_theme_lookup_by_gicon(
       this.raw.asInstanceOf[Ptr[GtkIconTheme]],
@@ -195,7 +194,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
       size,
       scale,
       direction.raw,
-      flags
+      flags.raw
     ).asInstanceOf
   )
 
@@ -218,26 +217,51 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * the icon. This is usually done by overriding the
     * GtkWidgetClass.css-changed() function.
     */
-  def lookupIcon(
-      icon_name: String | CString /* Some(CString) */,
-      fallbacks: Option[Ptr[CString] /* Some(Ptr[CString]) */ ],
-      size: Int /* Some(CInt) */,
-      scale: Int /* Some(CInt) */,
-      direction: TextDirection /* Some(GtkTextDirection) */,
-      flags: GtkIconLookupFlags /* Some(GtkIconLookupFlags) */
-  )(using Zone): IconPaintable /* None */ = new IconPaintable(
-    gtk_icon_theme_lookup_icon(
-      this.raw.asInstanceOf[Ptr[GtkIconTheme]],
-      __sn_extract_string(icon_name),
-      fallbacks
-        .map[Ptr[CString]](o => o)
-        .getOrElse(null.asInstanceOf[Ptr[CString]]),
-      size,
-      scale,
-      direction.raw,
-      flags
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
+  def lookupIcon__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the resource paths that will be looked at when looking for icons,
+    * similar to search paths.
+    *
+    * The resources are considered as part of the hicolor icon theme and must be
+    * located in subdirectories that are defined in the hicolor icon theme, such
+    * as `@path/16x16/actions/run.png` or `@path/scalable/actions/run.svg`.
+    *
+    * Icons that are directly placed in the resource path instead of a
+    * subdirectory are also considered as ultimate fallback, but they are
+    * treated like unthemed icons.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
+  )
+  def setResourcePath__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Sets the search path for the icon theme object.
+    *
+    * When looking for an icon theme, GTK will search for a subdirectory of one
+    * or more of the directories in @path with the same name as the icon theme
+    * containing an index.theme file. (Themes from multiple of the path elements
+    * are combined to allow themes to be extended by adding icons in the user’s
+    * home directory.)
+    *
+    * In addition if an icon found isn’t found either in the current icon theme
+    * or the default icon theme, and an image file with the right name is found
+    * directly in one of the elements of
+    * @path,
+    *   then that image will be used for the icon name. (This is legacy feature,
+    *   and new icons should be put into the fallback icon theme, which is
+    *   called hicolor, rather than directly on the icon path.)
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const char* const*)))"
+  )
+  def setSearchPath__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -304,7 +328,7 @@ object IconTheme:
     */
   def getForDisplay(
       display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
-  ): IconTheme /* None */ = new IconTheme(
+  ): IconTheme /* Some(Ptr[GtkIconTheme]) */ = new IconTheme(
     gtk_icon_theme_get_for_display(
       display.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

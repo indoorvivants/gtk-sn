@@ -5,7 +5,6 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.internal.GType
-import sn.gnome.gobject.internal.GValue
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.internal.GtkConstantExpression
 
@@ -22,9 +21,10 @@ class ConstantExpression(raw: Ptr[GtkConstantExpression])
     *
     * Gets the value that a constant expression evaluates to.
     */
-  def getValue(): Ptr[GValue] /* None */ = gtk_constant_expression_get_value(
-    this.raw.asInstanceOf[Ptr[GtkExpression]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
+  def getValue__ = ???
 
 end ConstantExpression
 
@@ -45,11 +45,9 @@ object ConstantExpression:
     *
     * Creates an expression that always evaluates to the given `value`.
     */
-  def forValue(
-      value: Ptr[
-        GValue
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  ): ConstantExpression = new ConstantExpression(
-    gtk_constant_expression_new_for_value(value).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
+  def new_for_value() = ???
+
 end ConstantExpression

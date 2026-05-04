@@ -6,16 +6,11 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GSList
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gssize
+import sn.gnome.glib.internal.{gboolean, gint, gssize}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gobject.internal.GClosure
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gtk4.fluent.BuilderScope
 import sn.gnome.gtk4.internal.GtkBuilder
-import sn.gnome.gtk4.internal.GtkBuilderClosureFlags
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -401,6 +396,58 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
+    * Parses a file containing a UI definition building only the requested
+    * objects and merges them with the current contents of @builder.
+    *
+    * Upon errors, 0 will be returned and @error will be assigned a `GError`
+    * from the %GTK_BUILDER_ERROR, %G_MARKUP_ERROR or %G_FILE_ERROR domain.
+    *
+    * If you are adding an object that depends on an object that is not its
+    * child (for instance a `GtkTreeView` that depends on its `GtkTreeModel`),
+    * you have to explicitly list all of them in @object_ids.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+  )
+  def addObjectsFromFile__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Parses a resource file containing a UI definition, building only the
+    * requested objects and merges them with the current contents of @builder.
+    *
+    * Upon errors, 0 will be returned and @error will be assigned a `GError`
+    * from the %GTK_BUILDER_ERROR, %G_MARKUP_ERROR or %G_RESOURCE_ERROR domain.
+    *
+    * If you are adding an object that depends on an object that is not its
+    * child (for instance a `GtkTreeView` that depends on its `GtkTreeModel`),
+    * you have to explicitly list all of them in @object_ids.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+  )
+  def addObjectsFromResource__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Parses a string containing a UI definition, building only the requested
+    * objects and merges them with the current contents of
+    * @builder.
+    *
+    * Upon errors %FALSE will be returned and @error will be assigned a `GError`
+    * from the %GTK_BUILDER_ERROR or %G_MARKUP_ERROR domain.
+    *
+    * If you are adding an object that depends on an object that is not its
+    * child (for instance a `GtkTreeView` that depends on its `GtkTreeModel`),
+    * you have to explicitly list all of them in @object_ids.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+  )
+  def addObjectsFromString__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
     * Creates a closure to invoke the function called @function_name.
     *
     * This is using the create_closure() implementation of @builder's
@@ -409,27 +456,10 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * If no closure could be created, %NULL will be returned and @error will be
     * set.
     */
-  def createClosure(
-      function_name: String | CString /* Some(CString) */,
-      flags: GtkBuilderClosureFlags /* Some(GtkBuilderClosureFlags) */,
-      `object`: Option[
-        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
-      ]
-  )(using Zone): GResult[Ptr[GClosure] /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_builder_create_closure(
-      this.raw.asInstanceOf[Ptr[GtkBuilder]],
-      __sn_extract_string(function_name),
-      flags,
-      `object`
-        .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
-          o.getUnsafeRawPointer().asInstanceOf
-        )
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
-        ),
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
   )
+  def createClosure__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -506,9 +536,10 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * Note that this function does not increment the reference counts of the
     * returned objects.
     */
-  def getObjects(): Ptr[GSList] /* None */ = gtk_builder_get_objects(
-    this.raw.asInstanceOf[Ptr[GtkBuilder]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GObject.Object))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
+  def getObjects__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -614,7 +645,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method value_from_string contains an OUT parameter, which is not supported yet"
   )
-  private def valueFromString__ = ???
+  def valueFromString__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -632,7 +663,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method value_from_string_type contains an OUT parameter, which is not supported yet"
   )
-  private def valueFromStringType__ = ???
+  def valueFromStringType__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

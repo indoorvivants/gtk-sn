@@ -4,12 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.AccessibleRange
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Orientable
-import sn.gnome.gtk4.fluent.ScaleButton
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  AccessibleRange,
+  Buildable,
+  ConstraintTarget,
+  Orientable,
+  ScaleButton
+}
 import sn.gnome.gtk4.internal.GtkVolumeButton
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

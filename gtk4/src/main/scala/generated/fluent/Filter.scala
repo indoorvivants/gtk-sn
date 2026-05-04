@@ -4,12 +4,9 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.FilterChange
-import sn.gnome.gtk4.fluent.FilterMatch
+import sn.gnome.gtk4.fluent.{FilterChange, FilterMatch}
 import sn.gnome.gtk4.internal.GtkFilter
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

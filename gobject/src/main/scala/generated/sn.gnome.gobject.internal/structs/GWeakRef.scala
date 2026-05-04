@@ -7,6 +7,9 @@ import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gobject.h
+*/
 opaque type GWeakRef = CStruct1[GWeakRef_Priv]
 
 object GWeakRef:
@@ -27,6 +30,9 @@ object GWeakRef:
     ____ptr
   
   
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gobject.h
+*/
 opaque type GWeakRef_Priv = CArray[Byte, Nat._8]
 object GWeakRef_Priv:
   given _tag: Tag[GWeakRef_Priv] = Tag.CArray[CChar, Nat._8](Tag.Byte, Tag.Nat8)

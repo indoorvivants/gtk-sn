@@ -4,8 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gtk4.fluent.ActivateAction
-import sn.gnome.gtk4.fluent.ShortcutAction
+import sn.gnome.gtk4.fluent.{ActivateAction, ShortcutAction}
 import sn.gnome.gtk4.internal.GtkActivateAction
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -27,8 +26,7 @@ object ActivateAction:
     * This is an action that calls gtk_widget_activate() on the given widget
     * upon activation.
     */
-  def get(): ActivateAction /* None */ = new ActivateAction(
-    gtk_activate_action_get().asInstanceOf
-  )
+  def get(): ActivateAction /* Some(Ptr[GtkShortcutAction]) */ =
+    new ActivateAction(gtk_activate_action_get().asInstanceOf)
 
 end ActivateAction

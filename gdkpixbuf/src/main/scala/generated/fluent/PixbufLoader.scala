@@ -4,17 +4,10 @@ import _root_.sn.gnome.gdkpixbuf.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdkpixbuf.fluent.Pixbuf
-import sn.gnome.gdkpixbuf.fluent.PixbufAnimation
-import sn.gnome.gdkpixbuf.internal.GdkPixbufFormat
+import sn.gnome.gdkpixbuf.fluent.{Pixbuf, PixbufAnimation}
 import sn.gnome.gdkpixbuf.internal.GdkPixbufLoader
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GBytes
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gsize
-import sn.gnome.glib.internal.guchar
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -116,8 +109,10 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * Obtains the available information about the format of the currently
     * loading image file.
     */
-  def getFormat(): Ptr[GdkPixbufFormat] /* None */ =
-    gdk_pixbuf_loader_get_format(this.raw.asInstanceOf[Ptr[GdkPixbufLoader]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PixbufFormat), @type -> DataRecord(GdkPixbufFormat*)))"
+  )
+  def getFormat__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -167,31 +162,19 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     *
     * Parses the next `count` bytes in the given image buffer.
     */
-  def write(
-      buf: Ptr[UByte] /* Some(Ptr[_root_.sn.gnome.glib.internal.guchar]) */,
-      count: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_pixbuf_loader_write(
-      this.raw.asInstanceOf[Ptr[GdkPixbufLoader]],
-      buf.asInstanceOf,
-      gsize(count),
-      __errorPtr
-    ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guchar*)))"
   )
+  def write__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Parses the next contents of the given image buffer.
     */
-  def writeBytes(
-      buffer: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_pixbuf_loader_write_bytes(
-      this.raw.asInstanceOf[Ptr[GdkPixbufLoader]],
-      buffer,
-      __errorPtr
-    ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def writeBytes__ = ???
 
 end PixbufLoader
 

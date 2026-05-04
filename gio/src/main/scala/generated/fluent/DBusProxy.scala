@@ -4,24 +4,17 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.AsyncInitable
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.BusType
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.DBusConnection
-import sn.gnome.gio.fluent.DBusInterface
-import sn.gnome.gio.fluent.Initable
-import sn.gnome.gio.fluent.UnixFDList
-import sn.gnome.gio.internal.GAsyncReadyCallback
-import sn.gnome.gio.internal.GDBusCallFlags
-import sn.gnome.gio.internal.GDBusInterfaceInfo
+import sn.gnome.gio.fluent.{
+  AsyncInitable,
+  AsyncResult,
+  DBusConnection,
+  DBusInterface,
+  DBusProxyFlags,
+  Initable
+}
 import sn.gnome.gio.internal.GDBusProxy
-import sn.gnome.gio.internal.GDBusProxyFlags
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -122,53 +115,19 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     *  If @callback is %NULL then the D-Bus method call message will be sent with
     *  the %G_DBUS_MESSAGE_FLAGS_NO_REPLY_EXPECTED flag set.
     */
-  def call(
-      method_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      parameters: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ],
-      flags: GDBusCallFlags /* Some(GDBusCallFlags) */,
-      timeout_msec: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_dbus_proxy_call(
-    this.raw.asInstanceOf[Ptr[GDBusProxy]],
-    __sn_extract_string(method_name).asInstanceOf[Ptr[gchar]],
-    parameters
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
-      ),
-    flags,
-    gint(timeout_msec),
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def call__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes an operation started with g_dbus_proxy_call().
     */
-  def callFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Ptr[GVariant] /* None */ ] = GResult.wrap(__errorPtr =>
-    g_dbus_proxy_call_finish(
-      this.raw.asInstanceOf[Ptr[GDBusProxy]],
-      res.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def callFinish__ = ???
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -207,32 +166,10 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     *  #GDBusProxy:g-interface-info) and @method_name is referenced by it,
     *  then the return value is checked against the return type.
     */
-  def callSync(
-      method_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      parameters: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ],
-      flags: GDBusCallFlags /* Some(GDBusCallFlags) */,
-      timeout_msec: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone): GResult[Ptr[GVariant] /* None */ ] = GResult.wrap(__errorPtr =>
-    g_dbus_proxy_call_sync(
-      this.raw.asInstanceOf[Ptr[GDBusProxy]],
-      __sn_extract_string(method_name).asInstanceOf[Ptr[gchar]],
-      parameters
-        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
-        ),
-      flags,
-      gint(timeout_msec),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def callSync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -240,43 +177,10 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     *
     * This method is only available on UNIX.
     */
-  def callWithUnixFdList(
-      method_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      parameters: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ],
-      flags: GDBusCallFlags /* Some(GDBusCallFlags) */,
-      timeout_msec: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      fd_list: Option[UnixFDList /* Some(Ptr[GUnixFDList]) */ ],
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_dbus_proxy_call_with_unix_fd_list(
-    this.raw.asInstanceOf[Ptr[GDBusProxy]],
-    __sn_extract_string(method_name).asInstanceOf[Ptr[gchar]],
-    parameters
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
-      ),
-    flags,
-    gint(timeout_msec),
-    fd_list
-      .map[Ptr[GUnixFDList]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GUnixFDList]]),
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def callWithUnixFdList__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -285,7 +189,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
   @annotation.compileTimeOnly(
     "Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet"
   )
-  private def callWithUnixFdListFinish__ = ???
+  def callWithUnixFdListFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -297,7 +201,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
   @annotation.compileTimeOnly(
     "Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet"
   )
-  private def callWithUnixFdListSync__ = ???
+  def callWithUnixFdListSync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -308,13 +212,19 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * is referenced by it, then @value is checked against the type of the
     * property.
     */
-  def getCachedProperty(
-      property_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Ptr[GVariant] /* None */ = g_dbus_proxy_get_cached_property(
-    this.raw.asInstanceOf[Ptr[GDBusProxy]],
-    __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def getCachedProperty__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the names of all cached properties on @proxy.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+  )
+  def getCachedPropertyNames__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -341,8 +251,8 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     *
     * Gets the flags that @proxy was constructed with.
     */
-  def getFlags(): GDBusProxyFlags /* None */ = g_dbus_proxy_get_flags(
-    this.raw.asInstanceOf[Ptr[GDBusProxy]]
+  def getFlags(): DBusProxyFlags /* None */ = DBusProxyFlags.fromRaw(
+    g_dbus_proxy_get_flags(this.raw.asInstanceOf[Ptr[GDBusProxy]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -351,8 +261,10 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * conforms to. See the #GDBusProxy:g-interface-info property for more
     * details.
     */
-  def getInterfaceInfo(): Ptr[GDBusInterfaceInfo] /* None */ =
-    g_dbus_proxy_get_interface_info(this.raw.asInstanceOf[Ptr[GDBusProxy]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+  )
+  def getInterfaceInfo__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -434,19 +346,10 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     *  `ChatroomParticipantJoined(String name)` and
     *  `ChatroomParticipantParted(String name)`.
     */
-  def setCachedProperty(
-      property_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ]
-  )(using Zone): Unit /* None */ = g_dbus_proxy_set_cached_property(
-    this.raw.asInstanceOf[Ptr[GDBusProxy]],
-    __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]],
-    value
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def setCachedProperty__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -467,23 +370,11 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * Ensure that interactions with @proxy conform to the given interface. See
     * the #GDBusProxy:g-interface-info property for more details.
     */
-  def setInterfaceInfo(
-      info: Option[Ptr[GDBusInterfaceInfo] /* Some(Ptr[GDBusInterfaceInfo]) */ ]
-  ): Unit /* None */ = g_dbus_proxy_set_interface_info(
-    this.raw.asInstanceOf[Ptr[GDBusProxy]],
-    info
-      .map[Ptr[GDBusInterfaceInfo]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GDBusInterfaceInfo]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
+  def setInterfaceInfo__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DBusProxy
 
 object DBusProxy:
@@ -524,37 +415,10 @@ object DBusProxy:
     *
     * #GDBusProxy is used in this [example][gdbus-wellknown-proxy].
     */
-  def forBusSync(
-      bus_type: BusType /* Some(GBusType) */,
-      flags: GDBusProxyFlags /* Some(GDBusProxyFlags) */,
-      info: Option[
-        Ptr[GDBusInterfaceInfo] /* Some(Ptr[GDBusInterfaceInfo]) */
-      ],
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      interface_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone): GResult[DBusProxy] = GResult.wrap(__errorPtr =>
-    new DBusProxy(
-      g_dbus_proxy_new_for_bus_sync(
-        bus_type.raw,
-        flags,
-        info
-          .map[Ptr[GDBusInterfaceInfo]](o => o)
-          .getOrElse(null.asInstanceOf[Ptr[GDBusInterfaceInfo]]),
-        __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-        __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-        __sn_extract_string(interface_name).asInstanceOf[Ptr[gchar]],
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
-      ).asInstanceOf
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
+  def new_for_bus_sync() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -581,44 +445,10 @@ object DBusProxy:
     *
     * #GDBusProxy is used in this [example][gdbus-wellknown-proxy].
     */
-  def sync(
-      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
-      flags: GDBusProxyFlags /* Some(GDBusProxyFlags) */,
-      info: Option[
-        Ptr[GDBusInterfaceInfo] /* Some(Ptr[GDBusInterfaceInfo]) */
-      ],
-      name: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      interface_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone): GResult[DBusProxy] = GResult.wrap(__errorPtr =>
-    new DBusProxy(
-      g_dbus_proxy_new_sync(
-        connection.getUnsafeRawPointer().asInstanceOf,
-        flags,
-        info
-          .map[Ptr[GDBusInterfaceInfo]](o => o)
-          .getOrElse(null.asInstanceOf[Ptr[GDBusInterfaceInfo]]),
-        name
-          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-          )
-          .getOrElse(
-            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
-          ),
-        __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-        __sn_extract_string(interface_name).asInstanceOf[Ptr[gchar]],
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
-      ).asInstanceOf
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
+  def new_sync() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -651,47 +481,10 @@ object DBusProxy:
     *
     * #GDBusProxy is used in this [example][gdbus-wellknown-proxy].
     */
-  def `new`(
-      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
-      flags: GDBusProxyFlags /* Some(GDBusProxyFlags) */,
-      info: Option[
-        Ptr[GDBusInterfaceInfo] /* Some(Ptr[GDBusInterfaceInfo]) */
-      ],
-      name: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      interface_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_dbus_proxy_new(
-    connection.getUnsafeRawPointer().asInstanceOf,
-    flags,
-    info
-      .map[Ptr[GDBusInterfaceInfo]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GDBusInterfaceInfo]]),
-    name
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(interface_name).asInstanceOf[Ptr[gchar]],
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
+  def `new`() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -700,49 +493,9 @@ object DBusProxy:
     *
     * #GDBusProxy is used in this [example][gdbus-wellknown-proxy].
     */
-  def newForBus(
-      bus_type: BusType /* Some(GBusType) */,
-      flags: GDBusProxyFlags /* Some(GDBusProxyFlags) */,
-      info: Option[
-        Ptr[GDBusInterfaceInfo] /* Some(Ptr[GDBusInterfaceInfo]) */
-      ],
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      interface_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_dbus_proxy_new_for_bus(
-    bus_type.raw,
-    flags,
-    info
-      .map[Ptr[GDBusInterfaceInfo]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GDBusInterfaceInfo]]),
-    __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(interface_name).asInstanceOf[Ptr[gchar]],
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
+  def newForBus() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DBusProxy

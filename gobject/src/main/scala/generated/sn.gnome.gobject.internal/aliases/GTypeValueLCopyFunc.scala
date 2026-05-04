@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeValueLCopyFunc: : the value to lcopy _collect_values: the number of collected values _values: (array length=n_collect_values): the collected locations for storage _flags: optional flags
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GTypeValueLCopyFunc = CFuncPtr4[Ptr[GValue], _root_.sn.gnome.glib.internal.guint, Ptr[GTypeCValue], _root_.sn.gnome.glib.internal.guint, Ptr[_root_.sn.gnome.glib.internal.gchar]]
 object GTypeValueLCopyFunc:

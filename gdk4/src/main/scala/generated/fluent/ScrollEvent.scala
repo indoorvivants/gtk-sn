@@ -4,12 +4,9 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.fluent.ScrollDirection
-import sn.gnome.gdk4.fluent.ScrollUnit
+import sn.gnome.gdk4.fluent.{Event, ScrollDirection, ScrollUnit}
 import sn.gnome.gdk4.internal.GdkScrollEvent
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -31,7 +28,7 @@ class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_deltas contains an OUT parameter, which is not supported yet"
   )
-  private def getDeltas__ = ???
+  def getDeltas__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

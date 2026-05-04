@@ -5,16 +5,15 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.InetAddress
-import sn.gnome.gio.fluent.InetAddressMask
-import sn.gnome.gio.fluent.Initable
-import sn.gnome.gio.fluent.SocketFamily
+import sn.gnome.gio.fluent.{
+  InetAddress,
+  InetAddressMask,
+  Initable,
+  SocketFamily
+}
 import sn.gnome.gio.internal.GInetAddressMask
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gboolean, gchar, gint, guint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

@@ -3,6 +3,13 @@ import rendition.*
 
 import scala.util.boundary, boundary.*
 
+def renderMethodStub(f: Method, msg: FluentErr)(using RenderingContext) =
+  scribe.warn(s"Failed to render function ${f.name}: ${msg.message}")
+  renderComment(f.doc)
+  line(s"@annotation.compileTimeOnly(\"${msg.message}\")")
+  line(s"def ${camelify(f.name)}__ = ???")
+  emptyLine()
+
 def renderClass(
     ns: AugmentedNamespace,
     cls: AugmentedClass
@@ -53,23 +60,14 @@ def renderClass(
       )
       emptyLine()
       cls.methods.foreach: meth =>
-        filterDefinitions(
-          namespace = Some(ns),
-          cls = Some(cls),
-          method = Some(meth)
-        ) match
-          case None =>
-            val result =
-              transact[FluentErr]:
-                handleExceptions(coll.observe(renderClassMethod(cls, meth)))
-
-            result.foreach: msg =>
-              msg.log(s"Failed to render method ${meth.name}")
-          case Some(value) =>
-            renderComment(meth.doc)
-            line(s"@annotation.compileTimeOnly(\"$value\")")
-            line(s"private def ${camelify(meth.name)}__ = ???")
-            emptyLine()
+        transact[FluentErr]:
+          filterDefinitions(
+            namespace = Some(ns),
+            cls = Some(cls),
+            method = Some(meth)
+          )
+          handleExceptions(coll.observe(renderClassMethod(cls, meth)))
+        .foreach(renderMethodStub(meth, _))
 
       coll
         .effectsSoFar()

@@ -7,6 +7,9 @@ import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparam.h
+*/
 opaque type _GParamSpec = CStruct10[GTypeInstance, Ptr[_root_.sn.gnome.glib.internal.gchar], GParamFlags, GType, GType, Ptr[_root_.sn.gnome.glib.internal.gchar], Ptr[_root_.sn.gnome.glib.internal.gchar], Ptr[_root_.sn.gnome.glib.internal.GData], _root_.sn.gnome.glib.internal.guint, _root_.sn.gnome.glib.internal.guint]
 
 object _GParamSpec:

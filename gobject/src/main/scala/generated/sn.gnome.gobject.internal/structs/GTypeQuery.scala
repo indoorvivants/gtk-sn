@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeQuery: : the #GType value of the type _name: the name of the type _size: the size of the instance structure
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GTypeQuery = CStruct4[GType, Ptr[_root_.sn.gnome.glib.internal.gchar], _root_.sn.gnome.glib.internal.guint, _root_.sn.gnome.glib.internal.guint]
 

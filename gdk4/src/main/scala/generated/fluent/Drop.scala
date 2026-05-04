@@ -4,21 +4,9 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Device
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gdk4.fluent.Drag
-import sn.gnome.gdk4.fluent.Surface
-import sn.gnome.gdk4.internal.GdkContentFormats
-import sn.gnome.gdk4.internal.GdkDragAction
+import sn.gnome.gdk4.fluent.{Device, Display, Drag, DragAction, Surface}
 import sn.gnome.gdk4.internal.GdkDrop
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.internal.GAsyncReadyCallback
-import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gobject.internal.GType
-import sn.gnome.gobject.internal.GValue
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -48,10 +36,8 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * The @action must be a single action selected from the actions available
     * via [method@Gdk.Drop.get_actions].
     */
-  def finish(
-      action: GdkDragAction /* Some(GdkDragAction) */
-  ): Unit /* None */ =
-    gdk_drop_finish(this.raw.asInstanceOf[Ptr[GdkDrop]], action)
+  def finish(action: DragAction /* Some(GdkDragAction) */ ): Unit /* None */ =
+    gdk_drop_finish(this.raw.asInstanceOf[Ptr[GdkDrop]], action.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -69,8 +55,8 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * [method@Gdk.Drop.status] or [method@Gdk.Drop.finish]. The source side will
     * not change this value anymore once a drop has started.
     */
-  def getActions(): GdkDragAction /* None */ = gdk_drop_get_actions(
-    this.raw.asInstanceOf[Ptr[GdkDrop]]
+  def getActions(): DragAction /* None */ = DragAction.fromRaw(
+    gdk_drop_get_actions(this.raw.asInstanceOf[Ptr[GdkDrop]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -105,9 +91,10 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * Returns the `GdkContentFormats` that the drop offers the data to be read
     * in.
     */
-  def getFormats(): Ptr[GdkContentFormats] /* None */ = gdk_drop_get_formats(
-    this.raw.asInstanceOf[Ptr[GdkDrop]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
+  def getFormats__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -116,6 +103,16 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
   def getSurface(): Surface /* None */ = new Surface(
     gdk_drop_get_surface(this.raw.asInstanceOf[Ptr[GdkDrop]]).asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Asynchronously read the dropped data from a `GdkDrop` in a format that
+    * complies with one of the mime types.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+  )
+  def readAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -131,7 +128,7 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method read_finish contains an OUT parameter, which is not supported yet"
   )
-  private def readFinish__ = ???
+  def readFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -145,38 +142,10 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * `GType`, the value will be copied directly. Otherwise, GDK will try to use
     * [func@Gdk.content_deserialize_async] to convert the data.
     */
-  def readValueAsync(
-      `type`: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gdk_drop_read_value_async(
-    this.raw.asInstanceOf[Ptr[GdkDrop]],
-    `type`,
-    io_priority,
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def readValueAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -184,15 +153,10 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     *
     * See [method@Gdk.Drop.read_value_async].
     */
-  def readValueFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[Ptr[GValue] /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_drop_read_value_finish(
-      this.raw.asInstanceOf[Ptr[GdkDrop]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
+  def readValueFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -211,9 +175,12 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * first and then later call this function again.
     */
   def status(
-      actions: GdkDragAction /* Some(GdkDragAction) */,
-      preferred: GdkDragAction /* Some(GdkDragAction) */
-  ): Unit /* None */ =
-    gdk_drop_status(this.raw.asInstanceOf[Ptr[GdkDrop]], actions, preferred)
+      actions: DragAction /* Some(GdkDragAction) */,
+      preferred: DragAction /* Some(GdkDragAction) */
+  ): Unit /* None */ = gdk_drop_status(
+    this.raw.asInstanceOf[Ptr[GdkDrop]],
+    actions.raw,
+    preferred.raw
+  )
 
 end Drop

@@ -11,18 +11,18 @@ import _root_.sn.gnome.harfbuzz.internal.hb_paint_extend_t
   * [COLR](https://learn.microsoft.com/en-us/typography/opentype/spec/colr)
   * section for details.
   */
-enum paint_extend_t(val raw: hb_paint_extend_t):
+enum Paint_extend_t(val raw: hb_paint_extend_t):
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Outside the defined interval, the color of the closest color stop is used.
     */
-  case PAD extends paint_extend_t(hb_paint_extend_t.HB_PAINT_EXTEND_PAD)
+  case PAD extends Paint_extend_t(hb_paint_extend_t.HB_PAINT_EXTEND_PAD)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * The color line is repeated over repeated multiples of the defined interval
     */
-  case REPEAT extends paint_extend_t(hb_paint_extend_t.HB_PAINT_EXTEND_REPEAT)
+  case REPEAT extends Paint_extend_t(hb_paint_extend_t.HB_PAINT_EXTEND_REPEAT)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -30,14 +30,14 @@ enum paint_extend_t(val raw: hb_paint_extend_t):
     * mode. However, in each repeated interval, the ordering of color stops is
     * the reverse of the adjacent interval.
     */
-  case REFLECT extends paint_extend_t(hb_paint_extend_t.HB_PAINT_EXTEND_REFLECT)
-end paint_extend_t
+  case REFLECT extends Paint_extend_t(hb_paint_extend_t.HB_PAINT_EXTEND_REFLECT)
+end Paint_extend_t
 
-object paint_extend_t:
-  def fromRaw(raw: hb_paint_extend_t): paint_extend_t =
+object Paint_extend_t:
+  def fromRaw(raw: hb_paint_extend_t): Paint_extend_t =
     raw match
-      case hb_paint_extend_t.HB_PAINT_EXTEND_PAD     => paint_extend_t.PAD
-      case hb_paint_extend_t.HB_PAINT_EXTEND_REPEAT  => paint_extend_t.REPEAT
-      case hb_paint_extend_t.HB_PAINT_EXTEND_REFLECT => paint_extend_t.REFLECT
+      case hb_paint_extend_t.HB_PAINT_EXTEND_PAD     => Paint_extend_t.PAD
+      case hb_paint_extend_t.HB_PAINT_EXTEND_REPEAT  => Paint_extend_t.REPEAT
+      case hb_paint_extend_t.HB_PAINT_EXTEND_REFLECT => Paint_extend_t.REFLECT
   end fromRaw
-end paint_extend_t
+end Paint_extend_t

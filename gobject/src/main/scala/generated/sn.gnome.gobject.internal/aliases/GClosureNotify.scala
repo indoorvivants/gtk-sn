@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GClosureNotify:
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gclosure.h
 */
 opaque type GClosureNotify = CFuncPtr2[_root_.sn.gnome.glib.internal.gpointer, Ptr[GClosure], Unit]
 object GClosureNotify:

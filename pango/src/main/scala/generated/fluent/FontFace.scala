@@ -4,11 +4,9 @@ import _root_.sn.gnome.pango.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.pango.fluent.FontFamily
-import sn.gnome.pango.internal.PangoFontDescription
 import sn.gnome.pango.internal.PangoFontFace
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -27,8 +25,10 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
     * The resulting font description will have the family, style, variant,
     * weight and stretch of the face, but its size field will be unset.
     */
-  def describe(): Ptr[PangoFontDescription] /* None */ =
-    pango_font_face_describe(this.raw.asInstanceOf[Ptr[PangoFontFace]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+  )
+  def describe__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -76,6 +76,6 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method list_sizes contains an OUT parameter, which is not supported yet"
   )
-  private def listSizes__ = ???
+  def listSizes__ = ???
 
 end FontFace

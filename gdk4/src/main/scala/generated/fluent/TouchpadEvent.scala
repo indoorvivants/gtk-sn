@@ -5,8 +5,7 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.fluent.TouchpadGesturePhase
+import sn.gnome.gdk4.fluent.{Event, TouchpadGesturePhase}
 import sn.gnome.gdk4.internal.GdkTouchpadEvent
 import sn.gnome.glib.internal.guint
 
@@ -30,7 +29,7 @@ class TouchpadEvent(raw: Ptr[GdkTouchpadEvent]) extends Event(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_deltas contains an OUT parameter, which is not supported yet"
   )
-  private def getDeltas__ = ???
+  def getDeltas__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

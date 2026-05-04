@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GSignalEmissionHook: : Signal invocation hint, see #GSignalInvocationHint. _param_values: the number of parameters to the function, including the instance on which the signal was emitted.
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gsignal.h
 */
 opaque type GSignalEmissionHook = CFuncPtr4[Ptr[GSignalInvocationHint], _root_.sn.gnome.glib.internal.guint, Ptr[GValue], _root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gboolean]
 object GSignalEmissionHook:

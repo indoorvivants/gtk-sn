@@ -6,23 +6,24 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.FileAttributeStatus
-import sn.gnome.gio.fluent.FileAttributeType
-import sn.gnome.gio.fluent.FileInfo
-import sn.gnome.gio.fluent.FileType
-import sn.gnome.gio.fluent.Icon
-import sn.gnome.gio.internal.GFileAttributeMatcher
+import sn.gnome.gio.fluent.{
+  FileAttributeStatus,
+  FileAttributeType,
+  FileInfo,
+  FileType,
+  Icon
+}
 import sn.gnome.gio.internal.GFileInfo
-import sn.gnome.glib.internal.GDateTime
-import sn.gnome.glib.internal.GTimeVal
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gint32
-import sn.gnome.glib.internal.gint64
-import sn.gnome.glib.internal.goffset
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint32
-import sn.gnome.glib.internal.guint64
+import sn.gnome.glib.internal.{
+  gboolean,
+  gint,
+  gint32,
+  gint64,
+  goffset,
+  gpointer,
+  guint32,
+  guint64
+}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -106,8 +107,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * If nanosecond precision is needed, %G_FILE_ATTRIBUTE_TIME_ACCESS_NSEC must
     * be queried separately using g_file_info_get_attribute_uint32().
     */
-  def getAccessDateTime(): Ptr[GDateTime] /* None */ =
-    g_file_info_get_access_date_time(this.raw.asInstanceOf[Ptr[GFileInfo]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+  )
+  def getAccessDateTime__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -156,7 +159,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_attribute_data contains an OUT parameter, which is not supported yet"
   )
-  private def getAttributeData__ = ???
+  def getAttributeData__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -322,8 +325,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * If nanosecond precision is needed, %G_FILE_ATTRIBUTE_TIME_CREATED_NSEC
     * must be queried separately using g_file_info_get_attribute_uint32().
     */
-  def getCreationDateTime(): Ptr[GDateTime] /* None */ =
-    g_file_info_get_creation_date_time(this.raw.asInstanceOf[Ptr[GFileInfo]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+  )
+  def getCreationDateTime__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -332,8 +337,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * %G_FILE_ATTRIBUTE_TRASH_DELETION_DATE attribute is unset, %NULL is
     * returned.
     */
-  def getDeletionDate(): Ptr[GDateTime] /* None */ =
-    g_file_info_get_deletion_date(this.raw.asInstanceOf[Ptr[GFileInfo]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+  )
+  def getDeletionDate__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -441,10 +448,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * If nanosecond precision is needed, %G_FILE_ATTRIBUTE_TIME_MODIFIED_NSEC
     * must be queried separately using g_file_info_get_attribute_uint32().
     */
-  def getModificationDateTime(): Ptr[GDateTime] /* None */ =
-    g_file_info_get_modification_date_time(
-      this.raw.asInstanceOf[Ptr[GFileInfo]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+  )
+  def getModificationDateTime__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -457,7 +464,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_modification_time contains an OUT parameter, which is not supported yet"
   )
-  private def getModificationTime__ = ???
+  def getModificationTime__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -577,14 +584,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     *
     * %G_FILE_ATTRIBUTE_TIME_ACCESS_NSEC will be cleared.
     */
-  def setAccessDateTime(
-      atime: Ptr[
-        GDateTime
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GDateTime]) */
-  ): Unit /* None */ = g_file_info_set_access_date_time(
-    this.raw.asInstanceOf[Ptr[GFileInfo]],
-    atime
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
+  def setAccessDateTime__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -674,10 +677,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     *
     * Sets @mask on @info to match specific attribute types.
     */
-  def setAttributeMask(
-      mask: Ptr[GFileAttributeMatcher] /* Some(Ptr[GFileAttributeMatcher]) */
-  ): Unit /* None */ =
-    g_file_info_set_attribute_mask(this.raw.asInstanceOf[Ptr[GFileInfo]], mask)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FileAttributeMatcher), @type -> DataRecord(GFileAttributeMatcher*)))"
+  )
+  def setAttributeMask__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -784,14 +787,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     *
     * %G_FILE_ATTRIBUTE_TIME_CREATED_NSEC will be cleared.
     */
-  def setCreationDateTime(
-      creation_time: Ptr[
-        GDateTime
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GDateTime]) */
-  ): Unit /* None */ = g_file_info_set_creation_date_time(
-    this.raw.asInstanceOf[Ptr[GFileInfo]],
-    creation_time
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
+  def setCreationDateTime__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -867,14 +866,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     *
     * %G_FILE_ATTRIBUTE_TIME_MODIFIED_NSEC will be cleared.
     */
-  def setModificationDateTime(
-      mtime: Ptr[
-        GDateTime
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GDateTime]) */
-  ): Unit /* None */ = g_file_info_set_modification_date_time(
-    this.raw.asInstanceOf[Ptr[GFileInfo]],
-    mtime
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
+  def setModificationDateTime__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -884,14 +879,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     *
     * %G_FILE_ATTRIBUTE_TIME_MODIFIED_NSEC will be cleared.
     */
-  def setModificationTime(
-      mtime: Ptr[
-        GTimeVal
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GTimeVal]) */
-  ): Unit /* None */ = g_file_info_set_modification_time(
-    this.raw.asInstanceOf[Ptr[GFileInfo]],
-    mtime
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(GTimeVal*)))"
   )
+  def setModificationTime__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

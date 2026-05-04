@@ -5,14 +5,8 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.GDateTime
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkCalendar
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -89,9 +83,10 @@ class Calendar(raw: Ptr[GtkCalendar])
     *
     * The returned date is in the local time zone.
     */
-  def getDate(): Ptr[GDateTime] /* None */ = gtk_calendar_get_date(
-    this.raw.asInstanceOf[Ptr[GtkCalendar]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
+  def getDate__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -149,12 +144,10 @@ class Calendar(raw: Ptr[GtkCalendar])
     *
     * Switches to @date's year and month and select its day.
     */
-  def selectDay(
-      date: Ptr[
-        GDateTime
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GDateTime]) */
-  ): Unit /* None */ =
-    gtk_calendar_select_day(this.raw.asInstanceOf[Ptr[GtkCalendar]], date)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+  )
+  def selectDay__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

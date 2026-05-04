@@ -4,13 +4,9 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Icon
-import sn.gnome.gio.fluent.NotificationPriority
+import sn.gnome.gio.fluent.{Icon, NotificationPriority}
 import sn.gnome.gio.internal.GNotification
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
 /**  COMMENT FOR THE ORIGINAL C DEFINITION
@@ -125,22 +121,10 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * If @target is non-%NULL, @action will be activated with @target as its
     * parameter.
     */
-  def addButtonWithTargetValue(
-      label: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      action: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      target: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ]
-  )(using Zone): Unit /* None */ = g_notification_add_button_with_target_value(
-    this.raw.asInstanceOf[Ptr[GNotification]],
-    __sn_extract_string(label).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(action).asInstanceOf[Ptr[gchar]],
-    target
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def addButtonWithTargetValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -246,22 +230,10 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * When no default action is set, the application that the notification was
     * sent on is activated.
     */
-  def setDefaultActionAndTargetValue(
-      action: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      target: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ]
-  )(using Zone): Unit /* None */ =
-    g_notification_set_default_action_and_target_value(
-      this.raw.asInstanceOf[Ptr[GNotification]],
-      __sn_extract_string(action).asInstanceOf[Ptr[gchar]],
-      target
-        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
-        )
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+  )
+  def setDefaultActionAndTargetValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

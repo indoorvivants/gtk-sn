@@ -4,29 +4,18 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.internal.GdkRectangle
-import sn.gnome.glib.internal.GList
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.InitiallyUnowned
-import sn.gnome.gobject.internal.GValue
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.CellAreaContext
-import sn.gnome.gtk4.fluent.CellEditable
-import sn.gnome.gtk4.fluent.CellLayout
-import sn.gnome.gtk4.fluent.CellRenderer
-import sn.gnome.gtk4.fluent.DirectionType
-import sn.gnome.gtk4.fluent.SizeRequestMode
-import sn.gnome.gtk4.fluent.Snapshot
-import sn.gnome.gtk4.fluent.TreeModel
-import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkCellAllocCallback
+import sn.gnome.gtk4.fluent.{
+  Buildable,
+  CellAreaContext,
+  CellEditable,
+  CellLayout,
+  CellRenderer,
+  DirectionType,
+  SizeRequestMode
+}
 import sn.gnome.gtk4.internal.GtkCellArea
-import sn.gnome.gtk4.internal.GtkCellCallback
-import sn.gnome.gtk4.internal.GtkCellRendererState
-import sn.gnome.gtk4.internal.GtkTreeIter
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -349,22 +338,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     * some subclasses which embed widgets in the area can also activate a widget
     * if it currently has the focus.
     */
-  def activate(
-      context: CellAreaContext /* Some(Ptr[GtkCellAreaContext]) */,
-      widget: Widget /* Some(Ptr[GtkWidget]) */,
-      cell_area: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
-      flags: GtkCellRendererState /* Some(GtkCellRendererState) */,
-      edit_only: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Boolean /* None */ = gtk_cell_area_activate(
-    this.raw.asInstanceOf[Ptr[GtkCellArea]],
-    context.getUnsafeRawPointer().asInstanceOf,
-    widget.getUnsafeRawPointer().asInstanceOf,
-    cell_area,
-    flags,
-    gboolean(gint((if edit_only == true then 1 else 0)))
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+  )
+  def activate__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -372,22 +349,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     * cells, the base `GtkCellArea` class activates cells for keyboard events
     * for free in its own GtkCellArea->activate() implementation.
     */
-  def activateCell(
-      widget: Widget /* Some(Ptr[GtkWidget]) */,
-      renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
-      event: Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */,
-      cell_area: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
-      flags: GtkCellRendererState /* Some(GtkCellRendererState) */
-  ): Boolean /* None */ = gtk_cell_area_activate_cell(
-    this.raw.asInstanceOf[Ptr[GtkCellArea]],
-    widget.getUnsafeRawPointer().asInstanceOf,
-    renderer.getUnsafeRawPointer().asInstanceOf,
-    event.getUnsafeRawPointer().asInstanceOf,
-    cell_area,
-    flags
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+  )
+  def activateCell__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -438,18 +403,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     * @area
     *   by pulling the values from @tree_model.
     */
-  def applyAttributes(
-      tree_model: TreeModel /* Some(Ptr[GtkTreeModel]) */,
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      is_expander: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      is_expanded: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_cell_area_apply_attributes(
-    this.raw.asInstanceOf[Ptr[GtkCellArea]],
-    tree_model.getUnsafeRawPointer().asInstanceOf,
-    iter,
-    gboolean(gint((if is_expander == true then 1 else 0))),
-    gboolean(gint((if is_expanded == true then 1 else 0)))
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def applyAttributes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -514,18 +471,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     *
     * Gets the value of a cell property for @renderer in @area.
     */
-  def cellGetProperty(
-      renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
-      property_name: String | CString /* Some(CString) */,
-      value: Ptr[
-        GValue
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  )(using Zone): Unit /* None */ = gtk_cell_area_cell_get_property(
-    this.raw.asInstanceOf[Ptr[GtkCellArea]],
-    renderer.getUnsafeRawPointer().asInstanceOf,
-    __sn_extract_string(property_name),
-    value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
+  def cellGetProperty__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -561,18 +510,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     *
     * Sets a cell property for @renderer in @area.
     */
-  def cellSetProperty(
-      renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
-      property_name: String | CString /* Some(CString) */,
-      value: Ptr[
-        GValue
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  )(using Zone): Unit /* None */ = gtk_cell_area_cell_set_property(
-    this.raw.asInstanceOf[Ptr[GtkCellArea]],
-    renderer.getUnsafeRawPointer().asInstanceOf,
-    __sn_extract_string(property_name),
-    value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
+  def cellSetProperty__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -629,22 +570,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     *
     * Delegates event handling to a `GtkCellArea`.
     */
-  def event(
-      context: CellAreaContext /* Some(Ptr[GtkCellAreaContext]) */,
-      widget: Widget /* Some(Ptr[GtkWidget]) */,
-      event: Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */,
-      cell_area: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
-      flags: GtkCellRendererState /* Some(GtkCellRendererState) */
-  ): Int /* None */ = gtk_cell_area_event(
-    this.raw.asInstanceOf[Ptr[GtkCellArea]],
-    context.getUnsafeRawPointer().asInstanceOf,
-    widget.getUnsafeRawPointer().asInstanceOf,
-    event.getUnsafeRawPointer().asInstanceOf,
-    cell_area,
-    flags
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
+  def event__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -666,48 +595,20 @@ class CellArea(raw: Ptr[GtkCellArea])
     *
     * Calls @callback for every `GtkCellRenderer` in @area.
     */
-  def foreach(
-      callback: GtkCellCallback /* Some(GtkCellCallback) */,
-      callback_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_cell_area_foreach(
-    this.raw.asInstanceOf[Ptr[GtkCellArea]],
-    callback,
-    callback_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(CellCallback), @type -> DataRecord(GtkCellCallback)))"
   )
+  def foreach__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Calls @callback for every `GtkCellRenderer` in @area with the allocated
     * rectangle inside @cell_area.
     */
-  def foreachAlloc(
-      context: CellAreaContext /* Some(Ptr[GtkCellAreaContext]) */,
-      widget: Widget /* Some(Ptr[GtkWidget]) */,
-      cell_area: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
-      background_area: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
-      callback: GtkCellAllocCallback /* Some(GtkCellAllocCallback) */,
-      callback_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_cell_area_foreach_alloc(
-    this.raw.asInstanceOf[Ptr[GtkCellArea]],
-    context.getUnsafeRawPointer().asInstanceOf,
-    widget.getUnsafeRawPointer().asInstanceOf,
-    cell_area,
-    background_area,
-    callback,
-    callback_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
+  def foreachAlloc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -717,7 +618,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   @annotation.compileTimeOnly(
     "Method get_cell_allocation contains an OUT parameter, which is not supported yet"
   )
-  private def getCellAllocation__ = ???
+  def getCellAllocation__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -727,7 +628,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   @annotation.compileTimeOnly(
     "Method get_cell_at_position contains an OUT parameter, which is not supported yet"
   )
-  private def getCellAtPosition__ = ???
+  def getCellAtPosition__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -795,12 +696,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     *
     * Gets the focus sibling cell renderers for @renderer.
     */
-  def getFocusSiblings(
-      renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
-  ): Ptr[GList] /* None */ = gtk_cell_area_get_focus_siblings(
-    this.raw.asInstanceOf[Ptr[GtkCellArea]],
-    renderer.getUnsafeRawPointer().asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(CellRenderer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(const GList*)))"
   )
+  def getFocusSiblings__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -816,7 +715,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   @annotation.compileTimeOnly(
     "Method get_preferred_height contains an OUT parameter, which is not supported yet"
   )
-  private def getPreferredHeight__ = ???
+  def getPreferredHeight__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -840,7 +739,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   @annotation.compileTimeOnly(
     "Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
   )
-  private def getPreferredHeightForWidth__ = ???
+  def getPreferredHeightForWidth__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -856,7 +755,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   @annotation.compileTimeOnly(
     "Method get_preferred_width contains an OUT parameter, which is not supported yet"
   )
-  private def getPreferredWidth__ = ???
+  def getPreferredWidth__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -880,7 +779,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   @annotation.compileTimeOnly(
     "Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
   )
-  private def getPreferredWidthForHeight__ = ???
+  def getPreferredWidthForHeight__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -911,7 +810,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   @annotation.compileTimeOnly(
     "Method inner_cell_area contains an OUT parameter, which is not supported yet"
   )
-  private def innerCellArea__ = ???
+  def innerCellArea__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -972,7 +871,7 @@ class CellArea(raw: Ptr[GtkCellArea])
   @annotation.compileTimeOnly(
     "Method request_renderer contains an OUT parameter, which is not supported yet"
   )
-  private def requestRenderer__ = ???
+  def requestRenderer__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -996,28 +895,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     * Snapshots @area’s cells according to @area’s layout onto at the given
     * coordinates.
     */
-  def snapshot(
-      context: CellAreaContext /* Some(Ptr[GtkCellAreaContext]) */,
-      widget: Widget /* Some(Ptr[GtkWidget]) */,
-      snapshot: Snapshot /* Some(Ptr[GtkSnapshot]) */,
-      background_area: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
-      cell_area: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
-      flags: GtkCellRendererState /* Some(GtkCellRendererState) */,
-      paint_focus: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_cell_area_snapshot(
-    this.raw.asInstanceOf[Ptr[GtkCellArea]],
-    context.getUnsafeRawPointer().asInstanceOf,
-    widget.getUnsafeRawPointer().asInstanceOf,
-    snapshot.getUnsafeRawPointer().asInstanceOf,
-    background_area,
-    cell_area,
-    flags,
-    gboolean(gint((if paint_focus == true then 1 else 0)))
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
+  def snapshot__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

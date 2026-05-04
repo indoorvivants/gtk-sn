@@ -4,25 +4,17 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.GList
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Adjustment
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.ListBoxRow
-import sn.gnome.gtk4.fluent.SelectionMode
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Adjustment,
+  Buildable,
+  ConstraintTarget,
+  ListBoxRow,
+  SelectionMode,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkListBox
-import sn.gnome.gtk4.internal.GtkListBoxCreateWidgetFunc
-import sn.gnome.gtk4.internal.GtkListBoxFilterFunc
-import sn.gnome.gtk4.internal.GtkListBoxForeachFunc
-import sn.gnome.gtk4.internal.GtkListBoxSortFunc
-import sn.gnome.gtk4.internal.GtkListBoxUpdateHeaderFunc
 
 /**  COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -118,34 +110,10 @@ class ListBox(raw: Ptr[GtkListBox])
     * functionality in `GtkListBox`. When using a model, filtering and sorting
     * should be implemented by the model.
     */
-  def bindModel(
-      model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
-      ],
-      create_widget_func: Option[
-        GtkListBoxCreateWidgetFunc /* Some(GtkListBoxCreateWidgetFunc) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      user_data_free_func: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = gtk_list_box_bind_model(
-    this.raw.asInstanceOf[Ptr[GtkListBox]],
-    model
-      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
-      ),
-    create_widget_func
-      .map[GtkListBoxCreateWidgetFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkListBoxCreateWidgetFunc]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    user_data_free_func
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxCreateWidgetFunc), @type -> DataRecord(GtkListBoxCreateWidgetFunc)))"
   )
+  def bindModel__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -239,9 +207,10 @@ class ListBox(raw: Ptr[GtkListBox])
     *
     * Creates a list of all selected children.
     */
-  def getSelectedRows(): Ptr[GList] /* None */ = gtk_list_box_get_selected_rows(
-    this.raw.asInstanceOf[Ptr[GtkListBox]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(ListBoxRow))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def getSelectedRows__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -375,18 +344,10 @@ class ListBox(raw: Ptr[GtkListBox])
     *
     * Note that the selection cannot be modified from within this function.
     */
-  def selectedForeach(
-      func: GtkListBoxForeachFunc /* Some(GtkListBoxForeachFunc) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_list_box_selected_foreach(
-    this.raw.asInstanceOf[Ptr[GtkListBox]],
-    func,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxForeachFunc), @type -> DataRecord(GtkListBoxForeachFunc)))"
   )
+  def selectedForeach__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -437,24 +398,10 @@ class ListBox(raw: Ptr[GtkListBox])
     * Note that using a filter function is incompatible with using a model (see
     * [method@Gtk.ListBox.bind_model]).
     */
-  def setFilterFunc(
-      filter_func: Option[
-        GtkListBoxFilterFunc /* Some(GtkListBoxFilterFunc) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = gtk_list_box_set_filter_func(
-    this.raw.asInstanceOf[Ptr[GtkListBox]],
-    filter_func
-      .map[GtkListBoxFilterFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkListBoxFilterFunc]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxFilterFunc), @type -> DataRecord(GtkListBoxFilterFunc)))"
   )
+  def setFilterFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -485,24 +432,10 @@ class ListBox(raw: Ptr[GtkListBox])
     * previous row becomes a different row). It is also called for all rows when
     * [method@Gtk.ListBox.invalidate_headers] is called.
     */
-  def setHeaderFunc(
-      update_header: Option[
-        GtkListBoxUpdateHeaderFunc /* Some(GtkListBoxUpdateHeaderFunc) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = gtk_list_box_set_header_func(
-    this.raw.asInstanceOf[Ptr[GtkListBox]],
-    update_header
-      .map[GtkListBoxUpdateHeaderFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkListBoxUpdateHeaderFunc]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxUpdateHeaderFunc), @type -> DataRecord(GtkListBoxUpdateHeaderFunc)))"
   )
+  def setHeaderFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -555,22 +488,10 @@ class ListBox(raw: Ptr[GtkListBox])
     * Note that using a sort function is incompatible with using a model (see
     * [method@Gtk.ListBox.bind_model]).
     */
-  def setSortFunc(
-      sort_func: Option[GtkListBoxSortFunc /* Some(GtkListBoxSortFunc) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = gtk_list_box_set_sort_func(
-    this.raw.asInstanceOf[Ptr[GtkListBox]],
-    sort_func
-      .map[GtkListBoxSortFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkListBoxSortFunc]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxSortFunc), @type -> DataRecord(GtkListBoxSortFunc)))"
   )
+  def setSortFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

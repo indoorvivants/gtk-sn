@@ -5,24 +5,19 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GKeyFile
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.GTKUnit
-import sn.gnome.gtk4.fluent.NumberUpLayout
-import sn.gnome.gtk4.fluent.PageOrientation
-import sn.gnome.gtk4.fluent.PageSet
-import sn.gnome.gtk4.fluent.PrintDuplex
-import sn.gnome.gtk4.fluent.PrintPages
-import sn.gnome.gtk4.fluent.PrintQuality
-import sn.gnome.gtk4.fluent.PrintSettings
-import sn.gnome.gtk4.internal.GtkPageRange
-import sn.gnome.gtk4.internal.GtkPaperSize
+import sn.gnome.gtk4.fluent.{
+  GTKUnit,
+  NumberUpLayout,
+  PageOrientation,
+  PageSet,
+  PrintDuplex,
+  PrintPages,
+  PrintQuality,
+  PrintSettings
+}
 import sn.gnome.gtk4.internal.GtkPrintSettings
-import sn.gnome.gtk4.internal.GtkPrintSettingsFunc
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -58,18 +53,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     *
     * Calls @func for each key-value pair of @settings.
     */
-  def foreach(
-      func: GtkPrintSettingsFunc /* Some(GtkPrintSettingsFunc) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_print_settings_foreach(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    func,
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PrintSettingsFunc), @type -> DataRecord(GtkPrintSettingsFunc)))"
   )
+  def foreach__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -277,7 +264,7 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
   @annotation.compileTimeOnly(
     "Method get_page_ranges contains an OUT parameter, which is not supported yet"
   )
-  private def getPageRanges__ = ???
+  def getPageRanges__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -304,10 +291,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * Gets the value of %GTK_PRINT_SETTINGS_PAPER_FORMAT, converted to a
     * `GtkPaperSize`.
     */
-  def getPaperSize(): Ptr[GtkPaperSize] /* None */ =
-    gtk_print_settings_get_paper_size(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
+  )
+  def getPaperSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -440,21 +427,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * If the file could not be loaded then error is set to either a `GFileError`
     * or `GKeyFileError`.
     */
-  def loadKeyFile(
-      key_file: Ptr[
-        GKeyFile
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GKeyFile]) */,
-      group_name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_print_settings_load_key_file(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-      key_file,
-      group_name
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString]),
-      __errorPtr
-    ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
+  def loadKeyFile__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -650,14 +626,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     *
     * Sets the value of %GTK_PRINT_SETTINGS_PAGE_RANGES.
     */
-  def setPageRanges(
-      page_ranges: Ptr[GtkPageRange /* None */ ] /* Some(Ptr[GtkPageRange]) */,
-      num_ranges: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_print_settings_set_page_ranges(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    page_ranges,
-    num_ranges
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PageRange), @type -> DataRecord(GtkPageRange)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GtkPageRange*)))"
   )
+  def setPageRanges__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -687,12 +659,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * Sets the value of %GTK_PRINT_SETTINGS_PAPER_FORMAT,
     * %GTK_PRINT_SETTINGS_PAPER_WIDTH and %GTK_PRINT_SETTINGS_PAPER_HEIGHT.
     */
-  def setPaperSize(
-      paper_size: Ptr[GtkPaperSize] /* Some(Ptr[GtkPaperSize]) */
-  ): Unit /* None */ = gtk_print_settings_set_paper_size(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    paper_size
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
   )
+  def setPaperSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -828,26 +798,19 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     *
     * Serialize print settings to an a{sv} variant.
     */
-  def toGvariant(): Ptr[GVariant] /* None */ = gtk_print_settings_to_gvariant(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def toGvariant__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * This function adds the print settings from @settings to @key_file.
     */
-  def toKeyFile(
-      key_file: Ptr[
-        GKeyFile
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GKeyFile]) */,
-      group_name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_print_settings_to_key_file(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    key_file,
-    group_name
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
+  def toKeyFile__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -909,13 +872,10 @@ object PrintSettings:
     * The variant must be in the format produced by
     * [method@Gtk.PrintSettings.to_gvariant].
     */
-  def fromGvariant(
-      variant: Ptr[
-        GVariant
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-  ): PrintSettings = new PrintSettings(
-    gtk_print_settings_new_from_gvariant(variant).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def new_from_gvariant() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -925,22 +885,10 @@ object PrintSettings:
     * %NULL if an error occurred. If the file could not be loaded then error is
     * set to either `GFileError` or `GKeyFileError`.
     */
-  def fromKeyFile(
-      key_file: Ptr[
-        GKeyFile
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GKeyFile]) */,
-      group_name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): GResult[PrintSettings] = GResult.wrap(__errorPtr =>
-    new PrintSettings(
-      gtk_print_settings_new_from_key_file(
-        key_file,
-        group_name
-          .map[CString](o => __sn_extract_string(o))
-          .getOrElse(null.asInstanceOf[CString]),
-        __errorPtr
-      ).asInstanceOf
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
+  def new_from_key_file() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

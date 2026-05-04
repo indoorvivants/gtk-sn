@@ -4,12 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Orientable
-import sn.gnome.gtk4.fluent.Orientation
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  Orientable,
+  Orientation,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkSeparator
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

@@ -6,8 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.OutputStream
 import sn.gnome.gio.internal.GFilterOutputStream
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *

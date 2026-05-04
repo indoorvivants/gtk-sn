@@ -4,7 +4,6 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.graphene.internal.graphene_rect_t
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskRepeatNode
 
@@ -30,8 +29,10 @@ class RepeatNode(raw: Ptr[GskRepeatNode]) extends RenderNode(raw.asInstanceOf):
     *
     * Retrieves the bounding rectangle of the child of @node.
     */
-  def getChildBounds(): Ptr[graphene_rect_t] /* None */ =
-    gsk_repeat_node_get_child_bounds(this.raw.asInstanceOf[Ptr[GskRenderNode]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+  )
+  def getChildBounds__ = ???
 
 end RepeatNode
 
@@ -41,25 +42,9 @@ object RepeatNode:
     * Creates a `GskRenderNode` that will repeat the drawing of @child across
     * the given @bounds.
     */
-  def apply(
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
-      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      child_bounds: Option[Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */ ]
-  ): RepeatNode = new RepeatNode(
-    gsk_repeat_node_new(
-      bounds,
-      child.getUnsafeRawPointer().asInstanceOf,
-      child_bounds
-        .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[
-            _root_.sn.gnome.graphene.internal.graphene_rect_t
-          ]]
-        )
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def `new`() = ???
+
 end RepeatNode

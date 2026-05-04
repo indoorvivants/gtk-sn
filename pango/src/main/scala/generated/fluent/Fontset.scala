@@ -5,13 +5,10 @@ import _root_.sn.gnome.pango.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.gpointer
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.pango.fluent.Font
-import sn.gnome.pango.internal.PangoFontMetrics
 import sn.gnome.pango.internal.PangoFontset
-import sn.gnome.pango.internal.PangoFontsetForeachFunc
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -32,18 +29,10 @@ class Fontset(raw: Ptr[PangoFontset]) extends Object(raw.asInstanceOf):
     *
     * If @func returns %TRUE, that stops the iteration.
     */
-  def foreach(
-      func: PangoFontsetForeachFunc /* Some(PangoFontsetForeachFunc) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = pango_fontset_foreach(
-    this.raw.asInstanceOf[Ptr[PangoFontset]],
-    func,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontsetForeachFunc), @type -> DataRecord(PangoFontsetForeachFunc)))"
   )
+  def foreach__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -63,7 +52,9 @@ class Fontset(raw: Ptr[PangoFontset]) extends Object(raw.asInstanceOf):
     *
     * Get overall metric information for the fonts in the fontset.
     */
-  def getMetrics(): Ptr[PangoFontMetrics] /* None */ =
-    pango_fontset_get_metrics(this.raw.asInstanceOf[Ptr[PangoFontset]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontMetrics), @type -> DataRecord(PangoFontMetrics*)))"
+  )
+  def getMetrics__ = ???
 
 end Fontset

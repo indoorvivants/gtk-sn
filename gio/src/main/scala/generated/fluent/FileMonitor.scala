@@ -4,11 +4,9 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.File
-import sn.gnome.gio.fluent.FileMonitorEvent
+import sn.gnome.gio.fluent.{File, FileMonitorEvent}
 import sn.gnome.gio.internal.GFileMonitor
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

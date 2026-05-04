@@ -4,10 +4,12 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gtk4.fluent.FileChooser
-import sn.gnome.gtk4.fluent.FileChooserAction
-import sn.gnome.gtk4.fluent.NativeDialog
-import sn.gnome.gtk4.fluent.Window
+import sn.gnome.gtk4.fluent.{
+  FileChooser,
+  FileChooserAction,
+  NativeDialog,
+  Window
+}
 import sn.gnome.gtk4.internal.GtkFileChooserNative
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

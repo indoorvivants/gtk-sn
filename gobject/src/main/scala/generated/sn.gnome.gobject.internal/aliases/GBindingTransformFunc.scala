@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GBindingTransformFunc: : a #GBinding _value: the #GValue containing the value to transform _value: the #GValue in which to store the transformed value _data: data passed to the transform function
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gbinding.h
 */
 opaque type GBindingTransformFunc = CFuncPtr4[Ptr[GBinding], Ptr[GValue], Ptr[GValue], _root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gboolean]
 object GBindingTransformFunc:

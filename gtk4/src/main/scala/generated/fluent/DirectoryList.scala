@@ -4,11 +4,8 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.File
-import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.internal.GError
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.gio.fluent.{File, ListModel}
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.internal.GtkDirectoryList
 
@@ -65,9 +62,10 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * An error being set does not mean that no files were loaded, and all
     * successfully queried files will remain in the list.
     */
-  def getError(): Ptr[GError] /* None */ = gtk_directory_list_get_error(
-    this.raw.asInstanceOf[Ptr[GtkDirectoryList]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
+  def getError__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

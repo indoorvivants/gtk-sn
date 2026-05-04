@@ -5,13 +5,9 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.InetAddress
-import sn.gnome.gio.fluent.SocketAddress
-import sn.gnome.gio.fluent.SocketConnectable
+import sn.gnome.gio.fluent.{InetAddress, SocketAddress, SocketConnectable}
 import sn.gnome.gio.internal.GInetSocketAddress
-import sn.gnome.glib.internal.guint
-import sn.gnome.glib.internal.guint16
-import sn.gnome.glib.internal.guint32
+import sn.gnome.glib.internal.{guint, guint16, guint32}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *

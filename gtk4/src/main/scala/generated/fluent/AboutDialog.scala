@@ -5,16 +5,17 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.License
-import sn.gnome.gtk4.fluent.Native
-import sn.gnome.gtk4.fluent.Root
-import sn.gnome.gtk4.fluent.ShortcutManager
-import sn.gnome.gtk4.fluent.Window
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  License,
+  Native,
+  Root,
+  ShortcutManager,
+  Window
+}
 import sn.gnome.gtk4.internal.GtkAboutDialog
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -82,14 +83,28 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * Creates a new section in the "Credits" page.
     */
-  def addCreditSection(
-      section_name: String | CString /* Some(CString) */,
-      people: Ptr[CString] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ = gtk_about_dialog_add_credit_section(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    __sn_extract_string(section_name),
-    people
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
+  def addCreditSection__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the names of the artists which are displayed in the credits page.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
+  )
+  def getArtists__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the names of the authors which are displayed in the credits page.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
+  )
+  def getAuthors__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -110,6 +125,16 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
       this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
     ).asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the name of the documenters which are displayed in the credits
+    * page.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
+  )
+  def getDocumenters__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -225,24 +250,20 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     *
     * Sets the names of the artists to be displayed in the "Credits" page.
     */
-  def setArtists(
-      artists: Ptr[CString] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_artists(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    artists
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
+  def setArtists__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the names of the authors which are displayed in the "Credits" page of
     * the about dialog.
     */
-  def setAuthors(
-      authors: Ptr[CString] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_authors(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    authors
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
+  def setAuthors__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -279,12 +300,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * Sets the names of the documenters which are displayed in the "Credits"
     * page.
     */
-  def setDocumenters(
-      documenters: Ptr[CString] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_documenters(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    documenters
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
+  def setDocumenters__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

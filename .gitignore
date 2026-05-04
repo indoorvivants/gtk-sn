@@ -17,3 +17,5 @@ target
 project/project
 project/metals.sbt
 pango.sh
+*.worksheet.sc
+.mcp.json

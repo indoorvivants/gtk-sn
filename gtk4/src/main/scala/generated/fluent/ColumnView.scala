@@ -6,23 +6,21 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ColumnViewColumn
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.ListItemFactory
-import sn.gnome.gtk4.fluent.ListTabBehavior
-import sn.gnome.gtk4.fluent.Scrollable
-import sn.gnome.gtk4.fluent.SelectionModel
-import sn.gnome.gtk4.fluent.SortType
-import sn.gnome.gtk4.fluent.Sorter
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ColumnViewColumn,
+  ConstraintTarget,
+  ListItemFactory,
+  ListTabBehavior,
+  Scrollable,
+  SelectionModel,
+  SortType,
+  Sorter,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkColumnView
-import sn.gnome.gtk4.internal.GtkListScrollFlags
-import sn.gnome.gtk4.internal.GtkScrollInfo
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -272,22 +270,10 @@ class ColumnView(raw: Ptr[GtkColumnView])
     * This function works no matter if the listview is shown or focused. If it
     * isn't, then the changes will take effect once that happens.
     */
-  def scrollTo(
-      pos: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      column: Option[ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */ ],
-      flags: GtkListScrollFlags /* Some(GtkListScrollFlags) */,
-      scroll: Option[Ptr[GtkScrollInfo] /* Some(Ptr[GtkScrollInfo]) */ ]
-  ): Unit /* None */ = gtk_column_view_scroll_to(
-    this.raw.asInstanceOf[Ptr[GtkColumnView]],
-    guint(pos),
-    column
-      .map[Ptr[GtkColumnViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkColumnViewColumn]]),
-    flags,
-    scroll
-      .map[Ptr[GtkScrollInfo]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkScrollInfo]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
   )
+  def scrollTo__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

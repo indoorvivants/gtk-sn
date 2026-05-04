@@ -4,15 +4,10 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.cairo.internal.cairo_region_t
 import sn.gnome.gdk4.fluent.Surface
-import sn.gnome.gdk4.fluent.Texture
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.graphene.internal.graphene_rect_t
-import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskRenderer
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -96,20 +91,10 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
     * The @renderer will acquire a reference on the `GskRenderNode` tree while
     * the rendering is in progress.
     */
-  def render(
-      root: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      region: Option[Ptr[
-        cairo_region_t
-      ] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */ ]
-  ): Unit /* None */ = gsk_renderer_render(
-    this.raw.asInstanceOf[Ptr[GskRenderer]],
-    root.getUnsafeRawPointer().asInstanceOf,
-    region
-      .map[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))"
   )
+  def render__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -122,24 +107,10 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
     * If you want to apply any transformations to @root, you should put it into
     * a transform node and pass that node instead.
     */
-  def renderTexture(
-      root: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      viewport: Option[Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */ ]
-  ): Texture /* None */ = new Texture(
-    gsk_renderer_render_texture(
-      this.raw.asInstanceOf[Ptr[GskRenderer]],
-      root.getUnsafeRawPointer().asInstanceOf,
-      viewport
-        .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[
-            _root_.sn.gnome.graphene.internal.graphene_rect_t
-          ]]
-        )
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def renderTexture__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

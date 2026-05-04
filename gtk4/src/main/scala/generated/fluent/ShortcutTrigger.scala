@@ -5,13 +5,8 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.fluent.KeyMatch
-import sn.gnome.glib.internal.GString
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
+import sn.gnome.gdk4.fluent.{Display, Event, KeyMatch}
+import sn.gnome.glib.internal.{gboolean, gconstpointer, gint, guint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.ShortcutTrigger
 import sn.gnome.gtk4.internal.GtkShortcutTrigger
@@ -46,7 +41,9 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
       trigger2: ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
   ): Int /* None */ = gtk_shortcut_trigger_compare(
     this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gconstpointer],
-    trigger2.getUnsafeRawPointer().asInstanceOf
+    gconstpointer(
+      trigger2.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -60,7 +57,9 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
       trigger2: ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
   ): Boolean /* None */ = gtk_shortcut_trigger_equal(
     this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gconstpointer],
-    trigger2.getUnsafeRawPointer().asInstanceOf
+    gconstpointer(
+      trigger2.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
+    )
   ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -87,14 +86,10 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * The form of the representation may change at any time and is not
     * guaranteed to stay identical.
     */
-  def print(
-      string: Ptr[
-        GString
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GString]) */
-  ): Unit /* None */ = gtk_shortcut_trigger_print(
-    this.raw.asInstanceOf[Ptr[GtkShortcutTrigger]],
-    string
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
   )
+  def print__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -110,16 +105,10 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * The form of the representation may change at any time and is not
     * guaranteed to stay identical.
     */
-  def printLabel(
-      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
-      string: Ptr[
-        GString
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GString]) */
-  ): Boolean /* None */ = gtk_shortcut_trigger_print_label(
-    this.raw.asInstanceOf[Ptr[GtkShortcutTrigger]],
-    display.getUnsafeRawPointer().asInstanceOf,
-    string
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
+  )
+  def printLabel__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

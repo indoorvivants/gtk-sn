@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeValueCollectFunc: : the value to initialize _collect_values: the number of collected values _values: (array length=n_collect_values): the collected values _flags: optional flags
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GTypeValueCollectFunc = CFuncPtr4[Ptr[GValue], _root_.sn.gnome.glib.internal.guint, Ptr[GTypeCValue], _root_.sn.gnome.glib.internal.guint, Ptr[_root_.sn.gnome.glib.internal.gchar]]
 object GTypeValueCollectFunc:

@@ -4,21 +4,17 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.InitiallyUnowned
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.CellArea
-import sn.gnome.gtk4.fluent.CellLayout
-import sn.gnome.gtk4.fluent.CellRenderer
-import sn.gnome.gtk4.fluent.SortType
-import sn.gnome.gtk4.fluent.TreeModel
-import sn.gnome.gtk4.fluent.TreeViewColumnSizing
-import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkTreeCellDataFunc
-import sn.gnome.gtk4.internal.GtkTreeIter
+import sn.gnome.gtk4.fluent.{
+  Buildable,
+  CellArea,
+  CellLayout,
+  CellRenderer,
+  SortType,
+  TreeViewColumnSizing,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkTreeViewColumn
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -73,7 +69,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
   @annotation.compileTimeOnly(
     "Method cell_get_position contains an OUT parameter, which is not supported yet"
   )
-  private def cellGetPosition__ = ???
+  def cellGetPosition__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -83,7 +79,7 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
   @annotation.compileTimeOnly(
     "Method cell_get_size contains an OUT parameter, which is not supported yet"
   )
-  private def cellGetSize__ = ???
+  def cellGetSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -103,18 +99,10 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * column on the @iter, and use that value to set the attribute on the cell
     * renderer. This is used primarily by the `GtkTreeView`.
     */
-  def cellSetCellData(
-      tree_model: TreeModel /* Some(Ptr[GtkTreeModel]) */,
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      is_expander: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      is_expanded: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_view_column_cell_set_cell_data(
-    this.raw.asInstanceOf[Ptr[GtkTreeViewColumn]],
-    tree_model.getUnsafeRawPointer().asInstanceOf,
-    iter,
-    gboolean(gint((if is_expander == true then 1 else 0))),
-    gboolean(gint((if is_expanded == true then 1 else 0)))
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def cellSetCellData__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -420,24 +408,10 @@ class TreeViewColumn(raw: Ptr[GtkTreeViewColumn])
     * setting the column value, and should set the value of @tree_column's cell
     * renderer as appropriate. @func may be %NULL to remove an older one.
     */
-  def setCellDataFunc(
-      cell_renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
-      func: Option[GtkTreeCellDataFunc /* Some(GtkTreeCellDataFunc) */ ],
-      func_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = gtk_tree_view_column_set_cell_data_func(
-    this.raw.asInstanceOf[Ptr[GtkTreeViewColumn]],
-    cell_renderer.getUnsafeRawPointer().asInstanceOf,
-    func
-      .map[GtkTreeCellDataFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkTreeCellDataFunc]),
-    func_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeCellDataFunc), @type -> DataRecord(GtkTreeCellDataFunc)))"
   )
+  def setCellDataFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

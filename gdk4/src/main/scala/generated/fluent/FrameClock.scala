@@ -5,9 +5,8 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
+import sn.gnome.gdk4.fluent.FrameClockPhase
 import sn.gnome.gdk4.internal.GdkFrameClock
-import sn.gnome.gdk4.internal.GdkFrameClockPhase
-import sn.gnome.gdk4.internal.GdkFrameTimings
 import sn.gnome.glib.internal.gint64
 import sn.gnome.gobject.fluent.Object
 
@@ -80,10 +79,10 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     *
     * Gets the frame timings for the current frame.
     */
-  def getCurrentTimings(): Ptr[GdkFrameTimings] /* None */ =
-    gdk_frame_clock_get_current_timings(
-      this.raw.asInstanceOf[Ptr[GdkFrameClock]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))"
+  )
+  def getCurrentTimings__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -144,7 +143,7 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_refresh_info contains an OUT parameter, which is not supported yet"
   )
-  private def getRefreshInfo__ = ???
+  def getRefreshInfo__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -155,12 +154,10 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * [method@Gdk.FrameTimings.get_complete] and
     * [method@Gdk.FrameClock.get_history_start].
     */
-  def getTimings(
-      frame_counter: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
-  ): Ptr[GdkFrameTimings] /* None */ = gdk_frame_clock_get_timings(
-    this.raw.asInstanceOf[Ptr[GdkFrameClock]],
-    gint64(frame_counter)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))"
   )
+  def getTimings__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -176,10 +173,10 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * animations.
     */
   def requestPhase(
-      phase: GdkFrameClockPhase /* Some(GdkFrameClockPhase) */
+      phase: FrameClockPhase /* Some(GdkFrameClockPhase) */
   ): Unit /* None */ = gdk_frame_clock_request_phase(
     this.raw.asInstanceOf[Ptr[GdkFrameClock]],
-    phase
+    phase.raw
   )
 
 end FrameClock

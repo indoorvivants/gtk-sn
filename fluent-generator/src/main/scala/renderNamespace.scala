@@ -1,4 +1,5 @@
 import rendition.*
+import scala.scalanative.unsafe.name
 
 def renderNamespace(
     r: RenderingStreams,
@@ -14,25 +15,18 @@ def renderNamespace(
   val internalPackageName =
     policy.namespaceToInternalPackage(namespace.name.get)
 
-  val filteredEnums =
-    namespace.enumerations.flatMap: enumer =>
-      filterDefinitions(
-        namespace = Some(namespace),
-        enumer = Some(enumer)
-      ) match
-        case None        => Some(Renames(enumer))
-        case Some(value) =>
-          scribe.warn(s"Filtering out enum ${enumer.name}: $value")
-          None
-
-  filteredEnums.foreach: enumer =>
+  namespace.enumerations.foreach: _enum =>
+    val enumer = Renames(_enum)
     r.in(enumer.name + ".scala"):
       val newLB = LineBuilder()
       var error = Option.empty[FluentErr]
-
       val effects = WithEffects.collect: coll =>
         newLB.use:
           error = transact[FluentErr]:
+            filterDefinitions(
+              namespace = Some(namespace),
+              enumer = Some(enumer)
+            )
             coll.observe(renderEnumeration(enumer))
 
       error match
@@ -41,8 +35,6 @@ def renderNamespace(
           emptyLine()
           line(s"import _root_.$internalPackageName.${enumer.typeValue}")
           emptyLine()
-          // line(s"import _root_.scala.scalanative.unsafe.*")
-          // emptyLine()
 
           renderEffects(effects.effects)
 
@@ -51,18 +43,41 @@ def renderNamespace(
           append(newLB)
 
         case Some(msg) =>
-          msg.log(s"Failed to render class ${enumer.name}")
+          msg.log(s"Failed to render enumeration ${enumer.name}")
       end match
 
-  val filteredInterfaces =
-    namespace.interfaces.flatMap: iface =>
-      filterDefinitions(namespace = Some(namespace), iface = Some(iface)) match
-        case None        => Some(iface)
-        case Some(value) =>
-          scribe.warn(s"Filtering out interface ${iface.name}: $value")
-          None
+  namespace.bitfields.foreach: bitfield =>
+    r.in(bitfield.name + ".scala"):
+      val newLB = LineBuilder()
+      var error = Option.empty[FluentErr]
 
-  filteredInterfaces.foreach: iface =>
+      val effects = WithEffects.collect: coll =>
+        newLB.use:
+          error = transact[FluentErr]:
+            filterDefinitions(
+              namespace = Some(namespace),
+              bitfield = Some(bitfield)
+            )
+            coll.observe(renderBitfield(bitfield))
+
+      error match
+        case None =>
+          line(s"package $fluentPackageName")
+          emptyLine()
+          line(s"import _root_.$internalPackageName.${bitfield.typeValue}")
+          emptyLine()
+
+          renderEffects(effects.effects)
+
+          emptyLine()
+
+          append(newLB)
+
+        case Some(msg) =>
+          msg.log(s"Failed to render bitfield ${bitfield.name}")
+      end match
+
+  namespace.interfaces.foreach: iface =>
     r.in(iface.name + ".scala"):
       val newLB = LineBuilder()
       var error = Option.empty[FluentErr]
@@ -70,6 +85,7 @@ def renderNamespace(
       val effects = WithEffects.collect: coll =>
         newLB.use:
           error = transact[FluentErr]:
+            filterDefinitions(namespace = Some(namespace), iface = Some(iface))
             coll.observe(renderTrait(namespace, iface))
 
       error match
@@ -91,15 +107,7 @@ def renderNamespace(
           msg.log(s"Failed to render class ${iface.name}")
       end match
 
-  val filteredClasses =
-    namespace.classes.flatMap: cls =>
-      filterDefinitions(namespace = Some(namespace), cls = Some(cls)) match
-        case None        => Some(cls)
-        case Some(value) =>
-          scribe.warn(s"Filtering out class ${cls.name}: $value")
-          None
-
-  filteredClasses.foreach: cls =>
+  namespace.classes.foreach: cls =>
     r.in(cls.name + ".scala"):
       val newLB = LineBuilder()
       var error = Option.empty[FluentErr]
@@ -107,6 +115,7 @@ def renderNamespace(
       val effects = WithEffects.collect: coll =>
         newLB.use:
           error = transact[FluentErr]:
+            filterDefinitions(namespace = Some(namespace), cls = Some(cls))
             coll.observe(renderClass(namespace, cls))
 
       error match
@@ -126,6 +135,35 @@ def renderNamespace(
 
         case Some(msg) =>
           scribe.warn(s"Failed to render class ${cls.name}: `$msg`")
+      end match
+
+  namespace.name.foreach: nsName =>
+    r.in(nsName + ".scala"):
+      val newLB = LineBuilder()
+      var error = Option.empty[FluentErr]
+
+      val effects = WithEffects.collect: coll =>
+        newLB.use:
+          error = transact[FluentErr]:
+            coll.observe(renderNamespaceCompanion(namespace))
+
+      error match
+        case None =>
+          line(s"package $fluentPackageName")
+          emptyLine()
+          line(s"import _root_.$internalPackageName.*")
+          emptyLine()
+          line(s"import _root_.scala.scalanative.unsafe.*")
+          emptyLine()
+
+          renderEffects(effects.effects)
+
+          emptyLine()
+
+          append(newLB)
+
+        case Some(msg) =>
+          scribe.warn(s"Failed to render namespace companion ${nsName}: `$msg`")
       end match
 
 end renderNamespace

@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GParamSpecEnum: _instance: private #GParamSpec portion _value: default value for the property specified
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparamspecs.h
 */
 opaque type GParamSpecEnum = CStruct3[GParamSpec, Ptr[GEnumClass], _root_.sn.gnome.glib.internal.gint]
 

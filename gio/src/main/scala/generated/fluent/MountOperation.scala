@@ -5,12 +5,9 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.MountOperationResult
-import sn.gnome.gio.fluent.PasswordSave
+import sn.gnome.gio.fluent.{MountOperationResult, PasswordSave}
 import sn.gnome.gio.internal.GMountOperation
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

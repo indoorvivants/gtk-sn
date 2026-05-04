@@ -5,19 +5,14 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.SocketConnectable
-import sn.gnome.gio.fluent.TlsCertificate
+import sn.gnome.gio.fluent.{
+  SocketConnectable,
+  TlsCertificate,
+  TlsCertificateFlags
+}
 import sn.gnome.gio.internal.GTlsCertificate
-import sn.gnome.gio.internal.GTlsCertificateFlags
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GDateTime
-import sn.gnome.glib.internal.GList
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gsize
-import sn.gnome.glib.internal.gssize
-import sn.gnome.glib.internal.guint8
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gssize}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -31,6 +26,24 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the value of #GTlsCertificate:dns-names.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.Bytes)))),ListMap(@name -> DataRecord(GLib.PtrArray), @type -> DataRecord(GPtrArray*)))"
+  )
+  def getDnsNames__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Gets the value of #GTlsCertificate:ip-addresses.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress)))),ListMap(@name -> DataRecord(GLib.PtrArray), @type -> DataRecord(GPtrArray*)))"
+  )
+  def getIpAddresses__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -56,19 +69,19 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     *
     * Returns the time at which the certificate became or will become invalid.
     */
-  def getNotValidAfter(): Ptr[GDateTime] /* None */ =
-    g_tls_certificate_get_not_valid_after(
-      this.raw.asInstanceOf[Ptr[GTlsCertificate]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+  )
+  def getNotValidAfter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the time at which the certificate became or will become valid.
     */
-  def getNotValidBefore(): Ptr[GDateTime] /* None */ =
-    g_tls_certificate_get_not_valid_before(
-      this.raw.asInstanceOf[Ptr[GTlsCertificate]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+  )
+  def getNotValidBefore__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -132,14 +145,16 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
   def verify(
       identity: Option[SocketConnectable /* Some(Ptr[GSocketConnectable]) */ ],
       trusted_ca: Option[TlsCertificate /* Some(Ptr[GTlsCertificate]) */ ]
-  ): GTlsCertificateFlags /* None */ = g_tls_certificate_verify(
-    this.raw.asInstanceOf[Ptr[GTlsCertificate]],
-    identity
-      .map[Ptr[GSocketConnectable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GSocketConnectable]]),
-    trusted_ca
-      .map[Ptr[GTlsCertificate]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GTlsCertificate]])
+  ): TlsCertificateFlags /* None */ = TlsCertificateFlags.fromRaw(
+    g_tls_certificate_verify(
+      this.raw.asInstanceOf[Ptr[GTlsCertificate]],
+      identity
+        .map[Ptr[GSocketConnectable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GSocketConnectable]]),
+      trusted_ca
+        .map[Ptr[GTlsCertificate]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GTlsCertificate]])
+    )
   )
 
 end TlsCertificate
@@ -323,28 +338,10 @@ object TlsCertificate:
     *
     * Other parsing failures will error with %G_TLS_ERROR_BAD_CERTIFICATE.
     */
-  def fromPkcs12(
-      data: Ptr[guint8] /* Some(Ptr[_root_.sn.gnome.glib.internal.guint8]) */,
-      length: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
-      password: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ]
-  )(using Zone): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
-    new TlsCertificate(
-      g_tls_certificate_new_from_pkcs12(
-        data.asInstanceOf,
-        gsize(length),
-        password
-          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-          )
-          .getOrElse(
-            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
-          ),
-        __errorPtr
-      ).asInstanceOf
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guint8*)))"
   )
+  def new_from_pkcs12() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -353,15 +350,10 @@ object TlsCertificate:
     * If @file does not contain any PEM-encoded certificates, this will return
     * an empty list and not set @error.
     */
-  def listNewFromFile(
-      file: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): GResult[Ptr[GList] /* None */ ] = GResult.wrap(__errorPtr =>
-    g_tls_certificate_list_new_from_file(
-      __sn_extract_string(file).asInstanceOf[Ptr[gchar]],
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TlsCertificate))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def listNewFromFile() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

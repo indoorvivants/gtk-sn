@@ -4,15 +4,16 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.Button
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.MessageType
-import sn.gnome.gtk4.fluent.ResponseType
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  Button,
+  ConstraintTarget,
+  MessageType,
+  ResponseType,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkInfoBar
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

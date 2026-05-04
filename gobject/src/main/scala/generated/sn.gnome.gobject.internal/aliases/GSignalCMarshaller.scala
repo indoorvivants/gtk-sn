@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GSignalCMarshaller:
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gsignal.h
 */
 type GSignalCMarshaller = GClosureMarshal
 object GSignalCMarshaller:

@@ -5,13 +5,9 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.fluent.KeyMatch
+import sn.gnome.gdk4.fluent.{Event, KeyMatch, ModifierType}
 import sn.gnome.gdk4.internal.GdkKeyEvent
-import sn.gnome.gdk4.internal.GdkModifierType
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gboolean, gint, guint}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -25,8 +21,9 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
     *
     * Extracts the consumed modifiers from a key event.
     */
-  def getConsumedModifiers(): GdkModifierType /* None */ =
+  def getConsumedModifiers(): ModifierType /* None */ = ModifierType.fromRaw(
     gdk_key_event_get_consumed_modifiers(this.raw.asInstanceOf[Ptr[GdkEvent]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -69,7 +66,7 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_match contains an OUT parameter, which is not supported yet"
   )
-  private def getMatch__ = ???
+  def getMatch__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -91,12 +88,12 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
     */
   def matches(
       keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      modifiers: GdkModifierType /* Some(GdkModifierType) */
+      modifiers: ModifierType /* Some(GdkModifierType) */
   ): KeyMatch /* None */ = KeyMatch.fromRaw(
     gdk_key_event_matches(
       this.raw.asInstanceOf[Ptr[GdkEvent]],
       guint(keyval),
-      modifiers
+      modifiers.raw
     )
   )
 

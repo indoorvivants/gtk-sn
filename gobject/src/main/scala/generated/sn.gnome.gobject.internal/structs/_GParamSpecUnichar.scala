@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GParamSpecUnichar: _instance: private #GParamSpec portion _value: default value for the property specified
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparamspecs.h
 */
 opaque type _GParamSpecUnichar = CStruct2[GParamSpec, _root_.sn.gnome.glib.internal.gunichar]
 

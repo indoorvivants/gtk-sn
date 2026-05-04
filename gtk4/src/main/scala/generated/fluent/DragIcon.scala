@@ -4,15 +4,15 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Drag
-import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gobject.internal.GValue
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Native
-import sn.gnome.gtk4.fluent.Root
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gdk4.fluent.{Drag, Paintable}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  Native,
+  Root,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkDragIcon
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -78,13 +78,10 @@ object DragIcon:
     * operations started by `GtkDragSource`, so you don't need to set a drag
     * icon using this function there.
     */
-  def createWidgetForValue(
-      value: Ptr[
-        GValue
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  ): Widget /* None */ = new Widget(
-    gtk_drag_icon_create_widget_for_value(value).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
+  def createWidgetForValue() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -94,7 +91,7 @@ object DragIcon:
     */
   def getForDrag(
       drag: Drag /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]) */
-  ): Widget /* None */ = new Widget(
+  ): Widget /* Some(Ptr[GtkWidget]) */ = new Widget(
     gtk_drag_icon_get_for_drag(
       drag.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
@@ -113,7 +110,7 @@ object DragIcon:
       paintable: Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */,
       hot_x: Int /* Some(CInt) */,
       hot_y: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_drag_icon_set_from_paintable(
+  ): Unit /* Some(Unit) */ = gtk_drag_icon_set_from_paintable(
     drag.getUnsafeRawPointer().asInstanceOf,
     paintable.getUnsafeRawPointer().asInstanceOf,
     hot_x,

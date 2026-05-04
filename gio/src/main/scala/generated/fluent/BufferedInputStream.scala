@@ -5,17 +5,16 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.FilterInputStream
-import sn.gnome.gio.fluent.InputStream
-import sn.gnome.gio.fluent.Seekable
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{
+  AsyncResult,
+  Cancellable,
+  FilterInputStream,
+  InputStream,
+  Seekable
+}
 import sn.gnome.gio.internal.GBufferedInputStream
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.gsize
-import sn.gnome.glib.internal.gssize
+import sn.gnome.glib.internal.{gsize, gssize}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -91,28 +90,10 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     * If @count is -1 then the attempted read size is equal to the number of
     * bytes that are required to fill the buffer.
     */
-  def fillAsync(
-      count: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */,
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_buffered_input_stream_fill_async(
-    this.raw.asInstanceOf[Ptr[GBufferedInputStream]],
-    gssize(count),
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def fillAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -148,6 +129,16 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
+    * Peeks in the buffer, copying data of size @count into @buffer, offset @offset
+    * bytes.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(void*)))"
+  )
+  def peek__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
     * Returns the buffer with the currently available bytes. The returned buffer
     * must not be modified and will become invalid when reading from the stream
     * or filling the buffer.
@@ -155,7 +146,7 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
   @annotation.compileTimeOnly(
     "Method peek_buffer contains an OUT parameter, which is not supported yet"
   )
-  private def peekBuffer__ = ???
+  def peekBuffer__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -6,25 +6,23 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.Action
-import sn.gnome.gio.fluent.Settings
-import sn.gnome.gio.fluent.SettingsBackend
+import sn.gnome.gio.fluent.{
+  Action,
+  Settings,
+  SettingsBackend,
+  SettingsBindFlags
+}
 import sn.gnome.gio.internal.GSettings
-import sn.gnome.gio.internal.GSettingsBindFlags
-import sn.gnome.gio.internal.GSettingsBindGetMapping
-import sn.gnome.gio.internal.GSettingsBindSetMapping
-import sn.gnome.gio.internal.GSettingsGetMapping
-import sn.gnome.gio.internal.GSettingsSchema
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gdouble
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gint64
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint
-import sn.gnome.glib.internal.guint64
+import sn.gnome.glib.internal.{
+  gboolean,
+  gchar,
+  gdouble,
+  gint,
+  gint64,
+  gpointer,
+  guint,
+  guint64
+}
 import sn.gnome.gobject.fluent.Object
 
 /**  COMMENT FOR THE ORIGINAL C DEFINITION
@@ -361,7 +359,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
       `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: GSettingsBindFlags /* Some(GSettingsBindFlags) */
+      flags: SettingsBindFlags /* Some(GSettingsBindFlags) */
   )(using Zone): Unit /* None */ = g_settings_bind(
     this.raw.asInstanceOf[Ptr[GSettings]],
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
@@ -369,7 +367,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
       `object`.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
     ),
     __sn_extract_string(property).asInstanceOf[Ptr[gchar]],
-    flags
+    flags.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -385,34 +383,10 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * property twice on the same object, the second binding overrides the first
     * one.
     */
-  def bindWithMapping(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: GSettingsBindFlags /* Some(GSettingsBindFlags) */,
-      get_mapping: GSettingsBindGetMapping /* Some(GSettingsBindGetMapping) */,
-      set_mapping: GSettingsBindSetMapping /* Some(GSettingsBindSetMapping) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  )(using Zone): Unit /* None */ = g_settings_bind_with_mapping(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    gpointer(
-      `object`.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-    ),
-    __sn_extract_string(property).asInstanceOf[Ptr[gchar]],
-    flags,
-    get_mapping,
-    set_mapping,
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsBindGetMapping), @type -> DataRecord(GSettingsBindGetMapping)))"
   )
+  def bindWithMapping__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -571,12 +545,10 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't contained in the schema
     * for @settings.
     */
-  def getDefaultValue(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Ptr[GVariant] /* None */ = g_settings_get_default_value(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def getDefaultValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -708,32 +680,19 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * returned by this function. %NULL is valid; it is returned just as any
     * other value would be.
     */
-  def getMapped(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      mapping: GSettingsGetMapping /* Some(GSettingsGetMapping) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Ptr[Byte] /* None */ = g_settings_get_mapped(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    mapping,
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-  ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsGetMapping), @type -> DataRecord(GSettingsGetMapping)))"
+  )
+  def getMapped__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Queries the range of a key.
     */
-  def getRange(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Ptr[GVariant] /* None */ = g_settings_get_range(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def getRange__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -752,6 +711,18 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
       __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * A convenience variant of g_settings_get() for string arrays.
+    *
+    * It is a programmer error to give a @key that isn't specified as having an
+    * array of strings type in the schema for @settings.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+  )
+  def getStrv__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -805,12 +776,10 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't contained in the schema
     * for @settings.
     */
-  def getUserValue(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Ptr[GVariant] /* None */ = g_settings_get_user_value(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def getUserValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -819,12 +788,10 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't contained in the schema
     * for @settings.
     */
-  def getValue(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Ptr[GVariant] /* None */ = g_settings_get_value(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def getValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -840,20 +807,48 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
+    * Gets the list of children on @settings.
+    *
+    * The list is exactly the list of strings for which it is not an error to
+    * call g_settings_get_child().
+    *
+    * There is little reason to call this function from "normal" code, since you
+    * should already know what children are in your schema. This function may
+    * still be useful there for introspection reasons, however.
+    *
+    * You should free the return value with g_strfreev() when you are done with
+    * it.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+  )
+  def listChildren__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Introspects the list of keys on @settings.
+    *
+    * You should probably not be calling this function from "normal" code (since
+    * you should already know what keys are in your schema). This function is
+    * intended for introspection reasons.
+    *
+    * You should free the return value with g_strfreev() when you are done with
+    * it.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+  )
+  def listKeys__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
     * Checks if the given @value is of the correct type and within the permitted
     * range for @key.
     */
-  def rangeCheck(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: Ptr[
-        GVariant
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-  )(using Zone): Boolean /* None */ = g_settings_range_check(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    value
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+  )
+  def rangeCheck__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1059,21 +1054,10 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't specified as having an
     * array of strings type in the schema for @settings.
     */
-  def setStrv(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: Option[
-        Ptr[CString] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]) */
-      ]
-  )(using Zone): Boolean /* None */ = g_settings_set_strv(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    value
-      .map[Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]](o => o.asInstanceOf)
-      .getOrElse(
-        null.asInstanceOf[Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]]
-      )
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+  )
+  def setStrv__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1122,17 +1106,10 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     *
     * If @value is floating then this function consumes the reference.
     */
-  def setValue(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: Ptr[
-        GVariant
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-  )(using Zone): Boolean /* None */ = g_settings_set_value(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    value
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+  )
+  def setValue__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -1196,25 +1173,10 @@ object Settings:
     *  @path is non-%NULL and not equal to the path that the schema does
     *  have.
     */
-  def full(
-      schema: Ptr[GSettingsSchema] /* Some(Ptr[GSettingsSchema]) */,
-      backend: Option[SettingsBackend /* Some(Ptr[GSettingsBackend]) */ ],
-      path: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ]
-  )(using Zone): Settings = new Settings(
-    g_settings_new_full(
-      schema,
-      backend
-        .map[Ptr[GSettingsBackend]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GSettingsBackend]]),
-      path
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsSchema), @type -> DataRecord(GSettingsSchema*)))"
   )
+  def new_full() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1291,6 +1253,24 @@ object Settings:
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
+    * Deprecated.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+  )
+  def listRelocatableSchemas() = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Deprecated.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+  )
+  def listSchemas() = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
     * Ensures that all pending operations are complete for the default backend.
     *
     * Writes made to a #GSettings are handled asynchronously. For this reason,
@@ -1302,7 +1282,7 @@ object Settings:
     * dispatched during this call (but some may be queued by the time the call
     * is done).
     */
-  def sync(): Unit /* None */ = g_settings_sync()
+  def sync(): Unit /* Some(Unit) */ = g_settings_sync()
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1315,7 +1295,7 @@ object Settings:
       `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_settings_unbind(
+  )(using Zone): Unit /* Some(Unit) */ = g_settings_unbind(
     gpointer(
       `object`.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
     ),

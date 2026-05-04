@@ -4,9 +4,7 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.File
-import sn.gnome.gio.fluent.Icon
-import sn.gnome.gio.fluent.LoadableIcon
+import sn.gnome.gio.fluent.{File, Icon, LoadableIcon}
 import sn.gnome.gio.internal.GFileIcon
 import sn.gnome.gobject.fluent.Object
 

@@ -4,17 +4,16 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.FontDialog
-import sn.gnome.gtk4.fluent.FontLevel
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  FontDialog,
+  FontLevel,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkFontDialogButton
-import sn.gnome.pango.internal.PangoFontDescription
-import sn.gnome.pango.internal.PangoLanguage
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -61,10 +60,10 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     * This function is what should be used to obtain the font that was chosen by
     * the user. To get informed about changes, listen to "notify::font-desc".
     */
-  def getFontDesc(): Ptr[PangoFontDescription] /* None */ =
-    gtk_font_dialog_button_get_font_desc(
-      this.raw.asInstanceOf[Ptr[GtkFontDialogButton]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+  )
+  def getFontDesc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -87,10 +86,10 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     *
     * Returns the language that is used for font features.
     */
-  def getLanguage(): Ptr[PangoLanguage] /* None */ =
-    gtk_font_dialog_button_get_language(
-      this.raw.asInstanceOf[Ptr[GtkFontDialogButton]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
+  )
+  def getLanguage__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -135,14 +134,10 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     *
     * Sets the font of the button.
     */
-  def setFontDesc(
-      font_desc: Ptr[
-        PangoFontDescription
-      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontDescription]) */
-  ): Unit /* None */ = gtk_font_dialog_button_set_font_desc(
-    this.raw.asInstanceOf[Ptr[GtkFontDialogButton]],
-    font_desc
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
+  def setFontDesc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -161,18 +156,10 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     *
     * Sets the language to use for font features.
     */
-  def setLanguage(
-      language: Option[Ptr[
-        PangoLanguage
-      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoLanguage]) */ ]
-  ): Unit /* None */ = gtk_font_dialog_button_set_language(
-    this.raw.asInstanceOf[Ptr[GtkFontDialogButton]],
-    language
-      .map[Ptr[_root_.sn.gnome.pango.internal.PangoLanguage]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoLanguage]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
   )
+  def setLanguage__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

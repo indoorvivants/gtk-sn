@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeFundamentalInfo: _flags: #GTypeFundamentalFlags describing the characteristics of the fundamental type
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GTypeFundamentalInfo = CStruct1[GTypeFundamentalFlags]
 

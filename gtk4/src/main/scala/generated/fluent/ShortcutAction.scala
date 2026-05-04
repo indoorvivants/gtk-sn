@@ -4,14 +4,8 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.GString
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkShortcutAction
-import sn.gnome.gtk4.internal.GtkShortcutActionFlags
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -57,20 +51,10 @@ class ShortcutAction(raw: Ptr[GtkShortcutAction])
     * supported by the @widget, if the @args don't match the action or if the
     * activation otherwise had no effect, %FALSE will be returned.
     */
-  def activate(
-      flags: GtkShortcutActionFlags /* Some(GtkShortcutActionFlags) */,
-      widget: Widget /* Some(Ptr[GtkWidget]) */,
-      args: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ]
-  ): Boolean /* None */ = gtk_shortcut_action_activate(
-    this.raw.asInstanceOf[Ptr[GtkShortcutAction]],
-    flags,
-    widget.getUnsafeRawPointer().asInstanceOf,
-    args
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+  )
+  def activate__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -81,14 +65,10 @@ class ShortcutAction(raw: Ptr[GtkShortcutAction])
     * The form of the representation may change at any time and is not
     * guaranteed to stay identical.
     */
-  def print(
-      string: Ptr[
-        GString
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GString]) */
-  ): Unit /* None */ = gtk_shortcut_action_print(
-    this.raw.asInstanceOf[Ptr[GtkShortcutAction]],
-    string
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
   )
+  def print__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

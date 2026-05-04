@@ -5,17 +5,10 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{AsyncResult, Cancellable}
 import sn.gnome.gio.internal.GInputStream
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GBytes
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.gsize
-import sn.gnome.glib.internal.gssize
+import sn.gnome.glib.internal.{gboolean, gint, gsize, gssize}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -96,26 +89,10 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * implement asynchronicity, so they are optional for inheriting classes.
     * However, if you override one you must override all.
     */
-  def closeAsync(
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_input_stream_close_async(
-    this.raw.asInstanceOf[Ptr[GInputStream]],
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def closeAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -176,7 +153,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method read contains an OUT parameter, which is not supported yet"
   )
-  private def read__ = ???
+  def read__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -205,7 +182,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method read_all contains an OUT parameter, which is not supported yet"
   )
-  private def readAll__ = ???
+  def readAll__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -223,7 +200,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method read_all_async contains an OUT parameter, which is not supported yet"
   )
-  private def readAllAsync__ = ???
+  def readAllAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -241,7 +218,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method read_all_finish contains an OUT parameter, which is not supported yet"
   )
-  private def readAllFinish__ = ???
+  def readAllFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -273,7 +250,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method read_async contains an OUT parameter, which is not supported yet"
   )
-  private def readAsync__ = ???
+  def readAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -299,19 +276,10 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     *
     * On error %NULL is returned and @error is set accordingly.
     */
-  def readBytes(
-      count: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Ptr[GBytes] /* None */ ] = GResult.wrap(__errorPtr =>
-    g_input_stream_read_bytes(
-      this.raw.asInstanceOf[Ptr[GInputStream]],
-      gsize(count),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def readBytes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -337,42 +305,19 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * will be executed before an outstanding request with lower priority.
     * Default priority is %G_PRIORITY_DEFAULT.
     */
-  def readBytesAsync(
-      count: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_input_stream_read_bytes_async(
-    this.raw.asInstanceOf[Ptr[GInputStream]],
-    gsize(count),
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def readBytesAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes an asynchronous stream read-into-#GBytes operation.
     */
-  def readBytesFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Ptr[GBytes] /* None */ ] = GResult.wrap(__errorPtr =>
-    g_input_stream_read_bytes_finish(
-      this.raw.asInstanceOf[Ptr[GInputStream]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def readBytesFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -459,28 +404,10 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * implement asynchronicity, so they are optional for inheriting classes.
     * However, if you override one, you must override all.
     */
-  def skipAsync(
-      count: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_input_stream_skip_async(
-    this.raw.asInstanceOf[Ptr[GInputStream]],
-    gsize(count),
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def skipAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

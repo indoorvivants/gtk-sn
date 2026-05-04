@@ -4,11 +4,9 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Credentials
-import sn.gnome.gio.fluent.SocketControlMessage
+import sn.gnome.gio.fluent.{Credentials, SocketControlMessage}
 import sn.gnome.gio.internal.GUnixCredentialsMessage
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -74,7 +72,8 @@ object UnixCredentialsMessage:
     * Checks if passing #GCredentials on a #GSocket is supported on this
     * platform.
     */
-  def isSupported(): Boolean /* None */ =
+  def isSupported()
+      : Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_unix_credentials_message_is_supported().value.!=(0)
 
 end UnixCredentialsMessage

@@ -4,15 +4,9 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.TreeDragSource
-import sn.gnome.gtk4.fluent.TreeModel
-import sn.gnome.gtk4.fluent.TreeSortable
-import sn.gnome.gtk4.internal.GtkTreeIter
+import sn.gnome.gtk4.fluent.{TreeDragSource, TreeModel, TreeSortable}
 import sn.gnome.gtk4.internal.GtkTreeModelSort
-import sn.gnome.gtk4.internal.GtkTreePath
 
 /**  COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -143,7 +137,7 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
   @annotation.compileTimeOnly(
     "Method convert_child_iter_to_iter contains an OUT parameter, which is not supported yet"
   )
-  private def convertChildIterToIter__ = ???
+  def convertChildIterToIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -153,13 +147,10 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     *   same row in the sorted model. If @child_path isn’t a valid path on the
     *   child model, then %NULL is returned.
     */
-  def convertChildPathToPath(
-      child_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Ptr[GtkTreePath] /* None */ =
-    gtk_tree_model_sort_convert_child_path_to_path(
-      this.raw.asInstanceOf[Ptr[GtkTreeModelSort]],
-      child_path
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def convertChildPathToPath__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -168,7 +159,7 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
   @annotation.compileTimeOnly(
     "Method convert_iter_to_child_iter contains an OUT parameter, which is not supported yet"
   )
-  private def convertIterToChildIter__ = ???
+  def convertIterToChildIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -178,13 +169,10 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     * sorted. If @sorted_path does not point to a location in the child model,
     * %NULL is returned.
     */
-  def convertPathToChildPath(
-      sorted_path: Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */
-  ): Ptr[GtkTreePath] /* None */ =
-    gtk_tree_model_sort_convert_path_to_child_path(
-      this.raw.asInstanceOf[Ptr[GtkTreeModelSort]],
-      sorted_path
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def convertPathToChildPath__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -203,12 +191,10 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     *
     * Checks if the given iter is a valid iter for this `GtkTreeModelSort`.
     */
-  def iterIsValid(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Boolean /* None */ = gtk_tree_model_sort_iter_is_valid(
-    this.raw.asInstanceOf[Ptr[GtkTreeModelSort]],
-    iter
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+  )
+  def iterIsValid__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

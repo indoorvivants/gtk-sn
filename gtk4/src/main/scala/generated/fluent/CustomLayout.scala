@@ -5,10 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gtk4.fluent.LayoutManager
-import sn.gnome.gtk4.internal.GtkCustomAllocateFunc
 import sn.gnome.gtk4.internal.GtkCustomLayout
-import sn.gnome.gtk4.internal.GtkCustomMeasureFunc
-import sn.gnome.gtk4.internal.GtkCustomRequestModeFunc
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -34,19 +31,9 @@ object CustomLayout:
     * functions, and are meant to be used during the transition from layout
     * containers to layout manager delegates.
     */
-  def apply(
-      request_mode: Option[
-        GtkCustomRequestModeFunc /* Some(GtkCustomRequestModeFunc) */
-      ],
-      measure: GtkCustomMeasureFunc /* Some(GtkCustomMeasureFunc) */,
-      allocate: GtkCustomAllocateFunc /* Some(GtkCustomAllocateFunc) */
-  ): CustomLayout = new CustomLayout(
-    gtk_custom_layout_new(
-      request_mode
-        .map[GtkCustomRequestModeFunc](o => o)
-        .getOrElse(null.asInstanceOf[GtkCustomRequestModeFunc]),
-      measure,
-      allocate
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(CustomRequestModeFunc), @type -> DataRecord(GtkCustomRequestModeFunc)))"
   )
+  def `new`() = ???
+
 end CustomLayout

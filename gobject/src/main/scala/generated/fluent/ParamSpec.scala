@@ -4,17 +4,9 @@ import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.GQuark
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.gobject.fluent.ParamSpec
-import sn.gnome.gobject.internal.GParamFlags
-import sn.gnome.gobject.internal.GParamSpec
-import sn.gnome.gobject.internal.GType
-import sn.gnome.gobject.internal.GValue
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.fluent.{ParamFlags, ParamSpec}
+import sn.gnome.gobject.internal.{GParamSpec, GType}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -50,8 +42,10 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     *
     * The #GValue will remain valid for the life of @pspec.
     */
-  def getDefaultValue(): Ptr[GValue] /* None */ =
-    g_param_spec_get_default_value(this.raw.asInstanceOf[Ptr[GParamSpec]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
+  )
+  def getDefaultValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -68,9 +62,10 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     *
     * Gets the GQuark for the name.
     */
-  def getNameQuark(): GQuark /* None */ = g_param_spec_get_name_quark(
-    this.raw.asInstanceOf[Ptr[GParamSpec]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
+  def getNameQuark__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -84,10 +79,10 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     *
     * Gets back user data pointers stored via g_param_spec_set_qdata().
     */
-  def getQdata(
-      quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */
-  ): Ptr[Byte] /* None */ =
-    g_param_spec_get_qdata(this.raw.asInstanceOf[Ptr[GParamSpec]], quark).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+  )
+  def getQdata__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -129,18 +124,10 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * overrides (frees) the old pointer set, using %NULL as pointer essentially
     * removes the data stored.
     */
-  def setQdata(
-      quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_param_spec_set_qdata(
-    this.raw.asInstanceOf[Ptr[GParamSpec]],
-    quark,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
+  def setQdata__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -149,26 +136,10 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * with @data as argument when the @pspec is finalized, or the data is being
     * overwritten by a call to g_param_spec_set_qdata() with the same @quark.
     */
-  def setQdataFull(
-      quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  ): Unit /* None */ = g_param_spec_set_qdata_full(
-    this.raw.asInstanceOf[Ptr[GParamSpec]],
-    quark,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
+  def setQdataFull__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -190,12 +161,10 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * any was set). Usually, calling this function is only required to update
     * user data pointers with a destroy notifier.
     */
-  def stealQdata(
-      quark: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */
-  ): Ptr[Byte] /* None */ = g_param_spec_steal_qdata(
-    this.raw.asInstanceOf[Ptr[GParamSpec]],
-    quark
-  ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+  )
+  def stealQdata__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -234,24 +203,29 @@ object ParamSpec:
       blurb: Option[
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      flags: GParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* None */ = new ParamSpec(
-    g_param_spec_internal(
-      param_type,
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      flags
-    ).asInstanceOf
-  )
+      flags: ParamFlags /* Some(GParamFlags) */
+  )(using Zone): ParamSpec /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
+    new ParamSpec(
+      g_param_spec_internal(
+        param_type,
+        __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -265,9 +239,10 @@ object ParamSpec:
   def isValidName(
       name: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ = g_param_spec_is_valid_name(
-    __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
-  ).value.!=(0)
+  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_param_spec_is_valid_name(
+      __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

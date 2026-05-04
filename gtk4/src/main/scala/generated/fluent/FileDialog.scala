@@ -4,18 +4,11 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.File
-import sn.gnome.gio.fluent.ListModel
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{AsyncResult, File, ListModel}
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.FileFilter
-import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkFileDialog
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -119,38 +112,10 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * The @callback will be called when the dialog is dismissed. It should call
     * [method@Gtk.FileDialog.open_finish] to obtain the result.
     */
-  def open(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_file_dialog_open(
-    this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-    parent
-      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def open__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -180,38 +145,10 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * The @callback will be called when the dialog is dismissed. It should call
     * [method@Gtk.FileDialog.open_multiple_finish] to obtain the result.
     */
-  def openMultiple(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_file_dialog_open_multiple(
-    this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-    parent
-      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def openMultiple__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -238,38 +175,10 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * The @callback will be called when the dialog is dismissed. It should call
     * [method@Gtk.FileDialog.save_finish] to obtain the result.
     */
-  def save(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_file_dialog_save(
-    this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-    parent
-      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def save__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -300,38 +209,10 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * The @callback will be called when the dialog is dismissed. It should call
     * [method@Gtk.FileDialog.select_folder_finish] to obtain the result.
     */
-  def selectFolder(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_file_dialog_select_folder(
-    this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-    parent
-      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def selectFolder__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -362,38 +243,10 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * [method@Gtk.FileDialog.select_multiple_folders_finish] to obtain the
     * result.
     */
-  def selectMultipleFolders(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_file_dialog_select_multiple_folders(
-    this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-    parent
-      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def selectMultipleFolders__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

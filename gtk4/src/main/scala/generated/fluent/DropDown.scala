@@ -6,18 +6,17 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gboolean, gint, gpointer, guint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Expression
-import sn.gnome.gtk4.fluent.ListItemFactory
-import sn.gnome.gtk4.fluent.StringFilterMatchMode
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  Expression,
+  ListItemFactory,
+  StringFilterMatchMode,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkDropDown
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -344,18 +343,9 @@ object DropDown:
     *
     * Creates a new `GtkDropDown` that is populated with the strings.
     */
-  def fromStrings(
-      strings: Ptr[CString] /* Some(Ptr[CString]) */
-  )(using Zone): DropDown = new DropDown(
-    gtk_drop_down_new_from_strings(strings).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
+  def new_from_strings() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DropDown

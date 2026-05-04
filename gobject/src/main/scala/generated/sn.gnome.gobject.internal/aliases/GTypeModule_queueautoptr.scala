@@ -7,6 +7,9 @@ import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
+/**
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtypemodule.h
+*/
 opaque type GTypeModule_queueautoptr = Ptr[_root_.sn.gnome.glib.internal.GQueue]
 object GTypeModule_queueautoptr:
   given _tag: Tag[GTypeModule_queueautoptr] = Tag.Ptr[_root_.sn.gnome.glib.internal.GQueue](_root_.sn.gnome.glib.internal.GQueue._tag)

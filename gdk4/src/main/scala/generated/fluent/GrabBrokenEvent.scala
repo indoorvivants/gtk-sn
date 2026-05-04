@@ -4,11 +4,9 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.fluent.Surface
+import sn.gnome.gdk4.fluent.{Event, Surface}
 import sn.gnome.gdk4.internal.GdkGrabBrokenEvent
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *

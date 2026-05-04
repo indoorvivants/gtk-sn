@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypePluginUnuse: : the #GTypePlugin whose use count should be decreased
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtypeplugin.h
 */
 opaque type GTypePluginUnuse = CFuncPtr1[Ptr[GTypePlugin], Unit]
 object GTypePluginUnuse:

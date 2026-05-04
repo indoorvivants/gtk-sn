@@ -4,21 +4,17 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.AsyncInitable
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.BusType
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.DBusConnection
-import sn.gnome.gio.fluent.DBusObjectManager
-import sn.gnome.gio.fluent.Initable
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{
+  AsyncInitable,
+  AsyncResult,
+  DBusConnection,
+  DBusObjectManager,
+  DBusObjectManagerClientFlags,
+  Initable
+}
 import sn.gnome.gio.internal.GDBusObjectManagerClient
-import sn.gnome.gio.internal.GDBusObjectManagerClientFlags
-import sn.gnome.gio.internal.GDBusProxyTypeFunc
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GDestroyNotify
 import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -112,9 +108,11 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     *
     * Gets the flags that @manager was constructed with.
     */
-  def getFlags(): GDBusObjectManagerClientFlags /* None */ =
-    g_dbus_object_manager_client_get_flags(
-      this.raw.asInstanceOf[Ptr[GDBusObjectManagerClient]]
+  def getFlags(): DBusObjectManagerClientFlags /* None */ =
+    DBusObjectManagerClientFlags.fromRaw(
+      g_dbus_object_manager_client_get_flags(
+        this.raw.asInstanceOf[Ptr[GDBusObjectManagerClient]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -183,48 +181,10 @@ object DBusObjectManagerClient:
     * until a reply is received. See g_dbus_object_manager_client_new_for_bus()
     * for the asynchronous version.
     */
-  def forBusSync(
-      bus_type: BusType /* Some(GBusType) */,
-      flags: GDBusObjectManagerClientFlags /* Some(GDBusObjectManagerClientFlags) */,
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      get_proxy_type_func: Option[
-        GDBusProxyTypeFunc /* Some(GDBusProxyTypeFunc) */
-      ],
-      get_proxy_type_user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      get_proxy_type_destroy_notify: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ],
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone): GResult[DBusObjectManagerClient] = GResult.wrap(__errorPtr =>
-    new DBusObjectManagerClient(
-      g_dbus_object_manager_client_new_for_bus_sync(
-        bus_type.raw,
-        flags,
-        __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-        __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-        get_proxy_type_func
-          .map[GDBusProxyTypeFunc](o => o)
-          .getOrElse(null.asInstanceOf[GDBusProxyTypeFunc]),
-        get_proxy_type_user_data
-          .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-          .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-        get_proxy_type_destroy_notify
-          .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-          .getOrElse(
-            null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-          ),
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
-      ).asInstanceOf
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
   )
+  def new_for_bus_sync() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -234,55 +194,10 @@ object DBusObjectManagerClient:
     * until a reply is received. See g_dbus_object_manager_client_new() for the
     * asynchronous version.
     */
-  def sync(
-      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
-      flags: GDBusObjectManagerClientFlags /* Some(GDBusObjectManagerClientFlags) */,
-      name: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      get_proxy_type_func: Option[
-        GDBusProxyTypeFunc /* Some(GDBusProxyTypeFunc) */
-      ],
-      get_proxy_type_user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      get_proxy_type_destroy_notify: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ],
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone): GResult[DBusObjectManagerClient] = GResult.wrap(__errorPtr =>
-    new DBusObjectManagerClient(
-      g_dbus_object_manager_client_new_sync(
-        connection.getUnsafeRawPointer().asInstanceOf,
-        flags,
-        name
-          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-          )
-          .getOrElse(
-            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
-          ),
-        __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-        get_proxy_type_func
-          .map[GDBusProxyTypeFunc](o => o)
-          .getOrElse(null.asInstanceOf[GDBusProxyTypeFunc]),
-        get_proxy_type_user_data
-          .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-          .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-        get_proxy_type_destroy_notify
-          .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-          .getOrElse(
-            null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-          ),
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
-      ).asInstanceOf
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
   )
+  def new_sync() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -295,53 +210,10 @@ object DBusObjectManagerClient:
     * g_dbus_object_manager_client_new_finish() to get the result. See
     * g_dbus_object_manager_client_new_sync() for the synchronous version.
     */
-  def `new`(
-      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
-      flags: GDBusObjectManagerClientFlags /* Some(GDBusObjectManagerClientFlags) */,
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      get_proxy_type_func: Option[
-        GDBusProxyTypeFunc /* Some(GDBusProxyTypeFunc) */
-      ],
-      get_proxy_type_user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      get_proxy_type_destroy_notify: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ],
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_dbus_object_manager_client_new(
-    connection.getUnsafeRawPointer().asInstanceOf,
-    flags,
-    __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-    get_proxy_type_func
-      .map[GDBusProxyTypeFunc](o => o)
-      .getOrElse(null.asInstanceOf[GDBusProxyTypeFunc]),
-    get_proxy_type_user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    get_proxy_type_destroy_notify
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      ),
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
   )
+  def `new`() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -356,60 +228,9 @@ object DBusObjectManagerClient:
     * g_dbus_object_manager_client_new_for_bus_sync() for the synchronous
     * version.
     */
-  def newForBus(
-      bus_type: BusType /* Some(GBusType) */,
-      flags: GDBusObjectManagerClientFlags /* Some(GDBusObjectManagerClientFlags) */,
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      get_proxy_type_func: Option[
-        GDBusProxyTypeFunc /* Some(GDBusProxyTypeFunc) */
-      ],
-      get_proxy_type_user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      get_proxy_type_destroy_notify: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ],
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_dbus_object_manager_client_new_for_bus(
-    bus_type.raw,
-    flags,
-    __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-    get_proxy_type_func
-      .map[GDBusProxyTypeFunc](o => o)
-      .getOrElse(null.asInstanceOf[GDBusProxyTypeFunc]),
-    get_proxy_type_user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    get_proxy_type_destroy_notify
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      ),
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
   )
+  def newForBus() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DBusObjectManagerClient

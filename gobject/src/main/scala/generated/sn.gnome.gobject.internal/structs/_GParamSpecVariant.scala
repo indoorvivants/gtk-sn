@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GParamSpecVariant: _instance: private #GParamSpec portion : a #GVariantType, or %NULL _value: a #GVariant, or %NULL
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparamspecs.h
 */
 opaque type _GParamSpecVariant = CStruct4[GParamSpec, Ptr[_root_.sn.gnome.glib.internal.GVariantType], Ptr[_root_.sn.gnome.glib.internal.GVariant], CArray[_root_.sn.gnome.glib.internal.gpointer, Nat._4]]
 

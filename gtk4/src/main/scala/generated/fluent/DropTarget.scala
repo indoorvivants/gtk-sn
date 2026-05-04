@@ -4,15 +4,9 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.Drop
-import sn.gnome.gdk4.internal.GdkContentFormats
-import sn.gnome.gdk4.internal.GdkDragAction
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gsize
+import sn.gnome.gdk4.fluent.{DragAction, Drop}
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.internal.GType
-import sn.gnome.gobject.internal.GValue
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkDropTarget
 
@@ -96,8 +90,8 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     *
     * Gets the actions that this drop target supports.
     */
-  def getActions(): GdkDragAction /* None */ = gtk_drop_target_get_actions(
-    this.raw.asInstanceOf[Ptr[GtkDropTarget]]
+  def getActions(): DragAction /* None */ = DragAction.fromRaw(
+    gtk_drop_target_get_actions(this.raw.asInstanceOf[Ptr[GtkDropTarget]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -130,8 +124,10 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     *
     * If the result is %NULL, all formats are expected to be supported.
     */
-  def getFormats(): Ptr[GdkContentFormats] /* None */ =
-    gtk_drop_target_get_formats(this.raw.asInstanceOf[Ptr[GtkDropTarget]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+  )
+  def getFormats__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -142,7 +138,7 @@ class DropTarget(raw: Ptr[GtkDropTarget])
   @annotation.compileTimeOnly(
     "Method get_gtypes contains an OUT parameter, which is not supported yet"
   )
-  private def getGtypes__ = ???
+  def getGtypes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -156,9 +152,10 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     *
     * Gets the current drop data, as a `GValue`.
     */
-  def getValue(): Ptr[GValue] /* None */ = gtk_drop_target_get_value(
-    this.raw.asInstanceOf[Ptr[GtkDropTarget]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
+  def getValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -180,30 +177,20 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * Sets the actions that this drop target supports.
     */
   def setActions(
-      actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+      actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
   ): Unit /* None */ = gtk_drop_target_set_actions(
     this.raw.asInstanceOf[Ptr[GtkDropTarget]],
-    actions
+    actions.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the supported `GTypes` for this drop target.
     */
-  def setGtypes(
-      types: Option[Ptr[
-        GType /* None */
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GType]) */ ],
-      n_types: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): Unit /* None */ = gtk_drop_target_set_gtypes(
-    this.raw.asInstanceOf[Ptr[GtkDropTarget]],
-    types
-      .map[Ptr[_root_.sn.gnome.gobject.internal.GType]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GType]]
-      ),
-    gsize(n_types)
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GType*)))"
   )
+  def setGtypes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -228,8 +215,8 @@ object DropTarget:
     */
   def apply(
       `type`: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
-      actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+      actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
   ): DropTarget = new DropTarget(
-    gtk_drop_target_new(`type`, actions).asInstanceOf
+    gtk_drop_target_new(`type`, actions.raw).asInstanceOf
   )
 end DropTarget

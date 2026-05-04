@@ -4,8 +4,7 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Drop
-import sn.gnome.gdk4.fluent.Event
+import sn.gnome.gdk4.fluent.{Drop, Event}
 import sn.gnome.gdk4.internal.GdkDNDEvent
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

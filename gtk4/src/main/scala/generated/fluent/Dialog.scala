@@ -4,21 +4,22 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Box
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.HeaderBar
-import sn.gnome.gtk4.fluent.Native
-import sn.gnome.gtk4.fluent.ResponseType
-import sn.gnome.gtk4.fluent.Root
-import sn.gnome.gtk4.fluent.ShortcutManager
-import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.fluent.Window
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Box,
+  Buildable,
+  ConstraintTarget,
+  DialogFlags,
+  HeaderBar,
+  Native,
+  ResponseType,
+  Root,
+  ShortcutManager,
+  Widget,
+  Window
+}
 import sn.gnome.gtk4.internal.GtkDialog
-import sn.gnome.gtk4.internal.GtkDialogFlags
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -358,7 +359,7 @@ object Dialog:
   inline def withButtons(
       title: Option[String | CString /* Some(CString) */ ],
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: GtkDialogFlags /* Some(GtkDialogFlags) */,
+      flags: DialogFlags /* Some(GtkDialogFlags) */,
       first_button_text: Option[String | CString /* Some(CString) */ ],
       args: Any*
   )(using Zone): Dialog = new Dialog(
@@ -369,7 +370,7 @@ object Dialog:
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-      flags,
+      flags.raw,
       first_button_text
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),

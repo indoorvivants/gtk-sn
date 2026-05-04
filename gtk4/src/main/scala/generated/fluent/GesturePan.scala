@@ -4,8 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gtk4.fluent.GestureDrag
-import sn.gnome.gtk4.fluent.Orientation
+import sn.gnome.gtk4.fluent.{GestureDrag, Orientation}
 import sn.gnome.gtk4.internal.GtkGesturePan
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

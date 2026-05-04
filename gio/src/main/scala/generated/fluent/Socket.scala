@@ -6,29 +6,22 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.Credentials
-import sn.gnome.gio.fluent.DatagramBased
-import sn.gnome.gio.fluent.InetAddress
-import sn.gnome.gio.fluent.Initable
-import sn.gnome.gio.fluent.Socket
-import sn.gnome.gio.fluent.SocketAddress
-import sn.gnome.gio.fluent.SocketConnection
-import sn.gnome.gio.fluent.SocketFamily
-import sn.gnome.gio.fluent.SocketProtocol
-import sn.gnome.gio.fluent.SocketType
-import sn.gnome.gio.internal.GInputMessage
-import sn.gnome.gio.internal.GOutputMessage
+import sn.gnome.gio.fluent.{
+  Cancellable,
+  Credentials,
+  DatagramBased,
+  InetAddress,
+  Initable,
+  Socket,
+  SocketAddress,
+  SocketConnection,
+  SocketFamily,
+  SocketProtocol,
+  SocketType
+}
 import sn.gnome.gio.internal.GSocket
-import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GIOCondition
-import sn.gnome.glib.internal.GSource
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gint64
-import sn.gnome.glib.internal.gssize
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.fluent.{GResult, IOCondition}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gint64, gssize, guint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -222,9 +215,10 @@ class Socket(raw: Ptr[GSocket])
     * This call never blocks.
     */
   def conditionCheck(
-      condition: GIOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */
-  ): GIOCondition /* None */ =
-    g_socket_condition_check(this.raw.asInstanceOf[Ptr[GSocket]], condition)
+      condition: IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */
+  ): IOCondition /* None */ = IOCondition.fromRaw(
+    g_socket_condition_check(this.raw.asInstanceOf[Ptr[GSocket]], condition.raw)
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -246,13 +240,13 @@ class Socket(raw: Ptr[GSocket])
     * milliseconds.
     */
   def conditionTimedWait(
-      condition: GIOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
+      condition: IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
       timeout_us: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_condition_timed_wait(
       this.raw.asInstanceOf[Ptr[GSocket]],
-      condition,
+      condition.raw,
       gint64(timeout_us),
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -274,12 +268,12 @@ class Socket(raw: Ptr[GSocket])
     * See also g_socket_condition_timed_wait().
     */
   def conditionWait(
-      condition: GIOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
+      condition: IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_condition_wait(
       this.raw.asInstanceOf[Ptr[GSocket]],
-      condition,
+      condition.raw,
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -356,16 +350,10 @@ class Socket(raw: Ptr[GSocket])
     * had a timeout, and so the next #GSocket I/O method you call will then fail
     * with a %G_IO_ERROR_TIMED_OUT.
     */
-  def createSource(
-      condition: GIOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): Ptr[GSource] /* None */ = g_socket_create_source(
-    this.raw.asInstanceOf[Ptr[GSocket]],
-    condition,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
   )
+  def createSource__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -521,7 +509,7 @@ class Socket(raw: Ptr[GSocket])
   @annotation.compileTimeOnly(
     "Method get_option contains an OUT parameter, which is not supported yet"
   )
-  private def getOption__ = ???
+  def getOption__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -776,7 +764,7 @@ class Socket(raw: Ptr[GSocket])
   @annotation.compileTimeOnly(
     "Method receive contains an OUT parameter, which is not supported yet"
   )
-  private def receive__ = ???
+  def receive__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -792,7 +780,7 @@ class Socket(raw: Ptr[GSocket])
   @annotation.compileTimeOnly(
     "Method receive_from contains an OUT parameter, which is not supported yet"
   )
-  private def receiveFrom__ = ???
+  def receiveFrom__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -863,7 +851,7 @@ class Socket(raw: Ptr[GSocket])
   @annotation.compileTimeOnly(
     "Method receive_message contains an OUT parameter, which is not supported yet"
   )
-  private def receiveMessage__ = ???
+  def receiveMessage__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -922,23 +910,10 @@ class Socket(raw: Ptr[GSocket])
     * be returned if zero messages could be received; otherwise the number of
     * messages successfully received before the error will be returned.
     */
-  def receiveMessages(
-      messages: Ptr[GInputMessage /* None */ ] /* Some(Ptr[GInputMessage]) */,
-      num_messages: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      flags: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
-    g_socket_receive_messages(
-      this.raw.asInstanceOf[Ptr[GSocket]],
-      messages,
-      guint(num_messages),
-      gint(flags),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InputMessage), @type -> DataRecord(GInputMessage)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GInputMessage*)))"
   )
+  def receiveMessages__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -949,7 +924,29 @@ class Socket(raw: Ptr[GSocket])
   @annotation.compileTimeOnly(
     "Method receive_with_blocking contains an OUT parameter, which is not supported yet"
   )
-  private def receiveWithBlocking__ = ???
+  def receiveWithBlocking__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Tries to send @size bytes from @buffer on the socket. This is mainly used
+    * by connection-oriented sockets; it is identical to g_socket_send_to() with @address
+    * set to %NULL.
+    *
+    * If the socket is in blocking mode the call will block until there is space
+    * for the data in the socket queue. If there is no space available and the
+    * socket is in non-blocking mode a %G_IO_ERROR_WOULD_BLOCK error will be
+    * returned. To be notified when space is available, wait for the %G_IO_OUT
+    * condition. Note though that you may still receive %G_IO_ERROR_WOULD_BLOCK
+    * from g_socket_send() even if you were previously notified of a %G_IO_OUT
+    * condition. (On Windows in particular, this is very common due to the way
+    * the underlying APIs work.)
+    *
+    * On error -1 is returned and @error is set accordingly.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
+  )
+  def send__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1001,7 +998,7 @@ class Socket(raw: Ptr[GSocket])
   @annotation.compileTimeOnly(
     "Method send_message is weird: non NULL-terminated arrays require special handling"
   )
-  private def sendMessage__ = ???
+  def sendMessage__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1017,7 +1014,7 @@ class Socket(raw: Ptr[GSocket])
   @annotation.compileTimeOnly(
     "Method send_message_with_timeout contains an OUT parameter, which is not supported yet"
   )
-  private def sendMessageWithTimeout__ = ???
+  def sendMessageWithTimeout__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1059,23 +1056,34 @@ class Socket(raw: Ptr[GSocket])
     * be returned if zero messages could be sent; otherwise the number of
     * messages successfully sent before the error will be returned.
     */
-  def sendMessages(
-      messages: Ptr[GOutputMessage /* None */ ] /* Some(Ptr[GOutputMessage]) */,
-      num_messages: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      flags: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
-    g_socket_send_messages(
-      this.raw.asInstanceOf[Ptr[GSocket]],
-      messages,
-      guint(num_messages),
-      gint(flags),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(OutputMessage), @type -> DataRecord(GOutputMessage)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GOutputMessage*)))"
   )
+  def sendMessages__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Tries to send @size bytes from @buffer to @address. If @address is %NULL
+    * then the message is sent to the default receiver (set by
+    * g_socket_connect()).
+    *
+    * See g_socket_send() for additional information.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const gchar*)))"
+  )
+  def sendTo__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * This behaves exactly the same as g_socket_send(), except that the choice
+    * of blocking or non-blocking behavior is determined by the @blocking
+    * argument rather than by @socket's properties.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
+  )
+  def sendWithBlocking__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

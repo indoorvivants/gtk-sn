@@ -4,8 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gtk4.fluent.NothingAction
-import sn.gnome.gtk4.fluent.ShortcutAction
+import sn.gnome.gtk4.fluent.{NothingAction, ShortcutAction}
 import sn.gnome.gtk4.internal.GtkNothingAction
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -26,8 +25,7 @@ object NothingAction:
     *
     * This is an action that does nothing and where activating it always fails.
     */
-  def get(): NothingAction /* None */ = new NothingAction(
-    gtk_nothing_action_get().asInstanceOf
-  )
+  def get(): NothingAction /* Some(Ptr[GtkShortcutAction]) */ =
+    new NothingAction(gtk_nothing_action_get().asInstanceOf)
 
 end NothingAction

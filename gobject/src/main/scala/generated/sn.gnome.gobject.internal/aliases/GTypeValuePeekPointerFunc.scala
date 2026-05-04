@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeValuePeekPointerFunc: : the value to peek
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GTypeValuePeekPointerFunc = CFuncPtr1[Ptr[GValue], _root_.sn.gnome.glib.internal.gpointer]
 object GTypeValuePeekPointerFunc:

@@ -5,22 +5,20 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.AssistantPage
-import sn.gnome.gtk4.fluent.AssistantPageType
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Native
-import sn.gnome.gtk4.fluent.Root
-import sn.gnome.gtk4.fluent.ShortcutManager
-import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.fluent.Window
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  AssistantPage,
+  AssistantPageType,
+  Buildable,
+  ConstraintTarget,
+  Native,
+  Root,
+  ShortcutManager,
+  Widget,
+  Window
+}
 import sn.gnome.gtk4.internal.GtkAssistant
-import sn.gnome.gtk4.internal.GtkAssistantPageFunc
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -290,22 +288,10 @@ class Assistant(raw: Ptr[GtkAssistant])
     * the assistant to use the default forward function, which just goes to the
     * next visible page.
     */
-  def setForwardPageFunc(
-      page_func: Option[GtkAssistantPageFunc /* Some(GtkAssistantPageFunc) */ ],
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = gtk_assistant_set_forward_page_func(
-    this.raw.asInstanceOf[Ptr[GtkAssistant]],
-    page_func
-      .map[GtkAssistantPageFunc](o => o)
-      .getOrElse(null.asInstanceOf[GtkAssistantPageFunc]),
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AssistantPageFunc), @type -> DataRecord(GtkAssistantPageFunc)))"
   )
+  def setForwardPageFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

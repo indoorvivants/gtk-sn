@@ -4,18 +4,10 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.CellArea
-import sn.gnome.gtk4.fluent.CellLayout
-import sn.gnome.gtk4.fluent.TreeModel
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.{Buildable, CellArea, CellLayout, TreeModel, Widget}
 import sn.gnome.gtk4.internal.GtkEntryCompletion
-import sn.gnome.gtk4.internal.GtkEntryCompletionMatchFunc
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -229,20 +221,10 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * The match function is used to determine if a row should or should not be
     * in the completion list.
     */
-  def setMatchFunc(
-      func: GtkEntryCompletionMatchFunc /* Some(GtkEntryCompletionMatchFunc) */,
-      func_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      func_notify: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = gtk_entry_completion_set_match_func(
-    this.raw.asInstanceOf[Ptr[GtkEntryCompletion]],
-    func,
-    func_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    func_notify
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(EntryCompletionMatchFunc), @type -> DataRecord(GtkEntryCompletionMatchFunc)))"
   )
+  def setMatchFunc__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

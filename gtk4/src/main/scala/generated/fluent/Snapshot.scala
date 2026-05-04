@@ -4,35 +4,10 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gdk4.fluent.Texture
-import sn.gnome.gdk4.internal.GdkRGBA
-import sn.gnome.glib.internal.GBytes
-import sn.gnome.glib.internal.gsize
-import sn.gnome.graphene.internal.graphene_matrix_t
-import sn.gnome.graphene.internal.graphene_point3d_t
-import sn.gnome.graphene.internal.graphene_point_t
-import sn.gnome.graphene.internal.graphene_rect_t
-import sn.gnome.graphene.internal.graphene_size_t
-import sn.gnome.graphene.internal.graphene_vec3_t
-import sn.gnome.graphene.internal.graphene_vec4_t
-import sn.gnome.gsk4.fluent.BlendMode
-import sn.gnome.gsk4.fluent.FillRule
-import sn.gnome.gsk4.fluent.GLShader
-import sn.gnome.gsk4.fluent.MaskMode
-import sn.gnome.gsk4.fluent.RenderNode
-import sn.gnome.gsk4.fluent.ScalingFilter
-import sn.gnome.gsk4.internal.GskColorStop
-import sn.gnome.gsk4.internal.GskPath
-import sn.gnome.gsk4.internal.GskRoundedRect
-import sn.gnome.gsk4.internal.GskShadow
-import sn.gnome.gsk4.internal.GskStroke
-import sn.gnome.gsk4.internal.GskTransform
+import sn.gnome.gsk4.fluent.{BlendMode, MaskMode, RenderNode}
 import sn.gnome.gtk4.fluent.StyleContext
 import sn.gnome.gtk4.internal.GtkSnapshot
-import sn.gnome.pango.fluent.Direction
-import sn.gnome.pango.fluent.Layout
+import sn.gnome.pango.fluent.{Direction, Layout}
 import sn.gnome.gdk4.fluent.Snapshot as _Snapshot
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -63,7 +38,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method append_border is weird: non NULL-terminated arrays require special handling"
   )
-  private def appendBorder__ = ???
+  def appendBorder__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -73,7 +48,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method append_cairo is weird: non NULL-terminated arrays require special handling"
   )
-  private def appendCairo__ = ???
+  def appendCairo__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -84,43 +59,19 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * @color
     *   is transparent.
     */
-  def appendColor(
-      color: Ptr[
-        GdkRGBA
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */,
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
-  ): Unit /* None */ = gtk_snapshot_append_color(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    color,
-    bounds
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
+  def appendColor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Appends a conic gradient node with the given stops to @snapshot.
     */
-  def appendConicGradient(
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
-      center: Ptr[
-        graphene_point_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
-      rotation: Float /* Some(Float) */,
-      stops: Ptr[
-        GskColorStop /* None */
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop]) */,
-      n_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): Unit /* None */ = gtk_snapshot_append_conic_gradient(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    bounds,
-    center,
-    rotation.asInstanceOf,
-    stops,
-    gsize(n_stops)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def appendConicGradient__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -129,77 +80,33 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * See [method@Gtk.Snapshot.push_fill] if you need to fill a path with more
     * complex content than a color.
     */
-  def appendFill(
-      path: Ptr[GskPath] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskPath]) */,
-      fill_rule: FillRule /* Some(_root_.sn.gnome.gsk4.internal.GskFillRule) */,
-      color: Ptr[GdkRGBA] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
-  ): Unit /* None */ = gtk_snapshot_append_fill(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    path,
-    fill_rule.raw,
-    color
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
   )
+  def appendFill__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Appends an inset shadow into the box given by @outline.
     */
-  def appendInsetShadow(
-      outline: Ptr[
-        GskRoundedRect
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskRoundedRect]) */,
-      color: Ptr[
-        GdkRGBA
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */,
-      dx: Float /* Some(Float) */,
-      dy: Float /* Some(Float) */,
-      spread: Float /* Some(Float) */,
-      blur_radius: Float /* Some(Float) */
-  ): Unit /* None */ = gtk_snapshot_append_inset_shadow(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    outline,
-    color,
-    dx.asInstanceOf,
-    dy.asInstanceOf,
-    spread.asInstanceOf,
-    blur_radius.asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
   )
+  def appendInsetShadow__ = ???
 
-  def appendLayout(
-      layout: Layout /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoLayout]) */,
-      color: Ptr[GdkRGBA] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
-  ): Unit /* None */ = gtk_snapshot_append_layout(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    layout.getUnsafeRawPointer().asInstanceOf,
-    color
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
+  def appendLayout__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Appends a linear gradient node with the given stops to @snapshot.
     */
-  def appendLinearGradient(
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
-      start_point: Ptr[
-        graphene_point_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
-      end_point: Ptr[
-        graphene_point_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
-      stops: Ptr[
-        GskColorStop /* None */
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop]) */,
-      n_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): Unit /* None */ = gtk_snapshot_append_linear_gradient(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    bounds,
-    start_point,
-    end_point,
-    stops,
-    gsize(n_stops)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def appendLinearGradient__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -220,115 +127,37 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     *
     * Appends an outset shadow node around the box given by @outline.
     */
-  def appendOutsetShadow(
-      outline: Ptr[
-        GskRoundedRect
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskRoundedRect]) */,
-      color: Ptr[
-        GdkRGBA
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */,
-      dx: Float /* Some(Float) */,
-      dy: Float /* Some(Float) */,
-      spread: Float /* Some(Float) */,
-      blur_radius: Float /* Some(Float) */
-  ): Unit /* None */ = gtk_snapshot_append_outset_shadow(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    outline,
-    color,
-    dx.asInstanceOf,
-    dy.asInstanceOf,
-    spread.asInstanceOf,
-    blur_radius.asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
   )
+  def appendOutsetShadow__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Appends a radial gradient node with the given stops to @snapshot.
     */
-  def appendRadialGradient(
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
-      center: Ptr[
-        graphene_point_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
-      hradius: Float /* Some(Float) */,
-      vradius: Float /* Some(Float) */,
-      start: Float /* Some(Float) */,
-      end: Float /* Some(Float) */,
-      stops: Ptr[
-        GskColorStop /* None */
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop]) */,
-      n_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): Unit /* None */ = gtk_snapshot_append_radial_gradient(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    bounds,
-    center,
-    hradius.asInstanceOf,
-    vradius.asInstanceOf,
-    start.asInstanceOf,
-    end.asInstanceOf,
-    stops,
-    gsize(n_stops)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def appendRadialGradient__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Appends a repeating linear gradient node with the given stops to @snapshot.
     */
-  def appendRepeatingLinearGradient(
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
-      start_point: Ptr[
-        graphene_point_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
-      end_point: Ptr[
-        graphene_point_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
-      stops: Ptr[
-        GskColorStop /* None */
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop]) */,
-      n_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): Unit /* None */ = gtk_snapshot_append_repeating_linear_gradient(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    bounds,
-    start_point,
-    end_point,
-    stops,
-    gsize(n_stops)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def appendRepeatingLinearGradient__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Appends a repeating radial gradient node with the given stops to @snapshot.
     */
-  def appendRepeatingRadialGradient(
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
-      center: Ptr[
-        graphene_point_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */,
-      hradius: Float /* Some(Float) */,
-      vradius: Float /* Some(Float) */,
-      start: Float /* Some(Float) */,
-      end: Float /* Some(Float) */,
-      stops: Ptr[
-        GskColorStop /* None */
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskColorStop]) */,
-      n_stops: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): Unit /* None */ = gtk_snapshot_append_repeating_radial_gradient(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    bounds,
-    center,
-    hradius.asInstanceOf,
-    vradius.asInstanceOf,
-    start.asInstanceOf,
-    end.asInstanceOf,
-    stops,
-    gsize(n_stops)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def appendRepeatingRadialGradient__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -338,18 +167,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * In contrast to [method@Gtk.Snapshot.append_texture], this function
     * provides control about how the filter that is used when scaling.
     */
-  def appendScaledTexture(
-      texture: Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */,
-      filter: ScalingFilter /* Some(_root_.sn.gnome.gsk4.internal.GskScalingFilter) */,
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
-  ): Unit /* None */ = gtk_snapshot_append_scaled_texture(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    texture.getUnsafeRawPointer().asInstanceOf,
-    filter.raw,
-    bounds
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def appendScaledTexture__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -358,18 +179,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * See [method@Gtk.Snapshot.push_stroke] if you need to stroke a path with
     * more complex content than a color.
     */
-  def appendStroke(
-      path: Ptr[GskPath] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskPath]) */,
-      stroke: Ptr[
-        GskStroke
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskStroke]) */,
-      color: Ptr[GdkRGBA] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
-  ): Unit /* None */ = gtk_snapshot_append_stroke(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    path,
-    stroke,
-    color
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
   )
+  def appendStroke__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -380,16 +193,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * used. See [method@Gtk.Snapshot.append_scaled_texture] if you need other
     * filtering, such as nearest-neighbour.
     */
-  def appendTexture(
-      texture: Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */,
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
-  ): Unit /* None */ = gtk_snapshot_append_texture(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    texture.getUnsafeRawPointer().asInstanceOf,
-    bounds
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def appendTexture__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -408,22 +215,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * Returns a paintable for the node that was constructed by @snapshot and
     * frees @snapshot.
     */
-  def freeToPaintable(
-      size: Option[Ptr[
-        graphene_size_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]) */ ]
-  ): Paintable /* None */ = new Paintable.Abstract(
-    gtk_snapshot_free_to_paintable(
-      this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-      size
-        .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[
-            _root_.sn.gnome.graphene.internal.graphene_size_t
-          ]]
-        )
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Size), @type -> DataRecord(const graphene_size_t*)))"
   )
+  def freeToPaintable__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -491,12 +286,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     *
     * The image is recorded until the next call to [method@Gtk.Snapshot.pop].
     */
-  def pushClip(
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
-  ): Unit /* None */ =
-    gtk_snapshot_push_clip(this.raw.asInstanceOf[Ptr[GtkSnapshot]], bounds)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+  )
+  def pushClip__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -512,18 +305,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     *
     * The image is recorded until the next call to [method@Gtk.Snapshot.pop].
     */
-  def pushColorMatrix(
-      color_matrix: Ptr[
-        graphene_matrix_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_matrix_t]) */,
-      color_offset: Ptr[
-        graphene_vec4_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec4_t]) */
-  ): Unit /* None */ = gtk_snapshot_push_color_matrix(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    color_matrix,
-    color_offset
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
   )
+  def pushColorMatrix__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -569,14 +354,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * If you want to fill the path with a color,
     * [method@Gtk.Snapshot.append_fill] may be more convenient.
     */
-  def pushFill(
-      path: Ptr[GskPath] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskPath]) */,
-      fill_rule: FillRule /* Some(_root_.sn.gnome.gsk4.internal.GskFillRule) */
-  ): Unit /* None */ = gtk_snapshot_push_fill(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    path,
-    fill_rule.raw
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
   )
+  def pushFill__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -615,20 +396,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     *
     * For details on how to write shaders, see [class@Gsk.GLShader].
     */
-  def pushGlShader(
-      shader: GLShader /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskGLShader]) */,
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
-      take_args: Ptr[
-        GBytes
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
-  ): Unit /* None */ = gtk_snapshot_push_gl_shader(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    shader.getUnsafeRawPointer().asInstanceOf,
-    bounds,
-    take_args
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def pushGlShader__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -662,23 +433,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     *
     * The child is recorded until the next call to [method@Gtk.Snapshot.pop].
     */
-  def pushRepeat(
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
-      child_bounds: Option[Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */ ]
-  ): Unit /* None */ = gtk_snapshot_push_repeat(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    bounds,
-    child_bounds
-      .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]](o => o)
-      .getOrElse(
-        null
-          .asInstanceOf[Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def pushRepeat__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -686,14 +444,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     *
     * The image is recorded until the next call to [method@Gtk.Snapshot.pop].
     */
-  def pushRoundedClip(
-      bounds: Ptr[
-        GskRoundedRect
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskRoundedRect]) */
-  ): Unit /* None */ = gtk_snapshot_push_rounded_clip(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    bounds
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
   )
+  def pushRoundedClip__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -701,16 +455,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     *
     * The image is recorded until the next call to [method@Gtk.Snapshot.pop].
     */
-  def pushShadow(
-      shadow: Ptr[
-        GskShadow /* None */
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskShadow]) */,
-      n_shadows: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): Unit /* None */ = gtk_snapshot_push_shadow(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    shadow,
-    gsize(n_shadows)
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gsk.Shadow), @type -> DataRecord(GskShadow)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GskShadow*)))"
   )
+  def pushShadow__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -725,16 +473,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * If you want to stroke the path with a color,
     * [method@Gtk.Snapshot.append_stroke] may be more convenient.
     */
-  def pushStroke(
-      path: Ptr[GskPath] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskPath]) */,
-      stroke: Ptr[
-        GskStroke
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskStroke]) */
-  ): Unit /* None */ = gtk_snapshot_push_stroke(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    path,
-    stroke
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
   )
+  def pushStroke__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -870,16 +612,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     *
     * For a rotation in 2D space, use [method@Gsk.Transform.rotate].
     */
-  def rotate3d(
-      angle: Float /* Some(Float) */,
-      axis: Ptr[
-        graphene_vec3_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec3_t]) */
-  ): Unit /* None */ = gtk_snapshot_rotate_3d(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    angle.asInstanceOf,
-    axis
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Vec3), @type -> DataRecord(const graphene_vec3_t*)))"
   )
+  def rotate3d__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -953,74 +689,46 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * The only function that should be called after this is
     * [method@GObject.Object.unref].
     */
-  def toPaintable(
-      size: Option[Ptr[
-        graphene_size_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]) */ ]
-  ): Paintable /* None */ = new Paintable.Abstract(
-    gtk_snapshot_to_paintable(
-      this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-      size
-        .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[
-            _root_.sn.gnome.graphene.internal.graphene_size_t
-          ]]
-        )
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Size), @type -> DataRecord(const graphene_size_t*)))"
   )
+  def toPaintable__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Transforms @snapshot's coordinate system with the given @transform.
     */
-  def transform(
-      transform: Option[Ptr[
-        GskTransform
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]) */ ]
-  ): Unit /* None */ = gtk_snapshot_transform(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    transform
-      .map[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
+  def transform__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Transforms @snapshot's coordinate system with the given @matrix.
     */
-  def transformMatrix(
-      matrix: Ptr[
-        graphene_matrix_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_matrix_t]) */
-  ): Unit /* None */ = gtk_snapshot_transform_matrix(
-    this.raw.asInstanceOf[Ptr[GtkSnapshot]],
-    matrix
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
   )
+  def transformMatrix__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Translates @snapshot's coordinate system by @point in 2-dimensional space.
     */
-  def translate(
-      point: Ptr[
-        graphene_point_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */
-  ): Unit /* None */ =
-    gtk_snapshot_translate(this.raw.asInstanceOf[Ptr[GtkSnapshot]], point)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
+  )
+  def translate__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Translates @snapshot's coordinate system by @point.
     */
-  def translate3d(
-      point: Ptr[
-        graphene_point3d_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point3d_t]) */
-  ): Unit /* None */ =
-    gtk_snapshot_translate_3d(this.raw.asInstanceOf[Ptr[GtkSnapshot]], point)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point3D), @type -> DataRecord(const graphene_point3d_t*)))"
+  )
+  def translate3d__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -6,8 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.AccessibleRole
+import sn.gnome.gtk4.fluent.{Accessible, AccessibleRole}
 import sn.gnome.gtk4.internal.GtkATContext
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

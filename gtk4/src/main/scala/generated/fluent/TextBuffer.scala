@@ -5,19 +5,11 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.Clipboard
-import sn.gnome.gdk4.fluent.ContentProvider
-import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
+import sn.gnome.gdk4.fluent.{Clipboard, ContentProvider}
+import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.TextChildAnchor
-import sn.gnome.gtk4.fluent.TextMark
-import sn.gnome.gtk4.fluent.TextTag
-import sn.gnome.gtk4.fluent.TextTagTable
+import sn.gnome.gtk4.fluent.{TextMark, TextTag, TextTagTable}
 import sn.gnome.gtk4.internal.GtkTextBuffer
-import sn.gnome.gtk4.internal.GtkTextIter
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -45,14 +37,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * Emits the [signal@Gtk.TextBuffer::mark-set] signal as notification of the
     * mark's initial placement.
     */
-  def addMark(
-      mark: TextMark /* Some(Ptr[GtkTextMark]) */,
-      where: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): Unit /* None */ = gtk_text_buffer_add_mark(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    mark.getUnsafeRawPointer().asInstanceOf,
-    where
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
+  def addMark__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -77,16 +65,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * @tag
     *   to the given range. @start and @end do not have to be in order.
     */
-  def applyTag(
-      tag: TextTag /* Some(Ptr[GtkTextTag]) */,
-      start: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      end: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): Unit /* None */ = gtk_text_buffer_apply_tag(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    tag.getUnsafeRawPointer().asInstanceOf,
-    start,
-    end
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
+  def applyTag__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -95,16 +77,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * Calls [method@Gtk.TextTagTable.lookup] on the buffer’s tag table to get a
     * `GtkTextTag`, then calls [method@Gtk.TextBuffer.apply_tag].
     */
-  def applyTagByName(
-      name: String | CString /* Some(CString) */,
-      start: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      end: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  )(using Zone): Unit /* None */ = gtk_text_buffer_apply_tag_by_name(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    __sn_extract_string(name),
-    start,
-    end
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
+  def applyTagByName__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -120,16 +96,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * after calling this function; however, the @iter will be re-initialized to
     * point to the location where text was deleted.
     */
-  def backspace(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      interactive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Boolean /* None */ = gtk_text_buffer_backspace(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    iter,
-    gboolean(gint((if interactive == true then 1 else 0))),
-    gboolean(gint((if default_editable == true then 1 else 0)))
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+  )
+  def backspace__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -196,14 +166,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * The new anchor is owned by the buffer; no reference count is returned to
     * the caller of this function.
     */
-  def createChildAnchor(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): TextChildAnchor /* None */ = new TextChildAnchor(
-    gtk_text_buffer_create_child_anchor(
-      this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-      iter
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
+  def createChildAnchor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -225,20 +191,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * Emits the [signal@Gtk.TextBuffer::mark-set] signal as notification of the
     * mark's initial placement.
     */
-  def createMark(
-      mark_name: Option[String | CString /* Some(CString) */ ],
-      where: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      left_gravity: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): TextMark /* None */ = new TextMark(
-    gtk_text_buffer_create_mark(
-      this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-      mark_name
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString]),
-      where,
-      gboolean(gint((if left_gravity == true then 1 else 0)))
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
+  def createMark__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -300,14 +256,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * however, the @start and @end will be re-initialized to point to the
     * location where text was deleted.
     */
-  def delete(
-      start: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      end: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): Unit /* None */ = gtk_text_buffer_delete(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    start,
-    end
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
+  def delete__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -317,16 +269,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * [@start,@end). @start and @end are revalidated to point to the location of
     * the last deleted range, or left untouched if no text was deleted.
     */
-  def deleteInteractive(
-      start_iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      end_iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Boolean /* None */ = gtk_text_buffer_delete_interactive(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    start_iter,
-    end_iter,
-    gboolean(gint((if default_editable == true then 1 else 0)))
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+  )
+  def deleteInteractive__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -416,7 +362,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_bounds contains an OUT parameter, which is not supported yet"
   )
-  private def getBounds__ = ???
+  def getBounds__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -473,7 +419,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_end_iter contains an OUT parameter, which is not supported yet"
   )
-  private def getEndIter__ = ???
+  def getEndIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -504,7 +450,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_iter_at_child_anchor contains an OUT parameter, which is not supported yet"
   )
-  private def getIterAtChildAnchor__ = ???
+  def getIterAtChildAnchor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -516,7 +462,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_iter_at_line contains an OUT parameter, which is not supported yet"
   )
-  private def getIterAtLine__ = ???
+  def getIterAtLine__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -533,7 +479,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_iter_at_line_index contains an OUT parameter, which is not supported yet"
   )
-  private def getIterAtLineIndex__ = ???
+  def getIterAtLineIndex__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -549,7 +495,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_iter_at_line_offset contains an OUT parameter, which is not supported yet"
   )
-  private def getIterAtLineOffset__ = ???
+  def getIterAtLineOffset__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -558,7 +504,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_iter_at_mark contains an OUT parameter, which is not supported yet"
   )
-  private def getIterAtMark__ = ???
+  def getIterAtMark__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -572,7 +518,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_iter_at_offset contains an OUT parameter, which is not supported yet"
   )
-  private def getIterAtOffset__ = ???
+  def getIterAtOffset__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -655,7 +601,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_selection_bounds contains an OUT parameter, which is not supported yet"
   )
-  private def getSelectionBounds__ = ???
+  def getSelectionBounds__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -683,18 +629,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * text as well, so it is not a reliable indicator that a paintable or widget
     * is in the buffer.
     */
-  def getSlice(
-      start: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      end: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      include_hidden_chars: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): String /* None */ = fromCString(
-    gtk_text_buffer_get_slice(
-      this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-      start,
-      end,
-      gboolean(gint((if include_hidden_chars == true then 1 else 0)))
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
+  def getSlice__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -706,7 +644,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_start_iter contains an OUT parameter, which is not supported yet"
   )
-  private def getStartIter__ = ???
+  def getStartIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -728,18 +666,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * returned string do not correspond to byte and character indexes into the
     * buffer. Contrast with [method@Gtk.TextBuffer.get_slice].
     */
-  def getText(
-      start: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      end: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      include_hidden_chars: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): String /* None */ = fromCString(
-    gtk_text_buffer_get_text(
-      this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-      start,
-      end,
-      gboolean(gint((if include_hidden_chars == true then 1 else 0)))
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
+  def getText__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -751,16 +681,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * (because the buffer contents change), but the default signal handler
     * revalidates it to point to the end of the inserted text.
     */
-  def insert(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      text: String | CString /* Some(CString) */,
-      len: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ = gtk_text_buffer_insert(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    iter,
-    __sn_extract_string(text),
-    len
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
+  def insert__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -793,14 +717,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * alternative to this function. The buffer will add a reference to the
     * anchor, so you can unref it after insertion.
     */
-  def insertChildAnchor(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      anchor: TextChildAnchor /* Some(Ptr[GtkTextChildAnchor]) */
-  ): Unit /* None */ = gtk_text_buffer_insert_child_anchor(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    iter,
-    anchor.getUnsafeRawPointer().asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
+  def insertChildAnchor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -816,18 +736,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     *   editability applied to it. Typically the result of
     *   [method@Gtk.TextView.get_editable] is appropriate here.
     */
-  def insertInteractive(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      text: String | CString /* Some(CString) */,
-      len: Int /* Some(CInt) */,
-      default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): Boolean /* None */ = gtk_text_buffer_insert_interactive(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    iter,
-    __sn_extract_string(text),
-    len,
-    gboolean(gint((if default_editable == true then 1 else 0)))
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+  )
+  def insertInteractive__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -862,16 +774,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     *   multiple times; insertion actually occurs in the default handler for the
     *   signal. @iter will point to the end of the inserted text on return.
     */
-  def insertMarkup(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      markup: String | CString /* Some(CString) */,
-      len: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ = gtk_text_buffer_insert_markup(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    iter,
-    __sn_extract_string(markup),
-    len
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
+  def insertMarkup__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -884,14 +790,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * character for paintable, but the “text” variants do not. e.g. see
     * [method@Gtk.TextBuffer.get_slice] and [method@Gtk.TextBuffer.get_text].
     */
-  def insertPaintable(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      paintable: Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
-  ): Unit /* None */ = gtk_text_buffer_insert_paintable(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    iter,
-    paintable.getUnsafeRawPointer().asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
+  def insertPaintable__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -908,16 +810,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * Implemented via emissions of the ::insert-text and ::apply-tag signals, so
     * expect those.
     */
-  def insertRange(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      start: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      end: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): Unit /* None */ = gtk_text_buffer_insert_range(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    iter,
-    start,
-    end
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
+  def insertRange__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -930,18 +826,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * editability. Typically the result of [method@Gtk.TextView.get_editable] is
     * appropriate here.
     */
-  def insertRangeInteractive(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      start: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      end: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Boolean /* None */ = gtk_text_buffer_insert_range_interactive(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    iter,
-    start,
-    end,
-    gboolean(gint((if default_editable == true then 1 else 0)))
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+  )
+  def insertRangeInteractive__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -953,20 +841,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * [method@Gtk.TextBuffer.apply_tag] on the inserted text; this is just a
     * convenience function.
     */
-  inline def insertWithTags(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      text: String | CString /* Some(CString) */,
-      len: Int /* Some(CInt) */,
-      first_tag: TextTag /* Some(Ptr[GtkTextTag]) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = gtk_text_buffer_insert_with_tags(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    iter,
-    __sn_extract_string(text),
-    len,
-    first_tag.getUnsafeRawPointer().asInstanceOf,
-    args*
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
+  def insertWithTags__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -976,20 +854,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * Same as [method@Gtk.TextBuffer.insert_with_tags], but allows you to pass
     * in tag names instead of tag objects.
     */
-  inline def insertWithTagsByName(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      text: String | CString /* Some(CString) */,
-      len: Int /* Some(CInt) */,
-      first_tag_name: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = gtk_text_buffer_insert_with_tags_by_name(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    iter,
-    __sn_extract_string(text),
-    len,
-    __sn_extract_string(first_tag_name),
-    args*
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
+  def insertWithTagsByName__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -998,14 +866,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * Emits the [signal@Gtk.TextBuffer::mark-set] signal as notification of the
     * move.
     */
-  def moveMark(
-      mark: TextMark /* Some(Ptr[GtkTextMark]) */,
-      where: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): Unit /* None */ = gtk_text_buffer_move_mark(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    mark.getUnsafeRawPointer().asInstanceOf,
-    where
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
+  def moveMark__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1013,14 +877,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     *
     * See [method@Gtk.TextBuffer.move_mark] for details.
     */
-  def moveMarkByName(
-      name: String | CString /* Some(CString) */,
-      where: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  )(using Zone): Unit /* None */ = gtk_text_buffer_move_mark_by_name(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    __sn_extract_string(name),
-    where
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
+  def moveMarkByName__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1034,18 +894,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * return, and at some point later after the main loop runs, the paste data
     * will be inserted.
     */
-  def pasteClipboard(
-      clipboard: Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */,
-      override_location: Option[Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */ ],
-      default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_text_buffer_paste_clipboard(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    clipboard.getUnsafeRawPointer().asInstanceOf,
-    override_location
-      .map[Ptr[GtkTextIter]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTextIter]]),
-    gboolean(gint((if default_editable == true then 1 else 0)))
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
+  def pasteClipboard__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1058,12 +910,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * the temporarily-selected region will force stuff to be recalculated. This
     * function moves them as a unit, which can be optimized.
     */
-  def placeCursor(
-      where: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): Unit /* None */ = gtk_text_buffer_place_cursor(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    where
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
+  def placeCursor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1082,14 +932,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * function is probably a bad idea if you have two or more unrelated code
     * sections that add tags.
     */
-  def removeAllTags(
-      start: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      end: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): Unit /* None */ = gtk_text_buffer_remove_all_tags(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    start,
-    end
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
+  def removeAllTags__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1110,16 +956,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * The default handler for the signal removes all occurrences of @tag from
     * the given range. @start and @end don’t have to be in order.
     */
-  def removeTag(
-      tag: TextTag /* Some(Ptr[GtkTextTag]) */,
-      start: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      end: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): Unit /* None */ = gtk_text_buffer_remove_tag(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    tag.getUnsafeRawPointer().asInstanceOf,
-    start,
-    end
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
+  def removeTag__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1128,16 +968,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * Calls [method@Gtk.TextTagTable.lookup] on the buffer’s tag table to get a
     * `GtkTextTag`, then calls [method@Gtk.TextBuffer.remove_tag].
     */
-  def removeTagByName(
-      name: String | CString /* Some(CString) */,
-      start: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      end: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  )(using Zone): Unit /* None */ = gtk_text_buffer_remove_tag_by_name(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    __sn_extract_string(name),
-    start,
-    end
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
+  def removeTagByName__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1150,14 +984,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * force stuff to be recalculated. This function moves them as a unit, which
     * can be optimized.
     */
-  def selectRange(
-      ins: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      bound: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): Unit /* None */ = gtk_text_buffer_select_range(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    ins,
-    bound
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
+  def selectRange__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

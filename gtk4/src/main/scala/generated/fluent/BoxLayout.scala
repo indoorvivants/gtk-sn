@@ -5,13 +5,13 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
-import sn.gnome.gtk4.fluent.BaselinePosition
-import sn.gnome.gtk4.fluent.LayoutManager
-import sn.gnome.gtk4.fluent.Orientable
-import sn.gnome.gtk4.fluent.Orientation
+import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gtk4.fluent.{
+  BaselinePosition,
+  LayoutManager,
+  Orientable,
+  Orientation
+}
 import sn.gnome.gtk4.internal.GtkBoxLayout
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeFundamentalFlags: _TYPE_FLAG_CLASSED: Indicates a classed type _TYPE_FLAG_INSTANTIATABLE: Indicates an instantiatable type (implies classed) _TYPE_FLAG_DERIVABLE: Indicates a flat derivable type _TYPE_FLAG_DEEP_DERIVABLE: Indicates a deep derivable type (implies derivable)
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GTypeFundamentalFlags = CUnsignedInt
 object GTypeFundamentalFlags extends _BindgenEnumCUnsignedInt[GTypeFundamentalFlags]:

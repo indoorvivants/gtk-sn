@@ -4,17 +4,9 @@ import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gobject.internal.GCallback
-import sn.gnome.gobject.internal.GClosure
-import sn.gnome.gobject.internal.GClosureNotify
-import sn.gnome.gobject.internal.GConnectFlags
-import sn.gnome.gobject.internal.GSignalGroup
-import sn.gnome.gobject.internal.GType
+import sn.gnome.gobject.internal.{GSignalGroup, GType}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -61,21 +53,10 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * You cannot connect a signal handler after #GSignalGroup:target has been
     * set.
     */
-  def connect(
-      detailed_signal: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      c_handler: GCallback /* Some(GCallback) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_signal_group_connect(
-    this.raw.asInstanceOf[Ptr[GSignalGroup]],
-    __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
-    c_handler,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
+  def connect__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -87,21 +68,10 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * You cannot connect a signal handler after #GSignalGroup:target has been
     * set.
     */
-  def connectAfter(
-      detailed_signal: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      c_handler: GCallback /* Some(GCallback) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_signal_group_connect_after(
-    this.raw.asInstanceOf[Ptr[GSignalGroup]],
-    __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
-    c_handler,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
+  def connectAfter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -110,17 +80,10 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * You cannot connect a signal handler after #GSignalGroup:target has been
     * set.
     */
-  def connectClosure(
-      detailed_signal: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      closure: Ptr[GClosure] /* Some(Ptr[GClosure]) */,
-      after: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): Unit /* None */ = g_signal_group_connect_closure(
-    this.raw.asInstanceOf[Ptr[GSignalGroup]],
-    __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
-    closure,
-    gboolean(gint((if after == true then 1 else 0)))
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
+  def connectClosure__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -130,25 +93,10 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * You cannot connect a signal handler after #GSignalGroup:target has been
     * set.
     */
-  def connectData(
-      detailed_signal: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      c_handler: GCallback /* Some(GCallback) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      _notify: GClosureNotify /* Some(GClosureNotify) */,
-      flags: GConnectFlags /* Some(GConnectFlags) */
-  )(using Zone): Unit /* None */ = g_signal_group_connect_data(
-    this.raw.asInstanceOf[Ptr[GSignalGroup]],
-    __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
-    c_handler,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    _notify,
-    flags
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
+  def connectData__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -162,19 +110,10 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * You cannot connect a signal handler after #GSignalGroup:target has been
     * set.
     */
-  def connectObject(
-      detailed_signal: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      c_handler: GCallback /* Some(GCallback) */,
-      `object`: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      flags: GConnectFlags /* Some(GConnectFlags) */
-  )(using Zone): Unit /* None */ = g_signal_group_connect_object(
-    this.raw.asInstanceOf[Ptr[GSignalGroup]],
-    __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
-    c_handler,
-    gpointer(`object`),
-    flags
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
+  def connectObject__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -187,21 +126,10 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * You cannot connect a signal handler after #GSignalGroup:target has been
     * set.
     */
-  def connectSwapped(
-      detailed_signal: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      c_handler: GCallback /* Some(GCallback) */,
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_signal_group_connect_swapped(
-    this.raw.asInstanceOf[Ptr[GSignalGroup]],
-    __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
-    c_handler,
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
+  def connectSwapped__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -244,14 +172,6 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     this.raw.asInstanceOf[Ptr[GSignalGroup]]
   )
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end SignalGroup
 
 object SignalGroup:

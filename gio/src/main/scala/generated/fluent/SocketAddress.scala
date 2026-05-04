@@ -5,15 +5,10 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.SocketConnectable
-import sn.gnome.gio.fluent.SocketFamily
+import sn.gnome.gio.fluent.{SocketConnectable, SocketFamily}
 import sn.gnome.gio.internal.GSocketAddress
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.gsize
-import sn.gnome.glib.internal.gssize
+import sn.gnome.glib.internal.{gboolean, gint, gpointer, gsize, gssize}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

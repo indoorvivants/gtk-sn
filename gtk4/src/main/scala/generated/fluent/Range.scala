@@ -4,15 +4,16 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.AccessibleRange
-import sn.gnome.gtk4.fluent.Adjustment
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Orientable
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  AccessibleRange,
+  Adjustment,
+  Buildable,
+  ConstraintTarget,
+  Orientable,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkRange
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -81,7 +82,7 @@ class Range(raw: Ptr[GtkRange])
   @annotation.compileTimeOnly(
     "Method get_range_rect contains an OUT parameter, which is not supported yet"
   )
-  private def getRangeRect__ = ???
+  def getRangeRect__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -120,7 +121,7 @@ class Range(raw: Ptr[GtkRange])
   @annotation.compileTimeOnly(
     "Method get_slider_range contains an OUT parameter, which is not supported yet"
   )
-  private def getSliderRange__ = ???
+  def getSliderRange__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

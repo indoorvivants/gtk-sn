@@ -4,9 +4,7 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.DBusConnection
-import sn.gnome.gio.fluent.DBusMenuModel
-import sn.gnome.gio.fluent.MenuModel
+import sn.gnome.gio.fluent.{DBusConnection, DBusMenuModel, MenuModel}
 import sn.gnome.gio.internal.GDBusMenuModel
 import sn.gnome.glib.internal.gchar
 
@@ -42,17 +40,20 @@ object DBusMenuModel:
       ],
       object_path: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): DBusMenuModel /* None */ = new DBusMenuModel(
-    g_dbus_menu_model_get(
-      connection.getUnsafeRawPointer().asInstanceOf,
-      bus_name
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+  )(using Zone): DBusMenuModel /* Some(Ptr[GDBusMenuModel]) */ =
+    new DBusMenuModel(
+      g_dbus_menu_model_get(
+        connection.getUnsafeRawPointer().asInstanceOf,
+        bus_name
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -6,8 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.SectionModel
-import sn.gnome.gtk4.fluent.SelectionModel
+import sn.gnome.gtk4.fluent.{SectionModel, SelectionModel}
 import sn.gnome.gtk4.internal.GtkMultiSelection
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

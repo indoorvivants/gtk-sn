@@ -6,15 +6,10 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.TreeListRow
 import sn.gnome.gtk4.internal.GtkTreeListModel
-import sn.gnome.gtk4.internal.GtkTreeListModelCreateModelFunc
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -138,25 +133,9 @@ object TreeListModel:
     * Creates a new empty `GtkTreeListModel` displaying @root with all rows
     * collapsed.
     */
-  def apply(
-      root: ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */,
-      passthrough: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      autoexpand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      create_func: GtkTreeListModelCreateModelFunc /* Some(GtkTreeListModelCreateModelFunc) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      user_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): TreeListModel = new TreeListModel(
-    gtk_tree_list_model_new(
-      root.getUnsafeRawPointer().asInstanceOf,
-      gboolean(gint((if passthrough == true then 1 else 0))),
-      gboolean(gint((if autoexpand == true then 1 else 0))),
-      create_func,
-      user_data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      user_destroy
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeListModelCreateModelFunc), @type -> DataRecord(GtkTreeListModelCreateModelFunc)))"
   )
+  def `new`() = ???
+
 end TreeListModel

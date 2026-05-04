@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GParamSpecInt64: _instance: private #GParamSpec portion : minimum value for the property specified : maximum value for the property specified _value: default value for the property specified
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparamspecs.h
 */
 opaque type GParamSpecInt64 = CStruct4[GParamSpec, _root_.sn.gnome.glib.internal.gint64, _root_.sn.gnome.glib.internal.gint64, _root_.sn.gnome.glib.internal.gint64]
 

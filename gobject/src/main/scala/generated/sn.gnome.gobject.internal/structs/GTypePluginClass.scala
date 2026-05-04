@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypePluginClass: _plugin: Increases the use count of the plugin. _plugin: Decreases the use count of the plugin. _type_info: Fills in the #GTypeInfo and #GTypeValueTable structs for the type. The structs are initialized with `memset(s, 0, sizeof (s))` before calling this function. _interface_info: Fills in missing parts of the #GInterfaceInfo for the interface. The structs is initialized with `memset(s, 0, sizeof (s))` before calling this function.
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtypeplugin.h
 */
 opaque type GTypePluginClass = CStruct5[GTypeInterface, GTypePluginUse, GTypePluginUnuse, GTypePluginCompleteTypeInfo, GTypePluginCompleteInterfaceInfo]
 

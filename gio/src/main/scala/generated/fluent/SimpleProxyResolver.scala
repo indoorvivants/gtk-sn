@@ -57,14 +57,10 @@ class SimpleProxyResolver(raw: Ptr[GSimpleProxyResolver])
     * @ignore_hosts
     *   argument is interpreted.
     */
-  def setIgnoreHosts(
-      ignore_hosts: Ptr[
-        CString
-      ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]) */
-  )(using Zone): Unit /* None */ = g_simple_proxy_resolver_set_ignore_hosts(
-    this.raw.asInstanceOf[Ptr[GSimpleProxyResolver]],
-    ignore_hosts.asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(gchar**)))"
   )
+  def setIgnoreHosts__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -104,34 +100,9 @@ object SimpleProxyResolver:
     * #GSimpleProxyResolver:default-proxy and #GSimpleProxyResolver:ignore-hosts
     * for more details on how the arguments are interpreted.
     */
-  def `new`(
-      default_proxy: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      ignore_hosts: Option[
-        Ptr[CString] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]) */
-      ]
-  )(using Zone): ProxyResolver /* None */ = new ProxyResolver.Abstract(
-    g_simple_proxy_resolver_new(
-      default_proxy
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      ignore_hosts
-        .map[Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]](o => o.asInstanceOf)
-        .getOrElse(
-          null.asInstanceOf[Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]]
-        )
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(gchar**)))"
   )
+  def `new`() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end SimpleProxyResolver

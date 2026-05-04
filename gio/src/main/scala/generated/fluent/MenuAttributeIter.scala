@@ -5,10 +5,7 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.internal.GMenuAttributeIter
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -54,7 +51,7 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
   @annotation.compileTimeOnly(
     "Method get_next contains an OUT parameter, which is not supported yet"
   )
-  private def getNext__ = ???
+  def getNext__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -62,9 +59,10 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     *
     * The iterator is not advanced.
     */
-  def getValue(): Ptr[GVariant] /* None */ = g_menu_attribute_iter_get_value(
-    this.raw.asInstanceOf[Ptr[GMenuAttributeIter]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def getValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

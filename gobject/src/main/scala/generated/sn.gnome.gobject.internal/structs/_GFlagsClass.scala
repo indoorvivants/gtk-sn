@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GFlagsClass: _type_class: the parent class : a mask covering all possible values. _values: the number of possible values. : an array of #GFlagsValue structs describing the individual values.
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/genums.h
 */
 opaque type _GFlagsClass = CStruct4[GTypeClass, _root_.sn.gnome.glib.internal.guint, _root_.sn.gnome.glib.internal.guint, Ptr[GFlagsValue]]
 

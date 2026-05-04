@@ -5,20 +5,19 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ActionGroup
-import sn.gnome.gio.fluent.ActionMap
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Application
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Native
-import sn.gnome.gtk4.fluent.Root
-import sn.gnome.gtk4.fluent.ShortcutManager
-import sn.gnome.gtk4.fluent.ShortcutsWindow
-import sn.gnome.gtk4.fluent.Window
+import sn.gnome.gio.fluent.{ActionGroup, ActionMap}
+import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Application,
+  Buildable,
+  ConstraintTarget,
+  Native,
+  Root,
+  ShortcutManager,
+  ShortcutsWindow,
+  Window
+}
 import sn.gnome.gtk4.internal.GtkApplicationWindow
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

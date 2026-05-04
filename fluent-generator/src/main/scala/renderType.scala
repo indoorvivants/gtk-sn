@@ -83,6 +83,7 @@ def renderType(
             .orElse:
               val ct = getCType(None, other)
               ct.map: tm =>
+                scribe.info(s"For $original I got $ct")
                 val goodName = ("Ptr[" * level) + tm.scalaRepr + ("]" * level)
                 val rawName = ("Ptr[" * level) + other + ("]" * level)
                 val massage = Massage.Cast(rawName)
@@ -90,7 +91,7 @@ def renderType(
                 TypeMapping(
                   goodName,
                   effects = tm.effects,
-                  massageIntoUnsafe = List(massage),
+                  // massageIntoUnsafe = List(massage),
                   massageFromUnsafe = Nil
                 )
 
@@ -218,6 +219,7 @@ def renderType(
         )
         .map(stringTypeWrap),
       whenTypeValue("gchar*")(stringType)
+        .map(stringTypeWrap)
         .map(
           _.withEffect(
             Effect.RequiresZone,
@@ -229,8 +231,7 @@ def renderType(
             .withMassageIntoUnsafe(
               Massage.Cast("Ptr[gchar]")
             )
-        )
-        .map(stringTypeWrap),
+        ),
       whenTypeValue("char**")("Ptr[CString]"), // TODO
       whenTypeValue("const char*")(stringType)
         .map(
@@ -249,6 +250,11 @@ def renderType(
         _.withMassageFromUnsafe(Massage.InferredCast).withMassageIntoUnsafe(
           Massage.InferredCast
         )
+      ),
+      whenTypeValue("guint*")("Ptr[guint]").map(
+        _.withMassageFromUnsafe(Massage.InferredCast).withMassageIntoUnsafe(
+          Massage.InferredCast
+        ).withEffect(importGlib("guint"))
       ),
       whenTypeValue("int")("Int"),
       whenTypeValue("goffset")("gint64").map(
@@ -270,6 +276,12 @@ def renderType(
       whenTypeValue("double")("Double"),
       whenTypeValue("va_list")("CVarArgList"),
       glibAlias("gpointer", "gpointer")("Ptr[Byte]"),
+      whenTypeValue("gconstpointer")("Ptr[Byte]").map(
+        _.withMassageFromUnsafe(
+          Massage.Field("value")
+        ).withMassageIntoUnsafe(Massage.Apply("gconstpointer"))
+          .withEffect(importGlib("gconstpointer"))
+      ),
       glibAlias("goffset", "goffset")("Long"),
       whenTypeValue("gunichar")("CUnsignedInt").map(
         _.withMassageFromUnsafe(Massage.Field("value"))
@@ -284,10 +296,7 @@ def renderType(
           .withMassageFromUnsafe(Massage.Field("value"))
           .withEffect(importGlib("gpointer"))
       ),
-      unsignedAlias("guint8", "UByte").map(
-        _.withMassageIntoUnsafe(Massage.Apply("guint8"))
-          .withEffect(importGlib("guint8"))
-      ),
+      unsignedAlias("guint8", "UByte"),
       unsignedAlias("guchar", "UByte"),
       unsignedAlias("guint16", "UShort"),
       unsignedAlias("guint", "UInt"),
@@ -314,12 +323,21 @@ def renderType(
       glibAlias("gchar", "char")("Byte").map(
         _.withMassageIntoUnsafe(Massage.InferredCast)
       ),
+      whenFull("gchar", "gchar")("Byte").map(
+        _.withMassageIntoUnsafe(Massage.Apply("gchar"))
+          .withMassageFromUnsafe(Massage.Field("value"))
+          .withEffect(importGlib("gchar"))
+      ),
+      glibAlias("gsize", "size_t")("CSize").map(
+        _.withMassageIntoUnsafe(Massage.InferredCast)
+      ),
       whenTypeValue("void")("Unit"),
       whenFull("ResponseType", "GtkResponseType")("BLA").map(
         _.withMassageIntoUnsafe(Massage.Field("int")).withEffect(
           importGtk("GtkResponseType")
         )
-      )
+      ),
+      whenFull("long double", "long double")("Double")
     ).reduce(_ orElse _)
   end getCType
 
@@ -372,6 +390,24 @@ def renderType(
               base.withMassageIntoUnsafe(Massage.Field("value"))
             else base
 
+          case name @ GlobalName(
+                _,
+                _,
+                short,
+                effects,
+                NameType.Bitfield(typeValue)
+              ) =>
+            val nameEffects = name.effects
+
+            val base = TypeMapping(name.fluent)
+              .withMassageIntoUnsafe(Massage.Field("raw"))
+              .withMassageFromUnsafe(Massage.Apply(s"${name.fluent}.fromRaw"))
+              .withEffect(nameEffects*)
+
+            if !expectedRawType.exists(_.endsWith(typeValue)) then
+              base.withMassageIntoUnsafe(Massage.Field("value"))
+            else base
+
           case name if name.tpe == NameType.Class =>
             val base =
               TypeMapping(name.short)
@@ -391,15 +427,19 @@ def renderType(
                   .withMassageIntoUnsafe(Massage.Cast("Ptr[Byte]"))
                   .withMassageIntoUnsafe(Massage.Apply("gpointer"))
                   .withEffect(importGlib("gpointer"))
+              case "gconstpointer" =>
+                base
+                  .withMassageIntoUnsafe(Massage.Cast("Ptr[Byte]"))
+                  .withMassageIntoUnsafe(Massage.Apply("gconstpointer"))
+                  .withEffect(importGlib("gconstpointer"))
               case _ => base
+            end match
           case other =>
             TypeMapping(other.short).withEffect(other.effects*)
         .orElse(getCType(tpe.name, typeValue))
-        .orElse(deconstructCType(typeValue))
+        // .orElse(deconstructCType(typeValue))
         .getOrElse(
-          TypeMapping(
-            s"Any /* failed to render type: name=`${tpe.name}`: typeValue=`${typeValue}` */"
-          )
+          boundary.break(FluentErr.CannotRenderType(tpe))
         )
 
     case ar: ArrayType =>
@@ -428,29 +468,30 @@ def renderType(
                 )
 
         case _ =>
-          if typeValue.endsWith("gchar*") then
-            TypeMapping(s"Ptr[CString]", effects = renderedElementType.effects)
-              .withMassageIntoUnsafe(Massage.InferredCast)
-          else if typeValue.endsWith("guchar") then
-            TypeMapping(s"Ptr[UByte]", effects = renderedElementType.effects)
-              .withMassageIntoUnsafe(Massage.InferredCast)
-              .withMassageFromUnsafe(Massage.InferredCast)
-          else if typeValue.endsWith("guint8") then
-            TypeMapping(s"Ptr[guint8]", effects = renderedElementType.effects)
-              .withMassageIntoUnsafe(Massage.InferredCast)
-              .withMassageFromUnsafe(Massage.InferredCast)
-          else if typeValue.endsWith("gint") then
-            TypeMapping(s"Ptr[Int]", effects = renderedElementType.effects)
-              .withMassageIntoUnsafe(Massage.InferredCast)
-              .withMassageFromUnsafe(Massage.InferredCast)
-          else if typeValue.endsWith("char*") then
-            TypeMapping(s"Ptr[CString]", effects = renderedElementType.effects)
-          else
-            TypeMapping(
-              s"Ptr[${renderedElementType.scalaRepr}]",
-              effects = renderedElementType.effects
-            )
-          end if
+          boundary.break(FluentErr.CannotRenderArrayType(ar))
+          // if typeValue.endsWith("gchar*") then
+          //   TypeMapping(s"Ptr[CString]", effects = renderedElementType.effects)
+          //     .withMassageIntoUnsafe(Massage.InferredCast)
+          // else if typeValue.endsWith("guchar") then
+          //   TypeMapping(s"Ptr[UByte]", effects = renderedElementType.effects)
+          //     .withMassageIntoUnsafe(Massage.InferredCast)
+          //     .withMassageFromUnsafe(Massage.InferredCast)
+          // else if typeValue.endsWith("guint8") then
+          //   TypeMapping(s"Ptr[guint8]", effects = renderedElementType.effects)
+          //     .withMassageIntoUnsafe(Massage.InferredCast)
+          //     .withMassageFromUnsafe(Massage.InferredCast)
+          // else if typeValue.endsWith("gint") then
+          //   TypeMapping(s"Ptr[Int]", effects = renderedElementType.effects)
+          //     .withMassageIntoUnsafe(Massage.InferredCast)
+          //     .withMassageFromUnsafe(Massage.InferredCast)
+          // else if typeValue.endsWith("char*") then
+          //   TypeMapping(s"Ptr[CString]", effects = renderedElementType.effects)
+          // else
+          //   TypeMapping(
+          //     s"Ptr[${renderedElementType.scalaRepr}]",
+          //     effects = renderedElementType.effects
+          //   )
+          // end if
       end match
 
   result.copy(scalaRepr = s"${result.scalaRepr} /* ${expectedRawType} */")

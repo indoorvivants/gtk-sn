@@ -4,12 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.FileChooser
-import sn.gnome.gtk4.fluent.FileChooserAction
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  FileChooser,
+  FileChooserAction,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkFileChooserWidget
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

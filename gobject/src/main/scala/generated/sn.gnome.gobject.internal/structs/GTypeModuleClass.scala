@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeModuleClass: _class: the parent class : loads the module and registers one or more types using g_type_module_register_type(). : unloads the module
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtypemodule.h
 */
 opaque type GTypeModuleClass = CStruct7[GObjectClass, CFuncPtr1[Ptr[Byte], _root_.sn.gnome.glib.internal.gboolean], CFuncPtr1[Ptr[Byte], Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit], CFuncPtr0[Unit]]
 

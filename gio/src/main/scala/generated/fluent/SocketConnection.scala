@@ -4,19 +4,18 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.IOStream
-import sn.gnome.gio.fluent.Socket
-import sn.gnome.gio.fluent.SocketAddress
-import sn.gnome.gio.fluent.SocketFamily
-import sn.gnome.gio.fluent.SocketType
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{
+  AsyncResult,
+  Cancellable,
+  IOStream,
+  Socket,
+  SocketAddress,
+  SocketFamily,
+  SocketType
+}
 import sn.gnome.gio.internal.GSocketConnection
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.internal.GType
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -70,26 +69,10 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     *
     * Use g_socket_connection_connect_finish() to retrieve the result.
     */
-  def connectAsync(
-      address: SocketAddress /* Some(Ptr[GSocketAddress]) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_socket_connection_connect_async(
-    this.raw.asInstanceOf[Ptr[GSocketConnection]],
-    address.getUnsafeRawPointer().asInstanceOf,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def connectAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -174,11 +157,12 @@ object SocketConnection:
       family: SocketFamily /* Some(GSocketFamily) */,
       `type`: SocketType /* Some(GSocketType) */,
       protocol_id: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): GType /* None */ = g_socket_connection_factory_lookup_type(
-    family.raw,
-    `type`.raw,
-    gint(protocol_id)
-  )
+  ): GType /* Some(_root_.sn.gnome.gobject.internal.GType) */ =
+    g_socket_connection_factory_lookup_type(
+      family.raw,
+      `type`.raw,
+      gint(protocol_id)
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -192,7 +176,7 @@ object SocketConnection:
       family: SocketFamily /* Some(GSocketFamily) */,
       `type`: SocketType /* Some(GSocketType) */,
       protocol: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ = g_socket_connection_factory_register_type(
+  ): Unit /* Some(Unit) */ = g_socket_connection_factory_register_type(
     g_type,
     family.raw,
     `type`.raw,

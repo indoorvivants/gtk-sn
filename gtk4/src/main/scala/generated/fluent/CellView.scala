@@ -5,19 +5,19 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Texture
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.CellArea
-import sn.gnome.gtk4.fluent.CellAreaContext
-import sn.gnome.gtk4.fluent.CellLayout
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Orientable
-import sn.gnome.gtk4.fluent.TreeModel
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  CellArea,
+  CellAreaContext,
+  CellLayout,
+  ConstraintTarget,
+  Orientable,
+  TreeModel,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkCellView
-import sn.gnome.gtk4.internal.GtkTreePath
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -57,8 +57,10 @@ class CellView(raw: Ptr[GtkCellView])
     * Returns a `GtkTreePath` referring to the currently displayed row. If no
     * row is currently displayed, %NULL is returned.
     */
-  def getDisplayedRow(): Ptr[GtkTreePath] /* None */ =
-    gtk_cell_view_get_displayed_row(this.raw.asInstanceOf[Ptr[GtkCellView]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  )
+  def getDisplayedRow__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -96,14 +98,10 @@ class CellView(raw: Ptr[GtkCellView])
     * may be a needed intermediate state if say, the model for the `GtkCellView`
     * becomes temporarily empty.
     */
-  def setDisplayedRow(
-      path: Option[Ptr[GtkTreePath] /* Some(Ptr[GtkTreePath]) */ ]
-  ): Unit /* None */ = gtk_cell_view_set_displayed_row(
-    this.raw.asInstanceOf[Ptr[GtkCellView]],
-    path
-      .map[Ptr[GtkTreePath]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
+  def setDisplayedRow__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

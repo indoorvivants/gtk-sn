@@ -4,14 +4,9 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Action
-import sn.gnome.gio.fluent.ActionGroup
-import sn.gnome.gio.fluent.ActionMap
-import sn.gnome.gio.internal.GActionEntry
+import sn.gnome.gio.fluent.{Action, ActionGroup, ActionMap}
 import sn.gnome.gio.internal.GSimpleActionGroup
 import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -31,20 +26,10 @@ class SimpleActionGroup(raw: Ptr[GSimpleActionGroup])
     * A convenience function for creating multiple #GSimpleAction instances and
     * adding them to the action group.
     */
-  def addEntries(
-      entries: Ptr[GActionEntry /* None */ ] /* Some(Ptr[GActionEntry]) */,
-      n_entries: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_simple_action_group_add_entries(
-    this.raw.asInstanceOf[Ptr[GSimpleActionGroup]],
-    entries,
-    gint(n_entries),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(ActionEntry), @type -> DataRecord(GActionEntry)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GActionEntry*)))"
   )
+  def addEntries__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

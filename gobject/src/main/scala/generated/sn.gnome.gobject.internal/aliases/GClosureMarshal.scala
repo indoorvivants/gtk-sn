@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GClosureMarshal: : the #GClosure to which the marshaller belongs
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gclosure.h
 */
 opaque type GClosureMarshal = CFuncPtr6[Ptr[GClosure], Ptr[GValue], _root_.sn.gnome.glib.internal.guint, Ptr[GValue], _root_.sn.gnome.glib.internal.gpointer, _root_.sn.gnome.glib.internal.gpointer, Unit]
 object GClosureMarshal:

@@ -4,14 +4,9 @@ import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.gobject.fluent.Object
-import sn.gnome.gobject.internal.GBindingFlags
+import sn.gnome.glib.internal.{gchar, gpointer}
+import sn.gnome.gobject.fluent.{BindingFlags, Object}
 import sn.gnome.gobject.internal.GBindingGroup
-import sn.gnome.gobject.internal.GBindingTransformFunc
-import sn.gnome.gobject.internal.GClosure
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -42,13 +37,13 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
       target: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       target_property: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: GBindingFlags /* Some(GBindingFlags) */
+      flags: BindingFlags /* Some(GBindingFlags) */
   )(using Zone): Unit /* None */ = g_binding_group_bind(
     this.raw.asInstanceOf[Ptr[GBindingGroup]],
     __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
     gpointer(target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
     __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
-    flags
+    flags.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -61,40 +56,10 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     *
     * See g_object_bind_property_full() for more information.
     */
-  def bindFull(
-      source_property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      target: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      target_property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: GBindingFlags /* Some(GBindingFlags) */,
-      transform_to: Option[
-        GBindingTransformFunc /* Some(GBindingTransformFunc) */
-      ],
-      transform_from: Option[
-        GBindingTransformFunc /* Some(GBindingTransformFunc) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      user_data_destroy: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  )(using Zone): Unit /* None */ = g_binding_group_bind_full(
-    this.raw.asInstanceOf[Ptr[GBindingGroup]],
-    __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
-    gpointer(target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
-    __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
-    flags,
-    transform_to
-      .map[GBindingTransformFunc](o => o)
-      .getOrElse(null.asInstanceOf[GBindingTransformFunc]),
-    transform_from
-      .map[GBindingTransformFunc](o => o)
-      .getOrElse(null.asInstanceOf[GBindingTransformFunc]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    user_data_destroy
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(BindingTransformFunc), @type -> DataRecord(GBindingTransformFunc)))"
   )
+  def bindFull__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -110,28 +75,10 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     *
     * See g_object_bind_property_with_closures() for more information.
     */
-  def bindWithClosures(
-      source_property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      target: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      target_property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: GBindingFlags /* Some(GBindingFlags) */,
-      transform_to: Option[Ptr[GClosure] /* Some(Ptr[GClosure]) */ ],
-      transform_from: Option[Ptr[GClosure] /* Some(Ptr[GClosure]) */ ]
-  )(using Zone): Unit /* None */ = g_binding_group_bind_with_closures(
-    this.raw.asInstanceOf[Ptr[GBindingGroup]],
-    __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
-    gpointer(target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
-    __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
-    flags,
-    transform_to
-      .map[Ptr[GClosure]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GClosure]]),
-    transform_from
-      .map[Ptr[GClosure]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GClosure]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
+  def bindWithClosures__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

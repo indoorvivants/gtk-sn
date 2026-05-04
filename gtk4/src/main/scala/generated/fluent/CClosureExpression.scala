@@ -30,6 +30,6 @@ object CClosureExpression:
   @annotation.compileTimeOnly(
     "Constructor new is weird: non NULL-terminated arrays require special handling"
   )
-  def apply() = ???
+  def `new`() = ???
 
 end CClosureExpression

@@ -5,35 +5,32 @@ import _root_.sn.gnome.gdkpixbuf.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdkpixbuf.fluent.Colorspace
-import sn.gnome.gdkpixbuf.fluent.InterpType
-import sn.gnome.gdkpixbuf.fluent.Pixbuf
-import sn.gnome.gdkpixbuf.fluent.PixbufRotation
+import sn.gnome.gdkpixbuf.fluent.{
+  Colorspace,
+  InterpType,
+  Pixbuf,
+  PixbufRotation
+}
 import sn.gnome.gdkpixbuf.internal.GdkPixbuf
-import sn.gnome.gdkpixbuf.internal.GdkPixbufDestroyNotify
-import sn.gnome.gdkpixbuf.internal.GdkPixbufFormat
-import sn.gnome.gdkpixbuf.internal.GdkPixbufSaveFunc
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.Icon
-import sn.gnome.gio.fluent.InputStream
-import sn.gnome.gio.fluent.LoadableIcon
-import sn.gnome.gio.fluent.OutputStream
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{
+  AsyncResult,
+  Cancellable,
+  Icon,
+  InputStream,
+  LoadableIcon,
+  OutputStream
+}
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GBytes
-import sn.gnome.glib.internal.GError
-import sn.gnome.glib.internal.GHashTable
-import sn.gnome.glib.internal.GSList
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gfloat
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.gsize
-import sn.gnome.glib.internal.guchar
-import sn.gnome.glib.internal.guint32
-import sn.gnome.glib.internal.guint8
+import sn.gnome.glib.internal.{
+  gboolean,
+  gchar,
+  gfloat,
+  gint,
+  gsize,
+  guchar,
+  guint32,
+  guint8
+}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -514,9 +511,10 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * attached to the `pixbuf` when it was loaded, or that may have been
     * attached by another function using [method@GdkPixbuf.Pixbuf.set_option].
     */
-  def getOptions(): Ptr[GHashTable] /* None */ = gdk_pixbuf_get_options(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
+  def getOptions__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -528,9 +526,10 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * Please see the section on [image data](class.Pixbuf.html#image-data) for
     * information about how the pixel data is stored in memory.
     */
-  def getPixels(): Ptr[UByte] /* None */ = gdk_pixbuf_get_pixels(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
-  ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(guchar*)))"
+  )
+  def getPixels__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -545,7 +544,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
   @annotation.compileTimeOnly(
     "Method get_pixels_with_length contains an OUT parameter, which is not supported yet"
   )
-  private def getPixelsWithLength__ = ???
+  def getPixelsWithLength__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -598,9 +597,10 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * This function allows skipping the implicit copy that must be made if
     * gdk_pixbuf_get_pixels() is called on a read-only pixbuf.
     */
-  def readPixelBytes(): Ptr[GBytes] /* None */ = gdk_pixbuf_read_pixel_bytes(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def readPixelBytes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -749,24 +749,10 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * parameter. When the ICO saver is given "x_hot" and "y_hot" parameters, it
     * produces a CUR instead of an ICO.
     */
-  inline def save(
-      filename: String | CString /* Some(CString) */,
-      `type`: String | CString /* Some(CString) */,
-      error: Option[Ptr[
-        Ptr[GError]
-      ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]) */ ],
-      args: Any*
-  )(using Zone): Boolean /* None */ = gdk_pixbuf_save(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-    __sn_extract_string(filename),
-    __sn_extract_string(`type`),
-    error
-      .map[Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]]
-      ),
-    args*
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
+  )
+  def save__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -787,7 +773,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
   @annotation.compileTimeOnly(
     "Method save_to_buffer contains an OUT parameter, which is not supported yet"
   )
-  private def saveToBuffer__ = ???
+  def saveToBuffer__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -801,7 +787,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
   @annotation.compileTimeOnly(
     "Method save_to_bufferv contains an OUT parameter, which is not supported yet"
   )
-  private def saveToBufferv__ = ???
+  def saveToBufferv__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -815,30 +801,10 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     *
     * See [method@GdkPixbuf.Pixbuf.save] for more details.
     */
-  inline def saveToCallback(
-      save_func: GdkPixbufSaveFunc /* Some(GdkPixbufSaveFunc) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      `type`: String | CString /* Some(CString) */,
-      error: Option[Ptr[
-        Ptr[GError]
-      ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]) */ ],
-      args: Any*
-  )(using Zone): Boolean /* None */ = gdk_pixbuf_save_to_callback(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-    save_func,
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    __sn_extract_string(`type`),
-    error
-      .map[Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]]
-      ),
-    args*
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PixbufSaveFunc), @type -> DataRecord(GdkPixbufSaveFunc)))"
+  )
+  def saveToCallback__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -851,31 +817,10 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     *
     * See [method@GdkPixbuf.Pixbuf.save_to_callback] for more details.
     */
-  def saveToCallbackv(
-      save_func: GdkPixbufSaveFunc /* Some(GdkPixbufSaveFunc) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      `type`: String | CString /* Some(CString) */,
-      option_keys: Option[Array[String] /* Some(Ptr[CString]) */ ],
-      option_values: Option[Array[String] /* Some(Ptr[CString]) */ ]
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_pixbuf_save_to_callbackv(
-      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-      save_func,
-      user_data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      __sn_extract_string(`type`),
-      option_keys
-        .map[Ptr[CString]](o => o.map(__sn_extract_string).atUnsafe(0))
-        .getOrElse(null.asInstanceOf[Ptr[CString]]),
-      option_values
-        .map[Ptr[CString]](o => o.map(__sn_extract_string).atUnsafe(0))
-        .getOrElse(null.asInstanceOf[Ptr[CString]]),
-      __errorPtr
-    ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PixbufSaveFunc), @type -> DataRecord(GdkPixbufSaveFunc)))"
   )
+  def saveToCallbackv__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -891,34 +836,10 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     *
     * The stream is not closed at the end of this call.
     */
-  inline def saveToStream(
-      stream: OutputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GOutputStream]) */,
-      `type`: String | CString /* Some(CString) */,
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      error: Option[Ptr[
-        Ptr[GError]
-      ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]) */ ],
-      args: Any*
-  )(using Zone): Boolean /* None */ = gdk_pixbuf_save_to_stream(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-    stream.getUnsafeRawPointer().asInstanceOf,
-    __sn_extract_string(`type`),
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    error
-      .map[Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]]
-      ),
-    args*
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
+  )
+  def saveToStream__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -933,41 +854,10 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * You can then call gdk_pixbuf_save_to_stream_finish() to get the result of
     * the operation.
     */
-  inline def saveToStreamAsync(
-      stream: OutputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GOutputStream]) */,
-      `type`: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      args: Any*
-  )(using Zone): Unit /* None */ = gdk_pixbuf_save_to_stream_async(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-    stream.getUnsafeRawPointer().asInstanceOf,
-    __sn_extract_string(`type`).asInstanceOf[Ptr[gchar]],
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    args*
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def saveToStreamAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1007,6 +897,24 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       __errorPtr
     ).value.!=(0)
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Saves `pixbuf` to an output stream asynchronously.
+    *
+    * For more details see gdk_pixbuf_save_to_streamv(), which is the
+    * synchronous version of this function.
+    *
+    * When the operation is finished, `callback` will be called in the main
+    * thread.
+    *
+    * You can then call gdk_pixbuf_save_to_stream_finish() to get the result of
+    * the operation.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+  )
+  def saveToStreamvAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1187,25 +1095,10 @@ object Pixbuf:
     * This is the `GBytes` variant of gdk_pixbuf_new_from_data(), useful for
     * language bindings.
     */
-  def fromBytes(
-      data: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
-      colorspace: Colorspace /* Some(GdkColorspace) */,
-      has_alpha: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      bits_per_sample: Int /* Some(CInt) */,
-      width: Int /* Some(CInt) */,
-      height: Int /* Some(CInt) */,
-      rowstride: Int /* Some(CInt) */
-  ): Pixbuf = new Pixbuf(
-    gdk_pixbuf_new_from_bytes(
-      data,
-      colorspace.raw,
-      gboolean(gint((if has_alpha == true then 1 else 0))),
-      bits_per_sample,
-      width,
-      height,
-      rowstride
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def new_from_bytes() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1221,37 +1114,10 @@ object Pixbuf:
     *
     * See also: [ctor@GdkPixbuf.Pixbuf.new_from_bytes]
     */
-  def fromData(
-      data: Ptr[UByte] /* Some(Ptr[_root_.sn.gnome.glib.internal.guchar]) */,
-      colorspace: Colorspace /* Some(GdkColorspace) */,
-      has_alpha: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      bits_per_sample: Int /* Some(CInt) */,
-      width: Int /* Some(CInt) */,
-      height: Int /* Some(CInt) */,
-      rowstride: Int /* Some(CInt) */,
-      destroy_fn: Option[
-        GdkPixbufDestroyNotify /* Some(GdkPixbufDestroyNotify) */
-      ],
-      destroy_fn_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Pixbuf = new Pixbuf(
-    gdk_pixbuf_new_from_data(
-      data.asInstanceOf,
-      colorspace.raw,
-      gboolean(gint((if has_alpha == true then 1 else 0))),
-      bits_per_sample,
-      width,
-      height,
-      rowstride,
-      destroy_fn
-        .map[GdkPixbufDestroyNotify](o => o)
-        .getOrElse(null.asInstanceOf[GdkPixbufDestroyNotify]),
-      destroy_fn_data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(const guchar*)))"
   )
+  def new_from_data() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1393,20 +1259,10 @@ object Pixbuf:
     * inline data located at runtime, you could have corrupt inline data in
     * addition.
     */
-  def fromInline(
-      data_length: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      data: Ptr[guint8] /* Some(Ptr[_root_.sn.gnome.glib.internal.guint8]) */,
-      copy_pixels: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): GResult[Pixbuf] = GResult.wrap(__errorPtr =>
-    new Pixbuf(
-      gdk_pixbuf_new_from_inline(
-        gint(data_length),
-        data.asInstanceOf,
-        gboolean(gint((if copy_pixels == true then 1 else 0))),
-        __errorPtr
-      ).asInstanceOf
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(const guint8*)))"
   )
+  def new_from_inline() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1573,9 +1429,10 @@ object Pixbuf:
     * This data is commonly the result of including an XPM file into a program's
     * C source.
     */
-  def fromXpmData(data: Ptr[CString] /* Some(Ptr[CString]) */ )(using
-      Zone
-  ): Pixbuf = new Pixbuf(gdk_pixbuf_new_from_xpm_data(data).asInstanceOf)
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+  )
+  def new_from_xpm_data() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1591,28 +1448,23 @@ object Pixbuf:
       bits_per_sample: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Int /* None */ = gdk_pixbuf_calculate_rowstride(
-    colorspace.raw,
-    gboolean(gint((if has_alpha == true then 1 else 0))),
-    bits_per_sample,
-    width,
-    height
-  ).value
+  ): Int /* Some(_root_.sn.gnome.glib.internal.gint) */ =
+    gdk_pixbuf_calculate_rowstride(
+      colorspace.raw,
+      gboolean(gint((if has_alpha == true then 1 else 0))),
+      bits_per_sample,
+      width,
+      height
+    ).value
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Parses an image file far enough to determine its format and size.
     */
-  def getFileInfo(
-      filename: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      width: Ptr[Int] /* Some(Ptr[_root_.sn.gnome.glib.internal.gint]) */,
-      height: Ptr[Int] /* Some(Ptr[_root_.sn.gnome.glib.internal.gint]) */
-  )(using Zone): Ptr[GdkPixbufFormat] /* None */ = gdk_pixbuf_get_file_info(
-    __sn_extract_string(filename).asInstanceOf[Ptr[gchar]],
-    width.asInstanceOf,
-    height.asInstanceOf
+  @annotation.compileTimeOnly(
+    "Function get_file_info contains an OUT parameter, which is not supported yet"
   )
+  def getFileInfo() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1626,61 +1478,30 @@ object Pixbuf:
     * thread. You can then call gdk_pixbuf_get_file_info_finish() to get the
     * result of the operation.
     */
-  def getFileInfoAsync(
-      filename: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = gdk_pixbuf_get_file_info_async(
-    __sn_extract_string(filename).asInstanceOf[Ptr[gchar]],
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def getFileInfoAsync() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes an asynchronous pixbuf parsing operation started with
     * gdk_pixbuf_get_file_info_async().
     */
-  def getFileInfoFinish(
-      async_result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */,
-      width: Ptr[Int] /* Some(Ptr[_root_.sn.gnome.glib.internal.gint]) */,
-      height: Ptr[Int] /* Some(Ptr[_root_.sn.gnome.glib.internal.gint]) */
-  ): GResult[Ptr[GdkPixbufFormat] /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_pixbuf_get_file_info_finish(
-      async_result.getUnsafeRawPointer().asInstanceOf,
-      width.asInstanceOf,
-      height.asInstanceOf,
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Function get_file_info_finish contains an OUT parameter, which is not supported yet"
   )
+  def getFileInfoFinish() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Obtains the available information about the image formats supported by
     * GdkPixbuf.
     */
-  def getFormats(): Ptr[GSList] /* None */ = gdk_pixbuf_get_formats()
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PixbufFormat))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+  )
+  def getFormats() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1698,11 +1519,12 @@ object Pixbuf:
     * with the application in a separate directory from the OS or runtime-
     * provided modules.
     */
-  def initModules(
-      path: String | CString /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_pixbuf_init_modules(__sn_extract_string(path), __errorPtr).value.!=(0)
-  )
+  def initModules(path: String | CString /* Some(CString) */ )(using
+      Zone
+  ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
+    GResult.wrap(__errorPtr =>
+      gdk_pixbuf_init_modules(__sn_extract_string(path), __errorPtr).value.!=(0)
+    )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1716,35 +1538,10 @@ object Pixbuf:
     * thread. You can then call gdk_pixbuf_new_from_stream_finish() to get the
     * result of the operation.
     */
-  def newFromStreamAsync(
-      stream: InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gdk_pixbuf_new_from_stream_async(
-    stream.getUnsafeRawPointer().asInstanceOf,
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def newFromStreamAsync() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1758,41 +1555,10 @@ object Pixbuf:
     * thread. You can then call gdk_pixbuf_new_from_stream_finish() to get the
     * result of the operation.
     */
-  def newFromStreamAtScaleAsync(
-      stream: InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
-      width: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      height: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      preserve_aspect_ratio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gdk_pixbuf_new_from_stream_at_scale_async(
-    stream.getUnsafeRawPointer().asInstanceOf,
-    gint(width),
-    gint(height),
-    gboolean(gint((if preserve_aspect_ratio == true then 1 else 0))),
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def newFromStreamAtScaleAsync() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1801,12 +1567,13 @@ object Pixbuf:
     */
   def saveToStreamFinish(
       async_result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_pixbuf_save_to_stream_finish(
-      async_result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
+    GResult.wrap(__errorPtr =>
+      gdk_pixbuf_save_to_stream_finish(
+        async_result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

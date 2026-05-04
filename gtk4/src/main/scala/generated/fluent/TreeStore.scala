@@ -4,17 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gobject.internal.GType
-import sn.gnome.gobject.internal.GValue
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.TreeDragDest
-import sn.gnome.gtk4.fluent.TreeDragSource
-import sn.gnome.gtk4.fluent.TreeModel
-import sn.gnome.gtk4.fluent.TreeSortable
-import sn.gnome.gtk4.internal.GtkTreeIter
+import sn.gnome.gtk4.fluent.{
+  Buildable,
+  TreeDragDest,
+  TreeDragSource,
+  TreeModel,
+  TreeSortable
+}
 import sn.gnome.gtk4.internal.GtkTreeStore
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -75,7 +72,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
   @annotation.compileTimeOnly(
     "Method append contains an OUT parameter, which is not supported yet"
   )
-  private def append__ = ???
+  def append__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -102,7 +99,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
   @annotation.compileTimeOnly(
     "Method insert contains an OUT parameter, which is not supported yet"
   )
-  private def insert__ = ???
+  def insert__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -124,7 +121,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
   @annotation.compileTimeOnly(
     "Method insert_after contains an OUT parameter, which is not supported yet"
   )
-  private def insertAfter__ = ???
+  def insertAfter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -145,7 +142,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
   @annotation.compileTimeOnly(
     "Method insert_before contains an OUT parameter, which is not supported yet"
   )
-  private def insertBefore__ = ???
+  def insertBefore__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -179,7 +176,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
   @annotation.compileTimeOnly(
     "Method insert_with_values contains an OUT parameter, which is not supported yet"
   )
-  private def insertWithValues__ = ???
+  def insertWithValues__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -191,20 +188,16 @@ class TreeStore(raw: Ptr[GtkTreeStore])
   @annotation.compileTimeOnly(
     "Method insert_with_valuesv contains an OUT parameter, which is not supported yet"
   )
-  private def insertWithValuesv__ = ???
+  def insertWithValuesv__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Checks if @iter is an ancestor of @descendant.
     */
-  def isAncestor(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      descendant: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Boolean /* None */ = gtk_tree_store_is_ancestor(
-    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
-    iter,
-    descendant
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+  )
+  def isAncestor__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -213,10 +206,10 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * The depth will be 0 for anything on the root level, 1 for anything down a
     * level, etc.
     */
-  def iterDepth(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Int /* None */ =
-    gtk_tree_store_iter_depth(this.raw.asInstanceOf[Ptr[GtkTreeStore]], iter)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+  )
+  def iterDepth__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -224,12 +217,10 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     *
     * This function is slow. Only use it for debugging and/or testing purposes.
     */
-  def iterIsValid(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Boolean /* None */ = gtk_tree_store_iter_is_valid(
-    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
-    iter
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+  )
+  def iterIsValid__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -242,16 +233,10 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     *
     * If @position is %NULL, @iter will be moved to the start of the level.
     */
-  def moveAfter(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      position: Option[Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */ ]
-  ): Unit /* None */ = gtk_tree_store_move_after(
-    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
-    iter,
-    position
-      .map[Ptr[GtkTreeIter]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeIter]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def moveAfter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -264,16 +249,10 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     *
     * If @position is %NULL, @iter will be moved to the end of the level.
     */
-  def moveBefore(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      position: Option[Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */ ]
-  ): Unit /* None */ = gtk_tree_store_move_before(
-    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
-    iter,
-    position
-      .map[Ptr[GtkTreeIter]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeIter]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def moveBefore__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -288,7 +267,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
   @annotation.compileTimeOnly(
     "Method prepend contains an OUT parameter, which is not supported yet"
   )
-  private def prepend__ = ???
+  def prepend__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -297,11 +276,10 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * After being removed, @iter is set to the next valid row at that level, or
     * invalidated if it previously pointed to the last one.
     */
-  def remove(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Boolean /* None */ =
-    gtk_tree_store_remove(this.raw.asInstanceOf[Ptr[GtkTreeStore]], iter).value
-      .!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+  )
+  def remove__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -310,16 +288,10 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     *
     * Note that this function only works with unsorted stores.
     */
-  def reorder(
-      parent: Option[Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */ ],
-      new_order: Ptr[Int /* None */ ] /* Some(Ptr[CInt]) */
-  ): Unit /* None */ = gtk_tree_store_reorder(
-    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
-    parent
-      .map[Ptr[GtkTreeIter]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeIter]]),
-    new_order
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def reorder__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -340,11 +312,10 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * The value will be referenced by the store if it is a `G_TYPE_OBJECT`, and
     * it will be copied if it is a `G_TYPE_STRING` or `G_TYPE_BOXED`.
     */
-  inline def set(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      args: Any*
-  ): Unit /* None */ =
-    gtk_tree_store_set(this.raw.asInstanceOf[Ptr[GtkTreeStore]], iter, args*)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+  )
+  def set__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -357,29 +328,19 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * This functions cannot be called after a row has been added, or a method on
     * the `GtkTreeModel` interface is called on the tree store.
     */
-  def setColumnTypes(
-      n_columns: Int /* Some(CInt) */,
-      types: Ptr[
-        GType /* None */
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GType]) */
-  ): Unit /* None */ = gtk_tree_store_set_column_types(
-    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
-    n_columns,
-    types
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(GType*)))"
   )
+  def setColumnTypes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * A version of gtk_tree_store_set() using `va_list`.
     */
-  def setValist(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      var_args: CVarArgList /* Some(va_list) */
-  ): Unit /* None */ = gtk_tree_store_set_valist(
-    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
-    iter,
-    var_args
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def setValist__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -387,18 +348,10 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     *
     * The type of @value must be convertible to the type of the column.
     */
-  def setValue(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      column: Int /* Some(CInt) */,
-      value: Ptr[
-        GValue
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  ): Unit /* None */ = gtk_tree_store_set_value(
-    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
-    iter,
-    column,
-    value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def setValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -408,20 +361,10 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * This function is mainly intended for language bindings or in case the
     * number of columns to change is not known until run-time.
     */
-  def setValuesv(
-      iter: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      columns: Ptr[Int /* None */ ] /* Some(Ptr[CInt]) */,
-      values: Ptr[
-        GValue /* None */
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
-      n_values: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_tree_store_set_valuesv(
-    this.raw.asInstanceOf[Ptr[GtkTreeStore]],
-    iter,
-    columns,
-    values,
-    n_values
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
+  def setValuesv__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -429,11 +372,10 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     *
     * Note that this function only works with unsorted stores.
     */
-  def swap(
-      a: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */,
-      b: Ptr[GtkTreeIter] /* Some(Ptr[GtkTreeIter]) */
-  ): Unit /* None */ =
-    gtk_tree_store_swap(this.raw.asInstanceOf[Ptr[GtkTreeStore]], a, b)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+  )
+  def swap__ = ???
 
 end TreeStore
 
@@ -466,12 +408,9 @@ object TreeStore:
     *
     * This constructor is meant for language bindings.
     */
-  def newv(
-      n_columns: Int /* Some(CInt) */,
-      types: Ptr[
-        GType /* None */
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GType]) */
-  ): TreeStore = new TreeStore(
-    gtk_tree_store_newv(n_columns, types).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(GType*)))"
   )
+  def newv() = ???
+
 end TreeStore

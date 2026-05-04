@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GInstanceInitFunc: : The instance to initialize _class: (type GObject.TypeClass): The class of the type the instance is created for
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GInstanceInitFunc = CFuncPtr2[Ptr[GTypeInstance], _root_.sn.gnome.glib.internal.gpointer, Unit]
 object GInstanceInitFunc:

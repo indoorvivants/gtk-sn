@@ -4,15 +4,16 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Adjustment
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.CornerType
-import sn.gnome.gtk4.fluent.PolicyType
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Adjustment,
+  Buildable,
+  ConstraintTarget,
+  CornerType,
+  PolicyType,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkScrolledWindow
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -212,7 +213,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
   @annotation.compileTimeOnly(
     "Method get_policy contains an OUT parameter, which is not supported yet"
   )
-  private def getPolicy__ = ???
+  def getPolicy__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

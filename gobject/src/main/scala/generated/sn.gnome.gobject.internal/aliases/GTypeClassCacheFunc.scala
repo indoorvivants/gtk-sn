@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeClassCacheFunc: _data: data that was given to the g_type_add_class_cache_func() call _class: (type GObject.TypeClass): The #GTypeClass structure which is unreferenced
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GTypeClassCacheFunc = CFuncPtr2[_root_.sn.gnome.glib.internal.gpointer, Ptr[GTypeClass], _root_.sn.gnome.glib.internal.gboolean]
 object GTypeClassCacheFunc:

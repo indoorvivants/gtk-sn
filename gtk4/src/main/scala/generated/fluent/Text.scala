@@ -6,22 +6,18 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.MenuModel
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint16
-import sn.gnome.glib.internal.guint32
-import sn.gnome.glib.internal.gunichar
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Editable
-import sn.gnome.gtk4.fluent.EntryBuffer
-import sn.gnome.gtk4.fluent.InputPurpose
-import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.internal.GtkInputHints
+import sn.gnome.glib.internal.{gboolean, gint, guint16, guint32, gunichar}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  Editable,
+  EntryBuffer,
+  InputHints,
+  InputPurpose,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkText
-import sn.gnome.pango.internal.PangoAttrList
-import sn.gnome.pango.internal.PangoTabArray
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -112,7 +108,7 @@ class Text(raw: Ptr[GtkText])
   @annotation.compileTimeOnly(
     "Method compute_cursor_extents contains an OUT parameter, which is not supported yet"
   )
-  private def computeCursorExtents__ = ???
+  def computeCursorExtents__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -131,9 +127,10 @@ class Text(raw: Ptr[GtkText])
     *
     * See [method@Gtk.Text.set_attributes].
     */
-  def getAttributes(): Ptr[PangoAttrList] /* None */ = gtk_text_get_attributes(
-    this.raw.asInstanceOf[Ptr[GtkText]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
+  def getAttributes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -166,8 +163,8 @@ class Text(raw: Ptr[GtkText])
     *
     * Gets the input hints of the `GtkText`.
     */
-  def getInputHints(): GtkInputHints /* None */ = gtk_text_get_input_hints(
-    this.raw.asInstanceOf[Ptr[GtkText]]
+  def getInputHints(): InputHints /* None */ = InputHints.fromRaw(
+    gtk_text_get_input_hints(this.raw.asInstanceOf[Ptr[GtkText]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -240,9 +237,10 @@ class Text(raw: Ptr[GtkText])
     *
     * See [method@Gtk.Text.set_tabs].
     */
-  def getTabs(): Ptr[PangoTabArray] /* None */ = gtk_text_get_tabs(
-    this.raw.asInstanceOf[Ptr[GtkText]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
+  def getTabs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -304,18 +302,10 @@ class Text(raw: Ptr[GtkText])
     *
     * Sets attributes that are applied to the text.
     */
-  def setAttributes(
-      attrs: Option[Ptr[
-        PangoAttrList
-      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]) */ ]
-  ): Unit /* None */ = gtk_text_set_attributes(
-    this.raw.asInstanceOf[Ptr[GtkText]],
-    attrs
-      .map[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
+  def setAttributes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -366,9 +356,9 @@ class Text(raw: Ptr[GtkText])
     * Sets input hints that allow input methods to fine-tune their behaviour.
     */
   def setInputHints(
-      hints: GtkInputHints /* Some(GtkInputHints) */
+      hints: InputHints /* Some(GtkInputHints) */
   ): Unit /* None */ =
-    gtk_text_set_input_hints(this.raw.asInstanceOf[Ptr[GtkText]], hints)
+    gtk_text_set_input_hints(this.raw.asInstanceOf[Ptr[GtkText]], hints.raw)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -452,18 +442,10 @@ class Text(raw: Ptr[GtkText])
     *
     * Sets tabstops that are applied to the text.
     */
-  def setTabs(
-      tabs: Option[Ptr[
-        PangoTabArray
-      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]) */ ]
-  ): Unit /* None */ = gtk_text_set_tabs(
-    this.raw.asInstanceOf[Ptr[GtkText]],
-    tabs
-      .map[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
+  def setTabs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

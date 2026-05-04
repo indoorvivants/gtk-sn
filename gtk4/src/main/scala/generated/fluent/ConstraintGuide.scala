@@ -5,8 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.ConstraintStrength
-import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.{ConstraintStrength, ConstraintTarget}
 import sn.gnome.gtk4.internal.GtkConstraintGuide
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -36,7 +35,7 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
   @annotation.compileTimeOnly(
     "Method get_max_size contains an OUT parameter, which is not supported yet"
   )
-  private def getMaxSize__ = ???
+  def getMaxSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -45,7 +44,7 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
   @annotation.compileTimeOnly(
     "Method get_min_size contains an OUT parameter, which is not supported yet"
   )
-  private def getMinSize__ = ???
+  def getMinSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -64,7 +63,7 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
   @annotation.compileTimeOnly(
     "Method get_nat_size contains an OUT parameter, which is not supported yet"
   )
-  private def getNatSize__ = ???
+  def getNatSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

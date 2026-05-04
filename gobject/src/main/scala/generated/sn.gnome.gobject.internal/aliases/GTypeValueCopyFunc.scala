@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypeValueCopyFunc: _value: the value to copy
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GTypeValueCopyFunc = CFuncPtr2[Ptr[GValue], Ptr[GValue], Unit]
 object GTypeValueCopyFunc:

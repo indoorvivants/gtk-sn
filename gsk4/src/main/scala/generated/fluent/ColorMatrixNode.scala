@@ -4,8 +4,6 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.graphene.internal.graphene_matrix_t
-import sn.gnome.graphene.internal.graphene_vec4_t
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskColorMatrixNode
 
@@ -32,19 +30,19 @@ class ColorMatrixNode(raw: Ptr[GskColorMatrixNode])
     *
     * Retrieves the color matrix used by the @node.
     */
-  def getColorMatrix(): Ptr[graphene_matrix_t] /* None */ =
-    gsk_color_matrix_node_get_color_matrix(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
+  )
+  def getColorMatrix__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Retrieves the color offset used by the @node.
     */
-  def getColorOffset(): Ptr[graphene_vec4_t] /* None */ =
-    gsk_color_matrix_node_get_color_offset(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Vec4), @type -> DataRecord(const graphene_vec4_t*)))"
+  )
+  def getColorOffset__ = ???
 
 end ColorMatrixNode
 
@@ -61,19 +59,9 @@ object ColorMatrixNode:
     * for every pixel. The transformation operates on unpremultiplied colors,
     * with color components ordered R, G, B, A.
     */
-  def apply(
-      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      color_matrix: Ptr[
-        graphene_matrix_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_matrix_t]) */,
-      color_offset: Ptr[
-        graphene_vec4_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec4_t]) */
-  ): ColorMatrixNode = new ColorMatrixNode(
-    gsk_color_matrix_node_new(
-      child.getUnsafeRawPointer().asInstanceOf,
-      color_matrix,
-      color_offset
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
   )
+  def `new`() = ???
+
 end ColorMatrixNode

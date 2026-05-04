@@ -5,21 +5,19 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.ListBase
-import sn.gnome.gtk4.fluent.ListItemFactory
-import sn.gnome.gtk4.fluent.ListTabBehavior
-import sn.gnome.gtk4.fluent.Orientable
-import sn.gnome.gtk4.fluent.Scrollable
-import sn.gnome.gtk4.fluent.SelectionModel
+import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  ListBase,
+  ListItemFactory,
+  ListTabBehavior,
+  Orientable,
+  Scrollable,
+  SelectionModel
+}
 import sn.gnome.gtk4.internal.GtkGridView
-import sn.gnome.gtk4.internal.GtkListScrollFlags
-import sn.gnome.gtk4.internal.GtkScrollInfo
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -141,18 +139,10 @@ class GridView(raw: Ptr[GtkGridView])
     * This function works no matter if the gridview is shown or focused. If it
     * isn't, then the changes will take effect once that happens.
     */
-  def scrollTo(
-      pos: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      flags: GtkListScrollFlags /* Some(GtkListScrollFlags) */,
-      scroll: Option[Ptr[GtkScrollInfo] /* Some(Ptr[GtkScrollInfo]) */ ]
-  ): Unit /* None */ = gtk_grid_view_scroll_to(
-    this.raw.asInstanceOf[Ptr[GtkGridView]],
-    guint(pos),
-    flags,
-    scroll
-      .map[Ptr[GtkScrollInfo]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[GtkScrollInfo]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
   )
+  def scrollTo__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

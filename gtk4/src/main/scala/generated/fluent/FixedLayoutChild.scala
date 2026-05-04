@@ -4,7 +4,6 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gsk4.internal.GskTransform
 import sn.gnome.gtk4.fluent.LayoutChild
 import sn.gnome.gtk4.internal.GtkFixedLayoutChild
 
@@ -21,22 +20,18 @@ class FixedLayoutChild(raw: Ptr[GtkFixedLayoutChild])
     *
     * Retrieves the transformation of the child.
     */
-  def getTransform(): Ptr[GskTransform] /* None */ =
-    gtk_fixed_layout_child_get_transform(
-      this.raw.asInstanceOf[Ptr[GtkFixedLayoutChild]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
+  )
+  def getTransform__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the transformation of the child of a `GtkFixedLayout`.
     */
-  def setTransform(
-      transform: Ptr[
-        GskTransform
-      ] /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]) */
-  ): Unit /* None */ = gtk_fixed_layout_child_set_transform(
-    this.raw.asInstanceOf[Ptr[GtkFixedLayoutChild]],
-    transform
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
+  def setTransform__ = ???
 
 end FixedLayoutChild

@@ -5,7 +5,6 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gdk4.internal.GdkRectangle
 import sn.gnome.gio.fluent.Icon
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Widget
@@ -154,12 +153,10 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
     * functions for this: gtk_tree_view_set_tooltip_row() and
     * gtk_tree_view_set_tooltip_cell().
     */
-  def setTipArea(
-      rect: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */
-  ): Unit /* None */ =
-    gtk_tooltip_set_tip_area(this.raw.asInstanceOf[Ptr[GtkTooltip]], rect)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+  )
+  def setTipArea__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

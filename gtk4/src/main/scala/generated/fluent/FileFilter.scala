@@ -4,9 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.Filter
+import sn.gnome.gtk4.fluent.{Buildable, Filter}
 import sn.gnome.gtk4.internal.GtkFileFilter
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -115,6 +113,19 @@ class FileFilter(raw: Ptr[GtkFileFilter])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
+    * Gets the attributes that need to be filled in for the `GFileInfo` passed
+    * to this filter.
+    *
+    * This function will not typically be used by applications; it is intended
+    * principally for use in the implementation of `GtkFileChooser`.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+  )
+  def getAttributes__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
     * Gets the human-readable name for the filter.
     *
     * See [method@Gtk.FileFilter.set_name].
@@ -145,9 +156,10 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     *
     * Serialize a file filter to an `a{sv}` variant.
     */
-  def toGvariant(): Ptr[GVariant] /* None */ = gtk_file_filter_to_gvariant(
-    this.raw.asInstanceOf[Ptr[GtkFileFilter]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def toGvariant__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -184,11 +196,9 @@ object FileFilter:
     * The variant must be in the format produced by
     * [method@Gtk.FileFilter.to_gvariant].
     */
-  def fromGvariant(
-      variant: Ptr[
-        GVariant
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-  ): FileFilter = new FileFilter(
-    gtk_file_filter_new_from_gvariant(variant).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def new_from_gvariant() = ???
+
 end FileFilter

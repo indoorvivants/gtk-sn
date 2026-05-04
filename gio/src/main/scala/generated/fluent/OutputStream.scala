@@ -5,20 +5,15 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.InputStream
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{
+  AsyncResult,
+  Cancellable,
+  InputStream,
+  OutputStreamSpliceFlags
+}
 import sn.gnome.gio.internal.GOutputStream
-import sn.gnome.gio.internal.GOutputStreamSpliceFlags
-import sn.gnome.gio.internal.GOutputVector
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GBytes
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.gsize
-import sn.gnome.glib.internal.gssize
+import sn.gnome.glib.internal.{gboolean, gint, gssize}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -105,26 +100,10 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * implement asynchronicity, so they are optional for inheriting classes.
     * However, if you override one you must override all.
     */
-  def closeAsync(
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_output_stream_close_async(
-    this.raw.asInstanceOf[Ptr[GOutputStream]],
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def closeAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -173,26 +152,10 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * When the operation is finished @callback will be called. You can then call
     * g_output_stream_flush_finish() to get the result of the operation.
     */
-  def flushAsync(
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_output_stream_flush_async(
-    this.raw.asInstanceOf[Ptr[GOutputStream]],
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def flushAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -251,7 +214,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method printf contains an OUT parameter, which is not supported yet"
   )
-  private def printf__ = ???
+  def printf__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -272,13 +235,13 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     */
   def splice(
       source: InputStream /* Some(Ptr[GInputStream]) */,
-      flags: GOutputStreamSpliceFlags /* Some(GOutputStreamSpliceFlags) */,
+      flags: OutputStreamSpliceFlags /* Some(GOutputStreamSpliceFlags) */,
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_output_stream_splice(
       this.raw.asInstanceOf[Ptr[GOutputStream]],
       source.getUnsafeRawPointer().asInstanceOf,
-      flags,
+      flags.raw,
       cancellable
         .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -295,30 +258,10 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * For the synchronous, blocking version of this function, see
     * g_output_stream_splice().
     */
-  def spliceAsync(
-      source: InputStream /* Some(Ptr[GInputStream]) */,
-      flags: GOutputStreamSpliceFlags /* Some(GOutputStreamSpliceFlags) */,
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_output_stream_splice_async(
-    this.raw.asInstanceOf[Ptr[GOutputStream]],
-    source.getUnsafeRawPointer().asInstanceOf,
-    flags,
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def spliceAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -351,7 +294,36 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method vprintf contains an OUT parameter, which is not supported yet"
   )
-  private def vprintf__ = ???
+  def vprintf__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Tries to write @count bytes from @buffer into the stream. Will block
+    * during the operation.
+    *
+    * If count is 0, returns 0 and does nothing. A value of @count larger than
+    * %G_MAXSSIZE will cause a %G_IO_ERROR_INVALID_ARGUMENT error.
+    *
+    * On success, the number of bytes written to the stream is returned. It is
+    * not an error if this is not the same as the requested size, as it can
+    * happen e.g. on a partial I/O error, or if there is not enough storage in
+    * the stream. All writes block until at least one byte is written or an
+    * error occurs; 0 is never returned (unless
+    * @count
+    *   is 0).
+    *
+    * If @cancellable is not %NULL, then the operation can be cancelled by
+    * triggering the cancellable object from another thread. If the operation
+    * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned. If an
+    * operation was partially finished when the operation was cancelled the
+    * partial result will be returned, without an error.
+    *
+    * On error -1 is returned and @error is set accordingly.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))"
+  )
+  def write__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -378,7 +350,30 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method write_all contains an OUT parameter, which is not supported yet"
   )
-  private def writeAll__ = ???
+  def writeAll__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Request an asynchronous write of @count bytes from @buffer into the
+    * stream. When the operation is finished @callback will be called. You can
+    * then call g_output_stream_write_all_finish() to get the result of the
+    * operation.
+    *
+    * This is the asynchronous version of g_output_stream_write_all().
+    *
+    * Call g_output_stream_write_all_finish() to collect the result.
+    *
+    * Any outstanding I/O request with higher priority (lower numerical value)
+    * will be executed before an outstanding request with lower priority.
+    * Default priority is %G_PRIORITY_DEFAULT.
+    *
+    * Note that no copy of @buffer will be made, so it must stay valid until @callback
+    * is called.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))"
+  )
+  def writeAllAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -396,7 +391,51 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method write_all_finish contains an OUT parameter, which is not supported yet"
   )
-  private def writeAllFinish__ = ???
+  def writeAllFinish__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Request an asynchronous write of @count bytes from @buffer into the
+    * stream. When the operation is finished @callback will be called. You can
+    * then call g_output_stream_write_finish() to get the result of the
+    * operation.
+    *
+    * During an async request no other sync and async calls are allowed, and
+    * will result in %G_IO_ERROR_PENDING errors.
+    *
+    * A value of @count larger than %G_MAXSSIZE will cause a
+    * %G_IO_ERROR_INVALID_ARGUMENT error.
+    *
+    * On success, the number of bytes written will be passed to the
+    * @callback.
+    *   It is not an error if this is not the same as the requested size, as it
+    *   can happen e.g. on a partial I/O error, but generally we try to write as
+    *   many bytes as requested.
+    *
+    * You are guaranteed that this method will never fail with
+    * %G_IO_ERROR_WOULD_BLOCK - if @stream can't accept more data, the method
+    * will just wait until this changes.
+    *
+    * Any outstanding I/O request with higher priority (lower numerical value)
+    * will be executed before an outstanding request with lower priority.
+    * Default priority is %G_PRIORITY_DEFAULT.
+    *
+    * The asynchronous methods have a default fallback that uses threads to
+    * implement asynchronicity, so they are optional for inheriting classes.
+    * However, if you override one you must override all.
+    *
+    * For the synchronous, blocking version of this function, see
+    * g_output_stream_write().
+    *
+    * Note that no copy of @buffer will be made, so it must stay valid until @callback
+    * is called. See g_output_stream_write_bytes_async() for a #GBytes version
+    * that will automatically hold a reference to the contents (without copying)
+    * for the duration of the call.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))"
+  )
+  def writeAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -411,19 +450,10 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * using g_bytes_new_from_bytes(). Passing the same #GBytes instance multiple
     * times potentially can result in duplicated data in the output stream.
     */
-  def writeBytes(
-      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_output_stream_write_bytes(
-      this.raw.asInstanceOf[Ptr[GOutputStream]],
-      bytes,
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def writeBytes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -440,28 +470,10 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * For the synchronous, blocking version of this function, see
     * g_output_stream_write_bytes().
     */
-  def writeBytesAsync(
-      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_output_stream_write_bytes_async(
-    this.raw.asInstanceOf[Ptr[GOutputStream]],
-    bytes,
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def writeBytesAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -521,7 +533,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method writev contains an OUT parameter, which is not supported yet"
   )
-  private def writev__ = ???
+  def writev__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -552,7 +564,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method writev_all contains an OUT parameter, which is not supported yet"
   )
-  private def writevAll__ = ???
+  def writevAll__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -573,30 +585,10 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * is called. The content of the individual elements of @vectors might be
     * changed by this function.
     */
-  def writevAllAsync(
-      vectors: Ptr[GOutputVector /* None */ ] /* Some(Ptr[GOutputVector]) */,
-      n_vectors: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_output_stream_writev_all_async(
-    this.raw.asInstanceOf[Ptr[GOutputStream]],
-    vectors,
-    gsize(n_vectors),
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(OutputVector), @type -> DataRecord(GOutputVector)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GOutputVector*)))"
   )
+  def writevAllAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -614,7 +606,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method writev_all_finish contains an OUT parameter, which is not supported yet"
   )
-  private def writevAllFinish__ = ???
+  def writevAllFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -650,30 +642,10 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * Note that no copy of @vectors will be made, so it must stay valid until @callback
     * is called.
     */
-  def writevAsync(
-      vectors: Ptr[GOutputVector /* None */ ] /* Some(Ptr[GOutputVector]) */,
-      n_vectors: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_output_stream_writev_async(
-    this.raw.asInstanceOf[Ptr[GOutputStream]],
-    vectors,
-    gsize(n_vectors),
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(OutputVector), @type -> DataRecord(GOutputVector)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GOutputVector*)))"
   )
+  def writevAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -682,6 +654,6 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method writev_finish contains an OUT parameter, which is not supported yet"
   )
-  private def writevFinish__ = ???
+  def writevFinish__ = ???
 
 end OutputStream

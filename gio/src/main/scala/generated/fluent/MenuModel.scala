@@ -4,15 +4,9 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.MenuAttributeIter
-import sn.gnome.gio.fluent.MenuLinkIter
-import sn.gnome.gio.fluent.MenuModel
+import sn.gnome.gio.fluent.{MenuAttributeIter, MenuLinkIter, MenuModel}
 import sn.gnome.gio.internal.GMenuModel
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.GVariantType
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -179,24 +173,10 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     * If the attribute does not exist, or does not match the expected type then
     * %NULL is returned.
     */
-  def getItemAttributeValue(
-      item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      attribute: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      expected_type: Option[Ptr[
-        GVariantType
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */ ]
-  )(using Zone): Ptr[GVariant] /* None */ =
-    g_menu_model_get_item_attribute_value(
-      this.raw.asInstanceOf[Ptr[GMenuModel]],
-      gint(item_index),
-      __sn_extract_string(attribute).asInstanceOf[Ptr[gchar]],
-      expected_type
-        .map[Ptr[_root_.sn.gnome.glib.internal.GVariantType]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariantType]]
-        )
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
+  )
+  def getItemAttributeValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

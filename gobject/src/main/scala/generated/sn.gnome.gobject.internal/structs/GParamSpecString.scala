@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GParamSpecString: _instance: private #GParamSpec portion _value: default value for the property specified _first: a string containing the allowed values for the first byte _nth: a string containing the allowed values for the subsequent bytes : the replacement byte for bytes which don't match _first or _nth. _fold_if_empty: replace empty string by %NULL _non_null: replace %NULL strings by an empty string
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparamspecs.h
 */
 opaque type GParamSpecString = CStruct7[GParamSpec, Ptr[_root_.sn.gnome.glib.internal.gchar], Ptr[_root_.sn.gnome.glib.internal.gchar], Ptr[_root_.sn.gnome.glib.internal.gchar], _root_.sn.gnome.glib.internal.gchar, _root_.sn.gnome.glib.internal.guint, _root_.sn.gnome.glib.internal.guint]
 

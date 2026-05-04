@@ -4,20 +4,12 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.MemoryFormat
-import sn.gnome.gdk4.fluent.Paintable
+import sn.gnome.gdk4.fluent.{MemoryFormat, Paintable}
 import sn.gnome.gdk4.internal.GdkTexture
 import sn.gnome.gdkpixbuf.fluent.Pixbuf
-import sn.gnome.gio.fluent.File
-import sn.gnome.gio.fluent.Icon
-import sn.gnome.gio.fluent.LoadableIcon
+import sn.gnome.gio.fluent.{File, Icon, LoadableIcon}
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GBytes
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gsize
-import sn.gnome.glib.internal.guchar
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -71,14 +63,10 @@ class Texture(raw: Ptr[GdkTexture])
     * For more flexible download capabilites, see
     * [struct@Gdk.TextureDownloader].
     */
-  def download(
-      data: Ptr[UByte] /* Some(Ptr[_root_.sn.gnome.glib.internal.guchar]) */,
-      stride: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): Unit /* None */ = gdk_texture_download(
-    this.raw.asInstanceOf[Ptr[GdkTexture]],
-    data.asInstanceOf,
-    gsize(stride)
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(guchar*)))"
   )
+  def download__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -145,9 +133,10 @@ class Texture(raw: Ptr[GdkTexture])
     * If you are dealing with high dynamic range float data, you might also want
     * to consider [method@Gdk.Texture.save_to_tiff_bytes] instead.
     */
-  def saveToPngBytes(): Ptr[GBytes] /* None */ = gdk_texture_save_to_png_bytes(
-    this.raw.asInstanceOf[Ptr[GdkTexture]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def saveToPngBytes__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -176,8 +165,10 @@ class Texture(raw: Ptr[GdkTexture])
     * more portable format, you might want to use
     * [method@Gdk.Texture.save_to_png_bytes].
     */
-  def saveToTiffBytes(): Ptr[GBytes] /* None */ =
-    gdk_texture_save_to_tiff_bytes(this.raw.asInstanceOf[Ptr[GdkTexture]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+  )
+  def saveToTiffBytes__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -219,11 +210,10 @@ object Texture:
     * [method@Gio.Task.run_in_thread] to avoid blocking the main thread while
     * loading a big image.
     */
-  def fromBytes(
-      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
-  ): GResult[Texture] = GResult.wrap(__errorPtr =>
-    new Texture(gdk_texture_new_from_bytes(bytes, __errorPtr).asInstanceOf)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def new_from_bytes() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

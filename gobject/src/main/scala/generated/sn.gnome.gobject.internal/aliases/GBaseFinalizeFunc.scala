@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GBaseFinalizeFunc: _class: (type GObject.TypeClass): The #GTypeClass structure to finalize
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type GBaseFinalizeFunc = CFuncPtr1[_root_.sn.gnome.glib.internal.gpointer, Unit]
 object GBaseFinalizeFunc:

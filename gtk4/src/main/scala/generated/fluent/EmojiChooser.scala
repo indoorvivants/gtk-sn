@@ -4,12 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Native
-import sn.gnome.gtk4.fluent.Popover
-import sn.gnome.gtk4.fluent.ShortcutManager
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  Native,
+  Popover,
+  ShortcutManager
+}
 import sn.gnome.gtk4.internal.GtkEmojiChooser
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

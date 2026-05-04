@@ -4,16 +4,17 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.AccessibleRange
-import sn.gnome.gtk4.fluent.Adjustment
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.Button
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.Orientable
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  AccessibleRange,
+  Adjustment,
+  Buildable,
+  Button,
+  ConstraintTarget,
+  Orientable,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkScaleButton
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -124,12 +125,10 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     *
     * Sets the icons to be used by the scale button.
     */
-  def setIcons(
-      icons: Ptr[CString] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ = gtk_scale_button_set_icons(
-    this.raw.asInstanceOf[Ptr[GtkScaleButton]],
-    icons
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
+  def setIcons__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -147,14 +146,6 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
       value
     )
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ScaleButton
 
 object ScaleButton:
@@ -164,26 +155,9 @@ object ScaleButton:
     *
     * The new scale button has a range between @min and @max, with a stepping of @step.
     */
-  def apply(
-      min: Double /* Some(Double) */,
-      max: Double /* Some(Double) */,
-      step: Double /* Some(Double) */,
-      icons: Option[Ptr[CString] /* Some(Ptr[CString]) */ ]
-  )(using Zone): ScaleButton = new ScaleButton(
-    gtk_scale_button_new(
-      min,
-      max,
-      step,
-      icons.map[Ptr[CString]](o => o).getOrElse(null.asInstanceOf[Ptr[CString]])
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
+  def `new`() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ScaleButton

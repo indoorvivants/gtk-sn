@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GInterfaceInfo:
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtype.h
 */
 opaque type _GInterfaceInfo = CStruct3[GInterfaceInitFunc, GInterfaceFinalizeFunc, _root_.sn.gnome.glib.internal.gpointer]
 

@@ -8,13 +8,8 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.pango.fluent.Context
-import sn.gnome.pango.fluent.Font
-import sn.gnome.pango.fluent.FontFamily
-import sn.gnome.pango.fluent.Fontset
-import sn.gnome.pango.internal.PangoFontDescription
+import sn.gnome.pango.fluent.{Context, FontFamily}
 import sn.gnome.pango.internal.PangoFontMap
-import sn.gnome.pango.internal.PangoLanguage
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -105,40 +100,26 @@ class FontMap(raw: Ptr[PangoFontMap])
   @annotation.compileTimeOnly(
     "Method list_families contains an OUT parameter, which is not supported yet"
   )
-  private def listFamilies__ = ???
+  def listFamilies__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Load the font in the fontmap that is the closest match for @desc.
     */
-  def loadFont(
-      context: Context /* Some(Ptr[PangoContext]) */,
-      desc: Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */
-  ): Font /* None */ = new Font(
-    pango_font_map_load_font(
-      this.raw.asInstanceOf[Ptr[PangoFontMap]],
-      context.getUnsafeRawPointer().asInstanceOf,
-      desc
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
+  def loadFont__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Load a set of fonts in the fontmap that can be used to render a font
     * matching @desc.
     */
-  def loadFontset(
-      context: Context /* Some(Ptr[PangoContext]) */,
-      desc: Ptr[PangoFontDescription] /* Some(Ptr[PangoFontDescription]) */,
-      language: Ptr[PangoLanguage] /* Some(Ptr[PangoLanguage]) */
-  ): Fontset /* None */ = new Fontset(
-    pango_font_map_load_fontset(
-      this.raw.asInstanceOf[Ptr[PangoFontMap]],
-      context.getUnsafeRawPointer().asInstanceOf,
-      desc,
-      language
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
+  def loadFontset__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -5,12 +5,8 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.internal.GAsyncReadyCallback
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkAlertDialog
@@ -42,38 +38,10 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     * than one button. A simpler API for this case is
     * [method@Gtk.AlertDialog.show].
     */
-  def choose(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_alert_dialog_choose(
-    this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
-    parent
-      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def choose__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -89,6 +57,15 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
       __errorPtr
     )
   )
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Returns the button labels for the alert.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
+  )
+  def getButtons__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -139,12 +116,10 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     *
     * Sets the button labels for the alert.
     */
-  def setButtons(
-      labels: Ptr[CString] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ = gtk_alert_dialog_set_buttons(
-    this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
-    labels
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
+  def setButtons__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

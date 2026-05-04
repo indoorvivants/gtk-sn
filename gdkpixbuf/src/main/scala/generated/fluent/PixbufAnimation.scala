@@ -4,19 +4,11 @@ import _root_.sn.gnome.gdkpixbuf.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdkpixbuf.fluent.Pixbuf
-import sn.gnome.gdkpixbuf.fluent.PixbufAnimation
-import sn.gnome.gdkpixbuf.fluent.PixbufAnimationIter
+import sn.gnome.gdkpixbuf.fluent.{Pixbuf, PixbufAnimation}
 import sn.gnome.gdkpixbuf.internal.GdkPixbufAnimation
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.InputStream
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{AsyncResult, Cancellable, InputStream}
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GTimeVal
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -83,20 +75,10 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     *
     * A delay time of -1 is possible, indicating "infinite".
     */
-  def getIter(
-      start_time: Option[
-        Ptr[GTimeVal] /* Some(Ptr[_root_.sn.gnome.glib.internal.GTimeVal]) */
-      ]
-  ): PixbufAnimationIter /* None */ = new PixbufAnimationIter(
-    gdk_pixbuf_animation_get_iter(
-      this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]],
-      start_time
-        .map[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]]
-        )
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(const GTimeVal*)))"
   )
+  def getIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -265,35 +247,10 @@ object PixbufAnimation:
     * thread. You can then call gdk_pixbuf_animation_new_from_stream_finish() to
     * get the result of the operation.
     */
-  def newFromStreamAsync(
-      stream: InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gdk_pixbuf_animation_new_from_stream_async(
-    stream.getUnsafeRawPointer().asInstanceOf,
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def newFromStreamAsync() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

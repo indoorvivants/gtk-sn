@@ -5,7 +5,6 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Texture
-import sn.gnome.graphene.internal.graphene_rect_t
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskTextureNode
 
@@ -41,15 +40,9 @@ object TextureNode:
     * transformed. See [class@Gsk.TextureScaleNode] for a way to influence
     * filtering.
     */
-  def apply(
-      texture: Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */,
-      bounds: Ptr[
-        graphene_rect_t
-      ] /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
-  ): TextureNode = new TextureNode(
-    gsk_texture_node_new(
-      texture.getUnsafeRawPointer().asInstanceOf,
-      bounds
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
+  def `new`() = ???
+
 end TextureNode

@@ -5,16 +5,15 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.DeviceTool
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gdk4.fluent.InputSource
-import sn.gnome.gdk4.fluent.Seat
+import sn.gnome.gdk4.fluent.{
+  DeviceTool,
+  Display,
+  InputSource,
+  ModifierType,
+  Seat
+}
 import sn.gnome.gdk4.internal.GdkDevice
-import sn.gnome.gdk4.internal.GdkModifierType
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.guint
-import sn.gnome.glib.internal.guint32
+import sn.gnome.glib.internal.{gboolean, gint, guint, guint32}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.pango.fluent.Direction
 
@@ -86,8 +85,9 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     *
     * This is only relevant for keyboard devices.
     */
-  def getModifierState(): GdkModifierType /* None */ =
+  def getModifierState(): ModifierType /* None */ = ModifierType.fromRaw(
     gdk_device_get_modifier_state(this.raw.asInstanceOf[Ptr[GdkDevice]])
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -166,7 +166,7 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_surface_at_position contains an OUT parameter, which is not supported yet"
   )
-  private def getSurfaceAtPosition__ = ???
+  def getSurfaceAtPosition__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

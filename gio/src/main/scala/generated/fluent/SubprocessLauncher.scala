@@ -4,16 +4,9 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Subprocess
-import sn.gnome.gio.internal.GSubprocessFlags
+import sn.gnome.gio.fluent.SubprocessFlags
 import sn.gnome.gio.internal.GSubprocessLauncher
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.GError
-import sn.gnome.glib.internal.GSpawnChildSetupFunc
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -84,20 +77,10 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     *
     * Child setup functions are only available on UNIX.
     */
-  def setChildSetup(
-      child_setup: GSpawnChildSetupFunc /* Some(_root_.sn.gnome.glib.internal.GSpawnChildSetupFunc) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy_notify: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = g_subprocess_launcher_set_child_setup(
-    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-    child_setup,
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy_notify
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.SpawnChildSetupFunc), @type -> DataRecord(GSpawnChildSetupFunc)))"
   )
+  def setChildSetup__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -115,6 +98,33 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
+    * Replace the entire environment of processes launched from this launcher
+    * with the given 'environ' variable.
+    *
+    * Typically you will build this variable by using g_listenv() to copy the
+    * process 'environ' and using the functions g_environ_setenv(),
+    * g_environ_unsetenv(), etc.
+    *
+    * As an alternative, you can use g_subprocess_launcher_setenv(),
+    * g_subprocess_launcher_unsetenv(), etc.
+    *
+    * Pass an empty array to set an empty environment. Pass %NULL to inherit the
+    * parent process’ environment. As of GLib 2.54, the parent process’
+    * environment will be copied when g_subprocess_launcher_set_environ() is
+    * called. Previously, it was copied when the subprocess was executed. This
+    * means the copied environment may now be modified (using
+    * g_subprocess_launcher_setenv(), etc.) before launching the subprocess.
+    *
+    * On UNIX, all strings in this array can be arbitrary byte strings. On
+    * Windows, they should be in UTF-8.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
+  )
+  def setEnviron__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
     * Sets the flags on the launcher.
     *
     * The default flags are %G_SUBPROCESS_FLAGS_NONE.
@@ -128,10 +138,10 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * g_subprocess_launcher_take_stdout_fd().
     */
   def setFlags(
-      flags: GSubprocessFlags /* Some(GSubprocessFlags) */
+      flags: SubprocessFlags /* Some(GSubprocessFlags) */
   ): Unit /* None */ = g_subprocess_launcher_set_flags(
     this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-    flags
+    flags.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -238,21 +248,19 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     *
     * Creates a #GSubprocess given a provided varargs list of arguments.
     */
-  inline def spawn(
-      error: Ptr[
-        Ptr[GError]
-      ] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]) */,
-      argv0: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      args: Any*
-  )(using Zone): Subprocess /* None */ = new Subprocess(
-    g_subprocess_launcher_spawn(
-      this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-      error,
-      __sn_extract_string(argv0).asInstanceOf[Ptr[gchar]],
-      args*
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
   )
+  def spawn__ = ???
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a #GSubprocess given a provided array of arguments.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+  )
+  def spawnv__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -394,8 +402,8 @@ object SubprocessLauncher:
     * will be used as the environment that the process is launched in.
     */
   def apply(
-      flags: GSubprocessFlags /* Some(GSubprocessFlags) */
+      flags: SubprocessFlags /* Some(GSubprocessFlags) */
   ): SubprocessLauncher = new SubprocessLauncher(
-    g_subprocess_launcher_new(flags).asInstanceOf
+    g_subprocess_launcher_new(flags.raw).asInstanceOf
   )
 end SubprocessLauncher

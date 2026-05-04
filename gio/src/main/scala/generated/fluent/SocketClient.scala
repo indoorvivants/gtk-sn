@@ -5,25 +5,21 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.ProxyResolver
-import sn.gnome.gio.fluent.SocketAddress
-import sn.gnome.gio.fluent.SocketConnectable
-import sn.gnome.gio.fluent.SocketConnection
-import sn.gnome.gio.fluent.SocketFamily
-import sn.gnome.gio.fluent.SocketProtocol
-import sn.gnome.gio.fluent.SocketType
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{
+  AsyncResult,
+  Cancellable,
+  ProxyResolver,
+  SocketAddress,
+  SocketConnectable,
+  SocketConnection,
+  SocketFamily,
+  SocketProtocol,
+  SocketType,
+  TlsCertificateFlags
+}
 import sn.gnome.gio.internal.GSocketClient
-import sn.gnome.gio.internal.GTlsCertificateFlags
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint
-import sn.gnome.glib.internal.guint16
+import sn.gnome.glib.internal.{gboolean, gchar, gint, guint, guint16}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -128,26 +124,10 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * When the operation is finished @callback will be called. You can then call
     * g_socket_client_connect_finish() to get the result of the operation.
     */
-  def connectAsync(
-      connectable: SocketConnectable /* Some(Ptr[GSocketConnectable]) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_socket_client_connect_async(
-    this.raw.asInstanceOf[Ptr[GSocketClient]],
-    connectable.getUnsafeRawPointer().asInstanceOf,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def connectAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -228,29 +208,10 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * g_socket_client_connect_to_host_finish() to get the result of the
     * operation.
     */
-  def connectToHostAsync(
-      host_and_port: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_socket_client_connect_to_host_async(
-    this.raw.asInstanceOf[Ptr[GSocketClient]],
-    __sn_extract_string(host_and_port).asInstanceOf[Ptr[gchar]],
-    guint16(default_port),
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def connectToHostAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -311,30 +272,10 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *
     * This is the asynchronous version of g_socket_client_connect_to_service().
     */
-  def connectToServiceAsync(
-      domain: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      service: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_socket_client_connect_to_service_async(
-    this.raw.asInstanceOf[Ptr[GSocketClient]],
-    __sn_extract_string(domain).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(service).asInstanceOf[Ptr[gchar]],
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def connectToServiceAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -406,29 +347,10 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * g_socket_client_connect_to_uri_finish() to get the result of the
     * operation.
     */
-  def connectToUriAsync(
-      uri: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_socket_client_connect_to_uri_async(
-    this.raw.asInstanceOf[Ptr[GSocketClient]],
-    __sn_extract_string(uri).asInstanceOf[Ptr[gchar]],
-    guint16(default_port),
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def connectToUriAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -537,9 +459,11 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * use correctly. See #GSocketClient:tls-validation-flags for more
     * information.
     */
-  def getTlsValidationFlags(): GTlsCertificateFlags /* None */ =
-    g_socket_client_get_tls_validation_flags(
-      this.raw.asInstanceOf[Ptr[GSocketClient]]
+  def getTlsValidationFlags(): TlsCertificateFlags /* None */ =
+    TlsCertificateFlags.fromRaw(
+      g_socket_client_get_tls_validation_flags(
+        this.raw.asInstanceOf[Ptr[GSocketClient]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -695,10 +619,10 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * information.
     */
   def setTlsValidationFlags(
-      flags: GTlsCertificateFlags /* Some(GTlsCertificateFlags) */
+      flags: TlsCertificateFlags /* Some(GTlsCertificateFlags) */
   ): Unit /* None */ = g_socket_client_set_tls_validation_flags(
     this.raw.asInstanceOf[Ptr[GSocketClient]],
-    flags
+    flags.raw
   )
 
   private inline def __sn_extract_string(str: String | CString)(using

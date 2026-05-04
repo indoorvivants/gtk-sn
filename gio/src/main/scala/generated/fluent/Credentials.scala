@@ -4,16 +4,10 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Credentials
-import sn.gnome.gio.fluent.CredentialsType
-import sn.gnome.gio.internal.GCredentials
-import sn.gnome.gio.internal.pid_t
-import sn.gnome.gio.internal.uid_t
+import sn.gnome.gio.fluent.{Credentials, CredentialsType}
+import sn.gnome.gio.internal.{GCredentials, pid_t, uid_t}
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

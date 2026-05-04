@@ -4,9 +4,7 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.IOStream
-import sn.gnome.gio.fluent.InputStream
-import sn.gnome.gio.fluent.OutputStream
+import sn.gnome.gio.fluent.{IOStream, InputStream, OutputStream}
 import sn.gnome.gio.internal.GSimpleIOStream
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

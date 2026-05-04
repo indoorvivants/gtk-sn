@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GConnectFlags: _CONNECT_DEFAULT: Default behaviour (no special flags). Since: 2.74 _CONNECT_AFTER: If set, the handler should be called after the default handler of the signal. Normally, the handler is called before the default handler. _CONNECT_SWAPPED: If set, the instance and data should be swapped when calling the handler; see g_signal_connect_swapped() for an example.
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gsignal.h
 */
 opaque type GConnectFlags = CUnsignedInt
 object GConnectFlags extends _BindgenEnumCUnsignedInt[GConnectFlags]:

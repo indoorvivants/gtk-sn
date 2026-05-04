@@ -4,13 +4,9 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import _root_.scala.scalanative.unsigned.*
+import sn.gnome.gio.fluent.TlsPasswordFlags
 import sn.gnome.gio.internal.GTlsPassword
-import sn.gnome.gio.internal.GTlsPasswordFlags
-import sn.gnome.glib.internal.GDestroyNotify
 import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gssize
-import sn.gnome.glib.internal.guchar
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -35,8 +31,8 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     *
     * Get flags about the password.
     */
-  def getFlags(): GTlsPasswordFlags /* None */ = g_tls_password_get_flags(
-    this.raw.asInstanceOf[Ptr[GTlsPassword]]
+  def getFlags(): TlsPasswordFlags /* None */ = TlsPasswordFlags.fromRaw(
+    g_tls_password_get_flags(this.raw.asInstanceOf[Ptr[GTlsPassword]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -49,7 +45,7 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_value contains an OUT parameter, which is not supported yet"
   )
-  private def getValue__ = ???
+  def getValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -80,9 +76,11 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     * Set flags about the password.
     */
   def setFlags(
-      flags: GTlsPasswordFlags /* Some(GTlsPasswordFlags) */
-  ): Unit /* None */ =
-    g_tls_password_set_flags(this.raw.asInstanceOf[Ptr[GTlsPassword]], flags)
+      flags: TlsPasswordFlags /* Some(GTlsPasswordFlags) */
+  ): Unit /* None */ = g_tls_password_set_flags(
+    this.raw.asInstanceOf[Ptr[GTlsPassword]],
+    flags.raw
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -95,14 +93,10 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     *   automatically. (Note that the terminating nul is not considered part of
     *   the password in this case.)
     */
-  def setValue(
-      value: Ptr[UByte] /* Some(Ptr[_root_.sn.gnome.glib.internal.guchar]) */,
-      length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
-  ): Unit /* None */ = g_tls_password_set_value(
-    this.raw.asInstanceOf[Ptr[GTlsPassword]],
-    value.asInstanceOf,
-    gssize(length)
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guchar*)))"
   )
+  def setValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -117,22 +111,10 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     *   automatically. (Note that the terminating nul is not considered part of
     *   the password in this case.)
     */
-  def setValueFull(
-      value: Ptr[UByte] /* Some(Ptr[_root_.sn.gnome.glib.internal.guchar]) */,
-      length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */,
-      destroy: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  ): Unit /* None */ = g_tls_password_set_value_full(
-    this.raw.asInstanceOf[Ptr[GTlsPassword]],
-    value.asInstanceOf,
-    gssize(length),
-    destroy
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
   )
+  def setValueFull__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -164,12 +146,12 @@ object TlsPassword:
     * Create a new #GTlsPassword object.
     */
   def apply(
-      flags: GTlsPasswordFlags /* Some(GTlsPasswordFlags) */,
+      flags: TlsPasswordFlags /* Some(GTlsPasswordFlags) */,
       description: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): TlsPassword = new TlsPassword(
     g_tls_password_new(
-      flags,
+      flags.raw,
       __sn_extract_string(description).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )

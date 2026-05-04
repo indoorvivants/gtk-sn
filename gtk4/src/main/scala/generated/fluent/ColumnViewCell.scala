@@ -5,13 +5,9 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gboolean, gint, gpointer, guint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.ListItem
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.{ListItem, Widget}
 import sn.gnome.gtk4.internal.GtkColumnViewCell
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

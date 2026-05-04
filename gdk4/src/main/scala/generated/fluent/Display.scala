@@ -4,23 +4,22 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.AppLaunchContext
-import sn.gnome.gdk4.fluent.Clipboard
-import sn.gnome.gdk4.fluent.Device
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.fluent.GLContext
-import sn.gnome.gdk4.fluent.Monitor
-import sn.gnome.gdk4.fluent.Seat
-import sn.gnome.gdk4.fluent.Surface
+import sn.gnome.gdk4.fluent.{
+  AppLaunchContext,
+  Clipboard,
+  Device,
+  Display,
+  Event,
+  GLContext,
+  Monitor,
+  Seat,
+  Surface
+}
 import sn.gnome.gdk4.internal.GdkDisplay
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GList
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gobject.internal.GValue
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -202,16 +201,10 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     *
     * Retrieves a desktop-wide setting such as double-click time for the @display.
     */
-  def getSetting(
-      name: String | CString /* Some(CString) */,
-      value: Ptr[
-        GValue
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  )(using Zone): Boolean /* None */ = gdk_display_get_setting(
-    this.raw.asInstanceOf[Ptr[GdkDisplay]],
-    __sn_extract_string(name),
-    value
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+  )
+  def getSetting__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -268,9 +261,10 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     *
     * Returns the list of seats known to @display.
     */
-  def listSeats(): Ptr[GList] /* None */ = gdk_display_list_seats(
-    this.raw.asInstanceOf[Ptr[GdkDisplay]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Seat))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def listSeats__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -286,7 +280,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method map_keycode contains an OUT parameter, which is not supported yet"
   )
-  private def mapKeycode__ = ???
+  def mapKeycode__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -308,7 +302,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method map_keyval contains an OUT parameter, which is not supported yet"
   )
-  private def mapKeyval__ = ???
+  def mapKeyval__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -417,7 +411,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method translate_key contains an OUT parameter, which is not supported yet"
   )
-  private def translateKey__ = ???
+  def translateKey__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -438,7 +432,7 @@ object Display:
     *
     * gdk_display_manager_get_default_display (gdk_display_manager_get ())
     */
-  def getDefault(): Display /* None */ = new Display(
+  def getDefault(): Display /* Some(Ptr[GdkDisplay]) */ = new Display(
     gdk_display_get_default().asInstanceOf
   )
 
@@ -450,7 +444,7 @@ object Display:
     */
   def open(
       display_name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Display /* None */ = new Display(
+  )(using Zone): Display /* Some(Ptr[GdkDisplay]) */ = new Display(
     gdk_display_open(
       display_name
         .map[CString](o => __sn_extract_string(o))

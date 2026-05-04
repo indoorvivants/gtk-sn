@@ -4,16 +4,8 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.internal.GdkRGBA
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.internal.GAsyncReadyCallback
-import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkColorDialog
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -41,59 +33,20 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
     * The @callback will be called when the dialog is dismissed. It should call
     * [method@Gtk.ColorDialog.choose_rgba_finish] to obtain the result.
     */
-  def chooseRgba(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      initial_color: Option[
-        Ptr[GdkRGBA] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
-      ],
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gtk_color_dialog_choose_rgba(
-    this.raw.asInstanceOf[Ptr[GtkColorDialog]],
-    parent
-      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    initial_color
-      .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]]),
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
+  def chooseRgba__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes the [method@Gtk.ColorDialog.choose_rgba] call and returns the
     * resulting color.
     */
-  def chooseRgbaFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[Ptr[GdkRGBA] /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_color_dialog_choose_rgba_finish(
-      this.raw.asInstanceOf[Ptr[GtkColorDialog]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(GdkRGBA*)))"
   )
+  def chooseRgbaFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

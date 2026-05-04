@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GCallback:
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gclosure.h
 */
 opaque type GCallback = CFuncPtr0[Unit]
 object GCallback:

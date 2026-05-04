@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GParamSpecClass: _type_class: the parent class _type: the #GValue type for this parameter : The instance finalization function (optional), should chain up to the finalize method of the parent class. _set_default: Resets a to the default value for this type (recommended, the default is g_value_reset()), see g_param_value_set_default(). _validate: Ensures that the contents of comply with the specifications set out by this type (optional), see g_param_value_validate(). _cmp: Compares with according to this type (recommended, the default is memcmp()), see g_param_values_cmp(). _is_valid: Checks if contents of comply with the specifications set out by this type, without modifying the value. This vfunc is optional. If it isn't set, GObject will use _validate. Since 2.74
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparam.h
 */
 opaque type GParamSpecClass = CStruct8[GTypeClass, GType, CFuncPtr1[Ptr[GParamSpec], Unit], CFuncPtr2[Ptr[GParamSpec], Ptr[GValue], Unit], CFuncPtr2[Ptr[GParamSpec], Ptr[GValue], _root_.sn.gnome.glib.internal.gboolean], CFuncPtr3[Ptr[GParamSpec], Ptr[GValue], Ptr[GValue], _root_.sn.gnome.glib.internal.gint], CFuncPtr2[Ptr[GParamSpec], Ptr[GValue], _root_.sn.gnome.glib.internal.gboolean], CArray[_root_.sn.gnome.glib.internal.gpointer, Nat._3]]
 

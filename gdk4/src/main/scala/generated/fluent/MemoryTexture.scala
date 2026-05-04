@@ -4,15 +4,9 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.MemoryFormat
-import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gdk4.fluent.Texture
+import sn.gnome.gdk4.fluent.{Paintable, Texture}
 import sn.gnome.gdk4.internal.GdkMemoryTexture
-import sn.gnome.gio.fluent.Icon
-import sn.gnome.gio.fluent.LoadableIcon
-import sn.gnome.glib.internal.GBytes
-import sn.gnome.glib.internal.gsize
+import sn.gnome.gio.fluent.{Icon, LoadableIcon}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -35,19 +29,9 @@ object MemoryTexture:
     *
     * The `GBytes` must contain @stride × @height pixels in the given format.
     */
-  def apply(
-      width: Int /* Some(CInt) */,
-      height: Int /* Some(CInt) */,
-      format: MemoryFormat /* Some(GdkMemoryFormat) */,
-      bytes: Ptr[GBytes] /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
-      stride: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): MemoryTexture = new MemoryTexture(
-    gdk_memory_texture_new(
-      width,
-      height,
-      format.raw,
-      bytes,
-      gsize(stride)
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
+  def `new`() = ???
+
 end MemoryTexture

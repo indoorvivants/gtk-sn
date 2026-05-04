@@ -5,8 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.ListModel
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.MultiFilter
+import sn.gnome.gtk4.fluent.{Buildable, MultiFilter}
 import sn.gnome.gtk4.internal.GtkAnyFilter
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

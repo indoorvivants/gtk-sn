@@ -4,14 +4,9 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Icon
-import sn.gnome.gio.fluent.MenuModel
+import sn.gnome.gio.fluent.{Icon, MenuModel}
 import sn.gnome.gio.internal.GMenuItem
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.GVariantType
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -55,21 +50,10 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     * %NULL is returned. %NULL is also returned if the attribute simply does not
     * exist.
     */
-  def getAttributeValue(
-      attribute: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      expected_type: Option[Ptr[
-        GVariantType
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */ ]
-  )(using Zone): Ptr[GVariant] /* None */ = g_menu_item_get_attribute_value(
-    this.raw.asInstanceOf[Ptr[GMenuItem]],
-    __sn_extract_string(attribute).asInstanceOf[Ptr[gchar]],
-    expected_type
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariantType]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariantType]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
   )
+  def getAttributeValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -169,24 +153,10 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     * g_menu_item_set_detailed_action() for two equivalent calls that are
     * probably more convenient for most uses.
     */
-  def setActionAndTargetValue(
-      action: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      target_value: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ]
-  )(using Zone): Unit /* None */ = g_menu_item_set_action_and_target_value(
-    this.raw.asInstanceOf[Ptr[GMenuItem]],
-    action
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    target_value
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def setActionAndTargetValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -245,19 +215,10 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     * See also g_menu_item_set_attribute() for a more convenient way to do the
     * same.
     */
-  def setAttributeValue(
-      attribute: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ]
-  )(using Zone): Unit /* None */ = g_menu_item_set_attribute_value(
-    this.raw.asInstanceOf[Ptr[GMenuItem]],
-    __sn_extract_string(attribute).asInstanceOf[Ptr[gchar]],
-    value
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def setAttributeValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

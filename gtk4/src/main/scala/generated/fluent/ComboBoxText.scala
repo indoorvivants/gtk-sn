@@ -4,12 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.CellEditable
-import sn.gnome.gtk4.fluent.CellLayout
-import sn.gnome.gtk4.fluent.ComboBox
-import sn.gnome.gtk4.fluent.ConstraintTarget
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  CellEditable,
+  CellLayout,
+  ComboBox,
+  ConstraintTarget
+}
 import sn.gnome.gtk4.internal.GtkComboBoxText
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

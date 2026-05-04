@@ -5,14 +5,9 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.InetAddress
-import sn.gnome.gio.fluent.SocketFamily
+import sn.gnome.gio.fluent.{InetAddress, SocketFamily}
 import sn.gnome.gio.internal.GInetAddress
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gsize
-import sn.gnome.glib.internal.guint8
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gsize, guint8}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -175,6 +170,18 @@ object InetAddress:
     */
   def any(family: SocketFamily /* Some(GSocketFamily) */ ): InetAddress =
     new InetAddress(g_inet_address_new_any(family.raw).asInstanceOf)
+
+  /** COMMENT FOR THE ORIGINAL C DEFINITION
+    *
+    * Creates a new #GInetAddress from the given @family and @bytes.
+    * @bytes
+    *   should be 4 bytes for %G_SOCKET_FAMILY_IPV4 and 16 bytes for
+    *   %G_SOCKET_FAMILY_IPV6.
+    */
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(const guint8*)))"
+  )
+  def new_from_bytes() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

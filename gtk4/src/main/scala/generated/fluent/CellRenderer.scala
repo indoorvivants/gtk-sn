@@ -4,18 +4,15 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.internal.GdkRectangle
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.InitiallyUnowned
-import sn.gnome.gtk4.fluent.CellEditable
-import sn.gnome.gtk4.fluent.SizeRequestMode
-import sn.gnome.gtk4.fluent.Snapshot
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.fluent.{
+  CellRendererState,
+  SizeRequestMode,
+  StateFlags,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkCellRenderer
-import sn.gnome.gtk4.internal.GtkCellRendererState
-import sn.gnome.gtk4.internal.GtkStateFlags
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -66,26 +63,10 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     * Some cell renderers may use events; for example, `GtkCellRendererToggle`
     * toggles when it gets a mouse click.
     */
-  def activate(
-      event: Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */,
-      widget: Widget /* Some(Ptr[GtkWidget]) */,
-      path: String | CString /* Some(CString) */,
-      background_area: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
-      cell_area: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
-      flags: GtkCellRendererState /* Some(GtkCellRendererState) */
-  )(using Zone): Boolean /* None */ = gtk_cell_renderer_activate(
-    this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
-    event.getUnsafeRawPointer().asInstanceOf,
-    widget.getUnsafeRawPointer().asInstanceOf,
-    __sn_extract_string(path),
-    background_area,
-    cell_area,
-    flags
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+  )
+  def activate__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -95,7 +76,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   @annotation.compileTimeOnly(
     "Method get_aligned_area contains an OUT parameter, which is not supported yet"
   )
-  private def getAlignedArea__ = ???
+  def getAlignedArea__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -104,7 +85,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   @annotation.compileTimeOnly(
     "Method get_alignment contains an OUT parameter, which is not supported yet"
   )
-  private def getAlignment__ = ???
+  def getAlignment__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -113,7 +94,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   @annotation.compileTimeOnly(
     "Method get_fixed_size contains an OUT parameter, which is not supported yet"
   )
-  private def getFixedSize__ = ???
+  def getFixedSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -138,7 +119,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   @annotation.compileTimeOnly(
     "Method get_padding contains an OUT parameter, which is not supported yet"
   )
-  private def getPadding__ = ???
+  def getPadding__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -147,7 +128,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   @annotation.compileTimeOnly(
     "Method get_preferred_height contains an OUT parameter, which is not supported yet"
   )
-  private def getPreferredHeight__ = ???
+  def getPreferredHeight__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -159,7 +140,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   @annotation.compileTimeOnly(
     "Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
   )
-  private def getPreferredHeightForWidth__ = ???
+  def getPreferredHeightForWidth__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -169,7 +150,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   @annotation.compileTimeOnly(
     "Method get_preferred_size contains an OUT parameter, which is not supported yet"
   )
-  private def getPreferredSize__ = ???
+  def getPreferredSize__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -178,7 +159,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   @annotation.compileTimeOnly(
     "Method get_preferred_width contains an OUT parameter, which is not supported yet"
   )
-  private def getPreferredWidth__ = ???
+  def getPreferredWidth__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -190,7 +171,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
   @annotation.compileTimeOnly(
     "Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
   )
-  private def getPreferredWidthForHeight__ = ???
+  def getPreferredWidthForHeight__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -218,13 +199,15 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     */
   def getState(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ],
-      cell_state: GtkCellRendererState /* Some(GtkCellRendererState) */
-  ): GtkStateFlags /* None */ = gtk_cell_renderer_get_state(
-    this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
-    widget
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]]),
-    cell_state
+      cell_state: CellRendererState /* Some(GtkCellRendererState) */
+  ): StateFlags /* None */ = StateFlags.fromRaw(
+    gtk_cell_renderer_get_state(
+      this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
+      widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]]),
+      cell_state.raw
+    )
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -338,24 +321,10 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     *   the entire
     * @window.
     */
-  def snapshot(
-      snapshot: Snapshot /* Some(Ptr[GtkSnapshot]) */,
-      widget: Widget /* Some(Ptr[GtkWidget]) */,
-      background_area: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
-      cell_area: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
-      flags: GtkCellRendererState /* Some(GtkCellRendererState) */
-  ): Unit /* None */ = gtk_cell_renderer_snapshot(
-    this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
-    snapshot.getUnsafeRawPointer().asInstanceOf,
-    widget.getUnsafeRawPointer().asInstanceOf,
-    background_area,
-    cell_area,
-    flags
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
+  def snapshot__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -363,36 +332,10 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     * widget created by the `GtkCellRenderer`Class.start_editing virtual
     * function.
     */
-  def startEditing(
-      event: Option[
-        Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */
-      ],
-      widget: Widget /* Some(Ptr[GtkWidget]) */,
-      path: String | CString /* Some(CString) */,
-      background_area: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
-      cell_area: Ptr[
-        GdkRectangle
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
-      flags: GtkCellRendererState /* Some(GtkCellRendererState) */
-  )(using Zone): CellEditable /* None */ = new CellEditable.Abstract(
-    gtk_cell_renderer_start_editing(
-      this.raw.asInstanceOf[Ptr[GtkCellRenderer]],
-      event
-        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]](o =>
-          o.getUnsafeRawPointer().asInstanceOf
-        )
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]]
-        ),
-      widget.getUnsafeRawPointer().asInstanceOf,
-      __sn_extract_string(path),
-      background_area,
-      cell_area,
-      flags
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
+  def startEditing__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -411,12 +354,4 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     gboolean(gint((if canceled == true then 1 else 0)))
   )
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end CellRenderer

@@ -4,21 +4,13 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.ContentProvider
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gdk4.fluent.Texture
+import sn.gnome.gdk4.fluent.{ContentProvider, Display, Texture}
 import sn.gnome.gdk4.internal.GdkClipboard
-import sn.gnome.gdk4.internal.GdkContentFormats
 import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.internal.GAsyncReadyCallback
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GType
-import sn.gnome.gobject.internal.GValue
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -71,8 +63,10 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
     *
     * Gets the formats that the clipboard can provide its current contents in.
     */
-  def getFormats(): Ptr[GdkContentFormats] /* None */ =
-    gdk_clipboard_get_formats(this.raw.asInstanceOf[Ptr[GdkClipboard]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+  )
+  def getFormats__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -99,38 +93,10 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
     * The clipboard will choose the most suitable mime type from the given list
     * to fulfill the request, preferring the ones listed first.
     */
-  def readAsync(
-      mime_types: Ptr[CString] /* Some(Ptr[CString]) */,
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = gdk_clipboard_read_async(
-    this.raw.asInstanceOf[Ptr[GdkClipboard]],
-    mime_types,
-    io_priority,
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
+  def readAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -141,7 +107,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method read_finish contains an OUT parameter, which is not supported yet"
   )
-  private def readFinish__ = ???
+  def readFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -154,34 +120,10 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
     * Use that function or [method@Gdk.Clipboard.read_async] directly if you
     * need more control over the operation.
     */
-  def readTextAsync(
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gdk_clipboard_read_text_async(
-    this.raw.asInstanceOf[Ptr[GdkClipboard]],
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def readTextAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -212,34 +154,10 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
     * Use that function or [method@Gdk.Clipboard.read_async] directly if you
     * need more control over the operation.
     */
-  def readTextureAsync(
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gdk_clipboard_read_texture_async(
-    this.raw.asInstanceOf[Ptr[GdkClipboard]],
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def readTextureAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -272,38 +190,10 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
     * value will be copied directly. Otherwise, GDK will try to use
     * [func@content_deserialize_async] to convert the clipboard's data.
     */
-  def readValueAsync(
-      `type`: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gdk_clipboard_read_value_async(
-    this.raw.asInstanceOf[Ptr[GdkClipboard]],
-    `type`,
-    io_priority,
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def readValueAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -311,15 +201,10 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
     *
     * See [method@Gdk.Clipboard.read_value_async].
     */
-  def readValueFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[Ptr[GValue] /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_clipboard_read_value_finish(
-      this.raw.asInstanceOf[Ptr[GdkClipboard]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
+  def readValueFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -405,12 +290,10 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
     *
     * Sets the @clipboard to contain the given @value.
     */
-  def setValue(
-      value: Ptr[
-        GValue
-      ] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  ): Unit /* None */ =
-    gdk_clipboard_set_value(this.raw.asInstanceOf[Ptr[GdkClipboard]], value)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+  )
+  def setValue__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -429,36 +312,10 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
     * This function is called automatically when a [class@Gtk.Application] is
     * shut down, so you likely don't need to call it.
     */
-  def storeAsync(
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
-      ],
-      callback: Option[
-        GAsyncReadyCallback /* Some(_root_.sn.gnome.gio.internal.GAsyncReadyCallback) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = gdk_clipboard_store_async(
-    this.raw.asInstanceOf[Ptr[GdkClipboard]],
-    io_priority,
-    cancellable
-      .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-      ),
-    callback
-      .map[_root_.sn.gnome.gio.internal.GAsyncReadyCallback](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.gio.internal.GAsyncReadyCallback]
-      ),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def storeAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

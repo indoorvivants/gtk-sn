@@ -5,41 +5,24 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ActionGroup
-import sn.gnome.gio.fluent.AsyncInitable
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.Credentials
-import sn.gnome.gio.fluent.DBusAuthObserver
-import sn.gnome.gio.fluent.DBusMessage
-import sn.gnome.gio.fluent.IOStream
-import sn.gnome.gio.fluent.Initable
-import sn.gnome.gio.fluent.MenuModel
-import sn.gnome.gio.fluent.UnixFDList
-import sn.gnome.gio.internal.GAsyncReadyCallback
-import sn.gnome.gio.internal.GDBusCallFlags
-import sn.gnome.gio.internal.GDBusCapabilityFlags
+import sn.gnome.gio.fluent.{
+  ActionGroup,
+  AsyncInitable,
+  AsyncResult,
+  Cancellable,
+  Credentials,
+  DBusAuthObserver,
+  DBusCapabilityFlags,
+  DBusConnectionFlags,
+  DBusMessage,
+  IOStream,
+  Initable,
+  MenuModel
+}
 import sn.gnome.gio.internal.GDBusConnection
-import sn.gnome.gio.internal.GDBusConnectionFlags
-import sn.gnome.gio.internal.GDBusInterfaceInfo
-import sn.gnome.gio.internal.GDBusInterfaceVTable
-import sn.gnome.gio.internal.GDBusMessageFilterFunction
-import sn.gnome.gio.internal.GDBusSignalCallback
-import sn.gnome.gio.internal.GDBusSignalFlags
-import sn.gnome.gio.internal.GDBusSubtreeFlags
-import sn.gnome.gio.internal.GDBusSubtreeVTable
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.GVariantType
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint
-import sn.gnome.glib.internal.guint32
+import sn.gnome.glib.internal.{gboolean, gchar, gint, guint, guint32}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gobject.internal.GClosure
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -128,20 +111,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * guaranteed to be called synchronously when the filter is removed, and may
     * be called after @connection has been destroyed.)
     */
-  def addFilter(
-      filter_function: GDBusMessageFilterFunction /* Some(GDBusMessageFilterFunction) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      user_data_free_func: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): UInt /* None */ = g_dbus_connection_add_filter(
-    this.raw.asInstanceOf[Ptr[GDBusConnection]],
-    filter_function,
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    user_data_free_func
-  ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusMessageFilterFunction), @type -> DataRecord(GDBusMessageFilterFunction)))"
+  )
+  def addFilter__ = ???
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -191,75 +164,19 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *  If @callback is %NULL then the D-Bus method call message will be sent with
     *  the %G_DBUS_MESSAGE_FLAGS_NO_REPLY_EXPECTED flag set.
     */
-  def call(
-      bus_name: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      interface_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      method_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      parameters: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ],
-      reply_type: Option[Ptr[
-        GVariantType
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */ ],
-      flags: GDBusCallFlags /* Some(GDBusCallFlags) */,
-      timeout_msec: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_dbus_connection_call(
-    this.raw.asInstanceOf[Ptr[GDBusConnection]],
-    bus_name
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(interface_name).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(method_name).asInstanceOf[Ptr[gchar]],
-    parameters
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
-      ),
-    reply_type
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariantType]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariantType]]
-      ),
-    flags,
-    gint(timeout_msec),
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def call__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Finishes an operation started with g_dbus_connection_call().
     */
-  def callFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Ptr[GVariant] /* None */ ] = GResult.wrap(__errorPtr =>
-    g_dbus_connection_call_finish(
-      this.raw.asInstanceOf[Ptr[GDBusConnection]],
-      res.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def callFinish__ = ???
 
   /**  COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -300,54 +217,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *  g_dbus_connection_call() for the asynchronous version of
     *  this method.
     */
-  def callSync(
-      bus_name: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      interface_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      method_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      parameters: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ],
-      reply_type: Option[Ptr[
-        GVariantType
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */ ],
-      flags: GDBusCallFlags /* Some(GDBusCallFlags) */,
-      timeout_msec: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone): GResult[Ptr[GVariant] /* None */ ] = GResult.wrap(__errorPtr =>
-    g_dbus_connection_call_sync(
-      this.raw.asInstanceOf[Ptr[GDBusConnection]],
-      bus_name
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(interface_name).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(method_name).asInstanceOf[Ptr[gchar]],
-      parameters
-        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
-        ),
-      reply_type
-        .map[Ptr[_root_.sn.gnome.glib.internal.GVariantType]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariantType]]
-        ),
-      flags,
-      gint(timeout_msec),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def callSync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -367,65 +240,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *
     * This method is only available on UNIX.
     */
-  def callWithUnixFdList(
-      bus_name: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      interface_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      method_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      parameters: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ],
-      reply_type: Option[Ptr[
-        GVariantType
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */ ],
-      flags: GDBusCallFlags /* Some(GDBusCallFlags) */,
-      timeout_msec: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      fd_list: Option[UnixFDList /* Some(Ptr[GUnixFDList]) */ ],
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_dbus_connection_call_with_unix_fd_list(
-    this.raw.asInstanceOf[Ptr[GDBusConnection]],
-    bus_name
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(interface_name).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(method_name).asInstanceOf[Ptr[gchar]],
-    parameters
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
-      ),
-    reply_type
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariantType]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariantType]]
-      ),
-    flags,
-    gint(timeout_msec),
-    fd_list
-      .map[Ptr[GUnixFDList]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GUnixFDList]]),
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def callWithUnixFdList__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -445,7 +263,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
   @annotation.compileTimeOnly(
     "Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet"
   )
-  private def callWithUnixFdListFinish__ = ???
+  def callWithUnixFdListFinish__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -458,7 +276,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
   @annotation.compileTimeOnly(
     "Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet"
   )
-  private def callWithUnixFdListSync__ = ???
+  def callWithUnixFdListSync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -487,24 +305,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *   g_dbus_connection_close_finish() to get the result of the operation. See
     *   g_dbus_connection_close_sync() for the synchronous version.
     */
-  def close(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_dbus_connection_close(
-    this.raw.asInstanceOf[Ptr[GDBusConnection]],
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def close__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -548,38 +352,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * protocol (%G_IO_ERROR_INVALID_ARGUMENT), or if @connection has been closed
     * (%G_IO_ERROR_CLOSED).
     */
-  def emitSignal(
-      destination_bus_name: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      interface_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      signal_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      parameters: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ]
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_dbus_connection_emit_signal(
-      this.raw.asInstanceOf[Ptr[GDBusConnection]],
-      destination_bus_name
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(interface_name).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(signal_name).asInstanceOf[Ptr[gchar]],
-      parameters
-        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
-        ),
-      __errorPtr
-    ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def emitSignal__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -666,24 +442,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *   g_dbus_connection_flush_finish() to get the result of the operation. See
     *   g_dbus_connection_flush_sync() for the synchronous version.
     */
-  def flush(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_dbus_connection_flush(
-    this.raw.asInstanceOf[Ptr[GDBusConnection]],
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def flush__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -721,9 +483,11 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *
     * Gets the capabilities negotiated with the remote peer
     */
-  def getCapabilities(): GDBusCapabilityFlags /* None */ =
-    g_dbus_connection_get_capabilities(
-      this.raw.asInstanceOf[Ptr[GDBusConnection]]
+  def getCapabilities(): DBusCapabilityFlags /* None */ =
+    DBusCapabilityFlags.fromRaw(
+      g_dbus_connection_get_capabilities(
+        this.raw.asInstanceOf[Ptr[GDBusConnection]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -740,8 +504,8 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *
     * Gets the flags used to construct this connection
     */
-  def getFlags(): GDBusConnectionFlags /* None */ = g_dbus_connection_get_flags(
-    this.raw.asInstanceOf[Ptr[GDBusConnection]]
+  def getFlags(): DBusConnectionFlags /* None */ = DBusConnectionFlags.fromRaw(
+    g_dbus_connection_get_flags(this.raw.asInstanceOf[Ptr[GDBusConnection]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -857,78 +621,20 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *
     * See this [server][gdbus-server] for an example of how to use this method.
     */
-  def registerObject(
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      interface_info: Ptr[
-        GDBusInterfaceInfo
-      ] /* Some(Ptr[GDBusInterfaceInfo]) */,
-      vtable: Option[
-        Ptr[GDBusInterfaceVTable] /* Some(Ptr[GDBusInterfaceVTable]) */
-      ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      user_data_free_func: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  )(using Zone): GResult[UInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_dbus_connection_register_object(
-      this.raw.asInstanceOf[Ptr[GDBusConnection]],
-      __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-      interface_info,
-      vtable
-        .map[Ptr[GDBusInterfaceVTable]](o => o)
-        .getOrElse(null.asInstanceOf[Ptr[GDBusInterfaceVTable]]),
-      user_data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      user_data_free_func,
-      __errorPtr
-    ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
+  def registerObject__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Version of g_dbus_connection_register_object() using closures instead of a
     * #GDBusInterfaceVTable for easier binding in other languages.
     */
-  def registerObjectWithClosures(
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      interface_info: Ptr[
-        GDBusInterfaceInfo
-      ] /* Some(Ptr[GDBusInterfaceInfo]) */,
-      method_call_closure: Option[
-        Ptr[GClosure] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
-      ],
-      get_property_closure: Option[
-        Ptr[GClosure] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
-      ],
-      set_property_closure: Option[
-        Ptr[GClosure] /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
-      ]
-  )(using Zone): GResult[UInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_dbus_connection_register_object_with_closures(
-      this.raw.asInstanceOf[Ptr[GDBusConnection]],
-      __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-      interface_info,
-      method_call_closure
-        .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
-        ),
-      get_property_closure
-        .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
-        ),
-      set_property_closure
-        .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
-        ),
-      __errorPtr
-    ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
+  def registerObjectWithClosures__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -966,28 +672,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * See this [server][gdbus-subtree-server] for an example of how to use this
     * method.
     */
-  def registerSubtree(
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      vtable: Ptr[GDBusSubtreeVTable] /* Some(Ptr[GDBusSubtreeVTable]) */,
-      flags: GDBusSubtreeFlags /* Some(GDBusSubtreeFlags) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      user_data_free_func: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  )(using Zone): GResult[UInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_dbus_connection_register_subtree(
-      this.raw.asInstanceOf[Ptr[GDBusConnection]],
-      __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]],
-      vtable,
-      flags,
-      user_data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      user_data_free_func,
-      __errorPtr
-    ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusSubtreeVTable), @type -> DataRecord(const GDBusSubtreeVTable*)))"
   )
+  def registerSubtree__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1033,7 +721,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
   @annotation.compileTimeOnly(
     "Method send_message contains an OUT parameter, which is not supported yet"
   )
-  private def sendMessage__ = ???
+  def sendMessage__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1070,7 +758,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
   @annotation.compileTimeOnly(
     "Method send_message_with_reply contains an OUT parameter, which is not supported yet"
   )
-  private def sendMessageWithReply__ = ???
+  def sendMessageWithReply__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1133,7 +821,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
   @annotation.compileTimeOnly(
     "Method send_message_with_reply_sync contains an OUT parameter, which is not supported yet"
   )
-  private def sendMessageWithReplySync__ = ???
+  def sendMessageWithReplySync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1205,68 +893,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *
     * This function can never fail.
     */
-  def signalSubscribe(
-      sender: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      interface_name: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      member: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      object_path: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      arg0: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      flags: GDBusSignalFlags /* Some(GDBusSignalFlags) */,
-      callback: GDBusSignalCallback /* Some(GDBusSignalCallback) */,
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      user_data_free_func: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ]
-  )(using Zone): UInt /* None */ = g_dbus_connection_signal_subscribe(
-    this.raw.asInstanceOf[Ptr[GDBusConnection]],
-    sender
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    interface_name
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    member
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    object_path
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    arg0
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    flags,
-    callback,
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    user_data_free_func
-      .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-      .getOrElse(
-        null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-      )
-  ).value
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusSignalCallback), @type -> DataRecord(GDBusSignalCallback)))"
+  )
+  def signalSubscribe__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1419,14 +1049,14 @@ object DBusConnection:
   def forAddressSync(
       address: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: GDBusConnectionFlags /* Some(GDBusConnectionFlags) */,
+      flags: DBusConnectionFlags /* Some(GDBusConnectionFlags) */,
       observer: Option[DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */ ],
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   )(using Zone): GResult[DBusConnection] = GResult.wrap(__errorPtr =>
     new DBusConnection(
       g_dbus_connection_new_for_address_sync(
         __sn_extract_string(address).asInstanceOf[Ptr[gchar]],
-        flags,
+        flags.raw,
         observer
           .map[Ptr[GDBusAuthObserver]](o =>
             o.getUnsafeRawPointer().asInstanceOf
@@ -1463,7 +1093,7 @@ object DBusConnection:
       guid: Option[
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      flags: GDBusConnectionFlags /* Some(GDBusConnectionFlags) */,
+      flags: DBusConnectionFlags /* Some(GDBusConnectionFlags) */,
       observer: Option[DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */ ],
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
   )(using Zone): GResult[DBusConnection] = GResult.wrap(__errorPtr =>
@@ -1477,7 +1107,7 @@ object DBusConnection:
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
-        flags,
+        flags.raw,
         observer
           .map[Ptr[GDBusAuthObserver]](o =>
             o.getUnsafeRawPointer().asInstanceOf
@@ -1512,39 +1142,10 @@ object DBusConnection:
     * This is an asynchronous failable constructor. See
     * g_dbus_connection_new_sync() for the synchronous version.
     */
-  def `new`(
-      stream: IOStream /* Some(Ptr[GIOStream]) */,
-      guid: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      flags: GDBusConnectionFlags /* Some(GDBusConnectionFlags) */,
-      observer: Option[DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */ ],
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_dbus_connection_new(
-    stream.getUnsafeRawPointer().asInstanceOf,
-    guid
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    flags,
-    observer
-      .map[Ptr[GDBusAuthObserver]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GDBusAuthObserver]]),
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def `new`() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1570,32 +1171,10 @@ object DBusConnection:
     * This is an asynchronous failable constructor. See
     * g_dbus_connection_new_for_address_sync() for the synchronous version.
     */
-  def newForAddress(
-      address: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: GDBusConnectionFlags /* Some(GDBusConnectionFlags) */,
-      observer: Option[DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */ ],
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_dbus_connection_new_for_address(
-    __sn_extract_string(address).asInstanceOf[Ptr[gchar]],
-    flags,
-    observer
-      .map[Ptr[GDBusAuthObserver]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GDBusAuthObserver]]),
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def newForAddress() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

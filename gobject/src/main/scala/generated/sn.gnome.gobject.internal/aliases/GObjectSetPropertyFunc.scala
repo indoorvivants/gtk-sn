@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GObjectSetPropertyFunc: : a #GObject g_object_class_install_property(). : the new value for the property : the #GParamSpec describing the property
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gobject.h
 */
 opaque type GObjectSetPropertyFunc = CFuncPtr4[Ptr[GObject], _root_.sn.gnome.glib.internal.guint, Ptr[GValue], Ptr[GParamSpec], Unit]
 object GObjectSetPropertyFunc:

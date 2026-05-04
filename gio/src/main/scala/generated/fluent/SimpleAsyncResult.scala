@@ -5,19 +5,10 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{AsyncResult, Cancellable}
 import sn.gnome.gio.internal.GSimpleAsyncResult
-import sn.gnome.gio.internal.GSimpleAsyncThreadFunc
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.GError
-import sn.gnome.glib.internal.GQuark
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.gssize
+import sn.gnome.glib.internal.{gboolean, gint, gpointer, gssize}
 import sn.gnome.gobject.fluent.Object
 
 /**  COMMENT FOR THE ORIGINAL C DEFINITION
@@ -284,18 +275,10 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     * Calling this function takes a reference to @simple for as long as is
     * needed to run the job and report its completion.
     */
-  def runInThread(
-      func: GSimpleAsyncThreadFunc /* Some(GSimpleAsyncThreadFunc) */,
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): Unit /* None */ = g_simple_async_result_run_in_thread(
-    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
-    func,
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SimpleAsyncThreadFunc), @type -> DataRecord(GSimpleAsyncThreadFunc)))"
   )
+  def runInThread__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -328,47 +311,29 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     *
     * Sets an error within the asynchronous result without a #GError.
     */
-  inline def setError(
-      domain: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      code: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      format: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = g_simple_async_result_set_error(
-    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
-    domain,
-    gint(code),
-    __sn_extract_string(format),
-    args*
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
+  def setError__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets an error within the asynchronous result without a #GError. Unless
     * writing a binding, see g_simple_async_result_set_error().
     */
-  def setErrorVa(
-      domain: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      code: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      format: String | CString /* Some(CString) */,
-      args: CVarArgList /* Some(va_list) */
-  )(using Zone): Unit /* None */ = g_simple_async_result_set_error_va(
-    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
-    domain,
-    gint(code),
-    __sn_extract_string(format),
-    args
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
+  def setErrorVa__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the result from a #GError.
     */
-  def setFromError(
-      error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): Unit /* None */ = g_simple_async_result_set_from_error(
-    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
-    error
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
+  def setFromError__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -400,18 +365,10 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     *
     * Sets the operation result within the asynchronous result to a pointer.
     */
-  def setOpResGpointer(
-      op_res: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      destroy_op_res: GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-  ): Unit /* None */ = g_simple_async_result_set_op_res_gpointer(
-    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
-    op_res
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-    destroy_op_res
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
+  def setOpResGpointer__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -429,21 +386,11 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     * Sets the result from @error, and takes over the caller's ownership of @error,
     * so the caller does not need to free it any more.
     */
-  def takeError(
-      error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): Unit /* None */ = g_simple_async_result_take_error(
-    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
-    error
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
+  def takeError__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end SimpleAsyncResult
 
 object SimpleAsyncResult:
@@ -459,107 +406,28 @@ object SimpleAsyncResult:
     * g_simple_async_result_set_check_cancellable() immediately after this
     * function returns.
     */
-  def apply(
-      source_object: Option[
-        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
-      ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      source_tag: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): SimpleAsyncResult = new SimpleAsyncResult(
-    g_simple_async_result_new(
-      source_object
-        .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
-          o.getUnsafeRawPointer().asInstanceOf
-        )
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
-        ),
-      callback
-        .map[GAsyncReadyCallback](o => o)
-        .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-      user_data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      source_tag
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def `new`() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a new #GSimpleAsyncResult with a set error.
     */
-  inline def error(
-      source_object: Option[
-        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
-      ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      domain: GQuark /* Some(_root_.sn.gnome.glib.internal.GQuark) */,
-      code: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      format: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): SimpleAsyncResult = new SimpleAsyncResult(
-    g_simple_async_result_new_error(
-      source_object
-        .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
-          o.getUnsafeRawPointer().asInstanceOf
-        )
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
-        ),
-      callback
-        .map[GAsyncReadyCallback](o => o)
-        .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-      user_data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      domain,
-      gint(code),
-      __sn_extract_string(format),
-      args*
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def new_error() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Creates a #GSimpleAsyncResult from an error condition.
     */
-  def fromError(
-      source_object: Option[
-        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
-      ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): SimpleAsyncResult = new SimpleAsyncResult(
-    g_simple_async_result_new_from_error(
-      source_object
-        .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
-          o.getUnsafeRawPointer().asInstanceOf
-        )
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
-        ),
-      callback
-        .map[GAsyncReadyCallback](o => o)
-        .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-      user_data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      error
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def new_from_error() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -567,33 +435,10 @@ object SimpleAsyncResult:
     * caller's ownership of @error, so the caller does not need to free it
     * anymore.
     */
-  def takeError(
-      source_object: Option[
-        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
-      ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ],
-      error: Ptr[GError] /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
-  ): SimpleAsyncResult = new SimpleAsyncResult(
-    g_simple_async_result_new_take_error(
-      source_object
-        .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
-          o.getUnsafeRawPointer().asInstanceOf
-        )
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
-        ),
-      callback
-        .map[GAsyncReadyCallback](o => o)
-        .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-      user_data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      error
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def new_take_error() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -618,26 +463,19 @@ object SimpleAsyncResult:
       source_tag: Option[
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
-  ): Boolean /* None */ = g_simple_async_result_is_valid(
-    result.getUnsafeRawPointer().asInstanceOf,
-    source
-      .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
-      ),
-    source_tag
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-  ).value.!=(0)
+  ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_simple_async_result_is_valid(
+      result.getUnsafeRawPointer().asInstanceOf,
+      source
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
+        ),
+      source_tag
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+    ).value.!=(0)
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end SimpleAsyncResult

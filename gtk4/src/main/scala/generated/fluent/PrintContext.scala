@@ -4,13 +4,10 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.cairo.internal.cairo_t
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.PageSetup
 import sn.gnome.gtk4.internal.GtkPrintContext
-import sn.gnome.pango.fluent.Context
-import sn.gnome.pango.fluent.FontMap
-import sn.gnome.pango.fluent.Layout
+import sn.gnome.pango.fluent.{Context, FontMap, Layout}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -114,10 +111,10 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     *
     * Obtains the cairo context that is associated with the `GtkPrintContext`.
     */
-  def getCairoContext(): Ptr[cairo_t] /* None */ =
-    gtk_print_context_get_cairo_context(
-      this.raw.asInstanceOf[Ptr[GtkPrintContext]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  )
+  def getCairoContext__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -144,7 +141,7 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_hard_margins contains an OUT parameter, which is not supported yet"
   )
-  private def getHardMargins__ = ???
+  def getHardMargins__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -192,15 +189,9 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     * preview, it is not needed for printing, since GTK itself creates a
     * suitable cairo context in that case.
     */
-  def setCairoContext(
-      cr: Ptr[cairo_t] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
-      dpi_x: Double /* Some(Double) */,
-      dpi_y: Double /* Some(Double) */
-  ): Unit /* None */ = gtk_print_context_set_cairo_context(
-    this.raw.asInstanceOf[Ptr[GtkPrintContext]],
-    cr,
-    dpi_x,
-    dpi_y
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
+  def setCairoContext__ = ???
 
 end PrintContext

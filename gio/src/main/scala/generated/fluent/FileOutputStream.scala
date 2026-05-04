@@ -4,15 +4,15 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.FileInfo
-import sn.gnome.gio.fluent.OutputStream
-import sn.gnome.gio.fluent.Seekable
-import sn.gnome.gio.internal.GAsyncReadyCallback
+import sn.gnome.gio.fluent.{
+  AsyncResult,
+  Cancellable,
+  FileInfo,
+  OutputStream,
+  Seekable
+}
 import sn.gnome.gio.internal.GFileOutputStream
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gpointer
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -92,28 +92,10 @@ class FileOutputStream(raw: Ptr[GFileOutputStream])
     * For the synchronous version of this function, see
     * g_file_output_stream_query_info().
     */
-  def queryInfoAsync(
-      attributes: String | CString /* Some(CString) */,
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  )(using Zone): Unit /* None */ = g_file_output_stream_query_info_async(
-    this.raw.asInstanceOf[Ptr[GFileOutputStream]],
-    __sn_extract_string(attributes),
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def queryInfoAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GSignalInvocationHint: _id: The signal id of the signal invoking the callback
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gsignal.h
 */
 opaque type _GSignalInvocationHint = CStruct3[_root_.sn.gnome.glib.internal.guint, _root_.sn.gnome.glib.internal.GQuark, GSignalFlags]
 

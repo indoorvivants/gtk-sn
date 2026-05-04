@@ -5,16 +5,9 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.cairo.internal.cairo_region_t
-import sn.gnome.gdk4.fluent.GLContext
-import sn.gnome.gdk4.fluent.MemoryFormat
-import sn.gnome.gdk4.fluent.Texture
+import sn.gnome.gdk4.fluent.{GLContext, MemoryFormat, Texture}
 import sn.gnome.gdk4.internal.GdkGLTextureBuilder
-import sn.gnome.glib.internal.GDestroyNotify
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gboolean, gint, gpointer, guint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -54,26 +47,10 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * It is possible to call this function multiple times to create multiple
     * textures, possibly with changing properties in between.
     */
-  def build(
-      destroy: Option[
-        GDestroyNotify /* Some(_root_.sn.gnome.glib.internal.GDestroyNotify) */
-      ],
-      data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Texture /* None */ = new Texture(
-    gdk_gl_texture_builder_build(
-      this.raw.asInstanceOf[Ptr[GdkGLTextureBuilder]],
-      destroy
-        .map[_root_.sn.gnome.glib.internal.GDestroyNotify](o => o)
-        .getOrElse(
-          null.asInstanceOf[_root_.sn.gnome.glib.internal.GDestroyNotify]
-        ),
-      data
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
+  def build__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -136,10 +113,10 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * Gets the region previously set via
     * gdk_gl_texture_builder_set_update_region() or %NULL if none was set.
     */
-  def getUpdateRegion(): Ptr[cairo_region_t] /* None */ =
-    gdk_gl_texture_builder_get_update_region(
-      this.raw.asInstanceOf[Ptr[GdkGLTextureBuilder]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
+  )
+  def getUpdateRegion__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -284,18 +261,10 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     *
     * An example would be a screen recording where only the mouse pointer moves.
     */
-  def setUpdateRegion(
-      region: Option[Ptr[
-        cairo_region_t
-      ] /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */ ]
-  ): Unit /* None */ = gdk_gl_texture_builder_set_update_region(
-    this.raw.asInstanceOf[Ptr[GdkGLTextureBuilder]],
-    region
-      .map[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
   )
+  def setUpdateRegion__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

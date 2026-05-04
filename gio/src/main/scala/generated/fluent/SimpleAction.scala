@@ -6,11 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.Action
 import sn.gnome.gio.internal.GSimpleAction
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.GVariantType
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -56,12 +52,10 @@ class SimpleAction(raw: Ptr[GSimpleAction])
     *
     * If the @value GVariant is floating, it is consumed.
     */
-  def setState(
-      value: Ptr[
-        GVariant
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-  ): Unit /* None */ =
-    g_simple_action_set_state(this.raw.asInstanceOf[Ptr[GSimpleAction]], value)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+  )
+  def setState__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -70,16 +64,10 @@ class SimpleAction(raw: Ptr[GSimpleAction])
     * See g_action_get_state_hint() for more information about action state
     * hints.
     */
-  def setStateHint(
-      state_hint: Option[
-        Ptr[GVariant] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-      ]
-  ): Unit /* None */ = g_simple_action_set_state_hint(
-    this.raw.asInstanceOf[Ptr[GSimpleAction]],
-    state_hint
-      .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o => o)
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
+  def setStateHint__ = ???
 
 end SimpleAction
 
@@ -91,22 +79,10 @@ object SimpleAction:
     * The created action is stateless. See g_simple_action_new_stateful() to
     * create an action that has state.
     */
-  def apply(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      parameter_type: Option[Ptr[
-        GVariantType
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */ ]
-  )(using Zone): SimpleAction = new SimpleAction(
-    g_simple_action_new(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      parameter_type
-        .map[Ptr[_root_.sn.gnome.glib.internal.GVariantType]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariantType]]
-        )
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
   )
+  def `new`() = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -117,33 +93,9 @@ object SimpleAction:
     *
     * If the @state #GVariant is floating, it is consumed.
     */
-  def stateful(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      parameter_type: Option[Ptr[
-        GVariantType
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */ ],
-      state: Ptr[
-        GVariant
-      ] /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
-  )(using Zone): SimpleAction = new SimpleAction(
-    g_simple_action_new_stateful(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      parameter_type
-        .map[Ptr[_root_.sn.gnome.glib.internal.GVariantType]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariantType]]
-        ),
-      state
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
   )
+  def new_stateful() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end SimpleAction

@@ -6,9 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gtk4.fluent.Ordering
-import sn.gnome.gtk4.fluent.SorterChange
-import sn.gnome.gtk4.fluent.SorterOrder
+import sn.gnome.gtk4.fluent.{Ordering, SorterChange, SorterOrder}
 import sn.gnome.gtk4.internal.GtkSorter
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION

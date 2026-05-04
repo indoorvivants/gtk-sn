@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GTypePluginCompleteInterfaceInfo: : the #GTypePlugin _type: the #GType of an instantiatable type to which the interface is added : the #GInterfaceInfo to fill in
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gtypeplugin.h
 */
 opaque type GTypePluginCompleteInterfaceInfo = CFuncPtr4[Ptr[GTypePlugin], GType, GType, Ptr[GInterfaceInfo], Unit]
 object GTypePluginCompleteInterfaceInfo:

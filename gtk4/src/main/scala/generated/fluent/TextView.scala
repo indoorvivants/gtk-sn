@@ -6,25 +6,24 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Event
 import sn.gnome.gio.fluent.MenuModel
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.Accessible
-import sn.gnome.gtk4.fluent.Buildable
-import sn.gnome.gtk4.fluent.ConstraintTarget
-import sn.gnome.gtk4.fluent.InputPurpose
-import sn.gnome.gtk4.fluent.Justification
-import sn.gnome.gtk4.fluent.Scrollable
-import sn.gnome.gtk4.fluent.TextBuffer
-import sn.gnome.gtk4.fluent.TextChildAnchor
-import sn.gnome.gtk4.fluent.TextMark
-import sn.gnome.gtk4.fluent.TextWindowType
-import sn.gnome.gtk4.fluent.Widget
-import sn.gnome.gtk4.fluent.WrapMode
-import sn.gnome.gtk4.internal.GtkInputHints
-import sn.gnome.gtk4.internal.GtkTextIter
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{
+  Accessible,
+  Buildable,
+  ConstraintTarget,
+  InputHints,
+  InputPurpose,
+  Justification,
+  Scrollable,
+  TextBuffer,
+  TextChildAnchor,
+  TextMark,
+  TextWindowType,
+  Widget,
+  WrapMode
+}
 import sn.gnome.gtk4.internal.GtkTextView
 import sn.gnome.pango.fluent.Context
-import sn.gnome.pango.internal.PangoTabArray
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -122,12 +121,10 @@ class TextView(raw: Ptr[GtkTextView])
     * paragraphs are the same in all views, since they depend on the contents of
     * the `GtkTextBuffer`.
     */
-  def backwardDisplayLine(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): Boolean /* None */ = gtk_text_view_backward_display_line(
-    this.raw.asInstanceOf[Ptr[GtkTextView]],
-    iter
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+  )
+  def backwardDisplayLine__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -141,12 +138,10 @@ class TextView(raw: Ptr[GtkTextView])
     * paragraphs are the same in all views, since they depend on the contents of
     * the `GtkTextBuffer`.
     */
-  def backwardDisplayLineStart(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): Boolean /* None */ = gtk_text_view_backward_display_line_start(
-    this.raw.asInstanceOf[Ptr[GtkTextView]],
-    iter
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+  )
+  def backwardDisplayLineStart__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -155,7 +150,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method buffer_to_window_coords contains an OUT parameter, which is not supported yet"
   )
-  private def bufferToWindowCoords__ = ???
+  def bufferToWindowCoords__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -169,12 +164,10 @@ class TextView(raw: Ptr[GtkTextView])
     * paragraphs are the same in all views, since they depend on the contents of
     * the `GtkTextBuffer`.
     */
-  def forwardDisplayLine(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): Boolean /* None */ = gtk_text_view_forward_display_line(
-    this.raw.asInstanceOf[Ptr[GtkTextView]],
-    iter
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+  )
+  def forwardDisplayLine__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -188,12 +181,10 @@ class TextView(raw: Ptr[GtkTextView])
     * paragraphs are the same in all views, since they depend on the contents of
     * the `GtkTextBuffer`.
     */
-  def forwardDisplayLineEnd(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): Boolean /* None */ = gtk_text_view_forward_display_line_end(
-    this.raw.asInstanceOf[Ptr[GtkTextView]],
-    iter
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+  )
+  def forwardDisplayLineEnd__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -252,7 +243,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_cursor_locations contains an OUT parameter, which is not supported yet"
   )
-  private def getCursorLocations__ = ???
+  def getCursorLocations__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -317,8 +308,8 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Gets the `input-hints` of the `GtkTextView`.
     */
-  def getInputHints(): GtkInputHints /* None */ = gtk_text_view_get_input_hints(
-    this.raw.asInstanceOf[Ptr[GtkTextView]]
+  def getInputHints(): InputHints /* None */ = InputHints.fromRaw(
+    gtk_text_view_get_input_hints(this.raw.asInstanceOf[Ptr[GtkTextView]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -341,7 +332,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_iter_at_location contains an OUT parameter, which is not supported yet"
   )
-  private def getIterAtLocation__ = ???
+  def getIterAtLocation__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -360,7 +351,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_iter_at_position contains an OUT parameter, which is not supported yet"
   )
-  private def getIterAtPosition__ = ???
+  def getIterAtPosition__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -373,7 +364,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_iter_location contains an OUT parameter, which is not supported yet"
   )
-  private def getIterLocation__ = ???
+  def getIterLocation__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -408,7 +399,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_line_at_y contains an OUT parameter, which is not supported yet"
   )
-  private def getLineAtY__ = ???
+  def getLineAtY__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -421,7 +412,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_line_yrange contains an OUT parameter, which is not supported yet"
   )
-  private def getLineYrange__ = ???
+  def getLineYrange__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -517,9 +508,10 @@ class TextView(raw: Ptr[GtkTextView])
     * %NULL if “standard” (8-space) tabs are used. Free the return value with
     * [method@Pango.TabArray.free].
     */
-  def getTabs(): Ptr[PangoTabArray] /* None */ = gtk_text_view_get_tabs(
-    this.raw.asInstanceOf[Ptr[GtkTextView]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
+  def getTabs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -540,7 +532,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method get_visible_rect contains an OUT parameter, which is not supported yet"
   )
-  private def getVisibleRect__ = ???
+  def getVisibleRect__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -634,14 +626,10 @@ class TextView(raw: Ptr[GtkTextView])
     * and visual order will depend on the direction of the current run, and
     * there may be jumps when the cursor is moved off of the end of a run.
     */
-  def moveVisually(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      count: Int /* Some(CInt) */
-  ): Boolean /* None */ = gtk_text_view_move_visually(
-    this.raw.asInstanceOf[Ptr[GtkTextView]],
-    iter,
-    count
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+  )
+  def moveVisually__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -717,20 +705,10 @@ class TextView(raw: Ptr[GtkTextView])
     * [method@Gtk.TextView.scroll_to_mark] which saves a point to be scrolled to
     * after line validation.
     */
-  def scrollToIter(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */,
-      within_margin: Double /* Some(Double) */,
-      use_align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      xalign: Double /* Some(Double) */,
-      yalign: Double /* Some(Double) */
-  ): Boolean /* None */ = gtk_text_view_scroll_to_iter(
-    this.raw.asInstanceOf[Ptr[GtkTextView]],
-    iter,
-    within_margin,
-    gboolean(gint((if use_align == true then 1 else 0))),
-    xalign,
-    yalign
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+  )
+  def scrollToIter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -893,10 +871,10 @@ class TextView(raw: Ptr[GtkTextView])
     * The `input-hints` allow input methods to fine-tune their behaviour.
     */
   def setInputHints(
-      hints: GtkInputHints /* Some(GtkInputHints) */
+      hints: InputHints /* Some(GtkInputHints) */
   ): Unit /* None */ = gtk_text_view_set_input_hints(
     this.raw.asInstanceOf[Ptr[GtkTextView]],
-    hints
+    hints.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -1025,12 +1003,10 @@ class TextView(raw: Ptr[GtkTextView])
     *
     * Tags in the buffer may override the default.
     */
-  def setTabs(
-      tabs: Ptr[
-        PangoTabArray
-      ] /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]) */
-  ): Unit /* None */ =
-    gtk_text_view_set_tabs(this.raw.asInstanceOf[Ptr[GtkTextView]], tabs)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+  )
+  def setTabs__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1063,12 +1039,10 @@ class TextView(raw: Ptr[GtkTextView])
     * See [method@Gtk.TextView.forward_display_line] for an explanation of
     * display lines vs. paragraphs.
     */
-  def startsDisplayLine(
-      iter: Ptr[GtkTextIter] /* Some(Ptr[GtkTextIter]) */
-  ): Boolean /* None */ = gtk_text_view_starts_display_line(
-    this.raw.asInstanceOf[Ptr[GtkTextView]],
-    iter
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+  )
+  def startsDisplayLine__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -1078,7 +1052,7 @@ class TextView(raw: Ptr[GtkTextView])
   @annotation.compileTimeOnly(
     "Method window_to_buffer_coords contains an OUT parameter, which is not supported yet"
   )
-  private def windowToBufferCoords__ = ???
+  def windowToBufferCoords__ = ???
 
 end TextView
 

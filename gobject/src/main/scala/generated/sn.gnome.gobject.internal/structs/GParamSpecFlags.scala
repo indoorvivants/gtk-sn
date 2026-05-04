@@ -9,6 +9,8 @@ import _root_.scala.scalanative.*
 
 /**
  * GParamSpecFlags: _instance: private #GParamSpec portion _class: the #GFlagsClass for the flags _value: default value for the property specified
+
+ * [bindgen] header: /usr/include/glib-2.0/gobject/gparamspecs.h
 */
 opaque type GParamSpecFlags = CStruct3[GParamSpec, Ptr[GFlagsClass], _root_.sn.gnome.glib.internal.guint]
 

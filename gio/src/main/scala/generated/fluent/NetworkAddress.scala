@@ -5,12 +5,10 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.NetworkAddress
-import sn.gnome.gio.fluent.SocketConnectable
+import sn.gnome.gio.fluent.{NetworkAddress, SocketConnectable}
 import sn.gnome.gio.internal.GNetworkAddress
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.guint16
+import sn.gnome.glib.internal.{gchar, guint16}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -135,7 +133,7 @@ object NetworkAddress:
       host_and_port: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
-  )(using Zone): GResult[NetworkAddress /* None */ ] =
+  )(using Zone): GResult[NetworkAddress /* Some(Ptr[GSocketConnectable]) */ ] =
     GResult.wrap(__errorPtr =>
       new NetworkAddress(
         g_network_address_parse(
@@ -160,7 +158,7 @@ object NetworkAddress:
       uri: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
-  )(using Zone): GResult[NetworkAddress /* None */ ] =
+  )(using Zone): GResult[NetworkAddress /* Some(Ptr[GSocketConnectable]) */ ] =
     GResult.wrap(__errorPtr =>
       new NetworkAddress(
         g_network_address_parse_uri(

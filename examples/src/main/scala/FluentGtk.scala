@@ -1,20 +1,16 @@
 import sn.gnome.gtk4.fluent.*
-import sn.gnome.gtk4.internal.*
-import sn.gnome.gio.internal.*
-import sn.gnome.gio.fluent.Application as GioApplication
-import sn.gnome.glib.internal.*
-import sn.gnome.gobject.internal.*
 import sn.gnome.gobject.runtime.*
 
 import scalanative.unsafe.*
 import scalanative.unsigned.*
+import sn.gnome.gio.fluent.ApplicationFlags
 
 class FluentGtk(using Runtime, Zone):
   def run() =
-    gtk_init()
+    Gtk.init()
     val app = Application(
       Some("hello.scala.native"),
-      GApplicationFlags.G_APPLICATION_FLAGS_NONE
+      ApplicationFlags.FLAGS_NONE
     )
 
     app.onSignal("activate"):

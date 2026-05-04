@@ -4,9 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Drop
-import sn.gnome.gdk4.internal.GdkContentFormats
-import sn.gnome.gdk4.internal.GdkDragAction
+import sn.gnome.gdk4.fluent.{DragAction, Drop}
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkDropTargetAsync
 
@@ -55,10 +53,11 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     *
     * Gets the actions that this drop target supports.
     */
-  def getActions(): GdkDragAction /* None */ =
+  def getActions(): DragAction /* None */ = DragAction.fromRaw(
     gtk_drop_target_async_get_actions(
       this.raw.asInstanceOf[Ptr[GtkDropTargetAsync]]
     )
+  )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -66,10 +65,10 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     *
     * If the result is %NULL, all formats are expected to be supported.
     */
-  def getFormats(): Ptr[GdkContentFormats] /* None */ =
-    gtk_drop_target_async_get_formats(
-      this.raw.asInstanceOf[Ptr[GtkDropTargetAsync]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+  )
+  def getFormats__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -90,28 +89,20 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     * Sets the actions that this drop target supports.
     */
   def setActions(
-      actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+      actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
   ): Unit /* None */ = gtk_drop_target_async_set_actions(
     this.raw.asInstanceOf[Ptr[GtkDropTargetAsync]],
-    actions
+    actions.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Sets the data formats that this drop target will accept.
     */
-  def setFormats(
-      formats: Option[Ptr[
-        GdkContentFormats
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */ ]
-  ): Unit /* None */ = gtk_drop_target_async_set_formats(
-    this.raw.asInstanceOf[Ptr[GtkDropTargetAsync]],
-    formats
-      .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
+  def setFormats__ = ???
 
 end DropTargetAsync
 
@@ -120,20 +111,9 @@ object DropTargetAsync:
     *
     * Creates a new `GtkDropTargetAsync` object.
     */
-  def apply(
-      formats: Option[Ptr[
-        GdkContentFormats
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */ ],
-      actions: GdkDragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
-  ): DropTargetAsync = new DropTargetAsync(
-    gtk_drop_target_async_new(
-      formats
-        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]](o => o)
-        .getOrElse(
-          null
-            .asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]]
-        ),
-      actions
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
+  def `new`() = ???
+
 end DropTargetAsync

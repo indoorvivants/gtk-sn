@@ -1,6 +1,6 @@
 import util.boundary.*
 import scala.util.control.NonFatal
-import com.indoorvivants.gnome.gir_schema.Type
+import com.indoorvivants.gnome.gir_schema.*
 
 enum FluentErr:
   case Exc(exc: Throwable)
@@ -14,6 +14,40 @@ enum FluentErr:
   case TypeMissingValue(tpe: Type)
   case TargetTypesMissing(meth: String)
   case ParameterHasNoTargetType(meth: String, param: String, idx: Int)
+  case CannotRenderArrayType(tpe: ArrayType)
+  case CannotRenderType(tpe: Type)
+
+  def message: String =
+    this match
+      case FluentErr.Exc(exc) =>
+        exc.getMessage()
+      case FluentErr.Other(msg) =>
+        (msg)
+      case FluentErr.ClassHasNoCType(nm) =>
+        (s"Class [$nm] has no c:type attribute")
+      case FluentErr.NoGlobalNameFor(nm) =>
+        (s"No global name found for $nm")
+      case FluentErr.UnexpectedClassParent(cls, nm) =>
+        (s"Unexpected class parent for $cls: $nm")
+      case FluentErr.MethodHasNoReturnType(meth) =>
+        (s"Method ${meth} has no return type")
+      case FluentErr.MethodParameterHasNoType(meth, param) =>
+        (s"Method ${meth} has no type for parameter $param")
+      case FluentErr.MethodParameterHasNoName(meth) =>
+        (s"Method ${meth} has no name for one of the parameters")
+      case FluentErr.TypeMissingValue(tpe) =>
+        (s"Type $tpe has no @type attribute")
+      case FluentErr.TargetTypesMissing(meth) =>
+        (s"Method ${meth} has no target types")
+      case FluentErr.ParameterHasNoTargetType(meth, param, idx) =>
+        (
+          s"Method ${meth} has no target type for parameter $param (index $idx)"
+        )
+      case FluentErr.CannotRenderArrayType(tpe) =>
+        (s"Cannot render array type $tpe")
+      case FluentErr.CannotRenderType(tpe) =>
+        (s"Cannot render type $tpe")
+    end match
 end FluentErr
 
 extension (fe: FluentErr)
@@ -24,29 +58,8 @@ extension (fe: FluentErr)
     fe match
       case FluentErr.Exc(exc) =>
         scribe.error(title, exc)
-      case FluentErr.Other(msg) =>
-        warn(msg)
-      case FluentErr.ClassHasNoCType(nm) =>
-        warn(s"Class [$nm] has no c:type attribute")
-      case FluentErr.NoGlobalNameFor(nm) =>
-        warn(s"No global name found for $nm")
-      case FluentErr.UnexpectedClassParent(cls, nm) =>
-        warn(s"Unexpected class parent for $cls: $nm")
-      case FluentErr.MethodHasNoReturnType(meth) =>
-        warn(s"Method ${meth} has no return type")
-      case FluentErr.MethodParameterHasNoType(meth, param) =>
-        warn(s"Method ${meth} has no type for parameter $param")
-      case FluentErr.MethodParameterHasNoName(meth) =>
-        warn(s"Method ${meth} has no name for one of the parameters")
-      case FluentErr.TypeMissingValue(tpe) =>
-        warn(s"Type $tpe has no @type attribute")
-      case FluentErr.TargetTypesMissing(meth) =>
-        warn(s"Method ${meth} has no target types")
-      case FluentErr.ParameterHasNoTargetType(meth, param, idx) =>
-        warn(
-          s"Method ${meth} has no target type for parameter $param (index $idx)"
-        )
-    end match
+      case other => 
+        warn(other.message)
 end extension
 
 def handleExceptions[T](f: => T)(using l: Label[FluentErr]): T =

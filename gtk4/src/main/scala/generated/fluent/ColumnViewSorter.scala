@@ -6,9 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
-import sn.gnome.gtk4.fluent.ColumnViewColumn
-import sn.gnome.gtk4.fluent.SortType
-import sn.gnome.gtk4.fluent.Sorter
+import sn.gnome.gtk4.fluent.{ColumnViewColumn, SortType, Sorter}
 import sn.gnome.gtk4.internal.GtkColumnViewSorter
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -75,7 +73,7 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
   @annotation.compileTimeOnly(
     "Method get_nth_sort_column contains an OUT parameter, which is not supported yet"
   )
-  private def getNthSortColumn__ = ???
+  def getNthSortColumn__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *

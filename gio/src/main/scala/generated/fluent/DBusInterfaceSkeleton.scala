@@ -4,18 +4,14 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.DBusConnection
-import sn.gnome.gio.fluent.DBusInterface
-import sn.gnome.gio.internal.GDBusInterfaceInfo
+import sn.gnome.gio.fluent.{
+  DBusConnection,
+  DBusInterface,
+  DBusInterfaceSkeletonFlags
+}
 import sn.gnome.gio.internal.GDBusInterfaceSkeleton
-import sn.gnome.gio.internal.GDBusInterfaceSkeletonFlags
-import sn.gnome.gio.internal.GDBusInterfaceVTable
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.GList
-import sn.gnome.glib.internal.GVariant
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
+import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -79,18 +75,20 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     *
     * Gets a list of the connections that @interface_ is exported on.
     */
-  def getConnections(): Ptr[GList] /* None */ =
-    g_dbus_interface_skeleton_get_connections(
-      this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DBusConnection))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+  )
+  def getConnections__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Gets the #GDBusInterfaceSkeletonFlags that describes what the behavior of @interface_
     */
-  def getFlags(): GDBusInterfaceSkeletonFlags /* None */ =
-    g_dbus_interface_skeleton_get_flags(
-      this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
+  def getFlags(): DBusInterfaceSkeletonFlags /* None */ =
+    DBusInterfaceSkeletonFlags.fromRaw(
+      g_dbus_interface_skeleton_get_flags(
+        this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -98,10 +96,10 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * Gets D-Bus introspection information for the D-Bus interface implemented
     * by @interface_.
     */
-  def getInfo(): Ptr[GDBusInterfaceInfo] /* None */ =
-    g_dbus_interface_skeleton_get_info(
-      this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+  )
+  def getInfo__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -117,10 +115,10 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     *
     * Gets all D-Bus properties for @interface_.
     */
-  def getProperties(): Ptr[GVariant] /* None */ =
-    g_dbus_interface_skeleton_get_properties(
-      this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+  )
+  def getProperties__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -129,10 +127,10 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     *   The returned function pointers should expect @interface_ itself to be
     *   passed as @user_data.
     */
-  def getVtable(): Ptr[GDBusInterfaceVTable] /* None */ =
-    g_dbus_interface_skeleton_get_vtable(
-      this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceVTable), @type -> DataRecord(GDBusInterfaceVTable*)))"
+  )
+  def getVtable__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -150,10 +148,10 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * Sets flags describing what the behavior of @skeleton should be.
     */
   def setFlags(
-      flags: GDBusInterfaceSkeletonFlags /* Some(GDBusInterfaceSkeletonFlags) */
+      flags: DBusInterfaceSkeletonFlags /* Some(GDBusInterfaceSkeletonFlags) */
   ): Unit /* None */ = g_dbus_interface_skeleton_set_flags(
     this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]],
-    flags
+    flags.raw
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

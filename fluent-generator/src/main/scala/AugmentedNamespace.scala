@@ -28,6 +28,9 @@ case class AugmentedNamespace(n: Namespace):
   lazy val aliases: Seq[Alias] =
     collect[Alias]
 
+  lazy val functions: Seq[FunctionType] = 
+    collect[FunctionType]
+
   lazy val callbacks: Seq[Callback] =
     collect[Callback]
 

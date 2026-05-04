@@ -5,16 +5,16 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ActionGroup
-import sn.gnome.gio.fluent.ActionMap
-import sn.gnome.gio.fluent.Menu
-import sn.gnome.gio.fluent.MenuModel
-import sn.gnome.gio.internal.GApplicationFlags
-import sn.gnome.glib.internal.GList
+import sn.gnome.gio.fluent.{
+  ActionGroup,
+  ActionMap,
+  ApplicationFlags,
+  Menu,
+  MenuModel
+}
 import sn.gnome.glib.internal.guint
-import sn.gnome.gtk4.fluent.Window
+import sn.gnome.gtk4.fluent.{ApplicationInhibitFlags, Window}
 import sn.gnome.gtk4.internal.GtkApplication
-import sn.gnome.gtk4.internal.GtkApplicationInhibitFlags
 import sn.gnome.gio.fluent.Application as _Application
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -229,9 +229,10 @@ class Application(raw: Ptr[GtkApplication])
     * The list that is returned should not be modified in any way. It will only
     * remain valid until the next focus change or window creation or deletion.
     */
-  def getWindows(): Ptr[GList] /* None */ = gtk_application_get_windows(
-    this.raw.asInstanceOf[Ptr[GtkApplication]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Window))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def getWindows__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -261,14 +262,14 @@ class Application(raw: Ptr[GtkApplication])
     */
   def inhibit(
       window: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: GtkApplicationInhibitFlags /* Some(GtkApplicationInhibitFlags) */,
+      flags: ApplicationInhibitFlags /* Some(GtkApplicationInhibitFlags) */,
       reason: Option[String | CString /* Some(CString) */ ]
   )(using Zone): UInt /* None */ = gtk_application_inhibit(
     this.raw.asInstanceOf[Ptr[GtkApplication]],
     window
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    flags,
+    flags.raw,
     reason
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
@@ -319,14 +320,10 @@ class Application(raw: Ptr[GtkApplication])
     * For the `detailed_action_name`, see `g_action_parse_detailed_name()` and
     * `g_action_print_detailed_name()`.
     */
-  def setAccelsForAction(
-      detailed_action_name: String | CString /* Some(CString) */,
-      accels: Ptr[CString] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ = gtk_application_set_accels_for_action(
-    this.raw.asInstanceOf[Ptr[GtkApplication]],
-    __sn_extract_string(detailed_action_name),
-    accels
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
+  def setAccelsForAction__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -425,13 +422,13 @@ object Application:
     */
   def apply(
       application_id: Option[String | CString /* Some(CString) */ ],
-      flags: GApplicationFlags /* Some(_root_.sn.gnome.gio.internal.GApplicationFlags) */
+      flags: ApplicationFlags /* Some(_root_.sn.gnome.gio.internal.GApplicationFlags) */
   )(using Zone): Application = new Application(
     gtk_application_new(
       application_id
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),
-      flags
+      flags.raw
     ).asInstanceOf
   )
 

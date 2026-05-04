@@ -5,9 +5,8 @@ import _root_.sn.gnome.gobject.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.gchar
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.fluent.{BindingFlags, Object}
 import sn.gnome.gobject.internal.GBinding
-import sn.gnome.gobject.internal.GBindingFlags
 
 /**  COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -122,8 +121,8 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     *
     * Retrieves the flags passed when constructing the #GBinding.
     */
-  def getFlags(): GBindingFlags /* None */ = g_binding_get_flags(
-    this.raw.asInstanceOf[Ptr[GBinding]]
+  def getFlags(): BindingFlags /* None */ = BindingFlags.fromRaw(
+    g_binding_get_flags(this.raw.asInstanceOf[Ptr[GBinding]])
   )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION

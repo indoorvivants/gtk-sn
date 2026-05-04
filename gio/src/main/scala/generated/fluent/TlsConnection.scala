@@ -4,22 +4,20 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.gio.fluent.IOStream
-import sn.gnome.gio.fluent.TlsCertificate
-import sn.gnome.gio.fluent.TlsDatabase
-import sn.gnome.gio.fluent.TlsInteraction
-import sn.gnome.gio.fluent.TlsProtocolVersion
-import sn.gnome.gio.fluent.TlsRehandshakeMode
-import sn.gnome.gio.internal.GAsyncReadyCallback
-import sn.gnome.gio.internal.GTlsCertificateFlags
+import sn.gnome.gio.fluent.{
+  AsyncResult,
+  Cancellable,
+  IOStream,
+  TlsCertificate,
+  TlsCertificateFlags,
+  TlsDatabase,
+  TlsInteraction,
+  TlsProtocolVersion,
+  TlsRehandshakeMode
+}
 import sn.gnome.gio.internal.GTlsConnection
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gchar
-import sn.gnome.glib.internal.gint
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gboolean, gchar, gint}
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
   *
@@ -42,11 +40,11 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     */
   def emitAcceptCertificate(
       peer_cert: TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
-      errors: GTlsCertificateFlags /* Some(GTlsCertificateFlags) */
+      errors: TlsCertificateFlags /* Some(GTlsCertificateFlags) */
   ): Boolean /* None */ = g_tls_connection_emit_accept_certificate(
     this.raw.asInstanceOf[Ptr[GTlsConnection]],
     peer_cert.getUnsafeRawPointer().asInstanceOf,
-    errors
+    errors.raw
   ).value.!=(0)
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -78,7 +76,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
   @annotation.compileTimeOnly(
     "Method get_channel_binding_data contains an OUT parameter, which is not supported yet"
   )
-  private def getChannelBindingData__ = ???
+  def getChannelBindingData__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -156,9 +154,11 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     *
     * See #GTlsConnection:peer-certificate-errors for more information.
     */
-  def getPeerCertificateErrors(): GTlsCertificateFlags /* None */ =
-    g_tls_connection_get_peer_certificate_errors(
-      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+  def getPeerCertificateErrors(): TlsCertificateFlags /* None */ =
+    TlsCertificateFlags.fromRaw(
+      g_tls_connection_get_peer_certificate_errors(
+        this.raw.asInstanceOf[Ptr[GTlsConnection]]
+      )
     )
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -257,26 +257,10 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * Asynchronously performs a TLS handshake on @conn. See
     * g_tls_connection_handshake() for more information.
     */
-  def handshakeAsync(
-      io_priority: Int /* Some(CInt) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ],
-      callback: Option[GAsyncReadyCallback /* Some(GAsyncReadyCallback) */ ],
-      user_data: Option[
-        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-      ]
-  ): Unit /* None */ = g_tls_connection_handshake_async(
-    this.raw.asInstanceOf[Ptr[GTlsConnection]],
-    io_priority,
-    cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-    callback
-      .map[GAsyncReadyCallback](o => o)
-      .getOrElse(null.asInstanceOf[GAsyncReadyCallback]),
-    user_data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
+  def handshakeAsync__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -306,18 +290,10 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * IDs](https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids)
     * for a list of registered protocol IDs.
     */
-  def setAdvertisedProtocols(
-      protocols: Option[
-        Ptr[CString] /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]) */
-      ]
-  )(using Zone): Unit /* None */ = g_tls_connection_set_advertised_protocols(
-    this.raw.asInstanceOf[Ptr[GTlsConnection]],
-    protocols
-      .map[Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]](o => o.asInstanceOf)
-      .getOrElse(
-        null.asInstanceOf[Ptr[Ptr[_root_.sn.gnome.glib.internal.gchar]]]
-      )
+  @annotation.compileTimeOnly(
+    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
+  def setAdvertisedProtocols__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -449,12 +425,4 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     gboolean(gint((if use_system_certdb == true then 1 else 0)))
   )
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end TlsConnection

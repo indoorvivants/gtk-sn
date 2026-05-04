@@ -6,13 +6,13 @@ import _root_.sn.gnome.harfbuzz.internal.hb_buffer_content_type_t
   *
   * The type of #hb_buffer_t contents.
   */
-enum buffer_content_type_t(val raw: hb_buffer_content_type_t):
+enum Buffer_content_type_t(val raw: hb_buffer_content_type_t):
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Initial value for new buffer.
     */
   case INVALID
-      extends buffer_content_type_t(
+      extends Buffer_content_type_t(
         hb_buffer_content_type_t.HB_BUFFER_CONTENT_TYPE_INVALID
       )
 
@@ -21,7 +21,7 @@ enum buffer_content_type_t(val raw: hb_buffer_content_type_t):
     * The buffer contains input characters (before shaping).
     */
   case UNICODE
-      extends buffer_content_type_t(
+      extends Buffer_content_type_t(
         hb_buffer_content_type_t.HB_BUFFER_CONTENT_TYPE_UNICODE
       )
 
@@ -30,19 +30,19 @@ enum buffer_content_type_t(val raw: hb_buffer_content_type_t):
     * The buffer contains output glyphs (after shaping).
     */
   case GLYPHS
-      extends buffer_content_type_t(
+      extends Buffer_content_type_t(
         hb_buffer_content_type_t.HB_BUFFER_CONTENT_TYPE_GLYPHS
       )
-end buffer_content_type_t
+end Buffer_content_type_t
 
-object buffer_content_type_t:
-  def fromRaw(raw: hb_buffer_content_type_t): buffer_content_type_t =
+object Buffer_content_type_t:
+  def fromRaw(raw: hb_buffer_content_type_t): Buffer_content_type_t =
     raw match
       case hb_buffer_content_type_t.HB_BUFFER_CONTENT_TYPE_INVALID =>
-        buffer_content_type_t.INVALID
+        Buffer_content_type_t.INVALID
       case hb_buffer_content_type_t.HB_BUFFER_CONTENT_TYPE_UNICODE =>
-        buffer_content_type_t.UNICODE
+        Buffer_content_type_t.UNICODE
       case hb_buffer_content_type_t.HB_BUFFER_CONTENT_TYPE_GLYPHS =>
-        buffer_content_type_t.GLYPHS
+        Buffer_content_type_t.GLYPHS
   end fromRaw
-end buffer_content_type_t
+end Buffer_content_type_t

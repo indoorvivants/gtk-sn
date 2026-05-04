@@ -5,14 +5,8 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Device
-import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gdk4.internal.GdkEventSequence
-import sn.gnome.glib.internal.GList
-import sn.gnome.glib.internal.gboolean
-import sn.gnome.glib.internal.gint
-import sn.gnome.gtk4.fluent.EventController
-import sn.gnome.gtk4.fluent.EventSequenceState
-import sn.gnome.gtk4.fluent.Gesture
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gtk4.fluent.{EventController, EventSequenceState, Gesture}
 import sn.gnome.gtk4.internal.GtkGesture
 
 /** COMMENT FOR THE ORIGINAL C DEFINITION
@@ -125,7 +119,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_bounding_box contains an OUT parameter, which is not supported yet"
   )
-  private def getBoundingBox__ = ???
+  def getBoundingBox__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -138,7 +132,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_bounding_box_center contains an OUT parameter, which is not supported yet"
   )
-  private def getBoundingBoxCenter__ = ???
+  def getBoundingBoxCenter__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -154,9 +148,10 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     *
     * Returns all gestures in the group of @gesture
     */
-  def getGroup(): Ptr[GList] /* None */ = gtk_gesture_get_group(
-    this.raw.asInstanceOf[Ptr[GtkGesture]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gesture))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def getGroup__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -167,29 +162,19 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     *   is still interpreted by the @gesture. If in doubt, you should make a
     *   copy of the event.
     */
-  def getLastEvent(
-      sequence: Option[Ptr[
-        GdkEventSequence
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]) */ ]
-  ): Event /* None */ = new Event(
-    gtk_gesture_get_last_event(
-      this.raw.asInstanceOf[Ptr[GtkGesture]],
-      sequence
-        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]](o => o)
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]]
-        )
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
   )
+  def getLastEvent__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the `GdkEventSequence` that was last updated on @gesture.
     */
-  def getLastUpdatedSequence(): Ptr[GdkEventSequence] /* None */ =
-    gtk_gesture_get_last_updated_sequence(
-      this.raw.asInstanceOf[Ptr[GtkGesture]]
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
+  )
+  def getLastUpdatedSequence__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -202,30 +187,25 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
   @annotation.compileTimeOnly(
     "Method get_point contains an OUT parameter, which is not supported yet"
   )
-  private def getPoint__ = ???
+  def getPoint__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the @sequence state, as seen by @gesture.
     */
-  def getSequenceState(
-      sequence: Ptr[
-        GdkEventSequence
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]) */
-  ): EventSequenceState /* None */ = EventSequenceState.fromRaw(
-    gtk_gesture_get_sequence_state(
-      this.raw.asInstanceOf[Ptr[GtkGesture]],
-      sequence
-    )
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
   )
+  def getSequenceState__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
     * Returns the list of `GdkEventSequences` currently being interpreted by @gesture.
     */
-  def getSequences(): Ptr[GList] /* None */ = gtk_gesture_get_sequences(
-    this.raw.asInstanceOf[Ptr[GtkGesture]]
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
+  def getSequences__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -255,18 +235,10 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     *
     * Returns %TRUE if @gesture is currently handling events corresponding to @sequence.
     */
-  def handlesSequence(
-      sequence: Option[Ptr[
-        GdkEventSequence
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]) */ ]
-  ): Boolean /* None */ = gtk_gesture_handles_sequence(
-    this.raw.asInstanceOf[Ptr[GtkGesture]],
-    sequence
-      .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]](o => o)
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]]
-      )
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
+  )
+  def handlesSequence__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
@@ -340,16 +312,10 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * emitting the event, the sequence will be already be initialized to the
     * group's global state when the second gesture processes the event.
     */
-  def setSequenceState(
-      sequence: Ptr[
-        GdkEventSequence
-      ] /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]) */,
-      state: EventSequenceState /* Some(GtkEventSequenceState) */
-  ): Boolean /* None */ = gtk_gesture_set_sequence_state(
-    this.raw.asInstanceOf[Ptr[GtkGesture]],
-    sequence,
-    state.raw
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
+  )
+  def setSequenceState__ = ???
 
   /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
