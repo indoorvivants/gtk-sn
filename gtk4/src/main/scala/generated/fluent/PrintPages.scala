@@ -2,32 +2,37 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkPrintPages
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** See also gtk_print_job_set_pages()
   *
-  * See also gtk_print_job_set_pages()
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PrintPages(val raw: GtkPrintPages):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** All pages.
     *
-    * All pages.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ALL extends PrintPages(GtkPrintPages.GTK_PRINT_PAGES_ALL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Current page.
     *
-    * Current page.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CURRENT extends PrintPages(GtkPrintPages.GTK_PRINT_PAGES_CURRENT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Range of pages.
     *
-    * Range of pages.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RANGES extends PrintPages(GtkPrintPages.GTK_PRINT_PAGES_RANGES)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Selected pages.
     *
-    * Selected pages.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SELECTION extends PrintPages(GtkPrintPages.GTK_PRINT_PAGES_SELECTION)
 end PrintPages

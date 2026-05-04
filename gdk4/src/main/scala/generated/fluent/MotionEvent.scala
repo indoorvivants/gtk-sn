@@ -7,9 +7,10 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.fluent.Event
 import sn.gnome.gdk4.internal.GdkMotionEvent
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** An event related to a pointer or touch device motion.
   *
-  * An event related to a pointer or touch device motion.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MotionEvent(raw: Ptr[GdkMotionEvent]) extends Event(raw.asInstanceOf):
 

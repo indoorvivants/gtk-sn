@@ -24,9 +24,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint, guint32}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The #GDBusConnection type is used for D-Bus connections to remote peers such
+/** The #GDBusConnection type is used for D-Bus connections to remote peers such
   * as a message buses. It is a low-level API that offers a lot of flexibility.
   * For instance, it lets you establish a connection over any transport that can
   * by represented as a #GIOStream.
@@ -75,6 +73,9 @@ import sn.gnome.gobject.fluent.Object
   *
   * Here is an example for exporting a #GObject:
   * [gdbus-example-export.c](https://gitlab.gnome.org/GNOME/glib/-/blob/HEAD/gio/tests/gdbus-example-export.c)
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusConnection(raw: Ptr[GDBusConnection])
     extends Object(raw.asInstanceOf),
@@ -83,9 +84,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a message filter. Filters are handlers that are run on all incoming
+  /** Adds a message filter. Filters are handlers that are run on all incoming
     * and outgoing messages, prior to standard dispatch. Filters are run in the
     * order that they were added. The same handler can be added as a filter more
     * than once, in which case it will be run more than once. Filters added
@@ -110,15 +109,16 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * from) at some point after @user_data is no longer needed. (It is not
     * guaranteed to be called synchronously when the filter is removed, and may
     * be called after @connection has been destroyed.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusMessageFilterFunction), @type -> DataRecord(GDBusMessageFilterFunction)))"
+    "[add_filter/<method parameters>/filter_function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusMessageFilterFunction), @type -> DataRecord(GDBusMessageFilterFunction)))"
   )
-  def addFilter__ = ???
+  private def addFilter__ = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Asynchronously invokes the @method_name method on the
+  /**  Asynchronously invokes the @method_name method on the
     *  @interface_name D-Bus interface on the remote object at
     *  @object_path owned by @bus_name.
     *
@@ -163,24 +163,25 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *
     *  If @callback is %NULL then the D-Bus method call message will be sent with
     *  the %G_DBUS_MESSAGE_FLAGS_NO_REPLY_EXPECTED flag set.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[call/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def call__ = ???
+  private def call__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an operation started with g_dbus_connection_call().
     *
-    * Finishes an operation started with g_dbus_connection_call().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[call_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def callFinish__ = ???
+  private def callFinish__ = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Synchronously invokes the @method_name method on the
+  /**  Synchronously invokes the @method_name method on the
     *  @interface_name D-Bus interface on the remote object at
     *  @object_path owned by @bus_name.
     *
@@ -216,15 +217,15 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *  The calling thread is blocked until a reply is received. See
     *  g_dbus_connection_call() for the asynchronous version of
     *  this method.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[call_sync/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def callSync__ = ???
+  private def callSync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_dbus_connection_call() but also takes a #GUnixFDList object.
+  /** Like g_dbus_connection_call() but also takes a #GUnixFDList object.
     *
     * The file descriptors normally correspond to %G_VARIANT_TYPE_HANDLE values
     * in the body of the message. For example, if a message contains two file
@@ -239,15 +240,16 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * %G_VARIANT_TYPE_HANDLE in the body of the message.
     *
     * This method is only available on UNIX.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[call_with_unix_fd_list/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def callWithUnixFdList__ = ???
+  private def callWithUnixFdList__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an operation started with
+  /** Finishes an operation started with
     * g_dbus_connection_call_with_unix_fd_list().
     *
     * The file descriptors normally correspond to %G_VARIANT_TYPE_HANDLE values
@@ -259,28 +261,30 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * note that non-GDBus implementations of D-Bus can usually only access file
     * descriptors if they are referenced in this way by a value of type
     * %G_VARIANT_TYPE_HANDLE in the body of the message.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet"
+    "[call_with_unix_fd_list_finish]: Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet"
   )
-  def callWithUnixFdListFinish__ = ???
+  private def callWithUnixFdListFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_dbus_connection_call_sync() but also takes and returns #GUnixFDList
+  /** Like g_dbus_connection_call_sync() but also takes and returns #GUnixFDList
     * objects. See g_dbus_connection_call_with_unix_fd_list() and
     * g_dbus_connection_call_with_unix_fd_list_finish() for more details.
     *
     * This method is only available on UNIX.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet"
+    "[call_with_unix_fd_list_sync]: Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet"
   )
-  def callWithUnixFdListSync__ = ???
+  private def callWithUnixFdListSync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Closes @connection. Note that this never causes the process to exit (this
+  /** Closes @connection. Note that this never causes the process to exit (this
     * might only happen if the other end of a shared message bus connection
     * disconnects, see #GDBusConnection:exit-on-close).
     *
@@ -304,15 +308,19 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *   calling this method from. You can then call
     *   g_dbus_connection_close_finish() to get the result of the operation. See
     *   g_dbus_connection_close_sync() for the synchronous version.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[close/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def close__ = ???
+  private def close__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an operation started with g_dbus_connection_close().
     *
-    * Finishes an operation started with g_dbus_connection_close().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def closeFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -324,11 +332,12 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Synchronously closes @connection. The calling thread is blocked until this
+  /** Synchronously closes @connection. The calling thread is blocked until this
     * is done. See g_dbus_connection_close() for the asynchronous version of
     * this method and more details about what it does.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def closeSync(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -342,24 +351,23 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Emits a signal.
+  /** Emits a signal.
     *
     * If the parameters GVariant is floating, it is consumed.
     *
     * This can only fail if @parameters is not compatible with the D-Bus
     * protocol (%G_IO_ERROR_INVALID_ARGUMENT), or if @connection has been closed
     * (%G_IO_ERROR_CLOSED).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[emit_signal/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def emitSignal__ = ???
+  private def emitSignal__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Exports @action_group on @connection at @object_path.
+  /** Exports @action_group on @connection at @object_path.
     *
     * The implemented D-Bus API should be considered private. It is subject to
     * change in the future.
@@ -379,6 +387,9 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * activations and state change requests are rather likely to cause changes
     * on the action group, this effectively limits a given action group to being
     * exported from only one main context.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def exportActionGroup(
       object_path: String |
@@ -393,9 +404,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Exports @menu on @connection at @object_path.
+  /** Exports @menu on @connection at @object_path.
     *
     * The implemented D-Bus API should be considered private. It is subject to
     * change in the future.
@@ -411,6 +420,9 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * You can unexport the menu model using
     * g_dbus_connection_unexport_menu_model() with the return value of this
     * function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def exportMenuModel(
       object_path: String |
@@ -425,9 +437,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously flushes @connection, that is, writes all queued outgoing
+  /** Asynchronously flushes @connection, that is, writes all queued outgoing
     * message to the transport and then flushes the transport (using
     * g_output_stream_flush_async()). This is useful in programs that wants to
     * emit a D-Bus signal and then exit immediately. Without flushing the
@@ -441,15 +451,19 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *   calling this method from. You can then call
     *   g_dbus_connection_flush_finish() to get the result of the operation. See
     *   g_dbus_connection_flush_sync() for the synchronous version.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[flush/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def flush__ = ???
+  private def flush__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an operation started with g_dbus_connection_flush().
     *
-    * Finishes an operation started with g_dbus_connection_flush().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def flushFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -461,11 +475,12 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Synchronously flushes @connection. The calling thread is blocked until
+  /** Synchronously flushes @connection. The calling thread is blocked until
     * this is done. See g_dbus_connection_flush() for the asynchronous version
     * of this method and more details about what it does.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def flushSync(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -479,9 +494,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the capabilities negotiated with the remote peer
     *
-    * Gets the capabilities negotiated with the remote peer
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCapabilities(): DBusCapabilityFlags /* None */ =
     DBusCapabilityFlags.fromRaw(
@@ -490,28 +506,31 @@ class DBusConnection(raw: Ptr[GDBusConnection])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether the process is terminated when @connection is closed by the
+  /** Gets whether the process is terminated when @connection is closed by the
     * remote peer. See #GDBusConnection:exit-on-close for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExitOnClose(): Boolean /* None */ =
     g_dbus_connection_get_exit_on_close(
       this.raw.asInstanceOf[Ptr[GDBusConnection]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the flags used to construct this connection
     *
-    * Gets the flags used to construct this connection
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFlags(): DBusConnectionFlags /* None */ = DBusConnectionFlags.fromRaw(
     g_dbus_connection_get_flags(this.raw.asInstanceOf[Ptr[GDBusConnection]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The GUID of the peer performing the role of server when authenticating.
+  /** The GUID of the peer performing the role of server when authenticating.
     * See #GDBusConnection:guid for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getGuid()(using Zone): String /* None */ = fromCString(
     g_dbus_connection_get_guid(
@@ -519,21 +538,20 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the last serial number assigned to a #GDBusMessage on the
+  /** Retrieves the last serial number assigned to a #GDBusMessage on the
     * current thread. This includes messages sent via both low-level API such as
     * g_dbus_connection_send_message() as well as high-level API such as
     * g_dbus_connection_emit_signal(), g_dbus_connection_call() or
     * g_dbus_proxy_call().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLastSerial(): UInt /* None */ = g_dbus_connection_get_last_serial(
     this.raw.asInstanceOf[Ptr[GDBusConnection]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the credentials of the authenticated peer. This will always return
+  /** Gets the credentials of the authenticated peer. This will always return
     * %NULL unless @connection acted as a server (e.g.
     * %G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_SERVER was passed) when set up and
     * the client passed credentials as part of the authentication process.
@@ -541,6 +559,9 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * In a message bus setup, the message bus is always the server and each
     * application is a client. So this method will always return %NULL for
     * message bus clients.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPeerCredentials(): Credentials /* None */ = new Credentials(
     g_dbus_connection_get_peer_credentials(
@@ -548,13 +569,14 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the underlying stream used for IO.
+  /** Gets the underlying stream used for IO.
     *
     * While the #GDBusConnection is active, it will interact with this stream
     * from a worker thread, so it is not safe to interact with the stream
     * directly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStream(): IOStream /* None */ = new IOStream(
     g_dbus_connection_get_stream(
@@ -562,10 +584,11 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the unique name of @connection as assigned by the message bus. This
+  /** Gets the unique name of @connection as assigned by the message bus. This
     * can also be used to figure out if @connection is a message bus connection.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUniqueName()(using Zone): String /* None */ = fromCString(
     g_dbus_connection_get_unique_name(
@@ -573,17 +596,16 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether @connection is closed.
     *
-    * Gets whether @connection is closed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isClosed(): Boolean /* None */ = g_dbus_connection_is_closed(
     this.raw.asInstanceOf[Ptr[GDBusConnection]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Registers callbacks for exported objects at @object_path with the D-Bus
+  /** Registers callbacks for exported objects at @object_path with the D-Bus
     * interface that is described in @interface_info.
     *
     * Calls to functions in @vtable (and @user_data_free_func) will happen in
@@ -620,25 +642,27 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * note that @vtable will be copied.
     *
     * See this [server][gdbus-server] for an example of how to use this method.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[register_object/<method parameters>/interface_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
-  def registerObject__ = ???
+  private def registerObject__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Version of g_dbus_connection_register_object() using closures instead of a
+  /** Version of g_dbus_connection_register_object() using closures instead of a
     * #GDBusInterfaceVTable for easier binding in other languages.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[register_object_with_closures/<method parameters>/interface_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
-  def registerObjectWithClosures__ = ???
+  private def registerObjectWithClosures__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Registers a whole subtree of dynamic objects.
+  /** Registers a whole subtree of dynamic objects.
     *
     * The @enumerate and @introspection functions in @vtable are used to convey,
     * to remote callers, what nodes exist in the subtree rooted by @object_path.
@@ -671,15 +695,16 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *
     * See this [server][gdbus-subtree-server] for an example of how to use this
     * method.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusSubtreeVTable), @type -> DataRecord(const GDBusSubtreeVTable*)))"
+    "[register_subtree/<method parameters>/vtable]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusSubtreeVTable), @type -> DataRecord(const GDBusSubtreeVTable*)))"
   )
-  def registerSubtree__ = ???
+  private def registerSubtree__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a filter.
+  /** Removes a filter.
     *
     * Note that since filters run in a different thread, there is a race
     * condition where it is possible that the filter will be running even after
@@ -687,6 +712,9 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * that the filter might be using. Instead, you should pass a #GDestroyNotify
     * to g_dbus_connection_add_filter(), which will be called when it is
     * guaranteed that the data is no longer needed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeFilter(
       filter_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -695,9 +723,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     guint(filter_id)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously sends @message to the peer represented by @connection.
+  /** Asynchronously sends @message to the peer represented by @connection.
     *
     * Unless @flags contain the %G_DBUS_SEND_MESSAGE_FLAGS_PRESERVE_SERIAL flag,
     * the serial number will be assigned by @connection and set on @message via
@@ -717,15 +743,16 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *
     * Note that @message must be unlocked, unless @flags contain the
     * %G_DBUS_SEND_MESSAGE_FLAGS_PRESERVE_SERIAL flag.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method send_message contains an OUT parameter, which is not supported yet"
+    "[send_message]: Method send_message contains an OUT parameter, which is not supported yet"
   )
-  def sendMessage__ = ???
+  private def sendMessage__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously sends @message to the peer represented by @connection.
+  /** Asynchronously sends @message to the peer represented by @connection.
     *
     * Unless @flags contain the %G_DBUS_SEND_MESSAGE_FLAGS_PRESERVE_SERIAL flag,
     * the serial number will be assigned by @connection and set on @message via
@@ -754,15 +781,16 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * See this [server][gdbus-server] and [client][gdbus-unix-fd-client] for an
     * example of how to use this low-level API to send and receive UNIX file
     * descriptors.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method send_message_with_reply contains an OUT parameter, which is not supported yet"
+    "[send_message_with_reply]: Method send_message_with_reply contains an OUT parameter, which is not supported yet"
   )
-  def sendMessageWithReply__ = ???
+  private def sendMessageWithReply__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an operation started with
+  /** Finishes an operation started with
     * g_dbus_connection_send_message_with_reply().
     *
     * Note that @error is only set if a local in-process error occurred. That is
@@ -773,6 +801,9 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * See this [server][gdbus-server] and [client][gdbus-unix-fd-client] for an
     * example of how to use this low-level API to send and receive UNIX file
     * descriptors.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sendMessageWithReplyFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -786,9 +817,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Synchronously sends @message to the peer represented by @connection and
+  /** Synchronously sends @message to the peer represented by @connection and
     * blocks the calling thread until a reply is received or the timeout is
     * reached. See g_dbus_connection_send_message_with_reply() for the
     * asynchronous version of this method.
@@ -817,15 +846,16 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *
     * Note that @message must be unlocked, unless @flags contain the
     * %G_DBUS_SEND_MESSAGE_FLAGS_PRESERVE_SERIAL flag.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method send_message_with_reply_sync contains an OUT parameter, which is not supported yet"
+    "[send_message_with_reply_sync]: Method send_message_with_reply_sync contains an OUT parameter, which is not supported yet"
   )
-  def sendMessageWithReplySync__ = ???
+  private def sendMessageWithReplySync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the process should be terminated when @connection is closed
+  /** Sets whether the process should be terminated when @connection is closed
     * by the remote peer. See #GDBusConnection:exit-on-close for more details.
     *
     * Note that this function should be used with care. Most modern UNIX
@@ -834,6 +864,9 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * If you are setting @exit_on_close to %FALSE for the shared session bus
     * connection, you should make sure that your application exits when the user
     * session ends.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setExitOnClose(
       exit_on_close: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -842,9 +875,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     gboolean(gint((if exit_on_close == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Subscribes to signals on @connection and invokes @callback whenever the
+  /** Subscribes to signals on @connection and invokes @callback whenever the
     * signal is received. Note that @callback will be invoked in the
     * [thread-default main context][g-main-context-push-thread-default] of the
     * thread you are calling this method from.
@@ -892,15 +923,16 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * guaranteed to never be zero.
     *
     * This function can never fail.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusSignalCallback), @type -> DataRecord(GDBusSignalCallback)))"
+    "[signal_subscribe/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusSignalCallback), @type -> DataRecord(GDBusSignalCallback)))"
   )
-  def signalSubscribe__ = ???
+  private def signalSubscribe__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Unsubscribes from signals.
+  /** Unsubscribes from signals.
     *
     * Note that there may still be D-Bus traffic to process (relating to this
     * signal subscription) in the current thread-default #GMainContext after
@@ -911,6 +943,9 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * being iterated. Alternatively, any idle source with a priority lower than
     * %G_PRIORITY_DEFAULT that was scheduled after unsubscription, also
     * indicates that all resources of this subscription are released.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def signalUnsubscribe(
       subscription_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -919,26 +954,28 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     guint(subscription_id)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @connection was created with
+  /** If @connection was created with
     * %G_DBUS_CONNECTION_FLAGS_DELAY_MESSAGE_PROCESSING, this method starts
     * processing messages. Does nothing on if @connection wasn't created with
     * this flag or if the method has already been called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def startMessageProcessing(): Unit /* None */ =
     g_dbus_connection_start_message_processing(
       this.raw.asInstanceOf[Ptr[GDBusConnection]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reverses the effect of a previous call to
+  /** Reverses the effect of a previous call to
     * g_dbus_connection_export_action_group().
     *
     * It is an error to call this function with an ID that wasn't returned from
     * g_dbus_connection_export_action_group() or to call it with the same ID
     * more than once.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unexportActionGroup(
       export_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -947,14 +984,15 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     guint(export_id)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reverses the effect of a previous call to
+  /** Reverses the effect of a previous call to
     * g_dbus_connection_export_menu_model().
     *
     * It is an error to call this function with an ID that wasn't returned from
     * g_dbus_connection_export_menu_model() or to call it with the same ID more
     * than once.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unexportMenuModel(
       export_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -963,9 +1001,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     guint(export_id)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unregisters an object.
     *
-    * Unregisters an object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unregisterObject(
       registration_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -974,9 +1013,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     guint(registration_id)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unregisters a subtree.
     *
-    * Unregisters a subtree.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unregisterSubtree(
       registration_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -996,9 +1036,10 @@ class DBusConnection(raw: Ptr[GDBusConnection])
 end DBusConnection
 
 object DBusConnection:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an operation started with g_dbus_connection_new().
     *
-    * Finishes an operation started with g_dbus_connection_new().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def finish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -1011,9 +1052,10 @@ object DBusConnection:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an operation started with g_dbus_connection_new_for_address().
     *
-    * Finishes an operation started with g_dbus_connection_new_for_address().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forAddressFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -1026,9 +1068,7 @@ object DBusConnection:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Synchronously connects and sets up a D-Bus client connection for
+  /** Synchronously connects and sets up a D-Bus client connection for
     * exchanging D-Bus messages with an endpoint specified by @address which
     * must be in the [D-Bus address
     * format](https://dbus.freedesktop.org/doc/dbus-specification.html#addresses).
@@ -1045,6 +1085,9 @@ object DBusConnection:
     *
     * If @observer is not %NULL it may be used to control the authentication
     * process.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forAddressSync(
       address: String |
@@ -1070,9 +1113,7 @@ object DBusConnection:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Synchronously sets up a D-Bus connection for exchanging D-Bus messages
+  /** Synchronously sets up a D-Bus connection for exchanging D-Bus messages
     * with the end represented by @stream.
     *
     * If @stream is a #GSocketConnection, then the corresponding #GSocket will
@@ -1087,6 +1128,9 @@ object DBusConnection:
     *
     * This is a synchronous failable constructor. See g_dbus_connection_new()
     * for the asynchronous version.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sync(
       stream: IOStream /* Some(Ptr[GIOStream]) */,
@@ -1121,9 +1165,7 @@ object DBusConnection:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously sets up a D-Bus connection for exchanging D-Bus messages
+  /** Asynchronously sets up a D-Bus connection for exchanging D-Bus messages
     * with the end represented by @stream.
     *
     * If @stream is a #GSocketConnection, then the corresponding #GSocket will
@@ -1141,15 +1183,16 @@ object DBusConnection:
     *
     * This is an asynchronous failable constructor. See
     * g_dbus_connection_new_sync() for the synchronous version.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously connects and sets up a D-Bus client connection for
+  /** Asynchronously connects and sets up a D-Bus client connection for
     * exchanging D-Bus messages with an endpoint specified by @address which
     * must be in the [D-Bus address
     * format](https://dbus.freedesktop.org/doc/dbus-specification.html#addresses).
@@ -1170,11 +1213,14 @@ object DBusConnection:
     *
     * This is an asynchronous failable constructor. See
     * g_dbus_connection_new_for_address_sync() for the synchronous version.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def newForAddress() = ???
+  private def newForAddress() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -8,9 +8,7 @@ import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.{ParamFlags, ParamSpec}
 import sn.gnome.gobject.internal.{GParamSpec, GType}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GParamSpec is an object structure that encapsulates the metadata required
+/** #GParamSpec is an object structure that encapsulates the metadata required
   * to specify parameters, such as e.g. #GObject properties.
   *
   * ## Parameter names # {#canonical-parameter-names}
@@ -23,75 +21,85 @@ import sn.gnome.gobject.internal.{GParamSpec, GType}
   * When creating and looking up a #GParamSpec, either separator can be used,
   * but they cannot be mixed. Using `-` is considerably more efficient, and is
   * the ‘canonical form’. Using `_` is discouraged.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ParamSpec(raw: Ptr[GParamSpec]):
 
   def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the short description of a #GParamSpec.
     *
-    * Get the short description of a #GParamSpec.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBlurb()(using Zone): String /* None */ = fromCString(
     g_param_spec_get_blurb(this.raw.asInstanceOf[Ptr[GParamSpec]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the default value of @pspec as a pointer to a #GValue.
+  /** Gets the default value of @pspec as a pointer to a #GValue.
     *
     * The #GValue will remain valid for the life of @pspec.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
+    "[get_default_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
   )
-  def getDefaultValue__ = ???
+  private def getDefaultValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get the name of a #GParamSpec.
+  /** Get the name of a #GParamSpec.
     *
     * The name is always an "interned" string (as per g_intern_string()). This
     * allows for pointer-value comparisons.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     g_param_spec_get_name(this.raw.asInstanceOf[Ptr[GParamSpec]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the GQuark for the name.
     *
-    * Gets the GQuark for the name.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[get_name_quark/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def getNameQuark__ = ???
+  private def getNameQuark__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the nickname of a #GParamSpec.
     *
-    * Get the nickname of a #GParamSpec.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNick()(using Zone): String /* None */ = fromCString(
     g_param_spec_get_nick(this.raw.asInstanceOf[Ptr[GParamSpec]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets back user data pointers stored via g_param_spec_set_qdata().
     *
-    * Gets back user data pointers stored via g_param_spec_set_qdata().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[get_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def getQdata__ = ???
+  private def getQdata__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If the paramspec redirects operations to another paramspec, returns that
+  /** If the paramspec redirects operations to another paramspec, returns that
     * paramspec. Redirect is used typically for providing a new implementation
     * of a property in a derived type while preserving all the properties from
     * the parent type. Redirection is established by creating a property of type
     * #GParamSpecOverride. See g_object_class_override_property() for an example
     * of the use of this capability.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRedirectTarget(): ParamSpec /* None */ = new ParamSpec(
     g_param_spec_get_redirect_target(
@@ -99,76 +107,83 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Increments the reference count of @pspec.
     *
-    * Increments the reference count of @pspec.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def ref(): ParamSpec /* None */ = new ParamSpec(
     g_param_spec_ref(this.raw.asInstanceOf[Ptr[GParamSpec]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Convenience function to ref and sink a #GParamSpec.
     *
-    * Convenience function to ref and sink a #GParamSpec.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def refSink(): ParamSpec /* None */ = new ParamSpec(
     g_param_spec_ref_sink(this.raw.asInstanceOf[Ptr[GParamSpec]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets an opaque, named pointer on a #GParamSpec. The name is specified
+  /** Sets an opaque, named pointer on a #GParamSpec. The name is specified
     * through a #GQuark (retrieved e.g. via g_quark_from_static_string()), and
     * the pointer can be gotten back from the @pspec with
     * g_param_spec_get_qdata(). Setting a previously set user data pointer,
     * overrides (frees) the old pointer set, using %NULL as pointer essentially
     * removes the data stored.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[set_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def setQdata__ = ???
+  private def setQdata__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function works like g_param_spec_set_qdata(), but in addition, a
+  /** This function works like g_param_spec_set_qdata(), but in addition, a
     * `void (*destroy) (gpointer)` function may be specified which is called
     * with @data as argument when the @pspec is finalized, or the data is being
     * overwritten by a call to g_param_spec_set_qdata() with the same @quark.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[set_qdata_full/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def setQdataFull__ = ???
+  private def setQdataFull__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The initial reference count of a newly created #GParamSpec is 1, even
+  /** The initial reference count of a newly created #GParamSpec is 1, even
     * though no one has explicitly called g_param_spec_ref() on it yet. So the
     * initial reference count is flagged as "floating", until someone calls
     * `g_param_spec_ref (pspec); g_param_spec_sink (pspec);` in sequence on it,
     * taking over the initial reference count (thus ending up with a @pspec that
     * has a reference count of 1 still, but is not flagged "floating" anymore).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sink(): Unit /* None */ = g_param_spec_sink(
     this.raw.asInstanceOf[Ptr[GParamSpec]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets back user data pointers stored via g_param_spec_set_qdata() and
+  /** Gets back user data pointers stored via g_param_spec_set_qdata() and
     * removes the @data from @pspec without invoking its destroy() function (if
     * any was set). Usually, calling this function is only required to update
     * user data pointers with a destroy notifier.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[steal_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def stealQdata__ = ???
+  private def stealQdata__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Decrements the reference count of a @pspec.
     *
-    * Decrements the reference count of a @pspec.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unref(): Unit /* None */ = g_param_spec_unref(
     this.raw.asInstanceOf[Ptr[GParamSpec]]
@@ -177,9 +192,7 @@ class ParamSpec(raw: Ptr[GParamSpec]):
 end ParamSpec
 
 object ParamSpec:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GParamSpec instance.
+  /** Creates a new #GParamSpec instance.
     *
     * See [canonical parameter names][canonical-parameter-names] for details of
     * the rules for @name. Names which violate these rules lead to undefined
@@ -192,6 +205,9 @@ object ParamSpec:
     *   omitted, while for other libraries such as GStreamer and its plugins
     *   they are essential. When in doubt, follow the conventions used in the
     *   surrounding code and supporting libraries.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def internal(
       param_type: GType /* Some(GType) */,
@@ -227,14 +243,15 @@ object ParamSpec:
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Validate a property name for a #GParamSpec. This can be useful for
+  /** Validate a property name for a #GParamSpec. This can be useful for
     * dynamically-generated properties which need to be validated at run-time
     * before actually trying to create them.
     *
     * See [canonical parameter names][canonical-parameter-names] for details of
     * the rules for valid names.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isValidName(
       name: String |

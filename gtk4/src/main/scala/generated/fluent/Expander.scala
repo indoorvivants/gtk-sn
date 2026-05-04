@@ -8,9 +8,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkExpander
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkExpander` allows the user to reveal its child by clicking on an expander
+/** `GtkExpander` allows the user to reveal its child by clicking on an expander
   * triangle.
   *
   * ![An example GtkExpander](expander.png)
@@ -102,6 +100,9 @@ import sn.gnome.gtk4.internal.GtkExpander
   * # Accessibility
   *
   * `GtkExpander` uses the %GTK_ACCESSIBLE_ROLE_BUTTON role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Expander(raw: Ptr[GtkExpander])
     extends Widget(raw.asInstanceOf),
@@ -111,40 +112,44 @@ class Expander(raw: Ptr[GtkExpander])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @expander.
     *
-    * Gets the child widget of @expander.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_expander_get_child(this.raw.asInstanceOf[Ptr[GtkExpander]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries a `GtkExpander` and returns its current state.
+  /** Queries a `GtkExpander` and returns its current state.
     *
     * Returns %TRUE if the child widget is revealed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExpanded(): Boolean /* None */ = gtk_expander_get_expanded(
     this.raw.asInstanceOf[Ptr[GtkExpander]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the text from a label widget.
+  /** Fetches the text from a label widget.
     *
     * This is including any embedded underlines indicating mnemonics and Pango
     * markup, as set by [method@Gtk.Expander.set_label]. If the label text has
     * not been set the return value will be %NULL. This will be the case if you
     * create an empty button with gtk_button_new() to use as a container.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLabel()(using Zone): String /* None */ = fromCString(
     gtk_expander_get_label(this.raw.asInstanceOf[Ptr[GtkExpander]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the label widget for the frame.
     *
-    * Retrieves the label widget for the frame.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLabelWidget(): Widget /* None */ = new Widget(
     gtk_expander_get_label_widget(
@@ -152,35 +157,39 @@ class Expander(raw: Ptr[GtkExpander])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the expander will resize the toplevel widget containing
+  /** Returns whether the expander will resize the toplevel widget containing
     * the expander upon resizing and collapsing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getResizeToplevel(): Boolean /* None */ =
     gtk_expander_get_resize_toplevel(
       this.raw.asInstanceOf[Ptr[GtkExpander]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the label’s text is interpreted as Pango markup.
     *
-    * Returns whether the label’s text is interpreted as Pango markup.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseMarkup(): Boolean /* None */ = gtk_expander_get_use_markup(
     this.raw.asInstanceOf[Ptr[GtkExpander]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether an underline in the text indicates a mnemonic.
     *
-    * Returns whether an underline in the text indicates a mnemonic.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseUnderline(): Boolean /* None */ = gtk_expander_get_use_underline(
     this.raw.asInstanceOf[Ptr[GtkExpander]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the child widget of @expander.
     *
-    * Sets the child widget of @expander.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -191,12 +200,13 @@ class Expander(raw: Ptr[GtkExpander])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the state of the expander.
+  /** Sets the state of the expander.
     *
     * Set to %TRUE, if you want the child widget to be revealed, and %FALSE if
     * you want the child widget to be hidden.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setExpanded(
       expanded: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -205,11 +215,12 @@ class Expander(raw: Ptr[GtkExpander])
     gboolean(gint((if expanded == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the text of the label of the expander to @label.
+  /** Sets the text of the label of the expander to @label.
     *
     * This will also clear any previously set labels.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabel(
       label: Option[String | CString /* Some(CString) */ ]
@@ -220,11 +231,12 @@ class Expander(raw: Ptr[GtkExpander])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set the label widget for the expander.
+  /** Set the label widget for the expander.
     *
     * This is the widget that will appear embedded alongside the expander arrow.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabelWidget(
       label_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -235,10 +247,11 @@ class Expander(raw: Ptr[GtkExpander])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the expander will resize the toplevel widget containing the
+  /** Sets whether the expander will resize the toplevel widget containing the
     * expander upon resizing and collapsing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setResizeToplevel(
       resize_toplevel: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -247,9 +260,10 @@ class Expander(raw: Ptr[GtkExpander])
     gboolean(gint((if resize_toplevel == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the text of the label contains Pango markup.
     *
-    * Sets whether the text of the label contains Pango markup.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseMarkup(
       use_markup: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -258,9 +272,10 @@ class Expander(raw: Ptr[GtkExpander])
     gboolean(gint((if use_markup == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** If true, an underline in the text indicates a mnemonic.
     *
-    * If true, an underline in the text indicates a mnemonic.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseUnderline(
       use_underline: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -280,9 +295,10 @@ class Expander(raw: Ptr[GtkExpander])
 end Expander
 
 object Expander:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new expander using @label as the text of the label.
     *
-    * Creates a new expander using @label as the text of the label.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       label: Option[String | CString /* Some(CString) */ ]
@@ -294,9 +310,7 @@ object Expander:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new expander using @label as the text of the label.
+  /** Creates a new expander using @label as the text of the label.
     *
     * If characters in @label are preceded by an underscore, they are
     * underlined. If you need a literal underscore character in a label, use
@@ -304,6 +318,9 @@ object Expander:
     * keyboard accelerator called a mnemonic.
     *
     * Pressing Alt and that key activates the button.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withMnemonic(
       label: Option[String | CString /* Some(CString) */ ]

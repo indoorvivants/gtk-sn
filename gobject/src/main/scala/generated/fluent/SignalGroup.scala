@@ -8,9 +8,7 @@ import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.{GSignalGroup, GType}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GSignalGroup manages to simplify the process of connecting many signals to
+/** #GSignalGroup manages to simplify the process of connecting many signals to
   * a #GObject as a group. As such there is no API to disconnect a signal from
   * the group.
   *
@@ -28,79 +26,85 @@ import sn.gnome.gobject.internal.{GSignalGroup, GType}
   * #GtkTextView:buffer property to #GSignalGroup:target and connect all the
   * signals you need. When the #GtkTextView:buffer property changes all of the
   * signals will be transitioned correctly.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Blocks all signal handlers managed by @self so they will not be called
+  /** Blocks all signal handlers managed by @self so they will not be called
     * during any signal emissions. Must be unblocked exactly the same number of
     * times it has been blocked to become active again.
     *
     * This blocked state will be kept across changes of the target instance.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def block(): Unit /* None */ = g_signal_group_block(
     this.raw.asInstanceOf[Ptr[GSignalGroup]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Connects @c_handler to the signal @detailed_signal on the target instance
+  /** Connects @c_handler to the signal @detailed_signal on the target instance
     * of @self.
     *
     * You cannot connect a signal handler after #GSignalGroup:target has been
     * set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
+    "[connect/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
-  def connect__ = ???
+  private def connect__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Connects @c_handler to the signal @detailed_signal on the target instance
+  /** Connects @c_handler to the signal @detailed_signal on the target instance
     * of @self.
     *
     * The @c_handler will be called after the default handler of the signal.
     *
     * You cannot connect a signal handler after #GSignalGroup:target has been
     * set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
+    "[connect_after/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
-  def connectAfter__ = ???
+  private def connectAfter__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Connects @closure to the signal @detailed_signal on #GSignalGroup:target.
+  /** Connects @closure to the signal @detailed_signal on #GSignalGroup:target.
     *
     * You cannot connect a signal handler after #GSignalGroup:target has been
     * set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[connect_closure/<method parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
-  def connectClosure__ = ???
+  private def connectClosure__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Connects @c_handler to the signal @detailed_signal on the target instance
+  /** Connects @c_handler to the signal @detailed_signal on the target instance
     * of @self.
     *
     * You cannot connect a signal handler after #GSignalGroup:target has been
     * set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
+    "[connect_data/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
-  def connectData__ = ???
+  private def connectData__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Connects @c_handler to the signal @detailed_signal on
+  /** Connects @c_handler to the signal @detailed_signal on
     * #GSignalGroup:target.
     *
     * Ensures that the @object stays alive during the call to @c_handler by
@@ -109,15 +113,16 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     *
     * You cannot connect a signal handler after #GSignalGroup:target has been
     * set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
+    "[connect_object/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
-  def connectObject__ = ???
+  private def connectObject__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Connects @c_handler to the signal @detailed_signal on the target instance
+  /** Connects @c_handler to the signal @detailed_signal on the target instance
     * of @self.
     *
     * The instance on which the signal is emitted and @data will be swapped when
@@ -125,15 +130,19 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     *
     * You cannot connect a signal handler after #GSignalGroup:target has been
     * set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
+    "[connect_swapped/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
-  def connectSwapped__ = ???
+  private def connectSwapped__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the target instance used when connecting signals.
     *
-    * Gets the target instance used when connecting signals.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dupTarget(): Object /* None */ = new Object(
     g_signal_group_dup_target(
@@ -141,14 +150,15 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the target instance used when connecting signals. Any signal that has
+  /** Sets the target instance used when connecting signals. Any signal that has
     * been registered with g_signal_group_connect_object() or similar functions
     * will be connected to this object.
     *
     * If the target instance was previously set, signals will be disconnected
     * from that object prior to connecting to @target.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTarget(
       target: Option[Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */ ]
@@ -161,12 +171,13 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Unblocks all signal handlers managed by @self so they will be called again
+  /** Unblocks all signal handlers managed by @self so they will be called again
     * during any signal emissions unless it is blocked again. Must be unblocked
     * exactly the same number of times it has been blocked to become active
     * again.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unblock(): Unit /* None */ = g_signal_group_unblock(
     this.raw.asInstanceOf[Ptr[GSignalGroup]]
@@ -175,9 +186,10 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
 end SignalGroup
 
 object SignalGroup:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GSignalGroup for target instances of @target_type.
     *
-    * Creates a new #GSignalGroup for target instances of @target_type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(target_type: GType /* Some(GType) */ ): SignalGroup =
     new SignalGroup(g_signal_group_new(target_type).asInstanceOf)

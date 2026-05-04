@@ -17,9 +17,7 @@ import sn.gnome.gtk4.fluent.{ApplicationInhibitFlags, Window}
 import sn.gnome.gtk4.internal.GtkApplication
 import sn.gnome.gio.fluent.Application as _Application
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkApplication` is a high-level API for writing applications.
+/** `GtkApplication` is a high-level API for writing applications.
   *
   * It supports many aspects of writing a GTK application in a convenient
   * fashion, without enforcing a one-size-fits-all model.
@@ -86,6 +84,9 @@ import sn.gnome.gio.fluent.Application as _Application
   * [HowDoI: Using
   * GtkApplication](https://wiki.gnome.org/HowDoI/GtkApplication), [Getting
   * Started with GTK: Basics](getting_started.html#basics)
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Application(raw: Ptr[GtkApplication])
     extends _Application(raw.asInstanceOf),
@@ -94,9 +95,7 @@ class Application(raw: Ptr[GtkApplication])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a window to `application`.
+  /** Adds a window to `application`.
     *
     * This call can only happen after the `application` has started; typically,
     * you should add new application windows in response to the emission of the
@@ -110,6 +109,9 @@ class Application(raw: Ptr[GtkApplication])
     * with [method@Gtk.Application.remove_window].
     *
     * GTK will keep the `application` running as long as it has any windows.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addWindow(window: Window /* Some(Ptr[GtkWindow]) */ ): Unit /* None */ =
     gtk_application_add_window(
@@ -117,9 +119,10 @@ class Application(raw: Ptr[GtkApplication])
       window.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the accelerators that are currently associated with the given action.
     *
-    * Gets the accelerators that are currently associated with the given action.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAccelsForAction(
       detailed_action_name: String | CString /* Some(CString) */
@@ -130,9 +133,7 @@ class Application(raw: Ptr[GtkApplication])
     )
   ).map(fromCString(_))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the list of actions (possibly empty) that `accel` maps to.
+  /** Returns the list of actions (possibly empty) that `accel` maps to.
     *
     * Each item in the list is a detailed action name in the usual form.
     *
@@ -148,6 +149,9 @@ class Application(raw: Ptr[GtkApplication])
     * It is a programmer error to pass an invalid accelerator string.
     *
     * If you are unsure, check it with [func@Gtk.accelerator_parse] first.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActionsForAccel(
       accel: String | CString /* Some(CString) */
@@ -158,14 +162,15 @@ class Application(raw: Ptr[GtkApplication])
     )
   ).map(fromCString(_))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the “active” window for the application.
+  /** Gets the “active” window for the application.
     *
     * The active window is the one that was most recently focused (within the
     * application). This window may not have the focus at the moment if another
     * application has it — this is just the most recently-focused window within
     * this application.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActiveWindow(): Window /* None */ = new Window(
     gtk_application_get_active_window(
@@ -173,13 +178,14 @@ class Application(raw: Ptr[GtkApplication])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a menu from automatically loaded resources.
+  /** Gets a menu from automatically loaded resources.
     *
     * See [the section on Automatic
     * resources](class.Application.html#automatic-resources) for more
     * information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMenuById(
       id: String | CString /* Some(CString) */
@@ -190,10 +196,11 @@ class Application(raw: Ptr[GtkApplication])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the menu model that has been set with
+  /** Returns the menu model that has been set with
     * [method@Gtk.Application.set_menubar].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMenubar(): MenuModel /* None */ = new MenuModel(
     gtk_application_get_menubar(
@@ -201,12 +208,13 @@ class Application(raw: Ptr[GtkApplication])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the [class@Gtk.ApplicationWindow] with the given ID.
+  /** Returns the [class@Gtk.ApplicationWindow] with the given ID.
     *
     * The ID of a `GtkApplicationWindow` can be retrieved with
     * [method@Gtk.ApplicationWindow.get_id].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWindowById(
       id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -217,9 +225,7 @@ class Application(raw: Ptr[GtkApplication])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a list of the [class@Gtk.Window] instances associated with
+  /** Gets a list of the [class@Gtk.Window] instances associated with
     * `application`.
     *
     * The list is sorted by most recently focused window, such that the first
@@ -228,15 +234,16 @@ class Application(raw: Ptr[GtkApplication])
     *
     * The list that is returned should not be modified in any way. It will only
     * remain valid until the next focus change or window creation or deletion.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Window))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[get_windows/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Window))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def getWindows__ = ???
+  private def getWindows__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inform the session manager that certain types of actions should be
+  /** Inform the session manager that certain types of actions should be
     * inhibited.
     *
     * This is not guaranteed to work on all platforms and for all types of
@@ -259,6 +266,9 @@ class Application(raw: Ptr[GtkApplication])
     *
     * If `window` is given, the session manager may point the user to this
     * window to find out more about why the action is inhibited.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def inhibit(
       window: Option[Window /* Some(Ptr[GtkWindow]) */ ],
@@ -275,11 +285,12 @@ class Application(raw: Ptr[GtkApplication])
       .getOrElse(null.asInstanceOf[CString])
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Lists the detailed action names which have associated accelerators.
+  /** Lists the detailed action names which have associated accelerators.
     *
     * See [method@Gtk.Application.set_accels_for_action].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def listActionDescriptions()(using Zone): Array[String] /* None */ =
     __decode_nullable_ptrs(
@@ -288,9 +299,7 @@ class Application(raw: Ptr[GtkApplication])
       )
     ).map(fromCString(_))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Remove a window from `application`.
+  /** Remove a window from `application`.
     *
     * If `window` belongs to `application` then this call is equivalent to
     * setting the [property@Gtk.Window:application] property of `window` to
@@ -298,6 +307,9 @@ class Application(raw: Ptr[GtkApplication])
     *
     * The application may stop running as a result of a call to this function,
     * if `window` was the last window of the `application`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeWindow(
       window: Window /* Some(Ptr[GtkWindow]) */
@@ -306,9 +318,7 @@ class Application(raw: Ptr[GtkApplication])
     window.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets zero or more keyboard accelerators that will trigger the given
+  /** Sets zero or more keyboard accelerators that will trigger the given
     * action.
     *
     * The first item in `accels` will be the primary accelerator, which may be
@@ -319,15 +329,16 @@ class Application(raw: Ptr[GtkApplication])
     *
     * For the `detailed_action_name`, see `g_action_parse_detailed_name()` and
     * `g_action_print_detailed_name()`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
+    "[set_accels_for_action/<method parameters>/accels]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
-  def setAccelsForAction__ = ???
+  private def setAccelsForAction__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets or unsets the menubar for windows of `application`.
+  /** Sets or unsets the menubar for windows of `application`.
     *
     * This is a menubar in the traditional sense.
     *
@@ -344,6 +355,9 @@ class Application(raw: Ptr[GtkApplication])
     *
     * Use the base `GActionMap` interface to add actions, to respond to the user
     * selecting these menu items.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMenubar(
       menubar: Option[
@@ -360,13 +374,14 @@ class Application(raw: Ptr[GtkApplication])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes an inhibitor that has been previously established.
+  /** Removes an inhibitor that has been previously established.
     *
     * See [method@Gtk.Application.inhibit].
     *
     * Inhibitors are also cleared when the application exits.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def uninhibit(
       cookie: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -389,7 +404,7 @@ class Application(raw: Ptr[GtkApplication])
   ): Array[Ptr[T]] =
     val ab = Array.newBuilder[Ptr[T]]
     var offset = 0
-    val tg = Tag.materializePtrTag(ptag)
+    val tg = Tag.materializePtrTag(using ptag)
     while p(offset)(using tg) != null do
       ab += p(offset)(using tg)
       offset += 1
@@ -399,9 +414,7 @@ class Application(raw: Ptr[GtkApplication])
 end Application
 
 object Application:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkApplication` instance.
+  /** Creates a new `GtkApplication` instance.
     *
     * When using `GtkApplication`, it is not necessary to call [func@Gtk.init]
     * manually. It is called as soon as the application gets registered as the
@@ -419,6 +432,9 @@ object Application:
     *
     * If no application ID is given then some features (most notably application
     * uniqueness) will be disabled.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       application_id: Option[String | CString /* Some(CString) */ ],

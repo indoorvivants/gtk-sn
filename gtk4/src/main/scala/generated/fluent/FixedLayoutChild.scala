@@ -7,31 +7,34 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.LayoutChild
 import sn.gnome.gtk4.internal.GtkFixedLayoutChild
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** `GtkLayoutChild` subclass for children in a `GtkFixedLayout`.
   *
-  * `GtkLayoutChild` subclass for children in a `GtkFixedLayout`.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FixedLayoutChild(raw: Ptr[GtkFixedLayoutChild])
     extends LayoutChild(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the transformation of the child.
     *
-    * Retrieves the transformation of the child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
+    "[get_transform/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
-  def getTransform__ = ???
+  private def getTransform__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the transformation of the child of a `GtkFixedLayout`.
     *
-    * Sets the transformation of the child of a `GtkFixedLayout`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
+    "[set_transform/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
-  def setTransform__ = ???
+  private def setTransform__ = ???
 
 end FixedLayoutChild

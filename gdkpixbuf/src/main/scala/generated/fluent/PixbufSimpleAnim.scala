@@ -8,19 +8,21 @@ import sn.gnome.gdkpixbuf.fluent.{Pixbuf, PixbufAnimation}
 import sn.gnome.gdkpixbuf.internal.GdkPixbufSimpleAnim
 import sn.gnome.glib.internal.{gboolean, gfloat, gint}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** An opaque struct representing a simple animation.
   *
-  * An opaque struct representing a simple animation.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PixbufSimpleAnim(raw: Ptr[GdkPixbufSimpleAnim])
     extends PixbufAnimation(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a new frame to @animation. The @pixbuf must have the dimensions
+  /** Adds a new frame to @animation. The @pixbuf must have the dimensions
     * specified when the animation was constructed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addFrame(pixbuf: Pixbuf /* Some(Ptr[GdkPixbuf]) */ ): Unit /* None */ =
     gdk_pixbuf_simple_anim_add_frame(
@@ -28,17 +30,19 @@ class PixbufSimpleAnim(raw: Ptr[GdkPixbufSimpleAnim])
       pixbuf.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether @animation should loop indefinitely when it reaches the end.
     *
-    * Gets whether @animation should loop indefinitely when it reaches the end.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLoop(): Boolean /* None */ = gdk_pixbuf_simple_anim_get_loop(
     this.raw.asInstanceOf[Ptr[GdkPixbufSimpleAnim]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether @animation should loop indefinitely when it reaches the end.
     *
-    * Sets whether @animation should loop indefinitely when it reaches the end.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLoop(
       loop: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -50,9 +54,10 @@ class PixbufSimpleAnim(raw: Ptr[GdkPixbufSimpleAnim])
 end PixbufSimpleAnim
 
 object PixbufSimpleAnim:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new, empty animation.
     *
-    * Creates a new, empty animation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       width: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,

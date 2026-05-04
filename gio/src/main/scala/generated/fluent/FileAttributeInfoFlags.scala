@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GFileAttributeInfoFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags specifying the behaviour of an attribute.
   *
-  * Flags specifying the behaviour of an attribute.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileAttributeInfoFlags private (val raw: GFileAttributeInfoFlags):
   def is(kv: FileAttributeInfoFlags): Boolean =
@@ -32,17 +33,19 @@ object FileAttributeInfoFlags:
     def |(other: FileAttributeInfoFlags) =
       FileAttributeInfoFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags specifying the behaviour of an attribute.
     *
-    * Flags specifying the behaviour of an attribute.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GFileAttributeInfoFlags, name: String)
       extends FileAttributeInfoFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** no flags set.
       *
-      * no flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(
@@ -50,9 +53,10 @@ object FileAttributeInfoFlags:
           "NONE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** copy the attribute values when the file is copied.
       *
-      * copy the attribute values when the file is copied.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case COPY_WITH_FILE
         extends KnownValue(
@@ -60,9 +64,10 @@ object FileAttributeInfoFlags:
           "COPY_WITH_FILE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** copy the attribute values when the file is moved.
       *
-      * copy the attribute values when the file is moved.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case COPY_WHEN_MOVED
         extends KnownValue(

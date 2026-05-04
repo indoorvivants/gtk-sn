@@ -2,13 +2,14 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkDebugFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags to use with gtk_set_debug_flags().
+/** Flags to use with gtk_set_debug_flags().
   *
   * Settings these flags causes GTK to print out different types of debugging
   * information. Some of these flags are only available when GTK has been
   * configured with `-Ddebug=true`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DebugFlags private (val raw: GtkDebugFlags):
   def is(kv: DebugFlags): Boolean =
@@ -36,120 +37,137 @@ object DebugFlags:
     def |(other: DebugFlags) =
       DebugFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags to use with gtk_set_debug_flags().
+  /** Flags to use with gtk_set_debug_flags().
     *
     * Settings these flags causes GTK to print out different types of debugging
     * information. Some of these flags are only available when GTK has been
     * configured with `-Ddebug=true`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GtkDebugFlags, name: String)
       extends DebugFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Information about GtkTextView
       *
-      * Information about GtkTextView
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case TEXT extends KnownValue(GtkDebugFlags.GTK_DEBUG_TEXT, "TEXT")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Information about GtkTreeView
       *
-      * Information about GtkTreeView
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case TREE extends KnownValue(GtkDebugFlags.GTK_DEBUG_TREE, "TREE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Information about keyboard shortcuts
       *
-      * Information about keyboard shortcuts
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case KEYBINDINGS
         extends KnownValue(GtkDebugFlags.GTK_DEBUG_KEYBINDINGS, "KEYBINDINGS")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Information about modules and extensions
       *
-      * Information about modules and extensions
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case MODULES extends KnownValue(GtkDebugFlags.GTK_DEBUG_MODULES, "MODULES")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Information about size allocation
       *
-      * Information about size allocation
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case GEOMETRY
         extends KnownValue(GtkDebugFlags.GTK_DEBUG_GEOMETRY, "GEOMETRY")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Information about icon themes
       *
-      * Information about icon themes
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ICONTHEME
         extends KnownValue(GtkDebugFlags.GTK_DEBUG_ICONTHEME, "ICONTHEME")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Information about printing
       *
-      * Information about printing
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case PRINTING
         extends KnownValue(GtkDebugFlags.GTK_DEBUG_PRINTING, "PRINTING")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Trace GtkBuilder operation
       *
-      * Trace GtkBuilder operation
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case BUILDER extends KnownValue(GtkDebugFlags.GTK_DEBUG_BUILDER, "BUILDER")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Information about size requests
       *
-      * Information about size requests
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SIZE_REQUEST
         extends KnownValue(GtkDebugFlags.GTK_DEBUG_SIZE_REQUEST, "SIZE_REQUEST")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Disable the style property cache
       *
-      * Disable the style property cache
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NO_CSS_CACHE
         extends KnownValue(GtkDebugFlags.GTK_DEBUG_NO_CSS_CACHE, "NO_CSS_CACHE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Open the GTK inspector
       *
-      * Open the GTK inspector
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case INTERACTIVE
         extends KnownValue(GtkDebugFlags.GTK_DEBUG_INTERACTIVE, "INTERACTIVE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Information about actions and menu models
       *
-      * Information about actions and menu models
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ACTIONS extends KnownValue(GtkDebugFlags.GTK_DEBUG_ACTIONS, "ACTIONS")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Information from layout managers
       *
-      * Information from layout managers
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case LAYOUT extends KnownValue(GtkDebugFlags.GTK_DEBUG_LAYOUT, "LAYOUT")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Include debug render nodes in the generated snapshots
       *
-      * Include debug render nodes in the generated snapshots
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SNAPSHOT
         extends KnownValue(GtkDebugFlags.GTK_DEBUG_SNAPSHOT, "SNAPSHOT")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Information from the constraints solver
       *
-      * Information from the constraints solver
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CONSTRAINTS
         extends KnownValue(GtkDebugFlags.GTK_DEBUG_CONSTRAINTS, "CONSTRAINTS")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Log unused GtkBuilder objects
       *
-      * Log unused GtkBuilder objects
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case BUILDER_OBJECTS
         extends KnownValue(
@@ -157,15 +175,17 @@ object DebugFlags:
           "BUILDER_OBJECTS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Information about accessibility state changes
       *
-      * Information about accessibility state changes
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case A11Y extends KnownValue(GtkDebugFlags.GTK_DEBUG_A11Y, "A11Y")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Information about icon fallback. Since: 4.2
       *
-      * Information about icon fallback. Since: 4.2
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ICONFALLBACK
         extends KnownValue(GtkDebugFlags.GTK_DEBUG_ICONFALLBACK, "ICONFALLBACK")

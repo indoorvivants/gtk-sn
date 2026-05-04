@@ -2,59 +2,66 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkIconViewDropPosition
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** An enum for determining where a dropped item goes.
   *
-  * An enum for determining where a dropped item goes.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum IconViewDropPosition(val raw: GtkIconViewDropPosition):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** no drop possible
     *
-    * no drop possible
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NO_DROP
       extends IconViewDropPosition(
         GtkIconViewDropPosition.GTK_ICON_VIEW_NO_DROP
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** dropped item replaces the item
     *
-    * dropped item replaces the item
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DROP_INTO
       extends IconViewDropPosition(
         GtkIconViewDropPosition.GTK_ICON_VIEW_DROP_INTO
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** dropped item is inserted to the left
     *
-    * dropped item is inserted to the left
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DROP_LEFT
       extends IconViewDropPosition(
         GtkIconViewDropPosition.GTK_ICON_VIEW_DROP_LEFT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** dropped item is inserted to the right
     *
-    * dropped item is inserted to the right
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DROP_RIGHT
       extends IconViewDropPosition(
         GtkIconViewDropPosition.GTK_ICON_VIEW_DROP_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** dropped item is inserted above
     *
-    * dropped item is inserted above
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DROP_ABOVE
       extends IconViewDropPosition(
         GtkIconViewDropPosition.GTK_ICON_VIEW_DROP_ABOVE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** dropped item is inserted below
     *
-    * dropped item is inserted below
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DROP_BELOW
       extends IconViewDropPosition(

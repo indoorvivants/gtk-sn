@@ -2,37 +2,42 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkPageOrientation
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** See also gtk_print_settings_set_orientation().
   *
-  * See also gtk_print_settings_set_orientation().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PageOrientation(val raw: GtkPageOrientation):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Portrait mode.
     *
-    * Portrait mode.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PORTRAIT
       extends PageOrientation(GtkPageOrientation.GTK_PAGE_ORIENTATION_PORTRAIT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Landscape mode.
     *
-    * Landscape mode.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LANDSCAPE
       extends PageOrientation(GtkPageOrientation.GTK_PAGE_ORIENTATION_LANDSCAPE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Reverse portrait mode.
     *
-    * Reverse portrait mode.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case REVERSE_PORTRAIT
       extends PageOrientation(
         GtkPageOrientation.GTK_PAGE_ORIENTATION_REVERSE_PORTRAIT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Reverse landscape mode.
     *
-    * Reverse landscape mode.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case REVERSE_LANDSCAPE
       extends PageOrientation(

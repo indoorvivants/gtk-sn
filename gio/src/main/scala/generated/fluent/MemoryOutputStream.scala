@@ -9,13 +9,14 @@ import sn.gnome.gio.fluent.{OutputStream, PollableOutputStream, Seekable}
 import sn.gnome.gio.internal.GMemoryOutputStream
 import sn.gnome.glib.internal.{gpointer, gsize}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GMemoryOutputStream is a class for using arbitrary memory chunks as output
+/** #GMemoryOutputStream is a class for using arbitrary memory chunks as output
   * for GIO streaming output operations.
   *
   * As of GLib 2.34, #GMemoryOutputStream trivially implements
   * #GPollableOutputStream: it always polls as ready.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     extends OutputStream(raw.asInstanceOf),
@@ -24,30 +25,30 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets any loaded data from the @ostream.
+  /** Gets any loaded data from the @ostream.
     *
     * Note that the returned pointer may become invalid on the next write or
     * truncate operation on the stream.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getData(): Ptr[Byte] /* None */ = g_memory_output_stream_get_data(
     this.raw.asInstanceOf[Ptr[GMemoryOutputStream]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the number of bytes from the start up to including the last byte
+  /** Returns the number of bytes from the start up to including the last byte
     * written in the stream that has not been truncated away.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDataSize(): CUnsignedLongInt /* None */ =
     g_memory_output_stream_get_data_size(
       this.raw.asInstanceOf[Ptr[GMemoryOutputStream]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the size of the currently allocated data area (available from
+  /** Gets the size of the currently allocated data area (available from
     * g_memory_output_stream_get_data()).
     *
     * You probably don't want to use this function on resizable streams. See
@@ -61,30 +62,35 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     *
     * In any case, if you want the number of bytes currently written to the
     * stream, use g_memory_output_stream_get_data_size().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSize(): CUnsignedLongInt /* None */ = g_memory_output_stream_get_size(
     this.raw.asInstanceOf[Ptr[GMemoryOutputStream]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns data from the @ostream as a #GBytes. @ostream must be closed
+  /** Returns data from the @ostream as a #GBytes. @ostream must be closed
     * before calling this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[steal_as_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def stealAsBytes__ = ???
+  private def stealAsBytes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets any loaded data from the @ostream. Ownership of the data is
+  /** Gets any loaded data from the @ostream. Ownership of the data is
     * transferred to the caller; when no longer needed it must be freed using
     * the free function set in @ostream's #GMemoryOutputStream:destroy-function
     * property.
     *
     * @ostream
     *   must be closed before calling this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def stealData(): Ptr[Byte] /* None */ = g_memory_output_stream_steal_data(
     this.raw.asInstanceOf[Ptr[GMemoryOutputStream]]
@@ -93,9 +99,7 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
 end MemoryOutputStream
 
 object MemoryOutputStream:
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Creates a new #GMemoryOutputStream.
+  /**  Creates a new #GMemoryOutputStream.
     *
     *  In most cases this is not the function you want.  See
     *  g_memory_output_stream_new_resizable() instead.
@@ -136,16 +140,19 @@ object MemoryOutputStream:
     *  data = malloc (200);
     *  stream3 = g_memory_output_stream_new (data, 200, NULL, free);
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ReallocFunc), @type -> DataRecord(GReallocFunc)))"
+    "[realloc_function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ReallocFunc), @type -> DataRecord(GReallocFunc)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GMemoryOutputStream, using g_realloc() and g_free() for
+  /** Creates a new #GMemoryOutputStream, using g_realloc() and g_free() for
     * memory allocation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def resizable(): MemoryOutputStream = new MemoryOutputStream(
     g_memory_output_stream_new_resizable().asInstanceOf

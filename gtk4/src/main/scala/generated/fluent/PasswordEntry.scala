@@ -15,9 +15,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkPasswordEntry
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkPasswordEntry` is an entry that has been tailored for entering secrets.
+/** `GtkPasswordEntry` is an entry that has been tailored for entering secrets.
   *
   * ![An example GtkPasswordEntry](password-entry.png)
   *
@@ -49,6 +47,9 @@ import sn.gnome.gtk4.internal.GtkPasswordEntry
   * # Accessibility
   *
   * `GtkPasswordEntry` uses the %GTK_ACCESSIBLE_ROLE_TEXT_BOX role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PasswordEntry(raw: Ptr[GtkPasswordEntry])
     extends Widget(raw.asInstanceOf),
@@ -59,9 +60,10 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the menu model set with gtk_password_entry_set_extra_menu().
     *
-    * Gets the menu model set with gtk_password_entry_set_extra_menu().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExtraMenu(): MenuModel /* None */ = new MenuModel(
     gtk_password_entry_get_extra_menu(
@@ -69,18 +71,20 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the entry is showing an icon to reveal the contents.
     *
-    * Returns whether the entry is showing an icon to reveal the contents.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowPeekIcon(): Boolean /* None */ =
     gtk_password_entry_get_show_peek_icon(
       this.raw.asInstanceOf[Ptr[GtkPasswordEntry]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets a menu model to add when constructing the context menu for @entry.
     *
-    * Sets a menu model to add when constructing the context menu for @entry.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setExtraMenu(
       model: Option[
@@ -97,12 +101,13 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the entry should have a clickable icon to reveal the
+  /** Sets whether the entry should have a clickable icon to reveal the
     * contents.
     *
     * Setting this to %FALSE also hides the text again.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowPeekIcon(
       show_peek_icon: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -114,9 +119,10 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
 end PasswordEntry
 
 object PasswordEntry:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a `GtkPasswordEntry`.
     *
-    * Creates a `GtkPasswordEntry`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): PasswordEntry = new PasswordEntry(
     gtk_password_entry_new().asInstanceOf

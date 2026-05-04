@@ -2,38 +2,44 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkMessageType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** The type of message being displayed in a [class@MessageDialog].
   *
-  * The type of message being displayed in a [class@MessageDialog].
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum MessageType(val raw: GtkMessageType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Informational message
     *
-    * Informational message
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INFO extends MessageType(GtkMessageType.GTK_MESSAGE_INFO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Non-fatal warning message
     *
-    * Non-fatal warning message
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WARNING extends MessageType(GtkMessageType.GTK_MESSAGE_WARNING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Question requiring a choice
     *
-    * Question requiring a choice
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case QUESTION extends MessageType(GtkMessageType.GTK_MESSAGE_QUESTION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fatal error message
     *
-    * Fatal error message
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ERROR extends MessageType(GtkMessageType.GTK_MESSAGE_ERROR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** None of the above
     *
-    * None of the above
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OTHER extends MessageType(GtkMessageType.GTK_MESSAGE_OTHER)
 end MessageType

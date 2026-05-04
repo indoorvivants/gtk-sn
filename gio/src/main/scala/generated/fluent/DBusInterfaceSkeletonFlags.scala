@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDBusInterfaceSkeletonFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags describing the behavior of a #GDBusInterfaceSkeleton instance.
   *
-  * Flags describing the behavior of a #GDBusInterfaceSkeleton instance.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusInterfaceSkeletonFlags private (val raw: GDBusInterfaceSkeletonFlags):
   def is(kv: DBusInterfaceSkeletonFlags): Boolean =
@@ -33,17 +34,19 @@ object DBusInterfaceSkeletonFlags:
     def |(other: DBusInterfaceSkeletonFlags) =
       DBusInterfaceSkeletonFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags describing the behavior of a #GDBusInterfaceSkeleton instance.
     *
-    * Flags describing the behavior of a #GDBusInterfaceSkeleton instance.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GDBusInterfaceSkeletonFlags, name: String)
       extends DBusInterfaceSkeletonFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(
@@ -51,13 +54,14 @@ object DBusInterfaceSkeletonFlags:
           "NONE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Each method invocation is handled in a thread dedicated to the
+    /** Each method invocation is handled in a thread dedicated to the
       * invocation. This means that the method implementation can use blocking
       * IO without blocking any other part of the process. It also means that
       * the method implementation must use locking to access data structures
       * used by other threads.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case HANDLE_METHOD_INVOCATIONS_IN_THREAD
         extends KnownValue(

@@ -9,9 +9,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkWidgetPaintable
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkWidgetPaintable` is a `GdkPaintable` that displays the contents of a
+/** `GtkWidgetPaintable` is a `GdkPaintable` that displays the contents of a
   * widget.
   *
   * `GtkWidgetPaintable` will also take care of the widget not being in a state
@@ -31,6 +29,9 @@ import sn.gnome.gtk4.internal.GtkWidgetPaintable
   * recursion when this happens. If you do this however, ensure that the
   * [property@Gtk.Picture:can-shrink] property is set to %TRUE or you might end
   * up with an infinitely growing widget.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class WidgetPaintable(raw: Ptr[GtkWidgetPaintable])
     extends Object(raw.asInstanceOf),
@@ -38,9 +39,10 @@ class WidgetPaintable(raw: Ptr[GtkWidgetPaintable])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the widget that is observed or %NULL if none.
     *
-    * Returns the widget that is observed or %NULL if none.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWidget(): Widget /* None */ = new Widget(
     gtk_widget_paintable_get_widget(
@@ -48,9 +50,10 @@ class WidgetPaintable(raw: Ptr[GtkWidgetPaintable])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the widget that should be observed.
     *
-    * Sets the widget that should be observed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWidget(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -64,9 +67,10 @@ class WidgetPaintable(raw: Ptr[GtkWidgetPaintable])
 end WidgetPaintable
 
 object WidgetPaintable:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new widget paintable observing the given widget.
     *
-    * Creates a new widget paintable observing the given widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]

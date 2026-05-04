@@ -2,11 +2,12 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoLayoutSerializeFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags that influence the behavior of [method@Pango.Layout.serialize].
+/** Flags that influence the behavior of [method@Pango.Layout.serialize].
   *
   * New members may be added to this enumeration over time.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class LayoutSerializeFlags private (val raw: PangoLayoutSerializeFlags):
   def is(kv: LayoutSerializeFlags): Boolean =
@@ -34,19 +35,21 @@ object LayoutSerializeFlags:
     def |(other: LayoutSerializeFlags) =
       LayoutSerializeFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags that influence the behavior of [method@Pango.Layout.serialize].
+  /** Flags that influence the behavior of [method@Pango.Layout.serialize].
     *
     * New members may be added to this enumeration over time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: PangoLayoutSerializeFlags, name: String)
       extends LayoutSerializeFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Default behavior
       *
-      * Default behavior
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DEFAULT
         extends KnownValue(
@@ -54,9 +57,10 @@ object LayoutSerializeFlags:
           "DEFAULT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Include context information
       *
-      * Include context information
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CONTEXT
         extends KnownValue(
@@ -64,9 +68,10 @@ object LayoutSerializeFlags:
           "CONTEXT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Include information about the formatted output
       *
-      * Include information about the formatted output
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case OUTPUT
         extends KnownValue(

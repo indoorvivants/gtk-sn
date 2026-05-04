@@ -2,44 +2,49 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkAccessibleInvalidState
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The possible values for the %GTK_ACCESSIBLE_STATE_INVALID accessible state.
+/** The possible values for the %GTK_ACCESSIBLE_STATE_INVALID accessible state.
   *
   * Note that the %GTK_ACCESSIBLE_INVALID_FALSE and %GTK_ACCESSIBLE_INVALID_TRUE
   * have the same values as %FALSE and %TRUE.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum AccessibleInvalidState(val raw: GtkAccessibleInvalidState):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** There are no detected errors in the value
     *
-    * There are no detected errors in the value
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FALSE
       extends AccessibleInvalidState(
         GtkAccessibleInvalidState.GTK_ACCESSIBLE_INVALID_FALSE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The value entered by the user has failed validation
     *
-    * The value entered by the user has failed validation
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TRUE
       extends AccessibleInvalidState(
         GtkAccessibleInvalidState.GTK_ACCESSIBLE_INVALID_TRUE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A grammatical error was detected
     *
-    * A grammatical error was detected
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GRAMMAR
       extends AccessibleInvalidState(
         GtkAccessibleInvalidState.GTK_ACCESSIBLE_INVALID_GRAMMAR
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A spelling error was detected
     *
-    * A spelling error was detected
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SPELLING
       extends AccessibleInvalidState(

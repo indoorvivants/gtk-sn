@@ -15,39 +15,43 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gssize}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A certificate used for TLS authentication and encryption. This can represent
+/** A certificate used for TLS authentication and encryption. This can represent
   * either a certificate only (eg, the certificate received by a client from a
   * server), or the combination of a certificate and a private key (which is
   * needed when acting as a #GTlsServerConnection).
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TlsCertificate(raw: Ptr[GTlsCertificate])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of #GTlsCertificate:dns-names.
     *
-    * Gets the value of #GTlsCertificate:dns-names.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.Bytes)))),ListMap(@name -> DataRecord(GLib.PtrArray), @type -> DataRecord(GPtrArray*)))"
+    "[get_dns_names/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.Bytes)))),ListMap(@name -> DataRecord(GLib.PtrArray), @type -> DataRecord(GPtrArray*)))"
   )
-  def getDnsNames__ = ???
+  private def getDnsNames__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of #GTlsCertificate:ip-addresses.
     *
-    * Gets the value of #GTlsCertificate:ip-addresses.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress)))),ListMap(@name -> DataRecord(GLib.PtrArray), @type -> DataRecord(GPtrArray*)))"
+    "[get_ip_addresses/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress)))),ListMap(@name -> DataRecord(GLib.PtrArray), @type -> DataRecord(GPtrArray*)))"
   )
-  def getIpAddresses__ = ???
+  private def getIpAddresses__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the #GTlsCertificate representing @cert's issuer, if known
     *
-    * Gets the #GTlsCertificate representing @cert's issuer, if known
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIssuer(): TlsCertificate /* None */ = new TlsCertificate(
     g_tls_certificate_get_issuer(
@@ -55,9 +59,10 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the issuer name from the certificate.
     *
-    * Returns the issuer name from the certificate.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIssuerName()(using Zone): String /* None */ = fromCString(
     g_tls_certificate_get_issuer_name(
@@ -65,27 +70,30 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the time at which the certificate became or will become invalid.
     *
-    * Returns the time at which the certificate became or will become invalid.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[get_not_valid_after/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
-  def getNotValidAfter__ = ???
+  private def getNotValidAfter__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the time at which the certificate became or will become valid.
     *
-    * Returns the time at which the certificate became or will become valid.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[get_not_valid_before/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
-  def getNotValidBefore__ = ???
+  private def getNotValidBefore__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the subject name from the certificate.
     *
-    * Returns the subject name from the certificate.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSubjectName()(using Zone): String /* None */ = fromCString(
     g_tls_certificate_get_subject_name(
@@ -93,13 +101,14 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Check if two #GTlsCertificate objects represent the same certificate. The
+  /** Check if two #GTlsCertificate objects represent the same certificate. The
     * raw DER byte data of the two certificates are checked for equality. This
     * has the effect that two certificates may compare equal even if their
     * #GTlsCertificate:issuer, #GTlsCertificate:private-key, or
     * #GTlsCertificate:private-key-pem properties differ.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isSame(
       cert_two: TlsCertificate /* Some(Ptr[GTlsCertificate]) */
@@ -108,9 +117,7 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     cert_two.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This verifies @cert and returns a set of #GTlsCertificateFlags indicating
+  /** This verifies @cert and returns a set of #GTlsCertificateFlags indicating
     * any problems found with it. This can be used to verify a certificate
     * outside the context of making a connection, or to check a certificate
     * against a CA that is not part of the system CA database.
@@ -141,6 +148,9 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     * certificate constraints may not be honored, and revocation checks may not
     * be performed. The best way to verify TLS certificates used by a TLS
     * connection is to let #GTlsConnection handle the verification.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def verify(
       identity: Option[SocketConnectable /* Some(Ptr[GSocketConnectable]) */ ],
@@ -160,15 +170,16 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
 end TlsCertificate
 
 object TlsCertificate:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GTlsCertificate from the data in @file.
+  /** Creates a #GTlsCertificate from the data in @file.
     *
     * As of 2.72, if the filename ends in `.p12` or `.pfx` the data is loaded by
     * g_tls_certificate_new_from_pkcs12() otherwise it is loaded by
     * g_tls_certificate_new_from_pem(). See those functions for exact details.
     *
     * If @file cannot be read or parsed, the function will return %NULL and set @error.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFile(
       file: String |
@@ -182,15 +193,16 @@ object TlsCertificate:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GTlsCertificate from the data in @file.
+  /** Creates a #GTlsCertificate from the data in @file.
     *
     * If @file cannot be read or parsed, the function will return %NULL and set @error.
     *
     * Any unknown file types will error with %G_IO_ERROR_NOT_SUPPORTED.
     * Currently only `.p12` and `.pfx` files are supported. See
     * g_tls_certificate_new_from_pkcs12() for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFileWithPassword(
       file: String |
@@ -207,9 +219,7 @@ object TlsCertificate:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GTlsCertificate from the PEM-encoded data in @cert_file and @key_file.
+  /** Creates a #GTlsCertificate from the PEM-encoded data in @cert_file and @key_file.
     * The returned certificate will be the first certificate found in @cert_file.
     * As of GLib 2.44, if @cert_file contains more certificates it will try to
     * load a certificate chain. All certificates will be verified in the order
@@ -222,6 +232,9 @@ object TlsCertificate:
     * If either file cannot be read or parsed, the function will return %NULL
     * and set @error. Otherwise, this behaves like
     * g_tls_certificate_new_from_pem().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFiles(
       cert_file: String |
@@ -238,9 +251,7 @@ object TlsCertificate:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GTlsCertificate from the PEM-encoded data in @data. If
+  /** Creates a #GTlsCertificate from the PEM-encoded data in @data. If
     * @data
     *   includes both a certificate and a private key, then the returned
     *   certificate will include the private key data as well. (See the
@@ -256,6 +267,9 @@ object TlsCertificate:
     *   accordingly if the verification succeeds. If any certificate in the
     *   chain cannot be verified, the first certificate in the file will still
     *   be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromPem(
       data: String |
@@ -271,9 +285,7 @@ object TlsCertificate:
     )
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Creates a #GTlsCertificate from a
+  /**  Creates a #GTlsCertificate from a
     *  [PKCS \#11](https://docs.oasis-open.org/pkcs11/pkcs11-base/v3.0/os/pkcs11-base-v3.0-os.html) URI.
     *
     *  An example @pkcs11_uri would be `pkcs11:model=Model;manufacturer=Manufacture;serial=1;token=My%20Client%20Certificate;id=%01`
@@ -297,6 +309,8 @@ object TlsCertificate:
     *  @private_key_pkcs11_uri allows using a private key exposed under a different URI.
     *
     *  Note that the private key is not accessed until usage and may fail or require a PIN later.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def fromPkcs11Uris(
       pkcs11_uri: String |
@@ -320,9 +334,7 @@ object TlsCertificate:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GTlsCertificate from the data in @data. It must contain a
+  /** Creates a #GTlsCertificate from the data in @data. It must contain a
     * certificate and matching private key.
     *
     * If extra certificates are included they will be verified as a chain and
@@ -337,23 +349,27 @@ object TlsCertificate:
     * is missing it will error with %G_IO_ERROR_NOT_SUPPORTED.
     *
     * Other parsing failures will error with %G_TLS_ERROR_BAD_CERTIFICATE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guint8*)))"
+    "[data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guint8*)))"
   )
-  def new_from_pkcs12() = ???
+  private def new_from_pkcs12() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates one or more #GTlsCertificates from the PEM-encoded data in @file.
+  /** Creates one or more #GTlsCertificates from the PEM-encoded data in @file.
     * If @file cannot be read or parsed, the function will return %NULL and set @error.
     * If @file does not contain any PEM-encoded certificates, this will return
     * an empty list and not set @error.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TlsCertificate))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TlsCertificate))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def listNewFromFile() = ???
+  private def listNewFromFile() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

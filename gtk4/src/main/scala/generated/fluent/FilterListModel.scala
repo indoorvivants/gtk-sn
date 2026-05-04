@@ -11,9 +11,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{Filter, SectionModel}
 import sn.gnome.gtk4.internal.GtkFilterListModel
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkFilterListModel` is a list model that filters the elements of the
+/** `GtkFilterListModel` is a list model that filters the elements of the
   * underlying model according to a `GtkFilter`.
   *
   * It hides some elements from the other model according to criteria given by a
@@ -24,6 +22,9 @@ import sn.gnome.gtk4.internal.GtkFilterListModel
   * for details.
   *
   * `GtkFilterListModel` passes through sections from the underlying model.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FilterListModel(raw: Ptr[GtkFilterListModel])
     extends Object(raw.asInstanceOf),
@@ -32,9 +33,10 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GtkFilter` currently set on @self.
     *
-    * Gets the `GtkFilter` currently set on @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFilter(): Filter /* None */ = new Filter(
     gtk_filter_list_model_get_filter(
@@ -42,20 +44,22 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether incremental filtering is enabled.
+  /** Returns whether incremental filtering is enabled.
     *
     * See [method@Gtk.FilterListModel.set_incremental].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIncremental(): Boolean /* None */ =
     gtk_filter_list_model_get_incremental(
       this.raw.asInstanceOf[Ptr[GtkFilterListModel]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the model currently filtered or %NULL if none.
     *
-    * Gets the model currently filtered or %NULL if none.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_filter_list_model_get_model(
@@ -63,9 +67,7 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the number of items that have not been filtered yet.
+  /** Returns the number of items that have not been filtered yet.
     *
     * You can use this value to check if @self is busy filtering by comparing
     * the return value to 0 or you can compute the percentage of the filter
@@ -81,14 +83,18 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     * If no filter operation is ongoing - in particular when
     * [property@Gtk.FilterListModel:incremental] is %FALSE - this function
     * returns 0.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPending(): UInt /* None */ = gtk_filter_list_model_get_pending(
     this.raw.asInstanceOf[Ptr[GtkFilterListModel]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the filter used to filter items.
     *
-    * Sets the filter used to filter items.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFilter(
       filter: Option[Filter /* Some(Ptr[GtkFilter]) */ ]
@@ -99,9 +105,7 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
       .getOrElse(null.asInstanceOf[Ptr[GtkFilter]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the filter model to do an incremental sort.
+  /** Sets the filter model to do an incremental sort.
     *
     * When incremental filtering is enabled, the `GtkFilterListModel` will not
     * run filters immediately, but will instead queue an idle handler that
@@ -117,6 +121,9 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     *
     * See [method@Gtk.FilterListModel.get_pending] for progress information
     * about an ongoing incremental filtering operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIncremental(
       incremental: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -125,13 +132,14 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     gboolean(gint((if incremental == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the model to be filtered.
+  /** Sets the model to be filtered.
     *
     * Note that GTK makes no effort to ensure that @model conforms to the item
     * type of @self. It assumes that the caller knows what they are doing and
     * have set up an appropriate filter to ensure that item types match.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
       model: Option[
@@ -151,10 +159,11 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
 end FilterListModel
 
 object FilterListModel:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkFilterListModel` that will filter @model using the given
+  /** Creates a new `GtkFilterListModel` that will filter @model using the given
     * @filter.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       model: Option[

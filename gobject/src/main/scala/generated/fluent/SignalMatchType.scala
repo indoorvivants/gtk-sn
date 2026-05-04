@@ -2,11 +2,12 @@ package sn.gnome.gobject.fluent
 
 import _root_.sn.gnome.gobject.internal.GSignalMatchType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The match types specify what g_signal_handlers_block_matched(),
+/** The match types specify what g_signal_handlers_block_matched(),
   * g_signal_handlers_unblock_matched() and
   * g_signal_handlers_disconnect_matched() match signals by.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SignalMatchType private (val raw: GSignalMatchType):
   def is(kv: SignalMatchType): Boolean =
@@ -34,51 +35,58 @@ object SignalMatchType:
     def |(other: SignalMatchType) =
       SignalMatchType(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The match types specify what g_signal_handlers_block_matched(),
+  /** The match types specify what g_signal_handlers_block_matched(),
     * g_signal_handlers_unblock_matched() and
     * g_signal_handlers_disconnect_matched() match signals by.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GSignalMatchType, name: String)
       extends SignalMatchType(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The signal id must be equal.
       *
-      * The signal id must be equal.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ID extends KnownValue(GSignalMatchType.G_SIGNAL_MATCH_ID, "ID")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The signal detail must be equal.
       *
-      * The signal detail must be equal.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DETAIL
         extends KnownValue(GSignalMatchType.G_SIGNAL_MATCH_DETAIL, "DETAIL")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The closure must be the same.
       *
-      * The closure must be the same.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CLOSURE
         extends KnownValue(GSignalMatchType.G_SIGNAL_MATCH_CLOSURE, "CLOSURE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The C closure callback must be the same.
       *
-      * The C closure callback must be the same.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FUNC extends KnownValue(GSignalMatchType.G_SIGNAL_MATCH_FUNC, "FUNC")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The closure data must be the same.
       *
-      * The closure data must be the same.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DATA extends KnownValue(GSignalMatchType.G_SIGNAL_MATCH_DATA, "DATA")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Only unblocked signals may be matched.
       *
-      * Only unblocked signals may be matched.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case UNBLOCKED
         extends KnownValue(

@@ -9,9 +9,10 @@ import sn.gnome.gio.fluent.{InetAddress, InetSocketAddress, SocketConnectable}
 import sn.gnome.gio.internal.GProxyAddress
 import sn.gnome.glib.internal.{gchar, guint16}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Support for proxied #GInetSocketAddress.
   *
-  * Support for proxied #GInetSocketAddress.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ProxyAddress(raw: Ptr[GProxyAddress])
     extends InetSocketAddress(raw.asInstanceOf),
@@ -19,10 +20,11 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets @proxy's destination hostname; that is, the name of the host that
+  /** Gets @proxy's destination hostname; that is, the name of the host that
     * will be connected to via the proxy, not the name of the proxy itself.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDestinationHostname()(using Zone): String /* None */ = fromCString(
     g_proxy_address_get_destination_hostname(
@@ -30,21 +32,23 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets @proxy's destination port; that is, the port on the destination host
+  /** Gets @proxy's destination port; that is, the port on the destination host
     * that will be connected to via the proxy, not the port number of the proxy
     * itself.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDestinationPort(): UShort /* None */ =
     g_proxy_address_get_destination_port(
       this.raw.asInstanceOf[Ptr[GProxyAddress]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the protocol that is being spoken to the destination server; eg,
+  /** Gets the protocol that is being spoken to the destination server; eg,
     * "http" or "ftp".
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDestinationProtocol()(using Zone): String /* None */ = fromCString(
     g_proxy_address_get_destination_protocol(
@@ -52,9 +56,10 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @proxy's password.
     *
-    * Gets @proxy's password.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPassword()(using Zone): String /* None */ = fromCString(
     g_proxy_address_get_password(
@@ -62,9 +67,10 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @proxy's protocol. eg, "socks" or "http"
     *
-    * Gets @proxy's protocol. eg, "socks" or "http"
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getProtocol()(using Zone): String /* None */ = fromCString(
     g_proxy_address_get_protocol(
@@ -72,9 +78,10 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the proxy URI that @proxy was constructed from.
     *
-    * Gets the proxy URI that @proxy was constructed from.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUri()(using Zone): String /* None */ = fromCString(
     g_proxy_address_get_uri(
@@ -82,9 +89,10 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @proxy's username.
     *
-    * Gets @proxy's username.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUsername()(using Zone): String /* None */ = fromCString(
     g_proxy_address_get_username(
@@ -95,14 +103,15 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
 end ProxyAddress
 
 object ProxyAddress:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GProxyAddress for @inetaddr with @protocol that should
+  /** Creates a new #GProxyAddress for @inetaddr with @protocol that should
     * tunnel through @dest_hostname and @dest_port.
     *
     * (Note that this method doesn't set the #GProxyAddress:uri or
     * #GProxyAddress:destination-protocol fields; use g_object_new() directly if
     * you want to set those.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       inetaddr: InetAddress /* Some(Ptr[GInetAddress]) */,

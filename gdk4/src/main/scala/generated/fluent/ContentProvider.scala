@@ -11,9 +11,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GdkContentProvider` is used to provide content for the clipboard or for
+/** A `GdkContentProvider` is used to provide content for the clipboard or for
   * drag-and-drop operations in a number of formats.
   *
   * To create a `GdkContentProvider`, use
@@ -23,62 +21,67 @@ import sn.gnome.gobject.internal.GType
   * GDK knows how to handle common text and image formats out-of-the-box. See
   * [class@Gdk.ContentSerializer] and [class@Gdk.ContentDeserializer] if you
   * want to add support for application-specific data formats.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ContentProvider(raw: Ptr[GdkContentProvider])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Emits the ::content-changed signal.
     *
-    * Emits the ::content-changed signal.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def contentChanged(): Unit /* None */ = gdk_content_provider_content_changed(
     this.raw.asInstanceOf[Ptr[GdkContentProvider]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the contents of @provider stored in @value.
+  /** Gets the contents of @provider stored in @value.
     *
     * The @value will have been initialized to the `GType` the value should be
     * provided in. This given `GType` does not need to be listed in the formats
     * returned by [method@Gdk.ContentProvider.ref_formats]. However, if the
     * given `GType` is not supported, this operation can fail and
     * `G_IO_ERROR_NOT_SUPPORTED` will be reported.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_value contains an OUT parameter, which is not supported yet"
+    "[get_value]: Method get_value contains an OUT parameter, which is not supported yet"
   )
-  def getValue__ = ???
+  private def getValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the formats that the provider can provide its current contents in.
     *
-    * Gets the formats that the provider can provide its current contents in.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[ref_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
-  def refFormats__ = ???
+  private def refFormats__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the formats that the provider suggests other applications to store
+  /** Gets the formats that the provider suggests other applications to store
     * the data in.
     *
     * An example of such an application would be a clipboard manager.
     *
     * This can be assumed to be a subset of
     * [method@Gdk.ContentProvider.ref_formats].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[ref_storable_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
-  def refStorableFormats__ = ???
+  private def refStorableFormats__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously writes the contents of @provider to @stream in the given
+  /** Asynchronously writes the contents of @provider to @stream in the given
     * @mime_type.
     *
     * When the operation is finished @callback will be called. You must then
@@ -90,17 +93,21 @@ class ContentProvider(raw: Ptr[GdkContentProvider])
     * not supported, `G_IO_ERROR_NOT_SUPPORTED` will be reported.
     *
     * The given @stream will not be closed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[write_mime_type_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def writeMimeTypeAsync__ = ???
+  private def writeMimeTypeAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an asynchronous write operation.
+  /** Finishes an asynchronous write operation.
     *
     * See [method@Gdk.ContentProvider.write_mime_type_async].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def writeMimeTypeFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
@@ -115,32 +122,35 @@ class ContentProvider(raw: Ptr[GdkContentProvider])
 end ContentProvider
 
 object ContentProvider:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a content provider that provides the given @bytes as data for the
+  /** Create a content provider that provides the given @bytes as data for the
     * given @mime_type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def new_for_bytes() = ???
+  private def new_for_bytes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Create a content provider that provides the given @value.
     *
-    * Create a content provider that provides the given @value.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
-  def new_for_value() = ???
+  private def new_for_value() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a content provider that provides the value of the given
+  /** Create a content provider that provides the value of the given
     * @type.
     *
     * The value is provided using G_VALUE_COLLECT(), so the same rules apply as
     * when calling g_object_new() or g_object_set().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def typed(
       `type`: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
@@ -149,9 +159,7 @@ object ContentProvider:
     gdk_content_provider_new_typed(`type`, args*).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a content provider that represents all the given @providers.
+  /** Creates a content provider that represents all the given @providers.
     *
     * Whenever data needs to be written, the union provider will try the given
     * @providers
@@ -167,10 +175,13 @@ object ContentProvider:
     *                                   gdk_content_provider_new_typed (G_TYPE_TEXTURE, texture)
     *                                 }, 2);
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
     "Constructor new_union is weird: non NULL-terminated arrays require special handling"
   )
-  def new_union() = ???
+  private def new_union() = ???
 
 end ContentProvider

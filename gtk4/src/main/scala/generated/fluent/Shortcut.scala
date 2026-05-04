@@ -8,9 +8,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{ShortcutAction, ShortcutTrigger}
 import sn.gnome.gtk4.internal.GtkShortcut
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkShortcut` describes a keyboard shortcut.
+/** A `GtkShortcut` describes a keyboard shortcut.
   *
   * It contains a description of how to trigger the shortcut via a
   * [class@Gtk.ShortcutTrigger] and a way to activate the shortcut on a widget
@@ -24,14 +22,18 @@ import sn.gnome.gtk4.internal.GtkShortcut
   * `GtkShortcut` does provide functionality to make it easy for users to work
   * with shortcuts, either by providing informational strings for display
   * purposes or by allowing shortcuts to be configured.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the action that is activated by this shortcut.
     *
-    * Gets the action that is activated by this shortcut.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAction(): ShortcutAction /* None */ = new ShortcutAction(
     gtk_shortcut_get_action(
@@ -39,18 +41,20 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the arguments that are passed when activating the shortcut.
     *
-    * Gets the arguments that are passed when activating the shortcut.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[get_arguments/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def getArguments__ = ???
+  private def getArguments__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the trigger used to trigger @self.
     *
-    * Gets the trigger used to trigger @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTrigger(): ShortcutTrigger /* None */ = new ShortcutTrigger(
     gtk_shortcut_get_trigger(
@@ -58,9 +62,10 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the new action for @self to be @action.
     *
-    * Sets the new action for @self to be @action.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAction(
       action: Option[ShortcutAction /* Some(Ptr[GtkShortcutAction]) */ ]
@@ -71,18 +76,20 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[GtkShortcutAction]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the arguments to pass when activating the shortcut.
     *
-    * Sets the arguments to pass when activating the shortcut.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[set_arguments/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def setArguments__ = ???
+  private def setArguments__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the new trigger for @self to be @trigger.
     *
-    * Sets the new trigger for @self to be @trigger.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTrigger(
       trigger: Option[ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */ ]
@@ -96,11 +103,12 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
 end Shortcut
 
 object Shortcut:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkShortcut` that is triggered by
+  /** Creates a new `GtkShortcut` that is triggered by
     * @trigger
     *   and then activates @action.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       trigger: Option[ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */ ],
@@ -116,12 +124,13 @@ object Shortcut:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkShortcut` that is triggered by @trigger and then
+  /** Creates a new `GtkShortcut` that is triggered by @trigger and then
     * activates
     * @action
     *   with arguments given by @format_string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def withArguments(
       trigger: Option[ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */ ],

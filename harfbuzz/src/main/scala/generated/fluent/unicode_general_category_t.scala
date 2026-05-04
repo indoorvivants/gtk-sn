@@ -2,276 +2,307 @@ package sn.gnome.harfbuzz.fluent
 
 import _root_.sn.gnome.harfbuzz.internal.hb_unicode_general_category_t
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Data type for the "General_Category" (gc) property from the Unicode
+/** Data type for the "General_Category" (gc) property from the Unicode
   * Character Database.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Unicode_general_category_t(val raw: hb_unicode_general_category_t):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Cc]
     *
-    * [Cc]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CONTROL
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_CONTROL
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Cf]
     *
-    * [Cf]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FORMAT
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_FORMAT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Cn]
     *
-    * [Cn]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNASSIGNED
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_UNASSIGNED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Co]
     *
-    * [Co]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PRIVATE_USE
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_PRIVATE_USE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Cs]
     *
-    * [Cs]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SURROGATE
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_SURROGATE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Ll]
     *
-    * [Ll]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LOWERCASE_LETTER
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_LOWERCASE_LETTER
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Lm]
     *
-    * [Lm]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MODIFIER_LETTER
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_MODIFIER_LETTER
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Lo]
     *
-    * [Lo]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OTHER_LETTER
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OTHER_LETTER
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Lt]
     *
-    * [Lt]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TITLECASE_LETTER
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_TITLECASE_LETTER
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Lu]
     *
-    * [Lu]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UPPERCASE_LETTER
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_UPPERCASE_LETTER
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Mc]
     *
-    * [Mc]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SPACING_MARK
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_SPACING_MARK
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Me]
     *
-    * [Me]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ENCLOSING_MARK
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_ENCLOSING_MARK
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Mn]
     *
-    * [Mn]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NON_SPACING_MARK
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_NON_SPACING_MARK
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Nd]
     *
-    * [Nd]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DECIMAL_NUMBER
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_DECIMAL_NUMBER
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Nl]
     *
-    * [Nl]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LETTER_NUMBER
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_LETTER_NUMBER
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [No]
     *
-    * [No]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OTHER_NUMBER
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OTHER_NUMBER
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Pc]
     *
-    * [Pc]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CONNECT_PUNCTUATION
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_CONNECT_PUNCTUATION
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Pd]
     *
-    * [Pd]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DASH_PUNCTUATION
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_DASH_PUNCTUATION
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Pe]
     *
-    * [Pe]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CLOSE_PUNCTUATION
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_CLOSE_PUNCTUATION
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Pf]
     *
-    * [Pf]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FINAL_PUNCTUATION
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_FINAL_PUNCTUATION
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Pi]
     *
-    * [Pi]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INITIAL_PUNCTUATION
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_INITIAL_PUNCTUATION
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Po]
     *
-    * [Po]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OTHER_PUNCTUATION
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OTHER_PUNCTUATION
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Ps]
     *
-    * [Ps]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OPEN_PUNCTUATION
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OPEN_PUNCTUATION
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Sc]
     *
-    * [Sc]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CURRENCY_SYMBOL
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_CURRENCY_SYMBOL
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Sk]
     *
-    * [Sk]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MODIFIER_SYMBOL
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_MODIFIER_SYMBOL
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Sm]
     *
-    * [Sm]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MATH_SYMBOL
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_MATH_SYMBOL
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [So]
     *
-    * [So]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OTHER_SYMBOL
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_OTHER_SYMBOL
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Zl]
     *
-    * [Zl]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LINE_SEPARATOR
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_LINE_SEPARATOR
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Zp]
     *
-    * [Zp]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PARAGRAPH_SEPARATOR
       extends Unicode_general_category_t(
         hb_unicode_general_category_t.HB_UNICODE_GENERAL_CATEGORY_PARAGRAPH_SEPARATOR
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Zs]
     *
-    * [Zs]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SPACE_SEPARATOR
       extends Unicode_general_category_t(

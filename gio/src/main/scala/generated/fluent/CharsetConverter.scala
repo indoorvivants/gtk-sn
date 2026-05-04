@@ -11,9 +11,10 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** #GCharsetConverter is an implementation of #GConverter based on GIConv.
   *
-  * #GCharsetConverter is an implementation of #GConverter based on GIConv.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class CharsetConverter(raw: Ptr[GCharsetConverter])
     extends Object(raw.asInstanceOf),
@@ -22,27 +23,30 @@ class CharsetConverter(raw: Ptr[GCharsetConverter])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the number of fallbacks that @converter has applied so far.
     *
-    * Gets the number of fallbacks that @converter has applied so far.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNumFallbacks(): UInt /* None */ =
     g_charset_converter_get_num_fallbacks(
       this.raw.asInstanceOf[Ptr[GCharsetConverter]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the #GCharsetConverter:use-fallback property.
     *
-    * Gets the #GCharsetConverter:use-fallback property.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseFallback(): Boolean /* None */ =
     g_charset_converter_get_use_fallback(
       this.raw.asInstanceOf[Ptr[GCharsetConverter]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the #GCharsetConverter:use-fallback property.
     *
-    * Sets the #GCharsetConverter:use-fallback property.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseFallback(
       use_fallback: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -54,9 +58,10 @@ class CharsetConverter(raw: Ptr[GCharsetConverter])
 end CharsetConverter
 
 object CharsetConverter:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GCharsetConverter.
     *
-    * Creates a new #GCharsetConverter.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       to_charset: String |

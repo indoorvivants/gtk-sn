@@ -2,44 +2,49 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkPrintOperationAction
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Determines what action the print operation should perform.
+/** Determines what action the print operation should perform.
   *
   * A parameter of this typs is passed to [method@Gtk.PrintOperation.run].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PrintOperationAction(val raw: GtkPrintOperationAction):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Show the print dialog.
     *
-    * Show the print dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PRINT_DIALOG
       extends PrintOperationAction(
         GtkPrintOperationAction.GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Start to print without showing the print dialog, based on the current
+  /** Start to print without showing the print dialog, based on the current
     * print settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PRINT
       extends PrintOperationAction(
         GtkPrintOperationAction.GTK_PRINT_OPERATION_ACTION_PRINT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Show the print preview.
     *
-    * Show the print preview.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PREVIEW
       extends PrintOperationAction(
         GtkPrintOperationAction.GTK_PRINT_OPERATION_ACTION_PREVIEW
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Export to a file. This requires the export-filename property to be set.
     *
-    * Export to a file. This requires the export-filename property to be set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EXPORT
       extends PrintOperationAction(

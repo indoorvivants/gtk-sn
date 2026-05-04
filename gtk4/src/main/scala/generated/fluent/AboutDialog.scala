@@ -18,9 +18,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkAboutDialog
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkAboutDialog` offers a simple way to display information about a
+/** The `GtkAboutDialog` offers a simple way to display information about a
   * program.
   *
   * The shown information includes the programs' logo, name, copyright, website
@@ -67,6 +65,9 @@ import sn.gnome.gtk4.internal.GtkAboutDialog
   *
   * `GtkAboutDialog` has a single CSS node with the name `window` and style
   * class `.aboutdialog`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AboutDialog(raw: Ptr[GtkAboutDialog])
     extends Window(raw.asInstanceOf),
@@ -79,36 +80,40 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new section in the "Credits" page.
     *
-    * Creates a new section in the "Credits" page.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+    "[add_credit_section/<method parameters>/people]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def addCreditSection__ = ???
+  private def addCreditSection__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the names of the artists which are displayed in the credits page.
     *
-    * Returns the names of the artists which are displayed in the credits page.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
+    "[get_artists/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
-  def getArtists__ = ???
+  private def getArtists__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the names of the authors which are displayed in the credits page.
     *
-    * Returns the names of the authors which are displayed in the credits page.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
+    "[get_authors/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
-  def getAuthors__ = ???
+  private def getAuthors__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the comments string.
     *
-    * Returns the comments string.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getComments()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_comments(
@@ -116,9 +121,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the copyright string.
     *
-    * Returns the copyright string.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCopyright()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_copyright(
@@ -126,19 +132,21 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the name of the documenters which are displayed in the credits
+  /** Returns the name of the documenters which are displayed in the credits
     * page.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
+    "[get_documenters/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
-  def getDocumenters__ = ???
+  private def getDocumenters__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the license information.
     *
-    * Returns the license information.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLicense()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_license(
@@ -146,9 +154,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the license type.
     *
-    * Retrieves the license type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLicenseType(): License /* None */ = License.fromRaw(
     gtk_about_dialog_get_license_type(
@@ -156,9 +165,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the paintable displayed as logo in the about dialog.
     *
-    * Returns the paintable displayed as logo in the about dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLogo(): Paintable /* None */ = new Paintable.Abstract(
     gtk_about_dialog_get_logo(
@@ -166,9 +176,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the icon name displayed as logo in the about dialog.
     *
-    * Returns the icon name displayed as logo in the about dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLogoIconName()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_logo_icon_name(
@@ -176,9 +187,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the program name displayed in the about dialog.
     *
-    * Returns the program name displayed in the about dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getProgramName()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_program_name(
@@ -186,9 +198,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the system information that is shown in the about dialog.
     *
-    * Returns the system information that is shown in the about dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSystemInformation()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_system_information(
@@ -196,10 +209,11 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the translator credits string which is displayed in the credits
+  /** Returns the translator credits string which is displayed in the credits
     * page.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTranslatorCredits()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_translator_credits(
@@ -207,9 +221,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the version string.
     *
-    * Returns the version string.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVersion()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_version(
@@ -217,9 +232,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the website URL.
     *
-    * Returns the website URL.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWebsite()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_website(
@@ -227,9 +243,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the label used for the website link.
     *
-    * Returns the label used for the website link.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWebsiteLabel()(using Zone): String /* None */ = fromCString(
     gtk_about_dialog_get_website_label(
@@ -237,39 +254,43 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the license text in the about dialog is automatically
+  /** Returns whether the license text in the about dialog is automatically
     * wrapped.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWrapLicense(): Boolean /* None */ = gtk_about_dialog_get_wrap_license(
     this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the names of the artists to be displayed in the "Credits" page.
     *
-    * Sets the names of the artists to be displayed in the "Credits" page.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+    "[set_artists/<method parameters>/artists]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def setArtists__ = ???
+  private def setArtists__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the names of the authors which are displayed in the "Credits" page of
+  /** Sets the names of the authors which are displayed in the "Credits" page of
     * the about dialog.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+    "[set_authors/<method parameters>/authors]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def setAuthors__ = ???
+  private def setAuthors__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the comments string to display in the about dialog.
+  /** Sets the comments string to display in the about dialog.
     *
     * This should be a short string of one or two lines.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setComments(
       comments: Option[String | CString /* Some(CString) */ ]
@@ -280,11 +301,12 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the copyright string to display in the about dialog.
+  /** Sets the copyright string to display in the about dialog.
     *
     * This should be a short string of one or two lines.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCopyright(
       copyright: Option[String | CString /* Some(CString) */ ]
@@ -295,21 +317,23 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the names of the documenters which are displayed in the "Credits"
+  /** Sets the names of the documenters which are displayed in the "Credits"
     * page.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+    "[set_documenters/<method parameters>/documenters]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def setDocumenters__ = ???
+  private def setDocumenters__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the license information to be displayed in the about dialog.
+  /** Sets the license information to be displayed in the about dialog.
     *
     * If `license` is `NULL`, the license page is hidden.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLicense(
       license: Option[String | CString /* Some(CString) */ ]
@@ -320,13 +344,14 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the license of the application showing the about dialog from a list
+  /** Sets the license of the application showing the about dialog from a list
     * of known licenses.
     *
     * This function overrides the license set using
     * [method@Gtk.AboutDialog.set_license].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLicenseType(
       license_type: License /* Some(GtkLicense) */
@@ -335,9 +360,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     license_type.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the logo in the about dialog.
     *
-    * Sets the logo in the about dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLogo(
       logo: Option[
@@ -354,9 +380,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the icon name to be displayed as logo in the about dialog.
     *
-    * Sets the icon name to be displayed as logo in the about dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLogoIconName(
       icon_name: Option[String | CString /* Some(CString) */ ]
@@ -367,12 +394,13 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the name to display in the about dialog.
+  /** Sets the name to display in the about dialog.
     *
     * If `name` is not set, the string returned by `g_get_application_name()` is
     * used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setProgramName(
       name: Option[String | CString /* Some(CString) */ ]
@@ -383,13 +411,14 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the system information to be displayed in the about dialog.
+  /** Sets the system information to be displayed in the about dialog.
     *
     * If `system_information` is `NULL`, the system information page is hidden.
     *
     * See [property@Gtk.AboutDialog:system-information].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSystemInformation(
       system_information: Option[String | CString /* Some(CString) */ ]
@@ -400,9 +429,7 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the translator credits string which is displayed in the credits page.
+  /** Sets the translator credits string which is displayed in the credits page.
     *
     * The intended use for this string is to display the translator of the
     * language which is currently used in the user interface. Using `gettext()`,
@@ -418,6 +445,9 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * this purpose, since translators will already know the purpose of that
     * `msgid`, and since `GtkAboutDialog` will detect if “translator-credits” is
     * untranslated and omit translator credits.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTranslatorCredits(
       translator_credits: Option[String | CString /* Some(CString) */ ]
@@ -428,9 +458,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the version string to display in the about dialog.
     *
-    * Sets the version string to display in the about dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVersion(
       version: Option[String | CString /* Some(CString) */ ]
@@ -441,9 +472,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the URL to use for the website link.
     *
-    * Sets the URL to use for the website link.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWebsite(
       website: Option[String | CString /* Some(CString) */ ]
@@ -454,9 +486,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the label to be used for the website link.
     *
-    * Sets the label to be used for the website link.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWebsiteLabel(
       website_label: String | CString /* Some(CString) */
@@ -465,10 +498,11 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     __sn_extract_string(website_label)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the license text in the about dialog should be automatically
+  /** Sets whether the license text in the about dialog should be automatically
     * wrapped.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWrapLicense(
       wrap_license: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -488,9 +522,10 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
 end AboutDialog
 
 object AboutDialog:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkAboutDialog`.
     *
-    * Creates a new `GtkAboutDialog`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): AboutDialog = new AboutDialog(
     gtk_about_dialog_new().asInstanceOf

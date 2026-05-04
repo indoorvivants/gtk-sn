@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDBusServerFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used when creating a #GDBusServer.
   *
-  * Flags used when creating a #GDBusServer.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusServerFlags private (val raw: GDBusServerFlags):
   def is(kv: DBusServerFlags): Boolean =
@@ -32,25 +33,28 @@ object DBusServerFlags:
     def |(other: DBusServerFlags) =
       DBusServerFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used when creating a #GDBusServer.
     *
-    * Flags used when creating a #GDBusServer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GDBusServerFlags, name: String)
       extends DBusServerFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(GDBusServerFlags.G_DBUS_SERVER_FLAGS_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * All #GDBusServer::new-connection signals will run in separated dedicated
+    /** All #GDBusServer::new-connection signals will run in separated dedicated
       * threads (see signal for details).
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case RUN_IN_THREAD
         extends KnownValue(
@@ -58,9 +62,10 @@ object DBusServerFlags:
           "RUN_IN_THREAD"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Allow the anonymous authentication method.
       *
-      * Allow the anonymous authentication method.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case AUTHENTICATION_ALLOW_ANONYMOUS
         extends KnownValue(
@@ -68,10 +73,11 @@ object DBusServerFlags:
           "AUTHENTICATION_ALLOW_ANONYMOUS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Require the UID of the peer to be the same as the UID of the server when
+    /** Require the UID of the peer to be the same as the UID of the server when
       * authenticating. (Since: 2.68)
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case AUTHENTICATION_REQUIRE_SAME_USER
         extends KnownValue(

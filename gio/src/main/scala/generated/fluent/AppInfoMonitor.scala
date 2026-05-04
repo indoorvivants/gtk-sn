@@ -8,9 +8,7 @@ import sn.gnome.gio.fluent.AppInfoMonitor
 import sn.gnome.gio.internal.GAppInfoMonitor
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GAppInfoMonitor is a very simple object used for monitoring the app info
+/** #GAppInfoMonitor is a very simple object used for monitoring the app info
   * database for changes (newly installed or removed applications).
   *
   * Call g_app_info_monitor_get() to get a #GAppInfoMonitor and connect to the
@@ -42,6 +40,9 @@ import sn.gnome.gobject.fluent.Object
   * is that changes to the list of installed applications often come in groups
   * (like during system updates) and rescanning the list on every change is
   * pointless and expensive.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AppInfoMonitor(raw: Ptr[GAppInfoMonitor])
     extends Object(raw.asInstanceOf):
@@ -51,9 +52,7 @@ class AppInfoMonitor(raw: Ptr[GAppInfoMonitor])
 end AppInfoMonitor
 
 object AppInfoMonitor:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the #GAppInfoMonitor for the current thread-default main context.
+  /** Gets the #GAppInfoMonitor for the current thread-default main context.
     *
     * The #GAppInfoMonitor will emit a "changed" signal in the thread-default
     * main context whenever the list of installed applications (as reported by
@@ -65,6 +64,9 @@ object AppInfoMonitor:
     *
     * You must only call g_object_unref() on the return value from under the
     * same main context as you created it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def get(): AppInfoMonitor /* Some(Ptr[GAppInfoMonitor]) */ =
     new AppInfoMonitor(g_app_info_monitor_get().asInstanceOf)

@@ -2,10 +2,11 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GSpawnFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags passed to g_spawn_sync(), g_spawn_async() and
+/** Flags passed to g_spawn_sync(), g_spawn_async() and
   * g_spawn_async_with_pipes().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SpawnFlags private (val raw: GSpawnFlags):
   def is(kv: SpawnFlags): Boolean =
@@ -33,26 +34,29 @@ object SpawnFlags:
     def |(other: SpawnFlags) =
       SpawnFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags passed to g_spawn_sync(), g_spawn_async() and
+  /** Flags passed to g_spawn_sync(), g_spawn_async() and
     * g_spawn_async_with_pipes().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GSpawnFlags, name: String)
       extends SpawnFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** no flags, default behaviour
       *
-      * no flags, default behaviour
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DEFAULT extends KnownValue(GSpawnFlags.G_SPAWN_DEFAULT, "DEFAULT")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * the parent's open file descriptors will be inherited by the child;
+    /** the parent's open file descriptors will be inherited by the child;
       * otherwise all descriptors except stdin, stdout and stderr will be closed
       * before calling exec() in the child.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case LEAVE_DESCRIPTORS_OPEN
         extends KnownValue(
@@ -60,11 +64,12 @@ object SpawnFlags:
           "LEAVE_DESCRIPTORS_OPEN"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * the child will not be automatically reaped; you must use
+    /** the child will not be automatically reaped; you must use
       * g_child_watch_add() yourself (or call waitpid() or handle `SIGCHLD`
       * yourself), or the child will become a zombie.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DO_NOT_REAP_CHILD
         extends KnownValue(
@@ -72,18 +77,20 @@ object SpawnFlags:
           "DO_NOT_REAP_CHILD"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * `argv[0]` need not be an absolute path, it will be looked for in the
+    /** `argv[0]` need not be an absolute path, it will be looked for in the
       * user's `PATH`.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SEARCH_PATH
         extends KnownValue(GSpawnFlags.G_SPAWN_SEARCH_PATH, "SEARCH_PATH")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * the child's standard output will be discarded, instead of going to the
+    /** the child's standard output will be discarded, instead of going to the
       * same location as the parent's standard output.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STDOUT_TO_DEV_NULL
         extends KnownValue(
@@ -91,9 +98,10 @@ object SpawnFlags:
           "STDOUT_TO_DEV_NULL"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the child's standard error will be discarded.
       *
-      * the child's standard error will be discarded.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STDERR_TO_DEV_NULL
         extends KnownValue(
@@ -101,10 +109,11 @@ object SpawnFlags:
           "STDERR_TO_DEV_NULL"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * the child will inherit the parent's standard input (by default, the
+    /** the child will inherit the parent's standard input (by default, the
       * child's standard input is attached to `/dev/null`).
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CHILD_INHERITS_STDIN
         extends KnownValue(
@@ -112,12 +121,13 @@ object SpawnFlags:
           "CHILD_INHERITS_STDIN"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * the first element of `argv` is the file to execute, while the remaining
+    /** the first element of `argv` is the file to execute, while the remaining
       * elements are the actual argument vector to pass to the file. Normally
       * g_spawn_async_with_pipes() uses `argv[0]` as the file to execute, and
       * passes all of `argv` to the child.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FILE_AND_ARGV_ZERO
         extends KnownValue(
@@ -125,10 +135,11 @@ object SpawnFlags:
           "FILE_AND_ARGV_ZERO"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * if `argv[0]` is not an absolute path, it will be looked for in the
+    /** if `argv[0]` is not an absolute path, it will be looked for in the
       * `PATH` from the passed child environment. Since: 2.34
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SEARCH_PATH_FROM_ENVP
         extends KnownValue(
@@ -136,16 +147,18 @@ object SpawnFlags:
           "SEARCH_PATH_FROM_ENVP"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** create all pipes with the `O_CLOEXEC` flag set. Since: 2.40
       *
-      * create all pipes with the `O_CLOEXEC` flag set. Since: 2.40
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CLOEXEC_PIPES
         extends KnownValue(GSpawnFlags.G_SPAWN_CLOEXEC_PIPES, "CLOEXEC_PIPES")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The child will inherit the parent's standard output.
       *
-      * The child will inherit the parent's standard output.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CHILD_INHERITS_STDOUT
         extends KnownValue(
@@ -153,9 +166,10 @@ object SpawnFlags:
           "CHILD_INHERITS_STDOUT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The child will inherit the parent's standard error.
       *
-      * The child will inherit the parent's standard error.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CHILD_INHERITS_STDERR
         extends KnownValue(
@@ -163,9 +177,10 @@ object SpawnFlags:
           "CHILD_INHERITS_STDERR"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The child's standard input is attached to `/dev/null`.
       *
-      * The child's standard input is attached to `/dev/null`.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STDIN_FROM_DEV_NULL
         extends KnownValue(

@@ -2,27 +2,31 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GDateDMY
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * This enumeration isn't used in the API, but may be useful if you need to
+/** This enumeration isn't used in the API, but may be useful if you need to
   * mark a number as a day, month, or year.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum DateDMY(val raw: GDateDMY):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a day
     *
-    * a day
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DAY extends DateDMY(GDateDMY.G_DATE_DAY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a month
     *
-    * a month
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MONTH extends DateDMY(GDateDMY.G_DATE_MONTH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a year
     *
-    * a year
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case YEAR extends DateDMY(GDateDMY.G_DATE_YEAR)
 end DateDMY

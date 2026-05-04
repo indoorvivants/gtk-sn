@@ -7,9 +7,10 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskRepeatingRadialGradientNode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A render node for a repeating radial gradient.
   *
-  * A render node for a repeating radial gradient.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class RepeatingRadialGradientNode(raw: Ptr[GskRepeatingRadialGradientNode])
     extends RenderNode(raw.asInstanceOf):
@@ -19,17 +20,18 @@ class RepeatingRadialGradientNode(raw: Ptr[GskRepeatingRadialGradientNode])
 end RepeatingRadialGradientNode
 
 object RepeatingRadialGradientNode:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GskRenderNode` that draws a repeating radial gradient.
+  /** Creates a `GskRenderNode` that draws a repeating radial gradient.
     *
     * The radial gradient starts around @center. The size of the gradient is
     * dictated by @hradius in horizontal orientation and by @vradius in vertical
     * orientation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end RepeatingRadialGradientNode

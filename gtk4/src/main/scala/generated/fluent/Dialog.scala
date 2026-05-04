@@ -21,9 +21,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkDialog
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Dialogs are a convenient way to prompt the user for a small amount of input.
+/** Dialogs are a convenient way to prompt the user for a small amount of input.
   *
   * ![An example GtkDialog](dialog.png)
   *
@@ -141,6 +139,9 @@ import sn.gnome.gtk4.internal.GtkDialog
   * # Accessibility
   *
   * `GtkDialog` uses the %GTK_ACCESSIBLE_ROLE_DIALOG role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Dialog(raw: Ptr[GtkDialog])
     extends Window(raw.asInstanceOf),
@@ -153,9 +154,7 @@ class Dialog(raw: Ptr[GtkDialog])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds an activatable widget to the action area of a `GtkDialog`.
+  /** Adds an activatable widget to the action area of a `GtkDialog`.
     *
     * GTK connects a signal handler that will emit the
     * [signal@Gtk.Dialog::response] signal on the dialog when the widget is
@@ -163,6 +162,9 @@ class Dialog(raw: Ptr[GtkDialog])
     *
     * If you want to add a non-activatable widget, simply pack it into the @action_area
     * field of the `GtkDialog` struct.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addActionWidget(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -173,14 +175,15 @@ class Dialog(raw: Ptr[GtkDialog])
     response_id.raw.value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a button with the given text.
+  /** Adds a button with the given text.
     *
     * GTK arranges things so that clicking the button will emit the
     * [signal@Gtk.Dialog::response] signal with the given @response_id. The
     * button is appended to the end of the dialog’s action area. The button
     * widget is returned, but usually you don’t need it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addButton(
       button_text: String | CString /* Some(CString) */,
@@ -193,14 +196,15 @@ class Dialog(raw: Ptr[GtkDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds multiple buttons.
+  /** Adds multiple buttons.
     *
     * This is the same as calling [method@Gtk.Dialog.add_button] repeatedly. The
     * variable argument list should be %NULL-terminated as with
     * [ctor@Gtk.Dialog.new_with_buttons]. Each button must have both text and
     * response ID.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def addButtons(
       first_button_text: String | CString /* Some(CString) */,
@@ -211,9 +215,10 @@ class Dialog(raw: Ptr[GtkDialog])
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the content area of @dialog.
     *
-    * Returns the content area of @dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getContentArea(): Box /* None */ = new Box(
     gtk_dialog_get_content_area(
@@ -221,12 +226,13 @@ class Dialog(raw: Ptr[GtkDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the header bar of @dialog.
+  /** Returns the header bar of @dialog.
     *
     * Note that the headerbar is only used by the dialog if the
     * [property@Gtk.Dialog:use-header-bar] property is %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeaderBar(): HeaderBar /* None */ = new HeaderBar(
     gtk_dialog_get_header_bar(
@@ -234,9 +240,10 @@ class Dialog(raw: Ptr[GtkDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the response id of a widget in the action area of a dialog.
     *
-    * Gets the response id of a widget in the action area of a dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getResponseForWidget(
       widget: Widget /* Some(Ptr[GtkWidget]) */
@@ -245,10 +252,11 @@ class Dialog(raw: Ptr[GtkDialog])
     widget.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the widget button that uses the given response ID in the action area
+  /** Gets the widget button that uses the given response ID in the action area
     * of a dialog.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWidgetForResponse(
       response_id: ResponseType /* Some(CInt) */
@@ -259,11 +267,12 @@ class Dialog(raw: Ptr[GtkDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Emits the ::response signal with the given response ID.
+  /** Emits the ::response signal with the given response ID.
     *
     * Used to indicate that the user has responded to the dialog in some way.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def response(response_id: ResponseType /* Some(CInt) */ ): Unit /* None */ =
     gtk_dialog_response(
@@ -271,11 +280,12 @@ class Dialog(raw: Ptr[GtkDialog])
       response_id.raw.value
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the default widget for the dialog based on the response ID.
+  /** Sets the default widget for the dialog based on the response ID.
     *
     * Pressing “Enter” normally activates the default widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultResponse(
       response_id: ResponseType /* Some(CInt) */
@@ -284,12 +294,13 @@ class Dialog(raw: Ptr[GtkDialog])
     response_id.raw.value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A convenient way to sensitize/desensitize dialog buttons.
+  /** A convenient way to sensitize/desensitize dialog buttons.
     *
     * Calls `gtk_widget_set_sensitive (widget, @setting)` for each widget in the
     * dialog’s action area with the given @response_id.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setResponseSensitive(
       response_id: ResponseType /* Some(CInt) */,
@@ -311,18 +322,17 @@ class Dialog(raw: Ptr[GtkDialog])
 end Dialog
 
 object Dialog:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new dialog box.
+  /** Creates a new dialog box.
     *
     * Widgets should not be packed into the `GtkWindow` directly, but into the @content_area
     * and @action_area, as described above.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Dialog = new Dialog(gtk_dialog_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkDialog` with the given title and transient parent.
+  /** Creates a new `GtkDialog` with the given title and transient parent.
     *
     * The @flags argument can be used to make the dialog modal, have it
     * destroyed along with its transient parent, or make it use a headerbar.
@@ -355,6 +365,9 @@ object Dialog:
     *                                       GTK_RESPONSE_REJECT,
     *                                       NULL);
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def withButtons(
       title: Option[String | CString /* Some(CString) */ ],

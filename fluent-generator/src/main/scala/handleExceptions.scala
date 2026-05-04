@@ -2,7 +2,21 @@ import util.boundary.*
 import scala.util.control.NonFatal
 import com.indoorvivants.gnome.gir_schema.*
 
-enum FluentErr:
+case class FluentErr(
+    reason: FluentErrReason,
+    context: List[String] = Nil
+) extends Exception(
+      (if context.nonEmpty then context.mkString("[", "/", "]: ")
+       else "") + reason.message,
+      reason match
+        case FluentErrReason.Exc(exc) => exc
+        case _                        => null
+    )
+
+inline def raise(reason: FluentErrReason)(using Label[FluentErr]) =
+  break(FluentErr(reason))
+
+enum FluentErrReason:
   case Exc(exc: Throwable)
   case Other(msg: String)
   case ClassHasNoCType(nm: String)
@@ -19,51 +33,70 @@ enum FluentErr:
 
   def message: String =
     this match
-      case FluentErr.Exc(exc) =>
+      case FluentErrReason.Exc(exc) =>
         exc.getMessage()
-      case FluentErr.Other(msg) =>
+      case FluentErrReason.Other(msg) =>
         (msg)
-      case FluentErr.ClassHasNoCType(nm) =>
+      case FluentErrReason.ClassHasNoCType(nm) =>
         (s"Class [$nm] has no c:type attribute")
-      case FluentErr.NoGlobalNameFor(nm) =>
+      case FluentErrReason.NoGlobalNameFor(nm) =>
         (s"No global name found for $nm")
-      case FluentErr.UnexpectedClassParent(cls, nm) =>
+      case FluentErrReason.UnexpectedClassParent(cls, nm) =>
         (s"Unexpected class parent for $cls: $nm")
-      case FluentErr.MethodHasNoReturnType(meth) =>
+      case FluentErrReason.MethodHasNoReturnType(meth) =>
         (s"Method ${meth} has no return type")
-      case FluentErr.MethodParameterHasNoType(meth, param) =>
+      case FluentErrReason.MethodParameterHasNoType(meth, param) =>
         (s"Method ${meth} has no type for parameter $param")
-      case FluentErr.MethodParameterHasNoName(meth) =>
+      case FluentErrReason.MethodParameterHasNoName(meth) =>
         (s"Method ${meth} has no name for one of the parameters")
-      case FluentErr.TypeMissingValue(tpe) =>
+      case FluentErrReason.TypeMissingValue(tpe) =>
         (s"Type $tpe has no @type attribute")
-      case FluentErr.TargetTypesMissing(meth) =>
+      case FluentErrReason.TargetTypesMissing(meth) =>
         (s"Method ${meth} has no target types")
-      case FluentErr.ParameterHasNoTargetType(meth, param, idx) =>
+      case FluentErrReason.ParameterHasNoTargetType(meth, param, idx) =>
         (
           s"Method ${meth} has no target type for parameter $param (index $idx)"
         )
-      case FluentErr.CannotRenderArrayType(tpe) =>
+      case FluentErrReason.CannotRenderArrayType(tpe) =>
         (s"Cannot render array type $tpe")
-      case FluentErr.CannotRenderType(tpe) =>
+      case FluentErrReason.CannotRenderType(tpe) =>
         (s"Cannot render type $tpe")
     end match
-end FluentErr
+  end message
+end FluentErrReason
 
 extension (fe: FluentErr)
   def log(title: String) =
-    inline def warn(msg: String) =
-      scribe.warn(title + ": " + msg)
+    inline def form(msg: String) =
+      title + ": " + msg
 
-    fe match
-      case FluentErr.Exc(exc) =>
-        scribe.error(title, exc)
-      case other => 
-        warn(other.message)
+    import FluentErrReason.*
+    fe.reason match
+      case Exc(exc) =>
+        scribe.error(form(exc.getMessage()), exc)
+      case other =>
+        scribe.warn(form(other.message))
+
 end extension
 
 def handleExceptions[T](f: => T)(using l: Label[FluentErr]): T =
   try f
   catch
     case b: Break[FluentErr] if b.label == l => break(b.value)
-    case NonFatal(exc)                       => break(FluentErr.Exc(exc))
+    case NonFatal(exc)                       =>
+      break(FluentErr(FluentErrReason.Exc(exc)))
+
+def inContext[T](ctx: String)(f: => T)(using l: Label[FluentErr]): T =
+  import util.boundary, boundary.break
+
+  def updateCtx(err: FluentErr) = err.copy(context =
+    ctx :: err.context
+  )
+
+  try f
+  catch
+    case b: Break[FluentErr] if b.label == l =>
+      break(updateCtx(b.value))(using l)
+    case NonFatal(exc) =>
+      break(updateCtx(FluentErr(FluentErrReason.Exc(exc))))
+end inContext

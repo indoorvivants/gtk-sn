@@ -9,9 +9,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{FilterChange, FilterMatch}
 import sn.gnome.gtk4.internal.GtkFilter
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkFilter` object describes the filtering to be performed by a
+/** A `GtkFilter` object describes the filtering to be performed by a
   * [class@Gtk.FilterListModel].
   *
   * The model will use the filter to determine if it should include items or not
@@ -29,14 +27,15 @@ import sn.gnome.gtk4.internal.GtkFilter
   *
   * However, in particular for large lists or complex search methods, it is also
   * possible to subclass `GtkFilter` and provide one's own filter.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Notifies all users of the filter that it has changed.
+  /** Notifies all users of the filter that it has changed.
     *
     * This emits the [signal@Gtk.Filter::changed] signal. Users of the filter
     * should then check items again via [method@Gtk.Filter.match].
@@ -46,15 +45,16 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
     *
     * This function is intended for implementors of `GtkFilter` subclasses and
     * should not be called from other functions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def changed(
       change: FilterChange /* Some(GtkFilterChange) */
   ): Unit /* None */ =
     gtk_filter_changed(this.raw.asInstanceOf[Ptr[GtkFilter]], change.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the known strictness of @filters.
+  /** Gets the known strictness of @filters.
     *
     * If the strictness is not known, %GTK_FILTER_MATCH_SOME is returned.
     *
@@ -63,14 +63,18 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
     *
     * This function is meant purely for optimization purposes, filters can
     * choose to omit implementing it, but `GtkFilterListModel` uses it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStrictness(): FilterMatch /* None */ = FilterMatch.fromRaw(
     gtk_filter_get_strictness(this.raw.asInstanceOf[Ptr[GtkFilter]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if the given @item is matched by the filter or not.
     *
-    * Checks if the given @item is matched by the filter or not.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def `match`(
       item: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */

@@ -8,21 +8,23 @@ import sn.gnome.gio.fluent.InputStream
 import sn.gnome.gio.internal.GFilterInputStream
 import sn.gnome.glib.internal.{gboolean, gint}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Base class for input stream implementations that perform some kind of
+/** Base class for input stream implementations that perform some kind of
   * filtering operation on a base stream. Typical examples of filtering
   * operations are character set conversion, compression and byte order
   * flipping.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FilterInputStream(raw: Ptr[GFilterInputStream])
     extends InputStream(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the base stream for the filter stream.
     *
-    * Gets the base stream for the filter stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBaseStream(): InputStream /* None */ = new InputStream(
     g_filter_input_stream_get_base_stream(
@@ -30,18 +32,20 @@ class FilterInputStream(raw: Ptr[GFilterInputStream])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the base stream will be closed when @stream is closed.
     *
-    * Returns whether the base stream will be closed when @stream is closed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCloseBaseStream(): Boolean /* None */ =
     g_filter_input_stream_get_close_base_stream(
       this.raw.asInstanceOf[Ptr[GFilterInputStream]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the base stream will be closed when @stream is closed.
     *
-    * Sets whether the base stream will be closed when @stream is closed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCloseBaseStream(
       close_base: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */

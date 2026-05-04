@@ -7,12 +7,13 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.EntryBuffer
 import sn.gnome.gtk4.internal.GtkPasswordEntryBuffer
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkEntryBuffer` that locks the underlying memory to prevent it from being
+/** A `GtkEntryBuffer` that locks the underlying memory to prevent it from being
   * swapped to disk.
   *
   * `GtkPasswordEntry` uses a `GtkPasswordEntryBuffer`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PasswordEntryBuffer(raw: Ptr[GtkPasswordEntryBuffer])
     extends EntryBuffer(raw.asInstanceOf):
@@ -22,9 +23,10 @@ class PasswordEntryBuffer(raw: Ptr[GtkPasswordEntryBuffer])
 end PasswordEntryBuffer
 
 object PasswordEntryBuffer:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkEntryBuffer` using secure memory allocations.
     *
-    * Creates a new `GtkEntryBuffer` using secure memory allocations.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): PasswordEntryBuffer = new PasswordEntryBuffer(
     gtk_password_entry_buffer_new().asInstanceOf

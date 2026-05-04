@@ -2,25 +2,28 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GTlsDatabaseLookupFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags for g_tls_database_lookup_certificate_for_handle(),
+/** Flags for g_tls_database_lookup_certificate_for_handle(),
   * g_tls_database_lookup_certificate_issuer(), and
   * g_tls_database_lookup_certificates_issued_by().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TlsDatabaseLookupFlags(val raw: GTlsDatabaseLookupFlags):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No lookup flags
     *
-    * No lookup flags
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE
       extends TlsDatabaseLookupFlags(
         GTlsDatabaseLookupFlags.G_TLS_DATABASE_LOOKUP_NONE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Restrict lookup to certificates that have a private key.
     *
-    * Restrict lookup to certificates that have a private key.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case KEYPAIR
       extends TlsDatabaseLookupFlags(

@@ -2,10 +2,11 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GUriParamsFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags modifying the way parameters are handled by g_uri_parse_params() and
+/** Flags modifying the way parameters are handled by g_uri_parse_params() and
   * #GUriParamsIter.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class UriParamsFlags private (val raw: GUriParamsFlags):
   def is(kv: UriParamsFlags): Boolean =
@@ -33,24 +34,27 @@ object UriParamsFlags:
     def |(other: UriParamsFlags) =
       UriParamsFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags modifying the way parameters are handled by g_uri_parse_params() and
+  /** Flags modifying the way parameters are handled by g_uri_parse_params() and
     * #GUriParamsIter.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GUriParamsFlags, name: String)
       extends UriParamsFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GUriParamsFlags.G_URI_PARAMS_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Parameter names are case insensitive.
       *
-      * Parameter names are case insensitive.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CASE_INSENSITIVE
         extends KnownValue(
@@ -58,17 +62,19 @@ object UriParamsFlags:
           "CASE_INSENSITIVE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Replace `+` with space character. Only useful for URLs on the web, using
+    /** Replace `+` with space character. Only useful for URLs on the web, using
       * the `https` or `http` schemas.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case WWW_FORM
         extends KnownValue(GUriParamsFlags.G_URI_PARAMS_WWW_FORM, "WWW_FORM")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** See %G_URI_FLAGS_PARSE_RELAXED.
       *
-      * See %G_URI_FLAGS_PARSE_RELAXED.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case PARSE_RELAXED
         extends KnownValue(

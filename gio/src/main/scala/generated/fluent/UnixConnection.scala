@@ -14,9 +14,7 @@ import sn.gnome.gio.internal.GUnixConnection
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * This is the subclass of #GSocketConnection that is created for UNIX domain
+/** This is the subclass of #GSocketConnection that is created for UNIX domain
   * sockets.
   *
   * It contains functions to do some of the UNIX socket specific functionality
@@ -28,15 +26,16 @@ import sn.gnome.glib.internal.{gboolean, gint}
   * Before GLib 2.72, `<gio/gunixconnection.h>` belonged to the UNIX-specific
   * GIO interfaces, thus you had to use the `gio-unix-2.0.pc` pkg-config file
   * when using it. This is no longer necessary since GLib 2.72.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class UnixConnection(raw: Ptr[GUnixConnection])
     extends SocketConnection(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Receives credentials from the sending end of the connection. The sending
+  /** Receives credentials from the sending end of the connection. The sending
     * end has to call g_unix_connection_send_credentials() (or similar) for this
     * to work.
     *
@@ -54,6 +53,9 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     *
     * Other ways to exchange credentials with a foreign peer includes the
     * #GUnixCredentialsMessage type and g_socket_get_credentials() function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def receiveCredentials(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -69,9 +71,7 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously receive credentials.
+  /** Asynchronously receive credentials.
     *
     * For more details, see g_unix_connection_receive_credentials() which is the
     * synchronous version of this call.
@@ -79,16 +79,20 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     * When the operation is finished, @callback will be called. You can then
     * call g_unix_connection_receive_credentials_finish() to get the result of
     * the operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[receive_credentials_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def receiveCredentialsAsync__ = ???
+  private def receiveCredentialsAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an asynchronous receive credentials operation started with
+  /** Finishes an asynchronous receive credentials operation started with
     * g_unix_connection_receive_credentials_async().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def receiveCredentialsFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -102,13 +106,14 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Receives a file descriptor from the sending end of the connection. The
+  /** Receives a file descriptor from the sending end of the connection. The
     * sending end has to call g_unix_connection_send_fd() for this to work.
     *
     * As well as reading the fd this also reads a single byte from the stream,
     * as this is required for fd passing to work on some implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def receiveFd(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -122,9 +127,7 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     ).value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Passes the credentials of the current user the receiving side of the
+  /** Passes the credentials of the current user the receiving side of the
     * connection. The receiving end has to call
     * g_unix_connection_receive_credentials() (or similar) to accept the
     * credentials.
@@ -143,6 +146,9 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     *
     * Other ways to exchange credentials with a foreign peer includes the
     * #GUnixCredentialsMessage type and g_socket_get_credentials() function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sendCredentials(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -156,9 +162,7 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously send credentials.
+  /** Asynchronously send credentials.
     *
     * For more details, see g_unix_connection_send_credentials() which is the
     * synchronous version of this call.
@@ -166,16 +170,20 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     * When the operation is finished, @callback will be called. You can then
     * call g_unix_connection_send_credentials_finish() to get the result of the
     * operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[send_credentials_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def sendCredentialsAsync__ = ???
+  private def sendCredentialsAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an asynchronous send credentials operation started with
+  /** Finishes an asynchronous send credentials operation started with
     * g_unix_connection_send_credentials_async().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sendCredentialsFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -187,14 +195,15 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Passes a file descriptor to the receiving side of the connection. The
+  /** Passes a file descriptor to the receiving side of the connection. The
     * receiving end has to call g_unix_connection_receive_fd() to accept the
     * file descriptor.
     *
     * As well as sending the fd this also writes a single byte to the stream, as
     * this is required for fd passing to work on some implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sendFd(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,

@@ -2,9 +2,7 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkScrollUnit
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Specifies the unit of scroll deltas.
+/** Specifies the unit of scroll deltas.
   *
   * When you get %GDK_SCROLL_UNIT_WHEEL, a delta of 1.0 means 1 wheel detent
   * click in the south direction, 2.0 means 2 wheel detent clicks in the south
@@ -21,17 +19,22 @@ import _root_.sn.gnome.gdk4.internal.GdkScrollUnit
   * 1 surface logical pixel is equal to 1 real screen pixel multiplied by the
   * final scale factor of your graphical interface (the product of the desktop
   * scale factor and eventually a custom scale factor in your app).
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ScrollUnit(val raw: GdkScrollUnit):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The delta is in number of wheel clicks.
     *
-    * The delta is in number of wheel clicks.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WHEEL extends ScrollUnit(GdkScrollUnit.GDK_SCROLL_UNIT_WHEEL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The delta is in surface pixels to scroll directly on screen.
     *
-    * The delta is in surface pixels to scroll directly on screen.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SURFACE extends ScrollUnit(GdkScrollUnit.GDK_SCROLL_UNIT_SURFACE)
 end ScrollUnit

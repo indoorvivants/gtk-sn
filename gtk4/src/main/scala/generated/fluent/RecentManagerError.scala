@@ -2,68 +2,76 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkRecentManagerError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Error codes for `GtkRecentManager` operations
   *
-  * Error codes for `GtkRecentManager` operations
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum RecentManagerError(val raw: GtkRecentManagerError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the URI specified does not exists in the recently used resources list.
     *
-    * the URI specified does not exists in the recently used resources list.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_FOUND
       extends RecentManagerError(
         GtkRecentManagerError.GTK_RECENT_MANAGER_ERROR_NOT_FOUND
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the URI specified is not valid.
     *
-    * the URI specified is not valid.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_URI
       extends RecentManagerError(
         GtkRecentManagerError.GTK_RECENT_MANAGER_ERROR_INVALID_URI
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the supplied string is not UTF-8 encoded.
     *
-    * the supplied string is not UTF-8 encoded.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_ENCODING
       extends RecentManagerError(
         GtkRecentManagerError.GTK_RECENT_MANAGER_ERROR_INVALID_ENCODING
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** no application has registered the specified item.
     *
-    * no application has registered the specified item.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_REGISTERED
       extends RecentManagerError(
         GtkRecentManagerError.GTK_RECENT_MANAGER_ERROR_NOT_REGISTERED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** failure while reading the recently used resources file.
     *
-    * failure while reading the recently used resources file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case READ
       extends RecentManagerError(
         GtkRecentManagerError.GTK_RECENT_MANAGER_ERROR_READ
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** failure while writing the recently used resources file.
     *
-    * failure while writing the recently used resources file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WRITE
       extends RecentManagerError(
         GtkRecentManagerError.GTK_RECENT_MANAGER_ERROR_WRITE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** unspecified error.
     *
-    * unspecified error.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN
       extends RecentManagerError(

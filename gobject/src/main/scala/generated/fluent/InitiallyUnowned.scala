@@ -7,12 +7,13 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GInitiallyUnowned
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A type for objects that have an initially floating reference.
+/** A type for objects that have an initially floating reference.
   *
   * All the fields in the `GInitiallyUnowned` structure are private to the
   * implementation and should never be accessed directly.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class InitiallyUnowned(raw: Ptr[GInitiallyUnowned])
     extends Object(raw.asInstanceOf):

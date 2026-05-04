@@ -2,22 +2,25 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GIOModuleScopeFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags for use with g_io_module_scope_new().
   *
-  * Flags for use with g_io_module_scope_new().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum IOModuleScopeFlags(val raw: GIOModuleScopeFlags):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No module scan flags
     *
-    * No module scan flags
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE
       extends IOModuleScopeFlags(GIOModuleScopeFlags.G_IO_MODULE_SCOPE_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * When using this scope to load or scan modules, automatically block a
+  /** When using this scope to load or scan modules, automatically block a
     * modules which has the same base basename as previously loaded module.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BLOCK_DUPLICATES
       extends IOModuleScopeFlags(

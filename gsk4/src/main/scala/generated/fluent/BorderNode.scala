@@ -7,54 +7,59 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskBorderNode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A render node for a border.
   *
-  * A render node for a border.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class BorderNode(raw: Ptr[GskBorderNode]) extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the colors of the border.
     *
-    * Retrieves the colors of the border.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
+    "[get_colors/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
-  def getColors__ = ???
+  private def getColors__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the outline of the border.
     *
-    * Retrieves the outline of the border.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
+    "[get_outline/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
   )
-  def getOutline__ = ???
+  private def getOutline__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the stroke widths of the border.
     *
-    * Retrieves the stroke widths of the border.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gfloat), @type -> DataRecord(float)))),ListMap(@zero-terminated -> DataRecord(0), @fixed-size -> DataRecord(4), @type -> DataRecord(const float*)))"
+    "[get_widths/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gfloat), @type -> DataRecord(float)))),ListMap(@zero-terminated -> DataRecord(0), @fixed-size -> DataRecord(4), @type -> DataRecord(const float*)))"
   )
-  def getWidths__ = ???
+  private def getWidths__ = ???
 
 end BorderNode
 
 object BorderNode:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GskRenderNode` that will stroke a border rectangle inside the
+  /** Creates a `GskRenderNode` that will stroke a border rectangle inside the
     * given @outline.
     *
     * The 4 sides of the border can have different widths and colors.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
     "Constructor new is weird: non NULL-terminated arrays require special handling"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end BorderNode

@@ -15,9 +15,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkSearchEntry
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkSearchEntry` is an entry widget that has been tailored for use as a
+/** `GtkSearchEntry` is an entry widget that has been tailored for use as a
   * search entry.
   *
   * The main API for interacting with a `GtkSearchEntry` as entry is the
@@ -61,6 +59,9 @@ import sn.gnome.gtk4.internal.GtkSearchEntry
   * ## Accessibility
   *
   * `GtkSearchEntry` uses the %GTK_ACCESSIBLE_ROLE_SEARCH_BOX role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SearchEntry(raw: Ptr[GtkSearchEntry])
     extends Widget(raw.asInstanceOf),
@@ -71,9 +72,10 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the widget that @entry is capturing key events from.
     *
-    * Gets the widget that @entry is capturing key events from.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getKeyCaptureWidget(): Widget /* None */ = new Widget(
     gtk_search_entry_get_key_capture_widget(
@@ -81,9 +83,10 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the placeholder text associated with @entry.
     *
-    * Gets the placeholder text associated with @entry.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPlaceholderText()(using Zone): String /* None */ = fromCString(
     gtk_search_entry_get_placeholder_text(
@@ -91,18 +94,17 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get the delay to be used between the last keypress and the
+  /** Get the delay to be used between the last keypress and the
     * [signal@Gtk.SearchEntry::search-changed] signal being emitted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSearchDelay(): UInt /* None */ = gtk_search_entry_get_search_delay(
     this.raw.asInstanceOf[Ptr[GtkSearchEntry]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @widget as the widget that @entry will capture key events from.
+  /** Sets @widget as the widget that @entry will capture key events from.
     *
     * Key events are consumed by the search entry to start or continue a search.
     *
@@ -115,6 +117,9 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * will receive text input before it gets captured. If that is not desired,
     * you can capture and forward the events yourself with
     * [method@Gtk.EventControllerKey.forward].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setKeyCaptureWidget(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -125,9 +130,10 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the placeholder text associated with @entry.
     *
-    * Sets the placeholder text associated with @entry.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPlaceholderText(
       text: Option[String | CString /* Some(CString) */ ]
@@ -138,10 +144,11 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set the delay to be used between the last keypress and the
+  /** Set the delay to be used between the last keypress and the
     * [signal@Gtk.SearchEntry::search-changed] signal being emitted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSearchDelay(
       delay: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -161,9 +168,10 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
 end SearchEntry
 
 object SearchEntry:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a `GtkSearchEntry`.
     *
-    * Creates a `GtkSearchEntry`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): SearchEntry = new SearchEntry(
     gtk_search_entry_new().asInstanceOf

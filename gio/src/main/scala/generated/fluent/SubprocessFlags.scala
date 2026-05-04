@@ -2,9 +2,7 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GSubprocessFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags to define the behaviour of a #GSubprocess.
+/** Flags to define the behaviour of a #GSubprocess.
   *
   * Note that the default for stdin is to redirect from `/dev/null`. For stdout
   * and stderr the default are for them to inherit the corresponding descriptor
@@ -13,6 +11,9 @@ import _root_.sn.gnome.gio.internal.GSubprocessFlags
   * Note that it is a programmer error to mix 'incompatible' flags. For example,
   * you may not request both %G_SUBPROCESS_FLAGS_STDOUT_PIPE and
   * %G_SUBPROCESS_FLAGS_STDOUT_SILENCE.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SubprocessFlags private (val raw: GSubprocessFlags):
   def is(kv: SubprocessFlags): Boolean =
@@ -40,9 +41,7 @@ object SubprocessFlags:
     def |(other: SubprocessFlags) =
       SubprocessFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags to define the behaviour of a #GSubprocess.
+  /** Flags to define the behaviour of a #GSubprocess.
     *
     * Note that the default for stdin is to redirect from `/dev/null`. For
     * stdout and stderr the default are for them to inherit the corresponding
@@ -51,22 +50,27 @@ object SubprocessFlags:
     * Note that it is a programmer error to mix 'incompatible' flags. For
     * example, you may not request both %G_SUBPROCESS_FLAGS_STDOUT_PIPE and
     * %G_SUBPROCESS_FLAGS_STDOUT_SILENCE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GSubprocessFlags, name: String)
       extends SubprocessFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags.
       *
-      * No flags.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(GSubprocessFlags.G_SUBPROCESS_FLAGS_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * create a pipe for the stdin of the spawned process that can be accessed
+    /** create a pipe for the stdin of the spawned process that can be accessed
       * with g_subprocess_get_stdin_pipe().
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STDIN_PIPE
         extends KnownValue(
@@ -74,9 +78,10 @@ object SubprocessFlags:
           "STDIN_PIPE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** stdin is inherited from the calling process.
       *
-      * stdin is inherited from the calling process.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STDIN_INHERIT
         extends KnownValue(
@@ -84,10 +89,11 @@ object SubprocessFlags:
           "STDIN_INHERIT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * create a pipe for the stdout of the spawned process that can be accessed
+    /** create a pipe for the stdout of the spawned process that can be accessed
       * with g_subprocess_get_stdout_pipe().
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STDOUT_PIPE
         extends KnownValue(
@@ -95,9 +101,10 @@ object SubprocessFlags:
           "STDOUT_PIPE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** silence the stdout of the spawned process (ie: redirect to `/dev/null`).
       *
-      * silence the stdout of the spawned process (ie: redirect to `/dev/null`).
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STDOUT_SILENCE
         extends KnownValue(
@@ -105,10 +112,11 @@ object SubprocessFlags:
           "STDOUT_SILENCE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * create a pipe for the stderr of the spawned process that can be accessed
+    /** create a pipe for the stderr of the spawned process that can be accessed
       * with g_subprocess_get_stderr_pipe().
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STDERR_PIPE
         extends KnownValue(
@@ -116,9 +124,10 @@ object SubprocessFlags:
           "STDERR_PIPE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** silence the stderr of the spawned process (ie: redirect to `/dev/null`).
       *
-      * silence the stderr of the spawned process (ie: redirect to `/dev/null`).
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STDERR_SILENCE
         extends KnownValue(
@@ -126,11 +135,12 @@ object SubprocessFlags:
           "STDERR_SILENCE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * merge the stderr of the spawned process with whatever the stdout happens
+    /** merge the stderr of the spawned process with whatever the stdout happens
       * to be. This is a good way of directing both streams to a common log
       * file, for example.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STDERR_MERGE
         extends KnownValue(
@@ -138,12 +148,13 @@ object SubprocessFlags:
           "STDERR_MERGE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * spawned processes will inherit the file descriptors of their parent,
+    /** spawned processes will inherit the file descriptors of their parent,
       * unless those descriptors have been explicitly marked as close-on-exec.
       * This flag has no effect over the "standard" file descriptors (stdin,
       * stdout, stderr).
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case INHERIT_FDS
         extends KnownValue(
@@ -151,10 +162,11 @@ object SubprocessFlags:
           "INHERIT_FDS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * if path searching is needed when spawning the subprocess, use the `PATH`
+    /** if path searching is needed when spawning the subprocess, use the `PATH`
       * in the launcher environment. (Since: 2.72)
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SEARCH_PATH_FROM_ENVP
         extends KnownValue(

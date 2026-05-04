@@ -9,12 +9,13 @@ import sn.gnome.gio.internal.GDBusObjectProxy
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A #GDBusObjectProxy is an object used to represent a remote object with one
+/** A #GDBusObjectProxy is an object used to represent a remote object with one
   * or more D-Bus interfaces. Normally, you don't instantiate a
   * #GDBusObjectProxy yourself - typically #GDBusObjectManagerClient is used to
   * obtain it.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusObjectProxy(raw: Ptr[GDBusObjectProxy])
     extends Object(raw.asInstanceOf),
@@ -22,9 +23,10 @@ class DBusObjectProxy(raw: Ptr[GDBusObjectProxy])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the connection that @proxy is for.
     *
-    * Gets the connection that @proxy is for.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getConnection(): DBusConnection /* None */ = new DBusConnection(
     g_dbus_object_proxy_get_connection(
@@ -35,9 +37,10 @@ class DBusObjectProxy(raw: Ptr[GDBusObjectProxy])
 end DBusObjectProxy
 
 object DBusObjectProxy:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GDBusObjectProxy for the given connection and object path.
     *
-    * Creates a new #GDBusObjectProxy for the given connection and object path.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,

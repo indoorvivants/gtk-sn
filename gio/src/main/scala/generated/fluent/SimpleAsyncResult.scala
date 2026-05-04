@@ -11,9 +11,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gpointer, gssize}
 import sn.gnome.gobject.fluent.Object
 
-/**  COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  *  As of GLib 2.46, #GSimpleAsyncResult is deprecated in favor of
+/**  As of GLib 2.46, #GSimpleAsyncResult is deprecated in favor of
   *  #GTask, which provides a simpler API.
   *
   *  #GSimpleAsyncResult implements #GAsyncResult.
@@ -177,6 +175,8 @@ import sn.gnome.gobject.fluent.Object
   *    return g_object_ref (cake);
   *  }
   *  ]|
+  *
+  *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
 class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     extends Object(raw.asInstanceOf),
@@ -184,79 +184,86 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Completes an asynchronous I/O job immediately. Must be called in the
+  /** Completes an asynchronous I/O job immediately. Must be called in the
     * thread where the asynchronous result was to be delivered, as it invokes
     * the callback directly. If you are in a different thread use
     * g_simple_async_result_complete_in_idle().
     *
     * Calling this function takes a reference to @simple for as long as is
     * needed to complete the call.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def complete(): Unit /* None */ = g_simple_async_result_complete(
     this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Completes an asynchronous function in an idle handler in the
+  /** Completes an asynchronous function in an idle handler in the
     * [thread-default main context][g-main-context-push-thread-default] of the
     * thread that @simple was initially created in (and re-pushes that context
     * around the invocation of the callback).
     *
     * Calling this function takes a reference to @simple for as long as is
     * needed to complete the call.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def completeInIdle(): Unit /* None */ =
     g_simple_async_result_complete_in_idle(
       this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the operation result boolean from within the asynchronous result.
     *
-    * Gets the operation result boolean from within the asynchronous result.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOpResGboolean(): Boolean /* None */ =
     g_simple_async_result_get_op_res_gboolean(
       this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets a pointer result as returned by the asynchronous function.
     *
-    * Gets a pointer result as returned by the asynchronous function.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOpResGpointer(): Ptr[Byte] /* None */ =
     g_simple_async_result_get_op_res_gpointer(
       this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets a gssize from the asynchronous result.
     *
-    * Gets a gssize from the asynchronous result.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOpResGssize(): CLongInt /* None */ =
     g_simple_async_result_get_op_res_gssize(
       this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the source tag for the #GSimpleAsyncResult.
     *
-    * Gets the source tag for the #GSimpleAsyncResult.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSourceTag(): Ptr[Byte] /* None */ =
     g_simple_async_result_get_source_tag(
       this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Propagates an error from within the simple asynchronous result to a given
+  /** Propagates an error from within the simple asynchronous result to a given
     * destination.
     *
     * If the #GCancellable given to a prior call to
     * g_simple_async_result_set_check_cancellable() is cancelled then this
     * function will return %TRUE with @dest set appropriately.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def propagateError(): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -266,23 +273,22 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
       ).value.!=(0)
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Runs the asynchronous job in a separate thread and then calls
+  /** Runs the asynchronous job in a separate thread and then calls
     * g_simple_async_result_complete_in_idle() on @simple to return the result
     * to the appropriate main loop.
     *
     * Calling this function takes a reference to @simple for as long as is
     * needed to run the job and report its completion.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SimpleAsyncThreadFunc), @type -> DataRecord(GSimpleAsyncThreadFunc)))"
+    "[run_in_thread/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SimpleAsyncThreadFunc), @type -> DataRecord(GSimpleAsyncThreadFunc)))"
   )
-  def runInThread__ = ???
+  private def runInThread__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a #GCancellable to check before dispatching results.
+  /** Sets a #GCancellable to check before dispatching results.
     *
     * This function has one very specific purpose: the provided cancellable is
     * checked at the time of g_simple_async_result_propagate_error() If it is
@@ -297,6 +303,9 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     *
     * The checking described above is done regardless of any call to the
     * unrelated g_simple_async_result_set_handle_cancellation() function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCheckCancellable(
       check_cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -307,41 +316,45 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
       .getOrElse(null.asInstanceOf[Ptr[GCancellable]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets an error within the asynchronous result without a #GError.
     *
-    * Sets an error within the asynchronous result without a #GError.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[set_error/<method parameters>/domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def setError__ = ???
+  private def setError__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets an error within the asynchronous result without a #GError. Unless
+  /** Sets an error within the asynchronous result without a #GError. Unless
     * writing a binding, see g_simple_async_result_set_error().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[set_error_va/<method parameters>/domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def setErrorVa__ = ???
+  private def setErrorVa__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the result from a #GError.
     *
-    * Sets the result from a #GError.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
+    "[set_from_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
-  def setFromError__ = ???
+  private def setFromError__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether to handle cancellation within the asynchronous operation.
+  /** Sets whether to handle cancellation within the asynchronous operation.
     *
     * This function has nothing to do with
     * g_simple_async_result_set_check_cancellable(). It only refers to the
     * #GCancellable passed to g_simple_async_result_run_in_thread().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHandleCancellation(
       handle_cancellation: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -350,9 +363,10 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     gboolean(gint((if handle_cancellation == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the operation result to a boolean within the asynchronous result.
     *
-    * Sets the operation result to a boolean within the asynchronous result.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOpResGboolean(
       op_res: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -361,18 +375,20 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     gboolean(gint((if op_res == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the operation result within the asynchronous result to a pointer.
     *
-    * Sets the operation result within the asynchronous result to a pointer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
+    "[set_op_res_gpointer/<method parameters>/destroy_op_res]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
-  def setOpResGpointer__ = ???
+  private def setOpResGpointer__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the operation result within the asynchronous result to the given @op_res.
     *
-    * Sets the operation result within the asynchronous result to the given @op_res.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOpResGssize(
       op_res: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
@@ -381,22 +397,21 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     gssize(op_res)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the result from @error, and takes over the caller's ownership of @error,
+  /** Sets the result from @error, and takes over the caller's ownership of @error,
     * so the caller does not need to free it any more.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+    "[take_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
-  def takeError__ = ???
+  private def takeError__ = ???
 
 end SimpleAsyncResult
 
 object SimpleAsyncResult:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GSimpleAsyncResult.
+  /** Creates a #GSimpleAsyncResult.
     *
     * The common convention is to create the #GSimpleAsyncResult in the function
     * that starts the asynchronous operation and use that same function as the @source_tag.
@@ -405,44 +420,48 @@ object SimpleAsyncResult:
     * probably should) then you should provide the user's cancellable to
     * g_simple_async_result_set_check_cancellable() immediately after this
     * function returns.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GSimpleAsyncResult with a set error.
     *
-    * Creates a new #GSimpleAsyncResult with a set error.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def new_error() = ???
+  private def new_error() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a #GSimpleAsyncResult from an error condition.
     *
-    * Creates a #GSimpleAsyncResult from an error condition.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def new_from_error() = ???
+  private def new_from_error() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GSimpleAsyncResult from an error condition, and takes over the
+  /** Creates a #GSimpleAsyncResult from an error condition, and takes over the
     * caller's ownership of @error, so the caller does not need to free it
     * anymore.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def new_take_error() = ???
+  private def new_take_error() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Ensures that the data passed to the _finish function of an async operation
+  /** Ensures that the data passed to the _finish function of an async operation
     * is consistent. Three checks are performed.
     *
     * First, @result is checked to ensure that it is really a
@@ -454,6 +473,9 @@ object SimpleAsyncResult:
     * function is called). (Alternatively, if either
     * @source_tag
     *   or @result's source tag is %NULL, then the source tag check is skipped.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isValid(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */,

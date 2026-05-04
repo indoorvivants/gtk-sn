@@ -2,59 +2,68 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GErrorType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The possible errors, used in the @v_error field of #GTokenValue, when the
+/** The possible errors, used in the @v_error field of #GTokenValue, when the
   * token is a %G_TOKEN_ERROR.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ErrorType(val raw: GErrorType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** unknown error
     *
-    * unknown error
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN extends ErrorType(GErrorType.G_ERR_UNKNOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** unexpected end of file
     *
-    * unexpected end of file
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNEXP_EOF extends ErrorType(GErrorType.G_ERR_UNEXP_EOF)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** unterminated string constant
     *
-    * unterminated string constant
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNEXP_EOF_IN_STRING
       extends ErrorType(GErrorType.G_ERR_UNEXP_EOF_IN_STRING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** unterminated comment
     *
-    * unterminated comment
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNEXP_EOF_IN_COMMENT
       extends ErrorType(GErrorType.G_ERR_UNEXP_EOF_IN_COMMENT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** non-digit character in a number
     *
-    * non-digit character in a number
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NON_DIGIT_IN_CONST extends ErrorType(GErrorType.G_ERR_NON_DIGIT_IN_CONST)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** digit beyond radix in a number
     *
-    * digit beyond radix in a number
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DIGIT_RADIX extends ErrorType(GErrorType.G_ERR_DIGIT_RADIX)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** non-decimal floating point number
     *
-    * non-decimal floating point number
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FLOAT_RADIX extends ErrorType(GErrorType.G_ERR_FLOAT_RADIX)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** malformed floating point number
     *
-    * malformed floating point number
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FLOAT_MALFORMED extends ErrorType(GErrorType.G_ERR_FLOAT_MALFORMED)
 end ErrorType

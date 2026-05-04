@@ -2,10 +2,11 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GAskPasswordFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GAskPasswordFlags are used to request specific information from the user,
+/** #GAskPasswordFlags are used to request specific information from the user,
   * or to notify the user of their choices in an authentication situation.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AskPasswordFlags private (val raw: GAskPasswordFlags):
   def is(kv: AskPasswordFlags): Boolean =
@@ -33,18 +34,20 @@ object AskPasswordFlags:
     def |(other: AskPasswordFlags) =
       AskPasswordFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * #GAskPasswordFlags are used to request specific information from the user,
+  /** #GAskPasswordFlags are used to request specific information from the user,
     * or to notify the user of their choices in an authentication situation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GAskPasswordFlags, name: String)
       extends AskPasswordFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** operation requires a password.
       *
-      * operation requires a password.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NEED_PASSWORD
         extends KnownValue(
@@ -52,9 +55,10 @@ object AskPasswordFlags:
           "NEED_PASSWORD"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** operation requires a username.
       *
-      * operation requires a username.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NEED_USERNAME
         extends KnownValue(
@@ -62,9 +66,10 @@ object AskPasswordFlags:
           "NEED_USERNAME"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** operation requires a domain.
       *
-      * operation requires a domain.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NEED_DOMAIN
         extends KnownValue(
@@ -72,9 +77,10 @@ object AskPasswordFlags:
           "NEED_DOMAIN"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** operation supports saving settings.
       *
-      * operation supports saving settings.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SAVING_SUPPORTED
         extends KnownValue(
@@ -82,9 +88,10 @@ object AskPasswordFlags:
           "SAVING_SUPPORTED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** operation supports anonymous users.
       *
-      * operation supports anonymous users.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ANONYMOUS_SUPPORTED
         extends KnownValue(
@@ -92,9 +99,10 @@ object AskPasswordFlags:
           "ANONYMOUS_SUPPORTED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** operation takes TCRYPT parameters (Since: 2.58)
       *
-      * operation takes TCRYPT parameters (Since: 2.58)
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case TCRYPT
         extends KnownValue(GAskPasswordFlags.G_ASK_PASSWORD_TCRYPT, "TCRYPT")

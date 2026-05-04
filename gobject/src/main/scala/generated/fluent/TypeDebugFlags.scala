@@ -2,13 +2,14 @@ package sn.gnome.gobject.fluent
 
 import _root_.sn.gnome.gobject.internal.GTypeDebugFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * These flags used to be passed to g_type_init_with_debug_flags() which is now
+/** These flags used to be passed to g_type_init_with_debug_flags() which is now
   * deprecated.
   *
   * If you need to enable debugging features, use the `GOBJECT_DEBUG`
   * environment variable.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TypeDebugFlags private (val raw: GTypeDebugFlags):
   def is(kv: TypeDebugFlags): Boolean =
@@ -36,41 +37,46 @@ object TypeDebugFlags:
     def |(other: TypeDebugFlags) =
       TypeDebugFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * These flags used to be passed to g_type_init_with_debug_flags() which is
+  /** These flags used to be passed to g_type_init_with_debug_flags() which is
     * now deprecated.
     *
     * If you need to enable debugging features, use the `GOBJECT_DEBUG`
     * environment variable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GTypeDebugFlags, name: String)
       extends TypeDebugFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Print no messages
       *
-      * Print no messages
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GTypeDebugFlags.G_TYPE_DEBUG_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Print messages about object bookkeeping
       *
-      * Print messages about object bookkeeping
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case OBJECTS
         extends KnownValue(GTypeDebugFlags.G_TYPE_DEBUG_OBJECTS, "OBJECTS")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Print messages about signal emissions
       *
-      * Print messages about signal emissions
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SIGNALS
         extends KnownValue(GTypeDebugFlags.G_TYPE_DEBUG_SIGNALS, "SIGNALS")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Keep a count of instances of each type
       *
-      * Keep a count of instances of each type
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case INSTANCE_COUNT
         extends KnownValue(
@@ -78,9 +84,10 @@ object TypeDebugFlags:
           "INSTANCE_COUNT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Mask covering all debug flags
       *
-      * Mask covering all debug flags
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case MASK extends KnownValue(GTypeDebugFlags.G_TYPE_DEBUG_MASK, "MASK")
   end KnownValue

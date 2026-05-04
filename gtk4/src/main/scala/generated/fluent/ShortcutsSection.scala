@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkShortcutsSection
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkShortcutsSection` collects all the keyboard shortcuts and gestures for
+/** A `GtkShortcutsSection` collects all the keyboard shortcuts and gestures for
   * a major application mode.
   *
   * If your application needs multiple sections, you should give each section a
@@ -37,6 +35,9 @@ import sn.gnome.gtk4.internal.GtkShortcutsSection
   *
   * If you need to add a group programmatically, use
   * [method@Gtk.ShortcutsSection.add_group].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ShortcutsSection(raw: Ptr[GtkShortcutsSection])
     extends Box(raw.asInstanceOf),
@@ -47,15 +48,16 @@ class ShortcutsSection(raw: Ptr[GtkShortcutsSection])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a group to the shortcuts section.
+  /** Adds a group to the shortcuts section.
     *
     * This is the programmatic equivalent to using [class@Gtk.Builder] and a
     * `<child>` tag to add the child.
     *
     * Adding children with the `GtkBox` API is not appropriate, as
     * `GtkShortcutsSection` manages its children internally.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addGroup(
       group: ShortcutsGroup /* Some(Ptr[GtkShortcutsGroup]) */

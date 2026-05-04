@@ -2,33 +2,37 @@ package sn.gnome.harfbuzz.fluent
 
 import _root_.sn.gnome.harfbuzz.internal.hb_buffer_serialize_format_t
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The buffer serialization and de-serialization format used in
+/** The buffer serialization and de-serialization format used in
   * hb_buffer_serialize_glyphs() and hb_buffer_deserialize_glyphs().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Buffer_serialize_format_t(val raw: hb_buffer_serialize_format_t):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a human-readable, plain text format.
     *
-    * a human-readable, plain text format.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TEXT
       extends Buffer_serialize_format_t(
         hb_buffer_serialize_format_t.HB_BUFFER_SERIALIZE_FORMAT_TEXT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a machine-readable JSON format.
     *
-    * a machine-readable JSON format.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case JSON
       extends Buffer_serialize_format_t(
         hb_buffer_serialize_format_t.HB_BUFFER_SERIALIZE_FORMAT_JSON
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** invalid format.
     *
-    * invalid format.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID
       extends Buffer_serialize_format_t(

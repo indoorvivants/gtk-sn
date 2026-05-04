@@ -10,9 +10,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkTooltip
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkTooltip` is an object representing a widget tooltip.
+/** `GtkTooltip` is an object representing a widget tooltip.
   *
   * Basic tooltips can be realized simply by using
   * [method@Gtk.Widget.set_tooltip_text] or
@@ -35,19 +33,22 @@ import sn.gnome.gtk4.internal.GtkTooltip
   *     a custom widget.
   *   - Return %TRUE from your ::query-tooltip handler. This causes the tooltip
   *     to be show. If you return %FALSE, it will not be shown.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Replaces the widget packed into the tooltip with
+  /**  Replaces the widget packed into the tooltip with
     *  @custom_widget. @custom_widget does not get destroyed when the tooltip goes
     *  away.
     *  By default a box with a `GtkImage` and `GtkLabel` is embedded in
     *  the tooltip, which can be configured using gtk_tooltip_set_markup()
     *  and gtk_tooltip_set_icon().
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def setCustom(
       custom_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -58,11 +59,12 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the icon of the tooltip (which is in front of the text) to be
+  /** Sets the icon of the tooltip (which is in front of the text) to be
     * @paintable.
     *   If @paintable is %NULL, the image will be hidden.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIcon(
       paintable: Option[
@@ -79,11 +81,12 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the icon of the tooltip (which is in front of the text) to be the
+  /** Sets the icon of the tooltip (which is in front of the text) to be the
     * icon indicated by @gicon with the size indicated by @size. If @gicon is
     * %NULL, the image will be hidden.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconFromGicon(
       gicon: Option[Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */ ]
@@ -96,11 +99,12 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GIcon]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the icon of the tooltip (which is in front of the text) to be the
+  /** Sets the icon of the tooltip (which is in front of the text) to be the
     * icon indicated by @icon_name with the size indicated by @size. If @icon_name
     * is %NULL, the image will be hidden.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconFromIconName(
       icon_name: Option[String | CString /* Some(CString) */ ]
@@ -111,12 +115,13 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the text of the tooltip to be @markup.
+  /** Sets the text of the tooltip to be @markup.
     *
     * The string must be marked up with Pango markup. If @markup is %NULL, the
     * label will be hidden.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarkup(
       markup: Option[String | CString /* Some(CString) */ ]
@@ -127,12 +132,13 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the text of the tooltip to be @text.
+  /** Sets the text of the tooltip to be @text.
     *
     * If @text is %NULL, the label will be hidden. See also
     * [method@Gtk.Tooltip.set_markup].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(
       text: Option[String | CString /* Some(CString) */ ]
@@ -143,20 +149,21 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the area of the widget, where the contents of this tooltip apply, to
+  /** Sets the area of the widget, where the contents of this tooltip apply, to
     * be @rect (in widget coordinates). This is especially useful for properly
     * setting tooltips on `GtkTreeView` rows and cells, `GtkIconViews`, etc.
     *
     * For setting tooltips on `GtkTreeView`, please refer to the convenience
     * functions for this: gtk_tree_view_set_tooltip_row() and
     * gtk_tree_view_set_tooltip_cell().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[set_tip_area/<method parameters>/rect]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
-  def setTipArea__ = ???
+  private def setTipArea__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

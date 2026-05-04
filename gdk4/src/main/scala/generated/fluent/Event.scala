@@ -18,22 +18,21 @@ import sn.gnome.gdk4.fluent.{
 import sn.gnome.gdk4.internal.GdkEvent
 import sn.gnome.glib.internal.{gboolean, gint, guint32}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GdkEvent`s are immutable data structures, created by GDK to represent
+/** `GdkEvent`s are immutable data structures, created by GDK to represent
   * windowing system events.
   *
   * In GTK applications the events are handled automatically by toplevel widgets
   * and passed on to the event controllers of appropriate widgets, so using
   * `GdkEvent` and its related API is rarely needed.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Event(raw: Ptr[GdkEvent]):
 
   def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the relative angle from @event1 to @event2.
+  /** Returns the relative angle from @event1 to @event2.
     *
     * The relative angle is the angle between the X axis and the line through
     * both events' positions. The rotation direction for positive angles is from
@@ -41,71 +40,77 @@ class Event(raw: Ptr[GdkEvent]):
     *
     * This assumes that both events have X/Y information. If not, this function
     * returns %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method _get_angle contains an OUT parameter, which is not supported yet"
+    "[_get_angle]: Method _get_angle contains an OUT parameter, which is not supported yet"
   )
-  def GetAngle__ = ???
+  private def GetAngle__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the point halfway between the events' positions.
+  /** Returns the point halfway between the events' positions.
     *
     * This assumes that both events have X/Y information. If not, this function
     * returns %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method _get_center contains an OUT parameter, which is not supported yet"
+    "[_get_center]: Method _get_center contains an OUT parameter, which is not supported yet"
   )
-  def GetCenter__ = ???
+  private def GetCenter__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the distance between the event locations.
+  /** Returns the distance between the event locations.
     *
     * This assumes that both events have X/Y information. If not, this function
     * returns %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method _get_distance contains an OUT parameter, which is not supported yet"
+    "[_get_distance]: Method _get_distance contains an OUT parameter, which is not supported yet"
   )
-  def GetDistance__ = ???
+  private def GetDistance__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Extracts all axis values from an event.
+  /** Extracts all axis values from an event.
     *
     * To find out which axes are used, use [method@Gdk.DeviceTool.get_axes] on
     * the device tool returned by [method@Gdk.Event.get_device_tool].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_axes contains an OUT parameter, which is not supported yet"
+    "[get_axes]: Method get_axes contains an OUT parameter, which is not supported yet"
   )
-  def getAxes__ = ???
+  private def getAxes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Extract the axis value for a particular axis use from an event structure.
+  /** Extract the axis value for a particular axis use from an event structure.
     *
     * To find out which axes are used, use [method@Gdk.DeviceTool.get_axes] on
     * the device tool returned by [method@Gdk.Event.get_device_tool].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_axis contains an OUT parameter, which is not supported yet"
+    "[get_axis]: Method get_axis contains an OUT parameter, which is not supported yet"
   )
-  def getAxis__ = ???
+  private def getAxis__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the device of an event.
     *
-    * Returns the device of an event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDevice(): Device /* None */ = new Device(
     gdk_event_get_device(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a `GdkDeviceTool` representing the tool that caused the event.
+  /** Returns a `GdkDeviceTool` representing the tool that caused the event.
     *
     * If the was not generated by a device that supports different tools (such
     * as a tablet), this function will return %NULL.
@@ -113,42 +118,46 @@ class Event(raw: Ptr[GdkEvent]):
     * Note: the `GdkDeviceTool` will be constant during the application
     * lifetime, if settings must be stored persistently across runs, see
     * [method@Gdk.DeviceTool.get_serial].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDeviceTool(): DeviceTool /* None */ = new DeviceTool(
     gdk_event_get_device_tool(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the display associated to the @event.
     *
-    * Retrieves the display associated to the @event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDisplay(): Display /* None */ = new Display(
     gdk_event_get_display(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the event sequence to which the event belongs.
+  /** Returns the event sequence to which the event belongs.
     *
     * Related touch events are connected in a sequence. Other events typically
     * don't have event sequence information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(EventSequence), @type -> DataRecord(GdkEventSequence*)))"
+    "[get_event_sequence/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EventSequence), @type -> DataRecord(GdkEventSequence*)))"
   )
-  def getEventSequence__ = ???
+  private def getEventSequence__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the type of the event.
     *
-    * Retrieves the type of the event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEventType(): EventType /* None */ = EventType.fromRaw(
     gdk_event_get_event_type(this.raw.asInstanceOf[Ptr[GdkEvent]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the history of the device that @event is for, as a list of time
+  /** Retrieves the history of the device that @event is for, as a list of time
     * and coordinates.
     *
     * The history includes positions that are not delivered as separate events
@@ -156,95 +165,107 @@ class Event(raw: Ptr[GdkEvent]):
     *
     * Note that only motion and scroll events record history, and motion events
     * do it only if one of the mouse buttons is down, or the device has a tool.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_history contains an OUT parameter, which is not supported yet"
+    "[get_history]: Method get_history contains an OUT parameter, which is not supported yet"
   )
-  def getHistory__ = ???
+  private def getHistory__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the modifier state field of an event.
     *
-    * Returns the modifier state field of an event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModifierState(): ModifierType /* None */ = ModifierType.fromRaw(
     gdk_event_get_modifier_state(this.raw.asInstanceOf[Ptr[GdkEvent]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether this event is an 'emulated' pointer event.
+  /** Returns whether this event is an 'emulated' pointer event.
     *
     * Emulated pointer events typically originate from a touch events.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPointerEmulated(): Boolean /* None */ = gdk_event_get_pointer_emulated(
     this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Extract the event surface relative x/y coordinates from an event.
+  /** Extract the event surface relative x/y coordinates from an event.
     *
     * This position is in [surface coordinates](coordinates.html).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_position contains an OUT parameter, which is not supported yet"
+    "[get_position]: Method get_position contains an OUT parameter, which is not supported yet"
   )
-  def getPosition__ = ???
+  private def getPosition__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the seat that originated the event.
     *
-    * Returns the seat that originated the event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSeat(): Seat /* None */ = new Seat(
     gdk_event_get_seat(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Extracts the surface associated with an event.
     *
-    * Extracts the surface associated with an event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSurface(): Surface /* None */ = new Surface(
     gdk_event_get_surface(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the timestamp of @event.
+  /** Returns the timestamp of @event.
     *
     * Not all events have timestamps. In that case, this function returns
     * %GDK_CURRENT_TIME.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTime(): UInt /* None */ = gdk_event_get_time(
     this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Increase the ref count of @event.
     *
-    * Increase the ref count of @event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def ref(): Event /* None */ = new Event(
     gdk_event_ref(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether a `GdkEvent` should trigger a context menu, according to
+  /** Returns whether a `GdkEvent` should trigger a context menu, according to
     * platform conventions.
     *
     * The right mouse button typically triggers context menus.
     *
     * This function should always be used instead of simply checking for
     * event->button == %GDK_BUTTON_SECONDARY.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def triggersContextMenu(): Boolean /* None */ =
     gdk_event_triggers_context_menu(this.raw.asInstanceOf[Ptr[GdkEvent]]).value
       .!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decrease the ref count of @event.
+  /** Decrease the ref count of @event.
     *
     * If the last reference is dropped, the structure is freed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unref(): Unit /* None */ = gdk_event_unref(
     this.raw.asInstanceOf[Ptr[GdkEvent]]

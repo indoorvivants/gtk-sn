@@ -17,9 +17,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GDBusProxy is a base class used for proxies to access a D-Bus interface on
+/** #GDBusProxy is a base class used for proxies to access a D-Bus interface on
   * a remote object. A #GDBusProxy can be constructed for both well-known and
   * unique names.
   *
@@ -61,6 +59,9 @@ import sn.gnome.gobject.fluent.Object
   *
   * An example using a proxy for a well-known name can be found in
   * [gdbus-example-watch-proxy.c](https://gitlab.gnome.org/GNOME/glib/-/blob/HEAD/gio/tests/gdbus-example-watch-proxy.c)
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusProxy(raw: Ptr[GDBusProxy])
     extends Object(raw.asInstanceOf),
@@ -70,9 +71,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Asynchronously invokes the @method_name method on @proxy.
+  /**  Asynchronously invokes the @method_name method on @proxy.
     *
     *  If @method_name contains any dots, then @name is split into interface and
     *  method name parts. This allows using @proxy for invoking methods on
@@ -114,24 +113,25 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     *
     *  If @callback is %NULL then the D-Bus method call message will be sent with
     *  the %G_DBUS_MESSAGE_FLAGS_NO_REPLY_EXPECTED flag set.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[call/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def call__ = ???
+  private def call__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an operation started with g_dbus_proxy_call().
     *
-    * Finishes an operation started with g_dbus_proxy_call().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[call_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def callFinish__ = ???
+  private def callFinish__ = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Synchronously invokes the @method_name method on @proxy.
+  /**  Synchronously invokes the @method_name method on @proxy.
     *
     *  If @method_name contains any dots, then @name is split into interface and
     *  method name parts. This allows using @proxy for invoking methods on
@@ -165,70 +165,78 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     *  If @proxy has an expected interface (see
     *  #GDBusProxy:g-interface-info) and @method_name is referenced by it,
     *  then the return value is checked against the return type.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[call_sync/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def callSync__ = ???
+  private def callSync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_dbus_proxy_call() but also takes a #GUnixFDList object.
+  /** Like g_dbus_proxy_call() but also takes a #GUnixFDList object.
     *
     * This method is only available on UNIX.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[call_with_unix_fd_list/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def callWithUnixFdList__ = ???
+  private def callWithUnixFdList__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an operation started with g_dbus_proxy_call_with_unix_fd_list().
     *
-    * Finishes an operation started with g_dbus_proxy_call_with_unix_fd_list().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet"
+    "[call_with_unix_fd_list_finish]: Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet"
   )
-  def callWithUnixFdListFinish__ = ???
+  private def callWithUnixFdListFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_dbus_proxy_call_sync() but also takes and returns #GUnixFDList
+  /** Like g_dbus_proxy_call_sync() but also takes and returns #GUnixFDList
     * objects.
     *
     * This method is only available on UNIX.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet"
+    "[call_with_unix_fd_list_sync]: Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet"
   )
-  def callWithUnixFdListSync__ = ???
+  private def callWithUnixFdListSync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up the value for a property from the cache. This call does no
+  /** Looks up the value for a property from the cache. This call does no
     * blocking IO.
     *
     * If @proxy has an expected interface (see #GDBusProxy:g-interface-info) and @property_name
     * is referenced by it, then @value is checked against the type of the
     * property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[get_cached_property/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def getCachedProperty__ = ???
+  private def getCachedProperty__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the names of all cached properties on @proxy.
     *
-    * Gets the names of all cached properties on @proxy.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[get_cached_property_names/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def getCachedPropertyNames__ = ???
+  private def getCachedPropertyNames__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the connection @proxy is for.
     *
-    * Gets the connection @proxy is for.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getConnection(): DBusConnection /* None */ = new DBusConnection(
     g_dbus_proxy_get_connection(
@@ -236,39 +244,43 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the timeout to use if -1 (specifying default timeout) is passed as @timeout_msec
+  /** Gets the timeout to use if -1 (specifying default timeout) is passed as @timeout_msec
     * in the g_dbus_proxy_call() and g_dbus_proxy_call_sync() functions.
     *
     * See the #GDBusProxy:g-default-timeout property for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefaultTimeout(): Int /* None */ = g_dbus_proxy_get_default_timeout(
     this.raw.asInstanceOf[Ptr[GDBusProxy]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the flags that @proxy was constructed with.
     *
-    * Gets the flags that @proxy was constructed with.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFlags(): DBusProxyFlags /* None */ = DBusProxyFlags.fromRaw(
     g_dbus_proxy_get_flags(this.raw.asInstanceOf[Ptr[GDBusProxy]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the #GDBusInterfaceInfo, if any, specifying the interface that @proxy
+  /** Returns the #GDBusInterfaceInfo, if any, specifying the interface that @proxy
     * conforms to. See the #GDBusProxy:g-interface-info property for more
     * details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[get_interface_info/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
-  def getInterfaceInfo__ = ???
+  private def getInterfaceInfo__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the D-Bus interface name @proxy is for.
     *
-    * Gets the D-Bus interface name @proxy is for.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInterfaceName()(using Zone): String /* None */ = fromCString(
     g_dbus_proxy_get_interface_name(
@@ -276,23 +288,25 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the name that @proxy was constructed for.
+  /** Gets the name that @proxy was constructed for.
     *
     * When connected to a message bus, this will usually be non-%NULL. However,
     * it may be %NULL for a proxy that communicates using a peer-to-peer
     * pattern.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     g_dbus_proxy_get_name(this.raw.asInstanceOf[Ptr[GDBusProxy]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The unique name that owns the name that @proxy is for or %NULL if no-one
+  /** The unique name that owns the name that @proxy is for or %NULL if no-one
     * currently owns that name. You may connect to the #GObject::notify signal
     * to track changes to the #GDBusProxy:g-name-owner property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNameOwner()(using Zone): String /* None */ = fromCString(
     g_dbus_proxy_get_name_owner(
@@ -300,9 +314,10 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the object path @proxy is for.
     *
-    * Gets the object path @proxy is for.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getObjectPath()(using Zone): String /* None */ = fromCString(
     g_dbus_proxy_get_object_path(
@@ -310,9 +325,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     ).asInstanceOf
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  If @value is not %NULL, sets the cached value for the property with
+  /**  If @value is not %NULL, sets the cached value for the property with
     *  name @property_name to the value in @value.
     *
     *  If @value is %NULL, then the cached value is removed from the
@@ -345,18 +358,21 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     *  it is more efficient to only transmit the delta using e.g. signals
     *  `ChatroomParticipantJoined(String name)` and
     *  `ChatroomParticipantParted(String name)`.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[set_cached_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def setCachedProperty__ = ???
+  private def setCachedProperty__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the timeout to use if -1 (specifying default timeout) is passed as @timeout_msec
+  /** Sets the timeout to use if -1 (specifying default timeout) is passed as @timeout_msec
     * in the g_dbus_proxy_call() and g_dbus_proxy_call_sync() functions.
     *
     * See the #GDBusProxy:g-default-timeout property for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultTimeout(
       timeout_msec: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
@@ -365,22 +381,24 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     gint(timeout_msec)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Ensure that interactions with @proxy conform to the given interface. See
+  /** Ensure that interactions with @proxy conform to the given interface. See
     * the #GDBusProxy:g-interface-info property for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[set_interface_info/<method parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
-  def setInterfaceInfo__ = ???
+  private def setInterfaceInfo__ = ???
 
 end DBusProxy
 
 object DBusProxy:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes creating a #GDBusProxy.
     *
-    * Finishes creating a #GDBusProxy.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def finish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -393,9 +411,10 @@ object DBusProxy:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes creating a #GDBusProxy.
     *
-    * Finishes creating a #GDBusProxy.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forBusFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -408,21 +427,20 @@ object DBusProxy:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_dbus_proxy_new_sync() but takes a #GBusType instead of a
+  /** Like g_dbus_proxy_new_sync() but takes a #GBusType instead of a
     * #GDBusConnection.
     *
     * #GDBusProxy is used in this [example][gdbus-wellknown-proxy].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
-  def new_for_bus_sync() = ???
+  private def new_for_bus_sync() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a proxy for accessing @interface_name on the remote object at @object_path
+  /** Creates a proxy for accessing @interface_name on the remote object at @object_path
     * owned by @name at @connection and synchronously loads D-Bus properties
     * unless the %G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES flag is used.
     *
@@ -444,15 +462,16 @@ object DBusProxy:
     * g_dbus_proxy_new_finish() for the asynchronous version.
     *
     * #GDBusProxy is used in this [example][gdbus-wellknown-proxy].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
-  def new_sync() = ???
+  private def new_sync() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a proxy for accessing @interface_name on the remote object at @object_path
+  /** Creates a proxy for accessing @interface_name on the remote object at @object_path
     * owned by @name at @connection and asynchronously loads D-Bus properties
     * unless the %G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES flag is used.
     * Connect to the #GDBusProxy::g-properties-changed signal to get notified
@@ -480,22 +499,26 @@ object DBusProxy:
     * constructor.
     *
     * #GDBusProxy is used in this [example][gdbus-wellknown-proxy].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[<function parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_dbus_proxy_new() but takes a #GBusType instead of a
+  /** Like g_dbus_proxy_new() but takes a #GBusType instead of a
     * #GDBusConnection.
     *
     * #GDBusProxy is used in this [example][gdbus-wellknown-proxy].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[<function parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
-  def newForBus() = ???
+  private def newForBus() = ???
 
 end DBusProxy

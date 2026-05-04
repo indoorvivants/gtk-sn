@@ -2,9 +2,10 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GFileTest
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A test to perform on a file using g_file_test().
   *
-  * A test to perform on a file using g_file_test().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileTest private (val raw: GFileTest):
   def is(kv: FileTest): Boolean =
@@ -32,46 +33,52 @@ object FileTest:
     def |(other: FileTest) =
       FileTest(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A test to perform on a file using g_file_test().
     *
-    * A test to perform on a file using g_file_test().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GFileTest, name: String)
       extends FileTest(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * %TRUE if the file is a regular file (not a directory). Note that this
+    /** %TRUE if the file is a regular file (not a directory). Note that this
       * test will also return %TRUE if the tested file is a symlink to a regular
       * file.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case IS_REGULAR
         extends KnownValue(GFileTest.G_FILE_TEST_IS_REGULAR, "IS_REGULAR")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** %TRUE if the file is a symlink.
       *
-      * %TRUE if the file is a symlink.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case IS_SYMLINK
         extends KnownValue(GFileTest.G_FILE_TEST_IS_SYMLINK, "IS_SYMLINK")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** %TRUE if the file is a directory.
       *
-      * %TRUE if the file is a directory.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case IS_DIR extends KnownValue(GFileTest.G_FILE_TEST_IS_DIR, "IS_DIR")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** %TRUE if the file is executable.
       *
-      * %TRUE if the file is executable.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case IS_EXECUTABLE
         extends KnownValue(GFileTest.G_FILE_TEST_IS_EXECUTABLE, "IS_EXECUTABLE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** %TRUE if the file exists. It may or may not be a regular file.
       *
-      * %TRUE if the file exists. It may or may not be a regular file.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case EXISTS extends KnownValue(GFileTest.G_FILE_TEST_EXISTS, "EXISTS")
   end KnownValue

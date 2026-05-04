@@ -2,22 +2,25 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkPackType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Represents the packing location of a children in its parent.
+/** Represents the packing location of a children in its parent.
   *
   * See [class@WindowControls] for example.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PackType(val raw: GtkPackType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The child is packed into the start of the widget
     *
-    * The child is packed into the start of the widget
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case START extends PackType(GtkPackType.GTK_PACK_START)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The child is packed into the end of the widget
     *
-    * The child is packed into the end of the widget
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case END extends PackType(GtkPackType.GTK_PACK_END)
 end PackType

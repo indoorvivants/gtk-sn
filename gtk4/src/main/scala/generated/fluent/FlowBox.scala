@@ -18,9 +18,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkFlowBox
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkFlowBox` puts child widgets in reflowing grid.
+/** A `GtkFlowBox` puts child widgets in reflowing grid.
   *
   * For instance, with the horizontal orientation, the widgets will be arranged
   * from left to right, starting a new row under the previous row when
@@ -64,6 +62,9 @@ import sn.gnome.gtk4.internal.GtkFlowBox
   *
   * `GtkFlowBox` uses the %GTK_ACCESSIBLE_ROLE_GRID role, and `GtkFlowBoxChild`
   * uses the %GTK_ACCESSIBLE_ROLE_GRID_CELL role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FlowBox(raw: Ptr[GtkFlowBox])
     extends Widget(raw.asInstanceOf),
@@ -74,14 +75,15 @@ class FlowBox(raw: Ptr[GtkFlowBox])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds @child to the end of @self.
+  /** Adds @child to the end of @self.
     *
     * If a sort function is set, the widget will actually be inserted at the
     * calculated position.
     *
     * See also: [method@Gtk.FlowBox.insert].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def append(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_flow_box_append(
@@ -89,9 +91,7 @@ class FlowBox(raw: Ptr[GtkFlowBox])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Binds @model to @box.
+  /** Binds @model to @box.
     *
     * If @box was already bound to a model, that previous binding is destroyed.
     *
@@ -105,24 +105,29 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * Note that using a model is incompatible with the filtering and sorting
     * functionality in `GtkFlowBox`. When using a model, filtering and sorting
     * should be implemented by the model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxCreateWidgetFunc), @type -> DataRecord(GtkFlowBoxCreateWidgetFunc)))"
+    "[bind_model/<method parameters>/create_widget_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxCreateWidgetFunc), @type -> DataRecord(GtkFlowBoxCreateWidgetFunc)))"
   )
-  def bindModel__ = ???
+  private def bindModel__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether children activate on single clicks.
     *
-    * Returns whether children activate on single clicks.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActivateOnSingleClick(): Boolean /* None */ =
     gtk_flow_box_get_activate_on_single_click(
       this.raw.asInstanceOf[Ptr[GtkFlowBox]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the nth child in the @box.
     *
-    * Gets the nth child in the @box.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChildAtIndex(idx: Int /* Some(CInt) */ ): FlowBoxChild /* None */ =
     new FlowBoxChild(
@@ -132,11 +137,12 @@ class FlowBox(raw: Ptr[GtkFlowBox])
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the child in the (@x, @y) position.
+  /** Gets the child in the (@x, @y) position.
     *
     * Both @x and @y are assumed to be relative to the origin of @box.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChildAtPos(
       x: Int /* Some(CInt) */,
@@ -149,74 +155,82 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the horizontal spacing.
     *
-    * Gets the horizontal spacing.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getColumnSpacing(): UInt /* None */ = gtk_flow_box_get_column_spacing(
     this.raw.asInstanceOf[Ptr[GtkFlowBox]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the box is homogeneous.
     *
-    * Returns whether the box is homogeneous.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHomogeneous(): Boolean /* None */ = gtk_flow_box_get_homogeneous(
     this.raw.asInstanceOf[Ptr[GtkFlowBox]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the maximum number of children per line.
     *
-    * Gets the maximum number of children per line.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMaxChildrenPerLine(): UInt /* None */ =
     gtk_flow_box_get_max_children_per_line(
       this.raw.asInstanceOf[Ptr[GtkFlowBox]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the minimum number of children per line.
     *
-    * Gets the minimum number of children per line.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMinChildrenPerLine(): UInt /* None */ =
     gtk_flow_box_get_min_children_per_line(
       this.raw.asInstanceOf[Ptr[GtkFlowBox]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the vertical spacing.
     *
-    * Gets the vertical spacing.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRowSpacing(): UInt /* None */ = gtk_flow_box_get_row_spacing(
     this.raw.asInstanceOf[Ptr[GtkFlowBox]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a list of all selected children.
     *
-    * Creates a list of all selected children.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FlowBoxChild))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[get_selected_children/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FlowBoxChild))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def getSelectedChildren__ = ???
+  private def getSelectedChildren__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the selection mode of @box.
     *
-    * Gets the selection mode of @box.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSelectionMode(): SelectionMode /* None */ = SelectionMode.fromRaw(
     gtk_flow_box_get_selection_mode(this.raw.asInstanceOf[Ptr[GtkFlowBox]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts the @widget into @box at @position.
+  /** Inserts the @widget into @box at @position.
     *
     * If a sort function is set, the widget will actually be inserted at the
     * calculated position.
     *
     * If @position is -1, or larger than the total number of children in the @box,
     * then the @widget will be appended to the end.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insert(
       widget: Widget /* Some(Ptr[GtkWidget]) */,
@@ -227,39 +241,42 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     position
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Updates the filtering for all children.
+  /** Updates the filtering for all children.
     *
     * Call this function when the result of the filter function on the @box is
     * changed due to an external factor. For instance, this would be used if the
     * filter function just looked for a specific search term, and the entry with
     * the string has changed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def invalidateFilter(): Unit /* None */ = gtk_flow_box_invalidate_filter(
     this.raw.asInstanceOf[Ptr[GtkFlowBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Updates the sorting for all children.
+  /** Updates the sorting for all children.
     *
     * Call this when the result of the sort function on
     * @box
     *   is changed due to an external factor.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def invalidateSort(): Unit /* None */ = gtk_flow_box_invalidate_sort(
     this.raw.asInstanceOf[Ptr[GtkFlowBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds @child to the start of @self.
+  /** Adds @child to the start of @self.
     *
     * If a sort function is set, the widget will actually be inserted at the
     * calculated position.
     *
     * See also: [method@Gtk.FlowBox.insert].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def prepend(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_flow_box_prepend(
@@ -267,9 +284,10 @@ class FlowBox(raw: Ptr[GtkFlowBox])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes a child from @box.
     *
-    * Removes a child from @box.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_flow_box_remove(
@@ -277,27 +295,30 @@ class FlowBox(raw: Ptr[GtkFlowBox])
       widget.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes all children from @box.
+  /** Removes all children from @box.
     *
     * This function does nothing if @box is backed by a model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeAll(): Unit /* None */ = gtk_flow_box_remove_all(
     this.raw.asInstanceOf[Ptr[GtkFlowBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Select all children of @box, if the selection mode allows it.
     *
-    * Select all children of @box, if the selection mode allows it.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def selectAll(): Unit /* None */ = gtk_flow_box_select_all(
     this.raw.asInstanceOf[Ptr[GtkFlowBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Selects a single child of @box, if the selection mode allows it.
     *
-    * Selects a single child of @box, if the selection mode allows it.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def selectChild(
       child: FlowBoxChild /* Some(Ptr[GtkFlowBoxChild]) */
@@ -306,21 +327,23 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     child.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Calls a function for each selected child.
+  /** Calls a function for each selected child.
     *
     * Note that the selection cannot be modified from within this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxForeachFunc), @type -> DataRecord(GtkFlowBoxForeachFunc)))"
+    "[selected_foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxForeachFunc), @type -> DataRecord(GtkFlowBoxForeachFunc)))"
   )
-  def selectedForeach__ = ???
+  private def selectedForeach__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @single is %TRUE, children will be activated when you click on them,
+  /** If @single is %TRUE, children will be activated when you click on them,
     * otherwise you need to double-click.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActivateOnSingleClick(
       single: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -329,9 +352,10 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     gboolean(gint((if single == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the horizontal space to add between children.
     *
-    * Sets the horizontal space to add between children.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setColumnSpacing(
       spacing: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -340,9 +364,7 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     guint(spacing)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * By setting a filter function on the @box one can decide dynamically which
+  /** By setting a filter function on the @box one can decide dynamically which
     * of the children to show.
     *
     * For instance, to implement a search function that only shows the children
@@ -355,15 +377,16 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * Note that using a filter function is incompatible with using a model (see
     * [method@Gtk.FlowBox.bind_model]).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxFilterFunc), @type -> DataRecord(GtkFlowBoxFilterFunc)))"
+    "[set_filter_func/<method parameters>/filter_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxFilterFunc), @type -> DataRecord(GtkFlowBoxFilterFunc)))"
   )
-  def setFilterFunc__ = ???
+  private def setFilterFunc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Hooks up an adjustment to focus handling in @box.
+  /** Hooks up an adjustment to focus handling in @box.
     *
     * The adjustment is also used for autoscrolling during rubberband selection.
     * See [method@Gtk.ScrolledWindow.get_hadjustment] for a typical way of
@@ -372,6 +395,9 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * The adjustments have to be in pixel units and in the same coordinate
     * system as the allocation for immediate children of the box.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHadjustment(
       adjustment: Adjustment /* Some(Ptr[GtkAdjustment]) */
@@ -380,9 +406,10 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     adjustment.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether or not all children of @box are given equal space in the box.
     *
-    * Sets whether or not all children of @box are given equal space in the box.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHomogeneous(
       homogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -391,14 +418,15 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     gboolean(gint((if homogeneous == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the maximum number of children to request and allocate space for in @box’s
+  /** Sets the maximum number of children to request and allocate space for in @box’s
     * orientation.
     *
     * Setting the maximum number of children per line limits the overall natural
     * size request to be no more than @n_children children long in the given
     * orientation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMaxChildrenPerLine(
       n_children: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -407,10 +435,11 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     guint(n_children)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the minimum number of children to line up in @box’s orientation
+  /** Sets the minimum number of children to line up in @box’s orientation
     * before flowing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMinChildrenPerLine(
       n_children: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -419,9 +448,10 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     guint(n_children)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the vertical space to add between children.
     *
-    * Sets the vertical space to add between children.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRowSpacing(
       spacing: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -430,9 +460,10 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     guint(spacing)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets how selection works in @box.
     *
-    * Sets how selection works in @box.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSelectionMode(
       mode: SelectionMode /* Some(GtkSelectionMode) */
@@ -441,9 +472,7 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     mode.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * By setting a sort function on the @box, one can dynamically reorder the
+  /** By setting a sort function on the @box, one can dynamically reorder the
     * children of the box, based on the contents of the children.
     *
     * The @sort_func will be called for each child after the call, and will
@@ -453,15 +482,16 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * Note that using a sort function is incompatible with using a model (see
     * [method@Gtk.FlowBox.bind_model]).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxSortFunc), @type -> DataRecord(GtkFlowBoxSortFunc)))"
+    "[set_sort_func/<method parameters>/sort_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxSortFunc), @type -> DataRecord(GtkFlowBoxSortFunc)))"
   )
-  def setSortFunc__ = ???
+  private def setSortFunc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Hooks up an adjustment to focus handling in @box.
+  /** Hooks up an adjustment to focus handling in @box.
     *
     * The adjustment is also used for autoscrolling during rubberband selection.
     * See [method@Gtk.ScrolledWindow.get_vadjustment] for a typical way of
@@ -470,6 +500,9 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     *
     * The adjustments have to be in pixel units and in the same coordinate
     * system as the allocation for immediate children of the box.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVadjustment(
       adjustment: Adjustment /* Some(Ptr[GtkAdjustment]) */
@@ -478,17 +511,19 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     adjustment.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unselect all children of @box, if the selection mode allows it.
     *
-    * Unselect all children of @box, if the selection mode allows it.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unselectAll(): Unit /* None */ = gtk_flow_box_unselect_all(
     this.raw.asInstanceOf[Ptr[GtkFlowBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unselects a single child of @box, if the selection mode allows it.
     *
-    * Unselects a single child of @box, if the selection mode allows it.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unselectChild(
       child: FlowBoxChild /* Some(Ptr[GtkFlowBoxChild]) */
@@ -500,9 +535,10 @@ class FlowBox(raw: Ptr[GtkFlowBox])
 end FlowBox
 
 object FlowBox:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a `GtkFlowBox`.
     *
-    * Creates a `GtkFlowBox`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): FlowBox = new FlowBox(gtk_flow_box_new().asInstanceOf)
 end FlowBox

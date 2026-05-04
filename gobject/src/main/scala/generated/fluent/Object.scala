@@ -9,9 +9,7 @@ import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, gsize}
 import sn.gnome.gobject.fluent.{Binding, BindingFlags, Object, ParamSpec}
 import sn.gnome.gobject.internal.{GObject, GType}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The base object type.
+/** The base object type.
   *
   * All the fields in the `GObject` structure are private to the implementation
   * and should never be accessed directly.
@@ -23,14 +21,15 @@ import sn.gnome.gobject.internal.{GObject, GType}
   * appropriately padded. This guarantee applies to the #GObject (or derived)
   * struct, the #GObjectClass (or derived) struct, and any private data
   * allocated by G_ADD_PRIVATE().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Object(raw: Ptr[GObject]):
 
   def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Increases the reference count of the object by one and sets a callback to
+  /** Increases the reference count of the object by one and sets a callback to
     * be called when all other references to the object are dropped, or when
     * this is already the last reference to the object and another reference is
     * established.
@@ -59,15 +58,16 @@ class Object(raw: Ptr[GObject]):
     * be notified until all but one are removed. For this reason, you should
     * only ever use a toggle reference if there is important state in the proxy
     * object.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ToggleNotify), @type -> DataRecord(GToggleNotify)))"
+    "[add_toggle_ref/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ToggleNotify), @type -> DataRecord(GToggleNotify)))"
   )
-  def addToggleRef__ = ???
+  private def addToggleRef__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a weak reference from weak_pointer to @object to indicate that the
+  /** Adds a weak reference from weak_pointer to @object to indicate that the
     * pointer located at @weak_pointer_location is only valid during the
     * lifetime of @object. When the @object is finalized,
     * @weak_pointer
@@ -77,15 +77,16 @@ class Object(raw: Ptr[GObject]):
     * method are not thread-safe: they cannot safely be used in one thread if
     * the object's last g_object_unref() might happen in another thread. Use
     * #GWeakRef if thread-safety is required.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method add_weak_pointer contains an INOUT parameter, which is not supported yet"
+    "[add_weak_pointer]: Method add_weak_pointer contains an INOUT parameter, which is not supported yet"
   )
-  def addWeakPointer__ = ???
+  private def addWeakPointer__ = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Creates a binding between @source_property on @source and @target_property
+  /**  Creates a binding between @source_property on @source and @target_property
     *  on @target.
     *
     *  Whenever the @source_property is changed the @target_property is
@@ -116,6 +117,8 @@ class Object(raw: Ptr[GObject]):
     *  use g_binding_unbind() instead to be on the safe side.
     *
     *  A #GObject can have multiple bindings.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def bindProperty(
       source_property: String |
@@ -136,9 +139,7 @@ class Object(raw: Ptr[GObject]):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Complete version of g_object_bind_property().
+  /** Complete version of g_object_bind_property().
     *
     * Creates a binding between @source_property on @source and @target_property
     * on @target, allowing you to set the transformation functions to be used by
@@ -163,30 +164,32 @@ class Object(raw: Ptr[GObject]):
     * transformation functions; the @notify function will be called once, when
     * the binding is removed. If you need different data for each transformation
     * function, please use g_object_bind_property_with_closures() instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(BindingTransformFunc), @type -> DataRecord(GBindingTransformFunc)))"
+    "[bind_property_full/<method parameters>/transform_to]: Cannot render type Type(List(),ListMap(@name -> DataRecord(BindingTransformFunc), @type -> DataRecord(GBindingTransformFunc)))"
   )
-  def bindPropertyFull__ = ???
+  private def bindPropertyFull__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a binding between @source_property on @source and @target_property
+  /** Creates a binding between @source_property on @source and @target_property
     * on @target, allowing you to set the transformation functions to be used by
     * the binding.
     *
     * This function is the language bindings friendly version of
     * g_object_bind_property_full(), using #GClosures instead of function
     * pointers.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[bind_property_with_closures/<method parameters>/transform_to]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
-  def bindPropertyWithClosures__ = ???
+  private def bindPropertyWithClosures__ = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  A convenience function to connect multiple signals at once.
+  /**  A convenience function to connect multiple signals at once.
     *
     *  The signal specs expected by this function have the form
     *  "modifier::signal_name", where modifier can be one of the following:
@@ -209,6 +212,8 @@ class Object(raw: Ptr[GObject]):
     *           "signal::destroy", gtk_widget_destroyed, &menu->toplevel,
     *           NULL);
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   inline def connect(
       signal_spec: String |
@@ -222,14 +227,15 @@ class Object(raw: Ptr[GObject]):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A convenience function to disconnect multiple signals at once.
+  /** A convenience function to disconnect multiple signals at once.
     *
     * The signal specs expected by this function have the form "any_signal",
     * which means to disconnect any signal with matching callback and data, or
     * "any_signal::signal_name", which only disconnects the signal named
     * "signal_name".
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def disconnect(
       signal_spec: String |
@@ -241,9 +247,7 @@ class Object(raw: Ptr[GObject]):
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is a variant of g_object_get_data() which returns a 'duplicate' of
+  /** This is a variant of g_object_get_data() which returns a 'duplicate' of
     * the value. @dup_func defines the meaning of 'duplicate' in this context,
     * it could e.g. take a reference on a ref-counted object.
     *
@@ -254,15 +258,16 @@ class Object(raw: Ptr[GObject]):
     *
     * This function can be useful to avoid races when multiple threads are using
     * object data on the same key on the same object.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DuplicateFunc), @type -> DataRecord(GDuplicateFunc)))"
+    "[dup_data/<method parameters>/dup_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DuplicateFunc), @type -> DataRecord(GDuplicateFunc)))"
   )
-  def dupData__ = ???
+  private def dupData__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is a variant of g_object_get_qdata() which returns a 'duplicate' of
+  /** This is a variant of g_object_get_qdata() which returns a 'duplicate' of
     * the value. @dup_func defines the meaning of 'duplicate' in this context,
     * it could e.g. take a reference on a ref-counted object.
     *
@@ -273,26 +278,28 @@ class Object(raw: Ptr[GObject]):
     *
     * This function can be useful to avoid races when multiple threads are using
     * object data on the same key on the same object.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[dup_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def dupQdata__ = ???
+  private def dupQdata__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is intended for #GObject implementations to re-enforce a
+  /** This function is intended for #GObject implementations to re-enforce a
     * [floating][floating-ref] object reference. Doing this is seldom required:
     * all #GInitiallyUnowneds are created with a floating reference which
     * usually just needs to be sunken by calling g_object_ref_sink().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forceFloating(): Unit /* None */ = g_object_force_floating(
     this.raw.asInstanceOf[Ptr[GObject]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Increases the freeze count on @object. If the freeze count is non-zero,
+  /** Increases the freeze count on @object. If the freeze count is non-zero,
     * the emission of "notify" signals on @object is stopped. The signals are
     * queued until the freeze count is decreased to zero. Duplicate
     * notifications are squashed so that at most one #GObject::notify signal is
@@ -300,14 +307,15 @@ class Object(raw: Ptr[GObject]):
     *
     * This is necessary for accessors that modify multiple properties to prevent
     * premature notification while the object is still being modified.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def freezeNotify(): Unit /* None */ = g_object_freeze_notify(
     this.raw.asInstanceOf[Ptr[GObject]]
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Gets properties of an object.
+  /**  Gets properties of an object.
     *
     *  In general, a copy is made of the property contents and the caller
     *  is responsible for freeing the memory in the appropriate manner for
@@ -333,6 +341,8 @@ class Object(raw: Ptr[GObject]):
     *   g_free (strval);
     *   g_object_unref (objval);
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   inline def get(
       first_property_name: String |
@@ -344,10 +354,11 @@ class Object(raw: Ptr[GObject]):
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a named field from the objects table of associations (see
+  /** Gets a named field from the objects table of associations (see
     * g_object_set_data()).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getData(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -356,9 +367,7 @@ class Object(raw: Ptr[GObject]):
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a property of an object.
+  /** Gets a property of an object.
     *
     * The @value can be:
     *
@@ -374,31 +383,36 @@ class Object(raw: Ptr[GObject]):
     *
     * Note that g_object_get_property() is really intended for language
     * bindings, g_object_get() is much more convenient for C programming.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(GValue*)))"
+    "[get_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(GValue*)))"
   )
-  def getProperty__ = ???
+  private def getProperty__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function gets back user data pointers stored via
+  /** This function gets back user data pointers stored via
     * g_object_set_qdata().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[get_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def getQdata__ = ???
+  private def getQdata__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets properties of an object.
+  /** Gets properties of an object.
     *
     * In general, a copy is made of the property contents and the caller is
     * responsible for freeing the memory in the appropriate manner for the type,
     * for instance by calling g_free() or g_object_unref().
     *
     * See g_object_get().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getValist(
       first_property_name: String |
@@ -410,28 +424,28 @@ class Object(raw: Ptr[GObject]):
     var_args
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets @n_properties properties for an @object. Obtained properties will be
+  /** Gets @n_properties properties for an @object. Obtained properties will be
     * set to @values. All properties must be valid. Warnings will be emitted and
     * undefined behaviour may result if invalid properties are passed in.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(const gchar**)))"
+    "[getv/<method parameters>/names]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(const gchar**)))"
   )
-  def getv__ = ???
+  private def getv__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks whether @object has a [floating][floating-ref] reference.
     *
-    * Checks whether @object has a [floating][floating-ref] reference.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isFloating(): Boolean /* None */ = g_object_is_floating(
     this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Emits a "notify" signal for the property @property_name on @object.
+  /** Emits a "notify" signal for the property @property_name on @object.
     *
     * When possible, eg. when signaling a property change from within the class
     * that registered the property, you should use g_object_notify_by_pspec()
@@ -441,6 +455,9 @@ class Object(raw: Ptr[GObject]):
     * g_object_freeze_notify(). In this case, the signal emissions are queued
     * and will be emitted (in reverse order) when g_object_thaw_notify() is
     * called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def _notify(
       property_name: String |
@@ -450,9 +467,7 @@ class Object(raw: Ptr[GObject]):
     __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]]
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Emits a "notify" signal for the property specified by @pspec on @object.
+  /**  Emits a "notify" signal for the property specified by @pspec on @object.
     *
     *  This function omits the property name lookup, hence it is faster than
     *  g_object_notify().
@@ -489,6 +504,8 @@ class Object(raw: Ptr[GObject]):
     *  |[<!-- language="C" -->
     *    g_object_notify_by_pspec (self, properties[PROP_FOO]);
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def notifyByPspec(
       pspec: ParamSpec /* Some(Ptr[GParamSpec]) */
@@ -497,14 +514,15 @@ class Object(raw: Ptr[GObject]):
     pspec.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Increases the reference count of @object.
+  /** Increases the reference count of @object.
     *
     * Since GLib 2.56, if `GLIB_VERSION_MAX_ALLOWED` is 2.56 or greater, the
     * type of @object will be propagated to the return type (using the GCC
     * typeof() extension), so any casting the caller needs to do on the return
     * type must be explicit.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def ref(): Object /* None */ = new Object(
     g_object_ref(
@@ -512,9 +530,7 @@ class Object(raw: Ptr[GObject]):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Increase the reference count of @object, and possibly remove the
+  /** Increase the reference count of @object, and possibly remove the
     * [floating][floating-ref] reference, if @object has a floating reference.
     *
     * In other words, if the object is floating, then this call "assumes
@@ -525,6 +541,9 @@ class Object(raw: Ptr[GObject]):
     *
     * Since GLib 2.56, the type of @object will be propagated to the return type
     * under the same conditions as for g_object_ref().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def refSink(): Object /* None */ = new Object(
     g_object_ref_sink(
@@ -532,30 +551,30 @@ class Object(raw: Ptr[GObject]):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a reference added with g_object_add_toggle_ref(). The reference
+  /** Removes a reference added with g_object_add_toggle_ref(). The reference
     * count of the object is decreased by one.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ToggleNotify), @type -> DataRecord(GToggleNotify)))"
+    "[remove_toggle_ref/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ToggleNotify), @type -> DataRecord(GToggleNotify)))"
   )
-  def removeToggleRef__ = ???
+  private def removeToggleRef__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a weak reference from @object that was previously added using
+  /** Removes a weak reference from @object that was previously added using
     * g_object_add_weak_pointer(). The @weak_pointer_location has to match the
     * one used with g_object_add_weak_pointer().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method remove_weak_pointer contains an INOUT parameter, which is not supported yet"
+    "[remove_weak_pointer]: Method remove_weak_pointer contains an INOUT parameter, which is not supported yet"
   )
-  def removeWeakPointer__ = ???
+  private def removeWeakPointer__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compares the user data for the key @key on @object with
+  /** Compares the user data for the key @key on @object with
     * @oldval,
     *   and if they are the same, replaces @oldval with
     * @newval.
@@ -571,15 +590,16 @@ class Object(raw: Ptr[GObject]):
     *
     * See g_object_set_data() for guidance on using a small, bounded set of
     * values for @key.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method replace_data contains an OUT parameter, which is not supported yet"
+    "[replace_data]: Method replace_data contains an OUT parameter, which is not supported yet"
   )
-  def replaceData__ = ???
+  private def replaceData__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compares the user data for the key @quark on @object with
+  /** Compares the user data for the key @quark on @object with
     * @oldval,
     *   and if they are the same, replaces @oldval with
     * @newval.
@@ -592,26 +612,28 @@ class Object(raw: Ptr[GObject]):
     * for it (passed out in @old_destroy). It’s up to the caller to free this as
     * needed, which may or may not include using @old_destroy as sometimes
     * replacement should not destroy the object in the normal way.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method replace_qdata contains an OUT parameter, which is not supported yet"
+    "[replace_qdata]: Method replace_qdata contains an OUT parameter, which is not supported yet"
   )
-  def replaceQdata__ = ???
+  private def replaceQdata__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Releases all references to other objects. This can be used to break
+  /** Releases all references to other objects. This can be used to break
     * reference cycles.
     *
     * This function should only be called from object system implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def runDispose(): Unit /* None */ = g_object_run_dispose(
     this.raw.asInstanceOf[Ptr[GObject]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets properties on an object.
+  /** Sets properties on an object.
     *
     * The same caveats about passing integer literals as varargs apply as with
     * g_object_new(). In particular, any integer literals set as the values for
@@ -620,6 +642,9 @@ class Object(raw: Ptr[GObject]):
     *
     * Note that the "notify" signals are queued and only emitted (in reverse
     * order) after all properties have been set. See g_object_freeze_notify().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def set(
       first_property_name: String |
@@ -631,9 +656,7 @@ class Object(raw: Ptr[GObject]):
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Each object carries around a table of associations from strings to
+  /** Each object carries around a table of associations from strings to
     * pointers. This function lets you set an association.
     *
     * If the object already had an association with that name, the old
@@ -644,6 +667,9 @@ class Object(raw: Ptr[GObject]):
     * after @object has been finalized) — so it is recommended to only use a
     * small, bounded set of values for @key in your program, to avoid the
     * #GQuark storage growing unbounded.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setData(
       key: String |
@@ -659,57 +685,62 @@ class Object(raw: Ptr[GObject]):
       .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_object_set_data() except it adds notification for when the
+  /** Like g_object_set_data() except it adds notification for when the
     * association is destroyed, either by setting it to a different value or
     * when the object is destroyed.
     *
     * Note that the @destroy callback is not called if @data is %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
+    "[set_data_full/<method parameters>/destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
-  def setDataFull__ = ???
+  private def setDataFull__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets a property on an object.
     *
-    * Sets a property on an object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
+    "[set_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
   )
-  def setProperty__ = ???
+  private def setProperty__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This sets an opaque, named pointer on an object. The name is specified
+  /** This sets an opaque, named pointer on an object. The name is specified
     * through a #GQuark (retrieved e.g. via g_quark_from_static_string()), and
     * the pointer can be gotten back from the @object with g_object_get_qdata()
     * until the @object is finalized. Setting a previously set user data
     * pointer, overrides (frees) the old pointer set, using #NULL as pointer
     * essentially removes the data stored.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[set_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def setQdata__ = ???
+  private def setQdata__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function works like g_object_set_qdata(), but in addition, a void
+  /** This function works like g_object_set_qdata(), but in addition, a void
     * (*destroy) (gpointer) function may be specified which is called with @data
     * as argument when the @object is finalized, or the data is being
     * overwritten by a call to g_object_set_qdata() with the same @quark.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[set_qdata_full/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def setQdataFull__ = ???
+  private def setQdataFull__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets properties on an object.
     *
-    * Sets properties on an object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setValist(
       first_property_name: String |
@@ -721,21 +752,23 @@ class Object(raw: Ptr[GObject]):
     var_args
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @n_properties properties for an @object. Properties to be set will be
+  /** Sets @n_properties properties for an @object. Properties to be set will be
     * taken from @values. All properties must be valid. Warnings will be emitted
     * and undefined behaviour may result if invalid properties are passed in.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(const gchar**)))"
+    "[setv/<method parameters>/names]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(const gchar**)))"
   )
-  def setv__ = ???
+  private def setv__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Remove a specified datum from the object's data associations, without
+  /** Remove a specified datum from the object's data associations, without
     * invoking the association's destroy handler.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def stealData(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -744,9 +777,7 @@ class Object(raw: Ptr[GObject]):
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  This function gets back user data pointers stored via
+  /**  This function gets back user data pointers stored via
     *  g_object_set_qdata() and removes the @data from object
     *  without invoking its destroy() function (if any was
     *  set).
@@ -781,15 +812,15 @@ class Object(raw: Ptr[GObject]):
     *  g_object_steal_qdata() would have left the destroy function set,
     *  and thus the partial string list would have been freed upon
     *  g_object_set_qdata_full().
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[steal_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def stealQdata__ = ???
+  private def stealQdata__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @object is floating, sink it. Otherwise, do nothing.
+  /** If @object is floating, sink it. Otherwise, do nothing.
     *
     * In other words, this function will convert a floating reference (if
     * present) into a full reference.
@@ -822,6 +853,9 @@ class Object(raw: Ptr[GObject]):
     * g_object_take_ref() runs first then the result will be that the floating
     * reference is converted to a hard reference and an additional reference on
     * top of that one is added. It is best to avoid this situation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def takeRef(): Object /* None */ = new Object(
     g_object_take_ref(
@@ -829,9 +863,7 @@ class Object(raw: Ptr[GObject]):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reverts the effect of a previous call to g_object_freeze_notify(). The
+  /** Reverts the effect of a previous call to g_object_freeze_notify(). The
     * freeze count is decreased on @object and when it reaches zero, queued
     * "notify" signals are emitted.
     *
@@ -840,28 +872,30 @@ class Object(raw: Ptr[GObject]):
     * in which they have been queued.
     *
     * It is an error to call this function when the freeze count is zero.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def thawNotify(): Unit /* None */ = g_object_thaw_notify(
     this.raw.asInstanceOf[Ptr[GObject]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decreases the reference count of @object. When its reference count drops
+  /** Decreases the reference count of @object. When its reference count drops
     * to 0, the object is finalized (i.e. its memory is freed).
     *
     * If the pointer to the #GObject may be reused in future (for example, if it
     * is an instance variable of another object), it is recommended to clear the
     * pointer to %NULL rather than retain a dangling pointer to a potentially
     * invalid #GObject instance. Use g_clear_object() for this.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unref(): Unit /* None */ = g_object_unref(
     this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function essentially limits the life time of the @closure to the life
+  /** This function essentially limits the life time of the @closure to the life
     * time of the object. That is, when the object is finalized, the @closure is
     * invalidated by calling g_closure_invalidate() on it, in order to prevent
     * invocations of the closure with a finalized (nonexisting) object. Also,
@@ -871,15 +905,16 @@ class Object(raw: Ptr[GObject]):
     * @closure.
     *   Usually, this function will be called on closures that use this @object
     *   as closure data.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[watch_closure/<method parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
-  def watchClosure__ = ???
+  private def watchClosure__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a weak reference callback to an object. Weak references are used for
+  /** Adds a weak reference callback to an object. Weak references are used for
     * notification when an object is disposed. They are called "weak references"
     * because they allow you to safely hold a pointer to an object without
     * calling g_object_ref() (g_object_ref() adds a strong reference, that is,
@@ -889,20 +924,24 @@ class Object(raw: Ptr[GObject]):
     * they cannot safely be used in one thread if the object's last
     * g_object_unref() might happen in another thread. Use #GWeakRef if
     * thread-safety is required.
-    */
-  @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(WeakNotify), @type -> DataRecord(GWeakNotify)))"
-  )
-  def weakRef__ = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Removes a weak reference callback to an object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(WeakNotify), @type -> DataRecord(GWeakNotify)))"
+    "[weak_ref/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(WeakNotify), @type -> DataRecord(GWeakNotify)))"
   )
-  def weakUnref__ = ???
+  private def weakRef__ = ???
+
+  /** Removes a weak reference callback to an object.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[weak_unref/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(WeakNotify), @type -> DataRecord(GWeakNotify)))"
+  )
+  private def weakUnref__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -915,9 +954,7 @@ class Object(raw: Ptr[GObject]):
 end Object
 
 object Object:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new instance of a #GObject subtype and sets its properties.
+  /** Creates a new instance of a #GObject subtype and sets its properties.
     *
     * Construction parameters (see %G_PARAM_CONSTRUCT, %G_PARAM_CONSTRUCT_ONLY)
     * which are not explicitly specified are set to their default values. Any
@@ -944,6 +981,9 @@ object Object:
     * or `gdouble`). If you need larger alignment for an element in a #GObject,
     * you should allocate it on the heap (aligned), or arrange for your #GObject
     * to be appropriately padded.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def apply(
       object_type: GType /* Some(GType) */,
@@ -958,12 +998,13 @@ object Object:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new instance of a #GObject subtype and sets its properties.
+  /** Creates a new instance of a #GObject subtype and sets its properties.
     *
     * Construction parameters (see %G_PARAM_CONSTRUCT, %G_PARAM_CONSTRUCT_ONLY)
     * which are not explicitly specified are set to their default values.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def valist(
       object_type: GType /* Some(GType) */,
@@ -978,31 +1019,33 @@ object Object:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new instance of a #GObject subtype and sets its properties using
+  /** Creates a new instance of a #GObject subtype and sets its properties using
     * the provided arrays. Both arrays must have exactly @n_properties elements,
     * and the names and values correspond by index.
     *
     * Construction parameters (see %G_PARAM_CONSTRUCT, %G_PARAM_CONSTRUCT_ONLY)
     * which are not explicitly specified are set to their default values.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char**)))"
+    "[names]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char**)))"
   )
-  def new_with_properties() = ???
+  private def new_with_properties() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new instance of a #GObject subtype and sets its properties.
+  /** Creates a new instance of a #GObject subtype and sets its properties.
     *
     * Construction parameters (see %G_PARAM_CONSTRUCT, %G_PARAM_CONSTRUCT_ONLY)
     * which are not explicitly specified are set to their default values.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Parameter), @type -> DataRecord(GParameter)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GParameter*)))"
+    "[parameters]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Parameter), @type -> DataRecord(GParameter)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GParameter*)))"
   )
-  def newv() = ???
+  private def newv() = ???
 
   def compatControl(
       what: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
@@ -1017,12 +1060,13 @@ object Object:
         .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Find the #GParamSpec with the given name for an interface. Generally, the
+  /** Find the #GParamSpec with the given name for an interface. Generally, the
     * interface vtable passed in as @g_iface will be the default vtable from
     * g_type_default_interface_ref(), or, if you know the interface has already
     * been loaded, g_type_default_interface_peek().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def interfaceFindProperty(
       g_iface: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
@@ -1035,9 +1079,7 @@ object Object:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Add a property to an interface; this is only useful for interfaces that
+  /** Add a property to an interface; this is only useful for interfaces that
     * are added to GObject-derived types. Adding a property to an interface
     * forces all objects classes with that interface to have a compatible
     * property. The compatible property could be a newly created #GParamSpec,
@@ -1052,6 +1094,9 @@ object Object:
     * implementing this interface.
     *
     * If @pspec is a floating reference, it will be consumed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def interfaceInstallProperty(
       g_iface: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
@@ -1061,17 +1106,18 @@ object Object:
     pspec.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Lists the properties of an interface.Generally, the interface vtable
+  /** Lists the properties of an interface.Generally, the interface vtable
     * passed in as @g_iface will be the default vtable from
     * g_type_default_interface_ref(), or, if you know the interface has already
     * been loaded, g_type_default_interface_peek().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
     "Function interface_list_properties is weird: non NULL-terminated arrays require special handling"
   )
-  def interfaceListProperties() = ???
+  private def interfaceListProperties() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -11,9 +11,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.ShortcutTrigger
 import sn.gnome.gtk4.internal.GtkShortcutTrigger
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkShortcutTrigger` tracks how a `GtkShortcut` should be activated.
+/** `GtkShortcutTrigger` tracks how a `GtkShortcut` should be activated.
   *
   * To find out if a `GtkShortcutTrigger` triggers, you can call
   * [method@Gtk.ShortcutTrigger.trigger] on a `GdkEvent`.
@@ -24,18 +22,22 @@ import sn.gnome.gtk4.internal.GtkShortcutTrigger
   * All `GtkShortcutTriggers` are immutable, you can only specify their
   * properties during construction. If you want to change a trigger, you have to
   * replace it with a new one.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The types of @trigger1 and @trigger2 are `gconstpointer` only to allow use
+  /** The types of @trigger1 and @trigger2 are `gconstpointer` only to allow use
     * of this function as a `GCompareFunc`.
     *
     * They must each be a `GtkShortcutTrigger`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def compare(
       trigger2: ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
@@ -46,12 +48,13 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if @trigger1 and @trigger2 trigger under the same conditions.
+  /** Checks if @trigger1 and @trigger2 trigger under the same conditions.
     *
     * The types of @one and @two are `gconstpointer` only to allow use of this
     * function with `GHashTable`. They must each be a `GtkShortcutTrigger`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def equal(
       trigger2: ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
@@ -62,9 +65,7 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     )
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Generates a hash value for a `GtkShortcutTrigger`.
+  /** Generates a hash value for a `GtkShortcutTrigger`.
     *
     * The output of this function is guaranteed to be the same for a given value
     * only per-process. It may change between different processor architectures
@@ -73,27 +74,29 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     *
     * The types of @trigger is `gconstpointer` only to allow use of this
     * function with `GHashTable`. They must each be a `GtkShortcutTrigger`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hash(): UInt /* None */ = gtk_shortcut_trigger_hash(
     this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gconstpointer]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Prints the given trigger into a string for the developer. This is meant
+  /** Prints the given trigger into a string for the developer. This is meant
     * for debugging and logging.
     *
     * The form of the representation may change at any time and is not
     * guaranteed to stay identical.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
+    "[print/<method parameters>/string]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
   )
-  def print__ = ???
+  private def print__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Prints the given trigger into a string.
+  /** Prints the given trigger into a string.
     *
     * This function is returning a translated string for presentation to end
     * users for example in menu items or in help texts.
@@ -104,15 +107,16 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     *
     * The form of the representation may change at any time and is not
     * guaranteed to stay identical.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
+    "[print_label/<method parameters>/string]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
   )
-  def printLabel__ = ???
+  private def printLabel__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets textual representation for the given trigger.
+  /** Gets textual representation for the given trigger.
     *
     * This function is returning a translated string for presentation to end
     * users for example in menu items or in help texts.
@@ -123,6 +127,9 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     *
     * The form of the representation may change at any time and is not
     * guaranteed to stay identical.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def toLabel(
       display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
@@ -133,12 +140,13 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Prints the given trigger into a human-readable string.
+  /** Prints the given trigger into a human-readable string.
     *
     * This is a small wrapper around [method@Gtk.ShortcutTrigger.print] to help
     * when debugging.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def toString()(using Zone): String /* None */ = fromCString(
     gtk_shortcut_trigger_to_string(
@@ -146,9 +154,10 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if the given @event triggers @self.
     *
-    * Checks if the given @event triggers @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def trigger(
       event: Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */,
@@ -164,9 +173,7 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
 end ShortcutTrigger
 
 object ShortcutTrigger:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to parse the given string into a trigger.
+  /** Tries to parse the given string into a trigger.
     *
     * On success, the parsed trigger is returned. When parsing failed, %NULL is
     * returned.
@@ -184,6 +191,9 @@ object ShortcutTrigger:
     * Note that you will have to escape the `<` and `>` characters when
     * specifying triggers in XML files, such as GtkBuilder ui files. Use `&lt;`
     * instead of `<` and `&gt;` instead of `>`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def parseString(
       string: String | CString /* Some(CString) */

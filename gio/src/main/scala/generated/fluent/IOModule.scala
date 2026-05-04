@@ -8,11 +8,12 @@ import sn.gnome.gio.internal.GIOModule
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.{TypeModule, TypePlugin}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Provides an interface and default functions for loading and unloading
+/** Provides an interface and default functions for loading and unloading
   * modules. This is used internally to make GIO extensible, but can also be
   * used by others to implement module loading.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class IOModule(raw: Ptr[GIOModule])
     extends TypeModule(raw.asInstanceOf),
@@ -20,9 +21,7 @@ class IOModule(raw: Ptr[GIOModule])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Required API for GIO modules to implement.
+  /** Required API for GIO modules to implement.
     *
     * This function is run after the module has been loaded into GIO, to
     * initialize the module. Typically, this function will call
@@ -35,14 +34,15 @@ class IOModule(raw: Ptr[GIOModule])
     * Using the new symbol names avoids name clashes when building modules
     * statically. The old symbol names continue to be supported, but cannot be
     * used for static builds.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def load(): Unit /* None */ = g_io_module_load(
     this.raw.asInstanceOf[Ptr[GIOModule]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Required API for GIO modules to implement.
+  /** Required API for GIO modules to implement.
     *
     * This function is run when the module is being unloaded from GIO, to
     * finalize the module.
@@ -54,6 +54,9 @@ class IOModule(raw: Ptr[GIOModule])
     * `gnutls_helper`. Using the new symbol names avoids name clashes when
     * building modules statically. The old symbol names continue to be
     * supported, but cannot be used for static builds.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unload(): Unit /* None */ = g_io_module_unload(
     this.raw.asInstanceOf[Ptr[GIOModule]]
@@ -62,10 +65,11 @@ class IOModule(raw: Ptr[GIOModule])
 end IOModule
 
 object IOModule:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new GIOModule that will load the specific shared library when in
+  /** Creates a new GIOModule that will load the specific shared library when in
     * use.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       filename: String |
@@ -76,9 +80,7 @@ object IOModule:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Optional API for GIO modules to implement.
+  /** Optional API for GIO modules to implement.
     *
     * Should return a list of all the extension points that may be implemented
     * in this module.
@@ -108,6 +110,9 @@ object IOModule:
     * Using the new symbol names avoids name clashes when building modules
     * statically. The old symbol names continue to be supported, but cannot be
     * used for static builds.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def query()(using Zone): Array[String] /* Some(Ptr[CString]) */ =
     __decode_nullable_ptrs(g_io_module_query()).map(fromCString(_))
@@ -126,7 +131,7 @@ object IOModule:
   ): Array[Ptr[T]] =
     val ab = Array.newBuilder[Ptr[T]]
     var offset = 0
-    val tg = Tag.materializePtrTag(ptag)
+    val tg = Tag.materializePtrTag(using ptag)
     while p(offset)(using tg) != null do
       ab += p(offset)(using tg)
       offset += 1

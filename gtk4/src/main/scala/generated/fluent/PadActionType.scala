@@ -2,26 +2,30 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkPadActionType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** The type of a pad action.
   *
-  * The type of a pad action.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PadActionType(val raw: GtkPadActionType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Action is triggered by a pad button
     *
-    * Action is triggered by a pad button
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BUTTON extends PadActionType(GtkPadActionType.GTK_PAD_ACTION_BUTTON)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Action is triggered by a pad ring
     *
-    * Action is triggered by a pad ring
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RING extends PadActionType(GtkPadActionType.GTK_PAD_ACTION_RING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Action is triggered by a pad strip
     *
-    * Action is triggered by a pad strip
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STRIP extends PadActionType(GtkPadActionType.GTK_PAD_ACTION_STRIP)
 end PadActionType

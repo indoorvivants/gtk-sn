@@ -19,9 +19,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkIconView
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkIconView` is a widget which displays data in a grid of icons.
+/** `GtkIconView` is a widget which displays data in a grid of icons.
   *
   * `GtkIconView` provides an alternative view on a `GtkTreeModel`. It displays
   * the model as a grid of icons with labels. Like [class@Gtk.TreeView], it
@@ -43,6 +41,9 @@ import sn.gnome.gtk4.internal.GtkIconView
   *
   * `GtkIconView` has a single CSS node with name iconview and style class
   * .view. For rubberband selection, a subnode with name rubberband is used.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class IconView(raw: Ptr[GtkIconView])
     extends Widget(raw.asInstanceOf),
@@ -54,180 +55,199 @@ class IconView(raw: Ptr[GtkIconView])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GdkPaintable` representation of the item at @path. This image
+  /** Creates a `GdkPaintable` representation of the item at @path. This image
     * is used for a drag icon.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[create_drag_icon/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def createDragIcon__ = ???
+  private def createDragIcon__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Turns @icon_view into a drop destination for automatic DND. Calling this
+  /** Turns @icon_view into a drop destination for automatic DND. Calling this
     * method sets `GtkIconView`:reorderable to %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[enable_model_drag_dest/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
-  def enableModelDragDest__ = ???
+  private def enableModelDragDest__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Turns @icon_view into a drag source for automatic DND. Calling this method
+  /** Turns @icon_view into a drag source for automatic DND. Calling this method
     * sets `GtkIconView`:reorderable to %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[enable_model_drag_source/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
-  def enableModelDragSource__ = ???
+  private def enableModelDragSource__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the setting set by gtk_icon_view_set_activate_on_single_click().
     *
-    * Gets the setting set by gtk_icon_view_set_activate_on_single_click().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActivateOnSingleClick(): Boolean /* None */ =
     gtk_icon_view_get_activate_on_single_click(
       this.raw.asInstanceOf[Ptr[GtkIconView]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fills the bounding rectangle in widget coordinates for the cell specified
+  /** Fills the bounding rectangle in widget coordinates for the cell specified
     * by
     * @path
     *   and @cell. If @cell is %NULL the main cell area is used.
     *
     * This function is only valid if @icon_view is realized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_cell_rect contains an OUT parameter, which is not supported yet"
+    "[get_cell_rect]: Method get_cell_rect contains an OUT parameter, which is not supported yet"
   )
-  def getCellRect__ = ???
+  private def getCellRect__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the value of the ::column-spacing property.
     *
-    * Returns the value of the ::column-spacing property.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getColumnSpacing(): Int /* None */ = gtk_icon_view_get_column_spacing(
     this.raw.asInstanceOf[Ptr[GtkIconView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the value of the ::columns property.
     *
-    * Returns the value of the ::columns property.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getColumns(): Int /* None */ = gtk_icon_view_get_columns(
     this.raw.asInstanceOf[Ptr[GtkIconView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fills in @path and @cell with the current cursor path and cell. If the
+  /** Fills in @path and @cell with the current cursor path and cell. If the
     * cursor isn’t currently set, then *@path will be %NULL. If no cell
     * currently has focus, then *@cell will be %NULL.
     *
     * The returned `GtkTreePath` must be freed with gtk_tree_path_free().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_cursor contains an OUT parameter, which is not supported yet"
+    "[get_cursor]: Method get_cursor contains an OUT parameter, which is not supported yet"
   )
-  def getCursor__ = ???
+  private def getCursor__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determines the destination item for a given position.
     *
-    * Determines the destination item for a given position.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_dest_item_at_pos contains an OUT parameter, which is not supported yet"
+    "[get_dest_item_at_pos]: Method get_dest_item_at_pos contains an OUT parameter, which is not supported yet"
   )
-  def getDestItemAtPos__ = ???
+  private def getDestItemAtPos__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets information about the item that is highlighted for feedback.
     *
-    * Gets information about the item that is highlighted for feedback.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_drag_dest_item contains an OUT parameter, which is not supported yet"
+    "[get_drag_dest_item]: Method get_drag_dest_item contains an OUT parameter, which is not supported yet"
   )
-  def getDragDestItem__ = ???
+  private def getDragDestItem__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the path and cell for the icon at the given position.
     *
-    * Gets the path and cell for the icon at the given position.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_item_at_pos contains an OUT parameter, which is not supported yet"
+    "[get_item_at_pos]: Method get_item_at_pos contains an OUT parameter, which is not supported yet"
   )
-  def getItemAtPos__ = ???
+  private def getItemAtPos__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the column in which the item @path is currently displayed. Column
+  /** Gets the column in which the item @path is currently displayed. Column
     * numbers start at 0.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[get_item_column/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def getItemColumn__ = ???
+  private def getItemColumn__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the value of the ::item-orientation property which determines
+  /** Returns the value of the ::item-orientation property which determines
     * whether the labels are drawn beside the icons instead of below.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getItemOrientation(): Orientation /* None */ = Orientation.fromRaw(
     gtk_icon_view_get_item_orientation(this.raw.asInstanceOf[Ptr[GtkIconView]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the value of the ::item-padding property.
     *
-    * Returns the value of the ::item-padding property.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getItemPadding(): Int /* None */ = gtk_icon_view_get_item_padding(
     this.raw.asInstanceOf[Ptr[GtkIconView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the row in which the item @path is currently displayed. Row numbers
+  /** Gets the row in which the item @path is currently displayed. Row numbers
     * start at 0.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[get_item_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def getItemRow__ = ???
+  private def getItemRow__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the value of the ::item-width property.
     *
-    * Returns the value of the ::item-width property.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getItemWidth(): Int /* None */ = gtk_icon_view_get_item_width(
     this.raw.asInstanceOf[Ptr[GtkIconView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the value of the ::margin property.
     *
-    * Returns the value of the ::margin property.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMargin(): Int /* None */ = gtk_icon_view_get_margin(
     this.raw.asInstanceOf[Ptr[GtkIconView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the column with markup text for @icon_view.
     *
-    * Returns the column with markup text for @icon_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMarkupColumn(): Int /* None */ = gtk_icon_view_get_markup_column(
     this.raw.asInstanceOf[Ptr[GtkIconView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the model the `GtkIconView` is based on. Returns %NULL if the
+  /** Returns the model the `GtkIconView` is based on. Returns %NULL if the
     * model is unset.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
     gtk_icon_view_get_model(
@@ -235,43 +255,45 @@ class IconView(raw: Ptr[GtkIconView])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the path for the icon at the given position.
     *
-    * Gets the path for the icon at the given position.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[get_path_at_pos/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def getPathAtPos__ = ???
+  private def getPathAtPos__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the column with pixbufs for @icon_view.
     *
-    * Returns the column with pixbufs for @icon_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPixbufColumn(): Int /* None */ = gtk_icon_view_get_pixbuf_column(
     this.raw.asInstanceOf[Ptr[GtkIconView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves whether the user can reorder the list via drag-and-drop. See
+  /** Retrieves whether the user can reorder the list via drag-and-drop. See
     * gtk_icon_view_set_reorderable().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getReorderable(): Boolean /* None */ = gtk_icon_view_get_reorderable(
     this.raw.asInstanceOf[Ptr[GtkIconView]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the value of the ::row-spacing property.
     *
-    * Returns the value of the ::row-spacing property.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRowSpacing(): Int /* None */ = gtk_icon_view_get_row_spacing(
     this.raw.asInstanceOf[Ptr[GtkIconView]]
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Creates a list of paths of all selected items. Additionally, if you are
+  /**  Creates a list of paths of all selected items. Additionally, if you are
     *  planning on modifying the model after calling this function, you may
     *  want to convert the returned list into a list of `GtkTreeRowReferences`.
     *  To do this, you can use gtk_tree_row_reference_new().
@@ -287,48 +309,52 @@ class IconView(raw: Ptr[GtkIconView])
     *
     *  g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreePath))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[get_selected_items/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreePath))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def getSelectedItems__ = ???
+  private def getSelectedItems__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the selection mode of the @icon_view.
     *
-    * Gets the selection mode of the @icon_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSelectionMode(): SelectionMode /* None */ = SelectionMode.fromRaw(
     gtk_icon_view_get_selection_mode(this.raw.asInstanceOf[Ptr[GtkIconView]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the value of the ::spacing property.
     *
-    * Returns the value of the ::spacing property.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSpacing(): Int /* None */ = gtk_icon_view_get_spacing(
     this.raw.asInstanceOf[Ptr[GtkIconView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the column with text for @icon_view.
     *
-    * Returns the column with text for @icon_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTextColumn(): Int /* None */ = gtk_icon_view_get_text_column(
     this.raw.asInstanceOf[Ptr[GtkIconView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the column of @icon_view’s model which is being used for
+  /** Returns the column of @icon_view’s model which is being used for
     * displaying tooltips on @icon_view’s rows.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTooltipColumn(): Int /* None */ = gtk_icon_view_get_tooltip_column(
     this.raw.asInstanceOf[Ptr[GtkIconView]]
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  This function is supposed to be used in a `GtkWidget::query-tooltip`
+  /**  This function is supposed to be used in a `GtkWidget::query-tooltip`
     *  signal handler for `GtkIconView`. The @x, @y and @keyboard_tip values
     *  which are received in the signal handler, should be passed to this
     *  function without modification.
@@ -338,46 +364,49 @@ class IconView(raw: Ptr[GtkIconView])
     *  tooltips the item returned will be the cursor item. When %TRUE, then any of
     *  @model, @path and @iter which have been provided will be set to point to
     *  that row and the corresponding model.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_tooltip_context contains an OUT parameter, which is not supported yet"
+    "[get_tooltip_context]: Method get_tooltip_context contains an OUT parameter, which is not supported yet"
   )
-  def getTooltipContext__ = ???
+  private def getTooltipContext__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @start_path and @end_path to be the first and last visible path. Note
+  /** Sets @start_path and @end_path to be the first and last visible path. Note
     * that there may be invisible paths in between.
     *
     * Both paths should be freed with gtk_tree_path_free() after use.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_visible_range contains an OUT parameter, which is not supported yet"
+    "[get_visible_range]: Method get_visible_range contains an OUT parameter, which is not supported yet"
   )
-  def getVisibleRange__ = ???
+  private def getVisibleRange__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Activates the item determined by @path.
     *
-    * Activates the item determined by @path.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[item_activated/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def itemActivated__ = ???
+  private def itemActivated__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the icon pointed to by @path is currently selected. If @path
+  /** Returns %TRUE if the icon pointed to by @path is currently selected. If @path
     * does not point to a valid location, %FALSE is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[path_is_selected/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def pathIsSelected__ = ???
+  private def pathIsSelected__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Moves the alignments of @icon_view to the position specified by @path.
+  /** Moves the alignments of @icon_view to the position specified by @path.
     * @row_align
     *   determines where the row is placed, and @col_align determines where @column
     *   is placed. Both are expected to be between 0.0 and 1.0. 0.0 means
@@ -392,44 +421,51 @@ class IconView(raw: Ptr[GtkIconView])
     * This function only works if the model is set, and @path is a valid row on
     * the model. If the model changes before the @icon_view is realized, the
     * centered path will be modified to reflect this change.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[scroll_to_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def scrollToPath__ = ???
+  private def scrollToPath__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Selects all the icons. @icon_view must has its selection mode set to
+  /** Selects all the icons. @icon_view must has its selection mode set to
     * %GTK_SELECTION_MULTIPLE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def selectAll(): Unit /* None */ = gtk_icon_view_select_all(
     this.raw.asInstanceOf[Ptr[GtkIconView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Selects the row at @path.
     *
-    * Selects the row at @path.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[select_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def selectPath__ = ???
+  private def selectPath__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Calls a function for each selected icon. Note that the model or selection
+  /** Calls a function for each selected icon. Note that the model or selection
     * cannot be modified from within this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(IconViewForeachFunc), @type -> DataRecord(GtkIconViewForeachFunc)))"
+    "[selected_foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IconViewForeachFunc), @type -> DataRecord(GtkIconViewForeachFunc)))"
   )
-  def selectedForeach__ = ???
+  private def selectedForeach__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Causes the `GtkIconView`::item-activated signal to be emitted on a single
+  /** Causes the `GtkIconView`::item-activated signal to be emitted on a single
     * click instead of a double click.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActivateOnSingleClick(
       single: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -438,10 +474,11 @@ class IconView(raw: Ptr[GtkIconView])
     gboolean(gint((if single == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the ::column-spacing property which specifies the space which is
+  /** Sets the ::column-spacing property which specifies the space which is
     * inserted between the columns of the icon view.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setColumnSpacing(column_spacing: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_column_spacing(
@@ -449,18 +486,17 @@ class IconView(raw: Ptr[GtkIconView])
       column_spacing
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the ::columns property which determines in how many columns the icons
+  /** Sets the ::columns property which determines in how many columns the icons
     * are arranged. If @columns is -1, the number of columns will be chosen
     * automatically to fill the available area.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setColumns(columns: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_columns(this.raw.asInstanceOf[Ptr[GtkIconView]], columns)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the current keyboard focus to be at @path, and selects it. This is
+  /** Sets the current keyboard focus to be at @path, and selects it. This is
     * useful when you want to focus the user’s attention on a particular item.
     * If @cell is not %NULL, then focus is given to the cell specified by it.
     * Additionally, if @start_editing is %TRUE, then editing should be started
@@ -469,25 +505,30 @@ class IconView(raw: Ptr[GtkIconView])
     * This function is often followed by `gtk_widget_grab_focus (icon_view)` in
     * order to give keyboard focus to the widget. Please note that editing can
     * only happen when the widget is realized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[set_cursor/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def setCursor__ = ???
+  private def setCursor__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the item that is highlighted for feedback.
     *
-    * Sets the item that is highlighted for feedback.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[set_drag_dest_item/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def setDragDestItem__ = ???
+  private def setDragDestItem__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the ::item-orientation property which determines whether the labels
+  /** Sets the ::item-orientation property which determines whether the labels
     * are drawn beside the icons instead of below.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setItemOrientation(
       orientation: Orientation /* Some(GtkOrientation) */
@@ -496,10 +537,11 @@ class IconView(raw: Ptr[GtkIconView])
     orientation.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `GtkIconView`:item-padding property which specifies the padding
+  /** Sets the `GtkIconView`:item-padding property which specifies the padding
     * around each of the icon view’s items.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setItemPadding(item_padding: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_item_padding(
@@ -507,11 +549,12 @@ class IconView(raw: Ptr[GtkIconView])
       item_padding
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the ::item-width property which specifies the width to use for each
+  /** Sets the ::item-width property which specifies the width to use for each
     * item. If it is set to -1, the icon view will automatically determine a
     * suitable item size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setItemWidth(item_width: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_item_width(
@@ -519,21 +562,23 @@ class IconView(raw: Ptr[GtkIconView])
       item_width
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the ::margin property which specifies the space which is inserted at
+  /** Sets the ::margin property which specifies the space which is inserted at
     * the top, bottom, left and right of the icon view.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMargin(margin: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_margin(this.raw.asInstanceOf[Ptr[GtkIconView]], margin)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the column with markup information for @icon_view to be
+  /** Sets the column with markup information for @icon_view to be
     * @column.
     *   The markup column must be of type `G_TYPE_STRING`. If the markup column
     *   is set to something, it overrides the text column set by
     *   gtk_icon_view_set_text_column().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarkupColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_markup_column(
@@ -541,11 +586,12 @@ class IconView(raw: Ptr[GtkIconView])
       column
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the model for a `GtkIconView`. If the @icon_view already has a model
+  /** Sets the model for a `GtkIconView`. If the @icon_view already has a model
     * set, it will remove it before setting the new model. If @model is %NULL,
     * then it will unset the old model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
       model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
@@ -556,10 +602,11 @@ class IconView(raw: Ptr[GtkIconView])
       .getOrElse(null.asInstanceOf[Ptr[GtkTreeModel]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the column with pixbufs for @icon_view to be @column. The pixbuf
+  /** Sets the column with pixbufs for @icon_view to be @column. The pixbuf
     * column must be of type `GDK_TYPE_PIXBUF`
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPixbufColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_pixbuf_column(
@@ -567,9 +614,7 @@ class IconView(raw: Ptr[GtkIconView])
       column
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is a convenience function to allow you to reorder models
+  /** This function is a convenience function to allow you to reorder models
     * that support the `GtkTreeDragSourceIface` and the `GtkTreeDragDestIface`.
     * Both `GtkTreeStore` and `GtkListStore` support these. If @reorderable is
     * %TRUE, then the user can reorder the model by dragging and dropping rows.
@@ -581,6 +626,9 @@ class IconView(raw: Ptr[GtkIconView])
     * This function does not give you any degree of control over the order --
     * any reordering is allowed. If more control is needed, you should probably
     * handle drag and drop manually.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setReorderable(
       reorderable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -589,10 +637,11 @@ class IconView(raw: Ptr[GtkIconView])
     gboolean(gint((if reorderable == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the ::row-spacing property which specifies the space which is
+  /** Sets the ::row-spacing property which specifies the space which is
     * inserted between the rows of the icon view.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRowSpacing(row_spacing: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_row_spacing(
@@ -600,9 +649,10 @@ class IconView(raw: Ptr[GtkIconView])
       row_spacing
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the selection mode of the @icon_view.
     *
-    * Sets the selection mode of the @icon_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSelectionMode(
       mode: SelectionMode /* Some(GtkSelectionMode) */
@@ -611,18 +661,20 @@ class IconView(raw: Ptr[GtkIconView])
     mode.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the ::spacing property which specifies the space which is inserted
+  /** Sets the ::spacing property which specifies the space which is inserted
     * between the cells (i.e. the icon and the text) of an item.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSpacing(spacing: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_spacing(this.raw.asInstanceOf[Ptr[GtkIconView]], spacing)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the column with text for @icon_view to be @column. The text column
+  /** Sets the column with text for @icon_view to be @column. The text column
     * must be of type `G_TYPE_STRING`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTextColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_text_column(
@@ -630,21 +682,20 @@ class IconView(raw: Ptr[GtkIconView])
       column
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the tip area of @tooltip to the area which @cell occupies in the item
+  /** Sets the tip area of @tooltip to the area which @cell occupies in the item
     * pointed to by @path. See also gtk_tooltip_set_tip_area().
     *
     * See also gtk_icon_view_set_tooltip_column() for a simpler alternative.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[set_tooltip_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def setTooltipCell__ = ???
+  private def setTooltipCell__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If you only plan to have simple (text-only) tooltips on full items, you
+  /** If you only plan to have simple (text-only) tooltips on full items, you
     * can use this function to have `GtkIconView` handle these automatically for
     * you. @column should be set to the column in @icon_view’s model containing
     * the tooltip texts, or -1 to disable this feature.
@@ -655,6 +706,9 @@ class IconView(raw: Ptr[GtkIconView])
     *
     * Note that the signal handler sets the text with gtk_tooltip_set_markup(),
     * so &, <, etc have to be escaped in the text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTooltipColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_tooltip_column(
@@ -662,46 +716,51 @@ class IconView(raw: Ptr[GtkIconView])
       column
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the tip area of @tooltip to be the area covered by the item at @path.
+  /** Sets the tip area of @tooltip to be the area covered by the item at @path.
     * See also gtk_icon_view_set_tooltip_column() for a simpler alternative. See
     * also gtk_tooltip_set_tip_area().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[set_tooltip_item/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def setTooltipItem__ = ???
+  private def setTooltipItem__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unselects all the icons.
     *
-    * Unselects all the icons.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unselectAll(): Unit /* None */ = gtk_icon_view_unselect_all(
     this.raw.asInstanceOf[Ptr[GtkIconView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unselects the row at @path.
     *
-    * Unselects the row at @path.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[unselect_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def unselectPath__ = ???
+  private def unselectPath__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Undoes the effect of gtk_icon_view_enable_model_drag_dest(). Calling this
+  /** Undoes the effect of gtk_icon_view_enable_model_drag_dest(). Calling this
     * method sets `GtkIconView`:reorderable to %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetModelDragDest(): Unit /* None */ =
     gtk_icon_view_unset_model_drag_dest(this.raw.asInstanceOf[Ptr[GtkIconView]])
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Undoes the effect of gtk_icon_view_enable_model_drag_source(). Calling
+  /** Undoes the effect of gtk_icon_view_enable_model_drag_source(). Calling
     * this method sets `GtkIconView`:reorderable to %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetModelDragSource(): Unit /* None */ =
     gtk_icon_view_unset_model_drag_source(
@@ -711,16 +770,18 @@ class IconView(raw: Ptr[GtkIconView])
 end IconView
 
 object IconView:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkIconView` widget
     *
-    * Creates a new `GtkIconView` widget
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): IconView = new IconView(gtk_icon_view_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkIconView` widget using the specified @area to layout
+  /** Creates a new `GtkIconView` widget using the specified @area to layout
     * cells inside the icons.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withArea(area: CellArea /* Some(Ptr[GtkCellArea]) */ ): IconView =
     new IconView(
@@ -729,9 +790,10 @@ object IconView:
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkIconView` widget with the model @model.
     *
-    * Creates a new `GtkIconView` widget with the model @model.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withModel(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ ): IconView =
     new IconView(

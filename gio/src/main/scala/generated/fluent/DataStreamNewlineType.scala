@@ -2,42 +2,47 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDataStreamNewlineType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GDataStreamNewlineType is used when checking for or setting the line
+/** #GDataStreamNewlineType is used when checking for or setting the line
   * endings for a given file.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum DataStreamNewlineType(val raw: GDataStreamNewlineType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Selects "LF" line endings, common on most modern UNIX platforms.
     *
-    * Selects "LF" line endings, common on most modern UNIX platforms.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LF
       extends DataStreamNewlineType(
         GDataStreamNewlineType.G_DATA_STREAM_NEWLINE_TYPE_LF
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Selects "CR" line endings.
     *
-    * Selects "CR" line endings.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CR
       extends DataStreamNewlineType(
         GDataStreamNewlineType.G_DATA_STREAM_NEWLINE_TYPE_CR
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Selects "CR, LF" line ending, common on Microsoft Windows.
     *
-    * Selects "CR, LF" line ending, common on Microsoft Windows.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CR_LF
       extends DataStreamNewlineType(
         GDataStreamNewlineType.G_DATA_STREAM_NEWLINE_TYPE_CR_LF
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Automatically try to handle any line ending type.
     *
-    * Automatically try to handle any line ending type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ANY
       extends DataStreamNewlineType(

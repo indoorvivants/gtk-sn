@@ -12,9 +12,7 @@ import sn.gnome.gtk4.fluent.Filter
 import sn.gnome.gtk4.internal.GtkFontDialog
 import sn.gnome.pango.fluent.{FontFace, FontFamily, FontMap}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkFontDialog` object collects the arguments that are needed to present a
+/** A `GtkFontDialog` object collects the arguments that are needed to present a
   * font chooser dialog to the user, such as a title for the dialog and whether
   * it should be modal.
   *
@@ -25,29 +23,34 @@ import sn.gnome.pango.fluent.{FontFace, FontFamily, FontMap}
   *
   * See [class@Gtk.FontDialogButton] for a convenient control that uses
   * `GtkFontDialog` and presents the results.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function initiates a font selection operation by presenting a dialog
+  /** This function initiates a font selection operation by presenting a dialog
     * to the user for selecting a font face (i.e. a font family and style, but
     * not a specific font size).
     *
     * The @callback will be called when the dialog is dismissed. It should call
     * [method@Gtk.FontDialog.choose_face_finish] to obtain the result.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[choose_face/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def chooseFace__ = ???
+  private def chooseFace__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes the [method@Gtk.FontDialog.choose_face] call and returns the
+  /** Finishes the [method@Gtk.FontDialog.choose_face] call and returns the
     * resulting font face.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def chooseFaceFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
@@ -61,27 +64,29 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function initiates a font selection operation by presenting a dialog
+  /** This function initiates a font selection operation by presenting a dialog
     * to the user for selecting a font family.
     *
     * The @callback will be called when the dialog is dismissed. It should call
     * [method@Gtk.FontDialog.choose_family_finish] to obtain the result.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[choose_family/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def chooseFamily__ = ???
+  private def chooseFamily__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes the [method@Gtk.FontDialog.choose_family] call and returns the
+  /** Finishes the [method@Gtk.FontDialog.choose_family] call and returns the
     * resulting family.
     *
     * This function never returns an error. If the operation is not finished
     * successfully, the value passed as @initial_value to
     * [method@Gtk.FontDialog.choose_family] is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def chooseFamilyFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
@@ -95,9 +100,7 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function initiates a font selection operation by presenting a dialog
+  /** This function initiates a font selection operation by presenting a dialog
     * to the user for selecting a font.
     *
     * The @callback will be called when the dialog is dismissed. It should call
@@ -105,15 +108,16 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     *
     * If you want to let the user select font features as well, use
     * [method@Gtk.FontDialog.choose_font_and_features] instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[choose_font/<method parameters>/initial_value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
-  def chooseFont__ = ???
+  private def chooseFont__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function initiates a font selection operation by presenting a dialog
+  /** This function initiates a font selection operation by presenting a dialog
     * to the user for selecting a font and font features.
     *
     * Font features affect how the font is rendered, for example enabling glyph
@@ -122,36 +126,42 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     * The @callback will be called when the dialog is dismissed. It should call
     * [method@Gtk.FontDialog.choose_font_and_features_finish] to obtain the
     * result.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[choose_font_and_features/<method parameters>/initial_value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
-  def chooseFontAndFeatures__ = ???
+  private def chooseFontAndFeatures__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes the [method@Gtk.FontDialog.choose_font_and_features] call and
+  /** Finishes the [method@Gtk.FontDialog.choose_font_and_features] call and
     * returns the resulting font description and font features.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method choose_font_and_features_finish contains an OUT parameter, which is not supported yet"
+    "[choose_font_and_features_finish]: Method choose_font_and_features_finish contains an OUT parameter, which is not supported yet"
   )
-  def chooseFontAndFeaturesFinish__ = ???
+  private def chooseFontAndFeaturesFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes the [method@Gtk.FontDialog.choose_font] call and returns the
+  /** Finishes the [method@Gtk.FontDialog.choose_font] call and returns the
     * resulting font description.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[choose_font_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
-  def chooseFontFinish__ = ???
+  private def chooseFontFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the filter that decides which fonts to display in the font chooser
+  /** Returns the filter that decides which fonts to display in the font chooser
     * dialog.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFilter(): Filter /* None */ = new Filter(
     gtk_font_dialog_get_filter(
@@ -159,10 +169,11 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the fontmap from which fonts are selected, or `NULL` for the
+  /** Returns the fontmap from which fonts are selected, or `NULL` for the
     * default fontmap.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFontMap(): FontMap /* None */ = new FontMap(
     gtk_font_dialog_get_font_map(
@@ -170,27 +181,30 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the language for which font features are applied.
     *
-    * Returns the language for which font features are applied.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
+    "[get_language/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
   )
-  def getLanguage__ = ???
+  private def getLanguage__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the font chooser dialog blocks interaction with the parent
+  /** Returns whether the font chooser dialog blocks interaction with the parent
     * window while it is presented.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModal(): Boolean /* None */ = gtk_font_dialog_get_modal(
     this.raw.asInstanceOf[Ptr[GtkFontDialog]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the title that will be shown on the font chooser dialog.
     *
-    * Returns the title that will be shown on the font chooser dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_font_dialog_get_title(
@@ -198,13 +212,14 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a filter that decides which fonts to display in the font chooser
+  /** Adds a filter that decides which fonts to display in the font chooser
     * dialog.
     *
     * The `GtkFilter` must be able to handle both `PangoFontFamily` and
     * `PangoFontFace` objects.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFilter(
       filter: Option[Filter /* Some(Ptr[GtkFilter]) */ ]
@@ -215,11 +230,12 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[GtkFilter]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the fontmap from which fonts are selected.
+  /** Sets the fontmap from which fonts are selected.
     *
     * If @fontmap is `NULL`, the default fontmap is used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFontMap(
       fontmap: Option[
@@ -236,19 +252,21 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the language for which font features are applied.
     *
-    * Sets the language for which font features are applied.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
+    "[set_language/<method parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
   )
-  def setLanguage__ = ???
+  private def setLanguage__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the font chooser dialog blocks interaction with the parent
+  /** Sets whether the font chooser dialog blocks interaction with the parent
     * window while it is presented.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -257,9 +275,10 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     gboolean(gint((if modal == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the title that will be shown on the font chooser dialog.
     *
-    * Sets the title that will be shown on the font chooser dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
       title: String | CString /* Some(CString) */
@@ -279,9 +298,10 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
 end FontDialog
 
 object FontDialog:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkFontDialog` object.
     *
-    * Creates a new `GtkFontDialog` object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): FontDialog = new FontDialog(gtk_font_dialog_new().asInstanceOf)
 end FontDialog

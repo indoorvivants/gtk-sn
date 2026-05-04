@@ -14,9 +14,7 @@ import sn.gnome.gio.internal.GDebugControllerDBus
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.gobject.fluent.Object
 
-/**  COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  *  #GDebugControllerDBus is an implementation of #GDebugController which exposes
+/**  #GDebugControllerDBus is an implementation of #GDebugController which exposes
   *  debug settings as a D-Bus object.
   *
   *  It is a #GInitable object, and will register an object at
@@ -123,6 +121,8 @@ import sn.gnome.gobject.fluent.Object
   *      return polkit_authorization_result_get_is_authorized (auth_result);
   *    }
   *  ]|
+  *
+  *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
 class DebugControllerDBus(raw: Ptr[GDebugControllerDBus])
     extends Object(raw.asInstanceOf),
@@ -131,9 +131,7 @@ class DebugControllerDBus(raw: Ptr[GDebugControllerDBus])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Stop the debug controller, unregistering its object from the bus.
+  /** Stop the debug controller, unregistering its object from the bus.
     *
     * Any pending method calls to the object will complete successfully, but new
     * ones will return an error. This method will block until all pending
@@ -150,6 +148,9 @@ class DebugControllerDBus(raw: Ptr[GDebugControllerDBus])
     *
     * Calling this method from within a #GDebugControllerDBus::authorize signal
     * handler will cause a deadlock and must not be done.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def stop(): Unit /* None */ = g_debug_controller_dbus_stop(
     this.raw.asInstanceOf[Ptr[GDebugControllerDBus]]
@@ -158,15 +159,16 @@ class DebugControllerDBus(raw: Ptr[GDebugControllerDBus])
 end DebugControllerDBus
 
 object DebugControllerDBus:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a new #GDebugControllerDBus and synchronously initialize it.
+  /** Create a new #GDebugControllerDBus and synchronously initialize it.
     *
     * Initializing the object will export the debug object on @connection. The
     * object will remain registered until the last reference to the
     * #GDebugControllerDBus is dropped.
     *
     * Initialization may fail if registering the object on @connection fails.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,

@@ -6,8 +6,8 @@ import _root_.scala.scalanative.unsafe.*
 
 object GdkPixbuf:
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[pixbuf_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def pixbufErrorQuark() = ???
+  private def pixbufErrorQuark() = ???
 
 end GdkPixbuf

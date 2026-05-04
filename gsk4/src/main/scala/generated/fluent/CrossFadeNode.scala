@@ -7,18 +7,20 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskCrossFadeNode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A render node cross fading between two child nodes.
   *
-  * A render node cross fading between two child nodes.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class CrossFadeNode(raw: Ptr[GskCrossFadeNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the child `GskRenderNode` at the end of the cross-fade.
     *
-    * Retrieves the child `GskRenderNode` at the end of the cross-fade.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEndChild(): RenderNode /* None */ = new RenderNode(
     gsk_cross_fade_node_get_end_child(
@@ -26,17 +28,19 @@ class CrossFadeNode(raw: Ptr[GskCrossFadeNode])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the progress value of the cross fade.
     *
-    * Retrieves the progress value of the cross fade.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getProgress(): Float /* None */ = gsk_cross_fade_node_get_progress(
     this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the child `GskRenderNode` at the beginning of the cross-fade.
     *
-    * Retrieves the child `GskRenderNode` at the beginning of the cross-fade.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStartChild(): RenderNode /* None */ = new RenderNode(
     gsk_cross_fade_node_get_start_child(
@@ -47,9 +51,10 @@ class CrossFadeNode(raw: Ptr[GskCrossFadeNode])
 end CrossFadeNode
 
 object CrossFadeNode:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a `GskRenderNode` that will do a cross-fade between @start and @end.
     *
-    * Creates a `GskRenderNode` that will do a cross-fade between @start and @end.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       start: RenderNode /* Some(Ptr[GskRenderNode]) */,

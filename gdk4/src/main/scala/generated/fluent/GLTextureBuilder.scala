@@ -10,9 +10,7 @@ import sn.gnome.gdk4.internal.GdkGLTextureBuilder
 import sn.gnome.glib.internal.{gboolean, gint, gpointer, guint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GdkGLTextureBuilder` is a buider used to construct [class@Gdk.Texture]
+/** `GdkGLTextureBuilder` is a buider used to construct [class@Gdk.Texture]
   * objects from GL textures.
   *
   * The operation is quite simple: Create a texture builder, set all the
@@ -24,15 +22,16 @@ import sn.gnome.gobject.fluent.Object
   *
   * `GdkGLTextureBuilder` can be used for quick one-shot construction of
   * textures as well as kept around and reused to construct multiple textures.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Builds a new `GdkTexture` with the values set up in the builder.
+  /** Builds a new `GdkTexture` with the values set up in the builder.
     *
     * The `destroy` function gets called when the returned texture gets
     * released; either when the texture is finalized or by an explicit call to
@@ -46,16 +45,20 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     *
     * It is possible to call this function multiple times to create multiple
     * textures, possibly with changing properties in between.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
+    "[build/<method parameters>/destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
-  def build__ = ???
+  private def build__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the context previously set via gdk_gl_texture_builder_set_context()
+  /** Gets the context previously set via gdk_gl_texture_builder_set_context()
     * or %NULL if none was set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getContext(): GLContext /* None */ = new GLContext(
     gdk_gl_texture_builder_get_context(
@@ -63,9 +66,10 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the format previously set via gdk_gl_texture_builder_set_format().
     *
-    * Gets the format previously set via gdk_gl_texture_builder_set_format().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFormat(): MemoryFormat /* None */ = MemoryFormat.fromRaw(
     gdk_gl_texture_builder_get_format(
@@ -73,55 +77,61 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the texture has a mipmap.
     *
-    * Gets whether the texture has a mipmap.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasMipmap(): Boolean /* None */ =
     gdk_gl_texture_builder_get_has_mipmap(
       this.raw.asInstanceOf[Ptr[GdkGLTextureBuilder]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the height previously set via gdk_gl_texture_builder_set_height() or
+  /** Gets the height previously set via gdk_gl_texture_builder_set_height() or
     * 0 if the height wasn't set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeight(): Int /* None */ = gdk_gl_texture_builder_get_height(
     this.raw.asInstanceOf[Ptr[GdkGLTextureBuilder]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the texture id previously set via gdk_gl_texture_builder_set_id() or
+  /** Gets the texture id previously set via gdk_gl_texture_builder_set_id() or
     * 0 if the id wasn't set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getId(): UInt /* None */ = gdk_gl_texture_builder_get_id(
     this.raw.asInstanceOf[Ptr[GdkGLTextureBuilder]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GLsync` previously set via gdk_gl_texture_builder_set_sync().
     *
-    * Gets the `GLsync` previously set via gdk_gl_texture_builder_set_sync().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSync(): Ptr[Byte] /* None */ = gdk_gl_texture_builder_get_sync(
     this.raw.asInstanceOf[Ptr[GdkGLTextureBuilder]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the region previously set via
+  /** Gets the region previously set via
     * gdk_gl_texture_builder_set_update_region() or %NULL if none was set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
+    "[get_update_region/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
   )
-  def getUpdateRegion__ = ???
+  private def getUpdateRegion__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the texture previously set via
+  /** Gets the texture previously set via
     * gdk_gl_texture_builder_set_update_texture() or %NULL if none was set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUpdateTexture(): Texture /* None */ = new Texture(
     gdk_gl_texture_builder_get_update_texture(
@@ -129,22 +139,24 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the width previously set via gdk_gl_texture_builder_set_width() or 0
+  /** Gets the width previously set via gdk_gl_texture_builder_set_width() or 0
     * if the width wasn't set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWidth(): Int /* None */ = gdk_gl_texture_builder_get_width(
     this.raw.asInstanceOf[Ptr[GdkGLTextureBuilder]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the context to be used for the texture. This is the context that owns
+  /** Sets the context to be used for the texture. This is the context that owns
     * the texture.
     *
     * The context must be set before calling
     * [method@Gdk.GLTextureBuilder.build].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setContext(
       context: Option[GLContext /* Some(Ptr[GdkGLContext]) */ ]
@@ -155,9 +167,7 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
       .getOrElse(null.asInstanceOf[Ptr[GdkGLContext]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the format of the texture. The default is
+  /** Sets the format of the texture. The default is
     * `GDK_MEMORY_R8G8B8A8_PREMULTIPLIED`.
     *
     * The format is the preferred format the texture data should be downloaded
@@ -177,6 +187,9 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     *
     * Non-RGBA textures need to have swizzling parameters set up properly to be
     * usable in GSK's shaders.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFormat(
       format: MemoryFormat /* Some(GdkMemoryFormat) */
@@ -185,12 +198,13 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     format.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the texture has a mipmap. This allows the renderer and other
+  /** Sets whether the texture has a mipmap. This allows the renderer and other
     * users of the generated texture to use a higher quality downscaling.
     *
     * Typically, the `glGenerateMipmap` function is used to generate a mimap.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHasMipmap(
       has_mipmap: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -199,11 +213,12 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     gboolean(gint((if has_mipmap == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the height of the texture.
+  /** Sets the height of the texture.
     *
     * The height must be set before calling [method@Gdk.GLTextureBuilder.build].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeight(height: Int /* Some(CInt) */ ): Unit /* None */ =
     gdk_gl_texture_builder_set_height(
@@ -211,13 +226,14 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
       height
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the texture id of the texture. The texture id must remain unmodified
+  /** Sets the texture id of the texture. The texture id must remain unmodified
     * until the texture was finalized. See [method@Gdk.GLTextureBuilder.build]
     * for a longer discussion.
     *
     * The id must be set before calling [method@Gdk.GLTextureBuilder.build].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setId(
       id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -226,9 +242,7 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     guint(id)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the GLSync object to use for the texture.
+  /** Sets the GLSync object to use for the texture.
     *
     * GTK will wait on this object before using the created `GdkTexture`.
     *
@@ -236,6 +250,9 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * [method@Gdk.GLTextureBuilder.build] is responsible for freeing the sync
     * object when it is no longer needed. The texture builder does not destroy
     * it and it is the callers responsibility to make sure it doesn't leak.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSync(
       sync: Option[
@@ -248,9 +265,7 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
       .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the region to be updated by this texture. Together with
+  /** Sets the region to be updated by this texture. Together with
     * [property@Gdk.GLTextureBuilder:update-texture] this describes an update of
     * a previous texture.
     *
@@ -260,16 +275,20 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * that GTK can avoid rerendering parts that did not change.
     *
     * An example would be a screen recording where only the mouse pointer moves.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
+    "[set_update_region/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
   )
-  def setUpdateRegion__ = ???
+  private def setUpdateRegion__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the texture to be updated by this texture. See
+  /** Sets the texture to be updated by this texture. See
     * [method@Gdk.GLTextureBuilder.set_update_region] for an explanation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUpdateTexture(
       texture: Option[Texture /* Some(Ptr[GdkTexture]) */ ]
@@ -280,11 +299,12 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
       .getOrElse(null.asInstanceOf[Ptr[GdkTexture]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the width of the texture.
+  /** Sets the width of the texture.
     *
     * The width must be set before calling [method@Gdk.GLTextureBuilder.build].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWidth(width: Int /* Some(CInt) */ ): Unit /* None */ =
     gdk_gl_texture_builder_set_width(
@@ -295,9 +315,10 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
 end GLTextureBuilder
 
 object GLTextureBuilder:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new texture builder.
     *
-    * Creates a new texture builder.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): GLTextureBuilder = new GLTextureBuilder(
     gdk_gl_texture_builder_new().asInstanceOf

@@ -14,11 +14,12 @@ import sn.gnome.gio.internal.GDBusActionGroup
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GDBusActionGroup is an implementation of the #GActionGroup interface that
+/** #GDBusActionGroup is an implementation of the #GActionGroup interface that
   * can be used as a proxy for an action group that is exported over D-Bus with
   * g_dbus_connection_export_action_group().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusActionGroup(raw: Ptr[GDBusActionGroup])
     extends Object(raw.asInstanceOf),
@@ -30,9 +31,7 @@ class DBusActionGroup(raw: Ptr[GDBusActionGroup])
 end DBusActionGroup
 
 object DBusActionGroup:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains a #GDBusActionGroup for the action group which is exported at the
+  /** Obtains a #GDBusActionGroup for the action group which is exported at the
     * given @bus_name and @object_path.
     *
     * The thread default main context is taken at the time of this call. All
@@ -45,6 +44,9 @@ object DBusActionGroup:
     * already be filled in. The correct thing to do is connect the signals for
     * the action group to monitor for changes and then to call
     * g_action_group_list_actions() to get the initial list.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def get(
       connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,

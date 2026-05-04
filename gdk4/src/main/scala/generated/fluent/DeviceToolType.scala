@@ -2,63 +2,72 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkDeviceToolType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Indicates the specific type of tool being used being a tablet. Such as an
+/** Indicates the specific type of tool being used being a tablet. Such as an
   * airbrush, pencil, etc.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum DeviceToolType(val raw: GdkDeviceToolType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tool is of an unknown type.
     *
-    * Tool is of an unknown type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN
       extends DeviceToolType(GdkDeviceToolType.GDK_DEVICE_TOOL_TYPE_UNKNOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tool is a standard tablet stylus.
     *
-    * Tool is a standard tablet stylus.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PEN extends DeviceToolType(GdkDeviceToolType.GDK_DEVICE_TOOL_TYPE_PEN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tool is standard tablet eraser.
     *
-    * Tool is standard tablet eraser.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ERASER
       extends DeviceToolType(GdkDeviceToolType.GDK_DEVICE_TOOL_TYPE_ERASER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tool is a brush stylus.
     *
-    * Tool is a brush stylus.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BRUSH
       extends DeviceToolType(GdkDeviceToolType.GDK_DEVICE_TOOL_TYPE_BRUSH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tool is a pencil stylus.
     *
-    * Tool is a pencil stylus.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PENCIL
       extends DeviceToolType(GdkDeviceToolType.GDK_DEVICE_TOOL_TYPE_PENCIL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tool is an airbrush stylus.
     *
-    * Tool is an airbrush stylus.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AIRBRUSH
       extends DeviceToolType(GdkDeviceToolType.GDK_DEVICE_TOOL_TYPE_AIRBRUSH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tool is a mouse.
     *
-    * Tool is a mouse.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MOUSE
       extends DeviceToolType(GdkDeviceToolType.GDK_DEVICE_TOOL_TYPE_MOUSE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tool is a lens cursor.
     *
-    * Tool is a lens cursor.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LENS extends DeviceToolType(GdkDeviceToolType.GDK_DEVICE_TOOL_TYPE_LENS)
 end DeviceToolType

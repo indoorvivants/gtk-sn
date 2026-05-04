@@ -9,15 +9,16 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.internal.GtkBookmarkList
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkBookmarkList` is a list model that wraps `GBookmarkFile`.
+/** `GtkBookmarkList` is a list model that wraps `GBookmarkFile`.
   *
   * It presents a `GListModel` and fills it asynchronously with the `GFileInfo`s
   * returned from that function.
   *
   * The `GFileInfo`s in the list have some attributes in the recent namespace
   * added: `recent::private` (boolean) and `recent:applications` (stringv).
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class BookmarkList(raw: Ptr[GtkBookmarkList])
     extends Object(raw.asInstanceOf),
@@ -25,9 +26,10 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the attributes queried on the children.
     *
-    * Gets the attributes queried on the children.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributes()(using Zone): String /* None */ = fromCString(
     gtk_bookmark_list_get_attributes(
@@ -35,9 +37,10 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the filename of the bookmark file that this list is loading.
     *
-    * Returns the filename of the bookmark file that this list is loading.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFilename()(using Zone): String /* None */ = fromCString(
     gtk_bookmark_list_get_filename(
@@ -45,31 +48,34 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the IO priority to use while loading file.
     *
-    * Gets the IO priority to use while loading file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIoPriority(): Int /* None */ = gtk_bookmark_list_get_io_priority(
     this.raw.asInstanceOf[Ptr[GtkBookmarkList]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the files are currently being loaded.
+  /** Returns %TRUE if the files are currently being loaded.
     *
     * Files will be added to @self from time to time while loading is going on.
     * The order in which are added is undefined and may change in between runs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isLoading(): Boolean /* None */ = gtk_bookmark_list_is_loading(
     this.raw.asInstanceOf[Ptr[GtkBookmarkList]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the @attributes to be enumerated and starts the enumeration.
+  /** Sets the @attributes to be enumerated and starts the enumeration.
     *
     * If @attributes is %NULL, no attributes will be queried, but a list of
     * `GFileInfo`s will still be created.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributes(
       attributes: Option[String | CString /* Some(CString) */ ]
@@ -80,11 +86,12 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the IO priority to use while loading files.
+  /** Sets the IO priority to use while loading files.
     *
     * The default IO priority is %G_PRIORITY_DEFAULT.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIoPriority(io_priority: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_bookmark_list_set_io_priority(
@@ -103,9 +110,10 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
 end BookmarkList
 
 object BookmarkList:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkBookmarkList` with the given @attributes.
     *
-    * Creates a new `GtkBookmarkList` with the given @attributes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       filename: Option[String | CString /* Some(CString) */ ],

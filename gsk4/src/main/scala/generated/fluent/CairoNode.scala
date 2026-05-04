@@ -7,50 +7,54 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskCairoNode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A render node for a Cairo surface.
   *
-  * A render node for a Cairo surface.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class CairoNode(raw: Ptr[GskCairoNode]) extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a Cairo context for drawing using the surface associated to the
+  /** Creates a Cairo context for drawing using the surface associated to the
     * render node.
     *
     * If no surface exists yet, a surface will be created optimized for
     * rendering to @renderer.
-    */
-  @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
-  )
-  def getDrawContext__ = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Retrieves the Cairo surface used by the render node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
+    "[get_draw_context/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def getSurface__ = ???
+  private def getDrawContext__ = ???
+
+  /** Retrieves the Cairo surface used by the render node.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[get_surface/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
+  )
+  private def getSurface__ = ???
 
 end CairoNode
 
 object CairoNode:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GskRenderNode` that will render a cairo surface into the area
+  /** Creates a `GskRenderNode` that will render a cairo surface into the area
     * given by @bounds.
     *
     * You can draw to the cairo surface using
     * [method@Gsk.CairoNode.get_draw_context].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end CairoNode

@@ -8,17 +8,19 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkNotebookPage
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** `GtkNotebookPage` is an auxiliary object used by `GtkNotebook`.
   *
-  * `GtkNotebookPage` is an auxiliary object used by `GtkNotebook`.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class NotebookPage(raw: Ptr[GtkNotebookPage]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the notebook child to which @page belongs.
     *
-    * Returns the notebook child to which @page belongs.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_notebook_page_get_child(

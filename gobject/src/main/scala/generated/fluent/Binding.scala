@@ -8,9 +8,7 @@ import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.{BindingFlags, Object}
 import sn.gnome.gobject.internal.GBinding
 
-/**  COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  *  #GBinding is the representation of a binding between a property on a
+/**  #GBinding is the representation of a binding between a property on a
   *  #GObject instance (or source) and another property on another #GObject
   *  instance (or target).
   *
@@ -88,46 +86,49 @@ import sn.gnome.gobject.internal.GBinding
   *  binding, source, and target instances to drop.
   *
   *  #GBinding is available since GObject 2.26
+  *
+  *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
 class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the #GObject instance used as the source of the binding.
+  /** Retrieves the #GObject instance used as the source of the binding.
     *
     * A #GBinding can outlive the source #GObject as the binding does not hold a
     * strong reference to the source. If the source is destroyed before the
     * binding then this function will return %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dupSource(): Object /* None */ = new Object(
     g_binding_dup_source(this.raw.asInstanceOf[Ptr[GBinding]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the #GObject instance used as the target of the binding.
+  /** Retrieves the #GObject instance used as the target of the binding.
     *
     * A #GBinding can outlive the target #GObject as the binding does not hold a
     * strong reference to the target. If the target is destroyed before the
     * binding then this function will return %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dupTarget(): Object /* None */ = new Object(
     g_binding_dup_target(this.raw.asInstanceOf[Ptr[GBinding]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the flags passed when constructing the #GBinding.
     *
-    * Retrieves the flags passed when constructing the #GBinding.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFlags(): BindingFlags /* None */ = BindingFlags.fromRaw(
     g_binding_get_flags(this.raw.asInstanceOf[Ptr[GBinding]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the #GObject instance used as the source of the binding.
+  /** Retrieves the #GObject instance used as the source of the binding.
     *
     * A #GBinding can outlive the source #GObject as the binding does not hold a
     * strong reference to the source. If the source is destroyed before the
@@ -137,15 +138,19 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * different threads as otherwise the pointer returned from this function
     * might become invalid if the source is finalized from another thread in the
     * meantime.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSource(): Object /* None */ = new Object(
     g_binding_get_source(this.raw.asInstanceOf[Ptr[GBinding]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the name of the property of #GBinding:source used as the source
+  /** Retrieves the name of the property of #GBinding:source used as the source
     * of the binding.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSourceProperty()(using Zone): String /* None */ = fromCString(
     g_binding_get_source_property(
@@ -153,9 +158,7 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the #GObject instance used as the target of the binding.
+  /** Retrieves the #GObject instance used as the target of the binding.
     *
     * A #GBinding can outlive the target #GObject as the binding does not hold a
     * strong reference to the target. If the target is destroyed before the
@@ -165,15 +168,19 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * different threads as otherwise the pointer returned from this function
     * might become invalid if the target is finalized from another thread in the
     * meantime.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTarget(): Object /* None */ = new Object(
     g_binding_get_target(this.raw.asInstanceOf[Ptr[GBinding]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the name of the property of #GBinding:target used as the target
+  /** Retrieves the name of the property of #GBinding:target used as the target
     * of the binding.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTargetProperty()(using Zone): String /* None */ = fromCString(
     g_binding_get_target_property(
@@ -181,9 +188,7 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Explicitly releases the binding between the source and the target property
+  /** Explicitly releases the binding between the source and the target property
     * expressed by @binding.
     *
     * This function will release the reference that is being held on the @binding
@@ -194,6 +199,9 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * Note however that this function does not take ownership of @binding, it
     * only unrefs the reference that was initially created by
     * g_object_bind_property() and is owned by the binding.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unbind(): Unit /* None */ = g_binding_unbind(
     this.raw.asInstanceOf[Ptr[GBinding]]

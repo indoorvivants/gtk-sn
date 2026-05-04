@@ -2,38 +2,43 @@ package sn.gnome.gdkpixbuf.fluent
 
 import _root_.sn.gnome.gdkpixbuf.internal.GdkPixbufRotation
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The possible rotations which can be passed to gdk_pixbuf_rotate_simple().
+/** The possible rotations which can be passed to gdk_pixbuf_rotate_simple().
   *
   * To make them easier to use, their numerical values are the actual degrees.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PixbufRotation(val raw: GdkPixbufRotation):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No rotation.
     *
-    * No rotation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends PixbufRotation(GdkPixbufRotation.GDK_PIXBUF_ROTATE_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Rotate by 90 degrees.
     *
-    * Rotate by 90 degrees.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COUNTERCLOCKWISE
       extends PixbufRotation(
         GdkPixbufRotation.GDK_PIXBUF_ROTATE_COUNTERCLOCKWISE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Rotate by 180 degrees.
     *
-    * Rotate by 180 degrees.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UPSIDEDOWN
       extends PixbufRotation(GdkPixbufRotation.GDK_PIXBUF_ROTATE_UPSIDEDOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Rotate by 270 degrees.
     *
-    * Rotate by 270 degrees.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CLOCKWISE
       extends PixbufRotation(GdkPixbufRotation.GDK_PIXBUF_ROTATE_CLOCKWISE)

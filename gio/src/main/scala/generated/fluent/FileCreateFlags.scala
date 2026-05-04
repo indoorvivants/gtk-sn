@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GFileCreateFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used when an operation may create a file.
   *
-  * Flags used when an operation may create a file.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileCreateFlags private (val raw: GFileCreateFlags):
   def is(kv: FileCreateFlags): Boolean =
@@ -32,36 +33,40 @@ object FileCreateFlags:
     def |(other: FileCreateFlags) =
       FileCreateFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used when an operation may create a file.
     *
-    * Flags used when an operation may create a file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GFileCreateFlags, name: String)
       extends FileCreateFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GFileCreateFlags.G_FILE_CREATE_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Create a file that can only be accessed by the current user.
       *
-      * Create a file that can only be accessed by the current user.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case PRIVATE
         extends KnownValue(GFileCreateFlags.G_FILE_CREATE_PRIVATE, "PRIVATE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Replace the destination as if it didn't exist before. Don't try to keep
+    /** Replace the destination as if it didn't exist before. Don't try to keep
       * any old permissions, replace instead of following links. This is
       * generally useful if you're doing a "copy over" rather than a "save new
       * version of" replace operation. You can think of it as "unlink
       * destination" before writing to it, although the implementation may not
       * be exactly like that. This flag can only be used with g_file_replace()
       * and its variants, including g_file_replace_contents(). Since 2.20
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case REPLACE_DESTINATION
         extends KnownValue(

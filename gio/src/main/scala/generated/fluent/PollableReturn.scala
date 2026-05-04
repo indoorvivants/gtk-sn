@@ -2,9 +2,7 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GPollableReturn
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Return value for various IO operations that signal errors via the return
+/** Return value for various IO operations that signal errors via the return
   * value and not necessarily via a #GError.
   *
   * This enum exists to be able to return errors to callers without having to
@@ -13,23 +11,29 @@ import _root_.sn.gnome.gio.internal.GPollableReturn
   *
   * In case of %G_POLLABLE_RETURN_FAILED a #GError should be set for the
   * operation to give details about the error that happened.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PollableReturn(val raw: GPollableReturn):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Generic error condition for when an operation fails.
     *
-    * Generic error condition for when an operation fails.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FAILED extends PollableReturn(GPollableReturn.G_POLLABLE_RETURN_FAILED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The operation was successfully finished.
     *
-    * The operation was successfully finished.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OK extends PollableReturn(GPollableReturn.G_POLLABLE_RETURN_OK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The operation would block.
     *
-    * The operation would block.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WOULD_BLOCK
       extends PollableReturn(GPollableReturn.G_POLLABLE_RETURN_WOULD_BLOCK)

@@ -2,9 +2,7 @@ package sn.gnome.gsk4.fluent
 
 import _root_.sn.gnome.gsk4.internal.GskLineCap
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Specifies how to render the start and end points of contours or dashes when
+/** Specifies how to render the start and end points of contours or dashes when
   * stroking.
   *
   * The default line cap style is `GSK_LINE_CAP_BUTT`.
@@ -15,23 +13,29 @@ import _root_.sn.gnome.gsk4.internal.GskLineCap
   * media="(prefers-color-scheme: dark)"> <img alt="Line Cap Styles"
   * src="caps-light.png"> </picture> <figcaption>GSK_LINE_CAP_BUTT,
   * GSK_LINE_CAP_ROUND, GSK_LINE_CAP_SQUARE</figcaption> </figure>
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum LineCap(val raw: GskLineCap):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Start and stop the line exactly at the start and end point
     *
-    * Start and stop the line exactly at the start and end point
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BUTT extends LineCap(GskLineCap.GSK_LINE_CAP_BUTT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Use a round ending, the center of the circle is the start or end point
     *
-    * Use a round ending, the center of the circle is the start or end point
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ROUND extends LineCap(GskLineCap.GSK_LINE_CAP_ROUND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** use squared ending, the center of the square is the start or end point
     *
-    * use squared ending, the center of the square is the start or end point
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SQUARE extends LineCap(GskLineCap.GSK_LINE_CAP_SQUARE)
 end LineCap

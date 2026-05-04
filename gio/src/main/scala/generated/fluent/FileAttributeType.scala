@@ -2,83 +2,94 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GFileAttributeType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** The data types for file attributes.
   *
-  * The data types for file attributes.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum FileAttributeType(val raw: GFileAttributeType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** indicates an invalid or uninitialized type.
     *
-    * indicates an invalid or uninitialized type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID
       extends FileAttributeType(
         GFileAttributeType.G_FILE_ATTRIBUTE_TYPE_INVALID
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a null terminated UTF8 string.
     *
-    * a null terminated UTF8 string.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STRING
       extends FileAttributeType(GFileAttributeType.G_FILE_ATTRIBUTE_TYPE_STRING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a zero terminated string of non-zero bytes.
     *
-    * a zero terminated string of non-zero bytes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BYTE_STRING
       extends FileAttributeType(
         GFileAttributeType.G_FILE_ATTRIBUTE_TYPE_BYTE_STRING
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a boolean value.
     *
-    * a boolean value.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BOOLEAN
       extends FileAttributeType(
         GFileAttributeType.G_FILE_ATTRIBUTE_TYPE_BOOLEAN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** an unsigned 4-byte/32-bit integer.
     *
-    * an unsigned 4-byte/32-bit integer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UINT32
       extends FileAttributeType(GFileAttributeType.G_FILE_ATTRIBUTE_TYPE_UINT32)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a signed 4-byte/32-bit integer.
     *
-    * a signed 4-byte/32-bit integer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INT32
       extends FileAttributeType(GFileAttributeType.G_FILE_ATTRIBUTE_TYPE_INT32)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** an unsigned 8-byte/64-bit integer.
     *
-    * an unsigned 8-byte/64-bit integer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UINT64
       extends FileAttributeType(GFileAttributeType.G_FILE_ATTRIBUTE_TYPE_UINT64)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a signed 8-byte/64-bit integer.
     *
-    * a signed 8-byte/64-bit integer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INT64
       extends FileAttributeType(GFileAttributeType.G_FILE_ATTRIBUTE_TYPE_INT64)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a #GObject.
     *
-    * a #GObject.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OBJECT
       extends FileAttributeType(GFileAttributeType.G_FILE_ATTRIBUTE_TYPE_OBJECT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a %NULL terminated char **. Since 2.22
     *
-    * a %NULL terminated char **. Since 2.22
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STRINGV
       extends FileAttributeType(

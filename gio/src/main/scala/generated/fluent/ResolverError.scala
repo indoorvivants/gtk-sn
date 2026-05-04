@@ -2,30 +2,34 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GResolverError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * An error code used with %G_RESOLVER_ERROR in a #GError returned from a
+/** An error code used with %G_RESOLVER_ERROR in a #GError returned from a
   * #GResolver routine.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ResolverError(val raw: GResolverError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the requested name/address/service was not found
     *
-    * the requested name/address/service was not found
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_FOUND
       extends ResolverError(GResolverError.G_RESOLVER_ERROR_NOT_FOUND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * the requested information could not be looked up due to a network error or
+  /** the requested information could not be looked up due to a network error or
     * similar problem
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TEMPORARY_FAILURE
       extends ResolverError(GResolverError.G_RESOLVER_ERROR_TEMPORARY_FAILURE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** unknown error
     *
-    * unknown error
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INTERNAL extends ResolverError(GResolverError.G_RESOLVER_ERROR_INTERNAL)
 end ResolverError

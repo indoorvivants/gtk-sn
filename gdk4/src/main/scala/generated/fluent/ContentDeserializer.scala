@@ -10,9 +10,7 @@ import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GdkContentDeserializer` is used to deserialize content received via
+/** A `GdkContentDeserializer` is used to deserialize content received via
   * inter-application data transfers.
   *
   * The `GdkContentDeserializer` transforms serialized content that is
@@ -23,6 +21,9 @@ import sn.gnome.gobject.internal.GType
   * functions, use [func@content_register_deserializer].
   *
   * Also see [class@Gdk.ContentSerializer].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     extends Object(raw.asInstanceOf),
@@ -30,12 +31,13 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the cancellable for the current operation.
+  /** Gets the cancellable for the current operation.
     *
     * This is the `GCancellable` that was passed to
     * [func@Gdk.content_deserialize_async].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCancellable(): Cancellable /* None */ = new Cancellable(
     gdk_content_deserializer_get_cancellable(
@@ -43,20 +45,22 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GType` to create an instance of.
     *
-    * Gets the `GType` to create an instance of.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getGtype(): GType /* None */ = gdk_content_deserializer_get_gtype(
     this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the input stream for the current operation.
+  /** Gets the input stream for the current operation.
     *
     * This is the stream that was passed to
     * [func@Gdk.content_deserialize_async].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInputStream(): InputStream /* None */ = new InputStream(
     gdk_content_deserializer_get_input_stream(
@@ -64,9 +68,10 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the mime type to deserialize from.
     *
-    * Gets the mime type to deserialize from.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMimeType()(using Zone): String /* None */ = fromCString(
     gdk_content_deserializer_get_mime_type(
@@ -74,73 +79,80 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the I/O priority for the current operation.
+  /** Gets the I/O priority for the current operation.
     *
     * This is the priority that was passed to
     * [func@Gdk.content_deserialize_async].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPriority(): Int /* None */ = gdk_content_deserializer_get_priority(
     this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the data that was associated with the current operation.
+  /** Gets the data that was associated with the current operation.
     *
     * See [method@Gdk.ContentDeserializer.set_task_data].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTaskData(): Ptr[Byte] /* None */ =
     gdk_content_deserializer_get_task_data(
       this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the user data that was passed when the deserializer was registered.
     *
-    * Gets the user data that was passed when the deserializer was registered.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUserData(): Ptr[Byte] /* None */ =
     gdk_content_deserializer_get_user_data(
       this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GValue` to store the deserialized object in.
     *
-    * Gets the `GValue` to store the deserialized object in.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
-  def getValue__ = ???
+  private def getValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Indicate that the deserialization has ended with an error.
+  /** Indicate that the deserialization has ended with an error.
     *
     * This function consumes @error.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+    "[return_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
-  def returnError__ = ???
+  private def returnError__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Indicate that the deserialization has been successfully completed.
     *
-    * Indicate that the deserialization has been successfully completed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def returnSuccess(): Unit /* None */ =
     gdk_content_deserializer_return_success(
       this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Associate data with the current deserialization operation.
     *
-    * Associate data with the current deserialization operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
+    "[set_task_data/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
-  def setTaskData__ = ???
+  private def setTaskData__ = ???
 
 end ContentDeserializer

@@ -2,47 +2,52 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GNotificationPriority
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Priority levels for #GNotifications.
   *
-  * Priority levels for #GNotifications.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum NotificationPriority(val raw: GNotificationPriority):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * the default priority, to be used for the majority of notifications (for
+  /** the default priority, to be used for the majority of notifications (for
     * example email messages, software updates, completed download/sync
     * operations)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NORMAL
       extends NotificationPriority(
         GNotificationPriority.G_NOTIFICATION_PRIORITY_NORMAL
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * for notifications that do not require immediate attention - typically used
+  /** for notifications that do not require immediate attention - typically used
     * for contextual background information, such as contact birthdays or local
     * weather
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LOW
       extends NotificationPriority(
         GNotificationPriority.G_NOTIFICATION_PRIORITY_LOW
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * for events that require more attention, usually because responses are
+  /** for events that require more attention, usually because responses are
     * time-sensitive (for example chat and SMS messages or alarms)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HIGH
       extends NotificationPriority(
         GNotificationPriority.G_NOTIFICATION_PRIORITY_HIGH
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * for urgent notifications, or notifications that require a response in a
+  /** for urgent notifications, or notifications that require a response in a
     * short space of time (for example phone calls or emergency warnings)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case URGENT
       extends NotificationPriority(

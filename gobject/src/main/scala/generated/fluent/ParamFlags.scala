@@ -2,12 +2,13 @@ package sn.gnome.gobject.fluent
 
 import _root_.sn.gnome.gobject.internal.GParamFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Through the #GParamFlags flag values, certain aspects of parameters can be
+/** Through the #GParamFlags flag values, certain aspects of parameters can be
   * configured.
   *
   * See also: %G_PARAM_STATIC_STRINGS
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ParamFlags private (val raw: GParamFlags):
   def is(kv: ParamFlags): Boolean =
@@ -35,96 +36,108 @@ object ParamFlags:
     def |(other: ParamFlags) =
       ParamFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Through the #GParamFlags flag values, certain aspects of parameters can be
+  /** Through the #GParamFlags flag values, certain aspects of parameters can be
     * configured.
     *
     * See also: %G_PARAM_STATIC_STRINGS
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GParamFlags, name: String)
       extends ParamFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the parameter is readable
       *
-      * the parameter is readable
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case READABLE extends KnownValue(GParamFlags.G_PARAM_READABLE, "READABLE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the parameter is writable
       *
-      * the parameter is writable
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case WRITABLE extends KnownValue(GParamFlags.G_PARAM_WRITABLE, "WRITABLE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** alias for %G_PARAM_READABLE | %G_PARAM_WRITABLE
       *
-      * alias for %G_PARAM_READABLE | %G_PARAM_WRITABLE
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case READWRITE
         extends KnownValue(GParamFlags.G_PARAM_READWRITE, "READWRITE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the parameter will be set upon object construction
       *
-      * the parameter will be set upon object construction
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CONSTRUCT
         extends KnownValue(GParamFlags.G_PARAM_CONSTRUCT, "CONSTRUCT")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the parameter can only be set upon object construction
       *
-      * the parameter can only be set upon object construction
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CONSTRUCT_ONLY
         extends KnownValue(GParamFlags.G_PARAM_CONSTRUCT_ONLY, "CONSTRUCT_ONLY")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * upon parameter conversion (see g_param_value_convert()) strict
+    /** upon parameter conversion (see g_param_value_convert()) strict
       * validation is not required
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case LAX_VALIDATION
         extends KnownValue(GParamFlags.G_PARAM_LAX_VALIDATION, "LAX_VALIDATION")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * the string used as name when constructing the parameter is guaranteed to
+    /** the string used as name when constructing the parameter is guaranteed to
       * remain valid and unmodified for the lifetime of the parameter. Since 2.8
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STATIC_NAME
         extends KnownValue(GParamFlags.G_PARAM_STATIC_NAME, "STATIC_NAME")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** internal
       *
-      * internal
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case PRIVATE extends KnownValue(GParamFlags.G_PARAM_PRIVATE, "PRIVATE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * the string used as nick when constructing the parameter is guaranteed to
+    /** the string used as nick when constructing the parameter is guaranteed to
       * remain valid and unmmodified for the lifetime of the parameter. Since
       * 2.8
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STATIC_NICK
         extends KnownValue(GParamFlags.G_PARAM_STATIC_NICK, "STATIC_NICK")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * the string used as blurb when constructing the parameter is guaranteed
+    /** the string used as blurb when constructing the parameter is guaranteed
       * to remain valid and unmodified for the lifetime of the parameter. Since
       * 2.8
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STATIC_BLURB
         extends KnownValue(GParamFlags.G_PARAM_STATIC_BLURB, "STATIC_BLURB")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * calls to g_object_set_property() for this property will not
+    /** calls to g_object_set_property() for this property will not
       * automatically result in a "notify" signal being emitted: the
       * implementation must call g_object_notify() themselves in case the
       * property actually changes. Since: 2.42.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case EXPLICIT_NOTIFY
         extends KnownValue(
@@ -132,11 +145,12 @@ object ParamFlags:
           "EXPLICIT_NOTIFY"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * the parameter is deprecated and will be removed in a future version. A
+    /** the parameter is deprecated and will be removed in a future version. A
       * warning will be generated if it is used while running with
       * G_ENABLE_DIAGNOSTIC=1. Since 2.26
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DEPRECATED
         extends KnownValue(GParamFlags.G_PARAM_DEPRECATED, "DEPRECATED")

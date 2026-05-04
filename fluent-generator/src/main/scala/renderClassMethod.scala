@@ -1,7 +1,9 @@
 import rendition.*
 
 import com.indoorvivants.gnome.gir_schema.*
-import util.boundary.*
+import util.boundary.* 
+
+import FluentErrReason.*
 
 val needsOverrideCache =
   collection.mutable.Map[(AugmentedClass, Method), Boolean]()
@@ -60,23 +62,26 @@ def renderClassMethod(cls: AugmentedClass, meth: Method)(using
 
     val methodContext = globalKnowledge.targetTypes
       .inMethod(meth.identifier)
-      .getOrElse(break(FluentErr.TargetTypesMissing(meth.identifier)))
+      .getOrElse(raise(TargetTypesMissing(meth.identifier)))
 
     val renderedParameters =
       coll.observe(
-        renderParameters(
-          meth.parameters,
-          s"method: ${meth.name}",
-          methodContext
-        )
+        inContext("<method parameters>"):
+          renderParameters(
+            meth.parameters,
+            s"method: ${meth.name}",
+            methodContext
+          )
       )
 
-    val returnType = renderType(
-      meth.returnType.getOrElse(
-        break(FluentErr.MethodHasNoReturnType(meth.name))
-      ),
-      position = TypePosition.ReturnType
-    )
+    val returnType = 
+      inContext("return type"):
+        renderType(
+        meth.returnType.getOrElse(
+          raise(MethodHasNoReturnType(meth.name))
+        ),
+        position = TypePosition.ReturnType
+      )
 
     coll.addAll(returnType.effects)
 

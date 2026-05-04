@@ -2,33 +2,37 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GMountOperationResult
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GMountOperationResult is returned as a result when a request for
+/** #GMountOperationResult is returned as a result when a request for
   * information is send by the mounting operation.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum MountOperationResult(val raw: GMountOperationResult):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The request was fulfilled and the user specified data is now available
     *
-    * The request was fulfilled and the user specified data is now available
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HANDLED
       extends MountOperationResult(
         GMountOperationResult.G_MOUNT_OPERATION_HANDLED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The user requested the mount operation to be aborted
     *
-    * The user requested the mount operation to be aborted
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ABORTED
       extends MountOperationResult(
         GMountOperationResult.G_MOUNT_OPERATION_ABORTED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The request was unhandled (i.e. not implemented)
     *
-    * The request was unhandled (i.e. not implemented)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNHANDLED
       extends MountOperationResult(

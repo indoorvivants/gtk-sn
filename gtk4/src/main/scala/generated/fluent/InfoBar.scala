@@ -16,9 +16,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkInfoBar
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkInfoBar` can be used to show messages to the user without a dialog.
+/** `GtkInfoBar` can be used to show messages to the user without a dialog.
   *
   * ![An example GtkInfoBar](info-bar.png)
   *
@@ -90,6 +88,9 @@ import sn.gnome.gtk4.internal.GtkInfoBar
   * of the style classes .info, .warning, .error or .question, depending on the
   * message type. If the info bar shows a close button, that button will have
   * the .close style class applied.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class InfoBar(raw: Ptr[GtkInfoBar])
     extends Widget(raw.asInstanceOf),
@@ -99,14 +100,15 @@ class InfoBar(raw: Ptr[GtkInfoBar])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Add an activatable widget to the action area of a `GtkInfoBar`.
+  /** Add an activatable widget to the action area of a `GtkInfoBar`.
     *
     * This also connects a signal handler that will emit the
     * [signal@Gtk.InfoBar::response] signal on the message area when the widget
     * is activated. The widget is appended to the end of the message areas
     * action area.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addActionWidget(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -117,14 +119,15 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     response_id.raw.value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a button with the given text.
+  /** Adds a button with the given text.
     *
     * Clicking the button will emit the [signal@Gtk.InfoBar::response] signal
     * with the given response_id. The button is appended to the end of the info
     * bar's action area. The button widget is returned, but usually you don't
     * need it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addButton(
       button_text: String | CString /* Some(CString) */,
@@ -137,14 +140,15 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds multiple buttons.
+  /** Adds multiple buttons.
     *
     * This is the same as calling [method@Gtk.InfoBar.add_button] repeatedly.
     * The variable argument list should be %NULL-terminated as with
     * [ctor@Gtk.InfoBar.new_with_buttons]. Each button must have both text and
     * response ID.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def addButtons(
       first_button_text: String | CString /* Some(CString) */,
@@ -155,9 +159,10 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds a widget to the content area of the info bar.
     *
-    * Adds a widget to the content area of the info bar.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addChild(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_info_bar_add_child(
@@ -165,37 +170,41 @@ class InfoBar(raw: Ptr[GtkInfoBar])
       widget.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the message type of the message area.
     *
-    * Returns the message type of the message area.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMessageType(): MessageType /* None */ = MessageType.fromRaw(
     gtk_info_bar_get_message_type(this.raw.asInstanceOf[Ptr[GtkInfoBar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the info bar is currently revealed.
     *
-    * Returns whether the info bar is currently revealed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRevealed(): Boolean /* None */ = gtk_info_bar_get_revealed(
     this.raw.asInstanceOf[Ptr[GtkInfoBar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the widget will display a standard close button.
     *
-    * Returns whether the widget will display a standard close button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowCloseButton(): Boolean /* None */ =
     gtk_info_bar_get_show_close_button(
       this.raw.asInstanceOf[Ptr[GtkInfoBar]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a widget from the action area of @info_bar.
+  /** Removes a widget from the action area of @info_bar.
     *
     * The widget must have been put there by a call to
     * [method@Gtk.InfoBar.add_action_widget] or [method@Gtk.InfoBar.add_button].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeActionWidget(
       widget: Widget /* Some(Ptr[GtkWidget]) */
@@ -204,9 +213,10 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     widget.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes a widget from the content area of the info bar.
     *
-    * Removes a widget from the content area of the info bar.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeChild(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_info_bar_remove_child(
@@ -214,9 +224,10 @@ class InfoBar(raw: Ptr[GtkInfoBar])
       widget.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Emits the “response” signal with the given @response_id.
     *
-    * Emits the “response” signal with the given @response_id.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def response(response_id: ResponseType /* Some(CInt) */ ): Unit /* None */ =
     gtk_info_bar_response(
@@ -224,15 +235,16 @@ class InfoBar(raw: Ptr[GtkInfoBar])
       response_id.raw.value
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the last widget in the info bar’s action area with the given
+  /** Sets the last widget in the info bar’s action area with the given
     * response_id as the default widget for the dialog.
     *
     * Pressing “Enter” normally activates the default widget.
     *
     * Note that this function currently requires @info_bar to be added to a
     * widget hierarchy.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultResponse(
       response_id: ResponseType /* Some(CInt) */
@@ -241,11 +253,12 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     response_id.raw.value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the message type of the message area.
+  /** Sets the message type of the message area.
     *
     * GTK uses this type to determine how the message is displayed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMessageType(
       message_type: MessageType /* Some(GtkMessageType) */
@@ -254,13 +267,14 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     message_type.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the sensitivity of action widgets for @response_id.
+  /** Sets the sensitivity of action widgets for @response_id.
     *
     * Calls `gtk_widget_set_sensitive (widget, setting)` for each widget in the
     * info bars’s action area with the given @response_id. A convenient way to
     * sensitize/desensitize buttons.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setResponseSensitive(
       response_id: ResponseType /* Some(CInt) */,
@@ -271,9 +285,7 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the `GtkInfoBar` is revealed.
+  /** Sets whether the `GtkInfoBar` is revealed.
     *
     * Changing this will make @info_bar reveal or conceal itself via a sliding
     * transition.
@@ -281,6 +293,9 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     * Note: this does not show or hide @info_bar in the
     * [property@Gtk.Widget:visible] sense, so revealing has no effect if
     * [property@Gtk.Widget:visible] is %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRevealed(
       revealed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -289,11 +304,12 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     gboolean(gint((if revealed == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If true, a standard close button is shown.
+  /** If true, a standard close button is shown.
     *
     * When clicked it emits the response %GTK_RESPONSE_CLOSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowCloseButton(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -313,21 +329,23 @@ class InfoBar(raw: Ptr[GtkInfoBar])
 end InfoBar
 
 object InfoBar:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkInfoBar` object.
     *
-    * Creates a new `GtkInfoBar` object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): InfoBar = new InfoBar(gtk_info_bar_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkInfoBar` with buttons.
+  /** Creates a new `GtkInfoBar` with buttons.
     *
     * Button text/response ID pairs should be listed, with a %NULL pointer
     * ending the list. A response ID can be any positive number, or one of the
     * values in the `GtkResponseType` enumeration. If the user clicks one of
     * these dialog buttons, GtkInfoBar will emit the
     * [signal@Gtk.InfoBar::response] signal with the corresponding response ID.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def withButtons(
       first_button_text: Option[String | CString /* Some(CString) */ ],

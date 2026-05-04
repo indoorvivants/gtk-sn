@@ -2,34 +2,39 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoTextTransform
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** An enumeration that affects how Pango treats characters during shaping.
   *
-  * An enumeration that affects how Pango treats characters during shaping.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TextTransform(val raw: PangoTextTransform):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Leave text unchanged
     *
-    * Leave text unchanged
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends TextTransform(PangoTextTransform.PANGO_TEXT_TRANSFORM_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Display letters and numbers as lowercase
     *
-    * Display letters and numbers as lowercase
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LOWERCASE
       extends TextTransform(PangoTextTransform.PANGO_TEXT_TRANSFORM_LOWERCASE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Display letters and numbers as uppercase
     *
-    * Display letters and numbers as uppercase
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UPPERCASE
       extends TextTransform(PangoTextTransform.PANGO_TEXT_TRANSFORM_UPPERCASE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Display the first character of a word in titlecase
     *
-    * Display the first character of a word in titlecase
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CAPITALIZE
       extends TextTransform(PangoTextTransform.PANGO_TEXT_TRANSFORM_CAPITALIZE)

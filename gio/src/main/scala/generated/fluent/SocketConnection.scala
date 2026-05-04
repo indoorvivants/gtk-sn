@@ -18,9 +18,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.internal.GType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GSocketConnection is a #GIOStream for a connected socket. They can be
+/** #GSocketConnection is a #GIOStream for a connected socket. They can be
   * created either by #GSocketClient when connecting to a host, or by
   * #GSocketListener when accepting a new client.
   *
@@ -36,15 +34,19 @@ import sn.gnome.gobject.internal.GType
   * To close a #GSocketConnection, use g_io_stream_close(). Closing both
   * substreams of the #GIOStream separately will not close the underlying
   * #GSocket.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SocketConnection(raw: Ptr[GSocketConnection])
     extends IOStream(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Connect @connection to the specified remote address.
     *
-    * Connect @connection to the specified remote address.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def connect(
       address: SocketAddress /* Some(Ptr[GSocketAddress]) */,
@@ -60,23 +62,25 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously connect @connection to the specified remote address.
+  /** Asynchronously connect @connection to the specified remote address.
     *
     * This clears the #GSocket:blocking flag on @connection's underlying socket
     * if it is currently set.
     *
     * Use g_socket_connection_connect_finish() to retrieve the result.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[connect_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def connectAsync__ = ???
+  private def connectAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the result of a g_socket_connection_connect_async() call.
     *
-    * Gets the result of a g_socket_connection_connect_async() call.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def connectFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -88,9 +92,10 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Try to get the local address of a socket connection.
     *
-    * Try to get the local address of a socket connection.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLocalAddress(): GResult[SocketAddress /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -102,15 +107,16 @@ class SocketConnection(raw: Ptr[GSocketConnection])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Try to get the remote address of a socket connection.
+  /** Try to get the remote address of a socket connection.
     *
     * Since GLib 2.40, when used with g_socket_client_connect() or
     * g_socket_client_connect_async(), during emission of
     * %G_SOCKET_CLIENT_CONNECTING, this function will return the remote address
     * that will be used for the connection. This allows applications to print
     * e.g. "Connecting to example.com (10.42.77.3)...".
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRemoteAddress(): GResult[SocketAddress /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -122,11 +128,12 @@ class SocketConnection(raw: Ptr[GSocketConnection])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the underlying #GSocket object of the connection. This can be useful
+  /** Gets the underlying #GSocket object of the connection. This can be useful
     * if you want to do something unusual on it not supported by the
     * #GSocketConnection APIs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSocket(): Socket /* None */ = new Socket(
     g_socket_connection_get_socket(
@@ -134,10 +141,11 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if @connection is connected. This is equivalent to calling
+  /** Checks if @connection is connected. This is equivalent to calling
     * g_socket_is_connected() on @connection's underlying #GSocket.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isConnected(): Boolean /* None */ = g_socket_connection_is_connected(
     this.raw.asInstanceOf[Ptr[GSocketConnection]]
@@ -146,12 +154,13 @@ class SocketConnection(raw: Ptr[GSocketConnection])
 end SocketConnection
 
 object SocketConnection:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up the #GType to be used when creating socket connections on sockets
+  /** Looks up the #GType to be used when creating socket connections on sockets
     * with the specified @family, @type and @protocol_id.
     *
     * If no type is registered, the #GSocketConnection base type is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def factoryLookupType(
       family: SocketFamily /* Some(GSocketFamily) */,
@@ -164,12 +173,13 @@ object SocketConnection:
       gint(protocol_id)
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up the #GType to be used when creating socket connections on sockets
+  /** Looks up the #GType to be used when creating socket connections on sockets
     * with the specified @family, @type and @protocol.
     *
     * If no type is registered, the #GSocketConnection base type is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def factoryRegisterType(
       g_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,

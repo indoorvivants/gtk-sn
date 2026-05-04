@@ -9,15 +9,16 @@ import sn.gnome.gio.internal.GNetworkService
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Like #GNetworkAddress does with hostnames, #GNetworkService provides an easy
+/** Like #GNetworkAddress does with hostnames, #GNetworkService provides an easy
   * way to resolve a SRV record, and then attempt to connect to one of the hosts
   * that implements that service, handling service priority/weighting, multiple
   * IP addresses, and multiple address families.
   *
   * See #GSrvTarget for more information about SRV records, and see
   * #GSocketConnectable for an example of using the connectable interface.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class NetworkService(raw: Ptr[GNetworkService])
     extends Object(raw.asInstanceOf),
@@ -25,10 +26,11 @@ class NetworkService(raw: Ptr[GNetworkService])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the domain that @srv serves. This might be either UTF-8 or
+  /** Gets the domain that @srv serves. This might be either UTF-8 or
     * ASCII-encoded, depending on what @srv was created with.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDomain()(using Zone): String /* None */ = fromCString(
     g_network_service_get_domain(
@@ -36,9 +38,10 @@ class NetworkService(raw: Ptr[GNetworkService])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @srv's protocol name (eg, "tcp").
     *
-    * Gets @srv's protocol name (eg, "tcp").
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getProtocol()(using Zone): String /* None */ = fromCString(
     g_network_service_get_protocol(
@@ -46,10 +49,11 @@ class NetworkService(raw: Ptr[GNetworkService])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the URI scheme used to resolve proxies. By default, the service name
+  /** Gets the URI scheme used to resolve proxies. By default, the service name
     * is used as scheme.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getScheme()(using Zone): String /* None */ = fromCString(
     g_network_service_get_scheme(
@@ -57,9 +61,10 @@ class NetworkService(raw: Ptr[GNetworkService])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @srv's service name (eg, "ldap").
     *
-    * Gets @srv's service name (eg, "ldap").
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getService()(using Zone): String /* None */ = fromCString(
     g_network_service_get_service(
@@ -67,10 +72,11 @@ class NetworkService(raw: Ptr[GNetworkService])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set's the URI scheme used to resolve proxies. By default, the service name
+  /** Set's the URI scheme used to resolve proxies. By default, the service name
     * is used as scheme.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setScheme(
       scheme: String |
@@ -91,12 +97,13 @@ class NetworkService(raw: Ptr[GNetworkService])
 end NetworkService
 
 object NetworkService:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GNetworkService representing the given @service,
+  /** Creates a new #GNetworkService representing the given @service,
     * @protocol,
     *   and @domain. This will initially be unresolved; use the
     *   #GSocketConnectable interface to resolve it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       service: String |

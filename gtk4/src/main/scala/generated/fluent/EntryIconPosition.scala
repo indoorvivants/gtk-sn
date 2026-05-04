@@ -2,21 +2,24 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkEntryIconPosition
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Specifies the side of the entry at which an icon is placed.
   *
-  * Specifies the side of the entry at which an icon is placed.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum EntryIconPosition(val raw: GtkEntryIconPosition):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** At the beginning of the entry (depending on the text direction).
     *
-    * At the beginning of the entry (depending on the text direction).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PRIMARY
       extends EntryIconPosition(GtkEntryIconPosition.GTK_ENTRY_ICON_PRIMARY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** At the end of the entry (depending on the text direction).
     *
-    * At the end of the entry (depending on the text direction).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SECONDARY
       extends EntryIconPosition(GtkEntryIconPosition.GTK_ENTRY_ICON_SECONDARY)

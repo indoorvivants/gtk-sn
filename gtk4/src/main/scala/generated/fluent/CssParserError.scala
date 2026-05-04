@@ -2,44 +2,50 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkCssParserError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Errors that can occur while parsing CSS.
+/** Errors that can occur while parsing CSS.
   *
   * These errors are unexpected and will cause parts of the given CSS to be
   * ignored.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum CssParserError(val raw: GtkCssParserError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unknown failure.
     *
-    * Unknown failure.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FAILED
       extends CssParserError(GtkCssParserError.GTK_CSS_PARSER_ERROR_FAILED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The given text does not form valid syntax
     *
-    * The given text does not form valid syntax
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SYNTAX
       extends CssParserError(GtkCssParserError.GTK_CSS_PARSER_ERROR_SYNTAX)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Failed to import a resource
     *
-    * Failed to import a resource
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case IMPORT
       extends CssParserError(GtkCssParserError.GTK_CSS_PARSER_ERROR_IMPORT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The given name has not been defined
     *
-    * The given name has not been defined
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NAME extends CssParserError(GtkCssParserError.GTK_CSS_PARSER_ERROR_NAME)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The given value is not correct
     *
-    * The given value is not correct
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN_VALUE
       extends CssParserError(

@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkCellRenderer
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * An object for rendering a single cell
+/** An object for rendering a single cell
   *
   * The `GtkCellRenderer` is a base class of a set of objects used for rendering
   * a cell to a `cairo_t`. These objects are used primarily by the `GtkTreeView`
@@ -51,132 +49,148 @@ import sn.gnome.gtk4.internal.GtkCellRenderer
   * “set” property, e.g. “cell-background-set” corresponds to “cell-background”.
   * These “set” properties reflect whether a property has been set or not. You
   * should not set them independently.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class CellRenderer(raw: Ptr[GtkCellRenderer])
     extends InitiallyUnowned(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Passes an activate event to the cell renderer for possible processing.
+  /** Passes an activate event to the cell renderer for possible processing.
     * Some cell renderers may use events; for example, `GtkCellRendererToggle`
     * toggles when it gets a mouse click.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[activate/<method parameters>/background_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
-  def activate__ = ???
+  private def activate__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the aligned area used by @cell inside @cell_area. Used for finding
+  /** Gets the aligned area used by @cell inside @cell_area. Used for finding
     * the appropriate edit and focus rectangle.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_aligned_area contains an OUT parameter, which is not supported yet"
+    "[get_aligned_area]: Method get_aligned_area contains an OUT parameter, which is not supported yet"
   )
-  def getAlignedArea__ = ???
+  private def getAlignedArea__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fills in @xalign and @yalign with the appropriate values of @cell.
     *
-    * Fills in @xalign and @yalign with the appropriate values of @cell.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_alignment contains an OUT parameter, which is not supported yet"
+    "[get_alignment]: Method get_alignment contains an OUT parameter, which is not supported yet"
   )
-  def getAlignment__ = ???
+  private def getAlignment__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fills in @width and @height with the appropriate size of @cell.
     *
-    * Fills in @width and @height with the appropriate size of @cell.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_fixed_size contains an OUT parameter, which is not supported yet"
+    "[get_fixed_size]: Method get_fixed_size contains an OUT parameter, which is not supported yet"
   )
-  def getFixedSize__ = ???
+  private def getFixedSize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks whether the given `GtkCellRenderer` is expanded.
     *
-    * Checks whether the given `GtkCellRenderer` is expanded.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIsExpanded(): Boolean /* None */ = gtk_cell_renderer_get_is_expanded(
     this.raw.asInstanceOf[Ptr[GtkCellRenderer]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks whether the given `GtkCellRenderer` is an expander.
     *
-    * Checks whether the given `GtkCellRenderer` is an expander.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIsExpander(): Boolean /* None */ = gtk_cell_renderer_get_is_expander(
     this.raw.asInstanceOf[Ptr[GtkCellRenderer]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fills in @xpad and @ypad with the appropriate values of @cell.
     *
-    * Fills in @xpad and @ypad with the appropriate values of @cell.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_padding contains an OUT parameter, which is not supported yet"
+    "[get_padding]: Method get_padding contains an OUT parameter, which is not supported yet"
   )
-  def getPadding__ = ???
+  private def getPadding__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves a renderer’s natural size when rendered to @widget.
     *
-    * Retrieves a renderer’s natural size when rendered to @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_preferred_height contains an OUT parameter, which is not supported yet"
+    "[get_preferred_height]: Method get_preferred_height contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredHeight__ = ???
+  private def getPreferredHeight__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves a cell renderers’s minimum and natural height if it were
+  /** Retrieves a cell renderers’s minimum and natural height if it were
     * rendered to
     * @widget
     *   with the specified @width.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
+    "[get_preferred_height_for_width]: Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredHeightForWidth__ = ???
+  private def getPreferredHeightForWidth__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the minimum and natural size of a cell taking into account the
+  /** Retrieves the minimum and natural size of a cell taking into account the
     * widget’s preference for height-for-width management.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_preferred_size contains an OUT parameter, which is not supported yet"
+    "[get_preferred_size]: Method get_preferred_size contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredSize__ = ???
+  private def getPreferredSize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves a renderer’s natural size when rendered to @widget.
     *
-    * Retrieves a renderer’s natural size when rendered to @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_preferred_width contains an OUT parameter, which is not supported yet"
+    "[get_preferred_width]: Method get_preferred_width contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredWidth__ = ???
+  private def getPreferredWidth__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves a cell renderers’s minimum and natural width if it were rendered
+  /** Retrieves a cell renderers’s minimum and natural width if it were rendered
     * to
     * @widget
     *   with the specified @height.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
+    "[get_preferred_width_for_height]: Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredWidthForHeight__ = ???
+  private def getPreferredWidthForHeight__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether the cell renderer prefers a height-for-width layout or a
+  /** Gets whether the cell renderer prefers a height-for-width layout or a
     * width-for-height layout.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRequestMode(): SizeRequestMode /* None */ = SizeRequestMode.fromRaw(
     gtk_cell_renderer_get_request_mode(
@@ -184,18 +198,20 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the cell renderer’s sensitivity.
     *
-    * Returns the cell renderer’s sensitivity.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSensitive(): Boolean /* None */ = gtk_cell_renderer_get_sensitive(
     this.raw.asInstanceOf[Ptr[GtkCellRenderer]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Translates the cell renderer state to `GtkStateFlags`, based on the cell
+  /** Translates the cell renderer state to `GtkStateFlags`, based on the cell
     * renderer and widget sensitivity, and the given `GtkCellRenderer`State.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getState(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ],
@@ -210,25 +226,28 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the cell renderer’s visibility.
     *
-    * Returns the cell renderer’s visibility.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVisible(): Boolean /* None */ = gtk_cell_renderer_get_visible(
     this.raw.asInstanceOf[Ptr[GtkCellRenderer]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks whether the cell renderer can do something when activated.
     *
-    * Checks whether the cell renderer can do something when activated.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isActivatable(): Boolean /* None */ = gtk_cell_renderer_is_activatable(
     this.raw.asInstanceOf[Ptr[GtkCellRenderer]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the renderer’s alignment within its available space.
     *
-    * Sets the renderer’s alignment within its available space.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAlignment(
       xalign: Float /* Some(Float) */,
@@ -239,9 +258,10 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     yalign.asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the renderer size to be explicit, independent of the properties set.
     *
-    * Sets the renderer size to be explicit, independent of the properties set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFixedSize(
       width: Int /* Some(CInt) */,
@@ -252,9 +272,10 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     height
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the given `GtkCellRenderer` is expanded.
     *
-    * Sets whether the given `GtkCellRenderer` is expanded.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIsExpanded(
       is_expanded: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -263,9 +284,10 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     gboolean(gint((if is_expanded == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the given `GtkCellRenderer` is an expander.
     *
-    * Sets whether the given `GtkCellRenderer` is an expander.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIsExpander(
       is_expander: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -274,9 +296,10 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     gboolean(gint((if is_expander == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the renderer’s padding.
     *
-    * Sets the renderer’s padding.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPadding(
       xpad: Int /* Some(CInt) */,
@@ -287,9 +310,10 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     ypad
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the cell renderer’s sensitivity.
     *
-    * Sets the cell renderer’s sensitivity.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSensitive(
       sensitive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -298,9 +322,10 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     gboolean(gint((if sensitive == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the cell renderer’s visibility.
     *
-    * Sets the cell renderer’s visibility.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVisible(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -309,9 +334,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     gboolean(gint((if visible == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Invokes the virtual render function of the `GtkCellRenderer`. The three
+  /** Invokes the virtual render function of the `GtkCellRenderer`. The three
     * passed-in rectangles are areas in @cr. Most renderers will draw within
     * @cell_area;
     *   the xalign, yalign, xpad, and ypad fields of the `GtkCellRenderer`
@@ -320,32 +343,37 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     *   expander; so the @background_area rectangles for all cells tile to cover
     *   the entire
     * @window.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[snapshot/<method parameters>/background_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
-  def snapshot__ = ???
+  private def snapshot__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Starts editing the contents of this @cell, through a new `GtkCellEditable`
+  /** Starts editing the contents of this @cell, through a new `GtkCellEditable`
     * widget created by the `GtkCellRenderer`Class.start_editing virtual
     * function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[start_editing/<method parameters>/background_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
-  def startEditing__ = ???
+  private def startEditing__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Informs the cell renderer that the editing is stopped. If @canceled is
+  /** Informs the cell renderer that the editing is stopped. If @canceled is
     * %TRUE, the cell renderer will emit the `GtkCellRenderer`::editing-canceled
     * signal.
     *
     * This function should be called by cell renderer implementations in
     * response to the `GtkCellEditable::editing-done` signal of
     * `GtkCellEditable`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def stopEditing(
       canceled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */

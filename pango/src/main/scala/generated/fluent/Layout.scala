@@ -19,9 +19,7 @@ import sn.gnome.pango.fluent.{
 }
 import sn.gnome.pango.internal.PangoLayout
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `PangoLayout` structure represents an entire paragraph of text.
+/** A `PangoLayout` structure represents an entire paragraph of text.
   *
   * While complete access to the layout capabilities of Pango is provided using
   * the detailed interfaces for itemization and shaping, using that
@@ -55,74 +53,81 @@ import sn.gnome.pango.internal.PangoLayout
   *
   * It is possible, as well, to ignore the 2-D setup, and simply treat the
   * results of a `PangoLayout` as a list of lines.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Forces recomputation of any state in the `PangoLayout` that might depend
+  /** Forces recomputation of any state in the `PangoLayout` that might depend
     * on the layout's context.
     *
     * This function should be called if you make changes to the context
     * subsequent to creating the layout.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def contextChanged(): Unit /* None */ = pango_layout_context_changed(
     this.raw.asInstanceOf[Ptr[PangoLayout]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a deep copy-by-value of the layout.
+  /** Creates a deep copy-by-value of the layout.
     *
     * The attribute list, tab array, and text from the original layout are all
     * copied by value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def copy(): Layout /* None */ = new Layout(
     pango_layout_copy(this.raw.asInstanceOf[Ptr[PangoLayout]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the alignment for the layout: how partial lines are positioned within
+  /** Gets the alignment for the layout: how partial lines are positioned within
     * the horizontal space available.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAlignment(): Alignment /* None */ = Alignment.fromRaw(
     pango_layout_get_alignment(this.raw.asInstanceOf[Ptr[PangoLayout]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the attribute list for the layout, if any.
     *
-    * Gets the attribute list for the layout, if any.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
-  def getAttributes__ = ???
+  private def getAttributes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether to calculate the base direction for the layout according to
+  /** Gets whether to calculate the base direction for the layout according to
     * its contents.
     *
     * See [method@Pango.Layout.set_auto_dir].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAutoDir(): Boolean /* None */ = pango_layout_get_auto_dir(
     this.raw.asInstanceOf[Ptr[PangoLayout]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the Y position of baseline of the first line in @layout.
     *
-    * Gets the Y position of baseline of the first line in @layout.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBaseline(): Int /* None */ = pango_layout_get_baseline(
     this.raw.asInstanceOf[Ptr[PangoLayout]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Given an index within a layout, determines the positions that of the
+  /** Given an index within a layout, determines the positions that of the
     * strong and weak cursors if the insertion point is at that index.
     *
     * This is a variant of [method@Pango.Layout.get_cursor_pos] that applies
@@ -132,23 +137,28 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * <picture> <source srcset="caret-metrics-dark.png"
     * media="(prefers-color-scheme: dark)"> <img alt="Caret metrics"
     * src="caret-metrics-light.png"> </picture>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_caret_pos contains an OUT parameter, which is not supported yet"
+    "[get_caret_pos]: Method get_caret_pos contains an OUT parameter, which is not supported yet"
   )
-  def getCaretPos__ = ???
+  private def getCaretPos__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the number of Unicode characters in the the text of @layout.
     *
-    * Returns the number of Unicode characters in the the text of @layout.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCharacterCount(): Int /* None */ = pango_layout_get_character_count(
     this.raw.asInstanceOf[Ptr[PangoLayout]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the `PangoContext` used for this layout.
     *
-    * Retrieves the `PangoContext` used for this layout.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getContext(): Context /* None */ = new Context(
     pango_layout_get_context(
@@ -156,9 +166,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Given an index within a layout, determines the positions that of the
+  /** Given an index within a layout, determines the positions that of the
     * strong and weak cursors if the insertion point is at that index.
     *
     * The position of each cursor is stored as a zero-width rectangle with the
@@ -183,37 +191,40 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * cursor to the left. Typing a 'c' in this situation will insert the
     * character after the 'b', and typing another Hebrew character, like 'ג',
     * will insert it at the end.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_cursor_pos contains an OUT parameter, which is not supported yet"
+    "[get_cursor_pos]: Method get_cursor_pos contains an OUT parameter, which is not supported yet"
   )
-  def getCursorPos__ = ???
+  private def getCursorPos__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the text direction at the given character position in @layout.
     *
-    * Gets the text direction at the given character position in @layout.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDirection(index: Int /* Some(CInt) */ ): Direction /* None */ =
     Direction.fromRaw(
       pango_layout_get_direction(this.raw.asInstanceOf[Ptr[PangoLayout]], index)
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the type of ellipsization being performed for @layout.
+  /** Gets the type of ellipsization being performed for @layout.
     *
     * See [method@Pango.Layout.set_ellipsize].
     *
     * Use [method@Pango.Layout.is_ellipsized] to query whether any paragraphs
     * were actually ellipsized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEllipsize(): EllipsizeMode /* None */ = EllipsizeMode.fromRaw(
     pango_layout_get_ellipsize(this.raw.asInstanceOf[Ptr[PangoLayout]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes the logical and ink extents of @layout.
+  /** Computes the logical and ink extents of @layout.
     *
     * Logical extents are usually what you want for positioning things. Note
     * that both extents may have non-zero x and y. You may want to use those to
@@ -223,149 +234,163 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * The extents are given in layout coordinates and in Pango units; layout
     * coordinates begin at the top left corner of the layout.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_extents contains an OUT parameter, which is not supported yet"
+    "[get_extents]: Method get_extents contains an OUT parameter, which is not supported yet"
   )
-  def getExtents__ = ???
+  private def getExtents__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the font description for the layout, if any.
     *
-    * Gets the font description for the layout, if any.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
+    "[get_font_description/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
-  def getFontDescription__ = ???
+  private def getFontDescription__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the height of layout used for ellipsization.
+  /** Gets the height of layout used for ellipsization.
     *
     * See [method@Pango.Layout.set_height] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeight(): Int /* None */ = pango_layout_get_height(
     this.raw.asInstanceOf[Ptr[PangoLayout]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the paragraph indent width in Pango units.
+  /** Gets the paragraph indent width in Pango units.
     *
     * A negative value indicates a hanging indentation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIndent(): Int /* None */ = pango_layout_get_indent(
     this.raw.asInstanceOf[Ptr[PangoLayout]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns an iterator to iterate over the visual extents of the layout.
     *
-    * Returns an iterator to iterate over the visual extents of the layout.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutIter), @type -> DataRecord(PangoLayoutIter*)))"
+    "[get_iter/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutIter), @type -> DataRecord(PangoLayoutIter*)))"
   )
-  def getIter__ = ???
+  private def getIter__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether each complete line should be stretched to fill the entire
+  /** Gets whether each complete line should be stretched to fill the entire
     * width of the layout.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getJustify(): Boolean /* None */ = pango_layout_get_justify(
     this.raw.asInstanceOf[Ptr[PangoLayout]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether the last line should be stretched to fill the entire width of
+  /** Gets whether the last line should be stretched to fill the entire width of
     * the layout.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getJustifyLastLine(): Boolean /* None */ =
     pango_layout_get_justify_last_line(
       this.raw.asInstanceOf[Ptr[PangoLayout]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves a particular line from a `PangoLayout`.
+  /** Retrieves a particular line from a `PangoLayout`.
     *
     * Use the faster [method@Pango.Layout.get_line_readonly] if you do not plan
     * to modify the contents of the line (glyphs, glyph widths, etc.).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
+    "[get_line/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
   )
-  def getLine__ = ???
+  private def getLine__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the count of lines for the @layout.
     *
-    * Retrieves the count of lines for the @layout.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLineCount(): Int /* None */ = pango_layout_get_line_count(
     this.raw.asInstanceOf[Ptr[PangoLayout]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves a particular line from a `PangoLayout`.
+  /** Retrieves a particular line from a `PangoLayout`.
     *
     * This is a faster alternative to [method@Pango.Layout.get_line], but the
     * user is not expected to modify the contents of the line (glyphs, glyph
     * widths, etc.).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
+    "[get_line_readonly/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
   )
-  def getLineReadonly__ = ???
+  private def getLineReadonly__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the line spacing factor of @layout.
+  /** Gets the line spacing factor of @layout.
     *
     * See [method@Pango.Layout.set_line_spacing].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLineSpacing(): Float /* None */ = pango_layout_get_line_spacing(
     this.raw.asInstanceOf[Ptr[PangoLayout]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the lines of the @layout as a list.
+  /** Returns the lines of the @layout as a list.
     *
     * Use the faster [method@Pango.Layout.get_lines_readonly] if you do not plan
     * to modify the contents of the lines (glyphs, glyph widths, etc.).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+    "[get_lines/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
-  def getLines__ = ???
+  private def getLines__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the lines of the @layout as a list.
+  /** Returns the lines of the @layout as a list.
     *
     * This is a faster alternative to [method@Pango.Layout.get_lines], but the
     * user is not expected to modify the contents of the lines (glyphs, glyph
     * widths, etc.).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+    "[get_lines_readonly/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
-  def getLinesReadonly__ = ???
+  private def getLinesReadonly__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves an array of logical attributes for each character in the @layout.
     *
-    * Retrieves an array of logical attributes for each character in the @layout.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_log_attrs contains an OUT parameter, which is not supported yet"
+    "[get_log_attrs]: Method get_log_attrs contains an OUT parameter, which is not supported yet"
   )
-  def getLogAttrs__ = ???
+  private def getLogAttrs__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves an array of logical attributes for each character in the @layout.
+  /** Retrieves an array of logical attributes for each character in the @layout.
     *
     * This is a faster alternative to [method@Pango.Layout.get_log_attrs]. The
     * returned array is part of @layout and must not be modified. Modifying the
@@ -375,43 +400,46 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * total number of characters in the layout, since there need to be
     * attributes corresponding to both the position before the first character
     * and the position after the last character.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_log_attrs_readonly contains an OUT parameter, which is not supported yet"
+    "[get_log_attrs_readonly]: Method get_log_attrs_readonly contains an OUT parameter, which is not supported yet"
   )
-  def getLogAttrsReadonly__ = ???
+  private def getLogAttrsReadonly__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes the logical and ink extents of @layout in device units.
+  /** Computes the logical and ink extents of @layout in device units.
     *
     * This function just calls [method@Pango.Layout.get_extents] followed by two
     * [func@extents_to_pixels] calls, rounding @ink_rect and @logical_rect such
     * that the rounded rectangles fully contain the unrounded one (that is,
     * passes them as first argument to [func@Pango.extents_to_pixels]).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_pixel_extents contains an OUT parameter, which is not supported yet"
+    "[get_pixel_extents]: Method get_pixel_extents contains an OUT parameter, which is not supported yet"
   )
-  def getPixelExtents__ = ???
+  private def getPixelExtents__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines the logical width and height of a `PangoLayout` in device
+  /** Determines the logical width and height of a `PangoLayout` in device
     * units.
     *
     * [method@Pango.Layout.get_size] returns the width and height scaled by
     * %PANGO_SCALE. This is simply a convenience function around
     * [method@Pango.Layout.get_pixel_extents].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_pixel_size contains an OUT parameter, which is not supported yet"
+    "[get_pixel_size]: Method get_pixel_size contains an OUT parameter, which is not supported yet"
   )
-  def getPixelSize__ = ???
+  private def getPixelSize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the current serial number of @layout.
+  /** Returns the current serial number of @layout.
     *
     * The serial number is initialized to an small number larger than zero when
     * a new layout is created and is increased whenever the layout is changed
@@ -422,151 +450,164 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * This can be used to automatically detect changes to a `PangoLayout`, and
     * is useful for example to decide whether a layout needs redrawing. To force
     * the serial to be increased, use [method@Pango.Layout.context_changed].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSerial(): UInt /* None */ = pango_layout_get_serial(
     this.raw.asInstanceOf[Ptr[PangoLayout]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains whether @layout is in single paragraph mode.
+  /** Obtains whether @layout is in single paragraph mode.
     *
     * See [method@Pango.Layout.set_single_paragraph_mode].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSingleParagraphMode(): Boolean /* None */ =
     pango_layout_get_single_paragraph_mode(
       this.raw.asInstanceOf[Ptr[PangoLayout]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines the logical width and height of a `PangoLayout` in Pango units.
+  /** Determines the logical width and height of a `PangoLayout` in Pango units.
     *
     * This is simply a convenience function around
     * [method@Pango.Layout.get_extents].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_size contains an OUT parameter, which is not supported yet"
+    "[get_size]: Method get_size contains an OUT parameter, which is not supported yet"
   )
-  def getSize__ = ???
+  private def getSize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the amount of spacing between the lines of the layout.
     *
-    * Gets the amount of spacing between the lines of the layout.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSpacing(): Int /* None */ = pango_layout_get_spacing(
     this.raw.asInstanceOf[Ptr[PangoLayout]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the current `PangoTabArray` used by this layout.
+  /** Gets the current `PangoTabArray` used by this layout.
     *
     * If no `PangoTabArray` has been set, then the default tabs are in use and
     * %NULL is returned. Default tabs are every 8 spaces.
     *
     * The return value should be freed with [method@Pango.TabArray.free].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
-  def getTabs__ = ???
+  private def getTabs__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the text in the layout.
+  /** Gets the text in the layout.
     *
     * The returned text should not be freed or modified.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getText()(using Zone): String /* None */ = fromCString(
     pango_layout_get_text(this.raw.asInstanceOf[Ptr[PangoLayout]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Counts the number of unknown glyphs in @layout.
+  /** Counts the number of unknown glyphs in @layout.
     *
     * This function can be used to determine if there are any fonts available to
     * render all characters in a certain string, or when used in combination
     * with %PANGO_ATTR_FALLBACK, to check if a certain font supports all the
     * characters in the string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUnknownGlyphsCount(): Int /* None */ =
     pango_layout_get_unknown_glyphs_count(
       this.raw.asInstanceOf[Ptr[PangoLayout]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the width to which the lines of the `PangoLayout` should wrap.
     *
-    * Gets the width to which the lines of the `PangoLayout` should wrap.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWidth(): Int /* None */ = pango_layout_get_width(
     this.raw.asInstanceOf[Ptr[PangoLayout]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the wrap mode for the layout.
+  /** Gets the wrap mode for the layout.
     *
     * Use [method@Pango.Layout.is_wrapped] to query whether any paragraphs were
     * actually wrapped.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWrap(): WrapMode /* None */ = WrapMode.fromRaw(
     pango_layout_get_wrap(this.raw.asInstanceOf[Ptr[PangoLayout]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts from byte @index_ within the @layout to line and X position.
+  /** Converts from byte @index_ within the @layout to line and X position.
     *
     * The X position is measured from the left edge of the line.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method index_to_line_x contains an OUT parameter, which is not supported yet"
+    "[index_to_line_x]: Method index_to_line_x contains an OUT parameter, which is not supported yet"
   )
-  def indexToLineX__ = ???
+  private def indexToLineX__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts from an index within a `PangoLayout` to the onscreen position
+  /** Converts from an index within a `PangoLayout` to the onscreen position
     * corresponding to the grapheme at that index.
     *
     * The returns is represented as rectangle. Note that `pos->x` is always the
     * leading edge of the grapheme and `pos->x + pos->width` the trailing edge
     * of the grapheme. If the directionality of the grapheme is right-to-left,
     * then `pos->width` will be negative.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method index_to_pos contains an OUT parameter, which is not supported yet"
+    "[index_to_pos]: Method index_to_pos contains an OUT parameter, which is not supported yet"
   )
-  def indexToPos__ = ???
+  private def indexToPos__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries whether the layout had to ellipsize any paragraphs.
+  /** Queries whether the layout had to ellipsize any paragraphs.
     *
     * This returns %TRUE if the ellipsization mode for @layout is not
     * %PANGO_ELLIPSIZE_NONE, a positive width is set on @layout, and there are
     * paragraphs exceeding that width that have to be ellipsized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isEllipsized(): Boolean /* None */ = pango_layout_is_ellipsized(
     this.raw.asInstanceOf[Ptr[PangoLayout]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries whether the layout had to wrap any paragraphs.
+  /** Queries whether the layout had to wrap any paragraphs.
     *
     * This returns %TRUE if a positive width is set on @layout, ellipsization
     * mode of @layout is set to %PANGO_ELLIPSIZE_NONE, and there are paragraphs
     * exceeding the layout width that have to be wrapped.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isWrapped(): Boolean /* None */ =
     pango_layout_is_wrapped(this.raw.asInstanceOf[Ptr[PangoLayout]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes a new cursor position from an old position and a direction.
+  /** Computes a new cursor position from an old position and a direction.
     *
     * If @direction is positive, then the new position will cause the strong or
     * weak cursor to be displayed one position to right of where it was with the
@@ -580,15 +621,16 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Motion here is in cursor positions, not in characters, so a single call to
     * this function may move the cursor over multiple characters when multiple
     * characters combine to form a single grapheme.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method move_cursor_visually contains an OUT parameter, which is not supported yet"
+    "[move_cursor_visually]: Method move_cursor_visually contains an OUT parameter, which is not supported yet"
   )
-  def moveCursorVisually__ = ???
+  private def moveCursorVisually__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Serializes the @layout for later deserialization via
+  /** Serializes the @layout for later deserialization via
     * [func@Pango.Layout.deserialize].
     *
     * There are no guarantees about the format of the output across different
@@ -597,18 +639,22 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * The intended use of this function is testing, benchmarking and debugging.
     * The format is not meant as a permanent storage format.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[serialize/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def serialize__ = ???
+  private def serialize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the alignment for the layout: how partial lines are positioned within
+  /** Sets the alignment for the layout: how partial lines are positioned within
     * the horizontal space available.
     *
     * The default alignment is %PANGO_ALIGN_LEFT.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAlignment(
       alignment: Alignment /* Some(PangoAlignment) */
@@ -617,20 +663,19 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     alignment.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the text attributes for a layout object.
+  /** Sets the text attributes for a layout object.
     *
     * References @attrs, so the caller can unref its reference.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
-  def setAttributes__ = ???
+  private def setAttributes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether to calculate the base direction for the layout according to
+  /** Sets whether to calculate the base direction for the layout according to
     * its contents.
     *
     * When this flag is on (the default), then paragraphs in @layout that begin
@@ -646,6 +691,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * When the auto-computed direction of a paragraph differs from the base
     * direction of the context, the interpretation of %PANGO_ALIGN_LEFT and
     * %PANGO_ALIGN_RIGHT are swapped.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAutoDir(
       auto_dir: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -654,9 +702,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     gboolean(gint((if auto_dir == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the type of ellipsization being performed for @layout.
+  /** Sets the type of ellipsization being performed for @layout.
     *
     * Depending on the ellipsization mode @ellipsize text is removed from the
     * start, middle, or end of text so they fit within the width and height of
@@ -671,6 +717,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * The default value is %PANGO_ELLIPSIZE_NONE.
     *
     * See [method@Pango.Layout.set_height] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEllipsize(
       ellipsize: EllipsizeMode /* Some(PangoEllipsizeMode) */
@@ -679,21 +728,20 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     ellipsize.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the default font description for the layout.
+  /** Sets the default font description for the layout.
     *
     * If no font description is set on the layout, the font description from the
     * layout's context is used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
+    "[set_font_description/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
-  def setFontDescription__ = ???
+  private def setFontDescription__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the height to which the `PangoLayout` should be ellipsized at.
+  /** Sets the height to which the `PangoLayout` should be ellipsized at.
     *
     * There are two different behaviors, based on whether @height is positive or
     * negative.
@@ -718,13 +766,14 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *   and ellipsization mode of @layout is not %PANGO_ELLIPSIZE_NONE. The
     *   behavior is undefined if a height other than -1 is set and ellipsization
     *   mode is set to %PANGO_ELLIPSIZE_NONE, and may change in the future.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeight(height: Int /* Some(CInt) */ ): Unit /* None */ =
     pango_layout_set_height(this.raw.asInstanceOf[Ptr[PangoLayout]], height)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the width in Pango units to indent each paragraph.
+  /** Sets the width in Pango units to indent each paragraph.
     *
     * A negative value of @indent will produce a hanging indentation. That is,
     * the first line will have the full width, and subsequent lines will be
@@ -734,13 +783,14 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * %PANGO_ALIGN_CENTER.
     *
     * The default value is 0.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIndent(indent: Int /* Some(CInt) */ ): Unit /* None */ =
     pango_layout_set_indent(this.raw.asInstanceOf[Ptr[PangoLayout]], indent)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether each complete line should be stretched to fill the entire
+  /** Sets whether each complete line should be stretched to fill the entire
     * width of the layout.
     *
     * Stretching is typically done by adding whitespace, but for some scripts
@@ -756,6 +806,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * The default value is %FALSE.
     *
     * Also see [method@Pango.Layout.set_justify_last_line].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setJustify(
       justify: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -764,15 +817,16 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     gboolean(gint((if justify == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the last line should be stretched to fill the entire width of
+  /** Sets whether the last line should be stretched to fill the entire width of
     * the layout.
     *
     * This only has an effect if [method@Pango.Layout.set_justify] has been
     * called as well.
     *
     * The default value is %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setJustifyLastLine(
       justify: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -781,9 +835,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     gboolean(gint((if justify == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a factor for line spacing.
+  /** Sets a factor for line spacing.
     *
     * Typical values are: 0, 1, 1.5, 2. The default values is 0.
     *
@@ -799,6 +851,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * Note: for semantics that are closer to the CSS line-height property, see
     * [func@Pango.attr_line_height_new].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLineSpacing(factor: Float /* Some(Float) */ ): Unit /* None */ =
     pango_layout_set_line_spacing(
@@ -806,9 +861,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
       factor.asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the layout text and attribute list from marked-up text.
+  /** Sets the layout text and attribute list from marked-up text.
     *
     * See [Pango Markup](pango_markup.html)).
     *
@@ -816,6 +869,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * This is the same as [method@Pango.Layout.set_markup_with_accel], but the
     * markup text isn't scanned for accelerators.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarkup(
       markup: String | CString /* Some(CString) */,
@@ -826,9 +882,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     length
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the layout text and attribute list from marked-up text.
+  /** Sets the layout text and attribute list from marked-up text.
     *
     * See [Pango Markup](pango_markup.html)).
     *
@@ -840,15 +894,16 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * receive a %PANGO_UNDERLINE_LOW attribute, and the first character so
     * marked will be returned in @accel_char. Two @accel_marker characters
     * following each other produce a single literal @accel_marker character.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method set_markup_with_accel contains an OUT parameter, which is not supported yet"
+    "[set_markup_with_accel]: Method set_markup_with_accel contains an OUT parameter, which is not supported yet"
   )
-  def setMarkupWithAccel__ = ???
+  private def setMarkupWithAccel__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the single paragraph mode of @layout.
+  /** Sets the single paragraph mode of @layout.
     *
     * If @setting is %TRUE, do not treat newlines and similar characters as
     * paragraph separators; instead, keep all text in a single paragraph, and
@@ -856,6 +911,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * allow editing of newlines on a single text line.
     *
     * The default value is %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSingleParagraphMode(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -864,9 +922,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the amount of spacing in Pango units between the lines of the layout.
+  /** Sets the amount of spacing in Pango units between the lines of the layout.
     *
     * When placing lines with spacing, Pango arranges things so that
     *
@@ -881,13 +937,14 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * Note: for semantics that are closer to the CSS line-height property, see
     * [func@Pango.attr_line_height_new].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSpacing(spacing: Int /* Some(CInt) */ ): Unit /* None */ =
     pango_layout_set_spacing(this.raw.asInstanceOf[Ptr[PangoLayout]], spacing)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the tabs to use for @layout, overriding the default tabs.
+  /** Sets the tabs to use for @layout, overriding the default tabs.
     *
     * `PangoLayout` will place content at the next tab position whenever it
     * meets a Tab character (U+0009).
@@ -899,15 +956,16 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * Note that tabs and justification conflict with each other: Justification
     * will move content away from its tab-aligned positions. The same is true
     * for alignments other than %PANGO_ALIGN_LEFT.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
-  def setTabs__ = ???
+  private def setTabs__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the text of the layout.
+  /** Sets the text of the layout.
     *
     * This function validates @text and renders invalid UTF-8 with a placeholder
     * glyph.
@@ -917,6 +975,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * want to call [method@Pango.Layout.set_attributes] to clear the attributes
     * set on the layout from the markup as this function does not clear
     * attributes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(
       text: String | CString /* Some(CString) */,
@@ -927,32 +988,32 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     length
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the width to which the lines of the `PangoLayout` should wrap or
+  /** Sets the width to which the lines of the `PangoLayout` should wrap or
     * ellipsized.
     *
     * The default value is -1: no width set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWidth(width: Int /* Some(CInt) */ ): Unit /* None */ =
     pango_layout_set_width(this.raw.asInstanceOf[Ptr[PangoLayout]], width)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the wrap mode.
+  /** Sets the wrap mode.
     *
     * The wrap mode only has effect if a width is set on the layout with
     * [method@Pango.Layout.set_width]. To turn off wrapping, set the width to
     * -1.
     *
     * The default value is %PANGO_WRAP_WORD.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWrap(wrap: WrapMode /* Some(PangoWrapMode) */ ): Unit /* None */ =
     pango_layout_set_wrap(this.raw.asInstanceOf[Ptr[PangoLayout]], wrap.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A convenience method to serialize a layout to a file.
+  /** A convenience method to serialize a layout to a file.
     *
     * It is equivalent to calling [method@Pango.Layout.serialize] followed by
     * [func@GLib.file_set_contents].
@@ -961,6 +1022,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     *
     * It is mostly intended for use inside a debugger to quickly dump a layout
     * to a file for later inspection.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def writeToFile(
       flags: LayoutSerializeFlags /* Some(PangoLayoutSerializeFlags) */,
@@ -974,9 +1038,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts from X and Y position within a layout to the byte index to the
+  /** Converts from X and Y position within a layout to the byte index to the
     * character at that logical position.
     *
     * If the Y position is not inside the layout, the closest position is chosen
@@ -985,11 +1047,14 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * described for [method@Pango.LayoutLine.x_to_index]. If either the X or Y
     * positions were not inside the layout, then the function returns %FALSE; on
     * an exact hit, it returns %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method xy_to_index contains an OUT parameter, which is not supported yet"
+    "[xy_to_index]: Method xy_to_index contains an OUT parameter, which is not supported yet"
   )
-  def xyToIndex__ = ???
+  private def xyToIndex__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -1002,29 +1067,31 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
 end Layout
 
 object Layout:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a new `PangoLayout` object with attributes initialized to default
+  /** Create a new `PangoLayout` object with attributes initialized to default
     * values for a particular `PangoContext`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(context: Context /* Some(Ptr[PangoContext]) */ ): Layout =
     new Layout(
       pango_layout_new(context.getUnsafeRawPointer().asInstanceOf).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Loads data previously created via [method@Pango.Layout.serialize].
+  /** Loads data previously created via [method@Pango.Layout.serialize].
     *
     * For a discussion of the supported format, see that function.
     *
     * Note: to verify that the returned layout is identical to the one that was
     * serialized, you can compare @bytes to the result of serializing the layout
     * again.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[<function parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def deserialize() = ???
+  private def deserialize() = ???
 
 end Layout

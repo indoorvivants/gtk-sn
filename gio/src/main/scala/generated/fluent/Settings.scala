@@ -25,9 +25,7 @@ import sn.gnome.glib.internal.{
 }
 import sn.gnome.gobject.fluent.Object
 
-/**  COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  *  The #GSettings class provides a convenient API for storing and retrieving
+/**  The #GSettings class provides a convenient API for storing and retrieving
   *  application settings.
   *
   *  Reads and writes can be considered to be non-blocking.  Reading
@@ -314,25 +312,26 @@ import sn.gnome.gobject.fluent.Object
   *  automatically included in the schema compilation, install and uninstall
   *  rules. It should not be committed to version control or included in
   *  `EXTRA_DIST`.
+  *
+  *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
 class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Applies any changes that have been made to the settings. This function
+  /** Applies any changes that have been made to the settings. This function
     * does nothing unless @settings is in 'delay-apply' mode; see
     * g_settings_delay(). In the normal case settings are always applied
     * immediately.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Unit /* None */ = g_settings_apply(
     this.raw.asInstanceOf[Ptr[GSettings]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a binding between the @key in the @settings object and the property @property
+  /** Create a binding between the @key in the @settings object and the property @property
     * of @object.
     *
     * The binding uses the default GIO mapping functions to map between the
@@ -352,6 +351,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * can have only one binding per object property. If you bind the same
     * property twice on the same object, the second binding overrides the first
     * one.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def bind(
       key: String |
@@ -370,9 +372,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     flags.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a binding between the @key in the @settings object and the property @property
+  /** Create a binding between the @key in the @settings object and the property @property
     * of @object.
     *
     * The binding uses the provided mapping functions to map between settings
@@ -382,15 +382,16 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * can have only one binding per object property. If you bind the same
     * property twice on the same object, the second binding overrides the first
     * one.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsBindGetMapping), @type -> DataRecord(GSettingsBindGetMapping)))"
+    "[bind_with_mapping/<method parameters>/get_mapping]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsBindGetMapping), @type -> DataRecord(GSettingsBindGetMapping)))"
   )
-  def bindWithMapping__ = ???
+  private def bindWithMapping__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a binding between the writability of @key in the
+  /** Create a binding between the writability of @key in the
     * @settings
     *   object and the property @property of @object. The property must be
     *   boolean; "sensitive" or "visible" properties of widgets are the most
@@ -408,6 +409,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * can have only one binding per object property. If you bind the same
     * property twice on the same object, the second binding overrides the first
     * one.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def bindWritable(
       key: String |
@@ -426,9 +430,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     gboolean(gint((if inverted == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GAction corresponding to a given #GSettings key.
+  /** Creates a #GAction corresponding to a given #GSettings key.
     *
     * The action has the same name as the key.
     *
@@ -440,6 +442,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * For boolean-valued keys, action activations take no parameter and result
     * in the toggling of the value. For all other types, activations take the
     * new value for the key (which must have the correct type).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def createAction(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -450,19 +455,18 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Changes the #GSettings object into 'delay-apply' mode. In this mode,
+  /** Changes the #GSettings object into 'delay-apply' mode. In this mode,
     * changes to @settings are not immediately propagated to the backend, but
     * kept locally until g_settings_apply() is called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def delay(): Unit /* None */ = g_settings_delay(
     this.raw.asInstanceOf[Ptr[GSettings]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value that is stored at @key in @settings.
+  /** Gets the value that is stored at @key in @settings.
     *
     * A convenience function that combines g_settings_get_value() with
     * g_variant_get().
@@ -470,6 +474,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't contained in the schema
     * for @settings or for the #GVariantType of @format to mismatch the type
     * given in the schema.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def get(
       key: String |
@@ -484,14 +491,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value that is stored at @key in @settings.
+  /** Gets the value that is stored at @key in @settings.
     *
     * A convenience variant of g_settings_get() for booleans.
     *
     * It is a programmer error to give a @key that isn't specified as having a
     * boolean type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBoolean(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -500,9 +508,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a child settings object which has a base path of
+  /** Creates a child settings object which has a base path of
     * `base-path/@name`, where `base-path` is the base path of
     * @settings.
     *
@@ -511,6 +517,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     *
     * The created child settings object will inherit the #GSettings:delay-apply
     * mode from @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(
       name: String |
@@ -522,9 +531,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the "default value" of a key.
+  /** Gets the "default value" of a key.
     *
     * This is the value that would be read if g_settings_reset() were to be
     * called on the key.
@@ -544,20 +551,24 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     *
     * It is a programmer error to give a @key that isn't contained in the schema
     * for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[get_default_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def getDefaultValue__ = ???
+  private def getDefaultValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value that is stored at @key in @settings.
+  /** Gets the value that is stored at @key in @settings.
     *
     * A convenience variant of g_settings_get() for doubles.
     *
     * It is a programmer error to give a @key that isn't specified as having a
     * 'double' type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDouble(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -566,9 +577,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value that is stored in @settings for @key and converts it to the
+  /** Gets the value that is stored in @settings for @key and converts it to the
     * enum value that it represents.
     *
     * In order to use this function the type of the value must be a string and
@@ -579,6 +588,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     *
     * If the value stored in the configuration database is not a valid value for
     * the enumerated type then this function will return the default value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEnum(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -587,9 +599,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value that is stored in @settings for @key and converts it to the
+  /** Gets the value that is stored in @settings for @key and converts it to the
     * flags value that it represents.
     *
     * In order to use this function the type of the value must be an array of
@@ -600,6 +610,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     *
     * If the value stored in the configuration database is not a valid value for
     * the flags type then this function will return the default value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFlags(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -608,23 +621,25 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the #GSettings object has any unapplied changes. This can
+  /** Returns whether the #GSettings object has any unapplied changes. This can
     * only be the case if it is in 'delayed-apply' mode.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasUnapplied(): Boolean /* None */ = g_settings_get_has_unapplied(
     this.raw.asInstanceOf[Ptr[GSettings]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value that is stored at @key in @settings.
+  /** Gets the value that is stored at @key in @settings.
     *
     * A convenience variant of g_settings_get() for 32-bit integers.
     *
     * It is a programmer error to give a @key that isn't specified as having a
     * int32 type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInt(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -633,14 +648,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value that is stored at @key in @settings.
+  /** Gets the value that is stored at @key in @settings.
     *
     * A convenience variant of g_settings_get() for 64-bit integers.
     *
     * It is a programmer error to give a @key that isn't specified as having a
     * int64 type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInt64(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -649,9 +665,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value that is stored at @key in @settings, subject to
+  /** Gets the value that is stored at @key in @settings, subject to
     * application-level validation/mapping.
     *
     * You should use this function when the application needs to perform some
@@ -679,29 +693,34 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * invocation of @mapping. The final value of that #gpointer is what is
     * returned by this function. %NULL is valid; it is returned just as any
     * other value would be.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsGetMapping), @type -> DataRecord(GSettingsGetMapping)))"
+    "[get_mapped/<method parameters>/mapping]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsGetMapping), @type -> DataRecord(GSettingsGetMapping)))"
   )
-  def getMapped__ = ???
+  private def getMapped__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Queries the range of a key.
     *
-    * Queries the range of a key.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[get_range/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def getRange__ = ???
+  private def getRange__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value that is stored at @key in @settings.
+  /** Gets the value that is stored at @key in @settings.
     *
     * A convenience variant of g_settings_get() for strings.
     *
     * It is a programmer error to give a @key that isn't specified as having a
     * string type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getString(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -712,26 +731,28 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A convenience variant of g_settings_get() for string arrays.
+  /** A convenience variant of g_settings_get() for string arrays.
     *
     * It is a programmer error to give a @key that isn't specified as having an
     * array of strings type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[get_strv/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def getStrv__ = ???
+  private def getStrv__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value that is stored at @key in @settings.
+  /** Gets the value that is stored at @key in @settings.
     *
     * A convenience variant of g_settings_get() for 32-bit unsigned integers.
     *
     * It is a programmer error to give a @key that isn't specified as having a
     * uint32 type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUint(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -740,14 +761,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value that is stored at @key in @settings.
+  /** Gets the value that is stored at @key in @settings.
     *
     * A convenience variant of g_settings_get() for 64-bit unsigned integers.
     *
     * It is a programmer error to give a @key that isn't specified as having a
     * uint64 type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUint64(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -756,9 +778,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks the "user value" of a key, if there is one.
+  /** Checks the "user value" of a key, if there is one.
     *
     * The user value of a key is the last value that was set by the user.
     *
@@ -775,27 +795,32 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     *
     * It is a programmer error to give a @key that isn't contained in the schema
     * for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[get_user_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def getUserValue__ = ???
+  private def getUserValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value that is stored in @settings for @key.
+  /** Gets the value that is stored in @settings for @key.
     *
     * It is a programmer error to give a @key that isn't contained in the schema
     * for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def getValue__ = ???
+  private def getValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finds out if a key can be written or not
     *
-    * Finds out if a key can be written or not
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isWritable(
       name: String |
@@ -805,9 +830,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the list of children on @settings.
+  /** Gets the list of children on @settings.
     *
     * The list is exactly the list of strings for which it is not an error to
     * call g_settings_get_child().
@@ -818,15 +841,16 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     *
     * You should free the return value with g_strfreev() when you are done with
     * it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[list_children/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def listChildren__ = ???
+  private def listChildren__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Introspects the list of keys on @settings.
+  /** Introspects the list of keys on @settings.
     *
     * You should probably not be calling this function from "normal" code (since
     * you should already know what keys are in your schema). This function is
@@ -834,29 +858,34 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     *
     * You should free the return value with g_strfreev() when you are done with
     * it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[list_keys/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def listKeys__ = ???
+  private def listKeys__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if the given @value is of the correct type and within the permitted
+  /** Checks if the given @value is of the correct type and within the permitted
     * range for @key.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[range_check/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def rangeCheck__ = ???
+  private def rangeCheck__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Resets @key to its default value.
+  /** Resets @key to its default value.
     *
     * This call resets the key, as much as possible, to its default value. That
     * might be the value specified in the schema or the one set by the
     * administrator.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def reset(
       key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -865,21 +894,20 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reverts all non-applied changes to the settings. This function does
+  /** Reverts all non-applied changes to the settings. This function does
     * nothing unless @settings is in 'delay-apply' mode; see g_settings_delay().
     * In the normal case settings are always applied immediately.
     *
     * Change notifications will be emitted for affected keys.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def revert(): Unit /* None */ = g_settings_revert(
     this.raw.asInstanceOf[Ptr[GSettings]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @key in @settings to @value.
+  /** Sets @key in @settings to @value.
     *
     * A convenience function that combines g_settings_set_value() with
     * g_variant_new().
@@ -887,6 +915,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * It is a programmer error to give a @key that isn't contained in the schema
     * for @settings or for the #GVariantType of @format to mismatch the type
     * given in the schema.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def set(
       key: String |
@@ -901,14 +932,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     args*
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @key in @settings to @value.
+  /** Sets @key in @settings to @value.
     *
     * A convenience variant of g_settings_set() for booleans.
     *
     * It is a programmer error to give a @key that isn't specified as having a
     * boolean type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setBoolean(
       key: String |
@@ -920,14 +952,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     gboolean(gint((if value == true then 1 else 0)))
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @key in @settings to @value.
+  /** Sets @key in @settings to @value.
     *
     * A convenience variant of g_settings_set() for doubles.
     *
     * It is a programmer error to give a @key that isn't specified as having a
     * 'double' type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDouble(
       key: String |
@@ -939,9 +972,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     gdouble(value)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up the enumerated type nick for @value and writes it to @key, within @settings.
+  /** Looks up the enumerated type nick for @value and writes it to @key, within @settings.
     *
     * It is a programmer error to give a @key that isn't contained in the schema
     * for @settings or is not marked as an enumerated type, or for
@@ -951,6 +982,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * After performing the write, accessing @key directly with
     * g_settings_get_string() will return the 'nick' associated with
     * @value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEnum(
       key: String |
@@ -962,9 +996,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     gint(value)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up the flags type nicks for the bits specified by @value, puts them
+  /** Looks up the flags type nicks for the bits specified by @value, puts them
     * in an array of strings and writes the array to @key, within
     * @settings.
     *
@@ -974,6 +1006,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     *
     * After performing the write, accessing @key directly with
     * g_settings_get_strv() will return an array of 'nicks'; one for each bit in @value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFlags(
       key: String |
@@ -985,14 +1020,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     guint(value)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @key in @settings to @value.
+  /** Sets @key in @settings to @value.
     *
     * A convenience variant of g_settings_set() for 32-bit integers.
     *
     * It is a programmer error to give a @key that isn't specified as having a
     * int32 type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInt(
       key: String |
@@ -1004,14 +1040,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     gint(value)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @key in @settings to @value.
+  /** Sets @key in @settings to @value.
     *
     * A convenience variant of g_settings_set() for 64-bit integers.
     *
     * It is a programmer error to give a @key that isn't specified as having a
     * int64 type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInt64(
       key: String |
@@ -1023,14 +1060,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     gint64(value)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @key in @settings to @value.
+  /** Sets @key in @settings to @value.
     *
     * A convenience variant of g_settings_set() for strings.
     *
     * It is a programmer error to give a @key that isn't specified as having a
     * string type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setString(
       key: String |
@@ -1043,9 +1081,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     __sn_extract_string(value).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @key in @settings to @value.
+  /** Sets @key in @settings to @value.
     *
     * A convenience variant of g_settings_set() for string arrays. If
     * @value
@@ -1053,20 +1089,24 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     *
     * It is a programmer error to give a @key that isn't specified as having an
     * array of strings type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[set_strv/<method parameters>/value]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def setStrv__ = ???
+  private def setStrv__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @key in @settings to @value.
+  /** Sets @key in @settings to @value.
     *
     * A convenience variant of g_settings_set() for 32-bit unsigned integers.
     *
     * It is a programmer error to give a @key that isn't specified as having a
     * uint32 type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUint(
       key: String |
@@ -1078,14 +1118,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     guint(value)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @key in @settings to @value.
+  /** Sets @key in @settings to @value.
     *
     * A convenience variant of g_settings_set() for 64-bit unsigned integers.
     *
     * It is a programmer error to give a @key that isn't specified as having a
     * uint64 type in the schema for @settings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUint64(
       key: String |
@@ -1097,19 +1138,20 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     guint64(value)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @key in @settings to @value.
+  /** Sets @key in @settings to @value.
     *
     * It is a programmer error to give a @key that isn't contained in the schema
     * for @settings or for @value to have the incorrect type, per the schema.
     *
     * If @value is floating then this function consumes the reference.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[set_value/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def setValue__ = ???
+  private def setValue__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -1122,9 +1164,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
 end Settings
 
 object Settings:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GSettings object with the schema specified by
+  /** Creates a new #GSettings object with the schema specified by
     * @schema_id.
     *
     * It is an error for the schema to not exist: schemas are an essential part
@@ -1137,6 +1177,9 @@ object Settings:
     * thread-default #GMainContext in effect at the time of the call to
     * g_settings_new(). The new #GSettings will hold a reference on the context.
     * See g_main_context_push_thread_default().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       schema_id: String |
@@ -1147,9 +1190,7 @@ object Settings:
     ).asInstanceOf
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Creates a new #GSettings object with a given schema, backend and
+  /**  Creates a new #GSettings object with a given schema, backend and
     *  path.
     *
     *  It should be extremely rare that you ever want to use this function.
@@ -1172,15 +1213,15 @@ object Settings:
     *  error if @path is %NULL and the schema has no path of its own or if
     *  @path is non-%NULL and not equal to the path that the schema does
     *  have.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsSchema), @type -> DataRecord(GSettingsSchema*)))"
+    "[schema]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsSchema), @type -> DataRecord(GSettingsSchema*)))"
   )
-  def new_full() = ???
+  private def new_full() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GSettings object with the schema specified by
+  /** Creates a new #GSettings object with the schema specified by
     * @schema_id
     *   and a given #GSettingsBackend.
     *
@@ -1189,6 +1230,9 @@ object Settings:
     * make sense to pass a backend corresponding to the "defaults" settings
     * database on the system to get a settings object that modifies the system
     * default settings instead of the settings for this user.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withBackend(
       schema_id: String |
@@ -1201,14 +1245,15 @@ object Settings:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GSettings object with the schema specified by
+  /** Creates a new #GSettings object with the schema specified by
     * @schema_id
     *   and a given #GSettingsBackend and path.
     *
     * This is a mix of g_settings_new_with_backend() and
     * g_settings_new_with_path().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withBackendAndPath(
       schema_id: String |
@@ -1224,9 +1269,7 @@ object Settings:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GSettings object with the relocatable schema specified by @schema_id
+  /** Creates a new #GSettings object with the relocatable schema specified by @schema_id
     * and a given path.
     *
     * You only need to do this if you want to directly create a settings object
@@ -1238,6 +1281,9 @@ object Settings:
     *
     * It is a programmer error if @path is not a valid path. A valid path begins
     * and ends with '/' and does not contain two consecutive '/' characters.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withPath(
       schema_id: String |
@@ -1251,27 +1297,27 @@ object Settings:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Deprecated.
     *
-    * Deprecated.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def listRelocatableSchemas() = ???
+  private def listRelocatableSchemas() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Deprecated.
     *
-    * Deprecated.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def listSchemas() = ???
+  private def listSchemas() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Ensures that all pending operations are complete for the default backend.
+  /** Ensures that all pending operations are complete for the default backend.
     *
     * Writes made to a #GSettings are handled asynchronously. For this reason,
     * it is very unlikely that the changes have it to disk by the time
@@ -1281,15 +1327,19 @@ object Settings:
     * Since the mainloop is not running, no change notifications will be
     * dispatched during this call (but some may be queued by the time the call
     * is done).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sync(): Unit /* Some(Unit) */ = g_settings_sync()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes an existing binding for @property on @object.
+  /** Removes an existing binding for @property on @object.
     *
     * Note that bindings are automatically removed when the object is finalized,
     * so it is rarely necessary to call this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unbind(
       `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,

@@ -2,9 +2,7 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GTlsProtocolVersion
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The TLS or DTLS protocol version used by a #GTlsConnection or
+/** The TLS or DTLS protocol version used by a #GTlsConnection or
   * #GDtlsConnection. The integer values of these versions are sequential to
   * ensure newer known protocol versions compare greater than older known
   * versions. Any known DTLS protocol version will compare greater than any SSL
@@ -13,77 +11,88 @@ import _root_.sn.gnome.gio.internal.GTlsProtocolVersion
   * version that GLib does not yet know about. This means that it's possible for
   * an unknown DTLS protocol version to compare less than the TLS protocol
   * versions.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TlsProtocolVersion(val raw: GTlsProtocolVersion):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No protocol version or unknown protocol version
     *
-    * No protocol version or unknown protocol version
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN
       extends TlsProtocolVersion(
         GTlsProtocolVersion.G_TLS_PROTOCOL_VERSION_UNKNOWN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** SSL 3.0, which is insecure and should not be used
     *
-    * SSL 3.0, which is insecure and should not be used
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SSL_3_0
       extends TlsProtocolVersion(
         GTlsProtocolVersion.G_TLS_PROTOCOL_VERSION_SSL_3_0
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** TLS 1.0, which is insecure and should not be used
     *
-    * TLS 1.0, which is insecure and should not be used
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TLS_1_0
       extends TlsProtocolVersion(
         GTlsProtocolVersion.G_TLS_PROTOCOL_VERSION_TLS_1_0
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** TLS 1.1, which is insecure and should not be used
     *
-    * TLS 1.1, which is insecure and should not be used
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TLS_1_1
       extends TlsProtocolVersion(
         GTlsProtocolVersion.G_TLS_PROTOCOL_VERSION_TLS_1_1
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * TLS 1.2, defined by [RFC
+  /** TLS 1.2, defined by [RFC
     * 5246](https://datatracker.ietf.org/doc/html/rfc5246)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TLS_1_2
       extends TlsProtocolVersion(
         GTlsProtocolVersion.G_TLS_PROTOCOL_VERSION_TLS_1_2
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * TLS 1.3, defined by [RFC
+  /** TLS 1.3, defined by [RFC
     * 8446](https://datatracker.ietf.org/doc/html/rfc8446)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TLS_1_3
       extends TlsProtocolVersion(
         GTlsProtocolVersion.G_TLS_PROTOCOL_VERSION_TLS_1_3
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** DTLS 1.0, which is insecure and should not be used
     *
-    * DTLS 1.0, which is insecure and should not be used
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DTLS_1_0
       extends TlsProtocolVersion(
         GTlsProtocolVersion.G_TLS_PROTOCOL_VERSION_DTLS_1_0
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * DTLS 1.2, defined by [RFC
+  /** DTLS 1.2, defined by [RFC
     * 6347](https://datatracker.ietf.org/doc/html/rfc6347)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DTLS_1_2
       extends TlsProtocolVersion(

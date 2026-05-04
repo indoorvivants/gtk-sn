@@ -2,96 +2,107 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkRevealerTransitionType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * These enumeration values describe the possible transitions when the child of
+/** These enumeration values describe the possible transitions when the child of
   * a `GtkRevealer` widget is shown or hidden.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum RevealerTransitionType(val raw: GtkRevealerTransitionType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No transition
     *
-    * No transition
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE
       extends RevealerTransitionType(
         GtkRevealerTransitionType.GTK_REVEALER_TRANSITION_TYPE_NONE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fade in
     *
-    * Fade in
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CROSSFADE
       extends RevealerTransitionType(
         GtkRevealerTransitionType.GTK_REVEALER_TRANSITION_TYPE_CROSSFADE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Slide in from the left
     *
-    * Slide in from the left
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SLIDE_RIGHT
       extends RevealerTransitionType(
         GtkRevealerTransitionType.GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Slide in from the right
     *
-    * Slide in from the right
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SLIDE_LEFT
       extends RevealerTransitionType(
         GtkRevealerTransitionType.GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Slide in from the bottom
     *
-    * Slide in from the bottom
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SLIDE_UP
       extends RevealerTransitionType(
         GtkRevealerTransitionType.GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Slide in from the top
     *
-    * Slide in from the top
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SLIDE_DOWN
       extends RevealerTransitionType(
         GtkRevealerTransitionType.GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Floop in from the left
     *
-    * Floop in from the left
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SWING_RIGHT
       extends RevealerTransitionType(
         GtkRevealerTransitionType.GTK_REVEALER_TRANSITION_TYPE_SWING_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Floop in from the right
     *
-    * Floop in from the right
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SWING_LEFT
       extends RevealerTransitionType(
         GtkRevealerTransitionType.GTK_REVEALER_TRANSITION_TYPE_SWING_LEFT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Floop in from the bottom
     *
-    * Floop in from the bottom
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SWING_UP
       extends RevealerTransitionType(
         GtkRevealerTransitionType.GTK_REVEALER_TRANSITION_TYPE_SWING_UP
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Floop in from the top
     *
-    * Floop in from the top
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SWING_DOWN
       extends RevealerTransitionType(

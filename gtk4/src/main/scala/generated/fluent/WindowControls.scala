@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkWindowControls
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkWindowControls` shows window frame controls.
+/** `GtkWindowControls` shows window frame controls.
   *
   * Typical window frame controls are minimize, maximize and close buttons, and
   * the window icon.
@@ -66,6 +64,9 @@ import sn.gnome.gtk4.internal.GtkWindowControls
   * # Accessibility
   *
   * `GtkWindowControls` uses the %GTK_ACCESSIBLE_ROLE_GROUP role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class WindowControls(raw: Ptr[GtkWindowControls])
     extends Widget(raw.asInstanceOf),
@@ -75,9 +76,10 @@ class WindowControls(raw: Ptr[GtkWindowControls])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the decoration layout of this `GtkWindowControls`.
     *
-    * Gets the decoration layout of this `GtkWindowControls`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDecorationLayout()(using Zone): String /* None */ = fromCString(
     gtk_window_controls_get_decoration_layout(
@@ -85,25 +87,25 @@ class WindowControls(raw: Ptr[GtkWindowControls])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the widget has any window buttons.
     *
-    * Gets whether the widget has any window buttons.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEmpty(): Boolean /* None */ = gtk_window_controls_get_empty(
     this.raw.asInstanceOf[Ptr[GtkWindowControls]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the side to which this `GtkWindowControls` instance belongs.
     *
-    * Gets the side to which this `GtkWindowControls` instance belongs.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSide(): PackType /* None */ = PackType.fromRaw(
     gtk_window_controls_get_side(this.raw.asInstanceOf[Ptr[GtkWindowControls]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the decoration layout for the title buttons.
+  /** Sets the decoration layout for the title buttons.
     *
     * This overrides the [property@Gtk.Settings:gtk-decoration-layout] setting.
     *
@@ -117,6 +119,9 @@ class WindowControls(raw: Ptr[GtkWindowControls])
     *
     * If [property@Gtk.WindowControls:side] value is @GTK_PACK_START, @self will
     * display the part before the colon, otherwise after that.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDecorationLayout(
       layout: Option[String | CString /* Some(CString) */ ]
@@ -127,11 +132,12 @@ class WindowControls(raw: Ptr[GtkWindowControls])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines which part of decoration layout the `GtkWindowControls` uses.
+  /** Determines which part of decoration layout the `GtkWindowControls` uses.
     *
     * See [property@Gtk.WindowControls:decoration-layout].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSide(side: PackType /* Some(GtkPackType) */ ): Unit /* None */ =
     gtk_window_controls_set_side(
@@ -150,9 +156,10 @@ class WindowControls(raw: Ptr[GtkWindowControls])
 end WindowControls
 
 object WindowControls:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkWindowControls`.
     *
-    * Creates a new `GtkWindowControls`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(side: PackType /* Some(GtkPackType) */ ): WindowControls =
     new WindowControls(gtk_window_controls_new(side.raw).asInstanceOf)

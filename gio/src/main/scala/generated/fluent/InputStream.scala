@@ -11,9 +11,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gsize, gssize}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GInputStream has functions to read from a stream (g_input_stream_read()),
+/** #GInputStream has functions to read from a stream (g_input_stream_read()),
   * to close a stream (g_input_stream_close()) and to skip some content
   * (g_input_stream_skip()).
   *
@@ -24,22 +22,24 @@ import sn.gnome.gobject.fluent.Object
   * streaming APIs.
   *
   * All of these functions have async variants too.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Clears the pending flag on @stream.
     *
-    * Clears the pending flag on @stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def clearPending(): Unit /* None */ = g_input_stream_clear_pending(
     this.raw.asInstanceOf[Ptr[GInputStream]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Closes the stream, releasing resources related to it.
+  /** Closes the stream, releasing resources related to it.
     *
     * Once the stream is closed, all other operations will return
     * %G_IO_ERROR_CLOSED. Closing a stream multiple times will not return an
@@ -63,6 +63,9 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
     * Cancelling a close will still leave the stream closed, but some streams
     * can use a faster close that doesn't block to e.g. check errors.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def close(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -76,9 +79,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Requests an asynchronous closes of the stream, releasing resources related
+  /** Requests an asynchronous closes of the stream, releasing resources related
     * to it. When the operation is finished @callback will be called. You can
     * then call g_input_stream_close_finish() to get the result of the
     * operation.
@@ -88,16 +89,20 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * The asynchronous methods have a default fallback that uses threads to
     * implement asynchronicity, so they are optional for inheriting classes.
     * However, if you override one you must override all.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[close_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def closeAsync__ = ???
+  private def closeAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes closing a stream asynchronously, started from
+  /** Finishes closing a stream asynchronously, started from
     * g_input_stream_close_async().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def closeFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -109,25 +114,25 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if an input stream has pending actions.
     *
-    * Checks if an input stream has pending actions.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasPending(): Boolean /* None */ = g_input_stream_has_pending(
     this.raw.asInstanceOf[Ptr[GInputStream]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if an input stream is closed.
     *
-    * Checks if an input stream is closed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isClosed(): Boolean /* None */ = g_input_stream_is_closed(
     this.raw.asInstanceOf[Ptr[GInputStream]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to read @count bytes from the stream into the buffer starting at
+  /** Tries to read @count bytes from the stream into the buffer starting at
     * @buffer.
     *   Will block during this read.
     *
@@ -149,15 +154,16 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * partial result will be returned, without an error.
     *
     * On error -1 is returned and @error is set accordingly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method read contains an OUT parameter, which is not supported yet"
+    "[read]: Method read contains an OUT parameter, which is not supported yet"
   )
-  def read__ = ???
+  private def read__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to read @count bytes from the stream into the buffer starting at
+  /** Tries to read @count bytes from the stream into the buffer starting at
     * @buffer.
     *   Will block during this read.
     *
@@ -178,15 +184,16 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     *   the error was encountered. This functionality is only available from C.
     *   If you need it from another language then you must write your own loop
     *   around g_input_stream_read().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method read_all contains an OUT parameter, which is not supported yet"
+    "[read_all]: Method read_all contains an OUT parameter, which is not supported yet"
   )
-  def readAll__ = ???
+  private def readAll__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Request an asynchronous read of @count bytes from the stream into the
+  /** Request an asynchronous read of @count bytes from the stream into the
     * buffer starting at @buffer.
     *
     * This is the asynchronous equivalent of g_input_stream_read_all().
@@ -196,15 +203,16 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * Any outstanding I/O request with higher priority (lower numerical value)
     * will be executed before an outstanding request with lower priority.
     * Default priority is %G_PRIORITY_DEFAULT.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method read_all_async contains an OUT parameter, which is not supported yet"
+    "[read_all_async]: Method read_all_async contains an OUT parameter, which is not supported yet"
   )
-  def readAllAsync__ = ???
+  private def readAllAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an asynchronous stream read operation started with
+  /** Finishes an asynchronous stream read operation started with
     * g_input_stream_read_all_async().
     *
     * As a special exception to the normal conventions for functions that use
@@ -214,15 +222,16 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     *   the error was encountered. This functionality is only available from C.
     *   If you need it from another language then you must write your own loop
     *   around g_input_stream_read_async().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method read_all_finish contains an OUT parameter, which is not supported yet"
+    "[read_all_finish]: Method read_all_finish contains an OUT parameter, which is not supported yet"
   )
-  def readAllFinish__ = ???
+  private def readAllFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Request an asynchronous read of @count bytes from the stream into the
+  /** Request an asynchronous read of @count bytes from the stream into the
     * buffer starting at @buffer. When the operation is finished @callback will
     * be called. You can then call g_input_stream_read_finish() to get the
     * result of the operation.
@@ -246,15 +255,16 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * The asynchronous methods have a default fallback that uses threads to
     * implement asynchronicity, so they are optional for inheriting classes.
     * However, if you override one you must override all.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method read_async contains an OUT parameter, which is not supported yet"
+    "[read_async]: Method read_async contains an OUT parameter, which is not supported yet"
   )
-  def readAsync__ = ???
+  private def readAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_input_stream_read(), this tries to read @count bytes from the
+  /** Like g_input_stream_read(), this tries to read @count bytes from the
     * stream in a blocking fashion. However, rather than reading into a
     * user-supplied buffer, this will create a new #GBytes containing the data
     * that was read. This may be easier to use from language bindings.
@@ -275,15 +285,16 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * partial result will be returned, without an error.
     *
     * On error %NULL is returned and @error is set accordingly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[read_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def readBytes__ = ???
+  private def readBytes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Request an asynchronous read of @count bytes from the stream into a new
+  /** Request an asynchronous read of @count bytes from the stream into a new
     * #GBytes. When the operation is finished @callback will be called. You can
     * then call g_input_stream_read_bytes_finish() to get the result of the
     * operation.
@@ -304,24 +315,29 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * Any outstanding I/O request with higher priority (lower numerical value)
     * will be executed before an outstanding request with lower priority.
     * Default priority is %G_PRIORITY_DEFAULT.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[read_bytes_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def readBytesAsync__ = ???
+  private def readBytesAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an asynchronous stream read-into-#GBytes operation.
     *
-    * Finishes an asynchronous stream read-into-#GBytes operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[read_bytes_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def readBytesFinish__ = ???
+  private def readBytesFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an asynchronous stream read operation.
     *
-    * Finishes an asynchronous stream read operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def readFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -333,11 +349,12 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     ).value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @stream to have actions pending. If the pending flag is already set
+  /** Sets @stream to have actions pending. If the pending flag is already set
     * or @stream is closed, it will return %FALSE and set
     * @error.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPending(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_input_stream_set_pending(
@@ -346,9 +363,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to skip @count bytes from the stream. Will block during the
+  /** Tries to skip @count bytes from the stream. Will block during the
     * operation.
     *
     * This is identical to g_input_stream_read(), from a behaviour standpoint,
@@ -363,6 +378,9 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned. If an
     * operation was partially finished when the operation was cancelled the
     * partial result will be returned, without an error.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def skip(
       count: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
@@ -378,9 +396,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     ).value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Request an asynchronous skip of @count bytes from the stream. When the
+  /** Request an asynchronous skip of @count bytes from the stream. When the
     * operation is finished @callback will be called. You can then call
     * g_input_stream_skip_finish() to get the result of the operation.
     *
@@ -403,15 +419,19 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * The asynchronous methods have a default fallback that uses threads to
     * implement asynchronicity, so they are optional for inheriting classes.
     * However, if you override one, you must override all.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[skip_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def skipAsync__ = ???
+  private def skipAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes a stream skip operation.
     *
-    * Finishes a stream skip operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def skipFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */

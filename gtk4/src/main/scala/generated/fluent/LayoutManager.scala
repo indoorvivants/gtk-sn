@@ -8,9 +8,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{LayoutChild, SizeRequestMode, Widget}
 import sn.gnome.gtk4.internal.GtkLayoutManager
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Layout managers are delegate classes that handle the preferred size and the
+/** Layout managers are delegate classes that handle the preferred size and the
   * allocation of a widget.
   *
   * You typically subclass `GtkLayoutManager` if you want to implement a layout
@@ -57,17 +55,21 @@ import sn.gnome.gtk4.internal.GtkLayoutManager
   * layout properties; each `GtkLayoutChild` instance should call
   * [method@Gtk.LayoutManager.layout_changed] every time a property is updated,
   * in order to queue a new size measuring and allocation.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class LayoutManager(raw: Ptr[GtkLayoutManager])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Assigns the given @width, @height, and @baseline to a @widget, and
+  /** Assigns the given @width, @height, and @baseline to a @widget, and
     * computes the position and sizes of the children of the @widget using the
     * layout management policy of @manager.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def allocate(
       widget: Widget /* Some(Ptr[GtkWidget]) */,
@@ -82,9 +84,7 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     baseline
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves a `GtkLayoutChild` instance for the `GtkLayoutManager`, creating
+  /** Retrieves a `GtkLayoutChild` instance for the `GtkLayoutManager`, creating
     * one if necessary.
     *
     * The @child widget must be a child of the widget using @manager.
@@ -92,6 +92,9 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     * The `GtkLayoutChild` instance is owned by the `GtkLayoutManager`, and is
     * guaranteed to exist as long as @child is a child of the `GtkWidget` using
     * the given `GtkLayoutManager`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLayoutChild(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -102,9 +105,10 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the request mode of @manager.
     *
-    * Retrieves the request mode of @manager.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRequestMode(): SizeRequestMode /* None */ = SizeRequestMode.fromRaw(
     gtk_layout_manager_get_request_mode(
@@ -112,9 +116,10 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the `GtkWidget` using the given `GtkLayoutManager`.
     *
-    * Retrieves the `GtkWidget` using the given `GtkLayoutManager`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWidget(): Widget /* None */ = new Widget(
     gtk_layout_manager_get_widget(
@@ -122,28 +127,30 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queues a resize on the `GtkWidget` using @manager, if any.
+  /** Queues a resize on the `GtkWidget` using @manager, if any.
     *
     * This function should be called by subclasses of `GtkLayoutManager` in
     * response to changes to their layout management policies.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def layoutChanged(): Unit /* None */ = gtk_layout_manager_layout_changed(
     this.raw.asInstanceOf[Ptr[GtkLayoutManager]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Measures the size of the @widget using @manager, for the given @orientation
+  /** Measures the size of the @widget using @manager, for the given @orientation
     * and size.
     *
     * See the [class@Gtk.Widget] documentation on layout management for more
     * details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method measure contains an OUT parameter, which is not supported yet"
+    "[measure]: Method measure contains an OUT parameter, which is not supported yet"
   )
-  def measure__ = ???
+  private def measure__ = ???
 
 end LayoutManager

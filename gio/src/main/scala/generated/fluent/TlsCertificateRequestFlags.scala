@@ -2,16 +2,18 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GTlsCertificateRequestFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags for g_tls_interaction_request_certificate(),
+/** Flags for g_tls_interaction_request_certificate(),
   * g_tls_interaction_request_certificate_async(), and
   * g_tls_interaction_invoke_request_certificate().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TlsCertificateRequestFlags(val raw: GTlsCertificateRequestFlags):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No flags
     *
-    * No flags
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE
       extends TlsCertificateRequestFlags(

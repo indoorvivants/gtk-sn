@@ -8,9 +8,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{Buildable, SizeGroupMode, Widget}
 import sn.gnome.gtk4.internal.GtkSizeGroup
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkSizeGroup` groups widgets together so they all request the same size.
+/** `GtkSizeGroup` groups widgets together so they all request the same size.
   *
   * This is typically useful when you want a column of widgets to have the same
   * size, but you can’t use a `GtkGrid`.
@@ -73,6 +71,9 @@ import sn.gnome.gtk4.internal.GtkSizeGroup
   *   </widgets>
   * </object>
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SizeGroup(raw: Ptr[GtkSizeGroup])
     extends Object(raw.asInstanceOf),
@@ -80,9 +81,7 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a widget to a `GtkSizeGroup`.
+  /** Adds a widget to a `GtkSizeGroup`.
     *
     * In the future, the requisition of the widget will be determined as the
     * maximum of its requisition and the requisition of the other widgets in the
@@ -92,6 +91,9 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     *
     * When the widget is destroyed or no longer referenced elsewhere, it will be
     * removed from the size group.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addWidget(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_size_group_add_widget(
@@ -99,26 +101,29 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
       widget.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the current mode of the size group.
     *
-    * Gets the current mode of the size group.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMode(): SizeGroupMode /* None */ = SizeGroupMode.fromRaw(
     gtk_size_group_get_mode(this.raw.asInstanceOf[Ptr[GtkSizeGroup]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the list of widgets associated with @size_group.
     *
-    * Returns the list of widgets associated with @size_group.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+    "[get_widgets/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
-  def getWidgets__ = ???
+  private def getWidgets__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes a widget from a `GtkSizeGroup`.
     *
-    * Removes a widget from a `GtkSizeGroup`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeWidget(
       widget: Widget /* Some(Ptr[GtkWidget]) */
@@ -127,15 +132,16 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     widget.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `GtkSizeGroupMode` of the size group.
+  /** Sets the `GtkSizeGroupMode` of the size group.
     *
     * The mode of the size group determines whether the widgets in the size
     * group should all have the same horizontal requisition
     * (%GTK_SIZE_GROUP_HORIZONTAL) all have the same vertical requisition
     * (%GTK_SIZE_GROUP_VERTICAL), or should all have the same requisition in
     * both directions (%GTK_SIZE_GROUP_BOTH).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMode(
       mode: SizeGroupMode /* Some(GtkSizeGroupMode) */
@@ -145,9 +151,10 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
 end SizeGroup
 
 object SizeGroup:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Create a new `GtkSizeGroup`.
     *
-    * Create a new `GtkSizeGroup`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(mode: SizeGroupMode /* Some(GtkSizeGroupMode) */ ): SizeGroup =
     new SizeGroup(gtk_size_group_new(mode.raw).asInstanceOf)

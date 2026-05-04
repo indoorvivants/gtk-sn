@@ -18,9 +18,7 @@ import sn.gnome.gtk4.fluent.{
 import sn.gnome.gtk4.internal.GtkLabel
 import sn.gnome.pango.fluent.{EllipsizeMode, Layout, WrapMode}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkLabel` widget displays a small amount of text.
+/** The `GtkLabel` widget displays a small amount of text.
   *
   * As the name implies, most labels are used to label another widget such as a
   * [class@Button].
@@ -198,6 +196,9 @@ import sn.gnome.pango.fluent.{EllipsizeMode, Layout, WrapMode}
   * It is possible to implement custom handling for links and their tooltips
   * with the [signal@Gtk.Label::activate-link] signal and the
   * [method@Gtk.Label.get_current_uri] function.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Label(raw: Ptr[GtkLabel])
     extends Widget(raw.asInstanceOf),
@@ -207,9 +208,7 @@ class Label(raw: Ptr[GtkLabel])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the label's attribute list.
+  /** Gets the label's attribute list.
     *
     * This is the [struct@Pango.AttrList] that was set on the label using
     * [method@Gtk.Label.set_attributes], if any. This function does not reflect
@@ -217,134 +216,148 @@ class Label(raw: Ptr[GtkLabel])
     * [method@Gtk.Label.set_markup]). If you want to get the effective
     * attributes for the label, use
     * `pango_layout_get_attributes (gtk_label_get_layout (self))`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
-  def getAttributes__ = ???
+  private def getAttributes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the URI for the currently active link in the label.
+  /** Returns the URI for the currently active link in the label.
     *
     * The active link is the one under the mouse pointer or, in a selectable
     * label, the link in which the text cursor is currently positioned.
     *
     * This function is intended for use in a [signal@Gtk.Label::activate-link]
     * handler or for use in a [signal@Gtk.Widget::query-tooltip] handler.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCurrentUri()(using Zone): String /* None */ = fromCString(
     gtk_label_get_current_uri(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the ellipsizing position of the label.
+  /** Returns the ellipsizing position of the label.
     *
     * See [method@Gtk.Label.set_ellipsize].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEllipsize(): EllipsizeMode /* None */ = EllipsizeMode.fromRaw(
     gtk_label_get_ellipsize(this.raw.asInstanceOf[Ptr[GtkLabel]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the extra menu model of @label.
+  /** Gets the extra menu model of @label.
     *
     * See [method@Gtk.Label.set_extra_menu].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExtraMenu(): MenuModel /* None */ = new MenuModel(
     gtk_label_get_extra_menu(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the justification of the label.
+  /** Returns the justification of the label.
     *
     * See [method@Gtk.Label.set_justify].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getJustify(): Justification /* None */ = Justification.fromRaw(
     gtk_label_get_justify(this.raw.asInstanceOf[Ptr[GtkLabel]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the text from a label.
+  /** Fetches the text from a label.
     *
     * The returned text includes any embedded underlines indicating mnemonics
     * and Pango markup. (See [method@Gtk.Label.get_text]).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLabel()(using Zone): String /* None */ = fromCString(
     gtk_label_get_label(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `PangoLayout` used to display the label.
+  /** Gets the `PangoLayout` used to display the label.
     *
     * The layout is useful to e.g. convert text positions to pixel positions, in
     * combination with [method@Gtk.Label.get_layout_offsets]. The returned
     * layout is owned by the @label so need not be freed by the caller. The @label
     * is free to recreate its layout at any time, so it should be considered
     * read-only.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLayout(): Layout /* None */ = new Layout(
     gtk_label_get_layout(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains the coordinates where the label will draw its `PangoLayout`.
+  /** Obtains the coordinates where the label will draw its `PangoLayout`.
     *
     * The coordinates are useful to convert mouse events into coordinates inside
     * the [class@Pango.Layout], e.g. to take some action if some part of the
     * label is clicked. Remember when using the [class@Pango.Layout] functions
     * you need to convert to and from pixels using PANGO_PIXELS() or
     * [const@Pango.SCALE].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_layout_offsets contains an OUT parameter, which is not supported yet"
+    "[get_layout_offsets]: Method get_layout_offsets contains an OUT parameter, which is not supported yet"
   )
-  def getLayoutOffsets__ = ???
+  private def getLayoutOffsets__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the number of lines to which an ellipsized, wrapping label should be
+  /** Gets the number of lines to which an ellipsized, wrapping label should be
     * limited.
     *
     * See [method@Gtk.Label.set_lines].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLines(): Int /* None */ = gtk_label_get_lines(
     this.raw.asInstanceOf[Ptr[GtkLabel]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the desired maximum width of @label, in characters.
+  /** Retrieves the desired maximum width of @label, in characters.
     *
     * See [method@Gtk.Label.set_width_chars].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMaxWidthChars(): Int /* None */ = gtk_label_get_max_width_chars(
     this.raw.asInstanceOf[Ptr[GtkLabel]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Return the mnemonic accelerator.
+  /** Return the mnemonic accelerator.
     *
     * If the label has been set so that it has a mnemonic key this function
     * returns the keyval used for the mnemonic accelerator. If there is no
     * mnemonic set up it returns `GDK_KEY_VoidSymbol`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMnemonicKeyval(): UInt /* None */ = gtk_label_get_mnemonic_keyval(
     this.raw.asInstanceOf[Ptr[GtkLabel]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the target of the mnemonic (keyboard shortcut) of this label.
+  /** Retrieves the target of the mnemonic (keyboard shortcut) of this label.
     *
     * See [method@Gtk.Label.set_mnemonic_widget].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMnemonicWidget(): Widget /* None */ = new Widget(
     gtk_label_get_mnemonic_widget(
@@ -352,141 +365,155 @@ class Label(raw: Ptr[GtkLabel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns line wrap mode used by the label.
+  /** Returns line wrap mode used by the label.
     *
     * See [method@Gtk.Label.set_natural_wrap_mode].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNaturalWrapMode(): NaturalWrapMode /* None */ =
     NaturalWrapMode.fromRaw(
       gtk_label_get_natural_wrap_mode(this.raw.asInstanceOf[Ptr[GtkLabel]])
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the label is selectable.
     *
-    * Returns whether the label is selectable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSelectable(): Boolean /* None */ =
     gtk_label_get_selectable(this.raw.asInstanceOf[Ptr[GtkLabel]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the selected range of characters in the label.
     *
-    * Gets the selected range of characters in the label.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_selection_bounds contains an OUT parameter, which is not supported yet"
+    "[get_selection_bounds]: Method get_selection_bounds contains an OUT parameter, which is not supported yet"
   )
-  def getSelectionBounds__ = ???
+  private def getSelectionBounds__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the label is in single line mode.
     *
-    * Returns whether the label is in single line mode.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSingleLineMode(): Boolean /* None */ = gtk_label_get_single_line_mode(
     this.raw.asInstanceOf[Ptr[GtkLabel]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the tabs for @self.
+  /** Gets the tabs for @self.
     *
     * The returned array will be %NULL if “standard” (8-space) tabs are used.
     * Free the return value with [method@Pango.TabArray.free].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
-  def getTabs__ = ???
+  private def getTabs__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the text from a label.
+  /** Fetches the text from a label.
     *
     * The returned text is as it appears on screen. This does not include any
     * embedded underlines indicating mnemonics or Pango markup. (See
     * [method@Gtk.Label.get_label])
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getText()(using Zone): String /* None */ = fromCString(
     gtk_label_get_text(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the label’s text is interpreted as Pango markup.
+  /** Returns whether the label’s text is interpreted as Pango markup.
     *
     * See [method@Gtk.Label.set_use_markup].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseMarkup(): Boolean /* None */ =
     gtk_label_get_use_markup(this.raw.asInstanceOf[Ptr[GtkLabel]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether an embedded underlines in the label indicate mnemonics.
+  /** Returns whether an embedded underlines in the label indicate mnemonics.
     *
     * See [method@Gtk.Label.set_use_underline].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseUnderline(): Boolean /* None */ = gtk_label_get_use_underline(
     this.raw.asInstanceOf[Ptr[GtkLabel]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the desired width of @label, in characters.
+  /** Retrieves the desired width of @label, in characters.
     *
     * See [method@Gtk.Label.set_width_chars].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWidthChars(): Int /* None */ = gtk_label_get_width_chars(
     this.raw.asInstanceOf[Ptr[GtkLabel]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether lines in the label are automatically wrapped.
+  /** Returns whether lines in the label are automatically wrapped.
     *
     * See [method@Gtk.Label.set_wrap].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWrap(): Boolean /* None */ =
     gtk_label_get_wrap(this.raw.asInstanceOf[Ptr[GtkLabel]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns line wrap mode used by the label.
+  /** Returns line wrap mode used by the label.
     *
     * See [method@Gtk.Label.set_wrap_mode].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWrapMode(): WrapMode /* None */ = WrapMode.fromRaw(
     gtk_label_get_wrap_mode(this.raw.asInstanceOf[Ptr[GtkLabel]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `xalign` of the label.
+  /** Gets the `xalign` of the label.
     *
     * See the [property@Gtk.Label:xalign] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getXalign(): Float /* None */ = gtk_label_get_xalign(
     this.raw.asInstanceOf[Ptr[GtkLabel]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `yalign` of the label.
+  /** Gets the `yalign` of the label.
     *
     * See the [property@Gtk.Label:yalign] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getYalign(): Float /* None */ = gtk_label_get_yalign(
     this.raw.asInstanceOf[Ptr[GtkLabel]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Selects a range of characters in the label, if the label is selectable.
+  /** Selects a range of characters in the label, if the label is selectable.
     *
     * See [method@Gtk.Label.set_selectable]. If the label is not selectable,
     * this function has no effect. If @start_offset or
     * @end_offset
     *   are -1, then the end of the label will be substituted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def selectRegion(
       start_offset: Int /* Some(CInt) */,
@@ -497,9 +524,7 @@ class Label(raw: Ptr[GtkLabel])
     end_offset
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Apply attributes to the label text.
+  /** Apply attributes to the label text.
     *
     * The attributes set with this function will be applied and merged with any
     * other attributes previously effected by way of the
@@ -507,27 +532,32 @@ class Label(raw: Ptr[GtkLabel])
     * properties. While it is not recommended to mix markup strings with
     * manually set attributes, if you must; know that the attributes will be
     * applied to the label after the markup string is parsed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
-  def setAttributes__ = ???
+  private def setAttributes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the mode used to ellipsize the text.
+  /** Sets the mode used to ellipsize the text.
     *
     * The text will be ellipsized if there is not enough space to render the
     * entire string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEllipsize(
       mode: EllipsizeMode /* Some(_root_.sn.gnome.pango.internal.PangoEllipsizeMode) */
   ): Unit /* None */ =
     gtk_label_set_ellipsize(this.raw.asInstanceOf[Ptr[GtkLabel]], mode.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets a menu model to add when constructing the context menu for @label.
     *
-    * Sets a menu model to add when constructing the context menu for @label.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setExtraMenu(
       model: Option[
@@ -544,9 +574,7 @@ class Label(raw: Ptr[GtkLabel])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the alignment of the lines in the text of the label relative to each
+  /** Sets the alignment of the lines in the text of the label relative to each
     * other.
     *
     * %GTK_JUSTIFY_LEFT is the default value when the widget is first created
@@ -554,19 +582,23 @@ class Label(raw: Ptr[GtkLabel])
     * label as a whole, use [method@Gtk.Widget.set_halign] instead.
     * [method@Gtk.Label.set_justify] has no effect on labels containing only a
     * single line.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setJustify(
       jtype: Justification /* Some(GtkJustification) */
   ): Unit /* None */ =
     gtk_label_set_justify(this.raw.asInstanceOf[Ptr[GtkLabel]], jtype.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the text of the label.
+  /** Sets the text of the label.
     *
     * The label is interpreted as including embedded underlines and/or Pango
     * markup depending on the values of the [property@Gtk.Label:use-underline]
     * and [property@Gtk.Label:use-markup] properties.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabel(
       str: String | CString /* Some(CString) */
@@ -575,20 +607,19 @@ class Label(raw: Ptr[GtkLabel])
     __sn_extract_string(str)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the number of lines to which an ellipsized, wrapping label should be
+  /** Sets the number of lines to which an ellipsized, wrapping label should be
     * limited.
     *
     * This has no effect if the label is not wrapping or ellipsized. Set this to
     * -1 if you don’t want to limit the number of lines.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLines(lines: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_label_set_lines(this.raw.asInstanceOf[Ptr[GtkLabel]], lines)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the labels text and attributes from markup.
+  /** Sets the labels text and attributes from markup.
     *
     * The string must be marked up with Pango markup (see
     * [func@Pango.parse_markup]).
@@ -615,6 +646,9 @@ class Label(raw: Ptr[GtkLabel])
     * [property@Gtk.Label:use-markup] property accordingly.
     *
     * See also: [method@Gtk.Label.set_text]
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarkup(
       str: String | CString /* Some(CString) */
@@ -623,9 +657,7 @@ class Label(raw: Ptr[GtkLabel])
     __sn_extract_string(str)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the labels text, attributes and mnemonic from markup.
+  /** Sets the labels text, attributes and mnemonic from markup.
     *
     * Parses @str which is marked up with Pango markup (see
     * [func@Pango.parse_markup]), setting the label’s text and attribute list
@@ -635,6 +667,9 @@ class Label(raw: Ptr[GtkLabel])
     *
     * The mnemonic key can be used to activate another widget, chosen
     * automatically, or explicitly using [method@Gtk.Label.set_mnemonic_widget].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarkupWithMnemonic(
       str: String | CString /* Some(CString) */
@@ -643,16 +678,15 @@ class Label(raw: Ptr[GtkLabel])
     __sn_extract_string(str)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the desired maximum width in characters of @label to @n_chars.
     *
-    * Sets the desired maximum width in characters of @label to @n_chars.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMaxWidthChars(n_chars: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_label_set_max_width_chars(this.raw.asInstanceOf[Ptr[GtkLabel]], n_chars)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Associate the label with its mnemonic target.
+  /** Associate the label with its mnemonic target.
     *
     * If the label has been set so that it has a mnemonic key (using i.e.
     * [method@Gtk.Label.set_markup_with_mnemonic],
@@ -669,6 +703,9 @@ class Label(raw: Ptr[GtkLabel])
     * [signal@Gtk.Widget::mnemonic-activate] signal on it. The default handler
     * for this signal will activate the widget if there are no mnemonic
     * collisions and toggle focus between the colliding widgets otherwise.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMnemonicWidget(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -679,12 +716,13 @@ class Label(raw: Ptr[GtkLabel])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Select the line wrapping for the natural size request.
+  /** Select the line wrapping for the natural size request.
     *
     * This only affects the natural size requested, for the actual wrapping
     * used, see the [property@Gtk.Label:wrap-mode] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setNaturalWrapMode(
       wrap_mode: NaturalWrapMode /* Some(GtkNaturalWrapMode) */
@@ -693,12 +731,13 @@ class Label(raw: Ptr[GtkLabel])
     wrap_mode.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Makes text in the label selectable.
+  /** Makes text in the label selectable.
     *
     * Selectable labels allow the user to select text from the label, for
     * copy-and-paste.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSelectable(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -707,9 +746,10 @@ class Label(raw: Ptr[GtkLabel])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the label is in single line mode.
     *
-    * Sets whether the label is in single line mode.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSingleLineMode(
       single_line_mode: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -718,18 +758,17 @@ class Label(raw: Ptr[GtkLabel])
     gboolean(gint((if single_line_mode == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the default tab stops for paragraphs in @self.
     *
-    * Sets the default tab stops for paragraphs in @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
-  def setTabs__ = ???
+  private def setTabs__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the text within the `GtkLabel` widget.
+  /** Sets the text within the `GtkLabel` widget.
     *
     * It overwrites any text that was there before.
     *
@@ -741,6 +780,9 @@ class Label(raw: Ptr[GtkLabel])
     * %FALSE as a side effect.
     *
     * See also: [method@Gtk.Label.set_markup]
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(
       str: String | CString /* Some(CString) */
@@ -749,14 +791,15 @@ class Label(raw: Ptr[GtkLabel])
     __sn_extract_string(str)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the label’s text from the string @str.
+  /** Sets the label’s text from the string @str.
     *
     * If characters in @str are preceded by an underscore, they are underlined
     * indicating that they represent a keyboard accelerator called a mnemonic.
     * The mnemonic key can be used to activate another widget, chosen
     * automatically, or explicitly using [method@Gtk.Label.set_mnemonic_widget].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTextWithMnemonic(
       str: String | CString /* Some(CString) */
@@ -765,11 +808,12 @@ class Label(raw: Ptr[GtkLabel])
     __sn_extract_string(str)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the text of the label contains markup.
+  /** Sets whether the text of the label contains markup.
     *
     * See [method@Gtk.Label.set_markup].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseMarkup(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -778,9 +822,10 @@ class Label(raw: Ptr[GtkLabel])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether underlines in the text indicate mnemonics.
     *
-    * Sets whether underlines in the text indicate mnemonics.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseUnderline(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -789,16 +834,15 @@ class Label(raw: Ptr[GtkLabel])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the desired width in characters of @label to @n_chars.
     *
-    * Sets the desired width in characters of @label to @n_chars.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWidthChars(n_chars: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_label_set_width_chars(this.raw.asInstanceOf[Ptr[GtkLabel]], n_chars)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Toggles line wrapping within the `GtkLabel` widget.
+  /** Toggles line wrapping within the `GtkLabel` widget.
     *
     * %TRUE makes it break lines if text exceeds the widget’s size. %FALSE lets
     * the text get cut off by the edge of the widget if it exceeds the widget
@@ -809,6 +853,9 @@ class Label(raw: Ptr[GtkLabel])
     * their requisition depend on the parent container’s size. For a label that
     * wraps at a specific position, set the label’s width using
     * [method@Gtk.Widget.set_size_request].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWrap(
       wrap: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -817,9 +864,7 @@ class Label(raw: Ptr[GtkLabel])
     gboolean(gint((if wrap == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Controls how line wrapping is done.
+  /** Controls how line wrapping is done.
     *
     * This only affects the label if line wrapping is on. (See
     * [method@Gtk.Label.set_wrap]) The default is %PANGO_WRAP_WORD which means
@@ -827,17 +872,21 @@ class Label(raw: Ptr[GtkLabel])
     *
     * For sizing behavior, also consider the
     * [property@Gtk.Label:natural-wrap-mode] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWrapMode(
       wrap_mode: WrapMode /* Some(_root_.sn.gnome.pango.internal.PangoWrapMode) */
   ): Unit /* None */ =
     gtk_label_set_wrap_mode(this.raw.asInstanceOf[Ptr[GtkLabel]], wrap_mode.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `xalign` of the label.
+  /** Sets the `xalign` of the label.
     *
     * See the [property@Gtk.Label:xalign] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setXalign(xalign: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_label_set_xalign(
@@ -845,11 +894,12 @@ class Label(raw: Ptr[GtkLabel])
       xalign.asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `yalign` of the label.
+  /** Sets the `yalign` of the label.
     *
     * See the [property@Gtk.Label:yalign] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setYalign(yalign: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_label_set_yalign(
@@ -868,11 +918,12 @@ class Label(raw: Ptr[GtkLabel])
 end Label
 
 object Label:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new label with the given text inside it.
+  /** Creates a new label with the given text inside it.
     *
     * You can pass %NULL to get an empty label widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       str: Option[String | CString /* Some(CString) */ ]
@@ -884,9 +935,7 @@ object Label:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkLabel`, containing the text in @str.
+  /** Creates a new `GtkLabel`, containing the text in @str.
     *
     * If characters in @str are preceded by an underscore, they are underlined.
     * If you need a literal underscore character in a label, use '__' (two
@@ -900,6 +949,9 @@ object Label:
     * widget. For instance, if the label is inside a button or menu item, the
     * button or menu item will automatically become the mnemonic widget and be
     * activated by the mnemonic.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withMnemonic(
       str: Option[String | CString /* Some(CString) */ ]

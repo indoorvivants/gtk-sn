@@ -17,9 +17,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GDBusObjectManagerClient is used to create, monitor and delete object
+/** #GDBusObjectManagerClient is used to create, monitor and delete object
   * proxies for remote objects exported by a #GDBusObjectManagerServer (or any
   * code implementing the
   * [org.freedesktop.DBus.ObjectManager](http://dbus.freedesktop.org/doc/dbus-specification.html#standard-interfaces-objectmanager)
@@ -85,6 +83,9 @@ import sn.gnome.gobject.fluent.Object
   * #GDBusObjectProxy and #GDBusProxy objects originating from the
   * #GDBusObjectManagerClient object will be created in the same context and,
   * consequently, will deliver signals in the same main loop.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     extends Object(raw.asInstanceOf),
@@ -94,9 +95,10 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the #GDBusConnection used by @manager.
     *
-    * Gets the #GDBusConnection used by @manager.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getConnection(): DBusConnection /* None */ = new DBusConnection(
     g_dbus_object_manager_client_get_connection(
@@ -104,9 +106,10 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the flags that @manager was constructed with.
     *
-    * Gets the flags that @manager was constructed with.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFlags(): DBusObjectManagerClientFlags /* None */ =
     DBusObjectManagerClientFlags.fromRaw(
@@ -115,10 +118,11 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the name that @manager is for, or %NULL if not a message bus
+  /** Gets the name that @manager is for, or %NULL if not a message bus
     * connection.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     g_dbus_object_manager_client_get_name(
@@ -126,11 +130,12 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The unique name that owns the name that @manager is for or %NULL if no-one
+  /** The unique name that owns the name that @manager is for or %NULL if no-one
     * currently owns that name. You can connect to the #GObject::notify signal
     * to track changes to the #GDBusObjectManagerClient:name-owner property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNameOwner()(using Zone): String /* None */ = fromCString(
     g_dbus_object_manager_client_get_name_owner(
@@ -141,9 +146,10 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
 end DBusObjectManagerClient
 
 object DBusObjectManagerClient:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an operation started with g_dbus_object_manager_client_new().
     *
-    * Finishes an operation started with g_dbus_object_manager_client_new().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def finish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -156,10 +162,11 @@ object DBusObjectManagerClient:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an operation started with
+  /** Finishes an operation started with
     * g_dbus_object_manager_client_new_for_bus().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forBusFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -172,36 +179,36 @@ object DBusObjectManagerClient:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_dbus_object_manager_client_new_sync() but takes a #GBusType instead
+  /** Like g_dbus_object_manager_client_new_sync() but takes a #GBusType instead
     * of a #GDBusConnection.
     *
     * This is a synchronous failable constructor - the calling thread is blocked
     * until a reply is received. See g_dbus_object_manager_client_new_for_bus()
     * for the asynchronous version.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
+    "[get_proxy_type_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
   )
-  def new_for_bus_sync() = ???
+  private def new_for_bus_sync() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GDBusObjectManagerClient object.
+  /** Creates a new #GDBusObjectManagerClient object.
     *
     * This is a synchronous failable constructor - the calling thread is blocked
     * until a reply is received. See g_dbus_object_manager_client_new() for the
     * asynchronous version.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
+    "[get_proxy_type_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
   )
-  def new_sync() = ???
+  private def new_sync() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously creates a new #GDBusObjectManagerClient object.
+  /** Asynchronously creates a new #GDBusObjectManagerClient object.
     *
     * This is an asynchronous failable constructor. When the result is ready, @callback
     * will be invoked in the [thread-default main
@@ -209,15 +216,16 @@ object DBusObjectManagerClient:
     * this method from. You can then call
     * g_dbus_object_manager_client_new_finish() to get the result. See
     * g_dbus_object_manager_client_new_sync() for the synchronous version.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
+    "[<function parameters>/get_proxy_type_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_dbus_object_manager_client_new() but takes a #GBusType instead of a
+  /** Like g_dbus_object_manager_client_new() but takes a #GBusType instead of a
     * #GDBusConnection.
     *
     * This is an asynchronous failable constructor. When the result is ready, @callback
@@ -227,10 +235,13 @@ object DBusObjectManagerClient:
     * g_dbus_object_manager_client_new_for_bus_finish() to get the result. See
     * g_dbus_object_manager_client_new_for_bus_sync() for the synchronous
     * version.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
+    "[<function parameters>/get_proxy_type_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
   )
-  def newForBus() = ???
+  private def newForBus() = ???
 
 end DBusObjectManagerClient

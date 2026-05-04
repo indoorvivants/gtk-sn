@@ -7,18 +7,17 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.Sorter
 import sn.gnome.gtk4.internal.GtkCustomSorter
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkCustomSorter` is a `GtkSorter` implementation that sorts via a callback
+/** `GtkCustomSorter` is a `GtkSorter` implementation that sorts via a callback
   * function.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class CustomSorter(raw: Ptr[GtkCustomSorter]) extends Sorter(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets (or unsets) the function used for sorting items.
+  /** Sets (or unsets) the function used for sorting items.
     *
     * If @sort_func is %NULL, all items are considered equal.
     *
@@ -26,26 +25,30 @@ class CustomSorter(raw: Ptr[GtkCustomSorter]) extends Sorter(raw.asInstanceOf):
     * to be called.
     *
     * If a previous function was set, its @user_destroy will be called now.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
+    "[set_sort_func/<method parameters>/sort_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
   )
-  def setSortFunc__ = ???
+  private def setSortFunc__ = ???
 
 end CustomSorter
 
 object CustomSorter:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkSorter` that works by calling
+  /** Creates a new `GtkSorter` that works by calling
     * @sort_func
     *   to compare items.
     *
     * If @sort_func is %NULL, all items are considered equal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
+    "[sort_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end CustomSorter

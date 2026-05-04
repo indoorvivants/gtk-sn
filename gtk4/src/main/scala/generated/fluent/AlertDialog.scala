@@ -11,9 +11,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkAlertDialog
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkAlertDialog` object collects the arguments that are needed to present
+/** A `GtkAlertDialog` object collects the arguments that are needed to present
   * a message to the user.
   *
   * The message is shown with the [method@Gtk.AlertDialog.choose] function. This
@@ -22,14 +20,15 @@ import sn.gnome.gtk4.internal.GtkAlertDialog
   *
   * If you don't need to wait for a button to be clicked, you can use
   * [method@Gtk.AlertDialog.show].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function shows the alert to the user.
+  /** This function shows the alert to the user.
     *
     * The @callback will be called when the alert is dismissed. It should call
     * [method@Gtk.AlertDialog.choose_finish] to obtain the result.
@@ -37,16 +36,20 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     * It is ok to pass `NULL` for the callback if the alert does not have more
     * than one button. A simpler API for this case is
     * [method@Gtk.AlertDialog.show].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[choose/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def choose__ = ???
+  private def choose__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes the [method@Gtk.AlertDialog.choose] call and returns the index of
+  /** Finishes the [method@Gtk.AlertDialog.choose] call and returns the index of
     * the button that was clicked.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def chooseFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
@@ -58,34 +61,38 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the button labels for the alert.
     *
-    * Returns the button labels for the alert.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
+    "[get_buttons/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
-  def getButtons__ = ???
+  private def getButtons__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the index of the cancel button.
     *
-    * Returns the index of the cancel button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCancelButton(): Int /* None */ = gtk_alert_dialog_get_cancel_button(
     this.raw.asInstanceOf[Ptr[GtkAlertDialog]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the index of the default button.
     *
-    * Returns the index of the default button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefaultButton(): Int /* None */ = gtk_alert_dialog_get_default_button(
     this.raw.asInstanceOf[Ptr[GtkAlertDialog]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the detail text that will be shown in the alert.
     *
-    * Returns the detail text that will be shown in the alert.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDetail()(using Zone): String /* None */ = fromCString(
     gtk_alert_dialog_get_detail(
@@ -93,9 +100,10 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the message that will be shown in the alert.
     *
-    * Returns the message that will be shown in the alert.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMessage()(using Zone): String /* None */ = fromCString(
     gtk_alert_dialog_get_message(
@@ -103,30 +111,33 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the alert blocks interaction with the parent window while
+  /** Returns whether the alert blocks interaction with the parent window while
     * it is presented.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModal(): Boolean /* None */ = gtk_alert_dialog_get_modal(
     this.raw.asInstanceOf[Ptr[GtkAlertDialog]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the button labels for the alert.
     *
-    * Sets the button labels for the alert.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
+    "[set_buttons/<method parameters>/labels]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
-  def setButtons__ = ???
+  private def setButtons__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the index of the cancel button.
+  /** Sets the index of the cancel button.
     *
     * See [property@Gtk.AlertDialog:cancel-button] for details of how this value
     * is used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCancelButton(button: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_alert_dialog_set_cancel_button(
@@ -134,12 +145,13 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
       button
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the index of the default button.
+  /** Sets the index of the default button.
     *
     * See [property@Gtk.AlertDialog:default-button] for details of how this
     * value is used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultButton(button: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_alert_dialog_set_default_button(
@@ -147,9 +159,10 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
       button
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the detail text that will be shown in the alert.
     *
-    * Sets the detail text that will be shown in the alert.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDetail(
       detail: String | CString /* Some(CString) */
@@ -158,9 +171,10 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     __sn_extract_string(detail)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the message that will be shown in the alert.
     *
-    * Sets the message that will be shown in the alert.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMessage(
       message: String | CString /* Some(CString) */
@@ -169,10 +183,11 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     __sn_extract_string(message)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the alert blocks interaction with the parent window while it
+  /** Sets whether the alert blocks interaction with the parent window while it
     * is presented.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -181,15 +196,16 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     gboolean(gint((if modal == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Show the alert to the user.
+  /** Show the alert to the user.
     *
     * This function is a simple version of [method@Gtk.AlertDialog.choose]
     * intended for dialogs with a single button. If you want to cancel the
     * dialog or if the alert has more than one button, you should use that
     * function instead and provide it with a #GCancellable or callback
     * respectively.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def show(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
@@ -211,12 +227,13 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
 end AlertDialog
 
 object AlertDialog:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkAlertDialog` object.
+  /** Creates a new `GtkAlertDialog` object.
     *
     * The message will be set to the formatted string resulting from the
     * arguments.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def apply(format: String | CString /* Some(CString) */, args: Any*)(
       using Zone

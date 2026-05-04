@@ -2,32 +2,36 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkStringFilterMatchMode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Specifies how search strings are matched inside text.
   *
-  * Specifies how search strings are matched inside text.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum StringFilterMatchMode(val raw: GtkStringFilterMatchMode):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The search string and text must match exactly.
     *
-    * The search string and text must match exactly.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EXACT
       extends StringFilterMatchMode(
         GtkStringFilterMatchMode.GTK_STRING_FILTER_MATCH_MODE_EXACT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The search string must be contained as a substring inside the text.
     *
-    * The search string must be contained as a substring inside the text.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SUBSTRING
       extends StringFilterMatchMode(
         GtkStringFilterMatchMode.GTK_STRING_FILTER_MATCH_MODE_SUBSTRING
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The text must begin with the search string.
     *
-    * The text must begin with the search string.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PREFIX
       extends StringFilterMatchMode(

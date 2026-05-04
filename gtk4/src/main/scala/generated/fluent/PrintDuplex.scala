@@ -2,27 +2,31 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkPrintDuplex
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** See also gtk_print_settings_set_duplex().
   *
-  * See also gtk_print_settings_set_duplex().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PrintDuplex(val raw: GtkPrintDuplex):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No duplex.
     *
-    * No duplex.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SIMPLEX extends PrintDuplex(GtkPrintDuplex.GTK_PRINT_DUPLEX_SIMPLEX)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Horizontal duplex.
     *
-    * Horizontal duplex.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HORIZONTAL
       extends PrintDuplex(GtkPrintDuplex.GTK_PRINT_DUPLEX_HORIZONTAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Vertical duplex.
     *
-    * Vertical duplex.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case VERTICAL extends PrintDuplex(GtkPrintDuplex.GTK_PRINT_DUPLEX_VERTICAL)
 end PrintDuplex

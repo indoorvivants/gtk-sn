@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkFrame
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkFrame` is a widget that surrounds its child with a decorative frame and
+/** `GtkFrame` is a widget that surrounds its child with a decorative frame and
   * an optional label.
   *
   * ![An example GtkFrame](frame.png)
@@ -55,6 +53,9 @@ import sn.gnome.gtk4.internal.GtkFrame
   * # Accessibility
   *
   * `GtkFrame` uses the `GTK_ACCESSIBLE_ROLE_GROUP` role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Frame(raw: Ptr[GtkFrame])
     extends Widget(raw.asInstanceOf),
@@ -64,35 +65,39 @@ class Frame(raw: Ptr[GtkFrame])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @frame.
     *
-    * Gets the child widget of @frame.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_frame_get_child(this.raw.asInstanceOf[Ptr[GtkFrame]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the frame labels text.
+  /** Returns the frame labels text.
     *
     * If the frame's label widget is not a `GtkLabel`, %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLabel()(using Zone): String /* None */ = fromCString(
     gtk_frame_get_label(this.raw.asInstanceOf[Ptr[GtkFrame]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the X alignment of the frame’s label.
     *
-    * Retrieves the X alignment of the frame’s label.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLabelAlign(): Float /* None */ = gtk_frame_get_label_align(
     this.raw.asInstanceOf[Ptr[GtkFrame]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the label widget for the frame.
     *
-    * Retrieves the label widget for the frame.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLabelWidget(): Widget /* None */ = new Widget(
     gtk_frame_get_label_widget(
@@ -100,9 +105,10 @@ class Frame(raw: Ptr[GtkFrame])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the child widget of @frame.
     *
-    * Sets the child widget of @frame.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -113,10 +119,11 @@ class Frame(raw: Ptr[GtkFrame])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkLabel` with the @label and sets it as the frame's label
+  /** Creates a new `GtkLabel` with the @label and sets it as the frame's label
     * widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabel(
       label: Option[String | CString /* Some(CString) */ ]
@@ -127,11 +134,12 @@ class Frame(raw: Ptr[GtkFrame])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the X alignment of the frame widget’s label.
+  /** Sets the X alignment of the frame widget’s label.
     *
     * The default value for a newly created frame is 0.0.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabelAlign(xalign: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_frame_set_label_align(
@@ -139,12 +147,13 @@ class Frame(raw: Ptr[GtkFrame])
       xalign.asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the label widget for the frame.
+  /** Sets the label widget for the frame.
     *
     * This is the widget that will appear embedded in the top edge of the frame
     * as a title.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabelWidget(
       label_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -166,11 +175,12 @@ class Frame(raw: Ptr[GtkFrame])
 end Frame
 
 object Frame:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkFrame`, with optional label @label.
+  /** Creates a new `GtkFrame`, with optional label @label.
     *
     * If @label is %NULL, the label is omitted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       label: Option[String | CString /* Some(CString) */ ]

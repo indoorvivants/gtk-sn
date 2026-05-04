@@ -11,9 +11,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, gssize}
 import sn.gnome.gobject.fluent.Object
 
-/**  COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  *  A #GTask represents and manages a cancellable "task".
+/**  A #GTask represents and manages a cancellable "task".
   *
   *  ## Asynchronous operations
   *
@@ -534,14 +532,14 @@ import sn.gnome.gobject.fluent.Object
   *  - Keep iterating a main context in the main thread and defer
   *    dropping the reference to the source object to that main
   *    context when the task is finalized
+  *
+  *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
 class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A utility function for dealing with async operations where you need to
+  /** A utility function for dealing with async operations where you need to
     * wait for a #GSource to trigger. Attaches @source to @task's #GMainContext
     * with @task's [priority][io-priority], and sets @source's callback to @callback,
     * with @task as the callback's `user_data`.
@@ -551,117 +549,132 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * yet have a name.
     *
     * This takes a reference on @task until @source is destroyed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+    "[attach_source/<method parameters>/source]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
   )
-  def attachSource__ = ???
+  private def attachSource__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @task's #GCancellable
     *
-    * Gets @task's #GCancellable
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCancellable(): Cancellable /* None */ = new Cancellable(
     g_task_get_cancellable(this.raw.asInstanceOf[Ptr[GTask]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets @task's check-cancellable flag. See g_task_set_check_cancellable()
+  /** Gets @task's check-cancellable flag. See g_task_set_check_cancellable()
     * for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCheckCancellable(): Boolean /* None */ =
     g_task_get_check_cancellable(this.raw.asInstanceOf[Ptr[GTask]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of #GTask:completed. This changes from %FALSE to %TRUE
+  /** Gets the value of #GTask:completed. This changes from %FALSE to %TRUE
     * after the task’s callback is invoked, and will return %FALSE if called
     * from inside the callback.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCompleted(): Boolean /* None */ =
     g_task_get_completed(this.raw.asInstanceOf[Ptr[GTask]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the #GMainContext that @task will return its result in (that is, the
+  /** Gets the #GMainContext that @task will return its result in (that is, the
     * context that was the [thread-default main
     * context][g-main-context-push-thread-default] at the point when @task was
     * created).
     *
     * This will always return a non-%NULL value, even if the task's context is
     * the default #GMainContext.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.MainContext), @type -> DataRecord(GMainContext*)))"
+    "[get_context/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.MainContext), @type -> DataRecord(GMainContext*)))"
   )
-  def getContext__ = ???
+  private def getContext__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @task’s name. See g_task_set_name().
     *
-    * Gets @task’s name. See g_task_set_name().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     g_task_get_name(this.raw.asInstanceOf[Ptr[GTask]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @task's priority
     *
-    * Gets @task's priority
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPriority(): Int /* None */ = g_task_get_priority(
     this.raw.asInstanceOf[Ptr[GTask]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets @task's return-on-cancel flag. See g_task_set_return_on_cancel() for
+  /** Gets @task's return-on-cancel flag. See g_task_set_return_on_cancel() for
     * more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getReturnOnCancel(): Boolean /* None */ =
     g_task_get_return_on_cancel(this.raw.asInstanceOf[Ptr[GTask]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the source object from @task. Like
+  /** Gets the source object from @task. Like
     * g_async_result_get_source_object(), but does not ref the object.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSourceObject(): Object /* None */ = new Object(
     g_task_get_source_object(this.raw.asInstanceOf[Ptr[GTask]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @task's source tag. See g_task_set_source_tag().
     *
-    * Gets @task's source tag. See g_task_set_source_tag().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSourceTag(): Ptr[Byte] /* None */ = g_task_get_source_tag(
     this.raw.asInstanceOf[Ptr[GTask]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @task's `task_data`.
     *
-    * Gets @task's `task_data`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTaskData(): Ptr[Byte] /* None */ = g_task_get_task_data(
     this.raw.asInstanceOf[Ptr[GTask]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests if @task resulted in an error.
     *
-    * Tests if @task resulted in an error.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hadError(): Boolean /* None */ =
     g_task_had_error(this.raw.asInstanceOf[Ptr[GTask]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the result of @task as a #gboolean.
+  /** Gets the result of @task as a #gboolean.
     *
     * If the task resulted in an error, or was cancelled, then this will instead
     * return %FALSE and set @error.
     *
     * Since this method transfers ownership of the return value (or error) to
     * the caller, you may only call it once.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def propagateBoolean(): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -671,23 +684,22 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
       ).value.!=(0)
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the result of @task as an integer (#gssize).
+  /** Gets the result of @task as an integer (#gssize).
     *
     * If the task resulted in an error, or was cancelled, then this will instead
     * return -1 and set @error.
     *
     * Since this method transfers ownership of the return value (or error) to
     * the caller, you may only call it once.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def propagateInt(): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
     g_task_propagate_int(this.raw.asInstanceOf[Ptr[GTask]], __errorPtr).value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the result of @task as a pointer, and transfers ownership of that
+  /** Gets the result of @task as a pointer, and transfers ownership of that
     * value to the caller.
     *
     * If the task resulted in an error, or was cancelled, then this will instead
@@ -695,6 +707,9 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * Since this method transfers ownership of the return value (or error) to
     * the caller, you may only call it once.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def propagatePointer(): GResult[Ptr[Byte] /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -704,9 +719,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
       ).value
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the result of @task as a #GValue, and transfers ownership of that
+  /** Gets the result of @task as a #GValue, and transfers ownership of that
     * value to the caller. As with g_task_return_value(), this is a generic
     * low-level method; g_task_propagate_pointer() and the like will usually be
     * more useful for C code.
@@ -716,16 +729,20 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * Since this method transfers ownership of the return value (or error) to
     * the caller, you may only call it once.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method propagate_value contains an OUT parameter, which is not supported yet"
+    "[propagate_value]: Method propagate_value contains an OUT parameter, which is not supported yet"
   )
-  def propagateValue__ = ???
+  private def propagateValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @task's result to @result and completes the task (see
+  /** Sets @task's result to @result and completes the task (see
     * g_task_return_pointer() for more discussion of exactly what this means).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def returnBoolean(
       result: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -734,9 +751,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     gboolean(gint((if result == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @task's result to @error (which @task assumes ownership of) and
+  /** Sets @task's result to @error (which @task assumes ownership of) and
     * completes the task (see g_task_return_pointer() for more discussion of
     * exactly what this means).
     *
@@ -746,50 +761,54 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * on the error if you need to keep a local copy as well.
     *
     * See also g_task_return_new_error().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+    "[return_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
-  def returnError__ = ???
+  private def returnError__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if @task's #GCancellable has been cancelled, and if so, sets
+  /** Checks if @task's #GCancellable has been cancelled, and if so, sets
     * @task's
     *   error accordingly and completes the task (see g_task_return_pointer()
     *   for more discussion of exactly what this means).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def returnErrorIfCancelled(): Boolean /* None */ =
     g_task_return_error_if_cancelled(this.raw.asInstanceOf[Ptr[GTask]]).value
       .!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @task's result to @result and completes the task (see
+  /** Sets @task's result to @result and completes the task (see
     * g_task_return_pointer() for more discussion of exactly what this means).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def returnInt(
       result: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
   ): Unit /* None */ =
     g_task_return_int(this.raw.asInstanceOf[Ptr[GTask]], gssize(result))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @task's result to a new #GError created from @domain, @code,
+  /** Sets @task's result to a new #GError created from @domain, @code,
     * @format,
     *   and the remaining arguments, and completes the task (see
     *   g_task_return_pointer() for more discussion of exactly what this means).
     *
     * See also g_task_return_error().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[return_new_error/<method parameters>/domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def returnNewError__ = ???
+  private def returnNewError__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @task's result to @result and completes the task. If @result is not
+  /** Sets @task's result to @result and completes the task. If @result is not
     * %NULL, then @result_destroy will be used to free @result if the caller
     * does not take ownership of it with g_task_propagate_pointer().
     *
@@ -804,15 +823,16 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * Note that since the task may be completed before returning from
     * g_task_return_pointer(), you cannot assume that @result is still valid
     * after calling this, unless you are still holding another reference on it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
+    "[return_pointer/<method parameters>/result_destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
-  def returnPointer__ = ???
+  private def returnPointer__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @task's result to @result (by copying it) and completes the task.
+  /** Sets @task's result to @result (by copying it) and completes the task.
     *
     * If @result is %NULL then a #GValue of type %G_TYPE_POINTER with a value of
     * %NULL will be used for the result.
@@ -820,15 +840,16 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * This is a very generic low-level method intended primarily for use by
     * language bindings; for C code, g_task_return_pointer() and the like will
     * normally be much easier to use.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[return_value/<method parameters>/result]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
-  def returnValue__ = ???
+  private def returnValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Runs @task_func in another thread. When @task_func returns, @task's
+  /** Runs @task_func in another thread. When @task_func returns, @task's
     * #GAsyncReadyCallback will be invoked in @task's #GMainContext.
     *
     * This takes a ref on @task until the task completes.
@@ -847,15 +868,16 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * that will exhaust the thread pool. If this situation is possible, consider
     * using a separate worker thread or thread pool explicitly, rather than
     * using g_task_run_in_thread().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TaskThreadFunc), @type -> DataRecord(GTaskThreadFunc)))"
+    "[run_in_thread/<method parameters>/task_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TaskThreadFunc), @type -> DataRecord(GTaskThreadFunc)))"
   )
-  def runInThread__ = ???
+  private def runInThread__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Runs @task_func in another thread, and waits for it to return or be
+  /** Runs @task_func in another thread, and waits for it to return or be
     * cancelled. You can use g_task_propagate_pointer(), etc, afterward to get
     * the result of @task_func.
     *
@@ -871,15 +893,16 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * this. If you have a very large number of tasks to run, but don't want them
     * to all run at once, you should only queue a limited number of them at a
     * time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TaskThreadFunc), @type -> DataRecord(GTaskThreadFunc)))"
+    "[run_in_thread_sync/<method parameters>/task_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TaskThreadFunc), @type -> DataRecord(GTaskThreadFunc)))"
   )
-  def runInThreadSync__ = ???
+  private def runInThreadSync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets or clears @task's check-cancellable flag. If this is %TRUE (the
+  /** Sets or clears @task's check-cancellable flag. If this is %TRUE (the
     * default), then g_task_propagate_pointer(), etc, and g_task_had_error()
     * will check the task's #GCancellable first, and if it has been cancelled,
     * then they will consider the task to have returned an "Operation was
@@ -892,6 +915,9 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     *
     * If you are using g_task_set_return_on_cancel() as well, then you must
     * leave check-cancellable set %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCheckCancellable(
       check_cancellable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -900,9 +926,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     gboolean(gint((if check_cancellable == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @task’s name, used in debugging and profiling. The name defaults to
+  /** Sets @task’s name, used in debugging and profiling. The name defaults to
     * %NULL.
     *
     * The task name should describe in a human readable way what the task does.
@@ -912,6 +936,9 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * This function may only be called before the @task is first used in a
     * thread other than the one it was constructed in. It is called
     * automatically by g_task_set_source_tag() if not called already.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
       name: Option[
@@ -926,23 +953,22 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @task's priority. If you do not call this, it will default to
+  /** Sets @task's priority. If you do not call this, it will default to
     * %G_PRIORITY_DEFAULT.
     *
     * This will affect the priority of #GSources created with
     * g_task_attach_source() and the scheduling of tasks run in threads, and can
     * also be explicitly retrieved later via g_task_get_priority().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPriority(
       priority: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   ): Unit /* None */ =
     g_task_set_priority(this.raw.asInstanceOf[Ptr[GTask]], gint(priority))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets or clears @task's return-on-cancel flag. This is only meaningful for
+  /** Sets or clears @task's return-on-cancel flag. This is only meaningful for
     * tasks run via g_task_run_in_thread() or g_task_run_in_thread_sync().
     *
     * If @return_on_cancel is %TRUE, then cancelling @task's #GCancellable will
@@ -967,6 +993,9 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * g_task_run_in_thread()/g_task_run_in_thread_sync(), then the
     * #GTaskThreadFunc will still be run (for consistency), but the task will
     * also be completed right away.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setReturnOnCancel(
       return_on_cancel: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -975,9 +1004,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     gboolean(gint((if return_on_cancel == true then 1 else 0)))
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @task's source tag.
+  /** Sets @task's source tag.
     *
     * You can use this to tag a task return value with a particular pointer
     * (usually a pointer to the function doing the tagging) and then later check
@@ -988,6 +1015,9 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
     * A macro wrapper around this function will automatically set the task’s
     * name to the string form of @source_tag if it’s not already set, for
     * convenience.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSourceTag(
       source_tag: Option[
@@ -1000,11 +1030,12 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
       .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @task’s name, used in debugging and profiling.
+  /** Sets @task’s name, used in debugging and profiling.
     *
     * This is a variant of g_task_set_name() that avoids copying @name.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setStaticName(
       name: Option[
@@ -1019,14 +1050,15 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets @task's task data (freeing the existing task data, if any).
     *
-    * Sets @task's task data (freeing the existing task data, if any).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
+    "[set_task_data/<method parameters>/task_data_destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
-  def setTaskData__ = ???
+  private def setTaskData__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -1039,9 +1071,7 @@ class Task(raw: Ptr[GTask]) extends Object(raw.asInstanceOf), AsyncResult:
 end Task
 
 object Task:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GTask acting on @source_object, which will eventually be used
+  /** Creates a #GTask acting on @source_object, which will eventually be used
     * to invoke @callback in the current [thread-default main
     * context][g-main-context-push-thread-default].
     *
@@ -1056,17 +1086,21 @@ object Task:
     * cases where cancellation may imply that other objects that the task
     * depends on have been destroyed. If you do not want this behavior, you can
     * use g_task_set_check_cancellable() to change it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks that @result is a #GTask, and that @source_object is its source
+  /** Checks that @result is a #GTask, and that @source_object is its source
     * object (or that @source_object is %NULL and @result has no source object).
     * This can be used in g_return_if_fail() checks.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isValid(
       result: AsyncResult /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
@@ -1083,9 +1117,7 @@ object Task:
         .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GTask and then immediately calls g_task_return_error() on it.
+  /** Creates a #GTask and then immediately calls g_task_return_error() on it.
     * Use this in the wrapper function of an asynchronous method when you want
     * to avoid even calling the virtual method. You can then use
     * g_async_result_is_tagged() in the finish method wrapper to check if the
@@ -1093,15 +1125,16 @@ object Task:
     * deal with it appropriately if so.
     *
     * See also g_task_report_new_error().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def reportError() = ???
+  private def reportError() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GTask and then immediately calls g_task_return_new_error() on
+  /** Creates a #GTask and then immediately calls g_task_return_new_error() on
     * it. Use this in the wrapper function of an asynchronous method when you
     * want to avoid even calling the virtual method. You can then use
     * g_async_result_is_tagged() in the finish method wrapper to check if the
@@ -1109,10 +1142,13 @@ object Task:
     * deal with it appropriately if so.
     *
     * See also g_task_report_error().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def reportNewError() = ???
+  private def reportNewError() = ???
 
 end Task

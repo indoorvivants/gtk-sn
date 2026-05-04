@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.glib.internal.{gboolean, gconstpointer, gint}
 
 object Gsk:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is a convenience function that constructs a `GskPath` from a
+  /** This is a convenience function that constructs a `GskPath` from a
     * serialized form.
     *
     * The string is expected to be in (a superset of) [SVG path
@@ -42,20 +40,24 @@ object Gsk:
     * relative to the current point.
     *
     * The `O` command is an extension that is not supported in SVG.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
+    "[path_parse:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
   )
-  def pathParse() = ???
+  private def pathParse() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[serialization_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def serializationErrorQuark() = ???
+  private def serializationErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if 2 strokes are identical.
     *
-    * Checks if 2 strokes are identical.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strokeEqual(
       stroke1: Option[
@@ -78,9 +80,7 @@ object Gsk:
         )
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses the given @string into a transform and puts it in
+  /** Parses the given @string into a transform and puts it in
     * @out_transform.
     *
     * Strings printed via [method@Gsk.Transform.to_string] can be read in again
@@ -88,51 +88,58 @@ object Gsk:
     *
     * If @string does not describe a valid transform, %FALSE is returned and
     * %NULL is put in @out_transform.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function transform_parse contains an OUT parameter, which is not supported yet"
+    "[transform_parse:]: Function transform_parse contains an OUT parameter, which is not supported yet"
   )
-  def transformParse() = ???
+  private def transformParse() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the `GskRenderNode` stored inside the given `value`, and
+  /** Retrieves the `GskRenderNode` stored inside the given `value`, and
     * acquires a reference to it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[value_dup_render_node:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
-  def valueDupRenderNode() = ???
+  private def valueDupRenderNode() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the `GskRenderNode` stored inside the given `value`.
     *
-    * Retrieves the `GskRenderNode` stored inside the given `value`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[value_get_render_node:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
-  def valueGetRenderNode() = ???
+  private def valueGetRenderNode() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Stores the given `GskRenderNode` inside `value`.
+  /** Stores the given `GskRenderNode` inside `value`.
     *
     * The [struct@GObject.Value] will acquire a reference to the `node`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[value_set_render_node:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
-  def valueSetRenderNode() = ???
+  private def valueSetRenderNode() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Stores the given `GskRenderNode` inside `value`.
+  /** Stores the given `GskRenderNode` inside `value`.
     *
     * This function transfers the ownership of the `node` to the `GValue`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[value_take_render_node:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
-  def valueTakeRenderNode() = ???
+  private def valueTakeRenderNode() = ???
 
 end Gsk

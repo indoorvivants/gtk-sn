@@ -2,33 +2,37 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDataStreamByteOrder
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GDataStreamByteOrder is used to ensure proper endianness of streaming data
+/** #GDataStreamByteOrder is used to ensure proper endianness of streaming data
   * sources across various machine architectures.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum DataStreamByteOrder(val raw: GDataStreamByteOrder):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Selects Big Endian byte order.
     *
-    * Selects Big Endian byte order.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BIG_ENDIAN
       extends DataStreamByteOrder(
         GDataStreamByteOrder.G_DATA_STREAM_BYTE_ORDER_BIG_ENDIAN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Selects Little Endian byte order.
     *
-    * Selects Little Endian byte order.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LITTLE_ENDIAN
       extends DataStreamByteOrder(
         GDataStreamByteOrder.G_DATA_STREAM_BYTE_ORDER_LITTLE_ENDIAN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Selects endianness based on host machine's architecture.
     *
-    * Selects endianness based on host machine's architecture.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HOST_ENDIAN
       extends DataStreamByteOrder(

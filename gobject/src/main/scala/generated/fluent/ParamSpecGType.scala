@@ -7,10 +7,11 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gobject.fluent.ParamSpec
 import sn.gnome.gobject.internal.GParamSpecGType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A #GParamSpec derived structure that contains the meta data for #GType
+/** A #GParamSpec derived structure that contains the meta data for #GType
   * properties.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ParamSpecGType(raw: Ptr[GParamSpecGType])
     extends ParamSpec(raw.asInstanceOf):

@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkFixed
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkFixed` places its child widgets at fixed positions and with fixed sizes.
+/** `GtkFixed` places its child widgets at fixed positions and with fixed sizes.
   *
   * `GtkFixed` performs no automatic layout management.
   *
@@ -42,6 +40,9 @@ import sn.gnome.gtk4.internal.GtkFixed
   * If you know none of these things are an issue for your application, and
   * prefer the simplicity of `GtkFixed`, by all means use the widget. But you
   * should be aware of the tradeoffs.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Fixed(raw: Ptr[GtkFixed])
     extends Widget(raw.asInstanceOf),
@@ -51,32 +52,35 @@ class Fixed(raw: Ptr[GtkFixed])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the translation transformation of the given child `GtkWidget` in
+  /** Retrieves the translation transformation of the given child `GtkWidget` in
     * the `GtkFixed`.
     *
     * See also: [method@Gtk.Fixed.get_child_transform].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_child_position contains an OUT parameter, which is not supported yet"
+    "[get_child_position]: Method get_child_position contains an OUT parameter, which is not supported yet"
   )
-  def getChildPosition__ = ???
+  private def getChildPosition__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the transformation for @widget set using
+  /** Retrieves the transformation for @widget set using
     * gtk_fixed_set_child_transform().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
+    "[get_child_transform/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
-  def getChildTransform__ = ???
+  private def getChildTransform__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a translation transformation to the given @x and @y coordinates to
+  /** Sets a translation transformation to the given @x and @y coordinates to
     * the child @widget of the `GtkFixed`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def move(
       widget: Widget /* Some(Ptr[GtkWidget]) */,
@@ -89,9 +93,10 @@ class Fixed(raw: Ptr[GtkFixed])
     y
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds a widget to a `GtkFixed` at the given position.
     *
-    * Adds a widget to a `GtkFixed` at the given position.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def put(
       widget: Widget /* Some(Ptr[GtkWidget]) */,
@@ -104,9 +109,10 @@ class Fixed(raw: Ptr[GtkFixed])
     y
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes a child from @fixed.
     *
-    * Removes a child from @fixed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_fixed_remove(
@@ -114,26 +120,28 @@ class Fixed(raw: Ptr[GtkFixed])
       widget.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the transformation for @widget.
+  /** Sets the transformation for @widget.
     *
     * This is a convenience function that retrieves the
     * [class@Gtk.FixedLayoutChild] instance associated to
     * @widget
     *   and calls [method@Gtk.FixedLayoutChild.set_transform].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
+    "[set_child_transform/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
-  def setChildTransform__ = ???
+  private def setChildTransform__ = ???
 
 end Fixed
 
 object Fixed:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkFixed`.
     *
-    * Creates a new `GtkFixed`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Fixed = new Fixed(gtk_fixed_new().asInstanceOf)
 end Fixed

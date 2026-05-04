@@ -9,75 +9,81 @@ import sn.gnome.gdk4.fluent.{Event, KeyMatch, ModifierType}
 import sn.gnome.gdk4.internal.GdkKeyEvent
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** An event related to a key-based device.
   *
-  * An event related to a key-based device.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Extracts the consumed modifiers from a key event.
     *
-    * Extracts the consumed modifiers from a key event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getConsumedModifiers(): ModifierType /* None */ = ModifierType.fromRaw(
     gdk_key_event_get_consumed_modifiers(this.raw.asInstanceOf[Ptr[GdkEvent]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Extracts the keycode from a key event.
     *
-    * Extracts the keycode from a key event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getKeycode(): UInt /* None */ = gdk_key_event_get_keycode(
     this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Extracts the keyval from a key event.
     *
-    * Extracts the keyval from a key event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getKeyval(): UInt /* None */ = gdk_key_event_get_keyval(
     this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Extracts the layout from a key event.
     *
-    * Extracts the layout from a key event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLayout(): UInt /* None */ = gdk_key_event_get_layout(
     this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Extracts the shift level from a key event.
     *
-    * Extracts the shift level from a key event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLevel(): UInt /* None */ = gdk_key_event_get_level(
     this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a keyval and modifier combination that will match the event.
+  /** Gets a keyval and modifier combination that will match the event.
     *
     * See [method@Gdk.KeyEvent.matches].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_match contains an OUT parameter, which is not supported yet"
+    "[get_match]: Method get_match contains an OUT parameter, which is not supported yet"
   )
-  def getMatch__ = ???
+  private def getMatch__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Extracts whether the key event is for a modifier key.
     *
-    * Extracts whether the key event is for a modifier key.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isModifier(): Boolean /* None */ =
     gdk_key_event_is_modifier(this.raw.asInstanceOf[Ptr[GdkEvent]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Matches a key event against a keyval and modifiers.
+  /** Matches a key event against a keyval and modifiers.
     *
     * This is typically used to trigger keyboard shortcuts such as Ctrl-C.
     *
@@ -85,6 +91,9 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
     * currently active group is ignored.
     *
     * Note that we ignore Caps Lock for matching.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def matches(
       keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,

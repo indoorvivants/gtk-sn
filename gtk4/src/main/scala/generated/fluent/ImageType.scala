@@ -2,9 +2,7 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkImageType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Describes the image data representation used by a [class@Gtk.Image].
+/** Describes the image data representation used by a [class@Gtk.Image].
   *
   * If you want to get the image from the widget, you can only get the
   * currently-stored representation; for instance, if the
@@ -13,29 +11,36 @@ import _root_.sn.gnome.gtk4.internal.GtkImageType
   *
   * For empty images, you can request any storage type (call any of the "get"
   * functions), but they will all return %NULL values.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ImageType(val raw: GtkImageType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** there is no image displayed by the widget
     *
-    * there is no image displayed by the widget
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EMPTY extends ImageType(GtkImageType.GTK_IMAGE_EMPTY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the widget contains a named icon
     *
-    * the widget contains a named icon
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ICON_NAME extends ImageType(GtkImageType.GTK_IMAGE_ICON_NAME)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the widget contains a `GIcon`
     *
-    * the widget contains a `GIcon`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GICON extends ImageType(GtkImageType.GTK_IMAGE_GICON)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the widget contains a `GdkPaintable`
     *
-    * the widget contains a `GdkPaintable`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PAINTABLE extends ImageType(GtkImageType.GTK_IMAGE_PAINTABLE)
 end ImageType

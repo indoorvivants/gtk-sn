@@ -8,9 +8,7 @@ import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.{Object, TypePlugin}
 import sn.gnome.gobject.internal.GTypeModule
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GTypeModule provides a simple implementation of the #GTypePlugin interface.
+/** #GTypeModule provides a simple implementation of the #GTypePlugin interface.
   *
   * The model of #GTypeModule is a dynamically loaded module which implements
   * some number of types and interface implementations.
@@ -38,6 +36,9 @@ import sn.gnome.gobject.internal.GTypeModule
   * and unloading. To create a particular module type you must derive from
   * #GTypeModule and implement the load and unload functions in
   * #GTypeModuleClass.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TypeModule(raw: Ptr[GTypeModule])
     extends Object(raw.asInstanceOf),
@@ -45,9 +46,7 @@ class TypeModule(raw: Ptr[GTypeModule])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Registers an additional interface for a type, whose interface lives in the
+  /** Registers an additional interface for a type, whose interface lives in the
     * given type plugin. If the interface was already registered for the type in
     * this plugin, nothing will be done.
     *
@@ -57,15 +56,16 @@ class TypeModule(raw: Ptr[GTypeModule])
     * Since 2.56 if @module is %NULL this will call
     * g_type_add_interface_static() instead. This can be used when making a
     * static build of the module.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(const GInterfaceInfo*)))"
+    "[add_interface/<method parameters>/interface_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(const GInterfaceInfo*)))"
   )
-  def addInterface__ = ???
+  private def addInterface__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up or registers an enumeration that is implemented with a particular
+  /** Looks up or registers an enumeration that is implemented with a particular
     * type plugin. If a type with name @type_name was previously registered, the
     * #GType identifier for the type is returned, otherwise the type is newly
     * registered, and the resulting #GType identifier returned.
@@ -75,15 +75,16 @@ class TypeModule(raw: Ptr[GTypeModule])
     *
     * Since 2.56 if @module is %NULL this will call g_type_register_static()
     * instead. This can be used when making a static build of the module.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(EnumValue), @type -> DataRecord(const GEnumValue*)))"
+    "[register_enum/<method parameters>/const_static_values]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EnumValue), @type -> DataRecord(const GEnumValue*)))"
   )
-  def registerEnum__ = ???
+  private def registerEnum__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up or registers a flags type that is implemented with a particular
+  /** Looks up or registers a flags type that is implemented with a particular
     * type plugin. If a type with name @type_name was previously registered, the
     * #GType identifier for the type is returned, otherwise the type is newly
     * registered, and the resulting #GType identifier returned.
@@ -93,15 +94,16 @@ class TypeModule(raw: Ptr[GTypeModule])
     *
     * Since 2.56 if @module is %NULL this will call g_type_register_static()
     * instead. This can be used when making a static build of the module.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FlagsValue), @type -> DataRecord(const GFlagsValue*)))"
+    "[register_flags/<method parameters>/const_static_values]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlagsValue), @type -> DataRecord(const GFlagsValue*)))"
   )
-  def registerFlags__ = ???
+  private def registerFlags__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up or registers a type that is implemented with a particular type
+  /** Looks up or registers a type that is implemented with a particular type
     * plugin. If a type with name @type_name was previously registered, the
     * #GType identifier for the type is returned, otherwise the type is newly
     * registered, and the resulting #GType identifier returned.
@@ -115,15 +117,19 @@ class TypeModule(raw: Ptr[GTypeModule])
     *
     * Since 2.56 if @module is %NULL this will call g_type_register_static()
     * instead. This can be used when making a static build of the module.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(const GTypeInfo*)))"
+    "[register_type/<method parameters>/type_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(const GTypeInfo*)))"
   )
-  def registerType__ = ???
+  private def registerType__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the name for a #GTypeModule
     *
-    * Sets the name for a #GTypeModule
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
       name: String |
@@ -133,22 +139,24 @@ class TypeModule(raw: Ptr[GTypeModule])
     __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decreases the use count of a #GTypeModule by one. If the result is zero,
+  /** Decreases the use count of a #GTypeModule by one. If the result is zero,
     * the module will be unloaded. (However, the #GTypeModule will not be freed,
     * and types associated with the #GTypeModule are not unregistered. Once a
     * #GTypeModule is initialized, it must exist forever.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unuse(): Unit /* None */ = g_type_module_unuse(
     this.raw.asInstanceOf[Ptr[GTypeModule]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Increases the use count of a #GTypeModule by one. If the use count was
+  /** Increases the use count of a #GTypeModule by one. If the use count was
     * zero before, the plugin will be loaded. If loading the plugin fails, the
     * use count is reset to its prior value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def use(): Boolean /* None */ =
     g_type_module_use(this.raw.asInstanceOf[Ptr[GTypeModule]]).value.!=(0)

@@ -8,26 +8,28 @@ import sn.gnome.gio.fluent.{MenuItem, MenuModel}
 import sn.gnome.gio.internal.GMenu
 import sn.gnome.glib.internal.{gchar, gint}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GMenu is a simple implementation of #GMenuModel. You populate a #GMenu by
+/** #GMenu is a simple implementation of #GMenuModel. You populate a #GMenu by
   * adding #GMenuItem instances to it.
   *
   * There are some convenience functions to allow you to directly add items
   * (avoiding #GMenuItem) for the common cases. To add a regular item, use
   * g_menu_insert(). To add a section, use g_menu_insert_section(). To add a
   * submenu, use g_menu_insert_submenu().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convenience function for appending a normal menu item to the end of
+  /** Convenience function for appending a normal menu item to the end of
     * @menu.
     *   Combine g_menu_item_new() and g_menu_insert_item() for a more flexible
     *   alternative.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def append(
       label: Option[
@@ -50,11 +52,12 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Appends @item to the end of @menu.
+  /** Appends @item to the end of @menu.
     *
     * See g_menu_insert_item() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appendItem(item: MenuItem /* Some(Ptr[GMenuItem]) */ ): Unit /* None */ =
     g_menu_append_item(
@@ -62,12 +65,13 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       item.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convenience function for appending a section menu item to the end of
+  /** Convenience function for appending a section menu item to the end of
     * @menu.
     *   Combine g_menu_item_new_section() and g_menu_insert_item() for a more
     *   flexible alternative.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appendSection(
       label: Option[
@@ -84,12 +88,13 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     section.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convenience function for appending a submenu menu item to the end of
+  /** Convenience function for appending a submenu menu item to the end of
     * @menu.
     *   Combine g_menu_item_new_submenu() and g_menu_insert_item() for a more
     *   flexible alternative.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appendSubmenu(
       label: Option[
@@ -106,25 +111,27 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     submenu.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Marks @menu as frozen.
+  /** Marks @menu as frozen.
     *
     * After the menu is frozen, it is an error to attempt to make any changes to
     * it. In effect this means that the #GMenu API must no longer be used.
     *
     * This function causes g_menu_model_is_mutable() to begin returning %FALSE,
     * which has some positive performance implications.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def freeze(): Unit /* None */ = g_menu_freeze(
     this.raw.asInstanceOf[Ptr[GMenu]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convenience function for inserting a normal menu item into @menu. Combine
+  /** Convenience function for inserting a normal menu item into @menu. Combine
     * g_menu_item_new() and g_menu_insert_item() for a more flexible
     * alternative.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insert(
       position: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
@@ -149,9 +156,7 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts @item into @menu.
+  /** Inserts @item into @menu.
     *
     * The "insertion" is actually done by copying all of the attribute and link
     * values of @item and using them to form a new item within @menu. As such, @item
@@ -167,6 +172,9 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     * There are many convenience functions to take care of common cases. See
     * g_menu_insert(), g_menu_insert_section() and g_menu_insert_submenu() as
     * well as "prepend" and "append" variants of each of these functions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertItem(
       position: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
@@ -177,11 +185,12 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     item.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convenience function for inserting a section menu item into @menu. Combine
+  /** Convenience function for inserting a section menu item into @menu. Combine
     * g_menu_item_new_section() and g_menu_insert_item() for a more flexible
     * alternative.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertSection(
       position: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
@@ -200,11 +209,12 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     section.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convenience function for inserting a submenu menu item into @menu. Combine
+  /** Convenience function for inserting a submenu menu item into @menu. Combine
     * g_menu_item_new_submenu() and g_menu_insert_item() for a more flexible
     * alternative.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertSubmenu(
       position: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
@@ -223,11 +233,12 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     submenu.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convenience function for prepending a normal menu item to the start of @menu.
+  /** Convenience function for prepending a normal menu item to the start of @menu.
     * Combine g_menu_item_new() and g_menu_insert_item() for a more flexible
     * alternative.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def prepend(
       label: Option[
@@ -250,11 +261,12 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Prepends @item to the start of @menu.
+  /** Prepends @item to the start of @menu.
     *
     * See g_menu_insert_item() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def prependItem(item: MenuItem /* Some(Ptr[GMenuItem]) */ ): Unit /* None */ =
     g_menu_prepend_item(
@@ -262,11 +274,12 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       item.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convenience function for prepending a section menu item to the start of @menu.
+  /** Convenience function for prepending a section menu item to the start of @menu.
     * Combine g_menu_item_new_section() and g_menu_insert_item() for a more
     * flexible alternative.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def prependSection(
       label: Option[
@@ -283,11 +296,12 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     section.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convenience function for prepending a submenu menu item to the start of @menu.
+  /** Convenience function for prepending a submenu menu item to the start of @menu.
     * Combine g_menu_item_new_submenu() and g_menu_insert_item() for a more
     * flexible alternative.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def prependSubmenu(
       label: Option[
@@ -304,9 +318,7 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     submenu.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes an item from the menu.
+  /** Removes an item from the menu.
     *
     * @position
     *   gives the index of the item to remove.
@@ -317,15 +329,19 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     * It is not possible to remove items by identity since items are added to
     * the menu simply by copying their links and attributes (ie: identity of the
     * item itself is not preserved).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
       position: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   ): Unit /* None */ =
     g_menu_remove(this.raw.asInstanceOf[Ptr[GMenu]], gint(position))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes all items in the menu.
     *
-    * Removes all items in the menu.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeAll(): Unit /* None */ = g_menu_remove_all(
     this.raw.asInstanceOf[Ptr[GMenu]]
@@ -342,11 +358,12 @@ class Menu(raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
 end Menu
 
 object Menu:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GMenu.
+  /** Creates a new #GMenu.
     *
     * The new menu has no items.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Menu = new Menu(g_menu_new().asInstanceOf)
 end Menu

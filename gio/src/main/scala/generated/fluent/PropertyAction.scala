@@ -9,9 +9,7 @@ import sn.gnome.gio.internal.GPropertyAction
 import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A #GPropertyAction is a way to get a #GAction with a state value reflecting
+/** A #GPropertyAction is a way to get a #GAction with a state value reflecting
   * and controlling the value of a #GObject property.
   *
   * The state of the action will correspond to the value of the property.
@@ -59,6 +57,9 @@ import sn.gnome.gobject.fluent.Object
   * the real source of the value is #GSettings. If you want a #GAction to
   * control a setting stored in #GSettings, see g_settings_create_action()
   * instead, and possibly combine its use with g_settings_bind().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PropertyAction(raw: Ptr[GPropertyAction])
     extends Object(raw.asInstanceOf),
@@ -69,9 +70,7 @@ class PropertyAction(raw: Ptr[GPropertyAction])
 end PropertyAction
 
 object PropertyAction:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GAction corresponding to the value of property
+  /** Creates a #GAction corresponding to the value of property
     * @property_name
     *   on @object.
     *
@@ -80,6 +79,9 @@ object PropertyAction:
     *
     * This function takes a reference on @object and doesn't release it until
     * the action is destroyed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       name: String |

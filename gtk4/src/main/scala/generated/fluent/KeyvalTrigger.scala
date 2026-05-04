@@ -10,27 +10,30 @@ import sn.gnome.glib.internal.guint
 import sn.gnome.gtk4.fluent.ShortcutTrigger
 import sn.gnome.gtk4.internal.GtkKeyvalTrigger
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkShortcutTrigger` that triggers when a specific keyval and modifiers
+/** A `GtkShortcutTrigger` that triggers when a specific keyval and modifiers
   * are pressed.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class KeyvalTrigger(raw: Ptr[GtkKeyvalTrigger])
     extends ShortcutTrigger(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the keyval that must be pressed to succeed triggering @self.
     *
-    * Gets the keyval that must be pressed to succeed triggering @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getKeyval(): UInt /* None */ = gtk_keyval_trigger_get_keyval(
     this.raw.asInstanceOf[Ptr[GtkKeyvalTrigger]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the modifiers that must be present to succeed triggering @self.
     *
-    * Gets the modifiers that must be present to succeed triggering @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModifiers(): ModifierType /* None */ = ModifierType.fromRaw(
     gtk_keyval_trigger_get_modifiers(
@@ -41,10 +44,11 @@ class KeyvalTrigger(raw: Ptr[GtkKeyvalTrigger])
 end KeyvalTrigger
 
 object KeyvalTrigger:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkShortcutTrigger` that will trigger whenever the key with the
+  /** Creates a `GtkShortcutTrigger` that will trigger whenever the key with the
     * given @keyval and @modifiers is pressed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,

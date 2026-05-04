@@ -2,9 +2,10 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkCellRendererState
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Tells how a cell is to be rendered.
   *
-  * Tells how a cell is to be rendered.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class CellRendererState private (val raw: GtkCellRendererState):
   def is(kv: CellRendererState): Boolean =
@@ -32,18 +33,20 @@ object CellRendererState:
     def |(other: CellRendererState) =
       CellRendererState(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tells how a cell is to be rendered.
     *
-    * Tells how a cell is to be rendered.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GtkCellRendererState, name: String)
       extends CellRendererState(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * The cell is currently selected, and probably has a selection colored
+    /** The cell is currently selected, and probably has a selection colored
       * background to render to.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SELECTED
         extends KnownValue(
@@ -51,9 +54,10 @@ object CellRendererState:
           "SELECTED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The mouse is hovering over the cell.
       *
-      * The mouse is hovering over the cell.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case PRELIT
         extends KnownValue(
@@ -61,9 +65,10 @@ object CellRendererState:
           "PRELIT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The cell is drawn in an insensitive manner
       *
-      * The cell is drawn in an insensitive manner
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case INSENSITIVE
         extends KnownValue(
@@ -71,9 +76,10 @@ object CellRendererState:
           "INSENSITIVE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The cell is in a sorted row
       *
-      * The cell is in a sorted row
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SORTED
         extends KnownValue(
@@ -81,9 +87,10 @@ object CellRendererState:
           "SORTED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The cell is in the focus row.
       *
-      * The cell is in the focus row.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FOCUSED
         extends KnownValue(
@@ -91,9 +98,10 @@ object CellRendererState:
           "FOCUSED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The cell is in a row that can be expanded
       *
-      * The cell is in a row that can be expanded
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case EXPANDABLE
         extends KnownValue(
@@ -101,9 +109,10 @@ object CellRendererState:
           "EXPANDABLE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The cell is in a row that is expanded
       *
-      * The cell is in a row that is expanded
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case EXPANDED
         extends KnownValue(

@@ -7,9 +7,10 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gsk4.fluent.Renderer
 import sn.gnome.gsk4.internal.GskVulkanRenderer
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A GSK renderer that is using Vulkan.
   *
-  * A GSK renderer that is using Vulkan.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class VulkanRenderer(raw: Ptr[GskVulkanRenderer])
     extends Renderer(raw.asInstanceOf):

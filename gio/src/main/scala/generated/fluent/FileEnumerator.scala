@@ -10,9 +10,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GFileEnumerator allows you to operate on a set of #GFiles, returning a
+/** #GFileEnumerator allows you to operate on a set of #GFiles, returning a
   * #GFileInfo structure for each file enumerated (e.g.
   * g_file_enumerate_children() will return a #GFileEnumerator for each of the
   * children within a directory).
@@ -36,20 +34,24 @@ import sn.gnome.gobject.fluent.Object
   * asynchronous version, g_file_enumerator_close_async(). Once a
   * #GFileEnumerator is closed, no further actions may be performed on it, and
   * it should be freed with g_object_unref().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileEnumerator(raw: Ptr[GFileEnumerator])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Releases all resources used by this enumerator, making the enumerator
+  /** Releases all resources used by this enumerator, making the enumerator
     * return %G_IO_ERROR_CLOSED on all calls.
     *
     * This will be automatically called when the last reference is dropped, but
     * you might want to call this function to make sure resources are released
     * as early as possible.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def close(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -63,23 +65,22 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously closes the file enumerator.
+  /** Asynchronously closes the file enumerator.
     *
     * If @cancellable is not %NULL, then the operation can be cancelled by
     * triggering the cancellable object from another thread. If the operation
     * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned in
     * g_file_enumerator_close_finish().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[close_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def closeAsync__ = ???
+  private def closeAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes closing a file enumerator, started from
+  /** Finishes closing a file enumerator, started from
     * g_file_enumerator_close_async().
     *
     * If the file enumerator was already closed when
@@ -91,6 +92,9 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     * the cancellable object from another thread. If the operation was
     * cancelled, the error %G_IO_ERROR_CANCELLED will be set, and %FALSE will be
     * returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def closeFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -102,9 +106,7 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     ).value.!=(0)
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Return a new #GFile which refers to the file named by @info in the source
+  /**  Return a new #GFile which refers to the file named by @info in the source
     *  directory of @enumerator.  This function is primarily intended to be used
     *  inside loops with g_file_enumerator_next_file().
     *
@@ -117,6 +119,8 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     *    GFile *child = g_file_get_child (g_file_enumerator_get_container (enumr),
     *                                     name);
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(info: FileInfo /* Some(Ptr[GFileInfo]) */ ): File /* None */ =
     new File.Abstract(
@@ -126,9 +130,10 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the #GFile container which is being enumerated.
     *
-    * Get the #GFile container which is being enumerated.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getContainer(): File /* None */ = new File.Abstract(
     g_file_enumerator_get_container(
@@ -136,25 +141,25 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if the file enumerator has pending operations.
     *
-    * Checks if the file enumerator has pending operations.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasPending(): Boolean /* None */ = g_file_enumerator_has_pending(
     this.raw.asInstanceOf[Ptr[GFileEnumerator]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if the file enumerator has been closed.
     *
-    * Checks if the file enumerator has been closed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isClosed(): Boolean /* None */ = g_file_enumerator_is_closed(
     this.raw.asInstanceOf[Ptr[GFileEnumerator]]
   ).value.!=(0)
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  This is a version of g_file_enumerator_next_file() that's easier to
+  /**  This is a version of g_file_enumerator_next_file() that's easier to
     *  use correctly from C programs.  With g_file_enumerator_next_file(),
     *  the gboolean return value signifies "end of iteration or error", which
     *  requires allocation of a temporary #GError.
@@ -192,15 +197,15 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     *  out:
     *    g_object_unref (direnum); // Note: frees the last @info
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method iterate contains an OUT parameter, which is not supported yet"
+    "[iterate]: Method iterate contains an OUT parameter, which is not supported yet"
   )
-  def iterate__ = ???
+  private def iterate__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns information for the next file in the enumerated object. Will block
+  /** Returns information for the next file in the enumerated object. Will block
     * until the information is available. The #GFileInfo returned from this
     * function will contain attributes that match the attribute string that was
     * passed when the #GFileEnumerator was created.
@@ -210,6 +215,9 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     *
     * On error, returns %NULL and sets @error to the error. If the enumerator is
     * at the end, %NULL will be returned and @error will be unset.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def nextFile(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -225,9 +233,7 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     )
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Request information for a number of files from the enumerator asynchronously.
+  /**  Request information for a number of files from the enumerator asynchronously.
     *  When all I/O for the operation is finished the @callback will be called with
     *  the requested information.
     *
@@ -291,25 +297,29 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     *  Any outstanding I/O request with higher priority (lower numerical value) will
     *  be executed before an outstanding request with lower priority. Default
     *  priority is %G_PRIORITY_DEFAULT.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[next_files_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def nextFilesAsync__ = ???
+  private def nextFilesAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes the asynchronous operation started with
+  /** Finishes the asynchronous operation started with
     * g_file_enumerator_next_files_async().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FileInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[next_files_finish/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FileInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def nextFilesFinish__ = ???
+  private def nextFilesFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the file enumerator as having pending operations.
     *
-    * Sets the file enumerator as having pending operations.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPending(
       pending: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */

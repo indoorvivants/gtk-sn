@@ -2,41 +2,46 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkTreeViewDropPosition
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** An enum for determining where a dropped row goes.
   *
-  * An enum for determining where a dropped row goes.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TreeViewDropPosition(val raw: GtkTreeViewDropPosition):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** dropped row is inserted before
     *
-    * dropped row is inserted before
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BEFORE
       extends TreeViewDropPosition(
         GtkTreeViewDropPosition.GTK_TREE_VIEW_DROP_BEFORE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** dropped row is inserted after
     *
-    * dropped row is inserted after
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AFTER
       extends TreeViewDropPosition(
         GtkTreeViewDropPosition.GTK_TREE_VIEW_DROP_AFTER
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** dropped row becomes a child or is inserted before
     *
-    * dropped row becomes a child or is inserted before
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INTO_OR_BEFORE
       extends TreeViewDropPosition(
         GtkTreeViewDropPosition.GTK_TREE_VIEW_DROP_INTO_OR_BEFORE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** dropped row becomes a child or is inserted after
     *
-    * dropped row becomes a child or is inserted after
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INTO_OR_AFTER
       extends TreeViewDropPosition(

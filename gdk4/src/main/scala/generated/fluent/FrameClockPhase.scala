@@ -2,12 +2,13 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkFrameClockPhase
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Used to represent the different paint clock phases that can be requested.
+/** Used to represent the different paint clock phases that can be requested.
   *
   * The elements of the enumeration correspond to the signals of
   * `GdkFrameClock`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FrameClockPhase private (val raw: GdkFrameClockPhase):
   def is(kv: FrameClockPhase): Boolean =
@@ -35,20 +36,22 @@ object FrameClockPhase:
     def |(other: FrameClockPhase) =
       FrameClockPhase(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Used to represent the different paint clock phases that can be requested.
+  /** Used to represent the different paint clock phases that can be requested.
     *
     * The elements of the enumeration correspond to the signals of
     * `GdkFrameClock`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GdkFrameClockPhase, name: String)
       extends FrameClockPhase(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** no phase
       *
-      * no phase
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(
@@ -56,10 +59,11 @@ object FrameClockPhase:
           "NONE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * corresponds to GdkFrameClock::flush-events. Should not be handled by
+    /** corresponds to GdkFrameClock::flush-events. Should not be handled by
       * applications.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FLUSH_EVENTS
         extends KnownValue(
@@ -67,10 +71,11 @@ object FrameClockPhase:
           "FLUSH_EVENTS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * corresponds to GdkFrameClock::before-paint. Should not be handled by
+    /** corresponds to GdkFrameClock::before-paint. Should not be handled by
       * applications.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case BEFORE_PAINT
         extends KnownValue(
@@ -78,9 +83,10 @@ object FrameClockPhase:
           "BEFORE_PAINT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** corresponds to GdkFrameClock::update.
       *
-      * corresponds to GdkFrameClock::update.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case UPDATE
         extends KnownValue(
@@ -88,10 +94,11 @@ object FrameClockPhase:
           "UPDATE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * corresponds to GdkFrameClock::layout. Should not be handled by
+    /** corresponds to GdkFrameClock::layout. Should not be handled by
       * applications.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case LAYOUT
         extends KnownValue(
@@ -99,9 +106,10 @@ object FrameClockPhase:
           "LAYOUT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** corresponds to GdkFrameClock::paint.
       *
-      * corresponds to GdkFrameClock::paint.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case PAINT
         extends KnownValue(
@@ -109,10 +117,11 @@ object FrameClockPhase:
           "PAINT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * corresponds to GdkFrameClock::resume-events. Should not be handled by
+    /** corresponds to GdkFrameClock::resume-events. Should not be handled by
       * applications.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case RESUME_EVENTS
         extends KnownValue(
@@ -120,10 +129,11 @@ object FrameClockPhase:
           "RESUME_EVENTS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * corresponds to GdkFrameClock::after-paint. Should not be handled by
+    /** corresponds to GdkFrameClock::after-paint. Should not be handled by
       * applications.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case AFTER_PAINT
         extends KnownValue(

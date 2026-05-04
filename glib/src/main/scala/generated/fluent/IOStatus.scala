@@ -2,32 +2,37 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GIOStatus
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Statuses returned by most of the #GIOFuncs functions.
   *
-  * Statuses returned by most of the #GIOFuncs functions.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum IOStatus(val raw: GIOStatus):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** An error occurred.
     *
-    * An error occurred.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ERROR extends IOStatus(GIOStatus.G_IO_STATUS_ERROR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Success.
     *
-    * Success.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NORMAL extends IOStatus(GIOStatus.G_IO_STATUS_NORMAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** End of file.
     *
-    * End of file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EOF extends IOStatus(GIOStatus.G_IO_STATUS_EOF)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Resource temporarily unavailable.
     *
-    * Resource temporarily unavailable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AGAIN extends IOStatus(GIOStatus.G_IO_STATUS_AGAIN)
 end IOStatus

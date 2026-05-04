@@ -2,422 +2,480 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GRegexError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Error codes returned by regular expressions functions.
   *
-  * Error codes returned by regular expressions functions.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum RegexError(val raw: GRegexError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Compilation of the regular expression failed.
     *
-    * Compilation of the regular expression failed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COMPILE extends RegexError(GRegexError.G_REGEX_ERROR_COMPILE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Optimization of the regular expression failed.
     *
-    * Optimization of the regular expression failed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OPTIMIZE extends RegexError(GRegexError.G_REGEX_ERROR_OPTIMIZE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Replacement failed due to an ill-formed replacement string.
     *
-    * Replacement failed due to an ill-formed replacement string.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case REPLACE extends RegexError(GRegexError.G_REGEX_ERROR_REPLACE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The match process failed.
     *
-    * The match process failed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MATCH extends RegexError(GRegexError.G_REGEX_ERROR_MATCH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Internal error of the regular expression engine. Since 2.16
     *
-    * Internal error of the regular expression engine. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INTERNAL extends RegexError(GRegexError.G_REGEX_ERROR_INTERNAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** "\\" at end of pattern. Since 2.16
     *
-    * "\\" at end of pattern. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STRAY_BACKSLASH
       extends RegexError(GRegexError.G_REGEX_ERROR_STRAY_BACKSLASH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** "\\c" at end of pattern. Since 2.16
     *
-    * "\\c" at end of pattern. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MISSING_CONTROL_CHAR
       extends RegexError(GRegexError.G_REGEX_ERROR_MISSING_CONTROL_CHAR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unrecognized character follows "\\". Since 2.16
     *
-    * Unrecognized character follows "\\". Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNRECOGNIZED_ESCAPE
       extends RegexError(GRegexError.G_REGEX_ERROR_UNRECOGNIZED_ESCAPE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Numbers out of order in "{}" quantifier. Since 2.16
     *
-    * Numbers out of order in "{}" quantifier. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case QUANTIFIERS_OUT_OF_ORDER
       extends RegexError(GRegexError.G_REGEX_ERROR_QUANTIFIERS_OUT_OF_ORDER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Number too big in "{}" quantifier. Since 2.16
     *
-    * Number too big in "{}" quantifier. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case QUANTIFIER_TOO_BIG
       extends RegexError(GRegexError.G_REGEX_ERROR_QUANTIFIER_TOO_BIG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Missing terminating "]" for character class. Since 2.16
     *
-    * Missing terminating "]" for character class. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNTERMINATED_CHARACTER_CLASS
       extends RegexError(GRegexError.G_REGEX_ERROR_UNTERMINATED_CHARACTER_CLASS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Invalid escape sequence in character class. Since 2.16
     *
-    * Invalid escape sequence in character class. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_ESCAPE_IN_CHARACTER_CLASS
       extends RegexError(
         GRegexError.G_REGEX_ERROR_INVALID_ESCAPE_IN_CHARACTER_CLASS
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Range out of order in character class. Since 2.16
     *
-    * Range out of order in character class. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RANGE_OUT_OF_ORDER
       extends RegexError(GRegexError.G_REGEX_ERROR_RANGE_OUT_OF_ORDER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Nothing to repeat. Since 2.16
     *
-    * Nothing to repeat. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOTHING_TO_REPEAT
       extends RegexError(GRegexError.G_REGEX_ERROR_NOTHING_TO_REPEAT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unrecognized character after "(?", "(?<" or "(?P". Since 2.16
     *
-    * Unrecognized character after "(?", "(?<" or "(?P". Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNRECOGNIZED_CHARACTER
       extends RegexError(GRegexError.G_REGEX_ERROR_UNRECOGNIZED_CHARACTER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** POSIX named classes are supported only within a class. Since 2.16
     *
-    * POSIX named classes are supported only within a class. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case POSIX_NAMED_CLASS_OUTSIDE_CLASS
       extends RegexError(
         GRegexError.G_REGEX_ERROR_POSIX_NAMED_CLASS_OUTSIDE_CLASS
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Missing terminating ")" or ")" without opening "(". Since 2.16
     *
-    * Missing terminating ")" or ")" without opening "(". Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNMATCHED_PARENTHESIS
       extends RegexError(GRegexError.G_REGEX_ERROR_UNMATCHED_PARENTHESIS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Reference to non-existent subpattern. Since 2.16
     *
-    * Reference to non-existent subpattern. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INEXISTENT_SUBPATTERN_REFERENCE
       extends RegexError(
         GRegexError.G_REGEX_ERROR_INEXISTENT_SUBPATTERN_REFERENCE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Missing terminating ")" after comment. Since 2.16
     *
-    * Missing terminating ")" after comment. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNTERMINATED_COMMENT
       extends RegexError(GRegexError.G_REGEX_ERROR_UNTERMINATED_COMMENT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Regular expression too large. Since 2.16
     *
-    * Regular expression too large. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EXPRESSION_TOO_LARGE
       extends RegexError(GRegexError.G_REGEX_ERROR_EXPRESSION_TOO_LARGE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Failed to get memory. Since 2.16
     *
-    * Failed to get memory. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MEMORY_ERROR extends RegexError(GRegexError.G_REGEX_ERROR_MEMORY_ERROR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Lookbehind assertion is not fixed length. Since 2.16
     *
-    * Lookbehind assertion is not fixed length. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case VARIABLE_LENGTH_LOOKBEHIND
       extends RegexError(GRegexError.G_REGEX_ERROR_VARIABLE_LENGTH_LOOKBEHIND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Malformed number or name after "(?(". Since 2.16
     *
-    * Malformed number or name after "(?(". Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MALFORMED_CONDITION
       extends RegexError(GRegexError.G_REGEX_ERROR_MALFORMED_CONDITION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Conditional group contains more than two branches. Since 2.16
     *
-    * Conditional group contains more than two branches. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOO_MANY_CONDITIONAL_BRANCHES
       extends RegexError(
         GRegexError.G_REGEX_ERROR_TOO_MANY_CONDITIONAL_BRANCHES
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Assertion expected after "(?(". Since 2.16
     *
-    * Assertion expected after "(?(". Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ASSERTION_EXPECTED
       extends RegexError(GRegexError.G_REGEX_ERROR_ASSERTION_EXPECTED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unknown POSIX class name. Since 2.16
     *
-    * Unknown POSIX class name. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN_POSIX_CLASS_NAME
       extends RegexError(GRegexError.G_REGEX_ERROR_UNKNOWN_POSIX_CLASS_NAME)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** POSIX collating elements are not supported. Since 2.16
     *
-    * POSIX collating elements are not supported. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case POSIX_COLLATING_ELEMENTS_NOT_SUPPORTED
       extends RegexError(
         GRegexError.G_REGEX_ERROR_POSIX_COLLATING_ELEMENTS_NOT_SUPPORTED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Character value in "\\x{...}" sequence is too large. Since 2.16
     *
-    * Character value in "\\x{...}" sequence is too large. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HEX_CODE_TOO_LARGE
       extends RegexError(GRegexError.G_REGEX_ERROR_HEX_CODE_TOO_LARGE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Invalid condition "(?(0)". Since 2.16
     *
-    * Invalid condition "(?(0)". Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_CONDITION
       extends RegexError(GRegexError.G_REGEX_ERROR_INVALID_CONDITION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** \\C not allowed in lookbehind assertion. Since 2.16
     *
-    * \\C not allowed in lookbehind assertion. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SINGLE_BYTE_MATCH_IN_LOOKBEHIND
       extends RegexError(
         GRegexError.G_REGEX_ERROR_SINGLE_BYTE_MATCH_IN_LOOKBEHIND
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Recursive call could loop indefinitely. Since 2.16
     *
-    * Recursive call could loop indefinitely. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INFINITE_LOOP extends RegexError(GRegexError.G_REGEX_ERROR_INFINITE_LOOP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Missing terminator in subpattern name. Since 2.16
     *
-    * Missing terminator in subpattern name. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MISSING_SUBPATTERN_NAME_TERMINATOR
       extends RegexError(
         GRegexError.G_REGEX_ERROR_MISSING_SUBPATTERN_NAME_TERMINATOR
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Two named subpatterns have the same name. Since 2.16
     *
-    * Two named subpatterns have the same name. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DUPLICATE_SUBPATTERN_NAME
       extends RegexError(GRegexError.G_REGEX_ERROR_DUPLICATE_SUBPATTERN_NAME)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Malformed "\\P" or "\\p" sequence. Since 2.16
     *
-    * Malformed "\\P" or "\\p" sequence. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MALFORMED_PROPERTY
       extends RegexError(GRegexError.G_REGEX_ERROR_MALFORMED_PROPERTY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unknown property name after "\\P" or "\\p". Since 2.16
     *
-    * Unknown property name after "\\P" or "\\p". Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN_PROPERTY
       extends RegexError(GRegexError.G_REGEX_ERROR_UNKNOWN_PROPERTY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Subpattern name is too long (maximum 32 characters). Since 2.16
     *
-    * Subpattern name is too long (maximum 32 characters). Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SUBPATTERN_NAME_TOO_LONG
       extends RegexError(GRegexError.G_REGEX_ERROR_SUBPATTERN_NAME_TOO_LONG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Too many named subpatterns (maximum 10,000). Since 2.16
     *
-    * Too many named subpatterns (maximum 10,000). Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOO_MANY_SUBPATTERNS
       extends RegexError(GRegexError.G_REGEX_ERROR_TOO_MANY_SUBPATTERNS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Octal value is greater than "\\377". Since 2.16
     *
-    * Octal value is greater than "\\377". Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_OCTAL_VALUE
       extends RegexError(GRegexError.G_REGEX_ERROR_INVALID_OCTAL_VALUE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** "DEFINE" group contains more than one branch. Since 2.16
     *
-    * "DEFINE" group contains more than one branch. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOO_MANY_BRANCHES_IN_DEFINE
       extends RegexError(GRegexError.G_REGEX_ERROR_TOO_MANY_BRANCHES_IN_DEFINE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Repeating a "DEFINE" group is not allowed. This error is never raised.
+  /** Repeating a "DEFINE" group is not allowed. This error is never raised.
     * Since: 2.16 Deprecated: 2.34
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DEFINE_REPETION
       extends RegexError(GRegexError.G_REGEX_ERROR_DEFINE_REPETION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Inconsistent newline options. Since 2.16
     *
-    * Inconsistent newline options. Since 2.16
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INCONSISTENT_NEWLINE_OPTIONS
       extends RegexError(GRegexError.G_REGEX_ERROR_INCONSISTENT_NEWLINE_OPTIONS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * "\\g" is not followed by a braced, angle-bracketed, or quoted name or
+  /** "\\g" is not followed by a braced, angle-bracketed, or quoted name or
     * number, or by a plain number. Since: 2.16
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MISSING_BACK_REFERENCE
       extends RegexError(GRegexError.G_REGEX_ERROR_MISSING_BACK_REFERENCE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** relative reference must not be zero. Since: 2.34
     *
-    * relative reference must not be zero. Since: 2.34
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_RELATIVE_REFERENCE
       extends RegexError(GRegexError.G_REGEX_ERROR_INVALID_RELATIVE_REFERENCE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the backtracing control verb used does not allow an argument. Since: 2.34
     *
-    * the backtracing control verb used does not allow an argument. Since: 2.34
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BACKTRACKING_CONTROL_VERB_ARGUMENT_FORBIDDEN
       extends RegexError(
         GRegexError.G_REGEX_ERROR_BACKTRACKING_CONTROL_VERB_ARGUMENT_FORBIDDEN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** unknown backtracing control verb. Since: 2.34
     *
-    * unknown backtracing control verb. Since: 2.34
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN_BACKTRACKING_CONTROL_VERB
       extends RegexError(
         GRegexError.G_REGEX_ERROR_UNKNOWN_BACKTRACKING_CONTROL_VERB
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** number is too big in escape sequence. Since: 2.34
     *
-    * number is too big in escape sequence. Since: 2.34
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NUMBER_TOO_BIG
       extends RegexError(GRegexError.G_REGEX_ERROR_NUMBER_TOO_BIG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Missing subpattern name. Since: 2.34
     *
-    * Missing subpattern name. Since: 2.34
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MISSING_SUBPATTERN_NAME
       extends RegexError(GRegexError.G_REGEX_ERROR_MISSING_SUBPATTERN_NAME)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Missing digit. Since 2.34
     *
-    * Missing digit. Since 2.34
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MISSING_DIGIT extends RegexError(GRegexError.G_REGEX_ERROR_MISSING_DIGIT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * In JavaScript compatibility mode, "[" is an invalid data character. Since:
+  /** In JavaScript compatibility mode, "[" is an invalid data character. Since:
     * 2.34
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_DATA_CHARACTER
       extends RegexError(GRegexError.G_REGEX_ERROR_INVALID_DATA_CHARACTER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * different names for subpatterns of the same number are not allowed. Since:
+  /** different names for subpatterns of the same number are not allowed. Since:
     * 2.34
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EXTRA_SUBPATTERN_NAME
       extends RegexError(GRegexError.G_REGEX_ERROR_EXTRA_SUBPATTERN_NAME)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the backtracing control verb requires an argument. Since: 2.34
     *
-    * the backtracing control verb requires an argument. Since: 2.34
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BACKTRACKING_CONTROL_VERB_ARGUMENT_REQUIRED
       extends RegexError(
         GRegexError.G_REGEX_ERROR_BACKTRACKING_CONTROL_VERB_ARGUMENT_REQUIRED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** "\\c" must be followed by an ASCII character. Since: 2.34
     *
-    * "\\c" must be followed by an ASCII character. Since: 2.34
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_CONTROL_CHAR
       extends RegexError(GRegexError.G_REGEX_ERROR_INVALID_CONTROL_CHAR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * "\\k" is not followed by a braced, angle-bracketed, or quoted name. Since:
+  /** "\\k" is not followed by a braced, angle-bracketed, or quoted name. Since:
     * 2.34
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MISSING_NAME extends RegexError(GRegexError.G_REGEX_ERROR_MISSING_NAME)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** "\\N" is not supported in a class. Since: 2.34
     *
-    * "\\N" is not supported in a class. Since: 2.34
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_SUPPORTED_IN_CLASS
       extends RegexError(GRegexError.G_REGEX_ERROR_NOT_SUPPORTED_IN_CLASS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** too many forward references. Since: 2.34
     *
-    * too many forward references. Since: 2.34
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOO_MANY_FORWARD_REFERENCES
       extends RegexError(GRegexError.G_REGEX_ERROR_TOO_MANY_FORWARD_REFERENCES)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * the name is too long in "(*MARK)", "(*PRUNE)", "(*SKIP)", or "(*THEN)".
+  /** the name is too long in "(*MARK)", "(*PRUNE)", "(*SKIP)", or "(*THEN)".
     * Since: 2.34
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NAME_TOO_LONG extends RegexError(GRegexError.G_REGEX_ERROR_NAME_TOO_LONG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the character value in the \\u sequence is too large. Since: 2.34
     *
-    * the character value in the \\u sequence is too large. Since: 2.34
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHARACTER_VALUE_TOO_LARGE
       extends RegexError(GRegexError.G_REGEX_ERROR_CHARACTER_VALUE_TOO_LARGE)

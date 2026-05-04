@@ -2,78 +2,87 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkNumberUpLayout
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Used to determine the layout of pages on a sheet when printing multiple
+/** Used to determine the layout of pages on a sheet when printing multiple
   * pages per sheet.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum NumberUpLayout(val raw: GtkNumberUpLayout):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** ![](layout-lrtb.png)
     *
-    * ![](layout-lrtb.png)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LRTB
       extends NumberUpLayout(
         GtkNumberUpLayout.GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_TOP_TO_BOTTOM
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** ![](layout-lrbt.png)
     *
-    * ![](layout-lrbt.png)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LRBT
       extends NumberUpLayout(
         GtkNumberUpLayout.GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_BOTTOM_TO_TOP
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** ![](layout-rltb.png)
     *
-    * ![](layout-rltb.png)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RLTB
       extends NumberUpLayout(
         GtkNumberUpLayout.GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_TOP_TO_BOTTOM
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** ![](layout-rlbt.png)
     *
-    * ![](layout-rlbt.png)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RLBT
       extends NumberUpLayout(
         GtkNumberUpLayout.GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_BOTTOM_TO_TOP
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** ![](layout-tblr.png)
     *
-    * ![](layout-tblr.png)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TBLR
       extends NumberUpLayout(
         GtkNumberUpLayout.GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_LEFT_TO_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** ![](layout-tbrl.png)
     *
-    * ![](layout-tbrl.png)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TBRL
       extends NumberUpLayout(
         GtkNumberUpLayout.GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_RIGHT_TO_LEFT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** ![](layout-btlr.png)
     *
-    * ![](layout-btlr.png)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BTLR
       extends NumberUpLayout(
         GtkNumberUpLayout.GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_LEFT_TO_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** ![](layout-btrl.png)
     *
-    * ![](layout-btrl.png)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BTRL
       extends NumberUpLayout(

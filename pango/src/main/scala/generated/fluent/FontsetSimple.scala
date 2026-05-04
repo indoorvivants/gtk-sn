@@ -7,24 +7,26 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.pango.fluent.{Font, Fontset}
 import sn.gnome.pango.internal.PangoFontsetSimple
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `PangoFontsetSimple` is a implementation of the abstract `PangoFontset` base
+/** `PangoFontsetSimple` is a implementation of the abstract `PangoFontset` base
   * class as an array of fonts.
   *
   * When creating a `PangoFontsetSimple`, you have to provide the array of fonts
   * that make up the fontset.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FontsetSimple(raw: Ptr[PangoFontsetSimple])
     extends Fontset(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a font to the fontset.
+  /** Adds a font to the fontset.
     *
     * The fontset takes ownership of @font.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def append(font: Font /* Some(Ptr[PangoFont]) */ ): Unit /* None */ =
     pango_fontset_simple_append(
@@ -32,9 +34,10 @@ class FontsetSimple(raw: Ptr[PangoFontsetSimple])
       font.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the number of fonts in the fontset.
     *
-    * Returns the number of fonts in the fontset.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def size(): Int /* None */ = pango_fontset_simple_size(
     this.raw.asInstanceOf[Ptr[PangoFontsetSimple]]
@@ -43,13 +46,14 @@ class FontsetSimple(raw: Ptr[PangoFontsetSimple])
 end FontsetSimple
 
 object FontsetSimple:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `PangoFontsetSimple` for the given language.
     *
-    * Creates a new `PangoFontsetSimple` for the given language.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
+    "[language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end FontsetSimple

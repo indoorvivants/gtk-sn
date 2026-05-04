@@ -15,9 +15,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkVideo
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkVideo` is a widget to show a `GtkMediaStream` with media controls.
+/** `GtkVideo` is a widget to show a `GtkMediaStream` with media controls.
   *
   * ![An example GtkVideo](video.png)
   *
@@ -31,6 +29,9 @@ import sn.gnome.gtk4.internal.GtkVideo
   * input. If you are writing a full-fledged video player, you may want to use
   * the [iface@Gdk.Paintable] API and a media framework such as Gstreamer
   * directly.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Video(raw: Ptr[GtkVideo])
     extends Widget(raw.asInstanceOf),
@@ -40,31 +41,35 @@ class Video(raw: Ptr[GtkVideo])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns %TRUE if videos have been set to loop.
     *
-    * Returns %TRUE if videos have been set to loop.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAutoplay(): Boolean /* None */ =
     gtk_video_get_autoplay(this.raw.asInstanceOf[Ptr[GtkVideo]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the file played by @self or %NULL if not playing back a file.
     *
-    * Gets the file played by @self or %NULL if not playing back a file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFile(): File /* None */ = new File.Abstract(
     gtk_video_get_file(this.raw.asInstanceOf[Ptr[GtkVideo]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns %TRUE if videos have been set to loop.
     *
-    * Returns %TRUE if videos have been set to loop.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLoop(): Boolean /* None */ =
     gtk_video_get_loop(this.raw.asInstanceOf[Ptr[GtkVideo]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the media stream managed by @self or %NULL if none.
     *
-    * Gets the media stream managed by @self or %NULL if none.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMediaStream(): MediaStream /* None */ = new MediaStream(
     gtk_video_get_media_stream(
@@ -72,10 +77,11 @@ class Video(raw: Ptr[GtkVideo])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether @self automatically starts playback when it becomes visible
+  /** Sets whether @self automatically starts playback when it becomes visible
     * or when a new file gets loaded.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAutoplay(
       autoplay: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -84,9 +90,10 @@ class Video(raw: Ptr[GtkVideo])
     gboolean(gint((if autoplay == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes @self play the given @file.
     *
-    * Makes @self play the given @file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFile(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
@@ -99,11 +106,12 @@ class Video(raw: Ptr[GtkVideo])
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Makes @self play the given @filename.
+  /** Makes @self play the given @filename.
     *
     * This is a utility function that calls gtk_video_set_file(),
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFilename(
       filename: Option[String | CString /* Some(CString) */ ]
@@ -114,9 +122,10 @@ class Video(raw: Ptr[GtkVideo])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether new files loaded by @self should be set to loop.
     *
-    * Sets whether new files loaded by @self should be set to loop.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLoop(
       loop: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -125,9 +134,7 @@ class Video(raw: Ptr[GtkVideo])
     gboolean(gint((if loop == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the media stream to be played back.
+  /** Sets the media stream to be played back.
     *
     * @self
     *   will take full control of managing the media stream. If you want to
@@ -136,6 +143,9 @@ class Video(raw: Ptr[GtkVideo])
     *
     * If you want to display a file, consider using [method@Gtk.Video.set_file]
     * instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMediaStream(
       stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
@@ -146,11 +156,12 @@ class Video(raw: Ptr[GtkVideo])
       .getOrElse(null.asInstanceOf[Ptr[GtkMediaStream]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Makes @self play the resource at the given @resource_path.
+  /** Makes @self play the resource at the given @resource_path.
     *
     * This is a utility function that calls [method@Gtk.Video.set_file].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setResource(
       resource_path: Option[String | CString /* Some(CString) */ ]
@@ -172,15 +183,17 @@ class Video(raw: Ptr[GtkVideo])
 end Video
 
 object Video:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new empty `GtkVideo`.
     *
-    * Creates a new empty `GtkVideo`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Video = new Video(gtk_video_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a `GtkVideo` to play back the given @file.
     *
-    * Creates a `GtkVideo` to play back the given @file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forFile(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
@@ -194,12 +207,13 @@ object Video:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkVideo` to play back the given @filename.
+  /** Creates a `GtkVideo` to play back the given @filename.
     *
     * This is a utility function that calls [ctor@Gtk.Video.new_for_file], See
     * that function for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forFilename(
       filename: Option[String | CString /* Some(CString) */ ]
@@ -211,9 +225,10 @@ object Video:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a `GtkVideo` to play back the given @stream.
     *
-    * Creates a `GtkVideo` to play back the given @stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forMediaStream(
       stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
@@ -225,11 +240,12 @@ object Video:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkVideo` to play back the resource at the given @resource_path.
+  /** Creates a `GtkVideo` to play back the resource at the given @resource_path.
     *
     * This is a utility function that calls [ctor@Gtk.Video.new_for_file].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forResource(
       resource_path: Option[String | CString /* Some(CString) */ ]

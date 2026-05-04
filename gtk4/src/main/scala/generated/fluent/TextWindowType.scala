@@ -2,44 +2,51 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkTextWindowType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Used to reference the parts of `GtkTextView`.
   *
-  * Used to reference the parts of `GtkTextView`.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TextWindowType(val raw: GtkTextWindowType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Window that floats over scrolling areas.
     *
-    * Window that floats over scrolling areas.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WIDGET extends TextWindowType(GtkTextWindowType.GTK_TEXT_WINDOW_WIDGET)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Scrollable text window.
     *
-    * Scrollable text window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TEXT extends TextWindowType(GtkTextWindowType.GTK_TEXT_WINDOW_TEXT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Left side border window.
     *
-    * Left side border window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LEFT extends TextWindowType(GtkTextWindowType.GTK_TEXT_WINDOW_LEFT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Right side border window.
     *
-    * Right side border window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RIGHT extends TextWindowType(GtkTextWindowType.GTK_TEXT_WINDOW_RIGHT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Top border window.
     *
-    * Top border window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOP extends TextWindowType(GtkTextWindowType.GTK_TEXT_WINDOW_TOP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Bottom border window.
     *
-    * Bottom border window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BOTTOM extends TextWindowType(GtkTextWindowType.GTK_TEXT_WINDOW_BOTTOM)
 end TextWindowType

@@ -8,9 +8,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkAspectFrame
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkAspectFrame` preserves the aspect ratio of its child.
+/** `GtkAspectFrame` preserves the aspect ratio of its child.
   *
   * The frame can respect the aspect ratio of the child widget, or use its own
   * aspect ratio.
@@ -25,6 +23,9 @@ import sn.gnome.gtk4.internal.GtkAspectFrame
   *
   * Starting from GTK 4.12, `GtkAspectFrame` uses the
   * `GTK_ACCESSIBLE_ROLE_GENERIC` role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AspectFrame(raw: Ptr[GtkAspectFrame])
     extends Widget(raw.asInstanceOf),
@@ -34,9 +35,10 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @self.
     *
-    * Gets the child widget of @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_aspect_frame_get_child(
@@ -44,44 +46,49 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the child's size request should override the set aspect
+  /** Returns whether the child's size request should override the set aspect
     * ratio of the `GtkAspectFrame`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getObeyChild(): Boolean /* None */ = gtk_aspect_frame_get_obey_child(
     this.raw.asInstanceOf[Ptr[GtkAspectFrame]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the desired aspect ratio of the child.
     *
-    * Returns the desired aspect ratio of the child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRatio(): Float /* None */ = gtk_aspect_frame_get_ratio(
     this.raw.asInstanceOf[Ptr[GtkAspectFrame]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the horizontal alignment of the child within the allocation of the
+  /** Returns the horizontal alignment of the child within the allocation of the
     * `GtkAspectFrame`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getXalign(): Float /* None */ = gtk_aspect_frame_get_xalign(
     this.raw.asInstanceOf[Ptr[GtkAspectFrame]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the vertical alignment of the child within the allocation of the
+  /** Returns the vertical alignment of the child within the allocation of the
     * `GtkAspectFrame`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getYalign(): Float /* None */ = gtk_aspect_frame_get_yalign(
     this.raw.asInstanceOf[Ptr[GtkAspectFrame]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the child widget of @self.
     *
-    * Sets the child widget of @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -92,10 +99,11 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the aspect ratio of the child's size request should override
+  /** Sets whether the aspect ratio of the child's size request should override
     * the set aspect ratio of the `GtkAspectFrame`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setObeyChild(
       obey_child: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -104,9 +112,10 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
     gboolean(gint((if obey_child == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the desired aspect ratio of the child.
     *
-    * Sets the desired aspect ratio of the child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRatio(ratio: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_aspect_frame_set_ratio(
@@ -114,10 +123,11 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
       ratio.asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the horizontal alignment of the child within the allocation of the
+  /** Sets the horizontal alignment of the child within the allocation of the
     * `GtkAspectFrame`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setXalign(xalign: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_aspect_frame_set_xalign(
@@ -125,10 +135,11 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
       xalign.asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the vertical alignment of the child within the allocation of the
+  /** Sets the vertical alignment of the child within the allocation of the
     * `GtkAspectFrame`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setYalign(yalign: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_aspect_frame_set_yalign(
@@ -139,9 +150,10 @@ class AspectFrame(raw: Ptr[GtkAspectFrame])
 end AspectFrame
 
 object AspectFrame:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Create a new `GtkAspectFrame`.
     *
-    * Create a new `GtkAspectFrame`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       xalign: Float /* Some(Float) */,

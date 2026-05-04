@@ -2,28 +2,32 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoBaselineShift
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** An enumeration that affects baseline shifts between runs.
   *
-  * An enumeration that affects baseline shifts between runs.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum BaselineShift(val raw: PangoBaselineShift):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Leave the baseline unchanged
     *
-    * Leave the baseline unchanged
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends BaselineShift(PangoBaselineShift.PANGO_BASELINE_SHIFT_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Shift the baseline to the superscript position, relative to the previous
+  /** Shift the baseline to the superscript position, relative to the previous
     * run
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SUPERSCRIPT
       extends BaselineShift(PangoBaselineShift.PANGO_BASELINE_SHIFT_SUPERSCRIPT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Shift the baseline to the subscript position, relative to the previous run
     *
-    * Shift the baseline to the subscript position, relative to the previous run
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SUBSCRIPT
       extends BaselineShift(PangoBaselineShift.PANGO_BASELINE_SHIFT_SUBSCRIPT)

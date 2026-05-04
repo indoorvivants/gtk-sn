@@ -2,32 +2,36 @@ package sn.gnome.gsk4.fluent
 
 import _root_.sn.gnome.gsk4.internal.GskSerializationError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Errors that can happen during (de)serialization.
   *
-  * Errors that can happen during (de)serialization.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SerializationError(val raw: GskSerializationError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The format can not be identified
     *
-    * The format can not be identified
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNSUPPORTED_FORMAT
       extends SerializationError(
         GskSerializationError.GSK_SERIALIZATION_UNSUPPORTED_FORMAT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The version of the data is not understood
     *
-    * The version of the data is not understood
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNSUPPORTED_VERSION
       extends SerializationError(
         GskSerializationError.GSK_SERIALIZATION_UNSUPPORTED_VERSION
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The given data may not exist in a proper serialization
     *
-    * The given data may not exist in a proper serialization
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_DATA
       extends SerializationError(

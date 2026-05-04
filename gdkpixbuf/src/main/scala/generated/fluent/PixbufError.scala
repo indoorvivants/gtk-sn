@@ -2,59 +2,67 @@ package sn.gnome.gdkpixbuf.fluent
 
 import _root_.sn.gnome.gdkpixbuf.internal.GdkPixbufError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * An error code in the `GDK_PIXBUF_ERROR` domain.
+/** An error code in the `GDK_PIXBUF_ERROR` domain.
   *
   * Many gdk-pixbuf operations can cause errors in this domain, or in the
   * `G_FILE_ERROR` domain.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PixbufError(val raw: GdkPixbufError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** An image file was broken somehow.
     *
-    * An image file was broken somehow.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CORRUPT_IMAGE
       extends PixbufError(GdkPixbufError.GDK_PIXBUF_ERROR_CORRUPT_IMAGE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Not enough memory.
     *
-    * Not enough memory.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INSUFFICIENT_MEMORY
       extends PixbufError(GdkPixbufError.GDK_PIXBUF_ERROR_INSUFFICIENT_MEMORY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A bad option was passed to a pixbuf save module.
     *
-    * A bad option was passed to a pixbuf save module.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BAD_OPTION
       extends PixbufError(GdkPixbufError.GDK_PIXBUF_ERROR_BAD_OPTION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unknown image type.
     *
-    * Unknown image type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN_TYPE
       extends PixbufError(GdkPixbufError.GDK_PIXBUF_ERROR_UNKNOWN_TYPE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Don't know how to perform the given operation on the type of image at
+  /** Don't know how to perform the given operation on the type of image at
     * hand.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNSUPPORTED_OPERATION
       extends PixbufError(GdkPixbufError.GDK_PIXBUF_ERROR_UNSUPPORTED_OPERATION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Generic failure code, something went wrong.
     *
-    * Generic failure code, something went wrong.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FAILED extends PixbufError(GdkPixbufError.GDK_PIXBUF_ERROR_FAILED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Only part of the animation was loaded.
     *
-    * Only part of the animation was loaded.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INCOMPLETE_ANIMATION
       extends PixbufError(GdkPixbufError.GDK_PIXBUF_ERROR_INCOMPLETE_ANIMATION)

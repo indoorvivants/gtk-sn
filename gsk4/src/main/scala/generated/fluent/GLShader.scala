@@ -11,9 +11,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gsk4.fluent.{GLUniformType, Renderer}
 import sn.gnome.gsk4.internal.GskGLShader
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GskGLShader` is a snippet of GLSL that is meant to run in the fragment
+/** A `GskGLShader` is a snippet of GLSL that is meant to run in the fragment
   * shader of the rendering pipeline.
   *
   * A fragment shader gets the coordinates being rendered as input and produces
@@ -122,14 +120,15 @@ import sn.gnome.gsk4.internal.GskGLShader
   *   fragColor = position * source1 + (1.0 - position) * source2;
   * }
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to compile the @shader for the given @renderer.
+  /** Tries to compile the @shader for the given @renderer.
     *
     * If there is a problem, this function returns %FALSE and reports an error.
     * You should use this function before relying on the shader for rendering
@@ -139,6 +138,9 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * current GL context) and requires the renderer to be set up. This means
     * that the widget has to be realized. Commonly you want to call this from
     * the realize signal of a widget, or during widget snapshot.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def compile(
       renderer: Renderer /* Some(Ptr[GskRenderer]) */
@@ -150,10 +152,11 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks for a uniform by the name @name, and returns the index of the
+  /** Looks for a uniform by the name @name, and returns the index of the
     * uniform, or -1 if it was not found.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def findUniformByName(
       name: String | CString /* Some(CString) */
@@ -162,9 +165,7 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     __sn_extract_string(name)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Formats the uniform data as needed for feeding the named uniforms values
+  /** Formats the uniform data as needed for feeding the named uniforms values
     * into the shader.
     *
     * The argument list is a list of pairs of names, and values for the types
@@ -173,15 +174,16 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * Any uniforms of the shader that are not included in the argument list are
     * zero-initialized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[format_args/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def formatArgs__ = ???
+  private def formatArgs__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Formats the uniform data as needed for feeding the named uniforms values
+  /** Formats the uniform data as needed for feeding the named uniforms values
     * into the shader.
     *
     * The argument list is a list of pairs of names, and values for the types
@@ -192,121 +194,135 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     *
     * Any uniforms of the shader that are not included in the argument list are
     * zero-initialized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[format_args_va/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def formatArgsVa__ = ???
+  private def formatArgsVa__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of the uniform @idx in the @args block.
+  /** Gets the value of the uniform @idx in the @args block.
     *
     * The uniform must be of bool type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[get_arg_bool/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def getArgBool__ = ???
+  private def getArgBool__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of the uniform @idx in the @args block.
+  /** Gets the value of the uniform @idx in the @args block.
     *
     * The uniform must be of float type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[get_arg_float/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def getArgFloat__ = ???
+  private def getArgFloat__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of the uniform @idx in the @args block.
+  /** Gets the value of the uniform @idx in the @args block.
     *
     * The uniform must be of int type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[get_arg_int/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def getArgInt__ = ???
+  private def getArgInt__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of the uniform @idx in the @args block.
+  /** Gets the value of the uniform @idx in the @args block.
     *
     * The uniform must be of uint type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[get_arg_uint/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def getArgUint__ = ???
+  private def getArgUint__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of the uniform @idx in the @args block.
+  /** Gets the value of the uniform @idx in the @args block.
     *
     * The uniform must be of vec2 type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[get_arg_vec2/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def getArgVec2__ = ???
+  private def getArgVec2__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of the uniform @idx in the @args block.
+  /** Gets the value of the uniform @idx in the @args block.
     *
     * The uniform must be of vec3 type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[get_arg_vec3/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def getArgVec3__ = ???
+  private def getArgVec3__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of the uniform @idx in the @args block.
+  /** Gets the value of the uniform @idx in the @args block.
     *
     * The uniform must be of vec4 type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[get_arg_vec4/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def getArgVec4__ = ???
+  private def getArgVec4__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the size of the data block used to specify arguments for this shader.
     *
-    * Get the size of the data block used to specify arguments for this shader.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getArgsSize(): CUnsignedLongInt /* None */ = gsk_gl_shader_get_args_size(
     this.raw.asInstanceOf[Ptr[GskGLShader]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the number of textures that the shader requires.
+  /** Returns the number of textures that the shader requires.
     *
     * This can be used to check that the a passed shader works in your usecase.
     * It is determined by looking at the highest u_textureN value that the
     * shader defines.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNTextures(): Int /* None */ = gsk_gl_shader_get_n_textures(
     this.raw.asInstanceOf[Ptr[GskGLShader]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the number of declared uniforms for this shader.
     *
-    * Get the number of declared uniforms for this shader.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNUniforms(): Int /* None */ = gsk_gl_shader_get_n_uniforms(
     this.raw.asInstanceOf[Ptr[GskGLShader]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the resource path for the GLSL sourcecode being used to render this
+  /** Gets the resource path for the GLSL sourcecode being used to render this
     * shader.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getResource()(using Zone): String /* None */ = fromCString(
     gsk_gl_shader_get_resource(
@@ -314,18 +330,20 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the GLSL sourcecode being used to render this shader.
     *
-    * Gets the GLSL sourcecode being used to render this shader.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[get_source/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def getSource__ = ???
+  private def getSource__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the name of the declared uniform for this shader at index @idx.
     *
-    * Get the name of the declared uniform for this shader at index @idx.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUniformName(
       idx: Int /* Some(CInt) */
@@ -336,9 +354,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the offset into the data block where data for this uniforms is stored.
     *
-    * Get the offset into the data block where data for this uniforms is stored.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUniformOffset(idx: Int /* Some(CInt) */ ): Int /* None */ =
     gsk_gl_shader_get_uniform_offset(
@@ -346,9 +365,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
       idx
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the type of the declared uniform for this shader at index @idx.
     *
-    * Get the type of the declared uniform for this shader at index @idx.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUniformType(idx: Int /* Some(CInt) */ ): GLUniformType /* None */ =
     GLUniformType.fromRaw(
@@ -369,18 +389,20 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
 end GLShader
 
 object GLShader:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a `GskGLShader` that will render pixels using the specified code.
     *
-    * Creates a `GskGLShader` that will render pixels using the specified code.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[sourcecode]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def new_from_bytes() = ???
+  private def new_from_bytes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a `GskGLShader` that will render pixels using the specified code.
     *
-    * Creates a `GskGLShader` that will render pixels using the specified code.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromResource(
       resource_path: String | CString /* Some(CString) */

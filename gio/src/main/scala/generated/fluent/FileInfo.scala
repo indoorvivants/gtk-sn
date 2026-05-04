@@ -26,9 +26,7 @@ import sn.gnome.glib.internal.{
 }
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Functionality for manipulating basic metadata for files. #GFileInfo
+/** Functionality for manipulating basic metadata for files. #GFileInfo
   * implements methods for getting information that all files should contain,
   * and allows for manipulation of extended attributes.
   *
@@ -62,23 +60,28 @@ import sn.gnome.gobject.fluent.Object
   *
   * #GFileAttributeMatcher allows for searching through a #GFileInfo for
   * attributes.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Clears the status information from @info.
     *
-    * Clears the status information from @info.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def clearStatus(): Unit /* None */ = g_file_info_clear_status(
     this.raw.asInstanceOf[Ptr[GFileInfo]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * First clears all of the [GFileAttribute][gio-GFileAttribute] of @dest_info,
+  /** First clears all of the [GFileAttribute][gio-GFileAttribute] of @dest_info,
     * and then copies all of the file attributes from @src_info to @dest_info.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def copyInto(
       dest_info: FileInfo /* Some(Ptr[GFileInfo]) */
@@ -87,17 +90,16 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     dest_info.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Duplicates a file info structure.
     *
-    * Duplicates a file info structure.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dup(): FileInfo /* None */ = new FileInfo(
     g_file_info_dup(this.raw.asInstanceOf[Ptr[GFileInfo]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the access time of the current @info and returns it as a #GDateTime.
+  /** Gets the access time of the current @info and returns it as a #GDateTime.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_TIME_ACCESS. If %G_FILE_ATTRIBUTE_TIME_ACCESS_USEC is
@@ -106,16 +108,20 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     *
     * If nanosecond precision is needed, %G_FILE_ATTRIBUTE_TIME_ACCESS_NSEC must
     * be queried separately using g_file_info_get_attribute_uint32().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[get_access_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
-  def getAccessDateTime__ = ???
+  private def getAccessDateTime__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of an attribute, formatted as a string. This escapes things
+  /** Gets the value of an attribute, formatted as a string. This escapes things
     * as needed to make the string valid UTF-8.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeAsString(
       attribute: String | CString /* Some(CString) */
@@ -126,10 +132,11 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of a boolean attribute. If the attribute does not contain a
+  /** Gets the value of a boolean attribute. If the attribute does not contain a
     * boolean value, %FALSE will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeBoolean(
       attribute: String | CString /* Some(CString) */
@@ -138,10 +145,11 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(attribute)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of a byte string attribute. If the attribute does not
+  /** Gets the value of a byte string attribute. If the attribute does not
     * contain a byte string, %NULL will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeByteString(
       attribute: String | CString /* Some(CString) */
@@ -152,23 +160,25 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the attribute type, value and status for an attribute key.
     *
-    * Gets the attribute type, value and status for an attribute key.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_attribute_data contains an OUT parameter, which is not supported yet"
+    "[get_attribute_data]: Method get_attribute_data contains an OUT parameter, which is not supported yet"
   )
-  def getAttributeData__ = ???
+  private def getAttributeData__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of a byte string attribute as a file path.
+  /** Gets the value of a byte string attribute as a file path.
     *
     * If the attribute does not contain a byte string, `NULL` will be returned.
     *
     * This function is meant to be used by language bindings that have specific
     * handling for Unix paths.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeFilePath(
       attribute: String | CString /* Some(CString) */
@@ -179,11 +189,12 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a signed 32-bit integer contained within the attribute. If the
+  /** Gets a signed 32-bit integer contained within the attribute. If the
     * attribute does not contain a signed 32-bit integer, or is invalid, 0 will
     * be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeInt32(
       attribute: String | CString /* Some(CString) */
@@ -192,11 +203,12 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(attribute)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a signed 64-bit integer contained within the attribute. If the
+  /** Gets a signed 64-bit integer contained within the attribute. If the
     * attribute does not contain a signed 64-bit integer, or is invalid, 0 will
     * be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeInt64(
       attribute: String | CString /* Some(CString) */
@@ -205,10 +217,11 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(attribute)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of a #GObject attribute. If the attribute does not contain
+  /** Gets the value of a #GObject attribute. If the attribute does not contain
     * a #GObject, %NULL will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeObject(
       attribute: String | CString /* Some(CString) */
@@ -219,9 +232,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the attribute status for an attribute key.
     *
-    * Gets the attribute status for an attribute key.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeStatus(
       attribute: String | CString /* Some(CString) */
@@ -232,10 +246,11 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of a string attribute. If the attribute does not contain a
+  /** Gets the value of a string attribute. If the attribute does not contain a
     * string, %NULL will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeString(
       attribute: String | CString /* Some(CString) */
@@ -246,10 +261,11 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of a stringv attribute. If the attribute does not contain a
+  /** Gets the value of a stringv attribute. If the attribute does not contain a
     * stringv, %NULL will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeStringv(
       attribute: String | CString /* Some(CString) */
@@ -260,9 +276,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     )
   ).map(fromCString(_))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the attribute type for an attribute key.
     *
-    * Gets the attribute type for an attribute key.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeType(
       attribute: String | CString /* Some(CString) */
@@ -273,11 +290,12 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets an unsigned 32-bit integer contained within the attribute. If the
+  /** Gets an unsigned 32-bit integer contained within the attribute. If the
     * attribute does not contain an unsigned 32-bit integer, or is invalid, 0
     * will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeUint32(
       attribute: String | CString /* Some(CString) */
@@ -286,11 +304,12 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(attribute)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a unsigned 64-bit integer contained within the attribute. If the
+  /** Gets a unsigned 64-bit integer contained within the attribute. If the
     * attribute does not contain an unsigned 64-bit integer, or is invalid, 0
     * will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeUint64(
       attribute: String | CString /* Some(CString) */
@@ -299,12 +318,13 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(attribute)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the file's content type.
+  /** Gets the file's content type.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getContentType()(using Zone): String /* None */ = fromCString(
     g_file_info_get_content_type(
@@ -312,9 +332,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the creation time of the current @info and returns it as a
+  /** Gets the creation time of the current @info and returns it as a
     * #GDateTime.
     *
     * It is an error to call this if the #GFileInfo does not contain
@@ -324,30 +342,35 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     *
     * If nanosecond precision is needed, %G_FILE_ATTRIBUTE_TIME_CREATED_NSEC
     * must be queried separately using g_file_info_get_attribute_uint32().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[get_creation_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
-  def getCreationDateTime__ = ???
+  private def getCreationDateTime__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the #GDateTime representing the deletion date of the file, as
+  /** Returns the #GDateTime representing the deletion date of the file, as
     * available in %G_FILE_ATTRIBUTE_TRASH_DELETION_DATE. If the
     * %G_FILE_ATTRIBUTE_TRASH_DELETION_DATE attribute is unset, %NULL is
     * returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[get_deletion_date/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
-  def getDeletionDate__ = ???
+  private def getDeletionDate__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a display name for a file. This is guaranteed to always be set.
+  /** Gets a display name for a file. This is guaranteed to always be set.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDisplayName()(using Zone): String /* None */ = fromCString(
     g_file_info_get_display_name(
@@ -355,12 +378,13 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the edit name for a file.
+  /** Gets the edit name for a file.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_EDIT_NAME.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEditName()(using Zone): String /* None */ = fromCString(
     g_file_info_get_edit_name(
@@ -368,76 +392,80 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the [entity tag][gfile-etag] for a given #GFileInfo. See
+  /** Gets the [entity tag][gfile-etag] for a given #GFileInfo. See
     * %G_FILE_ATTRIBUTE_ETAG_VALUE.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_ETAG_VALUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEtag()(using Zone): String /* None */ = fromCString(
     g_file_info_get_etag(this.raw.asInstanceOf[Ptr[GFileInfo]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a file's type (whether it is a regular file, symlink, etc). This is
+  /** Gets a file's type (whether it is a regular file, symlink, etc). This is
     * different from the file's content type, see
     * g_file_info_get_content_type().
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_TYPE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFileType(): FileType /* None */ = FileType.fromRaw(
     g_file_info_get_file_type(this.raw.asInstanceOf[Ptr[GFileInfo]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the icon for a file.
+  /** Gets the icon for a file.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_ICON.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIcon(): Icon /* None */ = new Icon.Abstract(
     g_file_info_get_icon(this.raw.asInstanceOf[Ptr[GFileInfo]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if a file is a backup file.
+  /** Checks if a file is a backup file.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_IS_BACKUP.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIsBackup(): Boolean /* None */ =
     g_file_info_get_is_backup(this.raw.asInstanceOf[Ptr[GFileInfo]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if a file is hidden.
+  /** Checks if a file is hidden.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIsHidden(): Boolean /* None */ =
     g_file_info_get_is_hidden(this.raw.asInstanceOf[Ptr[GFileInfo]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if a file is a symlink.
+  /** Checks if a file is a symlink.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_IS_SYMLINK.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIsSymlink(): Boolean /* None */ = g_file_info_get_is_symlink(
     this.raw.asInstanceOf[Ptr[GFileInfo]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the modification time of the current @info and returns it as a
+  /** Gets the modification time of the current @info and returns it as a
     * #GDateTime.
     *
     * It is an error to call this if the #GFileInfo does not contain
@@ -447,67 +475,75 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     *
     * If nanosecond precision is needed, %G_FILE_ATTRIBUTE_TIME_MODIFIED_NSEC
     * must be queried separately using g_file_info_get_attribute_uint32().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[get_modification_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
-  def getModificationDateTime__ = ???
+  private def getModificationDateTime__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the modification time of the current @info and sets it in @result.
+  /** Gets the modification time of the current @info and sets it in @result.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_TIME_MODIFIED. If %G_FILE_ATTRIBUTE_TIME_MODIFIED_USEC
     * is provided it will be used too.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_modification_time contains an OUT parameter, which is not supported yet"
+    "[get_modification_time]: Method get_modification_time contains an OUT parameter, which is not supported yet"
   )
-  def getModificationTime__ = ???
+  private def getModificationTime__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the name for a file. This is guaranteed to always be set.
+  /** Gets the name for a file. This is guaranteed to always be set.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_NAME.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     g_file_info_get_name(this.raw.asInstanceOf[Ptr[GFileInfo]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the file's size (in bytes). The size is retrieved through the value
+  /** Gets the file's size (in bytes). The size is retrieved through the value
     * of the %G_FILE_ATTRIBUTE_STANDARD_SIZE attribute and is converted from
     * #guint64 to #goffset before returning the result.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_SIZE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSize(): gint64 /* None */ = g_file_info_get_size(
     this.raw.asInstanceOf[Ptr[GFileInfo]]
   ).asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of the sort_order attribute from the #GFileInfo. See
+  /** Gets the value of the sort_order attribute from the #GFileInfo. See
     * %G_FILE_ATTRIBUTE_STANDARD_SORT_ORDER.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_SORT_ORDER.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSortOrder(): CInt /* None */ = g_file_info_get_sort_order(
     this.raw.asInstanceOf[Ptr[GFileInfo]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the symbolic icon for a file.
+  /** Gets the symbolic icon for a file.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_SYMBOLIC_ICON.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSymbolicIcon(): Icon /* None */ = new Icon.Abstract(
     g_file_info_get_symbolic_icon(
@@ -515,12 +551,13 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the symlink target for a given #GFileInfo.
+  /** Gets the symlink target for a given #GFileInfo.
     *
     * It is an error to call this if the #GFileInfo does not contain
     * %G_FILE_ATTRIBUTE_STANDARD_SYMLINK_TARGET.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSymlinkTarget()(using Zone): String /* None */ = fromCString(
     g_file_info_get_symlink_target(
@@ -528,9 +565,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if a file info structure has an attribute named @attribute.
     *
-    * Checks if a file info structure has an attribute named @attribute.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasAttribute(
       attribute: String | CString /* Some(CString) */
@@ -539,9 +577,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(attribute)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if a file info structure has an attribute in the specified @name_space.
     *
-    * Checks if a file info structure has an attribute in the specified @name_space.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasNamespace(
       name_space: String | CString /* Some(CString) */
@@ -550,9 +589,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(name_space)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Lists the file info structure's attributes.
     *
-    * Lists the file info structure's attributes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def listAttributes(
       name_space: Option[String | CString /* Some(CString) */ ]
@@ -565,9 +605,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     )
   ).map(fromCString(_))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes all cases of @attribute from @info if it exists.
     *
-    * Removes all cases of @attribute from @info if it exists.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeAttribute(
       attribute: String | CString /* Some(CString) */
@@ -576,23 +617,25 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(attribute)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the %G_FILE_ATTRIBUTE_TIME_ACCESS and
+  /** Sets the %G_FILE_ATTRIBUTE_TIME_ACCESS and
     * %G_FILE_ATTRIBUTE_TIME_ACCESS_USEC attributes in the file info to the
     * given date/time value.
     *
     * %G_FILE_ATTRIBUTE_TIME_ACCESS_NSEC will be cleared.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[set_access_date_time/<method parameters>/atime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
-  def setAccessDateTime__ = ???
+  private def setAccessDateTime__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the @attribute to contain the given value, if possible. To unset the
+  /** Sets the @attribute to contain the given value, if possible. To unset the
     * attribute, use %G_FILE_ATTRIBUTE_TYPE_INVALID for @type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttribute(
       attribute: String | CString /* Some(CString) */,
@@ -605,9 +648,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     gpointer(value_p)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the @attribute to contain the given @attr_value, if possible.
     *
-    * Sets the @attribute to contain the given @attr_value, if possible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeBoolean(
       attribute: String | CString /* Some(CString) */,
@@ -618,9 +662,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     gboolean(gint((if attr_value == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the @attribute to contain the given @attr_value, if possible.
     *
-    * Sets the @attribute to contain the given @attr_value, if possible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeByteString(
       attribute: String | CString /* Some(CString) */,
@@ -631,12 +676,13 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(attr_value)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the @attribute to contain the given @attr_value, if possible.
+  /** Sets the @attribute to contain the given @attr_value, if possible.
     *
     * This function is meant to be used by language bindings that have specific
     * handling for Unix paths.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeFilePath(
       attribute: String | CString /* Some(CString) */,
@@ -647,9 +693,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(attr_value)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the @attribute to contain the given @attr_value, if possible.
     *
-    * Sets the @attribute to contain the given @attr_value, if possible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeInt32(
       attribute: String | CString /* Some(CString) */,
@@ -660,9 +707,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     gint32(attr_value)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the @attribute to contain the given @attr_value, if possible.
     *
-    * Sets the @attribute to contain the given @attr_value, if possible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeInt64(
       attribute: String | CString /* Some(CString) */,
@@ -673,18 +721,20 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     gint64(attr_value)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets @mask on @info to match specific attribute types.
     *
-    * Sets @mask on @info to match specific attribute types.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FileAttributeMatcher), @type -> DataRecord(GFileAttributeMatcher*)))"
+    "[set_attribute_mask/<method parameters>/mask]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FileAttributeMatcher), @type -> DataRecord(GFileAttributeMatcher*)))"
   )
-  def setAttributeMask__ = ???
+  private def setAttributeMask__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the @attribute to contain the given @attr_value, if possible.
     *
-    * Sets the @attribute to contain the given @attr_value, if possible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeObject(
       attribute: String | CString /* Some(CString) */,
@@ -695,14 +745,15 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     attr_value.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the attribute status for an attribute key. This is only needed by
+  /** Sets the attribute status for an attribute key. This is only needed by
     * external code that implement g_file_set_attributes_from_info() or similar
     * functions.
     *
     * The attribute must exist in @info for this to work. Otherwise %FALSE is
     * returned and @info is unchanged.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeStatus(
       attribute: String | CString /* Some(CString) */,
@@ -713,9 +764,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     status.raw
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the @attribute to contain the given @attr_value, if possible.
     *
-    * Sets the @attribute to contain the given @attr_value, if possible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeString(
       attribute: String | CString /* Some(CString) */,
@@ -726,11 +778,12 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(attr_value)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the @attribute to contain the given @attr_value, if possible.
+  /** Sets the @attribute to contain the given @attr_value, if possible.
     *
     * Sinze: 2.22
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeStringv(
       attribute: String | CString /* Some(CString) */,
@@ -741,9 +794,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     attr_value.map(__sn_extract_string).atUnsafe(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the @attribute to contain the given @attr_value, if possible.
     *
-    * Sets the @attribute to contain the given @attr_value, if possible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeUint32(
       attribute: String | CString /* Some(CString) */,
@@ -754,9 +808,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     guint32(attr_value)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the @attribute to contain the given @attr_value, if possible.
     *
-    * Sets the @attribute to contain the given @attr_value, if possible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeUint64(
       attribute: String | CString /* Some(CString) */,
@@ -767,10 +822,11 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     guint64(attr_value)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the content type attribute for a given #GFileInfo. See
+  /** Sets the content type attribute for a given #GFileInfo. See
     * %G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setContentType(
       content_type: String | CString /* Some(CString) */
@@ -779,23 +835,25 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(content_type)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the %G_FILE_ATTRIBUTE_TIME_CREATED and
+  /** Sets the %G_FILE_ATTRIBUTE_TIME_CREATED and
     * %G_FILE_ATTRIBUTE_TIME_CREATED_USEC attributes in the file info to the
     * given date/time value.
     *
     * %G_FILE_ATTRIBUTE_TIME_CREATED_NSEC will be cleared.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[set_creation_date_time/<method parameters>/creation_time]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
-  def setCreationDateTime__ = ???
+  private def setCreationDateTime__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the display name for the current #GFileInfo. See
+  /** Sets the display name for the current #GFileInfo. See
     * %G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDisplayName(
       display_name: String | CString /* Some(CString) */
@@ -804,10 +862,11 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(display_name)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the edit name for the current file. See
+  /** Sets the edit name for the current file. See
     * %G_FILE_ATTRIBUTE_STANDARD_EDIT_NAME.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEditName(
       edit_name: String | CString /* Some(CString) */
@@ -816,17 +875,19 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(edit_name)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the file type in a #GFileInfo to @type. See
+  /** Sets the file type in a #GFileInfo to @type. See
     * %G_FILE_ATTRIBUTE_STANDARD_TYPE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFileType(`type`: FileType /* Some(GFileType) */ ): Unit /* None */ =
     g_file_info_set_file_type(this.raw.asInstanceOf[Ptr[GFileInfo]], `type`.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the icon for a given #GFileInfo. See %G_FILE_ATTRIBUTE_STANDARD_ICON.
     *
-    * Sets the icon for a given #GFileInfo. See %G_FILE_ATTRIBUTE_STANDARD_ICON.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIcon(icon: Icon /* Some(Ptr[GIcon]) */ ): Unit /* None */ =
     g_file_info_set_icon(
@@ -834,10 +895,11 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       icon.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the "is_hidden" attribute in a #GFileInfo according to @is_hidden.
+  /** Sets the "is_hidden" attribute in a #GFileInfo according to @is_hidden.
     * See %G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIsHidden(
       is_hidden: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -846,10 +908,11 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     gboolean(gint((if is_hidden == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the "is_symlink" attribute in a #GFileInfo according to @is_symlink.
+  /** Sets the "is_symlink" attribute in a #GFileInfo according to @is_symlink.
     * See %G_FILE_ATTRIBUTE_STANDARD_IS_SYMLINK.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIsSymlink(
       is_symlink: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -858,36 +921,39 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     gboolean(gint((if is_symlink == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the %G_FILE_ATTRIBUTE_TIME_MODIFIED and
+  /** Sets the %G_FILE_ATTRIBUTE_TIME_MODIFIED and
     * %G_FILE_ATTRIBUTE_TIME_MODIFIED_USEC attributes in the file info to the
     * given date/time value.
     *
     * %G_FILE_ATTRIBUTE_TIME_MODIFIED_NSEC will be cleared.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[set_modification_date_time/<method parameters>/mtime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
-  def setModificationDateTime__ = ???
+  private def setModificationDateTime__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the %G_FILE_ATTRIBUTE_TIME_MODIFIED and
+  /** Sets the %G_FILE_ATTRIBUTE_TIME_MODIFIED and
     * %G_FILE_ATTRIBUTE_TIME_MODIFIED_USEC attributes in the file info to the
     * given time value.
     *
     * %G_FILE_ATTRIBUTE_TIME_MODIFIED_NSEC will be cleared.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(GTimeVal*)))"
+    "[set_modification_time/<method parameters>/mtime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(GTimeVal*)))"
   )
-  def setModificationTime__ = ???
+  private def setModificationTime__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the name attribute for the current #GFileInfo. See
+  /** Sets the name attribute for the current #GFileInfo. See
     * %G_FILE_ATTRIBUTE_STANDARD_NAME.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
       name: String | CString /* Some(CString) */
@@ -896,20 +962,22 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(name)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the %G_FILE_ATTRIBUTE_STANDARD_SIZE attribute in the file info to the
+  /** Sets the %G_FILE_ATTRIBUTE_STANDARD_SIZE attribute in the file info to the
     * given size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSize(
       size: gint64 /* Some(_root_.sn.gnome.glib.internal.goffset) */
   ): Unit /* None */ =
     g_file_info_set_size(this.raw.asInstanceOf[Ptr[GFileInfo]], goffset(size))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the sort order attribute in the file info structure. See
+  /** Sets the sort order attribute in the file info structure. See
     * %G_FILE_ATTRIBUTE_STANDARD_SORT_ORDER.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSortOrder(
       sort_order: CInt /* Some(_root_.sn.gnome.glib.internal.gint32) */
@@ -918,10 +986,11 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     gint32(sort_order)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the symbolic icon for a given #GFileInfo. See
+  /** Sets the symbolic icon for a given #GFileInfo. See
     * %G_FILE_ATTRIBUTE_STANDARD_SYMBOLIC_ICON.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSymbolicIcon(icon: Icon /* Some(Ptr[GIcon]) */ ): Unit /* None */ =
     g_file_info_set_symbolic_icon(
@@ -929,10 +998,11 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       icon.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the %G_FILE_ATTRIBUTE_STANDARD_SYMLINK_TARGET attribute in the file
+  /** Sets the %G_FILE_ATTRIBUTE_STANDARD_SYMLINK_TARGET attribute in the file
     * info to the given symlink target.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSymlinkTarget(
       symlink_target: String | CString /* Some(CString) */
@@ -941,9 +1011,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     __sn_extract_string(symlink_target)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unsets a mask set by g_file_info_set_attribute_mask(), if one is set.
     *
-    * Unsets a mask set by g_file_info_set_attribute_mask(), if one is set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetAttributeMask(): Unit /* None */ = g_file_info_unset_attribute_mask(
     this.raw.asInstanceOf[Ptr[GFileInfo]]
@@ -963,7 +1034,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   ): Array[Ptr[T]] =
     val ab = Array.newBuilder[Ptr[T]]
     var offset = 0
-    val tg = Tag.materializePtrTag(ptag)
+    val tg = Tag.materializePtrTag(using ptag)
     while p(offset)(using tg) != null do
       ab += p(offset)(using tg)
       offset += 1
@@ -973,9 +1044,10 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
 end FileInfo
 
 object FileInfo:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new file info structure.
     *
-    * Creates a new file info structure.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): FileInfo = new FileInfo(g_file_info_new().asInstanceOf)
 end FileInfo

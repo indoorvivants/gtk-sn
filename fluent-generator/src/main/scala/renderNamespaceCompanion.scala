@@ -14,16 +14,16 @@ def renderNamespaceCompanion(
     val objectHasAnyMembers = ns.functions.nonEmpty
 
     def renderFunctions()(using RenderingContext) =
-      ns.functions.foreach: function =>
-        transact[FluentErr]:
-          filterDefinitions(
-            namespace = Some(ns),
-            function = Some(function)
-          )
-          handleExceptions(
-            coll.observe(renderStaticMethod(function))
-          )
-        .foreach(renderFunctionStub(function, _))
+      ns.functions
+        .foreach: function =>
+          transact[FluentErr]:
+            inContext(s"${function.name}:"):
+              filterDefinitions(
+                namespace = Some(ns),
+                function = Some(function)
+              )
+              coll.observe(renderStaticMethod(function))
+          .foreach(renderFunctionStub(function, _))
 
       coll
         .effectsSoFar()

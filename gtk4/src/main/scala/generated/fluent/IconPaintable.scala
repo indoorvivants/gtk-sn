@@ -11,11 +11,12 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.SymbolicPaintable
 import sn.gnome.gtk4.internal.GtkIconPaintable
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Contains information found when looking up an icon in `GtkIconTheme`.
+/** Contains information found when looking up an icon in `GtkIconTheme`.
   *
   * `GtkIconPaintable` implements `GdkPaintable`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class IconPaintable(raw: Ptr[GtkIconPaintable])
     extends Object(raw.asInstanceOf),
@@ -24,11 +25,12 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `GFile` that was used to load the icon.
+  /** Gets the `GFile` that was used to load the icon.
     *
     * Returns %NULL if the icon was not loaded from a file.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFile(): File /* None */ = new File.Abstract(
     gtk_icon_paintable_get_file(
@@ -36,9 +38,7 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get the icon name being used for this icon.
+  /** Get the icon name being used for this icon.
     *
     * When an icon looked up in the icon theme was not available, the icon theme
     * may use fallback icons - either those specified to
@@ -47,6 +47,9 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
     *
     * If the icon was created without an icon theme, this function returns
     * %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconName()(using Zone): String /* None */ = fromCString(
     gtk_icon_paintable_get_icon_name(
@@ -54,15 +57,16 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if the icon is symbolic or not.
+  /** Checks if the icon is symbolic or not.
     *
     * This currently uses only the file name and not the file contents for
     * determining this. This behaviour may change in the future.
     *
     * Note that to render a symbolic `GtkIconPaintable` properly (with
     * recoloring), you have to set its icon name on a `GtkImage`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isSymbolic(): Boolean /* None */ = gtk_icon_paintable_is_symbolic(
     this.raw.asInstanceOf[Ptr[GtkIconPaintable]]
@@ -71,11 +75,12 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
 end IconPaintable
 
 object IconPaintable:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkIconPaintable` for a file with a given size and scale.
+  /** Creates a `GtkIconPaintable` for a file with a given size and scale.
     *
     * The icon can then be rendered by using it as a `GdkPaintable`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forFile(
       file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */,

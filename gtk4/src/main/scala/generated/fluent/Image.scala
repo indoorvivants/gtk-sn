@@ -17,9 +17,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkImage
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkImage` widget displays an image.
+/** The `GtkImage` widget displays an image.
   *
   * ![An example GtkImage](image.png)
   *
@@ -58,6 +56,9 @@ import sn.gnome.gtk4.internal.GtkImage
   * ## Accessibility
   *
   * `GtkImage` uses the `GTK_ACCESSIBLE_ROLE_IMG` role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Image(raw: Ptr[GtkImage])
     extends Widget(raw.asInstanceOf),
@@ -67,83 +68,91 @@ class Image(raw: Ptr[GtkImage])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Resets the image to be empty.
     *
-    * Resets the image to be empty.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def clear(): Unit /* None */ = gtk_image_clear(
     this.raw.asInstanceOf[Ptr[GtkImage]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `GIcon` being displayed by the `GtkImage`.
+  /** Gets the `GIcon` being displayed by the `GtkImage`.
     *
     * The storage type of the image must be %GTK_IMAGE_EMPTY or %GTK_IMAGE_GICON
     * (see [method@Gtk.Image.get_storage_type]). The caller of this function
     * does not own a reference to the returned `GIcon`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getGicon(): Icon /* None */ = new Icon.Abstract(
     gtk_image_get_gicon(this.raw.asInstanceOf[Ptr[GtkImage]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the icon name and size being displayed by the `GtkImage`.
+  /** Gets the icon name and size being displayed by the `GtkImage`.
     *
     * The storage type of the image must be %GTK_IMAGE_EMPTY or
     * %GTK_IMAGE_ICON_NAME (see [method@Gtk.Image.get_storage_type]). The
     * returned string is owned by the `GtkImage` and should not be freed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconName()(using Zone): String /* None */ = fromCString(
     gtk_image_get_icon_name(this.raw.asInstanceOf[Ptr[GtkImage]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the icon size used by the @image when rendering icons.
     *
-    * Gets the icon size used by the @image when rendering icons.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconSize(): IconSize /* None */ = IconSize.fromRaw(
     gtk_image_get_icon_size(this.raw.asInstanceOf[Ptr[GtkImage]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the image `GdkPaintable` being displayed by the `GtkImage`.
+  /** Gets the image `GdkPaintable` being displayed by the `GtkImage`.
     *
     * The storage type of the image must be %GTK_IMAGE_EMPTY or
     * %GTK_IMAGE_PAINTABLE (see [method@Gtk.Image.get_storage_type]). The caller
     * of this function does not own a reference to the returned paintable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPaintable(): Paintable /* None */ = new Paintable.Abstract(
     gtk_image_get_paintable(this.raw.asInstanceOf[Ptr[GtkImage]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the pixel size used for named icons.
     *
-    * Gets the pixel size used for named icons.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPixelSize(): Int /* None */ = gtk_image_get_pixel_size(
     this.raw.asInstanceOf[Ptr[GtkImage]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the type of representation being used by the `GtkImage` to store
+  /** Gets the type of representation being used by the `GtkImage` to store
     * image data.
     *
     * If the `GtkImage` has no image data, the return value will be
     * %GTK_IMAGE_EMPTY.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStorageType(): ImageType /* None */ = ImageType.fromRaw(
     gtk_image_get_storage_type(this.raw.asInstanceOf[Ptr[GtkImage]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a `GtkImage` to show a file.
+  /** Sets a `GtkImage` to show a file.
     *
     * See [ctor@Gtk.Image.new_from_file] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFromFile(
       filename: Option[String | CString /* Some(CString) */ ]
@@ -154,11 +163,12 @@ class Image(raw: Ptr[GtkImage])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a `GtkImage` to show a `GIcon`.
+  /** Sets a `GtkImage` to show a `GIcon`.
     *
     * See [ctor@Gtk.Image.new_from_gicon] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFromGicon(
       icon: Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
@@ -167,11 +177,12 @@ class Image(raw: Ptr[GtkImage])
     icon.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a `GtkImage` to show a named icon.
+  /** Sets a `GtkImage` to show a named icon.
     *
     * See [ctor@Gtk.Image.new_from_icon_name] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFromIconName(
       icon_name: Option[String | CString /* Some(CString) */ ]
@@ -182,11 +193,12 @@ class Image(raw: Ptr[GtkImage])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a `GtkImage` to show a `GdkPaintable`.
+  /** Sets a `GtkImage` to show a `GdkPaintable`.
     *
     * See [ctor@Gtk.Image.new_from_paintable] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFromPaintable(
       paintable: Option[
@@ -203,14 +215,15 @@ class Image(raw: Ptr[GtkImage])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a `GtkImage` to show a `GdkPixbuf`.
+  /** Sets a `GtkImage` to show a `GdkPixbuf`.
     *
     * See [ctor@Gtk.Image.new_from_pixbuf] for details.
     *
     * Note: This is a helper for [method@Gtk.Image.set_from_paintable], and you
     * can't get back the exact pixbuf once this is called, only a paintable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFromPixbuf(
       pixbuf: Option[
@@ -227,11 +240,12 @@ class Image(raw: Ptr[GtkImage])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a `GtkImage` to show a resource.
+  /** Sets a `GtkImage` to show a resource.
     *
     * See [ctor@Gtk.Image.new_from_resource] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFromResource(
       resource_path: Option[String | CString /* Some(CString) */ ]
@@ -242,21 +256,23 @@ class Image(raw: Ptr[GtkImage])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Suggests an icon size to the theme for named icons.
     *
-    * Suggests an icon size to the theme for named icons.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconSize(
       icon_size: IconSize /* Some(GtkIconSize) */
   ): Unit /* None */ =
     gtk_image_set_icon_size(this.raw.asInstanceOf[Ptr[GtkImage]], icon_size.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the pixel size to use for named icons.
+  /** Sets the pixel size to use for named icons.
     *
     * If the pixel size is set to a value != -1, it is used instead of the icon
     * size set by [method@Gtk.Image.set_from_icon_name].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPixelSize(pixel_size: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_image_set_pixel_size(this.raw.asInstanceOf[Ptr[GtkImage]], pixel_size)
@@ -272,15 +288,14 @@ class Image(raw: Ptr[GtkImage])
 end Image
 
 object Image:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new empty `GtkImage` widget.
     *
-    * Creates a new empty `GtkImage` widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Image = new Image(gtk_image_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkImage` displaying the file @filename.
+  /** Creates a new `GtkImage` displaying the file @filename.
     *
     * If the file isn’t found or can’t be loaded, the resulting `GtkImage` will
     * display a “broken image” icon. This function never returns %NULL, it
@@ -293,6 +308,9 @@ object Image:
     * The storage type (see [method@Gtk.Image.get_storage_type]) of the returned
     * image is not defined, it will be whatever is appropriate for displaying
     * the file.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFile(
       filename: String | CString /* Some(CString) */
@@ -300,13 +318,14 @@ object Image:
     gtk_image_new_from_file(__sn_extract_string(filename)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkImage` displaying an icon from the current icon theme.
+  /** Creates a `GtkImage` displaying an icon from the current icon theme.
     *
     * If the icon name isn’t known, a “broken image” icon will be displayed
     * instead. If the current icon theme is changed, the icon will be updated
     * appropriately.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromGicon(
       icon: Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
@@ -316,13 +335,14 @@ object Image:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkImage` displaying an icon from the current icon theme.
+  /** Creates a `GtkImage` displaying an icon from the current icon theme.
     *
     * If the icon name isn’t known, a “broken image” icon will be displayed
     * instead. If the current icon theme is changed, the icon will be updated
     * appropriately.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromIconName(
       icon_name: Option[String | CString /* Some(CString) */ ]
@@ -334,9 +354,7 @@ object Image:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkImage` displaying @paintable.
+  /** Creates a new `GtkImage` displaying @paintable.
     *
     * The `GtkImage` does not assume a reference to the paintable; you still
     * need to unref it if you own references. `GtkImage` will add its own
@@ -344,6 +362,9 @@ object Image:
     *
     * The `GtkImage` will track changes to the @paintable and update its size
     * and contents in response to it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromPaintable(
       paintable: Option[
@@ -361,9 +382,7 @@ object Image:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkImage` displaying @pixbuf.
+  /** Creates a new `GtkImage` displaying @pixbuf.
     *
     * The `GtkImage` does not assume a reference to the pixbuf; you still need
     * to unref it if you own references. `GtkImage` will add its own reference
@@ -375,6 +394,9 @@ object Image:
     * Note that this function just creates an `GtkImage` from the pixbuf. The
     * `GtkImage` created will not react to state changes. Should you want that,
     * you should use [ctor@Gtk.Image.new_from_icon_name].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromPixbuf(
       pixbuf: Option[
@@ -392,9 +414,7 @@ object Image:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkImage` displaying the resource file @resource_path.
+  /** Creates a new `GtkImage` displaying the resource file @resource_path.
     *
     * If the file isn’t found or can’t be loaded, the resulting `GtkImage` will
     * display a “broken image” icon. This function never returns %NULL, it
@@ -407,6 +427,9 @@ object Image:
     * The storage type (see [method@Gtk.Image.get_storage_type]) of the returned
     * image is not defined, it will be whatever is appropriate for displaying
     * the file.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromResource(
       resource_path: String | CString /* Some(CString) */

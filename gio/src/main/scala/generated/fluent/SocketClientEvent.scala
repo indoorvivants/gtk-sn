@@ -2,83 +2,93 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GSocketClientEvent
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Describes an event occurring on a #GSocketClient. See the
+/** Describes an event occurring on a #GSocketClient. See the
   * #GSocketClient::event signal for more details.
   *
   * Additional values may be added to this type in the future.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SocketClientEvent(val raw: GSocketClientEvent):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The client is doing a DNS lookup.
     *
-    * The client is doing a DNS lookup.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RESOLVING
       extends SocketClientEvent(GSocketClientEvent.G_SOCKET_CLIENT_RESOLVING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The client has completed a DNS lookup.
     *
-    * The client has completed a DNS lookup.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RESOLVED
       extends SocketClientEvent(GSocketClientEvent.G_SOCKET_CLIENT_RESOLVED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The client is connecting to a remote host (either a proxy or the
+  /** The client is connecting to a remote host (either a proxy or the
     * destination server).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CONNECTING
       extends SocketClientEvent(GSocketClientEvent.G_SOCKET_CLIENT_CONNECTING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The client has connected to a remote host.
     *
-    * The client has connected to a remote host.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CONNECTED
       extends SocketClientEvent(GSocketClientEvent.G_SOCKET_CLIENT_CONNECTED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The client is negotiating with a proxy to connect to the destination
+  /** The client is negotiating with a proxy to connect to the destination
     * server.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROXY_NEGOTIATING
       extends SocketClientEvent(
         GSocketClientEvent.G_SOCKET_CLIENT_PROXY_NEGOTIATING
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The client has negotiated with the proxy server.
     *
-    * The client has negotiated with the proxy server.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROXY_NEGOTIATED
       extends SocketClientEvent(
         GSocketClientEvent.G_SOCKET_CLIENT_PROXY_NEGOTIATED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The client is performing a TLS handshake.
     *
-    * The client is performing a TLS handshake.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TLS_HANDSHAKING
       extends SocketClientEvent(
         GSocketClientEvent.G_SOCKET_CLIENT_TLS_HANDSHAKING
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The client has performed a TLS handshake.
     *
-    * The client has performed a TLS handshake.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TLS_HANDSHAKED
       extends SocketClientEvent(
         GSocketClientEvent.G_SOCKET_CLIENT_TLS_HANDSHAKED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The client is done with a particular #GSocketConnectable.
     *
-    * The client is done with a particular #GSocketConnectable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COMPLETE
       extends SocketClientEvent(GSocketClientEvent.G_SOCKET_CLIENT_COMPLETE)

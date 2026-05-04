@@ -8,9 +8,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.{Collation, Expression, Sorter}
 import sn.gnome.gtk4.internal.GtkStringSorter
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkStringSorter` is a `GtkSorter` that compares strings.
+/** `GtkStringSorter` is a `GtkSorter` that compares strings.
   *
   * It does the comparison in a linguistically correct way using the current
   * locale by normalizing Unicode strings and possibly case-folding them before
@@ -18,22 +16,27 @@ import sn.gnome.gtk4.internal.GtkStringSorter
   *
   * To obtain the strings to compare, this sorter evaluates a
   * [class@Gtk.Expression].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class StringSorter(raw: Ptr[GtkStringSorter]) extends Sorter(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets which collation method the sorter uses.
     *
-    * Gets which collation method the sorter uses.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCollation(): Collation /* None */ = Collation.fromRaw(
     gtk_string_sorter_get_collation(this.raw.asInstanceOf[Ptr[GtkStringSorter]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the expression that is evaluated to obtain strings from items.
     *
-    * Gets the expression that is evaluated to obtain strings from items.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExpression(): Expression /* None */ = new Expression(
     gtk_string_sorter_get_expression(
@@ -41,17 +44,19 @@ class StringSorter(raw: Ptr[GtkStringSorter]) extends Sorter(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the sorter ignores case differences.
     *
-    * Gets whether the sorter ignores case differences.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIgnoreCase(): Boolean /* None */ = gtk_string_sorter_get_ignore_case(
     this.raw.asInstanceOf[Ptr[GtkStringSorter]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the collation method to use for sorting.
     *
-    * Sets the collation method to use for sorting.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCollation(
       collation: Collation /* Some(GtkCollation) */
@@ -60,11 +65,12 @@ class StringSorter(raw: Ptr[GtkStringSorter]) extends Sorter(raw.asInstanceOf):
     collation.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the expression that is evaluated to obtain strings from items.
+  /** Sets the expression that is evaluated to obtain strings from items.
     *
     * The expression must have the type %G_TYPE_STRING.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setExpression(
       expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
@@ -75,9 +81,10 @@ class StringSorter(raw: Ptr[GtkStringSorter]) extends Sorter(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the sorter will ignore case differences.
     *
-    * Sets whether the sorter will ignore case differences.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIgnoreCase(
       ignore_case: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -89,13 +96,14 @@ class StringSorter(raw: Ptr[GtkStringSorter]) extends Sorter(raw.asInstanceOf):
 end StringSorter
 
 object StringSorter:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new string sorter that compares items using the given
+  /** Creates a new string sorter that compares items using the given
     * @expression.
     *
     * Unless an expression is set on it, this sorter will always compare items
     * as invalid.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]

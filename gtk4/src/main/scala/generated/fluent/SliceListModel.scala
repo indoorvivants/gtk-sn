@@ -11,15 +11,16 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.SectionModel
 import sn.gnome.gtk4.internal.GtkSliceListModel
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkSliceListModel` is a list model that presents a slice of another model.
+/** `GtkSliceListModel` is a list model that presents a slice of another model.
   *
   * This is useful when implementing paging by setting the size to the number of
   * elements per page and updating the offset whenever a different page is
   * opened.
   *
   * `GtkSliceListModel` passes through sections from the underlying model.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SliceListModel(raw: Ptr[GtkSliceListModel])
     extends Object(raw.asInstanceOf),
@@ -28,9 +29,10 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the model that is currently being used or %NULL if none.
     *
-    * Gets the model that is currently being used or %NULL if none.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_slice_list_model_get_model(
@@ -38,27 +40,30 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the offset set via gtk_slice_list_model_set_offset().
     *
-    * Gets the offset set via gtk_slice_list_model_set_offset().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOffset(): UInt /* None */ = gtk_slice_list_model_get_offset(
     this.raw.asInstanceOf[Ptr[GtkSliceListModel]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the size set via gtk_slice_list_model_set_size().
     *
-    * Gets the size set via gtk_slice_list_model_set_size().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSize(): UInt /* None */ = gtk_slice_list_model_get_size(
     this.raw.asInstanceOf[Ptr[GtkSliceListModel]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the model to show a slice of.
+  /** Sets the model to show a slice of.
     *
     * The model's item type must conform to @self's item type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
       model: Option[
@@ -75,13 +80,14 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the offset into the original model for this slice.
+  /** Sets the offset into the original model for this slice.
     *
     * If the offset is too large for the sliced model,
     * @self
     *   will end up empty.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOffset(
       offset: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -90,12 +96,13 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     guint(offset)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the maximum size. @self will never have more items than @size.
+  /** Sets the maximum size. @self will never have more items than @size.
     *
     * It can however have fewer items if the offset is too large or the model
     * sliced from doesn't have enough items.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSize(
       size: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -107,11 +114,12 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
 end SliceListModel
 
 object SliceListModel:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new slice model.
+  /** Creates a new slice model.
     *
     * It presents the slice from @offset to offset + @size of the given @model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       model: Option[

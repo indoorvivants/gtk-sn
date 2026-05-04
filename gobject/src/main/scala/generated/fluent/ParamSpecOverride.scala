@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gobject.fluent.ParamSpec
 import sn.gnome.gobject.internal.GParamSpecOverride
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A #GParamSpec derived structure that redirects operations to other types of
+/** A #GParamSpec derived structure that redirects operations to other types of
   * #GParamSpec.
   *
   * All operations other than getting or setting the value are redirected,
@@ -19,6 +17,9 @@ import sn.gnome.gobject.internal.GParamSpecOverride
   * property. #GParamSpecOverride is used in implementing
   * g_object_class_override_property(), and will not be directly useful unless
   * you are implementing a new base type similar to GObject.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ParamSpecOverride(raw: Ptr[GParamSpecOverride])
     extends ParamSpec(raw.asInstanceOf):

@@ -2,32 +2,37 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GBusType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** An enumeration for well-known message buses.
   *
-  * An enumeration for well-known message buses.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum BusType(val raw: GBusType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** An alias for the message bus that activated the process, if any.
     *
-    * An alias for the message bus that activated the process, if any.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STARTER extends BusType(GBusType.G_BUS_TYPE_STARTER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Not a message bus.
     *
-    * Not a message bus.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends BusType(GBusType.G_BUS_TYPE_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The system-wide message bus.
     *
-    * The system-wide message bus.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SYSTEM extends BusType(GBusType.G_BUS_TYPE_SYSTEM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The login session message bus.
     *
-    * The login session message bus.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SESSION extends BusType(GBusType.G_BUS_TYPE_SESSION)
 end BusType

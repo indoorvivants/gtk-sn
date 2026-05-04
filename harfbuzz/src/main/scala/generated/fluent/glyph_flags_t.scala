@@ -2,9 +2,10 @@ package sn.gnome.harfbuzz.fluent
 
 import _root_.sn.gnome.harfbuzz.internal.hb_glyph_flags_t
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags for #hb_glyph_info_t.
   *
-  * Flags for #hb_glyph_info_t.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class glyph_flags_t private (val raw: hb_glyph_flags_t):
   def is(kv: glyph_flags_t): Boolean =
@@ -32,17 +33,16 @@ object glyph_flags_t:
     def |(other: glyph_flags_t) =
       glyph_flags_t(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags for #hb_glyph_info_t.
     *
-    * Flags for #hb_glyph_info_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: hb_glyph_flags_t, name: String)
       extends glyph_flags_t(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Indicates that if input text is broken at the beginning of the cluster
+    /** Indicates that if input text is broken at the beginning of the cluster
       * this glyph is part of, then both sides need to be re-shaped, as the
       * result might be different. On the flip side, it means that when this
       * flag is not present, then it is safe to break the glyph-run at the
@@ -51,6 +51,9 @@ object glyph_flags_t:
       * this cluster and shaping the two sides separately. This can be used to
       * optimize paragraph layout, by avoiding re-shaping of each line after
       * line-breaking.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case UNSAFE_TO_BREAK
         extends KnownValue(
@@ -58,9 +61,7 @@ object glyph_flags_t:
           "UNSAFE_TO_BREAK"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Indicates that if input text is changed on one side of the beginning of
+    /** Indicates that if input text is changed on one side of the beginning of
       * the cluster this glyph is part of, then the shaping results for the
       * other side might change. Note that the absence of this flag will NOT by
       * itself mean that it IS safe to concat text. Only two pieces of text both
@@ -97,6 +98,9 @@ object glyph_flags_t:
       * @HB_BUFFER_FLAG_PRODUCE_UNSAFE_TO_CONCAT
       *   during shaping, otherwise the buffer flag will not be reliably
       *   produced. Since: 4.0.0
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case UNSAFE_TO_CONCAT
         extends KnownValue(
@@ -104,13 +108,14 @@ object glyph_flags_t:
           "UNSAFE_TO_CONCAT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * In scripts that use elongation (Arabic, Mongolian, Syriac, etc.), this
+    /** In scripts that use elongation (Arabic, Mongolian, Syriac, etc.), this
       * flag signifies that it is safe to insert a U+0640 TATWEEL character
       * before this cluster for elongation. This flag does not determine the
       * script-specific elongation places, but only when it is safe to do the
       * elongation without interrupting text shaping. Since: 5.1.0
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SAFE_TO_INSERT_TATWEEL
         extends KnownValue(
@@ -118,9 +123,10 @@ object glyph_flags_t:
           "SAFE_TO_INSERT_TATWEEL"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** All the currently defined flags.
       *
-      * All the currently defined flags.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DEFINED
         extends KnownValue(hb_glyph_flags_t.HB_GLYPH_FLAG_DEFINED, "DEFINED")

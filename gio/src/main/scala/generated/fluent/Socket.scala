@@ -24,9 +24,7 @@ import sn.gnome.glib.fluent.{GResult, IOCondition}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gint64, gssize, guint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A #GSocket is a low-level networking primitive. It is a more or less direct
+/** A #GSocket is a low-level networking primitive. It is a more or less direct
   * mapping of the BSD socket API in a portable GObject based API. It supports
   * both the UNIX socket implementations and winsock2 on Windows.
   *
@@ -77,6 +75,9 @@ import sn.gnome.gobject.fluent.Object
   * Like most other APIs in GLib, #GSocket is not inherently thread safe. To use
   * a #GSocket concurrently from multiple threads, you must implement your own
   * locking.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Socket(raw: Ptr[GSocket])
     extends Object(raw.asInstanceOf),
@@ -85,9 +86,7 @@ class Socket(raw: Ptr[GSocket])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Accept incoming connections on a connection-based socket. This removes the
+  /** Accept incoming connections on a connection-based socket. This removes the
     * first outstanding connection request from the listening socket and creates
     * a #GSocket object for it.
     *
@@ -97,6 +96,9 @@ class Socket(raw: Ptr[GSocket])
     * If there are no outstanding connections then the operation will block or
     * return %G_IO_ERROR_WOULD_BLOCK if non-blocking I/O is enabled. To be
     * notified of an incoming connection, wait for the %G_IO_IN condition.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def accept(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -112,9 +114,7 @@ class Socket(raw: Ptr[GSocket])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * When a socket is created it is attached to an address family, but it
+  /** When a socket is created it is attached to an address family, but it
     * doesn't have an address in this family. g_socket_bind() assigns the
     * address (sometimes called name) of the socket.
     *
@@ -136,6 +136,9 @@ class Socket(raw: Ptr[GSocket])
     * and they will all receive all of the multicast and broadcast packets sent
     * to that address. (The behavior of unicast UDP packets to an address with
     * multiple listeners is not defined.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def bind(
       address: SocketAddress /* Some(Ptr[GSocketAddress]) */,
@@ -149,10 +152,11 @@ class Socket(raw: Ptr[GSocket])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks and resets the pending connect error for the socket. This is used
+  /** Checks and resets the pending connect error for the socket. This is used
     * to check for errors when g_socket_connect() is used in non-blocking mode.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def checkConnectResult(): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -162,9 +166,7 @@ class Socket(raw: Ptr[GSocket])
       ).value.!=(0)
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Closes the socket, shutting down any active connection.
+  /** Closes the socket, shutting down any active connection.
     *
     * Closing a socket does not wait for all outstanding I/O operations to
     * finish, so the caller should not rely on them to be guaranteed to complete
@@ -191,14 +193,15 @@ class Socket(raw: Ptr[GSocket])
     * safely call g_socket_close(). (This is what #GTcpConnection does if you
     * call g_tcp_connection_set_graceful_disconnect(). But of course, this only
     * works if the client will close its connection after the server does.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def close(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_close(this.raw.asInstanceOf[Ptr[GSocket]], __errorPtr).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks on the readiness of @socket to perform operations. The operations
+  /** Checks on the readiness of @socket to perform operations. The operations
     * specified in @condition are checked for and masked against the
     * currently-satisfied conditions on @socket. The result is returned.
     *
@@ -213,6 +216,9 @@ class Socket(raw: Ptr[GSocket])
     * conditions will always be set in the output if they are true.
     *
     * This call never blocks.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def conditionCheck(
       condition: IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */
@@ -220,9 +226,7 @@ class Socket(raw: Ptr[GSocket])
     g_socket_condition_check(this.raw.asInstanceOf[Ptr[GSocket]], condition.raw)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Waits for up to @timeout_us microseconds for @condition to become true on @socket.
+  /** Waits for up to @timeout_us microseconds for @condition to become true on @socket.
     * If the condition is met, %TRUE is returned.
     *
     * If @cancellable is cancelled before the condition is met, or if
@@ -238,6 +242,9 @@ class Socket(raw: Ptr[GSocket])
     * other GLib APIs, this function actually only has millisecond resolution,
     * and the behavior is undefined if @timeout_us is not an exact number of
     * milliseconds.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def conditionTimedWait(
       condition: IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
@@ -255,9 +262,7 @@ class Socket(raw: Ptr[GSocket])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Waits for @condition to become true on @socket. When the condition is met,
+  /** Waits for @condition to become true on @socket. When the condition is met,
     * %TRUE is returned.
     *
     * If @cancellable is cancelled before the condition is met, or if the socket
@@ -266,6 +271,9 @@ class Socket(raw: Ptr[GSocket])
     * value (%G_IO_ERROR_CANCELLED or %G_IO_ERROR_TIMED_OUT).
     *
     * See also g_socket_condition_timed_wait().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def conditionWait(
       condition: IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
@@ -281,9 +289,7 @@ class Socket(raw: Ptr[GSocket])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Connect the socket to the specified remote address.
+  /** Connect the socket to the specified remote address.
     *
     * For connection oriented socket this generally means we attempt to make a
     * connection to the @address. For a connection-less socket it sets the
@@ -299,6 +305,9 @@ class Socket(raw: Ptr[GSocket])
     * user can be notified of the connection finishing by waiting for the
     * G_IO_OUT condition. The result of the connection must then be checked with
     * g_socket_check_connect_result().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def connect(
       address: SocketAddress /* Some(Ptr[GSocketAddress]) */,
@@ -314,10 +323,11 @@ class Socket(raw: Ptr[GSocket])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GSocketConnection subclass of the right type for
+  /** Creates a #GSocketConnection subclass of the right type for
     * @socket.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def connectionFactoryCreateConnection(): SocketConnection /* None */ =
     new SocketConnection(
@@ -326,9 +336,7 @@ class Socket(raw: Ptr[GSocket])
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GSource that can be attached to a %GMainContext to monitor for
+  /** Creates a #GSource that can be attached to a %GMainContext to monitor for
     * the availability of the specified @condition on the socket. The #GSource
     * keeps a reference to the @socket.
     *
@@ -349,15 +357,16 @@ class Socket(raw: Ptr[GSocket])
     * depending on @condition. However, @socket will have been marked as having
     * had a timeout, and so the next #GSocket I/O method you call will then fail
     * with a %G_IO_ERROR_TIMED_OUT.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+    "[create_source/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
   )
-  def createSource__ = ???
+  private def createSource__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get the amount of data pending in the OS input buffer, without blocking.
+  /** Get the amount of data pending in the OS input buffer, without blocking.
     *
     * If @socket is a UDP or SCTP socket, this will return the size of just the
     * next packet, even if additional packets are buffered after that one.
@@ -367,30 +376,33 @@ class Socket(raw: Ptr[GSocket])
     * packet, it is better to just do a g_socket_receive() with a buffer of that
     * size, rather than calling g_socket_get_available_bytes() first and then
     * doing a receive of exactly the right size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAvailableBytes(): CLongInt /* None */ = g_socket_get_available_bytes(
     this.raw.asInstanceOf[Ptr[GSocket]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the blocking mode of the socket. For details on blocking I/O, see
+  /** Gets the blocking mode of the socket. For details on blocking I/O, see
     * g_socket_set_blocking().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBlocking(): Boolean /* None */ =
     g_socket_get_blocking(this.raw.asInstanceOf[Ptr[GSocket]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the broadcast setting on @socket; if %TRUE, it is possible to send
+  /** Gets the broadcast setting on @socket; if %TRUE, it is possible to send
     * packets to broadcast addresses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBroadcast(): Boolean /* None */ =
     g_socket_get_broadcast(this.raw.asInstanceOf[Ptr[GSocket]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the credentials of the foreign process connected to this socket,
+  /** Returns the credentials of the foreign process connected to this socket,
     * if any (e.g. it is only supported for %G_SOCKET_FAMILY_UNIX sockets).
     *
     * If this operation isn't supported on the OS, the method fails with the
@@ -408,6 +420,9 @@ class Socket(raw: Ptr[GSocket])
     * Other ways to obtain credentials from a foreign peer includes the
     * #GUnixCredentialsMessage type and g_unix_connection_send_credentials() /
     * g_unix_connection_receive_credentials() functions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCredentials(): GResult[Credentials /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -419,47 +434,52 @@ class Socket(raw: Ptr[GSocket])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the socket family of the socket.
     *
-    * Gets the socket family of the socket.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFamily(): SocketFamily /* None */ = SocketFamily.fromRaw(
     g_socket_get_family(this.raw.asInstanceOf[Ptr[GSocket]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the underlying OS socket object. On unix this is a socket file
+  /** Returns the underlying OS socket object. On unix this is a socket file
     * descriptor, and on Windows this is a Winsock2 SOCKET handle. This may be
     * useful for doing platform specific or otherwise unusual operations on the
     * socket.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFd(): Int /* None */ = g_socket_get_fd(
     this.raw.asInstanceOf[Ptr[GSocket]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the keepalive mode of the socket. For details on this, see
+  /** Gets the keepalive mode of the socket. For details on this, see
     * g_socket_set_keepalive().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getKeepalive(): Boolean /* None */ =
     g_socket_get_keepalive(this.raw.asInstanceOf[Ptr[GSocket]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the listen backlog setting of the socket. For details on this, see
+  /** Gets the listen backlog setting of the socket. For details on this, see
     * g_socket_set_listen_backlog().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getListenBacklog(): Int /* None */ = g_socket_get_listen_backlog(
     this.raw.asInstanceOf[Ptr[GSocket]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Try to get the local address of a bound socket. This is only useful if the
+  /** Try to get the local address of a bound socket. This is only useful if the
     * socket has been bound to a local address, either explicitly or implicitly
     * when connecting.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLocalAddress(): GResult[SocketAddress /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -471,28 +491,28 @@ class Socket(raw: Ptr[GSocket])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the multicast loopback setting on @socket; if %TRUE (the default),
+  /** Gets the multicast loopback setting on @socket; if %TRUE (the default),
     * outgoing multicast packets will be looped back to multicast listeners on
     * the same host.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMulticastLoopback(): Boolean /* None */ =
     g_socket_get_multicast_loopback(this.raw.asInstanceOf[Ptr[GSocket]]).value
       .!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the multicast time-to-live setting on @socket; see
+  /** Gets the multicast time-to-live setting on @socket; see
     * g_socket_set_multicast_ttl() for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMulticastTtl(): UInt /* None */ = g_socket_get_multicast_ttl(
     this.raw.asInstanceOf[Ptr[GSocket]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of an integer-valued option on @socket, as with
+  /** Gets the value of an integer-valued option on @socket, as with
     * getsockopt(). (If you need to fetch a non-integer-valued option, you will
     * need to call getsockopt() directly.)
     *
@@ -505,25 +525,30 @@ class Socket(raw: Ptr[GSocket])
     * @value
     *   is still a pointer to a #gint variable, not a #guchar;
     *   g_socket_get_option() will handle the conversion internally.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_option contains an OUT parameter, which is not supported yet"
+    "[get_option]: Method get_option contains an OUT parameter, which is not supported yet"
   )
-  def getOption__ = ???
+  private def getOption__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the socket protocol id the socket was created with. In case the
+  /** Gets the socket protocol id the socket was created with. In case the
     * protocol is unknown, -1 is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getProtocol(): SocketProtocol /* None */ = SocketProtocol.fromRaw(
     g_socket_get_protocol(this.raw.asInstanceOf[Ptr[GSocket]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Try to get the remote address of a connected socket. This is only useful
+  /** Try to get the remote address of a connected socket. This is only useful
     * for connection oriented sockets that have been connected.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRemoteAddress(): GResult[SocketAddress /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -535,55 +560,58 @@ class Socket(raw: Ptr[GSocket])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the socket type of the socket.
     *
-    * Gets the socket type of the socket.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSocketType(): SocketType /* None */ = SocketType.fromRaw(
     g_socket_get_socket_type(this.raw.asInstanceOf[Ptr[GSocket]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the timeout setting of the socket. For details on this, see
+  /** Gets the timeout setting of the socket. For details on this, see
     * g_socket_set_timeout().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTimeout(): UInt /* None */ = g_socket_get_timeout(
     this.raw.asInstanceOf[Ptr[GSocket]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the unicast time-to-live setting on @socket; see g_socket_set_ttl()
+  /** Gets the unicast time-to-live setting on @socket; see g_socket_set_ttl()
     * for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTtl(): UInt /* None */ = g_socket_get_ttl(
     this.raw.asInstanceOf[Ptr[GSocket]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks whether a socket is closed.
     *
-    * Checks whether a socket is closed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isClosed(): Boolean /* None */ =
     g_socket_is_closed(this.raw.asInstanceOf[Ptr[GSocket]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Check whether the socket is connected. This is only useful for
+  /** Check whether the socket is connected. This is only useful for
     * connection-oriented sockets.
     *
     * If using g_socket_shutdown(), this function will return %TRUE until the
     * socket has been shut down for reading and writing. If you do a
     * non-blocking connect, this function will not return %TRUE until after you
     * call g_socket_check_connect_result().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isConnected(): Boolean /* None */ =
     g_socket_is_connected(this.raw.asInstanceOf[Ptr[GSocket]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Registers @socket to receive multicast messages sent to @group.
+  /** Registers @socket to receive multicast messages sent to @group.
     * @socket
     *   must be a %G_SOCKET_TYPE_DATAGRAM socket, and must have been bound to an
     *   appropriate interface and port with g_socket_bind().
@@ -597,6 +625,9 @@ class Socket(raw: Ptr[GSocket])
     *
     * To bind to a given source-specific multicast address, use
     * g_socket_join_multicast_group_ssm() instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def joinMulticastGroup(
       group: InetAddress /* Some(Ptr[GInetAddress]) */,
@@ -618,9 +649,7 @@ class Socket(raw: Ptr[GSocket])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Registers @socket to receive multicast messages sent to @group.
+  /** Registers @socket to receive multicast messages sent to @group.
     * @socket
     *   must be a %G_SOCKET_TYPE_DATAGRAM socket, and must have been bound to an
     *   appropriate interface and port with g_socket_bind().
@@ -635,6 +664,9 @@ class Socket(raw: Ptr[GSocket])
     * Note that this function can be called multiple times for the same
     * @group with different @source_specific in order to receive multicast
     * packets from more than one source.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def joinMulticastGroupSsm(
       group: InetAddress /* Some(Ptr[GInetAddress]) */,
@@ -658,9 +690,7 @@ class Socket(raw: Ptr[GSocket])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes @socket from the multicast group defined by @group, @iface, and @source_specific
+  /** Removes @socket from the multicast group defined by @group, @iface, and @source_specific
     * (which must all have the same values they had when you joined the group).
     *
     * @socket
@@ -669,6 +699,9 @@ class Socket(raw: Ptr[GSocket])
     *
     * To unbind to a given source-specific multicast address, use
     * g_socket_leave_multicast_group_ssm() instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def leaveMulticastGroup(
       group: InetAddress /* Some(Ptr[GInetAddress]) */,
@@ -690,14 +723,15 @@ class Socket(raw: Ptr[GSocket])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes @socket from the multicast group defined by @group, @iface, and @source_specific
+  /** Removes @socket from the multicast group defined by @group, @iface, and @source_specific
     * (which must all have the same values they had when you joined the group).
     *
     * @socket
     *   remains bound to its address and port, and can still receive unicast
     *   messages after calling this.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def leaveMulticastGroupSsm(
       group: InetAddress /* Some(Ptr[GInetAddress]) */,
@@ -721,9 +755,7 @@ class Socket(raw: Ptr[GSocket])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Marks the socket as a server socket, i.e. a socket that is used to accept
+  /** Marks the socket as a server socket, i.e. a socket that is used to accept
     * incoming requests using g_socket_accept().
     *
     * Before calling this the socket must be bound to a local address using
@@ -731,14 +763,15 @@ class Socket(raw: Ptr[GSocket])
     *
     * To set the maximum amount of outstanding clients, use
     * g_socket_set_listen_backlog().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def listen(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_socket_listen(this.raw.asInstanceOf[Ptr[GSocket]], __errorPtr).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Receive data (up to @size bytes) from a socket. This is mainly used by
+  /** Receive data (up to @size bytes) from a socket. This is mainly used by
     * connection-oriented sockets; it is identical to g_socket_receive_from()
     * with @address set to %NULL.
     *
@@ -760,15 +793,16 @@ class Socket(raw: Ptr[GSocket])
     * is available, wait for the %G_IO_IN condition.
     *
     * On error -1 is returned and @error is set accordingly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method receive contains an OUT parameter, which is not supported yet"
+    "[receive]: Method receive contains an OUT parameter, which is not supported yet"
   )
-  def receive__ = ???
+  private def receive__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Receive data (up to @size bytes) from a socket.
+  /** Receive data (up to @size bytes) from a socket.
     *
     * If @address is non-%NULL then @address will be set equal to the source
     * address of the received packet.
@@ -776,15 +810,16 @@ class Socket(raw: Ptr[GSocket])
     *   is owned by the caller.
     *
     * See g_socket_receive() for additional information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method receive_from contains an OUT parameter, which is not supported yet"
+    "[receive_from]: Method receive_from contains an OUT parameter, which is not supported yet"
   )
-  def receiveFrom__ = ???
+  private def receiveFrom__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Receive data from a socket. For receiving multiple messages, see
+  /** Receive data from a socket. For receiving multiple messages, see
     * g_socket_receive_messages(); for easier use, see g_socket_receive() and
     * g_socket_receive_from().
     *
@@ -847,15 +882,16 @@ class Socket(raw: Ptr[GSocket])
     * is available, wait for the %G_IO_IN condition.
     *
     * On error -1 is returned and @error is set accordingly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method receive_message contains an OUT parameter, which is not supported yet"
+    "[receive_message]: Method receive_message contains an OUT parameter, which is not supported yet"
   )
-  def receiveMessage__ = ???
+  private def receiveMessage__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Receive multiple data messages from @socket in one go. This is the most
+  /** Receive multiple data messages from @socket in one go. This is the most
     * complicated and fully-featured version of this call. For easier use, see
     * g_socket_receive(), g_socket_receive_from(), and
     * g_socket_receive_message().
@@ -909,26 +945,28 @@ class Socket(raw: Ptr[GSocket])
     * On error -1 is returned and @error is set accordingly. An error will only
     * be returned if zero messages could be received; otherwise the number of
     * messages successfully received before the error will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InputMessage), @type -> DataRecord(GInputMessage)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GInputMessage*)))"
+    "[receive_messages/<method parameters>/messages]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InputMessage), @type -> DataRecord(GInputMessage)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GInputMessage*)))"
   )
-  def receiveMessages__ = ???
+  private def receiveMessages__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This behaves exactly the same as g_socket_receive(), except that the
+  /** This behaves exactly the same as g_socket_receive(), except that the
     * choice of blocking or non-blocking behavior is determined by the @blocking
     * argument rather than by @socket's properties.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method receive_with_blocking contains an OUT parameter, which is not supported yet"
+    "[receive_with_blocking]: Method receive_with_blocking contains an OUT parameter, which is not supported yet"
   )
-  def receiveWithBlocking__ = ???
+  private def receiveWithBlocking__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to send @size bytes from @buffer on the socket. This is mainly used
+  /** Tries to send @size bytes from @buffer on the socket. This is mainly used
     * by connection-oriented sockets; it is identical to g_socket_send_to() with @address
     * set to %NULL.
     *
@@ -942,15 +980,16 @@ class Socket(raw: Ptr[GSocket])
     * the underlying APIs work.)
     *
     * On error -1 is returned and @error is set accordingly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
+    "[send/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
   )
-  def send__ = ???
+  private def send__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Send data to @address on @socket. For sending multiple messages see
+  /** Send data to @address on @socket. For sending multiple messages see
     * g_socket_send_messages(); for easier use, see g_socket_send() and
     * g_socket_send_to().
     *
@@ -994,15 +1033,16 @@ class Socket(raw: Ptr[GSocket])
     * mandatory to use the g_socket_send_message_with_timeout() function.
     *
     * On error -1 is returned and @error is set accordingly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method send_message is weird: non NULL-terminated arrays require special handling"
+    "[send_message]: Method send_message is weird: non NULL-terminated arrays require special handling"
   )
-  def sendMessage__ = ???
+  private def sendMessage__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This behaves exactly the same as g_socket_send_message(), except that the
+  /** This behaves exactly the same as g_socket_send_message(), except that the
     * choice of timeout behavior is determined by the @timeout_us argument
     * rather than by @socket's properties.
     *
@@ -1010,15 +1050,16 @@ class Socket(raw: Ptr[GSocket])
     * accordingly, or if the socket is currently not writable
     * %G_POLLABLE_RETURN_WOULD_BLOCK is returned. @bytes_written will contain 0
     * in both cases.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method send_message_with_timeout contains an OUT parameter, which is not supported yet"
+    "[send_message_with_timeout]: Method send_message_with_timeout contains an OUT parameter, which is not supported yet"
   )
-  def sendMessageWithTimeout__ = ???
+  private def sendMessageWithTimeout__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Send multiple data messages from @socket in one go. This is the most
+  /** Send multiple data messages from @socket in one go. This is the most
     * complicated and fully-featured version of this call. For easier use, see
     * g_socket_send(), g_socket_send_to(), and g_socket_send_message().
     *
@@ -1055,39 +1096,42 @@ class Socket(raw: Ptr[GSocket])
     * On error -1 is returned and @error is set accordingly. An error will only
     * be returned if zero messages could be sent; otherwise the number of
     * messages successfully sent before the error will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(OutputMessage), @type -> DataRecord(GOutputMessage)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GOutputMessage*)))"
+    "[send_messages/<method parameters>/messages]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(OutputMessage), @type -> DataRecord(GOutputMessage)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GOutputMessage*)))"
   )
-  def sendMessages__ = ???
+  private def sendMessages__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to send @size bytes from @buffer to @address. If @address is %NULL
+  /** Tries to send @size bytes from @buffer to @address. If @address is %NULL
     * then the message is sent to the default receiver (set by
     * g_socket_connect()).
     *
     * See g_socket_send() for additional information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const gchar*)))"
+    "[send_to/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const gchar*)))"
   )
-  def sendTo__ = ???
+  private def sendTo__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This behaves exactly the same as g_socket_send(), except that the choice
+  /** This behaves exactly the same as g_socket_send(), except that the choice
     * of blocking or non-blocking behavior is determined by the @blocking
     * argument rather than by @socket's properties.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
+    "[send_with_blocking/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
   )
-  def sendWithBlocking__ = ???
+  private def sendWithBlocking__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the blocking mode of the socket. In blocking mode all operations
+  /** Sets the blocking mode of the socket. In blocking mode all operations
     * (which don’t take an explicit blocking parameter) block until they succeed
     * or there is an error. In non-blocking mode all functions return results
     * immediately or with a %G_IO_ERROR_WOULD_BLOCK error.
@@ -1095,6 +1139,9 @@ class Socket(raw: Ptr[GSocket])
     * All sockets are created in blocking mode. However, note that the platform
     * level socket is always non-blocking, and blocking mode is a GSocket level
     * feature.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setBlocking(
       blocking: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -1103,10 +1150,11 @@ class Socket(raw: Ptr[GSocket])
     gboolean(gint((if blocking == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether @socket should allow sending to broadcast addresses. This is
+  /** Sets whether @socket should allow sending to broadcast addresses. This is
     * %FALSE by default.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setBroadcast(
       broadcast: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -1115,9 +1163,7 @@ class Socket(raw: Ptr[GSocket])
     gboolean(gint((if broadcast == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets or unsets the %SO_KEEPALIVE flag on the underlying socket. When this
+  /** Sets or unsets the %SO_KEEPALIVE flag on the underlying socket. When this
     * flag is set on a socket, the system will attempt to verify that the remote
     * socket endpoint is still present if a sufficiently long period of time
     * passes with no data being exchanged. If the system is unable to verify the
@@ -1132,6 +1178,9 @@ class Socket(raw: Ptr[GSocket])
     * a server socket if you want to allow clients to remain idle for long
     * periods of time, but also want to ensure that connections are eventually
     * garbage-collected if clients crash or become unreachable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setKeepalive(
       keepalive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -1140,15 +1189,16 @@ class Socket(raw: Ptr[GSocket])
     gboolean(gint((if keepalive == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the maximum number of outstanding connections allowed when listening
+  /** Sets the maximum number of outstanding connections allowed when listening
     * on this socket. If more clients than this are connecting to the socket and
     * the application is not handling them on time then the new connections will
     * be refused.
     *
     * Note that this must be called before g_socket_listen() and has no effect
     * if called after that.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setListenBacklog(
       backlog: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
@@ -1157,11 +1207,12 @@ class Socket(raw: Ptr[GSocket])
     gint(backlog)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether outgoing multicast packets will be received by sockets
+  /** Sets whether outgoing multicast packets will be received by sockets
     * listening on that multicast address on the same host. This is %TRUE by
     * default.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMulticastLoopback(
       loopback: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -1170,20 +1221,19 @@ class Socket(raw: Ptr[GSocket])
     gboolean(gint((if loopback == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the time-to-live for outgoing multicast datagrams on @socket. By
+  /** Sets the time-to-live for outgoing multicast datagrams on @socket. By
     * default, this is 1, meaning that multicast packets will not leave the
     * local network.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMulticastTtl(
       ttl: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ =
     g_socket_set_multicast_ttl(this.raw.asInstanceOf[Ptr[GSocket]], guint(ttl))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the value of an integer-valued option on @socket, as with
+  /** Sets the value of an integer-valued option on @socket, as with
     * setsockopt(). (If you need to set a non-integer-valued option, you will
     * need to call setsockopt() directly.)
     *
@@ -1191,6 +1241,9 @@ class Socket(raw: Ptr[GSocket])
     * headers that will define most of the standard/portable socket options. For
     * unusual socket protocols or platform-dependent options, you may need to
     * include additional headers.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOption(
       level: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
@@ -1206,9 +1259,7 @@ class Socket(raw: Ptr[GSocket])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the time in seconds after which I/O operations on @socket will time
+  /** Sets the time in seconds after which I/O operations on @socket will time
     * out if they have not yet completed.
     *
     * On a blocking socket, this means that any blocking #GSocket operation will
@@ -1229,25 +1280,27 @@ class Socket(raw: Ptr[GSocket])
     *
     * Note that if an I/O operation is interrupted by a signal, this may cause
     * the timeout to be reset.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTimeout(
       timeout: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ =
     g_socket_set_timeout(this.raw.asInstanceOf[Ptr[GSocket]], guint(timeout))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the time-to-live for outgoing unicast packets on @socket. By default
+  /** Sets the time-to-live for outgoing unicast packets on @socket. By default
     * the platform-specific default value is used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTtl(
       ttl: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ =
     g_socket_set_ttl(this.raw.asInstanceOf[Ptr[GSocket]], guint(ttl))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Shut down part or all of a full-duplex connection.
+  /** Shut down part or all of a full-duplex connection.
     *
     * If @shutdown_read is %TRUE then the receiving side of the connection is
     * shut down, and further reading is disallowed.
@@ -1261,6 +1314,9 @@ class Socket(raw: Ptr[GSocket])
     * is graceful disconnect for TCP connections where you close the sending
     * side, then wait for the other side to close the connection, thus ensuring
     * that the other side saw all sent data.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def shutdown(
       shutdown_read: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
@@ -1274,9 +1330,7 @@ class Socket(raw: Ptr[GSocket])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if a socket is capable of speaking IPv4.
+  /** Checks if a socket is capable of speaking IPv4.
     *
     * IPv4 sockets are capable of speaking IPv4. On some operating systems and
     * under some combinations of circumstances IPv6 sockets are also capable of
@@ -1284,6 +1338,9 @@ class Socket(raw: Ptr[GSocket])
     *
     * No other types of sockets are currently considered as being capable of
     * speaking IPv4.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def speaksIpv4(): Boolean /* None */ =
     g_socket_speaks_ipv4(this.raw.asInstanceOf[Ptr[GSocket]]).value.!=(0)
@@ -1299,9 +1356,7 @@ class Socket(raw: Ptr[GSocket])
 end Socket
 
 object Socket:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GSocket with the defined family, type and protocol. If @protocol
+  /** Creates a new #GSocket with the defined family, type and protocol. If @protocol
     * is 0 (%G_SOCKET_PROTOCOL_DEFAULT) the default protocol type for the family
     * and type is used.
     *
@@ -1314,6 +1369,9 @@ object Socket:
     * The protocol id is passed directly to the operating system, so you can use
     * protocols not listed in #GSocketProtocol if you know the protocol number
     * used for it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       family: SocketFamily /* Some(GSocketFamily) */,
@@ -1330,9 +1388,7 @@ object Socket:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GSocket from a native file descriptor or winsock SOCKET
+  /** Creates a new #GSocket from a native file descriptor or winsock SOCKET
     * handle.
     *
     * This reads all the settings from the file descriptor so that all
@@ -1345,6 +1401,9 @@ object Socket:
     * Since GLib 2.46, it is no longer a fatal error to call this on a
     * non-socket descriptor. Instead, a GError will be set with code
     * %G_IO_ERROR_FAILED
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFd(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */

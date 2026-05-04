@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDBusMessageFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Message flags used in #GDBusMessage.
   *
-  * Message flags used in #GDBusMessage.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusMessageFlags private (val raw: GDBusMessageFlags):
   def is(kv: DBusMessageFlags): Boolean =
@@ -32,24 +33,27 @@ object DBusMessageFlags:
     def |(other: DBusMessageFlags) =
       DBusMessageFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Message flags used in #GDBusMessage.
     *
-    * Message flags used in #GDBusMessage.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GDBusMessageFlags, name: String)
       extends DBusMessageFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(GDBusMessageFlags.G_DBUS_MESSAGE_FLAGS_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** A reply is not expected.
       *
-      * A reply is not expected.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NO_REPLY_EXPECTED
         extends KnownValue(
@@ -57,10 +61,11 @@ object DBusMessageFlags:
           "NO_REPLY_EXPECTED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * The bus must not launch an owner for the destination name in response to
+    /** The bus must not launch an owner for the destination name in response to
       * this message.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NO_AUTO_START
         extends KnownValue(
@@ -68,10 +73,11 @@ object DBusMessageFlags:
           "NO_AUTO_START"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * If set on a method call, this flag means that the caller is prepared to
+    /** If set on a method call, this flag means that the caller is prepared to
       * wait for interactive authorization. Since 2.46.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ALLOW_INTERACTIVE_AUTHORIZATION
         extends KnownValue(

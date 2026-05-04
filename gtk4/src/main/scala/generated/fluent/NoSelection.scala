@@ -9,15 +9,16 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{SectionModel, SelectionModel}
 import sn.gnome.gtk4.internal.GtkNoSelection
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkNoSelection` is a `GtkSelectionModel` that does not allow selecting
+/** `GtkNoSelection` is a `GtkSelectionModel` that does not allow selecting
   * anything.
   *
   * This model is meant to be used as a simple wrapper around a `GListModel`
   * when a `GtkSelectionModel` is required.
   *
   * `GtkNoSelection` passes through sections from the underlying model.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class NoSelection(raw: Ptr[GtkNoSelection])
     extends Object(raw.asInstanceOf),
@@ -27,9 +28,10 @@ class NoSelection(raw: Ptr[GtkNoSelection])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the model that @self is wrapping.
     *
-    * Gets the model that @self is wrapping.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_no_selection_get_model(
@@ -37,11 +39,12 @@ class NoSelection(raw: Ptr[GtkNoSelection])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the model that @self should wrap.
+  /** Sets the model that @self should wrap.
     *
     * If @model is %NULL, this model will be empty.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
       model: Option[
@@ -61,9 +64,10 @@ class NoSelection(raw: Ptr[GtkNoSelection])
 end NoSelection
 
 object NoSelection:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new selection to handle @model.
     *
-    * Creates a new selection to handle @model.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       model: Option[

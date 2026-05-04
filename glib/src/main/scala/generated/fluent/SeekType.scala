@@ -2,27 +2,31 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GSeekType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * An enumeration specifying the base position for a
+/** An enumeration specifying the base position for a
   * g_io_channel_seek_position() operation.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SeekType(val raw: GSeekType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the current position in the file.
     *
-    * the current position in the file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CUR extends SeekType(GSeekType.G_SEEK_CUR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the start of the file.
     *
-    * the start of the file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SET extends SeekType(GSeekType.G_SEEK_SET)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the end of the file.
     *
-    * the end of the file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case END extends SeekType(GSeekType.G_SEEK_END)
 end SeekType

@@ -9,9 +9,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkGLArea
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkGLArea` is a widget that allows drawing with OpenGL.
+/** `GtkGLArea` is a widget that allows drawing with OpenGL.
   *
   * ![An example GtkGLArea](glarea.png)
   *
@@ -113,6 +111,9 @@ import sn.gnome.gtk4.internal.GtkGLArea
   *
   * If you need to change the options for creating the `GdkGLContext` you should
   * use the [signal@Gtk.GLArea::create-context] signal.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class GLArea(raw: Ptr[GtkGLArea])
     extends Widget(raw.asInstanceOf),
@@ -122,9 +123,7 @@ class GLArea(raw: Ptr[GtkGLArea])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Binds buffers to the framebuffer.
+  /** Binds buffers to the framebuffer.
     *
     * Ensures that the @area framebuffer object is made the current draw and
     * read target, and that all the required buffers for the @area are created
@@ -133,109 +132,120 @@ class GLArea(raw: Ptr[GtkGLArea])
     * This function is automatically called before emitting the
     * [signal@Gtk.GLArea::render] signal, and doesn't normally need to be called
     * by application code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def attachBuffers(): Unit /* None */ = gtk_gl_area_attach_buffers(
     this.raw.asInstanceOf[Ptr[GtkGLArea]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the allowed APIs.
+  /** Gets the allowed APIs.
     *
     * See [method@Gtk.GLArea.set_allowed_apis].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAllowedApis(): GLAPI /* None */ = GLAPI.fromRaw(
     gtk_gl_area_get_allowed_apis(this.raw.asInstanceOf[Ptr[GtkGLArea]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the API that is currently in use.
+  /** Gets the API that is currently in use.
     *
     * If the GL area has not been realized yet, 0 is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getApi(): GLAPI /* None */ =
     GLAPI.fromRaw(gtk_gl_area_get_api(this.raw.asInstanceOf[Ptr[GtkGLArea]]))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the area is in auto render mode or not.
     *
-    * Returns whether the area is in auto render mode or not.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAutoRender(): Boolean /* None */ = gtk_gl_area_get_auto_render(
     this.raw.asInstanceOf[Ptr[GtkGLArea]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the `GdkGLContext` used by @area.
     *
-    * Retrieves the `GdkGLContext` used by @area.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getContext(): GLContext /* None */ = new GLContext(
     gtk_gl_area_get_context(this.raw.asInstanceOf[Ptr[GtkGLArea]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the current error set on the @area.
     *
-    * Gets the current error set on the @area.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+    "[get_error/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
-  def getError__ = ???
+  private def getError__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the area has a depth buffer.
     *
-    * Returns whether the area has a depth buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasDepthBuffer(): Boolean /* None */ =
     gtk_gl_area_get_has_depth_buffer(
       this.raw.asInstanceOf[Ptr[GtkGLArea]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the area has a stencil buffer.
     *
-    * Returns whether the area has a stencil buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasStencilBuffer(): Boolean /* None */ =
     gtk_gl_area_get_has_stencil_buffer(
       this.raw.asInstanceOf[Ptr[GtkGLArea]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the required version of OpenGL.
+  /** Retrieves the required version of OpenGL.
     *
     * See [method@Gtk.GLArea.set_required_version].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_required_version contains an OUT parameter, which is not supported yet"
+    "[get_required_version]: Method get_required_version contains an OUT parameter, which is not supported yet"
   )
-  def getRequiredVersion__ = ???
+  private def getRequiredVersion__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the `GtkGLArea` should use OpenGL ES.
+  /** Returns whether the `GtkGLArea` should use OpenGL ES.
     *
     * See [method@Gtk.GLArea.set_use_es].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseEs(): Boolean /* None */ =
     gtk_gl_area_get_use_es(this.raw.asInstanceOf[Ptr[GtkGLArea]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Ensures that the `GdkGLContext` used by @area is associated with the
+  /** Ensures that the `GdkGLContext` used by @area is associated with the
     * `GtkGLArea`.
     *
     * This function is automatically called before emitting the
     * [signal@Gtk.GLArea::render] signal, and doesn't normally need to be called
     * by application code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def makeCurrent(): Unit /* None */ = gtk_gl_area_make_current(
     this.raw.asInstanceOf[Ptr[GtkGLArea]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Marks the currently rendered data (if any) as invalid, and queues a redraw
+  /** Marks the currently rendered data (if any) as invalid, and queues a redraw
     * of the widget.
     *
     * This ensures that the [signal@Gtk.GLArea::render] signal is emitted during
@@ -244,18 +254,22 @@ class GLArea(raw: Ptr[GtkGLArea])
     * This is only needed when [method@Gtk.GLArea.set_auto_render] has been
     * called with a %FALSE value. The default behaviour is to emit
     * [signal@Gtk.GLArea::render] on each draw.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def queueRender(): Unit /* None */ = gtk_gl_area_queue_render(
     this.raw.asInstanceOf[Ptr[GtkGLArea]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the allowed APIs to create a context with.
+  /** Sets the allowed APIs to create a context with.
     *
     * You should check [property@Gtk.GLArea:api] before drawing with either API.
     *
     * By default, all APIs are allowed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAllowedApis(
       apis: GLAPI /* Some(_root_.sn.gnome.gdk4.internal.GdkGLAPI) */
@@ -264,9 +278,7 @@ class GLArea(raw: Ptr[GtkGLArea])
     apis.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the `GtkGLArea` is in auto render mode.
+  /** Sets whether the `GtkGLArea` is in auto render mode.
     *
     * If @auto_render is %TRUE the [signal@Gtk.GLArea::render] signal will be
     * emitted every time the widget draws. This is the default and is useful if
@@ -277,6 +289,9 @@ class GLArea(raw: Ptr[GtkGLArea])
     * is resized. In order to force a rendering [method@Gtk.GLArea.queue_render]
     * must be called. This mode is useful when the scene changes seldom, but
     * takes a long time to redraw.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAutoRender(
       auto_render: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -285,24 +300,26 @@ class GLArea(raw: Ptr[GtkGLArea])
     gboolean(gint((if auto_render == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets an error on the area which will be shown instead of the GL rendering.
+  /** Sets an error on the area which will be shown instead of the GL rendering.
     *
     * This is useful in the [signal@Gtk.GLArea::create-context] signal if GL
     * context creation fails.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
+    "[set_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
-  def setError__ = ???
+  private def setError__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the `GtkGLArea` should use a depth buffer.
+  /** Sets whether the `GtkGLArea` should use a depth buffer.
     *
     * If @has_depth_buffer is %TRUE the widget will allocate and enable a depth
     * buffer for the target framebuffer. Otherwise there will be none.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHasDepthBuffer(
       has_depth_buffer: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -311,12 +328,13 @@ class GLArea(raw: Ptr[GtkGLArea])
     gboolean(gint((if has_depth_buffer == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the `GtkGLArea` should use a stencil buffer.
+  /** Sets whether the `GtkGLArea` should use a stencil buffer.
     *
     * If @has_stencil_buffer is %TRUE the widget will allocate and enable a
     * stencil buffer for the target framebuffer. Otherwise there will be none.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHasStencilBuffer(
       has_stencil_buffer: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -325,12 +343,13 @@ class GLArea(raw: Ptr[GtkGLArea])
     gboolean(gint((if has_stencil_buffer == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the required version of OpenGL to be used when creating the context
+  /** Sets the required version of OpenGL to be used when creating the context
     * for the widget.
     *
     * This function must be called before the area has been realized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRequiredVersion(
       major: Int /* Some(CInt) */,
@@ -341,12 +360,13 @@ class GLArea(raw: Ptr[GtkGLArea])
     minor
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the @area should create an OpenGL or an OpenGL ES context.
+  /** Sets whether the @area should create an OpenGL or an OpenGL ES context.
     *
     * You should check the capabilities of the `GdkGLContext` before drawing
     * with either API.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseEs(
       use_es: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -358,9 +378,10 @@ class GLArea(raw: Ptr[GtkGLArea])
 end GLArea
 
 object GLArea:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkGLArea` widget.
     *
-    * Creates a new `GtkGLArea` widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): GLArea = new GLArea(gtk_gl_area_new().asInstanceOf)
 end GLArea

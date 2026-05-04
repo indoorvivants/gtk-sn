@@ -2,34 +2,39 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkSizeGroupMode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The mode of the size group determines the directions in which the size group
+/** The mode of the size group determines the directions in which the size group
   * affects the requested sizes of its component widgets.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SizeGroupMode(val raw: GtkSizeGroupMode):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** group has no effect
     *
-    * group has no effect
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends SizeGroupMode(GtkSizeGroupMode.GTK_SIZE_GROUP_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** group affects horizontal requisition
     *
-    * group affects horizontal requisition
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HORIZONTAL
       extends SizeGroupMode(GtkSizeGroupMode.GTK_SIZE_GROUP_HORIZONTAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** group affects vertical requisition
     *
-    * group affects vertical requisition
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case VERTICAL extends SizeGroupMode(GtkSizeGroupMode.GTK_SIZE_GROUP_VERTICAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** group affects both horizontal and vertical requisition
     *
-    * group affects both horizontal and vertical requisition
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BOTH extends SizeGroupMode(GtkSizeGroupMode.GTK_SIZE_GROUP_BOTH)
 end SizeGroupMode

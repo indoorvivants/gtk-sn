@@ -2,10 +2,11 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkDragAction
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Used in `GdkDrop` and `GdkDrag` to indicate the actions that the destination
+/** Used in `GdkDrop` and `GdkDrag` to indicate the actions that the destination
   * can and should do with the dropped data.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DragAction private (val raw: GdkDragAction):
   def is(kv: DragAction): Boolean =
@@ -33,39 +34,44 @@ object DragAction:
     def |(other: DragAction) =
       DragAction(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Used in `GdkDrop` and `GdkDrag` to indicate the actions that the
+  /** Used in `GdkDrop` and `GdkDrag` to indicate the actions that the
     * destination can and should do with the dropped data.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GdkDragAction, name: String)
       extends DragAction(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Copy the data.
       *
-      * Copy the data.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case COPY extends KnownValue(GdkDragAction.GDK_ACTION_COPY, "COPY")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Move the data, i.e. first copy it, then delete it from the source using
+    /** Move the data, i.e. first copy it, then delete it from the source using
       * the DELETE target of the X selection protocol.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case MOVE extends KnownValue(GdkDragAction.GDK_ACTION_MOVE, "MOVE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Add a link to the data. Note that this is only useful if source and
+    /** Add a link to the data. Note that this is only useful if source and
       * destination agree on what it means, and is not supported on all
       * platforms.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case LINK extends KnownValue(GdkDragAction.GDK_ACTION_LINK, "LINK")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Ask the user what to do with the data.
       *
-      * Ask the user what to do with the data.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ASK extends KnownValue(GdkDragAction.GDK_ACTION_ASK, "ASK")
   end KnownValue

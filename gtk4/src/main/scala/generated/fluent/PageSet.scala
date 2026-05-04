@@ -2,26 +2,30 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkPageSet
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** See also gtk_print_job_set_page_set().
   *
-  * See also gtk_print_job_set_page_set().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PageSet(val raw: GtkPageSet):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** All pages.
     *
-    * All pages.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ALL extends PageSet(GtkPageSet.GTK_PAGE_SET_ALL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Even pages.
     *
-    * Even pages.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EVEN extends PageSet(GtkPageSet.GTK_PAGE_SET_EVEN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Odd pages.
     *
-    * Odd pages.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ODD extends PageSet(GtkPageSet.GTK_PAGE_SET_ODD)
 end PageSet

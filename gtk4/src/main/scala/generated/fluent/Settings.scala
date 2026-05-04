@@ -9,9 +9,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{Settings, StyleProvider}
 import sn.gnome.gtk4.internal.GtkSettings
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkSettings` provides a mechanism to share global settings between
+/** `GtkSettings` provides a mechanism to share global settings between
   * applications.
   *
   * On the X window system, this sharing is realized by an
@@ -37,6 +35,9 @@ import sn.gnome.gtk4.internal.GtkSettings
   * There is one `GtkSettings` instance per display. It can be obtained with
   * [func@Gtk.Settings.get_for_display], but in many cases, it is more
   * convenient to use [method@Gtk.Widget.get_settings].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Settings(raw: Ptr[GtkSettings])
     extends Object(raw.asInstanceOf),
@@ -44,13 +45,14 @@ class Settings(raw: Ptr[GtkSettings])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Undoes the effect of calling g_object_set() to install an
+  /** Undoes the effect of calling g_object_set() to install an
     * application-specific value for a setting.
     *
     * After this call, the setting will again follow the session-wide value for
     * this setting.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def resetProperty(
       name: String | CString /* Some(CString) */
@@ -70,20 +72,22 @@ class Settings(raw: Ptr[GtkSettings])
 end Settings
 
 object Settings:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `GtkSettings` object for the default display, creating it if
+  /** Gets the `GtkSettings` object for the default display, creating it if
     * necessary.
     *
     * See [func@Gtk.Settings.get_for_display].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefault(): Settings /* Some(Ptr[GtkSettings]) */ = new Settings(
     gtk_settings_get_default().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GtkSettings` object for @display, creating it if necessary.
     *
-    * Gets the `GtkSettings` object for @display, creating it if necessary.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getForDisplay(
       display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */

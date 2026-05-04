@@ -2,68 +2,78 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkCrossingMode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Specifies the crossing mode for enter and leave events.
   *
-  * Specifies the crossing mode for enter and leave events.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum CrossingMode(val raw: GdkCrossingMode):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** crossing because of pointer motion.
     *
-    * crossing because of pointer motion.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NORMAL extends CrossingMode(GdkCrossingMode.GDK_CROSSING_NORMAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** crossing because a grab is activated.
     *
-    * crossing because a grab is activated.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GRAB extends CrossingMode(GdkCrossingMode.GDK_CROSSING_GRAB)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** crossing because a grab is deactivated.
     *
-    * crossing because a grab is deactivated.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNGRAB extends CrossingMode(GdkCrossingMode.GDK_CROSSING_UNGRAB)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** crossing because a GTK grab is activated.
     *
-    * crossing because a GTK grab is activated.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GTK_GRAB extends CrossingMode(GdkCrossingMode.GDK_CROSSING_GTK_GRAB)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** crossing because a GTK grab is deactivated.
     *
-    * crossing because a GTK grab is deactivated.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GTK_UNGRAB extends CrossingMode(GdkCrossingMode.GDK_CROSSING_GTK_UNGRAB)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** crossing because a GTK widget changed state (e.g. sensitivity).
     *
-    * crossing because a GTK widget changed state (e.g. sensitivity).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STATE_CHANGED
       extends CrossingMode(GdkCrossingMode.GDK_CROSSING_STATE_CHANGED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * crossing because a touch sequence has begun, this event is synthetic as
+  /** crossing because a touch sequence has begun, this event is synthetic as
     * the pointer might have not left the surface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOUCH_BEGIN
       extends CrossingMode(GdkCrossingMode.GDK_CROSSING_TOUCH_BEGIN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * crossing because a touch sequence has ended, this event is synthetic as
+  /** crossing because a touch sequence has ended, this event is synthetic as
     * the pointer might have not left the surface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOUCH_END extends CrossingMode(GdkCrossingMode.GDK_CROSSING_TOUCH_END)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * crossing because of a device switch (i.e. a mouse taking control of the
+  /** crossing because of a device switch (i.e. a mouse taking control of the
     * pointer after a touch device), this event is synthetic as the pointer
     * didn’t leave the surface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DEVICE_SWITCH
       extends CrossingMode(GdkCrossingMode.GDK_CROSSING_DEVICE_SWITCH)

@@ -13,9 +13,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkColorDialogButton
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkColorDialogButton` is a wrapped around a [class@Gtk.ColorDialog] and
+/** The `GtkColorDialogButton` is a wrapped around a [class@Gtk.ColorDialog] and
   * allows to open a color chooser dialog to change the color.
   *
   * ![An example GtkColorDialogButton](color-button.png)
@@ -33,6 +31,9 @@ import sn.gnome.gtk4.internal.GtkColorDialogButton
   * `GtkColorDialogButton` has a single CSS node with name colorbutton which
   * contains a button node. To differentiate it from a plain `GtkButton`, it
   * gets the .color style class.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
     extends Widget(raw.asInstanceOf),
@@ -42,9 +43,10 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `GtkColorDialog` of @self.
     *
-    * Returns the `GtkColorDialog` of @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDialog(): ColorDialog /* None */ = new ColorDialog(
     gtk_color_dialog_button_get_dialog(
@@ -52,22 +54,24 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the color of the button.
+  /** Returns the color of the button.
     *
     * This function is what should be used to obtain the color that was chosen
     * by the user. To get informed about changes, listen to "notify::color".
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
+    "[get_rgba/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
-  def getRgba__ = ???
+  private def getRgba__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a `GtkColorDialog` object to use for creating the color chooser
+  /** Sets a `GtkColorDialog` object to use for creating the color chooser
     * dialog that is presented when the user clicks the button.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDialog(
       dialog: ColorDialog /* Some(Ptr[GtkColorDialog]) */
@@ -76,24 +80,26 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
     dialog.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the color of the button.
     *
-    * Sets the color of the button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
+    "[set_rgba/<method parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
-  def setRgba__ = ???
+  private def setRgba__ = ???
 
 end ColorDialogButton
 
 object ColorDialogButton:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkColorDialogButton` with the given `GtkColorDialog`.
+  /** Creates a new `GtkColorDialogButton` with the given `GtkColorDialog`.
     *
     * You can pass `NULL` to this function and set a `GtkColorDialog` later. The
     * button will be insensitive until that happens.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       dialog: Option[ColorDialog /* Some(Ptr[GtkColorDialog]) */ ]

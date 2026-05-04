@@ -2,42 +2,47 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GSocketListenerEvent
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Describes an event occurring on a #GSocketListener. See the
+/** Describes an event occurring on a #GSocketListener. See the
   * #GSocketListener::event signal for more details.
   *
   * Additional values may be added to this type in the future.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SocketListenerEvent(val raw: GSocketListenerEvent):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The listener is about to bind a socket.
     *
-    * The listener is about to bind a socket.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BINDING
       extends SocketListenerEvent(
         GSocketListenerEvent.G_SOCKET_LISTENER_BINDING
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The listener has bound a socket.
     *
-    * The listener has bound a socket.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BOUND
       extends SocketListenerEvent(GSocketListenerEvent.G_SOCKET_LISTENER_BOUND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The listener is about to start listening on this socket.
     *
-    * The listener is about to start listening on this socket.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LISTENING
       extends SocketListenerEvent(
         GSocketListenerEvent.G_SOCKET_LISTENER_LISTENING
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The listener is now listening on this socket.
     *
-    * The listener is now listening on this socket.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LISTENED
       extends SocketListenerEvent(

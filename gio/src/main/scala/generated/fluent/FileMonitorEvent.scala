@@ -2,94 +2,106 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GFileMonitorEvent
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Specifies what type of event a monitor event is.
   *
-  * Specifies what type of event a monitor event is.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum FileMonitorEvent(val raw: GFileMonitorEvent):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a file changed.
     *
-    * a file changed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHANGED
       extends FileMonitorEvent(GFileMonitorEvent.G_FILE_MONITOR_EVENT_CHANGED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a hint that this was probably the last change in a set of changes.
     *
-    * a hint that this was probably the last change in a set of changes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHANGES_DONE_HINT
       extends FileMonitorEvent(
         GFileMonitorEvent.G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a file was deleted.
     *
-    * a file was deleted.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DELETED
       extends FileMonitorEvent(GFileMonitorEvent.G_FILE_MONITOR_EVENT_DELETED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a file was created.
     *
-    * a file was created.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CREATED
       extends FileMonitorEvent(GFileMonitorEvent.G_FILE_MONITOR_EVENT_CREATED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a file attribute was changed.
     *
-    * a file attribute was changed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ATTRIBUTE_CHANGED
       extends FileMonitorEvent(
         GFileMonitorEvent.G_FILE_MONITOR_EVENT_ATTRIBUTE_CHANGED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the file location will soon be unmounted.
     *
-    * the file location will soon be unmounted.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PRE_UNMOUNT
       extends FileMonitorEvent(
         GFileMonitorEvent.G_FILE_MONITOR_EVENT_PRE_UNMOUNT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the file location was unmounted.
     *
-    * the file location was unmounted.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNMOUNTED
       extends FileMonitorEvent(GFileMonitorEvent.G_FILE_MONITOR_EVENT_UNMOUNTED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * the file was moved -- only sent if the (deprecated)
+  /** the file was moved -- only sent if the (deprecated)
     * %G_FILE_MONITOR_SEND_MOVED flag is set
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MOVED
       extends FileMonitorEvent(GFileMonitorEvent.G_FILE_MONITOR_EVENT_MOVED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * the file was renamed within the current directory -- only sent if the
+  /** the file was renamed within the current directory -- only sent if the
     * %G_FILE_MONITOR_WATCH_MOVES flag is set. Since: 2.46.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RENAMED
       extends FileMonitorEvent(GFileMonitorEvent.G_FILE_MONITOR_EVENT_RENAMED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * the file was moved into the monitored directory from another location --
+  /** the file was moved into the monitored directory from another location --
     * only sent if the %G_FILE_MONITOR_WATCH_MOVES flag is set. Since: 2.46.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MOVED_IN
       extends FileMonitorEvent(GFileMonitorEvent.G_FILE_MONITOR_EVENT_MOVED_IN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * the file was moved out of the monitored directory to another location --
+  /** the file was moved out of the monitored directory to another location --
     * only sent if the %G_FILE_MONITOR_WATCH_MOVES flag is set. Since: 2.46
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MOVED_OUT
       extends FileMonitorEvent(GFileMonitorEvent.G_FILE_MONITOR_EVENT_MOVED_OUT)

@@ -16,12 +16,13 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GInetAddressMask represents a range of IPv4 or IPv6 addresses described by
+/** #GInetAddressMask represents a range of IPv4 or IPv6 addresses described by
   * a base address and a length indicating how many bits of the base address are
   * relevant for matching purposes. These are often given in string form. Eg,
   * "10.0.0.0/8", or "fe80::/10".
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class InetAddressMask(raw: Ptr[GInetAddressMask])
     extends Object(raw.asInstanceOf),
@@ -29,9 +30,10 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests if @mask and @mask2 are the same mask.
     *
-    * Tests if @mask and @mask2 are the same mask.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def equal(
       mask2: InetAddressMask /* Some(Ptr[GInetAddressMask]) */
@@ -40,9 +42,10 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     mask2.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @mask's base address
     *
-    * Gets @mask's base address
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAddress(): InetAddress /* None */ = new InetAddress(
     g_inet_address_mask_get_address(
@@ -50,25 +53,28 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the #GSocketFamily of @mask's address
     *
-    * Gets the #GSocketFamily of @mask's address
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFamily(): SocketFamily /* None */ = SocketFamily.fromRaw(
     g_inet_address_mask_get_family(this.raw.asInstanceOf[Ptr[GInetAddressMask]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @mask's length
     *
-    * Gets @mask's length
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLength(): UInt /* None */ = g_inet_address_mask_get_length(
     this.raw.asInstanceOf[Ptr[GInetAddressMask]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests if @address falls within the range described by @mask.
     *
-    * Tests if @address falls within the range described by @mask.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def matches(
       address: InetAddress /* Some(Ptr[GInetAddress]) */
@@ -77,9 +83,10 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     address.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts @mask back to its corresponding string form.
     *
-    * Converts @mask back to its corresponding string form.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def toString()(using Zone): String /* None */ = fromCString(
     g_inet_address_mask_to_string(
@@ -90,10 +97,11 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
 end InetAddressMask
 
 object InetAddressMask:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GInetAddressMask representing all addresses whose first @length
+  /** Creates a new #GInetAddressMask representing all addresses whose first @length
     * bits match @addr.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       addr: InetAddress /* Some(Ptr[GInetAddress]) */,
@@ -108,12 +116,13 @@ object InetAddressMask:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses @mask_string as an IP address and (optional) length, and creates a
+  /** Parses @mask_string as an IP address and (optional) length, and creates a
     * new #GInetAddressMask. The length, if present, is delimited by a "/". If
     * it is not present, then the length is assumed to be the full length of the
     * address.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromString(
       mask_string: String |

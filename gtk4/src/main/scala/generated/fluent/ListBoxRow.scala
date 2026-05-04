@@ -14,9 +14,10 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkListBoxRow
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** `GtkListBoxRow` is the kind of widget that can be added to a `GtkListBox`.
   *
-  * `GtkListBoxRow` is the kind of widget that can be added to a `GtkListBox`.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ListBoxRow(raw: Ptr[GtkListBoxRow])
     extends Widget(raw.asInstanceOf),
@@ -27,9 +28,7 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Marks @row as changed, causing any state that depends on this to be
+  /** Marks @row as changed, causing any state that depends on this to be
     * updated.
     *
     * This affects sorting, filtering and headers.
@@ -46,22 +45,27 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
     * row widgets themselves. Another alternative is to call
     * [method@Gtk.ListBox.invalidate_sort] on any model change, but that is more
     * expensive.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def changed(): Unit /* None */ = gtk_list_box_row_changed(
     this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the row is activatable.
     *
-    * Gets whether the row is activatable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActivatable(): Boolean /* None */ = gtk_list_box_row_get_activatable(
     this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @row.
     *
-    * Gets the child widget of @row.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_list_box_row_get_child(
@@ -69,12 +73,13 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the current header of the @row.
+  /** Returns the current header of the @row.
     *
     * This can be used in a [callback@Gtk.ListBoxUpdateHeaderFunc] to see if
     * there is a header set already, and if so to update the state of it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeader(): Widget /* None */ = new Widget(
     gtk_list_box_row_get_header(
@@ -82,34 +87,38 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the current index of the @row in its `GtkListBox` container.
     *
-    * Gets the current index of the @row in its `GtkListBox` container.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIndex(): Int /* None */ = gtk_list_box_row_get_index(
     this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the row can be selected.
     *
-    * Gets whether the row can be selected.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSelectable(): Boolean /* None */ = gtk_list_box_row_get_selectable(
     this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the child is currently selected in its `GtkListBox`
+  /** Returns whether the child is currently selected in its `GtkListBox`
     * container.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isSelected(): Boolean /* None */ = gtk_list_box_row_is_selected(
     this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Set whether the row is activatable.
     *
-    * Set whether the row is activatable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActivatable(
       activatable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -118,9 +127,10 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
     gboolean(gint((if activatable == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the child widget of @self.
     *
-    * Sets the child widget of @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -131,13 +141,14 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the current header of the @row.
+  /** Sets the current header of the @row.
     *
     * This is only allowed to be called from a
     * [callback@Gtk.ListBoxUpdateHeaderFunc]. It will replace any existing
     * header in the row, and be shown in front of the row in the listbox.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeader(
       header: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -148,9 +159,10 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Set whether the row can be selected.
     *
-    * Set whether the row can be selected.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSelectable(
       selectable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -162,9 +174,10 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
 end ListBoxRow
 
 object ListBoxRow:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkListBoxRow`.
     *
-    * Creates a new `GtkListBoxRow`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): ListBoxRow = new ListBoxRow(gtk_list_box_row_new().asInstanceOf)
 end ListBoxRow

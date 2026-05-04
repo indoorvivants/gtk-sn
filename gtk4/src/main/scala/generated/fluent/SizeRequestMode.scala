@@ -2,33 +2,37 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkSizeRequestMode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Specifies a preference for height-for-width or width-for-height geometry
+/** Specifies a preference for height-for-width or width-for-height geometry
   * management.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SizeRequestMode(val raw: GtkSizeRequestMode):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Prefer height-for-width geometry management
     *
-    * Prefer height-for-width geometry management
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HEIGHT_FOR_WIDTH
       extends SizeRequestMode(
         GtkSizeRequestMode.GTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Prefer width-for-height geometry management
     *
-    * Prefer width-for-height geometry management
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WIDTH_FOR_HEIGHT
       extends SizeRequestMode(
         GtkSizeRequestMode.GTK_SIZE_REQUEST_WIDTH_FOR_HEIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Don’t trade height-for-width or width-for-height
     *
-    * Don’t trade height-for-width or width-for-height
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CONSTANT_SIZE
       extends SizeRequestMode(GtkSizeRequestMode.GTK_SIZE_REQUEST_CONSTANT_SIZE)

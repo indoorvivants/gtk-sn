@@ -2,9 +2,10 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkSeatCapabilities
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags describing the seat capabilities.
   *
-  * Flags describing the seat capabilities.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SeatCapabilities private (val raw: GdkSeatCapabilities):
   def is(kv: SeatCapabilities): Boolean =
@@ -32,24 +33,27 @@ object SeatCapabilities:
     def |(other: SeatCapabilities) =
       SeatCapabilities(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags describing the seat capabilities.
     *
-    * Flags describing the seat capabilities.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GdkSeatCapabilities, name: String)
       extends SeatCapabilities(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No input capabilities
       *
-      * No input capabilities
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(GdkSeatCapabilities.GDK_SEAT_CAPABILITY_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The seat has a pointer (e.g. mouse)
       *
-      * The seat has a pointer (e.g. mouse)
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case POINTER
         extends KnownValue(
@@ -57,9 +61,10 @@ object SeatCapabilities:
           "POINTER"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The seat has touchscreen(s) attached
       *
-      * The seat has touchscreen(s) attached
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case TOUCH
         extends KnownValue(
@@ -67,9 +72,10 @@ object SeatCapabilities:
           "TOUCH"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The seat has drawing tablet(s) attached
       *
-      * The seat has drawing tablet(s) attached
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case TABLET_STYLUS
         extends KnownValue(
@@ -77,9 +83,10 @@ object SeatCapabilities:
           "TABLET_STYLUS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The seat has keyboard(s) attached
       *
-      * The seat has keyboard(s) attached
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case KEYBOARD
         extends KnownValue(
@@ -87,9 +94,10 @@ object SeatCapabilities:
           "KEYBOARD"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The seat has drawing tablet pad(s) attached
       *
-      * The seat has drawing tablet pad(s) attached
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case TABLET_PAD
         extends KnownValue(
@@ -97,9 +105,10 @@ object SeatCapabilities:
           "TABLET_PAD"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The union of all pointing capabilities
       *
-      * The union of all pointing capabilities
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ALL_POINTING
         extends KnownValue(
@@ -107,9 +116,10 @@ object SeatCapabilities:
           "ALL_POINTING"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The union of all capabilities
       *
-      * The union of all capabilities
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ALL
         extends KnownValue(GdkSeatCapabilities.GDK_SEAT_CAPABILITY_ALL, "ALL")

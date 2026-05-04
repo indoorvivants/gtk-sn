@@ -2,37 +2,42 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkSymbolicColor
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The indexes of colors passed to symbolic color rendering, such as
+/** The indexes of colors passed to symbolic color rendering, such as
   * [vfunc@Gtk.SymbolicPaintable.snapshot_symbolic].
   *
   * More values may be added over time.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SymbolicColor(val raw: GtkSymbolicColor):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The default foreground color
     *
-    * The default foreground color
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FOREGROUND
       extends SymbolicColor(GtkSymbolicColor.GTK_SYMBOLIC_COLOR_FOREGROUND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Indication color for errors
     *
-    * Indication color for errors
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ERROR extends SymbolicColor(GtkSymbolicColor.GTK_SYMBOLIC_COLOR_ERROR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Indication color for warnings
     *
-    * Indication color for warnings
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WARNING
       extends SymbolicColor(GtkSymbolicColor.GTK_SYMBOLIC_COLOR_WARNING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Indication color for success
     *
-    * Indication color for success
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SUCCESS
       extends SymbolicColor(GtkSymbolicColor.GTK_SYMBOLIC_COLOR_SUCCESS)

@@ -10,9 +10,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.RecentManager
 import sn.gnome.gtk4.internal.GtkRecentManager
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkRecentManager` manages and looks up recently used files.
+/** `GtkRecentManager` manages and looks up recently used files.
   *
   * Each recently used file is identified by its URI, and has meta-data
   * associated to it, like the names and command lines of the applications that
@@ -66,15 +64,16 @@ import sn.gnome.gtk4.internal.GtkRecentManager
   *
   * Note that the maximum age of the recently used files list is controllable
   * through the [property@Gtk.Settings:gtk-recent-files-max-age] property.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class RecentManager(raw: Ptr[GtkRecentManager])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a new resource, pointed by @uri, into the recently used resources
+  /** Adds a new resource, pointed by @uri, into the recently used resources
     * list, using the metadata specified inside the `GtkRecentData` passed in @recent_data.
     *
     * The passed URI will be used to identify this resource inside the list.
@@ -90,15 +89,16 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * description of the item; whether the item should be considered private -
     * that is, should be displayed only by the applications that have registered
     * it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(RecentData), @type -> DataRecord(const GtkRecentData*)))"
+    "[add_full/<method parameters>/recent_data]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RecentData), @type -> DataRecord(const GtkRecentData*)))"
   )
-  def addFull__ = ???
+  private def addFull__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a new resource, pointed by @uri, into the recently used resources
+  /** Adds a new resource, pointed by @uri, into the recently used resources
     * list.
     *
     * This function automatically retrieves some of the needed metadata and
@@ -107,6 +107,9 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     *
     * See [method@Gtk.RecentManager.add_full] if you want to explicitly define
     * the metadata for the resource pointed by @uri.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addItem(
       uri: String | CString /* Some(CString) */
@@ -115,19 +118,21 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     __sn_extract_string(uri)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the list of recently used resources.
     *
-    * Gets the list of recently used resources.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(RecentInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[get_items/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(RecentInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def getItems__ = ???
+  private def getItems__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks whether there is a recently used resource registered with @uri
+  /** Checks whether there is a recently used resource registered with @uri
     * inside the recent manager.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasItem(
       uri: String | CString /* Some(CString) */
@@ -136,23 +141,25 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     __sn_extract_string(uri)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Searches for a URI inside the recently used resources list, and returns a
+  /** Searches for a URI inside the recently used resources list, and returns a
     * `GtkRecentInfo` containing information about the resource like its MIME
     * type, or its display name.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(RecentInfo), @type -> DataRecord(GtkRecentInfo*)))"
+    "[lookup_item/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RecentInfo), @type -> DataRecord(GtkRecentInfo*)))"
   )
-  def lookupItem__ = ???
+  private def lookupItem__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Changes the location of a recently used resource from @uri to @new_uri.
+  /** Changes the location of a recently used resource from @uri to @new_uri.
     *
     * Please note that this function will not affect the resource pointed by the
     * URIs, but only the URI used in the recently used resources list.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def moveItem(
       uri: String | CString /* Some(CString) */,
@@ -168,9 +175,10 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Purges every item from the recently used resources list.
     *
-    * Purges every item from the recently used resources list.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def purgeItems(): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_recent_manager_purge_items(
@@ -179,10 +187,11 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a resource pointed by @uri from the recently used resources list
+  /** Removes a resource pointed by @uri from the recently used resources list
     * handled by a recent manager.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeItem(
       uri: String | CString /* Some(CString) */
@@ -205,9 +214,7 @@ class RecentManager(raw: Ptr[GtkRecentManager])
 end RecentManager
 
 object RecentManager:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new recent manager object.
+  /** Creates a new recent manager object.
     *
     * Recent manager objects are used to handle the list of recently used
     * resources. A `GtkRecentManager` object monitors the recently used
@@ -216,15 +223,19 @@ object RecentManager:
     *
     * `GtkRecentManager` objects are expensive: be sure to create them only when
     * needed. You should use [func@Gtk.RecentManager.get_default] instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): RecentManager = new RecentManager(
     gtk_recent_manager_new().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a unique instance of `GtkRecentManager` that you can share in your
+  /** Gets a unique instance of `GtkRecentManager` that you can share in your
     * application without caring about memory management.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefault(): RecentManager /* Some(Ptr[GtkRecentManager]) */ =
     new RecentManager(gtk_recent_manager_get_default().asInstanceOf)

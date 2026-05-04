@@ -2,9 +2,7 @@ package sn.gnome.gsk4.fluent
 
 import _root_.sn.gnome.gsk4.internal.GskLineJoin
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Specifies how to render the junction of two lines when stroking.
+/** Specifies how to render the junction of two lines when stroking.
   *
   * The default line join style is `GSK_LINE_JOIN_MITER`.
   *
@@ -14,24 +12,30 @@ import _root_.sn.gnome.gsk4.internal.GskLineJoin
   * media="(prefers-color-scheme: dark)"> <img alt="Line Join Styles"
   * src="join-light.png"> </picture> <figcaption>GSK_LINE_JOINT_MITER,
   * GSK_LINE_JOINT_ROUND, GSK_LINE_JOIN_BEVEL</figcaption> </figure>
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum LineJoin(val raw: GskLineJoin):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Use a sharp angled corner
     *
-    * Use a sharp angled corner
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MITER extends LineJoin(GskLineJoin.GSK_LINE_JOIN_MITER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Use a round join, the center of the circle is the join point
     *
-    * Use a round join, the center of the circle is the join point
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ROUND extends LineJoin(GskLineJoin.GSK_LINE_JOIN_ROUND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * use a cut-off join, the join is cut off at half the line width from the
+  /** use a cut-off join, the join is cut off at half the line width from the
     * joint point
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BEVEL extends LineJoin(GskLineJoin.GSK_LINE_JOIN_BEVEL)
 end LineJoin

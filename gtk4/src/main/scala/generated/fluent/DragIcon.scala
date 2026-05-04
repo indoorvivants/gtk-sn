@@ -15,9 +15,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkDragIcon
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkDragIcon` is a `GtkRoot` implementation for drag icons.
+/** `GtkDragIcon` is a `GtkRoot` implementation for drag icons.
   *
   * A drag icon moves with the pointer during a Drag-and-Drop operation and is
   * destroyed when the drag ends.
@@ -28,6 +26,9 @@ import sn.gnome.gtk4.internal.GtkDragIcon
   * whatever widget should be used for the drag icon.
   *
   * Keep in mind that drag icons do not allow user input.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DragIcon(raw: Ptr[GtkDragIcon])
     extends Widget(raw.asInstanceOf),
@@ -39,9 +40,10 @@ class DragIcon(raw: Ptr[GtkDragIcon])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the widget currently used as drag icon.
     *
-    * Gets the widget currently used as drag icon.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_drag_icon_get_child(
@@ -49,9 +51,10 @@ class DragIcon(raw: Ptr[GtkDragIcon])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the widget to display as the drag icon.
     *
-    * Sets the widget to display as the drag icon.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -65,9 +68,7 @@ class DragIcon(raw: Ptr[GtkDragIcon])
 end DragIcon
 
 object DragIcon:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a widget that can be used as a drag icon for the given
+  /** Creates a widget that can be used as a drag icon for the given
     * @value.
     *
     * Supported types include strings, `GdkRGBA` and `GtkTextBuffer`. If GTK
@@ -77,17 +78,21 @@ object DragIcon:
     * This method is used to set the default drag icon on drag-and-drop
     * operations started by `GtkDragSource`, so you don't need to set a drag
     * icon using this function there.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
-  def createWidgetForValue() = ???
+  private def createWidgetForValue() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `GtkDragIcon` in use with @drag.
+  /** Gets the `GtkDragIcon` in use with @drag.
     *
     * If no drag icon exists yet, a new one will be created and shown.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getForDrag(
       drag: Drag /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]) */
@@ -97,13 +102,14 @@ object DragIcon:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkDragIcon` that shows @paintable, and associates it with the
+  /** Creates a `GtkDragIcon` that shows @paintable, and associates it with the
     * drag operation.
     *
     * The hotspot position on the paintable is aligned with the hotspot of the
     * cursor.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFromPaintable(
       drag: Drag /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]) */,

@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GFileQueryInfoFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used when querying a #GFileInfo.
   *
-  * Flags used when querying a #GFileInfo.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileQueryInfoFlags private (val raw: GFileQueryInfoFlags):
   def is(kv: FileQueryInfoFlags): Boolean =
@@ -32,24 +33,27 @@ object FileQueryInfoFlags:
     def |(other: FileQueryInfoFlags) =
       FileQueryInfoFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used when querying a #GFileInfo.
     *
-    * Flags used when querying a #GFileInfo.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GFileQueryInfoFlags, name: String)
       extends FileQueryInfoFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(GFileQueryInfoFlags.G_FILE_QUERY_INFO_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Don't follow symlinks.
       *
-      * Don't follow symlinks.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NOFOLLOW_SYMLINKS
         extends KnownValue(

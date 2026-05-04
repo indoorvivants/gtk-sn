@@ -10,9 +10,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{ListItem, Widget}
 import sn.gnome.gtk4.internal.GtkColumnViewCell
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkColumnViewCell` is used by [class@Gtk.ColumnViewColumn] to represent
+/** `GtkColumnViewCell` is used by [class@Gtk.ColumnViewColumn] to represent
   * items in a cell in [class@Gtk.ColumnView].
   *
   * The `GtkColumnViewCell`s are managed by the columnview widget (with its
@@ -27,16 +25,20 @@ import sn.gnome.gtk4.internal.GtkColumnViewCell
   *      property is set to %NULL.
   *   2. The bound stage where the listitem references an item from the list.
   *      The [property@Gtk.ColumnViewCell:item] property is not %NULL.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     extends ListItem(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the child previously set via gtk_column_view_cell_set_child() or
+  /** Gets the child previously set via gtk_column_view_cell_set_child() or
     * %NULL if none was set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   override def getChild(): Widget /* None */ = new Widget(
     gtk_column_view_cell_get_child(
@@ -44,21 +46,23 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if a list item has been set to be focusable via
+  /** Checks if a list item has been set to be focusable via
     * gtk_column_view_cell_set_focusable().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   override def getFocusable(): Boolean /* None */ =
     gtk_column_view_cell_get_focusable(
       this.raw.asInstanceOf[Ptr[GtkColumnViewCell]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the model item that associated with @self.
+  /** Gets the model item that associated with @self.
     *
     * If @self is unbound, this function returns %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   override def getItem(): Object /* None */ = new Object(
     gtk_column_view_cell_get_item(
@@ -66,35 +70,38 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the position in the model that @self currently displays.
+  /** Gets the position in the model that @self currently displays.
     *
     * If @self is unbound, %GTK_INVALID_LIST_POSITION is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   override def getPosition(): UInt /* None */ =
     gtk_column_view_cell_get_position(
       this.raw.asInstanceOf[Ptr[GtkColumnViewCell]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if the item is displayed as selected.
+  /** Checks if the item is displayed as selected.
     *
     * The selected state is maintained by the liste widget and its model and
     * cannot be set otherwise.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   override def getSelected(): Boolean /* None */ =
     gtk_column_view_cell_get_selected(
       this.raw.asInstanceOf[Ptr[GtkColumnViewCell]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the child to be used for this listitem.
+  /** Sets the child to be used for this listitem.
     *
     * This function is typically called by applications when setting up a
     * listitem so that the widget can be reused when binding it multiple times.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   override def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -105,9 +112,7 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @self to be focusable.
+  /** Sets @self to be focusable.
     *
     * If an item is focusable, it can be focused using the keyboard. This works
     * similar to [method@Gtk.Widget.set_focusable].
@@ -117,6 +122,9 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     * is focusable.
     *
     * By default, list items are focusable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   override def setFocusable(
       focusable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */

@@ -7,12 +7,13 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkShortcutsShortcut
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkShortcutsShortcut` represents a single keyboard shortcut or gesture
+/** A `GtkShortcutsShortcut` represents a single keyboard shortcut or gesture
   * with a short text.
   *
   * This widget is only meant to be used with `GtkShortcutsWindow`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ShortcutsShortcut(raw: Ptr[GtkShortcutsShortcut])
     extends Widget(raw.asInstanceOf),

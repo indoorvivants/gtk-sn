@@ -2,571 +2,652 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkAccessibleRole
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The accessible role for a [iface@Accessible] implementation.
+/** The accessible role for a [iface@Accessible] implementation.
   *
   * Abstract roles are only used as part of the ontology; application developers
   * must not use abstract roles in their code.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum AccessibleRole(val raw: GtkAccessibleRole):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** An element with important, and usually time-sensitive, information
     *
-    * An element with important, and usually time-sensitive, information
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ALERT extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_ALERT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A type of dialog that contains an alert message
     *
-    * A type of dialog that contains an alert message
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ALERT_DIALOG
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_ALERT_DIALOG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BANNER
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_BANNER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An input element that allows for user-triggered actions when clicked or
+  /** An input element that allows for user-triggered actions when clicked or
     * pressed
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BUTTON
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_BUTTON)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CAPTION
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_CAPTION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CELL extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_CELL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A checkable input element that has three possible values: `true`, `false`,
+  /** A checkable input element that has three possible values: `true`, `false`,
     * or `mixed`
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHECKBOX
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_CHECKBOX)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A header in a columned list.
     *
-    * A header in a columned list.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COLUMN_HEADER
       extends AccessibleRole(
         GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_COLUMN_HEADER
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An input that controls another element, such as a list or a grid, that can
+  /** An input that controls another element, such as a list or a grid, that can
     * dynamically pop up to help the user set the value of the input
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COMBO_BOX
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_COMBO_BOX)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Abstract role.
     *
-    * Abstract role.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COMMAND
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_COMMAND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Abstract role.
     *
-    * Abstract role.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COMPOSITE
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_COMPOSITE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A dialog is a window that is designed to interrupt the current processing
+  /** A dialog is a window that is designed to interrupt the current processing
     * of an application in order to prompt the user to enter information or
     * require a response.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DIALOG
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_DIALOG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Content that assistive technology users may want to browse in a reading
+  /** Content that assistive technology users may want to browse in a reading
     * mode.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DOCUMENT
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_DOCUMENT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FEED extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_FEED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FORM extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_FORM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A nameless container that has no semantic meaning of its own. This is the
+  /** A nameless container that has no semantic meaning of its own. This is the
     * role that GTK uses by default for widgets.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GENERIC
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_GENERIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A grid of items.
     *
-    * A grid of items.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GRID extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_GRID)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** An item in a grid or tree grid.
     *
-    * An item in a grid or tree grid.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GRID_CELL
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_GRID_CELL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An element that groups multiple related widgets. GTK uses this role for
+  /** An element that groups multiple related widgets. GTK uses this role for
     * various containers, like [class@Gtk.HeaderBar] or [class@Gtk.Notebook].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GROUP extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_GROUP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HEADING
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_HEADING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** An image.
     *
-    * An image.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case IMG extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_IMG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Abstract role.
     *
-    * Abstract role.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INPUT extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_INPUT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A visible name or caption for a user interface component.
     *
-    * A visible name or caption for a user interface component.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LABEL extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_LABEL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Abstract role.
     *
-    * Abstract role.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LANDMARK
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_LANDMARK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LEGEND
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_LEGEND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A clickable link.
     *
-    * A clickable link.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LINK extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_LINK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A list of items.
     *
-    * A list of items.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LIST extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_LIST)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused.
     *
-    * Unused.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LIST_BOX
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_LIST_BOX)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** An item in a list.
     *
-    * An item in a list.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LIST_ITEM
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_LIST_ITEM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LOG extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_LOG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MAIN extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_MAIN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MARQUEE
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_MARQUEE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MATH extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_MATH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** An element that represents a value within a known range.
     *
-    * An element that represents a value within a known range.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case METER extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_METER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A menu.
     *
-    * A menu.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MENU extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_MENU)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A menubar.
     *
-    * A menubar.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MENU_BAR
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_MENU_BAR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** An item in a menu.
     *
-    * An item in a menu.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MENU_ITEM
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_MENU_ITEM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A check item in a menu.
     *
-    * A check item in a menu.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MENU_ITEM_CHECKBOX
       extends AccessibleRole(
         GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_MENU_ITEM_CHECKBOX
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A radio item in a menu.
     *
-    * A radio item in a menu.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MENU_ITEM_RADIO
       extends AccessibleRole(
         GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_MENU_ITEM_RADIO
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NAVIGATION
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_NAVIGATION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An element that is not represented to accessibility technologies. This
+  /** An element that is not represented to accessibility technologies. This
     * role is synonymous to @GTK_ACCESSIBLE_ROLE_PRESENTATION.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOTE extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_NOTE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OPTION
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_OPTION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An element that is not represented to accessibility technologies. This
+  /** An element that is not represented to accessibility technologies. This
     * role is synonymous to @GTK_ACCESSIBLE_ROLE_NONE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PRESENTATION
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_PRESENTATION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An element that displays the progress status for tasks that take a long
+  /** An element that displays the progress status for tasks that take a long
     * time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROGRESS_BAR
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_PROGRESS_BAR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A checkable input in a group of radio roles, only one of which can be
+  /** A checkable input in a group of radio roles, only one of which can be
     * checked at a time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RADIO extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_RADIO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RADIO_GROUP
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_RADIO_GROUP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Abstract role.
     *
-    * Abstract role.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RANGE extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_RANGE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case REGION
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_REGION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A row in a columned list.
     *
-    * A row in a columned list.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ROW extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_ROW)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ROW_GROUP
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_ROW_GROUP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ROW_HEADER
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_ROW_HEADER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A graphical object that controls the scrolling of content within a viewing
+  /** A graphical object that controls the scrolling of content within a viewing
     * area, regardless of whether the content is fully displayed within the
     * viewing area.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SCROLLBAR
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_SCROLLBAR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SEARCH
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_SEARCH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A type of textbox intended for specifying search criteria.
     *
-    * A type of textbox intended for specifying search criteria.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SEARCH_BOX
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_SEARCH_BOX)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Abstract role.
     *
-    * Abstract role.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SECTION
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_SECTION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Abstract role.
     *
-    * Abstract role.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SECTION_HEAD
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_SECTION_HEAD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Abstract role.
     *
-    * Abstract role.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SELECT
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_SELECT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A divider that separates and distinguishes sections of content or groups
+  /** A divider that separates and distinguishes sections of content or groups
     * of menuitems.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SEPARATOR
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_SEPARATOR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A user input where the user selects a value from within a given range.
     *
-    * A user input where the user selects a value from within a given range.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SLIDER
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_SLIDER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A form of range that expects the user to select from among discrete
+  /** A form of range that expects the user to select from among discrete
     * choices.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SPIN_BUTTON
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_SPIN_BUTTON)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STATUS
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_STATUS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Abstract role.
     *
-    * Abstract role.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STRUCTURE
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_STRUCTURE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A type of checkbox that represents on/off values, as opposed to
+  /** A type of checkbox that represents on/off values, as opposed to
     * checked/unchecked values.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SWITCH
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_SWITCH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** An item in a list of tab used for switching pages.
     *
-    * An item in a list of tab used for switching pages.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TAB extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_TAB)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TABLE extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_TABLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A list of tabs for switching pages.
     *
-    * A list of tabs for switching pages.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TAB_LIST
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_TAB_LIST)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A page in a notebook or stack.
     *
-    * A page in a notebook or stack.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TAB_PANEL
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_TAB_PANEL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A type of input that allows free-form text as its value.
     *
-    * A type of input that allows free-form text as its value.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TEXT_BOX
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_TEXT_BOX)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TIME extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_TIME)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TIMER extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_TIMER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOOLBAR
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_TOOLBAR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOOLTIP
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_TOOLTIP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TREE extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_TREE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A treeview-like, columned list.
     *
-    * A treeview-like, columned list.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TREE_GRID
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_TREE_GRID)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unused
     *
-    * Unused
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TREE_ITEM
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_TREE_ITEM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Abstract role for interactive components of a graphical user interface
     *
-    * Abstract role for interactive components of a graphical user interface
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WIDGET
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_WIDGET)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Abstract role for windows.
     *
-    * Abstract role for windows.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WINDOW
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_WINDOW)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A type of push button which stays pressed until depressed by a second
+  /** A type of push button which stays pressed until depressed by a second
     * activation. Since: 4.10
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOGGLE_BUTTON
       extends AccessibleRole(
         GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A toplevel element of a graphical user interface. This is the role that
+  /** A toplevel element of a graphical user interface. This is the role that
     * GTK uses by default for windows. Since: 4.12
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case APPLICATION
       extends AccessibleRole(GtkAccessibleRole.GTK_ACCESSIBLE_ROLE_APPLICATION)

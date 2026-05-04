@@ -14,9 +14,10 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkListBase
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** `GtkListBase` is the abstract base class for GTK's list widgets.
   *
-  * `GtkListBase` is the abstract base class for GTK's list widgets.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ListBase(raw: Ptr[GtkListBase])
     extends Widget(raw.asInstanceOf),

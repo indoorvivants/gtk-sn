@@ -2,47 +2,54 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GKeyFileError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Error codes returned by key file parsing.
   *
-  * Error codes returned by key file parsing.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum KeyFileError(val raw: GKeyFileError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the text being parsed was in an unknown encoding
     *
-    * the text being parsed was in an unknown encoding
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN_ENCODING
       extends KeyFileError(GKeyFileError.G_KEY_FILE_ERROR_UNKNOWN_ENCODING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** document was ill-formed
     *
-    * document was ill-formed
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PARSE extends KeyFileError(GKeyFileError.G_KEY_FILE_ERROR_PARSE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the file was not found
     *
-    * the file was not found
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_FOUND extends KeyFileError(GKeyFileError.G_KEY_FILE_ERROR_NOT_FOUND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a requested key was not found
     *
-    * a requested key was not found
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case KEY_NOT_FOUND
       extends KeyFileError(GKeyFileError.G_KEY_FILE_ERROR_KEY_NOT_FOUND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a requested group was not found
     *
-    * a requested group was not found
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GROUP_NOT_FOUND
       extends KeyFileError(GKeyFileError.G_KEY_FILE_ERROR_GROUP_NOT_FOUND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a value could not be parsed
     *
-    * a value could not be parsed
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_VALUE
       extends KeyFileError(GKeyFileError.G_KEY_FILE_ERROR_INVALID_VALUE)

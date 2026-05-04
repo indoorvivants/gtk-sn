@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GBusNameWatcherFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used in g_bus_watch_name().
   *
-  * Flags used in g_bus_watch_name().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class BusNameWatcherFlags private (val raw: GBusNameWatcherFlags):
   def is(kv: BusNameWatcherFlags): Boolean =
@@ -32,17 +33,19 @@ object BusNameWatcherFlags:
     def |(other: BusNameWatcherFlags) =
       BusNameWatcherFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used in g_bus_watch_name().
     *
-    * Flags used in g_bus_watch_name().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GBusNameWatcherFlags, name: String)
       extends BusNameWatcherFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(
@@ -50,10 +53,11 @@ object BusNameWatcherFlags:
           "NONE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * If no-one owns the name when beginning to watch the name, ask the bus to
+    /** If no-one owns the name when beginning to watch the name, ask the bus to
       * launch an owner for the name.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case AUTO_START
         extends KnownValue(

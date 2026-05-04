@@ -11,9 +11,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gchar, guint16}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GNetworkAddress provides an easy way to resolve a hostname and then attempt
+/** #GNetworkAddress provides an easy way to resolve a hostname and then attempt
   * to connect to that host, handling the possibility of multiple IP addresses
   * and multiple address families.
   *
@@ -22,6 +20,9 @@ import sn.gnome.gobject.fluent.Object
   * long.
   *
   * See #GSocketConnectable for an example of using the connectable interface.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class NetworkAddress(raw: Ptr[GNetworkAddress])
     extends Object(raw.asInstanceOf),
@@ -29,10 +30,11 @@ class NetworkAddress(raw: Ptr[GNetworkAddress])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets @addr's hostname. This might be either UTF-8 or ASCII-encoded,
+  /** Gets @addr's hostname. This might be either UTF-8 or ASCII-encoded,
     * depending on what @addr was created with.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHostname()(using Zone): String /* None */ = fromCString(
     g_network_address_get_hostname(
@@ -40,17 +42,19 @@ class NetworkAddress(raw: Ptr[GNetworkAddress])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @addr's port number
     *
-    * Gets @addr's port number
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPort(): UShort /* None */ = g_network_address_get_port(
     this.raw.asInstanceOf[Ptr[GNetworkAddress]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @addr's scheme
     *
-    * Gets @addr's scheme
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getScheme()(using Zone): String /* None */ = fromCString(
     g_network_address_get_scheme(
@@ -61,9 +65,7 @@ class NetworkAddress(raw: Ptr[GNetworkAddress])
 end NetworkAddress
 
 object NetworkAddress:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GSocketConnectable for connecting to the given
+  /** Creates a new #GSocketConnectable for connecting to the given
     * @hostname
     *   and @port.
     *
@@ -72,6 +74,9 @@ object NetworkAddress:
     *   of `localhost` may refer to the IPv4 loopback address only, or to both
     *   IPv4 and IPv6; use g_network_address_new_loopback() to create a
     *   #GNetworkAddress that is guaranteed to resolve to both addresses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       hostname: String |
@@ -84,9 +89,7 @@ object NetworkAddress:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GSocketConnectable for connecting to the local host over a
+  /** Creates a new #GSocketConnectable for connecting to the local host over a
     * loopback connection to the given @port. This is intended for use in
     * connecting to local services which may be running on IPv4 or IPv6.
     *
@@ -97,6 +100,9 @@ object NetworkAddress:
     *
     * g_network_address_get_hostname() will always return `localhost` for a
     * #GNetworkAddress created with this constructor.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def loopback(
       port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
@@ -104,9 +110,7 @@ object NetworkAddress:
     g_network_address_new_loopback(guint16(port)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GSocketConnectable for connecting to the given
+  /** Creates a new #GSocketConnectable for connecting to the given
     * @hostname
     *   and @port. May fail and return %NULL in case parsing @host_and_port
     *   fails.
@@ -128,6 +132,9 @@ object NetworkAddress:
     * name rather than as a numeric port, but this functionality is deprecated,
     * because it depends on the contents of /etc/services, which is generally
     * quite sparse on platforms other than Linux.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def parse(
       host_and_port: String |
@@ -144,15 +151,16 @@ object NetworkAddress:
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GSocketConnectable for connecting to the given
+  /** Creates a new #GSocketConnectable for connecting to the given
     * @uri.
     *   May fail and return %NULL in case parsing @uri fails.
     *
     * Using this rather than g_network_address_new() or
     * g_network_address_parse() allows #GSocketClient to determine when to use
     * application-specific proxy protocols.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def parseUri(
       uri: String |

@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.{BuilderScope, ListItemFactory}
 import sn.gnome.gtk4.internal.GtkBuilderListItemFactory
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkBuilderListItemFactory` is a `GtkListItemFactory` that creates widgets
+/** `GtkBuilderListItemFactory` is a `GtkListItemFactory` that creates widgets
   * by instantiating `GtkBuilder` UI templates.
   *
   * The templates must be extending `GtkListItem`, and typically use
@@ -32,25 +30,30 @@ import sn.gnome.gtk4.internal.GtkBuilderListItemFactory
   *     </template>
   *   </interface>
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class BuilderListItemFactory(raw: Ptr[GtkBuilderListItemFactory])
     extends ListItemFactory(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the data used as the `GtkBuilder` UI template for constructing
+  /** Gets the data used as the `GtkBuilder` UI template for constructing
     * listitems.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[get_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def getBytes__ = ???
+  private def getBytes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** If the data references a resource, gets the path of that resource.
     *
-    * If the data references a resource, gets the path of that resource.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getResource()(using Zone): String /* None */ = fromCString(
     gtk_builder_list_item_factory_get_resource(
@@ -58,9 +61,10 @@ class BuilderListItemFactory(raw: Ptr[GtkBuilderListItemFactory])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the scope used when constructing listitems.
     *
-    * Gets the scope used when constructing listitems.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getScope(): BuilderScope /* None */ = new BuilderScope.Abstract(
     gtk_builder_list_item_factory_get_scope(
@@ -71,20 +75,22 @@ class BuilderListItemFactory(raw: Ptr[GtkBuilderListItemFactory])
 end BuilderListItemFactory
 
 object BuilderListItemFactory:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkBuilderListItemFactory` that instantiates widgets using @bytes
+  /** Creates a new `GtkBuilderListItemFactory` that instantiates widgets using @bytes
     * as the data to pass to `GtkBuilder`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def new_from_bytes() = ???
+  private def new_from_bytes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkBuilderListItemFactory` that instantiates widgets using
+  /** Creates a new `GtkBuilderListItemFactory` that instantiates widgets using
     * data read from the given @resource_path to pass to `GtkBuilder`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromResource(
       scope: Option[BuilderScope /* Some(Ptr[GtkBuilderScope]) */ ],

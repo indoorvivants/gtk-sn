@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.{Buildable, Filter}
 import sn.gnome.gtk4.internal.GtkFileFilter
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkFileFilter` filters files by name or mime type.
+/** `GtkFileFilter` filters files by name or mime type.
   *
   * `GtkFileFilter` can be used to restrict the files being shown in a
   * `GtkFileChooser`. Files can be filtered based on their name (with
@@ -52,6 +50,9 @@ import sn.gnome.gtk4.internal.GtkFileFilter
   *   </suffixes>
   * </object>
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileFilter(raw: Ptr[GtkFileFilter])
     extends Filter(raw.asInstanceOf),
@@ -59,9 +60,10 @@ class FileFilter(raw: Ptr[GtkFileFilter])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds a rule allowing a given mime type to @filter.
     *
-    * Adds a rule allowing a given mime type to @filter.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addMimeType(
       mime_type: String | CString /* Some(CString) */
@@ -70,12 +72,13 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     __sn_extract_string(mime_type)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a rule allowing a shell style glob to a filter.
+  /** Adds a rule allowing a shell style glob to a filter.
     *
     * Note that it depends on the platform whether pattern matching ignores case
     * or not. On Windows, it does, on other platforms, it doesn't.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addPattern(
       pattern: String | CString /* Some(CString) */
@@ -84,25 +87,27 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     __sn_extract_string(pattern)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a rule allowing image files in the formats supported by GdkPixbuf.
+  /** Adds a rule allowing image files in the formats supported by GdkPixbuf.
     *
     * This is equivalent to calling [method@Gtk.FileFilter.add_mime_type] for
     * all the supported mime types.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addPixbufFormats(): Unit /* None */ = gtk_file_filter_add_pixbuf_formats(
     this.raw.asInstanceOf[Ptr[GtkFileFilter]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a suffix match rule to a filter.
+  /** Adds a suffix match rule to a filter.
     *
     * This is similar to adding a match for the pattern "*.@suffix".
     *
     * In contrast to pattern matches, suffix matches are *always*
     * case-insensitive.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addSuffix(
       suffix: String | CString /* Some(CString) */
@@ -111,24 +116,26 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     __sn_extract_string(suffix)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the attributes that need to be filled in for the `GFileInfo` passed
+  /** Gets the attributes that need to be filled in for the `GFileInfo` passed
     * to this filter.
     *
     * This function will not typically be used by applications; it is intended
     * principally for use in the implementation of `GtkFileChooser`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+    "[get_attributes/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def getAttributes__ = ???
+  private def getAttributes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the human-readable name for the filter.
+  /** Gets the human-readable name for the filter.
     *
     * See [method@Gtk.FileFilter.set_name].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     gtk_file_filter_get_name(
@@ -136,12 +143,13 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a human-readable name of the filter.
+  /** Sets a human-readable name of the filter.
     *
     * This is the string that will be displayed in the file chooser if there is
     * a selectable list of filters.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
       name: Option[String | CString /* Some(CString) */ ]
@@ -152,14 +160,15 @@ class FileFilter(raw: Ptr[GtkFileFilter])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Serialize a file filter to an `a{sv}` variant.
     *
-    * Serialize a file filter to an `a{sv}` variant.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[to_gvariant/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def toGvariant__ = ???
+  private def toGvariant__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -172,9 +181,7 @@ class FileFilter(raw: Ptr[GtkFileFilter])
 end FileFilter
 
 object FileFilter:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkFileFilter` with no rules added to it.
+  /** Creates a new `GtkFileFilter` with no rules added to it.
     *
     * Such a filter doesn’t accept any files, so is not particularly useful
     * until you add rules with [method@Gtk.FileFilter.add_mime_type],
@@ -186,19 +193,23 @@ object FileFilter:
     * GtkFileFilter *filter = gtk_file_filter_new ();
     * gtk_file_filter_add_pattern (filter, "*");
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): FileFilter = new FileFilter(gtk_file_filter_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Deserialize a file filter from a `GVariant`.
+  /** Deserialize a file filter from a `GVariant`.
     *
     * The variant must be in the format produced by
     * [method@Gtk.FileFilter.to_gvariant].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[variant]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def new_from_gvariant() = ???
+  private def new_from_gvariant() = ???
 
 end FileFilter

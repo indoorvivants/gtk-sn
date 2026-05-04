@@ -2,44 +2,51 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkDirectionType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Focus movement types.
   *
-  * Focus movement types.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum DirectionType(val raw: GtkDirectionType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Move forward.
     *
-    * Move forward.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TAB_FORWARD extends DirectionType(GtkDirectionType.GTK_DIR_TAB_FORWARD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Move backward.
     *
-    * Move backward.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TAB_BACKWARD extends DirectionType(GtkDirectionType.GTK_DIR_TAB_BACKWARD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Move up.
     *
-    * Move up.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UP extends DirectionType(GtkDirectionType.GTK_DIR_UP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Move down.
     *
-    * Move down.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DOWN extends DirectionType(GtkDirectionType.GTK_DIR_DOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Move left.
     *
-    * Move left.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LEFT extends DirectionType(GtkDirectionType.GTK_DIR_LEFT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Move right.
     *
-    * Move right.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RIGHT extends DirectionType(GtkDirectionType.GTK_DIR_RIGHT)
 end DirectionType

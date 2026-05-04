@@ -2,41 +2,47 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkGLError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Error enumeration for `GdkGLContext`.
   *
-  * Error enumeration for `GdkGLContext`.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum GLError(val raw: GdkGLError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** OpenGL support is not available
     *
-    * OpenGL support is not available
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_AVAILABLE extends GLError(GdkGLError.GDK_GL_ERROR_NOT_AVAILABLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The requested visual format is not supported
     *
-    * The requested visual format is not supported
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNSUPPORTED_FORMAT
       extends GLError(GdkGLError.GDK_GL_ERROR_UNSUPPORTED_FORMAT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The requested profile is not supported
     *
-    * The requested profile is not supported
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNSUPPORTED_PROFILE
       extends GLError(GdkGLError.GDK_GL_ERROR_UNSUPPORTED_PROFILE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The shader compilation failed
     *
-    * The shader compilation failed
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COMPILATION_FAILED
       extends GLError(GdkGLError.GDK_GL_ERROR_COMPILATION_FAILED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The shader linking failed
     *
-    * The shader linking failed
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LINK_FAILED extends GLError(GdkGLError.GDK_GL_ERROR_LINK_FAILED)
 end GLError

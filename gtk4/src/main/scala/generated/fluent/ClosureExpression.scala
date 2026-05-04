@@ -7,10 +7,11 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.internal.GtkClosureExpression
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * An expression using a custom `GClosure` to compute the value from its
+/** An expression using a custom `GClosure` to compute the value from its
   * parameters.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ClosureExpression(raw: Ptr[GtkClosureExpression])
     extends Expression(raw.asInstanceOf):
@@ -20,16 +21,17 @@ class ClosureExpression(raw: Ptr[GtkClosureExpression])
 end ClosureExpression
 
 object ClosureExpression:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkExpression` that calls `closure` when it is evaluated.
+  /** Creates a `GtkExpression` that calls `closure` when it is evaluated.
     *
     * `closure` is called with the `this` object and the results of evaluating
     * the `params` expressions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
     "Constructor new is weird: non NULL-terminated arrays require special handling"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end ClosureExpression

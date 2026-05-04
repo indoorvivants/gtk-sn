@@ -10,12 +10,13 @@ import sn.gnome.glib.internal.guint
 import sn.gnome.gtk4.fluent.{Buildable, Sorter}
 import sn.gnome.gtk4.internal.GtkMultiSorter
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkMultiSorter` combines multiple sorters by trying them in turn.
+/** `GtkMultiSorter` combines multiple sorters by trying them in turn.
   *
   * If the first sorter compares two items as equal, the second is tried next,
   * and so on.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MultiSorter(raw: Ptr[GtkMultiSorter])
     extends Sorter(raw.asInstanceOf),
@@ -24,12 +25,13 @@ class MultiSorter(raw: Ptr[GtkMultiSorter])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Add @sorter to @self to use for sorting at the end.
+  /** Add @sorter to @self to use for sorting at the end.
     *
     * @self
     *   will consult all existing sorters before it will sort with the given @sorter.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def append(sorter: Sorter /* Some(Ptr[GtkSorter]) */ ): Unit /* None */ =
     gtk_multi_sorter_append(
@@ -37,11 +39,12 @@ class MultiSorter(raw: Ptr[GtkMultiSorter])
       sorter.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes the sorter at the given @position from the list of sorter used by @self.
+  /** Removes the sorter at the given @position from the list of sorter used by @self.
     *
     * If @position is larger than the number of sorters, nothing happens.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -53,13 +56,14 @@ class MultiSorter(raw: Ptr[GtkMultiSorter])
 end MultiSorter
 
 object MultiSorter:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new multi sorter.
+  /** Creates a new multi sorter.
     *
     * This sorter compares items by trying each of the sorters in turn, until
     * one returns non-zero. In particular, if no sorter has been added to it, it
     * will always compare items as equal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): MultiSorter = new MultiSorter(
     gtk_multi_sorter_new().asInstanceOf

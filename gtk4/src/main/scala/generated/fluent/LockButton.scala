@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkLockButton
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkLockButton` is a widget to obtain and revoke authorizations needed to
+/** `GtkLockButton` is a widget to obtain and revoke authorizations needed to
   * operate the controls.
   *
   * ![An example GtkLockButton](lock-button.png)
@@ -53,6 +51,9 @@ import sn.gnome.gtk4.internal.GtkLockButton
   * [property@Gtk.LockButton:tooltip-lock],
   * [property@Gtk.LockButton:tooltip-unlock] and
   * [property@Gtk.LockButton:tooltip-not-authorized] properties.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class LockButton(raw: Ptr[GtkLockButton])
     extends Button(raw.asInstanceOf),
@@ -63,9 +64,10 @@ class LockButton(raw: Ptr[GtkLockButton])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Obtains the `GPermission` object that controls @button.
     *
-    * Obtains the `GPermission` object that controls @button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPermission(): Permission /* None */ = new Permission(
     gtk_lock_button_get_permission(
@@ -73,9 +75,10 @@ class LockButton(raw: Ptr[GtkLockButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the `GPermission` object that controls @button.
     *
-    * Sets the `GPermission` object that controls @button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPermission(
       permission: Option[
@@ -95,9 +98,10 @@ class LockButton(raw: Ptr[GtkLockButton])
 end LockButton
 
 object LockButton:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new lock button which reflects the @permission.
     *
-    * Creates a new lock button which reflects the @permission.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       permission: Option[

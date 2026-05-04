@@ -16,9 +16,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gssize}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GOutputStream has functions to write to a stream (g_output_stream_write()),
+/** #GOutputStream has functions to write to a stream (g_output_stream_write()),
   * to close a stream (g_output_stream_close()) and to flush pending writes
   * (g_output_stream_flush()).
   *
@@ -29,22 +27,24 @@ import sn.gnome.gobject.fluent.Object
   * streaming APIs.
   *
   * All of these functions have async variants too.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Clears the pending flag on @stream.
     *
-    * Clears the pending flag on @stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def clearPending(): Unit /* None */ = g_output_stream_clear_pending(
     this.raw.asInstanceOf[Ptr[GOutputStream]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Closes the stream, releasing resources related to it.
+  /** Closes the stream, releasing resources related to it.
     *
     * Once the stream is closed, all other operations will return
     * %G_IO_ERROR_CLOSED. Closing a stream multiple times will not return an
@@ -74,6 +74,9 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * streams can use a faster close that doesn't block to e.g. check errors. On
     * cancellation (as with any error) there is no guarantee that all written
     * data will reach the target.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def close(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -87,9 +90,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Requests an asynchronous close of the stream, releasing resources related
+  /** Requests an asynchronous close of the stream, releasing resources related
     * to it. When the operation is finished @callback will be called. You can
     * then call g_output_stream_close_finish() to get the result of the
     * operation.
@@ -99,15 +100,19 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * The asynchronous methods have a default fallback that uses threads to
     * implement asynchronicity, so they are optional for inheriting classes.
     * However, if you override one you must override all.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[close_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def closeAsync__ = ???
+  private def closeAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Closes an output stream.
     *
-    * Closes an output stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def closeFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -119,9 +124,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Forces a write of all user-space buffered data for the given
+  /** Forces a write of all user-space buffered data for the given
     * @stream.
     *   Will block during the operation. Closing the stream will implicitly
     *   cause a flush.
@@ -131,6 +134,9 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * If @cancellable is not %NULL, then the operation can be cancelled by
     * triggering the cancellable object from another thread. If the operation
     * was cancelled, the error %G_IO_ERROR_CANCELLED will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def flush(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -144,22 +150,24 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Forces an asynchronous write of all user-space buffered data for the given @stream.
+  /** Forces an asynchronous write of all user-space buffered data for the given @stream.
     * For behaviour details see g_output_stream_flush().
     *
     * When the operation is finished @callback will be called. You can then call
     * g_output_stream_flush_finish() to get the result of the operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[flush_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def flushAsync__ = ???
+  private def flushAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes flushing an output stream.
     *
-    * Finishes flushing an output stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def flushFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -171,35 +179,36 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if an output stream has pending actions.
     *
-    * Checks if an output stream has pending actions.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasPending(): Boolean /* None */ = g_output_stream_has_pending(
     this.raw.asInstanceOf[Ptr[GOutputStream]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if an output stream has already been closed.
     *
-    * Checks if an output stream has already been closed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isClosed(): Boolean /* None */ = g_output_stream_is_closed(
     this.raw.asInstanceOf[Ptr[GOutputStream]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if an output stream is being closed. This can be used inside e.g. a
+  /** Checks if an output stream is being closed. This can be used inside e.g. a
     * flush implementation to see if the flush (or other i/o operation) is
     * called from within the closing operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isClosing(): Boolean /* None */ = g_output_stream_is_closing(
     this.raw.asInstanceOf[Ptr[GOutputStream]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is a utility function around g_output_stream_write_all(). It uses
+  /** This is a utility function around g_output_stream_write_all(). It uses
     * g_strdup_vprintf() to turn @format and @... into a string that is then
     * written to @stream.
     *
@@ -210,17 +219,21 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * to the variable length of the written string, if you need precise control
     * over partial write failures, you need to create you own printf()-like
     * wrapper around g_output_stream_write() or g_output_stream_write_all().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method printf contains an OUT parameter, which is not supported yet"
+    "[printf]: Method printf contains an OUT parameter, which is not supported yet"
   )
-  def printf__ = ???
+  private def printf__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @stream to have actions pending. If the pending flag is already set
+  /** Sets @stream to have actions pending. If the pending flag is already set
     * or @stream is closed, it will return %FALSE and set
     * @error.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPending(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_output_stream_set_pending(
@@ -229,9 +242,10 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Splices an input stream into an output stream.
     *
-    * Splices an input stream into an output stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def splice(
       source: InputStream /* Some(Ptr[GInputStream]) */,
@@ -249,23 +263,25 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     ).value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Splices a stream asynchronously. When the operation is finished @callback
+  /** Splices a stream asynchronously. When the operation is finished @callback
     * will be called. You can then call g_output_stream_splice_finish() to get
     * the result of the operation.
     *
     * For the synchronous, blocking version of this function, see
     * g_output_stream_splice().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[splice_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def spliceAsync__ = ???
+  private def spliceAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an asynchronous stream splice operation.
     *
-    * Finishes an asynchronous stream splice operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def spliceFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -277,9 +293,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     ).value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is a utility function around g_output_stream_write_all(). It uses
+  /** This is a utility function around g_output_stream_write_all(). It uses
     * g_strdup_vprintf() to turn @format and @args into a string that is then
     * written to @stream.
     *
@@ -290,15 +304,16 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * to the variable length of the written string, if you need precise control
     * over partial write failures, you need to create you own printf()-like
     * wrapper around g_output_stream_write() or g_output_stream_write_all().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method vprintf contains an OUT parameter, which is not supported yet"
+    "[vprintf]: Method vprintf contains an OUT parameter, which is not supported yet"
   )
-  def vprintf__ = ???
+  private def vprintf__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to write @count bytes from @buffer into the stream. Will block
+  /** Tries to write @count bytes from @buffer into the stream. Will block
     * during the operation.
     *
     * If count is 0, returns 0 and does nothing. A value of @count larger than
@@ -319,15 +334,16 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * partial result will be returned, without an error.
     *
     * On error -1 is returned and @error is set accordingly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))"
+    "[write/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))"
   )
-  def write__ = ???
+  private def write__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to write @count bytes from @buffer into the stream. Will block
+  /** Tries to write @count bytes from @buffer into the stream. Will block
     * during the operation.
     *
     * This function is similar to g_output_stream_write(), except it tries to
@@ -346,15 +362,16 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     *   the error was encountered. This functionality is only available from C.
     *   If you need it from another language then you must write your own loop
     *   around g_output_stream_write().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method write_all contains an OUT parameter, which is not supported yet"
+    "[write_all]: Method write_all contains an OUT parameter, which is not supported yet"
   )
-  def writeAll__ = ???
+  private def writeAll__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Request an asynchronous write of @count bytes from @buffer into the
+  /** Request an asynchronous write of @count bytes from @buffer into the
     * stream. When the operation is finished @callback will be called. You can
     * then call g_output_stream_write_all_finish() to get the result of the
     * operation.
@@ -369,15 +386,16 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     *
     * Note that no copy of @buffer will be made, so it must stay valid until @callback
     * is called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))"
+    "[write_all_async/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))"
   )
-  def writeAllAsync__ = ???
+  private def writeAllAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an asynchronous stream write operation started with
+  /** Finishes an asynchronous stream write operation started with
     * g_output_stream_write_all_async().
     *
     * As a special exception to the normal conventions for functions that use
@@ -387,15 +405,16 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     *   the error was encountered. This functionality is only available from C.
     *   If you need it from another language then you must write your own loop
     *   around g_output_stream_write_async().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method write_all_finish contains an OUT parameter, which is not supported yet"
+    "[write_all_finish]: Method write_all_finish contains an OUT parameter, which is not supported yet"
   )
-  def writeAllFinish__ = ???
+  private def writeAllFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Request an asynchronous write of @count bytes from @buffer into the
+  /** Request an asynchronous write of @count bytes from @buffer into the
     * stream. When the operation is finished @callback will be called. You can
     * then call g_output_stream_write_finish() to get the result of the
     * operation.
@@ -431,15 +450,16 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * is called. See g_output_stream_write_bytes_async() for a #GBytes version
     * that will automatically hold a reference to the contents (without copying)
     * for the duration of the call.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))"
+    "[write_async/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))"
   )
-  def writeAsync__ = ???
+  private def writeAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A wrapper function for g_output_stream_write() which takes a #GBytes as
+  /** A wrapper function for g_output_stream_write() which takes a #GBytes as
     * input. This can be more convenient for use by language bindings or in
     * other cases where the refcounted nature of #GBytes is helpful over a bare
     * pointer interface.
@@ -449,15 +469,16 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * will need to create a new #GBytes containing just the remaining bytes,
     * using g_bytes_new_from_bytes(). Passing the same #GBytes instance multiple
     * times potentially can result in duplicated data in the output stream.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[write_bytes/<method parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def writeBytes__ = ???
+  private def writeBytes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is similar to g_output_stream_write_async(), but takes a
+  /** This function is similar to g_output_stream_write_async(), but takes a
     * #GBytes as input. Due to the refcounted nature of #GBytes, this allows the
     * stream to avoid taking a copy of the data.
     *
@@ -469,15 +490,19 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     *
     * For the synchronous, blocking version of this function, see
     * g_output_stream_write_bytes().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[write_bytes_async/<method parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def writeBytesAsync__ = ???
+  private def writeBytesAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes a stream write-from-#GBytes operation.
     *
-    * Finishes a stream write-from-#GBytes operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def writeBytesFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -489,9 +514,10 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     ).value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes a stream write operation.
     *
-    * Finishes a stream write operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def writeFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -503,9 +529,7 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     ).value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to write the bytes contained in the @n_vectors @vectors into the
+  /** Tries to write the bytes contained in the @n_vectors @vectors into the
     * stream. Will block during the operation.
     *
     * If @n_vectors is 0 or the sum of all bytes in @vectors is 0, returns 0 and
@@ -529,15 +553,16 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * the aggregate buffer size, and will return %G_IO_ERROR_INVALID_ARGUMENT if
     * these are exceeded. For example, when writing to a local file on UNIX
     * platforms, the aggregate buffer size must not exceed %G_MAXSSIZE bytes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method writev contains an OUT parameter, which is not supported yet"
+    "[writev]: Method writev contains an OUT parameter, which is not supported yet"
   )
-  def writev__ = ???
+  private def writev__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to write the bytes contained in the @n_vectors @vectors into the
+  /** Tries to write the bytes contained in the @n_vectors @vectors into the
     * stream. Will block during the operation.
     *
     * This function is similar to g_output_stream_writev(), except it tries to
@@ -560,15 +585,16 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     *
     * The content of the individual elements of @vectors might be changed by
     * this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method writev_all contains an OUT parameter, which is not supported yet"
+    "[writev_all]: Method writev_all contains an OUT parameter, which is not supported yet"
   )
-  def writevAll__ = ???
+  private def writevAll__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Request an asynchronous write of the bytes contained in the @n_vectors @vectors
+  /** Request an asynchronous write of the bytes contained in the @n_vectors @vectors
     * into the stream. When the operation is finished @callback will be called.
     * You can then call g_output_stream_writev_all_finish() to get the result of
     * the operation.
@@ -584,15 +610,16 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * Note that no copy of @vectors will be made, so it must stay valid until @callback
     * is called. The content of the individual elements of @vectors might be
     * changed by this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(OutputVector), @type -> DataRecord(GOutputVector)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GOutputVector*)))"
+    "[writev_all_async/<method parameters>/vectors]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(OutputVector), @type -> DataRecord(GOutputVector)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GOutputVector*)))"
   )
-  def writevAllAsync__ = ???
+  private def writevAllAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an asynchronous stream write operation started with
+  /** Finishes an asynchronous stream write operation started with
     * g_output_stream_writev_all_async().
     *
     * As a special exception to the normal conventions for functions that use
@@ -602,15 +629,16 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     *   the error was encountered. This functionality is only available from C.
     *   If you need it from another language then you must write your own loop
     *   around g_output_stream_writev_async().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method writev_all_finish contains an OUT parameter, which is not supported yet"
+    "[writev_all_finish]: Method writev_all_finish contains an OUT parameter, which is not supported yet"
   )
-  def writevAllFinish__ = ???
+  private def writevAllFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Request an asynchronous write of the bytes contained in @n_vectors @vectors
+  /** Request an asynchronous write of the bytes contained in @n_vectors @vectors
     * into the stream. When the operation is finished @callback will be called.
     * You can then call g_output_stream_writev_finish() to get the result of the
     * operation.
@@ -641,19 +669,23 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     *
     * Note that no copy of @vectors will be made, so it must stay valid until @callback
     * is called.
-    */
-  @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(OutputVector), @type -> DataRecord(GOutputVector)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GOutputVector*)))"
-  )
-  def writevAsync__ = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Finishes a stream writev operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method writev_finish contains an OUT parameter, which is not supported yet"
+    "[writev_async/<method parameters>/vectors]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(OutputVector), @type -> DataRecord(GOutputVector)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GOutputVector*)))"
   )
-  def writevFinish__ = ???
+  private def writevAsync__ = ???
+
+  /** Finishes a stream writev operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[writev_finish]: Method writev_finish contains an OUT parameter, which is not supported yet"
+  )
+  private def writevFinish__ = ???
 
 end OutputStream

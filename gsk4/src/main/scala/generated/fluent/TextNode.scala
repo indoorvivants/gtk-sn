@@ -10,26 +10,29 @@ import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskTextNode
 import sn.gnome.pango.fluent.Font
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A render node drawing a set of glyphs.
   *
-  * A render node drawing a set of glyphs.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TextNode(raw: Ptr[GskTextNode]) extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the color used by the text @node.
     *
-    * Retrieves the color used by the text @node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
+    "[get_color/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
-  def getColor__ = ???
+  private def getColor__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the font used by the text @node.
     *
-    * Returns the font used by the text @node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFont(): Font /* None */ = new Font(
     gsk_text_node_get_font(
@@ -37,35 +40,39 @@ class TextNode(raw: Ptr[GskTextNode]) extends RenderNode(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the glyph information in the @node.
     *
-    * Retrieves the glyph information in the @node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_glyphs contains an OUT parameter, which is not supported yet"
+    "[get_glyphs]: Method get_glyphs contains an OUT parameter, which is not supported yet"
   )
-  def getGlyphs__ = ???
+  private def getGlyphs__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the number of glyphs in the text node.
     *
-    * Retrieves the number of glyphs in the text node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNumGlyphs(): UInt /* None */ = gsk_text_node_get_num_glyphs(
     this.raw.asInstanceOf[Ptr[GskRenderNode]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the offset applied to the text.
     *
-    * Retrieves the offset applied to the text.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
+    "[get_offset/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
   )
-  def getOffset__ = ???
+  private def getOffset__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks whether the text @node has color glyphs.
     *
-    * Checks whether the text @node has color glyphs.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasColorGlyphs(): Boolean /* None */ = gsk_text_node_has_color_glyphs(
     this.raw.asInstanceOf[Ptr[GskRenderNode]]
@@ -74,15 +81,16 @@ class TextNode(raw: Ptr[GskTextNode]) extends RenderNode(raw.asInstanceOf):
 end TextNode
 
 object TextNode:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a render node that renders the given glyphs.
+  /** Creates a render node that renders the given glyphs.
     *
     * Note that @color may not be used if the font contains color glyphs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.GlyphString), @type -> DataRecord(PangoGlyphString*)))"
+    "[glyphs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.GlyphString), @type -> DataRecord(PangoGlyphString*)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end TextNode

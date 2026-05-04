@@ -2,32 +2,37 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkPrintQuality
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** See also gtk_print_settings_set_quality().
   *
-  * See also gtk_print_settings_set_quality().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PrintQuality(val raw: GtkPrintQuality):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Low quality.
     *
-    * Low quality.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LOW extends PrintQuality(GtkPrintQuality.GTK_PRINT_QUALITY_LOW)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Normal quality.
     *
-    * Normal quality.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NORMAL extends PrintQuality(GtkPrintQuality.GTK_PRINT_QUALITY_NORMAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** High quality.
     *
-    * High quality.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HIGH extends PrintQuality(GtkPrintQuality.GTK_PRINT_QUALITY_HIGH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Draft quality.
     *
-    * Draft quality.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DRAFT extends PrintQuality(GtkPrintQuality.GTK_PRINT_QUALITY_DRAFT)
 end PrintQuality

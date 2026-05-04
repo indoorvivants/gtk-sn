@@ -9,9 +9,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.TextBuffer
 import sn.gnome.gtk4.internal.GtkTextMark
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkTextMark` is a position in a `GtkTextbuffer` that is preserved across
+/** A `GtkTextMark` is a position in a `GtkTextbuffer` that is preserved across
   * modifications.
   *
   * You may wish to begin by reading the [text widget conceptual
@@ -43,16 +41,20 @@ import sn.gnome.gtk4.internal.GtkTextMark
   *
   * Marks are typically created using the [method@Gtk.TextBuffer.create_mark]
   * function.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TextMark(raw: Ptr[GtkTextMark]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the buffer this mark is located inside.
+  /** Gets the buffer this mark is located inside.
     *
     * Returns %NULL if the mark is deleted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBuffer(): TextBuffer /* None */ = new TextBuffer(
     gtk_text_mark_get_buffer(
@@ -60,40 +62,44 @@ class TextMark(raw: Ptr[GtkTextMark]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the mark has been removed from its buffer.
+  /** Returns %TRUE if the mark has been removed from its buffer.
     *
     * See [method@Gtk.TextBuffer.add_mark] for a way to add it to a buffer
     * again.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDeleted(): Boolean /* None */ = gtk_text_mark_get_deleted(
     this.raw.asInstanceOf[Ptr[GtkTextMark]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determines whether the mark has left gravity.
     *
-    * Determines whether the mark has left gravity.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLeftGravity(): Boolean /* None */ = gtk_text_mark_get_left_gravity(
     this.raw.asInstanceOf[Ptr[GtkTextMark]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the mark name.
+  /** Returns the mark name.
     *
     * Returns %NULL for anonymous marks.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     gtk_text_mark_get_name(this.raw.asInstanceOf[Ptr[GtkTextMark]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the mark is visible.
+  /** Returns %TRUE if the mark is visible.
     *
     * A cursor is displayed for visible marks.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVisible(): Boolean /* None */ = gtk_text_mark_get_visible(
     this.raw.asInstanceOf[Ptr[GtkTextMark]]
@@ -109,9 +115,7 @@ class TextMark(raw: Ptr[GtkTextMark]) extends Object(raw.asInstanceOf):
 end TextMark
 
 object TextMark:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a text mark.
+  /** Creates a text mark.
     *
     * Add it to a buffer using [method@Gtk.TextBuffer.add_mark]. If @name is
     * %NULL, the mark is anonymous; otherwise, the mark can be retrieved by name
@@ -122,6 +126,9 @@ object TextMark:
     * newly-inserted text. The standard left-to-right cursor is a mark with
     * right gravity (when you type, the cursor stays on the right side of the
     * text you’re typing).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       name: Option[String | CString /* Some(CString) */ ],

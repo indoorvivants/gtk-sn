@@ -2,205 +2,236 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GUnicodeType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * These are the possible character classifications from the Unicode
+/** These are the possible character classifications from the Unicode
   * specification. See [Unicode Character
   * Database](http://www.unicode.org/reports/tr44/#General_Category_Values).
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum UnicodeType(val raw: GUnicodeType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Other, Control" (Cc)
     *
-    * General category "Other, Control" (Cc)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CONTROL extends UnicodeType(GUnicodeType.G_UNICODE_CONTROL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Other, Format" (Cf)
     *
-    * General category "Other, Format" (Cf)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FORMAT extends UnicodeType(GUnicodeType.G_UNICODE_FORMAT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Other, Not Assigned" (Cn)
     *
-    * General category "Other, Not Assigned" (Cn)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNASSIGNED extends UnicodeType(GUnicodeType.G_UNICODE_UNASSIGNED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Other, Private Use" (Co)
     *
-    * General category "Other, Private Use" (Co)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PRIVATE_USE extends UnicodeType(GUnicodeType.G_UNICODE_PRIVATE_USE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Other, Surrogate" (Cs)
     *
-    * General category "Other, Surrogate" (Cs)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SURROGATE extends UnicodeType(GUnicodeType.G_UNICODE_SURROGATE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Letter, Lowercase" (Ll)
     *
-    * General category "Letter, Lowercase" (Ll)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LOWERCASE_LETTER
       extends UnicodeType(GUnicodeType.G_UNICODE_LOWERCASE_LETTER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Letter, Modifier" (Lm)
     *
-    * General category "Letter, Modifier" (Lm)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MODIFIER_LETTER
       extends UnicodeType(GUnicodeType.G_UNICODE_MODIFIER_LETTER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Letter, Other" (Lo)
     *
-    * General category "Letter, Other" (Lo)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OTHER_LETTER extends UnicodeType(GUnicodeType.G_UNICODE_OTHER_LETTER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Letter, Titlecase" (Lt)
     *
-    * General category "Letter, Titlecase" (Lt)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TITLECASE_LETTER
       extends UnicodeType(GUnicodeType.G_UNICODE_TITLECASE_LETTER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Letter, Uppercase" (Lu)
     *
-    * General category "Letter, Uppercase" (Lu)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UPPERCASE_LETTER
       extends UnicodeType(GUnicodeType.G_UNICODE_UPPERCASE_LETTER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Mark, Spacing" (Mc)
     *
-    * General category "Mark, Spacing" (Mc)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SPACING_MARK extends UnicodeType(GUnicodeType.G_UNICODE_SPACING_MARK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Mark, Enclosing" (Me)
     *
-    * General category "Mark, Enclosing" (Me)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ENCLOSING_MARK extends UnicodeType(GUnicodeType.G_UNICODE_ENCLOSING_MARK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Mark, Nonspacing" (Mn)
     *
-    * General category "Mark, Nonspacing" (Mn)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NON_SPACING_MARK
       extends UnicodeType(GUnicodeType.G_UNICODE_NON_SPACING_MARK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Number, Decimal Digit" (Nd)
     *
-    * General category "Number, Decimal Digit" (Nd)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DECIMAL_NUMBER extends UnicodeType(GUnicodeType.G_UNICODE_DECIMAL_NUMBER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Number, Letter" (Nl)
     *
-    * General category "Number, Letter" (Nl)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LETTER_NUMBER extends UnicodeType(GUnicodeType.G_UNICODE_LETTER_NUMBER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Number, Other" (No)
     *
-    * General category "Number, Other" (No)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OTHER_NUMBER extends UnicodeType(GUnicodeType.G_UNICODE_OTHER_NUMBER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Punctuation, Connector" (Pc)
     *
-    * General category "Punctuation, Connector" (Pc)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CONNECT_PUNCTUATION
       extends UnicodeType(GUnicodeType.G_UNICODE_CONNECT_PUNCTUATION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Punctuation, Dash" (Pd)
     *
-    * General category "Punctuation, Dash" (Pd)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DASH_PUNCTUATION
       extends UnicodeType(GUnicodeType.G_UNICODE_DASH_PUNCTUATION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Punctuation, Close" (Pe)
     *
-    * General category "Punctuation, Close" (Pe)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CLOSE_PUNCTUATION
       extends UnicodeType(GUnicodeType.G_UNICODE_CLOSE_PUNCTUATION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Punctuation, Final quote" (Pf)
     *
-    * General category "Punctuation, Final quote" (Pf)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FINAL_PUNCTUATION
       extends UnicodeType(GUnicodeType.G_UNICODE_FINAL_PUNCTUATION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Punctuation, Initial quote" (Pi)
     *
-    * General category "Punctuation, Initial quote" (Pi)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INITIAL_PUNCTUATION
       extends UnicodeType(GUnicodeType.G_UNICODE_INITIAL_PUNCTUATION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Punctuation, Other" (Po)
     *
-    * General category "Punctuation, Other" (Po)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OTHER_PUNCTUATION
       extends UnicodeType(GUnicodeType.G_UNICODE_OTHER_PUNCTUATION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Punctuation, Open" (Ps)
     *
-    * General category "Punctuation, Open" (Ps)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OPEN_PUNCTUATION
       extends UnicodeType(GUnicodeType.G_UNICODE_OPEN_PUNCTUATION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Symbol, Currency" (Sc)
     *
-    * General category "Symbol, Currency" (Sc)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CURRENCY_SYMBOL
       extends UnicodeType(GUnicodeType.G_UNICODE_CURRENCY_SYMBOL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Symbol, Modifier" (Sk)
     *
-    * General category "Symbol, Modifier" (Sk)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MODIFIER_SYMBOL
       extends UnicodeType(GUnicodeType.G_UNICODE_MODIFIER_SYMBOL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Symbol, Math" (Sm)
     *
-    * General category "Symbol, Math" (Sm)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MATH_SYMBOL extends UnicodeType(GUnicodeType.G_UNICODE_MATH_SYMBOL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Symbol, Other" (So)
     *
-    * General category "Symbol, Other" (So)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OTHER_SYMBOL extends UnicodeType(GUnicodeType.G_UNICODE_OTHER_SYMBOL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Separator, Line" (Zl)
     *
-    * General category "Separator, Line" (Zl)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LINE_SEPARATOR extends UnicodeType(GUnicodeType.G_UNICODE_LINE_SEPARATOR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Separator, Paragraph" (Zp)
     *
-    * General category "Separator, Paragraph" (Zp)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PARAGRAPH_SEPARATOR
       extends UnicodeType(GUnicodeType.G_UNICODE_PARAGRAPH_SEPARATOR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** General category "Separator, Space" (Zs)
     *
-    * General category "Separator, Space" (Zs)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SPACE_SEPARATOR
       extends UnicodeType(GUnicodeType.G_UNICODE_SPACE_SEPARATOR)

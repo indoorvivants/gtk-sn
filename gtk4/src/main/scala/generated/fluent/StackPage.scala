@@ -9,9 +9,10 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{Accessible, Widget}
 import sn.gnome.gtk4.internal.GtkStackPage
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** `GtkStackPage` is an auxiliary class used by `GtkStack`.
   *
-  * `GtkStackPage` is an auxiliary class used by `GtkStack`.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class StackPage(raw: Ptr[GtkStackPage])
     extends Object(raw.asInstanceOf),
@@ -19,9 +20,10 @@ class StackPage(raw: Ptr[GtkStackPage])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the stack child to which @self belongs.
     *
-    * Returns the stack child to which @self belongs.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_stack_page_get_child(
@@ -29,9 +31,10 @@ class StackPage(raw: Ptr[GtkStackPage])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the icon name of the page.
     *
-    * Returns the icon name of the page.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconName()(using Zone): String /* None */ = fromCString(
     gtk_stack_page_get_icon_name(
@@ -39,9 +42,10 @@ class StackPage(raw: Ptr[GtkStackPage])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the name of the page.
     *
-    * Returns the name of the page.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     gtk_stack_page_get_name(
@@ -49,18 +53,20 @@ class StackPage(raw: Ptr[GtkStackPage])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the page is marked as “needs attention”.
     *
-    * Returns whether the page is marked as “needs attention”.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNeedsAttention(): Boolean /* None */ =
     gtk_stack_page_get_needs_attention(
       this.raw.asInstanceOf[Ptr[GtkStackPage]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the page title.
     *
-    * Gets the page title.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_stack_page_get_title(
@@ -68,28 +74,31 @@ class StackPage(raw: Ptr[GtkStackPage])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether underlines in the page title indicate mnemonics.
     *
-    * Gets whether underlines in the page title indicate mnemonics.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseUnderline(): Boolean /* None */ = gtk_stack_page_get_use_underline(
     this.raw.asInstanceOf[Ptr[GtkStackPage]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether @page is visible in its `GtkStack`.
+  /** Returns whether @page is visible in its `GtkStack`.
     *
     * This is independent from the [property@Gtk.Widget:visible] property of its
     * widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVisible(): Boolean /* None */ = gtk_stack_page_get_visible(
     this.raw.asInstanceOf[Ptr[GtkStackPage]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the icon name of the page.
     *
-    * Sets the icon name of the page.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconName(
       setting: String | CString /* Some(CString) */
@@ -98,9 +107,10 @@ class StackPage(raw: Ptr[GtkStackPage])
     __sn_extract_string(setting)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the name of the page.
     *
-    * Sets the name of the page.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
       setting: String | CString /* Some(CString) */
@@ -109,9 +119,10 @@ class StackPage(raw: Ptr[GtkStackPage])
     __sn_extract_string(setting)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the page is marked as “needs attention”.
     *
-    * Sets whether the page is marked as “needs attention”.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setNeedsAttention(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -120,9 +131,10 @@ class StackPage(raw: Ptr[GtkStackPage])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the page title.
     *
-    * Sets the page title.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
       setting: String | CString /* Some(CString) */
@@ -131,9 +143,10 @@ class StackPage(raw: Ptr[GtkStackPage])
     __sn_extract_string(setting)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether underlines in the page title indicate mnemonics.
     *
-    * Sets whether underlines in the page title indicate mnemonics.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseUnderline(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -142,9 +155,10 @@ class StackPage(raw: Ptr[GtkStackPage])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether @page is visible in its `GtkStack`.
     *
-    * Sets whether @page is visible in its `GtkStack`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVisible(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */

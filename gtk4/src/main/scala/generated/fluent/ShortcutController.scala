@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkShortcutController
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkShortcutController` is an event controller that manages shortcuts.
+/** `GtkShortcutController` is an event controller that manages shortcuts.
   *
   * Most common shortcuts are using this controller implicitly, e.g. by adding a
   * mnemonic underline to a [class@Gtk.Label], or by installing a key binding
@@ -56,6 +54,9 @@ import sn.gnome.gtk4.internal.GtkShortcutController
   * [ctor@Gtk.ShortcutAction.parse_string] for the syntax for other kinds of
   * [class@Gtk.ShortcutAction]. See [ctor@Gtk.ShortcutTrigger.parse_string] to
   * learn more about the syntax for triggers.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ShortcutController(raw: Ptr[GtkShortcutController])
     extends EventController(raw.asInstanceOf),
@@ -64,12 +65,13 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds @shortcut to the list of shortcuts handled by @self.
+  /** Adds @shortcut to the list of shortcuts handled by @self.
     *
     * If this controller uses an external shortcut list, this function does
     * nothing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addShortcut(
       shortcut: Shortcut /* Some(Ptr[GtkShortcut]) */
@@ -78,10 +80,11 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     shortcut.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the mnemonics modifiers for when this controller activates its
+  /** Gets the mnemonics modifiers for when this controller activates its
     * shortcuts.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMnemonicsModifiers(): ModifierType /* None */ = ModifierType.fromRaw(
     gtk_shortcut_controller_get_mnemonics_modifiers(
@@ -89,11 +92,12 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the scope for when this controller activates its shortcuts.
+  /** Gets the scope for when this controller activates its shortcuts.
     *
     * See [method@Gtk.ShortcutController.set_scope] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getScope(): ShortcutScope /* None */ = ShortcutScope.fromRaw(
     gtk_shortcut_controller_get_scope(
@@ -101,12 +105,13 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes @shortcut from the list of shortcuts handled by @self.
+  /** Removes @shortcut from the list of shortcuts handled by @self.
     *
     * If @shortcut had not been added to @controller or this controller uses an
     * external shortcut list, this function does nothing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeShortcut(
       shortcut: Shortcut /* Some(Ptr[GtkShortcut]) */
@@ -115,9 +120,7 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     shortcut.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the controller to use the given modifier for mnemonics.
+  /** Sets the controller to use the given modifier for mnemonics.
     *
     * The mnemonics modifiers determines which modifiers need to be pressed to
     * allow activation of shortcuts with mnemonics triggers.
@@ -130,6 +133,9 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     * This value is only relevant for local shortcut controllers. Global and
     * managed shortcut controllers will have their shortcuts activated from
     * other places which have their own modifiers for activating mnemonics.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMnemonicsModifiers(
       modifiers: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
@@ -138,9 +144,7 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     modifiers.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the controller to have the given @scope.
+  /** Sets the controller to have the given @scope.
     *
     * The scope allows shortcuts to be activated outside of the normal event
     * propagation. In particular, it allows installing global keyboard shortcuts
@@ -148,6 +152,9 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     *
     * With %GTK_SHORTCUT_SCOPE_LOCAL, shortcuts will only be activated when the
     * widget has focus.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setScope(
       scope: ShortcutScope /* Some(GtkShortcutScope) */
@@ -159,22 +166,24 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
 end ShortcutController
 
 object ShortcutController:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new shortcut controller.
     *
-    * Creates a new shortcut controller.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): ShortcutController = new ShortcutController(
     gtk_shortcut_controller_new().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new shortcut controller that takes its shortcuts from the given
+  /** Creates a new shortcut controller that takes its shortcuts from the given
     * list model.
     *
     * A controller created by this function does not let you add or remove
     * individual shortcuts using the shortcut controller api, but you can change
     * the contents of the model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forModel(
       model: ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */

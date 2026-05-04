@@ -20,9 +20,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkApplicationWindow
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkApplicationWindow` is a `GtkWindow` subclass that integrates with
+/** `GtkApplicationWindow` is a `GtkWindow` subclass that integrates with
   * `GtkApplication`.
   *
   * Notably, `GtkApplicationWindow` can handle an application menubar.
@@ -92,6 +90,9 @@ import sn.gnome.gtk4.internal.GtkApplicationWindow
   *
   * GtkWidget *window = gtk_application_window_new (app);
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
     extends Window(raw.asInstanceOf),
@@ -106,11 +107,12 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `GtkShortcutsWindow` that is associated with @window.
+  /** Gets the `GtkShortcutsWindow` that is associated with @window.
     *
     * See [method@Gtk.ApplicationWindow.set_help_overlay].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHelpOverlay(): ShortcutsWindow /* None */ = new ShortcutsWindow(
     gtk_application_window_get_help_overlay(
@@ -118,35 +120,38 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the unique ID of the window.
+  /** Returns the unique ID of the window.
     *
     * If the window has not yet been added to a `GtkApplication`, returns `0`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getId(): UInt /* None */ = gtk_application_window_get_id(
     this.raw.asInstanceOf[Ptr[GtkApplicationWindow]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the window will display a menubar for the app menu and
+  /** Returns whether the window will display a menubar for the app menu and
     * menubar as needed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowMenubar(): Boolean /* None */ =
     gtk_application_window_get_show_menubar(
       this.raw.asInstanceOf[Ptr[GtkApplicationWindow]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Associates a shortcuts window with the application window.
+  /** Associates a shortcuts window with the application window.
     *
     * Additionally, sets up an action with the name `win.show-help-overlay` to
     * present it.
     *
     * @window
     *   takes responsibility for destroying @help_overlay.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHelpOverlay(
       help_overlay: Option[ShortcutsWindow /* Some(Ptr[GtkShortcutsWindow]) */ ]
@@ -157,10 +162,11 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
       .getOrElse(null.asInstanceOf[Ptr[GtkShortcutsWindow]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the window will display a menubar for the app menu and
+  /** Sets whether the window will display a menubar for the app menu and
     * menubar as needed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowMenubar(
       show_menubar: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -172,9 +178,10 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
 end ApplicationWindow
 
 object ApplicationWindow:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkApplicationWindow`.
     *
-    * Creates a new `GtkApplicationWindow`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       application: Application /* Some(Ptr[GtkApplication]) */

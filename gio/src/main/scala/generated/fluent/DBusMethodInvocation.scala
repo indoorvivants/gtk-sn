@@ -9,23 +9,25 @@ import sn.gnome.gio.internal.GDBusMethodInvocation
 import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Instances of the #GDBusMethodInvocation class are used when handling D-Bus
+/** Instances of the #GDBusMethodInvocation class are used when handling D-Bus
   * method calls. It provides a way to asynchronously return results and errors.
   *
   * The normal way to obtain a #GDBusMethodInvocation object is to receive it as
   * an argument to the handle_method_call() function in a #GDBusInterfaceVTable
   * that was passed to g_dbus_connection_register_object().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the #GDBusConnection the method was invoked on.
     *
-    * Gets the #GDBusConnection the method was invoked on.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getConnection(): DBusConnection /* None */ = new DBusConnection(
     g_dbus_method_invocation_get_connection(
@@ -33,14 +35,15 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the name of the D-Bus interface the method was invoked on.
+  /** Gets the name of the D-Bus interface the method was invoked on.
     *
     * If this method call is a property Get, Set or GetAll call that has been
     * redirected to the method call handler then
     * "org.freedesktop.DBus.Properties" will be returned. See
     * #GDBusInterfaceVTable for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInterfaceName()(using Zone): String /* None */ = fromCString(
     g_dbus_method_invocation_get_interface_name(
@@ -48,15 +51,16 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the #GDBusMessage for the method invocation. This is useful if you
+  /** Gets the #GDBusMessage for the method invocation. This is useful if you
     * need to use low-level protocol features, such as UNIX file descriptor
     * passing, that cannot be properly expressed in the #GVariant API.
     *
     * See this [server][gdbus-server] and [client][gdbus-unix-fd-client] for an
     * example of how to use this low-level API to send and receive UNIX file
     * descriptors.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMessage(): DBusMessage /* None */ = new DBusMessage(
     g_dbus_method_invocation_get_message(
@@ -64,23 +68,25 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets information about the method call, if any.
+  /** Gets information about the method call, if any.
     *
     * If this method invocation is a property Get, Set or GetAll call that has
     * been redirected to the method call handler then %NULL will be returned.
     * See g_dbus_method_invocation_get_property_info() and #GDBusInterfaceVTable
     * for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusMethodInfo), @type -> DataRecord(const GDBusMethodInfo*)))"
+    "[get_method_info/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusMethodInfo), @type -> DataRecord(const GDBusMethodInfo*)))"
   )
-  def getMethodInfo__ = ???
+  private def getMethodInfo__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the name of the method that was invoked.
     *
-    * Gets the name of the method that was invoked.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMethodName()(using Zone): String /* None */ = fromCString(
     g_dbus_method_invocation_get_method_name(
@@ -88,9 +94,10 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the object path the method was invoked on.
     *
-    * Gets the object path the method was invoked on.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getObjectPath()(using Zone): String /* None */ = fromCString(
     g_dbus_method_invocation_get_object_path(
@@ -98,20 +105,19 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the parameters of the method invocation. If there are no input
+  /** Gets the parameters of the method invocation. If there are no input
     * parameters then this will return a GVariant with 0 children rather than
     * NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[get_parameters/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def getParameters__ = ???
+  private def getParameters__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets information about the property that this method call is for, if any.
+  /** Gets information about the property that this method call is for, if any.
     *
     * This will only be set in the case of an invocation in response to a
     * property Get or Set call that has been directed to the method call handler
@@ -121,15 +127,19 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * See #GDBusInterfaceVTable for more information.
     *
     * If the call was GetAll, %NULL will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusPropertyInfo), @type -> DataRecord(const GDBusPropertyInfo*)))"
+    "[get_property_info/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusPropertyInfo), @type -> DataRecord(const GDBusPropertyInfo*)))"
   )
-  def getPropertyInfo__ = ???
+  private def getPropertyInfo__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the bus name that invoked the method.
     *
-    * Gets the bus name that invoked the method.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSender()(using Zone): String /* None */ = fromCString(
     g_dbus_method_invocation_get_sender(
@@ -137,23 +147,25 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the @user_data #gpointer passed to
+  /** Gets the @user_data #gpointer passed to
     * g_dbus_connection_register_object().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUserData(): Ptr[Byte] /* None */ =
     g_dbus_method_invocation_get_user_data(
       this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes handling a D-Bus method call by returning an error.
+  /** Finishes handling a D-Bus method call by returning an error.
     *
     * This method will take ownership of @invocation. See #GDBusInterfaceVTable
     * for more information about the ownership of
     * @invocation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def returnDbusError(
       error_name: String |
@@ -166,9 +178,7 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     __sn_extract_string(error_message).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes handling a D-Bus method call by returning an error.
+  /** Finishes handling a D-Bus method call by returning an error.
     *
     * See g_dbus_error_encode_gerror() for details about what error name will be
     * returned on the wire. In a nutshell, if the given error is registered
@@ -188,57 +198,61 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * Since 2.48, if the method call requested for a reply not to be sent then
     * this call will free @invocation but otherwise do nothing (as per the
     * recommendations of the D-Bus specification).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[return_error/<method parameters>/domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def returnError__ = ???
+  private def returnError__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_dbus_method_invocation_return_error() but without printf()-style
+  /** Like g_dbus_method_invocation_return_error() but without printf()-style
     * formatting.
     *
     * This method will take ownership of @invocation. See #GDBusInterfaceVTable
     * for more information about the ownership of
     * @invocation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[return_error_literal/<method parameters>/domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def returnErrorLiteral__ = ???
+  private def returnErrorLiteral__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_dbus_method_invocation_return_error() but intended for language
+  /** Like g_dbus_method_invocation_return_error() but intended for language
     * bindings.
     *
     * This method will take ownership of @invocation. See #GDBusInterfaceVTable
     * for more information about the ownership of
     * @invocation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[return_error_valist/<method parameters>/domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def returnErrorValist__ = ???
+  private def returnErrorValist__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_dbus_method_invocation_return_error() but takes a #GError instead
+  /** Like g_dbus_method_invocation_return_error() but takes a #GError instead
     * of the error domain, error code and message.
     *
     * This method will take ownership of @invocation. See #GDBusInterfaceVTable
     * for more information about the ownership of
     * @invocation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
+    "[return_gerror/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
-  def returnGerror__ = ???
+  private def returnGerror__ = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Finishes handling a D-Bus method call by returning @parameters.
+  /**  Finishes handling a D-Bus method call by returning @parameters.
     *  If the @parameters GVariant is floating, it is consumed.
     *
     *  It is an error if @parameters is not of the right format: it must be a tuple
@@ -270,15 +284,15 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     *  then this call will sink @parameters and free @invocation, but
     *  otherwise do nothing (as per the recommendations of the D-Bus
     *  specification).
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[return_value/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def returnValue__ = ???
+  private def returnValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_dbus_method_invocation_return_value() but also takes a
+  /** Like g_dbus_method_invocation_return_value() but also takes a
     * #GUnixFDList.
     *
     * This method is only available on UNIX.
@@ -286,25 +300,29 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * This method will take ownership of @invocation. See #GDBusInterfaceVTable
     * for more information about the ownership of
     * @invocation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[return_value_with_unix_fd_list/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def returnValueWithUnixFdList__ = ???
+  private def returnValueWithUnixFdList__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_dbus_method_invocation_return_gerror() but takes ownership of @error
+  /** Like g_dbus_method_invocation_return_gerror() but takes ownership of @error
     * so the caller does not need to free it.
     *
     * This method will take ownership of @invocation. See #GDBusInterfaceVTable
     * for more information about the ownership of
     * @invocation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+    "[take_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
-  def takeError__ = ???
+  private def takeError__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

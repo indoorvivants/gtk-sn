@@ -9,9 +9,7 @@ import sn.gnome.glib.internal.guint
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkStatusbar
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkStatusbar` widget is usually placed along the bottom of an
+/** A `GtkStatusbar` widget is usually placed along the bottom of an
   * application's main [class@Gtk.Window].
   *
   * ![An example GtkStatusbar](statusbar.png)
@@ -47,6 +45,9 @@ import sn.gnome.gtk4.internal.GtkStatusbar
   * ## CSS node
   *
   * `GtkStatusbar` has a single CSS node with name `statusbar`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Statusbar(raw: Ptr[GtkStatusbar])
     extends Widget(raw.asInstanceOf),
@@ -56,12 +57,13 @@ class Statusbar(raw: Ptr[GtkStatusbar])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a new context identifier, given a description of the actual
+  /** Returns a new context identifier, given a description of the actual
     * context.
     *
     * Note that the description is not shown in the UI.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getContextId(
       context_description: String | CString /* Some(CString) */
@@ -70,13 +72,14 @@ class Statusbar(raw: Ptr[GtkStatusbar])
     __sn_extract_string(context_description)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes the first message in the `GtkStatusbar`’s stack with the given
+  /** Removes the first message in the `GtkStatusbar`’s stack with the given
     * context id.
     *
     * Note that this may not change the displayed message, if the message at the
     * top of the stack has a different context id.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pop(
       context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -85,9 +88,10 @@ class Statusbar(raw: Ptr[GtkStatusbar])
     guint(context_id)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Pushes a new message onto a statusbar’s stack.
     *
-    * Pushes a new message onto a statusbar’s stack.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def push(
       context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
@@ -98,10 +102,11 @@ class Statusbar(raw: Ptr[GtkStatusbar])
     __sn_extract_string(text)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Forces the removal of a message from a statusbar’s stack. The exact @context_id
+  /** Forces the removal of a message from a statusbar’s stack. The exact @context_id
     * and @message_id must be specified.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
       context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
@@ -112,9 +117,10 @@ class Statusbar(raw: Ptr[GtkStatusbar])
     guint(message_id)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Forces the removal of all messages from a statusbar's stack with the exact @context_id.
     *
-    * Forces the removal of all messages from a statusbar's stack with the exact @context_id.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeAll(
       context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -134,9 +140,10 @@ class Statusbar(raw: Ptr[GtkStatusbar])
 end Statusbar
 
 object Statusbar:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkStatusbar` ready for messages.
     *
-    * Creates a new `GtkStatusbar` ready for messages.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Statusbar = new Statusbar(gtk_statusbar_new().asInstanceOf)
 end Statusbar

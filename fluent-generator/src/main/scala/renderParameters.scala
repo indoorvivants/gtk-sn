@@ -1,6 +1,7 @@
 import com.indoorvivants.gnome.gir_schema.*
 import scala.util.boundary, boundary.*
-import rendition.*
+import rendition.* 
+import FluentErrReason.*
 
 case class RenderedParameters(
     paramSpecs: Seq[String],
@@ -21,8 +22,8 @@ def renderParameters(
       methodContext
         .getParamType(idx)
         .getOrElse(
-          break(
-            FluentErr.ParameterHasNoTargetType(methodContext.name, name, idx)
+          raise(
+            ParameterHasNoTargetType(methodContext.name, name, idx)
           )
         )
 
@@ -42,15 +43,16 @@ def renderParameters(
 
           val paramType = vararg.getOrElse:
             val rendered =
-              renderType(
-                param.tpe.getOrElse(
-                  break(
-                    FluentErr.MethodParameterHasNoType(methodLabel, param.name)
-                  )
-                ),
-                position = TypePosition.ParameterType,
-                Some(targetType)
-              )
+              inContext(param.name.getOrElse("<no name>")):
+                renderType(
+                  param.tpe.getOrElse(
+                    raise(
+                      MethodParameterHasNoType(methodLabel, param.name)
+                    )
+                  ),
+                  position = TypePosition.ParameterType,
+                  Some(targetType)
+                )
             if param.nullable.contains(Number1Value20) then
               TypeMapping.optional(rendered, Some(targetType))
             else rendered
@@ -60,7 +62,7 @@ def renderParameters(
           val paramName = escape(
             paraName.getOrElse(
               param.name.getOrElse(
-                break(FluentErr.MethodParameterHasNoName(methodLabel))
+                raise(MethodParameterHasNoName(methodLabel))
               )
             )
           )

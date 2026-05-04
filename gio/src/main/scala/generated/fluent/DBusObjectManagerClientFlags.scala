@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDBusObjectManagerClientFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used when constructing a #GDBusObjectManagerClient.
   *
-  * Flags used when constructing a #GDBusObjectManagerClient.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusObjectManagerClientFlags private (
     val raw: GDBusObjectManagerClientFlags
@@ -35,17 +36,19 @@ object DBusObjectManagerClientFlags:
     def |(other: DBusObjectManagerClientFlags) =
       DBusObjectManagerClientFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used when constructing a #GDBusObjectManagerClient.
     *
-    * Flags used when constructing a #GDBusObjectManagerClient.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GDBusObjectManagerClientFlags, name: String)
       extends DBusObjectManagerClientFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(
@@ -53,11 +56,12 @@ object DBusObjectManagerClientFlags:
           "NONE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * If not set and the manager is for a well-known name, then request the
+    /** If not set and the manager is for a well-known name, then request the
       * bus to launch an owner for the name if no-one owns the name. This flag
       * can only be used in managers for well-known names.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DO_NOT_AUTO_START
         extends KnownValue(

@@ -8,11 +8,12 @@ import sn.gnome.gio.fluent.{DBusConnection, DBusMenuModel, MenuModel}
 import sn.gnome.gio.internal.GDBusMenuModel
 import sn.gnome.glib.internal.gchar
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GDBusMenuModel is an implementation of #GMenuModel that can be used as a
+/** #GDBusMenuModel is an implementation of #GMenuModel that can be used as a
   * proxy for a menu model that is exported over D-Bus with
   * g_dbus_connection_export_menu_model().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusMenuModel(raw: Ptr[GDBusMenuModel])
     extends MenuModel(raw.asInstanceOf):
@@ -22,9 +23,7 @@ class DBusMenuModel(raw: Ptr[GDBusMenuModel])
 end DBusMenuModel
 
 object DBusMenuModel:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains a #GDBusMenuModel for the menu model which is exported at the
+  /** Obtains a #GDBusMenuModel for the menu model which is exported at the
     * given @bus_name and @object_path.
     *
     * The thread default main context is taken at the time of this call. All
@@ -32,6 +31,9 @@ object DBusMenuModel:
     * respect to this context. All calls on the returned menu model (and linked
     * models) must also originate from this same context, with the thread
     * default main context unchanged.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def get(
       connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,

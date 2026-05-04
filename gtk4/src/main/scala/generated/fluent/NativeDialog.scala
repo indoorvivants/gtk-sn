@@ -9,9 +9,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkNativeDialog
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Native dialogs are platform dialogs that don't use `GtkDialog`.
+/** Native dialogs are platform dialogs that don't use `GtkDialog`.
   *
   * They are used in order to integrate better with a platform, by looking the
   * same as other native applications and supporting platform specific features.
@@ -26,14 +24,15 @@ import sn.gnome.gtk4.internal.GtkNativeDialog
   * Note that unlike `GtkDialog`, `GtkNativeDialog` objects are not toplevel
   * widgets, and GTK does not keep them alive. It is your responsibility to keep
   * a reference until you are done with the object.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Destroys a dialog.
+  /** Destroys a dialog.
     *
     * When a dialog is destroyed, it will break any references it holds to other
     * objects.
@@ -44,22 +43,27 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
     * Note that this does not release any reference to the object (as opposed to
     * destroying a `GtkWindow`) because there is no reference from the windowing
     * system to the `GtkNativeDialog`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def destroy(): Unit /* None */ = gtk_native_dialog_destroy(
     this.raw.asInstanceOf[Ptr[GtkNativeDialog]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the dialog is modal.
     *
-    * Returns whether the dialog is modal.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModal(): Boolean /* None */ = gtk_native_dialog_get_modal(
     this.raw.asInstanceOf[Ptr[GtkNativeDialog]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the title of the `GtkNativeDialog`.
     *
-    * Gets the title of the `GtkNativeDialog`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_native_dialog_get_title(
@@ -67,9 +71,10 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the transient parent for this window.
     *
-    * Fetches the transient parent for this window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTransientFor(): Window /* None */ = new Window(
     gtk_native_dialog_get_transient_for(
@@ -77,37 +82,40 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determines whether the dialog is visible.
     *
-    * Determines whether the dialog is visible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVisible(): Boolean /* None */ = gtk_native_dialog_get_visible(
     this.raw.asInstanceOf[Ptr[GtkNativeDialog]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Hides the dialog if it is visible, aborting any interaction.
+  /** Hides the dialog if it is visible, aborting any interaction.
     *
     * Once this is called the [signal@Gtk.NativeDialog::response] signal will
     * *not* be emitted until after the next call to
     * [method@Gtk.NativeDialog.show].
     *
     * If the dialog is not visible this does nothing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hide(): Unit /* None */ = gtk_native_dialog_hide(
     this.raw.asInstanceOf[Ptr[GtkNativeDialog]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a dialog modal or non-modal.
+  /** Sets a dialog modal or non-modal.
     *
     * Modal dialogs prevent interaction with other windows in the same
     * application. To keep modal dialogs on top of main application windows, use
     * [method@Gtk.NativeDialog.set_transient_for] to make the dialog transient
     * for the parent; most window managers will then disallow lowering the
     * dialog below the parent.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -116,9 +124,10 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
     gboolean(gint((if modal == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the title of the `GtkNativeDialog.`
     *
-    * Sets the title of the `GtkNativeDialog.`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
       title: String | CString /* Some(CString) */
@@ -127,15 +136,16 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
     __sn_extract_string(title)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Dialog windows should be set transient for the main application window
+  /** Dialog windows should be set transient for the main application window
     * they were spawned from.
     *
     * This allows window managers to e.g. keep the dialog on top of the main
     * window, or center the dialog over the main window.
     *
     * Passing %NULL for @parent unsets the current transient window.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTransientFor(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
@@ -146,15 +156,16 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Shows the dialog on the display.
+  /** Shows the dialog on the display.
     *
     * When the user accepts the state of the dialog the dialog will be
     * automatically hidden and the [signal@Gtk.NativeDialog::response] signal
     * will be emitted.
     *
     * Multiple calls while the dialog is visible will be ignored.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def show(): Unit /* None */ = gtk_native_dialog_show(
     this.raw.asInstanceOf[Ptr[GtkNativeDialog]]

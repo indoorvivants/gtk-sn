@@ -9,18 +9,20 @@ import sn.gnome.glib.internal.guint
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskContainerNode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A render node that can contain other render nodes.
   *
-  * A render node that can contain other render nodes.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ContainerNode(raw: Ptr[GskContainerNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets one of the children of @container.
     *
-    * Gets one of the children of @container.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(
       idx: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -31,9 +33,10 @@ class ContainerNode(raw: Ptr[GskContainerNode])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the number of direct children of @node.
     *
-    * Retrieves the number of direct children of @node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNChildren(): UInt /* None */ = gsk_container_node_get_n_children(
     this.raw.asInstanceOf[Ptr[GskRenderNode]]
@@ -42,15 +45,16 @@ class ContainerNode(raw: Ptr[GskContainerNode])
 end ContainerNode
 
 object ContainerNode:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GskRenderNode` instance for holding the given @children.
+  /** Creates a new `GskRenderNode` instance for holding the given @children.
     *
     * The new node will acquire a reference to each of the children.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
     "Constructor new is weird: non NULL-terminated arrays require special handling"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end ContainerNode

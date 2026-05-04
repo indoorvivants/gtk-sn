@@ -16,9 +16,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkPaned
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A widget with two panes, arranged either horizontally or vertically.
+/** A widget with two panes, arranged either horizontally or vertically.
   *
   * ![An example GtkPaned](panes.png)
   *
@@ -84,6 +82,9 @@ import sn.gnome.gtk4.internal.GtkPaned
   * gtk_paned_set_shrink_end_child (GTK_PANED (hpaned), FALSE);
   * gtk_widget_set_size_request (frame2, 50, -1);
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Paned(raw: Ptr[GtkPaned])
     extends Widget(raw.asInstanceOf),
@@ -95,74 +96,83 @@ class Paned(raw: Ptr[GtkPaned])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the end child of the given `GtkPaned`.
     *
-    * Retrieves the end child of the given `GtkPaned`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEndChild(): Widget /* None */ = new Widget(
     gtk_paned_get_end_child(this.raw.asInstanceOf[Ptr[GtkPaned]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Obtains the position of the divider between the two panes.
     *
-    * Obtains the position of the divider between the two panes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPosition(): Int /* None */ = gtk_paned_get_position(
     this.raw.asInstanceOf[Ptr[GtkPaned]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the [property@Gtk.Paned:end-child] can be resized.
     *
-    * Returns whether the [property@Gtk.Paned:end-child] can be resized.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getResizeEndChild(): Boolean /* None */ = gtk_paned_get_resize_end_child(
     this.raw.asInstanceOf[Ptr[GtkPaned]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the [property@Gtk.Paned:start-child] can be resized.
     *
-    * Returns whether the [property@Gtk.Paned:start-child] can be resized.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getResizeStartChild(): Boolean /* None */ =
     gtk_paned_get_resize_start_child(this.raw.asInstanceOf[Ptr[GtkPaned]]).value
       .!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the [property@Gtk.Paned:end-child] can shrink.
     *
-    * Returns whether the [property@Gtk.Paned:end-child] can shrink.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShrinkEndChild(): Boolean /* None */ = gtk_paned_get_shrink_end_child(
     this.raw.asInstanceOf[Ptr[GtkPaned]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the [property@Gtk.Paned:start-child] can shrink.
     *
-    * Returns whether the [property@Gtk.Paned:start-child] can shrink.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShrinkStartChild(): Boolean /* None */ =
     gtk_paned_get_shrink_start_child(this.raw.asInstanceOf[Ptr[GtkPaned]]).value
       .!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the start child of the given `GtkPaned`.
     *
-    * Retrieves the start child of the given `GtkPaned`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStartChild(): Widget /* None */ = new Widget(
     gtk_paned_get_start_child(this.raw.asInstanceOf[Ptr[GtkPaned]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the separator should be wide.
     *
-    * Gets whether the separator should be wide.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWideHandle(): Boolean /* None */ =
     gtk_paned_get_wide_handle(this.raw.asInstanceOf[Ptr[GtkPaned]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the end child of @paned to @child.
+  /** Sets the end child of @paned to @child.
     *
     * If @child is `NULL`, the existing child will be removed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEndChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -173,16 +183,18 @@ class Paned(raw: Ptr[GtkPaned])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the position of the divider between the two panes.
     *
-    * Sets the position of the divider between the two panes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPosition(position: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_paned_set_position(this.raw.asInstanceOf[Ptr[GtkPaned]], position)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the [property@Gtk.Paned:end-child] can be resized.
     *
-    * Sets whether the [property@Gtk.Paned:end-child] can be resized.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setResizeEndChild(
       resize: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -191,9 +203,10 @@ class Paned(raw: Ptr[GtkPaned])
     gboolean(gint((if resize == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the [property@Gtk.Paned:start-child] can be resized.
     *
-    * Sets whether the [property@Gtk.Paned:start-child] can be resized.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setResizeStartChild(
       resize: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -202,9 +215,10 @@ class Paned(raw: Ptr[GtkPaned])
     gboolean(gint((if resize == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the [property@Gtk.Paned:end-child] can shrink.
     *
-    * Sets whether the [property@Gtk.Paned:end-child] can shrink.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShrinkEndChild(
       resize: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -213,9 +227,10 @@ class Paned(raw: Ptr[GtkPaned])
     gboolean(gint((if resize == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the [property@Gtk.Paned:start-child] can shrink.
     *
-    * Sets whether the [property@Gtk.Paned:start-child] can shrink.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShrinkStartChild(
       resize: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -224,11 +239,12 @@ class Paned(raw: Ptr[GtkPaned])
     gboolean(gint((if resize == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the start child of @paned to @child.
+  /** Sets the start child of @paned to @child.
     *
     * If @child is `NULL`, the existing child will be removed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setStartChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -239,9 +255,10 @@ class Paned(raw: Ptr[GtkPaned])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the separator should be wide.
     *
-    * Sets whether the separator should be wide.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWideHandle(
       wide: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -253,9 +270,10 @@ class Paned(raw: Ptr[GtkPaned])
 end Paned
 
 object Paned:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkPaned` widget.
     *
-    * Creates a new `GtkPaned` widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(orientation: Orientation /* Some(GtkOrientation) */ ): Paned =
     new Paned(gtk_paned_new(orientation.raw).asInstanceOf)

@@ -17,9 +17,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkStack
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkStack` is a container which only shows one of its children at a time.
+/** `GtkStack` is a container which only shows one of its children at a time.
   *
   * In contrast to `GtkNotebook`, `GtkStack` does not provide a means for users
   * to change the visible child. Instead, a separate widget such as
@@ -64,6 +62,9 @@ import sn.gnome.gtk4.internal.GtkStack
   *
   * `GtkStack` uses the %GTK_ACCESSIBLE_ROLE_TAB_PANEL for the stack pages,
   * which are the accessible parent objects of the child widgets.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Stack(raw: Ptr[GtkStack])
     extends Widget(raw.asInstanceOf),
@@ -73,9 +74,10 @@ class Stack(raw: Ptr[GtkStack])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds a child to @stack.
     *
-    * Adds a child to @stack.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addChild(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -86,11 +88,12 @@ class Stack(raw: Ptr[GtkStack])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a child to @stack.
+  /** Adds a child to @stack.
     *
     * The child is identified by the @name.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addNamed(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -105,14 +108,15 @@ class Stack(raw: Ptr[GtkStack])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a child to @stack.
+  /** Adds a child to @stack.
     *
     * The child is identified by the @name. The @title will be used by
     * `GtkStackSwitcher` to represent
     * @child
     *   in a tab bar, so it should be short.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addTitled(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -129,11 +133,12 @@ class Stack(raw: Ptr[GtkStack])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finds the child with the name given as the argument.
+  /** Finds the child with the name given as the argument.
     *
     * Returns %NULL if there is no child with this name.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChildByName(
       name: String | CString /* Some(CString) */
@@ -144,25 +149,28 @@ class Stack(raw: Ptr[GtkStack])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether @stack is horizontally homogeneous.
     *
-    * Gets whether @stack is horizontally homogeneous.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHhomogeneous(): Boolean /* None */ =
     gtk_stack_get_hhomogeneous(this.raw.asInstanceOf[Ptr[GtkStack]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the `GtkStack` is set up to interpolate between the sizes
+  /** Returns whether the `GtkStack` is set up to interpolate between the sizes
     * of children on page switch.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInterpolateSize(): Boolean /* None */ = gtk_stack_get_interpolate_size(
     this.raw.asInstanceOf[Ptr[GtkStack]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `GtkStackPage` object for @child.
     *
-    * Returns the `GtkStackPage` object for @child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPage(child: Widget /* Some(Ptr[GtkWidget]) */ ): StackPage /* None */ =
     new StackPage(
@@ -172,59 +180,65 @@ class Stack(raw: Ptr[GtkStack])
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a `GListModel` that contains the pages of the stack.
+  /** Returns a `GListModel` that contains the pages of the stack.
     *
     * This can be used to keep an up-to-date view. The model also implements
     * [iface@Gtk.SelectionModel] and can be used to track and modify the visible
     * page.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPages(): SelectionModel /* None */ = new SelectionModel.Abstract(
     gtk_stack_get_pages(this.raw.asInstanceOf[Ptr[GtkStack]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the amount of time (in milliseconds) that transitions between
+  /** Returns the amount of time (in milliseconds) that transitions between
     * pages in @stack will take.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTransitionDuration(): UInt /* None */ =
     gtk_stack_get_transition_duration(
       this.raw.asInstanceOf[Ptr[GtkStack]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the @stack is currently in a transition from one page to
+  /** Returns whether the @stack is currently in a transition from one page to
     * another.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTransitionRunning(): Boolean /* None */ =
     gtk_stack_get_transition_running(this.raw.asInstanceOf[Ptr[GtkStack]]).value
       .!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the type of animation that will be used for transitions between pages
+  /** Gets the type of animation that will be used for transitions between pages
     * in @stack.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTransitionType(): StackTransitionType /* None */ =
     StackTransitionType.fromRaw(
       gtk_stack_get_transition_type(this.raw.asInstanceOf[Ptr[GtkStack]])
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether @stack is vertically homogeneous.
     *
-    * Gets whether @stack is vertically homogeneous.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVhomogeneous(): Boolean /* None */ =
     gtk_stack_get_vhomogeneous(this.raw.asInstanceOf[Ptr[GtkStack]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the currently visible child of @stack.
+  /** Gets the currently visible child of @stack.
     *
     * Returns %NULL if there are no visible children.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVisibleChild(): Widget /* None */ = new Widget(
     gtk_stack_get_visible_child(
@@ -232,11 +246,12 @@ class Stack(raw: Ptr[GtkStack])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the name of the currently visible child of @stack.
+  /** Returns the name of the currently visible child of @stack.
     *
     * Returns %NULL if there is no visible child.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVisibleChildName()(using Zone): String /* None */ = fromCString(
     gtk_stack_get_visible_child_name(
@@ -244,9 +259,10 @@ class Stack(raw: Ptr[GtkStack])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes a child widget from @stack.
     *
-    * Removes a child widget from @stack.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_stack_remove(
@@ -254,13 +270,14 @@ class Stack(raw: Ptr[GtkStack])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `GtkStack` to be horizontally homogeneous or not.
+  /** Sets the `GtkStack` to be horizontally homogeneous or not.
     *
     * If it is homogeneous, the `GtkStack` will request the same width for all
     * its children. If it isn't, the stack may change width when a different
     * child becomes visible.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHhomogeneous(
       hhomogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -269,15 +286,16 @@ class Stack(raw: Ptr[GtkStack])
     gboolean(gint((if hhomogeneous == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether or not @stack will interpolate its size when changing the
+  /** Sets whether or not @stack will interpolate its size when changing the
     * visible child.
     *
     * If the [property@Gtk.Stack:interpolate-size] property is set to %TRUE, @stack
     * will interpolate its size between the current one and the one it'll take
     * after changing the visible child, according to the set transition
     * duration.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInterpolateSize(
       interpolate_size: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -286,9 +304,10 @@ class Stack(raw: Ptr[GtkStack])
     gboolean(gint((if interpolate_size == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the duration that transitions between pages in @stack will take.
     *
-    * Sets the duration that transitions between pages in @stack will take.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTransitionDuration(
       duration: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -297,9 +316,7 @@ class Stack(raw: Ptr[GtkStack])
     guint(duration)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the type of animation that will be used for transitions between pages
+  /** Sets the type of animation that will be used for transitions between pages
     * in @stack.
     *
     * Available types include various kinds of fades and slides.
@@ -307,6 +324,9 @@ class Stack(raw: Ptr[GtkStack])
     * The transition type can be changed without problems at runtime, so it is
     * possible to change the animation based on the page that is about to become
     * current.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTransitionType(
       transition: StackTransitionType /* Some(GtkStackTransitionType) */
@@ -315,13 +335,14 @@ class Stack(raw: Ptr[GtkStack])
     transition.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `GtkStack` to be vertically homogeneous or not.
+  /** Sets the `GtkStack` to be vertically homogeneous or not.
     *
     * If it is homogeneous, the `GtkStack` will request the same height for all
     * its children. If it isn't, the stack may change height when a different
     * child becomes visible.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVhomogeneous(
       vhomogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -330,15 +351,16 @@ class Stack(raw: Ptr[GtkStack])
     gboolean(gint((if vhomogeneous == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Makes @child the visible child of @stack.
+  /** Makes @child the visible child of @stack.
     *
     * If @child is different from the currently visible child, the transition
     * between the two will be animated with the current transition type of @stack.
     *
     * Note that the @child widget has to be visible itself (see
     * [method@Gtk.Widget.show]) in order to become the visible child of @stack.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVisibleChild(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -347,12 +369,13 @@ class Stack(raw: Ptr[GtkStack])
     child.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Makes the child with the given name visible.
+  /** Makes the child with the given name visible.
     *
     * Note that the child widget has to be visible itself (see
     * [method@Gtk.Widget.show]) in order to become the visible child of @stack.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVisibleChildFull(
       name: String | CString /* Some(CString) */,
@@ -363,15 +386,16 @@ class Stack(raw: Ptr[GtkStack])
     transition.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Makes the child with the given name visible.
+  /** Makes the child with the given name visible.
     *
     * If @child is different from the currently visible child, the transition
     * between the two will be animated with the current transition type of @stack.
     *
     * Note that the child widget has to be visible itself (see
     * [method@Gtk.Widget.show]) in order to become the visible child of @stack.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVisibleChildName(
       name: String | CString /* Some(CString) */
@@ -391,9 +415,10 @@ class Stack(raw: Ptr[GtkStack])
 end Stack
 
 object Stack:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkStack`.
     *
-    * Creates a new `GtkStack`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Stack = new Stack(gtk_stack_new().asInstanceOf)
 end Stack

@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.LayoutManager
 import sn.gnome.gtk4.internal.GtkFixedLayout
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkFixedLayout` is a layout manager which can place child widgets at fixed
+/** `GtkFixedLayout` is a layout manager which can place child widgets at fixed
   * positions.
   *
   * Most applications should never use this layout manager; fixed positioning
@@ -36,6 +34,9 @@ import sn.gnome.gtk4.internal.GtkFixedLayout
   * Finally, fixed positioning makes it kind of annoying to add/remove UI
   * elements, since you have to reposition all the other elements. This is a
   * long-term maintenance problem for your application.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FixedLayout(raw: Ptr[GtkFixedLayout])
     extends LayoutManager(raw.asInstanceOf):
@@ -45,9 +46,10 @@ class FixedLayout(raw: Ptr[GtkFixedLayout])
 end FixedLayout
 
 object FixedLayout:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkFixedLayout`.
     *
-    * Creates a new `GtkFixedLayout`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): FixedLayout = new FixedLayout(
     gtk_fixed_layout_new().asInstanceOf

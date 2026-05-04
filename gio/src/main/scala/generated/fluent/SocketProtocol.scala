@@ -2,44 +2,50 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GSocketProtocol
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A protocol identifier is specified when creating a #GSocket, which is a
+/** A protocol identifier is specified when creating a #GSocket, which is a
   * family/type specific identifier, where 0 means the default protocol for the
   * particular family/type.
   *
   * This enum contains a set of commonly available and used protocols. You can
   * also pass any other identifiers handled by the platform in order to use
   * protocols not listed here.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SocketProtocol(val raw: GSocketProtocol):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The protocol type is unknown
     *
-    * The protocol type is unknown
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN extends SocketProtocol(GSocketProtocol.G_SOCKET_PROTOCOL_UNKNOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The default protocol for the family/type
     *
-    * The default protocol for the family/type
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DEFAULT extends SocketProtocol(GSocketProtocol.G_SOCKET_PROTOCOL_DEFAULT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** TCP over IP
     *
-    * TCP over IP
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TCP extends SocketProtocol(GSocketProtocol.G_SOCKET_PROTOCOL_TCP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** UDP over IP
     *
-    * UDP over IP
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UDP extends SocketProtocol(GSocketProtocol.G_SOCKET_PROTOCOL_UDP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** SCTP over IP
     *
-    * SCTP over IP
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SCTP extends SocketProtocol(GSocketProtocol.G_SOCKET_PROTOCOL_SCTP)
 end SocketProtocol

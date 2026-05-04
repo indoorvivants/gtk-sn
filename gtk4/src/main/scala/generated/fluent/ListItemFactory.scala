@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.internal.GtkListItemFactory
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkListItemFactory` creates widgets for the items taken from a
+/** A `GtkListItemFactory` creates widgets for the items taken from a
   * `GListModel`.
   *
   * This is one of the core concepts of handling list widgets such as
@@ -58,6 +56,9 @@ import sn.gnome.gtk4.internal.GtkListItemFactory
   * view widget you want to use it with, such as via
   * [method@Gtk.ListView.set_factory]. Reusing factories across different views
   * is allowed, but very uncommon.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ListItemFactory(raw: Ptr[GtkListItemFactory])
     extends Object(raw.asInstanceOf):

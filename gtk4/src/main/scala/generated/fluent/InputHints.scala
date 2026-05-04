@@ -2,9 +2,7 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkInputHints
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Describes hints that might be taken into account by input methods or
+/** Describes hints that might be taken into account by input methods or
   * applications.
   *
   * Note that input methods may already tailor their behaviour according to the
@@ -15,6 +13,9 @@ import _root_.sn.gnome.gtk4.internal.GtkInputHints
   *
   * This enumeration may be extended in the future; input methods should ignore
   * unknown values.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class InputHints private (val raw: GtkInputHints):
   def is(kv: InputHints): Boolean =
@@ -42,9 +43,7 @@ object InputHints:
     def |(other: InputHints) =
       InputHints(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Describes hints that might be taken into account by input methods or
+  /** Describes hints that might be taken into account by input methods or
     * applications.
     *
     * Note that input methods may already tailor their behaviour according to
@@ -55,20 +54,25 @@ object InputHints:
     *
     * This enumeration may be extended in the future; input methods should
     * ignore unknown values.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GtkInputHints, name: String)
       extends InputHints(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No special behaviour suggested
       *
-      * No special behaviour suggested
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GtkInputHints.GTK_INPUT_HINT_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Suggest checking for typos
       *
-      * Suggest checking for typos
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SPELLCHECK
         extends KnownValue(
@@ -76,9 +80,10 @@ object InputHints:
           "SPELLCHECK"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Suggest not checking for typos
       *
-      * Suggest not checking for typos
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NO_SPELLCHECK
         extends KnownValue(
@@ -86,9 +91,10 @@ object InputHints:
           "NO_SPELLCHECK"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Suggest word completion
       *
-      * Suggest word completion
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case WORD_COMPLETION
         extends KnownValue(
@@ -96,16 +102,18 @@ object InputHints:
           "WORD_COMPLETION"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Suggest to convert all text to lowercase
       *
-      * Suggest to convert all text to lowercase
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case LOWERCASE
         extends KnownValue(GtkInputHints.GTK_INPUT_HINT_LOWERCASE, "LOWERCASE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Suggest to capitalize all text
       *
-      * Suggest to capitalize all text
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case UPPERCASE_CHARS
         extends KnownValue(
@@ -113,9 +121,10 @@ object InputHints:
           "UPPERCASE_CHARS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Suggest to capitalize the first character of each word
       *
-      * Suggest to capitalize the first character of each word
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case UPPERCASE_WORDS
         extends KnownValue(
@@ -123,9 +132,10 @@ object InputHints:
           "UPPERCASE_WORDS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Suggest to capitalize the first word of each sentence
       *
-      * Suggest to capitalize the first word of each sentence
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case UPPERCASE_SENTENCES
         extends KnownValue(
@@ -133,10 +143,11 @@ object InputHints:
           "UPPERCASE_SENTENCES"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Suggest to not show an onscreen keyboard (e.g for a calculator that
+    /** Suggest to not show an onscreen keyboard (e.g for a calculator that
       * already has all the keys).
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case INHIBIT_OSK
         extends KnownValue(
@@ -144,9 +155,10 @@ object InputHints:
           "INHIBIT_OSK"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The text is vertical
       *
-      * The text is vertical
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case VERTICAL_WRITING
         extends KnownValue(
@@ -154,23 +166,26 @@ object InputHints:
           "VERTICAL_WRITING"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Suggest offering Emoji support
       *
-      * Suggest offering Emoji support
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case EMOJI extends KnownValue(GtkInputHints.GTK_INPUT_HINT_EMOJI, "EMOJI")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Suggest not offering Emoji support
       *
-      * Suggest not offering Emoji support
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NO_EMOJI
         extends KnownValue(GtkInputHints.GTK_INPUT_HINT_NO_EMOJI, "NO_EMOJI")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Request that the input method should not update personalized data (like
+    /** Request that the input method should not update personalized data (like
       * typing history)
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case PRIVATE
         extends KnownValue(GtkInputHints.GTK_INPUT_HINT_PRIVATE, "PRIVATE")

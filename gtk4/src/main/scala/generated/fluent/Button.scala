@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkButton
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkButton` widget is generally used to trigger a callback function that
+/** The `GtkButton` widget is generally used to trigger a callback function that
   * is called when the button is pressed.
   *
   * ![An example GtkButton](button.png)
@@ -46,6 +44,9 @@ import sn.gnome.gtk4.internal.GtkButton
   * # Accessibility
   *
   * `GtkButton` uses the %GTK_ACCESSIBLE_ROLE_BUTTON role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Button(raw: Ptr[GtkButton])
     extends Widget(raw.asInstanceOf),
@@ -56,71 +57,78 @@ class Button(raw: Ptr[GtkButton])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves whether the button can be smaller than the natural size of its
+  /** Retrieves whether the button can be smaller than the natural size of its
     * contents.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCanShrink(): Boolean /* None */ =
     gtk_button_get_can_shrink(this.raw.asInstanceOf[Ptr[GtkButton]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @button.
     *
-    * Gets the child widget of @button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_button_get_child(this.raw.asInstanceOf[Ptr[GtkButton]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the button has a frame.
     *
-    * Returns whether the button has a frame.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasFrame(): Boolean /* None */ =
     gtk_button_get_has_frame(this.raw.asInstanceOf[Ptr[GtkButton]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the icon name of the button.
+  /** Returns the icon name of the button.
     *
     * If the icon name has not been set with [method@Gtk.Button.set_icon_name]
     * the return value will be %NULL. This will be the case if you create an
     * empty button with [ctor@Gtk.Button.new] to use as a container.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconName()(using Zone): String /* None */ = fromCString(
     gtk_button_get_icon_name(this.raw.asInstanceOf[Ptr[GtkButton]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the text from the label of the button.
+  /** Fetches the text from the label of the button.
     *
     * If the label text has not been set with [method@Gtk.Button.set_label] the
     * return value will be %NULL. This will be the case if you create an empty
     * button with [ctor@Gtk.Button.new] to use as a container.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLabel()(using Zone): String /* None */ = fromCString(
     gtk_button_get_label(this.raw.asInstanceOf[Ptr[GtkButton]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * gets whether underlines are interpreted as mnemonics.
+  /** gets whether underlines are interpreted as mnemonics.
     *
     * See [method@Gtk.Button.set_use_underline].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseUnderline(): Boolean /* None */ = gtk_button_get_use_underline(
     this.raw.asInstanceOf[Ptr[GtkButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the button size can be smaller than the natural size of its
+  /** Sets whether the button size can be smaller than the natural size of its
     * contents.
     *
     * For text buttons, setting @can_shrink to true will ellipsize the label.
     *
     * For icons and custom children, this function has no effect.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCanShrink(
       can_shrink: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -129,15 +137,16 @@ class Button(raw: Ptr[GtkButton])
     gboolean(gint((if can_shrink == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the child widget of @button.
+  /** Sets the child widget of @button.
     *
     * Note that by using this API, you take full responsibility for setting up
     * the proper accessibility label and description information for @button.
     * Most likely, you'll either set the accessibility label or description for @button
     * explicitly, or you'll set a labelled-by or described-by relations from @child
     * to @button.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -148,11 +157,12 @@ class Button(raw: Ptr[GtkButton])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the style of the button.
+  /** Sets the style of the button.
     *
     * Buttons can have a flat appearance or have a frame drawn around them.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHasFrame(
       has_frame: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -161,12 +171,13 @@ class Button(raw: Ptr[GtkButton])
     gboolean(gint((if has_frame == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a `GtkImage` with the given icon name as a child.
+  /** Adds a `GtkImage` with the given icon name as a child.
     *
     * If @button already contains a child widget, that child widget will be
     * removed and replaced with the image.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconName(
       icon_name: String | CString /* Some(CString) */
@@ -175,11 +186,12 @@ class Button(raw: Ptr[GtkButton])
     __sn_extract_string(icon_name)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the text of the label of the button to @label.
+  /** Sets the text of the label of the button to @label.
     *
     * This will also clear any previously set labels.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabel(
       label: String | CString /* Some(CString) */
@@ -188,12 +200,13 @@ class Button(raw: Ptr[GtkButton])
     __sn_extract_string(label)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether to use underlines as mnemonics.
+  /** Sets whether to use underlines as mnemonics.
     *
     * If true, an underline in the text of the button label indicates the next
     * character should be used for the mnemonic accelerator key.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseUnderline(
       use_underline: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -213,21 +226,23 @@ class Button(raw: Ptr[GtkButton])
 end Button
 
 object Button:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkButton` widget.
+  /** Creates a new `GtkButton` widget.
     *
     * To add a child widget to the button, use [method@Gtk.Button.set_child].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Button = new Button(gtk_button_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new button containing an icon from the current icon theme.
+  /** Creates a new button containing an icon from the current icon theme.
     *
     * If the icon name isn’t known, a “broken image” icon will be displayed
     * instead. If the current icon theme is changed, the icon will be updated
     * appropriately.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromIconName(
       icon_name: String | CString /* Some(CString) */
@@ -235,9 +250,10 @@ object Button:
     gtk_button_new_from_icon_name(__sn_extract_string(icon_name)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a `GtkButton` widget with a `GtkLabel` child.
     *
-    * Creates a `GtkButton` widget with a `GtkLabel` child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withLabel(
       label: String | CString /* Some(CString) */
@@ -245,15 +261,16 @@ object Button:
     gtk_button_new_with_label(__sn_extract_string(label)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkButton` containing a label.
+  /** Creates a new `GtkButton` containing a label.
     *
     * If characters in @label are preceded by an underscore, they are
     * underlined. If you need a literal underscore character in a label, use
     * “__” (two underscores). The first underlined character represents a
     * keyboard accelerator called a mnemonic. Pressing <kbd>Alt</kbd> and that
     * key activates the button.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withMnemonic(
       label: String | CString /* Some(CString) */

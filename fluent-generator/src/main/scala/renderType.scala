@@ -3,6 +3,8 @@ import rendition.*
 import scala.util.boundary.Label
 import scala.util.boundary
 
+import FluentErrReason.*
+
 val StringExtractorName = "__sn_extract_string"
 
 val stringExtractor =
@@ -26,7 +28,7 @@ val decodeNullablePtrs =
     ):
       line("val ab = Array.newBuilder[Ptr[T]]")
       line("var offset = 0 ")
-      line("val tg = Tag.materializePtrTag(ptag)")
+      line("val tg = Tag.materializePtrTag(using ptag)")
       block("while(p(offset)(using tg) != null) do", "end while"):
         line("ab += p(offset)(using tg)")
         line("offset += 1 ")
@@ -345,7 +347,7 @@ def renderType(
     try tpe.typeValue
     catch
       case exc: NoSuchElementException =>
-        boundary.break(FluentErr.TypeMissingValue(tpe))
+        raise(TypeMissingValue(tpe))
 
   val result = tpe match
     case tpe: Type =>
@@ -439,7 +441,7 @@ def renderType(
         .orElse(getCType(tpe.name, typeValue))
         // .orElse(deconstructCType(typeValue))
         .getOrElse(
-          boundary.break(FluentErr.CannotRenderType(tpe))
+          raise(CannotRenderType(tpe))
         )
 
     case ar: ArrayType =>
@@ -468,7 +470,7 @@ def renderType(
                 )
 
         case _ =>
-          boundary.break(FluentErr.CannotRenderArrayType(ar))
+          raise(CannotRenderArrayType(ar))
           // if typeValue.endsWith("gchar*") then
           //   TypeMapping(s"Ptr[CString]", effects = renderedElementType.effects)
           //     .withMassageIntoUnsafe(Massage.InferredCast)

@@ -2,147 +2,171 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GTokenType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The possible types of token returned from each g_scanner_get_next_token()
+/** The possible types of token returned from each g_scanner_get_next_token()
   * call.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TokenType(val raw: GTokenType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the end of the file
     *
-    * the end of the file
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EOF extends TokenType(GTokenType.G_TOKEN_EOF)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a '(' character
     *
-    * a '(' character
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LEFT_PAREN extends TokenType(GTokenType.G_TOKEN_LEFT_PAREN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a ')' character
     *
-    * a ')' character
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RIGHT_PAREN extends TokenType(GTokenType.G_TOKEN_RIGHT_PAREN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a '{' character
     *
-    * a '{' character
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LEFT_CURLY extends TokenType(GTokenType.G_TOKEN_LEFT_CURLY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a '}' character
     *
-    * a '}' character
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RIGHT_CURLY extends TokenType(GTokenType.G_TOKEN_RIGHT_CURLY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a '[' character
     *
-    * a '[' character
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LEFT_BRACE extends TokenType(GTokenType.G_TOKEN_LEFT_BRACE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a ']' character
     *
-    * a ']' character
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RIGHT_BRACE extends TokenType(GTokenType.G_TOKEN_RIGHT_BRACE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a '=' character
     *
-    * a '=' character
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EQUAL_SIGN extends TokenType(GTokenType.G_TOKEN_EQUAL_SIGN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a ',' character
     *
-    * a ',' character
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COMMA extends TokenType(GTokenType.G_TOKEN_COMMA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** not a token
     *
-    * not a token
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends TokenType(GTokenType.G_TOKEN_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** an error occurred
     *
-    * an error occurred
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ERROR extends TokenType(GTokenType.G_TOKEN_ERROR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a character
     *
-    * a character
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHAR extends TokenType(GTokenType.G_TOKEN_CHAR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a binary integer
     *
-    * a binary integer
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BINARY extends TokenType(GTokenType.G_TOKEN_BINARY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** an octal integer
     *
-    * an octal integer
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OCTAL extends TokenType(GTokenType.G_TOKEN_OCTAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** an integer
     *
-    * an integer
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INT extends TokenType(GTokenType.G_TOKEN_INT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a hex integer
     *
-    * a hex integer
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HEX extends TokenType(GTokenType.G_TOKEN_HEX)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a floating point number
     *
-    * a floating point number
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FLOAT extends TokenType(GTokenType.G_TOKEN_FLOAT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a string
     *
-    * a string
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STRING extends TokenType(GTokenType.G_TOKEN_STRING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a symbol
     *
-    * a symbol
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SYMBOL extends TokenType(GTokenType.G_TOKEN_SYMBOL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** an identifier
     *
-    * an identifier
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case IDENTIFIER extends TokenType(GTokenType.G_TOKEN_IDENTIFIER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a null identifier
     *
-    * a null identifier
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case IDENTIFIER_NULL extends TokenType(GTokenType.G_TOKEN_IDENTIFIER_NULL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** one line comment
     *
-    * one line comment
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COMMENT_SINGLE extends TokenType(GTokenType.G_TOKEN_COMMENT_SINGLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** multi line comment
     *
-    * multi line comment
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COMMENT_MULTI extends TokenType(GTokenType.G_TOKEN_COMMENT_MULTI)
 end TokenType

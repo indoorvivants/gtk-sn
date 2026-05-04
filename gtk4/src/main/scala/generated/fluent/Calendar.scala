@@ -9,9 +9,7 @@ import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkCalendar
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkCalendar` is a widget that displays a Gregorian calendar, one month at a
+/** `GtkCalendar` is a widget that displays a Gregorian calendar, one month at a
   * time.
   *
   * ![An example GtkCalendar](calendar.png)
@@ -59,6 +57,9 @@ import sn.gnome.gtk4.internal.GtkCalendar
   * style class. The label of the current day get the .today style class.
   *
   * Marked day labels get the :selected state assigned.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Calendar(raw: Ptr[GtkCalendar])
     extends Widget(raw.asInstanceOf),
@@ -68,29 +69,32 @@ class Calendar(raw: Ptr[GtkCalendar])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Remove all visual markers.
     *
-    * Remove all visual markers.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def clearMarks(): Unit /* None */ = gtk_calendar_clear_marks(
     this.raw.asInstanceOf[Ptr[GtkCalendar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a `GDateTime` representing the shown year, month and the selected
+  /** Returns a `GDateTime` representing the shown year, month and the selected
     * day.
     *
     * The returned date is in the local time zone.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[get_date/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
-  def getDate__ = ???
+  private def getDate__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns if the @day of the @calendar is already marked.
     *
-    * Returns if the @day of the @calendar is already marked.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDayIsMarked(
       day: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -99,59 +103,65 @@ class Calendar(raw: Ptr[GtkCalendar])
     guint(day)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether @self is currently showing the names of the week days.
+  /** Returns whether @self is currently showing the names of the week days.
     *
     * This is the value of the [property@Gtk.Calendar:show-day-names] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowDayNames(): Boolean /* None */ = gtk_calendar_get_show_day_names(
     this.raw.asInstanceOf[Ptr[GtkCalendar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether @self is currently showing the heading.
+  /** Returns whether @self is currently showing the heading.
     *
     * This is the value of the [property@Gtk.Calendar:show-heading] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowHeading(): Boolean /* None */ = gtk_calendar_get_show_heading(
     this.raw.asInstanceOf[Ptr[GtkCalendar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether @self is showing week numbers right now.
+  /** Returns whether @self is showing week numbers right now.
     *
     * This is the value of the [property@Gtk.Calendar:show-week-numbers]
     * property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowWeekNumbers(): Boolean /* None */ =
     gtk_calendar_get_show_week_numbers(
       this.raw.asInstanceOf[Ptr[GtkCalendar]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Places a visual marker on a particular day of the current month.
     *
-    * Places a visual marker on a particular day of the current month.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def markDay(
       day: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ =
     gtk_calendar_mark_day(this.raw.asInstanceOf[Ptr[GtkCalendar]], guint(day))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Switches to @date's year and month and select its day.
     *
-    * Switches to @date's year and month and select its day.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[select_day/<method parameters>/date]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
-  def selectDay__ = ???
+  private def selectDay__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the calendar shows day names.
     *
-    * Sets whether the calendar shows day names.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowDayNames(
       value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -160,12 +170,13 @@ class Calendar(raw: Ptr[GtkCalendar])
     gboolean(gint((if value == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the calendar should show a heading.
+  /** Sets whether the calendar should show a heading.
     *
     * The heading contains the current year and month as well as buttons for
     * changing both.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowHeading(
       value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -174,9 +185,10 @@ class Calendar(raw: Ptr[GtkCalendar])
     gboolean(gint((if value == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether week numbers are shown in the calendar.
     *
-    * Sets whether week numbers are shown in the calendar.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowWeekNumbers(
       value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -185,9 +197,10 @@ class Calendar(raw: Ptr[GtkCalendar])
     gboolean(gint((if value == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes the visual marker from a particular day.
     *
-    * Removes the visual marker from a particular day.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unmarkDay(
       day: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -197,9 +210,10 @@ class Calendar(raw: Ptr[GtkCalendar])
 end Calendar
 
 object Calendar:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new calendar, with the current date being selected.
     *
-    * Creates a new calendar, with the current date being selected.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Calendar = new Calendar(gtk_calendar_new().asInstanceOf)
 end Calendar

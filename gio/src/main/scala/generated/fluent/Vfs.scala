@@ -9,17 +9,19 @@ import sn.gnome.gio.internal.GVfs
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Entry point for using GIO functionality.
   *
-  * Entry point for using GIO functionality.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets a #GFile for @path.
     *
-    * Gets a #GFile for @path.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFileForPath(
       path: String | CString /* Some(CString) */
@@ -30,13 +32,14 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a #GFile for @uri.
+  /** Gets a #GFile for @uri.
     *
     * This operation never fails, but the returned object might not support any
     * I/O operation if the URI is malformed or if the URI scheme is not
     * supported.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFileForUri(
       uri: String | CString /* Some(CString) */
@@ -47,26 +50,29 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets a list of URI schemes supported by @vfs.
     *
-    * Gets a list of URI schemes supported by @vfs.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[get_supported_uri_schemes/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def getSupportedUriSchemes__ = ???
+  private def getSupportedUriSchemes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if the VFS is active.
     *
-    * Checks if the VFS is active.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isActive(): Boolean /* None */ =
     g_vfs_is_active(this.raw.asInstanceOf[Ptr[GVfs]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This operation never fails, but the returned object might not support any
+  /** This operation never fails, but the returned object might not support any
     * I/O operations if the @parse_name cannot be parsed by the #GVfs module.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def parseName(
       parse_name: String | CString /* Some(CString) */
@@ -77,9 +83,7 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Registers @uri_func and @parse_name_func as the #GFile URI and parse name
+  /** Registers @uri_func and @parse_name_func as the #GFile URI and parse name
     * lookup functions for URIs with a scheme matching @scheme. Note that @scheme
     * is registered only within the running application, as opposed to
     * desktop-wide as it happens with GVfs backends.
@@ -103,16 +107,20 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     *
     * It's an error to call this function twice with the same scheme. To
     * unregister a custom URI scheme, use g_vfs_unregister_uri_scheme().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(VfsFileLookupFunc), @type -> DataRecord(GVfsFileLookupFunc)))"
+    "[register_uri_scheme/<method parameters>/uri_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(VfsFileLookupFunc), @type -> DataRecord(GVfsFileLookupFunc)))"
   )
-  def registerUriScheme__ = ???
+  private def registerUriScheme__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Unregisters the URI handler for @scheme previously registered with
+  /** Unregisters the URI handler for @scheme previously registered with
     * g_vfs_register_uri_scheme().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unregisterUriScheme(
       scheme: String | CString /* Some(CString) */
@@ -132,17 +140,19 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
 end Vfs
 
 object Vfs:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the default #GVfs for the system.
     *
-    * Gets the default #GVfs for the system.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefault(): Vfs /* Some(Ptr[GVfs]) */ = new Vfs(
     g_vfs_get_default().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the local #GVfs for the system.
     *
-    * Gets the local #GVfs for the system.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLocal(): Vfs /* Some(Ptr[GVfs]) */ = new Vfs(
     g_vfs_get_local().asInstanceOf

@@ -2,22 +2,25 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GResourceError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * An error code used with %G_RESOURCE_ERROR in a #GError returned from a
+/** An error code used with %G_RESOURCE_ERROR in a #GError returned from a
   * #GResource routine.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ResourceError(val raw: GResourceError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** no file was found at the requested path
     *
-    * no file was found at the requested path
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_FOUND
       extends ResourceError(GResourceError.G_RESOURCE_ERROR_NOT_FOUND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** unknown error
     *
-    * unknown error
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INTERNAL extends ResourceError(GResourceError.G_RESOURCE_ERROR_INTERNAL)
 end ResourceError

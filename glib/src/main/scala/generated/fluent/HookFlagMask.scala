@@ -2,9 +2,10 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GHookFlagMask
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used internally in the #GHook implementation.
   *
-  * Flags used internally in the #GHook implementation.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class HookFlagMask private (val raw: GHookFlagMask):
   def is(kv: HookFlagMask): Boolean =
@@ -32,31 +33,35 @@ object HookFlagMask:
     def |(other: HookFlagMask) =
       HookFlagMask(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used internally in the #GHook implementation.
     *
-    * Flags used internally in the #GHook implementation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GHookFlagMask, name: String)
       extends HookFlagMask(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** set if the hook has not been destroyed
       *
-      * set if the hook has not been destroyed
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ACTIVE extends KnownValue(GHookFlagMask.G_HOOK_FLAG_ACTIVE, "ACTIVE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** set if the hook is currently being run
       *
-      * set if the hook is currently being run
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case IN_CALL
         extends KnownValue(GHookFlagMask.G_HOOK_FLAG_IN_CALL, "IN_CALL")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * A mask covering all bits reserved for hook flags; see
+    /** A mask covering all bits reserved for hook flags; see
       * %G_HOOK_FLAG_USER_SHIFT
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case MASK extends KnownValue(GHookFlagMask.G_HOOK_FLAG_MASK, "MASK")
   end KnownValue

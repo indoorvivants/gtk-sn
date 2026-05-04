@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GTestDBusFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags to define future #GTestDBus behaviour.
   *
-  * Flags to define future #GTestDBus behaviour.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TestDBusFlags private (val raw: GTestDBusFlags):
   def is(kv: TestDBusFlags): Boolean =
@@ -32,17 +33,19 @@ object TestDBusFlags:
     def |(other: TestDBusFlags) =
       TestDBusFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags to define future #GTestDBus behaviour.
     *
-    * Flags to define future #GTestDBus behaviour.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GTestDBusFlags, name: String)
       extends TestDBusFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags.
       *
-      * No flags.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GTestDBusFlags.G_TEST_DBUS_NONE, "NONE")
   end KnownValue

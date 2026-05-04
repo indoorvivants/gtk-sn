@@ -2,10 +2,11 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDBusSignalFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags used when subscribing to signals via
+/** Flags used when subscribing to signals via
   * g_dbus_connection_signal_subscribe().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusSignalFlags private (val raw: GDBusSignalFlags):
   def is(kv: DBusSignalFlags): Boolean =
@@ -33,27 +34,30 @@ object DBusSignalFlags:
     def |(other: DBusSignalFlags) =
       DBusSignalFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags used when subscribing to signals via
+  /** Flags used when subscribing to signals via
     * g_dbus_connection_signal_subscribe().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GDBusSignalFlags, name: String)
       extends DBusSignalFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(GDBusSignalFlags.G_DBUS_SIGNAL_FLAGS_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Don't actually send the AddMatch D-Bus call for this signal
+    /** Don't actually send the AddMatch D-Bus call for this signal
       * subscription. This gives you more control over which match rules you add
       * (but you must add them manually).
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NO_MATCH_RULE
         extends KnownValue(
@@ -61,10 +65,11 @@ object DBusSignalFlags:
           "NO_MATCH_RULE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Match first arguments that contain a bus or interface name with the
+    /** Match first arguments that contain a bus or interface name with the
       * given namespace.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case MATCH_ARG0_NAMESPACE
         extends KnownValue(
@@ -72,11 +77,12 @@ object DBusSignalFlags:
           "MATCH_ARG0_NAMESPACE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Match first arguments that contain an object path that is either
+    /** Match first arguments that contain an object path that is either
       * equivalent to the given path, or one of the paths is a subpath of the
       * other.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case MATCH_ARG0_PATH
         extends KnownValue(

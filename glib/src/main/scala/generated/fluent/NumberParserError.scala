@@ -2,23 +2,26 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GNumberParserError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Error codes returned by functions converting a string to a number.
   *
-  * Error codes returned by functions converting a string to a number.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum NumberParserError(val raw: GNumberParserError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** String was not a valid number.
     *
-    * String was not a valid number.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID
       extends NumberParserError(
         GNumberParserError.G_NUMBER_PARSER_ERROR_INVALID
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** String was a number, but out of bounds.
     *
-    * String was a number, but out of bounds.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OUT_OF_BOUNDS
       extends NumberParserError(

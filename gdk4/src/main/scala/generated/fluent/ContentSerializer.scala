@@ -10,9 +10,7 @@ import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GdkContentSerializer` is used to serialize content for inter-application
+/** A `GdkContentSerializer` is used to serialize content for inter-application
   * data transfers.
   *
   * The `GdkContentSerializer` transforms an object that is identified by a
@@ -24,6 +22,9 @@ import sn.gnome.gobject.internal.GType
   * functions, use [func@Gdk.content_register_serializer].
   *
   * Also see [class@Gdk.ContentDeserializer].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ContentSerializer(raw: Ptr[GdkContentSerializer])
     extends Object(raw.asInstanceOf),
@@ -31,12 +32,13 @@ class ContentSerializer(raw: Ptr[GdkContentSerializer])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the cancellable for the current operation.
+  /** Gets the cancellable for the current operation.
     *
     * This is the `GCancellable` that was passed to
     * [func@content_serialize_async].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCancellable(): Cancellable /* None */ = new Cancellable(
     gdk_content_serializer_get_cancellable(
@@ -44,17 +46,19 @@ class ContentSerializer(raw: Ptr[GdkContentSerializer])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GType` to of the object to serialize.
     *
-    * Gets the `GType` to of the object to serialize.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getGtype(): GType /* None */ = gdk_content_serializer_get_gtype(
     this.raw.asInstanceOf[Ptr[GdkContentSerializer]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the mime type to serialize to.
     *
-    * Gets the mime type to serialize to.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMimeType()(using Zone): String /* None */ = fromCString(
     gdk_content_serializer_get_mime_type(
@@ -62,11 +66,12 @@ class ContentSerializer(raw: Ptr[GdkContentSerializer])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the output stream for the current operation.
+  /** Gets the output stream for the current operation.
     *
     * This is the stream that was passed to [func@content_serialize_async].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOutputStream(): OutputStream /* None */ = new OutputStream(
     gdk_content_serializer_get_output_stream(
@@ -74,71 +79,78 @@ class ContentSerializer(raw: Ptr[GdkContentSerializer])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the I/O priority for the current operation.
+  /** Gets the I/O priority for the current operation.
     *
     * This is the priority that was passed to [func@content_serialize_async].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPriority(): Int /* None */ = gdk_content_serializer_get_priority(
     this.raw.asInstanceOf[Ptr[GdkContentSerializer]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the data that was associated with the current operation.
+  /** Gets the data that was associated with the current operation.
     *
     * See [method@Gdk.ContentSerializer.set_task_data].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTaskData(): Ptr[Byte] /* None */ =
     gdk_content_serializer_get_task_data(
       this.raw.asInstanceOf[Ptr[GdkContentSerializer]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the user data that was passed when the serializer was registered.
     *
-    * Gets the user data that was passed when the serializer was registered.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUserData(): Ptr[Byte] /* None */ =
     gdk_content_serializer_get_user_data(
       this.raw.asInstanceOf[Ptr[GdkContentSerializer]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GValue` to read the object to serialize from.
     *
-    * Gets the `GValue` to read the object to serialize from.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
-  def getValue__ = ???
+  private def getValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Indicate that the serialization has ended with an error.
+  /** Indicate that the serialization has ended with an error.
     *
     * This function consumes @error.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+    "[return_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
-  def returnError__ = ???
+  private def returnError__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Indicate that the serialization has been successfully completed.
     *
-    * Indicate that the serialization has been successfully completed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def returnSuccess(): Unit /* None */ = gdk_content_serializer_return_success(
     this.raw.asInstanceOf[Ptr[GdkContentSerializer]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Associate data with the current serialization operation.
     *
-    * Associate data with the current serialization operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
+    "[set_task_data/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
-  def setTaskData__ = ???
+  private def setTaskData__ = ???
 
 end ContentSerializer

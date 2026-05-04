@@ -9,9 +9,7 @@ import sn.gnome.gio.internal.GNotification
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
-/**  COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  *  #GNotification is a mechanism for creating a notification to be shown
+/**  #GNotification is a mechanism for creating a notification to be shown
   *  to the user -- typically as a pop-up notification presented by the
   *  desktop environment shell.
   *
@@ -55,20 +53,23 @@ import sn.gnome.gobject.fluent.Object
   *  clicked.
   *
   *  A notification can be sent with g_application_send_notification().
+  *
+  *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
 class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a button to @notification that activates the action in
+  /** Adds a button to @notification that activates the action in
     * @detailed_action
     *   when clicked. That action must be an application-wide action (starting
     *   with "app."). If @detailed_action contains a target, the action will be
     *   activated with that target as its parameter.
     *
     * See g_action_parse_detailed_name() for a description of the format for @detailed_action.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addButton(
       label: String |
@@ -81,15 +82,16 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     __sn_extract_string(detailed_action).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a button to @notification that activates @action when clicked.
+  /** Adds a button to @notification that activates @action when clicked.
     * @action
     *   must be an application-wide action (it must start with "app.").
     *
     * If @target_format is given, it is used to collect remaining positional
     * parameters into a #GVariant instance, similar to g_variant_new(). @action
     * will be activated with that #GVariant as its parameter.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def addButtonWithTarget(
       label: String |
@@ -112,23 +114,25 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a button to @notification that activates @action when clicked.
+  /** Adds a button to @notification that activates @action when clicked.
     * @action
     *   must be an application-wide action (it must start with "app.").
     *
     * If @target is non-%NULL, @action will be activated with @target as its
     * parameter.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[add_button_with_target_value/<method parameters>/target]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def addButtonWithTargetValue__ = ???
+  private def addButtonWithTargetValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the body of @notification to @body.
     *
-    * Sets the body of @notification to @body.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setBody(
       body: Option[
@@ -143,15 +147,16 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the type of @notification to @category. Categories have a main type
+  /** Sets the type of @notification to @category. Categories have a main type
     * like `email`, `im` or `device` and can have a detail separated by a `.`,
     * e.g. `im.received` or `email.arrived`. Setting the category helps the
     * notification server to select proper feedback to the user.
     *
     * Standard categories are [listed in the
     * specification](https://specifications.freedesktop.org/notification-spec/latest/ar01s06.html).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCategory(
       category: Option[
@@ -166,9 +171,7 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the default action of @notification to @detailed_action. This action
+  /** Sets the default action of @notification to @detailed_action. This action
     * is activated when the notification is clicked on.
     *
     * The action in @detailed_action must be an application-wide action (it must
@@ -178,6 +181,9 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     *
     * When no default action is set, the application that the notification was
     * sent on is activated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultAction(
       detailed_action: String |
@@ -187,9 +193,7 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     __sn_extract_string(detailed_action).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the default action of @notification to @action. This action is
+  /** Sets the default action of @notification to @action. This action is
     * activated when the notification is clicked on. It must be an
     * application-wide action (it must start with "app.").
     *
@@ -199,6 +203,9 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     *
     * When no default action is set, the application that the notification was
     * sent on is activated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def setDefaultActionAndTarget(
       action: String |
@@ -218,9 +225,7 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the default action of @notification to @action. This action is
+  /** Sets the default action of @notification to @action. This action is
     * activated when the notification is clicked on. It must be an
     * application-wide action (start with "app.").
     *
@@ -229,15 +234,19 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     *
     * When no default action is set, the application that the notification was
     * sent on is activated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[set_default_action_and_target_value/<method parameters>/target]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def setDefaultActionAndTargetValue__ = ???
+  private def setDefaultActionAndTargetValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the icon of @notification to @icon.
     *
-    * Sets the icon of @notification to @icon.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIcon(icon: Icon /* Some(Ptr[GIcon]) */ ): Unit /* None */ =
     g_notification_set_icon(
@@ -245,10 +254,11 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
       icon.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the priority of @notification to @priority. See
+  /** Sets the priority of @notification to @priority. See
     * #GNotificationPriority for possible values.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPriority(
       priority: NotificationPriority /* Some(GNotificationPriority) */
@@ -257,9 +267,10 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     priority.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the title of @notification to @title.
     *
-    * Sets the title of @notification to @title.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
       title: String |
@@ -269,9 +280,10 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     __sn_extract_string(title).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Deprecated in favor of g_notification_set_priority().
     *
-    * Deprecated in favor of g_notification_set_priority().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUrgent(
       urgent: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -291,13 +303,14 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
 end Notification
 
 object Notification:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GNotification with @title as its title.
+  /** Creates a new #GNotification with @title as its title.
     *
     * After populating @notification with more details, it can be sent to the
     * desktop shell with g_application_send_notification(). Changing any
     * properties after this call will not have any effect until resending @notification.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       title: String |

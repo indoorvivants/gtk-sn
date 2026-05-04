@@ -7,9 +7,10 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskRepeatingLinearGradientNode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A render node for a repeating linear gradient.
   *
-  * A render node for a repeating linear gradient.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class RepeatingLinearGradientNode(raw: Ptr[GskRepeatingLinearGradientNode])
     extends RenderNode(raw.asInstanceOf):
@@ -19,15 +20,16 @@ class RepeatingLinearGradientNode(raw: Ptr[GskRepeatingLinearGradientNode])
 end RepeatingLinearGradientNode
 
 object RepeatingLinearGradientNode:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GskRenderNode` that will create a repeating linear gradient
+  /** Creates a `GskRenderNode` that will create a repeating linear gradient
     * from the given points and color stops, and render that into the area given
     * by @bounds.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end RepeatingLinearGradientNode

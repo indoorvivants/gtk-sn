@@ -9,17 +9,19 @@ import sn.gnome.gdk4.fluent.Event
 import sn.gnome.gdk4.internal.GdkButtonEvent
 import sn.gnome.glib.internal.guint
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** An event related to a button on a pointer device.
   *
-  * An event related to a button on a pointer device.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ButtonEvent(raw: Ptr[GdkButtonEvent]) extends Event(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Extract the button number from a button event.
     *
-    * Extract the button number from a button event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getButton(): UInt /* None */ = gdk_button_event_get_button(
     this.raw.asInstanceOf[Ptr[GdkEvent]]

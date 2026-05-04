@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkLinkButton
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkLinkButton` is a button with a hyperlink.
+/** A `GtkLinkButton` is a button with a hyperlink.
   *
   * ![An example GtkLinkButton](link-button.png)
   *
@@ -42,6 +40,9 @@ import sn.gnome.gtk4.internal.GtkLinkButton
   * # Accessibility
   *
   * `GtkLinkButton` uses the %GTK_ACCESSIBLE_ROLE_LINK role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class LinkButton(raw: Ptr[GtkLinkButton])
     extends Button(raw.asInstanceOf),
@@ -52,9 +53,10 @@ class LinkButton(raw: Ptr[GtkLinkButton])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the URI of the `GtkLinkButton`.
     *
-    * Retrieves the URI of the `GtkLinkButton`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUri()(using Zone): String /* None */ = fromCString(
     gtk_link_button_get_uri(
@@ -62,24 +64,26 @@ class LinkButton(raw: Ptr[GtkLinkButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the “visited” state of the `GtkLinkButton`.
+  /** Retrieves the “visited” state of the `GtkLinkButton`.
     *
     * The button becomes visited when it is clicked. If the URI is changed on
     * the button, the “visited” state is unset again.
     *
     * The state may also be changed using [method@Gtk.LinkButton.set_visited].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVisited(): Boolean /* None */ = gtk_link_button_get_visited(
     this.raw.asInstanceOf[Ptr[GtkLinkButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @uri as the URI where the `GtkLinkButton` points.
+  /** Sets @uri as the URI where the `GtkLinkButton` points.
     *
     * As a side-effect this unsets the “visited” state of the button.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUri(
       uri: String | CString /* Some(CString) */
@@ -88,11 +92,12 @@ class LinkButton(raw: Ptr[GtkLinkButton])
     __sn_extract_string(uri)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the “visited” state of the `GtkLinkButton`.
+  /** Sets the “visited” state of the `GtkLinkButton`.
     *
     * See [method@Gtk.LinkButton.get_visited] for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVisited(
       visited: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -112,9 +117,10 @@ class LinkButton(raw: Ptr[GtkLinkButton])
 end LinkButton
 
 object LinkButton:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkLinkButton` with the URI as its text.
     *
-    * Creates a new `GtkLinkButton` with the URI as its text.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       uri: String | CString /* Some(CString) */
@@ -122,9 +128,10 @@ object LinkButton:
     gtk_link_button_new(__sn_extract_string(uri)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkLinkButton` containing a label.
     *
-    * Creates a new `GtkLinkButton` containing a label.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withLabel(
       uri: String | CString /* Some(CString) */,

@@ -2,11 +2,12 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoShapeFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags influencing the shaping process.
+/** Flags influencing the shaping process.
   *
   * `PangoShapeFlags` can be passed to [func@Pango.shape_with_flags].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ShapeFlags private (val raw: PangoShapeFlags):
   def is(kv: ShapeFlags): Boolean =
@@ -34,27 +35,30 @@ object ShapeFlags:
     def |(other: ShapeFlags) =
       ShapeFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags influencing the shaping process.
+  /** Flags influencing the shaping process.
     *
     * `PangoShapeFlags` can be passed to [func@Pango.shape_with_flags].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: PangoShapeFlags, name: String)
       extends ShapeFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Default value
       *
-      * Default value
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(PangoShapeFlags.PANGO_SHAPE_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Round glyph positions and widths to whole device units This option
+    /** Round glyph positions and widths to whole device units This option
       * should be set if the target renderer can't do subpixel positioning of
       * glyphs
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ROUND_POSITIONS
         extends KnownValue(

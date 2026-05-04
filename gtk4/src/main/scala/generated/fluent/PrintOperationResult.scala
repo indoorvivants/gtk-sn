@@ -2,45 +2,50 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkPrintOperationResult
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The result of a print operation.
+/** The result of a print operation.
   *
   * A value of this type is returned by [method@Gtk.PrintOperation.run].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PrintOperationResult(val raw: GtkPrintOperationResult):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** An error has occurred.
     *
-    * An error has occurred.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ERROR
       extends PrintOperationResult(
         GtkPrintOperationResult.GTK_PRINT_OPERATION_RESULT_ERROR
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The print settings should be stored.
     *
-    * The print settings should be stored.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case APPLY
       extends PrintOperationResult(
         GtkPrintOperationResult.GTK_PRINT_OPERATION_RESULT_APPLY
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The print operation has been canceled, the print settings should not be
+  /** The print operation has been canceled, the print settings should not be
     * stored.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CANCEL
       extends PrintOperationResult(
         GtkPrintOperationResult.GTK_PRINT_OPERATION_RESULT_CANCEL
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The print operation is not complete yet. This value will only be returned
+  /** The print operation is not complete yet. This value will only be returned
     * when running asynchronously.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case IN_PROGRESS
       extends PrintOperationResult(

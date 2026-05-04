@@ -9,9 +9,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.{EventController, EventSequenceState, Gesture}
 import sn.gnome.gtk4.internal.GtkGesture
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkGesture` is the base class for gesture recognition.
+/** `GtkGesture` is the base class for gesture recognition.
   *
   * Although `GtkGesture` is quite generalized to serve as a base for
   * multi-touch gestures, it is suitable to implement single-touch and
@@ -98,14 +96,15 @@ import sn.gnome.gtk4.internal.GtkGesture
   *   - If the gesture has %GTK_PHASE_NONE, ensuring events of type
   *     %GDK_TOUCHPAD_SWIPE and %GDK_TOUCHPAD_PINCH are handled by the
   *     `GtkGesture`
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If there are touch sequences being currently handled by @gesture, returns
+  /** If there are touch sequences being currently handled by @gesture, returns
     * %TRUE and fills in @rect with the bounding box containing all active
     * touches.
     *
@@ -115,101 +114,110 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * Since there is no correlation between physical and pixel distances, these
     * will look as if constrained in an infinitely small area, @rect width and
     * height will thus be 0 regardless of the number of touchpoints.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_bounding_box contains an OUT parameter, which is not supported yet"
+    "[get_bounding_box]: Method get_bounding_box contains an OUT parameter, which is not supported yet"
   )
-  def getBoundingBox__ = ???
+  private def getBoundingBox__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If there are touch sequences being currently handled by @gesture, returns
+  /** If there are touch sequences being currently handled by @gesture, returns
     * %TRUE and fills in @x and @y with the center of the bounding box
     * containing all active touches.
     *
     * Otherwise, %FALSE will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_bounding_box_center contains an OUT parameter, which is not supported yet"
+    "[get_bounding_box_center]: Method get_bounding_box_center contains an OUT parameter, which is not supported yet"
   )
-  def getBoundingBoxCenter__ = ???
+  private def getBoundingBoxCenter__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the logical `GdkDevice` that is currently operating on @gesture.
+  /** Returns the logical `GdkDevice` that is currently operating on @gesture.
     *
     * This returns %NULL if the gesture is not being interacted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDevice(): Device /* None */ = new Device(
     gtk_gesture_get_device(this.raw.asInstanceOf[Ptr[GtkGesture]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns all gestures in the group of @gesture
     *
-    * Returns all gestures in the group of @gesture
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gesture))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[get_group/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gesture))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def getGroup__ = ???
+  private def getGroup__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the last event that was processed for @sequence.
+  /** Returns the last event that was processed for @sequence.
     *
     * Note that the returned pointer is only valid as long as the
     * @sequence
     *   is still interpreted by the @gesture. If in doubt, you should make a
     *   copy of the event.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
+    "[get_last_event/<method parameters>/sequence]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
   )
-  def getLastEvent__ = ???
+  private def getLastEvent__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `GdkEventSequence` that was last updated on @gesture.
     *
-    * Returns the `GdkEventSequence` that was last updated on @gesture.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
+    "[get_last_updated_sequence/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
   )
-  def getLastUpdatedSequence__ = ???
+  private def getLastUpdatedSequence__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @sequence is currently being interpreted by @gesture, returns %TRUE and
+  /** If @sequence is currently being interpreted by @gesture, returns %TRUE and
     * fills in @x and @y with the last coordinates stored for that event
     * sequence.
     *
     * The coordinates are always relative to the widget allocation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_point contains an OUT parameter, which is not supported yet"
+    "[get_point]: Method get_point contains an OUT parameter, which is not supported yet"
   )
-  def getPoint__ = ???
+  private def getPoint__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the @sequence state, as seen by @gesture.
     *
-    * Returns the @sequence state, as seen by @gesture.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
+    "[get_sequence_state/<method parameters>/sequence]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
   )
-  def getSequenceState__ = ???
+  private def getSequenceState__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the list of `GdkEventSequences` currently being interpreted by @gesture.
     *
-    * Returns the list of `GdkEventSequences` currently being interpreted by @gesture.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[get_sequences/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def getSequences__ = ???
+  private def getSequences__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds @gesture to the same group than @group_gesture.
+  /** Adds @gesture to the same group than @group_gesture.
     *
     * Gestures are by default isolated in their own groups.
     *
@@ -224,6 +232,9 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * `GdkEventSequence` state is set to %GTK_EVENT_SEQUENCE_CLAIMED on one
     * group, every other gesture group attached to the same `GtkWidget` will
     * switch the state for that sequence to %GTK_EVENT_SEQUENCE_DENIED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def group(gesture: Gesture /* Some(Ptr[GtkGesture]) */ ): Unit /* None */ =
     gtk_gesture_group(
@@ -231,27 +242,30 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
       gesture.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns %TRUE if @gesture is currently handling events corresponding to @sequence.
     *
-    * Returns %TRUE if @gesture is currently handling events corresponding to @sequence.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
+    "[handles_sequence/<method parameters>/sequence]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
   )
-  def handlesSequence__ = ???
+  private def handlesSequence__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the gesture is currently active.
+  /** Returns %TRUE if the gesture is currently active.
     *
     * A gesture is active while there are touch sequences interacting with it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isActive(): Boolean /* None */ =
     gtk_gesture_is_active(this.raw.asInstanceOf[Ptr[GtkGesture]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns %TRUE if both gestures pertain to the same group.
     *
-    * Returns %TRUE if both gestures pertain to the same group.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isGroupedWith(
       other: Gesture /* Some(Ptr[GtkGesture]) */
@@ -260,20 +274,19 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     other.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the gesture is currently recognized.
+  /** Returns %TRUE if the gesture is currently recognized.
     *
     * A gesture is recognized if there are as many interacting touch sequences
     * as required by @gesture.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isRecognized(): Boolean /* None */ = gtk_gesture_is_recognized(
     this.raw.asInstanceOf[Ptr[GtkGesture]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the state of @sequence in @gesture.
+  /** Sets the state of @sequence in @gesture.
     *
     * Sequences start in state %GTK_EVENT_SEQUENCE_NONE, and whenever they
     * change state, they can never go back to that state. Likewise, sequences in
@@ -311,15 +324,16 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * If both gestures are in the same group, just set the state on the gesture
     * emitting the event, the sequence will be already be initialized to the
     * group's global state when the second gesture processes the event.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
+    "[set_sequence_state/<method parameters>/sequence]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
   )
-  def setSequenceState__ = ???
+  private def setSequenceState__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the state of all sequences that @gesture is currently interacting
+  /** Sets the state of all sequences that @gesture is currently interacting
     * with.
     *
     * Sequences start in state %GTK_EVENT_SEQUENCE_NONE, and whenever they
@@ -358,6 +372,9 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * If both gestures are in the same group, just set the state on the gesture
     * emitting the event, the sequence will be already be initialized to the
     * group's global state when the second gesture processes the event.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setState(
       state: EventSequenceState /* Some(GtkEventSequenceState) */
@@ -366,9 +383,10 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     state.raw
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Separates @gesture into an isolated group.
     *
-    * Separates @gesture into an isolated group.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def ungroup(): Unit /* None */ = gtk_gesture_ungroup(
     this.raw.asInstanceOf[Ptr[GtkGesture]]

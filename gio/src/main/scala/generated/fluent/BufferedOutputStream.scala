@@ -9,9 +9,7 @@ import sn.gnome.gio.fluent.{FilterOutputStream, OutputStream, Seekable}
 import sn.gnome.gio.internal.GBufferedOutputStream
 import sn.gnome.glib.internal.{gboolean, gint, gsize}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Buffered output stream implements #GFilterOutputStream and provides for
+/** Buffered output stream implements #GFilterOutputStream and provides for
   * buffered writes.
   *
   * By default, #GBufferedOutputStream's buffer size is set at 4 kilobytes.
@@ -25,6 +23,9 @@ import sn.gnome.glib.internal.{gboolean, gint, gsize}
   * output stream's buffer, use g_buffered_output_stream_set_buffer_size(). Note
   * that the buffer's size cannot be reduced below the size of the data within
   * the buffer.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class BufferedOutputStream(raw: Ptr[GBufferedOutputStream])
     extends FilterOutputStream(raw.asInstanceOf),
@@ -32,30 +33,33 @@ class BufferedOutputStream(raw: Ptr[GBufferedOutputStream])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if the buffer automatically grows as data is added.
     *
-    * Checks if the buffer automatically grows as data is added.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAutoGrow(): Boolean /* None */ =
     g_buffered_output_stream_get_auto_grow(
       this.raw.asInstanceOf[Ptr[GBufferedOutputStream]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the size of the buffer in the @stream.
     *
-    * Gets the size of the buffer in the @stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBufferSize(): CUnsignedLongInt /* None */ =
     g_buffered_output_stream_get_buffer_size(
       this.raw.asInstanceOf[Ptr[GBufferedOutputStream]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether or not the @stream's buffer should automatically grow. If @auto_grow
+  /** Sets whether or not the @stream's buffer should automatically grow. If @auto_grow
     * is true, then each write will just make the buffer larger, and you must
     * manually flush the buffer to actually write out the data to the underlying
     * stream.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAutoGrow(
       auto_grow: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -64,9 +68,10 @@ class BufferedOutputStream(raw: Ptr[GBufferedOutputStream])
     gboolean(gint((if auto_grow == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the size of the internal buffer to @size.
     *
-    * Sets the size of the internal buffer to @size.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setBufferSize(
       size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
@@ -78,9 +83,10 @@ class BufferedOutputStream(raw: Ptr[GBufferedOutputStream])
 end BufferedOutputStream
 
 object BufferedOutputStream:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new buffered output stream for a base stream.
     *
-    * Creates a new buffered output stream for a base stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       base_stream: OutputStream /* Some(Ptr[GOutputStream]) */
@@ -90,9 +96,10 @@ object BufferedOutputStream:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new buffered output stream with a given buffer size.
     *
-    * Creates a new buffered output stream with a given buffer size.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sized(
       base_stream: OutputStream /* Some(Ptr[GOutputStream]) */,

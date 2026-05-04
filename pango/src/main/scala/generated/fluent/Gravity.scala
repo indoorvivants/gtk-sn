@@ -2,9 +2,7 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoGravity
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `PangoGravity` represents the orientation of glyphs in a segment of text.
+/** `PangoGravity` represents the orientation of glyphs in a segment of text.
   *
   * This is useful when rendering vertical text layouts. In those situations,
   * the layout is rotated using a non-identity [struct@Pango.Matrix], and then
@@ -16,39 +14,47 @@ import _root_.sn.gnome.pango.internal.PangoGravity
   * [method@Pango.Context.get_base_gravity].
   *
   * See also: [enum@Pango.GravityHint]
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Gravity(val raw: PangoGravity):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Glyphs stand upright (default) <img align="right" valign="center"
+  /** Glyphs stand upright (default) <img align="right" valign="center"
     * src="m-south.png">
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SOUTH extends Gravity(PangoGravity.PANGO_GRAVITY_SOUTH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Glyphs are rotated 90 degrees counter-clockwise. <img align="right"
+  /** Glyphs are rotated 90 degrees counter-clockwise. <img align="right"
     * valign="center" src="m-east.png">
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EAST extends Gravity(PangoGravity.PANGO_GRAVITY_EAST)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Glyphs are upside-down. <img align="right" valign="cener"
+  /** Glyphs are upside-down. <img align="right" valign="cener"
     * src="m-north.png">
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NORTH extends Gravity(PangoGravity.PANGO_GRAVITY_NORTH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Glyphs are rotated 90 degrees clockwise. <img align="right"
+  /** Glyphs are rotated 90 degrees clockwise. <img align="right"
     * valign="center" src="m-west.png">
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WEST extends Gravity(PangoGravity.PANGO_GRAVITY_WEST)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gravity is resolved from the context matrix
     *
-    * Gravity is resolved from the context matrix
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AUTO extends Gravity(PangoGravity.PANGO_GRAVITY_AUTO)
 end Gravity

@@ -2,9 +2,7 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GUnixSocketAddressType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The type of name used by a #GUnixSocketAddress. %G_UNIX_SOCKET_ADDRESS_PATH
+/** The type of name used by a #GUnixSocketAddress. %G_UNIX_SOCKET_ADDRESS_PATH
   * indicates a traditional unix domain socket bound to a filesystem path.
   * %G_UNIX_SOCKET_ADDRESS_ANONYMOUS indicates a socket not bound to any name
   * (eg, a client-side socket, or a socket created with socketpair()).
@@ -15,47 +13,55 @@ import _root_.sn.gnome.gio.internal.GUnixSocketAddressType
   * %G_UNIX_SOCKET_ADDRESS_ABSTRACT_PADDED. However, many programs instead just
   * use a portion of %sun_path, and pass an appropriate smaller length to bind()
   * or connect(). This is %G_UNIX_SOCKET_ADDRESS_ABSTRACT.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum UnixSocketAddressType(val raw: GUnixSocketAddressType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** invalid
     *
-    * invalid
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID
       extends UnixSocketAddressType(
         GUnixSocketAddressType.G_UNIX_SOCKET_ADDRESS_INVALID
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** anonymous
     *
-    * anonymous
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ANONYMOUS
       extends UnixSocketAddressType(
         GUnixSocketAddressType.G_UNIX_SOCKET_ADDRESS_ANONYMOUS
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a filesystem path
     *
-    * a filesystem path
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PATH
       extends UnixSocketAddressType(
         GUnixSocketAddressType.G_UNIX_SOCKET_ADDRESS_PATH
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** an abstract name
     *
-    * an abstract name
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ABSTRACT
       extends UnixSocketAddressType(
         GUnixSocketAddressType.G_UNIX_SOCKET_ADDRESS_ABSTRACT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** an abstract name, 0-padded to the full length of a unix socket name
     *
-    * an abstract name, 0-padded to the full length of a unix socket name
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ABSTRACT_PADDED
       extends UnixSocketAddressType(

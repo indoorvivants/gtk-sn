@@ -16,9 +16,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkScrolledWindow
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkScrolledWindow` is a container that makes its child scrollable.
+/** `GtkScrolledWindow` is a container that makes its child scrollable.
   *
   * It does so using either internally added scrollbars or externally associated
   * adjustments, and optionally draws a frame around the child.
@@ -89,6 +87,9 @@ import sn.gnome.gtk4.internal.GtkScrolledWindow
   *
   * Starting from GTK 4.12, `GtkScrolledWindow` uses the
   * `GTK_ACCESSIBLE_ROLE_GENERIC` role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     extends Widget(raw.asInstanceOf),
@@ -98,9 +99,10 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @scrolled_window.
     *
-    * Gets the child widget of @scrolled_window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_scrolled_window_get_child(
@@ -108,12 +110,13 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the horizontal scrollbar’s adjustment.
+  /** Returns the horizontal scrollbar’s adjustment.
     *
     * This is the adjustment used to connect the horizontal scrollbar to the
     * child widget’s horizontal scroll functionality.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHadjustment(): Adjustment /* None */ = new Adjustment(
     gtk_scrolled_window_get_hadjustment(
@@ -121,17 +124,19 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the scrolled window draws a frame.
     *
-    * Gets whether the scrolled window draws a frame.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasFrame(): Boolean /* None */ = gtk_scrolled_window_get_has_frame(
     this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the horizontal scrollbar of @scrolled_window.
     *
-    * Returns the horizontal scrollbar of @scrolled_window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHscrollbar(): Widget /* None */ = new Widget(
     gtk_scrolled_window_get_hscrollbar(
@@ -139,63 +144,70 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the specified kinetic scrolling behavior.
     *
-    * Returns the specified kinetic scrolling behavior.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getKineticScrolling(): Boolean /* None */ =
     gtk_scrolled_window_get_kinetic_scrolling(
       this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the maximum content height set.
     *
-    * Returns the maximum content height set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMaxContentHeight(): Int /* None */ =
     gtk_scrolled_window_get_max_content_height(
       this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the maximum content width set.
     *
-    * Returns the maximum content width set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMaxContentWidth(): Int /* None */ =
     gtk_scrolled_window_get_max_content_width(
       this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the minimal content height of @scrolled_window.
     *
-    * Gets the minimal content height of @scrolled_window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMinContentHeight(): Int /* None */ =
     gtk_scrolled_window_get_min_content_height(
       this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the minimum content width of @scrolled_window.
     *
-    * Gets the minimum content width of @scrolled_window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMinContentWidth(): Int /* None */ =
     gtk_scrolled_window_get_min_content_width(
       this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether overlay scrolling is enabled for this scrolled window.
     *
-    * Returns whether overlay scrolling is enabled for this scrolled window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOverlayScrolling(): Boolean /* None */ =
     gtk_scrolled_window_get_overlay_scrolling(
       this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the placement of the contents with respect to the scrollbars.
     *
-    * Gets the placement of the contents with respect to the scrollbars.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPlacement(): CornerType /* None */ = CornerType.fromRaw(
     gtk_scrolled_window_get_placement(
@@ -203,44 +215,48 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the current policy values for the horizontal and vertical
+  /** Retrieves the current policy values for the horizontal and vertical
     * scrollbars.
     *
     * See [method@Gtk.ScrolledWindow.set_policy].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_policy contains an OUT parameter, which is not supported yet"
+    "[get_policy]: Method get_policy contains an OUT parameter, which is not supported yet"
   )
-  def getPolicy__ = ???
+  private def getPolicy__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reports whether the natural height of the child will be calculated and
+  /** Reports whether the natural height of the child will be calculated and
     * propagated through the scrolled window’s requested natural height.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPropagateNaturalHeight(): Boolean /* None */ =
     gtk_scrolled_window_get_propagate_natural_height(
       this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reports whether the natural width of the child will be calculated and
+  /** Reports whether the natural width of the child will be calculated and
     * propagated through the scrolled window’s requested natural width.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPropagateNaturalWidth(): Boolean /* None */ =
     gtk_scrolled_window_get_propagate_natural_width(
       this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the vertical scrollbar’s adjustment.
+  /** Returns the vertical scrollbar’s adjustment.
     *
     * This is the adjustment used to connect the vertical scrollbar to the child
     * widget’s vertical scroll functionality.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVadjustment(): Adjustment /* None */ = new Adjustment(
     gtk_scrolled_window_get_vadjustment(
@@ -248,9 +264,10 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the vertical scrollbar of @scrolled_window.
     *
-    * Returns the vertical scrollbar of @scrolled_window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVscrollbar(): Widget /* None */ = new Widget(
     gtk_scrolled_window_get_vscrollbar(
@@ -258,9 +275,10 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the child widget of @scrolled_window.
     *
-    * Sets the child widget of @scrolled_window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -271,9 +289,10 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the `GtkAdjustment` for the horizontal scrollbar.
     *
-    * Sets the `GtkAdjustment` for the horizontal scrollbar.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHadjustment(
       hadjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
@@ -284,9 +303,10 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
       .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Changes the frame drawn around the contents of @scrolled_window.
     *
-    * Changes the frame drawn around the contents of @scrolled_window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHasFrame(
       has_frame: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -295,12 +315,13 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     gboolean(gint((if has_frame == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Turns kinetic scrolling on or off.
+  /** Turns kinetic scrolling on or off.
     *
     * Kinetic scrolling only applies to devices with source
     * %GDK_SOURCE_TOUCHSCREEN.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setKineticScrolling(
       kinetic_scrolling: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -309,15 +330,16 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     gboolean(gint((if kinetic_scrolling == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the maximum height that @scrolled_window should keep visible.
+  /** Sets the maximum height that @scrolled_window should keep visible.
     *
     * The @scrolled_window will grow up to this height before it starts
     * scrolling the content.
     *
     * It is a programming error to set the maximum content height to a value
     * smaller than [property@Gtk.ScrolledWindow:min-content-height].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMaxContentHeight(height: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_scrolled_window_set_max_content_height(
@@ -325,15 +347,16 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
       height
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the maximum width that @scrolled_window should keep visible.
+  /** Sets the maximum width that @scrolled_window should keep visible.
     *
     * The @scrolled_window will grow up to this width before it starts scrolling
     * the content.
     *
     * It is a programming error to set the maximum content width to a value
     * smaller than [property@Gtk.ScrolledWindow:min-content-width].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMaxContentWidth(width: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_scrolled_window_set_max_content_width(
@@ -341,15 +364,16 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
       width
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the minimum height that @scrolled_window should keep visible.
+  /** Sets the minimum height that @scrolled_window should keep visible.
     *
     * Note that this can and (usually will) be smaller than the minimum size of
     * the content.
     *
     * It is a programming error to set the minimum content height to a value
     * greater than [property@Gtk.ScrolledWindow:max-content-height].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMinContentHeight(height: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_scrolled_window_set_min_content_height(
@@ -357,15 +381,16 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
       height
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the minimum width that @scrolled_window should keep visible.
+  /** Sets the minimum width that @scrolled_window should keep visible.
     *
     * Note that this can and (usually will) be smaller than the minimum size of
     * the content.
     *
     * It is a programming error to set the minimum content width to a value
     * greater than [property@Gtk.ScrolledWindow:max-content-width].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMinContentWidth(width: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_scrolled_window_set_min_content_width(
@@ -373,9 +398,10 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
       width
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Enables or disables overlay scrolling for this scrolled window.
     *
-    * Enables or disables overlay scrolling for this scrolled window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOverlayScrolling(
       overlay_scrolling: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -384,9 +410,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     gboolean(gint((if overlay_scrolling == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the placement of the contents with respect to the scrollbars for the
+  /** Sets the placement of the contents with respect to the scrollbars for the
     * scrolled window.
     *
     * The default is %GTK_CORNER_TOP_LEFT, meaning the child is in the top left,
@@ -396,6 +420,9 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     *
     * See also [method@Gtk.ScrolledWindow.get_placement] and
     * [method@Gtk.ScrolledWindow.unset_placement].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPlacement(
       window_placement: CornerType /* Some(GtkCornerType) */
@@ -404,9 +431,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     window_placement.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the scrollbar policy for the horizontal and vertical scrollbars.
+  /** Sets the scrollbar policy for the horizontal and vertical scrollbars.
     *
     * The policy determines when the scrollbar should appear; it is a value from
     * the [enum@Gtk.PolicyType] enumeration. If %GTK_POLICY_ALWAYS, the
@@ -414,6 +439,9 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * present; if %GTK_POLICY_AUTOMATIC, the scrollbar is present only if needed
     * (that is, if the slider part of the bar would be smaller than the trough —
     * the display is larger than the page size).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPolicy(
       hscrollbar_policy: PolicyType /* Some(GtkPolicyType) */,
@@ -424,10 +452,11 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     vscrollbar_policy.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the natural height of the child should be calculated and
+  /** Sets whether the natural height of the child should be calculated and
     * propagated through the scrolled window’s requested natural height.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPropagateNaturalHeight(
       propagate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -436,10 +465,11 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     gboolean(gint((if propagate == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the natural width of the child should be calculated and
+  /** Sets whether the natural width of the child should be calculated and
     * propagated through the scrolled window’s requested natural width.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPropagateNaturalWidth(
       propagate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -448,9 +478,10 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     gboolean(gint((if propagate == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the `GtkAdjustment` for the vertical scrollbar.
     *
-    * Sets the `GtkAdjustment` for the vertical scrollbar.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVadjustment(
       vadjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
@@ -461,12 +492,13 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
       .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Unsets the placement of the contents with respect to the scrollbars.
+  /** Unsets the placement of the contents with respect to the scrollbars.
     *
     * If no window placement is set for a scrolled window, it defaults to
     * %GTK_CORNER_TOP_LEFT.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetPlacement(): Unit /* None */ = gtk_scrolled_window_unset_placement(
     this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
@@ -475,9 +507,10 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
 end ScrolledWindow
 
 object ScrolledWindow:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new scrolled window.
     *
-    * Creates a new scrolled window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): ScrolledWindow = new ScrolledWindow(
     gtk_scrolled_window_new().asInstanceOf

@@ -2,9 +2,10 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkListScrollFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** List of actions to perform when scrolling to items in a list widget.
   *
-  * List of actions to perform when scrolling to items in a list widget.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ListScrollFlags private (val raw: GtkListScrollFlags):
   def is(kv: ListScrollFlags): Boolean =
@@ -32,31 +33,35 @@ object ListScrollFlags:
     def |(other: ListScrollFlags) =
       ListScrollFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** List of actions to perform when scrolling to items in a list widget.
     *
-    * List of actions to perform when scrolling to items in a list widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GtkListScrollFlags, name: String)
       extends ListScrollFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Don't do anything extra
       *
-      * Don't do anything extra
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(GtkListScrollFlags.GTK_LIST_SCROLL_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Focus the target item
       *
-      * Focus the target item
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FOCUS
         extends KnownValue(GtkListScrollFlags.GTK_LIST_SCROLL_FOCUS, "FOCUS")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Select the target item and unselect all other items.
       *
-      * Select the target item and unselect all other items.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SELECT
         extends KnownValue(GtkListScrollFlags.GTK_LIST_SCROLL_SELECT, "SELECT")

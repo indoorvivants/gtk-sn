@@ -19,9 +19,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GdkSurface` is a rectangular region on the screen.
+/** A `GdkSurface` is a rectangular region on the screen.
   *
   * It’s a low-level object, used to implement high-level objects such as
   * [class@Gtk.Window] or [class@Gtk.Dialog] in GTK.
@@ -30,25 +28,30 @@ import sn.gnome.gobject.fluent.Object
   * [iface@Gdk.Popup], and those interfaces provide much of the required API to
   * interact with these surfaces. Other, more specialized surface types exist,
   * but you will rarely interact with them directly.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Emits a short beep associated to @surface.
+  /** Emits a short beep associated to @surface.
     *
     * If the display of @surface does not support per-surface beeps, emits a
     * short beep on the display just as [method@Gdk.Display.beep].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def beep(): Unit /* None */ = gdk_surface_beep(
     this.raw.asInstanceOf[Ptr[GdkSurface]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GdkCairoContext` for rendering on @surface.
     *
-    * Creates a new `GdkCairoContext` for rendering on @surface.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def createCairoContext(): CairoContext /* None */ = new CairoContext(
     gdk_surface_create_cairo_context(
@@ -56,14 +59,15 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GdkGLContext` for the `GdkSurface`.
+  /** Creates a new `GdkGLContext` for the `GdkSurface`.
     *
     * The context is disconnected from any particular surface or surface. If the
     * creation of the `GdkGLContext` failed, @error will be set. Before using
     * the returned `GdkGLContext`, you will need to call
     * [method@Gdk.GLContext.make_current] or [method@Gdk.GLContext.realize].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def createGlContext(): GResult[GLContext /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -75,9 +79,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a new Cairo surface that is as compatible as possible with the
+  /** Create a new Cairo surface that is as compatible as possible with the
     * given @surface.
     *
     * For example the new surface will have the same fallback resolution and
@@ -92,17 +94,21 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * This function always returns a valid pointer, but it will return a pointer
     * to a “nil” surface if @other is already in an error state or any other
     * error occurs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
+    "[create_similar_surface/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
   )
-  def createSimilarSurface__ = ???
+  private def createSimilarSurface__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GdkVulkanContext` for rendering on @surface.
+  /** Creates a new `GdkVulkanContext` for rendering on @surface.
     *
     * If the creation of the `GdkVulkanContext` failed, @error will be set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def createVulkanContext(): GResult[VulkanContext /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -114,9 +120,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Destroys the window system resources associated with @surface and
+  /** Destroys the window system resources associated with @surface and
     * decrements @surface's reference count.
     *
     * The window system resources for all children of @surface are also
@@ -125,34 +129,39 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * Note that a surface will not be destroyed automatically when its reference
     * count reaches zero. You must call this function yourself before that
     * happens.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def destroy(): Unit /* None */ = gdk_surface_destroy(
     this.raw.asInstanceOf[Ptr[GdkSurface]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves a `GdkCursor` pointer for the cursor currently set on the
+  /** Retrieves a `GdkCursor` pointer for the cursor currently set on the
     * `GdkSurface`.
     *
     * If the return value is %NULL then there is no custom cursor set on the
     * surface, and it is using the cursor for its parent surface.
     *
     * Use [method@Gdk.Surface.set_cursor] to unset the cursor of the surface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCursor(): Cursor /* None */ = new Cursor(
     gdk_surface_get_cursor(this.raw.asInstanceOf[Ptr[GdkSurface]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves a `GdkCursor` pointer for the @device currently set on the
+  /** Retrieves a `GdkCursor` pointer for the @device currently set on the
     * specified `GdkSurface`.
     *
     * If the return value is %NULL then there is no custom cursor set on the
     * specified surface, and it is using the cursor for its parent surface.
     *
     * Use [method@Gdk.Surface.set_cursor] to unset the cursor of the surface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDeviceCursor(
       device: Device /* Some(Ptr[GdkDevice]) */
@@ -163,31 +172,34 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains the current device position and modifier state.
+  /** Obtains the current device position and modifier state.
     *
     * The position is given in coordinates relative to the upper left corner of @surface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_device_position contains an OUT parameter, which is not supported yet"
+    "[get_device_position]: Method get_device_position contains an OUT parameter, which is not supported yet"
   )
-  def getDevicePosition__ = ???
+  private def getDevicePosition__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GdkDisplay` associated with a `GdkSurface`.
     *
-    * Gets the `GdkDisplay` associated with a `GdkSurface`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDisplay(): Display /* None */ = new Display(
     gdk_surface_get_display(this.raw.asInstanceOf[Ptr[GdkSurface]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the frame clock for the surface.
+  /** Gets the frame clock for the surface.
     *
     * The frame clock for a surface never changes unless the surface is
     * reparented to a new toplevel surface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFrameClock(): FrameClock /* None */ = new FrameClock(
     gdk_surface_get_frame_clock(
@@ -195,30 +207,30 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the height of the given @surface.
+  /** Returns the height of the given @surface.
     *
     * Surface size is reported in ”application pixels”, not ”device pixels” (see
     * [method@Gdk.Surface.get_scale_factor]).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeight(): Int /* None */ = gdk_surface_get_height(
     this.raw.asInstanceOf[Ptr[GdkSurface]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks whether the surface has been mapped.
+  /** Checks whether the surface has been mapped.
     *
     * A surface is mapped with [method@Gdk.Toplevel.present] or
     * [method@Gdk.Popup.present].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMapped(): Boolean /* None */ =
     gdk_surface_get_mapped(this.raw.asInstanceOf[Ptr[GdkSurface]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the internal scale that maps from surface coordinates to the
+  /** Returns the internal scale that maps from surface coordinates to the
     * actual device pixels.
     *
     * When the scale is bigger than 1, the windowing system prefers to get
@@ -229,14 +241,15 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * larger integer.
     *
     * The scale may change during the lifetime of the surface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getScale(): Double /* None */ = gdk_surface_get_scale(
     this.raw.asInstanceOf[Ptr[GdkSurface]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the internal scale factor that maps from surface coordinates to
+  /** Returns the internal scale factor that maps from surface coordinates to
     * the actual device pixels.
     *
     * On traditional systems this is 1, but on very high density outputs this
@@ -247,67 +260,73 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * resource with higher resolution data.
     *
     * The scale factor may change during the lifetime of the surface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getScaleFactor(): Int /* None */ = gdk_surface_get_scale_factor(
     this.raw.asInstanceOf[Ptr[GdkSurface]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the width of the given @surface.
+  /** Returns the width of the given @surface.
     *
     * Surface size is reported in ”application pixels”, not ”device pixels” (see
     * [method@Gdk.Surface.get_scale_factor]).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWidth(): Int /* None */ = gdk_surface_get_width(
     this.raw.asInstanceOf[Ptr[GdkSurface]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Hide the surface.
+  /** Hide the surface.
     *
     * For toplevel surfaces, withdraws them, so they will no longer be known to
     * the window manager; for all surfaces, unmaps them, so they won’t be
     * displayed. Normally done automatically as part of
     * [method@Gtk.Widget.hide].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hide(): Unit /* None */ = gdk_surface_hide(
     this.raw.asInstanceOf[Ptr[GdkSurface]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Check to see if a surface is destroyed.
     *
-    * Check to see if a surface is destroyed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isDestroyed(): Boolean /* None */ =
     gdk_surface_is_destroyed(this.raw.asInstanceOf[Ptr[GdkSurface]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Forces a [signal@Gdk.Surface::render] signal emission for @surface to be
+  /** Forces a [signal@Gdk.Surface::render] signal emission for @surface to be
     * scheduled.
     *
     * This function is useful for implementations that track invalid regions on
     * their own.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def queueRender(): Unit /* None */ = gdk_surface_queue_render(
     this.raw.asInstanceOf[Ptr[GdkSurface]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Request a layout phase from the surface's frame clock.
+  /** Request a layout phase from the surface's frame clock.
     *
     * See [method@Gdk.FrameClock.request_phase].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def requestLayout(): Unit /* None */ = gdk_surface_request_layout(
     this.raw.asInstanceOf[Ptr[GdkSurface]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the default mouse pointer for a `GdkSurface`.
+  /** Sets the default mouse pointer for a `GdkSurface`.
     *
     * Passing %NULL for the @cursor argument means that @surface will use the
     * cursor of its parent surface. Most surfaces should use this default. Note
@@ -315,6 +334,9 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     *
     * Use [ctor@Gdk.Cursor.new_from_name] or [ctor@Gdk.Cursor.new_from_texture]
     * to create the cursor. To make the cursor invisible, use %GDK_BLANK_CURSOR.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCursor(
       cursor: Option[Cursor /* Some(Ptr[GdkCursor]) */ ]
@@ -325,15 +347,16 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[GdkCursor]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a specific `GdkCursor` for a given device when it gets inside @surface.
+  /** Sets a specific `GdkCursor` for a given device when it gets inside @surface.
     *
     * Passing %NULL for the @cursor argument means that @surface will use the
     * cursor of its parent surface. Most surfaces should use this default.
     *
     * Use [ctor@Gdk.Cursor.new_from_name] or [ctor@Gdk.Cursor.new_from_texture]
     * to create the cursor. To make the cursor invisible, use %GDK_BLANK_CURSOR.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDeviceCursor(
       device: Device /* Some(Ptr[GdkDevice]) */,
@@ -344,9 +367,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     cursor.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Apply the region to the surface for the purpose of event handling.
+  /** Apply the region to the surface for the purpose of event handling.
     *
     * Mouse events which happen while the pointer position corresponds to an
     * unset bit in the mask will be passed on the surface below
@@ -359,15 +380,16 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     *
     * Use [method@Gdk.Display.supports_input_shapes] to find out if a particular
     * backend supports input regions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
+    "[set_input_region/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
   )
-  def setInputRegion__ = ???
+  private def setInputRegion__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Marks a region of the `GdkSurface` as opaque.
+  /** Marks a region of the `GdkSurface` as opaque.
     *
     * For optimisation purposes, compositing window managers may like to not
     * draw obscured regions of surfaces, or turn off blending during for these
@@ -381,33 +403,38 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * opaque, as we know where the opaque regions are. If your surface
     * background is not opaque, please update this property in your
     * [vfunc@Gtk.Widget.css_changed] handler.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
+    "[set_opaque_region/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
   )
-  def setOpaqueRegion__ = ???
+  private def setOpaqueRegion__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Translates coordinates between two surfaces.
+  /** Translates coordinates between two surfaces.
     *
     * Note that this only works if @to and @from are popups or transient-for to
     * the same toplevel (directly or indirectly).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method translate_coordinates contains an INOUT parameter, which is not supported yet"
+    "[translate_coordinates]: Method translate_coordinates contains an INOUT parameter, which is not supported yet"
   )
-  def translateCoordinates__ = ???
+  private def translateCoordinates__ = ???
 
 end Surface
 
 object Surface:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a new popup surface.
+  /** Create a new popup surface.
     *
     * The surface will be attached to @parent and can be positioned relative to
     * it using [method@Gdk.Popup.present].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def popup(
       parent: Surface /* Some(Ptr[GdkSurface]) */,
@@ -419,9 +446,10 @@ object Surface:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new toplevel surface.
     *
-    * Creates a new toplevel surface.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def toplevel(display: Display /* Some(Ptr[GdkDisplay]) */ ): Surface =
     new Surface(

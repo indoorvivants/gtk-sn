@@ -7,21 +7,23 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.ShortcutAction
 import sn.gnome.gtk4.internal.GtkSignalAction
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkShortcut`Action that emits a signal.
+/** A `GtkShortcut`Action that emits a signal.
   *
   * Signals that are used in this way are referred to as keybinding signals, and
   * they are expected to be defined with the %G_SIGNAL_ACTION flag.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SignalAction(raw: Ptr[GtkSignalAction])
     extends ShortcutAction(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the name of the signal that will be emitted.
     *
-    * Returns the name of the signal that will be emitted.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSignalName()(using Zone): String /* None */ = fromCString(
     gtk_signal_action_get_signal_name(
@@ -32,12 +34,13 @@ class SignalAction(raw: Ptr[GtkSignalAction])
 end SignalAction
 
 object SignalAction:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates an action that when activated, emits the given action signal on
+  /** Creates an action that when activated, emits the given action signal on
     * the provided widget.
     *
     * It will also unpack the args into arguments passed to the signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       signal_name: String | CString /* Some(CString) */

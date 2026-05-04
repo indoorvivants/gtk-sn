@@ -2,20 +2,23 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkNotebookTab
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** The parameter used in the action signals of `GtkNotebook`.
   *
-  * The parameter used in the action signals of `GtkNotebook`.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum NotebookTab(val raw: GtkNotebookTab):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the first tab in the notebook
     *
-    * the first tab in the notebook
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FIRST extends NotebookTab(GtkNotebookTab.GTK_NOTEBOOK_TAB_FIRST)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the last tab in the notebook
     *
-    * the last tab in the notebook
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LAST extends NotebookTab(GtkNotebookTab.GTK_NOTEBOOK_TAB_LAST)
 end NotebookTab

@@ -18,9 +18,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkComboBox
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkComboBox` is a widget that allows the user to choose from a list of
+/** A `GtkComboBox` is a widget that allows the user to choose from a list of
   * valid choices.
   *
   * ![An example GtkComboBox](combo-box.png)
@@ -79,6 +77,9 @@ import sn.gnome.gtk4.internal.GtkComboBox
   * ## Accessibility
   *
   * `GtkComboBox` uses the %GTK_ACCESSIBLE_ROLE_COMBO_BOX role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ComboBox(raw: Ptr[GtkComboBox])
     extends Widget(raw.asInstanceOf),
@@ -90,22 +91,21 @@ class ComboBox(raw: Ptr[GtkComboBox])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the index of the currently active item.
+  /** Returns the index of the currently active item.
     *
     * If the model is a non-flat treemodel, and the active item is not an
     * immediate child of the root of the tree, this function returns
     * `gtk_tree_path_get_indices (path)[0]`, where `path` is the
     * [struct@Gtk.TreePath] of the active item.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActive(): Int /* None */ = gtk_combo_box_get_active(
     this.raw.asInstanceOf[Ptr[GtkComboBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the ID of the active row of @combo_box.
+  /** Returns the ID of the active row of @combo_box.
     *
     * This value is taken from the active row and the column specified by the
     * [property@Gtk.ComboBox:id-column] property of @combo_box (see
@@ -118,6 +118,9 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * If the [property@Gtk.ComboBox:id-column] property of @combo_box is not
     * set, or if no row is active, or if the active row has a %NULL ID value,
     * then %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActiveId()(using Zone): String /* None */ = fromCString(
     gtk_combo_box_get_active_id(
@@ -125,21 +128,23 @@ class ComboBox(raw: Ptr[GtkComboBox])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @iter to point to the currently active item.
+  /** Sets @iter to point to the currently active item.
     *
     * If no item is active, @iter is left unchanged.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_active_iter contains an OUT parameter, which is not supported yet"
+    "[get_active_iter]: Method get_active_iter contains an OUT parameter, which is not supported yet"
   )
-  def getActiveIter__ = ???
+  private def getActiveIter__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the combo box sets the dropdown button sensitive or not
+  /** Returns whether the combo box sets the dropdown button sensitive or not
     * when there are no items in the model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getButtonSensitivity(): SensitivityType /* None */ =
     SensitivityType.fromRaw(
@@ -148,9 +153,10 @@ class ComboBox(raw: Ptr[GtkComboBox])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @combo_box.
     *
-    * Gets the child widget of @combo_box.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_combo_box_get_child(
@@ -158,34 +164,38 @@ class ComboBox(raw: Ptr[GtkComboBox])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the column which @combo_box is using to get the strings from to
+  /** Returns the column which @combo_box is using to get the strings from to
     * display in the internal entry.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEntryTextColumn(): Int /* None */ =
     gtk_combo_box_get_entry_text_column(this.raw.asInstanceOf[Ptr[GtkComboBox]])
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the combo box has an entry.
     *
-    * Returns whether the combo box has an entry.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasEntry(): Boolean /* None */ = gtk_combo_box_get_has_entry(
     this.raw.asInstanceOf[Ptr[GtkComboBox]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the column which @combo_box is using to get string IDs for values
+  /** Returns the column which @combo_box is using to get string IDs for values
     * from.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIdColumn(): Int /* None */ = gtk_combo_box_get_id_column(
     this.raw.asInstanceOf[Ptr[GtkComboBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `GtkTreeModel` of @combo_box.
     *
-    * Returns the `GtkTreeModel` of @combo_box.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
     gtk_combo_box_get_model(
@@ -193,56 +203,61 @@ class ComboBox(raw: Ptr[GtkComboBox])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the popup uses a fixed width.
     *
-    * Gets whether the popup uses a fixed width.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPopupFixedWidth(): Boolean /* None */ =
     gtk_combo_box_get_popup_fixed_width(
       this.raw.asInstanceOf[Ptr[GtkComboBox]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the current row separator function.
     *
-    * Returns the current row separator function.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
+    "[get_row_separator_func/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
   )
-  def getRowSeparatorFunc__ = ???
+  private def getRowSeparatorFunc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Hides the menu or dropdown list of @combo_box.
+  /** Hides the menu or dropdown list of @combo_box.
     *
     * This function is mostly intended for use by accessibility technologies;
     * applications should have little use for it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def popdown(): Unit /* None */ = gtk_combo_box_popdown(
     this.raw.asInstanceOf[Ptr[GtkComboBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Pops up the menu or dropdown list of @combo_box.
+  /** Pops up the menu or dropdown list of @combo_box.
     *
     * This function is mostly intended for use by accessibility technologies;
     * applications should have little use for it.
     *
     * Before calling this, @combo_box must be mapped, or nothing will happen.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def popup(): Unit /* None */ = gtk_combo_box_popup(
     this.raw.asInstanceOf[Ptr[GtkComboBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Pops up the menu of @combo_box.
+  /** Pops up the menu of @combo_box.
     *
     * Note that currently this does not do anything with the device, as it was
     * previously only used for list-mode combo boxes, and those were removed in
     * GTK 4. However, it is retained in case similar functionality is added back
     * later.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def popupForDevice(
       device: Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */
@@ -251,16 +266,15 @@ class ComboBox(raw: Ptr[GtkComboBox])
     device.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the active item of @combo_box to be the item at @index.
     *
-    * Sets the active item of @combo_box to be the item at @index.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActive(`index_`: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_combo_box_set_active(this.raw.asInstanceOf[Ptr[GtkComboBox]], `index_`)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Changes the active row of @combo_box to the one that has an ID equal to
+  /** Changes the active row of @combo_box to the one that has an ID equal to
     * @active_id.
     *
     * If @active_id is %NULL, the active row is unset. Rows having a %NULL ID
@@ -269,6 +283,9 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * If the [property@Gtk.ComboBox:id-column] property of @combo_box is unset
     * or if no row has the given ID then the function does nothing and returns
     * %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActiveId(
       active_id: Option[String | CString /* Some(CString) */ ]
@@ -279,21 +296,23 @@ class ComboBox(raw: Ptr[GtkComboBox])
       .getOrElse(null.asInstanceOf[CString])
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the current active item to be the one referenced by @iter.
+  /** Sets the current active item to be the one referenced by @iter.
     *
     * If @iter is %NULL, the active item is unset.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[set_active_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
-  def setActiveIter__ = ???
+  private def setActiveIter__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the dropdown button of the combo box should update its
+  /** Sets whether the dropdown button of the combo box should update its
     * sensitivity depending on the model contents.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setButtonSensitivity(
       sensitivity: SensitivityType /* Some(GtkSensitivityType) */
@@ -302,9 +321,10 @@ class ComboBox(raw: Ptr[GtkComboBox])
     sensitivity.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the child widget of @combo_box.
     *
-    * Sets the child widget of @combo_box.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -315,9 +335,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the model column which @combo_box should use to get strings from to
+  /** Sets the model column which @combo_box should use to get strings from to
     * be @text_column.
     *
     * For this column no separate [class@Gtk.CellRenderer] is needed.
@@ -327,6 +345,9 @@ class ComboBox(raw: Ptr[GtkComboBox])
     *
     * This is only relevant if @combo_box has been created with
     * [property@Gtk.ComboBox:has-entry] as %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEntryTextColumn(text_column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_combo_box_set_entry_text_column(
@@ -334,13 +355,14 @@ class ComboBox(raw: Ptr[GtkComboBox])
       text_column
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the model column which @combo_box should use to get string IDs for
+  /** Sets the model column which @combo_box should use to get string IDs for
     * values from.
     *
     * The column @id_column in the model of @combo_box must be of type
     * %G_TYPE_STRING.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIdColumn(id_column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_combo_box_set_id_column(
@@ -348,9 +370,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
       id_column
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the model used by @combo_box to be @model.
+  /** Sets the model used by @combo_box to be @model.
     *
     * Will unset a previously set model (if applicable). If model is %NULL, then
     * it will unset the model.
@@ -358,6 +378,9 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * Note that this function does not clear the cell renderers, you have to
     * call [method@Gtk.CellLayout.clear] yourself if you need to set up
     * different cell renderers for the new model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
       model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
@@ -368,12 +391,13 @@ class ComboBox(raw: Ptr[GtkComboBox])
       .getOrElse(null.asInstanceOf[Ptr[GtkTreeModel]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Specifies whether the popup’s width should be a fixed width.
+  /** Specifies whether the popup’s width should be a fixed width.
     *
     * If @fixed is %TRUE, the popup's width is set to match the allocated width
     * of the combo box.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPopupFixedWidth(
       fixed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -382,18 +406,19 @@ class ComboBox(raw: Ptr[GtkComboBox])
     gboolean(gint((if fixed == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the row separator function, which is used to determine whether a row
+  /** Sets the row separator function, which is used to determine whether a row
     * should be drawn as a separator.
     *
     * If the row separator function is %NULL, no separators are drawn. This is
     * the default value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
+    "[set_row_separator_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
   )
-  def setRowSeparatorFunc__ = ???
+  private def setRowSeparatorFunc__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -406,27 +431,30 @@ class ComboBox(raw: Ptr[GtkComboBox])
 end ComboBox
 
 object ComboBox:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new empty `GtkComboBox`.
     *
-    * Creates a new empty `GtkComboBox`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): ComboBox = new ComboBox(gtk_combo_box_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new empty `GtkComboBox` with an entry.
+  /** Creates a new empty `GtkComboBox` with an entry.
     *
     * In order to use a combo box with entry, you need to tell it which column
     * of the model contains the text for the entry by calling
     * [method@Gtk.ComboBox.set_entry_text_column].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withEntry(): ComboBox = new ComboBox(
     gtk_combo_box_new_with_entry().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkComboBox` with a model.
     *
-    * Creates a new `GtkComboBox` with a model.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withModel(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ ): ComboBox =
     new ComboBox(
@@ -435,11 +463,12 @@ object ComboBox:
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new empty `GtkComboBox` with an entry and a model.
+  /** Creates a new empty `GtkComboBox` with an entry and a model.
     *
     * See also [ctor@Gtk.ComboBox.new_with_entry].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withModelAndEntry(
       model: TreeModel /* Some(Ptr[GtkTreeModel]) */

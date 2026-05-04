@@ -9,10 +9,11 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.SelectionModel
 import sn.gnome.gtk4.internal.GtkSelectionFilterModel
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkSelectionFilterModel` is a list model that presents the selection from a
+/** `GtkSelectionFilterModel` is a list model that presents the selection from a
   * `GtkSelectionModel`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SelectionFilterModel(raw: Ptr[GtkSelectionFilterModel])
     extends Object(raw.asInstanceOf),
@@ -20,9 +21,10 @@ class SelectionFilterModel(raw: Ptr[GtkSelectionFilterModel])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the model currently filtered or %NULL if none.
     *
-    * Gets the model currently filtered or %NULL if none.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): SelectionModel /* None */ = new SelectionModel.Abstract(
     gtk_selection_filter_model_get_model(
@@ -30,13 +32,14 @@ class SelectionFilterModel(raw: Ptr[GtkSelectionFilterModel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the model to be filtered.
+  /** Sets the model to be filtered.
     *
     * Note that GTK makes no effort to ensure that @model conforms to the item
     * type of @self. It assumes that the caller knows what they are doing and
     * have set up an appropriate filter to ensure that item types match.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
@@ -50,10 +53,11 @@ class SelectionFilterModel(raw: Ptr[GtkSelectionFilterModel])
 end SelectionFilterModel
 
 object SelectionFilterModel:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkSelectionFilterModel` that will include the selected
+  /** Creates a new `GtkSelectionFilterModel` that will include the selected
     * items from the underlying selection model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]

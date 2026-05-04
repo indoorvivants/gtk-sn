@@ -10,9 +10,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{GTKUnit, PageOrientation, PageSetup}
 import sn.gnome.gtk4.internal.GtkPageSetup
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkPageSetup` object stores the page size, orientation and margins.
+/** A `GtkPageSetup` object stores the page size, orientation and margins.
   *
   * The idea is that you can get one of these from the page setup dialog and
   * then pass it to the `GtkPrintOperation` when printing. The benefit of
@@ -53,22 +51,27 @@ import sn.gnome.gtk4.internal.GtkPageSetup
   *   page_setup = new_page_setup;
   * }
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Copies a `GtkPageSetup`.
     *
-    * Copies a `GtkPageSetup`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def copy(): PageSetup /* None */ = new PageSetup(
     gtk_page_setup_copy(this.raw.asInstanceOf[Ptr[GtkPageSetup]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the bottom margin in units of @unit.
     *
-    * Gets the bottom margin in units of @unit.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBottomMargin(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_bottom_margin(
@@ -76,9 +79,10 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
       unit.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the left margin in units of @unit.
     *
-    * Gets the left margin in units of @unit.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLeftMargin(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_left_margin(
@@ -86,20 +90,22 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
       unit.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the page orientation of the `GtkPageSetup`.
     *
-    * Gets the page orientation of the `GtkPageSetup`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOrientation(): PageOrientation /* None */ = PageOrientation.fromRaw(
     gtk_page_setup_get_orientation(this.raw.asInstanceOf[Ptr[GtkPageSetup]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the page height in units of @unit.
+  /** Returns the page height in units of @unit.
     *
     * Note that this function takes orientation and margins into consideration.
     * See [method@Gtk.PageSetup.get_paper_height].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPageHeight(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_page_height(
@@ -107,12 +113,13 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
       unit.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the page width in units of @unit.
+  /** Returns the page width in units of @unit.
     *
     * Note that this function takes orientation and margins into consideration.
     * See [method@Gtk.PageSetup.get_paper_width].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPageWidth(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_page_width(
@@ -120,12 +127,13 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
       unit.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the paper height in units of @unit.
+  /** Returns the paper height in units of @unit.
     *
     * Note that this function takes orientation, but not margins into
     * consideration. See [method@Gtk.PageSetup.get_page_height].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPaperHeight(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_paper_height(
@@ -133,21 +141,23 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
       unit.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the paper size of the `GtkPageSetup`.
     *
-    * Gets the paper size of the `GtkPageSetup`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
+    "[get_paper_size/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
   )
-  def getPaperSize__ = ???
+  private def getPaperSize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the paper width in units of @unit.
+  /** Returns the paper width in units of @unit.
     *
     * Note that this function takes orientation, but not margins into
     * consideration. See [method@Gtk.PageSetup.get_page_width].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPaperWidth(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_paper_width(
@@ -155,9 +165,10 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
       unit.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the right margin in units of @unit.
     *
-    * Gets the right margin in units of @unit.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRightMargin(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_right_margin(
@@ -165,9 +176,10 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
       unit.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the top margin in units of @unit.
     *
-    * Gets the top margin in units of @unit.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTopMargin(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_page_setup_get_top_margin(
@@ -175,11 +187,12 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
       unit.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reads the page setup from the file @file_name.
+  /** Reads the page setup from the file @file_name.
     *
     * See [method@Gtk.PageSetup.to_file].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def loadFile(
       file_name: String | CString /* Some(CString) */
@@ -191,19 +204,21 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reads the page setup from the group @group_name in the key file
+  /** Reads the page setup from the group @group_name in the key file
     * @key_file.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
+    "[load_key_file/<method parameters>/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
-  def loadKeyFile__ = ???
+  private def loadKeyFile__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the bottom margin of the `GtkPageSetup`.
     *
-    * Sets the bottom margin of the `GtkPageSetup`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setBottomMargin(
       margin: Double /* Some(Double) */,
@@ -214,9 +229,10 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     unit.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the left margin of the `GtkPageSetup`.
     *
-    * Sets the left margin of the `GtkPageSetup`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLeftMargin(
       margin: Double /* Some(Double) */,
@@ -227,9 +243,10 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     unit.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the page orientation of the `GtkPageSetup`.
     *
-    * Sets the page orientation of the `GtkPageSetup`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOrientation(
       orientation: PageOrientation /* Some(GtkPageOrientation) */
@@ -238,30 +255,33 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     orientation.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the paper size of the `GtkPageSetup` without changing the margins.
+  /** Sets the paper size of the `GtkPageSetup` without changing the margins.
     *
     * See [method@Gtk.PageSetup.set_paper_size_and_default_margins].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
+    "[set_paper_size/<method parameters>/size]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
   )
-  def setPaperSize__ = ???
+  private def setPaperSize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the paper size of the `GtkPageSetup` and modifies the margins
+  /** Sets the paper size of the `GtkPageSetup` and modifies the margins
     * according to the new paper size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
+    "[set_paper_size_and_default_margins/<method parameters>/size]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
   )
-  def setPaperSizeAndDefaultMargins__ = ???
+  private def setPaperSizeAndDefaultMargins__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the right margin of the `GtkPageSetup`.
     *
-    * Sets the right margin of the `GtkPageSetup`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRightMargin(
       margin: Double /* Some(Double) */,
@@ -272,9 +292,10 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     unit.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the top margin of the `GtkPageSetup`.
     *
-    * Sets the top margin of the `GtkPageSetup`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTopMargin(
       margin: Double /* Some(Double) */,
@@ -285,9 +306,10 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     unit.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** This function saves the information from @setup to @file_name.
     *
-    * This function saves the information from @setup to @file_name.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def toFile(
       file_name: String | CString /* Some(CString) */
@@ -299,23 +321,25 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Serialize page setup to an a{sv} variant.
     *
-    * Serialize page setup to an a{sv} variant.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[to_gvariant/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def toGvariant__ = ???
+  private def toGvariant__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** This function adds the page setup from @setup to @key_file.
     *
-    * This function adds the page setup from @setup to @key_file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
+    "[to_key_file/<method parameters>/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
-  def toKeyFile__ = ???
+  private def toKeyFile__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -328,18 +352,20 @@ class PageSetup(raw: Ptr[GtkPageSetup]) extends Object(raw.asInstanceOf):
 end PageSetup
 
 object PageSetup:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkPageSetup`.
     *
-    * Creates a new `GtkPageSetup`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): PageSetup = new PageSetup(gtk_page_setup_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reads the page setup from the file @file_name.
+  /** Reads the page setup from the file @file_name.
     *
     * Returns a new `GtkPageSetup` object with the restored page setup, or %NULL
     * if an error occurred. See [method@Gtk.PageSetup.to_file].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFile(
       file_name: String | CString /* Some(CString) */
@@ -352,30 +378,32 @@ object PageSetup:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Desrialize a page setup from an a{sv} variant.
+  /** Desrialize a page setup from an a{sv} variant.
     *
     * The variant must be in the format produced by
     * [method@Gtk.PageSetup.to_gvariant].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[variant]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def new_from_gvariant() = ???
+  private def new_from_gvariant() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reads the page setup from the group @group_name in the key file
+  /** Reads the page setup from the group @group_name in the key file
     * @key_file.
     *
     * Returns a new `GtkPageSetup` object with the restored page setup, or %NULL
     * if an error occurred.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
+    "[key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
-  def new_from_key_file() = ???
+  private def new_from_key_file() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -9,9 +9,7 @@ import sn.gnome.glib.internal.{gsize, guint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.internal.GtkEntryBuffer
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkEntryBuffer` hold the text displayed in a `GtkText` widget.
+/** A `GtkEntryBuffer` hold the text displayed in a `GtkText` widget.
   *
   * A single `GtkEntryBuffer` object can be shared by multiple widgets which
   * will then share the same text content, but not the cursor position,
@@ -21,14 +19,15 @@ import sn.gnome.gtk4.internal.GtkEntryBuffer
   * to be stored in an alternate location, such as non-pageable memory, useful
   * in the case of important passwords. Or a derived class could integrate with
   * an application’s concept of undo/redo.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Deletes a sequence of characters from the buffer.
+  /** Deletes a sequence of characters from the buffer.
     *
     * @n_chars
     *   characters are deleted starting at @position. If @n_chars is negative,
@@ -38,6 +37,9 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
     * values.
     *
     * Note that the positions are specified in characters, not bytes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def deleteText(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
@@ -48,9 +50,10 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
     n_chars
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Used when subclassing `GtkEntryBuffer`.
     *
-    * Used when subclassing `GtkEntryBuffer`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def emitDeletedText(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
@@ -61,9 +64,10 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
     guint(n_chars)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Used when subclassing `GtkEntryBuffer`.
     *
-    * Used when subclassing `GtkEntryBuffer`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def emitInsertedText(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
@@ -76,38 +80,42 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
     guint(n_chars)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the length in bytes of the buffer.
+  /** Retrieves the length in bytes of the buffer.
     *
     * See [method@Gtk.EntryBuffer.get_length].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBytes(): CUnsignedLongInt /* None */ = gtk_entry_buffer_get_bytes(
     this.raw.asInstanceOf[Ptr[GtkEntryBuffer]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the length in characters of the buffer.
     *
-    * Retrieves the length in characters of the buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLength(): UInt /* None */ = gtk_entry_buffer_get_length(
     this.raw.asInstanceOf[Ptr[GtkEntryBuffer]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the maximum allowed length of the text in @buffer.
     *
-    * Retrieves the maximum allowed length of the text in @buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMaxLength(): Int /* None */ = gtk_entry_buffer_get_max_length(
     this.raw.asInstanceOf[Ptr[GtkEntryBuffer]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the contents of the buffer.
+  /** Retrieves the contents of the buffer.
     *
     * The memory pointer returned by this call will not change unless this
     * object emits a signal, or is finalized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getText()(using Zone): String /* None */ = fromCString(
     gtk_entry_buffer_get_text(
@@ -115,9 +123,7 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts @n_chars characters of @chars into the contents of the buffer, at
+  /** Inserts @n_chars characters of @chars into the contents of the buffer, at
     * position @position.
     *
     * If @n_chars is negative, then characters from chars will be inserted until
@@ -126,6 +132,9 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
     * values.
     *
     * Note that the position and length are in characters, not in bytes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertText(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
@@ -138,12 +147,13 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
     n_chars
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the maximum allowed length of the contents of the buffer.
+  /** Sets the maximum allowed length of the contents of the buffer.
     *
     * If the current contents are longer than the given length, then they will
     * be truncated to fit.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMaxLength(max_length: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_entry_buffer_set_max_length(
@@ -151,14 +161,15 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
       max_length
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the text in the buffer.
+  /** Sets the text in the buffer.
     *
     * This is roughly equivalent to calling [method@Gtk.EntryBuffer.delete_text]
     * and [method@Gtk.EntryBuffer.insert_text].
     *
     * Note that @n_chars is in characters, not in bytes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(
       chars: String | CString /* Some(CString) */,
@@ -180,11 +191,12 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
 end EntryBuffer
 
 object EntryBuffer:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a new `GtkEntryBuffer` object.
+  /** Create a new `GtkEntryBuffer` object.
     *
     * Optionally, specify initial text to set in the buffer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       initial_chars: Option[String | CString /* Some(CString) */ ],

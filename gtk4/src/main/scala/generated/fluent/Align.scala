@@ -2,9 +2,7 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkAlign
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Controls how a widget deals with extra space in a single dimension.
+/** Controls how a widget deals with extra space in a single dimension.
   *
   * Alignment only matters if the widget receives a “too large” allocation, for
   * example if you packed the widget with the [property@Gtk.Widget:hexpand]
@@ -21,49 +19,59 @@ import _root_.sn.gnome.gtk4.internal.GtkAlign
   * `GTK_ALIGN_BASELINE_CENTER and `GTK_ALIGN_BASELINE_FILL` are treated similar
   * to `GTK_ALIGN_CENTER` and `GTK_ALIGN_FILL`, except that it positions the
   * widget to line up the baselines, where that is supported.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Align(val raw: GtkAlign):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * stretch to fill all space if possible, center if no meaningful way to
+  /** stretch to fill all space if possible, center if no meaningful way to
     * stretch
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FILL extends Align(GtkAlign.GTK_ALIGN_FILL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** snap to left or top side, leaving space on right or bottom
     *
-    * snap to left or top side, leaving space on right or bottom
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case START extends Align(GtkAlign.GTK_ALIGN_START)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** snap to right or bottom side, leaving space on left or top
     *
-    * snap to right or bottom side, leaving space on left or top
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case END extends Align(GtkAlign.GTK_ALIGN_END)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** center natural width of widget inside the allocation
     *
-    * center natural width of widget inside the allocation
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CENTER extends Align(GtkAlign.GTK_ALIGN_CENTER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a different name for `GTK_ALIGN_BASELINE`. Since 4.12
     *
-    * a different name for `GTK_ALIGN_BASELINE`. Since 4.12
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BASELINE_FILL extends Align(GtkAlign.GTK_ALIGN_BASELINE_FILL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * align the widget according to the baseline. See [class@Gtk.Widget].
+  /** align the widget according to the baseline. See [class@Gtk.Widget].
     * Deprecated: 4.12: Use `GTK_ALIGN_BASELINE_FILL` instead
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BASELINE extends Align(GtkAlign.GTK_ALIGN_BASELINE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** stretch to fill all space, but align the baseline. Since 4.12
     *
-    * stretch to fill all space, but align the baseline. Since 4.12
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BASELINE_CENTER extends Align(GtkAlign.GTK_ALIGN_BASELINE_CENTER)
 end Align

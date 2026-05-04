@@ -38,9 +38,7 @@ import sn.gnome.glib.fluent.{FileError, GResult}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint}
 
 object Gio:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if @action_name is valid.
+  /** Checks if @action_name is valid.
     *
     * @action_name
     *   is valid if it consists only of alphanumeric characters, plus '-' and
@@ -49,6 +47,9 @@ object Gio:
     * It is an error to call this function with a non-utf8 @action_name.
     * @action_name
     *   must not be %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def actionNameIsValid(
       action_name: String |
@@ -58,9 +59,7 @@ object Gio:
       __sn_extract_string(action_name).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a detailed action name into its separate name and target
+  /** Parses a detailed action name into its separate name and target
     * components.
     *
     * Detailed action names can have three formats.
@@ -91,15 +90,16 @@ object Gio:
     *
     * If returned, the #GVariant in @target_value is guaranteed to not be
     * floating.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function action_parse_detailed_name contains an OUT parameter, which is not supported yet"
+    "[action_parse_detailed_name:]: Function action_parse_detailed_name contains an OUT parameter, which is not supported yet"
   )
-  def actionParseDetailedName() = ???
+  private def actionParseDetailedName() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Formats a detailed action name from @action_name and @target_value.
+  /** Formats a detailed action name from @action_name and @target_value.
     *
     * It is an error to call this function with an invalid action name.
     *
@@ -109,15 +109,16 @@ object Gio:
     *
     * See that function for the types of strings that will be printed by this
     * function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[action_print_detailed_name:/<function parameters>/target_value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def actionPrintDetailedName() = ???
+  private def actionPrintDetailedName() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GAppInfo from the given information.
+  /** Creates a new #GAppInfo from the given information.
     *
     * Note that for @commandline, the quoting rules of the Exec key of the
     * [freedesktop.org Desktop Entry
@@ -126,6 +127,9 @@ object Gio:
     * the percent-character must be doubled in order to prevent it from being
     * swallowed by Exec key unquoting. See the specification for exact quoting
     * rules.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoCreateFromCommandline(
       commandline: String | CString /* Some(CString) */,
@@ -145,36 +149,39 @@ object Gio:
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a list of all of the applications currently registered on this
+  /** Gets a list of all of the applications currently registered on this
     * system.
     *
     * For desktop files, this includes applications that have `NoDisplay=true`
     * set or are excluded from display by means of `OnlyShowIn` or `NotShowIn`.
     * See g_app_info_should_show(). The returned list does not include
     * applications which have the `Hidden` key set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[app_info_get_all:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def appInfoGetAll() = ???
+  private def appInfoGetAll() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a list of all #GAppInfos for a given content type, including the
+  /** Gets a list of all #GAppInfos for a given content type, including the
     * recommended and fallback #GAppInfos. See
     * g_app_info_get_recommended_for_type() and
     * g_app_info_get_fallback_for_type().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[app_info_get_all_for_type:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def appInfoGetAllForType() = ???
+  private def appInfoGetAllForType() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the default #GAppInfo for a given content type.
     *
-    * Gets the default #GAppInfo for a given content type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoGetDefaultForType(
       content_type: String | CString /* Some(CString) */,
@@ -186,22 +193,24 @@ object Gio:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Asynchronously gets the default #GAppInfo for a given content type.
     *
-    * Asynchronously gets the default #GAppInfo for a given content type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[app_info_get_default_for_type_async:/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def appInfoGetDefaultForTypeAsync() = ???
+  private def appInfoGetDefaultForTypeAsync() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes a default #GAppInfo lookup started by
+  /** Finishes a default #GAppInfo lookup started by
     * g_app_info_get_default_for_type_async().
     *
     * If no #GAppInfo is found, then @error will be set to
     * %G_IO_ERROR_NOT_FOUND.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoGetDefaultForTypeFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -214,11 +223,12 @@ object Gio:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the default application for handling URIs with the given URI scheme.
+  /** Gets the default application for handling URIs with the given URI scheme.
     * A URI scheme is the initial part of the URI, up to but not including the
     * ':', e.g. "http", "ftp" or "sip".
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoGetDefaultForUriScheme(
       uri_scheme: String | CString /* Some(CString) */
@@ -228,24 +238,26 @@ object Gio:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously gets the default application for handling URIs with the
+  /** Asynchronously gets the default application for handling URIs with the
     * given URI scheme. A URI scheme is the initial part of the URI, up to but
     * not including the ':', e.g. "http", "ftp" or "sip".
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[app_info_get_default_for_uri_scheme_async:/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def appInfoGetDefaultForUriSchemeAsync() = ???
+  private def appInfoGetDefaultForUriSchemeAsync() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes a default #GAppInfo lookup started by
+  /** Finishes a default #GAppInfo lookup started by
     * g_app_info_get_default_for_uri_scheme_async().
     *
     * If no #GAppInfo is found, then @error will be set to
     * %G_IO_ERROR_NOT_FOUND.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoGetDefaultForUriSchemeFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -258,39 +270,42 @@ object Gio:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a list of fallback #GAppInfos for a given content type, i.e. those
+  /** Gets a list of fallback #GAppInfos for a given content type, i.e. those
     * applications which claim to support the given content type by MIME type
     * subclassing and not directly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[app_info_get_fallback_for_type:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def appInfoGetFallbackForType() = ???
+  private def appInfoGetFallbackForType() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a list of recommended #GAppInfos for a given content type, i.e. those
+  /** Gets a list of recommended #GAppInfos for a given content type, i.e. those
     * applications which claim to support the given content type exactly, and
     * not by MIME type subclassing. Note that the first application of the list
     * is the last used one, i.e. the last one for which
     * g_app_info_set_as_last_used_for_type() has been called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[app_info_get_recommended_for_type:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def appInfoGetRecommendedForType() = ???
+  private def appInfoGetRecommendedForType() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Utility function that launches the default application registered to
+  /** Utility function that launches the default application registered to
     * handle the specified uri. Synchronous I/O is done on the uri to detect the
     * type of the file if required.
     *
     * The D-Bus–activated applications don't have to be started if your
     * application terminates too soon after this function. To prevent this, use
     * g_app_info_launch_default_for_uri_async() instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoLaunchDefaultForUri(
       uri: String | CString /* Some(CString) */,
@@ -310,9 +325,7 @@ object Gio:
       ).value.!=(0)
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Async version of g_app_info_launch_default_for_uri().
+  /** Async version of g_app_info_launch_default_for_uri().
     *
     * This version is useful if you are interested in receiving error
     * information in the case where the application is sandboxed and the portal
@@ -321,15 +334,19 @@ object Gio:
     * This is also useful if you want to be sure that the D-Bus–activated
     * applications are really started before termination and if you are
     * interested in receiving error information from their activation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[app_info_launch_default_for_uri_async:/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def appInfoLaunchDefaultForUriAsync() = ???
+  private def appInfoLaunchDefaultForUriAsync() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an asynchronous launch-default-for-uri operation.
     *
-    * Finishes an asynchronous launch-default-for-uri operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoLaunchDefaultForUriFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -341,12 +358,13 @@ object Gio:
       ).value.!=(0)
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes all changes to the type associations done by
+  /** Removes all changes to the type associations done by
     * g_app_info_set_as_default_for_type(),
     * g_app_info_set_as_default_for_extension(), g_app_info_add_supports_type()
     * or g_app_info_remove_supports_type().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoResetTypeAssociations(
       content_type: String | CString /* Some(CString) */
@@ -354,38 +372,38 @@ object Gio:
     __sn_extract_string(content_type)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Helper function for constructing #GAsyncInitable object. This is similar
+  /** Helper function for constructing #GAsyncInitable object. This is similar
     * to g_object_newv() but also initializes the object asynchronously.
     *
     * When the initialization is finished, @callback will be called. You can
     * then call g_async_initable_new_finish() to get the new object and check
     * for any errors.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Parameter), @type -> DataRecord(GParameter*)))"
+    "[async_initable_newv_async:/<function parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Parameter), @type -> DataRecord(GParameter*)))"
   )
-  def asyncInitableNewvAsync() = ???
+  private def asyncInitableNewvAsync() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously connects to the message bus specified by @bus_type.
+  /** Asynchronously connects to the message bus specified by @bus_type.
     *
     * When the operation is finished, @callback will be invoked. You can then
     * call g_bus_get_finish() to get the result of the operation.
     *
     * This is an asynchronous failable function. See g_bus_get_sync() for the
     * synchronous version.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[bus_get:/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def busGet() = ???
+  private def busGet() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an operation started with g_bus_get().
+  /** Finishes an operation started with g_bus_get().
     *
     * The returned object is a singleton, that is, shared with other callers of
     * g_bus_get() and g_bus_get_sync() for @bus_type. In the event that you need
@@ -396,6 +414,9 @@ object Gio:
     *
     * Note that the returned #GDBusConnection object will (usually) have the
     * #GDBusConnection:exit-on-close property set to %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def busGetFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -409,9 +430,7 @@ object Gio:
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Synchronously connects to the message bus specified by @bus_type. Note
+  /** Synchronously connects to the message bus specified by @bus_type. Note
     * that the returned object may shared with other callers, e.g. if two
     * separate parts of a process calls this function with the same @bus_type,
     * they will share the same object.
@@ -428,6 +447,9 @@ object Gio:
     *
     * Note that the returned #GDBusConnection object will (usually) have the
     * #GDBusConnection:exit-on-close property set to %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def busGetSync(
       bus_type: BusType /* Some(GBusType) */,
@@ -445,9 +467,7 @@ object Gio:
       )
     )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Starts acquiring @name on the bus specified by @bus_type and calls
+  /**  Starts acquiring @name on the bus specified by @bus_type and calls
     *  @name_acquired_handler and @name_lost_handler when the name is
     *  acquired respectively lost. Callbacks will be invoked in the
     *  [thread-default main context][g-main-context-push-thread-default]
@@ -496,44 +516,47 @@ object Gio:
     *  to [own names][gdbus-owning-names] and export objects.
     *  Simply register objects to be exported in @bus_acquired_handler and
     *  unregister the objects (if any) in @name_lost_handler.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(BusAcquiredCallback), @type -> DataRecord(GBusAcquiredCallback)))"
+    "[bus_own_name:/<function parameters>/bus_acquired_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(BusAcquiredCallback), @type -> DataRecord(GBusAcquiredCallback)))"
   )
-  def busOwnName() = ???
+  private def busOwnName() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Like g_bus_own_name() but takes a #GDBusConnection instead of a #GBusType.
     *
-    * Like g_bus_own_name() but takes a #GDBusConnection instead of a #GBusType.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(BusNameAcquiredCallback), @type -> DataRecord(GBusNameAcquiredCallback)))"
+    "[bus_own_name_on_connection:/<function parameters>/name_acquired_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(BusNameAcquiredCallback), @type -> DataRecord(GBusNameAcquiredCallback)))"
   )
-  def busOwnNameOnConnection() = ???
+  private def busOwnNameOnConnection() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Version of g_bus_own_name_on_connection() using closures instead of
+  /** Version of g_bus_own_name_on_connection() using closures instead of
     * callbacks for easier binding in other languages.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
+    "[bus_own_name_on_connection_with_closures:/<function parameters>/name_acquired_closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
   )
-  def busOwnNameOnConnectionWithClosures() = ???
+  private def busOwnNameOnConnectionWithClosures() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Version of g_bus_own_name() using closures instead of callbacks for easier
+  /** Version of g_bus_own_name() using closures instead of callbacks for easier
     * binding in other languages.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
+    "[bus_own_name_with_closures:/<function parameters>/bus_acquired_closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
   )
-  def busOwnNameWithClosures() = ???
+  private def busOwnNameWithClosures() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Stops owning a name.
+  /** Stops owning a name.
     *
     * Note that there may still be D-Bus traffic to process (relating to owning
     * and unowning the name) in the current thread-default #GMainContext after
@@ -541,14 +564,15 @@ object Gio:
     * #GMainContext until the #GDestroyNotify function passed to
     * g_bus_own_name() is called, in order to avoid memory leaks through
     * callbacks queued on the #GMainContext after it’s stopped being iterated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def busUnownName(
       owner_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* Some(Unit) */ = g_bus_unown_name(guint(owner_id))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Stops watching a name.
+  /** Stops watching a name.
     *
     * Note that there may still be D-Bus traffic to process (relating to
     * watching and unwatching the name) in the current thread-default
@@ -556,14 +580,15 @@ object Gio:
     * iterate the #GMainContext until the #GDestroyNotify function passed to
     * g_bus_watch_name() is called, in order to avoid memory leaks through
     * callbacks queued on the #GMainContext after it’s stopped being iterated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def busUnwatchName(
       watcher_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* Some(Unit) */ = g_bus_unwatch_name(guint(watcher_id))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Starts watching @name on the bus specified by @bus_type and calls
+  /** Starts watching @name on the bus specified by @bus_type and calls
     * @name_appeared_handler
     *   and @name_vanished_handler when the name is known to have an owner
     *   respectively known to lose its owner. Callbacks will be invoked in the
@@ -591,46 +616,53 @@ object Gio:
     * @name_appeared_handler
     *   and destroy them again (if any) in
     * @name_vanished_handler.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(BusNameAppearedCallback), @type -> DataRecord(GBusNameAppearedCallback)))"
+    "[bus_watch_name:/<function parameters>/name_appeared_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(BusNameAppearedCallback), @type -> DataRecord(GBusNameAppearedCallback)))"
   )
-  def busWatchName() = ???
+  private def busWatchName() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_bus_watch_name() but takes a #GDBusConnection instead of a
+  /** Like g_bus_watch_name() but takes a #GDBusConnection instead of a
     * #GBusType.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(BusNameAppearedCallback), @type -> DataRecord(GBusNameAppearedCallback)))"
+    "[bus_watch_name_on_connection:/<function parameters>/name_appeared_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(BusNameAppearedCallback), @type -> DataRecord(GBusNameAppearedCallback)))"
   )
-  def busWatchNameOnConnection() = ???
+  private def busWatchNameOnConnection() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Version of g_bus_watch_name_on_connection() using closures instead of
+  /** Version of g_bus_watch_name_on_connection() using closures instead of
     * callbacks for easier binding in other languages.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
+    "[bus_watch_name_on_connection_with_closures:/<function parameters>/name_appeared_closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
   )
-  def busWatchNameOnConnectionWithClosures() = ???
+  private def busWatchNameOnConnectionWithClosures() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Version of g_bus_watch_name() using closures instead of callbacks for
+  /** Version of g_bus_watch_name() using closures instead of callbacks for
     * easier binding in other languages.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
+    "[bus_watch_name_with_closures:/<function parameters>/name_appeared_closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
   )
-  def busWatchNameWithClosures() = ???
+  private def busWatchNameWithClosures() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if a content type can be executable. Note that for instance things
+  /** Checks if a content type can be executable. Note that for instance things
     * like text files can be executables (i.e. scripts and batch files).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeCanBeExecutable(
       `type`: String |
@@ -640,9 +672,10 @@ object Gio:
       __sn_extract_string(`type`).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Compares two content types for equality.
     *
-    * Compares two content types for equality.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeEquals(
       type1: String |
@@ -655,9 +688,10 @@ object Gio:
       __sn_extract_string(type2).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tries to find a content type based on the mime type name.
     *
-    * Tries to find a content type based on the mime type name.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeFromMimeType(
       mime_type: String |
@@ -669,9 +703,10 @@ object Gio:
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the human readable description of the content type.
     *
-    * Gets the human readable description of the content type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetDescription(
       `type`: String |
@@ -683,13 +718,14 @@ object Gio:
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the generic icon name for a content type.
+  /** Gets the generic icon name for a content type.
     *
     * See the
     * [shared-mime-info](http://www.freedesktop.org/wiki/Specifications/shared-mime-info-spec)
     * specification for more on the generic icon name.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetGenericIconName(
       `type`: String |
@@ -701,9 +737,10 @@ object Gio:
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the icon for a content type.
     *
-    * Gets the icon for a content type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetIcon(
       `type`: String |
@@ -714,19 +751,21 @@ object Gio:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get the list of directories which MIME data is loaded from. See
+  /** Get the list of directories which MIME data is loaded from. See
     * g_content_type_set_mime_dirs() for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[content_type_get_mime_dirs:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def contentTypeGetMimeDirs() = ???
+  private def contentTypeGetMimeDirs() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the mime type for the content type, if one is registered.
     *
-    * Gets the mime type for the content type, if one is registered.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetMimeType(
       `type`: String |
@@ -738,9 +777,10 @@ object Gio:
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the symbolic icon for a content type.
     *
-    * Gets the symbolic icon for a content type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetSymbolicIcon(
       `type`: String |
@@ -751,21 +791,20 @@ object Gio:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Guesses the content type based on example data. If the function is
+  /** Guesses the content type based on example data. If the function is
     * uncertain, @result_uncertain will be set to %TRUE. Either @filename or @data
     * may be %NULL, in which case the guess will be based solely on the other
     * argument.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function content_type_guess contains an OUT parameter, which is not supported yet"
+    "[content_type_guess:]: Function content_type_guess contains an OUT parameter, which is not supported yet"
   )
-  def contentTypeGuess() = ???
+  private def contentTypeGuess() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to guess the type of the tree with root @root, by looking at the
+  /** Tries to guess the type of the tree with root @root, by looking at the
     * files it contains. The result is an array of content types, with the best
     * guess coming first.
     *
@@ -777,15 +816,19 @@ object Gio:
     *
     * This function is useful in the implementation of
     * g_mount_guess_content_type().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[content_type_guess_for_tree:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def contentTypeGuessForTree() = ???
+  private def contentTypeGuessForTree() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determines if @type is a subset of @supertype.
     *
-    * Determines if @type is a subset of @supertype.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeIsA(
       `type`: String |
@@ -798,10 +841,11 @@ object Gio:
       __sn_extract_string(supertype).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines if @type is a subset of @mime_type. Convenience wrapper around
+  /** Determines if @type is a subset of @mime_type. Convenience wrapper around
     * g_content_type_is_a().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeIsMimeType(
       `type`: String |
@@ -814,11 +858,12 @@ object Gio:
       __sn_extract_string(mime_type).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if the content type is the generic "unknown" type. On UNIX this is
+  /** Checks if the content type is the generic "unknown" type. On UNIX this is
     * the "application/octet-stream" mimetype, while on win32 it is "*" and on
     * OSX it is a dynamic type or octet-stream.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeIsUnknown(
       `type`: String |
@@ -828,9 +873,7 @@ object Gio:
       __sn_extract_string(`type`).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Set the list of directories used by GIO to load the MIME database.
+  /**  Set the list of directories used by GIO to load the MIME database.
     *  If @dirs is %NULL, the directories used are the default:
     *
     *   - the `mime` subdirectory of the directory in `$XDG_DATA_HOME`
@@ -853,31 +896,35 @@ object Gio:
     *
     *    return g_test_run ();
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[content_type_set_mime_dirs:/<function parameters>/dirs]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def contentTypeSetMimeDirs() = ???
+  private def contentTypeSetMimeDirs() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a list of strings containing all the registered content types known
+  /** Gets a list of strings containing all the registered content types known
     * to the system. The list and its data should be freed using
     * `g_list_free_full (list, g_free)`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[content_types_get_registered:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def contentTypesGetRegistered() = ???
+  private def contentTypesGetRegistered() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Escape @string so it can appear in a D-Bus address as the value part of a
+  /** Escape @string so it can appear in a D-Bus address as the value part of a
     * key-value pair.
     *
     * For instance, if @string is `/run/bus-for-:0`, this function would return
     * `/run/bus-for-%3A0`, which could be used in a D-Bus address like
     * `unix:nonce-tcp:host=127.0.0.1,port=42,noncefile=/run/bus-for-%3A0`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusAddressEscapeValue(
       string: String |
@@ -889,14 +936,15 @@ object Gio:
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Synchronously looks up the D-Bus address for the well-known message bus
+  /** Synchronously looks up the D-Bus address for the well-known message bus
     * instance specified by @bus_type. This may involve using various platform
     * specific mechanisms.
     *
     * The returned address will be in the [D-Bus address
     * format](https://dbus.freedesktop.org/doc/dbus-specification.html#addresses).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusAddressGetForBusSync(
       bus_type: BusType /* Some(GBusType) */,
@@ -916,9 +964,7 @@ object Gio:
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously connects to an endpoint specified by @address and sets up
+  /** Asynchronously connects to an endpoint specified by @address and sets up
     * the connection so it is in a state to run the client-side of the D-Bus
     * authentication conversation. @address must be in the [D-Bus address
     * format](https://dbus.freedesktop.org/doc/dbus-specification.html#addresses).
@@ -929,27 +975,29 @@ object Gio:
     *
     * This is an asynchronous failable function. See
     * g_dbus_address_get_stream_sync() for the synchronous version.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[dbus_address_get_stream:/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def dbusAddressGetStream() = ???
+  private def dbusAddressGetStream() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an operation started with g_dbus_address_get_stream().
+  /** Finishes an operation started with g_dbus_address_get_stream().
     *
     * A server is not required to set a GUID, so @out_guid may be set to %NULL
     * even on success.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function dbus_address_get_stream_finish contains an OUT parameter, which is not supported yet"
+    "[dbus_address_get_stream_finish:]: Function dbus_address_get_stream_finish contains an OUT parameter, which is not supported yet"
   )
-  def dbusAddressGetStreamFinish() = ???
+  private def dbusAddressGetStreamFinish() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Synchronously connects to an endpoint specified by @address and sets up
+  /** Synchronously connects to an endpoint specified by @address and sets up
     * the connection so it is in a state to run the client-side of the D-Bus
     * authentication conversation. @address must be in the [D-Bus address
     * format](https://dbus.freedesktop.org/doc/dbus-specification.html#addresses).
@@ -959,26 +1007,28 @@ object Gio:
     *
     * This is a synchronous failable function. See g_dbus_address_get_stream()
     * for the asynchronous version.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function dbus_address_get_stream_sync contains an OUT parameter, which is not supported yet"
+    "[dbus_address_get_stream_sync:]: Function dbus_address_get_stream_sync contains an OUT parameter, which is not supported yet"
   )
-  def dbusAddressGetStreamSync() = ???
+  private def dbusAddressGetStreamSync() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up the value of an annotation.
+  /** Looks up the value of an annotation.
     *
     * The cost of this function is O(n) in number of annotations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DBusAnnotationInfo), @type -> DataRecord(GDBusAnnotationInfo*)))),ListMap(@type -> DataRecord(GDBusAnnotationInfo**)))"
+    "[dbus_annotation_info_lookup:/<function parameters>/annotations]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DBusAnnotationInfo), @type -> DataRecord(GDBusAnnotationInfo*)))),ListMap(@type -> DataRecord(GDBusAnnotationInfo**)))"
   )
-  def dbusAnnotationInfoLookup() = ???
+  private def dbusAnnotationInfoLookup() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a D-Bus error name to use for @error. If @error matches a
+  /** Creates a D-Bus error name to use for @error. If @error matches a
     * registered error (cf. g_dbus_error_register_error()), the corresponding
     * D-Bus error name will be returned.
     *
@@ -989,40 +1039,43 @@ object Gio:
     *
     * This function is typically only used in object mappings to put a #GError
     * on the wire. Regular applications should not use it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
+    "[dbus_error_encode_gerror:/<function parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
-  def dbusErrorEncodeGerror() = ???
+  private def dbusErrorEncodeGerror() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the D-Bus error name used for @error, if any.
+  /** Gets the D-Bus error name used for @error, if any.
     *
     * This function is guaranteed to return a D-Bus error name for all #GErrors
     * returned from functions handling remote method calls (e.g.
     * g_dbus_connection_call_finish()) unless g_dbus_error_strip_remote_error()
     * has been used on @error.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
+    "[dbus_error_get_remote_error:/<function parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
-  def dbusErrorGetRemoteError() = ???
+  private def dbusErrorGetRemoteError() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if @error represents an error received via D-Bus from a remote
+  /** Checks if @error represents an error received via D-Bus from a remote
     * peer. If so, use g_dbus_error_get_remote_error() to get the name of the
     * error.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
+    "[dbus_error_is_remote_error:/<function parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
-  def dbusErrorIsRemoteError() = ???
+  private def dbusErrorIsRemoteError() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GError based on the contents of @dbus_error_name and
+  /** Creates a #GError based on the contents of @dbus_error_name and
     * @dbus_error_message.
     *
     * Errors registered with g_dbus_error_register_error() will be looked up
@@ -1047,70 +1100,78 @@ object Gio:
     *
     * This function is typically only used in object mappings to prepare #GError
     * instances for applications. Regular applications should not use it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+    "[dbus_error_new_for_dbus_error:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
-  def dbusErrorNewForDbusError() = ???
+  private def dbusErrorNewForDbusError() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[dbus_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def dbusErrorQuark() = ???
+  private def dbusErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates an association to map between @dbus_error_name and #GErrors
+  /** Creates an association to map between @dbus_error_name and #GErrors
     * specified by @error_domain and @error_code.
     *
     * This is typically done in the routine that returns the #GQuark for an
     * error domain.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[dbus_error_register_error:/<function parameters>/error_domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def dbusErrorRegisterError() = ???
+  private def dbusErrorRegisterError() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Helper function for associating a #GError error domain with D-Bus error
+  /** Helper function for associating a #GError error domain with D-Bus error
     * names.
     *
     * While @quark_volatile has a `volatile` qualifier, this is a historical
     * artifact and the argument passed to it should not be `volatile`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gsize), @type -> DataRecord(volatile gsize*)))"
+    "[dbus_error_register_error_domain:/<function parameters>/quark_volatile]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gsize), @type -> DataRecord(volatile gsize*)))"
   )
-  def dbusErrorRegisterErrorDomain() = ???
+  private def dbusErrorRegisterErrorDomain() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks for extra information in the error message used to recover the D-Bus
+  /** Looks for extra information in the error message used to recover the D-Bus
     * error name and strips it if found. If stripped, the message field in @error
     * will correspond exactly to what was received on the wire.
     *
     * This is typically used when presenting errors to the end user.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+    "[dbus_error_strip_remote_error:/<function parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
-  def dbusErrorStripRemoteError() = ???
+  private def dbusErrorStripRemoteError() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Destroys an association previously set up with
+  /** Destroys an association previously set up with
     * g_dbus_error_register_error().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[dbus_error_unregister_error:/<function parameters>/error_domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def dbusErrorUnregisterError() = ???
+  private def dbusErrorUnregisterError() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is a language binding friendly version of
+  /** This is a language binding friendly version of
     * g_dbus_escape_object_path_bytestring().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusEscapeObjectPath(
       s: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -1121,9 +1182,7 @@ object Gio:
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Escapes @bytes for use in a D-Bus object path component.
+  /** Escapes @bytes for use in a D-Bus object path component.
     * @bytes
     *   is an array of zero or more nonzero bytes in an unspecified encoding,
     *   followed by a single zero byte.
@@ -1139,15 +1198,16 @@ object Gio:
     * object paths.
     *
     * This can be reversed with g_dbus_unescape_object_path().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@type -> DataRecord(const guint8*)))"
+    "[dbus_escape_object_path_bytestring:/<function parameters>/bytes]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@type -> DataRecord(const guint8*)))"
   )
-  def dbusEscapeObjectPathBytestring() = ???
+  private def dbusEscapeObjectPathBytestring() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Generate a D-Bus GUID that can be used with e.g. g_dbus_connection_new().
+  /** Generate a D-Bus GUID that can be used with e.g. g_dbus_connection_new().
     *
     * See the [D-Bus
     * specification](https://dbus.freedesktop.org/doc/dbus-specification.html#uuids)
@@ -1157,6 +1217,9 @@ object Gio:
     *
     * Note that D-Bus GUIDs do not follow [RFC
     * 4122](https://datatracker.ietf.org/doc/html/rfc4122).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusGenerateGuid()(using
       Zone
@@ -1164,9 +1227,7 @@ object Gio:
     g_dbus_generate_guid().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a #GValue to a #GVariant of the type indicated by the @type
+  /** Converts a #GValue to a #GVariant of the type indicated by the @type
     * parameter.
     *
     * The conversion is using the following rules:
@@ -1194,15 +1255,16 @@ object Gio:
     *
     * See the g_dbus_gvariant_to_gvalue() function for how to convert a
     * #GVariant to a #GValue.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[dbus_gvalue_to_gvariant:/<function parameters>/gvalue]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
-  def dbusGvalueToGvariant() = ???
+  private def dbusGvalueToGvariant() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a #GVariant to a #GValue. If @value is floating, it is consumed.
+  /** Converts a #GVariant to a #GValue. If @value is floating, it is consumed.
     *
     * The rules specified in the g_dbus_gvalue_to_gvariant() function are used -
     * this function is essentially its reverse form. So, a #GVariant containing
@@ -1212,19 +1274,23 @@ object Gio:
     *
     * The conversion never fails - a valid #GValue is always returned in
     * @out_gvalue.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function dbus_gvariant_to_gvalue contains an OUT parameter, which is not supported yet"
+    "[dbus_gvariant_to_gvalue:]: Function dbus_gvariant_to_gvalue contains an OUT parameter, which is not supported yet"
   )
-  def dbusGvariantToGvalue() = ???
+  private def dbusGvariantToGvalue() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if @string is a [D-Bus
+  /** Checks if @string is a [D-Bus
     * address](https://dbus.freedesktop.org/doc/dbus-specification.html#addresses).
     *
     * This doesn't check if @string is actually supported by #GDBusServer or
     * #GDBusConnection - use g_dbus_is_supported_address() to do more checks.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsAddress(
       string: String |
@@ -1234,13 +1300,14 @@ object Gio:
       __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Check whether @string is a valid D-Bus error name.
+  /** Check whether @string is a valid D-Bus error name.
     *
     * This function returns the same result as g_dbus_is_interface_name(),
     * because D-Bus error names are defined to have exactly the same syntax as
     * interface names.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsErrorName(
       string: String |
@@ -1250,12 +1317,13 @@ object Gio:
       __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if @string is a D-Bus GUID.
+  /** Checks if @string is a D-Bus GUID.
     *
     * See the documentation for g_dbus_generate_guid() for more information
     * about the format of a GUID.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsGuid(
       string: String |
@@ -1264,9 +1332,10 @@ object Gio:
     g_dbus_is_guid(__sn_extract_string(string).asInstanceOf[Ptr[gchar]]).value
       .!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if @string is a valid D-Bus interface name.
     *
-    * Checks if @string is a valid D-Bus interface name.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsInterfaceName(
       string: String |
@@ -1276,9 +1345,10 @@ object Gio:
       __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if @string is a valid D-Bus member (e.g. signal or method) name.
     *
-    * Checks if @string is a valid D-Bus member (e.g. signal or method) name.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsMemberName(
       string: String |
@@ -1288,9 +1358,10 @@ object Gio:
       __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if @string is a valid D-Bus bus name (either unique or well-known).
     *
-    * Checks if @string is a valid D-Bus bus name (either unique or well-known).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsName(
       string: String |
@@ -1299,12 +1370,13 @@ object Gio:
     g_dbus_is_name(__sn_extract_string(string).asInstanceOf[Ptr[gchar]]).value
       .!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_dbus_is_address() but also checks if the library supports the
+  /** Like g_dbus_is_address() but also checks if the library supports the
     * transports in @string and that key/value pairs for each transport are
     * valid. See the specification of the [D-Bus address
     * format](https://dbus.freedesktop.org/doc/dbus-specification.html#addresses).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsSupportedAddress(
       string: String |
@@ -1319,9 +1391,10 @@ object Gio:
       ).value.!=(0)
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if @string is a valid D-Bus unique bus name.
     *
-    * Checks if @string is a valid D-Bus unique bus name.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsUniqueName(
       string: String |
@@ -1331,25 +1404,27 @@ object Gio:
       __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Unescapes an string that was previously escaped with
+  /** Unescapes an string that was previously escaped with
     * g_dbus_escape_object_path(). If the string is in a format that could not
     * have been returned by g_dbus_escape_object_path(), this function returns
     * %NULL.
     *
     * Encoding alphanumeric characters which do not need to be encoded is not
     * allowed (e.g `_63` is not valid, the string should contain `c` instead).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@type -> DataRecord(guint8*)))"
+    "[dbus_unescape_object_path:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@type -> DataRecord(guint8*)))"
   )
-  def dbusUnescapeObjectPath() = ???
+  private def dbusUnescapeObjectPath() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GDtlsClientConnection wrapping @base_socket which is
+  /** Creates a new #GDtlsClientConnection wrapping @base_socket which is
     * assumed to communicate with the server identified by @server_identity.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dtlsClientConnectionNew(
       base_socket: DatagramBased /* Some(Ptr[GDatagramBased]) */,
@@ -1371,9 +1446,10 @@ object Gio:
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GDtlsServerConnection wrapping @base_socket.
     *
-    * Creates a new #GDtlsServerConnection wrapping @base_socket.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dtlsServerConnectionNew(
       base_socket: DatagramBased /* Some(Ptr[GDatagramBased]) */,
@@ -1393,22 +1469,21 @@ object Gio:
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Constructs a #GFile from a vector of elements using the correct separator
+  /** Constructs a #GFile from a vector of elements using the correct separator
     * for filenames.
     *
     * Using this function is equivalent to calling g_build_filenamev(), followed
     * by g_file_new_for_path() on the result.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[file_new_build_filenamev:/<function parameters>/args]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def fileNewBuildFilenamev() = ???
+  private def fileNewBuildFilenamev() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GFile with the given argument from the command line. The value
+  /** Creates a #GFile with the given argument from the command line. The value
     * of @arg can be either a URI, an absolute path or a relative path resolved
     * relative to the current working directory. This operation never fails, but
     * the returned object might not support any I/O operation if @arg points to
@@ -1422,6 +1497,9 @@ object Gio:
     * g_application_command_line_create_file_for_arg() may be more useful for
     * you there. It is also always possible to use this function with
     * #GOptionContext arguments of type %G_OPTION_ARG_FILENAME.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fileNewForCommandlineArg(
       arg: String | CString /* Some(CString) */
@@ -1429,9 +1507,7 @@ object Gio:
     g_file_new_for_commandline_arg(__sn_extract_string(arg)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GFile with the given argument from the command line.
+  /** Creates a #GFile with the given argument from the command line.
     *
     * This function is similar to g_file_new_for_commandline_arg() except that
     * it allows for passing the current working directory as an argument instead
@@ -1441,6 +1517,9 @@ object Gio:
     * than the invocation of the current process.
     *
     * See also g_application_command_line_create_file_for_arg().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fileNewForCommandlineArgAndCwd(
       arg: String |
@@ -1453,10 +1532,11 @@ object Gio:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Constructs a #GFile for a given path. This operation never fails, but the
+  /** Constructs a #GFile for a given path. This operation never fails, but the
     * returned object might not support any I/O operation if @path is malformed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fileNewForPath(
       path: String | CString /* Some(CString) */
@@ -1464,20 +1544,19 @@ object Gio:
     g_file_new_for_path(__sn_extract_string(path)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Constructs a #GFile for a given URI. This operation never fails, but the
+  /** Constructs a #GFile for a given URI. This operation never fails, but the
     * returned object might not support any I/O operation if @uri is malformed
     * or if the uri type is not supported.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fileNewForUri(
       uri: String | CString /* Some(CString) */
   )(using Zone): File /* Some(Ptr[GFile]) */ =
     new File.Abstract(g_file_new_for_uri(__sn_extract_string(uri)).asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Opens a file in the preferred directory for temporary files (as returned
+  /** Opens a file in the preferred directory for temporary files (as returned
     * by g_get_tmp_dir()) and returns a #GFile and #GFileIOStream pointing to
     * it.
     *
@@ -1488,46 +1567,52 @@ object Gio:
     *
     * Unlike the other #GFile constructors, this will return %NULL if a
     * temporary file could not be created.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function file_new_tmp contains an OUT parameter, which is not supported yet"
+    "[file_new_tmp:]: Function file_new_tmp contains an OUT parameter, which is not supported yet"
   )
-  def fileNewTmp() = ???
+  private def fileNewTmp() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously opens a file in the preferred directory for temporary files
+  /** Asynchronously opens a file in the preferred directory for temporary files
     * (as returned by g_get_tmp_dir()) as g_file_new_tmp().
     *
     * @tmpl
     *   should be a string in the GLib file name encoding containing a sequence
     *   of six 'X' characters, and containing no directory components. If it is
     *   %NULL, a default template is used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[file_new_tmp_async:/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def fileNewTmpAsync() = ???
+  private def fileNewTmpAsync() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously creates a directory in the preferred directory for
+  /** Asynchronously creates a directory in the preferred directory for
     * temporary files (as returned by g_get_tmp_dir()) as g_dir_make_tmp().
     *
     * @tmpl
     *   should be a string in the GLib file name encoding containing a sequence
     *   of six 'X' characters, and containing no directory components. If it is
     *   %NULL, a default template is used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[file_new_tmp_dir_async:/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def fileNewTmpDirAsync() = ???
+  private def fileNewTmpDirAsync() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes a temporary directory creation started by
+  /** Finishes a temporary directory creation started by
     * g_file_new_tmp_dir_async().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fileNewTmpDirFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -1540,21 +1625,23 @@ object Gio:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes a temporary file creation started by g_file_new_tmp_async().
     *
-    * Finishes a temporary file creation started by g_file_new_tmp_async().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function file_new_tmp_finish contains an OUT parameter, which is not supported yet"
+    "[file_new_tmp_finish:]: Function file_new_tmp_finish contains an OUT parameter, which is not supported yet"
   )
-  def fileNewTmpFinish() = ???
+  private def fileNewTmpFinish() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Constructs a #GFile with the given @parse_name (i.e. something given by
+  /** Constructs a #GFile with the given @parse_name (i.e. something given by
     * g_file_get_parse_name()). This operation never fails, but the returned
     * object might not support any I/O operation if the @parse_name cannot be
     * parsed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fileParseName(
       parse_name: String | CString /* Some(CString) */
@@ -1562,24 +1649,26 @@ object Gio:
     g_file_parse_name(__sn_extract_string(parse_name)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Deserializes a #GIcon previously serialized using g_icon_serialize().
     *
-    * Deserializes a #GIcon previously serialized using g_icon_serialize().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[icon_deserialize:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def iconDeserialize() = ???
+  private def iconDeserialize() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Generate a #GIcon instance from @str. This function can fail if
+  /** Generate a #GIcon instance from @str. This function can fail if
     * @str
     *   is not valid - see g_icon_to_string() for discussion.
     *
     * If your application or library provides one or more #GIcon implementations
     * you need to ensure that each #GType is registered with the type system
     * prior to calling g_icon_new_for_string().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def iconNewForString(
       str: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -1593,109 +1682,116 @@ object Gio:
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Helper function for constructing #GInitable object. This is similar to
+  /** Helper function for constructing #GInitable object. This is similar to
     * g_object_newv() but also initializes the object and returns %NULL, setting
     * an error on failure.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GObject.Parameter), @type -> DataRecord(GParameter)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GParameter*)))"
+    "[initable_newv:/<function parameters>/parameters]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GObject.Parameter), @type -> DataRecord(GParameter)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GParameter*)))"
   )
-  def initableNewv() = ???
+  private def initableNewv() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts errno.h error codes into GIO error codes. The fallback value
+  /** Converts errno.h error codes into GIO error codes. The fallback value
     * %G_IO_ERROR_FAILED is returned for error codes not currently handled (but
     * note that future GLib releases may return a more specific value instead).
     *
     * As %errno is global and may be modified by intermediate function calls,
     * you should save its value as soon as the call which sets it
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def ioErrorFromErrno(
       err_no: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   ): IOErrorEnum /* Some(GIOErrorEnum) */ =
     IOErrorEnum.fromRaw(g_io_error_from_errno(gint(err_no)))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts #GFileError error codes into GIO error codes.
     *
-    * Converts #GFileError error codes into GIO error codes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def ioErrorFromFileError(
       file_error: FileError /* Some(_root_.sn.gnome.glib.internal.GFileError) */
   ): IOErrorEnum /* Some(GIOErrorEnum) */ =
     IOErrorEnum.fromRaw(g_io_error_from_file_error(file_error.raw))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the GIO Error Quark.
     *
-    * Gets the GIO Error Quark.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[io_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def ioErrorQuark() = ???
+  private def ioErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Registers @type as extension for the extension point with name
+  /** Registers @type as extension for the extension point with name
     * @extension_point_name.
     *
     * If @type has already been registered as an extension for this extension
     * point, the existing #GIOExtension object is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(IOExtension), @type -> DataRecord(GIOExtension*)))"
+    "[io_extension_point_implement:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOExtension), @type -> DataRecord(GIOExtension*)))"
   )
-  def ioExtensionPointImplement() = ???
+  private def ioExtensionPointImplement() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Looks up an existing extension point.
     *
-    * Looks up an existing extension point.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(IOExtensionPoint), @type -> DataRecord(GIOExtensionPoint*)))"
+    "[io_extension_point_lookup:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOExtensionPoint), @type -> DataRecord(GIOExtensionPoint*)))"
   )
-  def ioExtensionPointLookup() = ???
+  private def ioExtensionPointLookup() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Registers an extension point.
     *
-    * Registers an extension point.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(IOExtensionPoint), @type -> DataRecord(GIOExtensionPoint*)))"
+    "[io_extension_point_register:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOExtensionPoint), @type -> DataRecord(GIOExtensionPoint*)))"
   )
-  def ioExtensionPointRegister() = ???
+  private def ioExtensionPointRegister() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Loads all the modules in the specified directory.
+  /** Loads all the modules in the specified directory.
     *
     * If don't require all modules to be initialized (and thus registering all
     * gtypes) then you can use g_io_modules_scan_all_in_directory() which allows
     * delayed/lazy loading of modules.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(IOModule))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[io_modules_load_all_in_directory:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(IOModule))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def ioModulesLoadAllInDirectory() = ???
+  private def ioModulesLoadAllInDirectory() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Loads all the modules in the specified directory.
+  /** Loads all the modules in the specified directory.
     *
     * If don't require all modules to be initialized (and thus registering all
     * gtypes) then you can use g_io_modules_scan_all_in_directory() which allows
     * delayed/lazy loading of modules.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(IOModuleScope), @type -> DataRecord(GIOModuleScope*)))"
+    "[io_modules_load_all_in_directory_with_scope:/<function parameters>/scope]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOModuleScope), @type -> DataRecord(GIOModuleScope*)))"
   )
-  def ioModulesLoadAllInDirectoryWithScope() = ???
+  private def ioModulesLoadAllInDirectoryWithScope() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Scans all the modules in the specified directory, ensuring that any
+  /** Scans all the modules in the specified directory, ensuring that any
     * extension point implemented by a module is registered.
     *
     * This may not actually load and initialize all the types in each module,
@@ -1705,6 +1801,9 @@ object Gio:
     *
     * If you need to guarantee that all types are loaded in all the modules, use
     * g_io_modules_load_all_in_directory().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def ioModulesScanAllInDirectory(
       dirname: String | CString /* Some(CString) */
@@ -1712,9 +1811,7 @@ object Gio:
     __sn_extract_string(dirname)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Scans all the modules in the specified directory, ensuring that any
+  /** Scans all the modules in the specified directory, ensuring that any
     * extension point implemented by a module is registered.
     *
     * This may not actually load and initialize all the types in each module,
@@ -1724,25 +1821,27 @@ object Gio:
     *
     * If you need to guarantee that all types are loaded in all the modules, use
     * g_io_modules_load_all_in_directory().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(IOModuleScope), @type -> DataRecord(GIOModuleScope*)))"
+    "[io_modules_scan_all_in_directory_with_scope:/<function parameters>/scope]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOModuleScope), @type -> DataRecord(GIOModuleScope*)))"
   )
-  def ioModulesScanAllInDirectoryWithScope() = ???
+  private def ioModulesScanAllInDirectoryWithScope() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Cancels all cancellable I/O jobs.
+  /** Cancels all cancellable I/O jobs.
     *
     * A job is cancellable if a #GCancellable was passed into
     * g_io_scheduler_push_job().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def ioSchedulerCancelAllJobs(): Unit /* Some(Unit) */ =
     g_io_scheduler_cancel_all_jobs()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Schedules the I/O job to run in another thread.
+  /** Schedules the I/O job to run in another thread.
     *
     * @notify
     *   will be called on @user_data after @job_func has returned, regardless
@@ -1751,15 +1850,16 @@ object Gio:
     * If @cancellable is not %NULL, it can be used to cancel the I/O job by
     * calling g_cancellable_cancel() or by calling
     * g_io_scheduler_cancel_all_jobs().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(IOSchedulerJobFunc), @type -> DataRecord(GIOSchedulerJobFunc)))"
+    "[io_scheduler_push_job:/<function parameters>/job_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOSchedulerJobFunc), @type -> DataRecord(GIOSchedulerJobFunc)))"
   )
-  def ioSchedulerPushJob() = ???
+  private def ioSchedulerPushJob() = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Creates a keyfile-backed #GSettingsBackend.
+  /**  Creates a keyfile-backed #GSettingsBackend.
     *
     *  The filename of the keyfile to use is given by @filename.
     *
@@ -1808,90 +1908,99 @@ object Gio:
     *  the directory specified by the #GKeyfileSettingsBackend:defaults-dir property,
     *  and a list of locked keys from a text file with the name `locks` in
     *  the same location.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_keyfile_settings_backend_new has no target types"
+    "[keyfile_settings_backend_new:]: Method g_keyfile_settings_backend_new has no target types"
   )
-  def keyfileSettingsBackendNew() = ???
+  private def keyfileSettingsBackendNew() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets a reference to the default #GMemoryMonitor for the system.
     *
-    * Gets a reference to the default #GMemoryMonitor for the system.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def memoryMonitorDupDefault(): MemoryMonitor /* Some(Ptr[GMemoryMonitor]) */ =
     new MemoryMonitor.Abstract(g_memory_monitor_dup_default().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a memory-backed #GSettingsBackend.
+  /** Creates a memory-backed #GSettingsBackend.
     *
     * This backend allows changes to settings, but does not write them to any
     * backing storage, so the next time you run your application, the memory
     * backend will start out with the default values again.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_memory_settings_backend_new has no target types"
+    "[memory_settings_backend_new:]: Method g_memory_settings_backend_new has no target types"
   )
-  def memorySettingsBackendNew() = ???
+  private def memorySettingsBackendNew() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the default #GNetworkMonitor for the system.
     *
-    * Gets the default #GNetworkMonitor for the system.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def networkMonitorGetDefault()
       : NetworkMonitor /* Some(Ptr[GNetworkMonitor]) */ =
     new NetworkMonitor.Abstract(g_network_monitor_get_default().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Initializes the platform networking libraries (eg, on Windows, this calls
+  /** Initializes the platform networking libraries (eg, on Windows, this calls
     * WSAStartup()). GLib will call this itself if it is needed, so you only
     * need to call it if you directly call system networking functions (without
     * calling any GLib networking functions first).
-    */
-  @annotation.compileTimeOnly("Method g_networking_init has no target types")
-  def networkingInit() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Creates a readonly #GSettingsBackend.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[networking_init:]: Method g_networking_init has no target types"
+  )
+  private def networkingInit() = ???
+
+  /** Creates a readonly #GSettingsBackend.
     *
     * This backend does not allow changes to settings, so all settings will
     * always have their default values.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_null_settings_backend_new has no target types"
+    "[null_settings_backend_new:]: Method g_null_settings_backend_new has no target types"
   )
-  def nullSettingsBackendNew() = ???
+  private def nullSettingsBackendNew() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Utility method for #GPollableInputStream and #GPollableOutputStream
+  /** Utility method for #GPollableInputStream and #GPollableOutputStream
     * implementations. Creates a new #GSource that expects a callback of type
     * #GPollableSourceFunc. The new source does not actually do anything on its
     * own; use g_source_add_child_source() to add other sources to it to cause
     * it to trigger.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+    "[pollable_source_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
   )
-  def pollableSourceNew() = ???
+  private def pollableSourceNew() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Utility method for #GPollableInputStream and #GPollableOutputStream
+  /** Utility method for #GPollableInputStream and #GPollableOutputStream
     * implementations. Creates a new #GSource, as with g_pollable_source_new(),
     * but also attaching @child_source (with a dummy callback), and @cancellable,
     * if they are non-%NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+    "[pollable_source_new_full:/<function parameters>/child_source]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
   )
-  def pollableSourceNewFull() = ???
+  private def pollableSourceNewFull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to read from @stream, as with g_input_stream_read() (if
+  /** Tries to read from @stream, as with g_input_stream_read() (if
     * @blocking
     *   is %TRUE) or g_pollable_input_stream_read_nonblocking() (if @blocking is
     *   %FALSE). This can be used to more easily share code between blocking and
@@ -1901,15 +2010,16 @@ object Gio:
     * which g_pollable_input_stream_can_poll() returns %TRUE, or else the
     * behavior is undefined. If @blocking is %TRUE, then @stream does not need
     * to be a #GPollableInputStream.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(void*)))"
+    "[pollable_stream_read:/<function parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(void*)))"
   )
-  def pollableStreamRead() = ???
+  private def pollableStreamRead() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to write to @stream, as with g_output_stream_write() (if
+  /** Tries to write to @stream, as with g_output_stream_write() (if
     * @blocking
     *   is %TRUE) or g_pollable_output_stream_write_nonblocking() (if @blocking
     *   is %FALSE). This can be used to more easily share code between blocking
@@ -1919,15 +2029,16 @@ object Gio:
     * which g_pollable_output_stream_can_poll() returns %TRUE or else the
     * behavior is undefined. If @blocking is %TRUE, then @stream does not need
     * to be a #GPollableOutputStream.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(void*)))"
+    "[pollable_stream_write:/<function parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(void*)))"
   )
-  def pollableStreamWrite() = ???
+  private def pollableStreamWrite() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to write @count bytes to @stream, as with
+  /** Tries to write @count bytes to @stream, as with
     * g_output_stream_write_all(), but using g_pollable_stream_write() rather
     * than g_output_stream_write().
     *
@@ -1948,15 +2059,19 @@ object Gio:
     *   g_pollable_output_stream_can_poll() returns %TRUE or else the behavior
     *   is undefined. If @blocking is %TRUE, then @stream does not need to be a
     *   #GPollableOutputStream.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function pollable_stream_write_all contains an OUT parameter, which is not supported yet"
+    "[pollable_stream_write_all:]: Function pollable_stream_write_all contains an OUT parameter, which is not supported yet"
   )
-  def pollableStreamWriteAll() = ???
+  private def pollableStreamWriteAll() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets a reference to the default #GPowerProfileMonitor for the system.
     *
-    * Gets a reference to the default #GPowerProfileMonitor for the system.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def powerProfileMonitorDupDefault()
       : PowerProfileMonitor /* Some(Ptr[GPowerProfileMonitor]) */ =
@@ -1964,10 +2079,11 @@ object Gio:
       g_power_profile_monitor_dup_default().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Find the `gio-proxy` extension point for a proxy implementation that
+  /** Find the `gio-proxy` extension point for a proxy implementation that
     * supports the specified protocol.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def proxyGetDefaultForProtocol(
       protocol: String |
@@ -1978,34 +2094,35 @@ object Gio:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the default #GProxyResolver for the system.
     *
-    * Gets the default #GProxyResolver for the system.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def proxyResolverGetDefault(): ProxyResolver /* Some(Ptr[GProxyResolver]) */ =
     new ProxyResolver.Abstract(g_proxy_resolver_get_default().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the #GResolver Error Quark.
     *
-    * Gets the #GResolver Error Quark.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[resolver_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def resolverErrorQuark() = ???
+  private def resolverErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the #GResource Error Quark.
     *
-    * Gets the #GResource Error Quark.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[resource_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def resourceErrorQuark() = ???
+  private def resourceErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Loads a binary resource bundle and creates a #GResource representation of
+  /** Loads a binary resource bundle and creates a #GResource representation of
     * it, allowing you to query it for data.
     *
     * If you want to use this resource in the global resource namespace you need
@@ -2015,20 +2132,24 @@ object Gio:
     * %G_RESOURCE_ERROR_INTERNAL will be returned. If @filename doesn’t exist,
     * or there is an error in reading it, an error from g_mapped_file_new() will
     * be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
+    "[resource_load:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
   )
-  def resourceLoad() = ???
+  private def resourceLoad() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns all the names of children at the specified @path in the set of
+  /** Returns all the names of children at the specified @path in the set of
     * globally registered resources. The return result is a %NULL terminated
     * list of strings which should be released with g_strfreev().
     *
     * @lookup_flags
     *   controls the behaviour of the lookup.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def resourcesEnumerateChildren(
       path: String | CString /* Some(CString) */,
@@ -2044,22 +2165,21 @@ object Gio:
       ).map(fromCString(_))
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks for a file at the specified @path in the set of globally registered
+  /** Looks for a file at the specified @path in the set of globally registered
     * resources and if found returns information about it.
     *
     * @lookup_flags
     *   controls the behaviour of the lookup.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function resources_get_info contains an OUT parameter, which is not supported yet"
+    "[resources_get_info:]: Function resources_get_info contains an OUT parameter, which is not supported yet"
   )
-  def resourcesGetInfo() = ???
+  private def resourcesGetInfo() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks for a file at the specified @path in the set of globally registered
+  /** Looks for a file at the specified @path in the set of globally registered
     * resources and returns a #GBytes that lets you directly access the data in
     * memory.
     *
@@ -2074,19 +2194,23 @@ object Gio:
     *
     * @lookup_flags
     *   controls the behaviour of the lookup.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[resources_lookup_data:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def resourcesLookupData() = ???
+  private def resourcesLookupData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks for a file at the specified @path in the set of globally registered
+  /** Looks for a file at the specified @path in the set of globally registered
     * resources and returns a #GInputStream that lets you read the data.
     *
     * @lookup_flags
     *   controls the behaviour of the lookup.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def resourcesOpenStream(
       path: String | CString /* Some(CString) */,
@@ -2102,29 +2226,29 @@ object Gio:
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Registers the resource with the process-global set of resources. Once a
+  /** Registers the resource with the process-global set of resources. Once a
     * resource is registered the files in it can be accessed with the global
     * resource lookup functions like g_resources_lookup_data().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
+    "[resources_register:/<function parameters>/resource]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
   )
-  def resourcesRegister() = ???
+  private def resourcesRegister() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unregisters the resource from the process-global set of resources.
     *
-    * Unregisters the resource from the process-global set of resources.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
+    "[resources_unregister:/<function parameters>/resource]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
   )
-  def resourcesUnregister() = ???
+  private def resourcesUnregister() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the default system schema source.
+  /** Gets the default system schema source.
     *
     * This function is not required for normal uses of #GSettings but it may be
     * useful to authors of plugin management systems or to those who want to
@@ -2136,79 +2260,89 @@ object Gio:
     * different directories, depending on which directories were given in
     * `XDG_DATA_DIRS` and `GSETTINGS_SCHEMA_DIR`. For this reason, all lookups
     * performed against the default source should probably be done recursively.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsSchemaSource), @type -> DataRecord(GSettingsSchemaSource*)))"
+    "[settings_schema_source_get_default:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsSchemaSource), @type -> DataRecord(GSettingsSchemaSource*)))"
   )
-  def settingsSchemaSourceGetDefault() = ???
+  private def settingsSchemaSourceGetDefault() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reports an error in an asynchronous function in an idle function by
+  /** Reports an error in an asynchronous function in an idle function by
     * directly setting the contents of the #GAsyncResult with the given error
     * information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[simple_async_report_error_in_idle:/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def simpleAsyncReportErrorInIdle() = ???
+  private def simpleAsyncReportErrorInIdle() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reports an error in an idle function. Similar to
+  /** Reports an error in an idle function. Similar to
     * g_simple_async_report_error_in_idle(), but takes a #GError rather than
     * building a new one.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[simple_async_report_gerror_in_idle:/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def simpleAsyncReportGerrorInIdle() = ???
+  private def simpleAsyncReportGerrorInIdle() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reports an error in an idle function. Similar to
+  /** Reports an error in an idle function. Similar to
     * g_simple_async_report_gerror_in_idle(), but takes over the caller's
     * ownership of @error, so the caller does not have to free it any more.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[simple_async_report_take_gerror_in_idle:/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def simpleAsyncReportTakeGerrorInIdle() = ???
+  private def simpleAsyncReportTakeGerrorInIdle() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sorts @targets in place according to the algorithm in RFC 2782.
     *
-    * Sorts @targets in place according to the algorithm in RFC 2782.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[srv_target_list_sort:/<function parameters>/targets]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def srvTargetListSort() = ???
+  private def srvTargetListSort() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the default #GTlsBackend for the system.
     *
-    * Gets the default #GTlsBackend for the system.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def tlsBackendGetDefault(): TlsBackend /* Some(Ptr[GTlsBackend]) */ =
     new TlsBackend.Abstract(g_tls_backend_get_default().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the TLS channel binding error quark.
     *
-    * Gets the TLS channel binding error quark.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[tls_channel_binding_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def tlsChannelBindingErrorQuark() = ???
+  private def tlsChannelBindingErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GTlsClientConnection wrapping @base_io_stream (which must
+  /** Creates a new #GTlsClientConnection wrapping @base_io_stream (which must
     * have pollable input and output streams) which is assumed to communicate
     * with the server identified by @server_identity.
     *
     * See the documentation for #GTlsConnection:base-io-stream for restrictions
     * on when application code can run operations on the @base_io_stream after
     * this function has returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def tlsClientConnectionNew(
       base_io_stream: IOStream /* Some(Ptr[GIOStream]) */,
@@ -2230,21 +2364,23 @@ object Gio:
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the TLS error quark.
     *
-    * Gets the TLS error quark.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[tls_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def tlsErrorQuark() = ???
+  private def tlsErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GTlsFileDatabase which uses anchor certificate authorities
+  /** Creates a new #GTlsFileDatabase which uses anchor certificate authorities
     * in @anchors to verify certificate chains.
     *
     * The certificates in @anchors must be PEM encoded.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def tlsFileDatabaseNew(
       anchors: String |
@@ -2259,14 +2395,15 @@ object Gio:
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GTlsServerConnection wrapping @base_io_stream (which must
+  /** Creates a new #GTlsServerConnection wrapping @base_io_stream (which must
     * have pollable input and output streams).
     *
     * See the documentation for #GTlsConnection:base-io-stream for restrictions
     * on when application code can run operations on the @base_io_stream after
     * this function has returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def tlsServerConnectionNew(
       base_io_stream: IOStream /* Some(Ptr[GIOStream]) */,
@@ -2286,35 +2423,35 @@ object Gio:
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines if @mount_path is considered an implementation of the OS. This
+  /** Determines if @mount_path is considered an implementation of the OS. This
     * is primarily used for hiding mountable and mounted volumes that only are
     * used in the OS and has little to no relevance to the casual user.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_is_mount_path_system_internal has no target types"
+    "[unix_is_mount_path_system_internal:]: Method g_unix_is_mount_path_system_internal has no target types"
   )
-  def unixIsMountPathSystemInternal() = ???
+  private def unixIsMountPathSystemInternal() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines if @device_path is considered a block device path which is only
+  /** Determines if @device_path is considered a block device path which is only
     * used in implementation of the OS. This is primarily used for hiding
     * mounted volumes that are intended as APIs for programs to read, and system
     * administrators at a shell; rather than something that should, for example,
     * appear in a GUI. For example, the Linux `/proc` filesystem.
     *
     * The list of device paths considered ‘system’ ones may change over time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_is_system_device_path has no target types"
+    "[unix_is_system_device_path:]: Method g_unix_is_system_device_path has no target types"
   )
-  def unixIsSystemDevicePath() = ???
+  private def unixIsSystemDevicePath() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines if @fs_type is considered a type of file system which is only
+  /** Determines if @fs_type is considered a type of file system which is only
     * used in implementation of the OS. This is primarily used for hiding
     * mounted volumes that are intended as APIs for programs to read, and system
     * administrators at a shell; rather than something that should, for example,
@@ -2322,15 +2459,16 @@ object Gio:
     *
     * The list of file system types considered ‘system’ ones may change over
     * time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_is_system_fs_type has no target types"
+    "[unix_is_system_fs_type:]: Method g_unix_is_system_fs_type has no target types"
   )
-  def unixIsSystemFsType() = ???
+  private def unixIsSystemFsType() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a #GUnixMountEntry for a given mount path. If @time_read is set, it
+  /** Gets a #GUnixMountEntry for a given mount path. If @time_read is set, it
     * will be filled with a unix timestamp for checking if the mounts have
     * changed since with g_unix_mounts_changed_since().
     *
@@ -2338,29 +2476,36 @@ object Gio:
     * returned.
     *
     * This will return %NULL if there is no mount point at @mount_path.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function unix_mount_at contains an OUT parameter, which is not supported yet"
+    "[unix_mount_at:]: Function unix_mount_at contains an OUT parameter, which is not supported yet"
   )
-  def unixMountAt() = ???
+  private def unixMountAt() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Compares two unix mounts.
     *
-    * Compares two unix mounts.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly("Method g_unix_mount_compare has no target types")
-  def unixMountCompare() = ???
+  @annotation.compileTimeOnly(
+    "[unix_mount_compare:]: Method g_unix_mount_compare has no target types"
+  )
+  private def unixMountCompare() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes a copy of @mount_entry.
     *
-    * Makes a copy of @mount_entry.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly("Method g_unix_mount_copy has no target types")
-  def unixMountCopy() = ???
+  @annotation.compileTimeOnly(
+    "[unix_mount_copy:]: Method g_unix_mount_copy has no target types"
+  )
+  private def unixMountCopy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a #GUnixMountEntry for a given file path. If @time_read is set, it
+  /** Gets a #GUnixMountEntry for a given file path. If @time_read is set, it
     * will be filled with a unix timestamp for checking if the mounts have
     * changed since with g_unix_mounts_changed_since().
     *
@@ -2370,193 +2515,216 @@ object Gio:
     * This will return %NULL if looking up the mount entry fails, if
     * @file_path
     *   doesn’t exist or there is an I/O error.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function unix_mount_for contains an OUT parameter, which is not supported yet"
+    "[unix_mount_for:]: Function unix_mount_for contains an OUT parameter, which is not supported yet"
   )
-  def unixMountFor() = ???
+  private def unixMountFor() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Frees a unix mount.
     *
-    * Frees a unix mount.
-    */
-  @annotation.compileTimeOnly("Method g_unix_mount_free has no target types")
-  def unixMountFree() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the device path for a unix mount.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_mount_get_device_path has no target types"
+    "[unix_mount_free:]: Method g_unix_mount_free has no target types"
   )
-  def unixMountGetDevicePath() = ???
+  private def unixMountFree() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the device path for a unix mount.
     *
-    * Gets the filesystem type for the unix mount.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_mount_get_fs_type has no target types"
+    "[unix_mount_get_device_path:]: Method g_unix_mount_get_device_path has no target types"
   )
-  def unixMountGetFsType() = ???
+  private def unixMountGetDevicePath() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the filesystem type for the unix mount.
     *
-    * Gets the mount path for a unix mount.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_mount_get_mount_path has no target types"
+    "[unix_mount_get_fs_type:]: Method g_unix_mount_get_fs_type has no target types"
   )
-  def unixMountGetMountPath() = ???
+  private def unixMountGetFsType() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the mount path for a unix mount.
     *
-    * Gets a comma-separated list of mount options for the unix mount. For
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[unix_mount_get_mount_path:]: Method g_unix_mount_get_mount_path has no target types"
+  )
+  private def unixMountGetMountPath() = ???
+
+  /** Gets a comma-separated list of mount options for the unix mount. For
     * example, `rw,relatime,seclabel,data=ordered`.
     *
     * This is similar to g_unix_mount_point_get_options(), but it takes a
     * #GUnixMountEntry as an argument.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_mount_get_options has no target types"
+    "[unix_mount_get_options:]: Method g_unix_mount_get_options has no target types"
   )
-  def unixMountGetOptions() = ???
+  private def unixMountGetOptions() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the root of the mount within the filesystem. This is useful e.g. for
+  /** Gets the root of the mount within the filesystem. This is useful e.g. for
     * mounts created by bind operation, or btrfs subvolumes.
     *
     * For example, the root path is equal to "/" for mount created by "mount
     * /dev/sda1 /mnt/foo" and "/bar" for "mount --bind /mnt/foo/bar /mnt/bar".
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_mount_get_root_path has no target types"
+    "[unix_mount_get_root_path:]: Method g_unix_mount_get_root_path has no target types"
   )
-  def unixMountGetRootPath() = ???
+  private def unixMountGetRootPath() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Guesses whether a Unix mount can be ejected.
     *
-    * Guesses whether a Unix mount can be ejected.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_mount_guess_can_eject has no target types"
+    "[unix_mount_guess_can_eject:]: Method g_unix_mount_guess_can_eject has no target types"
   )
-  def unixMountGuessCanEject() = ???
+  private def unixMountGuessCanEject() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Guesses the icon of a Unix mount.
     *
-    * Guesses the icon of a Unix mount.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_mount_guess_icon has no target types"
+    "[unix_mount_guess_icon:]: Method g_unix_mount_guess_icon has no target types"
   )
-  def unixMountGuessIcon() = ???
+  private def unixMountGuessIcon() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Guesses the name of a Unix mount. The result is a translated string.
     *
-    * Guesses the name of a Unix mount. The result is a translated string.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_mount_guess_name has no target types"
+    "[unix_mount_guess_name:]: Method g_unix_mount_guess_name has no target types"
   )
-  def unixMountGuessName() = ???
+  private def unixMountGuessName() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Guesses whether a Unix mount should be displayed in the UI.
     *
-    * Guesses whether a Unix mount should be displayed in the UI.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_mount_guess_should_display has no target types"
+    "[unix_mount_guess_should_display:]: Method g_unix_mount_guess_should_display has no target types"
   )
-  def unixMountGuessShouldDisplay() = ???
+  private def unixMountGuessShouldDisplay() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Guesses the symbolic icon of a Unix mount.
     *
-    * Guesses the symbolic icon of a Unix mount.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_mount_guess_symbolic_icon has no target types"
+    "[unix_mount_guess_symbolic_icon:]: Method g_unix_mount_guess_symbolic_icon has no target types"
   )
-  def unixMountGuessSymbolicIcon() = ???
+  private def unixMountGuessSymbolicIcon() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if a unix mount is mounted read only.
     *
-    * Checks if a unix mount is mounted read only.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_mount_is_readonly has no target types"
+    "[unix_mount_is_readonly:]: Method g_unix_mount_is_readonly has no target types"
   )
-  def unixMountIsReadonly() = ???
+  private def unixMountIsReadonly() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if a Unix mount is a system mount. This is the Boolean OR of
+  /** Checks if a Unix mount is a system mount. This is the Boolean OR of
     * g_unix_is_system_fs_type(), g_unix_is_system_device_path() and
     * g_unix_is_mount_path_system_internal() on @mount_entry’s properties.
     *
     * The definition of what a ‘system’ mount entry is may change over time as
     * new file system types and device paths are ignored.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_mount_is_system_internal has no target types"
+    "[unix_mount_is_system_internal:]: Method g_unix_mount_is_system_internal has no target types"
   )
-  def unixMountIsSystemInternal() = ???
+  private def unixMountIsSystemInternal() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a #GUnixMountPoint for a given mount path. If @time_read is set, it
+  /** Gets a #GUnixMountPoint for a given mount path. If @time_read is set, it
     * will be filled with a unix timestamp for checking if the mount points have
     * changed since with g_unix_mount_points_changed_since().
     *
     * If more mount points have the same mount path, the last matching mount
     * point is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function unix_mount_point_at contains an OUT parameter, which is not supported yet"
+    "[unix_mount_point_at:]: Function unix_mount_point_at contains an OUT parameter, which is not supported yet"
   )
-  def unixMountPointAt() = ???
+  private def unixMountPointAt() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if the unix mount points have changed since a given unix time.
     *
-    * Checks if the unix mount points have changed since a given unix time.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_mount_points_changed_since has no target types"
+    "[unix_mount_points_changed_since:]: Method g_unix_mount_points_changed_since has no target types"
   )
-  def unixMountPointsChangedSince() = ???
+  private def unixMountPointsChangedSince() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a #GList of #GUnixMountPoint containing the unix mount points. If @time_read
+  /** Gets a #GList of #GUnixMountPoint containing the unix mount points. If @time_read
     * is set, it will be filled with the mount timestamp, allowing for checking
     * if the mounts have changed with g_unix_mount_points_changed_since().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function unix_mount_points_get contains an OUT parameter, which is not supported yet"
+    "[unix_mount_points_get:]: Function unix_mount_points_get contains an OUT parameter, which is not supported yet"
   )
-  def unixMountPointsGet() = ???
+  private def unixMountPointsGet() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if the unix mounts have changed since a given unix time.
     *
-    * Checks if the unix mounts have changed since a given unix time.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_mounts_changed_since has no target types"
+    "[unix_mounts_changed_since:]: Method g_unix_mounts_changed_since has no target types"
   )
-  def unixMountsChangedSince() = ???
+  private def unixMountsChangedSince() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a #GList of #GUnixMountEntry containing the unix mounts. If @time_read
+  /** Gets a #GList of #GUnixMountEntry containing the unix mounts. If @time_read
     * is set, it will be filled with the mount timestamp, allowing for checking
     * if the mounts have changed with g_unix_mounts_changed_since().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function unix_mounts_get contains an OUT parameter, which is not supported yet"
+    "[unix_mounts_get:]: Function unix_mounts_get contains an OUT parameter, which is not supported yet"
   )
-  def unixMountsGet() = ???
+  private def unixMountsGet() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -2572,7 +2740,7 @@ object Gio:
   ): Array[Ptr[T]] =
     val ab = Array.newBuilder[Ptr[T]]
     var offset = 0
-    val tg = Tag.materializePtrTag(ptag)
+    val tg = Tag.materializePtrTag(using ptag)
     while p(offset)(using tg) != null do
       ab += p(offset)(using tg)
       offset += 1

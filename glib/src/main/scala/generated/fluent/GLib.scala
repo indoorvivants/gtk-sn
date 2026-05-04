@@ -50,9 +50,7 @@ import sn.gnome.glib.internal.{
 }
 
 object GLib:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A wrapper for the POSIX access() function. This function is used to test a
+  /** A wrapper for the POSIX access() function. This function is used to test a
     * pathname for one or several of read, write or execute permissions, or just
     * existence.
     *
@@ -64,13 +62,14 @@ object GLib:
     * Win32 API.
     *
     * See your C library manual for more details about access().
-    */
-  @annotation.compileTimeOnly("Method g_access has no target types")
-  def access() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * This function is similar to g_malloc(), allocating (@n_blocks * @n_block_bytes)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[access:]: Method g_access has no target types")
+  private def access() = ???
+
+  /** This function is similar to g_malloc(), allocating (@n_blocks * @n_block_bytes)
     * bytes, but care is taken to align the allocated memory to with the given
     * alignment value. Additionally, it will detect possible overflow during
     * multiplication.
@@ -80,6 +79,9 @@ object GLib:
     *
     * Aligned memory allocations returned by this function can only be freed
     * using g_aligned_free_sized() or g_aligned_free().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def alignedAlloc(
       n_blocks: CUnsignedLongInt /* Some(gsize) */,
@@ -91,10 +93,11 @@ object GLib:
     gsize(alignment)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is similar to g_aligned_alloc(), but it will also clear the
+  /** This function is similar to g_aligned_alloc(), but it will also clear the
     * allocated memory before returning it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def alignedAlloc0(
       n_blocks: CUnsignedLongInt /* Some(gsize) */,
@@ -106,9 +109,10 @@ object GLib:
     gsize(alignment)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Frees the memory allocated by g_aligned_alloc().
     *
-    * Frees the memory allocated by g_aligned_alloc().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def alignedFree(
       mem: Option[Ptr[Byte] /* Some(gpointer) */ ]
@@ -116,9 +120,7 @@ object GLib:
     mem.map[gpointer](o => gpointer(o)).getOrElse(null.asInstanceOf[gpointer])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Frees the memory pointed to by @mem, assuming it is has the given @size
+  /** Frees the memory pointed to by @mem, assuming it is has the given @size
     * and
     * @alignment.
     *
@@ -128,6 +130,9 @@ object GLib:
     * match the alignment, passed when @mem was allocated. @size and @alignment
     * are passed to this function to allow optimizations in the allocator. If
     * you don’t know either of them, use g_aligned_free() instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def alignedFreeSized(
       mem: Option[Ptr[Byte] /* Some(gpointer) */ ],
@@ -139,9 +144,7 @@ object GLib:
     gsize(size).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GArray with @data as array data, @len as length and a
+  /** Creates a new #GArray with @data as array data, @len as length and a
     * reference count of 1.
     *
     * This avoids having to copy the data manually, when it can just be
@@ -156,15 +159,16 @@ object GLib:
     * Do not use it if @len or @element_size are greater than %G_MAXUINT.
     * #GArray stores the length of its data in #guint, which may be shorter than
     * #gsize.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(gpointer)))"
+    "[array_new_take:/<function parameters>/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(gpointer)))"
   )
-  def arrayNewTake() = ???
+  private def arrayNewTake() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GArray with @data as array data, computing the length of it
+  /** Creates a new #GArray with @data as array data, computing the length of it
     * and setting the reference count to 1.
     *
     * This avoids having to copy the data manually, when it can just be
@@ -182,30 +186,35 @@ object GLib:
     * Do not use it if @data length or @element_size are greater than
     * %G_MAXUINT. #GArray stores the length of its data in #guint, which may be
     * shorter than #gsize.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@type -> DataRecord(gpointer)))"
+    "[array_new_take_zero_terminated:/<function parameters>/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@type -> DataRecord(gpointer)))"
   )
-  def arrayNewTakeZeroTerminated() = ???
+  private def arrayNewTakeZeroTerminated() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines the numeric value of a character as a decimal digit. Differs
+  /** Determines the numeric value of a character as a decimal digit. Differs
     * from g_unichar_digit_value() because it takes a char, so there's no worry
     * about sign extension if characters are signed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiDigitValue(c: Byte /* Some(gchar) */ ): Int /* Some(gint) */ =
     g_ascii_digit_value(gchar(c)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a #gdouble to a string, using the '.' as decimal point.
+  /** Converts a #gdouble to a string, using the '.' as decimal point.
     *
     * This function generates enough precision that converting the string back
     * using g_ascii_strtod() gives the same machine-number (on machines with
     * IEEE compatible 64bit doubles). It is guaranteed that the size of the
     * resulting string will never be larger than %G_ASCII_DTOSTR_BUF_SIZE bytes,
     * including the terminating nul character, which is always added.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiDtostr(
       buffer: String | CString /* Some(Ptr[gchar]) */,
@@ -219,9 +228,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a #gdouble to a string, using the '.' as decimal point. To format
+  /** Converts a #gdouble to a string, using the '.' as decimal point. To format
     * the number you pass in a printf()-style format string. Allowed conversion
     * specifiers are 'e', 'E', 'f', 'F', 'g' and 'G'.
     *
@@ -232,6 +239,9 @@ object GLib:
     *
     * If you just want to want to serialize the value into a string, use
     * g_ascii_dtostr().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiFormatd(
       buffer: String | CString /* Some(Ptr[gchar]) */,
@@ -247,9 +257,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compare two strings, ignoring the case of ASCII characters.
+  /** Compare two strings, ignoring the case of ASCII characters.
     *
     * Unlike the BSD strcasecmp() function, this only recognizes standard ASCII
     * letters and ignores the locale, treating all non-ASCII bytes as if they
@@ -263,6 +271,9 @@ object GLib:
     * compare two CP932 strings using this function, you will get false matches.
     *
     * Both @s1 and @s2 must be non-%NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiStrcasecmp(
       s1: String | CString /* Some(Ptr[gchar]) */,
@@ -272,9 +283,10 @@ object GLib:
     __sn_extract_string(s2).asInstanceOf[Ptr[gchar]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts all upper case ASCII letters to lower case ASCII letters.
     *
-    * Converts all upper case ASCII letters to lower case ASCII letters.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiStrdown(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -286,9 +298,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A convenience function for converting a string to a signed number.
+  /** A convenience function for converting a string to a signed number.
     *
     * This function assumes that @str contains only a number of the given
     * @base
@@ -310,15 +320,16 @@ object GLib:
     *
     * See g_ascii_strtoll() if you have more complex needs such as parsing a
     * string which starts with a number, but then has other characters.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ascii_string_to_signed contains an OUT parameter, which is not supported yet"
+    "[ascii_string_to_signed:]: Function ascii_string_to_signed contains an OUT parameter, which is not supported yet"
   )
-  def asciiStringToSigned() = ???
+  private def asciiStringToSigned() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A convenience function for converting a string to an unsigned number.
+  /** A convenience function for converting a string to an unsigned number.
     *
     * This function assumes that @str contains only a number of the given
     * @base
@@ -341,15 +352,16 @@ object GLib:
     *
     * See g_ascii_strtoull() if you have more complex needs such as parsing a
     * string which starts with a number, but then has other characters.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ascii_string_to_unsigned contains an OUT parameter, which is not supported yet"
+    "[ascii_string_to_unsigned:]: Function ascii_string_to_unsigned contains an OUT parameter, which is not supported yet"
   )
-  def asciiStringToUnsigned() = ???
+  private def asciiStringToUnsigned() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compare @s1 and @s2, ignoring the case of ASCII characters and any
+  /** Compare @s1 and @s2, ignoring the case of ASCII characters and any
     * characters after the first @n in each string. If either string is less
     * than @n bytes long, comparison will stop at the first nul byte
     * encountered.
@@ -361,6 +373,9 @@ object GLib:
     * The same warning as in g_ascii_strcasecmp() applies: Use this function
     * only on strings known to be in encodings where bytes corresponding to
     * ASCII letters always represent themselves.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiStrncasecmp(
       s1: String | CString /* Some(Ptr[gchar]) */,
@@ -372,9 +387,7 @@ object GLib:
     gsize(n)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string to a #gdouble value.
+  /** Converts a string to a #gdouble value.
     *
     * This function behaves like the standard strtod() function does in the C
     * locale. It does this without actually changing the current locale, since
@@ -396,15 +409,16 @@ object GLib:
     *
     * This function resets %errno before calling strtod() so that you can
     * reliably detect overflow and underflow.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ascii_strtod contains an OUT parameter, which is not supported yet"
+    "[ascii_strtod:]: Function ascii_strtod contains an OUT parameter, which is not supported yet"
   )
-  def asciiStrtod() = ???
+  private def asciiStrtod() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string to a #gint64 value. This function behaves like the
+  /** Converts a string to a #gint64 value. This function behaves like the
     * standard strtoll() function does in the C locale. It does this without
     * actually changing the current locale, since that would not be thread-safe.
     *
@@ -418,15 +432,16 @@ object GLib:
     * valid range, zero is returned, and `EINVAL` is stored in `errno`. If the
     * string conversion fails, zero is returned, and @endptr returns @nptr (if @endptr
     * is non-%NULL).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ascii_strtoll contains an OUT parameter, which is not supported yet"
+    "[ascii_strtoll:]: Function ascii_strtoll contains an OUT parameter, which is not supported yet"
   )
-  def asciiStrtoll() = ???
+  private def asciiStrtoll() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string to a #guint64 value. This function behaves like the
+  /** Converts a string to a #guint64 value. This function behaves like the
     * standard strtoull() function does in the C locale. It does this without
     * actually changing the current locale, since that would not be thread-safe.
     *
@@ -447,15 +462,19 @@ object GLib:
     * conversion fails, zero is returned, and @endptr returns
     * @nptr
     *   (if @endptr is non-%NULL).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ascii_strtoull contains an OUT parameter, which is not supported yet"
+    "[ascii_strtoull:]: Function ascii_strtoull contains an OUT parameter, which is not supported yet"
   )
-  def asciiStrtoull() = ???
+  private def asciiStrtoull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts all lower case ASCII letters to upper case ASCII letters.
     *
-    * Converts all lower case ASCII letters to upper case ASCII letters.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiStrup(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -467,9 +486,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convert a character to ASCII lower case.
+  /** Convert a character to ASCII lower case.
     *
     * Unlike the standard C library tolower() function, this only recognizes
     * standard ASCII letters and ignores the locale, returning all non-ASCII
@@ -477,13 +494,14 @@ object GLib:
     * character set. Also unlike the standard library function, this takes and
     * returns a char, not an int, so don't call it on %EOF but no need to worry
     * about casting to #guchar before passing a possibly non-ASCII character in.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiTolower(c: Byte /* Some(gchar) */ ): Byte /* Some(gchar) */ =
     g_ascii_tolower(gchar(c)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convert a character to ASCII upper case.
+  /** Convert a character to ASCII upper case.
     *
     * Unlike the standard C library toupper() function, this only recognizes
     * standard ASCII letters and ignores the locale, returning all non-ASCII
@@ -491,23 +509,27 @@ object GLib:
     * character set. Also unlike the standard library function, this takes and
     * returns a char, not an int, so don't call it on %EOF but no need to worry
     * about casting to #guchar before passing a possibly non-ASCII character in.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiToupper(c: Byte /* Some(gchar) */ ): Byte /* Some(gchar) */ =
     g_ascii_toupper(gchar(c)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines the numeric value of a character as a hexadecimal digit.
+  /** Determines the numeric value of a character as a hexadecimal digit.
     * Differs from g_unichar_xdigit_value() because it takes a char, so there's
     * no worry about sign extension if characters are signed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiXdigitValue(c: Byte /* Some(gchar) */ ): Int /* Some(gint) */ =
     g_ascii_xdigit_value(gchar(c)).value
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(const int)))"
+    "[assert_warning:/<function parameters>/line]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(const int)))"
   )
-  def assertWarning() = ???
+  private def assertWarning() = ???
 
   def assertionMessage(
       domain: String | CString /* Some(CString) */,
@@ -587,18 +609,19 @@ object GLib:
     __sn_extract_string(arg2)
   )
 
-  @annotation.compileTimeOnly("weird")
-  def assertionMessageCmpstrv() = ???
+  @annotation.compileTimeOnly("[assertion_message_cmpstrv:]: weird")
+  private def assertionMessageCmpstrv() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(const GError*)))"
+    "[assertion_message_error:/<function parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(const GError*)))"
   )
-  def assertionMessageError() = ???
+  private def assertionMessageError() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Internal function used to print messages from the public g_assert() and
+  /** Internal function used to print messages from the public g_assert() and
     * g_assert_not_reached() macros.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def assertionMessageExpr(
       domain: Option[String | CString /* Some(CString) */ ],
@@ -618,9 +641,7 @@ object GLib:
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Specifies a function to be called at normal program termination.
+  /** Specifies a function to be called at normal program termination.
     *
     * Since GLib 2.8.2, on Windows g_atexit() actually is a preprocessor macro
     * that maps to a call to the atexit() function in the C library. This means
@@ -648,15 +669,16 @@ object GLib:
     *
     * As can be seen from the above, for portability it's best to avoid calling
     * g_atexit() (or atexit()) except in the main executable of a program.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(VoidFunc), @type -> DataRecord(GVoidFunc)))"
+    "[atexit:/<function parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(VoidFunc), @type -> DataRecord(GVoidFunc)))"
   )
-  def atexit() = ???
+  private def atexit() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Atomically adds @val to the value of @atomic.
+  /** Atomically adds @val to the value of @atomic.
     *
     * Think of this operation as an atomic version of
     * `{ tmp = *atomic; *atomic += val; return tmp; }`.
@@ -668,13 +690,14 @@ object GLib:
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicIntAdd() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Performs an atomic bitwise 'and' of the value of @atomic and @val, storing
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_int_add:]: weird")
+  private def atomicIntAdd() = ???
+
+  /** Performs an atomic bitwise 'and' of the value of @atomic and @val, storing
     * the result back in @atomic.
     *
     * This call acts as a full compiler and hardware memory barrier.
@@ -684,13 +707,14 @@ object GLib:
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicIntAnd() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Compares @atomic to @oldval and, if equal, sets it to @newval. If @atomic
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_int_and:]: weird")
+  private def atomicIntAnd() = ???
+
+  /** Compares @atomic to @oldval and, if equal, sets it to @newval. If @atomic
     * was not equal to @oldval then no change occurs.
     *
     * This compare and exchange is done atomically.
@@ -702,13 +726,14 @@ object GLib:
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicIntCompareAndExchange() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Compares @atomic to @oldval and, if equal, sets it to @newval. If @atomic
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_int_compare_and_exchange:]: weird")
+  private def atomicIntCompareAndExchange() = ???
+
+  /** Compares @atomic to @oldval and, if equal, sets it to @newval. If @atomic
     * was not equal to @oldval then no change occurs. In any case the value of @atomic
     * before this operation is stored in @preval.
     *
@@ -720,13 +745,14 @@ object GLib:
     * This call acts as a full compiler and hardware memory barrier.
     *
     * See also g_atomic_int_compare_and_exchange()
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicIntCompareAndExchangeFull() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Decrements the value of @atomic by 1.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_int_compare_and_exchange_full:]: weird")
+  private def atomicIntCompareAndExchangeFull() = ???
+
+  /** Decrements the value of @atomic by 1.
     *
     * Think of this operation as an atomic version of
     * `{ *atomic -= 1; return (*atomic == 0); }`.
@@ -735,13 +761,14 @@ object GLib:
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicIntDecAndTest() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Sets the @atomic to @newval and returns the old value from @atomic.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_int_dec_and_test:]: weird")
+  private def atomicIntDecAndTest() = ???
+
+  /** Sets the @atomic to @newval and returns the old value from @atomic.
     *
     * This exchange is done atomically.
     *
@@ -749,35 +776,38 @@ object GLib:
     * `{ tmp = *atomic; *atomic = val; return tmp; }`.
     *
     * This call acts as a full compiler and hardware memory barrier.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicIntExchange() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * This function existed before g_atomic_int_add() returned the prior value
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_int_exchange:]: weird")
+  private def atomicIntExchange() = ???
+
+  /** This function existed before g_atomic_int_add() returned the prior value
     * of the integer (which it now does). It is retained only for compatibility
     * reasons. Don't use this function in new code.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicIntExchangeAndAdd() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Gets the current value of @atomic.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_int_exchange_and_add:]: weird")
+  private def atomicIntExchangeAndAdd() = ???
+
+  /** Gets the current value of @atomic.
     *
     * This call acts as a full compiler and hardware memory barrier (before the
     * get).
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicIntGet() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Increments the value of @atomic by 1.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_int_get:]: weird")
+  private def atomicIntGet() = ???
+
+  /** Increments the value of @atomic by 1.
     *
     * Think of this operation as an atomic version of `{ *atomic += 1; }`.
     *
@@ -785,13 +815,14 @@ object GLib:
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicIntInc() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Performs an atomic bitwise 'or' of the value of @atomic and @val, storing
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_int_inc:]: weird")
+  private def atomicIntInc() = ???
+
+  /** Performs an atomic bitwise 'or' of the value of @atomic and @val, storing
     * the result back in @atomic.
     *
     * Think of this operation as an atomic version of
@@ -801,26 +832,28 @@ object GLib:
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicIntOr() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Sets the value of @atomic to @newval.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_int_or:]: weird")
+  private def atomicIntOr() = ???
+
+  /** Sets the value of @atomic to @newval.
     *
     * This call acts as a full compiler and hardware memory barrier (after the
     * set).
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicIntSet() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Performs an atomic bitwise 'xor' of the value of @atomic and @val, storing
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_int_set:]: weird")
+  private def atomicIntSet() = ???
+
+  /** Performs an atomic bitwise 'xor' of the value of @atomic and @val, storing
     * the result back in @atomic.
     *
     * Think of this operation as an atomic version of
@@ -830,13 +863,14 @@ object GLib:
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicIntXor() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Atomically adds @val to the value of @atomic.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_int_xor:]: weird")
+  private def atomicIntXor() = ???
+
+  /** Atomically adds @val to the value of @atomic.
     *
     * Think of this operation as an atomic version of
     * `{ tmp = *atomic; *atomic += val; return tmp; }`.
@@ -845,13 +879,14 @@ object GLib:
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicPointerAdd() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Performs an atomic bitwise 'and' of the value of @atomic and @val, storing
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_pointer_add:]: weird")
+  private def atomicPointerAdd() = ???
+
+  /** Performs an atomic bitwise 'and' of the value of @atomic and @val, storing
     * the result back in @atomic.
     *
     * Think of this operation as an atomic version of
@@ -861,13 +896,14 @@ object GLib:
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicPointerAnd() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Compares @atomic to @oldval and, if equal, sets it to @newval. If @atomic
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_pointer_and:]: weird")
+  private def atomicPointerAnd() = ???
+
+  /** Compares @atomic to @oldval and, if equal, sets it to @newval. If @atomic
     * was not equal to @oldval then no change occurs.
     *
     * This compare and exchange is done atomically.
@@ -879,13 +915,14 @@ object GLib:
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicPointerCompareAndExchange() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Compares @atomic to @oldval and, if equal, sets it to @newval. If @atomic
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_pointer_compare_and_exchange:]: weird")
+  private def atomicPointerCompareAndExchange() = ???
+
+  /** Compares @atomic to @oldval and, if equal, sets it to @newval. If @atomic
     * was not equal to @oldval then no change occurs. In any case the value of @atomic
     * before this operation is stored in @preval.
     *
@@ -897,13 +934,16 @@ object GLib:
     * This call acts as a full compiler and hardware memory barrier.
     *
     * See also g_atomic_pointer_compare_and_exchange()
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicPointerCompareAndExchangeFull() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Sets the @atomic to @newval and returns the old value from @atomic.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[atomic_pointer_compare_and_exchange_full:]: weird"
+  )
+  private def atomicPointerCompareAndExchangeFull() = ???
+
+  /** Sets the @atomic to @newval and returns the old value from @atomic.
     *
     * This exchange is done atomically.
     *
@@ -911,26 +951,28 @@ object GLib:
     * `{ tmp = *atomic; *atomic = val; return tmp; }`.
     *
     * This call acts as a full compiler and hardware memory barrier.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicPointerExchange() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Gets the current value of @atomic.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_pointer_exchange:]: weird")
+  private def atomicPointerExchange() = ???
+
+  /** Gets the current value of @atomic.
     *
     * This call acts as a full compiler and hardware memory barrier (before the
     * get).
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicPointerGet() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Performs an atomic bitwise 'or' of the value of @atomic and @val, storing
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_pointer_get:]: weird")
+  private def atomicPointerGet() = ???
+
+  /** Performs an atomic bitwise 'or' of the value of @atomic and @val, storing
     * the result back in @atomic.
     *
     * Think of this operation as an atomic version of
@@ -940,26 +982,28 @@ object GLib:
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicPointerOr() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Sets the value of @atomic to @newval.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_pointer_or:]: weird")
+  private def atomicPointerOr() = ???
+
+  /** Sets the value of @atomic to @newval.
     *
     * This call acts as a full compiler and hardware memory barrier (after the
     * set).
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicPointerSet() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Performs an atomic bitwise 'xor' of the value of @atomic and @val, storing
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_pointer_set:]: weird")
+  private def atomicPointerSet() = ???
+
+  /** Performs an atomic bitwise 'xor' of the value of @atomic and @val, storing
     * the result back in @atomic.
     *
     * Think of this operation as an atomic version of
@@ -969,33 +1013,36 @@ object GLib:
     *
     * While @atomic has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicPointerXor() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Atomically acquires a reference on the data pointed by @mem_block.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly("weird")
-  def atomicRcBoxAcquire() = ???
+  @annotation.compileTimeOnly("[atomic_pointer_xor:]: weird")
+  private def atomicPointerXor() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Atomically acquires a reference on the data pointed by @mem_block.
     *
-    * Allocates @block_size bytes of memory, and adds atomic reference counting
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_rc_box_acquire:]: weird")
+  private def atomicRcBoxAcquire() = ???
+
+  /** Allocates @block_size bytes of memory, and adds atomic reference counting
     * semantics to it.
     *
     * The data will be freed when its reference count drops to zero.
     *
     * The allocated data is guaranteed to be suitably aligned for any built-in
     * type.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicRcBoxAlloc() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Allocates @block_size bytes of memory, and adds atomic reference counting
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_rc_box_alloc:]: weird")
+  private def atomicRcBoxAlloc() = ???
+
+  /** Allocates @block_size bytes of memory, and adds atomic reference counting
     * semantics to it.
     *
     * The contents of the returned data is set to zero.
@@ -1004,101 +1051,112 @@ object GLib:
     *
     * The allocated data is guaranteed to be suitably aligned for any built-in
     * type.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicRcBoxAlloc0() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Allocates a new block of data with atomic reference counting semantics,
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_rc_box_alloc0:]: weird")
+  private def atomicRcBoxAlloc0() = ???
+
+  /** Allocates a new block of data with atomic reference counting semantics,
     * and copies @block_size bytes of @mem_block into it.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicRcBoxDup() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Retrieves the size of the reference counted data pointed by @mem_block.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly("weird")
-  def atomicRcBoxGetSize() = ???
+  @annotation.compileTimeOnly("[atomic_rc_box_dup:]: weird")
+  private def atomicRcBoxDup() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the size of the reference counted data pointed by @mem_block.
     *
-    * Atomically releases a reference on the data pointed by @mem_block.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_rc_box_get_size:]: weird")
+  private def atomicRcBoxGetSize() = ???
+
+  /** Atomically releases a reference on the data pointed by @mem_block.
     *
     * If the reference was the last one, it will free the resources allocated
     * for @mem_block.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicRcBoxRelease() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Atomically releases a reference on the data pointed by @mem_block.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_rc_box_release:]: weird")
+  private def atomicRcBoxRelease() = ???
+
+  /** Atomically releases a reference on the data pointed by @mem_block.
     *
     * If the reference was the last one, it will call @clear_func to clear the
     * contents of @mem_block, and then will free the resources allocated for @mem_block.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicRcBoxReleaseFull() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Atomically compares the current value of @arc with @val.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly("weird")
-  def atomicRefCountCompare() = ???
+  @annotation.compileTimeOnly("[atomic_rc_box_release_full:]: weird")
+  private def atomicRcBoxReleaseFull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Atomically compares the current value of @arc with @val.
     *
-    * Atomically decreases the reference count.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_ref_count_compare:]: weird")
+  private def atomicRefCountCompare() = ???
+
+  /** Atomically decreases the reference count.
     *
     * If %TRUE is returned, the reference count reached 0. After this point, @arc
     * is an undefined state and must be reinitialized with
     * g_atomic_ref_count_init() to be used again.
-    */
-  @annotation.compileTimeOnly("weird")
-  def atomicRefCountDec() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Atomically increases the reference count.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly("weird")
-  def atomicRefCountInc() = ???
+  @annotation.compileTimeOnly("[atomic_ref_count_dec:]: weird")
+  private def atomicRefCountDec() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Atomically increases the reference count.
     *
-    * Initializes a reference count variable to 1.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly("weird")
-  def atomicRefCountInit() = ???
+  @annotation.compileTimeOnly("[atomic_ref_count_inc:]: weird")
+  private def atomicRefCountInc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Initializes a reference count variable to 1.
     *
-    * Decode a sequence of Base-64 encoded text into binary data. Note that the
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[atomic_ref_count_init:]: weird")
+  private def atomicRefCountInit() = ???
+
+  /** Decode a sequence of Base-64 encoded text into binary data. Note that the
     * returned binary data is not necessarily zero-terminated, so it should not
     * be used as a character string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function base64_decode contains an OUT parameter, which is not supported yet"
+    "[base64_decode:]: Function base64_decode contains an OUT parameter, which is not supported yet"
   )
-  def base64Decode() = ???
+  private def base64Decode() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decode a sequence of Base-64 encoded text into binary data by overwriting
+  /** Decode a sequence of Base-64 encoded text into binary data by overwriting
     * the input data.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function base64_decode_inplace contains an INOUT parameter, which is not supported yet"
+    "[base64_decode_inplace:]: Function base64_decode_inplace contains an INOUT parameter, which is not supported yet"
   )
-  def base64DecodeInplace() = ???
+  private def base64DecodeInplace() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Incrementally decode a sequence of binary data from its Base-64
+  /** Incrementally decode a sequence of binary data from its Base-64
     * stringified representation. By calling this function multiple times you
     * can convert data in chunks to avoid having to have the full encoded data
     * in memory.
@@ -1106,40 +1164,43 @@ object GLib:
     * The output buffer must be large enough to fit all the data that will be
     * written to it. Since base64 encodes 3 bytes in 4 chars you need at least:
     * (@len / 4) * 3 + 3 bytes (+ 3 may be needed in case of non-zero state).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function base64_decode_step contains an OUT parameter, which is not supported yet"
+    "[base64_decode_step:]: Function base64_decode_step contains an OUT parameter, which is not supported yet"
   )
-  def base64DecodeStep() = ???
+  private def base64DecodeStep() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Encode a sequence of binary data into its Base-64 stringified
+  /** Encode a sequence of binary data into its Base-64 stringified
     * representation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guchar*)))"
+    "[base64_encode:/<function parameters>/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guchar*)))"
   )
-  def base64Encode() = ???
+  private def base64Encode() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flush the status from a sequence of calls to g_base64_encode_step().
+  /** Flush the status from a sequence of calls to g_base64_encode_step().
     *
     * The output buffer must be large enough to fit all the data that will be
     * written to it. It will need up to 4 bytes, or up to 5 bytes if
     * line-breaking is enabled.
     *
     * The @out array will not be automatically nul-terminated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function base64_encode_close contains an OUT parameter, which is not supported yet"
+    "[base64_encode_close:]: Function base64_encode_close contains an OUT parameter, which is not supported yet"
   )
-  def base64EncodeClose() = ???
+  private def base64EncodeClose() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Incrementally encode a sequence of binary data into its Base-64
+  /** Incrementally encode a sequence of binary data into its Base-64
     * stringified representation. By calling this function multiple times you
     * can convert data in chunks to avoid having to have the full encoded data
     * in memory.
@@ -1160,16 +1221,20 @@ object GLib:
     *   however that it breaks the lines with `LF` characters, not `CR LF`
     *   sequences, so the result cannot be passed directly to SMTP or certain
     *   other protocols.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function base64_encode_step contains an OUT parameter, which is not supported yet"
+    "[base64_encode_step:]: Function base64_encode_step contains an OUT parameter, which is not supported yet"
   )
-  def base64EncodeStep() = ???
+  private def base64EncodeStep() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the name of the file without any leading directory components. It
+  /** Gets the name of the file without any leading directory components. It
     * returns a pointer into the given file name string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def basename(
       file_name: String | CString /* Some(Ptr[gchar]) */
@@ -1179,9 +1244,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the indicated @lock_bit in @address. If the bit is already set, this
+  /** Sets the indicated @lock_bit in @address. If the bit is already set, this
     * call will block until g_bit_unlock() unsets the corresponding bit.
     *
     * Attempting to lock on two different bits within the same integer is not
@@ -1195,48 +1258,52 @@ object GLib:
     *   must be atomic in order for this function to work reliably. While @address
     *   has a `volatile` qualifier, this is a historical artifact and the
     *   argument passed to it should not be `volatile`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(volatile gint*)))"
+    "[bit_lock:/<function parameters>/address]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(volatile gint*)))"
   )
-  def bitLock() = ???
+  private def bitLock() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Find the position of the first bit set in @mask, searching from (but not
+  /** Find the position of the first bit set in @mask, searching from (but not
     * including) @nth_bit upwards. Bits are numbered from 0 (least significant)
     * to sizeof(#gulong) * 8 - 1 (31 or 63, usually). To start searching from
     * the 0th bit, set @nth_bit to -1.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def bitNthLsf(
       mask: CUnsignedLongInt /* Some(gulong) */,
       nth_bit: Int /* Some(gint) */
   ): Int /* Some(gint) */ = g_bit_nth_lsf(gulong(mask), gint(nth_bit)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Find the position of the first bit set in @mask, searching from (but not
+  /** Find the position of the first bit set in @mask, searching from (but not
     * including) @nth_bit downwards. Bits are numbered from 0 (least
     * significant) to sizeof(#gulong) * 8 - 1 (31 or 63, usually). To start
     * searching from the last bit, set @nth_bit to -1 or GLIB_SIZEOF_LONG * 8.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def bitNthMsf(
       mask: CUnsignedLongInt /* Some(gulong) */,
       nth_bit: Int /* Some(gint) */
   ): Int /* Some(gint) */ = g_bit_nth_msf(gulong(mask), gint(nth_bit)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the number of bits used to hold @number, e.g. if @number is 4, 3 bits
+  /** Gets the number of bits used to hold @number, e.g. if @number is 4, 3 bits
     * are needed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def bitStorage(
       number: CUnsignedLongInt /* Some(gulong) */
   ): UInt /* Some(guint) */ = g_bit_storage(gulong(number)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the indicated @lock_bit in @address, returning %TRUE if successful.
+  /** Sets the indicated @lock_bit in @address, returning %TRUE if successful.
     * If the bit is already set, returns %FALSE immediately.
     *
     * Attempting to lock on two different bits within the same integer is not
@@ -1250,13 +1317,14 @@ object GLib:
     *   must be atomic in order for this function to work reliably. While @address
     *   has a `volatile` qualifier, this is a historical artifact and the
     *   argument passed to it should not be `volatile`.
-    */
-  @annotation.compileTimeOnly("weird")
-  def bitTrylock() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Clears the indicated @lock_bit in @address. If another thread is currently
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[bit_trylock:]: weird")
+  private def bitTrylock() = ???
+
+  /** Clears the indicated @lock_bit in @address. If another thread is currently
     * blocked in g_bit_lock() on this same bit then it will be woken up.
     *
     * This function accesses @address atomically. All other accesses to
@@ -1264,18 +1332,19 @@ object GLib:
     *   must be atomic in order for this function to work reliably. While @address
     *   has a `volatile` qualifier, this is a historical artifact and the
     *   argument passed to it should not be `volatile`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly("weird")
-  def bitUnlock() = ???
+  @annotation.compileTimeOnly("[bit_unlock:]: weird")
+  private def bitUnlock() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[bookmark_file_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def bookmarkFileErrorQuark() = ???
+  private def bookmarkFileErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a filename from a series of elements using the correct separator
+  /** Creates a filename from a series of elements using the correct separator
     * for the current platform.
     *
     * On Unix, this function behaves identically to `g_build_path
@@ -1293,6 +1362,9 @@ object GLib:
     *
     * If you are building a path programmatically you may want to use #GPathBuf
     * instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def buildFilename(
       first_element: String | CString /* Some(Ptr[gchar]) */,
@@ -1304,9 +1376,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a filename from a list of elements using the correct separator for
+  /** Creates a filename from a list of elements using the correct separator for
     * the current platform.
     *
     * Behaves exactly like g_build_filename(), but takes the path elements as a
@@ -1314,15 +1384,16 @@ object GLib:
     *
     * This function is mainly meant for implementing other variadic arguments
     * functions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(va_list), @type -> DataRecord(va_list*)))"
+    "[build_filename_valist:/<function parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(va_list), @type -> DataRecord(va_list*)))"
   )
-  def buildFilenameValist() = ???
+  private def buildFilenameValist() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a filename from a vector of elements using the correct separator
+  /** Creates a filename from a vector of elements using the correct separator
     * for the current platform.
     *
     * This function behaves exactly like g_build_filename(), but takes the path
@@ -1331,15 +1402,16 @@ object GLib:
     *
     * If you are building a path programmatically you may want to use #GPathBuf
     * instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[build_filenamev:/<function parameters>/args]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def buildFilenamev() = ???
+  private def buildFilenamev() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a path from a series of elements using @separator as the separator
+  /** Creates a path from a series of elements using @separator as the separator
     * between elements.
     *
     * At the boundary between two elements, any trailing occurrences of
@@ -1366,6 +1438,9 @@ object GLib:
     * Other than for determination of the number of leading and trailing copies
     * of the separator, elements consisting only of copies of the separator are
     * ignored.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def buildPath(
       separator: String | CString /* Some(Ptr[gchar]) */,
@@ -1379,34 +1454,34 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Behaves exactly like g_build_path(), but takes the path elements as a
+  /** Behaves exactly like g_build_path(), but takes the path elements as a
     * string array, instead of variadic arguments.
     *
     * This function is mainly meant for language bindings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[build_pathv:/<function parameters>/args]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def buildPathv() = ???
+  private def buildPathv() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Frees the memory allocated by the #GByteArray. If @free_segment is %TRUE
+  /** Frees the memory allocated by the #GByteArray. If @free_segment is %TRUE
     * it frees the actual byte data. If the reference count of
     * @array
     *   is greater than one, the #GByteArray wrapper is preserved but the size
     *   of @array will be set to zero.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray), @type -> DataRecord(GByteArray*)))"
+    "[byte_array_free:/<function parameters>/array]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray), @type -> DataRecord(GByteArray*)))"
   )
-  def byteArrayFree() = ???
+  private def byteArrayFree() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Transfers the data from the #GByteArray into a new immutable #GBytes.
+  /** Transfers the data from the #GByteArray into a new immutable #GBytes.
     *
     * The #GByteArray is freed unless the reference count of @array is greater
     * than one, the #GByteArray wrapper is preserved but the size of @array will
@@ -1414,61 +1489,66 @@ object GLib:
     *
     * This is identical to using g_bytes_new_take() and g_byte_array_free()
     * together.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray), @type -> DataRecord(GByteArray*)))"
+    "[byte_array_free_to_bytes:/<function parameters>/array]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray), @type -> DataRecord(GByteArray*)))"
   )
-  def byteArrayFreeToBytes() = ???
+  private def byteArrayFreeToBytes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GByteArray with a reference count of 1.
     *
-    * Creates a new #GByteArray with a reference count of 1.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray), @type -> DataRecord(GByteArray*)))"
+    "[byte_array_new:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray), @type -> DataRecord(GByteArray*)))"
   )
-  def byteArrayNew() = ???
+  private def byteArrayNew() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a byte array containing the @data. After this call, @data belongs
+  /** Creates a byte array containing the @data. After this call, @data belongs
     * to the #GByteArray and may no longer be modified by the caller. The memory
     * of @data has to be dynamically allocated and will eventually be freed with
     * g_free().
     *
     * Do not use it if @len is greater than %G_MAXUINT. #GByteArray stores the
     * length of its data in #guint, which may be shorter than #gsize.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guint8*)))"
+    "[byte_array_new_take:/<function parameters>/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guint8*)))"
   )
-  def byteArrayNewTake() = ???
+  private def byteArrayNewTake() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Frees the data in the array and resets the size to zero, while the
+  /** Frees the data in the array and resets the size to zero, while the
     * underlying array is preserved for use elsewhere and returned to the
     * caller.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function byte_array_steal contains an OUT parameter, which is not supported yet"
+    "[byte_array_steal:]: Function byte_array_steal contains an OUT parameter, which is not supported yet"
   )
-  def byteArraySteal() = ???
+  private def byteArraySteal() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Atomically decrements the reference count of @array by one. If the
+  /** Atomically decrements the reference count of @array by one. If the
     * reference count drops to 0, all memory allocated by the array is released.
     * This function is thread-safe and may be called from any thread.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray), @type -> DataRecord(GByteArray*)))"
+    "[byte_array_unref:/<function parameters>/array]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray), @type -> DataRecord(GByteArray*)))"
   )
-  def byteArrayUnref() = ???
+  private def byteArrayUnref() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the canonical file name from @filename. All triple slashes are turned
+  /** Gets the canonical file name from @filename. All triple slashes are turned
     * into single slashes, and all `..` and `.`s resolved against @relative_to.
     *
     * Symlinks are not followed, and the returned path is guaranteed to be
@@ -1484,6 +1564,9 @@ object GLib:
     * don't exist.
     *
     * No file system I/O is done.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def canonicalizeFilename(
       filename: String | CString /* Some(Ptr[gchar]) */,
@@ -1497,19 +1580,18 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A wrapper for the POSIX chdir() function. The function changes the current
+  /** A wrapper for the POSIX chdir() function. The function changes the current
     * directory of the process to @path.
     *
     * See your C library manual for more details about chdir().
-    */
-  @annotation.compileTimeOnly("Method g_chdir has no target types")
-  def chdir() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Checks that the GLib library in use is compatible with the given version.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[chdir:]: Method g_chdir has no target types")
+  private def chdir() = ???
+
+  /** Checks that the GLib library in use is compatible with the given version.
     *
     * Generally you would pass in the constants %GLIB_MAJOR_VERSION,
     * %GLIB_MINOR_VERSION, %GLIB_MICRO_VERSION as the three arguments to this
@@ -1521,6 +1603,9 @@ object GLib:
     * `@required_major.required_minor.@required_micro`. Second the running
     * library must be binary compatible with the version
     * `@required_major.@required_minor.@required_micro` (same major version.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def checkVersion(
       required_major: UInt /* Some(guint) */,
@@ -1534,9 +1619,10 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the length in bytes of digests of type @checksum_type
     *
-    * Gets the length in bytes of digests of type @checksum_type
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def checksumTypeGetLength(
       checksum_type: ChecksumType /* Some(GChecksumType) */
@@ -1544,9 +1630,7 @@ object GLib:
     checksum_type.raw
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a function to be called when the child indicated by @pid exits, at a
+  /** Sets a function to be called when the child indicated by @pid exits, at a
     * default priority, %G_PRIORITY_DEFAULT.
     *
     * If you obtain @pid from g_spawn_async() or g_spawn_async_with_pipes() you
@@ -1566,15 +1650,16 @@ object GLib:
     * g_child_watch_source_new() and attaches it to the main loop context using
     * g_source_attach(). You can do these steps manually if you need greater
     * control.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pid), @type -> DataRecord(GPid)))"
+    "[child_watch_add:/<function parameters>/pid]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pid), @type -> DataRecord(GPid)))"
   )
-  def childWatchAdd() = ???
+  private def childWatchAdd() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a function to be called when the child indicated by @pid exits, at
+  /** Sets a function to be called when the child indicated by @pid exits, at
     * the priority @priority.
     *
     * If you obtain @pid from g_spawn_async() or g_spawn_async_with_pipes() you
@@ -1597,15 +1682,16 @@ object GLib:
     * g_child_watch_source_new() and attaches it to the main loop context using
     * g_source_attach(). You can do these steps manually if you need greater
     * control.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pid), @type -> DataRecord(GPid)))"
+    "[child_watch_add_full:/<function parameters>/pid]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pid), @type -> DataRecord(GPid)))"
   )
-  def childWatchAddFull() = ???
+  private def childWatchAddFull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new child_watch source.
+  /** Creates a new child_watch source.
     *
     * The source will not initially be associated with any #GMainContext and
     * must be added to one with g_source_attach() before it will be executed.
@@ -1640,23 +1726,25 @@ object GLib:
     *
     * Calling `waitpid` for specific processes other than @pid remains a valid
     * thing to do.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pid), @type -> DataRecord(GPid)))"
+    "[child_watch_source_new:/<function parameters>/pid]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pid), @type -> DataRecord(GPid)))"
   )
-  def childWatchSourceNew() = ???
+  private def childWatchSourceNew() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @err or *@err is %NULL, does nothing. Otherwise, calls g_error_free()
+  /** If @err or *@err is %NULL, does nothing. Otherwise, calls g_error_free()
     * on *@err and sets *@err to %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def clearError(): GResult[Unit /* Some(Unit) */ ] =
     GResult.wrap(__errorPtr => g_clear_error(__errorPtr))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Clears a numeric handler, such as a #GSource ID.
+  /** Clears a numeric handler, such as a #GSource ID.
     *
     * @tag_ptr
     *   must be a valid pointer to the variable holding the handler.
@@ -1666,29 +1754,31 @@ object GLib:
     *
     * A macro is also included that allows this function to be used without
     * pointer casts.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ClearHandleFunc), @type -> DataRecord(GClearHandleFunc)))"
+    "[clear_handle_id:/<function parameters>/clear_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ClearHandleFunc), @type -> DataRecord(GClearHandleFunc)))"
   )
-  def clearHandleId() = ???
+  private def clearHandleId() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Clears a pointer to a #GList, freeing it and, optionally, freeing its
+  /** Clears a pointer to a #GList, freeing it and, optionally, freeing its
     * elements using @destroy.
     *
     * @list_ptr
     *   must be a valid pointer. If @list_ptr points to a null #GList, this does
     *   nothing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList**)))"
+    "[clear_list:/<function parameters>/list_ptr]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList**)))"
   )
-  def clearList() = ???
+  private def clearList() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Clears a reference to a variable.
+  /** Clears a reference to a variable.
     *
     * @pp
     *   must not be %NULL.
@@ -1702,29 +1792,31 @@ object GLib:
     * function is compatible with being called as `GDestroyNotify` using the
     * standard calling convention for the platform that GLib was compiled for;
     * otherwise the program will experience undefined behaviour.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function clear_pointer contains an INOUT parameter, which is not supported yet"
+    "[clear_pointer:]: Function clear_pointer contains an INOUT parameter, which is not supported yet"
   )
-  def clearPointer() = ???
+  private def clearPointer() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Clears a pointer to a #GSList, freeing it and, optionally, freeing its
+  /** Clears a pointer to a #GSList, freeing it and, optionally, freeing its
     * elements using @destroy.
     *
     * @slist_ptr
     *   must be a valid pointer. If @slist_ptr points to a null #GSList, this
     *   does nothing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList**)))"
+    "[clear_slist:/<function parameters>/slist_ptr]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList**)))"
   )
-  def clearSlist() = ???
+  private def clearSlist() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This wraps the close() call. In case of error, %errno will be preserved,
+  /** This wraps the close() call. In case of error, %errno will be preserved,
     * but the error will also be stored as a #GError in @error. In case of
     * success, %errno is undefined.
     *
@@ -1740,40 +1832,46 @@ object GLib:
     * #GSpawnChildSetupFunc under those conditions. See
     * [`signal(7)`](man:signal(7)) and
     * [`signal-safety(7)`](man:signal-safety(7)) for more details.
-    */
-  @annotation.compileTimeOnly("Method g_close has no target types")
-  def close() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Computes the checksum for a binary @data. This is a convenience wrapper
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[close:]: Method g_close has no target types")
+  private def close() = ???
+
+  /** Computes the checksum for a binary @data. This is a convenience wrapper
     * for g_checksum_new(), g_checksum_get_string() and g_checksum_free().
     *
     * The hexadecimal string returned will be in lower case.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
+    "[compute_checksum_for_bytes:/<function parameters>/data]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def computeChecksumForBytes() = ???
+  private def computeChecksumForBytes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes the checksum for a binary @data of @length. This is a convenience
+  /** Computes the checksum for a binary @data of @length. This is a convenience
     * wrapper for g_checksum_new(), g_checksum_get_string() and
     * g_checksum_free().
     *
     * The hexadecimal string returned will be in lower case.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const guchar*)))"
+    "[compute_checksum_for_data:/<function parameters>/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const guchar*)))"
   )
-  def computeChecksumForData() = ???
+  private def computeChecksumForData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes the checksum of a string.
+  /** Computes the checksum of a string.
     *
     * The hexadecimal string returned will be in lower case.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def computeChecksumForString(
       checksum_type: ChecksumType /* Some(GChecksumType) */,
@@ -1787,44 +1885,45 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes the HMAC for a binary @data. This is a convenience wrapper for
+  /** Computes the HMAC for a binary @data. This is a convenience wrapper for
     * g_hmac_new(), g_hmac_get_string() and g_hmac_unref().
     *
     * The hexadecimal string returned will be in lower case.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
+    "[compute_hmac_for_bytes:/<function parameters>/key]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def computeHmacForBytes() = ???
+  private def computeHmacForBytes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes the HMAC for a binary @data of @length. This is a convenience
+  /** Computes the HMAC for a binary @data of @length. This is a convenience
     * wrapper for g_hmac_new(), g_hmac_get_string() and g_hmac_unref().
     *
     * The hexadecimal string returned will be in lower case.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const guchar*)))"
+    "[compute_hmac_for_data:/<function parameters>/key]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const guchar*)))"
   )
-  def computeHmacForData() = ???
+  private def computeHmacForData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes the HMAC for a string.
+  /** Computes the HMAC for a string.
     *
     * The hexadecimal string returned will be in lower case.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const guchar*)))"
+    "[compute_hmac_for_string:/<function parameters>/key]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const guchar*)))"
   )
-  def computeHmacForString() = ???
+  private def computeHmacForString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string from one character set to another.
+  /** Converts a string from one character set to another.
     *
     * Note that you should use g_iconv() for streaming conversions. Despite the
     * fact that @bytes_read can return information about partial characters, the
@@ -1837,20 +1936,21 @@ object GLib:
     *
     * Using extensions such as "//TRANSLIT" may not work (or may not work well)
     * on many platforms. Consider using g_str_to_ascii() instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function convert contains an OUT parameter, which is not supported yet"
+    "[convert:]: Function convert contains an OUT parameter, which is not supported yet"
   )
-  def convert() = ???
+  private def convert() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[convert_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def convertErrorQuark() = ???
+  private def convertErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string from one character set to another, possibly including
+  /** Converts a string from one character set to another, possibly including
     * fallback sequences for characters not representable in the output. Note
     * that it is not guaranteed that the specification for the fallback
     * sequences in @fallback will be honored. Some systems may do an approximate
@@ -1865,15 +1965,16 @@ object GLib:
     * or g_convert_with_fallback(). (An example of this is the GNU C converter
     * for CP1255 which does not emit a base character until it knows that the
     * next character is not a mark that could combine with the base character.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function convert_with_fallback contains an OUT parameter, which is not supported yet"
+    "[convert_with_fallback:]: Function convert_with_fallback contains an OUT parameter, which is not supported yet"
   )
-  def convertWithFallback() = ???
+  private def convertWithFallback() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string from one character set to another.
+  /** Converts a string from one character set to another.
     *
     * Note that you should use g_iconv() for streaming conversions. Despite the
     * fact that @bytes_read can return information about partial characters, the
@@ -1891,25 +1992,27 @@ object GLib:
     * Note that this is the same error code as is returned for an invalid byte
     * sequence in the input character set. To get defined behaviour for
     * conversion of unrepresentable characters, use g_convert_with_fallback().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function convert_with_iconv contains an OUT parameter, which is not supported yet"
+    "[convert_with_iconv:]: Function convert_with_iconv contains an OUT parameter, which is not supported yet"
   )
-  def convertWithIconv() = ???
+  private def convertWithIconv() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Frees all the data elements of the datalist. The data elements' destroy
+  /** Frees all the data elements of the datalist. The data elements' destroy
     * functions are called if they have been set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_clear:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
-  def datalistClear() = ???
+  private def datalistClear() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Calls the given function for each data element of the datalist. The
+  /** Calls the given function for each data element of the datalist. The
     * function is called with each data element's #GQuark id and data, together
     * with the given @user_data parameter. Note that this function is NOT
     * thread-safe. So unless @datalist can be protected from any modifications
@@ -1919,35 +2022,38 @@ object GLib:
     *   can make changes to @datalist, but the iteration will not reflect
     *   changes made during the g_datalist_foreach() call, other than skipping
     *   over elements that are removed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_foreach:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
-  def datalistForeach() = ???
+  private def datalistForeach() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a data element, using its string identifier. This is slower than
+  /** Gets a data element, using its string identifier. This is slower than
     * g_datalist_id_get_data() because it compares strings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_get_data:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
-  def datalistGetData() = ???
+  private def datalistGetData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets flags values packed in together with the datalist. See
+  /** Gets flags values packed in together with the datalist. See
     * g_datalist_set_flags().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_get_flags:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
-  def datalistGetFlags() = ???
+  private def datalistGetFlags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is a variant of g_datalist_id_get_data() which returns a 'duplicate'
+  /** This is a variant of g_datalist_id_get_data() which returns a 'duplicate'
     * of the value. @dup_func defines the meaning of 'duplicate' in this
     * context, it could e.g. take a reference on a ref-counted object.
     *
@@ -1959,45 +2065,49 @@ object GLib:
     *
     * This function can be useful to avoid races when multiple threads are using
     * the same datalist and the same key.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_dup_data:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
-  def datalistIdDupData() = ???
+  private def datalistIdDupData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the data element corresponding to @key_id.
     *
-    * Retrieves the data element corresponding to @key_id.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_get_data:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
-  def datalistIdGetData() = ???
+  private def datalistIdGetData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes multiple keys from a datalist.
+  /** Removes multiple keys from a datalist.
     *
     * This is more efficient than calling g_datalist_id_remove_data() multiple
     * times in a row.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_remove_multiple:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
-  def datalistIdRemoveMultiple() = ???
+  private def datalistIdRemoveMultiple() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes an element, without calling its destroy notification function.
     *
-    * Removes an element, without calling its destroy notification function.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_remove_no_notify:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
-  def datalistIdRemoveNoNotify() = ???
+  private def datalistIdRemoveNoNotify() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compares the member that is associated with @key_id in
+  /** Compares the member that is associated with @key_id in
     * @datalist
     *   to @oldval, and if they are the same, replace
     * @oldval
@@ -2011,67 +2121,73 @@ object GLib:
     * for it (passed out in @old_destroy). Its up to the caller to free this as
     * they wish, which may or may not include using @old_destroy as sometimes
     * replacement should not destroy the object in the normal way.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function datalist_id_replace_data contains an OUT parameter, which is not supported yet"
+    "[datalist_id_replace_data:]: Function datalist_id_replace_data contains an OUT parameter, which is not supported yet"
   )
-  def datalistIdReplaceData() = ???
+  private def datalistIdReplaceData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the data corresponding to the given #GQuark id, and the function to
+  /** Sets the data corresponding to the given #GQuark id, and the function to
     * be called when the element is removed from the datalist. Any previous data
     * with the same key is removed, and its destroy function is called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_set_data_full:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
-  def datalistIdSetDataFull() = ???
+  private def datalistIdSetDataFull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Resets the datalist to %NULL. It does not free any memory or call any
+  /** Resets the datalist to %NULL. It does not free any memory or call any
     * destroy functions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_init:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
-  def datalistInit() = ???
+  private def datalistInit() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Turns on flag values for a data list. This function is used to keep a
+  /** Turns on flag values for a data list. This function is used to keep a
     * small number of boolean flags in an object with a data list without using
     * any additional space. It is not generally useful except in circumstances
     * where space is very tight. (It is used in the base #GObject type, for
     * example.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_set_flags:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
-  def datalistSetFlags() = ???
+  private def datalistSetFlags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Turns off flag values for a data list. See g_datalist_unset_flags()
     *
-    * Turns off flag values for a data list. See g_datalist_unset_flags()
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_unset_flags:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
-  def datalistUnsetFlags() = ???
+  private def datalistUnsetFlags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Destroys the dataset, freeing all memory allocated, and calling any
+  /** Destroys the dataset, freeing all memory allocated, and calling any
     * destroy functions set for data elements.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def datasetDestroy(
       dataset_location: Ptr[Byte] /* Some(gconstpointer) */
   ): Unit /* Some(Unit) */ = g_dataset_destroy(gconstpointer(dataset_location))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Calls the given function for each data element which is associated with
+  /** Calls the given function for each data element which is associated with
     * the given location. Note that this function is NOT thread-safe. So unless @dataset_location
     * can be protected from any modifications during invocation of this
     * function, it should not be called.
@@ -2080,94 +2196,102 @@ object GLib:
     *   can make changes to the dataset, but the iteration will not reflect
     *   changes made during the g_dataset_foreach() call, other than skipping
     *   over elements that are removed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DataForeachFunc), @type -> DataRecord(GDataForeachFunc)))"
+    "[dataset_foreach:/<function parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DataForeachFunc), @type -> DataRecord(GDataForeachFunc)))"
   )
-  def datasetForeach() = ???
+  private def datasetForeach() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the data element corresponding to a #GQuark.
     *
-    * Gets the data element corresponding to a #GQuark.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[dataset_id_get_data:/<function parameters>/key_id]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def datasetIdGetData() = ???
+  private def datasetIdGetData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes an element, without calling its destroy notification function.
     *
-    * Removes an element, without calling its destroy notification function.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[dataset_id_remove_no_notify:/<function parameters>/key_id]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def datasetIdRemoveNoNotify() = ???
+  private def datasetIdRemoveNoNotify() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the data element associated with the given #GQuark id, and also the
+  /** Sets the data element associated with the given #GQuark id, and also the
     * function to call when the data element is destroyed. Any previous data
     * with the same key is removed, and its destroy function is called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[dataset_id_set_data_full:/<function parameters>/key_id]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def datasetIdSetDataFull() = ???
+  private def datasetIdSetDataFull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the number of days in a month, taking leap years into account.
     *
-    * Returns the number of days in a month, taking leap years into account.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DateYear), @type -> DataRecord(GDateYear)))"
+    "[date_get_days_in_month:/<function parameters>/year]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DateYear), @type -> DataRecord(GDateYear)))"
   )
-  def dateGetDaysInMonth() = ???
+  private def dateGetDaysInMonth() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the number of weeks in the year, where weeks are taken to start on
+  /** Returns the number of weeks in the year, where weeks are taken to start on
     * Monday. Will be 52 or 53. The date must be valid. (Years always have 52
     * 7-day periods, plus 1 or 2 extra days depending on whether it's a leap
     * year. This function is basically telling you how many Mondays are in the
     * year, i.e. there are 53 Mondays if one of the extra days happens to be a
     * Monday.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DateYear), @type -> DataRecord(GDateYear)))"
+    "[date_get_monday_weeks_in_year:/<function parameters>/year]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DateYear), @type -> DataRecord(GDateYear)))"
   )
-  def dateGetMondayWeeksInYear() = ???
+  private def dateGetMondayWeeksInYear() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the number of weeks in the year, where weeks are taken to start on
+  /** Returns the number of weeks in the year, where weeks are taken to start on
     * Sunday. Will be 52 or 53. The date must be valid. (Years always have 52
     * 7-day periods, plus 1 or 2 extra days depending on whether it's a leap
     * year. This function is basically telling you how many Sundays are in the
     * year, i.e. there are 53 Sundays if one of the extra days happens to be a
     * Sunday.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DateYear), @type -> DataRecord(GDateYear)))"
+    "[date_get_sunday_weeks_in_year:/<function parameters>/year]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DateYear), @type -> DataRecord(GDateYear)))"
   )
-  def dateGetSundayWeeksInYear() = ???
+  private def dateGetSundayWeeksInYear() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the year is a leap year.
+  /** Returns %TRUE if the year is a leap year.
     *
     * For the purposes of this function, leap year is every year divisible by 4
     * unless that year is divisible by 100. If it is divisible by 100 it would
     * be a leap year only if that year is also divisible by 400.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DateYear), @type -> DataRecord(GDateYear)))"
+    "[date_is_leap_year:/<function parameters>/year]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DateYear), @type -> DataRecord(GDateYear)))"
   )
-  def dateIsLeapYear() = ???
+  private def dateIsLeapYear() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Generates a printed representation of the date, in a
+  /** Generates a printed representation of the date, in a
     * [locale][setlocale]-specific way. Works just like the platform's C library
     * strftime() function, but only accepts date-related formats; time-related
     * formats give undefined results. Date must be valid. Unlike strftime()
@@ -2178,78 +2302,88 @@ object GLib:
     * those implemented by the platform's C library. For example, don't expect
     * that using g_date_strftime() would make the \%F provided by the C99
     * strftime() work on Windows where the C library only complies to C89.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Date), @type -> DataRecord(const GDate*)))"
+    "[date_strftime:/<function parameters>/date]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Date), @type -> DataRecord(const GDate*)))"
   )
-  def dateStrftime() = ???
+  private def dateStrftime() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the day of the month is valid (a day is valid if it's
+  /** Returns %TRUE if the day of the month is valid (a day is valid if it's
     * between 1 and 31 inclusive).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DateDay), @type -> DataRecord(GDateDay)))"
+    "[date_valid_day:/<function parameters>/day]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DateDay), @type -> DataRecord(GDateDay)))"
   )
-  def dateValidDay() = ???
+  private def dateValidDay() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the day-month-year triplet forms a valid, existing day in
+  /** Returns %TRUE if the day-month-year triplet forms a valid, existing day in
     * the range of days #GDate understands (Year 1 or later, no more than a few
     * thousand years in the future).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DateDay), @type -> DataRecord(GDateDay)))"
+    "[date_valid_dmy:/<function parameters>/day]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DateDay), @type -> DataRecord(GDateDay)))"
   )
-  def dateValidDmy() = ???
+  private def dateValidDmy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the Julian day is valid. Anything greater than zero is
+  /** Returns %TRUE if the Julian day is valid. Anything greater than zero is
     * basically a valid Julian, though there is a 32-bit limit.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dateValidJulian(
       julian_date: UInt /* Some(guint32) */
   ): Boolean /* Some(gboolean) */ =
     g_date_valid_julian(guint32(julian_date)).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the month value is valid. The 12 #GDateMonth enumeration
+  /** Returns %TRUE if the month value is valid. The 12 #GDateMonth enumeration
     * values are the only valid months.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dateValidMonth(
       month: DateMonth /* Some(GDateMonth) */
   ): Boolean /* Some(gboolean) */ = g_date_valid_month(month.raw).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the weekday is valid. The seven #GDateWeekday enumeration
+  /** Returns %TRUE if the weekday is valid. The seven #GDateWeekday enumeration
     * values are the only valid weekdays.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dateValidWeekday(
       weekday: DateWeekday /* Some(GDateWeekday) */
   ): Boolean /* Some(gboolean) */ =
     g_date_valid_weekday(weekday.raw).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the year is valid. Any year greater than 0 is valid,
+  /** Returns %TRUE if the year is valid. Any year greater than 0 is valid,
     * though there is a 16-bit limit to what #GDate will understand.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DateYear), @type -> DataRecord(GDateYear)))"
+    "[date_valid_year:/<function parameters>/year]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DateYear), @type -> DataRecord(GDateYear)))"
   )
-  def dateValidYear() = ???
+  private def dateValidYear() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is a variant of g_dgettext() that allows specifying a locale category
+  /** This is a variant of g_dgettext() that allows specifying a locale category
     * instead of always using `LC_MESSAGES`. See g_dgettext() for more
     * information about how this functions differs from calling dcgettext()
     * directly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dcgettext(
       domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
@@ -2265,9 +2399,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  This function is a wrapper of dgettext() which does not translate
+  /**  This function is a wrapper of dgettext() which does not translate
     *  the message if the default domain as set with textdomain() has no
     *  translations for the current locale.
     *
@@ -2299,6 +2431,8 @@ object GLib:
     *
     *  Applications should normally not use this function directly,
     *  but use the _() macro for translations.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def dgettext(
       domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
@@ -2312,9 +2446,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a subdirectory in the preferred directory for temporary files (as
+  /** Creates a subdirectory in the preferred directory for temporary files (as
     * returned by g_get_tmp_dir()).
     *
     * @tmpl
@@ -2326,6 +2458,9 @@ object GLib:
     *
     * Note that in contrast to g_mkdtemp() (and mkdtemp()) @tmpl is not
     * modified, and might thus be a read-only literal string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dirMakeTmp(tmpl: Option[String | CString /* Some(Ptr[gchar]) */ ])(using
       Zone
@@ -2340,14 +2475,15 @@ object GLib:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compares two #gpointer arguments and returns %TRUE if they are equal. It
+  /** Compares two #gpointer arguments and returns %TRUE if they are equal. It
     * can be passed to g_hash_table_new() as the @key_equal_func parameter, when
     * using opaque pointers compared by pointer value as keys in a #GHashTable.
     *
     * This equality function is also appropriate for keys that are integers
     * stored in pointers, such as `GINT_TO_POINTER (n)`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def directEqual(
       v1: Option[Ptr[Byte] /* Some(gconstpointer) */ ],
@@ -2359,14 +2495,15 @@ object GLib:
       .getOrElse(null.asInstanceOf[gconstpointer])
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a gpointer to a hash value. It can be passed to
+  /** Converts a gpointer to a hash value. It can be passed to
     * g_hash_table_new() as the @hash_func parameter, when using opaque pointers
     * compared by pointer value as keys in a #GHashTable.
     *
     * This hash function is also appropriate for keys that are integers stored
     * in pointers, such as `GINT_TO_POINTER (n)`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def directHash(
       v: Option[Ptr[Byte] /* Some(gconstpointer) */ ]
@@ -2375,13 +2512,14 @@ object GLib:
       .getOrElse(null.asInstanceOf[gconstpointer])
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is a wrapper of dngettext() which does not translate the
+  /** This function is a wrapper of dngettext() which does not translate the
     * message if the default domain as set with textdomain() has no translations
     * for the current locale.
     *
     * See g_dgettext() for details of how this differs from dngettext() proper.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dngettext(
       domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
@@ -2399,12 +2537,13 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compares the two #gdouble values being pointed to and returns %TRUE if
+  /** Compares the two #gdouble values being pointed to and returns %TRUE if
     * they are equal. It can be passed to g_hash_table_new() as the @key_equal_func
     * parameter, when using non-%NULL pointers to doubles as keys in a
     * #GHashTable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def doubleEqual(
       v1: Ptr[Byte] /* Some(gconstpointer) */,
@@ -2412,20 +2551,19 @@ object GLib:
   ): Boolean /* Some(gboolean) */ =
     g_double_equal(gconstpointer(v1), gconstpointer(v2)).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a pointer to a #gdouble to a hash value. It can be passed to
+  /** Converts a pointer to a #gdouble to a hash value. It can be passed to
     * g_hash_table_new() as the @hash_func parameter, It can be passed to
     * g_hash_table_new() as the @hash_func parameter, when using non-%NULL
     * pointers to doubles as keys in a #GHashTable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def doubleHash(
       v: Ptr[Byte] /* Some(gconstpointer) */
   ): UInt /* Some(guint) */ = g_double_hash(gconstpointer(v)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is a variant of g_dgettext() which supports a disambiguating
+  /** This function is a variant of g_dgettext() which supports a disambiguating
     * message context. GNU gettext uses the '\004' character to separate the
     * message context and message id in @msgctxtid. If 0 is passed as @msgidoffset,
     * this function will fall back to trying to use the deprecated convention of
@@ -2436,6 +2574,9 @@ object GLib:
     *
     * Applications should normally not use this function directly, but use the
     * C_() macro for translations with context.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dpgettext(
       domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
@@ -2451,9 +2592,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is a variant of g_dgettext() which supports a disambiguating
+  /** This function is a variant of g_dgettext() which supports a disambiguating
     * message context. GNU gettext uses the '\004' character to separate the
     * message context and message id in @msgctxtid.
     *
@@ -2462,6 +2601,9 @@ object GLib:
     *
     * This function differs from C_() in that it is not a macro and thus you may
     * use non-string-literals as context and msgid arguments.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dpgettext2(
       domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
@@ -2477,39 +2619,40 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the value of the environment variable @variable in the provided
+  /** Returns the value of the environment variable @variable in the provided
     * list @envp.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[environ_getenv:/<function parameters>/envp]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def environGetenv() = ???
+  private def environGetenv() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the environment variable @variable in the provided list
+  /** Sets the environment variable @variable in the provided list
     * @envp
     *   to @value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[environ_setenv:/<function parameters>/envp]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def environSetenv() = ???
+  private def environSetenv() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes the environment variable @variable from the provided environment @envp.
     *
-    * Removes the environment variable @variable from the provided environment @envp.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[environ_unsetenv:/<function parameters>/envp]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def environUnsetenv() = ???
+  private def environUnsetenv() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a #GFileError constant based on the passed-in @err_no.
+  /** Gets a #GFileError constant based on the passed-in @err_no.
     *
     * For example, if you pass in `EEXIST` this function returns
     * %G_FILE_ERROR_EXIST. Unlike `errno` values, you can portably assume that
@@ -2518,6 +2661,9 @@ object GLib:
     * Normally a #GFileError value goes into a #GError returned from a function
     * that manipulates files. So you would use g_file_error_from_errno() when
     * constructing a #GError.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fileErrorFromErrno(
       err_no: Int /* Some(gint) */
@@ -2525,13 +2671,11 @@ object GLib:
     FileError.fromRaw(g_file_error_from_errno(gint(err_no)))
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[file_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def fileErrorQuark() = ???
+  private def fileErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reads an entire file into allocated memory, with good error checking.
+  /** Reads an entire file into allocated memory, with good error checking.
     *
     * If the call was successful, it returns %TRUE and sets @contents to the
     * file contents and @length to the length of the file contents in bytes. The
@@ -2542,15 +2686,16 @@ object GLib:
     * error case,
     * @contents
     *   is set to %NULL and @length is set to zero.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function file_get_contents contains an OUT parameter, which is not supported yet"
+    "[file_get_contents:]: Function file_get_contents contains an OUT parameter, which is not supported yet"
   )
-  def fileGetContents() = ???
+  private def fileGetContents() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Opens a file for writing in the preferred directory for temporary files
+  /** Opens a file for writing in the preferred directory for temporary files
     * (as returned by g_get_tmp_dir()).
     *
     * @tmpl
@@ -2566,15 +2711,16 @@ object GLib:
     * Upon success, and if @name_used is non-%NULL, the actual name used is
     * returned in @name_used. This string should be freed with g_free() when not
     * needed any longer. The returned name is in the GLib file name encoding.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function file_open_tmp contains an OUT parameter, which is not supported yet"
+    "[file_open_tmp:]: Function file_open_tmp contains an OUT parameter, which is not supported yet"
   )
-  def fileOpenTmp() = ???
+  private def fileOpenTmp() = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Reads the contents of the symbolic link @filename like the POSIX
+  /**  Reads the contents of the symbolic link @filename like the POSIX
     *  `readlink()` function.
     *
     *  The returned string is in the encoding used for filenames. Use
@@ -2597,6 +2743,8 @@ object GLib:
     *      link_target = g_steal_pointer (&absolute_link_target);
     *    }
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def fileReadLink(filename: String | CString /* Some(Ptr[gchar]) */ )(using
       Zone
@@ -2609,21 +2757,20 @@ object GLib:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Writes all of @contents to a file named @filename. This is a convenience
+  /** Writes all of @contents to a file named @filename. This is a convenience
     * wrapper around calling g_file_set_contents_full() with `flags` set to
     * `G_FILE_SET_CONTENTS_CONSISTENT | G_FILE_SET_CONTENTS_ONLY_EXISTING` and
     * `mode` set to `0666`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const gchar*)))"
+    "[file_set_contents:/<function parameters>/contents]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const gchar*)))"
   )
-  def fileSetContents() = ???
+  private def fileSetContents() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Writes all of @contents to a file named @filename, with good error
+  /** Writes all of @contents to a file named @filename, with good error
     * checking. If a file called @filename already exists it will be
     * overwritten.
     *
@@ -2677,15 +2824,16 @@ object GLib:
     * If the file didn’t exist before and is created, it will be given the
     * permissions from @mode. Otherwise, the permissions of the existing file
     * may be changed to @mode depending on @flags, or they may remain unchanged.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const gchar*)))"
+    "[file_set_contents_full:/<function parameters>/contents]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const gchar*)))"
   )
-  def fileSetContentsFull() = ???
+  private def fileSetContentsFull() = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Returns %TRUE if any of the tests in the bitfield @test are
+  /**  Returns %TRUE if any of the tests in the bitfield @test are
     *  %TRUE. For example, `(G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR)`
     *  will return %TRUE if the file exists; the check whether it's a
     *  directory doesn't matter since the existence test is %TRUE. With
@@ -2744,6 +2892,8 @@ object GLib:
     *  %G_FILE_TEST_IS_EXECUTABLE will just check that the file exists and
     *  its name indicates that it is executable, checking for well-known
     *  extensions and those listed in the `PATHEXT` environment variable.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def fileTest(
       filename: String | CString /* Some(Ptr[gchar]) */,
@@ -2753,9 +2903,7 @@ object GLib:
     test.raw
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the display basename for the particular filename, guaranteed to be
+  /** Returns the display basename for the particular filename, guaranteed to be
     * valid UTF-8. The display name might not be identical to the filename, for
     * instance there might be problems converting it to UTF-8, and some files
     * can be translated in the display.
@@ -2771,6 +2919,9 @@ object GLib:
     *
     * This function is preferred over g_filename_display_name() if you know the
     * whole path, as it allows translation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def filenameDisplayBasename(
       filename: String | CString /* Some(Ptr[gchar]) */
@@ -2780,9 +2931,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a filename into a valid UTF-8 string. The conversion is not
+  /** Converts a filename into a valid UTF-8 string. The conversion is not
     * necessarily reversible, so you should keep the original around and use the
     * return value of this function only for display purposes. Unlike
     * g_filename_to_utf8(), the result is guaranteed to be non-%NULL even if the
@@ -2797,6 +2946,9 @@ object GLib:
     * If you know the whole pathname of the file you should use
     * g_filename_display_basename(), since that allows location-based
     * translation of filenames.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def filenameDisplayName(
       filename: String | CString /* Some(Ptr[gchar]) */
@@ -2806,24 +2958,23 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts an escaped ASCII-encoded URI to a local filename in the encoding
+  /** Converts an escaped ASCII-encoded URI to a local filename in the encoding
     * used for filenames.
     *
     * Since GLib 2.78, the query string and fragment can be present in the URI,
     * but are not part of the resulting filename. We take inspiration from
     * https://url.spec.whatwg.org/#file-state, but we don't support the entire
     * standard.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function filename_from_uri contains an OUT parameter, which is not supported yet"
+    "[filename_from_uri:]: Function filename_from_uri contains an OUT parameter, which is not supported yet"
   )
-  def filenameFromUri() = ???
+  private def filenameFromUri() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string from UTF-8 to the encoding GLib uses for filenames. Note
+  /** Converts a string from UTF-8 to the encoding GLib uses for filenames. Note
     * that on Windows GLib uses UTF-8 for filenames; on other platforms, this
     * function indirectly depends on the [current locale][setlocale].
     *
@@ -2832,16 +2983,20 @@ object GLib:
     * in error %G_CONVERT_ERROR_ILLEGAL_SEQUENCE. If the filename encoding is
     * not UTF-8 and the conversion output contains a nul character, the error
     * %G_CONVERT_ERROR_EMBEDDED_NUL is set and the function returns %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function filename_from_utf8 contains an OUT parameter, which is not supported yet"
+    "[filename_from_utf8:]: Function filename_from_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def filenameFromUtf8() = ???
+  private def filenameFromUtf8() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts an absolute filename to an escaped ASCII-encoded URI, with the
+  /** Converts an absolute filename to an escaped ASCII-encoded URI, with the
     * path component following Section 3.3. of RFC 2396.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def filenameToUri(
       filename: String | CString /* Some(Ptr[gchar]) */,
@@ -2861,9 +3016,7 @@ object GLib:
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string which is in the encoding used by GLib for filenames into
+  /** Converts a string which is in the encoding used by GLib for filenames into
     * a UTF-8 string. Note that on Windows GLib uses UTF-8 for filenames; on
     * other platforms, this function indirectly depends on the [current
     * locale][setlocale].
@@ -2874,15 +3027,16 @@ object GLib:
     * UTF-8 and the conversion output contains a nul character, the error
     * %G_CONVERT_ERROR_EMBEDDED_NUL is set and the function returns %NULL. Use
     * g_convert() to produce output that may contain embedded nul characters.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function filename_to_utf8 contains an OUT parameter, which is not supported yet"
+    "[filename_to_utf8:]: Function filename_to_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def filenameToUtf8() = ???
+  private def filenameToUtf8() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Locates the first executable named @program in the user's path, in the
+  /** Locates the first executable named @program in the user's path, in the
     * same way that execvp() would locate it. Returns an allocated string with
     * the absolute path name, or %NULL if the program is not found in the path.
     * If @program is already an absolute path, returns a copy of
@@ -2899,6 +3053,9 @@ object GLib:
     * system directory, then in the Windows directory, and finally in the
     * directories in the `PATH` environment variable. If the program is found,
     * the return value contains the full name including the type suffix.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def findProgramInPath(
       program: String | CString /* Some(Ptr[gchar]) */
@@ -2908,9 +3065,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Formats a size (for example the size of a file) into a human readable
+  /** Formats a size (for example the size of a file) into a human readable
     * string. Sizes are rounded to the nearest size prefix (kB, MB, GB) and are
     * displayed rounded to the nearest tenth. E.g. the file size 3292528 bytes
     * will be converted into the string "3.2 MB". The returned string is UTF-8,
@@ -2923,6 +3078,9 @@ object GLib:
     *
     * See g_format_size_full() for more options about how the size might be
     * formatted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def formatSize(
       size: CUnsignedLongInt /* Some(guint64) */
@@ -2930,9 +3088,7 @@ object GLib:
     g_format_size(guint64(size)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Formats a size (for example the size of a file) into a human readable
+  /** Formats a size (for example the size of a file) into a human readable
     * string. Sizes are rounded to the nearest size prefix (KB, MB, GB) and are
     * displayed rounded to the nearest tenth. E.g. the file size 3292528 bytes
     * will be converted into the string "3.1 MB".
@@ -2940,6 +3096,9 @@ object GLib:
     * The prefix units base is 1024 (i.e. 1 KB is 1024 bytes).
     *
     * This string should be freed with g_free() when not needed any longer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def formatSizeForDisplay(
       size: gint64 /* Some(goffset) */
@@ -2947,12 +3106,13 @@ object GLib:
     g_format_size_for_display(goffset(size)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Formats a size.
+  /** Formats a size.
     *
     * This function is similar to g_format_size() but allows for flags that
     * modify the output. See #GFormatSizeFlags.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def formatSizeFull(
       size: CUnsignedLongInt /* Some(guint64) */,
@@ -2961,20 +3121,21 @@ object GLib:
     g_format_size_full(guint64(size), flags.raw).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An implementation of the standard fprintf() function which supports
+  /** An implementation of the standard fprintf() function which supports
     * positional parameters, as specified in the Single Unix Specification.
     *
     * `glib/gprintf.h` must be explicitly included in order to use this
     * function.
-    */
-  @annotation.compileTimeOnly("Method g_fprintf has no target types")
-  def fprintf() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Frees the memory pointed to by @mem.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[fprintf:]: Method g_fprintf has no target types"
+  )
+  private def fprintf() = ???
+
+  /** Frees the memory pointed to by @mem.
     *
     * If you know the allocated size of @mem, calling g_free_sized() may be
     * faster, depending on the libc implementation in use.
@@ -2987,6 +3148,9 @@ object GLib:
     *
     * If @mem is %NULL it simply returns, so there is no need to check @mem
     * against %NULL before calling this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def free(
       mem: Option[Ptr[Byte] /* Some(gpointer) */ ]
@@ -2994,9 +3158,7 @@ object GLib:
     mem.map[gpointer](o => gpointer(o)).getOrElse(null.asInstanceOf[gpointer])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Frees the memory pointed to by @mem, assuming it is has the given @size.
+  /** Frees the memory pointed to by @mem, assuming it is has the given @size.
     *
     * If @mem is %NULL this is a no-op (and @size is ignored).
     *
@@ -3007,6 +3169,9 @@ object GLib:
     * In case a GCC compatible compiler is used, this function may be used
     * automatically via g_free() if the allocated size is known at compile time,
     * since GLib 2.78.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def freeSized(
       mem: Option[Ptr[Byte] /* Some(gpointer) */ ],
@@ -3016,21 +3181,20 @@ object GLib:
     gsize(size).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a human-readable name for the application, as set by
+  /** Gets a human-readable name for the application, as set by
     * g_set_application_name(). This name should be localized if possible, and
     * is intended for display to the user. Contrast with g_get_prgname(), which
     * gets a non-localized name. If g_set_application_name() has not been
     * called, returns the result of g_get_prgname() (which may be %NULL if
     * g_set_prgname() has also not been called).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getApplicationName()(using Zone): String /* Some(Ptr[gchar]) */ =
     fromCString(g_get_application_name().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains the character set for the [current locale][setlocale]; you might
+  /** Obtains the character set for the [current locale][setlocale]; you might
     * use this character set as an argument to g_convert(), to convert from the
     * current locale's encoding to some other encoding. (Frequently
     * g_locale_to_utf8() and g_locale_from_utf8() are nice shortcuts, though.)
@@ -3050,23 +3214,25 @@ object GLib:
     * you can perhaps avoid calling g_convert().
     *
     * The string returned in @charset is not allocated, and should not be freed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function get_charset contains an OUT parameter, which is not supported yet"
+    "[get_charset:]: Function get_charset contains an OUT parameter, which is not supported yet"
   )
-  def getCharset() = ???
+  private def getCharset() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the character set for the current locale.
     *
-    * Gets the character set for the current locale.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCodeset()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_codeset().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains the character set used by the console attached to the process,
+  /** Obtains the character set used by the console attached to the process,
     * which is suitable for printing output to the terminal.
     *
     * Usually this matches the result returned by g_get_charset(), but in
@@ -3082,15 +3248,16 @@ object GLib:
     * you can perhaps avoid calling g_convert().
     *
     * The string returned in @charset is not allocated, and should not be freed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function get_console_charset contains an OUT parameter, which is not supported yet"
+    "[get_console_charset:]: Function get_console_charset contains an OUT parameter, which is not supported yet"
   )
-  def getConsoleCharset() = ???
+  private def getConsoleCharset() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the current directory.
+  /** Gets the current directory.
     *
     * The returned string should be freed when no longer needed. The encoding of
     * the returned string is system defined. On Windows, it is always UTF-8.
@@ -3099,25 +3266,27 @@ object GLib:
     * environment variable if it is set and it happens to be the same as the
     * current directory. This can make a difference in the case that the current
     * directory is the target of a symbolic link.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCurrentDir()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_current_dir().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Equivalent to the UNIX gettimeofday() function, but portable.
+  /** Equivalent to the UNIX gettimeofday() function, but portable.
     *
     * You may find g_get_real_time() to be more convenient.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TimeVal), @type -> DataRecord(GTimeVal*)))"
+    "[get_current_time:/<function parameters>/result]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TimeVal), @type -> DataRecord(GTimeVal*)))"
   )
-  def getCurrentTime() = ???
+  private def getCurrentTime() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the list of environment variables for the current process.
+  /** Gets the list of environment variables for the current process.
     *
     * The list is %NULL terminated and each item in the list is of the form
     * 'NAME=VALUE'.
@@ -3127,15 +3296,16 @@ object GLib:
     *
     * The return value is freshly allocated and it should be freed with
     * g_strfreev() when it is no longer needed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[get_environ:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def getEnviron() = ???
+  private def getEnviron() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines the preferred character sets used for filenames. The first
+  /** Determines the preferred character sets used for filenames. The first
     * character set from the @charsets is the filename encoding, the subsequent
     * character sets are used when trying to generate a displayable
     * representation of a filename, see g_filename_display_name().
@@ -3158,15 +3328,16 @@ object GLib:
     * Note that on Unix, regardless of the locale character set or
     * `G_FILENAME_ENCODING` value, the actual file names present on a system
     * might be in any random encoding or just gibberish.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function get_filename_charsets contains an OUT parameter, which is not supported yet"
+    "[get_filename_charsets:]: Function get_filename_charsets contains an OUT parameter, which is not supported yet"
   )
-  def getFilenameCharsets() = ???
+  private def getFilenameCharsets() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the current user's home directory.
+  /** Gets the current user's home directory.
     *
     * As with most UNIX tools, this function will return the value of the `HOME`
     * environment variable if it is set to an existing absolute path name,
@@ -3186,14 +3357,15 @@ object GLib:
     * ensure that the new behaviour is in effect) then you should either
     * directly check the `HOME` environment variable yourself or unset it before
     * calling any functions in GLib.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHomeDir()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_home_dir().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Return a name for the machine.
+  /** Return a name for the machine.
     *
     * The returned name is not necessarily a fully-qualified domain name, or
     * even present in DNS or some other name service at all. It need not even be
@@ -3206,14 +3378,15 @@ object GLib:
     * string "localhost" is returned.
     *
     * The encoding of the returned string is UTF-8.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHostName()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_host_name().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes a list of applicable locale names, which can be used to e.g.
+  /** Computes a list of applicable locale names, which can be used to e.g.
     * construct locale-dependent filenames or search paths. The returned list is
     * sorted from most desirable to least desirable and always contains the
     * default locale "C".
@@ -3224,15 +3397,16 @@ object GLib:
     * This function consults the environment variables `LANGUAGE`, `LC_ALL`,
     * `LC_MESSAGES` and `LANG` to find the list of locales specified by the
     * user.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[get_language_names:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def getLanguageNames() = ???
+  private def getLanguageNames() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes a list of applicable locale names with a locale category name,
+  /** Computes a list of applicable locale names with a locale category name,
     * which can be used to construct the fallback locale-dependent filenames or
     * search paths. The returned list is sorted from most desirable to least
     * desirable and always contains the default locale "C".
@@ -3243,15 +3417,16 @@ object GLib:
     *
     * g_get_language_names() returns
     * g_get_language_names_with_category("LC_MESSAGES").
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[get_language_names_with_category:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def getLanguageNamesWithCategory() = ???
+  private def getLanguageNamesWithCategory() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a list of derived variants of @locale, which can be used to e.g.
+  /** Returns a list of derived variants of @locale, which can be used to e.g.
     * construct locale-dependent filenames or search paths. The returned list is
     * sorted from most desirable to least desirable. This function handles
     * territory, charset and extra locale modifiers. See
@@ -3268,15 +3443,16 @@ object GLib:
     *
     * If you need the list of variants for the current locale, use
     * g_get_language_names().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[get_locale_variants:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def getLocaleVariants() = ???
+  private def getLocaleVariants() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries the system monotonic time.
+  /** Queries the system monotonic time.
     *
     * The monotonic clock will always increase and doesn't suffer
     * discontinuities when the user (or NTP) changes the system time. It may or
@@ -3285,21 +3461,23 @@ object GLib:
     * We try to use the clock that corresponds as closely as possible to the
     * passage of time as measured by system calls such as poll() but it may not
     * always be possible to do this.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMonotonicTime(): CLongInt /* Some(gint64) */ =
     g_get_monotonic_time().value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determine the approximate number of threads that the system will schedule
+  /** Determine the approximate number of threads that the system will schedule
     * simultaneously for this process. This is intended to be used as a
     * parameter to g_thread_pool_new() for CPU bound tasks and similar cases.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNumProcessors(): UInt /* Some(guint) */ = g_get_num_processors().value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get information about the operating system.
+  /** Get information about the operating system.
     *
     * On Linux this comes from the `/etc/os-release` file. On other systems, it
     * may come from a variety of sources. You can either use the standard key
@@ -3307,6 +3485,9 @@ object GLib:
     * example, `/etc/os-release` provides a number of other less commonly used
     * values that may be useful. No key is guaranteed to be provided, so the
     * caller should always check if the result is %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOsInfo(
       key_name: String | CString /* Some(Ptr[gchar]) */
@@ -3316,34 +3497,34 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the name of the program. This name should not be localized, in
+  /** Gets the name of the program. This name should not be localized, in
     * contrast to g_get_application_name().
     *
     * If you are using #GApplication the program name is set in
     * g_application_run(). In case of GDK or GTK it is set in gdk_init(), which
     * is called by gtk_init() and the #GtkApplication::startup handler. The
     * program name is found by taking the last component of @argv[0].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPrgname()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_prgname().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the real name of the user. This usually comes from the user's entry
+  /** Gets the real name of the user. This usually comes from the user's entry
     * in the `passwd` file. The encoding of the returned string is
     * system-defined. (On Windows, it is, however, always UTF-8.) If the real
     * user name cannot be determined, the string "Unknown" is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRealName()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_real_name().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries the system wall-clock time.
+  /** Queries the system wall-clock time.
     *
     * This call is functionally equivalent to g_get_current_time() except that
     * the return value is often more convenient than dealing with a #GTimeVal.
@@ -3351,12 +3532,13 @@ object GLib:
     * You should only use this call if you are actually interested in the real
     * wall-clock time. g_get_monotonic_time() is probably more useful for
     * measuring intervals.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRealTime(): CLongInt /* Some(gint64) */ = g_get_real_time().value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns an ordered list of base directories in which to access system-wide
+  /** Returns an ordered list of base directories in which to access system-wide
     * configuration information.
     *
     * On UNIX platforms this is determined using the mechanisms described in the
@@ -3375,15 +3557,16 @@ object GLib:
     *
     * The return value is cached and modifying it at runtime is not supported,
     * as it’s not thread-safe to modify environment variables at runtime.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[get_system_config_dirs:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def getSystemConfigDirs() = ???
+  private def getSystemConfigDirs() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns an ordered list of base directories in which to access system-wide
+  /** Returns an ordered list of base directories in which to access system-wide
     * application data.
     *
     * On UNIX platforms this is determined using the mechanisms described in the
@@ -3415,15 +3598,16 @@ object GLib:
     *
     * The return value is cached and modifying it at runtime is not supported,
     * as it’s not thread-safe to modify environment variables at runtime.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[get_system_data_dirs:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def getSystemDataDirs() = ???
+  private def getSystemDataDirs() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the directory to use for temporary files.
+  /** Gets the directory to use for temporary files.
     *
     * On UNIX, this is taken from the `TMPDIR` environment variable. If the
     * variable is not set, `P_tmpdir` is used, as defined by the system C
@@ -3434,14 +3618,15 @@ object GLib:
     *
     * The encoding of the returned string is system-defined. On Windows, it is
     * always UTF-8. The return value is never %NULL or the empty string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTmpDir()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_tmp_dir().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a base directory in which to store non-essential, cached data
+  /** Returns a base directory in which to store non-essential, cached data
     * specific to particular user.
     *
     * On UNIX platforms this is determined using the mechanisms described in the
@@ -3459,13 +3644,14 @@ object GLib:
     *
     * The return value is cached and modifying it at runtime is not supported,
     * as it’s not thread-safe to modify environment variables at runtime.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUserCacheDir()(using Zone): String /* Some(Ptr[gchar]) */ =
     fromCString(g_get_user_cache_dir().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a base directory in which to store user-specific application
+  /** Returns a base directory in which to store user-specific application
     * configuration information such as user preferences and settings.
     *
     * On UNIX platforms this is determined using the mechanisms described in the
@@ -3483,13 +3669,14 @@ object GLib:
     *
     * The return value is cached and modifying it at runtime is not supported,
     * as it’s not thread-safe to modify environment variables at runtime.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUserConfigDir()(using Zone): String /* Some(Ptr[gchar]) */ =
     fromCString(g_get_user_config_dir().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a base directory in which to access application data such as icons
+  /** Returns a base directory in which to access application data such as icons
     * that is customized for a particular user.
     *
     * On UNIX platforms this is determined using the mechanisms described in the
@@ -3507,25 +3694,27 @@ object GLib:
     *
     * The return value is cached and modifying it at runtime is not supported,
     * as it’s not thread-safe to modify environment variables at runtime.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUserDataDir()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_user_data_dir().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the user name of the current user. The encoding of the returned
+  /** Gets the user name of the current user. The encoding of the returned
     * string is system-defined. On UNIX, it might be the preferred file name
     * encoding, or something else, and there is no guarantee that it is even
     * consistent on a machine. On Windows, it is always UTF-8.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUserName()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_user_name().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a directory that is unique to the current user on the local
+  /** Returns a directory that is unique to the current user on the local
     * system.
     *
     * This is determined using the mechanisms described in the [XDG Base
@@ -3537,13 +3726,14 @@ object GLib:
     *
     * The return value is cached and modifying it at runtime is not supported,
     * as it’s not thread-safe to modify environment variables at runtime.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUserRuntimeDir()(using Zone): String /* Some(Ptr[gchar]) */ =
     fromCString(g_get_user_runtime_dir().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the full path of a special directory using its logical id.
+  /** Returns the full path of a special directory using its logical id.
     *
     * On UNIX this is done using the XDG special user directories. For
     * compatibility with existing practise, %G_USER_DIRECTORY_DESKTOP falls back
@@ -3552,6 +3742,9 @@ object GLib:
     * Depending on the platform, the user might be able to change the path of
     * the special directory without requiring the session to restart; GLib will
     * not reflect any change once the special directories are loaded.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUserSpecialDir(
       directory: UserDirectory /* Some(GUserDirectory) */
@@ -3559,9 +3752,7 @@ object GLib:
     g_get_user_special_dir(directory.raw).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a base directory in which to store state files specific to
+  /** Returns a base directory in which to store state files specific to
     * particular user.
     *
     * On UNIX platforms this is determined using the mechanisms described in the
@@ -3579,18 +3770,22 @@ object GLib:
     *
     * The return value is cached and modifying it at runtime is not supported,
     * as it’s not thread-safe to modify environment variables at runtime.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUserStateDir()(using Zone): String /* Some(Ptr[gchar]) */ =
     fromCString(g_get_user_state_dir().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the value of an environment variable.
+  /** Returns the value of an environment variable.
     *
     * On UNIX, the name and value are byte strings which might or might not be
     * in some consistent character set and encoding. On Windows, they are in
     * UTF-8. On Windows, in case the environment variable's value contains
     * references to other environment variables, they are expanded.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getenv(
       variable: String | CString /* Some(Ptr[gchar]) */
@@ -3600,9 +3795,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is a convenience function for using a #GHashTable as a set. It is
+  /** This is a convenience function for using a #GHashTable as a set. It is
     * equivalent to calling g_hash_table_replace() with @key as both the key and
     * the value.
     *
@@ -3616,38 +3809,41 @@ object GLib:
     *
     * Starting from GLib 2.40, this function returns a boolean value to indicate
     * whether the newly added value was already in the hash table or not.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_add:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableAdd() = ???
+  private def hashTableAdd() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if @key is in @hash_table.
     *
-    * Checks if @key is in @hash_table.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_contains:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableContains() = ???
+  private def hashTableContains() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Destroys all keys and values in the #GHashTable and decrements its
+  /** Destroys all keys and values in the #GHashTable and decrements its
     * reference count by 1. If keys and/or values are dynamically allocated, you
     * should either free them first or create the #GHashTable with destroy
     * notifiers using g_hash_table_new_full(). In the latter case the destroy
     * functions you supplied will be called on all keys and values during the
     * destruction phase.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_destroy:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableDestroy() = ???
+  private def hashTableDestroy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves every key inside @hash_table, as a #GPtrArray. The returned data
+  /** Retrieves every key inside @hash_table, as a #GPtrArray. The returned data
     * is valid until changes to the hash release those keys.
     *
     * This iterates over every entry in the hash table to build its return
@@ -3655,15 +3851,16 @@ object GLib:
     * a #GHashTableIter.
     *
     * You should always unref the returned array with g_ptr_array_unref().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_get_keys_as_ptr_array:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableGetKeysAsPtrArray() = ???
+  private def hashTableGetKeysAsPtrArray() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves every value inside @hash_table, as a #GPtrArray. The returned
+  /** Retrieves every value inside @hash_table, as a #GPtrArray. The returned
     * data is valid until changes to the hash release those values.
     *
     * This iterates over every entry in the hash table to build its return
@@ -3671,15 +3868,16 @@ object GLib:
     * a #GHashTableIter.
     *
     * You should always unref the returned array with g_ptr_array_unref().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_get_values_as_ptr_array:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableGetValuesAsPtrArray() = ???
+  private def hashTableGetValuesAsPtrArray() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts a new key and value into a #GHashTable.
+  /** Inserts a new key and value into a #GHashTable.
     *
     * If the key already exists in the #GHashTable its current value is replaced
     * with the new value. If you supplied a
@@ -3692,27 +3890,29 @@ object GLib:
     *
     * Starting from GLib 2.40, this function returns a boolean value to indicate
     * whether the newly added value was already in the hash table or not.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_insert:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableInsert() = ???
+  private def hashTableInsert() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up a key in a #GHashTable. Note that this function cannot
+  /** Looks up a key in a #GHashTable. Note that this function cannot
     * distinguish between a key that is not present and one which is present and
     * has the value %NULL. If you need this distinction, use
     * g_hash_table_lookup_extended().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_lookup:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableLookup() = ???
+  private def hashTableLookup() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up a key in the #GHashTable, returning the original key and the
+  /** Looks up a key in the #GHashTable, returning the original key and the
     * associated value and a #gboolean which is %TRUE if the key was found. This
     * is useful if you need to free the memory allocated for the original key,
     * for example before calling g_hash_table_remove().
@@ -3720,15 +3920,16 @@ object GLib:
     * You can actually pass %NULL for @lookup_key to test whether the %NULL key
     * exists, provided the hash and equal functions of @hash_table are
     * %NULL-safe.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function hash_table_lookup_extended contains an OUT parameter, which is not supported yet"
+    "[hash_table_lookup_extended:]: Function hash_table_lookup_extended contains an OUT parameter, which is not supported yet"
   )
-  def hashTableLookupExtended() = ???
+  private def hashTableLookupExtended() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GHashTable like g_hash_table_new_full() with a reference
+  /** Creates a new #GHashTable like g_hash_table_new_full() with a reference
     * count of 1.
     *
     * It inherits the hash function, the key equal function, the key destroy
@@ -3736,41 +3937,44 @@ object GLib:
     *
     * The returned hash table will be empty; it will not contain the keys or
     * values from @other_hash_table.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_new_similar:/<function parameters>/other_hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableNewSimilar() = ???
+  private def hashTableNewSimilar() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a key and its associated value from a #GHashTable.
+  /** Removes a key and its associated value from a #GHashTable.
     *
     * If the #GHashTable was created using g_hash_table_new_full(), the key and
     * value are freed using the supplied destroy functions, otherwise you have
     * to make sure that any dynamically allocated values are freed yourself.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_remove:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableRemove() = ???
+  private def hashTableRemove() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes all keys and their associated values from a #GHashTable.
+  /** Removes all keys and their associated values from a #GHashTable.
     *
     * If the #GHashTable was created using g_hash_table_new_full(), the keys and
     * values are freed using the supplied destroy functions, otherwise you have
     * to make sure that any dynamically allocated values are freed yourself.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_remove_all:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableRemoveAll() = ???
+  private def hashTableRemoveAll() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts a new key and value into a #GHashTable similar to
+  /** Inserts a new key and value into a #GHashTable similar to
     * g_hash_table_insert(). The difference is that if the key already exists in
     * the #GHashTable, it gets replaced by the new key. If you supplied a @value_destroy_func
     * when creating the #GHashTable, the old value is freed using that function.
@@ -3779,66 +3983,72 @@ object GLib:
     *
     * Starting from GLib 2.40, this function returns a boolean value to indicate
     * whether the newly added value was already in the hash table or not.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_replace:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableReplace() = ???
+  private def hashTableReplace() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the number of elements contained in the #GHashTable.
     *
-    * Returns the number of elements contained in the #GHashTable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_size:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableSize() = ???
+  private def hashTableSize() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a key and its associated value from a #GHashTable without calling
+  /** Removes a key and its associated value from a #GHashTable without calling
     * the key and value destroy functions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_steal:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableSteal() = ???
+  private def hashTableSteal() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes all keys and their associated values from a #GHashTable without
+  /** Removes all keys and their associated values from a #GHashTable without
     * calling the key and value destroy functions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_steal_all:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableStealAll() = ???
+  private def hashTableStealAll() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes all keys and their associated values from a #GHashTable without
+  /** Removes all keys and their associated values from a #GHashTable without
     * calling the key destroy functions, returning the keys as a #GPtrArray with
     * the free func set to the @hash_table key destroy function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_steal_all_keys:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableStealAllKeys() = ???
+  private def hashTableStealAllKeys() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes all keys and their associated values from a #GHashTable without
+  /** Removes all keys and their associated values from a #GHashTable without
     * calling the value destroy functions, returning the values as a #GPtrArray
     * with the free func set to the @hash_table value destroy function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_steal_all_values:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableStealAllValues() = ???
+  private def hashTableStealAllValues() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up a key in the #GHashTable, stealing the original key and the
+  /** Looks up a key in the #GHashTable, stealing the original key and the
     * associated value and returning %TRUE if the key was found. If the key was
     * not found, %FALSE is returned.
     *
@@ -3854,85 +4064,93 @@ object GLib:
     * The dictionary implementation optimizes for having all values identical to
     * their keys, for example by using g_hash_table_add(). When stealing both
     * the key and the value from such a dictionary, the value will be %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function hash_table_steal_extended contains an OUT parameter, which is not supported yet"
+    "[hash_table_steal_extended:]: Function hash_table_steal_extended contains an OUT parameter, which is not supported yet"
   )
-  def hashTableStealExtended() = ???
+  private def hashTableStealExtended() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Atomically decrements the reference count of @hash_table by one. If the
+  /** Atomically decrements the reference count of @hash_table by one. If the
     * reference count drops to 0, all keys and values will be destroyed, and all
     * memory allocated by the hash table is released. This function is MT-safe
     * and may be called from any thread.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_unref:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def hashTableUnref() = ???
+  private def hashTableUnref() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Destroys a #GHook, given its ID.
     *
-    * Destroys a #GHook, given its ID.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+    "[hook_destroy:/<function parameters>/hook_list]: Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
   )
-  def hookDestroy() = ???
+  private def hookDestroy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes one #GHook from a #GHookList, marking it inactive and calling
+  /** Removes one #GHook from a #GHookList, marking it inactive and calling
     * g_hook_unref() on it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+    "[hook_destroy_link:/<function parameters>/hook_list]: Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
   )
-  def hookDestroyLink() = ???
+  private def hookDestroyLink() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Calls the #GHookList @finalize_hook function if it exists, and frees the
+  /** Calls the #GHookList @finalize_hook function if it exists, and frees the
     * memory allocated for the #GHook.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+    "[hook_free:/<function parameters>/hook_list]: Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
   )
-  def hookFree() = ???
+  private def hookFree() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Inserts a #GHook into a #GHookList, before a given #GHook.
     *
-    * Inserts a #GHook into a #GHookList, before a given #GHook.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+    "[hook_insert_before:/<function parameters>/hook_list]: Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
   )
-  def hookInsertBefore() = ???
+  private def hookInsertBefore() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Prepends a #GHook on the start of a #GHookList.
     *
-    * Prepends a #GHook on the start of a #GHookList.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+    "[hook_prepend:/<function parameters>/hook_list]: Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
   )
-  def hookPrepend() = ???
+  private def hookPrepend() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decrements the reference count of a #GHook. If the reference count falls
+  /** Decrements the reference count of a #GHook. If the reference count falls
     * to 0, the #GHook is removed from the #GHookList and g_hook_free() is
     * called to free it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+    "[hook_unref:/<function parameters>/hook_list]: Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
   )
-  def hookUnref() = ???
+  private def hookUnref() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tests if @hostname contains segments with an ASCII-compatible encoding of
+  /** Tests if @hostname contains segments with an ASCII-compatible encoding of
     * an Internationalized Domain Name. If this returns %TRUE, you should decode
     * the hostname with g_hostname_to_unicode() before displaying it to the
     * user.
@@ -3940,6 +4158,9 @@ object GLib:
     * Note that a hostname might contain a mix of encoded and unencoded
     * segments, and so it is possible for g_hostname_is_non_ascii() and
     * g_hostname_is_ascii_encoded() to both return %TRUE for a name.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameIsAsciiEncoded(
       hostname: String | CString /* Some(Ptr[gchar]) */
@@ -3947,12 +4168,13 @@ object GLib:
     __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tests if @hostname is the string form of an IPv4 or IPv6 address. (Eg,
+  /** Tests if @hostname is the string form of an IPv4 or IPv6 address. (Eg,
     * "192.168.0.1".)
     *
     * Since 2.66, IPv6 addresses with a zone-id are accepted (RFC6874).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameIsIpAddress(
       hostname: String | CString /* Some(Ptr[gchar]) */
@@ -3960,15 +4182,16 @@ object GLib:
     __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tests if @hostname contains Unicode characters. If this returns %TRUE, you
+  /** Tests if @hostname contains Unicode characters. If this returns %TRUE, you
     * need to encode the hostname with g_hostname_to_ascii() before using it in
     * non-IDN-aware contexts.
     *
     * Note that a hostname might contain a mix of encoded and unencoded
     * segments, and so it is possible for g_hostname_is_non_ascii() and
     * g_hostname_is_ascii_encoded() to both return %TRUE for a name.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameIsNonAscii(
       hostname: String | CString /* Some(Ptr[gchar]) */
@@ -3976,10 +4199,11 @@ object GLib:
     __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts @hostname to its canonical ASCII form; an ASCII-only string
+  /** Converts @hostname to its canonical ASCII form; an ASCII-only string
     * containing no uppercase letters and not ending with a trailing dot.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameToAscii(
       hostname: String | CString /* Some(Ptr[gchar]) */
@@ -3989,15 +4213,16 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts @hostname to its canonical presentation form; a UTF-8 string in
+  /** Converts @hostname to its canonical presentation form; a UTF-8 string in
     * Unicode normalization form C, containing no uppercase letters, no
     * forbidden characters, and no ASCII-encoded segments, and not ending with a
     * trailing dot.
     *
     * Of course if @hostname is not an internationalized hostname, then the
     * canonical presentation form will be entirely ASCII.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameToUnicode(
       hostname: String | CString /* Some(Ptr[gchar]) */
@@ -4007,9 +4232,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Same as the standard UNIX routine iconv(), but may be implemented via
+  /** Same as the standard UNIX routine iconv(), but may be implemented via
     * libiconv on UNIX flavors that lack a native implementation.
     *
     * GLib provides g_convert() and g_locale_to_utf8() which are likely more
@@ -4021,28 +4244,30 @@ object GLib:
     * (with a positive number of non-reversible conversions as replacement
     * characters were used), or it may return -1 and set an error such as
     * %EILSEQ, in such a situation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function iconv contains an INOUT parameter, which is not supported yet"
+    "[iconv:]: Function iconv contains an INOUT parameter, which is not supported yet"
   )
-  def iconv() = ???
+  private def iconv() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Same as the standard UNIX routine iconv_open(), but may be implemented via
+  /** Same as the standard UNIX routine iconv_open(), but may be implemented via
     * libiconv on UNIX flavors that lack a native implementation.
     *
     * GLib provides g_convert() and g_locale_to_utf8() which are likely more
     * convenient than the raw iconv wrappers.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(IConv), @type -> DataRecord(GIConv)))"
+    "[iconv_open:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IConv), @type -> DataRecord(GIConv)))"
   )
-  def iconvOpen() = ???
+  private def iconvOpen() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a function to be called whenever there are no higher priority events
+  /** Adds a function to be called whenever there are no higher priority events
     * pending to the default main loop. The function is given the default idle
     * priority, %G_PRIORITY_DEFAULT_IDLE. If the function returns %FALSE it is
     * automatically removed from the list of event sources and will not be
@@ -4056,15 +4281,16 @@ object GLib:
     * callback will be invoked in whichever thread is running that main context.
     * You can do these steps manually if you need greater control or to use a
     * custom main context.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFunc), @type -> DataRecord(GSourceFunc)))"
+    "[idle_add:/<function parameters>/function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFunc), @type -> DataRecord(GSourceFunc)))"
   )
-  def idleAdd() = ???
+  private def idleAdd() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a function to be called whenever there are no higher priority events
+  /** Adds a function to be called whenever there are no higher priority events
     * pending.
     *
     * If the function returns %G_SOURCE_REMOVE or %FALSE it is automatically
@@ -4078,15 +4304,16 @@ object GLib:
     * callback will be invoked in whichever thread is running that main context.
     * You can do these steps manually if you need greater control or to use a
     * custom main context.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFunc), @type -> DataRecord(GSourceFunc)))"
+    "[idle_add_full:/<function parameters>/function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFunc), @type -> DataRecord(GSourceFunc)))"
   )
-  def idleAddFull() = ???
+  private def idleAddFull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a function to be called whenever there are no higher priority events
+  /** Adds a function to be called whenever there are no higher priority events
     * pending to the default main loop. The function is given the default idle
     * priority, %G_PRIORITY_DEFAULT_IDLE.
     *
@@ -4094,15 +4321,19 @@ object GLib:
     * automatically removed from the main context.
     *
     * This function otherwise behaves like g_idle_add().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceOnceFunc), @type -> DataRecord(GSourceOnceFunc)))"
+    "[idle_add_once:/<function parameters>/function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceOnceFunc), @type -> DataRecord(GSourceOnceFunc)))"
   )
-  def idleAddOnce() = ???
+  private def idleAddOnce() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes the idle function with the given data.
     *
-    * Removes the idle function with the given data.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def idleRemoveByData(
       data: Option[Ptr[Byte] /* Some(gpointer) */ ]
@@ -4110,27 +4341,29 @@ object GLib:
     data.map[gpointer](o => gpointer(o)).getOrElse(null.asInstanceOf[gpointer])
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new idle source.
+  /** Creates a new idle source.
     *
     * The source will not initially be associated with any #GMainContext and
     * must be added to one with g_source_attach() before it will be executed.
     * Note that the default priority for idle sources is
     * %G_PRIORITY_DEFAULT_IDLE, as compared to other sources which have a
     * default priority of %G_PRIORITY_DEFAULT.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
+    "[idle_source_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
   )
-  def idleSourceNew() = ???
+  private def idleSourceNew() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compares the two #gint64 values being pointed to and returns %TRUE if they
+  /** Compares the two #gint64 values being pointed to and returns %TRUE if they
     * are equal. It can be passed to g_hash_table_new() as the @key_equal_func
     * parameter, when using non-%NULL pointers to 64-bit integers as keys in a
     * #GHashTable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def int64Equal(
       v1: Ptr[Byte] /* Some(gconstpointer) */,
@@ -4138,21 +4371,20 @@ object GLib:
   ): Boolean /* Some(gboolean) */ =
     g_int64_equal(gconstpointer(v1), gconstpointer(v2)).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a pointer to a #gint64 to a hash value.
+  /** Converts a pointer to a #gint64 to a hash value.
     *
     * It can be passed to g_hash_table_new() as the @hash_func parameter, when
     * using non-%NULL pointers to 64-bit integer values as keys in a
     * #GHashTable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def int64Hash(
       v: Ptr[Byte] /* Some(gconstpointer) */
   ): UInt /* Some(guint) */ = g_int64_hash(gconstpointer(v)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compares the two #gint values being pointed to and returns %TRUE if they
+  /** Compares the two #gint values being pointed to and returns %TRUE if they
     * are equal. It can be passed to g_hash_table_new() as the @key_equal_func
     * parameter, when using non-%NULL pointers to integers as keys in a
     * #GHashTable.
@@ -4160,6 +4392,9 @@ object GLib:
     * Note that this function acts on pointers to #gint, not on #gint directly:
     * if your hash table's keys are of the form `GINT_TO_POINTER (n)`, use
     * g_direct_equal() instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def intEqual(
       v1: Ptr[Byte] /* Some(gconstpointer) */,
@@ -4167,22 +4402,21 @@ object GLib:
   ): Boolean /* Some(gboolean) */ =
     g_int_equal(gconstpointer(v1), gconstpointer(v2)).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a pointer to a #gint to a hash value. It can be passed to
+  /** Converts a pointer to a #gint to a hash value. It can be passed to
     * g_hash_table_new() as the @hash_func parameter, when using non-%NULL
     * pointers to integer values as keys in a #GHashTable.
     *
     * Note that this function acts on pointers to #gint, not on #gint directly:
     * if your hash table's keys are of the form `GINT_TO_POINTER (n)`, use
     * g_direct_hash() instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def intHash(v: Ptr[Byte] /* Some(gconstpointer) */ ): UInt /* Some(guint) */ =
     g_int_hash(gconstpointer(v)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a canonical representation for @string. Interned strings can be
+  /** Returns a canonical representation for @string. Interned strings can be
     * compared for equality by comparing the pointers, instead of using
     * strcmp(). g_intern_static_string() does not copy the string, therefore @string
     * must not be freed or modified.
@@ -4190,6 +4424,9 @@ object GLib:
     * This function must not be used before library constructors have finished
     * running. In particular, this means it cannot be used to initialize global
     * variables in C++.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def internStaticString(
       string: Option[String | CString /* Some(Ptr[gchar]) */ ]
@@ -4201,15 +4438,16 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a canonical representation for @string. Interned strings can be
+  /** Returns a canonical representation for @string. Interned strings can be
     * compared for equality by comparing the pointers, instead of using
     * strcmp().
     *
     * This function must not be used before library constructors have finished
     * running. In particular, this means it cannot be used to initialize global
     * variables in C++.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def internString(
       string: Option[String | CString /* Some(Ptr[gchar]) */ ]
@@ -4221,33 +4459,36 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds the #GIOChannel into the default main loop context with the default
+  /** Adds the #GIOChannel into the default main loop context with the default
     * priority.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
+    "[io_add_watch:/<function parameters>/channel]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
   )
-  def ioAddWatch() = ???
+  private def ioAddWatch() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds the #GIOChannel into the default main loop context with the given
+  /** Adds the #GIOChannel into the default main loop context with the given
     * priority.
     *
     * This internally creates a main loop source using g_io_create_watch() and
     * attaches it to the main loop context with g_source_attach(). You can do
     * these steps manually if you need greater control.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
+    "[io_add_watch_full:/<function parameters>/channel]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
   )
-  def ioAddWatchFull() = ???
+  private def ioAddWatchFull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts an `errno` error number to a #GIOChannelError.
     *
-    * Converts an `errno` error number to a #GIOChannelError.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def ioChannelErrorFromErrno(
       en: Int /* Some(gint) */
@@ -4255,13 +4496,11 @@ object GLib:
     IOChannelError.fromRaw(g_io_channel_error_from_errno(gint(en)))
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[io_channel_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def ioChannelErrorQuark() = ???
+  private def ioChannelErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GSource that's dispatched when @condition is met for the given @channel.
+  /** Creates a #GSource that's dispatched when @condition is met for the given @channel.
     * For example, if condition is %G_IO_IN, the source will be dispatched when
     * there's data available for reading.
     *
@@ -4275,20 +4514,21 @@ object GLib:
     * On Windows, polling a #GSource created to watch a channel for a socket
     * puts the socket in non-blocking mode. This is a side-effect of the
     * implementation and unavoidable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
+    "[io_create_watch:/<function parameters>/channel]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
   )
-  def ioCreateWatch() = ???
+  private def ioCreateWatch() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[key_file_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def keyFileErrorQuark() = ???
+  private def keyFileErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the names of all variables set in the environment.
+  /** Gets the names of all variables set in the environment.
     *
     * Programs that want to be portable to Windows should typically use this
     * function and g_getenv() instead of using the environ array from the C
@@ -4296,15 +4536,16 @@ object GLib:
     * system codepage encoding, while in most of the typical use cases for
     * environment variables in GLib-using programs you want the UTF-8 encoding
     * that this function and g_getenv() provide.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[listenv:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def listenv() = ???
+  private def listenv() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string from UTF-8 to the encoding used for strings by the C
+  /** Converts a string from UTF-8 to the encoding used for strings by the C
     * runtime (usually the same as that used by the operating system) in the
     * [current locale][setlocale]. On Windows this means the system codepage.
     *
@@ -4312,15 +4553,16 @@ object GLib:
     * argument is positive. A nul character found inside the string will result
     * in error %G_CONVERT_ERROR_ILLEGAL_SEQUENCE. Use g_convert() to convert
     * input that may contain embedded nul characters.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function locale_from_utf8 contains an OUT parameter, which is not supported yet"
+    "[locale_from_utf8:]: Function locale_from_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def localeFromUtf8() = ???
+  private def localeFromUtf8() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string which is in the encoding used for strings by the C
+  /** Converts a string which is in the encoding used for strings by the C
     * runtime (usually the same as that used by the operating system) in the
     * [current locale][setlocale] into a UTF-8 string.
     *
@@ -4330,15 +4572,16 @@ object GLib:
     * character is treated with the %G_CONVERT_ERROR_ILLEGAL_SEQUENCE error for
     * backward compatibility with earlier versions of this library. Use
     * g_convert() to produce output that may contain embedded nul characters.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function locale_to_utf8 contains an OUT parameter, which is not supported yet"
+    "[locale_to_utf8:]: Function locale_to_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def localeToUtf8() = ???
+  private def localeToUtf8() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Logs an error or debugging message.
+  /** Logs an error or debugging message.
     *
     * If the log level has been set as fatal, G_BREAKPOINT() is called to
     * terminate the program. See the documentation for G_BREAKPOINT() for
@@ -4351,6 +4594,9 @@ object GLib:
     * If [structured logging is enabled][using-structured-logging] this will
     * output via the structured log writer function (see
     * g_log_set_writer_func()).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def log(
       log_domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
@@ -4366,9 +4612,7 @@ object GLib:
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The default log handler set up by GLib; g_log_set_default_handler() allows
+  /** The default log handler set up by GLib; g_log_set_default_handler() allows
     * to install an alternate default log handler. This is used if no log
     * handler has been set for the particular log domain and log level
     * combination. It outputs the message to stderr or stdout and if the log
@@ -4393,6 +4637,9 @@ object GLib:
     *
     * This has no effect if structured logging is enabled; see [Using Structured
     * Logging][using-structured-logging].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def logDefaultHandler(
       log_domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
@@ -4412,9 +4659,7 @@ object GLib:
       .getOrElse(null.asInstanceOf[gpointer])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Return whether debug output from the GLib logging system is enabled.
+  /** Return whether debug output from the GLib logging system is enabled.
     *
     * Note that this should not be used to conditionalise calls to g_debug() or
     * other logging functions; it should only be used from %GLogWriterFunc
@@ -4422,16 +4667,20 @@ object GLib:
     *
     * Note also that the value of this does not depend on `G_MESSAGES_DEBUG`;
     * see the docs for g_log_set_debug_enabled().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def logGetDebugEnabled(): Boolean /* Some(gboolean) */ =
     g_log_get_debug_enabled().value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes the log handler.
+  /** Removes the log handler.
     *
     * This has no effect if structured logging is enabled; see [Using Structured
     * Logging][using-structured-logging].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def logRemoveHandler(
       log_domain: String | CString /* Some(Ptr[gchar]) */,
@@ -4441,9 +4690,7 @@ object GLib:
     guint(handler_id)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the message levels which are always fatal, in any log domain. When a
+  /** Sets the message levels which are always fatal, in any log domain. When a
     * message with any of these levels is logged the program terminates. You can
     * only set the levels defined by GLib to be fatal. %G_LOG_LEVEL_ERROR is
     * always fatal.
@@ -4460,20 +4707,24 @@ object GLib:
     * used; otherwise it is up to the writer function to determine which log
     * messages are fatal. See [Using Structured
     * Logging][using-structured-logging].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def logSetAlwaysFatal(
       fatal_mask: LogLevelFlags /* Some(GLogLevelFlags) */
   ): LogLevelFlags /* Some(GLogLevelFlags) */ =
     LogLevelFlags.fromRaw(g_log_set_always_fatal(fatal_mask.raw))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Enable or disable debug output from the GLib logging system for all
+  /** Enable or disable debug output from the GLib logging system for all
     * domains. This value interacts disjunctively with `G_MESSAGES_DEBUG` — if
     * either of them would allow a debug message to be outputted, it will be.
     *
     * Note that this should not be used from within library code to enable debug
     * output — it is intended for external use.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def logSetDebugEnabled(
       enabled: Boolean /* Some(gboolean) */
@@ -4481,23 +4732,22 @@ object GLib:
     gboolean(gint((if enabled == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Installs a default log handler which is used if no log handler has been
+  /** Installs a default log handler which is used if no log handler has been
     * set for the particular log domain and log level combination. By default,
     * GLib uses g_log_default_handler() as default log handler.
     *
     * This has no effect if structured logging is enabled; see [Using Structured
     * Logging][using-structured-logging].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(LogFunc), @type -> DataRecord(GLogFunc)))"
+    "[log_set_default_handler:/<function parameters>/log_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LogFunc), @type -> DataRecord(GLogFunc)))"
   )
-  def logSetDefaultHandler() = ???
+  private def logSetDefaultHandler() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the log levels which are fatal in the given domain.
+  /** Sets the log levels which are fatal in the given domain.
     * %G_LOG_LEVEL_ERROR is always fatal.
     *
     * This has no effect on structured log messages (using g_log_structured() or
@@ -4510,6 +4760,9 @@ object GLib:
     * You should typically not set %G_LOG_LEVEL_WARNING, %G_LOG_LEVEL_MESSAGE,
     * %G_LOG_LEVEL_INFO or %G_LOG_LEVEL_DEBUG as fatal except inside of test
     * programs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def logSetFatalMask(
       log_domain: String | CString /* Some(Ptr[gchar]) */,
@@ -4522,9 +4775,7 @@ object GLib:
       )
     )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Sets the log handler for a domain and a set of log levels.
+  /**  Sets the log handler for a domain and a set of log levels.
     *
     *  To handle fatal and recursive messages the @log_levels parameter
     *  must be combined with the %G_LOG_FLAG_FATAL and %G_LOG_FLAG_RECURSION
@@ -4558,27 +4809,28 @@ object GLib:
     *  g_log_set_handler ("GLib", G_LOG_LEVEL_MASK | G_LOG_FLAG_FATAL
     *                     | G_LOG_FLAG_RECURSION, my_log_handler, NULL);
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(LogFunc), @type -> DataRecord(GLogFunc)))"
+    "[log_set_handler:/<function parameters>/log_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LogFunc), @type -> DataRecord(GLogFunc)))"
   )
-  def logSetHandler() = ???
+  private def logSetHandler() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_log_set_handler(), but takes a destroy notify for the @user_data.
+  /** Like g_log_set_handler(), but takes a destroy notify for the @user_data.
     *
     * This has no effect if structured logging is enabled; see [Using Structured
     * Logging][using-structured-logging].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(LogFunc), @type -> DataRecord(GLogFunc)))"
+    "[log_set_handler_full:/<function parameters>/log_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LogFunc), @type -> DataRecord(GLogFunc)))"
   )
-  def logSetHandlerFull() = ???
+  private def logSetHandlerFull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set a writer function which will be called to format and write out each
+  /** Set a writer function which will be called to format and write out each
     * log message. Each program should set a writer function, or the default
     * writer (g_log_writer_default()) will be used.
     *
@@ -4588,15 +4840,16 @@ object GLib:
     *
     * There can only be one writer function. It is an error to set more than
     * one.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(LogWriterFunc), @type -> DataRecord(GLogWriterFunc)))"
+    "[log_set_writer_func:/<function parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LogWriterFunc), @type -> DataRecord(GLogWriterFunc)))"
   )
-  def logSetWriterFunc() = ???
+  private def logSetWriterFunc() = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Log a message with structured data.
+  /**  Log a message with structured data.
     *
     *  The message will be passed through to the log writer set by the application
     *  using g_log_set_writer_func(). If the message is fatal (i.e. its log level
@@ -4684,6 +4937,8 @@ object GLib:
     *  The default writer function for `stdout` and `stderr` will automatically
     *  append a new-line character after the message, so you should not add one
     *  manually to the format string.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   inline def logStructured(
       log_domain: String | CString /* Some(Ptr[gchar]) */,
@@ -4695,9 +4950,7 @@ object GLib:
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Log a message with structured data. The message will be passed through to
+  /** Log a message with structured data. The message will be passed through to
     * the log writer set by the application using g_log_set_writer_func(). If
     * the message is fatal (i.e. its log level is %G_LOG_LEVEL_ERROR), the
     * program will be aborted at the end of this function.
@@ -4706,11 +4959,14 @@ object GLib:
     *
     * This assumes that @log_level is already present in @fields (typically as
     * the `PRIORITY` field).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LogField), @type -> DataRecord(GLogField)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GLogField*)))"
+    "[log_structured_array:/<function parameters>/fields]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LogField), @type -> DataRecord(GLogField)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GLogField*)))"
   )
-  def logStructuredArray() = ???
+  private def logStructuredArray() = ???
 
   inline def logStructuredStandard(
       log_domain: String | CString /* Some(Ptr[gchar]) */,
@@ -4730,9 +4986,7 @@ object GLib:
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Log a message with structured data, accepting the data within a #GVariant.
+  /** Log a message with structured data, accepting the data within a #GVariant.
     * This version is especially useful for use in other languages, via
     * introspection.
     *
@@ -4749,15 +5003,16 @@ object GLib:
     *
     * For more details on its usage and about the parameters, see
     * g_log_structured().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Variant), @type -> DataRecord(GVariant*)))"
+    "[log_variant:/<function parameters>/fields]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Variant), @type -> DataRecord(GVariant*)))"
   )
-  def logVariant() = ???
+  private def logVariant() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Format a structured log message and output it to the default log
+  /** Format a structured log message and output it to the default log
     * destination for the platform. On Linux, this is typically the systemd
     * journal, falling back to `stdout` or `stderr` if running from the terminal
     * or if output is being redirected to a file.
@@ -4777,15 +5032,16 @@ object GLib:
     * determine which messages are fatal. When using a custom writer func
     * instead it is up to the writer function to determine which log messages
     * are fatal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LogField), @type -> DataRecord(GLogField)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GLogField*)))"
+    "[log_writer_default:/<function parameters>/fields]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LogField), @type -> DataRecord(GLogField)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GLogField*)))"
   )
-  def logWriterDefault() = ???
+  private def logWriterDefault() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Configure whether the built-in log functions (g_log_default_handler() for
+  /** Configure whether the built-in log functions (g_log_default_handler() for
     * the old-style API, and both g_log_writer_default() and
     * g_log_writer_standard_streams() for the structured API) will output all
     * log messages to `stderr`.
@@ -4798,6 +5054,9 @@ object GLib:
     * This function sets global state. It is not thread-aware, and should be
     * called at the very start of a program, before creating any other threads
     * or creating objects that could create worker threads of their own.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def logWriterDefaultSetUseStderr(
       use_stderr: Boolean /* Some(gboolean) */
@@ -4805,9 +5064,7 @@ object GLib:
     gboolean(gint((if use_stderr == true then 1 else 0)))
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Check whether g_log_writer_default() and g_log_default_handler() would
+  /**  Check whether g_log_writer_default() and g_log_default_handler() would
     *  ignore a message with the given domain and level.
     *
     *  As with g_log_default_handler(), this function drops debug and informational
@@ -4834,6 +5091,8 @@ object GLib:
     *        g_free (result);
     *      }
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def logWriterDefaultWouldDrop(
       log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
@@ -4845,9 +5104,7 @@ object GLib:
       .getOrElse(null.asInstanceOf[CString])
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Format a structured log message as a string suitable for outputting to the
+  /** Format a structured log message as a string suitable for outputting to the
     * terminal (or elsewhere). This will include the values of all fields it
     * knows how to interpret, which includes `MESSAGE` and `GLIB_DOMAIN` (see
     * the documentation for g_log_structured()). It does not include values from
@@ -4856,15 +5113,16 @@ object GLib:
     * The returned string does **not** have a trailing new-line character. It is
     * encoded in the character set of the current locale, which is not
     * necessarily UTF-8.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LogField), @type -> DataRecord(GLogField)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GLogField*)))"
+    "[log_writer_format_fields:/<function parameters>/fields]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LogField), @type -> DataRecord(GLogField)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GLogField*)))"
   )
-  def logWriterFormatFields() = ???
+  private def logWriterFormatFields() = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Check whether the given @output_fd file descriptor is a connection to the
+  /**  Check whether the given @output_fd file descriptor is a connection to the
     *  systemd journal, or something else (like a log file or `stdout` or
     *  `stderr`).
     *
@@ -4873,15 +5131,15 @@ object GLib:
     *  |[<!-- language="C" -->
     *    is_journald = g_log_writer_is_journald (fileno (stderr));
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def logWriterIsJournald(
       output_fd: Int /* Some(gint) */
   ): Boolean /* Some(gboolean) */ =
     g_log_writer_is_journald(gint(output_fd)).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Format a structured log message and send it to the systemd journal as a
+  /** Format a structured log message and send it to the systemd journal as a
     * set of key–value pairs. All fields are sent to the journal, but if a field
     * has length zero (indicating program-specific data) then only its key will
     * be sent.
@@ -4890,15 +5148,16 @@ object GLib:
     *
     * If GLib has been compiled without systemd support, this function is still
     * defined, but will always return %G_LOG_WRITER_UNHANDLED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LogField), @type -> DataRecord(GLogField)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GLogField*)))"
+    "[log_writer_journald:/<function parameters>/fields]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LogField), @type -> DataRecord(GLogField)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GLogField*)))"
   )
-  def logWriterJournald() = ???
+  private def logWriterJournald() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Format a structured log message and print it to either `stdout` or
+  /** Format a structured log message and print it to either `stdout` or
     * `stderr`, depending on its log level. %G_LOG_LEVEL_INFO and
     * %G_LOG_LEVEL_DEBUG messages are sent to `stdout`, or to `stderr` if
     * requested by g_log_writer_default_set_use_stderr(); all other log levels
@@ -4912,26 +5171,28 @@ object GLib:
     * printed.
     *
     * This is suitable for use as a #GLogWriterFunc.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LogField), @type -> DataRecord(GLogField)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GLogField*)))"
+    "[log_writer_standard_streams:/<function parameters>/fields]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LogField), @type -> DataRecord(GLogField)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GLogField*)))"
   )
-  def logWriterStandardStreams() = ???
+  private def logWriterStandardStreams() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Check whether the given @output_fd file descriptor supports ANSI color
+  /** Check whether the given @output_fd file descriptor supports ANSI color
     * escape sequences. If so, they can safely be used when formatting log
     * messages.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def logWriterSupportsColor(
       output_fd: Int /* Some(gint) */
   ): Boolean /* Some(gboolean) */ =
     g_log_writer_supports_color(gint(output_fd)).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Logs an error or debugging message.
+  /** Logs an error or debugging message.
     *
     * If the log level has been set as fatal, G_BREAKPOINT() is called to
     * terminate the program. See the documentation for G_BREAKPOINT() for
@@ -4944,6 +5205,9 @@ object GLib:
     * If [structured logging is enabled][using-structured-logging] this will
     * output via the structured log writer function (see
     * g_log_set_writer_func()).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def logv(
       log_domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
@@ -4959,21 +5223,20 @@ object GLib:
     args
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the global-default main context. This is the main context used for
+  /** Returns the global-default main context. This is the main context used for
     * main loop functions when a main loop is not explicitly specified, and
     * corresponds to the "main" main loop. See also
     * g_main_context_get_thread_default().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
+    "[main_context_default:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
   )
-  def mainContextDefault() = ???
+  private def mainContextDefault() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the thread-default #GMainContext for this thread. Asynchronous
+  /** Gets the thread-default #GMainContext for this thread. Asynchronous
     * operations that want to be able to be run in contexts other than the
     * default one should call this method or g_main_context_ref_thread_default()
     * to get a #GMainContext to add their #GSources to. (Note that even in
@@ -4983,38 +5246,41 @@ object GLib:
     *
     * If you need to hold a reference on the context, use
     * g_main_context_ref_thread_default() instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
+    "[main_context_get_thread_default:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
   )
-  def mainContextGetThreadDefault() = ???
+  private def mainContextGetThreadDefault() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the thread-default #GMainContext for this thread, as with
+  /** Gets the thread-default #GMainContext for this thread, as with
     * g_main_context_get_thread_default(), but also adds a reference to it with
     * g_main_context_ref(). In addition, unlike
     * g_main_context_get_thread_default(), if the thread-default context is the
     * global-default context, this will return that #GMainContext (with a ref
     * added to it) rather than returning %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
+    "[main_context_ref_thread_default:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
   )
-  def mainContextRefThreadDefault() = ???
+  private def mainContextRefThreadDefault() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the currently firing source for this thread.
     *
-    * Returns the currently firing source for this thread.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
+    "[main_current_source:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
   )
-  def mainCurrentSource() = ???
+  private def mainCurrentSource() = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Returns the depth of the stack of calls to
+  /**  Returns the depth of the stack of calls to
     *  g_main_context_dispatch() on any #GMainContext in the current thread.
     *  That is, when called from the toplevel, it gives 0. When
     *  called from within a callback from g_main_context_iteration()
@@ -5115,40 +5381,45 @@ object GLib:
     *     arbitrary  callbacks. Instead, structure your code so that you
     *     simply return to the main loop and then get called again when
     *     there is more work to do.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def mainDepth(): Int /* Some(gint) */ = g_main_depth().value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Allocates @n_bytes bytes of memory. If @n_bytes is 0 it returns %NULL.
+  /** Allocates @n_bytes bytes of memory. If @n_bytes is 0 it returns %NULL.
     *
     * If the allocation fails (because the system is out of memory), the program
     * is terminated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def malloc(
       n_bytes: CUnsignedLongInt /* Some(gsize) */
   ): Ptr[Byte] /* Some(gpointer) */ = g_malloc(gsize(n_bytes)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Allocates @n_bytes bytes of memory, initialized to 0's. If @n_bytes is 0
+  /** Allocates @n_bytes bytes of memory, initialized to 0's. If @n_bytes is 0
     * it returns %NULL.
     *
     * If the allocation fails (because the system is out of memory), the program
     * is terminated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def malloc0(
       n_bytes: CUnsignedLongInt /* Some(gsize) */
   ): Ptr[Byte] /* Some(gpointer) */ = g_malloc0(gsize(n_bytes)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is similar to g_malloc0(), allocating (@n_blocks * @n_block_bytes)
+  /** This function is similar to g_malloc0(), allocating (@n_blocks * @n_block_bytes)
     * bytes, but care is taken to detect possible overflow during
     * multiplication.
     *
     * If the allocation fails (because the system is out of memory), the program
     * is terminated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def malloc0N(
       n_blocks: CUnsignedLongInt /* Some(gsize) */,
@@ -5156,14 +5427,15 @@ object GLib:
   ): Ptr[Byte] /* Some(gpointer) */ =
     g_malloc0_n(gsize(n_blocks), gsize(n_block_bytes)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is similar to g_malloc(), allocating (@n_blocks * @n_block_bytes)
+  /** This function is similar to g_malloc(), allocating (@n_blocks * @n_block_bytes)
     * bytes, but care is taken to detect possible overflow during
     * multiplication.
     *
     * If the allocation fails (because the system is out of memory), the program
     * is terminated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def mallocN(
       n_blocks: CUnsignedLongInt /* Some(gsize) */,
@@ -5171,9 +5443,7 @@ object GLib:
   ): Ptr[Byte] /* Some(gpointer) */ =
     g_malloc_n(gsize(n_blocks), gsize(n_block_bytes)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Collects the attributes of the element from the data passed to the
+  /** Collects the attributes of the element from the data passed to the
     * #GMarkupParser start_element function, dealing with common error
     * conditions and supporting boolean values.
     *
@@ -5205,20 +5475,21 @@ object GLib:
     * boolean-valued attributes (again of type %G_MARKUP_ERROR_INVALID_CONTENT).
     * In all of these cases %FALSE will be returned and @error will be set as
     * appropriate.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(const gchar**)))"
+    "[markup_collect_attributes:/<function parameters>/attribute_names]: Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(const gchar**)))"
   )
-  def markupCollectAttributes() = ???
+  private def markupCollectAttributes() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[markup_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def markupErrorQuark() = ???
+  private def markupErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Escapes text so that the markup parser will parse it verbatim. Less than,
+  /** Escapes text so that the markup parser will parse it verbatim. Less than,
     * greater than, ampersand, etc. are replaced with the corresponding
     * entities. This function would typically be used when writing out a file to
     * be parsed with the markup parser.
@@ -5232,6 +5503,9 @@ object GLib:
     * newline and carriage return. The character references in this range are
     * not valid XML 1.0, but they are valid XML 1.1 and will be accepted by the
     * GMarkup parser.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def markupEscapeText(
       text: String | CString /* Some(Ptr[gchar]) */,
@@ -5243,9 +5517,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Formats arguments according to @format, escaping
+  /**  Formats arguments according to @format, escaping
     *  all string and character arguments in the fashion
     *  of g_markup_escape_text(). This is useful when you
     *  want to insert literal strings into XML-style markup
@@ -5263,6 +5535,8 @@ object GLib:
     *                                    "</purchase>",
     *                                    store, item);
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   inline def markupPrintfEscaped(
       format: String | CString /* Some(CString) */,
@@ -5271,11 +5545,12 @@ object GLib:
     g_markup_printf_escaped(__sn_extract_string(format), args*).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Formats the data in @args according to @format, escaping all string and
+  /** Formats the data in @args according to @format, escaping all string and
     * character arguments in the fashion of g_markup_escape_text(). See
     * g_markup_printf_escaped().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def markupVprintfEscaped(
       format: String | CString /* Some(CString) */,
@@ -5284,41 +5559,45 @@ object GLib:
     g_markup_vprintf_escaped(__sn_extract_string(format), args).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks whether the allocator used by g_malloc() is the system's malloc
+  /** Checks whether the allocator used by g_malloc() is the system's malloc
     * implementation. If it returns %TRUE memory allocated with malloc() can be
     * used interchangeably with memory allocated using g_malloc(). This function
     * is useful for avoiding an extra copy of allocated memory returned by a
     * non-GLib-based API.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def memIsSystemMalloc(): Boolean /* Some(gboolean) */ =
     g_mem_is_system_malloc().value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * GLib used to support some tools for memory profiling, but this no longer
+  /** GLib used to support some tools for memory profiling, but this no longer
     * works. There are many other useful tools for memory profiling these days
     * which can be used instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def memProfile(): Unit /* Some(Unit) */ = g_mem_profile()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function used to let you override the memory allocation function.
+  /** This function used to let you override the memory allocation function.
     * However, its use was incompatible with the use of global constructors in
     * GLib and GIO, because those use the GLib allocators before main is
     * reached. Therefore this function is now deprecated and is just a stub.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(MemVTable), @type -> DataRecord(GMemVTable*)))"
+    "[mem_set_vtable:/<function parameters>/vtable]: Cannot render type Type(List(),ListMap(@name -> DataRecord(MemVTable), @type -> DataRecord(GMemVTable*)))"
   )
-  def memSetVtable() = ???
+  private def memSetVtable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Allocates @byte_size bytes of memory, and copies @byte_size bytes into it
+  /** Allocates @byte_size bytes of memory, and copies @byte_size bytes into it
     * from @mem. If @mem is %NULL it returns %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def memdup(
       mem: Option[Ptr[Byte] /* Some(gconstpointer) */ ],
@@ -5330,13 +5609,14 @@ object GLib:
     guint(byte_size)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Allocates @byte_size bytes of memory, and copies @byte_size bytes into it
+  /** Allocates @byte_size bytes of memory, and copies @byte_size bytes into it
     * from @mem. If @mem is %NULL it returns %NULL.
     *
     * This replaces g_memdup(), which was prone to integer overflows when
     * converting the argument from a #gsize to a #guint.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def memdup2(
       mem: Option[Ptr[Byte] /* Some(gconstpointer) */ ],
@@ -5348,10 +5628,11 @@ object GLib:
     gsize(byte_size)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a directory if it doesn't already exist. Create intermediate parent
+  /** Create a directory if it doesn't already exist. Create intermediate parent
     * directories as needed, too.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def mkdirWithParents(
       pathname: String | CString /* Some(Ptr[gchar]) */,
@@ -5361,9 +5642,7 @@ object GLib:
     gint(mode)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a temporary directory. See the mkdtemp() documentation on most
+  /** Creates a temporary directory. See the mkdtemp() documentation on most
     * UNIX-like systems.
     *
     * The parameter is a string that should follow the rules for mkdtemp()
@@ -5376,6 +5655,9 @@ object GLib:
     * If you are going to be creating a temporary directory inside the directory
     * returned by g_get_tmp_dir(), you might want to use g_dir_make_tmp()
     * instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def mkdtemp(
       tmpl: String | CString /* Some(Ptr[gchar]) */
@@ -5383,9 +5665,7 @@ object GLib:
     g_mkdtemp(__sn_extract_string(tmpl).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a temporary directory. See the mkdtemp() documentation on most
+  /** Creates a temporary directory. See the mkdtemp() documentation on most
     * UNIX-like systems.
     *
     * The parameter is a string that should follow the rules for mkdtemp()
@@ -5399,6 +5679,9 @@ object GLib:
     * If you are going to be creating a temporary directory inside the directory
     * returned by g_get_tmp_dir(), you might want to use g_dir_make_tmp()
     * instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def mkdtempFull(
       tmpl: String | CString /* Some(Ptr[gchar]) */,
@@ -5410,9 +5693,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Opens a temporary file. See the mkstemp() documentation on most UNIX-like
+  /** Opens a temporary file. See the mkstemp() documentation on most UNIX-like
     * systems.
     *
     * The parameter is a string that should follow the rules for mkstemp()
@@ -5421,6 +5702,9 @@ object GLib:
     * very end of the template. The X string will be modified to form the name
     * of a file that didn't exist. The string should be in the GLib file name
     * encoding. Most importantly, on Windows it should be in UTF-8.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def mkstemp(
       tmpl: String | CString /* Some(Ptr[gchar]) */
@@ -5428,9 +5712,7 @@ object GLib:
     __sn_extract_string(tmpl).asInstanceOf[Ptr[gchar]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Opens a temporary file. See the mkstemp() documentation on most UNIX-like
+  /** Opens a temporary file. See the mkstemp() documentation on most UNIX-like
     * systems.
     *
     * The parameter is a string that should follow the rules for mkstemp()
@@ -5440,6 +5722,9 @@ object GLib:
     * The X string will be modified to form the name of a file that didn't
     * exist. The string should be in the GLib file name encoding. Most
     * importantly, on Windows it should be in UTF-8.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def mkstempFull(
       tmpl: String | CString /* Some(Ptr[gchar]) */,
@@ -5451,23 +5736,22 @@ object GLib:
     gint(mode)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Set the pointer at the specified location to %NULL.
     *
-    * Set the pointer at the specified location to %NULL.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer*)))"
+    "[nullify_pointer:/<function parameters>/nullify_location]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer*)))"
   )
-  def nullifyPointer() = ???
+  private def nullifyPointer() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[number_parser_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def numberParserErrorQuark() = ???
+  private def numberParserErrorQuark() = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Prompts the user with
+  /**  Prompts the user with
     *  `[E]xit, [H]alt, show [S]tack trace or [P]roceed`.
     *  This function is intended to be used for debugging use only.
     *  The following example shows how it can be used together with
@@ -5513,6 +5797,8 @@ object GLib:
     *  On Windows consider using the `G_DEBUGGER` environment
     *  variable (see [Running GLib Applications](glib-running.html)) and
     *  calling g_on_error_stack_trace() instead.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def onErrorQuery(
       prg_name: String | CString /* Some(Ptr[gchar]) */
@@ -5520,9 +5806,7 @@ object GLib:
     __sn_extract_string(prg_name).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Invokes gdb, which attaches to the current process and shows a stack
+  /** Invokes gdb, which attaches to the current process and shows a stack
     * trace. Called by g_on_error_query() when the "[S]tack trace" option is
     * selected. You can get the current process's program name with
     * g_get_prgname(), assuming that you have called gtk_init() or gdk_init().
@@ -5534,6 +5818,9 @@ object GLib:
     * will crash the program. If the `G_DEBUGGER` environment variable is set, a
     * debugger will be invoked to attach and handle that exception (see [Running
     * GLib Applications](glib-running.html)).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def onErrorStackTrace(
       prg_name: String | CString /* Some(Ptr[gchar]) */
@@ -5541,9 +5828,7 @@ object GLib:
     __sn_extract_string(prg_name).asInstanceOf[Ptr[gchar]]
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Function to be called when starting a critical initialization
+  /**  Function to be called when starting a critical initialization
     *  section. The argument @location must point to a static
     *  0-initialized variable that will be set to a value other than 0 at
     *  the end of the initialization section. In combination with
@@ -5568,15 +5853,15 @@ object GLib:
     *
     *  While @location has a `volatile` qualifier, this is a historical artifact and
     *  the pointer passed to it should not be `volatile`.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(void*)))"
+    "[once_init_enter:/<function parameters>/location]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(void*)))"
   )
-  def onceInitEnter() = ???
+  private def onceInitEnter() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Counterpart to g_once_init_enter(). Expects a location of a static
+  /** Counterpart to g_once_init_enter(). Expects a location of a static
     * 0-initialized initialization variable, and an initialization value other
     * than 0. Sets the variable to the initialization value, and releases
     * concurrent threads blocking in g_once_init_enter() on this initialization
@@ -5584,20 +5869,21 @@ object GLib:
     *
     * While @location has a `volatile` qualifier, this is a historical artifact
     * and the pointer passed to it should not be `volatile`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(void*)))"
+    "[once_init_leave:/<function parameters>/location]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(void*)))"
   )
-  def onceInitLeave() = ???
+  private def onceInitLeave() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[option_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def optionErrorQuark() = ???
+  private def optionErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a string containing debugging options into a %guint containing bit
+  /** Parses a string containing debugging options into a %guint containing bit
     * flags. This is used within GDK and GTK to parse the debug options passed
     * on the command line or through environment variables.
     *
@@ -5607,15 +5893,16 @@ object GLib:
     *
     * If @string is equal to "help", all the available keys in @keys are printed
     * out to standard error.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DebugKey), @type -> DataRecord(GDebugKey)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GDebugKey*)))"
+    "[parse_debug_string:/<function parameters>/keys]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DebugKey), @type -> DataRecord(GDebugKey)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GDebugKey*)))"
   )
-  def parseDebugString() = ???
+  private def parseDebugString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compares two path buffers for equality and returns `TRUE` if they are
+  /** Compares two path buffers for equality and returns `TRUE` if they are
     * equal.
     *
     * The path inside the paths buffers are not going to be normalized, so
@@ -5623,6 +5910,9 @@ object GLib:
     *
     * This function can be passed to g_hash_table_new() as the `key_equal_func`
     * parameter.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pathBufEqual(
       v1: Ptr[Byte] /* Some(gconstpointer) */,
@@ -5630,14 +5920,15 @@ object GLib:
   ): Boolean /* Some(gboolean) */ =
     g_path_buf_equal(gconstpointer(v1), gconstpointer(v2)).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the last component of the filename.
+  /** Gets the last component of the filename.
     *
     * If @file_name ends with a directory separator it gets the component before
     * the last slash. If @file_name consists only of directory separators (and
     * on Windows, possibly a drive letter), a single separator is returned. If @file_name
     * is empty, it gets ".".
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pathGetBasename(
       file_name: String | CString /* Some(Ptr[gchar]) */
@@ -5647,14 +5938,15 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the directory components of a file name. For example, the directory
+  /** Gets the directory components of a file name. For example, the directory
     * component of `/usr/bin/test` is `/usr/bin`. The directory component of `/`
     * is `/`.
     *
     * If the file name has no directory components "." is returned. The returned
     * string should be freed when no longer needed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pathGetDirname(
       file_name: String | CString /* Some(Ptr[gchar]) */
@@ -5664,9 +5956,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the given @file_name is an absolute file name. Note that
+  /** Returns %TRUE if the given @file_name is an absolute file name. Note that
     * this is a somewhat vague concept on Windows.
     *
     * On POSIX systems, an absolute file name is well-defined. It always starts
@@ -5688,6 +5978,9 @@ object GLib:
     * obviously are not relative to the normal current directory as returned by
     * getcwd() or g_get_current_dir() either. Such paths should be avoided, or
     * need to be handled using Windows-specific code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pathIsAbsolute(
       file_name: String | CString /* Some(Ptr[gchar]) */
@@ -5695,11 +5988,12 @@ object GLib:
     __sn_extract_string(file_name).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a pointer into @file_name after the root component, i.e. after the
+  /** Returns a pointer into @file_name after the root component, i.e. after the
     * "/" in UNIX or "C:\" under Windows. If @file_name is not an absolute path
     * it returns %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pathSkipRoot(
       file_name: String | CString /* Some(Ptr[gchar]) */
@@ -5709,9 +6003,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Matches a string against a compiled pattern. Passing the correct length of
+  /** Matches a string against a compiled pattern. Passing the correct length of
     * the string given is mandatory. The reversed string can be omitted by
     * passing %NULL, this is more efficient if the reversed version of the
     * string to be matched is not at hand, as g_pattern_match() will only
@@ -5727,17 +6019,21 @@ object GLib:
     * obtained by g_strreverse(). This works only if the string does not contain
     * any multibyte characters. GLib offers the g_utf8_strreverse() function to
     * reverse UTF-8 encoded strings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PatternSpec), @type -> DataRecord(GPatternSpec*)))"
+    "[pattern_match:/<function parameters>/pspec]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PatternSpec), @type -> DataRecord(GPatternSpec*)))"
   )
-  def patternMatch() = ???
+  private def patternMatch() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Matches a string against a pattern given as a string. If this function is
+  /** Matches a string against a pattern given as a string. If this function is
     * to be called in a loop, it's more efficient to compile the pattern once
     * with g_pattern_spec_new() and call g_pattern_match_string() repeatedly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def patternMatchSimple(
       pattern: String | CString /* Some(Ptr[gchar]) */,
@@ -5747,20 +6043,19 @@ object GLib:
     __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Matches a string against a compiled pattern. If the string is to be
+  /** Matches a string against a compiled pattern. If the string is to be
     * matched against more than one pattern, consider using g_pattern_match()
     * instead while supplying the reversed string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PatternSpec), @type -> DataRecord(GPatternSpec*)))"
+    "[pattern_match_string:/<function parameters>/pspec]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PatternSpec), @type -> DataRecord(GPatternSpec*)))"
   )
-  def patternMatchString() = ???
+  private def patternMatchString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is equivalent to g_bit_lock, but working on pointers (or other
+  /** This is equivalent to g_bit_lock, but working on pointers (or other
     * pointer-sized values).
     *
     * For portability reasons, you may only lock on the bottom 32 bits of the
@@ -5768,15 +6063,16 @@ object GLib:
     *
     * While @address has a `volatile` qualifier, this is a historical artifact
     * and the argument passed to it should not be `volatile`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(void*)))"
+    "[pointer_bit_lock:/<function parameters>/address]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(void*)))"
   )
-  def pointerBitLock() = ???
+  private def pointerBitLock() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is equivalent to g_bit_trylock(), but working on pointers (or other
+  /** This is equivalent to g_bit_trylock(), but working on pointers (or other
     * pointer-sized values).
     *
     * For portability reasons, you may only lock on the bottom 32 bits of the
@@ -5784,15 +6080,16 @@ object GLib:
     *
     * While @address has a `volatile` qualifier, this is a historical artifact
     * and the argument passed to it should not be `volatile`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(void*)))"
+    "[pointer_bit_trylock:/<function parameters>/address]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(void*)))"
   )
-  def pointerBitTrylock() = ???
+  private def pointerBitTrylock() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is equivalent to g_bit_unlock, but working on pointers (or other
+  /** This is equivalent to g_bit_unlock, but working on pointers (or other
     * pointer-sized values).
     *
     * For portability reasons, you may only lock on the bottom 32 bits of the
@@ -5800,15 +6097,16 @@ object GLib:
     *
     * While @address has a `volatile` qualifier, this is a historical artifact
     * and the argument passed to it should not be `volatile`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(void*)))"
+    "[pointer_bit_unlock:/<function parameters>/address]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(void*)))"
   )
-  def pointerBitUnlock() = ???
+  private def pointerBitUnlock() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Polls @fds, as with the poll() system call, but portably. (On systems that
+  /** Polls @fds, as with the poll() system call, but portably. (On systems that
     * don't have poll(), it is emulated using select().) This is used internally
     * by #GMainContext, but it can be called directly if you need to block until
     * a file descriptor is ready, but don't want to run the full main loop.
@@ -5823,38 +6121,41 @@ object GLib:
     * need to use g_poll() in code that has to run on Windows, the easiest
     * solution is to construct all of your #GPollFDs with
     * g_io_channel_win32_make_pollfd().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PollFD), @type -> DataRecord(GPollFD*)))"
+    "[poll:/<function parameters>/fds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PollFD), @type -> DataRecord(GPollFD*)))"
   )
-  def poll() = ???
+  private def poll() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Formats a string according to @format and prefix it to an existing error
+  /** Formats a string according to @format and prefix it to an existing error
     * message. If @err is %NULL (ie: no error variable) then do nothing.
     *
     * If *@err is %NULL (ie: an error variable is present but there is no error
     * condition) then also do nothing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function prefix_error contains an INOUT parameter, which is not supported yet"
+    "[prefix_error:]: Function prefix_error contains an INOUT parameter, which is not supported yet"
   )
-  def prefixError() = ???
+  private def prefixError() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Prefixes @prefix to an existing error message. If @err or *@err is %NULL
+  /** Prefixes @prefix to an existing error message. If @err or *@err is %NULL
     * (i.e.: no error variable) then do nothing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError**)))"
+    "[prefix_error_literal:/<function parameters>/err]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError**)))"
   )
-  def prefixErrorLiteral() = ???
+  private def prefixErrorLiteral() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Outputs a formatted message via the print handler. The default print
+  /** Outputs a formatted message via the print handler. The default print
     * handler outputs the encoded message to stdout, without appending a
     * trailing new-line character. Typically, @format should end with its own
     * new-line character.
@@ -5864,15 +6165,16 @@ object GLib:
     * windows or even files. Instead, libraries should use g_log(),
     * g_log_structured(), or the convenience macros g_message(), g_warning() and
     * g_error().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def print(format: String | CString /* Some(Ptr[gchar]) */, args: Any*)(
       using Zone
   ): Unit /* Some(Unit) */ =
     g_print(__sn_extract_string(format).asInstanceOf[Ptr[gchar]], args*)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Outputs a formatted message via the error message handler. The default
+  /** Outputs a formatted message via the error message handler. The default
     * handler outputs the encoded message to stderr, without appending a
     * trailing new-line character. Typically, @format should end with its own
     * new-line character.
@@ -5880,6 +6182,9 @@ object GLib:
     * g_printerr() should not be used from within libraries. Instead g_log() or
     * g_log_structured() should be used, or the convenience macros g_message(),
     * g_warning() and g_error().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def printerr(
       format: String | CString /* Some(Ptr[gchar]) */,
@@ -5887,9 +6192,7 @@ object GLib:
   )(using Zone): Unit /* Some(Unit) */ =
     g_printerr(__sn_extract_string(format).asInstanceOf[Ptr[gchar]], args*)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An implementation of the standard printf() function which supports
+  /** An implementation of the standard printf() function which supports
     * positional parameters, as specified in the Single Unix Specification.
     *
     * As with the standard printf(), this does not automatically append a
@@ -5898,14 +6201,18 @@ object GLib:
     *
     * `glib/gprintf.h` must be explicitly included in order to use this
     * function.
-    */
-  @annotation.compileTimeOnly("Method g_printf has no target types")
-  def printf() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Calculates the maximum space needed to store the output of the sprintf()
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[printf:]: Method g_printf has no target types")
+  private def printf() = ???
+
+  /** Calculates the maximum space needed to store the output of the sprintf()
     * function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def printfStringUpperBound(
       format: String | CString /* Some(Ptr[gchar]) */,
@@ -5916,9 +6223,7 @@ object GLib:
       args
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @dest is %NULL, free @src; otherwise, moves @src into *@dest. The error
+  /** If @dest is %NULL, free @src; otherwise, moves @src into *@dest. The error
     * variable @dest points to must be %NULL.
     *
     * @src
@@ -5927,25 +6232,27 @@ object GLib:
     * Note that @src is no longer valid after this call. If you want to keep
     * using the same GError*, you need to set it to %NULL after calling this
     * function on it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function propagate_error contains an OUT parameter, which is not supported yet"
+    "[propagate_error:]: Function propagate_error contains an OUT parameter, which is not supported yet"
   )
-  def propagateError() = ???
+  private def propagateError() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @dest is %NULL, free @src; otherwise, moves @src into *@dest. *@dest
+  /** If @dest is %NULL, free @src; otherwise, moves @src into *@dest. *@dest
     * must be %NULL. After the move, add a prefix as with g_prefix_error().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError**)))"
+    "[propagate_prefixed_error:/<function parameters>/dest]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError**)))"
   )
-  def propagatePrefixedError() = ???
+  private def propagatePrefixedError() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks whether @needle exists in @haystack. If the element is found, %TRUE
+  /** Checks whether @needle exists in @haystack. If the element is found, %TRUE
     * is returned and the element’s index is returned in @index_ (if non-%NULL).
     * Otherwise, %FALSE is returned and @index_ is undefined. If @needle exists
     * multiple times in @haystack, the index of the first instance is returned.
@@ -5953,15 +6260,16 @@ object GLib:
     * This does pointer comparisons only. If you want to use more complex
     * equality checks, such as string comparisons, use
     * g_ptr_array_find_with_equal_func().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ptr_array_find contains an OUT parameter, which is not supported yet"
+    "[ptr_array_find:]: Function ptr_array_find contains an OUT parameter, which is not supported yet"
   )
-  def ptrArrayFind() = ???
+  private def ptrArrayFind() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks whether @needle exists in @haystack, using the given @equal_func.
+  /** Checks whether @needle exists in @haystack, using the given @equal_func.
     * If the element is found, %TRUE is returned and the element’s index is
     * returned in @index_ (if non-%NULL). Otherwise, %FALSE is returned and @index_
     * is undefined. If @needle exists multiple times in @haystack, the index of
@@ -5971,15 +6279,16 @@ object GLib:
     *   is called with the element from the array as its first parameter, and @needle
     *   as its second parameter. If @equal_func is %NULL, pointer equality is
     *   used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ptr_array_find_with_equal_func contains an OUT parameter, which is not supported yet"
+    "[ptr_array_find_with_equal_func:]: Function ptr_array_find_with_equal_func contains an OUT parameter, which is not supported yet"
   )
-  def ptrArrayFindWithEqualFunc() = ???
+  private def ptrArrayFindWithEqualFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GPtrArray, copying @len pointers from @data, and setting
+  /** Creates a new #GPtrArray, copying @len pointers from @data, and setting
     * the array’s reference count to 1.
     *
     * This avoids having to manually add each element one by one.
@@ -5994,15 +6303,16 @@ object GLib:
     *
     * Do not use it if @len is greater than %G_MAXUINT. #GPtrArray stores the
     * length of its data in #guint, which may be shorter than #gsize.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(gpointer*)))"
+    "[ptr_array_new_from_array:/<function parameters>/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(gpointer*)))"
   )
-  def ptrArrayNewFromArray() = ???
+  private def ptrArrayNewFromArray() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GPtrArray copying the pointers from @data after having
+  /** Creates a new #GPtrArray copying the pointers from @data after having
     * computed the length of it and with a reference count of 1. This avoids
     * having to manually add each element one by one. If @copy_func is provided,
     * then it is used to copy the data in the new array. It also set @element_free_func
@@ -6012,15 +6322,16 @@ object GLib:
     *
     * Do not use it if the @data has more than %G_MAXUINT elements. #GPtrArray
     * stores the length of its data in #guint, which may be shorter than #gsize.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@type -> DataRecord(gpointer*)))"
+    "[ptr_array_new_from_null_terminated_array:/<function parameters>/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@type -> DataRecord(gpointer*)))"
   )
-  def ptrArrayNewFromNullTerminatedArray() = ???
+  private def ptrArrayNewFromNullTerminatedArray() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GPtrArray with @data as pointers, @len as length and a
+  /** Creates a new #GPtrArray with @data as pointers, @len as length and a
     * reference count of 1.
     *
     * This avoids having to copy such data manually. After this call, @data
@@ -6034,15 +6345,16 @@ object GLib:
     *
     * Do not use it if @len is greater than %G_MAXUINT. #GPtrArray stores the
     * length of its data in #guint, which may be shorter than #gsize.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(gpointer*)))"
+    "[ptr_array_new_take:/<function parameters>/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(gpointer*)))"
   )
-  def ptrArrayNewTake() = ???
+  private def ptrArrayNewTake() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GPtrArray with @data as pointers, computing the length of
+  /** Creates a new #GPtrArray with @data as pointers, computing the length of
     * it and setting the reference count to 1.
     *
     * This avoids having to copy such data manually. After this call, @data
@@ -6059,27 +6371,29 @@ object GLib:
     *
     * Do not use it if the @data length is greater than %G_MAXUINT. #GPtrArray
     * stores the length of its data in #guint, which may be shorter than #gsize.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@type -> DataRecord(gpointer*)))"
+    "[ptr_array_new_take_null_terminated:/<function parameters>/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@type -> DataRecord(gpointer*)))"
   )
-  def ptrArrayNewTakeNullTerminated() = ???
+  private def ptrArrayNewTakeNullTerminated() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is just like the standard C qsort() function, but the comparison
+  /** This is just like the standard C qsort() function, but the comparison
     * routine accepts a user data argument.
     *
     * This is guaranteed to be a stable sort since version 2.32.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
+    "[qsort_with_data:/<function parameters>/compare_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
   )
-  def qsortWithData() = ???
+  private def qsortWithData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the #GQuark identifying the given (static) string. If the string does
+  /** Gets the #GQuark identifying the given (static) string. If the string does
     * not currently have an associated #GQuark, a new #GQuark is created, linked
     * to the given string.
     *
@@ -6094,39 +6408,42 @@ object GLib:
     * This function must not be used before library constructors have finished
     * running. In particular, this means it cannot be used to initialize global
     * variables in C++.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[quark_from_static_string:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def quarkFromStaticString() = ???
+  private def quarkFromStaticString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the #GQuark identifying the given string. If the string does not
+  /** Gets the #GQuark identifying the given string. If the string does not
     * currently have an associated #GQuark, a new #GQuark is created, using a
     * copy of the string.
     *
     * This function must not be used before library constructors have finished
     * running. In particular, this means it cannot be used to initialize global
     * variables in C++.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[quark_from_string:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def quarkFromString() = ???
+  private def quarkFromString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the string associated with the given #GQuark.
     *
-    * Gets the string associated with the given #GQuark.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[quark_to_string:/<function parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def quarkToString() = ???
+  private def quarkToString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the #GQuark associated with the given string, or 0 if string is %NULL
+  /** Gets the #GQuark associated with the given string, or 0 if string is %NULL
     * or it has no associated #GQuark.
     *
     * If you want the GQuark to be created if it doesn't already exist, use
@@ -6134,22 +6451,27 @@ object GLib:
     *
     * This function must not be used before library constructors have finished
     * running.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[quark_try_string:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def quarkTryString() = ???
+  private def quarkTryString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns a random #gdouble equally distributed over the range [0..1).
     *
-    * Returns a random #gdouble equally distributed over the range [0..1).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def randomDouble(): Double /* Some(gdouble) */ = g_random_double().value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a random #gdouble equally distributed over the range
+  /** Returns a random #gdouble equally distributed over the range
     * [@begin..@end).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def randomDoubleRange(
       begin: Double /* Some(gdouble) */,
@@ -6157,16 +6479,18 @@ object GLib:
   ): Double /* Some(gdouble) */ =
     g_random_double_range(gdouble(begin), gdouble(end)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Return a random #guint32 equally distributed over the range [0..2^32-1].
     *
-    * Return a random #guint32 equally distributed over the range [0..2^32-1].
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def randomInt(): UInt /* Some(guint32) */ = g_random_int().value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a random #gint32 equally distributed over the range
+  /** Returns a random #gint32 equally distributed over the range
     * [@begin..@end-1].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def randomIntRange(
       begin: CInt /* Some(gint32) */,
@@ -6174,17 +6498,19 @@ object GLib:
   ): CInt /* Some(gint32) */ =
     g_random_int_range(gint32(begin), gint32(end)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the seed for the global random number generator, which is used by the
+  /** Sets the seed for the global random number generator, which is used by the
     * g_random_* functions, to @seed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def randomSetSeed(seed: UInt /* Some(guint32) */ ): Unit /* Some(Unit) */ =
     g_random_set_seed(guint32(seed))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Acquires a reference on the data pointed by @mem_block.
     *
-    * Acquires a reference on the data pointed by @mem_block.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def rcBoxAcquire(
       mem_block: Ptr[Byte] /* Some(gpointer) */
@@ -6192,23 +6518,22 @@ object GLib:
     gpointer(mem_block)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Allocates @block_size bytes of memory, and adds reference counting
+  /** Allocates @block_size bytes of memory, and adds reference counting
     * semantics to it.
     *
     * The data will be freed when its reference count drops to zero.
     *
     * The allocated data is guaranteed to be suitably aligned for any built-in
     * type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def rcBoxAlloc(
       block_size: CUnsignedLongInt /* Some(gsize) */
   ): Ptr[Byte] /* Some(gpointer) */ = g_rc_box_alloc(gsize(block_size)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Allocates @block_size bytes of memory, and adds reference counting
+  /** Allocates @block_size bytes of memory, and adds reference counting
     * semantics to it.
     *
     * The contents of the returned data is set to zero.
@@ -6217,15 +6542,19 @@ object GLib:
     *
     * The allocated data is guaranteed to be suitably aligned for any built-in
     * type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def rcBoxAlloc0(
       block_size: CUnsignedLongInt /* Some(gsize) */
   ): Ptr[Byte] /* Some(gpointer) */ = g_rc_box_alloc0(gsize(block_size)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Allocates a new block of data with reference counting semantics, and
+  /** Allocates a new block of data with reference counting semantics, and
     * copies @block_size bytes of @mem_block into it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def rcBoxDup(
       block_size: CUnsignedLongInt /* Some(gsize) */,
@@ -6233,9 +6562,10 @@ object GLib:
   ): Ptr[Byte] /* Some(gpointer) */ =
     g_rc_box_dup(gsize(block_size), gconstpointer(mem_block)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the size of the reference counted data pointed by @mem_block.
     *
-    * Retrieves the size of the reference counted data pointed by @mem_block.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def rcBoxGetSize(
       mem_block: Ptr[Byte] /* Some(gpointer) */
@@ -6243,32 +6573,32 @@ object GLib:
     gpointer(mem_block)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Releases a reference on the data pointed by @mem_block.
+  /** Releases a reference on the data pointed by @mem_block.
     *
     * If the reference was the last one, it will free the resources allocated
     * for @mem_block.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def rcBoxRelease(
       mem_block: Ptr[Byte] /* Some(gpointer) */
   ): Unit /* Some(Unit) */ = g_rc_box_release(gpointer(mem_block))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Releases a reference on the data pointed by @mem_block.
+  /** Releases a reference on the data pointed by @mem_block.
     *
     * If the reference was the last one, it will call @clear_func to clear the
     * contents of @mem_block, and then will free the resources allocated for @mem_block.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
+    "[rc_box_release_full:/<function parameters>/clear_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
-  def rcBoxReleaseFull() = ???
+  private def rcBoxReleaseFull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reallocates the memory pointed to by @mem, so that it now has space for
+  /** Reallocates the memory pointed to by @mem, so that it now has space for
     * @n_bytes
     *   bytes of memory. It returns the new address of the memory, which may
     *   have been moved. @mem may be %NULL, in which case it's considered to
@@ -6277,6 +6607,9 @@ object GLib:
     *
     * If the allocation fails (because the system is out of memory), the program
     * is terminated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def realloc(
       mem: Option[Ptr[Byte] /* Some(gpointer) */ ],
@@ -6286,14 +6619,15 @@ object GLib:
     gsize(n_bytes)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is similar to g_realloc(), allocating (@n_blocks * @n_block_bytes)
+  /** This function is similar to g_realloc(), allocating (@n_blocks * @n_block_bytes)
     * bytes, but care is taken to detect possible overflow during
     * multiplication.
     *
     * If the allocation fails (because the system is out of memory), the program
     * is terminated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def reallocN(
       mem: Option[Ptr[Byte] /* Some(gpointer) */ ],
@@ -6305,49 +6639,54 @@ object GLib:
     gsize(n_block_bytes)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Compares the current value of @rc with @val.
     *
-    * Compares the current value of @rc with @val.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(grefcount*)))"
+    "[ref_count_compare:/<function parameters>/rc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(grefcount*)))"
   )
-  def refCountCompare() = ???
+  private def refCountCompare() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decreases the reference count.
+  /** Decreases the reference count.
     *
     * If %TRUE is returned, the reference count reached 0. After this point, @rc
     * is an undefined state and must be reinitialized with g_ref_count_init() to
     * be used again.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(grefcount*)))"
+    "[ref_count_dec:/<function parameters>/rc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(grefcount*)))"
   )
-  def refCountDec() = ???
+  private def refCountDec() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Increases the reference count.
     *
-    * Increases the reference count.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(grefcount*)))"
+    "[ref_count_inc:/<function parameters>/rc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(grefcount*)))"
   )
-  def refCountInc() = ???
+  private def refCountInc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Initializes a reference count variable to 1.
     *
-    * Initializes a reference count variable to 1.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(grefcount*)))"
+    "[ref_count_init:/<function parameters>/rc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(grefcount*)))"
   )
-  def refCountInit() = ???
+  private def refCountInit() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Acquires a reference on a string.
     *
-    * Acquires a reference on a string.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringAcquire(
       str: String | CString /* Some(CString) */
@@ -6355,9 +6694,10 @@ object GLib:
     g_ref_string_acquire(__sn_extract_string(str)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the length of @str.
     *
-    * Retrieves the length of @str.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringLength(
       str: String | CString /* Some(CString) */
@@ -6365,10 +6705,11 @@ object GLib:
     __sn_extract_string(str)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new reference counted string and copies the contents of @str
+  /** Creates a new reference counted string and copies the contents of @str
     * into it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringNew(
       str: String | CString /* Some(CString) */
@@ -6376,14 +6717,15 @@ object GLib:
     g_ref_string_new(__sn_extract_string(str)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new reference counted string and copies the content of @str into
+  /** Creates a new reference counted string and copies the content of @str into
     * it.
     *
     * If you call this function multiple times with the same @str, or with the
     * same contents of @str, it will return a new reference, instead of creating
     * a new string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringNewIntern(
       str: String | CString /* Some(CString) */
@@ -6391,13 +6733,14 @@ object GLib:
     g_ref_string_new_intern(__sn_extract_string(str)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new reference counted string and copies the contents of @str
+  /** Creates a new reference counted string and copies the contents of @str
     * into it, up to @len bytes.
     *
     * Since this function does not stop at nul bytes, it is the caller's
     * responsibility to ensure that @str has at least @len addressable bytes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringNewLen(
       str: String | CString /* Some(CString) */,
@@ -6406,18 +6749,17 @@ object GLib:
     g_ref_string_new_len(__sn_extract_string(str), gssize(len)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Releases a reference on a string; if it was the last reference, the
+  /** Releases a reference on a string; if it was the last reference, the
     * resources allocated by the string are freed as well.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringRelease(str: String | CString /* Some(CString) */ )(using
       Zone
   ): Unit /* Some(Unit) */ = g_ref_string_release(__sn_extract_string(str))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks whether @replacement is a valid replacement string (see
+  /** Checks whether @replacement is a valid replacement string (see
     * g_regex_replace()), i.e. that all escape sequences in it are valid.
     *
     * If @has_references is not %NULL then @replacement is checked for pattern
@@ -6425,24 +6767,28 @@ object GLib:
     * references and may be evaluated without information about actual match,
     * but '\0\1' (whole match followed by first subpattern) requires valid
     * #GMatchInfo object.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function regex_check_replacement contains an OUT parameter, which is not supported yet"
+    "[regex_check_replacement:]: Function regex_check_replacement contains an OUT parameter, which is not supported yet"
   )
-  def regexCheckReplacement() = ???
+  private def regexCheckReplacement() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[regex_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def regexErrorQuark() = ???
+  private def regexErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Escapes the nul characters in @string to "\x00". It can be used to compile
+  /** Escapes the nul characters in @string to "\x00". It can be used to compile
     * a regex with embedded nul characters.
     *
     * For completeness, @length can be -1 for a nul-terminated string. In this
     * case the output string will be of course equal to @string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def regexEscapeNul(
       string: String | CString /* Some(Ptr[gchar]) */,
@@ -6454,15 +6800,16 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Escapes the special characters used for regular expressions in @string,
+  /** Escapes the special characters used for regular expressions in @string,
     * for instance "a.b*c" becomes "a\.b\*c". This function is useful to
     * dynamically generate regular expressions.
     *
     * @string
     *   can contain nul characters that are replaced with "\0", in this case
     *   remember to specify the correct length of @string in @length.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def regexEscapeString(
       string: String | CString /* Some(Ptr[gchar]) */,
@@ -6474,9 +6821,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Scans for a match in @string for @pattern.
+  /** Scans for a match in @string for @pattern.
     *
     * This function is equivalent to g_regex_match() but it does not require to
     * compile the pattern with g_regex_new(), avoiding some lines of code when
@@ -6486,6 +6831,9 @@ object GLib:
     * If this function is to be called on the same @pattern more than once, it's
     * more efficient to compile the pattern once with g_regex_new() and then use
     * g_regex_match().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def regexMatchSimple(
       pattern: String | CString /* Some(Ptr[gchar]) */,
@@ -6499,9 +6847,7 @@ object GLib:
     match_options.raw
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Breaks the string on the pattern, and returns an array of the tokens. If
+  /** Breaks the string on the pattern, and returns an array of the tokens. If
     * the pattern contains capturing parentheses, then the text for each of the
     * substrings will also be returned. If the pattern does not match anywhere
     * in the string, then the whole string is returned as the first token.
@@ -6526,15 +6872,16 @@ object GLib:
     * characters wherever it matches the empty string between characters. For
     * example splitting "ab c" using as a separator "\s*", you will get "a", "b"
     * and "c".
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[regex_split_simple:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def regexSplitSimple() = ???
+  private def regexSplitSimple() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Resets the cache used for g_get_user_special_dir(), so that the latest
+  /** Resets the cache used for g_get_user_special_dir(), so that the latest
     * on-disk version is used. Call this only if you just changed the data on
     * disk yourself.
     *
@@ -6542,14 +6889,18 @@ object GLib:
     * previously returned from g_get_user_special_dir() that can't be freed. We
     * ensure to only leak the data for the directories that actually changed
     * value though.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def reloadUserSpecialDirsCache(): Unit /* Some(Unit) */ =
     g_reload_user_special_dirs_cache()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Internal function used to print messages from the public
+  /** Internal function used to print messages from the public
     * g_return_if_fail() and g_return_val_if_fail() macros.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def returnIfFailWarning(
       log_domain: Option[String | CString /* Some(CString) */ ],
@@ -6565,50 +6916,52 @@ object GLib:
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A wrapper for the POSIX rmdir() function. The rmdir() function deletes a
+  /** A wrapper for the POSIX rmdir() function. The rmdir() function deletes a
     * directory from the filesystem.
     *
     * See your C library manual for more details about how rmdir() works on your
     * system.
-    */
-  @annotation.compileTimeOnly("Method g_rmdir has no target types")
-  def rmdir() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Returns the data that @iter points to.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
-  )
-  def sequenceGet() = ???
+  @annotation.compileTimeOnly("[rmdir:]: Method g_rmdir has no target types")
+  private def rmdir() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the data that @iter points to.
     *
-    * Inserts a new item just before the item pointed to by @iter.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_get:/<function parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
-  def sequenceInsertBefore() = ???
+  private def sequenceGet() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Inserts a new item just before the item pointed to by @iter.
     *
-    * Moves the item pointed to by @src to the position indicated by @dest.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[sequence_insert_before:/<function parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+  )
+  private def sequenceInsertBefore() = ???
+
+  /** Moves the item pointed to by @src to the position indicated by @dest.
     * After calling this function @dest will point to the position immediately
     * after @src. It is allowed for @src and @dest to point into different
     * sequences.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_move:/<function parameters>/src]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
-  def sequenceMove() = ???
+  private def sequenceMove() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts the (@begin, @end) range at the destination pointed to by @dest.
+  /** Inserts the (@begin, @end) range at the destination pointed to by @dest.
     * The @begin and @end iters must point into the same sequence. It is allowed
     * for @dest to point to a different sequence than the one pointed into by @begin
     * and @end.
@@ -6616,75 +6969,81 @@ object GLib:
     * If @dest is %NULL, the range indicated by @begin and @end is removed from
     * the sequence. If @dest points to a place within the (@begin, @end) range,
     * the range does not move.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_move_range:/<function parameters>/dest]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
-  def sequenceMoveRange() = ???
+  private def sequenceMoveRange() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finds an iterator somewhere in the range (@begin, @end). This iterator
+  /** Finds an iterator somewhere in the range (@begin, @end). This iterator
     * will be close to the middle of the range, but is not guaranteed to be
     * exactly in the middle.
     *
     * The @begin and @end iterators must both point to the same sequence and @begin
     * must come before or be equal to @end in the sequence.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_range_get_midpoint:/<function parameters>/begin]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
-  def sequenceRangeGetMidpoint() = ???
+  private def sequenceRangeGetMidpoint() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes the item pointed to by @iter. It is an error to pass the end
+  /** Removes the item pointed to by @iter. It is an error to pass the end
     * iterator to this function.
     *
     * If the sequence has a data destroy function associated with it, this
     * function is called on the data for the removed item.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_remove:/<function parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
-  def sequenceRemove() = ???
+  private def sequenceRemove() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes all items in the (@begin, @end) range.
+  /** Removes all items in the (@begin, @end) range.
     *
     * If the sequence has a data destroy function associated with it, this
     * function is called on the data for the removed items.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_remove_range:/<function parameters>/begin]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
-  def sequenceRemoveRange() = ???
+  private def sequenceRemoveRange() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Changes the data for the item pointed to by @iter to be @data. If the
+  /** Changes the data for the item pointed to by @iter to be @data. If the
     * sequence has a data destroy function associated with it, that function is
     * called on the existing data that @iter pointed to.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_set:/<function parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
-  def sequenceSet() = ???
+  private def sequenceSet() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Swaps the items pointed to by @a and @b. It is allowed for @a and @b to
+  /** Swaps the items pointed to by @a and @b. It is allowed for @a and @b to
     * point into difference sequences.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_swap:/<function parameters>/a]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
-  def sequenceSwap() = ???
+  private def sequenceSwap() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a human-readable name for the application. This name should be
+  /** Sets a human-readable name for the application. This name should be
     * localized if possible, and is intended for display to the user. Contrast
     * with g_set_prgname(), which sets a non-localized name. g_set_prgname()
     * will be called automatically by gtk_init(), but g_set_application_name()
@@ -6695,6 +7054,9 @@ object GLib:
     *
     * The application name will be used in contexts such as error messages, or
     * when displaying an application's name in the task list.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setApplicationName(
       application_name: String | CString /* Some(Ptr[gchar]) */
@@ -6702,32 +7064,32 @@ object GLib:
     __sn_extract_string(application_name).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Does nothing if @err is %NULL; if @err is non-%NULL, then *@err must be
+  /** Does nothing if @err is %NULL; if @err is non-%NULL, then *@err must be
     * %NULL. A new #GError is created and assigned to *@err.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function set_error contains an OUT parameter, which is not supported yet"
+    "[set_error:]: Function set_error contains an OUT parameter, which is not supported yet"
   )
-  def setError() = ???
+  private def setError() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Does nothing if @err is %NULL; if @err is non-%NULL, then *@err must be
+  /** Does nothing if @err is %NULL; if @err is non-%NULL, then *@err must be
     * %NULL. A new #GError is created and assigned to *@err. Unlike
     * g_set_error(), @message is not a printf()-style format string. Use this
     * function if @message contains text you don't have control over, that could
     * include printf() escape sequences.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function set_error_literal contains an OUT parameter, which is not supported yet"
+    "[set_error_literal:]: Function set_error_literal contains an OUT parameter, which is not supported yet"
   )
-  def setErrorLiteral() = ???
+  private def setErrorLiteral() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the name of the program. This name should not be localized, in
+  /** Sets the name of the program. This name should not be localized, in
     * contrast to g_set_application_name().
     *
     * If you are using #GApplication the program name is set in
@@ -6738,6 +7100,9 @@ object GLib:
     * Since GLib 2.72, this function can be called multiple times and is fully
     * thread safe. Prior to GLib 2.72, this function could only be called once
     * per process.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPrgname(
       prgname: String | CString /* Some(Ptr[gchar]) */
@@ -6745,9 +7110,7 @@ object GLib:
     __sn_extract_string(prgname).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the print handler to @func, or resets it to the default GLib handler
+  /** Sets the print handler to @func, or resets it to the default GLib handler
     * if %NULL.
     *
     * Any messages passed to g_print() will be output via the new handler. The
@@ -6760,15 +7123,16 @@ object GLib:
     * default print handler and that can be re-used to decorate its output
     * and/or to write to stderr in all platforms. Before GLib 2.76, this was
     * %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PrintFunc), @type -> DataRecord(GPrintFunc)))"
+    "[set_print_handler:/<function parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PrintFunc), @type -> DataRecord(GPrintFunc)))"
   )
-  def setPrintHandler() = ???
+  private def setPrintHandler() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the handler for printing error messages to @func, or resets it to the
+  /** Sets the handler for printing error messages to @func, or resets it to the
     * default GLib handler if %NULL.
     *
     * Any messages passed to g_printerr() will be output via the new handler.
@@ -6781,15 +7145,16 @@ object GLib:
     * the GLib default error print handler and that can be re-used to decorate
     * its output and/or to write to stderr in all platforms. Before GLib 2.76,
     * this was %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PrintFunc), @type -> DataRecord(GPrintFunc)))"
+    "[set_printerr_handler:/<function parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PrintFunc), @type -> DataRecord(GPrintFunc)))"
   )
-  def setPrinterrHandler() = ???
+  private def setPrinterrHandler() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets an environment variable. On UNIX, both the variable's name and value
+  /** Sets an environment variable. On UNIX, both the variable's name and value
     * can be arbitrary byte strings, except that the variable's name cannot
     * contain '='. On Windows, they should be in UTF-8.
     *
@@ -6808,6 +7173,9 @@ object GLib:
     * g_get_environ() to get an environment array, modify that with
     * g_environ_setenv() and g_environ_unsetenv(), and then pass that array
     * directly to execvpe(), g_spawn_async(), or the like.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setenv(
       variable: String | CString /* Some(Ptr[gchar]) */,
@@ -6820,13 +7188,11 @@ object GLib:
   ).value.!=(0)
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[shell_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def shellErrorQuark() = ???
+  private def shellErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a command line into an argument vector, in much the same way the
+  /** Parses a command line into an argument vector, in much the same way the
     * shell would, but without many of the expansions the shell would perform
     * (variable expansion, globs, operators, filename expansion, etc. are not
     * supported).
@@ -6844,15 +7210,16 @@ object GLib:
     * successfully.
     *
     * Free the returned vector with g_strfreev().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function shell_parse_argv contains an OUT parameter, which is not supported yet"
+    "[shell_parse_argv:]: Function shell_parse_argv contains an OUT parameter, which is not supported yet"
   )
-  def shellParseArgv() = ???
+  private def shellParseArgv() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Quotes a string so that the shell (/bin/sh) will interpret the quoted
+  /** Quotes a string so that the shell (/bin/sh) will interpret the quoted
     * string to mean @unquoted_string.
     *
     * If you pass a filename to the shell, for example, you should first quote
@@ -6861,6 +7228,9 @@ object GLib:
     * The return value must be freed with g_free().
     *
     * The quoting style used is undefined (single or double quotes may be used).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def shellQuote(
       unquoted_string: String | CString /* Some(Ptr[gchar]) */
@@ -6870,9 +7240,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Unquotes a string as the shell (/bin/sh) would.
+  /** Unquotes a string as the shell (/bin/sh) would.
     *
     * This function only handles quotes; if a string contains file globs,
     * arithmetic operators, variables, backticks, redirections, or other
@@ -6897,6 +7265,9 @@ object GLib:
     * want a `'` in the quoted text, you have to do something like
     * `'foo'\''bar'`. Double quotes allow `$`, ```, `"`, `\`, and newline to be
     * escaped with backslash. Otherwise double quotes preserve things literally.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def shellUnquote(quoted_string: String | CString /* Some(Ptr[gchar]) */ )(
       using Zone
@@ -6909,35 +7280,35 @@ object GLib:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Allocates a block of memory from the libc allocator.
+  /** Allocates a block of memory from the libc allocator.
     *
     * The block address handed out can be expected to be aligned to at least
     * `1 * sizeof (void*)`.
     *
     * Since GLib 2.76 this always uses the system malloc() implementation
     * internally.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sliceAlloc(
       block_size: CUnsignedLongInt /* Some(gsize) */
   ): Ptr[Byte] /* Some(gpointer) */ = g_slice_alloc(gsize(block_size)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Allocates a block of memory via g_slice_alloc() and initializes the
+  /** Allocates a block of memory via g_slice_alloc() and initializes the
     * returned memory to 0.
     *
     * Since GLib 2.76 this always uses the system malloc() implementation
     * internally.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sliceAlloc0(
       block_size: CUnsignedLongInt /* Some(gsize) */
   ): Ptr[Byte] /* Some(gpointer) */ = g_slice_alloc0(gsize(block_size)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Allocates a block of memory from the slice allocator and copies @block_size
+  /** Allocates a block of memory from the slice allocator and copies @block_size
     * bytes into it from @mem_block.
     *
     * @mem_block
@@ -6945,6 +7316,9 @@ object GLib:
     *
     * Since GLib 2.76 this always uses the system malloc() implementation
     * internally.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sliceCopy(
       block_size: CUnsignedLongInt /* Some(gsize) */,
@@ -6956,9 +7330,7 @@ object GLib:
       .getOrElse(null.asInstanceOf[gconstpointer])
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Frees a block of memory.
+  /** Frees a block of memory.
     *
     * The memory must have been allocated via g_slice_alloc() or
     * g_slice_alloc0() and the @block_size has to match the size specified upon
@@ -6969,6 +7341,9 @@ object GLib:
     *
     * Since GLib 2.76 this always uses the system free_sized() implementation
     * internally.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sliceFree1(
       block_size: CUnsignedLongInt /* Some(gsize) */,
@@ -6980,9 +7355,7 @@ object GLib:
       .getOrElse(null.asInstanceOf[gpointer])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Frees a linked list of memory blocks of structure type @type.
+  /** Frees a linked list of memory blocks of structure type @type.
     *
     * The memory blocks must be equal-sized, allocated via g_slice_alloc() or
     * g_slice_alloc0() and linked together by a
@@ -6996,6 +7369,9 @@ object GLib:
     *
     * Since GLib 2.76 this always uses the system free_sized() implementation
     * internally.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sliceFreeChainWithOffset(
       block_size: CUnsignedLongInt /* Some(gsize) */,
@@ -7014,18 +7390,16 @@ object GLib:
   ): CLongInt /* Some(gint64) */ = g_slice_get_config(ckey.raw).value
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gint64), @type -> DataRecord(gint64*)))"
+    "[slice_get_config_state:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gint64), @type -> DataRecord(gint64*)))"
   )
-  def sliceGetConfigState() = ???
+  private def sliceGetConfigState() = ???
 
   def sliceSetConfig(
       ckey: SliceConfig /* Some(GSliceConfig) */,
       value: CLongInt /* Some(gint64) */
   ): Unit /* Some(Unit) */ = g_slice_set_config(ckey.raw, gint64(value))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A safer form of the standard sprintf() function. The output is guaranteed
+  /** A safer form of the standard sprintf() function. The output is guaranteed
     * to not exceed @n characters (including the terminating nul character), so
     * it is easy to ensure that a buffer overflow cannot occur.
     *
@@ -7042,6 +7416,9 @@ object GLib:
     *
     * The format string may contain positional parameters, as specified in the
     * Single Unix Specification.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def snprintf(
       string: String | CString /* Some(Ptr[gchar]) */,
@@ -7055,9 +7432,7 @@ object GLib:
     args*
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes the source with the given ID from the default main context. You
+  /** Removes the source with the given ID from the default main context. You
     * must use g_source_destroy() for sources added to a non-default main
     * context.
     *
@@ -7075,26 +7450,31 @@ object GLib:
     * may already have run and been removed by the time this function is called
     * on its (now invalid) source ID. This source ID may have been reissued,
     * leading to the operation being performed against the wrong source.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sourceRemove(tag: UInt /* Some(guint) */ ): Boolean /* Some(gboolean) */ =
     g_source_remove(guint(tag)).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a source from the default main loop context given the source
+  /** Removes a source from the default main loop context given the source
     * functions and user data. If multiple sources exist with the same source
     * functions and user data, only one will be destroyed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFuncs), @type -> DataRecord(GSourceFuncs*)))"
+    "[source_remove_by_funcs_user_data:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFuncs), @type -> DataRecord(GSourceFuncs*)))"
   )
-  def sourceRemoveByFuncsUserData() = ???
+  private def sourceRemoveByFuncsUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a source from the default main loop context given the user data
+  /** Removes a source from the default main loop context given the user data
     * for the callback. If multiple sources exist with the same user data, only
     * one will be destroyed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sourceRemoveByUserData(
       user_data: Option[Ptr[Byte] /* Some(gpointer) */ ]
@@ -7104,9 +7484,7 @@ object GLib:
       .getOrElse(null.asInstanceOf[gpointer])
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the name of a source using its ID.
+  /** Sets the name of a source using its ID.
     *
     * This is a convenience utility to set source names from the return value of
     * g_idle_add(), g_timeout_add(), etc.
@@ -7121,6 +7499,9 @@ object GLib:
     * may already have run and been removed by the time this function is called
     * on its (now invalid) source ID. This source ID may have been reissued,
     * leading to the operation being performed against the wrong source.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sourceSetNameById(
       tag: UInt /* Some(guint) */,
@@ -7128,22 +7509,21 @@ object GLib:
   )(using Zone): Unit /* Some(Unit) */ =
     g_source_set_name_by_id(guint(tag), __sn_extract_string(name))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the smallest prime number from a built-in array of primes which is
+  /** Gets the smallest prime number from a built-in array of primes which is
     * larger than @num. This is used within GLib to calculate the optimum size
     * of a #GHashTable.
     *
     * The built-in array of primes ranges from 11 to 13845163 such that each
     * prime is approximately 1.5-2 times the previous prime.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def spacedPrimesClosest(
       num: UInt /* Some(guint) */
   ): UInt /* Some(guint) */ = g_spaced_primes_closest(guint(num)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Executes a child program asynchronously.
+  /** Executes a child program asynchronously.
     *
     * See g_spawn_async_with_pipes() for a full description; this function
     * simply calls the g_spawn_async_with_pipes() without any pipes.
@@ -7159,37 +7539,40 @@ object GLib:
     * Note that the returned @child_pid on Windows is a handle to the child
     * process and not its identifier. Process handles and process identifiers
     * are different concepts on Windows.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function spawn_async contains an OUT parameter, which is not supported yet"
+    "[spawn_async:]: Function spawn_async contains an OUT parameter, which is not supported yet"
   )
-  def spawnAsync() = ???
+  private def spawnAsync() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Executes a child program asynchronously.
+  /** Executes a child program asynchronously.
     *
     * Identical to g_spawn_async_with_pipes_and_fds() but with `n_fds` set to
     * zero, so no FD assignments are used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function spawn_async_with_fds contains an OUT parameter, which is not supported yet"
+    "[spawn_async_with_fds:]: Function spawn_async_with_fds contains an OUT parameter, which is not supported yet"
   )
-  def spawnAsyncWithFds() = ???
+  private def spawnAsyncWithFds() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Identical to g_spawn_async_with_pipes_and_fds() but with `n_fds` set to
+  /** Identical to g_spawn_async_with_pipes_and_fds() but with `n_fds` set to
     * zero, so no FD assignments are used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function spawn_async_with_pipes contains an OUT parameter, which is not supported yet"
+    "[spawn_async_with_pipes:]: Function spawn_async_with_pipes contains an OUT parameter, which is not supported yet"
   )
-  def spawnAsyncWithPipes() = ???
+  private def spawnAsyncWithPipes() = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Executes a child program asynchronously (your program will not
+  /**  Executes a child program asynchronously (your program will not
     *  block waiting for the child to exit).
     *
     *  The child program is specified by the only argument that must be
@@ -7383,15 +7766,15 @@ object GLib:
     *  graphical application too, then to ensure that the spawned program opens its
     *  windows on the right screen, you may want to use #GdkAppLaunchContext,
     *  #GAppLaunchContext, or set the `DISPLAY` environment variable.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function spawn_async_with_pipes_and_fds contains an OUT parameter, which is not supported yet"
+    "[spawn_async_with_pipes_and_fds:]: Function spawn_async_with_pipes_and_fds contains an OUT parameter, which is not supported yet"
   )
-  def spawnAsyncWithPipesAndFds() = ???
+  private def spawnAsyncWithPipesAndFds() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An old name for g_spawn_check_wait_status(), deprecated because its name
+  /** An old name for g_spawn_check_wait_status(), deprecated because its name
     * is misleading.
     *
     * Despite the name of the function, @wait_status must be the wait status as
@@ -7399,6 +7782,9 @@ object GLib:
     * On Unix platforms, it is incorrect for it to be the exit status as passed
     * to `exit()` or returned by g_subprocess_get_exit_status() or
     * `WEXITSTATUS()`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def spawnCheckExitStatus(
       wait_status: Int /* Some(gint) */
@@ -7406,9 +7792,7 @@ object GLib:
     g_spawn_check_exit_status(gint(wait_status), __errorPtr).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set @error if @wait_status indicates the child exited abnormally (e.g.
+  /** Set @error if @wait_status indicates the child exited abnormally (e.g.
     * with a nonzero exit code, or via a fatal signal).
     *
     * The g_spawn_sync() and g_child_watch_add() family of APIs return the
@@ -7449,6 +7833,9 @@ object GLib:
     *
     * Prior to version 2.70, g_spawn_check_exit_status() provides the same
     * functionality, although under a misleading name.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def spawnCheckWaitStatus(
       wait_status: Int /* Some(gint) */
@@ -7456,21 +7843,20 @@ object GLib:
     g_spawn_check_wait_status(gint(wait_status), __errorPtr).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * On some platforms, notably Windows, the #GPid type represents a resource
+  /** On some platforms, notably Windows, the #GPid type represents a resource
     * which must be closed to prevent resource leaking. g_spawn_close_pid() is
     * provided for this purpose. It should be used on all platforms, even though
     * it doesn't do anything under UNIX.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pid), @type -> DataRecord(GPid)))"
+    "[spawn_close_pid:/<function parameters>/pid]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pid), @type -> DataRecord(GPid)))"
   )
-  def spawnClosePid() = ???
+  private def spawnClosePid() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A simple version of g_spawn_async() that parses a command line with
+  /** A simple version of g_spawn_async() that parses a command line with
     * g_shell_parse_argv() and passes it to g_spawn_async().
     *
     * Runs a command line in the background. Unlike g_spawn_async(), the
@@ -7480,6 +7866,9 @@ object GLib:
     * g_shell_parse_argv() and g_spawn_async().
     *
     * The same concerns on Windows apply as for g_spawn_command_line_sync().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def spawnCommandLineAsync(
       command_line: String | CString /* Some(Ptr[gchar]) */
@@ -7491,9 +7880,7 @@ object GLib:
       ).value.!=(0)
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A simple version of g_spawn_sync() with little-used parameters removed,
+  /** A simple version of g_spawn_sync() with little-used parameters removed,
     * taking a command line instead of an argument vector.
     *
     * See g_spawn_sync() for full details.
@@ -7520,25 +7907,26 @@ object GLib:
     * and the space will act as a separator. You need to enclose such paths with
     * single quotes, like "'c:\\program files\\app\\app.exe'
     * 'e:\\folder\\argument.txt'".
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function spawn_command_line_sync contains an OUT parameter, which is not supported yet"
+    "[spawn_command_line_sync:]: Function spawn_command_line_sync contains an OUT parameter, which is not supported yet"
   )
-  def spawnCommandLineSync() = ???
+  private def spawnCommandLineSync() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[spawn_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def spawnErrorQuark() = ???
+  private def spawnErrorQuark() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[spawn_exit_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def spawnExitErrorQuark() = ???
+  private def spawnExitErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Executes a child synchronously (waits for the child to exit before
+  /** Executes a child synchronously (waits for the child to exit before
     * returning).
     *
     * All output from the child is stored in @standard_output and @standard_error,
@@ -7563,15 +7951,16 @@ object GLib:
     * This function calls g_spawn_async_with_pipes() internally; see that
     * function for full details on the other parameters and details on how these
     * functions work on Windows.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function spawn_sync contains an OUT parameter, which is not supported yet"
+    "[spawn_sync:]: Function spawn_sync contains an OUT parameter, which is not supported yet"
   )
-  def spawnSync() = ???
+  private def spawnSync() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An implementation of the standard sprintf() function which supports
+  /** An implementation of the standard sprintf() function which supports
     * positional parameters, as specified in the Single Unix Specification.
     *
     * Note that it is usually better to use g_snprintf(), to avoid the risk of
@@ -7581,16 +7970,22 @@ object GLib:
     * function.
     *
     * See also g_strdup_printf().
-    */
-  @annotation.compileTimeOnly("Method g_sprintf has no target types")
-  def sprintf() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Copies a nul-terminated string into the destination buffer, including the
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[sprintf:]: Method g_sprintf has no target types"
+  )
+  private def sprintf() = ???
+
+  /** Copies a nul-terminated string into the destination buffer, including the
     * trailing nul byte, and returns a pointer to the trailing nul byte in
     * `dest`. The return value is useful for concatenating multiple strings
     * without having to repeatedly scan for the end.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def stpcpy(
       dest: String | CString /* Some(Ptr[gchar]) */,
@@ -7602,9 +7997,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compares two strings for byte-by-byte equality and returns %TRUE if they
+  /** Compares two strings for byte-by-byte equality and returns %TRUE if they
     * are equal. It can be passed to g_hash_table_new() as the
     * @key_equal_func
     *   parameter, when using non-%NULL strings as keys in a #GHashTable.
@@ -7612,6 +8005,9 @@ object GLib:
     * This function is typically used for hash table comparisons, but can be
     * used for general purpose comparisons of non-%NULL strings. For a
     * %NULL-safe string comparison function, see g_strcmp0().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strEqual(
       v1: Ptr[Byte] /* Some(gconstpointer) */,
@@ -7619,9 +8015,10 @@ object GLib:
   ): Boolean /* Some(gboolean) */ =
     g_str_equal(gconstpointer(v1), gconstpointer(v2)).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Looks whether the string @str begins with @prefix.
     *
-    * Looks whether the string @str begins with @prefix.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strHasPrefix(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -7631,9 +8028,10 @@ object GLib:
     __sn_extract_string(prefix).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Looks whether the string @str ends with @suffix.
     *
-    * Looks whether the string @str ends with @suffix.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strHasSuffix(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -7643,9 +8041,7 @@ object GLib:
     __sn_extract_string(suffix).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string to a hash value.
+  /** Converts a string to a hash value.
     *
     * This function implements the widely used "djb" hash apparently posted by
     * Daniel Bernstein to comp.lang.c some time ago. The 32 bit unsigned hash
@@ -7657,14 +8053,18 @@ object GLib:
     *
     * Note that this function may not be a perfect fit for all use cases. For
     * example, it produces some hash collisions with strings as short as 2.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strHash(v: Ptr[Byte] /* Some(gconstpointer) */ ): UInt /* Some(guint) */ =
     g_str_hash(gconstpointer(v)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines if a string is pure ASCII. A string is pure ASCII if it
+  /** Determines if a string is pure ASCII. A string is pure ASCII if it
     * contains no bytes with the high bit set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strIsAscii(
       str: String | CString /* Some(Ptr[gchar]) */
@@ -7672,9 +8072,7 @@ object GLib:
     __sn_extract_string(str).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if a search conducted for @search_term should match
+  /** Checks if a search conducted for @search_term should match
     * @potential_hit.
     *
     * This function calls g_str_tokenize_and_fold() on both
@@ -7696,6 +8094,9 @@ object GLib:
     * ‘Frédéric’ but not ‘Frederic’ (due to the one-directional nature of accent
     * matching). Searching ‘fo’ would match ‘Foo’ and ‘Bar Foo Baz’, but not
     * ‘SFO’ (because no word has ‘fo’ as a prefix).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strMatchString(
       search_term: String | CString /* Some(Ptr[gchar]) */,
@@ -7707,9 +8108,7 @@ object GLib:
     gboolean(gint((if accept_alternates == true then 1 else 0)))
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Transliterate @str to plain ASCII.
+  /** Transliterate @str to plain ASCII.
     *
     * For best results, @str should be in composed normalised form.
     *
@@ -7727,6 +8126,9 @@ object GLib:
     * If you want to do translation for no specific locale, and you want it to
     * be done independently of the currently locale, specify `"C"` for
     * @from_locale.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strToAscii(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -7740,9 +8142,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tokenises @string and performs folding on each token.
+  /** Tokenises @string and performs folding on each token.
     *
     * A token is a non-empty sequence of alphanumeric characters in the source
     * string, separated by non-alphanumeric characters. An "alphanumeric"
@@ -7757,15 +8157,16 @@ object GLib:
     * The number of ASCII alternatives that are generated and the method for
     * doing so is unspecified, but @translit_locale (if specified) may improve
     * the transliteration if the language of the source string is known.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function str_tokenize_and_fold contains an OUT parameter, which is not supported yet"
+    "[str_tokenize_and_fold:]: Function str_tokenize_and_fold contains an OUT parameter, which is not supported yet"
   )
-  def strTokenizeAndFold() = ???
+  private def strTokenizeAndFold() = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  For each character in @string, if the character is not in @valid_chars,
+  /**  For each character in @string, if the character is not in @valid_chars,
     *  replaces the character with @substitutor.
     *
     *  Modifies @string in place, and return @string itself, not a copy. The
@@ -7782,6 +8183,8 @@ object GLib:
     *    ...
     *    g_free (reformatted);
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def strcanon(
       string: String | CString /* Some(Ptr[gchar]) */,
@@ -7795,10 +8198,11 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A case-insensitive string comparison, corresponding to the standard
+  /** A case-insensitive string comparison, corresponding to the standard
     * strcasecmp() function on platforms which support it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strcasecmp(
       s1: String | CString /* Some(Ptr[gchar]) */,
@@ -7808,9 +8212,7 @@ object GLib:
     __sn_extract_string(s2).asInstanceOf[Ptr[gchar]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes trailing whitespace from a string.
+  /** Removes trailing whitespace from a string.
     *
     * This function doesn't allocate or reallocate any memory; it modifies @string
     * in place. Therefore, it cannot be used on statically allocated strings.
@@ -7818,6 +8220,9 @@ object GLib:
     * The pointer to @string is returned to allow the nesting of functions.
     *
     * Also see g_strchug() and g_strstrip().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strchomp(
       string: String | CString /* Some(Ptr[gchar]) */
@@ -7827,9 +8232,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes leading whitespace from a string, by moving the rest of the
+  /** Removes leading whitespace from a string, by moving the rest of the
     * characters forward.
     *
     * This function doesn't allocate or reallocate any memory; it modifies @string
@@ -7838,6 +8241,9 @@ object GLib:
     * The pointer to @string is returned to allow the nesting of functions.
     *
     * Also see g_strchomp() and g_strstrip().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strchug(
       string: String | CString /* Some(Ptr[gchar]) */
@@ -7845,10 +8251,11 @@ object GLib:
     g_strchug(__sn_extract_string(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compares @str1 and @str2 like strcmp(). Handles %NULL gracefully by
+  /** Compares @str1 and @str2 like strcmp(). Handles %NULL gracefully by
     * sorting it before non-%NULL strings. Comparing two %NULL pointers returns 0.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strcmp0(
       str1: Option[String | CString /* Some(CString) */ ],
@@ -7862,11 +8269,12 @@ object GLib:
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Replaces all escaped characters with their one byte equivalent.
+  /** Replaces all escaped characters with their one byte equivalent.
     *
     * This function does the reverse conversion of g_strescape().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strcompress(
       source: String | CString /* Some(Ptr[gchar]) */
@@ -7876,9 +8284,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Concatenates all of the given strings into one long string. The returned
+  /** Concatenates all of the given strings into one long string. The returned
     * string should be freed with g_free() when no longer needed.
     *
     * The variable argument list must end with %NULL. If you forget the %NULL,
@@ -7887,6 +8293,9 @@ object GLib:
     * Note that this function is usually not the right function to use to
     * assemble a translated message from pieces, since proper translation often
     * requires the pieces to be reordered.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def strconcat(
       string1: String | CString /* Some(Ptr[gchar]) */,
@@ -7898,9 +8307,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Converts any delimiter characters in @string to @new_delimiter.
+  /**  Converts any delimiter characters in @string to @new_delimiter.
     *
     *  Any characters in @string which are found in @delimiters are
     *  changed to the @new_delimiter character. Modifies @string in place,
@@ -7919,6 +8326,8 @@ object GLib:
     *    ...
     *    g_free (reformatted);
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def strdelimit(
       string: String | CString /* Some(Ptr[gchar]) */,
@@ -7934,9 +8343,10 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts a string to lower case.
     *
-    * Converts a string to lower case.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strdown(
       string: String | CString /* Some(Ptr[gchar]) */
@@ -7944,10 +8354,11 @@ object GLib:
     g_strdown(__sn_extract_string(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Duplicates a string. If @str is %NULL it returns %NULL. The returned
+  /** Duplicates a string. If @str is %NULL it returns %NULL. The returned
     * string should be freed with g_free() when no longer needed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strdup(
       str: Option[String | CString /* Some(Ptr[gchar]) */ ]
@@ -7959,9 +8370,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Similar to the standard C sprintf() function but safer, since it
+  /** Similar to the standard C sprintf() function but safer, since it
     * calculates the maximum space required and allocates memory to hold the
     * result. The returned string should be freed with g_free() when no longer
     * needed.
@@ -7969,6 +8378,9 @@ object GLib:
     * The returned string is guaranteed to be non-NULL, unless @format contains
     * `%lc` or `%ls` conversions, which can fail if no multibyte representation
     * is available for the given character.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def strdupPrintf(
       format: String | CString /* Some(Ptr[gchar]) */,
@@ -7980,9 +8392,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Similar to the standard C vsprintf() function but safer, since it
+  /** Similar to the standard C vsprintf() function but safer, since it
     * calculates the maximum space required and allocates memory to hold the
     * result. The returned string should be freed with g_free() when no longer
     * needed.
@@ -7993,6 +8403,9 @@ object GLib:
     *
     * See also g_vasprintf(), which offers the same functionality, but
     * additionally returns the length of the allocated string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strdupVprintf(
       format: String | CString /* Some(Ptr[gchar]) */,
@@ -8004,21 +8417,20 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Copies %NULL-terminated array of strings. The copy is a deep copy; the new
+  /** Copies %NULL-terminated array of strings. The copy is a deep copy; the new
     * array should be freed by first freeing each string, then the array itself.
     * g_strfreev() does this for you. If called on a %NULL value, g_strdupv()
     * simply returns %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar**)))"
+    "[strdupv:/<function parameters>/str_array]: Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar**)))"
   )
-  def strdupv() = ???
+  private def strdupv() = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Returns a string corresponding to the given error code, e.g. "no
+  /**  Returns a string corresponding to the given error code, e.g. "no
     *  such process". Unlike strerror(), this always returns a string in
     *  UTF-8 encoding, and the pointer is guaranteed to remain valid for
     *  the lifetime of the process.
@@ -8036,6 +8448,8 @@ object GLib:
     *
     *    g_strerror (saved_errno);
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def strerror(
       errnum: Int /* Some(gint) */
@@ -8043,9 +8457,7 @@ object GLib:
     g_strerror(gint(errnum)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Escapes the special characters '\b', '\f', '\n', '\r', '\t', '\v', '\' and
+  /** Escapes the special characters '\b', '\f', '\n', '\r', '\t', '\v', '\' and
     * '"' in the string @source by inserting a '\' before them. Additionally all
     * characters in the range 0x01-0x1F (everything below SPACE) and in the
     * range 0x7F-0xFF (all non-ASCII chars) are replaced with a '\' followed by
@@ -8053,6 +8465,9 @@ object GLib:
     * escaped.
     *
     * g_strcompress() does the reverse conversion.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strescape(
       source: String | CString /* Some(Ptr[gchar]) */,
@@ -8066,21 +8481,23 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Frees a %NULL-terminated array of strings, as well as each string it
+  /** Frees a %NULL-terminated array of strings, as well as each string it
     * contains.
     *
     * If @str_array is %NULL, this function simply returns.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar**)))"
+    "[strfreev:/<function parameters>/str_array]: Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar**)))"
   )
-  def strfreev() = ???
+  private def strfreev() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** An auxiliary function for gettext() support (see Q_()).
     *
-    * An auxiliary function for gettext() support (see Q_()).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def stripContext(
       msgid: String | CString /* Some(Ptr[gchar]) */,
@@ -8092,11 +8509,12 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Joins a number of strings together to form one long string, with the
+  /** Joins a number of strings together to form one long string, with the
     * optional @separator inserted between each of them. The returned string
     * should be freed with g_free().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def strjoin(
       separator: Option[String | CString /* Some(Ptr[gchar]) */ ],
@@ -8110,24 +8528,23 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Joins a number of strings together to form one long string, with the
+  /** Joins a number of strings together to form one long string, with the
     * optional @separator inserted between each of them. The returned string
     * should be freed with g_free().
     *
     * If @str_array has no items, the return value will be an empty string. If @str_array
     * contains a single item, @separator will not appear in the resulting
     * string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar**)))"
+    "[strjoinv:/<function parameters>/str_array]: Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar**)))"
   )
-  def strjoinv() = ???
+  private def strjoinv() = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Portability wrapper that calls strlcat() on systems which have it,
+  /**  Portability wrapper that calls strlcat() on systems which have it,
     *  and emulates it otherwise. Appends nul-terminated @src string to @dest,
     *  guaranteeing nul-termination for @dest. The total size of @dest won't
     *  exceed @dest_size.
@@ -8140,6 +8557,8 @@ object GLib:
     *
     *  Caveat: this is supposedly a more secure alternative to strcat() or
     *  strncat(), but for real security g_strconcat() is harder to mess up.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def strlcat(
       dest: String | CString /* Some(Ptr[gchar]) */,
@@ -8151,9 +8570,7 @@ object GLib:
     gsize(dest_size)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Portability wrapper that calls strlcpy() on systems which have it, and
+  /** Portability wrapper that calls strlcpy() on systems which have it, and
     * emulates strlcpy() otherwise. Copies @src to @dest; @dest is guaranteed to
     * be nul-terminated; @src must be nul-terminated;
     * @dest_size
@@ -8169,6 +8586,9 @@ object GLib:
     * Caveat: strlcpy() is supposedly more secure than strcpy() or strncpy(),
     * but if you really want to avoid screwups, g_strdup() is an even better
     * idea.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strlcpy(
       dest: String | CString /* Some(Ptr[gchar]) */,
@@ -8180,12 +8600,13 @@ object GLib:
     gsize(dest_size)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A case-insensitive string comparison, corresponding to the standard
+  /** A case-insensitive string comparison, corresponding to the standard
     * strncasecmp() function on platforms which support it. It is similar to
     * g_strcasecmp() except it only compares the first @n characters of the
     * strings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strncasecmp(
       s1: String | CString /* Some(Ptr[gchar]) */,
@@ -8197,9 +8618,7 @@ object GLib:
     guint(n)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Duplicates the first @n bytes of a string, returning a newly-allocated
+  /** Duplicates the first @n bytes of a string, returning a newly-allocated
     * buffer @n + 1 bytes long which will always be nul-terminated. If @str is
     * less than @n bytes long the buffer is padded with nuls. If @str is %NULL
     * it returns %NULL. The returned value should be freed when no longer
@@ -8207,6 +8626,9 @@ object GLib:
     *
     * To copy a number of characters from a UTF-8 encoded string, use
     * g_utf8_strncpy() instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strndup(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -8218,10 +8640,11 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new string @length bytes long filled with @fill_char. The
+  /** Creates a new string @length bytes long filled with @fill_char. The
     * returned string should be freed when no longer needed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strnfill(
       length: CUnsignedLongInt /* Some(gsize) */,
@@ -8230,13 +8653,14 @@ object GLib:
     g_strnfill(gsize(length), gchar(fill_char)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reverses all of the bytes in a string. For example,
+  /** Reverses all of the bytes in a string. For example,
     * `g_strreverse ("abcdef")` will result in "fedcba".
     *
     * Note that g_strreverse() doesn't work on UTF-8 strings containing
     * multibyte characters. For that purpose, use g_utf8_strreverse().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strreverse(
       string: String | CString /* Some(Ptr[gchar]) */
@@ -8246,9 +8670,10 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Searches the string @haystack for the last occurrence of the string @needle.
     *
-    * Searches the string @haystack for the last occurrence of the string @needle.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strrstr(
       haystack: String | CString /* Some(Ptr[gchar]) */,
@@ -8260,10 +8685,11 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Searches the string @haystack for the last occurrence of the string @needle,
+  /** Searches the string @haystack for the last occurrence of the string @needle,
     * limiting the length of the search to @haystack_len.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strrstrLen(
       haystack: String | CString /* Some(Ptr[gchar]) */,
@@ -8277,12 +8703,13 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a string describing the given signal, e.g. "Segmentation fault".
+  /** Returns a string describing the given signal, e.g. "Segmentation fault".
     * You should use this function in preference to strsignal(), because it
     * returns a string in UTF-8 encoding, and since not all platforms support
     * the strsignal() function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strsignal(
       signum: Int /* Some(gint) */
@@ -8290,9 +8717,7 @@ object GLib:
     g_strsignal(gint(signum)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Splits a string into a maximum of @max_tokens pieces, using the given
+  /** Splits a string into a maximum of @max_tokens pieces, using the given
     * @delimiter.
     *   If @max_tokens is reached, the remainder of @string is appended to the
     *   last token.
@@ -8307,15 +8732,16 @@ object GLib:
     * more useful than consistent handling of empty elements. If you do need to
     * represent empty elements, you'll need to check for the empty string before
     * calling g_strsplit().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[strsplit:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def strsplit() = ???
+  private def strsplit() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Splits @string into a number of tokens not containing any of the
+  /** Splits @string into a number of tokens not containing any of the
     * characters in @delimiter. A token is the (possibly empty) longest string
     * that does not contain any of the characters in @delimiters. If @max_tokens
     * is reached, the remainder is appended to the last token.
@@ -8336,17 +8762,21 @@ object GLib:
     *
     * Note that this function works on bytes not characters, so it can't be used
     * to delimit UTF-8 strings for anything but ASCII characters.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[strsplit_set:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def strsplitSet() = ???
+  private def strsplitSet() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Searches the string @haystack for the first occurrence of the string @needle,
+  /** Searches the string @haystack for the first occurrence of the string @needle,
     * limiting the length of the search to @haystack_len or a nul terminator
     * byte (whichever is reached first).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strstrLen(
       haystack: String | CString /* Some(Ptr[gchar]) */,
@@ -8360,9 +8790,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string to a #gdouble value. It calls the standard strtod()
+  /** Converts a string to a #gdouble value. It calls the standard strtod()
     * function to handle the conversion, but if the string is not completely
     * converted it attempts the conversion again with g_ascii_strtod(), and
     * returns the best match.
@@ -8373,15 +8801,19 @@ object GLib:
     * numbers should you use this. Make sure that you don't pass strings such as
     * comma separated lists of values, since the commas may be interpreted as a
     * decimal point in some locales, causing unexpected results.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function strtod contains an OUT parameter, which is not supported yet"
+    "[strtod:]: Function strtod contains an OUT parameter, which is not supported yet"
   )
-  def strtod() = ???
+  private def strtod() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts a string to upper case.
     *
-    * Converts a string to upper case.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def strup(
       string: String | CString /* Some(Ptr[gchar]) */
@@ -8389,48 +8821,49 @@ object GLib:
     g_strup(__sn_extract_string(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if @strv contains @str. @strv must not be %NULL.
     *
-    * Checks if @strv contains @str. @strv must not be %NULL.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(const gchar* const*)))"
+    "[strv_contains:/<function parameters>/strv]: Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(const gchar* const*)))"
   )
-  def strvContains() = ???
+  private def strvContains() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if @strv1 and @strv2 contain exactly the same elements in exactly
+  /** Checks if @strv1 and @strv2 contain exactly the same elements in exactly
     * the same order. Elements are compared using g_str_equal(). To match
     * independently of order, sort the arrays first (using g_qsort_with_data()
     * or similar).
     *
     * Two empty arrays are considered equal. Neither @strv1 not @strv2 may be
     * %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(const gchar* const*)))"
+    "[strv_equal:/<function parameters>/strv1]: Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(const gchar* const*)))"
   )
-  def strvEqual() = ???
+  private def strvEqual() = ???
 
   @annotation.compileTimeOnly(
-    "Function strv_get_type is weird: Incorrectly sitting in gobject bindings?"
+    "[strv_get_type:]: Function strv_get_type is weird: Incorrectly sitting in gobject bindings?"
   )
-  def strvGetType() = ???
+  private def strvGetType() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the length of the given %NULL-terminated string array @str_array. @str_array
+  /** Returns the length of the given %NULL-terminated string array @str_array. @str_array
     * must not be %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar**)))"
+    "[strv_length:/<function parameters>/str_array]: Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar**)))"
   )
-  def strvLength() = ???
+  private def strvLength() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a new test case, similar to g_test_create_case(). However the test
+  /** Create a new test case, similar to g_test_create_case(). However the test
     * is assumed to use no fixture, and test suites are automatically created on
     * the fly and added to the root fixture, based on the slash-separated
     * portions of @testpath. The @test_data argument will be passed as first
@@ -8443,26 +8876,28 @@ object GLib:
     * No component of @testpath may start with a dot (`.`) if the
     * %G_TEST_OPTION_ISOLATE_DIRS option is being used; and it is recommended to
     * do so even if it isn’t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TestDataFunc), @type -> DataRecord(GTestDataFunc)))"
+    "[test_add_data_func:/<function parameters>/test_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TestDataFunc), @type -> DataRecord(GTestDataFunc)))"
   )
-  def testAddDataFunc() = ???
+  private def testAddDataFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a new test case, as with g_test_add_data_func(), but freeing
+  /** Create a new test case, as with g_test_add_data_func(), but freeing
     * @test_data
     *   after the test run is complete.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TestDataFunc), @type -> DataRecord(GTestDataFunc)))"
+    "[test_add_data_func_full:/<function parameters>/test_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TestDataFunc), @type -> DataRecord(GTestDataFunc)))"
   )
-  def testAddDataFuncFull() = ???
+  private def testAddDataFuncFull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a new test case, similar to g_test_create_case(). However the test
+  /** Create a new test case, similar to g_test_create_case(). However the test
     * is assumed to use no fixture, and test suites are automatically created on
     * the fly and added to the root fixture, based on the slash-separated
     * portions of @testpath.
@@ -8474,16 +8909,19 @@ object GLib:
     * No component of @testpath may start with a dot (`.`) if the
     * %G_TEST_OPTION_ISOLATE_DIRS option is being used; and it is recommended to
     * do so even if it isn’t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TestFunc), @type -> DataRecord(GTestFunc)))"
+    "[test_add_func:/<function parameters>/test_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TestFunc), @type -> DataRecord(GTestFunc)))"
   )
-  def testAddFunc() = ???
+  private def testAddFunc() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TestFixtureFunc), @type -> DataRecord(GTestFixtureFunc)))"
+    "[test_add_vtable:/<function parameters>/data_setup]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TestFixtureFunc), @type -> DataRecord(GTestFixtureFunc)))"
   )
-  def testAddVtable() = ???
+  private def testAddVtable() = ???
 
   def testAssertExpectedMessagesInternal(
       domain: String | CString /* Some(CString) */,
@@ -8498,9 +8936,7 @@ object GLib:
       __sn_extract_string(func)
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function adds a message to test reports that associates a bug URI
+  /** This function adds a message to test reports that associates a bug URI
     * with a test case.
     *
     * Bug URIs are constructed from a base URI set with g_test_bug_base() and @bug_uri_snippet.
@@ -8509,14 +8945,15 @@ object GLib:
     *
     * Since GLib 2.70, the base URI is not prepended to @bug_uri_snippet if it
     * is already a valid URI.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testBug(bug_uri_snippet: String | CString /* Some(CString) */ )(using
       Zone
   ): Unit /* Some(Unit) */ = g_test_bug(__sn_extract_string(bug_uri_snippet))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Specify the base URI for bug reports.
+  /** Specify the base URI for bug reports.
     *
     * The base URI is used to construct bug report messages for g_test_message()
     * when g_test_bug() is called. Calling this function outside of a test case
@@ -8528,14 +8965,15 @@ object GLib:
     *
     * If g_test_bug_base() is not called, bug URIs are formed solely from the
     * value provided by g_test_bug().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testBugBase(uri_pattern: String | CString /* Some(CString) */ )(using
       Zone
   ): Unit /* Some(Unit) */ = g_test_bug_base(__sn_extract_string(uri_pattern))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates the pathname to a data file that is required for a test.
+  /** Creates the pathname to a data file that is required for a test.
     *
     * This function is conceptually similar to g_build_filename() except that
     * the first argument has been replaced with a #GTestFileType argument.
@@ -8555,6 +8993,9 @@ object GLib:
     * builddir case and should also support running of installed tests, assuming
     * the data files have been installed in the same relative path as the test
     * binary.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testBuildFilename(
       file_type: TestFileType /* Some(GTestFileType) */,
@@ -8568,9 +9009,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a new #GTestCase, named @test_name.
+  /** Create a new #GTestCase, named @test_name.
     *
     * This API is fairly low level, and calling g_test_add() or
     * g_test_add_func() is preferable.
@@ -8588,35 +9027,38 @@ object GLib:
     * type of fixture (the @data_size argument), but varying
     * @test_name
     *   and @data_test arguments.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TestFixtureFunc), @type -> DataRecord(GTestFixtureFunc)))"
+    "[test_create_case:/<function parameters>/data_setup]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TestFixtureFunc), @type -> DataRecord(GTestFixtureFunc)))"
   )
-  def testCreateCase() = ???
+  private def testCreateCase() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Create a new test suite with the name @suite_name.
     *
-    * Create a new test suite with the name @suite_name.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
+    "[test_create_suite:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
   )
-  def testCreateSuite() = ???
+  private def testCreateSuite() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Attempt to disable system crash reporting infrastructure.
+  /** Attempt to disable system crash reporting infrastructure.
     *
     * This function should be called before exercising code paths that are
     * expected or intended to crash, to avoid wasting resources in system-wide
     * crash collection infrastructure such as systemd-coredump or abrt.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testDisableCrashReporting(): Unit /* Some(Unit) */ =
     g_test_disable_crash_reporting()
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Indicates that a message with the given @log_domain and @log_level,
+  /**  Indicates that a message with the given @log_domain and @log_level,
     *  with text matching @pattern, is expected to be logged. When this
     *  message is logged, it will not be printed, and the test case will
     *  not abort.
@@ -8650,6 +9092,8 @@ object GLib:
     *
     *  If messages at %G_LOG_LEVEL_DEBUG are emitted, but not explicitly
     *  expected via g_test_expect_message() then they will be ignored.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def testExpectMessage(
       log_domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
@@ -8663,9 +9107,7 @@ object GLib:
     __sn_extract_string(pattern).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Indicates that a test failed. This function can be called multiple times
+  /** Indicates that a test failed. This function can be called multiple times
     * from the same test. You can use this function if your test failed in a
     * recoverable way.
     *
@@ -8682,13 +9124,17 @@ object GLib:
     * not log a message alongside the test failure. If details of the test
     * failure are available, either log them with g_test_message() before
     * g_test_fail(), or use g_test_fail_printf() instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testFail(): Unit /* Some(Unit) */ = g_test_fail()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Equivalent to g_test_fail(), but also record a message like
+  /** Equivalent to g_test_fail(), but also record a message like
     * g_test_skip_printf().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testFailPrintf(
       format: String | CString /* Some(CString) */,
@@ -8696,9 +9142,7 @@ object GLib:
   )(using Zone): Unit /* Some(Unit) */ =
     g_test_fail_printf(__sn_extract_string(format), args*)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether a test has already failed. This will be the case when
+  /** Returns whether a test has already failed. This will be the case when
     * g_test_fail(), g_test_incomplete() or g_test_skip() have been called, but
     * also if an assertion has failed.
     *
@@ -8707,16 +9151,20 @@ object GLib:
     *
     * The return value of this function is only meaningful if it is called from
     * inside a test function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testFailed(): Boolean /* Some(gboolean) */ = g_test_failed().value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the pathname of the directory containing test files of the type
+  /** Gets the pathname of the directory containing test files of the type
     * specified by @file_type.
     *
     * This is approximately the same as calling g_test_build_filename("."), but
     * you don't need to free the return value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testGetDir(
       file_type: TestFileType /* Some(GTestFileType) */
@@ -8724,9 +9172,7 @@ object GLib:
     g_test_get_dir(file_type.raw).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the pathname to a data file that is required for a test.
+  /** Gets the pathname to a data file that is required for a test.
     *
     * This is the same as g_test_build_filename() with two differences. The
     * first difference is that you must only use this function from within a
@@ -8737,6 +9183,9 @@ object GLib:
     * It is safe to use this function from a thread inside of a testcase but you
     * must ensure that all such uses occur before the main testcase function
     * returns (ie: it is best to ensure that all threads have been joined).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testGetFilename(
       file_type: TestFileType /* Some(GTestFileType) */,
@@ -8750,9 +9199,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the test path for the test currently being run.
+  /** Gets the test path for the test currently being run.
     *
     * In essence, it will be the same string passed as the first argument to
     * e.g. g_test_add() when the test was added.
@@ -8760,23 +9207,25 @@ object GLib:
     * This function returns a valid string only within a test function.
     *
     * Note that this is a test path, not a file system path.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testGetPath()(using Zone): String /* Some(CString) */ = fromCString(
     g_test_get_path().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the toplevel test suite for the test path API.
     *
-    * Get the toplevel test suite for the test path API.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
+    "[test_get_root:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
   )
-  def testGetRoot() = ???
+  private def testGetRoot() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Indicates that a test failed because of some incomplete functionality.
+  /** Indicates that a test failed because of some incomplete functionality.
     * This function can be called multiple times from the same test.
     *
     * Calling this function will not stop the test from running, you need to
@@ -8784,6 +9233,9 @@ object GLib:
     * diagnostic messages or even continue running the test.
     *
     * If not called from inside a test, this function does nothing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testIncomplete(
       msg: Option[String | CString /* Some(Ptr[gchar]) */ ]
@@ -8793,10 +9245,11 @@ object GLib:
       .getOrElse(null.asInstanceOf[Ptr[gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Equivalent to g_test_incomplete(), but the explanation is formatted as if
+  /** Equivalent to g_test_incomplete(), but the explanation is formatted as if
     * by g_strdup_printf().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testIncompletePrintf(
       format: String | CString /* Some(CString) */,
@@ -8804,9 +9257,7 @@ object GLib:
   )(using Zone): Unit /* Some(Unit) */ =
     g_test_incomplete_printf(__sn_extract_string(format), args*)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Initialize the GLib testing framework, e.g. by seeding the test random
+  /** Initialize the GLib testing framework, e.g. by seeding the test random
     * number generator, the name for g_get_prgname() and parsing test related
     * command line args.
     *
@@ -8857,15 +9308,16 @@ object GLib:
     * from being executed, as g_assert() is commonly (erroneously) used in unit
     * tests, and is a no-op when compiled with `G_DISABLE_ASSERT`. Ensure your
     * tests are compiled without `G_DISABLE_ASSERT` defined.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(int*)))"
+    "[test_init:/<function parameters>/argc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(int*)))"
   )
-  def testInit() = ???
+  private def testInit() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Installs a non-error fatal log handler which can be used to decide whether
+  /** Installs a non-error fatal log handler which can be used to decide whether
     * log messages which are counted as fatal abort the program.
     *
     * The use case here is that you are running a test case that depends on
@@ -8883,11 +9335,14 @@ object GLib:
     * behaviour for specific log messages, programs must install a custom log
     * writer function using g_log_set_writer_func().See [Using Structured
     * Logging][using-structured-logging].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TestLogFatalFunc), @type -> DataRecord(GTestLogFatalFunc)))"
+    "[test_log_set_fatal_handler:/<function parameters>/log_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TestLogFatalFunc), @type -> DataRecord(GTestLogFatalFunc)))"
   )
-  def testLogSetFatalHandler() = ???
+  private def testLogSetFatalHandler() = ???
 
   def testLogTypeName(
       log_type: TestLogType /* Some(GTestLogType) */
@@ -8895,12 +9350,13 @@ object GLib:
     g_test_log_type_name(log_type.raw).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Report the result of a performance or measurement test. The test should
+  /** Report the result of a performance or measurement test. The test should
     * generally strive to maximize the reported quantities (larger values are
     * better than smaller ones), this and @maximized_quantity can determine
     * sorting order for test result reports.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testMaximizedResult(
       maximized_quantity: Double /* Some(Double) */,
@@ -8912,9 +9368,10 @@ object GLib:
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Add a message to the test report.
     *
-    * Add a message to the test report.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testMessage(
       format: String | CString /* Some(CString) */,
@@ -8922,12 +9379,13 @@ object GLib:
   )(using Zone): Unit /* Some(Unit) */ =
     g_test_message(__sn_extract_string(format), args*)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Report the result of a performance or measurement test. The test should
+  /** Report the result of a performance or measurement test. The test should
     * generally strive to minimize the reported quantities (smaller values are
     * better than larger ones), this and @minimized_quantity can determine
     * sorting order for test result reports.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testMinimizedResult(
       minimized_quantity: Double /* Some(Double) */,
@@ -8939,24 +9397,26 @@ object GLib:
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function enqueus a callback @destroy_func to be executed during the
+  /** This function enqueus a callback @destroy_func to be executed during the
     * next test case teardown phase. This is most useful to auto destruct
     * allocated test resources at the end of a test run. Resources are released
     * in reverse queue order, that means enqueueing callback A before callback B
     * will cause B() to be called before A() during teardown.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
+    "[test_queue_destroy:/<function parameters>/destroy_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
-  def testQueueDestroy() = ???
+  private def testQueueDestroy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Enqueue a pointer to be released with g_free() during the next teardown
+  /** Enqueue a pointer to be released with g_free() during the next teardown
     * phase. This is equivalent to calling g_test_queue_destroy() with a destroy
     * callback of g_free().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testQueueFree(
       gfree_pointer: Option[Ptr[Byte] /* Some(gpointer) */ ]
@@ -8966,17 +9426,19 @@ object GLib:
       .getOrElse(null.asInstanceOf[gpointer])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get a reproducible random floating point number, see g_test_rand_int() for
+  /** Get a reproducible random floating point number, see g_test_rand_int() for
     * details on test case random numbers.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testRandDouble(): Double /* Some(Double) */ = g_test_rand_double()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get a reproducible random floating pointer number out of a specified
+  /** Get a reproducible random floating pointer number out of a specified
     * range, see g_test_rand_int() for details on test case random numbers.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testRandDoubleRange(
       range_start: Double /* Some(Double) */,
@@ -8984,9 +9446,7 @@ object GLib:
   ): Double /* Some(Double) */ =
     g_test_rand_double_range(range_start, range_end)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get a reproducible random integer number.
+  /** Get a reproducible random integer number.
     *
     * The random numbers generated by the g_test_rand_*() family of functions
     * change with every new test program start, unless the --seed option is
@@ -8995,13 +9455,17 @@ object GLib:
     * For individual test cases however, the random number generator is
     * reseeded, to avoid dependencies between tests and to make --seed effective
     * for all test cases.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testRandInt(): CInt /* Some(gint32) */ = g_test_rand_int().value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get a reproducible random integer number out of a specified range, see
+  /** Get a reproducible random integer number out of a specified range, see
     * g_test_rand_int() for details on test case random numbers.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testRandIntRange(
       begin: CInt /* Some(gint32) */,
@@ -9009,9 +9473,7 @@ object GLib:
   ): CInt /* Some(gint32) */ =
     g_test_rand_int_range(gint32(begin), gint32(end)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Runs all tests under the toplevel suite which can be retrieved with
+  /** Runs all tests under the toplevel suite which can be retrieved with
     * g_test_get_root(). Similar to g_test_run_suite(), the test cases to be run
     * are filtered according to test path arguments (`-p testpath` and
     * `-s testpath`) as parsed by g_test_init(). g_test_run_suite() or
@@ -9040,27 +9502,29 @@ object GLib:
     * If all tests are skipped or marked as incomplete (expected failures), this
     * function will return 0 if producing TAP output, or 77 (treated as "skip
     * test" by Automake) otherwise.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testRun(): Int /* Some(CInt) */ = g_test_run()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Execute the tests within @suite and all nested #GTestSuites. The test
+  /** Execute the tests within @suite and all nested #GTestSuites. The test
     * suites to be executed are filtered according to test path arguments (`-p
     * testpath` and `-s testpath`) as parsed by g_test_init(). See the
     * g_test_run() documentation for more information on the order that tests
     * are run in.
     *
     * g_test_run_suite() or g_test_run() may only be called once in a program.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
+    "[test_run_suite:/<function parameters>/suite]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
   )
-  def testRunSuite() = ???
+  private def testRunSuite() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Changes the behaviour of the various `g_assert_*()` macros,
+  /** Changes the behaviour of the various `g_assert_*()` macros,
     * g_test_assert_expected_messages() and the various `g_test_trap_assert_*()`
     * macros to not abort to program, but instead call g_test_fail() and
     * continue. (This also changes the behavior of g_test_fail() so that it will
@@ -9070,19 +9534,23 @@ object GLib:
     * affected by this.
     *
     * This function can only be called after g_test_init().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testSetNonfatalAssertions(): Unit /* Some(Unit) */ =
     g_test_set_nonfatal_assertions()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Indicates that a test was skipped.
+  /** Indicates that a test was skipped.
     *
     * Calling this function will not stop the test from running, you need to
     * return from the test function yourself. So you can produce additional
     * diagnostic messages or even continue running the test.
     *
     * If not called from inside a test, this function does nothing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testSkip(
       msg: Option[String | CString /* Some(Ptr[gchar]) */ ]
@@ -9092,10 +9560,11 @@ object GLib:
       .getOrElse(null.asInstanceOf[Ptr[gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Equivalent to g_test_skip(), but the explanation is formatted as if by
+  /** Equivalent to g_test_skip(), but the explanation is formatted as if by
     * g_strdup_printf().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testSkipPrintf(
       format: String | CString /* Some(CString) */,
@@ -9103,17 +9572,16 @@ object GLib:
   )(using Zone): Unit /* Some(Unit) */ =
     g_test_skip_printf(__sn_extract_string(format), args*)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE (after g_test_init() has been called) if the test program is
+  /** Returns %TRUE (after g_test_init() has been called) if the test program is
     * running under g_test_trap_subprocess().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testSubprocess(): Boolean /* Some(gboolean) */ =
     g_test_subprocess().value.!=(0)
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Set the summary for a test, which describes what the test checks, and how it
+  /**  Set the summary for a test, which describes what the test checks, and how it
     *  goes about checking it. This may be included in test report output, and is
     *  useful documentation for anyone reading the source code or modifying a test
     *  in future. It must be a single line.
@@ -9131,28 +9599,33 @@ object GLib:
     *    …
     *  }
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def testSummary(summary: String | CString /* Some(CString) */ )(using
       Zone
   ): Unit /* Some(Unit) */ = g_test_summary(__sn_extract_string(summary))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get the number of seconds since the last start of the timer with
+  /** Get the number of seconds since the last start of the timer with
     * g_test_timer_start().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testTimerElapsed(): Double /* Some(Double) */ = g_test_timer_elapsed()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Report the last result of g_test_timer_elapsed().
     *
-    * Report the last result of g_test_timer_elapsed().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testTimerLast(): Double /* Some(Double) */ = g_test_timer_last()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Start a timing test. Call g_test_timer_elapsed() when the task is supposed
+  /** Start a timing test. Call g_test_timer_elapsed() when the task is supposed
     * to be done. Call this function again to restart the timer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testTimerStart(): Unit /* Some(Unit) */ = g_test_timer_start()
 
@@ -9172,9 +9645,7 @@ object GLib:
     __sn_extract_string(pattern)
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Fork the current test program to execute a test case that might
+  /**  Fork the current test program to execute a test case that might
     *  not return or that might abort.
     *
     *  If @usec_timeout is non-0, the forked test case is aborted and
@@ -9202,6 +9673,8 @@ object GLib:
     *      g_test_trap_assert_stderr ("*semagic43*");
     *    }
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def testTrapFork(
       usec_timeout: CUnsignedLongInt /* Some(guint64) */,
@@ -9209,23 +9682,23 @@ object GLib:
   ): Boolean /* Some(gboolean) */ =
     g_test_trap_fork(guint64(usec_timeout), test_trap_flags.raw).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Check the result of the last g_test_trap_subprocess() call.
     *
-    * Check the result of the last g_test_trap_subprocess() call.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testTrapHasPassed(): Boolean /* Some(gboolean) */ =
     g_test_trap_has_passed().value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Check the result of the last g_test_trap_subprocess() call.
     *
-    * Check the result of the last g_test_trap_subprocess() call.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testTrapReachedTimeout(): Boolean /* Some(gboolean) */ =
     g_test_trap_reached_timeout().value.!=(0)
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Respawns the test program to run only @test_path in a subprocess.
+  /**  Respawns the test program to run only @test_path in a subprocess.
     *  This can be used for a test case that might not return, or that
     *  might abort.
     *
@@ -9291,6 +9764,8 @@ object GLib:
     *      return g_test_run ();
     *    }
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def testTrapSubprocess(
       test_path: Option[String | CString /* Some(CString) */ ],
@@ -9305,13 +9780,11 @@ object GLib:
   )
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[thread_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def threadErrorQuark() = ???
+  private def threadErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Terminates the current thread.
+  /** Terminates the current thread.
     *
     * If another thread is waiting for us using g_thread_join() then the waiting
     * thread will be woken up and get @retval as the return value of
@@ -9324,6 +9797,9 @@ object GLib:
     * with g_thread_new() or related APIs. You must not call this function from
     * a thread created with another threading library or or from within a
     * #GThreadPool.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def threadExit(
       retval: Option[Ptr[Byte] /* Some(gpointer) */ ]
@@ -9333,34 +9809,35 @@ object GLib:
       .getOrElse(null.asInstanceOf[gpointer])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function will return the maximum @interval that a thread will wait in
+  /** This function will return the maximum @interval that a thread will wait in
     * the thread pool for new tasks before being stopped.
     *
     * If this function returns 0, threads waiting in the thread pool for new
     * work are not stopped.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def threadPoolGetMaxIdleTime(): UInt /* Some(guint) */ =
     g_thread_pool_get_max_idle_time().value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the maximal allowed number of unused threads.
     *
-    * Returns the maximal allowed number of unused threads.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def threadPoolGetMaxUnusedThreads(): Int /* Some(gint) */ =
     g_thread_pool_get_max_unused_threads().value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the number of currently unused threads.
     *
-    * Returns the number of currently unused threads.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def threadPoolGetNumUnusedThreads(): UInt /* Some(guint) */ =
     g_thread_pool_get_num_unused_threads().value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function will set the maximum @interval that a thread waiting in the
+  /** This function will set the maximum @interval that a thread waiting in the
     * pool for new tasks can be idle for before being stopped. This function is
     * similar to calling g_thread_pool_stop_unused_threads() on a regular
     * timeout, except this is done on a per thread basis.
@@ -9368,17 +9845,21 @@ object GLib:
     * By setting @interval to 0, idle threads will not be stopped.
     *
     * The default value is 15000 (15 seconds).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def threadPoolSetMaxIdleTime(
       interval: UInt /* Some(guint) */
   ): Unit /* Some(Unit) */ = g_thread_pool_set_max_idle_time(guint(interval))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the maximal number of unused threads to @max_threads. If @max_threads
+  /** Sets the maximal number of unused threads to @max_threads. If @max_threads
     * is -1, no limit is imposed on the number of unused threads.
     *
     * The default value is 2.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def threadPoolSetMaxUnusedThreads(
       max_threads: Int /* Some(gint) */
@@ -9386,18 +9867,17 @@ object GLib:
     gint(max_threads)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Stops all currently unused threads. This does not change the maximal
+  /** Stops all currently unused threads. This does not change the maximal
     * number of unused threads. This function can be used to regularly stop all
     * unused threads e.g. from g_timeout_add().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def threadPoolStopUnusedThreads(): Unit /* Some(Unit) */ =
     g_thread_pool_stop_unused_threads()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function returns the #GThread corresponding to the current thread.
+  /** This function returns the #GThread corresponding to the current thread.
     * Note that this function does not increase the reference count of the
     * returned struct.
     *
@@ -9405,24 +9885,26 @@ object GLib:
     * created by GLib (i.e. those created by other threading APIs). This may be
     * useful for thread identification purposes (i.e. comparisons) but you must
     * not use GLib functions (such as g_thread_join()) on these threads.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Thread), @type -> DataRecord(GThread*)))"
+    "[thread_self:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Thread), @type -> DataRecord(GThread*)))"
   )
-  def threadSelf() = ???
+  private def threadSelf() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Causes the calling thread to voluntarily relinquish the CPU, so that other
+  /** Causes the calling thread to voluntarily relinquish the CPU, so that other
     * threads can run.
     *
     * This function is often used as a method to make busy wait less evil.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def threadYield(): Unit /* Some(Unit) */ = g_thread_yield()
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Converts a string containing an ISO 8601 encoded date and time
+  /**  Converts a string containing an ISO 8601 encoded date and time
     *  to a #GTimeVal and puts it into @time_.
     *
     *  @iso_date must include year, month, day, hours, minutes, and
@@ -9439,15 +9921,15 @@ object GLib:
     *  gint64 time_val = g_date_time_to_unix (dt);
     *  g_date_time_unref (dt);
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function time_val_from_iso8601 contains an OUT parameter, which is not supported yet"
+    "[time_val_from_iso8601:]: Function time_val_from_iso8601 contains an OUT parameter, which is not supported yet"
   )
-  def timeValFromIso8601() = ???
+  private def timeValFromIso8601() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a function to be called at regular intervals, with the default
+  /** Sets a function to be called at regular intervals, with the default
     * priority, %G_PRIORITY_DEFAULT.
     *
     * The given @function is called repeatedly until it returns %G_SOURCE_REMOVE
@@ -9479,15 +9961,16 @@ object GLib:
     *
     * The interval given is in terms of monotonic time, not wall clock time. See
     * g_get_monotonic_time().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFunc), @type -> DataRecord(GSourceFunc)))"
+    "[timeout_add:/<function parameters>/function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFunc), @type -> DataRecord(GSourceFunc)))"
   )
-  def timeoutAdd() = ???
+  private def timeoutAdd() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a function to be called at regular intervals, with the given
+  /** Sets a function to be called at regular intervals, with the given
     * priority. The function is called repeatedly until it returns %FALSE, at
     * which point the timeout is automatically destroyed and the function will
     * not be called again. The @notify function is called when the timeout is
@@ -9510,30 +9993,32 @@ object GLib:
     *
     * The interval given is in terms of monotonic time, not wall clock time. See
     * g_get_monotonic_time().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFunc), @type -> DataRecord(GSourceFunc)))"
+    "[timeout_add_full:/<function parameters>/function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFunc), @type -> DataRecord(GSourceFunc)))"
   )
-  def timeoutAddFull() = ???
+  private def timeoutAddFull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a function to be called after @interval milliseconds have elapsed,
+  /** Sets a function to be called after @interval milliseconds have elapsed,
     * with the default priority, %G_PRIORITY_DEFAULT.
     *
     * The given @function is called once and then the source will be
     * automatically removed from the main context.
     *
     * This function otherwise behaves like g_timeout_add().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceOnceFunc), @type -> DataRecord(GSourceOnceFunc)))"
+    "[timeout_add_once:/<function parameters>/function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceOnceFunc), @type -> DataRecord(GSourceOnceFunc)))"
   )
-  def timeoutAddOnce() = ???
+  private def timeoutAddOnce() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a function to be called at regular intervals with the default
+  /** Sets a function to be called at regular intervals with the default
     * priority, %G_PRIORITY_DEFAULT.
     *
     * The function is called repeatedly until it returns %G_SOURCE_REMOVE or
@@ -9556,15 +10041,16 @@ object GLib:
     *
     * The interval given is in terms of monotonic time, not wall clock time. See
     * g_get_monotonic_time().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFunc), @type -> DataRecord(GSourceFunc)))"
+    "[timeout_add_seconds:/<function parameters>/function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFunc), @type -> DataRecord(GSourceFunc)))"
   )
-  def timeoutAddSeconds() = ???
+  private def timeoutAddSeconds() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a function to be called at regular intervals, with @priority.
+  /** Sets a function to be called at regular intervals, with @priority.
     *
     * The function is called repeatedly until it returns %G_SOURCE_REMOVE or
     * %FALSE, at which point the timeout is automatically destroyed and the
@@ -9603,40 +10089,43 @@ object GLib:
     *
     * The interval given is in terms of monotonic time, not wall clock time. See
     * g_get_monotonic_time().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFunc), @type -> DataRecord(GSourceFunc)))"
+    "[timeout_add_seconds_full:/<function parameters>/function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFunc), @type -> DataRecord(GSourceFunc)))"
   )
-  def timeoutAddSecondsFull() = ???
+  private def timeoutAddSecondsFull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function behaves like g_timeout_add_once() but with a range in
+  /** This function behaves like g_timeout_add_once() but with a range in
     * seconds.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceOnceFunc), @type -> DataRecord(GSourceOnceFunc)))"
+    "[timeout_add_seconds_once:/<function parameters>/function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceOnceFunc), @type -> DataRecord(GSourceOnceFunc)))"
   )
-  def timeoutAddSecondsOnce() = ???
+  private def timeoutAddSecondsOnce() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new timeout source.
+  /** Creates a new timeout source.
     *
     * The source will not initially be associated with any #GMainContext and
     * must be added to one with g_source_attach() before it will be executed.
     *
     * The interval given is in terms of monotonic time, not wall clock time. See
     * g_get_monotonic_time().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
+    "[timeout_source_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
   )
-  def timeoutSourceNew() = ???
+  private def timeoutSourceNew() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new timeout source.
+  /** Creates a new timeout source.
     *
     * The source will not initially be associated with any #GMainContext and
     * must be added to one with g_source_attach() before it will be executed.
@@ -9646,74 +10135,84 @@ object GLib:
     *
     * The interval given is in terms of monotonic time, not wall clock time. See
     * g_get_monotonic_time().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
+    "[timeout_source_new_seconds:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
   )
-  def timeoutSourceNewSeconds() = ???
+  private def timeoutSourceNewSeconds() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the height of a #GTrashStack.
+  /** Returns the height of a #GTrashStack.
     *
     * Note that execution of this function is of O(N) complexity where N denotes
     * the number of items on the stack.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
+    "[trash_stack_height:/<function parameters>/stack_p]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
   )
-  def trashStackHeight() = ???
+  private def trashStackHeight() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the element at the top of a #GTrashStack which may be %NULL.
     *
-    * Returns the element at the top of a #GTrashStack which may be %NULL.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
+    "[trash_stack_peek:/<function parameters>/stack_p]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
   )
-  def trashStackPeek() = ???
+  private def trashStackPeek() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Pops a piece of memory off a #GTrashStack.
     *
-    * Pops a piece of memory off a #GTrashStack.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
+    "[trash_stack_pop:/<function parameters>/stack_p]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
   )
-  def trashStackPop() = ???
+  private def trashStackPop() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Pushes a piece of memory onto a #GTrashStack.
     *
-    * Pushes a piece of memory onto a #GTrashStack.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
+    "[trash_stack_push:/<function parameters>/stack_p]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
   )
-  def trashStackPush() = ???
+  private def trashStackPush() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Attempts to allocate @n_bytes, and returns %NULL on failure. Contrast with
+  /** Attempts to allocate @n_bytes, and returns %NULL on failure. Contrast with
     * g_malloc(), which aborts the program on failure.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def tryMalloc(
       n_bytes: CUnsignedLongInt /* Some(gsize) */
   ): Ptr[Byte] /* Some(gpointer) */ = g_try_malloc(gsize(n_bytes)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Attempts to allocate @n_bytes, initialized to 0's, and returns %NULL on
+  /** Attempts to allocate @n_bytes, initialized to 0's, and returns %NULL on
     * failure. Contrast with g_malloc0(), which aborts the program on failure.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def tryMalloc0(
       n_bytes: CUnsignedLongInt /* Some(gsize) */
   ): Ptr[Byte] /* Some(gpointer) */ = g_try_malloc0(gsize(n_bytes)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is similar to g_try_malloc0(), allocating (@n_blocks * @n_block_bytes)
+  /** This function is similar to g_try_malloc0(), allocating (@n_blocks * @n_block_bytes)
     * bytes, but care is taken to detect possible overflow during
     * multiplication.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def tryMalloc0N(
       n_blocks: CUnsignedLongInt /* Some(gsize) */,
@@ -9721,11 +10220,12 @@ object GLib:
   ): Ptr[Byte] /* Some(gpointer) */ =
     g_try_malloc0_n(gsize(n_blocks), gsize(n_block_bytes)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is similar to g_try_malloc(), allocating (@n_blocks * @n_block_bytes)
+  /** This function is similar to g_try_malloc(), allocating (@n_blocks * @n_block_bytes)
     * bytes, but care is taken to detect possible overflow during
     * multiplication.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def tryMallocN(
       n_blocks: CUnsignedLongInt /* Some(gsize) */,
@@ -9733,12 +10233,13 @@ object GLib:
   ): Ptr[Byte] /* Some(gpointer) */ =
     g_try_malloc_n(gsize(n_blocks), gsize(n_block_bytes)).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Attempts to realloc @mem to a new size, @n_bytes, and returns %NULL on
+  /** Attempts to realloc @mem to a new size, @n_bytes, and returns %NULL on
     * failure. Contrast with g_realloc(), which aborts the program on failure.
     *
     * If @mem is %NULL, behaves the same as g_try_malloc().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def tryRealloc(
       mem: Option[Ptr[Byte] /* Some(gpointer) */ ],
@@ -9748,11 +10249,12 @@ object GLib:
     gsize(n_bytes)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is similar to g_try_realloc(), allocating (@n_blocks * @n_block_bytes)
+  /** This function is similar to g_try_realloc(), allocating (@n_blocks * @n_block_bytes)
     * bytes, but care is taken to detect possible overflow during
     * multiplication.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def tryReallocN(
       mem: Option[Ptr[Byte] /* Some(gpointer) */ ],
@@ -9764,43 +10266,47 @@ object GLib:
     gsize(n_block_bytes)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convert a string from UCS-4 to UTF-16. A 0 character will be added to the
+  /** Convert a string from UCS-4 to UTF-16. A 0 character will be added to the
     * result after the converted text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ucs4_to_utf16 contains an OUT parameter, which is not supported yet"
+    "[ucs4_to_utf16:]: Function ucs4_to_utf16 contains an OUT parameter, which is not supported yet"
   )
-  def ucs4ToUtf16() = ???
+  private def ucs4ToUtf16() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convert a string from a 32-bit fixed width representation as UCS-4. to
+  /** Convert a string from a 32-bit fixed width representation as UCS-4. to
     * UTF-8. The result will be terminated with a 0 byte.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ucs4_to_utf8 contains an OUT parameter, which is not supported yet"
+    "[ucs4_to_utf8:]: Function ucs4_to_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def ucs4ToUtf8() = ???
+  private def ucs4ToUtf8() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines the break type of @c. @c should be a Unicode character (to
+  /** Determines the break type of @c. @c should be a Unicode character (to
     * derive a character from UTF-8 encoded text, use g_utf8_get_char()). The
     * break type is used to find word and line breaks ("text boundaries"), Pango
     * implements the Unicode boundary resolution algorithms and normally you
     * would use a function such as pango_break() instead of caring about break
     * types yourself.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharBreakType(
       c: CUnsignedInt /* Some(gunichar) */
   ): UnicodeBreakType /* Some(GUnicodeBreakType) */ =
     UnicodeBreakType.fromRaw(g_unichar_break_type(gunichar(guint32(c))))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determines the canonical combining class of a Unicode character.
     *
-    * Determines the canonical combining class of a Unicode character.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharCombiningClass(
       uc: CUnsignedInt /* Some(gunichar) */
@@ -9808,9 +10314,7 @@ object GLib:
     gunichar(guint32(uc))
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Performs a single composition step of the Unicode canonical composition
+  /** Performs a single composition step of the Unicode canonical composition
     * algorithm.
     *
     * This function includes algorithmic Hangul Jamo composition, but it is not
@@ -9823,15 +10327,16 @@ object GLib:
     * If @a and @b do not compose a new character, @ch is set to zero.
     *
     * See [UAX#15](http://unicode.org/reports/tr15/) for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function unichar_compose contains an OUT parameter, which is not supported yet"
+    "[unichar_compose:]: Function unichar_compose contains an OUT parameter, which is not supported yet"
   )
-  def unicharCompose() = ???
+  private def unicharCompose() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Performs a single decomposition step of the Unicode canonical
+  /** Performs a single decomposition step of the Unicode canonical
     * decomposition algorithm.
     *
     * This function does not include compatibility decompositions. It does,
@@ -9848,23 +10353,25 @@ object GLib:
     * g_unichar_fully_decompose().
     *
     * See [UAX#15](http://unicode.org/reports/tr15/) for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function unichar_decompose contains an OUT parameter, which is not supported yet"
+    "[unichar_decompose:]: Function unichar_decompose contains an OUT parameter, which is not supported yet"
   )
-  def unicharDecompose() = ???
+  private def unicharDecompose() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determines the numeric value of a character as a decimal digit.
     *
-    * Determines the numeric value of a character as a decimal digit.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharDigitValue(
       c: CUnsignedInt /* Some(gunichar) */
   ): Int /* Some(gint) */ = g_unichar_digit_value(gunichar(guint32(c))).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes the canonical or compatibility decomposition of a Unicode
+  /** Computes the canonical or compatibility decomposition of a Unicode
     * character. For compatibility decomposition, pass %TRUE for @compat; for
     * canonical decomposition pass %FALSE for @compat.
     *
@@ -9880,15 +10387,16 @@ object GLib:
     *   %G_UNICHAR_MAX_DECOMPOSITION_LENGTH.
     *
     * See [UAX#15](http://unicode.org/reports/tr15/) for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function unichar_fully_decompose contains an OUT parameter, which is not supported yet"
+    "[unichar_fully_decompose:]: Function unichar_fully_decompose contains an OUT parameter, which is not supported yet"
   )
-  def unicharFullyDecompose() = ???
+  private def unicharFullyDecompose() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * In Unicode, some characters are "mirrored". This means that their images
+  /** In Unicode, some characters are "mirrored". This means that their images
     * are mirrored horizontally in text that is laid out from right to left. For
     * instance, "(" would become its mirror image, ")", in right-to-left text.
     *
@@ -9896,183 +10404,199 @@ object GLib:
     * character that typically has a glyph that is the mirror image of @ch's
     * glyph and @mirrored_ch is set, it puts that character in the address
     * pointed to by @mirrored_ch. Otherwise the original character is put.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function unichar_get_mirror_char contains an OUT parameter, which is not supported yet"
+    "[unichar_get_mirror_char:]: Function unichar_get_mirror_char contains an OUT parameter, which is not supported yet"
   )
-  def unicharGetMirrorChar() = ???
+  private def unicharGetMirrorChar() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up the #GUnicodeScript for a particular character (as defined by
+  /** Looks up the #GUnicodeScript for a particular character (as defined by
     * Unicode Standard Annex \#24). No check is made for @ch being a valid
     * Unicode character; if you pass in invalid character, the result is
     * undefined.
     *
     * This function is equivalent to pango_script_for_unichar() and the two are
     * interchangeable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharGetScript(
       ch: CUnsignedInt /* Some(gunichar) */
   ): UnicodeScript /* Some(GUnicodeScript) */ =
     UnicodeScript.fromRaw(g_unichar_get_script(gunichar(guint32(ch))))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether a character is alphanumeric. Given some UTF-8 text,
+  /** Determines whether a character is alphanumeric. Given some UTF-8 text,
     * obtain a character value with g_utf8_get_char().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIsalnum(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_isalnum(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether a character is alphabetic (i.e. a letter). Given some
+  /** Determines whether a character is alphabetic (i.e. a letter). Given some
     * UTF-8 text, obtain a character value with g_utf8_get_char().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIsalpha(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_isalpha(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether a character is a control character. Given some UTF-8
+  /** Determines whether a character is a control character. Given some UTF-8
     * text, obtain a character value with g_utf8_get_char().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIscntrl(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_iscntrl(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determines if a given character is assigned in the Unicode standard.
     *
-    * Determines if a given character is assigned in the Unicode standard.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIsdefined(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_isdefined(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether a character is numeric (i.e. a digit). This covers
+  /** Determines whether a character is numeric (i.e. a digit). This covers
     * ASCII 0-9 and also digits in other languages/scripts. Given some UTF-8
     * text, obtain a character value with g_utf8_get_char().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIsdigit(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_isdigit(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether a character is printable and not a space (returns
+  /** Determines whether a character is printable and not a space (returns
     * %FALSE for control characters, format characters, and spaces).
     * g_unichar_isprint() is similar, but returns %TRUE for spaces. Given some
     * UTF-8 text, obtain a character value with g_utf8_get_char().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIsgraph(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_isgraph(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether a character is a lowercase letter. Given some UTF-8
+  /** Determines whether a character is a lowercase letter. Given some UTF-8
     * text, obtain a character value with g_utf8_get_char().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIslower(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_islower(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether a character is a mark (non-spacing mark, combining
+  /** Determines whether a character is a mark (non-spacing mark, combining
     * mark, or enclosing mark in Unicode speak). Given some UTF-8 text, obtain a
     * character value with g_utf8_get_char().
     *
     * Note: in most cases where isalpha characters are allowed, ismark
     * characters should be allowed to as they are essential for writing most
     * European languages as well as many non-Latin scripts.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIsmark(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_ismark(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether a character is printable. Unlike g_unichar_isgraph(),
+  /** Determines whether a character is printable. Unlike g_unichar_isgraph(),
     * returns %TRUE for spaces. Given some UTF-8 text, obtain a character value
     * with g_utf8_get_char().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIsprint(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_isprint(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether a character is punctuation or a symbol. Given some
+  /** Determines whether a character is punctuation or a symbol. Given some
     * UTF-8 text, obtain a character value with g_utf8_get_char().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIspunct(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_ispunct(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether a character is a space, tab, or line separator
+  /** Determines whether a character is a space, tab, or line separator
     * (newline, carriage return, etc.). Given some UTF-8 text, obtain a
     * character value with g_utf8_get_char().
     *
     * (Note: don't use this to do word breaking; you have to use Pango or
     * equivalent to get word breaking right, the algorithm is fairly complex.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIsspace(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_isspace(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines if a character is titlecase. Some characters in Unicode which
+  /** Determines if a character is titlecase. Some characters in Unicode which
     * are composites, such as the DZ digraph have three case variants instead of
     * just two. The titlecase form is used at the beginning of a word where only
     * the first letter is capitalized. The titlecase form of the DZ digraph is
     * U+01F2 LATIN CAPITAL LETTTER D WITH SMALL LETTER Z.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIstitle(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_istitle(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determines if a character is uppercase.
     *
-    * Determines if a character is uppercase.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIsupper(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_isupper(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determines if a character is typically rendered in a double-width cell.
     *
-    * Determines if a character is typically rendered in a double-width cell.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIswide(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_iswide(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines if a character is typically rendered in a double-width cell
+  /** Determines if a character is typically rendered in a double-width cell
     * under legacy East Asian locales. If a character is wide according to
     * g_unichar_iswide(), then it is also reported wide with this function, but
     * the converse is not necessarily true. See the [Unicode Standard Annex
@@ -10081,24 +10605,26 @@ object GLib:
     * If a character passes the g_unichar_iswide() test then it will also pass
     * this test, but not the other way around. Note that some characters may
     * pass both this test and g_unichar_iszerowidth().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIswideCjk(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_iswide_cjk(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determines if a character is a hexadecimal digit.
     *
-    * Determines if a character is a hexadecimal digit.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIsxdigit(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_isxdigit(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines if a given character typically takes zero width when rendered.
+  /** Determines if a given character typically takes zero width when rendered.
     * The return value is %TRUE for all non-spacing and enclosing marks (e.g.,
     * combining accents), format characters, zero-width space, but not U+00AD
     * SOFT HYPHEN.
@@ -10107,24 +10633,29 @@ object GLib:
     * g_unichar_iswide_cjk() to determine the number of cells a string occupies
     * when displayed on a grid display (terminals). However, note that not all
     * terminals support zero-width rendering of zero-width marks.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharIszerowidth(
       c: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_iszerowidth(gunichar(guint32(c))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts a single character to UTF-8.
     *
-    * Converts a single character to UTF-8.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function unichar_to_utf8 contains an OUT parameter, which is not supported yet"
+    "[unichar_to_utf8:]: Function unichar_to_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def unicharToUtf8() = ???
+  private def unicharToUtf8() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts a character to lower case.
     *
-    * Converts a character to lower case.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharTolower(
       c: CUnsignedInt /* Some(gunichar) */
@@ -10132,9 +10663,10 @@ object GLib:
     gunichar(guint32(c))
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts a character to the titlecase.
     *
-    * Converts a character to the titlecase.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharTotitle(
       c: CUnsignedInt /* Some(gunichar) */
@@ -10142,9 +10674,10 @@ object GLib:
     gunichar(guint32(c))
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts a character to uppercase.
     *
-    * Converts a character to uppercase.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharToupper(
       c: CUnsignedInt /* Some(gunichar) */
@@ -10152,57 +10685,60 @@ object GLib:
     gunichar(guint32(c))
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Classifies a Unicode character by type.
     *
-    * Classifies a Unicode character by type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharType(
       c: CUnsignedInt /* Some(gunichar) */
   ): UnicodeType /* Some(GUnicodeType) */ =
     UnicodeType.fromRaw(g_unichar_type(gunichar(guint32(c))))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks whether @ch is a valid Unicode character. Some possible integer
+  /** Checks whether @ch is a valid Unicode character. Some possible integer
     * values of @ch will not be valid. 0 is considered a valid character, though
     * it's normally a string terminator.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharValidate(
       ch: CUnsignedInt /* Some(gunichar) */
   ): Boolean /* Some(gboolean) */ =
     g_unichar_validate(gunichar(guint32(ch))).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determines the numeric value of a character as a hexadecimal digit.
     *
-    * Determines the numeric value of a character as a hexadecimal digit.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicharXdigitValue(
       c: CUnsignedInt /* Some(gunichar) */
   ): Int /* Some(gint) */ = g_unichar_xdigit_value(gunichar(guint32(c))).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Computes the canonical decomposition of a Unicode character.
     *
-    * Computes the canonical decomposition of a Unicode character.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(gsize), @type -> DataRecord(gsize*)))"
+    "[unicode_canonical_decomposition:/<function parameters>/result_len]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gsize), @type -> DataRecord(gsize*)))"
   )
-  def unicodeCanonicalDecomposition() = ???
+  private def unicodeCanonicalDecomposition() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes the canonical ordering of a string in-place. This rearranges
+  /** Computes the canonical ordering of a string in-place. This rearranges
     * decomposed characters in the string according to their combining classes.
     * See the Unicode manual for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gunichar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(gunichar*)))"
+    "[unicode_canonical_ordering:/<function parameters>/string]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gunichar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(gunichar*)))"
   )
-  def unicodeCanonicalOrdering() = ???
+  private def unicodeCanonicalOrdering() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up the Unicode script for @iso15924. ISO 15924 assigns four-letter
+  /** Looks up the Unicode script for @iso15924. ISO 15924 assigns four-letter
     * codes to scripts. For example, the code for Arabic is 'Arab'. This
     * function accepts four letter codes encoded as a @guint32 in a big-endian
     * fashion. That is, the code expected for Arabic is 0x41726162 (0x41 is
@@ -10210,15 +10746,16 @@ object GLib:
     *
     * See [Codes for the representation of names of
     * scripts](http://unicode.org/iso15924/codelists.html) for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicodeScriptFromIso15924(
       iso15924: UInt /* Some(guint32) */
   ): UnicodeScript /* Some(GUnicodeScript) */ =
     UnicodeScript.fromRaw(g_unicode_script_from_iso15924(guint32(iso15924)))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up the ISO 15924 code for @script. ISO 15924 assigns four-letter
+  /** Looks up the ISO 15924 code for @script. ISO 15924 assigns four-letter
     * codes to scripts. For example, the code for Arabic is 'Arab'. The four
     * letter codes are encoded as a @guint32 by this function in a big-endian
     * fashion. That is, the code returned for Arabic is 0x41726162 (0x41 is
@@ -10226,17 +10763,20 @@ object GLib:
     *
     * See [Codes for the representation of names of
     * scripts](http://unicode.org/iso15924/codelists.html) for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unicodeScriptToIso15924(
       script: UnicodeScript /* Some(GUnicodeScript) */
   ): UInt /* Some(guint32) */ = g_unicode_script_to_iso15924(script.raw).value
 
-  @annotation.compileTimeOnly("Method g_unix_error_quark has no target types")
-  def unixErrorQuark() = ???
+  @annotation.compileTimeOnly(
+    "[unix_error_quark:]: Method g_unix_error_quark has no target types"
+  )
+  private def unixErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a function to be called when the IO condition, as specified by
+  /** Sets a function to be called when the IO condition, as specified by
     * @condition
     *   becomes true for @fd.
     *
@@ -10250,39 +10790,48 @@ object GLib:
     * cancel the watch at any time that it exists.
     *
     * The source will never close the fd -- you must do it yourself.
-    */
-  @annotation.compileTimeOnly("Method g_unix_fd_add has no target types")
-  def unixFdAdd() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Sets a function to be called when the IO condition, as specified by
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[unix_fd_add:]: Method g_unix_fd_add has no target types"
+  )
+  private def unixFdAdd() = ???
+
+  /** Sets a function to be called when the IO condition, as specified by
     * @condition
     *   becomes true for @fd.
     *
     * This is the same as g_unix_fd_add(), except that it allows you to specify
     * a non-default priority and a provide a #GDestroyNotify for
     * @user_data.
-    */
-  @annotation.compileTimeOnly("Method g_unix_fd_add_full has no target types")
-  def unixFdAddFull() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Creates a #GSource to watch for a particular I/O condition on a file
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[unix_fd_add_full:]: Method g_unix_fd_add_full has no target types"
+  )
+  private def unixFdAddFull() = ???
+
+  /** Creates a #GSource to watch for a particular I/O condition on a file
     * descriptor.
     *
     * The source will never close the @fd — you must do it yourself.
     *
     * Any callback attached to the returned #GSource must have type
     * #GUnixFDSourceFunc.
-    */
-  @annotation.compileTimeOnly("Method g_unix_fd_source_new has no target types")
-  def unixFdSourceNew() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Get the `passwd` file entry for the given @user_name using `getpwnam_r()`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[unix_fd_source_new:]: Method g_unix_fd_source_new has no target types"
+  )
+  private def unixFdSourceNew() = ???
+
+  /** Get the `passwd` file entry for the given @user_name using `getpwnam_r()`.
     * This can fail if the given @user_name doesn’t exist.
     *
     * The returned `struct passwd` has been allocated using g_malloc() and
@@ -10293,15 +10842,16 @@ object GLib:
     * This function is safe to call from multiple threads concurrently.
     *
     * You will need to include `pwd.h` to get the definition of `struct passwd`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_get_passwd_entry has no target types"
+    "[unix_get_passwd_entry:]: Method g_unix_get_passwd_entry has no target types"
   )
-  def unixGetPasswdEntry() = ???
+  private def unixGetPasswdEntry() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Similar to the UNIX pipe() call, but on modern systems like Linux uses the
+  /** Similar to the UNIX pipe() call, but on modern systems like Linux uses the
     * pipe2() system call, which atomically creates a pipe with the configured
     * flags.
     *
@@ -10317,44 +10867,52 @@ object GLib:
     * `FD_CLOEXEC`, as that matches the underlying `pipe()` API more closely.
     * Prior to 2.78, only `FD_CLOEXEC` was supported. Support for `FD_CLOEXEC`
     * may be deprecated and removed in future.
-    */
-  @annotation.compileTimeOnly("Method g_unix_open_pipe has no target types")
-  def unixOpenPipe() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Control the non-blocking state of the given file descriptor, according to @nonblock.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[unix_open_pipe:]: Method g_unix_open_pipe has no target types"
+  )
+  private def unixOpenPipe() = ???
+
+  /** Control the non-blocking state of the given file descriptor, according to @nonblock.
     * On most systems this uses %O_NONBLOCK, but on some older ones may use
     * %O_NDELAY.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_set_fd_nonblocking has no target types"
+    "[unix_set_fd_nonblocking:]: Method g_unix_set_fd_nonblocking has no target types"
   )
-  def unixSetFdNonblocking() = ???
+  private def unixSetFdNonblocking() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A convenience function for g_unix_signal_source_new(), which attaches to
+  /** A convenience function for g_unix_signal_source_new(), which attaches to
     * the default #GMainContext. You can remove the watch using
     * g_source_remove().
-    */
-  @annotation.compileTimeOnly("Method g_unix_signal_add has no target types")
-  def unixSignalAdd() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * A convenience function for g_unix_signal_source_new(), which attaches to
-    * the default #GMainContext. You can remove the watch using
-    * g_source_remove().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_signal_add_full has no target types"
+    "[unix_signal_add:]: Method g_unix_signal_add has no target types"
   )
-  def unixSignalAddFull() = ???
+  private def unixSignalAdd() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A convenience function for g_unix_signal_source_new(), which attaches to
+    * the default #GMainContext. You can remove the watch using
+    * g_source_remove().
     *
-    * Create a #GSource that will be dispatched upon delivery of the UNIX signal @signum.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[unix_signal_add_full:]: Method g_unix_signal_add_full has no target types"
+  )
+  private def unixSignalAddFull() = ???
+
+  /** Create a #GSource that will be dispatched upon delivery of the UNIX signal @signum.
     * In GLib versions before 2.36, only `SIGHUP`, `SIGINT`, `SIGTERM` can be
     * monitored. In GLib 2.36, `SIGUSR1` and `SIGUSR2` were added. In GLib 2.54,
     * `SIGWINCH` was added.
@@ -10376,28 +10934,30 @@ object GLib:
     *
     * The source will not initially be associated with any #GMainContext and
     * must be added to one with g_source_attach() before it will be executed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_unix_signal_source_new has no target types"
+    "[unix_signal_source_new:]: Method g_unix_signal_source_new has no target types"
   )
-  def unixSignalSourceNew() = ???
+  private def unixSignalSourceNew() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A wrapper for the POSIX unlink() function. The unlink() function deletes a
+  /** A wrapper for the POSIX unlink() function. The unlink() function deletes a
     * name from the filesystem. If this was the last link to the file and no
     * processes have it opened, the diskspace occupied by the file is freed.
     *
     * See your C library manual for more details about unlink(). Note that on
     * Windows, it is in general not possible to delete files that are open to
     * some process, or mapped into memory.
-    */
-  @annotation.compileTimeOnly("Method g_unlink has no target types")
-  def unlink() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Removes an environment variable from the environment.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly("[unlink:]: Method g_unlink has no target types")
+  private def unlink() = ???
+
+  /** Removes an environment variable from the environment.
     *
     * Note that on some systems, when variables are overwritten, the memory used
     * for the previous variables and its value isn't reclaimed.
@@ -10414,6 +10974,9 @@ object GLib:
     * g_get_environ() to get an environment array, modify that with
     * g_environ_setenv() and g_environ_unsetenv(), and then pass that array
     * directly to execvpe(), g_spawn_async(), or the like.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetenv(
       variable: String | CString /* Some(Ptr[gchar]) */
@@ -10421,21 +10984,20 @@ object GLib:
     __sn_extract_string(variable).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GUri from the given components according to @flags.
+  /** Creates a new #GUri from the given components according to @flags.
     *
     * See also g_uri_build_with_user(), which allows specifying the components
     * of the "userinfo" separately.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
+    "[uri_build:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
   )
-  def uriBuild() = ???
+  private def uriBuild() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GUri from the given components according to @flags
+  /** Creates a new #GUri from the given components according to @flags
     * (%G_URI_FLAGS_HAS_PASSWORD is added unconditionally). The @flags must be
     * coherent with the passed values, in particular use `%`-encoded values with
     * %G_URI_FLAGS_ENCODED.
@@ -10443,20 +11005,21 @@ object GLib:
     * In contrast to g_uri_build(), this allows specifying the components of the
     * ‘userinfo’ field separately. Note that @user must be non-%NULL if either @password
     * or @auth_params is non-%NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
+    "[uri_build_with_user:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
   )
-  def uriBuildWithUser() = ???
+  private def uriBuildWithUser() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[uri_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def uriErrorQuark() = ???
+  private def uriErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Escapes arbitrary data for use in a URI.
+  /** Escapes arbitrary data for use in a URI.
     *
     * Normally all characters that are not ‘unreserved’ (i.e. ASCII
     * alphanumerical characters plus dash, dot, underscore and tilde) are
@@ -10467,15 +11030,16 @@ object GLib:
     *
     * Though technically incorrect, this will also allow escaping nul bytes as
     * `%``00`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guint8*)))"
+    "[uri_escape_bytes:/<function parameters>/unescaped]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guint8*)))"
   )
-  def uriEscapeBytes() = ???
+  private def uriEscapeBytes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Escapes a string for use in a URI.
+  /** Escapes a string for use in a URI.
     *
     * Normally all characters that are not "unreserved" (i.e. ASCII
     * alphanumerical characters plus dash, dot, underscore and tilde) are
@@ -10483,6 +11047,9 @@ object GLib:
     * not escaped. This is useful for the "reserved" characters in the URI
     * specification, since those are allowed unescaped in some portions of a
     * URI.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def uriEscapeString(
       unescaped: String | CString /* Some(CString) */,
@@ -10498,9 +11065,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses @uri_string according to @flags, to determine whether it is a valid
+  /** Parses @uri_string according to @flags, to determine whether it is a valid
     * [absolute URI][relative-absolute-uris], i.e. it does not need to be
     * resolved relative to another URI using g_uri_parse_relative().
     *
@@ -10508,6 +11073,9 @@ object GLib:
     *
     * See g_uri_split(), and the definition of #GUriFlags, for more information
     * on the effect of @flags.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def uriIsValid(
       uri_string: String | CString /* Some(Ptr[gchar]) */,
@@ -10521,9 +11089,7 @@ object GLib:
       ).value.!=(0)
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Joins the given components together according to @flags to create an
+  /** Joins the given components together according to @flags to create an
     * absolute URI string. @path may not be %NULL (though it may be the empty
     * string).
     *
@@ -10537,6 +11103,9 @@ object GLib:
     *
     * %G_URI_FLAGS_HAS_PASSWORD and %G_URI_FLAGS_HAS_AUTH_PARAMS are ignored if
     * set in @flags.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def uriJoin(
       flags: UriFlags /* Some(GUriFlags) */,
@@ -10570,9 +11139,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Joins the given components together according to @flags to create an
+  /** Joins the given components together according to @flags to create an
     * absolute URI string. @path may not be %NULL (though it may be the empty
     * string).
     *
@@ -10581,6 +11148,9 @@ object GLib:
     *
     * %G_URI_FLAGS_HAS_PASSWORD and %G_URI_FLAGS_HAS_AUTH_PARAMS are ignored if
     * set in @flags.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def uriJoinWithUser(
       flags: UriFlags /* Some(GUriFlags) */,
@@ -10622,31 +11192,31 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Splits an URI list conforming to the text/uri-list mime type defined in
+  /** Splits an URI list conforming to the text/uri-list mime type defined in
     * RFC 2483 into individual URIs, discarding any comments. The URIs are not
     * validated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[uri_list_extract_uris:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def uriListExtractUris() = ???
+  private def uriListExtractUris() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses @uri_string according to @flags. If the result is not a valid
+  /** Parses @uri_string according to @flags. If the result is not a valid
     * [absolute URI][relative-absolute-uris], it will be discarded, and an error
     * returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
+    "[uri_parse:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
   )
-  def uriParse() = ???
+  private def uriParse() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Many URI schemes include one or more attribute/value pairs as part of the
+  /** Many URI schemes include one or more attribute/value pairs as part of the
     * URI value. This method can be used to parse them into a hash table. When
     * an attribute has multiple occurrences, the last value is the final
     * returned value. If you need to handle repeated attributes differently, use
@@ -10671,21 +11241,24 @@ object GLib:
     *
     * If @params cannot be parsed (for example, it contains two @separators
     * characters in a row), then @error is set and %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[uri_parse_params:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
-  def uriParseParams() = ???
+  private def uriParseParams() = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Gets the scheme portion of a URI string.
+  /**  Gets the scheme portion of a URI string.
     *  [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3) decodes the scheme
     *  as:
     *  |[
     *  URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
     *  ]|
     *  Common schemes include `file`, `https`, `svn+ssh`, etc.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def uriParseScheme(
       uri: String | CString /* Some(CString) */
@@ -10693,9 +11266,7 @@ object GLib:
     g_uri_parse_scheme(__sn_extract_string(uri)).asInstanceOf
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Gets the scheme portion of a URI string.
+  /**  Gets the scheme portion of a URI string.
     *  [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3) decodes the scheme
     *  as:
     *  |[
@@ -10705,6 +11276,8 @@ object GLib:
     *
     *  Unlike g_uri_parse_scheme(), the returned scheme is normalized to
     *  all-lowercase and does not need to be freed.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def uriPeekScheme(
       uri: String | CString /* Some(CString) */
@@ -10712,9 +11285,7 @@ object GLib:
     g_uri_peek_scheme(__sn_extract_string(uri)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses @uri_ref according to @flags and, if it is a [relative
+  /** Parses @uri_ref according to @flags and, if it is a [relative
     * URI][relative-absolute-uris], resolves it relative to
     * @base_uri_string.
     *   If the result is not a valid absolute URI, it will be discarded, and an
@@ -10722,6 +11293,9 @@ object GLib:
     *
     * (If @base_uri_string is %NULL, this just returns @uri_ref, or %NULL if @uri_ref
     * is invalid or not absolute.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def uriResolveRelative(
       base_uri_string: Option[String | CString /* Some(Ptr[gchar]) */ ],
@@ -10743,9 +11317,7 @@ object GLib:
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses @uri_ref (which can be an [absolute or relative
+  /** Parses @uri_ref (which can be an [absolute or relative
     * URI][relative-absolute-uris]) according to @flags, and returns the pieces.
     * Any component that doesn't appear in @uri_ref will be returned as %NULL
     * (but note that all URIs always have a path component, though it may be the
@@ -10761,29 +11333,31 @@ object GLib:
     * Note that the %G_URI_FLAGS_HAS_PASSWORD and %G_URI_FLAGS_HAS_AUTH_PARAMS @flags
     * are ignored by g_uri_split(), since it always returns only the full
     * userinfo; use g_uri_split_with_user() if you want it split up.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function uri_split contains an OUT parameter, which is not supported yet"
+    "[uri_split:]: Function uri_split contains an OUT parameter, which is not supported yet"
   )
-  def uriSplit() = ???
+  private def uriSplit() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses @uri_string (which must be an [absolute
+  /** Parses @uri_string (which must be an [absolute
     * URI][relative-absolute-uris]) according to @flags, and returns the pieces
     * relevant to connecting to a host. See the documentation for g_uri_split()
     * for more details; this is mostly a wrapper around that function with
     * simpler arguments. However, it will return an error if @uri_string is a
     * relative URI, or does not contain a hostname component.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function uri_split_network contains an OUT parameter, which is not supported yet"
+    "[uri_split_network:]: Function uri_split_network contains an OUT parameter, which is not supported yet"
   )
-  def uriSplitNetwork() = ???
+  private def uriSplitNetwork() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses @uri_ref (which can be an [absolute or relative
+  /** Parses @uri_ref (which can be an [absolute or relative
     * URI][relative-absolute-uris]) according to @flags, and returns the pieces.
     * Any component that doesn't appear in @uri_ref will be returned as %NULL
     * (but note that all URIs always have a path component, though it may be the
@@ -10794,15 +11368,16 @@ object GLib:
     * contains %G_URI_FLAGS_HAS_PASSWORD, and
     * @auth_params
     *   will only be parsed out if @flags contains %G_URI_FLAGS_HAS_AUTH_PARAMS.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function uri_split_with_user contains an OUT parameter, which is not supported yet"
+    "[uri_split_with_user:]: Function uri_split_with_user contains an OUT parameter, which is not supported yet"
   )
-  def uriSplitWithUser() = ???
+  private def uriSplitWithUser() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Unescapes a segment of an escaped string as binary data.
+  /** Unescapes a segment of an escaped string as binary data.
     *
     * Note that in contrast to g_uri_unescape_string(), this does allow nul
     * bytes to appear in the output.
@@ -10812,15 +11387,16 @@ object GLib:
     * returned. This is useful if you want to avoid for instance having a slash
     * being expanded in an escaped path element, which might confuse pathname
     * handling.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
+    "[uri_unescape_bytes:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def uriUnescapeBytes() = ???
+  private def uriUnescapeBytes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Unescapes a segment of an escaped string.
+  /** Unescapes a segment of an escaped string.
     *
     * If any of the characters in @illegal_characters or the NUL character
     * appears as an escaped character in @escaped_string, then that is an error
@@ -10830,6 +11406,9 @@ object GLib:
     *
     * Note: `NUL` byte is not accepted in the output, in contrast to
     * g_uri_unescape_bytes().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def uriUnescapeSegment(
       escaped_string: Option[String | CString /* Some(CString) */ ],
@@ -10849,15 +11428,16 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Unescapes a whole escaped string.
+  /** Unescapes a whole escaped string.
     *
     * If any of the characters in @illegal_characters or the NUL character
     * appears as an escaped character in @escaped_string, then that is an error
     * and %NULL will be returned. This is useful if you want to avoid for
     * instance having a slash being expanded in an escaped path element, which
     * might confuse pathname handling.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def uriUnescapeString(
       escaped_string: String | CString /* Some(CString) */,
@@ -10871,31 +11451,31 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Pauses the current thread for the given number of microseconds.
+  /** Pauses the current thread for the given number of microseconds.
     *
     * There are 1 million microseconds per second (represented by the
     * %G_USEC_PER_SEC macro). g_usleep() may have limited precision, depending
     * on hardware and operating system; don't rely on the exact length of the
     * sleep.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def usleep(
       microseconds: CUnsignedLongInt /* Some(gulong) */
   ): Unit /* Some(Unit) */ = g_usleep(gulong(microseconds))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Convert a string from UTF-16 to UCS-4. The result will be nul-terminated.
     *
-    * Convert a string from UTF-16 to UCS-4. The result will be nul-terminated.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function utf16_to_ucs4 contains an OUT parameter, which is not supported yet"
+    "[utf16_to_ucs4:]: Function utf16_to_ucs4 contains an OUT parameter, which is not supported yet"
   )
-  def utf16ToUcs4() = ???
+  private def utf16ToUcs4() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convert a string from UTF-16 to UTF-8. The result will be terminated with
+  /** Convert a string from UTF-16 to UTF-8. The result will be terminated with
     * a 0 byte.
     *
     * Note that the input is expected to be already in native endianness, an
@@ -10908,15 +11488,16 @@ object GLib:
     * function is to ensure that the input can be correctly interpreted as
     * UTF-16, i.e. it doesn't contain unpaired surrogates or partial character
     * sequences.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function utf16_to_utf8 contains an OUT parameter, which is not supported yet"
+    "[utf16_to_utf8:]: Function utf16_to_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def utf16ToUtf8() = ???
+  private def utf16ToUtf8() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string into a form that is independent of case. The result will
+  /** Converts a string into a form that is independent of case. The result will
     * not correspond to any particular case, but can be compared for equality or
     * ordered with the results of calling g_utf8_casefold() on other strings.
     *
@@ -10925,6 +11506,9 @@ object GLib:
     * though it is a fairly good one. Getting this exactly right would require a
     * more sophisticated collation function that takes case sensitivity into
     * account. GLib does not currently provide such a function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Casefold(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -10936,9 +11520,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compares two strings for ordering using the linguistically correct rules
+  /** Compares two strings for ordering using the linguistically correct rules
     * for the [current locale][setlocale]. When sorting a large number of
     * strings, it will be significantly faster to obtain collation keys with
     * g_utf8_collate_key() and compare the keys with strcmp() when sorting
@@ -10947,6 +11529,9 @@ object GLib:
     * If the two strings are not comparable due to being in different collation
     * sequences, the result is undefined. This can happen if the strings are in
     * different language scripts, for example.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Collate(
       str1: String | CString /* Some(Ptr[gchar]) */,
@@ -10956,9 +11541,7 @@ object GLib:
     __sn_extract_string(str2).asInstanceOf[Ptr[gchar]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string into a collation key that can be compared with other
+  /** Converts a string into a collation key that can be compared with other
     * collation keys produced by the same function using strcmp().
     *
     * The results of comparing the collation keys of two strings with strcmp()
@@ -10966,6 +11549,9 @@ object GLib:
     * g_utf8_collate().
     *
     * Note that this function depends on the [current locale][setlocale].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8CollateKey(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -10977,9 +11563,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string into a collation key that can be compared with other
+  /** Converts a string into a collation key that can be compared with other
     * collation keys produced by the same function using strcmp().
     *
     * In order to sort filenames correctly, this function treats the dot '.' as
@@ -10990,6 +11574,9 @@ object GLib:
     * is sorted as "file1" "file5" "file10".
     *
     * Note that this function depends on the [current locale][setlocale].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8CollateKeyForFilename(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -11001,9 +11588,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finds the start of the next UTF-8 character in the string after @p.
+  /** Finds the start of the next UTF-8 character in the string after @p.
     *
     * @p
     *   does not have to be at the beginning of a UTF-8 character. No check is
@@ -11015,6 +11600,9 @@ object GLib:
     * @end
     *   is non-%NULL, the return value will be %NULL if the end of the string is
     *   reached.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8FindNextChar(
       p: String | CString /* Some(Ptr[gchar]) */,
@@ -11028,9 +11616,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Given a position @p with a UTF-8 encoded string @str, find the start of
+  /** Given a position @p with a UTF-8 encoded string @str, find the start of
     * the previous UTF-8 character starting before @p. Returns %NULL if no UTF-8
     * characters are present in @str before @p.
     *
@@ -11038,6 +11624,9 @@ object GLib:
     *   does not have to be at the beginning of a UTF-8 character. No check is
     *   made to see if the character found is actually valid other than it
     *   starts with an appropriate byte.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8FindPrevChar(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -11049,13 +11638,14 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a sequence of bytes encoded as UTF-8 to a Unicode character.
+  /** Converts a sequence of bytes encoded as UTF-8 to a Unicode character.
     *
     * If @p does not point to a valid UTF-8 encoded character, results are
     * undefined. If you are not sure that the bytes are complete valid Unicode
     * characters, you should use g_utf8_get_char_validated() instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8GetChar(
       p: String | CString /* Some(Ptr[gchar]) */
@@ -11063,9 +11653,7 @@ object GLib:
     __sn_extract_string(p).asInstanceOf[Ptr[gchar]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convert a sequence of bytes encoded as UTF-8 to a Unicode character. This
+  /** Convert a sequence of bytes encoded as UTF-8 to a Unicode character. This
     * function checks for incomplete characters, for invalid characters such as
     * characters that are out of the range of Unicode, and for overlong
     * encodings of valid characters.
@@ -11074,6 +11662,9 @@ object GLib:
     * @max_len
     *   is positive and any of the bytes in the first UTF-8 character sequence
     *   are nul.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8GetCharValidated(
       p: String | CString /* Some(Ptr[gchar]) */,
@@ -11083,9 +11674,7 @@ object GLib:
     gssize(max_len)
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If the provided string is valid UTF-8, return a copy of it. If not, return
+  /** If the provided string is valid UTF-8, return a copy of it. If not, return
     * a copy in which bytes that could not be interpreted as valid Unicode are
     * replaced with the Unicode replacement character (U+FFFD).
     *
@@ -11094,6 +11683,9 @@ object GLib:
     * UTF-8 version of it that can be logged or displayed to the user, with the
     * assumption that it is close enough to ASCII or UTF-8 to be mostly readable
     * as-is.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8MakeValid(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -11105,9 +11697,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string into canonical form, standardizing such issues as
+  /** Converts a string into canonical form, standardizing such issues as
     * whether a character with an accent is represented as a base character and
     * combining accent or as a single precomposed character. The string has to
     * be valid UTF-8, otherwise %NULL is returned. You should generally call
@@ -11125,6 +11715,9 @@ object GLib:
     * composed forms rather than a maximally decomposed form. This is often
     * useful if you intend to convert the string to a legacy encoding or pass it
     * to a system with less capable Unicode handling.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Normalize(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -11138,9 +11731,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts from an integer character offset to a pointer to a position
+  /** Converts from an integer character offset to a pointer to a position
     * within the string.
     *
     * Since 2.10, this function allows to pass a negative @offset to step
@@ -11153,34 +11744,39 @@ object GLib:
     * before calling that function. Call g_utf8_strlen() when unsure. This
     * limitation exists as this function is called frequently during text
     * rendering and therefore has to be as fast as possible.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(glong), @type -> DataRecord(glong)))"
+    "[utf8_offset_to_pointer:/<function parameters>/offset]: Cannot render type Type(List(),ListMap(@name -> DataRecord(glong), @type -> DataRecord(glong)))"
   )
-  def utf8OffsetToPointer() = ???
+  private def utf8OffsetToPointer() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts from a pointer to position within a string to an integer
+  /** Converts from a pointer to position within a string to an integer
     * character offset.
     *
     * Since 2.10, this function allows @pos to be before @str, and returns a
     * negative offset in this case.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(glong), @type -> DataRecord(glong)))"
+    "[utf8_pointer_to_offset:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(glong), @type -> DataRecord(glong)))"
   )
-  def utf8PointerToOffset() = ???
+  private def utf8PointerToOffset() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finds the previous UTF-8 character in the string before @p.
+  /** Finds the previous UTF-8 character in the string before @p.
     *
     * @p
     *   does not have to be at the beginning of a UTF-8 character. No check is
     *   made to see if the character found is actually valid other than it
     *   starts with an appropriate byte. If @p might be the first character of
     *   the string, you must use g_utf8_find_prev_char() instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8PrevChar(
       p: String | CString /* Some(Ptr[gchar]) */
@@ -11190,11 +11786,12 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finds the leftmost occurrence of the given Unicode character in a UTF-8
+  /** Finds the leftmost occurrence of the given Unicode character in a UTF-8
     * encoded string, while limiting the search to @len bytes. If @len is -1,
     * allow unbounded search.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strchr(
       p: String | CString /* Some(Ptr[gchar]) */,
@@ -11208,11 +11805,12 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts all Unicode characters in the string that have a case to
+  /** Converts all Unicode characters in the string that have a case to
     * lowercase. The exact manner that this is done depends on the current
     * locale, and may result in the number of characters in the string changing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strdown(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -11224,26 +11822,28 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes the length of the string in characters, not including the
+  /** Computes the length of the string in characters, not including the
     * terminating nul character. If the @max'th byte falls in the middle of a
     * character, the last (partial) character is not counted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(glong), @type -> DataRecord(glong)))"
+    "[utf8_strlen:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(glong), @type -> DataRecord(glong)))"
   )
-  def utf8Strlen() = ???
+  private def utf8Strlen() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like the standard C strncpy() function, but copies a given number of
+  /** Like the standard C strncpy() function, but copies a given number of
     * characters instead of a given number of bytes. The @src string must be
     * valid UTF-8 encoded text. (Use g_utf8_validate() on all text before trying
     * to use UTF-8 utility functions with it.)
     *
     * Note you must ensure @dest is at least 4 * @n + 1 to fit the largest
     * possible UTF-8 characters
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strncpy(
       dest: String | CString /* Some(Ptr[gchar]) */,
@@ -11257,11 +11857,12 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Find the rightmost occurrence of the given Unicode character in a UTF-8
+  /** Find the rightmost occurrence of the given Unicode character in a UTF-8
     * encoded string, while limiting the search to @len bytes. If @len is -1,
     * allow unbounded search.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strrchr(
       p: String | CString /* Some(Ptr[gchar]) */,
@@ -11275,9 +11876,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reverses a UTF-8 string. @str must be valid UTF-8 encoded text. (Use
+  /** Reverses a UTF-8 string. @str must be valid UTF-8 encoded text. (Use
     * g_utf8_validate() on all text before trying to use UTF-8 utility functions
     * with it.)
     *
@@ -11288,6 +11887,9 @@ object GLib:
     *
     * Note that unlike g_strreverse(), this function returns newly-allocated
     * memory, which should be freed with g_free() when no longer needed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strreverse(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -11299,12 +11901,13 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts all Unicode characters in the string that have a case to
+  /** Converts all Unicode characters in the string that have a case to
     * uppercase. The exact manner that this is done depends on the current
     * locale, and may result in the number of characters in the string
     * increasing. (For instance, the German ess-zet will be changed to SS.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strup(
       str: String | CString /* Some(Ptr[gchar]) */,
@@ -11316,59 +11919,64 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Copies a substring out of a UTF-8 encoded string. The substring will
+  /** Copies a substring out of a UTF-8 encoded string. The substring will
     * contain @end_pos - @start_pos characters.
     *
     * Since GLib 2.72, `-1` can be passed to @end_pos to indicate the end of the
     * string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(glong), @type -> DataRecord(glong)))"
+    "[utf8_substring:/<function parameters>/start_pos]: Cannot render type Type(List(),ListMap(@name -> DataRecord(glong), @type -> DataRecord(glong)))"
   )
-  def utf8Substring() = ???
+  private def utf8Substring() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convert a string from UTF-8 to a 32-bit fixed width representation as
+  /** Convert a string from UTF-8 to a 32-bit fixed width representation as
     * UCS-4. A trailing 0 character will be added to the string after the
     * converted text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function utf8_to_ucs4 contains an OUT parameter, which is not supported yet"
+    "[utf8_to_ucs4:]: Function utf8_to_ucs4 contains an OUT parameter, which is not supported yet"
   )
-  def utf8ToUcs4() = ???
+  private def utf8ToUcs4() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convert a string from UTF-8 to a 32-bit fixed width representation as
+  /** Convert a string from UTF-8 to a 32-bit fixed width representation as
     * UCS-4, assuming valid UTF-8 input. This function is roughly twice as fast
     * as g_utf8_to_ucs4() but does no error checking on the input. A trailing 0
     * character will be added to the string after the converted text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function utf8_to_ucs4_fast contains an OUT parameter, which is not supported yet"
+    "[utf8_to_ucs4_fast:]: Function utf8_to_ucs4_fast contains an OUT parameter, which is not supported yet"
   )
-  def utf8ToUcs4Fast() = ???
+  private def utf8ToUcs4Fast() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convert a string from UTF-8 to UTF-16. A 0 character will be added to the
+  /** Convert a string from UTF-8 to UTF-16. A 0 character will be added to the
     * result after the converted text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function utf8_to_utf16 contains an OUT parameter, which is not supported yet"
+    "[utf8_to_utf16:]: Function utf8_to_utf16 contains an OUT parameter, which is not supported yet"
   )
-  def utf8ToUtf16() = ???
+  private def utf8ToUtf16() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Cuts off the middle of the string, preserving half of @truncate_length
+  /** Cuts off the middle of the string, preserving half of @truncate_length
     * characters at the beginning and half at the end.
     *
     * If @string is already short enough, this returns a copy of @string. If @truncate_length
     * is `0`, an empty string is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8TruncateMiddle(
       string: String | CString /* Some(Ptr[gchar]) */,
@@ -11380,9 +11988,7 @@ object GLib:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Validates UTF-8 encoded text. @str is the text to validate; if @str is
+  /** Validates UTF-8 encoded text. @str is the text to validate; if @str is
     * nul-terminated, then @max_len can be -1, otherwise
     * @max_len
     *   should be the number of bytes to validate. If @end is non-%NULL, then
@@ -11396,27 +12002,29 @@ object GLib:
     * Returns %TRUE if all of @str was valid. Many GLib and GTK routines require
     * valid UTF-8 as input; so data read from a file or the network should be
     * checked with g_utf8_validate() before doing anything else with it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function utf8_validate contains an OUT parameter, which is not supported yet"
+    "[utf8_validate:]: Function utf8_validate contains an OUT parameter, which is not supported yet"
   )
-  def utf8Validate() = ???
+  private def utf8Validate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Validates UTF-8 encoded text.
+  /** Validates UTF-8 encoded text.
     *
     * As with g_utf8_validate(), but @max_len must be set, and hence this
     * function will always return %FALSE if any of the bytes of @str are nul.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function utf8_validate_len contains an OUT parameter, which is not supported yet"
+    "[utf8_validate_len:]: Function utf8_validate_len contains an OUT parameter, which is not supported yet"
   )
-  def utf8ValidateLen() = ???
+  private def utf8ValidateLen() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses the string @str and verify if it is a UUID.
+  /** Parses the string @str and verify if it is a UUID.
     *
     * The function accepts the following syntax:
     *
@@ -11424,6 +12032,9 @@ object GLib:
     *
     * Note that hyphens are required within the UUID string itself, as per the
     * aforementioned RFC.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def uuidStringIsValid(
       str: String | CString /* Some(Ptr[gchar]) */
@@ -11431,23 +12042,22 @@ object GLib:
     __sn_extract_string(str).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Generates a random UUID (RFC 4122 version 4) as a string. It has the same
+  /** Generates a random UUID (RFC 4122 version 4) as a string. It has the same
     * randomness guarantees as #GRand, so must not be used for cryptographic
     * purposes such as key generation, nonces, salts or one-time pads.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def uuidStringRandom()(using Zone): String /* Some(Ptr[gchar]) */ =
     fromCString(g_uuid_string_random().asInstanceOf)
 
   @annotation.compileTimeOnly(
-    "Function variant_get_gtype is weird: Incorrectly sitting in gobject bindings?"
+    "[variant_get_gtype:]: Function variant_get_gtype is weird: Incorrectly sitting in gobject bindings?"
   )
-  def variantGetGtype() = ???
+  private def variantGetGtype() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines if a given string is a valid D-Bus object path. You should
+  /** Determines if a given string is a valid D-Bus object path. You should
     * ensure that a string is a valid D-Bus object path before passing it to
     * g_variant_new_object_path().
     *
@@ -11455,6 +12065,9 @@ object GLib:
     * characters separated by `/` characters. Each sequence must contain only
     * the characters `[A-Z][a-z][0-9]_`. No sequence (including the one
     * following the final `/` character) may be empty.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def variantIsObjectPath(
       string: String | CString /* Some(Ptr[gchar]) */
@@ -11462,14 +12075,15 @@ object GLib:
     __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines if a given string is a valid D-Bus type signature. You should
+  /** Determines if a given string is a valid D-Bus type signature. You should
     * ensure that a string is a valid D-Bus type signature before passing it to
     * g_variant_new_signature().
     *
     * D-Bus type signatures consist of zero or more definite #GVariantType
     * strings in sequence.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def variantIsSignature(
       string: String | CString /* Some(Ptr[gchar]) */
@@ -11477,9 +12091,7 @@ object GLib:
     __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a #GVariant from a text representation.
+  /** Parses a #GVariant from a text representation.
     *
     * A single #GVariant is parsed from the content of @text.
     *
@@ -11511,15 +12123,16 @@ object GLib:
     * There may be implementation specific restrictions on deeply nested values,
     * which would result in a %G_VARIANT_PARSE_ERROR_RECURSION error. #GVariant
     * is guaranteed to handle nesting up to at least 64 levels.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(VariantType), @type -> DataRecord(const GVariantType*)))"
+    "[variant_parse:/<function parameters>/type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(VariantType), @type -> DataRecord(const GVariantType*)))"
   )
-  def variantParse() = ???
+  private def variantParse() = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Pretty-prints a message showing the context of a #GVariant parse
+  /**  Pretty-prints a message showing the context of a #GVariant parse
     *  error within the string for which parsing was attempted.
     *
     *  The resulting string is suitable for output to the console or other
@@ -11548,30 +12161,33 @@ object GLib:
     *  If @source_str was not nul-terminated when you passed it to
     *  g_variant_parse() then you must add nul termination before using this
     *  function.
-    */
-  @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError*)))"
-  )
-  def variantParseErrorPrintContext() = ???
-
-  @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
-  )
-  def variantParseErrorQuark() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Same as g_variant_error_quark().
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+    "[variant_parse_error_print_context:/<function parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError*)))"
   )
-  def variantParserGetErrorQuark() = ???
+  private def variantParseErrorPrintContext() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(VariantType), @type -> DataRecord(const GVariantType*)))"
+    "[variant_parse_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
-  def variantTypeChecked() = ???
+  private def variantParseErrorQuark() = ???
+
+  /** Same as g_variant_error_quark().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[variant_parser_get_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
+  )
+  private def variantParserGetErrorQuark() = ???
+
+  @annotation.compileTimeOnly(
+    "[variant_type_checked_:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(VariantType), @type -> DataRecord(const GVariantType*)))"
+  )
+  private def variantTypeChecked() = ???
 
   def variantTypeStringGetDepth(
       type_string: String | CString /* Some(Ptr[gchar]) */
@@ -11580,11 +12196,12 @@ object GLib:
       __sn_extract_string(type_string).asInstanceOf[Ptr[gchar]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if @type_string is a valid GVariant type string. This call is
+  /** Checks if @type_string is a valid GVariant type string. This call is
     * equivalent to calling g_variant_type_string_scan() and confirming that the
     * following character is a nul terminator.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def variantTypeStringIsValid(
       type_string: String | CString /* Some(Ptr[gchar]) */
@@ -11592,9 +12209,7 @@ object GLib:
     __sn_extract_string(type_string).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Scan for a single complete and valid GVariant type string in @string. The
+  /** Scan for a single complete and valid GVariant type string in @string. The
     * memory pointed to by @limit (or bytes beyond it) is never accessed.
     *
     * If a valid type string is found, @endptr is updated to point to the first
@@ -11605,15 +12220,16 @@ object GLib:
     *
     * For the simple case of checking if a string is a valid type string, see
     * g_variant_type_string_is_valid().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function variant_type_string_scan contains an OUT parameter, which is not supported yet"
+    "[variant_type_string_scan:]: Function variant_type_string_scan contains an OUT parameter, which is not supported yet"
   )
-  def variantTypeStringScan() = ???
+  private def variantTypeStringScan() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An implementation of the GNU vasprintf() function which supports
+  /** An implementation of the GNU vasprintf() function which supports
     * positional parameters, as specified in the Single Unix Specification. This
     * function is similar to g_vsprintf(), except that it allocates a string to
     * hold the output, instead of putting the output in a buffer you allocate in
@@ -11626,35 +12242,44 @@ object GLib:
     *
     * `glib/gprintf.h` must be explicitly included in order to use this
     * function.
-    */
-  @annotation.compileTimeOnly("Method g_vasprintf has no target types")
-  def vasprintf() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * An implementation of the standard fprintf() function which supports
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[vasprintf:]: Method g_vasprintf has no target types"
+  )
+  private def vasprintf() = ???
+
+  /** An implementation of the standard fprintf() function which supports
     * positional parameters, as specified in the Single Unix Specification.
     *
     * `glib/gprintf.h` must be explicitly included in order to use this
     * function.
-    */
-  @annotation.compileTimeOnly("Method g_vfprintf has no target types")
-  def vfprintf() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * An implementation of the standard vprintf() function which supports
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[vfprintf:]: Method g_vfprintf has no target types"
+  )
+  private def vfprintf() = ???
+
+  /** An implementation of the standard vprintf() function which supports
     * positional parameters, as specified in the Single Unix Specification.
     *
     * `glib/gprintf.h` must be explicitly included in order to use this
     * function.
-    */
-  @annotation.compileTimeOnly("Method g_vprintf has no target types")
-  def vprintf() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * A safer form of the standard vsprintf() function. The output is guaranteed
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[vprintf:]: Method g_vprintf has no target types"
+  )
+  private def vprintf() = ???
+
+  /** A safer form of the standard vsprintf() function. The output is guaranteed
     * to not exceed @n characters (including the terminating nul character), so
     * it is easy to ensure that a buffer overflow cannot occur.
     *
@@ -11671,6 +12296,9 @@ object GLib:
     *
     * The format string may contain positional parameters, as specified in the
     * Single Unix Specification.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def vsnprintf(
       string: String | CString /* Some(Ptr[gchar]) */,
@@ -11684,21 +12312,25 @@ object GLib:
     args
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An implementation of the standard vsprintf() function which supports
+  /** An implementation of the standard vsprintf() function which supports
     * positional parameters, as specified in the Single Unix Specification.
     *
     * `glib/gprintf.h` must be explicitly included in order to use this
     * function.
-    */
-  @annotation.compileTimeOnly("Method g_vsprintf has no target types")
-  def vsprintf() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Internal function used to print messages from the public
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[vsprintf:]: Method g_vsprintf has no target types"
+  )
+  private def vsprintf() = ???
+
+  /** Internal function used to print messages from the public
     * g_warn_if_reached() and g_warn_if_fail() macros.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def warnMessage(
       domain: Option[String | CString /* Some(CString) */ ],

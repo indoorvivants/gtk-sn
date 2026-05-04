@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.CellRendererText
 import sn.gnome.gtk4.internal.GtkCellRendererSpin
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Renders a spin button in a cell
+/** Renders a spin button in a cell
   *
   * `GtkCellRendererSpin` renders text in a cell like `GtkCellRendererText` from
   * which it is derived. But while `GtkCellRendererText` offers a simple entry
@@ -23,6 +21,9 @@ import sn.gnome.gtk4.internal.GtkCellRendererSpin
   * properties for the `GtkCellRendererSpin:climb-rate` and the number of
   * `GtkCellRendererSpin:digits` to display. Other `GtkSpinButton` properties
   * can be set in a handler for the `GtkCellRenderer::editing-started` signal.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class CellRendererSpin(raw: Ptr[GtkCellRendererSpin])
     extends CellRendererText(raw.asInstanceOf):
@@ -32,9 +33,10 @@ class CellRendererSpin(raw: Ptr[GtkCellRendererSpin])
 end CellRendererSpin
 
 object CellRendererSpin:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkCellRendererSpin`.
     *
-    * Creates a new `GtkCellRendererSpin`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): CellRendererSpin = new CellRendererSpin(
     gtk_cell_renderer_spin_new().asInstanceOf

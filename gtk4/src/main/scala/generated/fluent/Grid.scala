@@ -17,9 +17,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkGrid
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkGrid` is a container which arranges its child widgets in rows and
+/** `GtkGrid` is a container which arranges its child widgets in rows and
   * columns.
   *
   * ![An example GtkGrid](grid.png)
@@ -103,6 +101,9 @@ import sn.gnome.gtk4.internal.GtkGrid
   *
   * Starting from GTK 4.12, `GtkGrid` uses the `GTK_ACCESSIBLE_ROLE_GENERIC`
   * role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Grid(raw: Ptr[GtkGrid])
     extends Widget(raw.asInstanceOf),
@@ -113,12 +114,13 @@ class Grid(raw: Ptr[GtkGrid])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a widget to the grid.
+  /** Adds a widget to the grid.
     *
     * The position of @child is determined by @column and @row. The number of
     * “cells” that @child will occupy is determined by @width and @height.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def attach(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -135,9 +137,7 @@ class Grid(raw: Ptr[GtkGrid])
     height
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a widget to the grid.
+  /** Adds a widget to the grid.
     *
     * The widget is placed next to @sibling, on the side determined by
     * @side.
@@ -147,6 +147,9 @@ class Grid(raw: Ptr[GtkGrid])
     *
     * Attaching widgets labeled `[1]`, `[2]`, `[3]` with `@sibling == %NULL` and
     * `@side == %GTK_POS_LEFT` yields a layout of `[3][2][1]`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def attachNextTo(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -165,17 +168,19 @@ class Grid(raw: Ptr[GtkGrid])
     height
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns which row defines the global baseline of @grid.
     *
-    * Returns which row defines the global baseline of @grid.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBaselineRow(): Int /* None */ = gtk_grid_get_baseline_row(
     this.raw.asInstanceOf[Ptr[GtkGrid]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child of @grid whose area covers the grid cell at @column, @row.
     *
-    * Gets the child of @grid whose area covers the grid cell at @column, @row.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChildAt(
       column: Int /* Some(CInt) */,
@@ -188,27 +193,30 @@ class Grid(raw: Ptr[GtkGrid])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether all columns of @grid have the same width.
     *
-    * Returns whether all columns of @grid have the same width.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getColumnHomogeneous(): Boolean /* None */ =
     gtk_grid_get_column_homogeneous(this.raw.asInstanceOf[Ptr[GtkGrid]]).value
       .!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the amount of space between the columns of @grid.
     *
-    * Returns the amount of space between the columns of @grid.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getColumnSpacing(): UInt /* None */ = gtk_grid_get_column_spacing(
     this.raw.asInstanceOf[Ptr[GtkGrid]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the baseline position of @row.
+  /** Returns the baseline position of @row.
     *
     * See [method@Gtk.Grid.set_row_baseline_position].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRowBaselinePosition(
       row: Int /* Some(CInt) */
@@ -216,40 +224,44 @@ class Grid(raw: Ptr[GtkGrid])
     gtk_grid_get_row_baseline_position(this.raw.asInstanceOf[Ptr[GtkGrid]], row)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether all rows of @grid have the same height.
     *
-    * Returns whether all rows of @grid have the same height.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRowHomogeneous(): Boolean /* None */ = gtk_grid_get_row_homogeneous(
     this.raw.asInstanceOf[Ptr[GtkGrid]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the amount of space between the rows of @grid.
     *
-    * Returns the amount of space between the rows of @grid.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRowSpacing(): UInt /* None */ = gtk_grid_get_row_spacing(
     this.raw.asInstanceOf[Ptr[GtkGrid]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts a column at the specified position.
+  /** Inserts a column at the specified position.
     *
     * Children which are attached at or to the right of this position are moved
     * one column to the right. Children which span across this position are
     * grown to span the new column.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertColumn(position: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_grid_insert_column(this.raw.asInstanceOf[Ptr[GtkGrid]], position)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts a row or column at the specified position.
+  /** Inserts a row or column at the specified position.
     *
     * The new row or column is placed next to @sibling, on the side determined
     * by @side. If @side is %GTK_POS_TOP or %GTK_POS_BOTTOM, a row is inserted.
     * If @side is %GTK_POS_LEFT of %GTK_POS_RIGHT, a column is inserted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertNextTo(
       sibling: Widget /* Some(Ptr[GtkWidget]) */,
@@ -260,32 +272,35 @@ class Grid(raw: Ptr[GtkGrid])
     side.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts a row at the specified position.
+  /** Inserts a row at the specified position.
     *
     * Children which are attached at or below this position are moved one row
     * down. Children which span across this position are grown to span the new
     * row.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertRow(position: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_grid_insert_row(this.raw.asInstanceOf[Ptr[GtkGrid]], position)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Queries the attach points and spans of @child inside the given `GtkGrid`.
     *
-    * Queries the attach points and spans of @child inside the given `GtkGrid`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method query_child contains an OUT parameter, which is not supported yet"
+    "[query_child]: Method query_child contains an OUT parameter, which is not supported yet"
   )
-  def queryChild__ = ???
+  private def queryChild__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a child from @grid.
+  /** Removes a child from @grid.
     *
     * The child must have been added with [method@Gtk.Grid.attach] or
     * [method@Gtk.Grid.attach_next_to].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_grid_remove(
@@ -293,41 +308,45 @@ class Grid(raw: Ptr[GtkGrid])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a column from the grid.
+  /** Removes a column from the grid.
     *
     * Children that are placed in this column are removed, spanning children
     * that overlap this column have their width reduced by one, and children
     * after the column are moved to the left.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeColumn(position: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_grid_remove_column(this.raw.asInstanceOf[Ptr[GtkGrid]], position)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a row from the grid.
+  /** Removes a row from the grid.
     *
     * Children that are placed in this row are removed, spanning children that
     * overlap this row have their height reduced by one, and children below the
     * row are moved up.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeRow(position: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_grid_remove_row(this.raw.asInstanceOf[Ptr[GtkGrid]], position)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets which row defines the global baseline for the entire grid.
+  /** Sets which row defines the global baseline for the entire grid.
     *
     * Each row in the grid can have its own local baseline, but only one of
     * those is global, meaning it will be the baseline in the parent of the @grid.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setBaselineRow(row: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_grid_set_baseline_row(this.raw.asInstanceOf[Ptr[GtkGrid]], row)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether all columns of @grid will have the same width.
     *
-    * Sets whether all columns of @grid will have the same width.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setColumnHomogeneous(
       homogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -336,9 +355,10 @@ class Grid(raw: Ptr[GtkGrid])
     gboolean(gint((if homogeneous == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the amount of space between columns of @grid.
     *
-    * Sets the amount of space between columns of @grid.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setColumnSpacing(
       spacing: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -347,12 +367,13 @@ class Grid(raw: Ptr[GtkGrid])
     guint(spacing)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets how the baseline should be positioned on @row of the grid, in case
+  /** Sets how the baseline should be positioned on @row of the grid, in case
     * that row is assigned more space than is requested.
     *
     * The default baseline position is %GTK_BASELINE_POSITION_CENTER.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRowBaselinePosition(
       row: Int /* Some(CInt) */,
@@ -363,9 +384,10 @@ class Grid(raw: Ptr[GtkGrid])
     pos.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether all rows of @grid will have the same height.
     *
-    * Sets whether all rows of @grid will have the same height.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRowHomogeneous(
       homogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -374,9 +396,10 @@ class Grid(raw: Ptr[GtkGrid])
     gboolean(gint((if homogeneous == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the amount of space between rows of @grid.
     *
-    * Sets the amount of space between rows of @grid.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRowSpacing(
       spacing: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -388,9 +411,10 @@ class Grid(raw: Ptr[GtkGrid])
 end Grid
 
 object Grid:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new grid widget.
     *
-    * Creates a new grid widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Grid = new Grid(gtk_grid_new().asInstanceOf)
 end Grid

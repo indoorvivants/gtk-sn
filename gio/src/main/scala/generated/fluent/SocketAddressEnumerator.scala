@@ -9,9 +9,7 @@ import sn.gnome.gio.internal.GSocketAddressEnumerator
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GSocketAddressEnumerator is an enumerator type for #GSocketAddress
+/** #GSocketAddressEnumerator is an enumerator type for #GSocketAddress
   * instances. It is returned by enumeration functions such as
   * g_socket_connectable_enumerate(), which returns a #GSocketAddressEnumerator
   * to list each #GSocketAddress which could be used to connect to that
@@ -24,15 +22,16 @@ import sn.gnome.gobject.fluent.Object
   * Each #GSocketAddressEnumerator can only be enumerated once. Once
   * g_socket_address_enumerator_next() has returned %NULL, further enumeration
   * with that #GSocketAddressEnumerator is not possible, and it can be unreffed.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SocketAddressEnumerator(raw: Ptr[GSocketAddressEnumerator])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the next #GSocketAddress from @enumerator. Note that this may
+  /** Retrieves the next #GSocketAddress from @enumerator. Note that this may
     * block for some amount of time. (Eg, a #GNetworkAddress may need to do a
     * DNS lookup before it can return an address.) Use
     * g_socket_address_enumerator_next_async() if you need to avoid blocking.
@@ -43,6 +42,9 @@ class SocketAddressEnumerator(raw: Ptr[GSocketAddressEnumerator])
     * *@error. However, if the first call to g_socket_address_enumerator_next()
     * succeeds, then any further internal errors (other than @cancellable being
     * triggered) will be ignored.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def next(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -58,26 +60,28 @@ class SocketAddressEnumerator(raw: Ptr[GSocketAddressEnumerator])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously retrieves the next #GSocketAddress from @enumerator and
+  /** Asynchronously retrieves the next #GSocketAddress from @enumerator and
     * then calls @callback, which must call
     * g_socket_address_enumerator_next_finish() to get the result.
     *
     * It is an error to call this multiple times before the previous callback
     * has finished.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[next_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def nextAsync__ = ???
+  private def nextAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the result of a completed call to
+  /** Retrieves the result of a completed call to
     * g_socket_address_enumerator_next_async(). See
     * g_socket_address_enumerator_next() for more information about error
     * handling.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def nextFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */

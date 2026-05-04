@@ -2,42 +2,48 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GChecksumType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The hashing algorithm to be used by #GChecksum when performing the digest of
+/** The hashing algorithm to be used by #GChecksum when performing the digest of
   * some data.
   *
   * Note that the #GChecksumType enumeration may be extended at a later date to
   * include new hashing algorithm types.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ChecksumType(val raw: GChecksumType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Use the MD5 hashing algorithm
     *
-    * Use the MD5 hashing algorithm
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MD5 extends ChecksumType(GChecksumType.G_CHECKSUM_MD5)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Use the SHA-1 hashing algorithm
     *
-    * Use the SHA-1 hashing algorithm
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SHA1 extends ChecksumType(GChecksumType.G_CHECKSUM_SHA1)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Use the SHA-256 hashing algorithm
     *
-    * Use the SHA-256 hashing algorithm
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SHA256 extends ChecksumType(GChecksumType.G_CHECKSUM_SHA256)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Use the SHA-512 hashing algorithm (Since: 2.36)
     *
-    * Use the SHA-512 hashing algorithm (Since: 2.36)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SHA512 extends ChecksumType(GChecksumType.G_CHECKSUM_SHA512)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Use the SHA-384 hashing algorithm (Since: 2.51)
     *
-    * Use the SHA-384 hashing algorithm (Since: 2.51)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SHA384 extends ChecksumType(GChecksumType.G_CHECKSUM_SHA384)
 end ChecksumType

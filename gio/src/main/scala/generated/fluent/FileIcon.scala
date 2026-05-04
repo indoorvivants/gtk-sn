@@ -8,10 +8,11 @@ import sn.gnome.gio.fluent.{File, Icon, LoadableIcon}
 import sn.gnome.gio.internal.GFileIcon
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GFileIcon specifies an icon by pointing to an image file to be used as
+/** #GFileIcon specifies an icon by pointing to an image file to be used as
   * icon.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileIcon(raw: Ptr[GFileIcon])
     extends Object(raw.asInstanceOf),
@@ -20,9 +21,10 @@ class FileIcon(raw: Ptr[GFileIcon])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the #GFile associated with the given @icon.
     *
-    * Gets the #GFile associated with the given @icon.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFile(): File /* None */ = new File.Abstract(
     g_file_icon_get_file(this.raw.asInstanceOf[Ptr[GFileIcon]]).asInstanceOf
@@ -31,9 +33,10 @@ class FileIcon(raw: Ptr[GFileIcon])
 end FileIcon
 
 object FileIcon:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new icon for a file.
     *
-    * Creates a new icon for a file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(file: File /* Some(Ptr[GFile]) */ ): FileIcon = new FileIcon(
     g_file_icon_new(file.getUnsafeRawPointer().asInstanceOf).asInstanceOf

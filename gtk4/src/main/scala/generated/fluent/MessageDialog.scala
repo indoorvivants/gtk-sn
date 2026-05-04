@@ -20,9 +20,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkMessageDialog
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkMessageDialog` presents a dialog with some message text.
+/** `GtkMessageDialog` presents a dialog with some message text.
   *
   * ![An example GtkMessageDialog](messagedialog.png)
   *
@@ -78,6 +76,9 @@ import sn.gnome.gtk4.internal.GtkMessageDialog
   *
   * The `GtkMessageDialog` implementation of the `GtkBuildable` interface
   * exposes the message area as an internal child with the name “message_area”.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MessageDialog(raw: Ptr[GtkMessageDialog])
     extends Dialog(raw.asInstanceOf),
@@ -90,9 +91,7 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the secondary text of the message dialog.
+  /** Sets the secondary text of the message dialog.
     *
     * The @message_format is assumed to contain Pango markup.
     *
@@ -109,6 +108,9 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
     *                                             "%s", msg);
     * g_free (msg);
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def formatSecondaryMarkup(
       message_format: String | CString /* Some(CString) */,
@@ -119,9 +121,10 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the secondary text of the message dialog.
     *
-    * Sets the secondary text of the message dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def formatSecondaryText(
       message_format: Option[String | CString /* Some(CString) */ ],
@@ -134,14 +137,15 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the message area of the dialog.
+  /** Returns the message area of the dialog.
     *
     * This is the box where the dialog’s primary and secondary labels are
     * packed. You can add your own extra content to that box and it will appear
     * below those labels. See [method@Gtk.Dialog.get_content_area] for the
     * corresponding function in the parent [class@Gtk.Dialog].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMessageArea(): Widget /* None */ = new Widget(
     gtk_message_dialog_get_message_area(
@@ -149,9 +153,10 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the text of the message dialog.
     *
-    * Sets the text of the message dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarkup(
       str: String | CString /* Some(CString) */
@@ -171,13 +176,14 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
 end MessageDialog
 
 object MessageDialog:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new message dialog.
+  /** Creates a new message dialog.
     *
     * This is a simple dialog with some text the user may want to see. When the
     * user clicks a button a “response” signal is emitted with response IDs from
     * [enum@Gtk.ResponseType]. See [class@Gtk.Dialog] for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def apply(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
@@ -201,9 +207,7 @@ object MessageDialog:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new message dialog.
+  /** Creates a new message dialog.
     *
     * This is a simple dialog with some text that is marked up with Pango
     * markup. When the user clicks a button a “response” signal is emitted with
@@ -229,6 +233,9 @@ object MessageDialog:
     * gtk_message_dialog_set_markup (GTK_MESSAGE_DIALOG (dialog),
     *                                markup);
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def withMarkup(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],

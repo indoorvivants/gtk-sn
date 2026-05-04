@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkFileChooserWidget
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkFileChooserWidget` is a widget for choosing files.
+/** `GtkFileChooserWidget` is a widget for choosing files.
   *
   * It exposes the [iface@Gtk.FileChooser] interface, and you should use the
   * methods of this interface to interact with the widget.
@@ -24,6 +22,9 @@ import sn.gnome.gtk4.internal.GtkFileChooserWidget
   * # CSS nodes
   *
   * `GtkFileChooserWidget` has a single CSS node with name filechooser.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
     extends Widget(raw.asInstanceOf),
@@ -37,12 +38,13 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
 end FileChooserWidget
 
 object FileChooserWidget:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkFileChooserWidget`.
+  /** Creates a new `GtkFileChooserWidget`.
     *
     * This is a file chooser widget that can be embedded in custom windows, and
     * it is the same widget that is used by `GtkFileChooserDialog`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       action: FileChooserAction /* Some(GtkFileChooserAction) */

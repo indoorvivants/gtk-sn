@@ -9,9 +9,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gsk4.fluent.{RenderNode, RenderNodeType}
 import sn.gnome.gsk4.internal.GskRenderNode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GskRenderNode` is the basic block in a scene graph to be rendered using
+/** `GskRenderNode` is the basic block in a scene graph to be rendered using
   * [class@Gsk.Renderer].
   *
   * Each node has a parent, except the top-level node; each node may have
@@ -24,14 +22,15 @@ import sn.gnome.gsk4.internal.GskRenderNode
   * [class@Gsk.Renderer] it's safe to release any reference you have on them.
   * All [class@Gsk.RenderNode]s are immutable, you can only specify their
   * properties during construction.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class RenderNode(raw: Ptr[GskRenderNode]):
 
   def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Draw the contents of @node to the given cairo context.
+  /** Draw the contents of @node to the given cairo context.
     *
     * Typically, you'll use this function to implement fallback rendering of
     * `GskRenderNode`s on an intermediate Cairo context, instead of using the
@@ -39,42 +38,46 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     *
     * For advanced nodes that cannot be supported using Cairo, in particular for
     * nodes doing 3D operations, this function may fail.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[draw/<method parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def draw__ = ???
+  private def draw__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the boundaries of the @node.
+  /** Retrieves the boundaries of the @node.
     *
     * The node will not draw outside of its boundaries.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_bounds contains an OUT parameter, which is not supported yet"
+    "[get_bounds]: Method get_bounds contains an OUT parameter, which is not supported yet"
   )
-  def getBounds__ = ???
+  private def getBounds__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the type of the @node.
     *
-    * Returns the type of the @node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNodeType(): RenderNodeType /* None */ = RenderNodeType.fromRaw(
     gsk_render_node_get_node_type(this.raw.asInstanceOf[Ptr[GskRenderNode]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Acquires a reference on the given `GskRenderNode`.
     *
-    * Acquires a reference on the given `GskRenderNode`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def ref(): RenderNode /* None */ = new RenderNode(
     gsk_render_node_ref(this.raw.asInstanceOf[Ptr[GskRenderNode]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Serializes the @node for later deserialization via
+  /** Serializes the @node for later deserialization via
     * gsk_render_node_deserialize(). No guarantees are made about the format
     * used other than that the same version of GTK will be able to deserialize
     * the result of a call to gsk_render_node_serialize() and
@@ -83,32 +86,37 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     *
     * The intended use of this functions is testing, benchmarking and debugging.
     * The format is not meant as a permanent storage format.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[serialize/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def serialize__ = ???
+  private def serialize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Releases a reference on the given `GskRenderNode`.
+  /** Releases a reference on the given `GskRenderNode`.
     *
     * If the reference was the last, the resources associated to the @node are
     * freed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unref(): Unit /* None */ = gsk_render_node_unref(
     this.raw.asInstanceOf[Ptr[GskRenderNode]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is equivalent to calling [method@Gsk.RenderNode.serialize]
+  /** This function is equivalent to calling [method@Gsk.RenderNode.serialize]
     * followed by [func@GLib.file_set_contents].
     *
     * See those two functions for details on the arguments.
     *
     * It is mostly intended for use inside a debugger to quickly dump a render
     * node to a file for later inspection.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def writeToFile(
       filename: String | CString /* Some(CString) */
@@ -131,15 +139,16 @@ class RenderNode(raw: Ptr[GskRenderNode]):
 end RenderNode
 
 object RenderNode:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Loads data previously created via [method@Gsk.RenderNode.serialize].
+  /** Loads data previously created via [method@Gsk.RenderNode.serialize].
     *
     * For a discussion of the supported format, see that function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[<function parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def deserialize() = ???
+  private def deserialize() = ???
 
 end RenderNode

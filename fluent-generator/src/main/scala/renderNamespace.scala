@@ -27,7 +27,9 @@ def renderNamespace(
               namespace = Some(namespace),
               enumer = Some(enumer)
             )
-            coll.observe(renderEnumeration(enumer))
+            coll.observe:
+              inContext(s"${enumer.name}"):
+                renderEnumeration(enumer)
 
       error match
         case None =>
@@ -58,7 +60,9 @@ def renderNamespace(
               namespace = Some(namespace),
               bitfield = Some(bitfield)
             )
-            coll.observe(renderBitfield(bitfield))
+            coll.observe:
+              inContext(s"${bitfield.name}"):
+                renderBitfield(bitfield)
 
       error match
         case None =>
@@ -85,8 +89,9 @@ def renderNamespace(
       val effects = WithEffects.collect: coll =>
         newLB.use:
           error = transact[FluentErr]:
-            filterDefinitions(namespace = Some(namespace), iface = Some(iface))
-            coll.observe(renderTrait(namespace, iface))
+            inContext(iface.name):
+              filterDefinitions(namespace = Some(namespace), iface = Some(iface))
+              coll.observe(renderTrait(namespace, iface))
 
       error match
         case None =>
@@ -115,8 +120,9 @@ def renderNamespace(
       val effects = WithEffects.collect: coll =>
         newLB.use:
           error = transact[FluentErr]:
-            filterDefinitions(namespace = Some(namespace), cls = Some(cls))
-            coll.observe(renderClass(namespace, cls))
+            inContext(cls.name):
+              filterDefinitions(namespace = Some(namespace), cls = Some(cls))
+              coll.observe(renderClass(namespace, cls))
 
       error match
         case None =>

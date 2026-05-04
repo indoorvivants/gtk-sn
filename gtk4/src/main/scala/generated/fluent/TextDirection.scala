@@ -2,26 +2,30 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkTextDirection
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Reading directions for text.
   *
-  * Reading directions for text.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TextDirection(val raw: GtkTextDirection):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No direction.
     *
-    * No direction.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends TextDirection(GtkTextDirection.GTK_TEXT_DIR_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Left to right text direction.
     *
-    * Left to right text direction.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LTR extends TextDirection(GtkTextDirection.GTK_TEXT_DIR_LTR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Right to left text direction.
     *
-    * Right to left text direction.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RTL extends TextDirection(GtkTextDirection.GTK_TEXT_DIR_RTL)
 end TextDirection

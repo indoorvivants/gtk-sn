@@ -19,9 +19,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkGridView
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkGridView` presents a large dynamic grid of items.
+/** `GtkGridView` presents a large dynamic grid of items.
   *
   * `GtkGridView` uses its factory to generate one child widget for each visible
   * item and shows them in a grid. The orientation of the grid view determines
@@ -57,6 +55,9 @@ import sn.gnome.gtk4.internal.GtkGridView
   *
   * `GtkGridView` uses the %GTK_ACCESSIBLE_ROLE_GRID role, and the items use the
   * %GTK_ACCESSIBLE_ROLE_GRID_CELL role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class GridView(raw: Ptr[GtkGridView])
     extends ListBase(raw.asInstanceOf),
@@ -68,18 +69,20 @@ class GridView(raw: Ptr[GtkGridView])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether rows can be selected by dragging with the mouse.
     *
-    * Returns whether rows can be selected by dragging with the mouse.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEnableRubberband(): Boolean /* None */ =
     gtk_grid_view_get_enable_rubberband(
       this.raw.asInstanceOf[Ptr[GtkGridView]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the factory that's currently used to populate list items.
     *
-    * Gets the factory that's currently used to populate list items.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFactory(): ListItemFactory /* None */ = new ListItemFactory(
     gtk_grid_view_get_factory(
@@ -87,25 +90,28 @@ class GridView(raw: Ptr[GtkGridView])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the maximum number of columns that the grid will use.
     *
-    * Gets the maximum number of columns that the grid will use.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMaxColumns(): UInt /* None */ = gtk_grid_view_get_max_columns(
     this.raw.asInstanceOf[Ptr[GtkGridView]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the minimum number of columns that the grid will use.
     *
-    * Gets the minimum number of columns that the grid will use.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMinColumns(): UInt /* None */ = gtk_grid_view_get_min_columns(
     this.raw.asInstanceOf[Ptr[GtkGridView]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the model that's currently used to read the items displayed.
     *
-    * Gets the model that's currently used to read the items displayed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): SelectionModel /* None */ = new SelectionModel.Abstract(
     gtk_grid_view_get_model(
@@ -113,40 +119,44 @@ class GridView(raw: Ptr[GtkGridView])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether items will be activated on single click and selected on
+  /** Returns whether items will be activated on single click and selected on
     * hover.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSingleClickActivate(): Boolean /* None */ =
     gtk_grid_view_get_single_click_activate(
       this.raw.asInstanceOf[Ptr[GtkGridView]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the behavior set for the <kbd>Tab</kbd> key.
     *
-    * Gets the behavior set for the <kbd>Tab</kbd> key.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTabBehavior(): ListTabBehavior /* None */ = ListTabBehavior.fromRaw(
     gtk_grid_view_get_tab_behavior(this.raw.asInstanceOf[Ptr[GtkGridView]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Scrolls to the item at the given position and performs the actions
+  /** Scrolls to the item at the given position and performs the actions
     * specified in @flags.
     *
     * This function works no matter if the gridview is shown or focused. If it
     * isn't, then the changes will take effect once that happens.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
+    "[scroll_to/<method parameters>/scroll]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
   )
-  def scrollTo__ = ???
+  private def scrollTo__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether selections can be changed by dragging with the mouse.
     *
-    * Sets whether selections can be changed by dragging with the mouse.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEnableRubberband(
       enable_rubberband: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -155,9 +165,10 @@ class GridView(raw: Ptr[GtkGridView])
     gboolean(gint((if enable_rubberband == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the `GtkListItemFactory` to use for populating list items.
     *
-    * Sets the `GtkListItemFactory` to use for populating list items.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFactory(
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
@@ -168,14 +179,15 @@ class GridView(raw: Ptr[GtkGridView])
       .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the maximum number of columns to use.
+  /** Sets the maximum number of columns to use.
     *
     * This number must be at least 1.
     *
     * If @max_columns is smaller than the minimum set via
     * [method@Gtk.GridView.set_min_columns], that value is used instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMaxColumns(
       max_columns: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -184,14 +196,15 @@ class GridView(raw: Ptr[GtkGridView])
     guint(max_columns)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the minimum number of columns to use.
+  /** Sets the minimum number of columns to use.
     *
     * This number must be at least 1.
     *
     * If @min_columns is smaller than the minimum set via
     * [method@Gtk.GridView.set_max_columns], that value is ignored.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMinColumns(
       min_columns: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -200,11 +213,12 @@ class GridView(raw: Ptr[GtkGridView])
     guint(min_columns)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the model to use.
+  /** Sets the model to use.
     *
     * This must be a [iface@Gtk.SelectionModel].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
@@ -215,10 +229,11 @@ class GridView(raw: Ptr[GtkGridView])
       .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether items should be activated on single click and selected on
+  /** Sets whether items should be activated on single click and selected on
     * hover.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSingleClickActivate(
       single_click_activate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -227,10 +242,11 @@ class GridView(raw: Ptr[GtkGridView])
     gboolean(gint((if single_click_activate == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the behavior of the <kbd>Tab</kbd> and
+  /** Sets the behavior of the <kbd>Tab</kbd> and
     * <kbd>Shift</kbd>+<kbd>Tab</kbd> keys.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTabBehavior(
       tab_behavior: ListTabBehavior /* Some(GtkListTabBehavior) */
@@ -242,9 +258,7 @@ class GridView(raw: Ptr[GtkGridView])
 end GridView
 
 object GridView:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkGridView` that uses the given @factory for mapping items
+  /** Creates a new `GtkGridView` that uses the given @factory for mapping items
     * to widgets.
     *
     * The function takes ownership of the arguments, so you can write code like
@@ -252,6 +266,9 @@ object GridView:
     * grid_view = gtk_grid_view_new (create_model (),
     *   gtk_builder_list_item_factory_new_from_resource ("/resource.ui"));
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ],

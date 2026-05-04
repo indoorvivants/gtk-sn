@@ -10,12 +10,13 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.pango.fluent.FontFace
 import sn.gnome.pango.internal.PangoFontFamily
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `PangoFontFamily` is used to represent a family of related font faces.
+/** A `PangoFontFamily` is used to represent a family of related font faces.
   *
   * The font faces in a family share a common design, but differ in slant,
   * weight, width or other aspects.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FontFamily(raw: Ptr[PangoFontFamily])
     extends Object(raw.asInstanceOf),
@@ -23,9 +24,10 @@ class FontFamily(raw: Ptr[PangoFontFamily])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `PangoFontFace` of @family with the given name.
     *
-    * Gets the `PangoFontFace` of @family with the given name.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFace(
       name: Option[String | CString /* Some(CString) */ ]
@@ -38,13 +40,14 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the name of the family.
+  /** Gets the name of the family.
     *
     * The name is unique among all fonts for the font backend and can be used in
     * a `PangoFontDescription` to specify that a face from this family is
     * desired.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     pango_font_family_get_name(
@@ -52,9 +55,7 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A monospace font is a font designed for text display where the the
+  /** A monospace font is a font designed for text display where the the
     * characters form a regular grid.
     *
     * For Western languages this would mean that the advance width of all
@@ -67,26 +68,28 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     * [method@Pango.FontMetrics.get_approximate_digit_width], since the results
     * of [method@Pango.FontMetrics.get_approximate_char_width] may be affected
     * by double-width characters.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isMonospace(): Boolean /* None */ = pango_font_family_is_monospace(
     this.raw.asInstanceOf[Ptr[PangoFontFamily]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A variable font is a font which has axes that can be modified to produce
+  /** A variable font is a font which has axes that can be modified to produce
     * different faces.
     *
     * Such axes are also known as _variations_; see
     * [method@Pango.FontDescription.set_variations] for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isVariable(): Boolean /* None */ = pango_font_family_is_variable(
     this.raw.asInstanceOf[Ptr[PangoFontFamily]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Lists the different font faces that make up @family.
+  /** Lists the different font faces that make up @family.
     *
     * The faces in a family share a common design, but differ in slant, weight,
     * width and other aspects.
@@ -96,11 +99,14 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     *
     * `PangoFontFamily` also implemented the [iface@Gio.ListModel] interface for
     * enumerating faces.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method list_faces contains an OUT parameter, which is not supported yet"
+    "[list_faces]: Method list_faces contains an OUT parameter, which is not supported yet"
   )
-  def listFaces__ = ???
+  private def listFaces__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

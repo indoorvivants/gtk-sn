@@ -2,32 +2,36 @@ package sn.gnome.harfbuzz.fluent
 
 import _root_.sn.gnome.harfbuzz.internal.hb_buffer_content_type_t
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** The type of #hb_buffer_t contents.
   *
-  * The type of #hb_buffer_t contents.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Buffer_content_type_t(val raw: hb_buffer_content_type_t):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Initial value for new buffer.
     *
-    * Initial value for new buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID
       extends Buffer_content_type_t(
         hb_buffer_content_type_t.HB_BUFFER_CONTENT_TYPE_INVALID
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The buffer contains input characters (before shaping).
     *
-    * The buffer contains input characters (before shaping).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNICODE
       extends Buffer_content_type_t(
         hb_buffer_content_type_t.HB_BUFFER_CONTENT_TYPE_UNICODE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The buffer contains output glyphs (after shaping).
     *
-    * The buffer contains output glyphs (after shaping).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GLYPHS
       extends Buffer_content_type_t(

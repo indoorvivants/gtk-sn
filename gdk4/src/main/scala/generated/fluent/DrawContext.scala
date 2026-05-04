@@ -9,9 +9,7 @@ import sn.gnome.gdk4.internal.GdkDrawContext
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Base class for objects implementing different rendering methods.
+/** Base class for objects implementing different rendering methods.
   *
   * `GdkDrawContext` is the base object used by contexts implementing different
   * rendering methods, such as [class@Gdk.CairoContext] or
@@ -21,14 +19,15 @@ import sn.gnome.gobject.fluent.Object
   * You will always interact with one of those subclasses.
   *
   * A `GdkDrawContext` is always associated with a single toplevel surface.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Indicates that you are beginning the process of redrawing @region on the @context's
+  /** Indicates that you are beginning the process of redrawing @region on the @context's
     * surface.
     *
     * Calling this function begins a drawing operation using @context on the
@@ -51,15 +50,16 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
     * gdk_draw_context_begin_frame() and gdk_draw_context_end_frame() via the
     * use of [class@Gsk.Renderer]s, so application code does not need to call
     * these functions explicitly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))"
+    "[begin_frame/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))"
   )
-  def beginFrame__ = ???
+  private def beginFrame__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Ends a drawing operation started with gdk_draw_context_begin_frame().
+  /** Ends a drawing operation started with gdk_draw_context_begin_frame().
     *
     * This makes the drawing available on screen. See
     * [method@Gdk.DrawContext.begin_frame] for more details about drawing.
@@ -67,14 +67,18 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
     * When using a [class@Gdk.GLContext], this function may call `glFlush()`
     * implicitly before returning; it is not recommended to call `glFlush()`
     * explicitly before calling this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def endFrame(): Unit /* None */ = gdk_draw_context_end_frame(
     this.raw.asInstanceOf[Ptr[GdkDrawContext]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the `GdkDisplay` the @context is created for
     *
-    * Retrieves the `GdkDisplay` the @context is created for
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDisplay(): Display /* None */ = new Display(
     gdk_draw_context_get_display(
@@ -82,9 +86,7 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the region that is currently being repainted.
+  /** Retrieves the region that is currently being repainted.
     *
     * After a call to [method@Gdk.DrawContext.begin_frame] this function will
     * return a union of the region passed to that function and the area of the
@@ -93,15 +95,19 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
     * If @context is not in between calls to
     * [method@Gdk.DrawContext.begin_frame] and
     * [method@Gdk.DrawContext.end_frame], %NULL will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))"
+    "[get_frame_region/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))"
   )
-  def getFrameRegion__ = ???
+  private def getFrameRegion__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the surface that @context is bound to.
     *
-    * Retrieves the surface that @context is bound to.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSurface(): Surface /* None */ = new Surface(
     gdk_draw_context_get_surface(
@@ -109,13 +115,14 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if @context is in the process of drawing to its surface.
+  /** Returns %TRUE if @context is in the process of drawing to its surface.
     *
     * This is the case between calls to [method@Gdk.DrawContext.begin_frame] and
     * [method@Gdk.DrawContext.end_frame]. In this situation, drawing commands
     * may be effecting the contents of the @context's surface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isInFrame(): Boolean /* None */ = gdk_draw_context_is_in_frame(
     this.raw.asInstanceOf[Ptr[GdkDrawContext]]

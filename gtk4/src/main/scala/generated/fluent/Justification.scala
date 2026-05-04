@@ -2,32 +2,37 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkJustification
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Used for justifying the text inside a [class@Label] widget.
   *
-  * Used for justifying the text inside a [class@Label] widget.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Justification(val raw: GtkJustification):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The text is placed at the left edge of the label.
     *
-    * The text is placed at the left edge of the label.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LEFT extends Justification(GtkJustification.GTK_JUSTIFY_LEFT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The text is placed at the right edge of the label.
     *
-    * The text is placed at the right edge of the label.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RIGHT extends Justification(GtkJustification.GTK_JUSTIFY_RIGHT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The text is placed in the center of the label.
     *
-    * The text is placed in the center of the label.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CENTER extends Justification(GtkJustification.GTK_JUSTIFY_CENTER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The text is placed is distributed across the label.
     *
-    * The text is placed is distributed across the label.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FILL extends Justification(GtkJustification.GTK_JUSTIFY_FILL)
 end Justification

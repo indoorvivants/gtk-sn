@@ -8,42 +8,46 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.pango.fluent.{Coverage, CoverageLevel}
 import sn.gnome.pango.internal.PangoCoverage
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `PangoCoverage` structure is a map from Unicode characters to
+/** A `PangoCoverage` structure is a map from Unicode characters to
   * [enum@Pango.CoverageLevel] values.
   *
   * It is often necessary in Pango to determine if a particular font can
   * represent a particular character, and also how well it can represent that
   * character. The `PangoCoverage` is a data structure that is used to represent
   * that information. It is an opaque structure with no public fields.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Copy an existing `PangoCoverage`.
     *
-    * Copy an existing `PangoCoverage`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def copy(): Coverage /* None */ = new Coverage(
     pango_coverage_copy(this.raw.asInstanceOf[Ptr[PangoCoverage]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determine whether a particular index is covered by @coverage.
     *
-    * Determine whether a particular index is covered by @coverage.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def get(`index_`: Int /* Some(CInt) */ ): CoverageLevel /* None */ =
     CoverageLevel.fromRaw(
       pango_coverage_get(this.raw.asInstanceOf[Ptr[PangoCoverage]], `index_`)
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set the coverage for each index in @coverage to be the max (better) value
+  /** Set the coverage for each index in @coverage to be the max (better) value
     * of the current coverage for the index and the coverage for the
     * corresponding index in @other.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def max(other: Coverage /* Some(Ptr[PangoCoverage]) */ ): Unit /* None */ =
     pango_coverage_max(
@@ -51,17 +55,19 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
       other.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Increase the reference count on the `PangoCoverage` by one.
     *
-    * Increase the reference count on the `PangoCoverage` by one.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   override def ref(): Coverage /* None */ = new Coverage(
     pango_coverage_ref(this.raw.asInstanceOf[Ptr[PangoCoverage]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Modify a particular index within @coverage
     *
-    * Modify a particular index within @coverage
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def set(
       `index_`: Int /* Some(CInt) */,
@@ -72,20 +78,22 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     level.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Convert a `PangoCoverage` structure into a flat binary format.
     *
-    * Convert a `PangoCoverage` structure into a flat binary format.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method to_bytes contains an OUT parameter, which is not supported yet"
+    "[to_bytes]: Method to_bytes contains an OUT parameter, which is not supported yet"
   )
-  def toBytes__ = ???
+  private def toBytes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decrease the reference count on the `PangoCoverage` by one.
+  /** Decrease the reference count on the `PangoCoverage` by one.
     *
     * If the result is zero, free the coverage and all associated memory.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   override def unref(): Unit /* None */ = pango_coverage_unref(
     this.raw.asInstanceOf[Ptr[PangoCoverage]]
@@ -94,20 +102,22 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
 end Coverage
 
 object Coverage:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Create a new `PangoCoverage`
     *
-    * Create a new `PangoCoverage`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Coverage = new Coverage(pango_coverage_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convert data generated from [method@Pango.Coverage.to_bytes] back to a
+  /** Convert data generated from [method@Pango.Coverage.to_bytes] back to a
     * `PangoCoverage`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
+    "[<function parameters>/bytes]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
   )
-  def fromBytes() = ???
+  private def fromBytes() = ???
 
 end Coverage

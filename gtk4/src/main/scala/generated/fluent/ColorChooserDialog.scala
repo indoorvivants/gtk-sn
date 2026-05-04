@@ -17,9 +17,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkColorChooserDialog
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A dialog for choosing a color.
+/** A dialog for choosing a color.
   *
   * ![An example GtkColorChooserDialog](colorchooser.png)
   *
@@ -39,6 +37,9 @@ import sn.gnome.gtk4.internal.GtkColorChooserDialog
   *
   * `GtkColorChooserDialog` has a single CSS node with the name `window` and
   * style class `.colorchooser`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ColorChooserDialog(raw: Ptr[GtkColorChooserDialog])
     extends Dialog(raw.asInstanceOf),
@@ -55,9 +56,10 @@ class ColorChooserDialog(raw: Ptr[GtkColorChooserDialog])
 end ColorChooserDialog
 
 object ColorChooserDialog:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkColorChooserDialog`.
     *
-    * Creates a new `GtkColorChooserDialog`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       title: Option[String | CString /* Some(CString) */ ],

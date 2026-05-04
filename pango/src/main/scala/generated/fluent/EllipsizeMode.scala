@@ -2,36 +2,41 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoEllipsizeMode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `PangoEllipsizeMode` describes what sort of ellipsization should be applied
+/** `PangoEllipsizeMode` describes what sort of ellipsization should be applied
   * to text.
   *
   * In the ellipsization process characters are removed from the text in order
   * to make it fit to a given width and replaced with an ellipsis.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum EllipsizeMode(val raw: PangoEllipsizeMode):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No ellipsization
     *
-    * No ellipsization
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends EllipsizeMode(PangoEllipsizeMode.PANGO_ELLIPSIZE_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Omit characters at the start of the text
     *
-    * Omit characters at the start of the text
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case START extends EllipsizeMode(PangoEllipsizeMode.PANGO_ELLIPSIZE_START)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Omit characters in the middle of the text
     *
-    * Omit characters in the middle of the text
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MIDDLE extends EllipsizeMode(PangoEllipsizeMode.PANGO_ELLIPSIZE_MIDDLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Omit characters at the end of the text
     *
-    * Omit characters at the end of the text
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case END extends EllipsizeMode(PangoEllipsizeMode.PANGO_ELLIPSIZE_END)
 end EllipsizeMode

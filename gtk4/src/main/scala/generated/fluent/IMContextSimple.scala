@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.IMContext
 import sn.gnome.gtk4.internal.GtkIMContextSimple
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkIMContextSimple` is an input method supporting table-based input
+/** `GtkIMContextSimple` is an input method supporting table-based input
   * methods.
   *
   * ## Compose sequences
@@ -48,15 +46,19 @@ import sn.gnome.gtk4.internal.GtkIMContextSimple
   *
   * yields U+00E! LATIN SMALL LETTER_A WITH ACUTE, i.e. á. Note that this
   * depends on the keyboard layout including dead keys.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class IMContextSimple(raw: Ptr[GtkIMContextSimple])
     extends IMContext(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds an additional table from the X11 compose file.
     *
-    * Adds an additional table from the X11 compose file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addComposeFile(
       compose_file: String | CString /* Some(CString) */
@@ -65,9 +67,7 @@ class IMContextSimple(raw: Ptr[GtkIMContextSimple])
     __sn_extract_string(compose_file)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds an additional table to search to the input context. Each row of the
+  /** Adds an additional table to search to the input context. Each row of the
     * table consists of @max_seq_len key symbols followed by two #guint16
     * interpreted as the high and low words of a #gunicode value. Tables are
     * searched starting from the last added.
@@ -75,11 +75,14 @@ class IMContextSimple(raw: Ptr[GtkIMContextSimple])
     * The table must be sorted in dictionary order on the numeric value of the
     * key symbol fields. (Values beyond the length of the sequence should be
     * zero.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method add_table is weird: non NULL-terminated arrays require special handling"
+    "[add_table]: Method add_table is weird: non NULL-terminated arrays require special handling"
   )
-  def addTable__ = ???
+  private def addTable__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -92,9 +95,10 @@ class IMContextSimple(raw: Ptr[GtkIMContextSimple])
 end IMContextSimple
 
 object IMContextSimple:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkIMContextSimple`.
     *
-    * Creates a new `GtkIMContextSimple`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): IMContextSimple = new IMContextSimple(
     gtk_im_context_simple_new().asInstanceOf

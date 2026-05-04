@@ -2,35 +2,40 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkWrapMode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Describes a type of line wrapping.
   *
-  * Describes a type of line wrapping.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum WrapMode(val raw: GtkWrapMode):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** do not wrap lines; just make the text area wider
     *
-    * do not wrap lines; just make the text area wider
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends WrapMode(GtkWrapMode.GTK_WRAP_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * wrap text, breaking lines anywhere the cursor can appear (between
+  /** wrap text, breaking lines anywhere the cursor can appear (between
     * characters, usually - if you want to be technical, between graphemes, see
     * pango_get_log_attrs())
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHAR extends WrapMode(GtkWrapMode.GTK_WRAP_CHAR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** wrap text, breaking lines in between words
     *
-    * wrap text, breaking lines in between words
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WORD extends WrapMode(GtkWrapMode.GTK_WRAP_WORD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * wrap text, breaking lines in between words, or if that is not enough, also
+  /** wrap text, breaking lines in between words, or if that is not enough, also
     * between graphemes
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WORD_CHAR extends WrapMode(GtkWrapMode.GTK_WRAP_WORD_CHAR)
 end WrapMode

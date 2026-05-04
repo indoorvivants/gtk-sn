@@ -19,9 +19,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkPrintOperation
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkPrintOperation` is the high-level, portable printing API.
+/** `GtkPrintOperation` is the high-level, portable printing API.
   *
   * It looks a bit different than other GTK dialogs such as the
   * `GtkFileChooser`, since some platforms don’t expose enough infrastructure to
@@ -82,6 +80,9 @@ import sn.gnome.gtk4.internal.GtkPrintOperation
   * [method@Gtk.PrintOperationPreview.end_preview] and
   * [method@Gtk.PrintOperationPreview.is_selected] are useful when implementing
   * a print preview.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PrintOperation(raw: Ptr[GtkPrintOperation])
     extends Object(raw.asInstanceOf),
@@ -89,36 +90,39 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Cancels a running print operation.
+  /** Cancels a running print operation.
     *
     * This function may be called from a
     * [signal@Gtk.PrintOperation::begin-print],
     * [signal@Gtk.PrintOperation::paginate] or
     * [signal@Gtk.PrintOperation::draw-page] signal handler to stop the
     * currently running print operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def cancel(): Unit /* None */ = gtk_print_operation_cancel(
     this.raw.asInstanceOf[Ptr[GtkPrintOperation]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Signal that drawing of particular page is complete.
+  /** Signal that drawing of particular page is complete.
     *
     * It is called after completion of page drawing (e.g. drawing in another
     * thread). If [method@Gtk.PrintOperation.set_defer_drawing] was called
     * before, then this function has to be called by application. Otherwise it
     * is called by GTK itself.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def drawPageFinish(): Unit /* None */ = gtk_print_operation_draw_page_finish(
     this.raw.asInstanceOf[Ptr[GtkPrintOperation]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the default page setup.
     *
-    * Returns the default page setup.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefaultPageSetup(): PageSetup /* None */ = new PageSetup(
     gtk_print_operation_get_default_page_setup(
@@ -126,24 +130,26 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether page setup selection combos are embedded
     *
-    * Gets whether page setup selection combos are embedded
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEmbedPageSetup(): Boolean /* None */ =
     gtk_print_operation_get_embed_page_setup(
       this.raw.asInstanceOf[Ptr[GtkPrintOperation]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Call this when the result of a print operation is
+  /** Call this when the result of a print operation is
     * %GTK_PRINT_OPERATION_RESULT_ERROR.
     *
     * It can be called either after [method@Gtk.PrintOperation.run] returns, or
     * in the [signal@Gtk.PrintOperation::done] signal handler.
     *
     * The returned `GError` will contain more details on what went wrong.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getError(): GResult[Unit /* None */ ] = GResult.wrap(__errorPtr =>
     gtk_print_operation_get_error(
@@ -152,18 +158,17 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether there is a selection.
     *
-    * Gets whether there is a selection.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasSelection(): Boolean /* None */ =
     gtk_print_operation_get_has_selection(
       this.raw.asInstanceOf[Ptr[GtkPrintOperation]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the number of pages that will be printed.
+  /** Returns the number of pages that will be printed.
     *
     * Note that this value is set during print preparation phase
     * (%GTK_PRINT_STATUS_PREPARING), so this function should never be called
@@ -173,19 +178,23 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * %GTK_PRINT_STATUS_GENERATING_DATA.
     *
     * This is typically used to track the progress of print operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNPagesToPrint(): Int /* None */ =
     gtk_print_operation_get_n_pages_to_print(
       this.raw.asInstanceOf[Ptr[GtkPrintOperation]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the current print settings.
+  /** Returns the current print settings.
     *
     * Note that the return value is %NULL until either
     * [method@Gtk.PrintOperation.set_print_settings] or
     * [method@Gtk.PrintOperation.run] have been called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPrintSettings(): PrintSettings /* None */ = new PrintSettings(
     gtk_print_operation_get_print_settings(
@@ -193,11 +202,12 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the status of the print operation.
+  /** Returns the status of the print operation.
     *
     * Also see [method@Gtk.PrintOperation.get_status_string].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStatus(): PrintStatus /* None */ = PrintStatus.fromRaw(
     gtk_print_operation_get_status(
@@ -205,15 +215,16 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a string representation of the status of the print operation.
+  /** Returns a string representation of the status of the print operation.
     *
     * The string is translated and suitable for displaying the print status e.g.
     * in a `GtkStatusbar`.
     *
     * Use [method@Gtk.PrintOperation.get_status] to obtain a status value that
     * is suitable for programmatic use.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStatusString()(using Zone): String /* None */ = fromCString(
     gtk_print_operation_get_status_string(
@@ -221,18 +232,17 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the application supports print of selection
     *
-    * Gets whether the application supports print of selection
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSupportSelection(): Boolean /* None */ =
     gtk_print_operation_get_support_selection(
       this.raw.asInstanceOf[Ptr[GtkPrintOperation]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A convenience function to find out if the print operation is finished.
+  /** A convenience function to find out if the print operation is finished.
     *
     * a print operation is finished if its status is either
     * %GTK_PRINT_STATUS_FINISHED or %GTK_PRINT_STATUS_FINISHED_ABORTED.
@@ -240,14 +250,15 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * Note: when you enable print status tracking the print operation can be in
     * a non-finished state even after done has been called, as the operation
     * status then tracks the print job status on the printer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isFinished(): Boolean /* None */ = gtk_print_operation_is_finished(
     this.raw.asInstanceOf[Ptr[GtkPrintOperation]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Runs the print operation.
+  /** Runs the print operation.
     *
     * Normally that this function does not return until the rendering of all
     * pages is complete. You can connect to the
@@ -302,6 +313,9 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     *
     * Note that gtk_print_operation_run() can only be called once on a given
     * `GtkPrintOperation`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def run(
       action: PrintOperationAction /* Some(GtkPrintOperationAction) */,
@@ -319,12 +333,13 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether gtk_print_operation_run() may return before the print
+  /** Sets whether gtk_print_operation_run() may return before the print
     * operation is completed.
     *
     * Note that some platforms may not allow asynchronous operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAllowAsync(
       allow_async: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -333,14 +348,15 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     gboolean(gint((if allow_async == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the current page.
+  /** Sets the current page.
     *
     * If this is called before [method@Gtk.PrintOperation.run], the user will be
     * able to select to print only the current page.
     *
     * Note that this only makes sense for pre-paginated documents.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCurrentPage(current_page: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_print_operation_set_current_page(
@@ -348,9 +364,10 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
       current_page
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the label for the tab holding custom widgets.
     *
-    * Sets the label for the tab holding custom widgets.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCustomTabLabel(
       label: Option[String | CString /* Some(CString) */ ]
@@ -361,13 +378,14 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Makes @default_page_setup the default page setup for @op.
+  /** Makes @default_page_setup the default page setup for @op.
     *
     * This page setup will be used by [method@Gtk.PrintOperation.run], but it
     * can be overridden on a per-page basis by connecting to the
     * [signal@Gtk.PrintOperation::request-page-setup] signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultPageSetup(
       default_page_setup: Option[PageSetup /* Some(Ptr[GtkPageSetup]) */ ]
@@ -378,27 +396,29 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
       .getOrElse(null.asInstanceOf[Ptr[GtkPageSetup]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets up the `GtkPrintOperation` to wait for calling of
+  /** Sets up the `GtkPrintOperation` to wait for calling of
     * [method@Gtk.PrintOperation.draw_page_finish from application.
     *
     * This can be used for drawing page in another thread.
     *
     * This function must be called in the callback of the
     * [signal@Gtk.PrintOperation::draw-page] signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDeferDrawing(): Unit /* None */ =
     gtk_print_operation_set_defer_drawing(
       this.raw.asInstanceOf[Ptr[GtkPrintOperation]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Embed page size combo box and orientation combo box into page setup page.
+  /** Embed page size combo box and orientation combo box into page setup page.
     *
     * Selected page setup is stored as default page setup in
     * `GtkPrintOperation`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEmbedPageSetup(
       embed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -407,9 +427,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     gboolean(gint((if embed == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets up the `GtkPrintOperation` to generate a file instead of showing the
+  /** Sets up the `GtkPrintOperation` to generate a file instead of showing the
     * print dialog.
     *
     * The intended use of this function is for implementing “Export to PDF”
@@ -418,6 +436,9 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * “Print to PDF” support is independent of this and is done by letting the
     * user pick the “Print to PDF” item from the list of printers in the print
     * dialog.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setExportFilename(
       filename: String | CString /* Some(CString) */
@@ -426,13 +447,14 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     __sn_extract_string(filename)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether there is a selection to print.
+  /** Sets whether there is a selection to print.
     *
     * Application has to set number of pages to which the selection will draw by
     * [method@Gtk.PrintOperation.set_n_pages] in a handler for the
     * [signal@Gtk.PrintOperation::begin-print] signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHasSelection(
       has_selection: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -441,15 +463,16 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     gboolean(gint((if has_selection == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the name of the print job.
+  /** Sets the name of the print job.
     *
     * The name is used to identify the job (e.g. in monitoring applications like
     * eggcups).
     *
     * If you don’t set a job name, GTK picks a default one by numbering
     * successive print jobs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setJobName(
       job_name: String | CString /* Some(CString) */
@@ -458,9 +481,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     __sn_extract_string(job_name)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the number of pages in the document.
+  /** Sets the number of pages in the document.
     *
     * This must be set to a positive number before the rendering starts. It may
     * be set in a [signal@Gtk.PrintOperation::begin-print] signal handler.
@@ -470,6 +491,9 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * [signal@Gtk.PrintOperation::draw-page] signals are 0-based, i.e. if the
     * user chooses to print all pages, the last ::draw-page signal will be for
     * page @n_pages - 1.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setNPages(n_pages: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_print_operation_set_n_pages(
@@ -477,12 +501,13 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
       n_pages
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the print settings for @op.
+  /** Sets the print settings for @op.
     *
     * This is typically used to re-establish print settings from a previous
     * print operation, see [method@Gtk.PrintOperation.run].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPrintSettings(
       print_settings: Option[PrintSettings /* Some(Ptr[GtkPrintSettings]) */ ]
@@ -493,10 +518,11 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
       .getOrElse(null.asInstanceOf[Ptr[GtkPrintSettings]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @show_progress is %TRUE, the print operation will show a progress
+  /** If @show_progress is %TRUE, the print operation will show a progress
     * dialog during the print operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowProgress(
       show_progress: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -505,9 +531,10 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     gboolean(gint((if show_progress == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether selection is supported by `GtkPrintOperation`.
     *
-    * Sets whether selection is supported by `GtkPrintOperation`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSupportSelection(
       support_selection: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -516,9 +543,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     gboolean(gint((if support_selection == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If track_status is %TRUE, the print operation will try to continue report
+  /** If track_status is %TRUE, the print operation will try to continue report
     * on the status of the print job in the printer queues and printer.
     *
     * This can allow your application to show things like “out of paper” issues,
@@ -526,6 +551,9 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     *
     * This function is often implemented using some form of polling, so it
     * should not be enabled unless needed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTrackPrintStatus(
       track_status: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -534,10 +562,11 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     gboolean(gint((if track_status == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets up the transformation for the cairo context obtained from
+  /** Sets up the transformation for the cairo context obtained from
     * `GtkPrintContext` in such a way that distances are measured in units of @unit.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUnit(unit: GTKUnit /* Some(GtkUnit) */ ): Unit /* None */ =
     gtk_print_operation_set_unit(
@@ -545,14 +574,15 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
       unit.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @full_page is %TRUE, the transformation for the cairo context obtained
+  /** If @full_page is %TRUE, the transformation for the cairo context obtained
     * from `GtkPrintContext` puts the origin at the top left corner of the page.
     *
     * This may not be the top left corner of the sheet, depending on page
     * orientation and the number of pages per sheet). Otherwise, the origin is
     * at the top left corner of the imageable area (i.e. inside the margins).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseFullPage(
       full_page: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -572,9 +602,10 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
 end PrintOperation
 
 object PrintOperation:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkPrintOperation`.
     *
-    * Creates a new `GtkPrintOperation`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): PrintOperation = new PrintOperation(
     gtk_print_operation_new().asInstanceOf

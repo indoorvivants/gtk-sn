@@ -9,17 +9,19 @@ import sn.gnome.glib.internal.gsize
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskShadowNode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A render node drawing one or more shadows behind its single child node.
   *
-  * A render node drawing one or more shadows behind its single child node.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ShadowNode(raw: Ptr[GskShadowNode]) extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the child `GskRenderNode` of the shadow @node.
     *
-    * Retrieves the child `GskRenderNode` of the shadow @node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): RenderNode /* None */ = new RenderNode(
     gsk_shadow_node_get_child(
@@ -27,36 +29,39 @@ class ShadowNode(raw: Ptr[GskShadowNode]) extends RenderNode(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the number of shadows in the @node.
     *
-    * Retrieves the number of shadows in the @node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNShadows(): CUnsignedLongInt /* None */ =
     gsk_shadow_node_get_n_shadows(
       this.raw.asInstanceOf[Ptr[GskRenderNode]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the shadow data at the given index @i.
     *
-    * Retrieves the shadow data at the given index @i.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Shadow), @type -> DataRecord(const GskShadow*)))"
+    "[get_shadow/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Shadow), @type -> DataRecord(const GskShadow*)))"
   )
-  def getShadow__ = ???
+  private def getShadow__ = ???
 
 end ShadowNode
 
 object ShadowNode:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GskRenderNode` that will draw a @child with the given
+  /** Creates a `GskRenderNode` that will draw a @child with the given
     * @shadows
     *   below it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Shadow), @type -> DataRecord(GskShadow)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GskShadow*)))"
+    "[shadows]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Shadow), @type -> DataRecord(GskShadow)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GskShadow*)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end ShadowNode

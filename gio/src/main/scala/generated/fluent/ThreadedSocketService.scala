@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.SocketService
 import sn.gnome.gio.internal.GThreadedSocketService
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A #GThreadedSocketService is a simple subclass of #GSocketService that
+/** A #GThreadedSocketService is a simple subclass of #GSocketService that
   * handles incoming connections by creating a worker thread and dispatching the
   * connection to it by emitting the #GThreadedSocketService::run signal in the
   * new thread.
@@ -24,6 +22,9 @@ import sn.gnome.gio.internal.GThreadedSocketService
   *
   * As with #GSocketService, you may connect to #GThreadedSocketService::run, or
   * subclass and override the default handler.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ThreadedSocketService(raw: Ptr[GThreadedSocketService])
     extends SocketService(raw.asInstanceOf):
@@ -33,10 +34,11 @@ class ThreadedSocketService(raw: Ptr[GThreadedSocketService])
 end ThreadedSocketService
 
 object ThreadedSocketService:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GThreadedSocketService with no listeners. Listeners must be
+  /** Creates a new #GThreadedSocketService with no listeners. Listeners must be
     * added with one of the #GSocketListener "add" methods.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(max_threads: Int /* Some(CInt) */ ): ThreadedSocketService =
     new ThreadedSocketService(

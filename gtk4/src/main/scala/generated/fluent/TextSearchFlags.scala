@@ -2,13 +2,14 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkTextSearchFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags affecting how a search is done.
+/** Flags affecting how a search is done.
   *
   * If neither %GTK_TEXT_SEARCH_VISIBLE_ONLY nor %GTK_TEXT_SEARCH_TEXT_ONLY are
   * enabled, the match must be exact; the special 0xFFFC character will match
   * embedded paintables or child widgets.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TextSearchFlags private (val raw: GtkTextSearchFlags):
   def is(kv: TextSearchFlags): Boolean =
@@ -36,22 +37,24 @@ object TextSearchFlags:
     def |(other: TextSearchFlags) =
       TextSearchFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags affecting how a search is done.
+  /** Flags affecting how a search is done.
     *
     * If neither %GTK_TEXT_SEARCH_VISIBLE_ONLY nor %GTK_TEXT_SEARCH_TEXT_ONLY
     * are enabled, the match must be exact; the special 0xFFFC character will
     * match embedded paintables or child widgets.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GtkTextSearchFlags, name: String)
       extends TextSearchFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Search only visible data. A search match may have invisible text
+    /** Search only visible data. A search match may have invisible text
       * interspersed.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case VISIBLE_ONLY
         extends KnownValue(
@@ -59,10 +62,11 @@ object TextSearchFlags:
           "VISIBLE_ONLY"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Search only text. A match may have paintables or child widgets mixed
+    /** Search only text. A match may have paintables or child widgets mixed
       * inside the matched range.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case TEXT_ONLY
         extends KnownValue(
@@ -70,9 +74,10 @@ object TextSearchFlags:
           "TEXT_ONLY"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The text will be matched regardless of what case it is in.
       *
-      * The text will be matched regardless of what case it is in.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CASE_INSENSITIVE
         extends KnownValue(

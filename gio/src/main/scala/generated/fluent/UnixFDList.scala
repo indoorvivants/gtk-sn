@@ -9,9 +9,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A #GUnixFDList contains a list of file descriptors. It owns the file
+/** A #GUnixFDList contains a list of file descriptors. It owns the file
   * descriptors that it contains, closing them when finalized.
   *
   * It may be wrapped in a #GUnixFDMessage and sent over a #GSocket in the
@@ -23,14 +21,15 @@ import sn.gnome.gobject.fluent.Object
   * using it.
   *
   * Since 2.74, the API is available for Windows.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a file descriptor to @list.
+  /** Adds a file descriptor to @list.
     *
     * The file descriptor is duplicated using dup(). You keep your copy of the
     * descriptor and the copy contained in @list will be closed when @list is
@@ -42,6 +41,9 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     * The index of the file descriptor in the list is returned. If you use this
     * index with g_unix_fd_list_get() then you will receive back a duplicated
     * copy of the same file descriptor.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def append(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
@@ -53,9 +55,7 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     ).value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a file descriptor out of @list.
+  /** Gets a file descriptor out of @list.
     *
     * @index_
     *   specifies the index of the file descriptor to get. It is a programmer
@@ -66,6 +66,9 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     *
     * A possible cause of failure is exceeding the per-process or system-wide
     * file descriptor limit.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def get(
       `index_`: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
@@ -77,18 +80,17 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     ).value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the length of @list (ie: the number of file descriptors contained
+  /** Gets the length of @list (ie: the number of file descriptors contained
     * within).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLength(): Int /* None */ = g_unix_fd_list_get_length(
     this.raw.asInstanceOf[Ptr[GUnixFDList]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the array of file descriptors that is contained in this object.
+  /** Returns the array of file descriptors that is contained in this object.
     *
     * After this call, the descriptors remain the property of @list. The caller
     * must not close them and must not free the array. The array is valid only
@@ -99,15 +101,16 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     *
     * This function never returns %NULL. In case there are no file descriptors
     * contained in @list, an empty array is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method peek_fds contains an OUT parameter, which is not supported yet"
+    "[peek_fds]: Method peek_fds contains an OUT parameter, which is not supported yet"
   )
-  def peekFds__ = ???
+  private def peekFds__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the array of file descriptors that is contained in this object.
+  /** Returns the array of file descriptors that is contained in this object.
     *
     * After this call, the descriptors are no longer contained in
     * @list.
@@ -123,24 +126,26 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     *
     * This function never returns %NULL. In case there are no file descriptors
     * contained in @list, an empty array is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method steal_fds contains an OUT parameter, which is not supported yet"
+    "[steal_fds]: Method steal_fds contains an OUT parameter, which is not supported yet"
   )
-  def stealFds__ = ???
+  private def stealFds__ = ???
 
 end UnixFDList
 
 object UnixFDList:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GUnixFDList containing no file descriptors.
     *
-    * Creates a new #GUnixFDList containing no file descriptors.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): UnixFDList = new UnixFDList(g_unix_fd_list_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GUnixFDList containing the file descriptors given in
+  /** Creates a new #GUnixFDList containing the file descriptors given in
     * @fds.
     *   The file descriptors become the property of the new list and may no
     *   longer be used by the caller. The array itself is owned by the caller.
@@ -148,10 +153,13 @@ object UnixFDList:
     * Each file descriptor in the array should be set to close-on-exec.
     *
     * If @n_fds is -1 then @fds must be terminated with -1.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(gint)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gint*)))"
+    "[fds]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(gint)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gint*)))"
   )
-  def new_from_array() = ???
+  private def new_from_array() = ???
 
 end UnixFDList

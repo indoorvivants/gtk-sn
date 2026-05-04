@@ -2,6 +2,7 @@ import rendition.*
 
 import com.indoorvivants.gnome.gir_schema.*
 import util.boundary.*
+import FluentErrReason.*
 
 def safeConstructorName(n: String) =
   n match
@@ -23,7 +24,7 @@ def renderClassConstructor(cls: AugmentedClass, constructor: Constructor)(using
 
     val methodContext = globalKnowledge.targetTypes
       .inMethod(constructor.identifier)
-      .getOrElse(break(FluentErr.TargetTypesMissing(constructor.identifier)))
+      .getOrElse(raise(TargetTypesMissing(constructor.identifier)))
 
     val renderedParameters =
       coll.observe(

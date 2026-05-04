@@ -16,9 +16,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkShortcutsWindow
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkShortcutsWindow` shows information about the keyboard shortcuts and
+/** A `GtkShortcutsWindow` shows information about the keyboard shortcuts and
   * gestures of an application.
   *
   * The shortcuts can be grouped, and you can have multiple sections in this
@@ -73,6 +71,9 @@ import sn.gnome.gtk4.internal.GtkShortcutsWindow
   *
   * `GtkShortcutsWindow` has a single CSS node with the name `window` and style
   * class `.shortcuts`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ShortcutsWindow(raw: Ptr[GtkShortcutsWindow])
     extends Window(raw.asInstanceOf),
@@ -85,15 +86,16 @@ class ShortcutsWindow(raw: Ptr[GtkShortcutsWindow])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a section to the shortcuts window.
+  /** Adds a section to the shortcuts window.
     *
     * This is the programmatic equivalent to using [class@Gtk.Builder] and a
     * `<child>` tag to add the child.
     *
     * Using [method@Gtk.Window.set_child] is not appropriate as the shortcuts
     * window manages its children internally.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addSection(
       section: ShortcutsSection /* Some(Ptr[GtkShortcutsSection]) */

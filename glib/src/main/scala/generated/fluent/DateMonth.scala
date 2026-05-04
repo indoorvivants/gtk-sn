@@ -2,87 +2,101 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GDateMonth
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Enumeration representing a month; values are %G_DATE_JANUARY,
+/** Enumeration representing a month; values are %G_DATE_JANUARY,
   * %G_DATE_FEBRUARY, etc. %G_DATE_BAD_MONTH is the invalid value.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum DateMonth(val raw: GDateMonth):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** invalid value
     *
-    * invalid value
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BAD_MONTH extends DateMonth(GDateMonth.G_DATE_BAD_MONTH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** January
     *
-    * January
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case JANUARY extends DateMonth(GDateMonth.G_DATE_JANUARY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** February
     *
-    * February
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FEBRUARY extends DateMonth(GDateMonth.G_DATE_FEBRUARY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** March
     *
-    * March
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MARCH extends DateMonth(GDateMonth.G_DATE_MARCH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** April
     *
-    * April
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case APRIL extends DateMonth(GDateMonth.G_DATE_APRIL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** May
     *
-    * May
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MAY extends DateMonth(GDateMonth.G_DATE_MAY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** June
     *
-    * June
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case JUNE extends DateMonth(GDateMonth.G_DATE_JUNE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** July
     *
-    * July
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case JULY extends DateMonth(GDateMonth.G_DATE_JULY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** August
     *
-    * August
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AUGUST extends DateMonth(GDateMonth.G_DATE_AUGUST)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** September
     *
-    * September
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SEPTEMBER extends DateMonth(GDateMonth.G_DATE_SEPTEMBER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** October
     *
-    * October
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OCTOBER extends DateMonth(GDateMonth.G_DATE_OCTOBER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** November
     *
-    * November
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOVEMBER extends DateMonth(GDateMonth.G_DATE_NOVEMBER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** December
     *
-    * December
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DECEMBER extends DateMonth(GDateMonth.G_DATE_DECEMBER)
 end DateMonth

@@ -19,9 +19,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkPrintSettings
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkPrintSettings` object represents the settings of a print dialog in a
+/** A `GtkPrintSettings` object represents the settings of a print dialog in a
   * system-independent way.
   *
   * The main use for this object is that once you’ve printed you can get a
@@ -33,15 +31,19 @@ import sn.gnome.gtk4.internal.GtkPrintSettings
   * settings for the next time your app runs, or even store them in a document.
   * The predefined keys try to use shared values as much as possible so that
   * moving such a document between systems still works.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PrintSettings(raw: Ptr[GtkPrintSettings])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Copies a `GtkPrintSettings` object.
     *
-    * Copies a `GtkPrintSettings` object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def copy(): PrintSettings /* None */ = new PrintSettings(
     gtk_print_settings_copy(
@@ -49,18 +51,20 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Calls @func for each key-value pair of @settings.
     *
-    * Calls @func for each key-value pair of @settings.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PrintSettingsFunc), @type -> DataRecord(GtkPrintSettingsFunc)))"
+    "[foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PrintSettingsFunc), @type -> DataRecord(GtkPrintSettingsFunc)))"
   )
-  def foreach__ = ???
+  private def foreach__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Looks up the string value associated with @key.
     *
-    * Looks up the string value associated with @key.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def get(
       key: String | CString /* Some(CString) */
@@ -71,11 +75,12 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the boolean represented by the value that is associated with @key.
+  /** Returns the boolean represented by the value that is associated with @key.
     *
     * The string “true” represents %TRUE, any other string %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBool(
       key: String | CString /* Some(CString) */
@@ -84,17 +89,19 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     __sn_extract_string(key)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_COLLATE.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_COLLATE.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCollate(): Boolean /* None */ = gtk_print_settings_get_collate(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_DEFAULT_SOURCE.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_DEFAULT_SOURCE.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefaultSource()(using Zone): String /* None */ = fromCString(
     gtk_print_settings_get_default_source(
@@ -102,9 +109,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_DITHER.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_DITHER.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDither()(using Zone): String /* None */ = fromCString(
     gtk_print_settings_get_dither(
@@ -112,9 +120,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the double value associated with @key, or 0.
     *
-    * Returns the double value associated with @key, or 0.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDouble(
       key: String | CString /* Some(CString) */
@@ -123,13 +132,14 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     __sn_extract_string(key)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the floating point number represented by the value that is
+  /** Returns the floating point number represented by the value that is
     * associated with @key, or @default_val if the value does not represent a
     * floating point number.
     *
     * Floating point numbers are parsed with g_ascii_strtod().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDoubleWithDefault(
       key: String | CString /* Some(CString) */,
@@ -140,17 +150,19 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     `def`
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_DUPLEX.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_DUPLEX.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDuplex(): PrintDuplex /* None */ = PrintDuplex.fromRaw(
     gtk_print_settings_get_duplex(this.raw.asInstanceOf[Ptr[GtkPrintSettings]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_FINISHINGS.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_FINISHINGS.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFinishings()(using Zone): String /* None */ = fromCString(
     gtk_print_settings_get_finishings(
@@ -158,9 +170,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the integer value of @key, or 0.
     *
-    * Returns the integer value of @key, or 0.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInt(
       key: String | CString /* Some(CString) */
@@ -169,10 +182,11 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     __sn_extract_string(key)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the value of @key, interpreted as an integer, or the default
+  /** Returns the value of @key, interpreted as an integer, or the default
     * value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIntWithDefault(
       key: String | CString /* Some(CString) */,
@@ -183,11 +197,12 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     `def`
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the value associated with @key, interpreted as a length.
+  /** Returns the value associated with @key, interpreted as a length.
     *
     * The returned value is converted to @units.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLength(
       key: String | CString /* Some(CString) */,
@@ -198,11 +213,12 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     unit.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of %GTK_PRINT_SETTINGS_MEDIA_TYPE.
+  /** Gets the value of %GTK_PRINT_SETTINGS_MEDIA_TYPE.
     *
     * The set of media types is defined in PWG 5101.1-2002 PWG.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMediaType()(using Zone): String /* None */ = fromCString(
     gtk_print_settings_get_media_type(
@@ -210,25 +226,28 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_N_COPIES.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_N_COPIES.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNCopies(): Int /* None */ = gtk_print_settings_get_n_copies(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_NUMBER_UP.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_NUMBER_UP.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNumberUp(): Int /* None */ = gtk_print_settings_get_number_up(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNumberUpLayout(): NumberUpLayout /* None */ = NumberUpLayout.fromRaw(
     gtk_print_settings_get_number_up_layout(
@@ -236,10 +255,11 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get the value of %GTK_PRINT_SETTINGS_ORIENTATION, converted to a
+  /** Get the value of %GTK_PRINT_SETTINGS_ORIENTATION, converted to a
     * `GtkPageOrientation`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOrientation(): PageOrientation /* None */ = PageOrientation.fromRaw(
     gtk_print_settings_get_orientation(
@@ -247,9 +267,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_OUTPUT_BIN.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_OUTPUT_BIN.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOutputBin()(using Zone): String /* None */ = fromCString(
     gtk_print_settings_get_output_bin(
@@ -257,18 +278,20 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_PAGE_RANGES.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_PAGE_RANGES.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_page_ranges contains an OUT parameter, which is not supported yet"
+    "[get_page_ranges]: Method get_page_ranges contains an OUT parameter, which is not supported yet"
   )
-  def getPageRanges__ = ???
+  private def getPageRanges__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_PAGE_SET.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_PAGE_SET.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPageSet(): PageSet /* None */ = PageSet.fromRaw(
     gtk_print_settings_get_page_set(
@@ -276,9 +299,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_PAPER_HEIGHT, converted to @unit.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_PAPER_HEIGHT, converted to @unit.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPaperHeight(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_print_settings_get_paper_height(
@@ -286,19 +310,21 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
       unit.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of %GTK_PRINT_SETTINGS_PAPER_FORMAT, converted to a
+  /** Gets the value of %GTK_PRINT_SETTINGS_PAPER_FORMAT, converted to a
     * `GtkPaperSize`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
+    "[get_paper_size/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
   )
-  def getPaperSize__ = ???
+  private def getPaperSize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_PAPER_WIDTH, converted to @unit.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_PAPER_WIDTH, converted to @unit.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPaperWidth(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_print_settings_get_paper_width(
@@ -306,9 +332,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
       unit.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_PRINT_PAGES.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_PRINT_PAGES.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPrintPages(): PrintPages /* None */ = PrintPages.fromRaw(
     gtk_print_settings_get_print_pages(
@@ -316,9 +343,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Convenience function to obtain the value of %GTK_PRINT_SETTINGS_PRINTER.
     *
-    * Convenience function to obtain the value of %GTK_PRINT_SETTINGS_PRINTER.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPrinter()(using Zone): String /* None */ = fromCString(
     gtk_print_settings_get_printer(
@@ -326,73 +354,82 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_PRINTER_LPI.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_PRINTER_LPI.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPrinterLpi(): Double /* None */ = gtk_print_settings_get_printer_lpi(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_QUALITY.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_QUALITY.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getQuality(): PrintQuality /* None */ = PrintQuality.fromRaw(
     gtk_print_settings_get_quality(this.raw.asInstanceOf[Ptr[GtkPrintSettings]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_RESOLUTION.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_RESOLUTION.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getResolution(): Int /* None */ = gtk_print_settings_get_resolution(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_RESOLUTION_X.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_RESOLUTION_X.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getResolutionX(): Int /* None */ = gtk_print_settings_get_resolution_x(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_RESOLUTION_Y.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_RESOLUTION_Y.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getResolutionY(): Int /* None */ = gtk_print_settings_get_resolution_y(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_REVERSE.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_REVERSE.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getReverse(): Boolean /* None */ = gtk_print_settings_get_reverse(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_SCALE.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_SCALE.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getScale(): Double /* None */ = gtk_print_settings_get_scale(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of %GTK_PRINT_SETTINGS_USE_COLOR.
     *
-    * Gets the value of %GTK_PRINT_SETTINGS_USE_COLOR.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseColor(): Boolean /* None */ = gtk_print_settings_get_use_color(
     this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns %TRUE, if a value is associated with @key.
     *
-    * Returns %TRUE, if a value is associated with @key.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasKey(
       key: String | CString /* Some(CString) */
@@ -401,14 +438,15 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     __sn_extract_string(key)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reads the print settings from @file_name.
+  /** Reads the print settings from @file_name.
     *
     * If the file could not be loaded then error is set to either a `GFileError`
     * or `GKeyFileError`.
     *
     * See [method@Gtk.PrintSettings.to_file].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def loadFile(
       file_name: String | CString /* Some(CString) */
@@ -420,21 +458,23 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reads the print settings from the group @group_name in @key_file.
+  /** Reads the print settings from the group @group_name in @key_file.
     *
     * If the file could not be loaded then error is set to either a `GFileError`
     * or `GKeyFileError`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
+    "[load_key_file/<method parameters>/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
-  def loadKeyFile__ = ???
+  private def loadKeyFile__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Associates @value with @key.
     *
-    * Associates @value with @key.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def set(
       key: String | CString /* Some(CString) */,
@@ -447,9 +487,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets @key to a boolean value.
     *
-    * Sets @key to a boolean value.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setBool(
       key: String | CString /* Some(CString) */,
@@ -460,9 +501,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     gboolean(gint((if value == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_COLLATE.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_COLLATE.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCollate(
       collate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -471,9 +513,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     gboolean(gint((if collate == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_DEFAULT_SOURCE.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_DEFAULT_SOURCE.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultSource(
       default_source: String | CString /* Some(CString) */
@@ -482,9 +525,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     __sn_extract_string(default_source)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_DITHER.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_DITHER.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDither(
       dither: String | CString /* Some(CString) */
@@ -493,9 +537,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     __sn_extract_string(dither)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets @key to a double value.
     *
-    * Sets @key to a double value.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDouble(
       key: String | CString /* Some(CString) */,
@@ -506,9 +551,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_DUPLEX.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_DUPLEX.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDuplex(
       duplex: PrintDuplex /* Some(GtkPrintDuplex) */
@@ -517,9 +563,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     duplex.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_FINISHINGS.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_FINISHINGS.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFinishings(
       finishings: String | CString /* Some(CString) */
@@ -528,9 +575,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     __sn_extract_string(finishings)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets @key to an integer value.
     *
-    * Sets @key to an integer value.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInt(
       key: String | CString /* Some(CString) */,
@@ -541,9 +589,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Associates a length in units of @unit with @key.
     *
-    * Associates a length in units of @unit with @key.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLength(
       key: String | CString /* Some(CString) */,
@@ -556,11 +605,12 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     unit.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the value of %GTK_PRINT_SETTINGS_MEDIA_TYPE.
+  /** Sets the value of %GTK_PRINT_SETTINGS_MEDIA_TYPE.
     *
     * The set of media types is defined in PWG 5101.1-2002 PWG.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMediaType(
       media_type: String | CString /* Some(CString) */
@@ -569,9 +619,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     __sn_extract_string(media_type)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_N_COPIES.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_N_COPIES.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setNCopies(num_copies: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_print_settings_set_n_copies(
@@ -579,9 +630,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
       num_copies
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_NUMBER_UP.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_NUMBER_UP.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setNumberUp(number_up: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_print_settings_set_number_up(
@@ -589,9 +641,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
       number_up
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setNumberUpLayout(
       number_up_layout: NumberUpLayout /* Some(GtkNumberUpLayout) */
@@ -600,9 +653,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     number_up_layout.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_ORIENTATION.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_ORIENTATION.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOrientation(
       orientation: PageOrientation /* Some(GtkPageOrientation) */
@@ -611,9 +665,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     orientation.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_OUTPUT_BIN.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_OUTPUT_BIN.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOutputBin(
       output_bin: String | CString /* Some(CString) */
@@ -622,18 +677,20 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     __sn_extract_string(output_bin)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_PAGE_RANGES.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_PAGE_RANGES.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PageRange), @type -> DataRecord(GtkPageRange)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GtkPageRange*)))"
+    "[set_page_ranges/<method parameters>/page_ranges]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PageRange), @type -> DataRecord(GtkPageRange)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GtkPageRange*)))"
   )
-  def setPageRanges__ = ???
+  private def setPageRanges__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_PAGE_SET.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_PAGE_SET.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPageSet(page_set: PageSet /* Some(GtkPageSet) */ ): Unit /* None */ =
     gtk_print_settings_set_page_set(
@@ -641,9 +698,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
       page_set.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_PAPER_HEIGHT.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_PAPER_HEIGHT.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPaperHeight(
       height: Double /* Some(Double) */,
@@ -654,19 +712,21 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     unit.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the value of %GTK_PRINT_SETTINGS_PAPER_FORMAT,
+  /** Sets the value of %GTK_PRINT_SETTINGS_PAPER_FORMAT,
     * %GTK_PRINT_SETTINGS_PAPER_WIDTH and %GTK_PRINT_SETTINGS_PAPER_HEIGHT.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
+    "[set_paper_size/<method parameters>/paper_size]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
   )
-  def setPaperSize__ = ???
+  private def setPaperSize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_PAPER_WIDTH.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_PAPER_WIDTH.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPaperWidth(
       width: Double /* Some(Double) */,
@@ -677,9 +737,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     unit.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_PRINT_PAGES.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_PRINT_PAGES.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPrintPages(
       pages: PrintPages /* Some(GtkPrintPages) */
@@ -688,9 +749,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     pages.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Convenience function to set %GTK_PRINT_SETTINGS_PRINTER to @printer.
     *
-    * Convenience function to set %GTK_PRINT_SETTINGS_PRINTER to @printer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPrinter(
       printer: String | CString /* Some(CString) */
@@ -699,9 +761,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     __sn_extract_string(printer)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_PRINTER_LPI.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_PRINTER_LPI.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPrinterLpi(lpi: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_print_settings_set_printer_lpi(
@@ -709,9 +772,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
       lpi
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_QUALITY.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_QUALITY.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setQuality(
       quality: PrintQuality /* Some(GtkPrintQuality) */
@@ -720,10 +784,11 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     quality.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the values of %GTK_PRINT_SETTINGS_RESOLUTION,
+  /** Sets the values of %GTK_PRINT_SETTINGS_RESOLUTION,
     * %GTK_PRINT_SETTINGS_RESOLUTION_X and %GTK_PRINT_SETTINGS_RESOLUTION_Y.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setResolution(resolution: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_print_settings_set_resolution(
@@ -731,10 +796,11 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
       resolution
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the values of %GTK_PRINT_SETTINGS_RESOLUTION,
+  /** Sets the values of %GTK_PRINT_SETTINGS_RESOLUTION,
     * %GTK_PRINT_SETTINGS_RESOLUTION_X and %GTK_PRINT_SETTINGS_RESOLUTION_Y.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setResolutionXy(
       resolution_x: Int /* Some(CInt) */,
@@ -745,9 +811,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     resolution_y
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_REVERSE.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_REVERSE.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setReverse(
       reverse: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -756,9 +823,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     gboolean(gint((if reverse == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_SCALE.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_SCALE.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setScale(scale: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_print_settings_set_scale(
@@ -766,9 +834,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
       scale
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of %GTK_PRINT_SETTINGS_USE_COLOR.
     *
-    * Sets the value of %GTK_PRINT_SETTINGS_USE_COLOR.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseColor(
       use_color: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -777,12 +846,13 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     gboolean(gint((if use_color == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function saves the print settings from @settings to @file_name.
+  /** This function saves the print settings from @settings to @file_name.
     *
     * If the file could not be written then error is set to either a
     * `GFileError` or `GKeyFileError`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def toFile(
       file_name: String | CString /* Some(CString) */
@@ -794,29 +864,32 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Serialize print settings to an a{sv} variant.
     *
-    * Serialize print settings to an a{sv} variant.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[to_gvariant/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def toGvariant__ = ???
+  private def toGvariant__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** This function adds the print settings from @settings to @key_file.
     *
-    * This function adds the print settings from @settings to @key_file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
+    "[to_key_file/<method parameters>/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
-  def toKeyFile__ = ???
+  private def toKeyFile__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes any value associated with @key.
+  /** Removes any value associated with @key.
     *
     * This has the same effect as setting the value to %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unset(
       key: String | CString /* Some(CString) */
@@ -836,23 +909,25 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
 end PrintSettings
 
 object PrintSettings:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkPrintSettings` object.
     *
-    * Creates a new `GtkPrintSettings` object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): PrintSettings = new PrintSettings(
     gtk_print_settings_new().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reads the print settings from @file_name.
+  /** Reads the print settings from @file_name.
     *
     * Returns a new `GtkPrintSettings` object with the restored settings, or
     * %NULL if an error occurred. If the file could not be loaded then error is
     * set to either a `GFileError` or `GKeyFileError`.
     *
     * See [method@Gtk.PrintSettings.to_file].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFile(
       file_name: String | CString /* Some(CString) */
@@ -865,30 +940,32 @@ object PrintSettings:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Deserialize print settings from an a{sv} variant.
+  /** Deserialize print settings from an a{sv} variant.
     *
     * The variant must be in the format produced by
     * [method@Gtk.PrintSettings.to_gvariant].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[variant]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def new_from_gvariant() = ???
+  private def new_from_gvariant() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reads the print settings from the group @group_name in @key_file.
+  /** Reads the print settings from the group @group_name in @key_file.
     *
     * Returns a new `GtkPrintSettings` object with the restored settings, or
     * %NULL if an error occurred. If the file could not be loaded then error is
     * set to either `GFileError` or `GKeyFileError`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
+    "[key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
-  def new_from_key_file() = ???
+  private def new_from_key_file() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

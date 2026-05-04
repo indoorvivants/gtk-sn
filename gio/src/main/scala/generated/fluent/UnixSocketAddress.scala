@@ -13,9 +13,7 @@ import sn.gnome.gio.fluent.{
 import sn.gnome.gio.internal.GUnixSocketAddress
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gsize}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Support for UNIX-domain (also known as local) sockets.
+/** Support for UNIX-domain (also known as local) sockets.
   *
   * UNIX domain sockets are generally visible in the filesystem. However, some
   * systems support abstract socket names which are not visible in the
@@ -33,6 +31,9 @@ import sn.gnome.glib.internal.{gboolean, gchar, gint, gsize}
   * Before GLib 2.72, `<gio/gunixsocketaddress.h>` belonged to the UNIX-specific
   * GIO interfaces, thus you had to use the `gio-unix-2.0.pc` pkg-config file
   * when using it. This is no longer necessary since GLib 2.72.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
     extends SocketAddress(raw.asInstanceOf),
@@ -40,9 +41,10 @@ class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @address's type.
     *
-    * Gets @address's type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAddressType(): UnixSocketAddressType /* None */ =
     UnixSocketAddressType.fromRaw(
@@ -51,23 +53,25 @@ class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests if @address is abstract.
     *
-    * Tests if @address is abstract.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIsAbstract(): Boolean /* None */ =
     g_unix_socket_address_get_is_abstract(
       this.raw.asInstanceOf[Ptr[GUnixSocketAddress]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets @address's path, or for abstract sockets the "name".
+  /** Gets @address's path, or for abstract sockets the "name".
     *
     * Guaranteed to be zero-terminated, but an abstract socket may contain
     * embedded zeros, and thus you should use
     * g_unix_socket_address_get_path_len() to get the true length of this
     * string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPath()(using Zone): String /* None */ = fromCString(
     g_unix_socket_address_get_path(
@@ -75,11 +79,12 @@ class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the length of @address's path.
+  /** Gets the length of @address's path.
     *
     * For details, see g_unix_socket_address_get_path().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPathLen(): CUnsignedLongInt /* None */ =
     g_unix_socket_address_get_path_len(
@@ -89,12 +94,13 @@ class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
 end UnixSocketAddress
 
 object UnixSocketAddress:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GUnixSocketAddress for @path.
+  /** Creates a new #GUnixSocketAddress for @path.
     *
     * To create abstract socket addresses, on systems that support that, use
     * g_unix_socket_address_new_abstract().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       path: String |
@@ -105,19 +111,18 @@ object UnixSocketAddress:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new %G_UNIX_SOCKET_ADDRESS_ABSTRACT_PADDED #GUnixSocketAddress
+  /** Creates a new %G_UNIX_SOCKET_ADDRESS_ABSTRACT_PADDED #GUnixSocketAddress
     * for @path.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
+    "[path]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
   )
-  def new_abstract() = ???
+  private def new_abstract() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GUnixSocketAddress of type @type with name @path.
+  /** Creates a new #GUnixSocketAddress of type @type with name @path.
     *
     * If @type is %G_UNIX_SOCKET_ADDRESS_PATH, this is equivalent to calling
     * g_unix_socket_address_new().
@@ -149,15 +154,19 @@ object UnixSocketAddress:
     * connecting to a server created by another process, you must use the
     * appropriate type corresponding to how that process created its listening
     * socket.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
+    "[path]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
   )
-  def new_with_type() = ???
+  private def new_with_type() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if abstract UNIX domain socket names are supported.
     *
-    * Checks if abstract UNIX domain socket names are supported.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def abstractNamesSupported()
       : Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =

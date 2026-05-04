@@ -2,10 +2,11 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GSettingsBindFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags used when creating a binding. These flags determine in which direction
+/** Flags used when creating a binding. These flags determine in which direction
   * the binding works. The default is to synchronize in both directions.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SettingsBindFlags private (val raw: GSettingsBindFlags):
   def is(kv: SettingsBindFlags): Boolean =
@@ -33,19 +34,21 @@ object SettingsBindFlags:
     def |(other: SettingsBindFlags) =
       SettingsBindFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags used when creating a binding. These flags determine in which
+  /** Flags used when creating a binding. These flags determine in which
     * direction the binding works. The default is to synchronize in both
     * directions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GSettingsBindFlags, name: String)
       extends SettingsBindFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Equivalent to `G_SETTINGS_BIND_GET|G_SETTINGS_BIND_SET`
       *
-      * Equivalent to `G_SETTINGS_BIND_GET|G_SETTINGS_BIND_SET`
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DEFAULT
         extends KnownValue(
@@ -53,24 +56,27 @@ object SettingsBindFlags:
           "DEFAULT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Update the #GObject property when the setting changes. It is an error to
+    /** Update the #GObject property when the setting changes. It is an error to
       * use this flag if the property is not writable.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case GET extends KnownValue(GSettingsBindFlags.G_SETTINGS_BIND_GET, "GET")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Update the setting when the #GObject property changes. It is an error to
+    /** Update the setting when the #GObject property changes. It is an error to
       * use this flag if the property is not readable.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SET extends KnownValue(GSettingsBindFlags.G_SETTINGS_BIND_SET, "SET")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Do not try to bind a "sensitivity" property to the writability of the
+    /** Do not try to bind a "sensitivity" property to the writability of the
       * setting
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NO_SENSITIVITY
         extends KnownValue(
@@ -78,11 +84,12 @@ object SettingsBindFlags:
           "NO_SENSITIVITY"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * When set in addition to %G_SETTINGS_BIND_GET, set the #GObject property
+    /** When set in addition to %G_SETTINGS_BIND_GET, set the #GObject property
       * value initially from the setting, but do not listen for changes of the
       * setting
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case GET_NO_CHANGES
         extends KnownValue(
@@ -90,12 +97,13 @@ object SettingsBindFlags:
           "GET_NO_CHANGES"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * When passed to g_settings_bind(), uses a pair of mapping functions that
+    /** When passed to g_settings_bind(), uses a pair of mapping functions that
       * invert the boolean value when mapping between the setting and the
       * property. The setting and property must both be booleans. You cannot
       * pass this flag to g_settings_bind_with_mapping().
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case INVERT_BOOLEAN
         extends KnownValue(

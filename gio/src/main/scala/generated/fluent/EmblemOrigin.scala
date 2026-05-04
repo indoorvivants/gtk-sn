@@ -2,34 +2,39 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GEmblemOrigin
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * GEmblemOrigin is used to add information about the origin of the emblem to
+/** GEmblemOrigin is used to add information about the origin of the emblem to
   * #GEmblem.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum EmblemOrigin(val raw: GEmblemOrigin):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Emblem of unknown origin
     *
-    * Emblem of unknown origin
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN extends EmblemOrigin(GEmblemOrigin.G_EMBLEM_ORIGIN_UNKNOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Emblem adds device-specific information
     *
-    * Emblem adds device-specific information
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DEVICE extends EmblemOrigin(GEmblemOrigin.G_EMBLEM_ORIGIN_DEVICE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Emblem depicts live metadata, such as "readonly"
     *
-    * Emblem depicts live metadata, such as "readonly"
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LIVEMETADATA
       extends EmblemOrigin(GEmblemOrigin.G_EMBLEM_ORIGIN_LIVEMETADATA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Emblem comes from a user-defined tag, e.g. set by nautilus (in the future)
     *
-    * Emblem comes from a user-defined tag, e.g. set by nautilus (in the future)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TAG extends EmblemOrigin(GEmblemOrigin.G_EMBLEM_ORIGIN_TAG)
 end EmblemOrigin

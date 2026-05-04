@@ -19,9 +19,7 @@ import sn.gnome.gtk4.fluent.{
 import sn.gnome.gtk4.internal.GtkScale
 import sn.gnome.pango.fluent.Layout
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkScale` is a slider control used to select a numeric value.
+/** A `GtkScale` is a slider control used to select a numeric value.
   *
   * ![An example GtkScale](scales.png)
   *
@@ -102,6 +100,9 @@ import sn.gnome.pango.fluent.Layout
   * # Accessibility
   *
   * `GtkScale` uses the %GTK_ACCESSIBLE_ROLE_SLIDER role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Scale(raw: Ptr[GtkScale])
     extends Range(raw.asInstanceOf),
@@ -113,9 +114,7 @@ class Scale(raw: Ptr[GtkScale])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a mark at @value.
+  /** Adds a mark at @value.
     *
     * A mark is indicated visually by drawing a tick mark next to the scale, and
     * GTK makes it easy for the user to position the scale exactly at the marks
@@ -124,6 +123,9 @@ class Scale(raw: Ptr[GtkScale])
     * If @markup is not %NULL, text is shown next to the tick mark.
     *
     * To remove marks from a scale, use [method@Gtk.Scale.clear_marks].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addMark(
       value: Double /* Some(Double) */,
@@ -138,51 +140,54 @@ class Scale(raw: Ptr[GtkScale])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes any marks that have been added.
     *
-    * Removes any marks that have been added.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def clearMarks(): Unit /* None */ = gtk_scale_clear_marks(
     this.raw.asInstanceOf[Ptr[GtkScale]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the number of decimal places that are displayed in the value.
     *
-    * Gets the number of decimal places that are displayed in the value.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDigits(): Int /* None */ = gtk_scale_get_digits(
     this.raw.asInstanceOf[Ptr[GtkScale]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the current value is displayed as a string next to the
+  /** Returns whether the current value is displayed as a string next to the
     * slider.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDrawValue(): Boolean /* None */ =
     gtk_scale_get_draw_value(this.raw.asInstanceOf[Ptr[GtkScale]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the scale has an origin.
     *
-    * Returns whether the scale has an origin.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasOrigin(): Boolean /* None */ =
     gtk_scale_get_has_origin(this.raw.asInstanceOf[Ptr[GtkScale]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `PangoLayout` used to display the scale.
+  /** Gets the `PangoLayout` used to display the scale.
     *
     * The returned object is owned by the scale so does not need to be freed by
     * the caller.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLayout(): Layout /* None */ = new Layout(
     gtk_scale_get_layout(this.raw.asInstanceOf[Ptr[GtkScale]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains the coordinates where the scale will draw the `PangoLayout`
+  /** Obtains the coordinates where the scale will draw the `PangoLayout`
     * representing the text in the scale.
     *
     * Remember when using the `PangoLayout` function you need to convert to and
@@ -190,23 +195,25 @@ class Scale(raw: Ptr[GtkScale])
     *
     * If the [property@Gtk.Scale:draw-value] property is %FALSE, the return
     * values are undefined.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_layout_offsets contains an OUT parameter, which is not supported yet"
+    "[get_layout_offsets]: Method get_layout_offsets contains an OUT parameter, which is not supported yet"
   )
-  def getLayoutOffsets__ = ???
+  private def getLayoutOffsets__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the position in which the current value is displayed.
     *
-    * Gets the position in which the current value is displayed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getValuePos(): PositionType /* None */ = PositionType.fromRaw(
     gtk_scale_get_value_pos(this.raw.asInstanceOf[Ptr[GtkScale]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the number of decimal places that are displayed in the value.
+  /** Sets the number of decimal places that are displayed in the value.
     *
     * Also causes the value of the adjustment to be rounded to this number of
     * digits, so the retrieved value matches the displayed one, if
@@ -218,14 +225,18 @@ class Scale(raw: Ptr[GtkScale])
     * smooth autoscrolling that is built into `GtkScale`. As an alternative, you
     * can use [method@Gtk.Scale.set_format_value_func] to format the displayed
     * value yourself.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDigits(digits: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_scale_set_digits(this.raw.asInstanceOf[Ptr[GtkScale]], digits)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Specifies whether the current value is displayed as a string next to the
+  /** Specifies whether the current value is displayed as a string next to the
     * slider.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDrawValue(
       draw_value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -234,9 +245,7 @@ class Scale(raw: Ptr[GtkScale])
     gboolean(gint((if draw_value == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * @func
+  /** @func
     *   allows you to change how the scale value is displayed.
     *
     * The given function will return an allocated string representing
@@ -246,19 +255,23 @@ class Scale(raw: Ptr[GtkScale])
     * If #NULL is passed as @func, the value will be displayed on its own,
     * rounded according to the value of the [property@Gtk.Scale:digits]
     * property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ScaleFormatValueFunc), @type -> DataRecord(GtkScaleFormatValueFunc)))"
+    "[set_format_value_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ScaleFormatValueFunc), @type -> DataRecord(GtkScaleFormatValueFunc)))"
   )
-  def setFormatValueFunc__ = ???
+  private def setFormatValueFunc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the scale has an origin.
+  /** Sets whether the scale has an origin.
     *
     * If [property@Gtk.Scale:has-origin] is set to %TRUE (the default), the
     * scale will highlight the part of the trough between the origin (bottom or
     * left side) and the current value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHasOrigin(
       has_origin: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -267,9 +280,10 @@ class Scale(raw: Ptr[GtkScale])
     gboolean(gint((if has_origin == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the position in which the current value is displayed.
     *
-    * Sets the position in which the current value is displayed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setValuePos(
       pos: PositionType /* Some(GtkPositionType) */
@@ -287,9 +301,10 @@ class Scale(raw: Ptr[GtkScale])
 end Scale
 
 object Scale:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkScale`.
     *
-    * Creates a new `GtkScale`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       orientation: Orientation /* Some(GtkOrientation) */,
@@ -303,9 +318,7 @@ object Scale:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new scale widget with a range from @min to @max.
+  /** Creates a new scale widget with a range from @min to @max.
     *
     * The returns scale will have the given orientation and will let the user
     * input a number between @min and @max (including @min and @max) with the
@@ -316,6 +329,9 @@ object Scale:
     * @step
     *   is a power of ten. If the resulting precision is not suitable for your
     *   needs, use [method@Gtk.Scale.set_digits] to correct it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withRange(
       orientation: Orientation /* Some(GtkOrientation) */,

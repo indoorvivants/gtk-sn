@@ -2,118 +2,137 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkLicense
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The type of license for an application.
+/** The type of license for an application.
   *
   * This enumeration can be expanded at later date.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum License(val raw: GtkLicense):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No license specified
     *
-    * No license specified
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN extends License(GtkLicense.GTK_LICENSE_UNKNOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A license text is going to be specified by the developer
     *
-    * A license text is going to be specified by the developer
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CUSTOM extends License(GtkLicense.GTK_LICENSE_CUSTOM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The GNU General Public License, version 2.0 or later
     *
-    * The GNU General Public License, version 2.0 or later
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GPL_2_0 extends License(GtkLicense.GTK_LICENSE_GPL_2_0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The GNU General Public License, version 3.0 or later
     *
-    * The GNU General Public License, version 3.0 or later
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GPL_3_0 extends License(GtkLicense.GTK_LICENSE_GPL_3_0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The GNU Lesser General Public License, version 2.1 or later
     *
-    * The GNU Lesser General Public License, version 2.1 or later
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LGPL_2_1 extends License(GtkLicense.GTK_LICENSE_LGPL_2_1)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The GNU Lesser General Public License, version 3.0 or later
     *
-    * The GNU Lesser General Public License, version 3.0 or later
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LGPL_3_0 extends License(GtkLicense.GTK_LICENSE_LGPL_3_0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The BSD standard license
     *
-    * The BSD standard license
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BSD extends License(GtkLicense.GTK_LICENSE_BSD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The MIT/X11 standard license
     *
-    * The MIT/X11 standard license
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MIT_X11 extends License(GtkLicense.GTK_LICENSE_MIT_X11)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The Artistic License, version 2.0
     *
-    * The Artistic License, version 2.0
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ARTISTIC extends License(GtkLicense.GTK_LICENSE_ARTISTIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The GNU General Public License, version 2.0 only
     *
-    * The GNU General Public License, version 2.0 only
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GPL_2_0_ONLY extends License(GtkLicense.GTK_LICENSE_GPL_2_0_ONLY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The GNU General Public License, version 3.0 only
     *
-    * The GNU General Public License, version 3.0 only
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GPL_3_0_ONLY extends License(GtkLicense.GTK_LICENSE_GPL_3_0_ONLY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The GNU Lesser General Public License, version 2.1 only
     *
-    * The GNU Lesser General Public License, version 2.1 only
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LGPL_2_1_ONLY extends License(GtkLicense.GTK_LICENSE_LGPL_2_1_ONLY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The GNU Lesser General Public License, version 3.0 only
     *
-    * The GNU Lesser General Public License, version 3.0 only
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LGPL_3_0_ONLY extends License(GtkLicense.GTK_LICENSE_LGPL_3_0_ONLY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The GNU Affero General Public License, version 3.0 or later
     *
-    * The GNU Affero General Public License, version 3.0 or later
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AGPL_3_0 extends License(GtkLicense.GTK_LICENSE_AGPL_3_0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The GNU Affero General Public License, version 3.0 only
     *
-    * The GNU Affero General Public License, version 3.0 only
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AGPL_3_0_ONLY extends License(GtkLicense.GTK_LICENSE_AGPL_3_0_ONLY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The 3-clause BSD licence
     *
-    * The 3-clause BSD licence
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BSD_3 extends License(GtkLicense.GTK_LICENSE_BSD_3)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The Apache License, version 2.0
     *
-    * The Apache License, version 2.0
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case APACHE_2_0 extends License(GtkLicense.GTK_LICENSE_APACHE_2_0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The Mozilla Public License, version 2.0
     *
-    * The Mozilla Public License, version 2.0
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MPL_2_0 extends License(GtkLicense.GTK_LICENSE_MPL_2_0)
 end License

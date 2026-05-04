@@ -15,9 +15,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkScrollbar
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkScrollbar` widget is a horizontal or vertical scrollbar.
+/** The `GtkScrollbar` widget is a horizontal or vertical scrollbar.
   *
   * ![An example GtkScrollbar](scrollbar.png)
   *
@@ -59,6 +57,9 @@ import sn.gnome.gtk4.internal.GtkScrollbar
   * # Accessibility
   *
   * `GtkScrollbar` uses the %GTK_ACCESSIBLE_ROLE_SCROLLBAR role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Scrollbar(raw: Ptr[GtkScrollbar])
     extends Widget(raw.asInstanceOf),
@@ -69,9 +70,10 @@ class Scrollbar(raw: Ptr[GtkScrollbar])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the scrollbar's adjustment.
     *
-    * Returns the scrollbar's adjustment.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAdjustment(): Adjustment /* None */ = new Adjustment(
     gtk_scrollbar_get_adjustment(
@@ -79,9 +81,10 @@ class Scrollbar(raw: Ptr[GtkScrollbar])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes the scrollbar use the given adjustment.
     *
-    * Makes the scrollbar use the given adjustment.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAdjustment(
       adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
@@ -95,9 +98,10 @@ class Scrollbar(raw: Ptr[GtkScrollbar])
 end Scrollbar
 
 object Scrollbar:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new scrollbar with the given orientation.
     *
-    * Creates a new scrollbar with the given orientation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       orientation: Orientation /* Some(GtkOrientation) */,

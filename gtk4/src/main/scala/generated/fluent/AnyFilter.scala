@@ -8,11 +8,12 @@ import sn.gnome.gio.fluent.ListModel
 import sn.gnome.gtk4.fluent.{Buildable, MultiFilter}
 import sn.gnome.gtk4.internal.GtkAnyFilter
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkAnyFilter` matches an item when at least one of its filters matches.
+/** `GtkAnyFilter` matches an item when at least one of its filters matches.
   *
   * To add filters to a `GtkAnyFilter`, use [method@Gtk.MultiFilter.append].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AnyFilter(raw: Ptr[GtkAnyFilter])
     extends MultiFilter(raw.asInstanceOf),
@@ -24,15 +25,16 @@ class AnyFilter(raw: Ptr[GtkAnyFilter])
 end AnyFilter
 
 object AnyFilter:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new empty "any" filter.
+  /** Creates a new empty "any" filter.
     *
     * Use [method@Gtk.MultiFilter.append] to add filters to it.
     *
     * This filter matches an item if any of the filters added to it matches the
     * item. In particular, this means that if no filter has been added to it,
     * the filter matches no item.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): AnyFilter = new AnyFilter(gtk_any_filter_new().asInstanceOf)
 end AnyFilter

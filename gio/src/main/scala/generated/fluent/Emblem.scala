@@ -8,30 +8,33 @@ import sn.gnome.gio.fluent.{EmblemOrigin, Icon}
 import sn.gnome.gio.internal.GEmblem
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GEmblem is an implementation of #GIcon that supports having an emblem,
+/** #GEmblem is an implementation of #GIcon that supports having an emblem,
   * which is an icon with additional properties. It can than be added to a
   * #GEmblemedIcon.
   *
   * Currently, only metainformation about the emblem's origin is supported. More
   * may be added in the future.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Emblem(raw: Ptr[GEmblem]) extends Object(raw.asInstanceOf), Icon:
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gives back the icon from @emblem.
     *
-    * Gives back the icon from @emblem.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIcon(): Icon /* None */ = new Icon.Abstract(
     g_emblem_get_icon(this.raw.asInstanceOf[Ptr[GEmblem]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the origin of the emblem.
     *
-    * Gets the origin of the emblem.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOrigin(): EmblemOrigin /* None */ = EmblemOrigin.fromRaw(
     g_emblem_get_origin(this.raw.asInstanceOf[Ptr[GEmblem]])
@@ -40,17 +43,19 @@ class Emblem(raw: Ptr[GEmblem]) extends Object(raw.asInstanceOf), Icon:
 end Emblem
 
 object Emblem:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new emblem for @icon.
     *
-    * Creates a new emblem for @icon.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(icon: Icon /* Some(Ptr[GIcon]) */ ): Emblem = new Emblem(
     g_emblem_new(icon.getUnsafeRawPointer().asInstanceOf).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new emblem for @icon.
     *
-    * Creates a new emblem for @icon.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withOrigin(
       icon: Icon /* Some(Ptr[GIcon]) */,

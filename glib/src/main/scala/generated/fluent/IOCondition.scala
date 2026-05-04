@@ -2,10 +2,11 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GIOCondition
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A bitwise combination representing a condition to watch for on an event
+/** A bitwise combination representing a condition to watch for on an event
   * source.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class IOCondition private (val raw: GIOCondition):
   def is(kv: IOCondition): Boolean =
@@ -33,48 +34,55 @@ object IOCondition:
     def |(other: IOCondition) =
       IOCondition(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A bitwise combination representing a condition to watch for on an event
+  /** A bitwise combination representing a condition to watch for on an event
     * source.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GIOCondition, name: String)
       extends IOCondition(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** There is data to read.
       *
-      * There is data to read.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case IN extends KnownValue(GIOCondition.G_IO_IN, "IN")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Data can be written (without blocking).
       *
-      * Data can be written (without blocking).
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case OUT extends KnownValue(GIOCondition.G_IO_OUT, "OUT")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** There is urgent data to read.
       *
-      * There is urgent data to read.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case PRI extends KnownValue(GIOCondition.G_IO_PRI, "PRI")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Error condition.
       *
-      * Error condition.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ERR extends KnownValue(GIOCondition.G_IO_ERR, "ERR")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Hung up (the connection has been broken, usually for pipes and sockets).
       *
-      * Hung up (the connection has been broken, usually for pipes and sockets).
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case HUP extends KnownValue(GIOCondition.G_IO_HUP, "HUP")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Invalid request. The file descriptor is not open.
       *
-      * Invalid request. The file descriptor is not open.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NVAL extends KnownValue(GIOCondition.G_IO_NVAL, "NVAL")
   end KnownValue

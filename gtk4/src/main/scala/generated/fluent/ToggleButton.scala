@@ -15,9 +15,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkToggleButton
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkToggleButton` is a button which remains “pressed-in” when clicked.
+/** A `GtkToggleButton` is a button which remains “pressed-in” when clicked.
   *
   * Clicking again will cause the toggle button to return to its normal state.
   *
@@ -92,6 +90,9 @@ import sn.gnome.gtk4.internal.GtkToggleButton
   *   gtk_window_present (GTK_WINDOW (window));
   * }
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ToggleButton(raw: Ptr[GtkToggleButton])
     extends Button(raw.asInstanceOf),
@@ -102,26 +103,28 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries a `GtkToggleButton` and returns its current state.
+  /** Queries a `GtkToggleButton` and returns its current state.
     *
     * Returns %TRUE if the toggle button is pressed in and %FALSE if it is
     * raised.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActive(): Boolean /* None */ = gtk_toggle_button_get_active(
     this.raw.asInstanceOf[Ptr[GtkToggleButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the status of the toggle button.
+  /** Sets the status of the toggle button.
     *
     * Set to %TRUE if you want the `GtkToggleButton` to be “pressed in”, and
     * %FALSE to raise it.
     *
     * If the status of the button changes, this action causes the
     * [signal@Gtk.ToggleButton::toggled] signal to be emitted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActive(
       is_active: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -130,9 +133,7 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
     gboolean(gint((if is_active == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds @self to the group of @group.
+  /** Adds @self to the group of @group.
     *
     * In a group of multiple toggle buttons, only one button can be active at a
     * time.
@@ -142,6 +143,9 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
     * Note that the same effect can be achieved via the [iface@Gtk.Actionable]
     * API, by using the same action with parameter type and state type 's' for
     * all buttons in the group, and giving each button its own target value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setGroup(
       group: Option[ToggleButton /* Some(Ptr[GtkToggleButton]) */ ]
@@ -152,9 +156,10 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
       .getOrElse(null.asInstanceOf[Ptr[GtkToggleButton]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Emits the ::toggled signal on the `GtkToggleButton`.
     *
-    * Emits the ::toggled signal on the `GtkToggleButton`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def toggled(): Unit /* None */ = gtk_toggle_button_toggled(
     this.raw.asInstanceOf[Ptr[GtkToggleButton]]
@@ -163,19 +168,21 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
 end ToggleButton
 
 object ToggleButton:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new toggle button.
+  /** Creates a new toggle button.
     *
     * A widget should be packed into the button, as in [ctor@Gtk.Button.new].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): ToggleButton = new ToggleButton(
     gtk_toggle_button_new().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new toggle button with a text label.
     *
-    * Creates a new toggle button with a text label.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withLabel(
       label: String | CString /* Some(CString) */
@@ -183,12 +190,13 @@ object ToggleButton:
     gtk_toggle_button_new_with_label(__sn_extract_string(label)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkToggleButton` containing a label.
+  /** Creates a new `GtkToggleButton` containing a label.
     *
     * The label will be created using [ctor@Gtk.Label.new_with_mnemonic], so
     * underscores in @label indicate the mnemonic for the button.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withMnemonic(
       label: String | CString /* Some(CString) */

@@ -7,17 +7,19 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskBlurNode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A render node applying a blur effect to its single child.
   *
-  * A render node applying a blur effect to its single child.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class BlurNode(raw: Ptr[GskBlurNode]) extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the child `GskRenderNode` of the blur @node.
     *
-    * Retrieves the child `GskRenderNode` of the blur @node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): RenderNode /* None */ = new RenderNode(
     gsk_blur_node_get_child(
@@ -25,9 +27,10 @@ class BlurNode(raw: Ptr[GskBlurNode]) extends RenderNode(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the blur radius of the @node.
     *
-    * Retrieves the blur radius of the @node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRadius(): Float /* None */ = gsk_blur_node_get_radius(
     this.raw.asInstanceOf[Ptr[GskRenderNode]]
@@ -36,9 +39,10 @@ class BlurNode(raw: Ptr[GskBlurNode]) extends RenderNode(raw.asInstanceOf):
 end BlurNode
 
 object BlurNode:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a render node that blurs the child.
     *
-    * Creates a render node that blurs the child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       child: RenderNode /* Some(Ptr[GskRenderNode]) */,

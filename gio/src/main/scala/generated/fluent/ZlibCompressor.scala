@@ -8,10 +8,11 @@ import sn.gnome.gio.fluent.{Converter, FileInfo, ZlibCompressorFormat}
 import sn.gnome.gio.internal.GZlibCompressor
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GZlibCompressor is an implementation of #GConverter that compresses data
+/** #GZlibCompressor is an implementation of #GConverter that compresses data
   * using zlib.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ZlibCompressor(raw: Ptr[GZlibCompressor])
     extends Object(raw.asInstanceOf),
@@ -19,9 +20,10 @@ class ZlibCompressor(raw: Ptr[GZlibCompressor])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the #GZlibCompressor:file-info property.
     *
-    * Returns the #GZlibCompressor:file-info property.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFileInfo(): FileInfo /* None */ = new FileInfo(
     g_zlib_compressor_get_file_info(
@@ -29,9 +31,7 @@ class ZlibCompressor(raw: Ptr[GZlibCompressor])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @file_info in @compressor. If non-%NULL, and @compressor's
+  /** Sets @file_info in @compressor. If non-%NULL, and @compressor's
     * #GZlibCompressor:format property is %G_ZLIB_COMPRESSOR_FORMAT_GZIP, it
     * will be used to set the file name and modification time in the GZIP header
     * of the compressed data.
@@ -39,6 +39,9 @@ class ZlibCompressor(raw: Ptr[GZlibCompressor])
     * Note: it is an error to call this function while a compression is in
     * progress; it may only be called immediately after creation of @compressor,
     * or after resetting it with g_converter_reset().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFileInfo(
       file_info: Option[FileInfo /* Some(Ptr[GFileInfo]) */ ]
@@ -52,9 +55,10 @@ class ZlibCompressor(raw: Ptr[GZlibCompressor])
 end ZlibCompressor
 
 object ZlibCompressor:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GZlibCompressor.
     *
-    * Creates a new #GZlibCompressor.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       format: ZlibCompressorFormat /* Some(GZlibCompressorFormat) */,

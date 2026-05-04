@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GResolverNameLookupFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags to modify lookup behavior.
   *
-  * Flags to modify lookup behavior.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ResolverNameLookupFlags private (val raw: GResolverNameLookupFlags):
   def is(kv: ResolverNameLookupFlags): Boolean =
@@ -32,17 +33,19 @@ object ResolverNameLookupFlags:
     def |(other: ResolverNameLookupFlags) =
       ResolverNameLookupFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags to modify lookup behavior.
     *
-    * Flags to modify lookup behavior.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GResolverNameLookupFlags, name: String)
       extends ResolverNameLookupFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** default behavior (same as g_resolver_lookup_by_name())
       *
-      * default behavior (same as g_resolver_lookup_by_name())
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DEFAULT
         extends KnownValue(
@@ -50,9 +53,10 @@ object ResolverNameLookupFlags:
           "DEFAULT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** only resolve ipv4 addresses
       *
-      * only resolve ipv4 addresses
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case IPV4_ONLY
         extends KnownValue(
@@ -60,9 +64,10 @@ object ResolverNameLookupFlags:
           "IPV4_ONLY"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** only resolve ipv6 addresses
       *
-      * only resolve ipv6 addresses
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case IPV6_ONLY
         extends KnownValue(

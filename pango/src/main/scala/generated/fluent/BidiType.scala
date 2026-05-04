@@ -2,150 +2,174 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoBidiType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `PangoBidiType` represents the bidirectional character type of a Unicode
+/** `PangoBidiType` represents the bidirectional character type of a Unicode
   * character.
   *
   * The values in this enumeration are specified by the [Unicode bidirectional
   * algorithm](http://www.unicode.org/reports/tr9/).
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum BidiType(val raw: PangoBidiType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Left-to-Right
     *
-    * Left-to-Right
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case L extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_L)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Left-to-Right Embedding
     *
-    * Left-to-Right Embedding
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LRE extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_LRE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Left-to-Right Override
     *
-    * Left-to-Right Override
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LRO extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_LRO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Right-to-Left
     *
-    * Right-to-Left
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case R extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_R)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Right-to-Left Arabic
     *
-    * Right-to-Left Arabic
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AL extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_AL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Right-to-Left Embedding
     *
-    * Right-to-Left Embedding
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RLE extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_RLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Right-to-Left Override
     *
-    * Right-to-Left Override
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RLO extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_RLO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Pop Directional Format
     *
-    * Pop Directional Format
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PDF extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_PDF)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** European Number
     *
-    * European Number
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EN extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_EN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** European Number Separator
     *
-    * European Number Separator
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ES extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_ES)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** European Number Terminator
     *
-    * European Number Terminator
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ET extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_ET)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Arabic Number
     *
-    * Arabic Number
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AN extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_AN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Common Number Separator
     *
-    * Common Number Separator
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CS extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_CS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Nonspacing Mark
     *
-    * Nonspacing Mark
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NSM extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_NSM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Boundary Neutral
     *
-    * Boundary Neutral
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BN extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_BN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Paragraph Separator
     *
-    * Paragraph Separator
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case B extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_B)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Segment Separator
     *
-    * Segment Separator
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case S extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_S)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Whitespace
     *
-    * Whitespace
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WS extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_WS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Other Neutrals
     *
-    * Other Neutrals
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ON extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_ON)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Left-to-Right isolate. Since 1.48.6
     *
-    * Left-to-Right isolate. Since 1.48.6
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LRI extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_LRI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Right-to-Left isolate. Since 1.48.6
     *
-    * Right-to-Left isolate. Since 1.48.6
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RLI extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_RLI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** First strong isolate. Since 1.48.6
     *
-    * First strong isolate. Since 1.48.6
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FSI extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_FSI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Pop directional isolate. Since 1.48.6
     *
-    * Pop directional isolate. Since 1.48.6
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PDI extends BidiType(PangoBidiType.PANGO_BIDI_TYPE_PDI)
 end BidiType

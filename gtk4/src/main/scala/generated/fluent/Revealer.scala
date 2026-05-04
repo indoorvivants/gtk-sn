@@ -15,9 +15,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkRevealer
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkRevealer` animates the transition of its child from invisible to
+/** A `GtkRevealer` animates the transition of its child from invisible to
   * visible.
   *
   * The style of transition can be controlled with
@@ -39,6 +37,9 @@ import sn.gnome.gtk4.internal.GtkRevealer
   *
   * The child of `GtkRevealer`, if set, is always available in the accessibility
   * tree, regardless of the state of the revealer widget.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Revealer(raw: Ptr[GtkRevealer])
     extends Widget(raw.asInstanceOf),
@@ -48,58 +49,64 @@ class Revealer(raw: Ptr[GtkRevealer])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @revealer.
     *
-    * Gets the child widget of @revealer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_revealer_get_child(this.raw.asInstanceOf[Ptr[GtkRevealer]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the child is fully revealed.
+  /** Returns whether the child is fully revealed.
     *
     * In other words, this returns whether the transition to the revealed state
     * is completed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChildRevealed(): Boolean /* None */ = gtk_revealer_get_child_revealed(
     this.raw.asInstanceOf[Ptr[GtkRevealer]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the child is currently revealed.
+  /** Returns whether the child is currently revealed.
     *
     * This function returns %TRUE as soon as the transition is to the revealed
     * state is started. To learn whether the child is fully revealed (ie the
     * transition is completed), use [method@Gtk.Revealer.get_child_revealed].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRevealChild(): Boolean /* None */ = gtk_revealer_get_reveal_child(
     this.raw.asInstanceOf[Ptr[GtkRevealer]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the amount of time (in milliseconds) that transitions will take.
     *
-    * Returns the amount of time (in milliseconds) that transitions will take.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTransitionDuration(): UInt /* None */ =
     gtk_revealer_get_transition_duration(
       this.raw.asInstanceOf[Ptr[GtkRevealer]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the type of animation that will be used for transitions in @revealer.
     *
-    * Gets the type of animation that will be used for transitions in @revealer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTransitionType(): RevealerTransitionType /* None */ =
     RevealerTransitionType.fromRaw(
       gtk_revealer_get_transition_type(this.raw.asInstanceOf[Ptr[GtkRevealer]])
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the child widget of @revealer.
     *
-    * Sets the child widget of @revealer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -110,11 +117,12 @@ class Revealer(raw: Ptr[GtkRevealer])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tells the `GtkRevealer` to reveal or conceal its child.
+  /** Tells the `GtkRevealer` to reveal or conceal its child.
     *
     * The transition will be animated with the current transition type of @revealer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRevealChild(
       reveal_child: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -123,9 +131,10 @@ class Revealer(raw: Ptr[GtkRevealer])
     gboolean(gint((if reveal_child == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the duration that transitions will take.
     *
-    * Sets the duration that transitions will take.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTransitionDuration(
       duration: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -134,11 +143,12 @@ class Revealer(raw: Ptr[GtkRevealer])
     guint(duration)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the type of animation that will be used for transitions in @revealer.
+  /** Sets the type of animation that will be used for transitions in @revealer.
     *
     * Available types include various kinds of fades and slides.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTransitionType(
       transition: RevealerTransitionType /* Some(GtkRevealerTransitionType) */
@@ -150,9 +160,10 @@ class Revealer(raw: Ptr[GtkRevealer])
 end Revealer
 
 object Revealer:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkRevealer`.
     *
-    * Creates a new `GtkRevealer`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Revealer = new Revealer(gtk_revealer_new().asInstanceOf)
 end Revealer

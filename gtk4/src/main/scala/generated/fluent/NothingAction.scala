@@ -7,9 +7,10 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.{NothingAction, ShortcutAction}
 import sn.gnome.gtk4.internal.GtkNothingAction
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A `GtkShortcutAction` that does nothing.
   *
-  * A `GtkShortcutAction` that does nothing.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class NothingAction(raw: Ptr[GtkNothingAction])
     extends ShortcutAction(raw.asInstanceOf):
@@ -19,11 +20,12 @@ class NothingAction(raw: Ptr[GtkNothingAction])
 end NothingAction
 
 object NothingAction:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the nothing action.
+  /** Gets the nothing action.
     *
     * This is an action that does nothing and where activating it always fails.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def get(): NothingAction /* Some(Ptr[GtkShortcutAction]) */ =
     new NothingAction(gtk_nothing_action_get().asInstanceOf)

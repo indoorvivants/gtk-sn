@@ -19,9 +19,7 @@ import sn.gnome.glib.fluent.{GResult, OptionArg, OptionFlags}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A #GApplication is the foundation of an application. It wraps some low-level
+/** A #GApplication is the foundation of an application. It wraps some low-level
   * platform-specific services and is intended to act as the foundation for
   * higher-level application classes such as #GtkApplication or #MxApplication.
   * In general, you should not use this class outside of a higher level
@@ -132,6 +130,9 @@ import sn.gnome.gobject.fluent.Object
   *
   * For an example of using extra D-Bus hooks with GApplication, see
   * [gapplication-example-dbushooks.c](https://gitlab.gnome.org/GNOME/glib/-/blob/HEAD/gio/tests/gapplication-example-dbushooks.c).
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Application(raw: Ptr[GApplication])
     extends Object(raw.asInstanceOf),
@@ -140,22 +141,21 @@ class Application(raw: Ptr[GApplication])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Activates the application.
+  /** Activates the application.
     *
     * In essence, this results in the #GApplication::activate signal being
     * emitted in the primary instance.
     *
     * The application must be registered before calling this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def activate(): Unit /* None */ = g_application_activate(
     this.raw.asInstanceOf[Ptr[GApplication]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Add an option to be handled by @application.
+  /** Add an option to be handled by @application.
     *
     * Calling this function is the equivalent of calling
     * g_application_add_main_option_entries() with a single #GOptionEntry that
@@ -168,6 +168,9 @@ class Application(raw: Ptr[GApplication])
     * details.
     *
     * See #GOptionEntry for more documentation of the arguments.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addMainOption(
       long_name: String | CString /* Some(CString) */,
@@ -188,9 +191,7 @@ class Application(raw: Ptr[GApplication])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds main option entries to be handled by @application.
+  /** Adds main option entries to be handled by @application.
     *
     * This function is comparable to g_option_context_add_main_entries().
     *
@@ -248,15 +249,16 @@ class Application(raw: Ptr[GApplication])
     *   - for %G_OPTION_ARG_FILENAME, use `^&ay`
     *   - for %G_OPTION_ARG_STRING_ARRAY, use `^a&s`
     *   - for %G_OPTION_ARG_FILENAME_ARRAY, use `^a&ay`
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.OptionEntry)))),ListMap(@type -> DataRecord(const GOptionEntry*)))"
+    "[add_main_option_entries/<method parameters>/entries]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.OptionEntry)))),ListMap(@type -> DataRecord(const GOptionEntry*)))"
   )
-  def addMainOptionEntries__ = ???
+  private def addMainOptionEntries__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a #GOptionGroup to the commandline handling of @application.
+  /** Adds a #GOptionGroup to the commandline handling of @application.
     *
     * This function is comparable to g_option_context_add_group().
     *
@@ -280,20 +282,24 @@ class Application(raw: Ptr[GApplication])
     * to be parsed, but it does not cause you to be "opted in" to the new
     * functionality whereby unrecognised options are rejected even if
     * %G_APPLICATION_HANDLES_COMMAND_LINE was given.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.OptionGroup), @type -> DataRecord(GOptionGroup*)))"
+    "[add_option_group/<method parameters>/group]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.OptionGroup), @type -> DataRecord(GOptionGroup*)))"
   )
-  def addOptionGroup__ = ???
+  private def addOptionGroup__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Marks @application as busy (see g_application_mark_busy()) while
+  /** Marks @application as busy (see g_application_mark_busy()) while
     * @property
     *   on @object is %TRUE.
     *
     * The binding holds a reference to @application while it is active, but not
     * to @object. Instead, the binding is destroyed when @object is finalized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def bindBusyProperty(
       `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
@@ -307,9 +313,10 @@ class Application(raw: Ptr[GApplication])
     __sn_extract_string(property).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the unique identifier for @application.
     *
-    * Gets the unique identifier for @application.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getApplicationId()(using Zone): String /* None */ = fromCString(
     g_application_get_application_id(
@@ -317,9 +324,7 @@ class Application(raw: Ptr[GApplication])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the #GDBusConnection being used by the application, or %NULL.
+  /** Gets the #GDBusConnection being used by the application, or %NULL.
     *
     * If #GApplication is using its D-Bus backend then this function will return
     * the #GDBusConnection being used for uniqueness and communication with the
@@ -331,6 +336,9 @@ class Application(raw: Ptr[GApplication])
     *
     * This function must not be called before the application has been
     * registered. See g_application_get_is_registered().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDbusConnection(): DBusConnection /* None */ = new DBusConnection(
     g_application_get_dbus_connection(
@@ -338,9 +346,7 @@ class Application(raw: Ptr[GApplication])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the D-Bus object path being used by the application, or %NULL.
+  /** Gets the D-Bus object path being used by the application, or %NULL.
     *
     * If #GApplication is using its D-Bus backend then this function will return
     * the D-Bus object path that #GApplication is using. If the application is
@@ -354,6 +360,9 @@ class Application(raw: Ptr[GApplication])
     *
     * This function must not be called before the application has been
     * registered. See g_application_get_is_registered().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDbusObjectPath()(using Zone): String /* None */ = fromCString(
     g_application_get_dbus_object_path(
@@ -361,51 +370,53 @@ class Application(raw: Ptr[GApplication])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the flags for @application.
+  /** Gets the flags for @application.
     *
     * See #GApplicationFlags.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFlags(): ApplicationFlags /* None */ = ApplicationFlags.fromRaw(
     g_application_get_flags(this.raw.asInstanceOf[Ptr[GApplication]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the current inactivity timeout for the application.
+  /** Gets the current inactivity timeout for the application.
     *
     * This is the amount of time (in milliseconds) after the last call to
     * g_application_release() before the application stops running.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInactivityTimeout(): UInt /* None */ =
     g_application_get_inactivity_timeout(
       this.raw.asInstanceOf[Ptr[GApplication]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the application's current busy state, as set through
+  /** Gets the application's current busy state, as set through
     * g_application_mark_busy() or g_application_bind_busy_property().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIsBusy(): Boolean /* None */ = g_application_get_is_busy(
     this.raw.asInstanceOf[Ptr[GApplication]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if @application is registered.
+  /** Checks if @application is registered.
     *
     * An application is registered if g_application_register() has been
     * successfully called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIsRegistered(): Boolean /* None */ = g_application_get_is_registered(
     this.raw.asInstanceOf[Ptr[GApplication]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if @application is remote.
+  /** Checks if @application is remote.
     *
     * If @application is remote then it means that another instance of
     * application already exists (the 'primary' instance). Calls to perform
@@ -415,16 +426,20 @@ class Application(raw: Ptr[GApplication])
     * The value of this property cannot be accessed before
     * g_application_register() has been called. See
     * g_application_get_is_registered().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIsRemote(): Boolean /* None */ = g_application_get_is_remote(
     this.raw.asInstanceOf[Ptr[GApplication]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the resource base path of @application.
+  /** Gets the resource base path of @application.
     *
     * See g_application_set_resource_base_path() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getResourceBasePath()(using Zone): String /* None */ = fromCString(
     g_application_get_resource_base_path(
@@ -432,23 +447,22 @@ class Application(raw: Ptr[GApplication])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Increases the use count of @application.
+  /** Increases the use count of @application.
     *
     * Use this function to indicate that the application has a reason to
     * continue to run. For example, g_application_hold() is called by GTK when a
     * toplevel window is on the screen.
     *
     * To cancel the hold, call g_application_release().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hold(): Unit /* None */ = g_application_hold(
     this.raw.asInstanceOf[Ptr[GApplication]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Increases the busy count of @application.
+  /** Increases the busy count of @application.
     *
     * Use this function to indicate that the application is busy, for instance
     * while a long running operation is pending.
@@ -460,14 +474,15 @@ class Application(raw: Ptr[GApplication])
     * To cancel the busy indication, use g_application_unmark_busy().
     *
     * The application must be registered before calling this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def markBusy(): Unit /* None */ = g_application_mark_busy(
     this.raw.asInstanceOf[Ptr[GApplication]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Opens the given files.
+  /** Opens the given files.
     *
     * In essence, this results in the #GApplication::open signal being emitted
     * in the primary instance.
@@ -483,15 +498,16 @@ class Application(raw: Ptr[GApplication])
     *
     * The application must be registered before calling this function and it
     * must have the %G_APPLICATION_HANDLES_OPEN flag set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method open is weird: non NULL-terminated arrays require special handling"
+    "[open]: Method open is weird: non NULL-terminated arrays require special handling"
   )
-  def open__ = ???
+  private def open__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Immediately quits the application.
+  /** Immediately quits the application.
     *
     * Upon return to the mainloop, g_application_run() will return, calling only
     * the 'shutdown' function before doing so.
@@ -503,14 +519,15 @@ class Application(raw: Ptr[GApplication])
     *
     * The result of calling g_application_run() again after it returns is
     * unspecified.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def quit(): Unit /* None */ = g_application_quit(
     this.raw.asInstanceOf[Ptr[GApplication]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Attempts registration of the application.
+  /** Attempts registration of the application.
     *
     * This is the point at which the application discovers if it is the primary
     * instance or merely acting as a remote for an already-existing primary
@@ -538,6 +555,9 @@ class Application(raw: Ptr[GApplication])
     * Note: the return value of this function is not an indicator that this
     * instance is or is not the primary instance of the application. See
     * g_application_get_is_remote() for that.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def register(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -551,22 +571,21 @@ class Application(raw: Ptr[GApplication])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decrease the use count of @application.
+  /** Decrease the use count of @application.
     *
     * When the use count reaches zero, the application will stop running.
     *
     * Never call this function except to cancel the effect of a previous call to
     * g_application_hold().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def release(): Unit /* None */ = g_application_release(
     this.raw.asInstanceOf[Ptr[GApplication]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Runs the application.
+  /** Runs the application.
     *
     * This function is intended to be run from main() and its return value is
     * intended to be returned by main(). Although you are expected to pass the @argc, @argv
@@ -638,6 +657,9 @@ class Application(raw: Ptr[GApplication])
     * should not be used from applications like editors that need precise
     * control over when processes invoked via the commandline will exit and what
     * their exit status will be.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def run(
       argc: Int /* Some(CInt) */,
@@ -650,9 +672,7 @@ class Application(raw: Ptr[GApplication])
       .getOrElse(null.asInstanceOf[Ptr[CString]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sends a notification on behalf of @application to the desktop shell. There
+  /** Sends a notification on behalf of @application to the desktop shell. There
     * is no guarantee that the notification is displayed immediately, or even at
     * all.
     *
@@ -679,6 +699,9 @@ class Application(raw: Ptr[GApplication])
     *
     * If @notification is no longer relevant, it can be withdrawn with
     * g_application_withdraw_notification().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sendNotification(
       id: Option[
@@ -693,10 +716,11 @@ class Application(raw: Ptr[GApplication])
     notification.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This used to be how actions were associated with a #GApplication. Now
+  /** This used to be how actions were associated with a #GApplication. Now
     * there is #GActionMap for that.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActionGroup(
       action_group: Option[ActionGroup /* Some(Ptr[GActionGroup]) */ ]
@@ -707,15 +731,16 @@ class Application(raw: Ptr[GApplication])
       .getOrElse(null.asInstanceOf[Ptr[GActionGroup]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the unique identifier for @application.
+  /** Sets the unique identifier for @application.
     *
     * The application id can only be modified if @application has not yet been
     * registered.
     *
     * If non-%NULL, the application id must be valid. See
     * g_application_id_is_valid().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setApplicationId(
       application_id: Option[
@@ -730,36 +755,36 @@ class Application(raw: Ptr[GApplication])
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets or unsets the default application for the process, as returned by
+  /** Sets or unsets the default application for the process, as returned by
     * g_application_get_default().
     *
     * This function does not take its own reference on @application. If
     * @application
     *   is destroyed then the default application will revert back to %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefault(): Unit /* None */ = g_application_set_default(
     this.raw.asInstanceOf[Ptr[GApplication]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the flags for @application.
+  /** Sets the flags for @application.
     *
     * The flags can only be modified if @application has not yet been
     * registered.
     *
     * See #GApplicationFlags.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFlags(
       flags: ApplicationFlags /* Some(GApplicationFlags) */
   ): Unit /* None */ =
     g_application_set_flags(this.raw.asInstanceOf[Ptr[GApplication]], flags.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the current inactivity timeout for the application.
+  /** Sets the current inactivity timeout for the application.
     *
     * This is the amount of time (in milliseconds) after the last call to
     * g_application_release() before the application stops running.
@@ -767,6 +792,9 @@ class Application(raw: Ptr[GApplication])
     * This call has no side effects of its own. The value set here is only used
     * for next time g_application_release() drops the use count to zero. Any
     * timeouts currently in progress are not impacted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInactivityTimeout(
       inactivity_timeout: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -775,11 +803,12 @@ class Application(raw: Ptr[GApplication])
     guint(inactivity_timeout)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a description to the @application option context.
+  /** Adds a description to the @application option context.
     *
     * See g_option_context_set_description() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOptionContextDescription(
       description: Option[
@@ -794,15 +823,16 @@ class Application(raw: Ptr[GApplication])
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the parameter string to be used by the commandline handling of @application.
+  /** Sets the parameter string to be used by the commandline handling of @application.
     *
     * This function registers the argument to be passed to
     * g_option_context_new() when the internal #GOptionContext of @application
     * is created.
     *
     * See g_option_context_new() for more information about @parameter_string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOptionContextParameterString(
       parameter_string: Option[
@@ -818,11 +848,12 @@ class Application(raw: Ptr[GApplication])
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a summary to the @application option context.
+  /** Adds a summary to the @application option context.
     *
     * See g_option_context_set_summary() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOptionContextSummary(
       summary: Option[
@@ -837,9 +868,7 @@ class Application(raw: Ptr[GApplication])
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets (or unsets) the base resource path of @application.
+  /** Sets (or unsets) the base resource path of @application.
     *
     * The path is used to automatically load various [application
     * resources][gresource] such as menu layouts and action descriptions. The
@@ -871,6 +900,9 @@ class Application(raw: Ptr[GApplication])
     * initialization. Alternatively, you can call this function in the
     * #GApplicationClass.startup virtual function, before chaining up to the
     * parent implementation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setResourceBasePath(
       resource_path: Option[
@@ -885,11 +917,12 @@ class Application(raw: Ptr[GApplication])
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Destroys a binding between @property and the busy state of
+  /** Destroys a binding between @property and the busy state of
     * @application
     *   that was previously created with g_application_bind_busy_property().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unbindBusyProperty(
       `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
@@ -903,23 +936,22 @@ class Application(raw: Ptr[GApplication])
     __sn_extract_string(property).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decreases the busy count of @application.
+  /** Decreases the busy count of @application.
     *
     * When the busy count reaches zero, the new state will be propagated to
     * other processes.
     *
     * This function must only be called to cancel the effect of a previous call
     * to g_application_mark_busy().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unmarkBusy(): Unit /* None */ = g_application_unmark_busy(
     this.raw.asInstanceOf[Ptr[GApplication]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Withdraws a notification that was sent with
+  /** Withdraws a notification that was sent with
     * g_application_send_notification().
     *
     * This call does nothing if a notification with @id doesn't exist or the
@@ -932,6 +964,9 @@ class Application(raw: Ptr[GApplication])
     * Note that notifications are dismissed when the user clicks on one of the
     * buttons in a notification or triggers its default action, so there is no
     * need to explicitly withdraw the notification in that case.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withdrawNotification(
       id: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -951,15 +986,16 @@ class Application(raw: Ptr[GApplication])
 end Application
 
 object Application:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GApplication instance.
+  /** Creates a new #GApplication instance.
     *
     * If non-%NULL, the application id must be valid. See
     * g_application_id_is_valid().
     *
     * If no application ID is given then some features of #GApplication (most
     * notably application uniqueness) will be disabled.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       application_id: Option[
@@ -977,23 +1013,22 @@ object Application:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the default #GApplication instance for this process.
+  /** Returns the default #GApplication instance for this process.
     *
     * Normally there is only one #GApplication per process and it becomes the
     * default when it is created. You can exercise more control over this by
     * using g_application_set_default().
     *
     * If there is no default application then %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefault(): Application /* Some(Ptr[GApplication]) */ = new Application(
     g_application_get_default().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if @application_id is a valid application identifier.
+  /** Checks if @application_id is a valid application identifier.
     *
     * A valid ID is required for calls to g_application_new() and
     * g_application_set_application_id().
@@ -1036,6 +1071,9 @@ object Application:
     * underscore. For example, if the owner of 7-zip.org used an application
     * identifier for an archiving application, it might be named
     * `org._7_zip.Archiver`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def idIsValid(
       application_id: String |

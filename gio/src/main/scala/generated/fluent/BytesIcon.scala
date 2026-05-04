@@ -8,10 +8,11 @@ import sn.gnome.gio.fluent.{Icon, LoadableIcon}
 import sn.gnome.gio.internal.GBytesIcon
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GBytesIcon specifies an image held in memory in a common format (usually
+/** #GBytesIcon specifies an image held in memory in a common format (usually
   * png) to be used as icon.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class BytesIcon(raw: Ptr[GBytesIcon])
     extends Object(raw.asInstanceOf),
@@ -20,29 +21,31 @@ class BytesIcon(raw: Ptr[GBytesIcon])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the #GBytes associated with the given @icon.
     *
-    * Gets the #GBytes associated with the given @icon.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[get_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def getBytes__ = ???
+  private def getBytes__ = ???
 
 end BytesIcon
 
 object BytesIcon:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new icon for a bytes.
+  /** Creates a new icon for a bytes.
     *
     * This cannot fail, but loading and interpreting the bytes may fail later on
     * (for example, if g_loadable_icon_load() is called) if the image is
     * invalid.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end BytesIcon

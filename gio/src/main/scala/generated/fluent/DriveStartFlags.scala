@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDriveStartFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used when starting a drive.
   *
-  * Flags used when starting a drive.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DriveStartFlags private (val raw: GDriveStartFlags):
   def is(kv: DriveStartFlags): Boolean =
@@ -32,17 +33,19 @@ object DriveStartFlags:
     def |(other: DriveStartFlags) =
       DriveStartFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used when starting a drive.
     *
-    * Flags used when starting a drive.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GDriveStartFlags, name: String)
       extends DriveStartFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GDriveStartFlags.G_DRIVE_START_NONE, "NONE")
   end KnownValue

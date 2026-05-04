@@ -1,7 +1,9 @@
 import com.indoorvivants.gnome.gir_schema.*
 
 import rendition.*
-import util.boundary.*
+import util.boundary.* 
+
+import FluentErrReason.*
 
 def renderClassExtensions(
     selfName: String,
@@ -14,7 +16,7 @@ def renderClassExtensions(
   WithEffects.collect: coll =>
     val parentExt = parent.map: name =>
       summon[GlobalKnowledge].names.get(name) match
-        case None        => break(FluentErr.NoGlobalNameFor(name))
+        case None        => raise(NoGlobalNameFor(name))
         case Some(value) =>
           value.tpe match
             case NameType.Class =>
@@ -34,14 +36,14 @@ def renderClassExtensions(
                 s"_${value.short}(raw.asInstanceOf)"
 
             case other =>
-              break(FluentErr.UnexpectedClassParent(selfName, value))
+              raise(UnexpectedClassParent(selfName, value))
 
     val ext = parentExt.toSeq ++ impl
       .map(_.name)
       .map: name =>
         val gname = summon[GlobalKnowledge].names
           .get(name)
-          .getOrElse(break(FluentErr.NoGlobalNameFor(name)))
+          .getOrElse(raise(NoGlobalNameFor(name)))
         coll.addAll(gname.effects)
         gname.short
 

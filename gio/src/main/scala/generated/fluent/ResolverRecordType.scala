@@ -2,9 +2,7 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GResolverRecordType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The type of record that g_resolver_lookup_records() or
+/** The type of record that g_resolver_lookup_records() or
   * g_resolver_lookup_records_async() should retrieve. The records are returned
   * as lists of #GVariant tuples. Each record type has different values in the
   * variant tuples returned.
@@ -34,35 +32,43 @@ import _root_.sn.gnome.gio.internal.GResolverRecordType
   *
   * %G_RESOLVER_RECORD_NS records are returned as variants with the signature
   * `(s)`, representing a string of the hostname of the name server.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ResolverRecordType(val raw: GResolverRecordType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** look up DNS SRV records for a domain
     *
-    * look up DNS SRV records for a domain
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SRV extends ResolverRecordType(GResolverRecordType.G_RESOLVER_RECORD_SRV)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** look up DNS MX records for a domain
     *
-    * look up DNS MX records for a domain
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MX extends ResolverRecordType(GResolverRecordType.G_RESOLVER_RECORD_MX)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** look up DNS TXT records for a name
     *
-    * look up DNS TXT records for a name
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TXT extends ResolverRecordType(GResolverRecordType.G_RESOLVER_RECORD_TXT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** look up DNS SOA records for a zone
     *
-    * look up DNS SOA records for a zone
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SOA extends ResolverRecordType(GResolverRecordType.G_RESOLVER_RECORD_SOA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** look up DNS NS records for a domain
     *
-    * look up DNS NS records for a domain
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NS extends ResolverRecordType(GResolverRecordType.G_RESOLVER_RECORD_NS)
 end ResolverRecordType

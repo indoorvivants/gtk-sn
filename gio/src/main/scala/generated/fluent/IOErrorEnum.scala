@@ -2,9 +2,7 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GIOErrorEnum
 
-/**  COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  *  Error codes returned by GIO functions.
+/**  Error codes returned by GIO functions.
   *
   *  Note that this domain may be extended in future GLib releases. In
   *  general, new error codes either only apply to new APIs, or else
@@ -22,332 +20,383 @@ import _root_.sn.gnome.gio.internal.GIOErrorEnum
   *
   *  See also #GPollableReturn for a cheaper way of returning
   *  %G_IO_ERROR_WOULD_BLOCK to callers without allocating a #GError.
+  *
+  *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
 enum IOErrorEnum(val raw: GIOErrorEnum):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Generic error condition for when an operation fails and no more specific
+  /** Generic error condition for when an operation fails and no more specific
     * #GIOErrorEnum value is defined.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FAILED extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_FAILED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File not found.
     *
-    * File not found.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_FOUND extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_NOT_FOUND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File already exists.
     *
-    * File already exists.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EXISTS extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_EXISTS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File is a directory.
     *
-    * File is a directory.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case IS_DIRECTORY extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_IS_DIRECTORY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File is not a directory.
     *
-    * File is not a directory.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_DIRECTORY extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_NOT_DIRECTORY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File is a directory that isn't empty.
     *
-    * File is a directory that isn't empty.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_EMPTY extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_NOT_EMPTY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File is not a regular file.
     *
-    * File is not a regular file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_REGULAR_FILE
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_NOT_REGULAR_FILE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File is not a symbolic link.
     *
-    * File is not a symbolic link.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_SYMBOLIC_LINK
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_NOT_SYMBOLIC_LINK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File cannot be mounted.
     *
-    * File cannot be mounted.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_MOUNTABLE_FILE
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_NOT_MOUNTABLE_FILE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Filename is too many characters.
     *
-    * Filename is too many characters.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FILENAME_TOO_LONG
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_FILENAME_TOO_LONG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Filename is invalid or contains invalid characters.
     *
-    * Filename is invalid or contains invalid characters.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_FILENAME
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_INVALID_FILENAME)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File contains too many symbolic links.
     *
-    * File contains too many symbolic links.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOO_MANY_LINKS
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_TOO_MANY_LINKS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No space left on drive.
     *
-    * No space left on drive.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NO_SPACE extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_NO_SPACE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Invalid argument.
     *
-    * Invalid argument.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_ARGUMENT
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_INVALID_ARGUMENT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Permission denied.
     *
-    * Permission denied.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PERMISSION_DENIED
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_PERMISSION_DENIED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Operation (or one of its parameters) not supported
     *
-    * Operation (or one of its parameters) not supported
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_SUPPORTED extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_NOT_SUPPORTED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File isn't mounted.
     *
-    * File isn't mounted.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_MOUNTED extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_NOT_MOUNTED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File is already mounted.
     *
-    * File is already mounted.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ALREADY_MOUNTED
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_ALREADY_MOUNTED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File was closed.
     *
-    * File was closed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CLOSED extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_CLOSED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Operation was cancelled. See #GCancellable.
     *
-    * Operation was cancelled. See #GCancellable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CANCELLED extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_CANCELLED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Operations are still pending.
     *
-    * Operations are still pending.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PENDING extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_PENDING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File is read only.
     *
-    * File is read only.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case READ_ONLY extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_READ_ONLY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Backup couldn't be created.
     *
-    * Backup couldn't be created.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CANT_CREATE_BACKUP
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_CANT_CREATE_BACKUP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File's Entity Tag was incorrect.
     *
-    * File's Entity Tag was incorrect.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WRONG_ETAG extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_WRONG_ETAG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Operation timed out.
     *
-    * Operation timed out.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TIMED_OUT extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_TIMED_OUT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Operation would be recursive.
     *
-    * Operation would be recursive.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WOULD_RECURSE extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_WOULD_RECURSE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File is busy.
     *
-    * File is busy.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BUSY extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_BUSY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Operation would block.
     *
-    * Operation would block.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WOULD_BLOCK extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_WOULD_BLOCK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Host couldn't be found (remote operations).
     *
-    * Host couldn't be found (remote operations).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HOST_NOT_FOUND
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_HOST_NOT_FOUND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Operation would merge files.
     *
-    * Operation would merge files.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WOULD_MERGE extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_WOULD_MERGE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Operation failed and a helper program has already interacted with the
+  /** Operation failed and a helper program has already interacted with the
     * user. Do not display any error dialog.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FAILED_HANDLED
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_FAILED_HANDLED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The current process has too many files open and can't open any more.
+  /** The current process has too many files open and can't open any more.
     * Duplicate descriptors do count toward this limit. Since 2.20
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOO_MANY_OPEN_FILES
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_TOO_MANY_OPEN_FILES)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The object has not been initialized. Since 2.22
     *
-    * The object has not been initialized. Since 2.22
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_INITIALIZED
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_NOT_INITIALIZED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The requested address is already in use. Since 2.22
     *
-    * The requested address is already in use. Since 2.22
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ADDRESS_IN_USE
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_ADDRESS_IN_USE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Need more input to finish operation. Since 2.24
     *
-    * Need more input to finish operation. Since 2.24
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PARTIAL_INPUT extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_PARTIAL_INPUT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The input data was invalid. Since 2.24
     *
-    * The input data was invalid. Since 2.24
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_DATA extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_INVALID_DATA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A remote object generated an error that doesn't correspond to a locally
+  /** A remote object generated an error that doesn't correspond to a locally
     * registered #GError error domain. Use g_dbus_error_get_remote_error() to
     * extract the D-Bus error name and g_dbus_error_strip_remote_error() to fix
     * up the message so it matches what was received on the wire. Since 2.26.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DBUS_ERROR extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_DBUS_ERROR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Host unreachable. Since 2.26
     *
-    * Host unreachable. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HOST_UNREACHABLE
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_HOST_UNREACHABLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Network unreachable. Since 2.26
     *
-    * Network unreachable. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NETWORK_UNREACHABLE
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_NETWORK_UNREACHABLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Connection refused. Since 2.26
     *
-    * Connection refused. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CONNECTION_REFUSED
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_CONNECTION_REFUSED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Connection to proxy server failed. Since 2.26
     *
-    * Connection to proxy server failed. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROXY_FAILED extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_PROXY_FAILED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Proxy authentication failed. Since 2.26
     *
-    * Proxy authentication failed. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROXY_AUTH_FAILED
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_PROXY_AUTH_FAILED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Proxy server needs authentication. Since 2.26
     *
-    * Proxy server needs authentication. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROXY_NEED_AUTH
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_PROXY_NEED_AUTH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Proxy connection is not allowed by ruleset. Since 2.26
     *
-    * Proxy connection is not allowed by ruleset. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROXY_NOT_ALLOWED
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_PROXY_NOT_ALLOWED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Broken pipe. Since 2.36
     *
-    * Broken pipe. Since 2.36
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BROKEN_PIPE extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_BROKEN_PIPE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Connection closed by peer. Note that this is the same code as
+  /** Connection closed by peer. Note that this is the same code as
     * %G_IO_ERROR_BROKEN_PIPE; before 2.44 some "connection closed" errors
     * returned %G_IO_ERROR_BROKEN_PIPE, but others returned %G_IO_ERROR_FAILED.
     * Now they should all return the same value, which has this more logical
     * name. Since 2.44.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CONNECTION_CLOSED
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_CONNECTION_CLOSED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Transport endpoint is not connected. Since 2.44
     *
-    * Transport endpoint is not connected. Since 2.44
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_CONNECTED extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_NOT_CONNECTED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Message too large. Since 2.48.
     *
-    * Message too large. Since 2.48.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MESSAGE_TOO_LARGE
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_MESSAGE_TOO_LARGE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No such device found. Since 2.74
     *
-    * No such device found. Since 2.74
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NO_SUCH_DEVICE
       extends IOErrorEnum(GIOErrorEnum.G_IO_ERROR_NO_SUCH_DEVICE)

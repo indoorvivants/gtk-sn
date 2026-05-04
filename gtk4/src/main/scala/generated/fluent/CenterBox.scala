@@ -15,9 +15,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkCenterBox
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkCenterBox` arranges three children in a row, keeping the middle child
+/** `GtkCenterBox` arranges three children in a row, keeping the middle child
   * centered as well as possible.
   *
   * ![An example GtkCenterBox](centerbox.png)
@@ -53,6 +51,9 @@ import sn.gnome.gtk4.internal.GtkCenterBox
   *
   * Starting from GTK 4.12, `GtkCenterBox` uses the
   * `GTK_ACCESSIBLE_ROLE_GENERIC` role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class CenterBox(raw: Ptr[GtkCenterBox])
     extends Widget(raw.asInstanceOf),
@@ -63,9 +64,10 @@ class CenterBox(raw: Ptr[GtkCenterBox])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value set by gtk_center_box_set_baseline_position().
     *
-    * Gets the value set by gtk_center_box_set_baseline_position().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBaselinePosition(): BaselinePosition /* None */ =
     BaselinePosition.fromRaw(
@@ -74,9 +76,10 @@ class CenterBox(raw: Ptr[GtkCenterBox])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the center widget, or %NULL if there is none.
     *
-    * Gets the center widget, or %NULL if there is none.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCenterWidget(): Widget /* None */ = new Widget(
     gtk_center_box_get_center_widget(
@@ -84,9 +87,10 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the end widget, or %NULL if there is none.
     *
-    * Gets the end widget, or %NULL if there is none.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEndWidget(): Widget /* None */ = new Widget(
     gtk_center_box_get_end_widget(
@@ -94,18 +98,20 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether @self shrinks the center widget after other children.
     *
-    * Gets whether @self shrinks the center widget after other children.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShrinkCenterLast(): Boolean /* None */ =
     gtk_center_box_get_shrink_center_last(
       this.raw.asInstanceOf[Ptr[GtkCenterBox]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the start widget, or %NULL if there is none.
     *
-    * Gets the start widget, or %NULL if there is none.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStartWidget(): Widget /* None */ = new Widget(
     gtk_center_box_get_start_widget(
@@ -113,15 +119,16 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the baseline position of a center box.
+  /** Sets the baseline position of a center box.
     *
     * This affects only horizontal boxes with at least one baseline aligned
     * child. If there is more vertical space available than requested, and the
     * baseline is not allocated by the parent then
     * @position
     *   is used to allocate the baseline wrt. the extra space available.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setBaselinePosition(
       position: BaselinePosition /* Some(GtkBaselinePosition) */
@@ -130,11 +137,12 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     position.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the center widget.
+  /** Sets the center widget.
     *
     * To remove the existing center widget, pass %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCenterWidget(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -145,11 +153,12 @@ class CenterBox(raw: Ptr[GtkCenterBox])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the end widget.
+  /** Sets the end widget.
     *
     * To remove the existing end widget, pass %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEndWidget(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -160,9 +169,7 @@ class CenterBox(raw: Ptr[GtkCenterBox])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether to shrink the center widget after other children.
+  /** Sets whether to shrink the center widget after other children.
     *
     * By default, when there's no space to give all three children their natural
     * widths, the start and end widgets start shrinking and the center child
@@ -170,6 +177,9 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     *
     * If set to `FALSE`, start and end widgets keep natural width and the center
     * widget starts shrinking instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShrinkCenterLast(
       shrink_center_last: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -178,11 +188,12 @@ class CenterBox(raw: Ptr[GtkCenterBox])
     gboolean(gint((if shrink_center_last == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the start widget.
+  /** Sets the start widget.
     *
     * To remove the existing start widget, pass %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setStartWidget(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -196,9 +207,10 @@ class CenterBox(raw: Ptr[GtkCenterBox])
 end CenterBox
 
 object CenterBox:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkCenterBox`.
     *
-    * Creates a new `GtkCenterBox`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): CenterBox = new CenterBox(gtk_center_box_new().asInstanceOf)
 end CenterBox

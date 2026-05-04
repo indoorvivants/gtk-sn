@@ -17,9 +17,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkPicture
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkPicture` widget displays a `GdkPaintable`.
+/** The `GtkPicture` widget displays a `GdkPaintable`.
   *
   * ![An example GtkPicture](picture.png)
   *
@@ -64,6 +62,9 @@ import sn.gnome.gtk4.internal.GtkPicture
   * ## Accessibility
   *
   * `GtkPicture` uses the `GTK_ACCESSIBLE_ROLE_IMG` role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Picture(raw: Ptr[GtkPicture])
     extends Widget(raw.asInstanceOf),
@@ -73,12 +74,13 @@ class Picture(raw: Ptr[GtkPicture])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the alternative textual description of the picture.
+  /** Gets the alternative textual description of the picture.
     *
     * The returned string will be %NULL if the picture cannot be described
     * textually.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAlternativeText()(using Zone): String /* None */ = fromCString(
     gtk_picture_get_alternative_text(
@@ -86,47 +88,52 @@ class Picture(raw: Ptr[GtkPicture])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the `GtkPicture` respects its contents size.
     *
-    * Returns whether the `GtkPicture` respects its contents size.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCanShrink(): Boolean /* None */ = gtk_picture_get_can_shrink(
     this.raw.asInstanceOf[Ptr[GtkPicture]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the fit mode for the content of the `GtkPicture`.
+  /** Returns the fit mode for the content of the `GtkPicture`.
     *
     * See [enum@Gtk.ContentFit] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getContentFit(): ContentFit /* None */ = ContentFit.fromRaw(
     gtk_picture_get_content_fit(this.raw.asInstanceOf[Ptr[GtkPicture]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `GFile` currently displayed if @self is displaying a file.
+  /** Gets the `GFile` currently displayed if @self is displaying a file.
     *
     * If @self is not displaying a file, for example when
     * [method@Gtk.Picture.set_paintable] was used, then %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFile(): File /* None */ = new File.Abstract(
     gtk_picture_get_file(this.raw.asInstanceOf[Ptr[GtkPicture]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the `GtkPicture` preserves its contents aspect ratio.
     *
-    * Returns whether the `GtkPicture` preserves its contents aspect ratio.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getKeepAspectRatio(): Boolean /* None */ =
     gtk_picture_get_keep_aspect_ratio(
       this.raw.asInstanceOf[Ptr[GtkPicture]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GdkPaintable` being displayed by the `GtkPicture`.
     *
-    * Gets the `GdkPaintable` being displayed by the `GtkPicture`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPaintable(): Paintable /* None */ = new Paintable.Abstract(
     gtk_picture_get_paintable(
@@ -134,15 +141,16 @@ class Picture(raw: Ptr[GtkPicture])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets an alternative textual description for the picture contents.
+  /** Sets an alternative textual description for the picture contents.
     *
     * It is equivalent to the "alt" attribute for images on websites.
     *
     * This text will be made available to accessibility tools.
     *
     * If the picture cannot be described textually, set this property to %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAlternativeText(
       alternative_text: Option[String | CString /* Some(CString) */ ]
@@ -153,9 +161,7 @@ class Picture(raw: Ptr[GtkPicture])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If set to %TRUE, the @self can be made smaller than its contents.
+  /** If set to %TRUE, the @self can be made smaller than its contents.
     *
     * The contents will then be scaled down when rendering.
     *
@@ -165,6 +171,9 @@ class Picture(raw: Ptr[GtkPicture])
     * Also of note is that a similar function for growing does not exist because
     * the grow behavior can be controlled via [method@Gtk.Widget.set_halign] and
     * [method@Gtk.Widget.set_valign].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCanShrink(
       can_shrink: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -173,11 +182,12 @@ class Picture(raw: Ptr[GtkPicture])
     gboolean(gint((if can_shrink == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets how the content should be resized to fit the `GtkPicture`.
+  /** Sets how the content should be resized to fit the `GtkPicture`.
     *
     * See [enum@Gtk.ContentFit] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setContentFit(
       content_fit: ContentFit /* Some(GtkContentFit) */
@@ -186,11 +196,12 @@ class Picture(raw: Ptr[GtkPicture])
     content_fit.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Makes @self load and display @file.
+  /** Makes @self load and display @file.
     *
     * See [ctor@Gtk.Picture.new_for_file] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFile(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
@@ -203,11 +214,12 @@ class Picture(raw: Ptr[GtkPicture])
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Makes @self load and display the given @filename.
+  /** Makes @self load and display the given @filename.
     *
     * This is a utility function that calls [method@Gtk.Picture.set_file].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFilename(
       filename: Option[String | CString /* Some(CString) */ ]
@@ -218,15 +230,16 @@ class Picture(raw: Ptr[GtkPicture])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If set to %TRUE, the @self will render its contents according to their
+  /** If set to %TRUE, the @self will render its contents according to their
     * aspect ratio.
     *
     * That means that empty space may show up at the top/bottom or left/right of @self.
     *
     * If set to %FALSE or if the contents provide no aspect ratio, the contents
     * will be stretched over the picture's whole area.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setKeepAspectRatio(
       keep_aspect_ratio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -235,13 +248,14 @@ class Picture(raw: Ptr[GtkPicture])
     gboolean(gint((if keep_aspect_ratio == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Makes @self display the given @paintable.
+  /** Makes @self display the given @paintable.
     *
     * If @paintable is %NULL, nothing will be displayed.
     *
     * See [ctor@Gtk.Picture.new_for_paintable] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPaintable(
       paintable: Option[
@@ -258,13 +272,14 @@ class Picture(raw: Ptr[GtkPicture])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a `GtkPicture` to show a `GdkPixbuf`.
+  /** Sets a `GtkPicture` to show a `GdkPixbuf`.
     *
     * See [ctor@Gtk.Picture.new_for_pixbuf] for details.
     *
     * This is a utility function that calls [method@Gtk.Picture.set_paintable].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPixbuf(
       pixbuf: Option[
@@ -281,12 +296,13 @@ class Picture(raw: Ptr[GtkPicture])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Makes @self load and display the resource at the given
+  /** Makes @self load and display the resource at the given
     * @resource_path.
     *
     * This is a utility function that calls [method@Gtk.Picture.set_file].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setResource(
       resource_path: Option[String | CString /* Some(CString) */ ]
@@ -308,15 +324,14 @@ class Picture(raw: Ptr[GtkPicture])
 end Picture
 
 object Picture:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new empty `GtkPicture` widget.
     *
-    * Creates a new empty `GtkPicture` widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Picture = new Picture(gtk_picture_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkPicture` displaying the given @file.
+  /** Creates a new `GtkPicture` displaying the given @file.
     *
     * If the file isn’t found or can’t be loaded, the resulting `GtkPicture` is
     * empty.
@@ -324,6 +339,9 @@ object Picture:
     * If you need to detect failures to load the file, use
     * [ctor@Gdk.Texture.new_from_file] to load the file yourself, then create
     * the `GtkPicture` from the texture.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forFile(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
@@ -337,12 +355,13 @@ object Picture:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkPicture` displaying the file @filename.
+  /** Creates a new `GtkPicture` displaying the file @filename.
     *
     * This is a utility function that calls [ctor@Gtk.Picture.new_for_file]. See
     * that function for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forFilename(
       filename: Option[String | CString /* Some(CString) */ ]
@@ -354,12 +373,13 @@ object Picture:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkPicture` displaying @paintable.
+  /** Creates a new `GtkPicture` displaying @paintable.
     *
     * The `GtkPicture` will track changes to the @paintable and update its size
     * and contents in response to it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forPaintable(
       paintable: Option[
@@ -377,14 +397,15 @@ object Picture:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkPicture` displaying @pixbuf.
+  /** Creates a new `GtkPicture` displaying @pixbuf.
     *
     * This is a utility function that calls
     * [ctor@Gtk.Picture.new_for_paintable], See that function for details.
     *
     * The pixbuf must not be modified after passing it to this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forPixbuf(
       pixbuf: Option[
@@ -402,12 +423,13 @@ object Picture:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkPicture` displaying the resource at @resource_path.
+  /** Creates a new `GtkPicture` displaying the resource at @resource_path.
     *
     * This is a utility function that calls [ctor@Gtk.Picture.new_for_file]. See
     * that function for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forResource(
       resource_path: Option[String | CString /* Some(CString) */ ]

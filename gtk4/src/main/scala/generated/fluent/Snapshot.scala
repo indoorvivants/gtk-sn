@@ -10,9 +10,7 @@ import sn.gnome.gtk4.internal.GtkSnapshot
 import sn.gnome.pango.fluent.{Direction, Layout}
 import sn.gnome.gdk4.fluent.Snapshot as _Snapshot
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkSnapshot` assists in creating [class@Gsk.RenderNode]s for widgets.
+/** `GtkSnapshot` assists in creating [class@Gsk.RenderNode]s for widgets.
   *
   * It functions in a similar way to a cairo context, and maintains a stack of
   * render nodes and their associated transformations.
@@ -24,97 +22,108 @@ import sn.gnome.gdk4.fluent.Snapshot as _Snapshot
   * The typical way to obtain a `GtkSnapshot` object is as an argument to the
   * [vfunc@Gtk.Widget.snapshot] vfunc. If you need to create your own
   * `GtkSnapshot`, use [ctor@Gtk.Snapshot.new].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Appends a stroked border rectangle inside the given @outline.
+  /** Appends a stroked border rectangle inside the given @outline.
     *
     * The four sides of the border can have different widths and colors.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method append_border is weird: non NULL-terminated arrays require special handling"
+    "[append_border]: Method append_border is weird: non NULL-terminated arrays require special handling"
   )
-  def appendBorder__ = ???
+  private def appendBorder__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new [class@Gsk.CairoNode] and appends it to the current render
+  /** Creates a new [class@Gsk.CairoNode] and appends it to the current render
     * node of @snapshot, without changing the current node.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method append_cairo is weird: non NULL-terminated arrays require special handling"
+    "[append_cairo]: Method append_cairo is weird: non NULL-terminated arrays require special handling"
   )
-  def appendCairo__ = ???
+  private def appendCairo__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new render node drawing the @color into the given @bounds and
+  /** Creates a new render node drawing the @color into the given @bounds and
     * appends it to the current render node of @snapshot.
     *
     * You should try to avoid calling this function if
     * @color
     *   is transparent.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
+    "[append_color/<method parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
-  def appendColor__ = ???
+  private def appendColor__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Appends a conic gradient node with the given stops to @snapshot.
     *
-    * Appends a conic gradient node with the given stops to @snapshot.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[append_conic_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  def appendConicGradient__ = ???
+  private def appendConicGradient__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A convenience method to fill a path with a color.
+  /** A convenience method to fill a path with a color.
     *
     * See [method@Gtk.Snapshot.push_fill] if you need to fill a path with more
     * complex content than a color.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
+    "[append_fill/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
   )
-  def appendFill__ = ???
+  private def appendFill__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Appends an inset shadow into the box given by @outline.
     *
-    * Appends an inset shadow into the box given by @outline.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
+    "[append_inset_shadow/<method parameters>/outline]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
   )
-  def appendInsetShadow__ = ???
+  private def appendInsetShadow__ = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
+    "[append_layout/<method parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
-  def appendLayout__ = ???
+  private def appendLayout__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Appends a linear gradient node with the given stops to @snapshot.
     *
-    * Appends a linear gradient node with the given stops to @snapshot.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[append_linear_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  def appendLinearGradient__ = ???
+  private def appendLinearGradient__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Appends @node to the current render node of @snapshot, without changing
+  /** Appends @node to the current render node of @snapshot, without changing
     * the current node.
     *
     * If @snapshot does not have a current node yet, @node will become the
     * initial node.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appendNode(
       node: RenderNode /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskRenderNode]) */
@@ -123,86 +132,94 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     node.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Appends an outset shadow node around the box given by @outline.
     *
-    * Appends an outset shadow node around the box given by @outline.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
+    "[append_outset_shadow/<method parameters>/outline]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
   )
-  def appendOutsetShadow__ = ???
+  private def appendOutsetShadow__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Appends a radial gradient node with the given stops to @snapshot.
     *
-    * Appends a radial gradient node with the given stops to @snapshot.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[append_radial_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  def appendRadialGradient__ = ???
+  private def appendRadialGradient__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Appends a repeating linear gradient node with the given stops to @snapshot.
     *
-    * Appends a repeating linear gradient node with the given stops to @snapshot.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[append_repeating_linear_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  def appendRepeatingLinearGradient__ = ???
+  private def appendRepeatingLinearGradient__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Appends a repeating radial gradient node with the given stops to @snapshot.
     *
-    * Appends a repeating radial gradient node with the given stops to @snapshot.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[append_repeating_radial_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  def appendRepeatingRadialGradient__ = ???
+  private def appendRepeatingRadialGradient__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new render node drawing the @texture into the given @bounds and
+  /** Creates a new render node drawing the @texture into the given @bounds and
     * appends it to the current render node of @snapshot.
     *
     * In contrast to [method@Gtk.Snapshot.append_texture], this function
     * provides control about how the filter that is used when scaling.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[append_scaled_texture/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  def appendScaledTexture__ = ???
+  private def appendScaledTexture__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A convenience method to stroke a path with a color.
+  /** A convenience method to stroke a path with a color.
     *
     * See [method@Gtk.Snapshot.push_stroke] if you need to stroke a path with
     * more complex content than a color.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
+    "[append_stroke/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
   )
-  def appendStroke__ = ???
+  private def appendStroke__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new render node drawing the @texture into the given @bounds and
+  /** Creates a new render node drawing the @texture into the given @bounds and
     * appends it to the current render node of @snapshot.
     *
     * If the texture needs to be scaled to fill @bounds, linear filtering is
     * used. See [method@Gtk.Snapshot.append_scaled_texture] if you need other
     * filtering, such as nearest-neighbour.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[append_texture/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  def appendTexture__ = ???
+  private def appendTexture__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the node that was constructed by @snapshot and frees @snapshot.
+  /** Returns the node that was constructed by @snapshot and frees @snapshot.
     *
     * See also [method@Gtk.Snapshot.to_node].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def freeToNode(): RenderNode /* None */ = new RenderNode(
     gtk_snapshot_free_to_node(
@@ -210,32 +227,35 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a paintable for the node that was constructed by @snapshot and
+  /** Returns a paintable for the node that was constructed by @snapshot and
     * frees @snapshot.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Size), @type -> DataRecord(const graphene_size_t*)))"
+    "[free_to_paintable/<method parameters>/size]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Size), @type -> DataRecord(const graphene_size_t*)))"
   )
-  def freeToPaintable__ = ???
+  private def freeToPaintable__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes the top element from the stack of render nodes and adds it to the
+  /** Removes the top element from the stack of render nodes and adds it to the
     * nearest [class@Gsk.GLShaderNode] below it.
     *
     * This must be called the same number of times as the number of textures is
     * needed for the shader in [method@Gtk.Snapshot.push_gl_shader].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def glShaderPopTexture(): Unit /* None */ =
     gtk_snapshot_gl_shader_pop_texture(this.raw.asInstanceOf[Ptr[GtkSnapshot]])
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Applies a perspective projection transform.
+  /** Applies a perspective projection transform.
     *
     * See [method@Gsk.Transform.perspective] for a discussion on the details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def perspective(depth: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_snapshot_perspective(
@@ -243,18 +263,17 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       depth.asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes the top element from the stack of render nodes, and appends it to
+  /** Removes the top element from the stack of render nodes, and appends it to
     * the node underneath it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pop(): Unit /* None */ = gtk_snapshot_pop(
     this.raw.asInstanceOf[Ptr[GtkSnapshot]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Blends together two images with the given blend mode.
+  /** Blends together two images with the given blend mode.
     *
     * Until the first call to [method@Gtk.Snapshot.pop], the bottom image for
     * the blend operation will be recorded. After that call, the top image to be
@@ -263,6 +282,9 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     *
     * Calling this function requires two subsequent calls to
     * [method@Gtk.Snapshot.pop].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pushBlend(
       blend_mode: BlendMode /* Some(_root_.sn.gnome.gsk4.internal.GskBlendMode) */
@@ -271,29 +293,29 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     blend_mode.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Blurs an image.
+  /** Blurs an image.
     *
     * The image is recorded until the next call to [method@Gtk.Snapshot.pop].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pushBlur(radius: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_snapshot_push_blur(this.raw.asInstanceOf[Ptr[GtkSnapshot]], radius)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Clips an image to a rectangle.
+  /** Clips an image to a rectangle.
     *
     * The image is recorded until the next call to [method@Gtk.Snapshot.pop].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[push_clip/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  def pushClip__ = ???
+  private def pushClip__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Modifies the colors of an image by applying an affine transformation in
+  /** Modifies the colors of an image by applying an affine transformation in
     * RGB space.
     *
     * In particular, the colors will be transformed by applying
@@ -304,15 +326,16 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * with color components ordered R, G, B, A.
     *
     * The image is recorded until the next call to [method@Gtk.Snapshot.pop].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
+    "[push_color_matrix/<method parameters>/color_matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
   )
-  def pushColorMatrix__ = ???
+  private def pushColorMatrix__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Snapshots a cross-fade operation between two images with the given @progress.
+  /** Snapshots a cross-fade operation between two images with the given @progress.
     *
     * Until the first call to [method@Gtk.Snapshot.pop], the start image will be
     * snapshot. After that call, the end image will be recorded until the second
@@ -320,6 +343,9 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     *
     * Calling this function requires two subsequent calls to
     * [method@Gtk.Snapshot.pop].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pushCrossFade(progress: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_snapshot_push_cross_fade(
@@ -327,13 +353,14 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       progress
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts a debug node with a message.
+  /** Inserts a debug node with a message.
     *
     * Debug nodes don't affect the rendering at all, but can be helpful in
     * identifying parts of a render node tree dump, for example in the GTK
     * inspector.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def pushDebug(
       message: String | CString /* Some(CString) */,
@@ -344,24 +371,23 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fills the area given by @path and @fill_rule with an image and discards
+  /** Fills the area given by @path and @fill_rule with an image and discards
     * everything outside of it.
     *
     * The image is recorded until the next call to [method@Gtk.Snapshot.pop].
     *
     * If you want to fill the path with a color,
     * [method@Gtk.Snapshot.append_fill] may be more convenient.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
+    "[push_fill/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
   )
-  def pushFill__ = ???
+  private def pushFill__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Push a [class@Gsk.GLShaderNode].
+  /** Push a [class@Gsk.GLShaderNode].
     *
     * The node uses the given [class@Gsk.GLShader] and uniform values
     * Additionally this takes a list of @n_children other nodes which will be
@@ -395,21 +421,25 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * a texture node. These will be used directly rather than being re-rendered.
     *
     * For details on how to write shaders, see [class@Gsk.GLShader].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[push_gl_shader/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  def pushGlShader__ = ???
+  private def pushGlShader__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Until the first call to [method@Gtk.Snapshot.pop], the mask image for the
+  /** Until the first call to [method@Gtk.Snapshot.pop], the mask image for the
     * mask operation will be recorded.
     *
     * After that call, the source image will be recorded until the second call
     * to [method@Gtk.Snapshot.pop].
     *
     * Calling this function requires 2 subsequent calls to gtk_snapshot_pop().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pushMask(
       mask_mode: MaskMode /* Some(_root_.sn.gnome.gsk4.internal.GskMaskMode) */
@@ -418,51 +448,53 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     mask_mode.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Modifies the opacity of an image.
+  /** Modifies the opacity of an image.
     *
     * The image is recorded until the next call to [method@Gtk.Snapshot.pop].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pushOpacity(opacity: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_snapshot_push_opacity(this.raw.asInstanceOf[Ptr[GtkSnapshot]], opacity)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a node that repeats the child node.
+  /** Creates a node that repeats the child node.
     *
     * The child is recorded until the next call to [method@Gtk.Snapshot.pop].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[push_repeat/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  def pushRepeat__ = ???
+  private def pushRepeat__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Clips an image to a rounded rectangle.
+  /** Clips an image to a rounded rectangle.
     *
     * The image is recorded until the next call to [method@Gtk.Snapshot.pop].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
+    "[push_rounded_clip/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
   )
-  def pushRoundedClip__ = ???
+  private def pushRoundedClip__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Applies a shadow to an image.
+  /** Applies a shadow to an image.
     *
     * The image is recorded until the next call to [method@Gtk.Snapshot.pop].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gsk.Shadow), @type -> DataRecord(GskShadow)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GskShadow*)))"
+    "[push_shadow/<method parameters>/shadow]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gsk.Shadow), @type -> DataRecord(GskShadow)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GskShadow*)))"
   )
-  def pushShadow__ = ???
+  private def pushShadow__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Strokes the given @path with the attributes given by @stroke and an image.
+  /** Strokes the given @path with the attributes given by @stroke and an image.
     *
     * The image is recorded until the next call to [method@Gtk.Snapshot.pop].
     *
@@ -472,17 +504,21 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     *
     * If you want to stroke the path with a color,
     * [method@Gtk.Snapshot.append_stroke] may be more convenient.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
+    "[push_stroke/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
   )
-  def pushStroke__ = ???
+  private def pushStroke__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a render node for the CSS background according to @context, and
+  /** Creates a render node for the CSS background according to @context, and
     * appends it to the current node of @snapshot, without changing the current
     * node.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def renderBackground(
       context: StyleContext /* Some(Ptr[GtkStyleContext]) */,
@@ -499,11 +535,12 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     height
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a render node for the focus outline according to @context, and
+  /** Creates a render node for the focus outline according to @context, and
     * appends it to the current node of @snapshot, without changing the current
     * node.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def renderFocus(
       context: StyleContext /* Some(Ptr[GtkStyleContext]) */,
@@ -520,11 +557,12 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     height
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a render node for the CSS border according to @context, and
+  /** Creates a render node for the CSS border according to @context, and
     * appends it to the current node of @snapshot, without changing the current
     * node.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def renderFrame(
       context: StyleContext /* Some(Ptr[GtkStyleContext]) */,
@@ -541,9 +579,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     height
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Draws a text caret using @snapshot at the specified index of @layout.
     *
-    * Draws a text caret using @snapshot at the specified index of @layout.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def renderInsertionCursor(
       context: StyleContext /* Some(Ptr[GtkStyleContext]) */,
@@ -562,11 +601,12 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     direction.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a render node for rendering @layout according to the style
+  /** Creates a render node for rendering @layout according to the style
     * information in @context, and appends it to the current node of @snapshot,
     * without changing the current node.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def renderLayout(
       context: StyleContext /* Some(Ptr[GtkStyleContext]) */,
@@ -581,24 +621,26 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     layout.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Restores @snapshot to the state saved by a preceding call to
+  /** Restores @snapshot to the state saved by a preceding call to
     * [method@Snapshot.save] and removes that state from the stack of saved
     * states.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def restore(): Unit /* None */ = gtk_snapshot_restore(
     this.raw.asInstanceOf[Ptr[GtkSnapshot]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Rotates @@snapshot's coordinate system by @angle degrees in 2D space - or
+  /** Rotates @@snapshot's coordinate system by @angle degrees in 2D space - or
     * in 3D speak, rotates around the Z axis. The rotation happens around the
     * origin point of (0, 0) in the @snapshot's current coordinate system.
     *
     * To rotate around axes other than the Z axis, use
     * [method@Gsk.Transform.rotate_3d].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def rotate(angle: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_snapshot_rotate(
@@ -606,20 +648,19 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
       angle.asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Rotates @snapshot's coordinate system by @angle degrees around @axis.
+  /** Rotates @snapshot's coordinate system by @angle degrees around @axis.
     *
     * For a rotation in 2D space, use [method@Gsk.Transform.rotate].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Vec3), @type -> DataRecord(const graphene_vec3_t*)))"
+    "[rotate_3d/<method parameters>/axis]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Vec3), @type -> DataRecord(const graphene_vec3_t*)))"
   )
-  def rotate3d__ = ???
+  private def rotate3d__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Makes a copy of the current state of @snapshot and saves it on an internal
+  /** Makes a copy of the current state of @snapshot and saves it on an internal
     * stack.
     *
     * When [method@Gtk.Snapshot.restore] is called, @snapshot will be restored
@@ -630,17 +671,21 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     *
     * It is necessary to clear all saved states with corresponding calls to
     * `gtk_snapshot_restore()`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def save(): Unit /* None */ = gtk_snapshot_save(
     this.raw.asInstanceOf[Ptr[GtkSnapshot]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Scales @snapshot's coordinate system in 2-dimensional space by the given
+  /** Scales @snapshot's coordinate system in 2-dimensional space by the given
     * factors.
     *
     * Use [method@Gtk.Snapshot.scale_3d] to scale in all 3 dimensions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def scale(
       factor_x: Float /* Some(Float) */,
@@ -651,9 +696,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     factor_y.asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Scales @snapshot's coordinate system by the given factors.
     *
-    * Scales @snapshot's coordinate system by the given factors.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def scale3d(
       factor_x: Float /* Some(Float) */,
@@ -666,9 +712,7 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     factor_z.asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the render node that was constructed by @snapshot.
+  /** Returns the render node that was constructed by @snapshot.
     *
     * Note that this function may return %NULL if nothing has been added to the
     * snapshot or if its content does not produce pixels to be rendered.
@@ -676,59 +720,67 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
     * After calling this function, it is no longer possible to add more nodes to @snapshot.
     * The only function that should be called after this is
     * [method@GObject.Object.unref].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def toNode(): RenderNode /* None */ = new RenderNode(
     gtk_snapshot_to_node(this.raw.asInstanceOf[Ptr[GtkSnapshot]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a paintable encapsulating the render node that was constructed by @snapshot.
+  /** Returns a paintable encapsulating the render node that was constructed by @snapshot.
     *
     * After calling this function, it is no longer possible to add more nodes to @snapshot.
     * The only function that should be called after this is
     * [method@GObject.Object.unref].
-    */
-  @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Size), @type -> DataRecord(const graphene_size_t*)))"
-  )
-  def toPaintable__ = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Transforms @snapshot's coordinate system with the given @transform.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
+    "[to_paintable/<method parameters>/size]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Size), @type -> DataRecord(const graphene_size_t*)))"
   )
-  def transform__ = ???
+  private def toPaintable__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Transforms @snapshot's coordinate system with the given @transform.
     *
-    * Transforms @snapshot's coordinate system with the given @matrix.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
+    "[transform/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
-  def transformMatrix__ = ???
+  private def transform__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Transforms @snapshot's coordinate system with the given @matrix.
     *
-    * Translates @snapshot's coordinate system by @point in 2-dimensional space.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
+    "[transform_matrix/<method parameters>/matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
   )
-  def translate__ = ???
+  private def transformMatrix__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Translates @snapshot's coordinate system by @point in 2-dimensional space.
     *
-    * Translates @snapshot's coordinate system by @point.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point3D), @type -> DataRecord(const graphene_point3d_t*)))"
+    "[translate/<method parameters>/point]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
   )
-  def translate3d__ = ???
+  private def translate__ = ???
+
+  /** Translates @snapshot's coordinate system by @point.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[translate_3d/<method parameters>/point]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point3D), @type -> DataRecord(const graphene_point3d_t*)))"
+  )
+  private def translate3d__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -741,9 +793,10 @@ class Snapshot(raw: Ptr[GtkSnapshot]) extends _Snapshot(raw.asInstanceOf):
 end Snapshot
 
 object Snapshot:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkSnapshot`.
     *
-    * Creates a new `GtkSnapshot`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Snapshot = new Snapshot(gtk_snapshot_new().asInstanceOf)
 end Snapshot

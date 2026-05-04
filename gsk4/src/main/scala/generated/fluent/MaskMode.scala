@@ -2,32 +2,37 @@ package sn.gnome.gsk4.fluent
 
 import _root_.sn.gnome.gsk4.internal.GskMaskMode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** The mask modes available for mask nodes.
   *
-  * The mask modes available for mask nodes.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum MaskMode(val raw: GskMaskMode):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Use the alpha channel of the mask
     *
-    * Use the alpha channel of the mask
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ALPHA extends MaskMode(GskMaskMode.GSK_MASK_MODE_ALPHA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Use the inverted alpha channel of the mask
     *
-    * Use the inverted alpha channel of the mask
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVERTED_ALPHA extends MaskMode(GskMaskMode.GSK_MASK_MODE_INVERTED_ALPHA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Use the luminance of the mask, multiplied by mask alpha
     *
-    * Use the luminance of the mask, multiplied by mask alpha
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LUMINANCE extends MaskMode(GskMaskMode.GSK_MASK_MODE_LUMINANCE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Use the inverted luminance of the mask, multiplied by mask alpha
     *
-    * Use the inverted luminance of the mask, multiplied by mask alpha
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVERTED_LUMINANCE
       extends MaskMode(GskMaskMode.GSK_MASK_MODE_INVERTED_LUMINANCE)

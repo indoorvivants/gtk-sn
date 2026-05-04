@@ -11,9 +11,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * An opaque object representing an animation.
+/** An opaque object representing an animation.
   *
   * The GdkPixBuf library provides a simple mechanism to load and represent
   * animations. An animation is conceptually a series of frames to be displayed
@@ -26,23 +24,25 @@ import sn.gnome.gobject.fluent.Object
   * To display an animation you don't need to understand its representation,
   * however; you just ask `GdkPixbuf` what should be displayed at a given point
   * in time.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Queries the height of the bounding box of a pixbuf animation.
     *
-    * Queries the height of the bounding box of a pixbuf animation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeight(): Int /* None */ = gdk_pixbuf_animation_get_height(
     this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get an iterator for displaying an animation.
+  /** Get an iterator for displaying an animation.
     *
     * The iterator provides the frames that should be displayed at a given time.
     *
@@ -74,15 +74,16 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     * should be reinstalled after any area_updated signal.
     *
     * A delay time of -1 is possible, indicating "infinite".
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(const GTimeVal*)))"
+    "[get_iter/<method parameters>/start_time]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(const GTimeVal*)))"
   )
-  def getIter__ = ???
+  private def getIter__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves a static image for the animation.
+  /** Retrieves a static image for the animation.
     *
     * If an animation is really just a plain image (has only one frame), this
     * function returns that image.
@@ -93,6 +94,9 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     *
     * If an animation hasn't loaded any frames yet, this function will return
     * `NULL`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStaticImage(): Pixbuf /* None */ = new Pixbuf(
     gdk_pixbuf_animation_get_static_image(
@@ -100,30 +104,33 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Queries the width of the bounding box of a pixbuf animation.
     *
-    * Queries the width of the bounding box of a pixbuf animation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWidth(): Int /* None */ = gdk_pixbuf_animation_get_width(
     this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks whether the animation is a static image.
+  /** Checks whether the animation is a static image.
     *
     * If you load a file with gdk_pixbuf_animation_new_from_file() and it turns
     * out to be a plain, unanimated image, then this function will return
     * `TRUE`. Use gdk_pixbuf_animation_get_static_image() to retrieve the image.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isStaticImage(): Boolean /* None */ =
     gdk_pixbuf_animation_is_static_image(
       this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds a reference to an animation.
     *
-    * Adds a reference to an animation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   override def ref(): PixbufAnimation /* None */ = new PixbufAnimation(
     gdk_pixbuf_animation_ref(
@@ -131,9 +138,10 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes a reference from an animation.
     *
-    * Removes a reference from an animation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   override def unref(): Unit /* None */ = gdk_pixbuf_animation_unref(
     this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
@@ -142,9 +150,7 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
 end PixbufAnimation
 
 object PixbufAnimation:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new animation by loading it from a file.
+  /** Creates a new animation by loading it from a file.
     *
     * The file format is detected automatically.
     *
@@ -152,6 +158,9 @@ object PixbufAnimation:
     * animation with a single frame will be created.
     *
     * Possible errors are in the `GDK_PIXBUF_ERROR` and `G_FILE_ERROR` domains.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFile(
       filename: String | CString /* Some(CString) */
@@ -164,13 +173,14 @@ object PixbufAnimation:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new pixbuf animation by loading an image from an resource.
+  /** Creates a new pixbuf animation by loading an image from an resource.
     *
     * The file format is detected automatically. If `NULL` is returned, then
     * @error
     *   will be set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromResource(
       resource_path: String | CString /* Some(CString) */
@@ -183,9 +193,7 @@ object PixbufAnimation:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new animation by loading it from an input stream.
+  /** Creates a new animation by loading it from an input stream.
     *
     * The file format is detected automatically.
     *
@@ -197,6 +205,9 @@ object PixbufAnimation:
     * `G_IO_ERROR` domains.
     *
     * The stream is not closed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromStream(
       stream: InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
@@ -219,10 +230,11 @@ object PixbufAnimation:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an asynchronous pixbuf animation creation operation started with
+  /** Finishes an asynchronous pixbuf animation creation operation started with
     * [func@GdkPixbuf.PixbufAnimation.new_from_stream_async].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromStreamFinish(
       async_result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
@@ -235,9 +247,7 @@ object PixbufAnimation:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new animation by asynchronously loading an image from an input
+  /** Creates a new animation by asynchronously loading an image from an input
     * stream.
     *
     * For more details see gdk_pixbuf_new_from_stream(), which is the
@@ -246,11 +256,14 @@ object PixbufAnimation:
     * When the operation is finished, `callback` will be called in the main
     * thread. You can then call gdk_pixbuf_animation_new_from_stream_finish() to
     * get the result of the operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def newFromStreamAsync() = ???
+  private def newFromStreamAsync() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

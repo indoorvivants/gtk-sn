@@ -2,27 +2,31 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GOnceStatus
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The possible statuses of a one-time initialization function controlled by a
+/** The possible statuses of a one-time initialization function controlled by a
   * #GOnce struct.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum OnceStatus(val raw: GOnceStatus):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the function has not been called yet.
     *
-    * the function has not been called yet.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOTCALLED extends OnceStatus(GOnceStatus.G_ONCE_STATUS_NOTCALLED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the function call is currently in progress.
     *
-    * the function call is currently in progress.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROGRESS extends OnceStatus(GOnceStatus.G_ONCE_STATUS_PROGRESS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the function has been called.
     *
-    * the function has been called.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case READY extends OnceStatus(GOnceStatus.G_ONCE_STATUS_READY)
 end OnceStatus

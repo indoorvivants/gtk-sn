@@ -2,65 +2,75 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoStretch
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * An enumeration specifying the width of the font relative to other designs
+/** An enumeration specifying the width of the font relative to other designs
   * within a family.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Stretch(val raw: PangoStretch):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** ultra condensed width
     *
-    * ultra condensed width
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ULTRA_CONDENSED
       extends Stretch(PangoStretch.PANGO_STRETCH_ULTRA_CONDENSED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** extra condensed width
     *
-    * extra condensed width
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EXTRA_CONDENSED
       extends Stretch(PangoStretch.PANGO_STRETCH_EXTRA_CONDENSED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** condensed width
     *
-    * condensed width
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CONDENSED extends Stretch(PangoStretch.PANGO_STRETCH_CONDENSED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** semi condensed width
     *
-    * semi condensed width
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SEMI_CONDENSED extends Stretch(PangoStretch.PANGO_STRETCH_SEMI_CONDENSED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the normal width
     *
-    * the normal width
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NORMAL extends Stretch(PangoStretch.PANGO_STRETCH_NORMAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** semi expanded width
     *
-    * semi expanded width
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SEMI_EXPANDED extends Stretch(PangoStretch.PANGO_STRETCH_SEMI_EXPANDED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** expanded width
     *
-    * expanded width
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EXPANDED extends Stretch(PangoStretch.PANGO_STRETCH_EXPANDED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** extra expanded width
     *
-    * extra expanded width
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EXTRA_EXPANDED extends Stretch(PangoStretch.PANGO_STRETCH_EXTRA_EXPANDED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** ultra expanded width
     *
-    * ultra expanded width
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ULTRA_EXPANDED extends Stretch(PangoStretch.PANGO_STRETCH_ULTRA_EXPANDED)
 end Stretch

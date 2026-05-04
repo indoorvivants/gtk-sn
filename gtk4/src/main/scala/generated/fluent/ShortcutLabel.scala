@@ -7,12 +7,13 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkShortcutLabel
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkShortcutLabel` displays a single keyboard shortcut or gesture.
+/** `GtkShortcutLabel` displays a single keyboard shortcut or gesture.
   *
   * The main use case for `GtkShortcutLabel` is inside a
   * [class@Gtk.ShortcutsWindow].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
     extends Widget(raw.asInstanceOf),
@@ -22,9 +23,10 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the current accelerator of @self.
     *
-    * Retrieves the current accelerator of @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAccelerator()(using Zone): String /* None */ = fromCString(
     gtk_shortcut_label_get_accelerator(
@@ -32,9 +34,10 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the text that is displayed when no accelerator is set.
     *
-    * Retrieves the text that is displayed when no accelerator is set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDisabledText()(using Zone): String /* None */ = fromCString(
     gtk_shortcut_label_get_disabled_text(
@@ -42,9 +45,10 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the accelerator to be displayed by @self.
     *
-    * Sets the accelerator to be displayed by @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAccelerator(
       accelerator: String | CString /* Some(CString) */
@@ -53,9 +57,10 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
     __sn_extract_string(accelerator)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the text to be displayed by @self when no accelerator is set.
     *
-    * Sets the text to be displayed by @self when no accelerator is set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDisabledText(
       disabled_text: String | CString /* Some(CString) */
@@ -75,9 +80,10 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
 end ShortcutLabel
 
 object ShortcutLabel:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkShortcutLabel` with @accelerator set.
     *
-    * Creates a new `GtkShortcutLabel` with @accelerator set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       accelerator: String | CString /* Some(CString) */

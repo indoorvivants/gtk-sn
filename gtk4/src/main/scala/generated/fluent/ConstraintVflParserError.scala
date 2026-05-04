@@ -2,59 +2,66 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkConstraintVflParserError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Domain for VFL parsing errors.
   *
-  * Domain for VFL parsing errors.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ConstraintVflParserError(val raw: GtkConstraintVflParserError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Invalid or unknown symbol
     *
-    * Invalid or unknown symbol
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SYMBOL
       extends ConstraintVflParserError(
         GtkConstraintVflParserError.GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Invalid or unknown attribute
     *
-    * Invalid or unknown attribute
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ATTRIBUTE
       extends ConstraintVflParserError(
         GtkConstraintVflParserError.GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Invalid or unknown view
     *
-    * Invalid or unknown view
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case VIEW
       extends ConstraintVflParserError(
         GtkConstraintVflParserError.GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Invalid or unknown metric
     *
-    * Invalid or unknown metric
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case METRIC
       extends ConstraintVflParserError(
         GtkConstraintVflParserError.GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Invalid or unknown priority
     *
-    * Invalid or unknown priority
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PRIORITY
       extends ConstraintVflParserError(
         GtkConstraintVflParserError.GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Invalid or unknown relation
     *
-    * Invalid or unknown relation
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RELATION
       extends ConstraintVflParserError(

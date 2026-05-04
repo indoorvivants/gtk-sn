@@ -2,9 +2,10 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkAxisFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags describing the current capabilities of a device/tool.
   *
-  * Flags describing the current capabilities of a device/tool.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AxisFlags private (val raw: GdkAxisFlags):
   def is(kv: AxisFlags): Boolean =
@@ -32,82 +33,94 @@ object AxisFlags:
     def |(other: AxisFlags) =
       AxisFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags describing the current capabilities of a device/tool.
     *
-    * Flags describing the current capabilities of a device/tool.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GdkAxisFlags, name: String)
       extends AxisFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** X axis is present
       *
-      * X axis is present
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case X extends KnownValue(GdkAxisFlags.GDK_AXIS_FLAG_X, "X")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Y axis is present
       *
-      * Y axis is present
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case Y extends KnownValue(GdkAxisFlags.GDK_AXIS_FLAG_Y, "Y")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Scroll X delta axis is present
       *
-      * Scroll X delta axis is present
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DELTA_X
         extends KnownValue(GdkAxisFlags.GDK_AXIS_FLAG_DELTA_X, "DELTA_X")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Scroll Y delta axis is present
       *
-      * Scroll Y delta axis is present
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DELTA_Y
         extends KnownValue(GdkAxisFlags.GDK_AXIS_FLAG_DELTA_Y, "DELTA_Y")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Pressure axis is present
       *
-      * Pressure axis is present
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case PRESSURE
         extends KnownValue(GdkAxisFlags.GDK_AXIS_FLAG_PRESSURE, "PRESSURE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** X tilt axis is present
       *
-      * X tilt axis is present
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case XTILT extends KnownValue(GdkAxisFlags.GDK_AXIS_FLAG_XTILT, "XTILT")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Y tilt axis is present
       *
-      * Y tilt axis is present
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case YTILT extends KnownValue(GdkAxisFlags.GDK_AXIS_FLAG_YTILT, "YTILT")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Wheel axis is present
       *
-      * Wheel axis is present
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case WHEEL extends KnownValue(GdkAxisFlags.GDK_AXIS_FLAG_WHEEL, "WHEEL")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Distance axis is present
       *
-      * Distance axis is present
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DISTANCE
         extends KnownValue(GdkAxisFlags.GDK_AXIS_FLAG_DISTANCE, "DISTANCE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Z-axis rotation is present
       *
-      * Z-axis rotation is present
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ROTATION
         extends KnownValue(GdkAxisFlags.GDK_AXIS_FLAG_ROTATION, "ROTATION")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Slider axis is present
       *
-      * Slider axis is present
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SLIDER extends KnownValue(GdkAxisFlags.GDK_AXIS_FLAG_SLIDER, "SLIDER")
   end KnownValue

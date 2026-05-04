@@ -9,9 +9,7 @@ import sn.gnome.gobject.internal.GType
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.internal.GtkExpression
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkExpression` provides a way to describe references to values.
+/** `GtkExpression` provides a way to describe references to values.
   *
   * An important aspect of expressions is that the value can be obtained from a
   * source that is several steps away. For example, an expression may describe
@@ -143,14 +141,15 @@ import sn.gnome.gtk4.internal.GtkExpression
   *     <lookup type='GFile' name='size'>myfile</lookup>
   *   </closure>
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Expression(raw: Ptr[GtkExpression]):
 
   def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Bind `target`'s property named `property` to `self`.
+  /** Bind `target`'s property named `property` to `self`.
     *
     * The value that `self` evaluates to is set via `g_object_set()` on
     * `target`. This is repeated whenever `self` changes to ensure that the
@@ -161,15 +160,16 @@ class Expression(raw: Ptr[GtkExpression]):
     *
     * Note that this function takes ownership of `self`. If you want to keep it
     * around, you should [method@Gtk.Expression.ref] it beforehand.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ExpressionWatch), @type -> DataRecord(GtkExpressionWatch*)))"
+    "[bind/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ExpressionWatch), @type -> DataRecord(GtkExpressionWatch*)))"
   )
-  def bind__ = ???
+  private def bind__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Evaluates the given expression and on success stores the result in @value.
+  /** Evaluates the given expression and on success stores the result in @value.
     *
     * The `GType` of `value` will be the type given by
     * [method@Gtk.Expression.get_value_type].
@@ -177,59 +177,64 @@ class Expression(raw: Ptr[GtkExpression]):
     * It is possible that expressions cannot be evaluated - for example when the
     * expression references objects that have been destroyed or set to `NULL`.
     * In that case `value` will remain empty and `FALSE` will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[evaluate/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
-  def evaluate__ = ???
+  private def evaluate__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `GType` that this expression evaluates to.
+  /** Gets the `GType` that this expression evaluates to.
     *
     * This type is constant and will not change over the lifetime of this
     * expression.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getValueType(): GType /* None */ = gtk_expression_get_value_type(
     this.raw.asInstanceOf[Ptr[GtkExpression]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if the expression is static.
+  /** Checks if the expression is static.
     *
     * A static expression will never change its result when
     * [method@Gtk.Expression.evaluate] is called on it with the same arguments.
     *
     * That means a call to [method@Gtk.Expression.watch] is not necessary
     * because it will never trigger a notify.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isStatic(): Boolean /* None */ = gtk_expression_is_static(
     this.raw.asInstanceOf[Ptr[GtkExpression]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Acquires a reference on the given `GtkExpression`.
     *
-    * Acquires a reference on the given `GtkExpression`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def ref(): Expression /* None */ = new Expression(
     gtk_expression_ref(this.raw.asInstanceOf[Ptr[GtkExpression]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Releases a reference on the given `GtkExpression`.
+  /** Releases a reference on the given `GtkExpression`.
     *
     * If the reference was the last, the resources associated to the `self` are
     * freed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unref(): Unit /* None */ = gtk_expression_unref(
     this.raw.asInstanceOf[Ptr[GtkExpression]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Watch the given `expression` for changes.
+  /** Watch the given `expression` for changes.
     *
     * The @notify function will be called whenever the evaluation of `self` may
     * have changed.
@@ -237,10 +242,13 @@ class Expression(raw: Ptr[GtkExpression]):
     * GTK cannot guarantee that the evaluation did indeed change when the @notify
     * gets invoked, but it guarantees the opposite: When it did in fact change,
     * the @notify will be invoked.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ExpressionNotify), @type -> DataRecord(GtkExpressionNotify)))"
+    "[watch/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ExpressionNotify), @type -> DataRecord(GtkExpressionNotify)))"
   )
-  def watch__ = ???
+  private def watch__ = ???
 
 end Expression

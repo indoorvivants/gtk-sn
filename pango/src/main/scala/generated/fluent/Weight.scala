@@ -2,83 +2,96 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoWeight
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * An enumeration specifying the weight (boldness) of a font.
+/** An enumeration specifying the weight (boldness) of a font.
   *
   * Weight is specified as a numeric value ranging from 100 to 1000. This
   * enumeration simply provides some common, predefined values.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Weight(val raw: PangoWeight):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the thin weight (= 100) Since: 1.24
     *
-    * the thin weight (= 100) Since: 1.24
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case THIN extends Weight(PangoWeight.PANGO_WEIGHT_THIN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the ultralight weight (= 200)
     *
-    * the ultralight weight (= 200)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ULTRALIGHT extends Weight(PangoWeight.PANGO_WEIGHT_ULTRALIGHT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the light weight (= 300)
     *
-    * the light weight (= 300)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LIGHT extends Weight(PangoWeight.PANGO_WEIGHT_LIGHT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the semilight weight (= 350) Since: 1.36.7
     *
-    * the semilight weight (= 350) Since: 1.36.7
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SEMILIGHT extends Weight(PangoWeight.PANGO_WEIGHT_SEMILIGHT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the book weight (= 380) Since: 1.24)
     *
-    * the book weight (= 380) Since: 1.24)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BOOK extends Weight(PangoWeight.PANGO_WEIGHT_BOOK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the default weight (= 400)
     *
-    * the default weight (= 400)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NORMAL extends Weight(PangoWeight.PANGO_WEIGHT_NORMAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the medium weight (= 500) Since: 1.24
     *
-    * the medium weight (= 500) Since: 1.24
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MEDIUM extends Weight(PangoWeight.PANGO_WEIGHT_MEDIUM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the semibold weight (= 600)
     *
-    * the semibold weight (= 600)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SEMIBOLD extends Weight(PangoWeight.PANGO_WEIGHT_SEMIBOLD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the bold weight (= 700)
     *
-    * the bold weight (= 700)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BOLD extends Weight(PangoWeight.PANGO_WEIGHT_BOLD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the ultrabold weight (= 800)
     *
-    * the ultrabold weight (= 800)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ULTRABOLD extends Weight(PangoWeight.PANGO_WEIGHT_ULTRABOLD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the heavy weight (= 900)
     *
-    * the heavy weight (= 900)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HEAVY extends Weight(PangoWeight.PANGO_WEIGHT_HEAVY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the ultraheavy weight (= 1000) Since: 1.24
     *
-    * the ultraheavy weight (= 1000) Since: 1.24
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ULTRAHEAVY extends Weight(PangoWeight.PANGO_WEIGHT_ULTRAHEAVY)
 end Weight

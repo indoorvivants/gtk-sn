@@ -2,9 +2,7 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoDirection
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `PangoDirection` represents a direction in the Unicode bidirectional
+/** `PangoDirection` represents a direction in the Unicode bidirectional
   * algorithm.
   *
   * Not every value in this enumeration makes sense for every usage of
@@ -22,47 +20,57 @@ import _root_.sn.gnome.pango.internal.PangoDirection
   * If you are interested in text direction, you should really use fribidi
   * directly. `PangoDirection` is only retained because it is used in some
   * public apis.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Direction(val raw: PangoDirection):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A strong left-to-right direction
     *
-    * A strong left-to-right direction
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LTR extends Direction(PangoDirection.PANGO_DIRECTION_LTR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A strong right-to-left direction
     *
-    * A strong right-to-left direction
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RTL extends Direction(PangoDirection.PANGO_DIRECTION_RTL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Deprecated value; treated the same as `PANGO_DIRECTION_RTL`.
     *
-    * Deprecated value; treated the same as `PANGO_DIRECTION_RTL`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TTB_LTR extends Direction(PangoDirection.PANGO_DIRECTION_TTB_LTR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Deprecated value; treated the same as `PANGO_DIRECTION_LTR`
     *
-    * Deprecated value; treated the same as `PANGO_DIRECTION_LTR`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TTB_RTL extends Direction(PangoDirection.PANGO_DIRECTION_TTB_RTL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A weak left-to-right direction
     *
-    * A weak left-to-right direction
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WEAK_LTR extends Direction(PangoDirection.PANGO_DIRECTION_WEAK_LTR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A weak right-to-left direction
     *
-    * A weak right-to-left direction
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WEAK_RTL extends Direction(PangoDirection.PANGO_DIRECTION_WEAK_RTL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No direction specified
     *
-    * No direction specified
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NEUTRAL extends Direction(PangoDirection.PANGO_DIRECTION_NEUTRAL)
 end Direction

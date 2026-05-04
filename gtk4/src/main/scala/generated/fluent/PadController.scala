@@ -9,9 +9,7 @@ import sn.gnome.gio.fluent.ActionGroup
 import sn.gnome.gtk4.fluent.{EventController, PadActionType}
 import sn.gnome.gtk4.internal.GtkPadController
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkPadController` is an event controller for the pads found in drawing
+/** `GtkPadController` is an event controller for the pads found in drawing
   * tablets.
   *
   * Pads are the collection of buttons and tactile sensors often found around
@@ -58,15 +56,16 @@ import sn.gnome.gtk4.internal.GtkPadController
   * The actions belonging to rings/strips will be activated with a parameter of
   * type %G_VARIANT_TYPE_DOUBLE bearing the value of the given axis, it is
   * required that those are made stateful and accepting this `GVariantType`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PadController(raw: Ptr[GtkPadController])
     extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds an individual action to @controller.
+  /** Adds an individual action to @controller.
     *
     * This action will only be activated if the given button/ring/strip number
     * in @index is interacted while the current mode is @mode. -1 may be used
@@ -75,6 +74,9 @@ class PadController(raw: Ptr[GtkPadController])
     * The given @label should be considered user-visible, so
     * internationalization rules apply. Some windowing systems may be able to
     * use those for user feedback.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAction(
       `type`: PadActionType /* Some(GtkPadActionType) */,
@@ -91,17 +93,18 @@ class PadController(raw: Ptr[GtkPadController])
     __sn_extract_string(action_name)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A convenience function to add a group of action entries on
+  /** A convenience function to add a group of action entries on
     * @controller.
     *
     * See [struct@Gtk.PadActionEntry] and [method@Gtk.PadController.set_action].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PadActionEntry), @type -> DataRecord(GtkPadActionEntry)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GtkPadActionEntry*)))"
+    "[set_action_entries/<method parameters>/entries]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PadActionEntry), @type -> DataRecord(GtkPadActionEntry)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GtkPadActionEntry*)))"
   )
-  def setActionEntries__ = ???
+  private def setActionEntries__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -114,9 +117,7 @@ class PadController(raw: Ptr[GtkPadController])
 end PadController
 
 object PadController:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkPadController` that will associate events from @pad to
+  /** Creates a new `GtkPadController` that will associate events from @pad to
     * actions.
     *
     * A %NULL pad may be provided so the controller manages all pad devices
@@ -130,6 +131,9 @@ object PadController:
     *
     * Be aware that pad events will only be delivered to `GtkWindow`s, so adding
     * a pad controller to any other type of widget will not have an effect.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       group: ActionGroup /* Some(Ptr[_root_.sn.gnome.gio.internal.GActionGroup]) */,

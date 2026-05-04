@@ -15,9 +15,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkViewport
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkViewport` implements scrollability for widgets that lack their own
+/** `GtkViewport` implements scrollability for widgets that lack their own
   * scrolling capabilities.
   *
   * Use `GtkViewport` to scroll child widgets such as `GtkGrid`, `GtkBox`, and
@@ -36,6 +34,9 @@ import sn.gnome.gtk4.internal.GtkViewport
   *
   * Starting from GTK 4.12, `GtkViewport` uses the `GTK_ACCESSIBLE_ROLE_GENERIC`
   * role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Viewport(raw: Ptr[GtkViewport])
     extends Widget(raw.asInstanceOf),
@@ -46,37 +47,41 @@ class Viewport(raw: Ptr[GtkViewport])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @viewport.
     *
-    * Gets the child widget of @viewport.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_viewport_get_child(this.raw.asInstanceOf[Ptr[GtkViewport]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the viewport is scrolling to keep the focused child in view.
     *
-    * Gets whether the viewport is scrolling to keep the focused child in view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getScrollToFocus(): Boolean /* None */ = gtk_viewport_get_scroll_to_focus(
     this.raw.asInstanceOf[Ptr[GtkViewport]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Scrolls a descendant of the viewport into view.
+  /** Scrolls a descendant of the viewport into view.
     *
     * The viewport and the descendant must be visible and mapped for this
     * function to work, otherwise no scrolling will be performed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
+    "[scroll_to/<method parameters>/scroll]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
   )
-  def scrollTo__ = ???
+  private def scrollTo__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the child widget of @viewport.
     *
-    * Sets the child widget of @viewport.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -87,10 +92,11 @@ class Viewport(raw: Ptr[GtkViewport])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the viewport should automatically scroll to keep the focused
+  /** Sets whether the viewport should automatically scroll to keep the focused
     * child in view.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setScrollToFocus(
       scroll_to_focus: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -102,12 +108,13 @@ class Viewport(raw: Ptr[GtkViewport])
 end Viewport
 
 object Viewport:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkViewport`.
+  /** Creates a new `GtkViewport`.
     *
     * The new viewport uses the given adjustments, or default adjustments if
     * none are given.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       hadjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ],

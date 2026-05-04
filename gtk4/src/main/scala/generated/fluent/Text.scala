@@ -19,9 +19,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkText
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkText` widget is a single-line text entry widget.
+/** The `GtkText` widget is a single-line text entry widget.
   *
   * `GtkText` is the common implementation of single-line text editing that is
   * shared between [class@Gtk.Entry], [class@Gtk.PasswordEntry],
@@ -82,6 +80,9 @@ import sn.gnome.gtk4.internal.GtkText
   * skipped for accessibility. This is because `GtkText` is expected to be used
   * as a delegate for a `GtkEditable` implementation that will be represented to
   * accessibility.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Text(raw: Ptr[GtkText])
     extends Widget(raw.asInstanceOf),
@@ -92,9 +93,7 @@ class Text(raw: Ptr[GtkText])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determine the positions of the strong and weak cursors if the insertion
+  /** Determine the positions of the strong and weak cursors if the insertion
     * point in the layout is at @position.
     *
     * The position of each cursor is stored as a zero-width rectangle. The
@@ -104,118 +103,132 @@ class Text(raw: Ptr[GtkText])
     * to the base direction are inserted.
     *
     * The rectangle positions are in widget coordinates.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method compute_cursor_extents contains an OUT parameter, which is not supported yet"
+    "[compute_cursor_extents]: Method compute_cursor_extents contains an OUT parameter, which is not supported yet"
   )
-  def computeCursorExtents__ = ???
+  private def computeCursorExtents__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether pressing Enter will activate the default widget for the
+  /** Returns whether pressing Enter will activate the default widget for the
     * window containing @self.
     *
     * See [method@Gtk.Text.set_activates_default].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActivatesDefault(): Boolean /* None */ =
     gtk_text_get_activates_default(this.raw.asInstanceOf[Ptr[GtkText]]).value
       .!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the attribute list that was set on the `GtkText`.
+  /** Gets the attribute list that was set on the `GtkText`.
     *
     * See [method@Gtk.Text.set_attributes].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
-  def getAttributes__ = ???
+  private def getAttributes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the `GtkEntryBuffer` object which holds the text for this widget.
     *
-    * Get the `GtkEntryBuffer` object which holds the text for this widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBuffer(): EntryBuffer /* None */ = new EntryBuffer(
     gtk_text_get_buffer(this.raw.asInstanceOf[Ptr[GtkText]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether Emoji completion is enabled for this `GtkText` widget.
     *
-    * Returns whether Emoji completion is enabled for this `GtkText` widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEnableEmojiCompletion(): Boolean /* None */ =
     gtk_text_get_enable_emoji_completion(
       this.raw.asInstanceOf[Ptr[GtkText]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the menu model for extra items in the context menu.
+  /** Gets the menu model for extra items in the context menu.
     *
     * See [method@Gtk.Text.set_extra_menu].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExtraMenu(): MenuModel /* None */ = new MenuModel(
     gtk_text_get_extra_menu(this.raw.asInstanceOf[Ptr[GtkText]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the input hints of the `GtkText`.
     *
-    * Gets the input hints of the `GtkText`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInputHints(): InputHints /* None */ = InputHints.fromRaw(
     gtk_text_get_input_hints(this.raw.asInstanceOf[Ptr[GtkText]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the input purpose of the `GtkText`.
     *
-    * Gets the input purpose of the `GtkText`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInputPurpose(): InputPurpose /* None */ = InputPurpose.fromRaw(
     gtk_text_get_input_purpose(this.raw.asInstanceOf[Ptr[GtkText]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the character displayed when visibility is set to false.
+  /** Retrieves the character displayed when visibility is set to false.
     *
     * Note that GTK does not compute this value unless it needs it, so the value
     * returned by this function is not very useful unless it has been explicitly
     * set with [method@Gtk.Text.set_invisible_char].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInvisibleChar(): CUnsignedInt /* None */ = gtk_text_get_invisible_char(
     this.raw.asInstanceOf[Ptr[GtkText]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the maximum allowed length of the text in @self.
+  /** Retrieves the maximum allowed length of the text in @self.
     *
     * See [method@Gtk.Text.set_max_length].
     *
     * This is equivalent to getting @self's `GtkEntryBuffer` and calling
     * [method@Gtk.EntryBuffer.get_max_length] on it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMaxLength(): Int /* None */ = gtk_text_get_max_length(
     this.raw.asInstanceOf[Ptr[GtkText]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether text is overwritten when typing in the `GtkText`.
+  /** Gets whether text is overwritten when typing in the `GtkText`.
     *
     * See [method@Gtk.Text.set_overwrite_mode].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOverwriteMode(): Boolean /* None */ =
     gtk_text_get_overwrite_mode(this.raw.asInstanceOf[Ptr[GtkText]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the text that will be displayed when
+  /** Retrieves the text that will be displayed when
     * @self
     *   is empty and unfocused
     *
     * If no placeholder text has been set, %NULL will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPlaceholderText()(using Zone): String /* None */ = fromCString(
     gtk_text_get_placeholder_text(
@@ -223,73 +236,80 @@ class Text(raw: Ptr[GtkText])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the `GtkText` will grow and shrink with the content.
     *
-    * Returns whether the `GtkText` will grow and shrink with the content.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPropagateTextWidth(): Boolean /* None */ =
     gtk_text_get_propagate_text_width(this.raw.asInstanceOf[Ptr[GtkText]]).value
       .!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the tabstops that were set on the `GtkText`.
+  /** Gets the tabstops that were set on the `GtkText`.
     *
     * See [method@Gtk.Text.set_tabs].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
-  def getTabs__ = ???
+  private def getTabs__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the current length of the text in @self.
+  /** Retrieves the current length of the text in @self.
     *
     * This is equivalent to getting @self's `GtkEntryBuffer` and calling
     * [method@Gtk.EntryBuffer.get_length] on it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTextLength(): UShort /* None */ = gtk_text_get_text_length(
     this.raw.asInstanceOf[Ptr[GtkText]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the `GtkText` will truncate multi-line text that is pasted
+  /** Returns whether the `GtkText` will truncate multi-line text that is pasted
     * into the widget
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTruncateMultiline(): Boolean /* None */ =
     gtk_text_get_truncate_multiline(this.raw.asInstanceOf[Ptr[GtkText]]).value
       .!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves whether the text in @self is visible.
     *
-    * Retrieves whether the text in @self is visible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVisibility(): Boolean /* None */ =
     gtk_text_get_visibility(this.raw.asInstanceOf[Ptr[GtkText]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Causes @self to have keyboard focus.
+  /** Causes @self to have keyboard focus.
     *
     * It behaves like [method@Gtk.Widget.grab_focus], except that it doesn't
     * select the contents of @self. You only want to call this on some special
     * entries which the user usually doesn't want to replace all text in, such
     * as search-as-you-type entries.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def grabFocusWithoutSelecting(): Boolean /* None */ =
     gtk_text_grab_focus_without_selecting(
       this.raw.asInstanceOf[Ptr[GtkText]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @activates is %TRUE, pressing Enter will activate the default widget
+  /** If @activates is %TRUE, pressing Enter will activate the default widget
     * for the window containing @self.
     *
     * This usually means that the dialog containing the `GtkText` will be
     * closed, since the default widget is usually one of the dialog buttons.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActivatesDefault(
       activates: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -298,18 +318,20 @@ class Text(raw: Ptr[GtkText])
     gboolean(gint((if activates == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets attributes that are applied to the text.
     *
-    * Sets attributes that are applied to the text.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
-  def setAttributes__ = ???
+  private def setAttributes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Set the `GtkEntryBuffer` object which holds the text for this widget.
     *
-    * Set the `GtkEntryBuffer` object which holds the text for this widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setBuffer(
       buffer: EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */
@@ -318,12 +340,13 @@ class Text(raw: Ptr[GtkText])
     buffer.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether Emoji completion is enabled.
+  /** Sets whether Emoji completion is enabled.
     *
     * If it is, typing ':', followed by a recognized keyword, will pop up a
     * window with suggested Emojis matching the keyword.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEnableEmojiCompletion(
       enable_emoji_completion: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -332,9 +355,10 @@ class Text(raw: Ptr[GtkText])
     gboolean(gint((if enable_emoji_completion == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets a menu model to add when constructing the context menu for @self.
     *
-    * Sets a menu model to add when constructing the context menu for @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setExtraMenu(
       model: Option[
@@ -351,34 +375,37 @@ class Text(raw: Ptr[GtkText])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets input hints that allow input methods to fine-tune their behaviour.
     *
-    * Sets input hints that allow input methods to fine-tune their behaviour.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInputHints(
       hints: InputHints /* Some(GtkInputHints) */
   ): Unit /* None */ =
     gtk_text_set_input_hints(this.raw.asInstanceOf[Ptr[GtkText]], hints.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the input purpose of the `GtkText`.
+  /** Sets the input purpose of the `GtkText`.
     *
     * This can be used by on-screen keyboards and other input methods to adjust
     * their behaviour.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInputPurpose(
       purpose: InputPurpose /* Some(GtkInputPurpose) */
   ): Unit /* None */ =
     gtk_text_set_input_purpose(this.raw.asInstanceOf[Ptr[GtkText]], purpose.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the character to use when in “password mode”.
+  /** Sets the character to use when in “password mode”.
     *
     * By default, GTK picks the best invisible char available in the current
     * font. If you set the invisible char to 0, then the user will get no
     * feedback at all; there will be no text on the screen as they type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInvisibleChar(
       ch: CUnsignedInt /* Some(_root_.sn.gnome.glib.internal.gunichar) */
@@ -387,22 +414,24 @@ class Text(raw: Ptr[GtkText])
     gunichar(guint32(ch))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the maximum allowed length of the contents of the widget.
+  /** Sets the maximum allowed length of the contents of the widget.
     *
     * If the current contents are longer than the given length, then they will
     * be truncated to fit.
     *
     * This is equivalent to getting @self's `GtkEntryBuffer` and calling
     * [method@Gtk.EntryBuffer.set_max_length] on it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMaxLength(length: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_text_set_max_length(this.raw.asInstanceOf[Ptr[GtkText]], length)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the text is overwritten when typing in the `GtkText`.
     *
-    * Sets whether the text is overwritten when typing in the `GtkText`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOverwriteMode(
       overwrite: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -411,12 +440,13 @@ class Text(raw: Ptr[GtkText])
     gboolean(gint((if overwrite == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets text to be displayed in @self when it is empty.
+  /** Sets text to be displayed in @self when it is empty.
     *
     * This can be used to give a visual hint of the expected contents of the
     * `GtkText`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPlaceholderText(
       text: Option[String | CString /* Some(CString) */ ]
@@ -427,9 +457,10 @@ class Text(raw: Ptr[GtkText])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the `GtkText` should grow and shrink with the content.
     *
-    * Sets whether the `GtkText` should grow and shrink with the content.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPropagateTextWidth(
       propagate_text_width: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -438,19 +469,21 @@ class Text(raw: Ptr[GtkText])
     gboolean(gint((if propagate_text_width == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets tabstops that are applied to the text.
     *
-    * Sets tabstops that are applied to the text.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
-  def setTabs__ = ???
+  private def setTabs__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the `GtkText` should truncate multi-line text that is pasted
+  /** Sets whether the `GtkText` should truncate multi-line text that is pasted
     * into the widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTruncateMultiline(
       truncate_multiline: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -459,9 +492,7 @@ class Text(raw: Ptr[GtkText])
     gboolean(gint((if truncate_multiline == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the contents of the `GtkText` are visible or not.
+  /** Sets whether the contents of the `GtkText` are visible or not.
     *
     * When visibility is set to %FALSE, characters are displayed as the
     * invisible char, and will also appear that way when the text in the widget
@@ -475,6 +506,9 @@ class Text(raw: Ptr[GtkText])
     * %GTK_INPUT_PURPOSE_PASSWORD or %GTK_INPUT_PURPOSE_PIN to inform input
     * methods about the purpose of this self, in addition to setting visibility
     * to %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVisibility(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -483,11 +517,12 @@ class Text(raw: Ptr[GtkText])
     gboolean(gint((if visible == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Unsets the invisible char.
+  /** Unsets the invisible char.
     *
     * After calling this, the default invisible char is used again.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetInvisibleChar(): Unit /* None */ = gtk_text_unset_invisible_char(
     this.raw.asInstanceOf[Ptr[GtkText]]
@@ -504,15 +539,17 @@ class Text(raw: Ptr[GtkText])
 end Text
 
 object Text:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkText`.
     *
-    * Creates a new `GtkText`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Text = new Text(gtk_text_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkText` with the specified text buffer.
     *
-    * Creates a new `GtkText` with the specified text buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withBuffer(buffer: EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */ ): Text =
     new Text(

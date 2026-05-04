@@ -11,9 +11,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gchar, guint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GResolver provides cancellable synchronous and asynchronous DNS resolution,
+/** #GResolver provides cancellable synchronous and asynchronous DNS resolution,
   * for hostnames (g_resolver_lookup_by_address(), g_resolver_lookup_by_name()
   * and their async variants) and SRV (service) records
   * (g_resolver_lookup_service()).
@@ -25,22 +23,24 @@ import sn.gnome.gobject.fluent.Object
   * The default resolver (see g_resolver_get_default()) has a timeout of 30s set
   * on it since GLib 2.78. Earlier versions of GLib did not support resolver
   * timeouts.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the timeout applied to all resolver lookups. See #GResolver:timeout.
     *
-    * Get the timeout applied to all resolver lookups. See #GResolver:timeout.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTimeout(): UInt /* None */ = g_resolver_get_timeout(
     this.raw.asInstanceOf[Ptr[GResolver]]
   ).asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Synchronously reverse-resolves @address to determine its associated
+  /** Synchronously reverse-resolves @address to determine its associated
     * hostname.
     *
     * If the DNS resolution fails, @error (if non-%NULL) will be set to a value
@@ -48,6 +48,9 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     *
     * If @cancellable is non-%NULL, it can be used to cancel the operation, in
     * which case @error (if non-%NULL) will be set to %G_IO_ERROR_CANCELLED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupByAddress(
       address: InetAddress /* Some(Ptr[GInetAddress]) */,
@@ -65,26 +68,28 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Begins asynchronously reverse-resolving @address to determine its
+  /** Begins asynchronously reverse-resolving @address to determine its
     * associated hostname, and eventually calls @callback, which must call
     * g_resolver_lookup_by_address_finish() to get the final result.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[lookup_by_address_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def lookupByAddressAsync__ = ???
+  private def lookupByAddressAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the result of a previous call to
+  /** Retrieves the result of a previous call to
     * g_resolver_lookup_by_address_async().
     *
     * If the DNS resolution failed, @error (if non-%NULL) will be set to a value
     * from #GResolverError. If the operation was cancelled,
     * @error
     *   will be set to %G_IO_ERROR_CANCELLED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupByAddressFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -98,9 +103,7 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Synchronously resolves @hostname to determine its associated IP
+  /** Synchronously resolves @hostname to determine its associated IP
     * address(es). @hostname may be an ASCII-only or UTF-8 hostname, or the
     * textual form of an IP address (in which case this just becomes a wrapper
     * around g_inet_address_new_from_string()).
@@ -123,79 +126,85 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * If you are planning to connect to a socket on the resolved IP address, it
     * may be easier to create a #GNetworkAddress and use its #GSocketConnectable
     * interface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[lookup_by_name/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def lookupByName__ = ???
+  private def lookupByName__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Begins asynchronously resolving @hostname to determine its associated IP
+  /** Begins asynchronously resolving @hostname to determine its associated IP
     * address(es), and eventually calls @callback, which must call
     * g_resolver_lookup_by_name_finish() to get the result. See
     * g_resolver_lookup_by_name() for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[lookup_by_name_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def lookupByNameAsync__ = ???
+  private def lookupByNameAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the result of a call to g_resolver_lookup_by_name_async().
+  /** Retrieves the result of a call to g_resolver_lookup_by_name_async().
     *
     * If the DNS resolution failed, @error (if non-%NULL) will be set to a value
     * from #GResolverError. If the operation was cancelled,
     * @error
     *   will be set to %G_IO_ERROR_CANCELLED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[lookup_by_name_finish/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def lookupByNameFinish__ = ???
+  private def lookupByNameFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This differs from g_resolver_lookup_by_name() in that you can modify the
+  /** This differs from g_resolver_lookup_by_name() in that you can modify the
     * lookup behavior with @flags. For example this can be used to limit results
     * with %G_RESOLVER_NAME_LOOKUP_FLAGS_IPV4_ONLY.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[lookup_by_name_with_flags/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def lookupByNameWithFlags__ = ???
+  private def lookupByNameWithFlags__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Begins asynchronously resolving @hostname to determine its associated IP
+  /** Begins asynchronously resolving @hostname to determine its associated IP
     * address(es), and eventually calls @callback, which must call
     * g_resolver_lookup_by_name_with_flags_finish() to get the result. See
     * g_resolver_lookup_by_name() for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[lookup_by_name_with_flags_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def lookupByNameWithFlagsAsync__ = ???
+  private def lookupByNameWithFlagsAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the result of a call to
+  /** Retrieves the result of a call to
     * g_resolver_lookup_by_name_with_flags_async().
     *
     * If the DNS resolution failed, @error (if non-%NULL) will be set to a value
     * from #GResolverError. If the operation was cancelled,
     * @error
     *   will be set to %G_IO_ERROR_CANCELLED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[lookup_by_name_with_flags_finish/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def lookupByNameWithFlagsFinish__ = ???
+  private def lookupByNameWithFlagsFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Synchronously performs a DNS record lookup for the given @rrname and
+  /** Synchronously performs a DNS record lookup for the given @rrname and
     * returns a list of records as #GVariant tuples. See #GResolverRecordType
     * for information on what the records contain for each @record_type.
     *
@@ -204,28 +213,30 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     *
     * If @cancellable is non-%NULL, it can be used to cancel the operation, in
     * which case @error (if non-%NULL) will be set to %G_IO_ERROR_CANCELLED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.Variant))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[lookup_records/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.Variant))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def lookupRecords__ = ???
+  private def lookupRecords__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Begins asynchronously performing a DNS lookup for the given
+  /** Begins asynchronously performing a DNS lookup for the given
     * @rrname,
     *   and eventually calls @callback, which must call
     *   g_resolver_lookup_records_finish() to get the final result. See
     *   g_resolver_lookup_records() for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[lookup_records_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def lookupRecordsAsync__ = ???
+  private def lookupRecordsAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the result of a previous call to
+  /** Retrieves the result of a previous call to
     * g_resolver_lookup_records_async(). Returns a non-empty list of records as
     * #GVariant tuples. See #GResolverRecordType for information on what the
     * records contain.
@@ -234,15 +245,16 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * from #GResolverError. If the operation was cancelled,
     * @error
     *   will be set to %G_IO_ERROR_CANCELLED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.Variant))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[lookup_records_finish/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.Variant))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def lookupRecordsFinish__ = ???
+  private def lookupRecordsFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Synchronously performs a DNS SRV lookup for the given @service and
+  /** Synchronously performs a DNS SRV lookup for the given @service and
     * @protocol
     *   in the given @domain and returns an array of #GSrvTarget.
     * @domain
@@ -264,44 +276,47 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     *
     * If you are planning to connect to the service, it is usually easier to
     * create a #GNetworkService and use its #GSocketConnectable interface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(SrvTarget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[lookup_service/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(SrvTarget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def lookupService__ = ???
+  private def lookupService__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Begins asynchronously performing a DNS SRV lookup for the given
+  /** Begins asynchronously performing a DNS SRV lookup for the given
     * @service
     *   and @protocol in the given @domain, and eventually calls
     * @callback,
     *   which must call g_resolver_lookup_service_finish() to get the final
     *   result. See g_resolver_lookup_service() for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[lookup_service_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def lookupServiceAsync__ = ???
+  private def lookupServiceAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the result of a previous call to
+  /** Retrieves the result of a previous call to
     * g_resolver_lookup_service_async().
     *
     * If the DNS resolution failed, @error (if non-%NULL) will be set to a value
     * from #GResolverError. If the operation was cancelled,
     * @error
     *   will be set to %G_IO_ERROR_CANCELLED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(SrvTarget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[lookup_service_finish/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(SrvTarget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def lookupServiceFinish__ = ???
+  private def lookupServiceFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @resolver to be the application's default resolver (reffing
+  /** Sets @resolver to be the application's default resolver (reffing
     * @resolver,
     *   and unreffing the previous default resolver, if any). Future calls to
     *   g_resolver_get_default() will return this resolver.
@@ -311,14 +326,18 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * original default resolver for DNS operations, and implements its own cache
     * policies on top of that, and then set itself as the default resolver for
     * all later code to use.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefault(): Unit /* None */ = g_resolver_set_default(
     this.raw.asInstanceOf[Ptr[GResolver]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Set the timeout applied to all resolver lookups. See #GResolver:timeout.
     *
-    * Set the timeout applied to all resolver lookups. See #GResolver:timeout.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTimeout(timeout_ms: UInt /* Some(CUnsignedInt) */ ): Unit /* None */ =
     g_resolver_set_timeout(
@@ -329,33 +348,36 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
 end Resolver
 
 object Resolver:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Frees @addresses (which should be the return value from
+  /** Frees @addresses (which should be the return value from
     * g_resolver_lookup_by_name() or g_resolver_lookup_by_name_finish()). (This
     * is a convenience method; you can also simply free the results by hand.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[<function parameters>/addresses]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def freeAddresses() = ???
+  private def freeAddresses() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Frees @targets (which should be the return value from
+  /** Frees @targets (which should be the return value from
     * g_resolver_lookup_service() or g_resolver_lookup_service_finish()). (This
     * is a convenience method; you can also simply free the results by hand.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[<function parameters>/targets]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def freeTargets() = ???
+  private def freeTargets() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the default #GResolver. You should unref it when you are done with
+  /** Gets the default #GResolver. You should unref it when you are done with
     * it. #GResolver may use its reference count as a hint about how many
     * threads it should allocate for concurrent DNS resolutions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefault(): Resolver /* Some(Ptr[GResolver]) */ = new Resolver(
     g_resolver_get_default().asInstanceOf

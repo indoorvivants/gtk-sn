@@ -2,35 +2,40 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkAccessibleSort
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The possible values for the %GTK_ACCESSIBLE_PROPERTY_SORT accessible
+/** The possible values for the %GTK_ACCESSIBLE_PROPERTY_SORT accessible
   * property.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum AccessibleSort(val raw: GtkAccessibleSort):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** There is no defined sort applied to the column.
     *
-    * There is no defined sort applied to the column.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends AccessibleSort(GtkAccessibleSort.GTK_ACCESSIBLE_SORT_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Items are sorted in ascending order by this column.
     *
-    * Items are sorted in ascending order by this column.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ASCENDING
       extends AccessibleSort(GtkAccessibleSort.GTK_ACCESSIBLE_SORT_ASCENDING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Items are sorted in descending order by this column.
     *
-    * Items are sorted in descending order by this column.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DESCENDING
       extends AccessibleSort(GtkAccessibleSort.GTK_ACCESSIBLE_SORT_DESCENDING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A sort algorithm other than ascending or descending has been applied.
     *
-    * A sort algorithm other than ascending or descending has been applied.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OTHER extends AccessibleSort(GtkAccessibleSort.GTK_ACCESSIBLE_SORT_OTHER)
 end AccessibleSort

@@ -11,9 +11,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkIMContext
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkIMContext` defines the interface for GTK input methods.
+/** `GtkIMContext` defines the interface for GTK input methods.
   *
   * `GtkIMContext` is used by GTK text input widgets like `GtkText` to map from
   * key events to Unicode character strings.
@@ -43,14 +41,15 @@ import sn.gnome.gtk4.internal.GtkIMContext
   *
   * To connect a widget to the users preferred input method, you should use
   * [class@Gtk.IMMulticontext].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asks the widget that the input context is attached to delete characters
+  /** Asks the widget that the input context is attached to delete characters
     * around the cursor position by emitting the `::delete_surrounding` signal.
     *
     * Note that @offset and @n_chars are in characters not in bytes which
@@ -66,6 +65,9 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * This function is used by an input method that wants to make substitutions
     * in the existing text in response to new input. It is not useful for
     * applications.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def deleteSurrounding(
       offset: Int /* Some(CInt) */,
@@ -76,10 +78,11 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     n_chars
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Allow an input method to forward key press and release events to another
+  /** Allow an input method to forward key press and release events to another
     * input method without necessarily having a `GdkEvent` available.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def filterKey(
       press: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
@@ -100,12 +103,13 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     group
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Allow an input method to internally handle key press and release events.
+  /** Allow an input method to internally handle key press and release events.
     *
     * If this function returns %TRUE, then no further processing should be done
     * for this key event.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def filterKeypress(
       event: Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */
@@ -114,45 +118,46 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     event.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Notify the input method that the widget to which this input context
+  /** Notify the input method that the widget to which this input context
     * corresponds has gained focus.
     *
     * The input method may, for example, change the displayed feedback to
     * reflect this change.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def focusIn(): Unit /* None */ = gtk_im_context_focus_in(
     this.raw.asInstanceOf[Ptr[GtkIMContext]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Notify the input method that the widget to which this input context
+  /** Notify the input method that the widget to which this input context
     * corresponds has lost focus.
     *
     * The input method may, for example, change the displayed feedback or reset
     * the contexts state to reflect this change.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def focusOut(): Unit /* None */ = gtk_im_context_focus_out(
     this.raw.asInstanceOf[Ptr[GtkIMContext]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieve the current preedit string for the input context, and a list of
+  /** Retrieve the current preedit string for the input context, and a list of
     * attributes to apply to the string.
     *
     * This string should be displayed inserted at the insertion point.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_preedit_string contains an OUT parameter, which is not supported yet"
+    "[get_preedit_string]: Method get_preedit_string contains an OUT parameter, which is not supported yet"
   )
-  def getPreeditString__ = ???
+  private def getPreeditString__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves context around the insertion point.
+  /** Retrieves context around the insertion point.
     *
     * Input methods typically want context in order to constrain input text
     * based on existing text; this is important for languages such as Thai where
@@ -167,15 +172,16 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * Note that there is no obligation for a widget to respond to the
     * `::retrieve-surrounding` signal, so input methods must be prepared to
     * function without context.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_surrounding contains an OUT parameter, which is not supported yet"
+    "[get_surrounding]: Method get_surrounding contains an OUT parameter, which is not supported yet"
   )
-  def getSurrounding__ = ???
+  private def getSurrounding__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves context around the insertion point.
+  /** Retrieves context around the insertion point.
     *
     * Input methods typically want context in order to constrain input text
     * based on existing text; this is important for languages such as Thai where
@@ -190,30 +196,35 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * Note that there is no obligation for a widget to respond to the
     * `::retrieve-surrounding` signal, so input methods must be prepared to
     * function without context.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_surrounding_with_selection contains an OUT parameter, which is not supported yet"
+    "[get_surrounding_with_selection]: Method get_surrounding_with_selection contains an OUT parameter, which is not supported yet"
   )
-  def getSurroundingWithSelection__ = ???
+  private def getSurroundingWithSelection__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Notify the input method that a change such as a change in cursor position
+  /** Notify the input method that a change such as a change in cursor position
     * has been made.
     *
     * This will typically cause the input method to clear the preedit state.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def reset(): Unit /* None */ = gtk_im_context_reset(
     this.raw.asInstanceOf[Ptr[GtkIMContext]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set the client widget for the input context.
+  /** Set the client widget for the input context.
     *
     * This is the `GtkWidget` holding the input focus. This widget is used in
     * order to correctly position status windows, and may also be used for
     * purposes internal to the input method.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setClientWidget(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -224,24 +235,26 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Notify the input method that a change in cursor position has been made.
+  /** Notify the input method that a change in cursor position has been made.
     *
     * The location is relative to the client widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[set_cursor_location/<method parameters>/area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
-  def setCursorLocation__ = ???
+  private def setCursorLocation__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets surrounding context around the insertion point and preedit string.
+  /** Sets surrounding context around the insertion point and preedit string.
     *
     * This function is expected to be called in response to the
     * [signal@Gtk.IMContext::retrieve-surrounding] signal, and will likely have
     * no effect if called at other times.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSurrounding(
       text: String | CString /* Some(CString) */,
@@ -254,12 +267,13 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     cursor_index
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets surrounding context around the insertion point and preedit string.
+  /** Sets surrounding context around the insertion point and preedit string.
     * This function is expected to be called in response to the
     * [signal@Gtk.IMContext::retrieve_surrounding] signal, and will likely have
     * no effect if called at other times.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSurroundingWithSelection(
       text: String | CString /* Some(CString) */,
@@ -275,14 +289,15 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
       anchor_index
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the IM context should use the preedit string to display
+  /** Sets whether the IM context should use the preedit string to display
     * feedback.
     *
     * If @use_preedit is %FALSE (default is %TRUE), then the IM context may use
     * some other method to display feedback, such as displaying it in a child of
     * the root window.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUsePreedit(
       use_preedit: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */

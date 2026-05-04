@@ -2,32 +2,36 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkFilterMatch
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Describes the known strictness of a filter.
+/** Describes the known strictness of a filter.
   *
   * Note that for filters where the strictness is not known,
   * %GTK_FILTER_MATCH_SOME is always an acceptable value, even if a filter does
   * match all or no items.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum FilterMatch(val raw: GtkFilterMatch):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The filter matches some items, gtk_filter_match() may return %TRUE or
+  /** The filter matches some items, gtk_filter_match() may return %TRUE or
     * %FALSE
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SOME extends FilterMatch(GtkFilterMatch.GTK_FILTER_MATCH_SOME)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The filter does not match any item, gtk_filter_match() will always return
+  /** The filter does not match any item, gtk_filter_match() will always return
     * %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends FilterMatch(GtkFilterMatch.GTK_FILTER_MATCH_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The filter matches all items, gtk_filter_match() will alays return %TRUE.
     *
-    * The filter matches all items, gtk_filter_match() will alays return %TRUE.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ALL extends FilterMatch(GtkFilterMatch.GTK_FILTER_MATCH_ALL)
 end FilterMatch

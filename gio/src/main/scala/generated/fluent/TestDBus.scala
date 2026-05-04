@@ -9,9 +9,7 @@ import sn.gnome.gio.internal.GTestDBus
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
 
-/**  COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  *  A helper class for testing code which uses D-Bus without touching the user's
+/**  A helper class for testing code which uses D-Bus without touching the user's
   *  session bus.
   *
   *  Note that #GTestDBus modifies the user’s environment, calling setenv().
@@ -83,15 +81,18 @@ import sn.gnome.gobject.fluent.Object
   *
   *      CLEANFILES += gschemas.compiled
   *  ]|
+  *
+  *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
 class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Add a path where dbus-daemon will look up .service files. This can't be
+  /** Add a path where dbus-daemon will look up .service files. This can't be
     * called after g_test_dbus_up().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addServiceDir(
       path: String |
@@ -101,23 +102,25 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
     __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Stop the session bus started by g_test_dbus_up().
+  /** Stop the session bus started by g_test_dbus_up().
     *
     * This will wait for the singleton returned by g_bus_get() or
     * g_bus_get_sync() to be destroyed. This is done to ensure that the next
     * unit test won't get a leaked singleton from this test.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def down(): Unit /* None */ = g_test_dbus_down(
     this.raw.asInstanceOf[Ptr[GTestDBus]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get the address on which dbus-daemon is running. If g_test_dbus_up() has
+  /** Get the address on which dbus-daemon is running. If g_test_dbus_up() has
     * not been called yet, %NULL is returned. This can be used with
     * g_dbus_connection_new_for_address().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBusAddress()(using Zone): String /* None */ = fromCString(
     g_test_dbus_get_bus_address(
@@ -125,30 +128,30 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the flags of the #GTestDBus object.
     *
-    * Get the flags of the #GTestDBus object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFlags(): TestDBusFlags /* None */ = TestDBusFlags.fromRaw(
     g_test_dbus_get_flags(this.raw.asInstanceOf[Ptr[GTestDBus]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Stop the session bus started by g_test_dbus_up().
+  /** Stop the session bus started by g_test_dbus_up().
     *
     * Unlike g_test_dbus_down(), this won't verify the #GDBusConnection
     * singleton returned by g_bus_get() or g_bus_get_sync() is destroyed. Unit
     * tests wanting to verify behaviour after the session bus has been stopped
     * can use this function but should still call g_test_dbus_down() when done.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def stop(): Unit /* None */ = g_test_dbus_stop(
     this.raw.asInstanceOf[Ptr[GTestDBus]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Start a dbus-daemon instance and set DBUS_SESSION_BUS_ADDRESS. After this
+  /** Start a dbus-daemon instance and set DBUS_SESSION_BUS_ADDRESS. After this
     * call, it is safe for unit tests to start sending messages on the session
     * bus.
     *
@@ -157,6 +160,9 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
     *
     * If this function is called from unit test's main(), then
     * g_test_dbus_down() must be called after g_test_run().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def up(): Unit /* None */ = g_test_dbus_up(
     this.raw.asInstanceOf[Ptr[GTestDBus]]
@@ -173,21 +179,23 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
 end TestDBus
 
 object TestDBus:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Create a new #GTestDBus object.
     *
-    * Create a new #GTestDBus object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(flags: TestDBusFlags /* Some(GTestDBusFlags) */ ): TestDBus =
     new TestDBus(g_test_dbus_new(flags.raw).asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Unset DISPLAY and DBUS_SESSION_BUS_ADDRESS env variables to ensure the
+  /** Unset DISPLAY and DBUS_SESSION_BUS_ADDRESS env variables to ensure the
     * test won't use user's session bus.
     *
     * This is useful for unit tests that want to verify behaviour when no
     * session bus is running. It is not necessary to call this if unit test
     * already calls g_test_dbus_up() before acquiring the session bus.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unset(): Unit /* Some(Unit) */ = g_test_dbus_unset()
 

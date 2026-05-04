@@ -2,33 +2,37 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoWrapMode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `PangoWrapMode` describes how to wrap the lines of a `PangoLayout` to the
+/** `PangoWrapMode` describes how to wrap the lines of a `PangoLayout` to the
   * desired width.
   *
   * For @PANGO_WRAP_WORD, Pango uses break opportunities that are determined by
   * the Unicode line breaking algorithm. For @PANGO_WRAP_CHAR, Pango allows
   * breaking at grapheme boundaries that are determined by the Unicode text
   * segmentation algorithm.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum WrapMode(val raw: PangoWrapMode):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** wrap lines at word boundaries.
     *
-    * wrap lines at word boundaries.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WORD extends WrapMode(PangoWrapMode.PANGO_WRAP_WORD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** wrap lines at character boundaries.
     *
-    * wrap lines at character boundaries.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHAR extends WrapMode(PangoWrapMode.PANGO_WRAP_CHAR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * wrap lines at word boundaries, but fall back to character boundaries if
+  /** wrap lines at word boundaries, but fall back to character boundaries if
     * there is not enough space for a full word.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WORD_CHAR extends WrapMode(PangoWrapMode.PANGO_WRAP_WORD_CHAR)
 end WrapMode

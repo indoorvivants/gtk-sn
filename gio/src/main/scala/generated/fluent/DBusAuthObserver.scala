@@ -9,9 +9,7 @@ import sn.gnome.gio.internal.GDBusAuthObserver
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
-/**  COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  *  The #GDBusAuthObserver type provides a mechanism for participating
+/**  The #GDBusAuthObserver type provides a mechanism for participating
   *  in how a #GDBusServer (or a #GDBusConnection) authenticates remote
   *  peers. Simply instantiate a #GDBusAuthObserver and connect to the
   *  signals you are interested in. Note that new signals may be added
@@ -73,15 +71,18 @@ import sn.gnome.gobject.fluent.Object
   *    return authorized;
   *  }
   *  ]|
+  *
+  *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
 class DBusAuthObserver(raw: Ptr[GDBusAuthObserver])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Emits the #GDBusAuthObserver::allow-mechanism signal on @observer.
     *
-    * Emits the #GDBusAuthObserver::allow-mechanism signal on @observer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def allowMechanism(
       mechanism: String |
@@ -91,9 +92,10 @@ class DBusAuthObserver(raw: Ptr[GDBusAuthObserver])
     __sn_extract_string(mechanism).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Emits the #GDBusAuthObserver::authorize-authenticated-peer signal on @observer.
     *
-    * Emits the #GDBusAuthObserver::authorize-authenticated-peer signal on @observer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def authorizeAuthenticatedPeer(
       stream: IOStream /* Some(Ptr[GIOStream]) */,
@@ -117,9 +119,10 @@ class DBusAuthObserver(raw: Ptr[GDBusAuthObserver])
 end DBusAuthObserver
 
 object DBusAuthObserver:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GDBusAuthObserver object.
     *
-    * Creates a new #GDBusAuthObserver object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): DBusAuthObserver = new DBusAuthObserver(
     g_dbus_auth_observer_new().asInstanceOf

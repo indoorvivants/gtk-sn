@@ -10,10 +10,11 @@ import sn.gnome.glib.internal.guint
 import sn.gnome.gtk4.fluent.{Buildable, Filter}
 import sn.gnome.gtk4.internal.GtkMultiFilter
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkMultiFilter` is the base class for filters that combine multiple
+/** `GtkMultiFilter` is the base class for filters that combine multiple
   * filters.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MultiFilter(raw: Ptr[GtkMultiFilter])
     extends Filter(raw.asInstanceOf),
@@ -22,9 +23,10 @@ class MultiFilter(raw: Ptr[GtkMultiFilter])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds a @filter to @self to use for matching.
     *
-    * Adds a @filter to @self to use for matching.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def append(filter: Filter /* Some(Ptr[GtkFilter]) */ ): Unit /* None */ =
     gtk_multi_filter_append(
@@ -32,12 +34,13 @@ class MultiFilter(raw: Ptr[GtkMultiFilter])
       filter.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes the filter at the given @position from the list of filters used by @self.
+  /** Removes the filter at the given @position from the list of filters used by @self.
     *
     * If @position is larger than the number of filters, nothing happens and the
     * function returns.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */

@@ -2,39 +2,45 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkScrollDirection
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Specifies the direction for scroll events.
   *
-  * Specifies the direction for scroll events.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ScrollDirection(val raw: GdkScrollDirection):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the surface is scrolled up.
     *
-    * the surface is scrolled up.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UP extends ScrollDirection(GdkScrollDirection.GDK_SCROLL_UP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the surface is scrolled down.
     *
-    * the surface is scrolled down.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DOWN extends ScrollDirection(GdkScrollDirection.GDK_SCROLL_DOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the surface is scrolled to the left.
     *
-    * the surface is scrolled to the left.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LEFT extends ScrollDirection(GdkScrollDirection.GDK_SCROLL_LEFT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the surface is scrolled to the right.
     *
-    * the surface is scrolled to the right.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RIGHT extends ScrollDirection(GdkScrollDirection.GDK_SCROLL_RIGHT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * the scrolling is determined by the delta values in scroll events. See
+  /** the scrolling is determined by the delta values in scroll events. See
     * gdk_scroll_event_get_deltas()
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SMOOTH extends ScrollDirection(GdkScrollDirection.GDK_SCROLL_SMOOTH)
 end ScrollDirection

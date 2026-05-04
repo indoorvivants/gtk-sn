@@ -8,19 +8,21 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.{Expression, Filter}
 import sn.gnome.gtk4.internal.GtkBoolFilter
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkBoolFilter` evaluates a boolean `GtkExpression` to determine whether to
+/** `GtkBoolFilter` evaluates a boolean `GtkExpression` to determine whether to
   * include items.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class BoolFilter(raw: Ptr[GtkBoolFilter]) extends Filter(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the expression that the filter uses to evaluate if an item should be
+  /** Gets the expression that the filter uses to evaluate if an item should be
     * filtered.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExpression(): Expression /* None */ = new Expression(
     gtk_bool_filter_get_expression(
@@ -28,20 +30,22 @@ class BoolFilter(raw: Ptr[GtkBoolFilter]) extends Filter(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the filter inverts the expression.
     *
-    * Returns whether the filter inverts the expression.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInvert(): Boolean /* None */ = gtk_bool_filter_get_invert(
     this.raw.asInstanceOf[Ptr[GtkBoolFilter]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the expression that the filter uses to check if items should be
+  /** Sets the expression that the filter uses to check if items should be
     * filtered.
     *
     * The expression must have a value type of %G_TYPE_BOOLEAN.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setExpression(
       expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
@@ -52,9 +56,10 @@ class BoolFilter(raw: Ptr[GtkBoolFilter]) extends Filter(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the filter should invert the expression.
     *
-    * Sets whether the filter should invert the expression.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInvert(
       invert: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -66,9 +71,10 @@ class BoolFilter(raw: Ptr[GtkBoolFilter]) extends Filter(raw.asInstanceOf):
 end BoolFilter
 
 object BoolFilter:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new bool filter.
     *
-    * Creates a new bool filter.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]

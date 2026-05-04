@@ -2,9 +2,10 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GKeyFileFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags which influence the parsing.
   *
-  * Flags which influence the parsing.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class KeyFileFlags private (val raw: GKeyFileFlags):
   def is(kv: KeyFileFlags): Boolean =
@@ -32,25 +33,28 @@ object KeyFileFlags:
     def |(other: KeyFileFlags) =
       KeyFileFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags which influence the parsing.
     *
-    * Flags which influence the parsing.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GKeyFileFlags, name: String)
       extends KeyFileFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags, default behaviour
       *
-      * No flags, default behaviour
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GKeyFileFlags.G_KEY_FILE_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Use this flag if you plan to write the (possibly modified) contents of
+    /** Use this flag if you plan to write the (possibly modified) contents of
       * the key file back to a file; otherwise all comments will be lost when
       * the key file is written back.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case KEEP_COMMENTS
         extends KnownValue(
@@ -58,11 +62,12 @@ object KeyFileFlags:
           "KEEP_COMMENTS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Use this flag if you plan to write the (possibly modified) contents of
+    /** Use this flag if you plan to write the (possibly modified) contents of
       * the key file back to a file; otherwise only the translations for the
       * current language will be written back.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case KEEP_TRANSLATIONS
         extends KnownValue(

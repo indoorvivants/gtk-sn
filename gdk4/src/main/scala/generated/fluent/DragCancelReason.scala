@@ -2,30 +2,34 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkDragCancelReason
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Used in `GdkDrag` to the reason of a cancelled DND operation.
   *
-  * Used in `GdkDrag` to the reason of a cancelled DND operation.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum DragCancelReason(val raw: GdkDragCancelReason):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** There is no suitable drop target.
     *
-    * There is no suitable drop target.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NO_TARGET
       extends DragCancelReason(GdkDragCancelReason.GDK_DRAG_CANCEL_NO_TARGET)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Drag cancelled by the user
     *
-    * Drag cancelled by the user
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case USER_CANCELLED
       extends DragCancelReason(
         GdkDragCancelReason.GDK_DRAG_CANCEL_USER_CANCELLED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unspecified error.
     *
-    * Unspecified error.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ERROR extends DragCancelReason(GdkDragCancelReason.GDK_DRAG_CANCEL_ERROR)
 end DragCancelReason

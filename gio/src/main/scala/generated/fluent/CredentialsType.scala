@@ -2,69 +2,78 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GCredentialsType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Enumeration describing different kinds of native credential types.
   *
-  * Enumeration describing different kinds of native credential types.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum CredentialsType(val raw: GCredentialsType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Indicates an invalid native credential type.
     *
-    * Indicates an invalid native credential type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID
       extends CredentialsType(GCredentialsType.G_CREDENTIALS_TYPE_INVALID)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The native credentials type is a `struct ucred`.
     *
-    * The native credentials type is a `struct ucred`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LINUX_UCRED
       extends CredentialsType(GCredentialsType.G_CREDENTIALS_TYPE_LINUX_UCRED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The native credentials type is a `struct cmsgcred`.
     *
-    * The native credentials type is a `struct cmsgcred`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FREEBSD_CMSGCRED
       extends CredentialsType(
         GCredentialsType.G_CREDENTIALS_TYPE_FREEBSD_CMSGCRED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The native credentials type is a `struct sockpeercred`. Added in 2.30.
     *
-    * The native credentials type is a `struct sockpeercred`. Added in 2.30.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OPENBSD_SOCKPEERCRED
       extends CredentialsType(
         GCredentialsType.G_CREDENTIALS_TYPE_OPENBSD_SOCKPEERCRED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The native credentials type is a `ucred_t`. Added in 2.40.
     *
-    * The native credentials type is a `ucred_t`. Added in 2.40.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SOLARIS_UCRED
       extends CredentialsType(GCredentialsType.G_CREDENTIALS_TYPE_SOLARIS_UCRED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The native credentials type is a `struct unpcbid`. Added in 2.42.
     *
-    * The native credentials type is a `struct unpcbid`. Added in 2.42.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NETBSD_UNPCBID
       extends CredentialsType(
         GCredentialsType.G_CREDENTIALS_TYPE_NETBSD_UNPCBID
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The native credentials type is a `struct xucred`. Added in 2.66.
     *
-    * The native credentials type is a `struct xucred`. Added in 2.66.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case APPLE_XUCRED
       extends CredentialsType(GCredentialsType.G_CREDENTIALS_TYPE_APPLE_XUCRED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The native credentials type is a PID `DWORD`. Added in 2.72.
     *
-    * The native credentials type is a PID `DWORD`. Added in 2.72.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WIN32_PID
       extends CredentialsType(GCredentialsType.G_CREDENTIALS_TYPE_WIN32_PID)

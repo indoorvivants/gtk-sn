@@ -18,9 +18,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkFileChooserDialog
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkFileChooserDialog` is a dialog suitable for use with “File Open” or
+/** `GtkFileChooserDialog` is a dialog suitable for use with “File Open” or
   * “File Save” commands.
   *
   * ![An example GtkFileChooserDialog](filechooser.png)
@@ -191,6 +189,9 @@ import sn.gnome.gtk4.internal.GtkFileChooserDialog
   *
   * `GtkFileChooserDialog` has a single CSS node with the name `window` and
   * style class `.filechooser`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileChooserDialog(raw: Ptr[GtkFileChooserDialog])
     extends Dialog(raw.asInstanceOf),
@@ -207,11 +208,12 @@ class FileChooserDialog(raw: Ptr[GtkFileChooserDialog])
 end FileChooserDialog
 
 object FileChooserDialog:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkFileChooserDialog`.
+  /** Creates a new `GtkFileChooserDialog`.
     *
     * This function is analogous to [ctor@Gtk.Dialog.new_with_buttons].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def apply(
       title: Option[String | CString /* Some(CString) */ ],

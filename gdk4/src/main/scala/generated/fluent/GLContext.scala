@@ -9,9 +9,7 @@ import sn.gnome.gdk4.internal.GdkGLContext
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GdkGLContext` is an object representing a platform-specific OpenGL draw
+/** `GdkGLContext` is an object representing a platform-specific OpenGL draw
   * context.
   *
   * `GdkGLContext`s are created for a surface using
@@ -61,43 +59,50 @@ import sn.gnome.glib.internal.{gboolean, gint}
   * You can check which `GdkGLContext` is the current one by using
   * [func@Gdk.GLContext.get_current]; you can also unset any `GdkGLContext` that
   * is currently set by calling [func@Gdk.GLContext.clear_current].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the allowed APIs set via gdk_gl_context_set_allowed_apis().
     *
-    * Gets the allowed APIs set via gdk_gl_context_set_allowed_apis().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAllowedApis(): GLAPI /* None */ = GLAPI.fromRaw(
     gdk_gl_context_get_allowed_apis(this.raw.asInstanceOf[Ptr[GdkGLContext]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the API currently in use.
+  /** Gets the API currently in use.
     *
     * If the renderer has not been realized yet, 0 is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getApi(): GLAPI /* None */ = GLAPI.fromRaw(
     gdk_gl_context_get_api(this.raw.asInstanceOf[Ptr[GdkGLContext]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves whether the context is doing extra validations and runtime
+  /** Retrieves whether the context is doing extra validations and runtime
     * checking.
     *
     * See [method@Gdk.GLContext.set_debug_enabled].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDebugEnabled(): Boolean /* None */ = gdk_gl_context_get_debug_enabled(
     this.raw.asInstanceOf[Ptr[GdkGLContext]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the display the @context is created for
     *
-    * Retrieves the display the @context is created for
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   override def getDisplay(): Display /* None */ = new Display(
     gdk_gl_context_get_display(
@@ -105,37 +110,40 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves whether the context is forward-compatible.
+  /** Retrieves whether the context is forward-compatible.
     *
     * See [method@Gdk.GLContext.set_forward_compatible].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getForwardCompatible(): Boolean /* None */ =
     gdk_gl_context_get_forward_compatible(
       this.raw.asInstanceOf[Ptr[GdkGLContext]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves required OpenGL version set as a requirement for the @context
+  /** Retrieves required OpenGL version set as a requirement for the @context
     * realization. It will not change even if a greater OpenGL version is
     * supported and used after the @context is realized. See
     * [method@Gdk.GLContext.get_version] for the real version in use.
     *
     * See [method@Gdk.GLContext.set_required_version].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_required_version contains an OUT parameter, which is not supported yet"
+    "[get_required_version]: Method get_required_version contains an OUT parameter, which is not supported yet"
   )
-  def getRequiredVersion__ = ???
+  private def getRequiredVersion__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Used to retrieves the `GdkGLContext` that this @context share data with.
+  /** Used to retrieves the `GdkGLContext` that this @context share data with.
     *
     * As many contexts can share data now and no single shared context exists
     * anymore, this function has been deprecated and now always returns %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSharedContext(): GLContext /* None */ = new GLContext(
     gdk_gl_context_get_shared_context(
@@ -143,9 +151,10 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the surface used by the @context.
     *
-    * Retrieves the surface used by the @context.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   override def getSurface(): Surface /* None */ = new Surface(
     gdk_gl_context_get_surface(
@@ -153,28 +162,28 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks whether the @context is using an OpenGL or OpenGL ES profile.
     *
-    * Checks whether the @context is using an OpenGL or OpenGL ES profile.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseEs(): Boolean /* None */ = gdk_gl_context_get_use_es(
     this.raw.asInstanceOf[Ptr[GdkGLContext]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the OpenGL version of the @context.
+  /** Retrieves the OpenGL version of the @context.
     *
     * The @context must be realized prior to calling this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_version contains an OUT parameter, which is not supported yet"
+    "[get_version]: Method get_version contains an OUT parameter, which is not supported yet"
   )
-  def getVersion__ = ???
+  private def getVersion__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Whether the `GdkGLContext` is in legacy mode or not.
+  /** Whether the `GdkGLContext` is in legacy mode or not.
     *
     * The `GdkGLContext` must be realized before calling this function.
     *
@@ -190,14 +199,15 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * You can use the value returned by this function to decide which kind of
     * OpenGL API to use, or whether to do extension discovery, or what kind of
     * shader programs to load.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isLegacy(): Boolean /* None */ = gdk_gl_context_is_legacy(
     this.raw.asInstanceOf[Ptr[GdkGLContext]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if the two GL contexts can share resources.
+  /** Checks if the two GL contexts can share resources.
     *
     * When they can, the texture IDs from @other can be used in @self. This is
     * particularly useful when passing `GdkGLTexture` objects between different
@@ -209,6 +219,9 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     *
     * Both contexts must be realized for this check to succeed. If either one is
     * not, this function will return %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isShared(
       other: GLContext /* Some(Ptr[GdkGLContext]) */
@@ -217,19 +230,21 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     other.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes the @context the current one.
     *
-    * Makes the @context the current one.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def makeCurrent(): Unit /* None */ = gdk_gl_context_make_current(
     this.raw.asInstanceOf[Ptr[GdkGLContext]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Realizes the given `GdkGLContext`.
+  /** Realizes the given `GdkGLContext`.
     *
     * It is safe to call this function on a realized `GdkGLContext`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def realize(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gdk_gl_context_realize(
@@ -238,9 +253,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the allowed APIs. When gdk_gl_context_realize() is called, only the
+  /** Sets the allowed APIs. When gdk_gl_context_realize() is called, only the
     * allowed APIs will be tried. If you set this to 0, realizing will always
     * fail.
     *
@@ -248,6 +261,9 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * effect. It is only relevant during gdk_gl_context_realize().
     *
     * By default, all APIs are allowed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAllowedApis(apis: GLAPI /* Some(GdkGLAPI) */ ): Unit /* None */ =
     gdk_gl_context_set_allowed_apis(
@@ -255,15 +271,16 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
       apis.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the `GdkGLContext` should perform extra validations and
+  /** Sets whether the `GdkGLContext` should perform extra validations and
     * runtime checking.
     *
     * This is useful during development, but has additional overhead.
     *
     * The `GdkGLContext` must not be realized or made current prior to calling
     * this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDebugEnabled(
       enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -272,9 +289,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     gboolean(gint((if enabled == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the `GdkGLContext` should be forward-compatible.
+  /** Sets whether the `GdkGLContext` should be forward-compatible.
     *
     * Forward-compatible contexts must not support OpenGL functionality that has
     * been marked as deprecated in the requested version; non-forward compatible
@@ -283,6 +298,9 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     *
     * The `GdkGLContext` must not be realized or made current prior to calling
     * this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setForwardCompatible(
       compatible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -291,9 +309,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     gboolean(gint((if compatible == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the major and minor version of OpenGL to request.
+  /** Sets the major and minor version of OpenGL to request.
     *
     * Setting @major and @minor to zero will use the default values.
     *
@@ -302,6 +318,9 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     *
     * The @context must not be realized or made current prior to calling this
     * function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRequiredVersion(
       major: Int /* Some(CInt) */,
@@ -312,9 +331,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     minor
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Requests that GDK create an OpenGL ES context instead of an OpenGL one.
+  /** Requests that GDK create an OpenGL ES context instead of an OpenGL one.
     *
     * Not all platforms support OpenGL ES.
     *
@@ -327,6 +344,9 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * You should check the return value of [method@Gdk.GLContext.get_use_es]
     * after calling [method@Gdk.GLContext.realize] to decide whether to use the
     * OpenGL or OpenGL ES API, extensions, or shaders.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseEs(use_es: Int /* Some(CInt) */ ): Unit /* None */ =
     gdk_gl_context_set_use_es(this.raw.asInstanceOf[Ptr[GdkGLContext]], use_es)
@@ -334,18 +354,20 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
 end GLContext
 
 object GLContext:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Clears the current `GdkGLContext`.
+  /** Clears the current `GdkGLContext`.
     *
     * Any OpenGL call after this function returns will be ignored until
     * [method@Gdk.GLContext.make_current] is called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def clearCurrent(): Unit /* Some(Unit) */ = gdk_gl_context_clear_current()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the current `GdkGLContext`.
     *
-    * Retrieves the current `GdkGLContext`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCurrent(): GLContext /* Some(Ptr[GdkGLContext]) */ = new GLContext(
     gdk_gl_context_get_current().asInstanceOf

@@ -2,10 +2,11 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GTestTrapFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Test traps are guards around forked tests. These flags determine what traps
+/** Test traps are guards around forked tests. These flags determine what traps
   * to set.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TestTrapFlags private (val raw: GTestTrapFlags):
   def is(kv: TestTrapFlags): Boolean =
@@ -33,27 +34,30 @@ object TestTrapFlags:
     def |(other: TestTrapFlags) =
       TestTrapFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Test traps are guards around forked tests. These flags determine what
+  /** Test traps are guards around forked tests. These flags determine what
     * traps to set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GTestTrapFlags, name: String)
       extends TestTrapFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Default behaviour. Since: 2.74
       *
-      * Default behaviour. Since: 2.74
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DEFAULT
         extends KnownValue(GTestTrapFlags.G_TEST_TRAP_DEFAULT, "DEFAULT")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Redirect stdout of the test child to `/dev/null` so it cannot be
+    /** Redirect stdout of the test child to `/dev/null` so it cannot be
       * observed on the console during test runs. The actual output is still
       * captured though to allow later tests with g_test_trap_assert_stdout().
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SILENCE_STDOUT
         extends KnownValue(
@@ -61,11 +65,12 @@ object TestTrapFlags:
           "SILENCE_STDOUT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Redirect stderr of the test child to `/dev/null` so it cannot be
+    /** Redirect stderr of the test child to `/dev/null` so it cannot be
       * observed on the console during test runs. The actual output is still
       * captured though to allow later tests with g_test_trap_assert_stderr().
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SILENCE_STDERR
         extends KnownValue(
@@ -73,10 +78,11 @@ object TestTrapFlags:
           "SILENCE_STDERR"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * If this flag is given, stdin of the child process is shared with stdin
+    /** If this flag is given, stdin of the child process is shared with stdin
       * of its parent process. It is redirected to `/dev/null` otherwise.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case INHERIT_STDIN
         extends KnownValue(

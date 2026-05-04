@@ -8,35 +8,39 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.LayoutChild
 import sn.gnome.gtk4.internal.GtkOverlayLayoutChild
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** `GtkLayoutChild` subclass for children in a `GtkOverlayLayout`.
   *
-  * `GtkLayoutChild` subclass for children in a `GtkOverlayLayout`.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class OverlayLayoutChild(raw: Ptr[GtkOverlayLayoutChild])
     extends LayoutChild(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves whether the child is clipped.
     *
-    * Retrieves whether the child is clipped.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getClipOverlay(): Boolean /* None */ =
     gtk_overlay_layout_child_get_clip_overlay(
       this.raw.asInstanceOf[Ptr[GtkOverlayLayoutChild]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves whether the child is measured.
     *
-    * Retrieves whether the child is measured.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMeasure(): Boolean /* None */ = gtk_overlay_layout_child_get_measure(
     this.raw.asInstanceOf[Ptr[GtkOverlayLayoutChild]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether to clip this child.
     *
-    * Sets whether to clip this child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setClipOverlay(
       clip_overlay: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -45,9 +49,10 @@ class OverlayLayoutChild(raw: Ptr[GtkOverlayLayoutChild])
     gboolean(gint((if clip_overlay == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether to measure this child.
     *
-    * Sets whether to measure this child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMeasure(
       measure: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */

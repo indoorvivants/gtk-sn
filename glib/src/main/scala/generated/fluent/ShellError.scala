@@ -2,26 +2,30 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GShellError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Error codes returned by shell functions.
   *
-  * Error codes returned by shell functions.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ShellError(val raw: GShellError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Mismatched or otherwise mangled quoting.
     *
-    * Mismatched or otherwise mangled quoting.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BAD_QUOTING extends ShellError(GShellError.G_SHELL_ERROR_BAD_QUOTING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** String to be parsed was empty.
     *
-    * String to be parsed was empty.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EMPTY_STRING extends ShellError(GShellError.G_SHELL_ERROR_EMPTY_STRING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Some other error.
     *
-    * Some other error.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FAILED extends ShellError(GShellError.G_SHELL_ERROR_FAILED)
 end ShellError

@@ -2,35 +2,40 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkPositionType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Describes which edge of a widget a certain feature is positioned at.
+/** Describes which edge of a widget a certain feature is positioned at.
   *
   * For examples, see the tabs of a [class@Notebook], or the label of a
   * [class@Scale].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PositionType(val raw: GtkPositionType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The feature is at the left edge.
     *
-    * The feature is at the left edge.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LEFT extends PositionType(GtkPositionType.GTK_POS_LEFT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The feature is at the right edge.
     *
-    * The feature is at the right edge.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RIGHT extends PositionType(GtkPositionType.GTK_POS_RIGHT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The feature is at the top edge.
     *
-    * The feature is at the top edge.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOP extends PositionType(GtkPositionType.GTK_POS_TOP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The feature is at the bottom edge.
     *
-    * The feature is at the bottom edge.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BOTTOM extends PositionType(GtkPositionType.GTK_POS_BOTTOM)
 end PositionType

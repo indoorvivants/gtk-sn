@@ -8,9 +8,7 @@ import sn.gnome.gio.fluent.SocketListener
 import sn.gnome.gio.internal.GSocketService
 import sn.gnome.glib.internal.{gboolean, gint}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A #GSocketService is an object that represents a service that is provided to
+/** A #GSocketService is an object that represents a service that is provided to
   * the network or over local sockets. When a new connection is made to the
   * service the #GSocketService::incoming signal is emitted.
   *
@@ -33,38 +31,41 @@ import sn.gnome.glib.internal.{gboolean, gint}
   * created in, and is not threadsafe in general. However, the calls to start
   * and stop the service are thread-safe so these can be used from threads that
   * handle incoming clients.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SocketService(raw: Ptr[GSocketService])
     extends SocketListener(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Check whether the service is active or not. An active service will accept
+  /** Check whether the service is active or not. An active service will accept
     * new clients that connect, while a non-active service will let connecting
     * clients queue up until the service is started.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isActive(): Boolean /* None */ = g_socket_service_is_active(
     this.raw.asInstanceOf[Ptr[GSocketService]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Restarts the service, i.e. start accepting connections from the added
+  /** Restarts the service, i.e. start accepting connections from the added
     * sockets when the mainloop runs. This only needs to be called after the
     * service has been stopped from g_socket_service_stop().
     *
     * This call is thread-safe, so it may be called from a thread handling an
     * incoming client request.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def start(): Unit /* None */ = g_socket_service_start(
     this.raw.asInstanceOf[Ptr[GSocketService]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Stops the service, i.e. stops accepting connections from the added sockets
+  /** Stops the service, i.e. stops accepting connections from the added sockets
     * when the mainloop runs.
     *
     * This call is thread-safe, so it may be called from a thread handling an
@@ -79,6 +80,9 @@ class SocketService(raw: Ptr[GSocketService])
     * This must be called before calling g_socket_listener_close() as the socket
     * service will start accepting connections immediately when a new socket is
     * added.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def stop(): Unit /* None */ = g_socket_service_stop(
     this.raw.asInstanceOf[Ptr[GSocketService]]
@@ -87,15 +91,16 @@ class SocketService(raw: Ptr[GSocketService])
 end SocketService
 
 object SocketService:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GSocketService with no sockets to listen for. New listeners
+  /** Creates a new #GSocketService with no sockets to listen for. New listeners
     * can be added with e.g. g_socket_listener_add_address() or
     * g_socket_listener_add_inet_port().
     *
     * New services are created active, there is no need to call
     * g_socket_service_start(), unless g_socket_service_stop() has been called
     * before.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): SocketService = new SocketService(
     g_socket_service_new().asInstanceOf

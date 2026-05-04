@@ -7,12 +7,13 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{InputStream, PollableInputStream, Seekable}
 import sn.gnome.gio.internal.GMemoryInputStream
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GMemoryInputStream is a class for using arbitrary memory chunks as input
+/** #GMemoryInputStream is a class for using arbitrary memory chunks as input
   * for GIO streaming input operations.
   *
   * As of GLib 2.34, #GMemoryInputStream implements #GPollableInputStream.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MemoryInputStream(raw: Ptr[GMemoryInputStream])
     extends InputStream(raw.asInstanceOf),
@@ -21,51 +22,56 @@ class MemoryInputStream(raw: Ptr[GMemoryInputStream])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Appends @bytes to data that can be read from the input stream.
     *
-    * Appends @bytes to data that can be read from the input stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[add_bytes/<method parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def addBytes__ = ???
+  private def addBytes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Appends @data to data that can be read from the input stream
     *
-    * Appends @data to data that can be read from the input stream
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))"
+    "[add_data/<method parameters>/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))"
   )
-  def addData__ = ???
+  private def addData__ = ???
 
 end MemoryInputStream
 
 object MemoryInputStream:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new empty #GMemoryInputStream.
     *
-    * Creates a new empty #GMemoryInputStream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): MemoryInputStream = new MemoryInputStream(
     g_memory_input_stream_new().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GMemoryInputStream with data from the given @bytes.
     *
-    * Creates a new #GMemoryInputStream with data from the given @bytes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def new_from_bytes() = ???
+  private def new_from_bytes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GMemoryInputStream with data in memory of a given size.
     *
-    * Creates a new #GMemoryInputStream with data in memory of a given size.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))"
+    "[data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))"
   )
-  def new_from_data() = ???
+  private def new_from_data() = ???
 
 end MemoryInputStream

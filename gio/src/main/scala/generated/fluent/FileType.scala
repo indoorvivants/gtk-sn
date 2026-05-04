@@ -2,9 +2,7 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GFileType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Indicates the file's on-disk type.
+/** Indicates the file's on-disk type.
   *
   * On Windows systems a file will never have %G_FILE_TYPE_SYMBOLIC_LINK type;
   * use #GFileInfo and %G_FILE_ATTRIBUTE_STANDARD_IS_SYMLINK to determine
@@ -14,48 +12,58 @@ import _root_.sn.gnome.gio.internal.GFileType
   * #GFileType enumeration cannot precisely represent this important
   * distinction, which is why all Windows symlinks will continue to be reported
   * as %G_FILE_TYPE_REGULAR or %G_FILE_TYPE_DIRECTORY.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum FileType(val raw: GFileType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File's type is unknown.
     *
-    * File's type is unknown.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN extends FileType(GFileType.G_FILE_TYPE_UNKNOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File handle represents a regular file.
     *
-    * File handle represents a regular file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case REGULAR extends FileType(GFileType.G_FILE_TYPE_REGULAR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File handle represents a directory.
     *
-    * File handle represents a directory.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DIRECTORY extends FileType(GFileType.G_FILE_TYPE_DIRECTORY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File handle represents a symbolic link (Unix systems).
     *
-    * File handle represents a symbolic link (Unix systems).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SYMBOLIC_LINK extends FileType(GFileType.G_FILE_TYPE_SYMBOLIC_LINK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * File is a "special" file, such as a socket, fifo, block device, or
+  /** File is a "special" file, such as a socket, fifo, block device, or
     * character device.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SPECIAL extends FileType(GFileType.G_FILE_TYPE_SPECIAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File is a shortcut (Windows systems).
     *
-    * File is a shortcut (Windows systems).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SHORTCUT extends FileType(GFileType.G_FILE_TYPE_SHORTCUT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File is a mountable location.
     *
-    * File is a mountable location.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MOUNTABLE extends FileType(GFileType.G_FILE_TYPE_MOUNTABLE)
 end FileType

@@ -9,27 +9,30 @@ import sn.gnome.glib.internal.guint
 import sn.gnome.gsk4.fluent.{GLShader, RenderNode}
 import sn.gnome.gsk4.internal.GskGLShaderNode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A render node using a GL shader when drawing its children nodes.
   *
-  * A render node using a GL shader when drawing its children nodes.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class GLShaderNode(raw: Ptr[GskGLShaderNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets args for the node.
     *
-    * Gets args for the node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[get_args/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def getArgs__ = ???
+  private def getArgs__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets one of the children.
     *
-    * Gets one of the children.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(
       idx: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -40,17 +43,19 @@ class GLShaderNode(raw: Ptr[GskGLShaderNode])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the number of children
     *
-    * Returns the number of children
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNChildren(): UInt /* None */ = gsk_gl_shader_node_get_n_children(
     this.raw.asInstanceOf[Ptr[GskRenderNode]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets shader code for the node.
     *
-    * Gets shader code for the node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShader(): GLShader /* None */ = new GLShader(
     gsk_gl_shader_node_get_shader(
@@ -61,9 +66,7 @@ class GLShaderNode(raw: Ptr[GskGLShaderNode])
 end GLShaderNode
 
 object GLShaderNode:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GskRenderNode` that will render the given @shader into the area
+  /** Creates a `GskRenderNode` that will render the given @shader into the area
     * given by @bounds.
     *
     * The @args is a block of data to use for uniform input, as per types and
@@ -81,10 +84,13 @@ object GLShaderNode:
     * when compiling the shader, then the node will draw pink. You should use
     * [method@Gsk.GLShader.compile] to ensure the @shader will work for the
     * renderer before using it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
     "Constructor new is weird: non NULL-terminated arrays require special handling"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end GLShaderNode

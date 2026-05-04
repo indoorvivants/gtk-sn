@@ -10,23 +10,22 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.pango.fluent.{Layout, RenderPart}
 import sn.gnome.pango.internal.PangoRenderer
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `PangoRenderer` is a base class for objects that can render text provided as
+/** `PangoRenderer` is a base class for objects that can render text provided as
   * `PangoGlyphString` or `PangoLayout`.
   *
   * By subclassing `PangoRenderer` and overriding operations such as
   * @draw_glyphs
   *   and @draw_rectangle, renderers for particular font backends and
   *   destinations can be created.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Does initial setup before rendering operations on @renderer.
+  /** Does initial setup before rendering operations on @renderer.
     *
     * [method@Pango.Renderer.deactivate] should be called when done drawing.
     * Calls such as [method@Pango.Renderer.draw_layout] automatically activate
@@ -35,24 +34,26 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * Calls to [method@Pango.Renderer.activate] and
     * [method@Pango.Renderer.deactivate] can be nested and the renderer will
     * only be initialized and deinitialized once.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def activate(): Unit /* None */ = pango_renderer_activate(
     this.raw.asInstanceOf[Ptr[PangoRenderer]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Cleans up after rendering operations on @renderer.
+  /** Cleans up after rendering operations on @renderer.
     *
     * See docs for [method@Pango.Renderer.activate].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def deactivate(): Unit /* None */ = pango_renderer_deactivate(
     this.raw.asInstanceOf[Ptr[PangoRenderer]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Draw a squiggly line that approximately covers the given rectangle in the
+  /** Draw a squiggly line that approximately covers the given rectangle in the
     * style of an underline used to indicate a spelling error.
     *
     * The width of the underline is rounded to an integer number of up/down
@@ -61,6 +62,9 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     *
     * This should be called while @renderer is already active. Use
     * [method@Pango.Renderer.activate] to activate a renderer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def drawErrorUnderline(
       x: Int /* Some(CInt) */,
@@ -75,18 +79,17 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     height
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Draws a single glyph with coordinates in device space.
     *
-    * Draws a single glyph with coordinates in device space.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Glyph), @type -> DataRecord(PangoGlyph)))"
+    "[draw_glyph/<method parameters>/glyph]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Glyph), @type -> DataRecord(PangoGlyph)))"
   )
-  def drawGlyph__ = ???
+  private def drawGlyph__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Draws the glyphs in @glyph_item with the specified `PangoRenderer`,
+  /** Draws the glyphs in @glyph_item with the specified `PangoRenderer`,
     * embedding the text associated with the glyphs in the output if the output
     * format supports it.
     *
@@ -104,27 +107,32 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     *
     * The default implementation of this method simply falls back to
     * [method@Pango.Renderer.draw_glyphs].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GlyphItem), @type -> DataRecord(PangoGlyphItem*)))"
+    "[draw_glyph_item/<method parameters>/glyph_item]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GlyphItem), @type -> DataRecord(PangoGlyphItem*)))"
   )
-  def drawGlyphItem__ = ???
+  private def drawGlyphItem__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Draws the glyphs in @glyphs with the specified `PangoRenderer`.
     *
-    * Draws the glyphs in @glyphs with the specified `PangoRenderer`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GlyphString), @type -> DataRecord(PangoGlyphString*)))"
+    "[draw_glyphs/<method parameters>/glyphs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GlyphString), @type -> DataRecord(PangoGlyphString*)))"
   )
-  def drawGlyphs__ = ???
+  private def drawGlyphs__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Draws @layout with the specified `PangoRenderer`.
+  /** Draws @layout with the specified `PangoRenderer`.
     *
     * This is equivalent to drawing the lines of the layout, at their respective
     * positions relative to @x, @y.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def drawLayout(
       layout: Layout /* Some(Ptr[PangoLayout]) */,
@@ -137,25 +145,27 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     y
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Draws @line with the specified `PangoRenderer`.
+  /** Draws @line with the specified `PangoRenderer`.
     *
     * This draws the glyph items that make up the line, as well as shapes,
     * backgrounds and lines that are specified by the attributes of those items.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
+    "[draw_layout_line/<method parameters>/line]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
   )
-  def drawLayoutLine__ = ???
+  private def drawLayoutLine__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Draws an axis-aligned rectangle in user space coordinates with the
+  /** Draws an axis-aligned rectangle in user space coordinates with the
     * specified `PangoRenderer`.
     *
     * This should be called while @renderer is already active. Use
     * [method@Pango.Renderer.activate] to activate a renderer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def drawRectangle(
       part: RenderPart /* Some(PangoRenderPart) */,
@@ -172,10 +182,11 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     height
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Draws a trapezoid with the parallel sides aligned with the X axis using
+  /** Draws a trapezoid with the parallel sides aligned with the X axis using
     * the given `PangoRenderer`; coordinates are in device space.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def drawTrapezoid(
       part: RenderPart /* Some(PangoRenderPart) */,
@@ -196,9 +207,10 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     x22
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the current alpha for the specified part.
     *
-    * Gets the current alpha for the specified part.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAlpha(
       part: RenderPart /* Some(PangoRenderPart) */
@@ -207,23 +219,25 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     part.raw
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the current rendering color for the specified part.
     *
-    * Gets the current rendering color for the specified part.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(PangoColor*)))"
+    "[get_color/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(PangoColor*)))"
   )
-  def getColor__ = ???
+  private def getColor__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the layout currently being rendered using @renderer.
+  /** Gets the layout currently being rendered using @renderer.
     *
     * Calling this function only makes sense from inside a subclass's methods,
     * like in its draw_shape vfunc, for example.
     *
     * The returned layout should not be modified while still being rendered.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLayout(): Layout /* None */ = new Layout(
     pango_renderer_get_layout(
@@ -231,35 +245,35 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the layout line currently being rendered using @renderer.
+  /** Gets the layout line currently being rendered using @renderer.
     *
     * Calling this function only makes sense from inside a subclass's methods,
     * like in its draw_shape vfunc, for example.
     *
     * The returned layout line should not be modified while still being
     * rendered.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
+    "[get_layout_line/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
   )
-  def getLayoutLine__ = ???
+  private def getLayoutLine__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the transformation matrix that will be applied when rendering.
+  /** Gets the transformation matrix that will be applied when rendering.
     *
     * See [method@Pango.Renderer.set_matrix].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
+    "[get_matrix/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
   )
-  def getMatrix__ = ???
+  private def getMatrix__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Informs Pango that the way that the rendering is done for @part has
+  /** Informs Pango that the way that the rendering is done for @part has
     * changed.
     *
     * This should be called if the rendering changes in a way that would prevent
@@ -274,6 +288,9 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * When the stipple changes or underlines with different stipples might be
     * joined together. Pango automatically calls this for changes to colors.
     * (See [method@Pango.Renderer.set_color])
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def partChanged(
       part: RenderPart /* Some(PangoRenderPart) */
@@ -282,12 +299,13 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     part.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the alpha for part of the rendering.
+  /** Sets the alpha for part of the rendering.
     *
     * Note that the alpha may only be used if a color is specified for @part as
     * well.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAlpha(
       part: RenderPart /* Some(PangoRenderPart) */,
@@ -298,24 +316,26 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     guint16(alpha)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the color for part of the rendering.
+  /** Sets the color for part of the rendering.
     *
     * Also see [method@Pango.Renderer.set_alpha].
-    */
-  @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(const PangoColor*)))"
-  )
-  def setColor__ = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Sets the transformation matrix that will be applied when rendering.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
+    "[set_color/<method parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(const PangoColor*)))"
   )
-  def setMatrix__ = ???
+  private def setColor__ = ???
+
+  /** Sets the transformation matrix that will be applied when rendering.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[set_matrix/<method parameters>/matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
+  )
+  private def setMatrix__ = ???
 
 end Renderer

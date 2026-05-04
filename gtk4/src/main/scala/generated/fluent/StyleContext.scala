@@ -11,9 +11,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{StateFlags, StyleContextPrintFlags, StyleProvider}
 import sn.gnome.gtk4.internal.GtkStyleContext
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkStyleContext` stores styling information affecting a widget.
+/** `GtkStyleContext` stores styling information affecting a widget.
   *
   * In order to construct the final style information, `GtkStyleContext` queries
   * information from all attached `GtkStyleProviders`. Style providers can be
@@ -49,14 +47,15 @@ import sn.gnome.gtk4.internal.GtkStyleContext
   * priority, keep in mind that the user settings in
   * `XDG_CONFIG_HOME/gtk-4.0/gtk.css` will still take precedence over your
   * changes, as it uses the %GTK_STYLE_PROVIDER_PRIORITY_USER priority.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a style class to @context, so later uses of the style context will
+  /** Adds a style class to @context, so later uses of the style context will
     * make use of this new class for styling.
     *
     * In the CSS file format, a `GtkEntry` defining a “search” class, would be
@@ -70,6 +69,9 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * ```css
     * .search { ... }
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addClass(
       class_name: String | CString /* Some(CString) */
@@ -78,9 +80,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     __sn_extract_string(class_name)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a style provider to @context, to be used in style construction.
+  /** Adds a style provider to @context, to be used in style construction.
     *
     * Note that a style provider added by this function only affects the style
     * of the widget to which @context belongs. If you want to affect the style
@@ -89,6 +89,9 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * Note: If both priorities are the same, a `GtkStyleProvider` added through
     * this function takes precedence over another added through
     * [func@Gtk.StyleContext.add_provider_for_display].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addProvider(
       provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */,
@@ -99,27 +102,30 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     guint(priority)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the border for a given state as a `GtkBorder`.
     *
-    * Gets the border for a given state as a `GtkBorder`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_border contains an OUT parameter, which is not supported yet"
+    "[get_border]: Method get_border contains an OUT parameter, which is not supported yet"
   )
-  def getBorder__ = ???
+  private def getBorder__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the foreground color for a given state.
     *
-    * Gets the foreground color for a given state.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_color contains an OUT parameter, which is not supported yet"
+    "[get_color]: Method get_color contains an OUT parameter, which is not supported yet"
   )
-  def getColor__ = ???
+  private def getColor__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `GdkDisplay` to which @context is attached.
     *
-    * Returns the `GdkDisplay` to which @context is attached.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDisplay(): Display /* None */ = new Display(
     gtk_style_context_get_display(
@@ -127,48 +133,53 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the margin for a given state as a `GtkBorder`.
     *
-    * Gets the margin for a given state as a `GtkBorder`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_margin contains an OUT parameter, which is not supported yet"
+    "[get_margin]: Method get_margin contains an OUT parameter, which is not supported yet"
   )
-  def getMargin__ = ???
+  private def getMargin__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the padding for a given state as a `GtkBorder`.
     *
-    * Gets the padding for a given state as a `GtkBorder`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_padding contains an OUT parameter, which is not supported yet"
+    "[get_padding]: Method get_padding contains an OUT parameter, which is not supported yet"
   )
-  def getPadding__ = ???
+  private def getPadding__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the scale used for assets.
     *
-    * Returns the scale used for assets.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getScale(): Int /* None */ = gtk_style_context_get_scale(
     this.raw.asInstanceOf[Ptr[GtkStyleContext]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the state used for style matching.
+  /** Returns the state used for style matching.
     *
     * This method should only be used to retrieve the `GtkStateFlags` to pass to
     * `GtkStyleContext` methods, like [method@Gtk.StyleContext.get_padding]. If
     * you need to retrieve the current state of a `GtkWidget`, use
     * [method@Gtk.Widget.get_state_flags].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getState(): StateFlags /* None */ = StateFlags.fromRaw(
     gtk_style_context_get_state(this.raw.asInstanceOf[Ptr[GtkStyleContext]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns %TRUE if @context currently has defined the given class name.
     *
-    * Returns %TRUE if @context currently has defined the given class name.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasClass(
       class_name: String | CString /* Some(CString) */
@@ -177,18 +188,20 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     __sn_extract_string(class_name)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Looks up and resolves a color name in the @context color map.
     *
-    * Looks up and resolves a color name in the @context color map.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method lookup_color contains an OUT parameter, which is not supported yet"
+    "[lookup_color]: Method lookup_color contains an OUT parameter, which is not supported yet"
   )
-  def lookupColor__ = ???
+  private def lookupColor__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes @class_name from @context.
     *
-    * Removes @class_name from @context.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeClass(
       class_name: String | CString /* Some(CString) */
@@ -197,9 +210,10 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     __sn_extract_string(class_name)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes @provider from the style providers list in @context.
     *
-    * Removes @provider from the style providers list in @context.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeProvider(
       provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */
@@ -208,19 +222,18 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     provider.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Restores @context state to a previous stage.
+  /** Restores @context state to a previous stage.
     *
     * See [method@Gtk.StyleContext.save].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def restore(): Unit /* None */ = gtk_style_context_restore(
     this.raw.asInstanceOf[Ptr[GtkStyleContext]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Saves the @context state.
+  /** Saves the @context state.
     *
     * This allows temporary modifications done through
     * [method@Gtk.StyleContext.add_class],
@@ -230,14 +243,15 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     *
     * The matching call to [method@Gtk.StyleContext.restore] must be done before
     * GTK returns to the main loop.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def save(): Unit /* None */ = gtk_style_context_save(
     this.raw.asInstanceOf[Ptr[GtkStyleContext]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Attaches @context to the given display.
+  /** Attaches @context to the given display.
     *
     * The display is used to add style information from “global” style
     * providers, such as the display's `GtkSettings` instance.
@@ -245,6 +259,9 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * If you are using a `GtkStyleContext` returned from
     * [method@Gtk.Widget.get_style_context], you do not need to call this
     * yourself.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDisplay(
       display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
@@ -253,9 +270,10 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     display.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the scale to use when getting image assets for the style.
     *
-    * Sets the scale to use when getting image assets for the style.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setScale(scale: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_style_context_set_scale(
@@ -263,9 +281,10 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
       scale
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the state to be used for style matching.
     *
-    * Sets the state to be used for style matching.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setState(flags: StateFlags /* Some(GtkStateFlags) */ ): Unit /* None */ =
     gtk_style_context_set_state(
@@ -273,9 +292,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
       flags.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts the style context into a string representation.
+  /** Converts the style context into a string representation.
     *
     * The string representation always includes information about the name,
     * state, id, visibility and style classes of the CSS node that is backing @context.
@@ -284,6 +301,9 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * This function is intended for testing and debugging of the CSS
     * implementation in GTK. There are no guarantees about the format of the
     * returned string, it may change.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def toString(
       flags: StyleContextPrintFlags /* Some(GtkStyleContextPrintFlags) */
@@ -305,9 +325,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
 end StyleContext
 
 object StyleContext:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a global style provider to @display, which will be used in style
+  /** Adds a global style provider to @display, which will be used in style
     * construction for all `GtkStyleContexts` under @display.
     *
     * GTK uses this to make styling information from `GtkSettings` available.
@@ -315,6 +333,9 @@ object StyleContext:
     * Note: If both priorities are the same, A `GtkStyleProvider` added through
     * [method@Gtk.StyleContext.add_provider] takes precedence over another added
     * through this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addProviderForDisplay(
       display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
@@ -326,9 +347,10 @@ object StyleContext:
     guint(priority)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes @provider from the global style providers list in @display.
     *
-    * Removes @provider from the global style providers list in @display.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeProviderForDisplay(
       display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,

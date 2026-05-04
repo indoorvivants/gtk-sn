@@ -2,32 +2,36 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkConstraintRelation
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** The relation between two terms of a constraint.
   *
-  * The relation between two terms of a constraint.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ConstraintRelation(val raw: GtkConstraintRelation):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Less than, or equal
     *
-    * Less than, or equal
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LE
       extends ConstraintRelation(
         GtkConstraintRelation.GTK_CONSTRAINT_RELATION_LE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Equal
     *
-    * Equal
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EQ
       extends ConstraintRelation(
         GtkConstraintRelation.GTK_CONSTRAINT_RELATION_EQ
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Greater than, or equal
     *
-    * Greater than, or equal
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GE
       extends ConstraintRelation(

@@ -8,9 +8,10 @@ import sn.gnome.gdk4.fluent.{Paintable, Texture}
 import sn.gnome.gdk4.internal.GdkMemoryTexture
 import sn.gnome.gio.fluent.{Icon, LoadableIcon}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A `GdkTexture` representing image data in memory.
   *
-  * A `GdkTexture` representing image data in memory.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MemoryTexture(raw: Ptr[GdkMemoryTexture])
     extends Texture(raw.asInstanceOf),
@@ -23,15 +24,16 @@ class MemoryTexture(raw: Ptr[GdkMemoryTexture])
 end MemoryTexture
 
 object MemoryTexture:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new texture for a blob of image data.
+  /** Creates a new texture for a blob of image data.
     *
     * The `GBytes` must contain @stride × @height pixels in the given format.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end MemoryTexture

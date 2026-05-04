@@ -20,9 +20,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkAssistant
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkAssistant` is used to represent a complex as a series of steps.
+/** `GtkAssistant` is used to represent a complex as a series of steps.
   *
   * ![An example GtkAssistant](assistant.png)
   *
@@ -57,6 +55,9 @@ import sn.gnome.gtk4.internal.GtkAssistant
   *
   * `GtkAssistant` has a single CSS node with the name window and style class
   * .assistant.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Assistant(raw: Ptr[GtkAssistant])
     extends Window(raw.asInstanceOf),
@@ -69,9 +70,10 @@ class Assistant(raw: Ptr[GtkAssistant])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds a widget to the action area of a `GtkAssistant`.
     *
-    * Adds a widget to the action area of a `GtkAssistant`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addActionWidget(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -80,9 +82,10 @@ class Assistant(raw: Ptr[GtkAssistant])
     child.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Appends a page to the @assistant.
     *
-    * Appends a page to the @assistant.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appendPage(page: Widget /* Some(Ptr[GtkWidget]) */ ): Int /* None */ =
     gtk_assistant_append_page(
@@ -90,9 +93,7 @@ class Assistant(raw: Ptr[GtkAssistant])
       page.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Erases the visited page history.
+  /** Erases the visited page history.
     *
     * GTK will then hide the back button on the current page, and removes the
     * cancel button from subsequent pages.
@@ -101,30 +102,36 @@ class Assistant(raw: Ptr[GtkAssistant])
     * deemed permanent and cannot be modified or undone. For example, showing a
     * progress page to track a long-running, unreversible operation after the
     * user has clicked apply on a confirmation page.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def commit(): Unit /* None */ = gtk_assistant_commit(
     this.raw.asInstanceOf[Ptr[GtkAssistant]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the page number of the current page.
     *
-    * Returns the page number of the current page.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCurrentPage(): Int /* None */ = gtk_assistant_get_current_page(
     this.raw.asInstanceOf[Ptr[GtkAssistant]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the number of pages in the @assistant
     *
-    * Returns the number of pages in the @assistant
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNPages(): Int /* None */ = gtk_assistant_get_n_pages(
     this.raw.asInstanceOf[Ptr[GtkAssistant]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the child widget contained in page number @page_num.
     *
-    * Returns the child widget contained in page number @page_num.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNthPage(page_num: Int /* Some(CInt) */ ): Widget /* None */ =
     new Widget(
@@ -134,9 +141,10 @@ class Assistant(raw: Ptr[GtkAssistant])
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `GtkAssistantPage` object for @child.
     *
-    * Returns the `GtkAssistantPage` object for @child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPage(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -147,9 +155,10 @@ class Assistant(raw: Ptr[GtkAssistant])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether @page is complete.
     *
-    * Gets whether @page is complete.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPageComplete(
       page: Widget /* Some(Ptr[GtkWidget]) */
@@ -158,9 +167,10 @@ class Assistant(raw: Ptr[GtkAssistant])
     page.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the title for @page.
     *
-    * Gets the title for @page.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPageTitle(
       page: Widget /* Some(Ptr[GtkWidget]) */
@@ -171,9 +181,10 @@ class Assistant(raw: Ptr[GtkAssistant])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the page type of @page.
     *
-    * Gets the page type of @page.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPageType(
       page: Widget /* Some(Ptr[GtkWidget]) */
@@ -184,9 +195,10 @@ class Assistant(raw: Ptr[GtkAssistant])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets a list model of the assistant pages.
     *
-    * Gets a list model of the assistant pages.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPages(): ListModel /* None */ = new ListModel.Abstract(
     gtk_assistant_get_pages(
@@ -194,9 +206,10 @@ class Assistant(raw: Ptr[GtkAssistant])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Inserts a page in the @assistant at a given position.
     *
-    * Inserts a page in the @assistant at a given position.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertPage(
       page: Widget /* Some(Ptr[GtkWidget]) */,
@@ -207,23 +220,25 @@ class Assistant(raw: Ptr[GtkAssistant])
     position
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Navigate to the next page.
+  /** Navigate to the next page.
     *
     * It is a programming error to call this function when there is no next
     * page.
     *
     * This function is for use when creating pages of the
     * %GTK_ASSISTANT_PAGE_CUSTOM type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def nextPage(): Unit /* None */ = gtk_assistant_next_page(
     this.raw.asInstanceOf[Ptr[GtkAssistant]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Prepends a page to the @assistant.
     *
-    * Prepends a page to the @assistant.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def prependPage(page: Widget /* Some(Ptr[GtkWidget]) */ ): Int /* None */ =
     gtk_assistant_prepend_page(
@@ -231,23 +246,25 @@ class Assistant(raw: Ptr[GtkAssistant])
       page.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Navigate to the previous visited page.
+  /** Navigate to the previous visited page.
     *
     * It is a programming error to call this function when no previous page is
     * available.
     *
     * This function is for use when creating pages of the
     * %GTK_ASSISTANT_PAGE_CUSTOM type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def previousPage(): Unit /* None */ = gtk_assistant_previous_page(
     this.raw.asInstanceOf[Ptr[GtkAssistant]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes a widget from the action area of a `GtkAssistant`.
     *
-    * Removes a widget from the action area of a `GtkAssistant`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeActionWidget(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -256,9 +273,10 @@ class Assistant(raw: Ptr[GtkAssistant])
     child.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes the @page_num’s page from @assistant.
     *
-    * Removes the @page_num’s page from @assistant.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removePage(page_num: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_assistant_remove_page(
@@ -266,12 +284,13 @@ class Assistant(raw: Ptr[GtkAssistant])
       page_num
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Switches the page to @page_num.
+  /** Switches the page to @page_num.
     *
     * Note that this will only be necessary in custom buttons, as the @assistant
     * flow can be set with gtk_assistant_set_forward_page_func().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCurrentPage(page_num: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_assistant_set_current_page(
@@ -279,26 +298,28 @@ class Assistant(raw: Ptr[GtkAssistant])
       page_num
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the page forwarding function to be @page_func.
+  /** Sets the page forwarding function to be @page_func.
     *
     * This function will be used to determine what will be the next page when
     * the user presses the forward button. Setting @page_func to %NULL will make
     * the assistant to use the default forward function, which just goes to the
     * next visible page.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AssistantPageFunc), @type -> DataRecord(GtkAssistantPageFunc)))"
+    "[set_forward_page_func/<method parameters>/page_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AssistantPageFunc), @type -> DataRecord(GtkAssistantPageFunc)))"
   )
-  def setForwardPageFunc__ = ???
+  private def setForwardPageFunc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether @page contents are complete.
+  /** Sets whether @page contents are complete.
     *
     * This will make @assistant update the buttons state to be able to continue
     * the task.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPageComplete(
       page: Widget /* Some(Ptr[GtkWidget]) */,
@@ -309,12 +330,13 @@ class Assistant(raw: Ptr[GtkAssistant])
     gboolean(gint((if complete == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a title for @page.
+  /** Sets a title for @page.
     *
     * The title is displayed in the header area of the assistant when @page is
     * the current page.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPageTitle(
       page: Widget /* Some(Ptr[GtkWidget]) */,
@@ -325,11 +347,12 @@ class Assistant(raw: Ptr[GtkAssistant])
     __sn_extract_string(title)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the page type for @page.
+  /** Sets the page type for @page.
     *
     * The page type determines the page behavior in the @assistant.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPageType(
       page: Widget /* Some(Ptr[GtkWidget]) */,
@@ -340,9 +363,7 @@ class Assistant(raw: Ptr[GtkAssistant])
     `type`.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Forces @assistant to recompute the buttons state.
+  /** Forces @assistant to recompute the buttons state.
     *
     * GTK automatically takes care of this in most situations, e.g. when the
     * user goes to a different page, or when the visibility or completeness of a
@@ -351,6 +372,9 @@ class Assistant(raw: Ptr[GtkAssistant])
     * One situation where it can be necessary to call this function is when
     * changing a value on the current page affects the future page flow of the
     * assistant.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def updateButtonsState(): Unit /* None */ =
     gtk_assistant_update_buttons_state(this.raw.asInstanceOf[Ptr[GtkAssistant]])
@@ -366,9 +390,10 @@ class Assistant(raw: Ptr[GtkAssistant])
 end Assistant
 
 object Assistant:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkAssistant`.
     *
-    * Creates a new `GtkAssistant`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Assistant = new Assistant(gtk_assistant_new().asInstanceOf)
 end Assistant

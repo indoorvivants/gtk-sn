@@ -2,10 +2,11 @@ package sn.gnome.gobject.fluent
 
 import _root_.sn.gnome.gobject.internal.GConnectFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The connection flags are used to specify the behaviour of a signal's
+/** The connection flags are used to specify the behaviour of a signal's
   * connection.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ConnectFlags private (val raw: GConnectFlags):
   def is(kv: ConnectFlags): Boolean =
@@ -33,32 +34,36 @@ object ConnectFlags:
     def |(other: ConnectFlags) =
       ConnectFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The connection flags are used to specify the behaviour of a signal's
+  /** The connection flags are used to specify the behaviour of a signal's
     * connection.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GConnectFlags, name: String)
       extends ConnectFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Default behaviour (no special flags). Since: 2.74
       *
-      * Default behaviour (no special flags). Since: 2.74
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DEFAULT extends KnownValue(GConnectFlags.G_CONNECT_DEFAULT, "DEFAULT")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * If set, the handler should be called after the default handler of the
+    /** If set, the handler should be called after the default handler of the
       * signal. Normally, the handler is called before the default handler.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case AFTER extends KnownValue(GConnectFlags.G_CONNECT_AFTER, "AFTER")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * If set, the instance and data should be swapped when calling the
+    /** If set, the instance and data should be swapped when calling the
       * handler; see g_signal_connect_swapped() for an example.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SWAPPED extends KnownValue(GConnectFlags.G_CONNECT_SWAPPED, "SWAPPED")
   end KnownValue

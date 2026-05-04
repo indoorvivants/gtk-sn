@@ -17,9 +17,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkCellArea
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * An abstract class for laying out `GtkCellRenderer`s
+/** An abstract class for laying out `GtkCellRenderer`s
   *
   * The `GtkCellArea` is an abstract class for [iface@Gtk.CellLayout] widgets
   * (also referred to as "layouting widgets") to interface with an arbitrary
@@ -324,6 +322,9 @@ import sn.gnome.gtk4.internal.GtkCellArea
   * [method@Gtk.CellArea.cell_set_valist]. To obtain the value of a cell
   * property, use [method@Gtk.CellArea.cell_get_property]
   * [method@Gtk.CellArea.cell_get] or [method@Gtk.CellArea.cell_get_valist].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class CellArea(raw: Ptr[GtkCellArea])
     extends InitiallyUnowned(raw.asInstanceOf),
@@ -332,31 +333,34 @@ class CellArea(raw: Ptr[GtkCellArea])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Activates @area, usually by activating the currently focused cell, however
+  /** Activates @area, usually by activating the currently focused cell, however
     * some subclasses which embed widgets in the area can also activate a widget
     * if it currently has the focus.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[activate/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
-  def activate__ = ???
+  private def activate__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is used by `GtkCellArea` subclasses when handling events to activate
+  /** This is used by `GtkCellArea` subclasses when handling events to activate
     * cells, the base `GtkCellArea` class activates cells for keyboard events
     * for free in its own GtkCellArea->activate() implementation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[activate_cell/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
-  def activateCell__ = ???
+  private def activateCell__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds @renderer to @area with the default child cell properties.
     *
-    * Adds @renderer to @area with the default child cell properties.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def add(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
@@ -365,12 +369,13 @@ class CellArea(raw: Ptr[GtkCellArea])
     renderer.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds @sibling to @renderer’s focusable area, focus will be drawn around @renderer
+  /** Adds @sibling to @renderer’s focusable area, focus will be drawn around @renderer
     * and all of its siblings if @renderer can focus for a given row.
     *
     * Events handled by focus siblings can also activate the given focusable @renderer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addFocusSibling(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
@@ -381,10 +386,11 @@ class CellArea(raw: Ptr[GtkCellArea])
     sibling.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds @renderer to @area, setting cell properties at the same time. See
+  /** Adds @renderer to @area, setting cell properties at the same time. See
     * gtk_cell_area_add() and gtk_cell_area_cell_set() for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def addWithProperties(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
@@ -397,21 +403,23 @@ class CellArea(raw: Ptr[GtkCellArea])
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Applies any connected attributes to the renderers in
+  /** Applies any connected attributes to the renderers in
     * @area
     *   by pulling the values from @tree_model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[apply_attributes/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
-  def applyAttributes__ = ???
+  private def applyAttributes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Connects an @attribute to apply values from @column for the `GtkTreeModel`
+  /** Connects an @attribute to apply values from @column for the `GtkTreeModel`
     * in use.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def attributeConnect(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
@@ -424,10 +432,11 @@ class CellArea(raw: Ptr[GtkCellArea])
     column
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Disconnects @attribute for the @renderer in @area so that attribute will
+  /** Disconnects @attribute for the @renderer in @area so that attribute will
     * no longer be updated with values from the model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def attributeDisconnect(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
@@ -438,10 +447,11 @@ class CellArea(raw: Ptr[GtkCellArea])
     __sn_extract_string(attribute)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the model column that an attribute has been mapped to, or -1 if
+  /** Returns the model column that an attribute has been mapped to, or -1 if
     * the attribute is not mapped.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def attributeGetColumn(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
@@ -452,9 +462,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     __sn_extract_string(attribute)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the values of one or more cell properties for @renderer in @area.
     *
-    * Gets the values of one or more cell properties for @renderer in @area.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def cellGet(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
@@ -467,18 +478,20 @@ class CellArea(raw: Ptr[GtkCellArea])
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value of a cell property for @renderer in @area.
     *
-    * Gets the value of a cell property for @renderer in @area.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[cell_get_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
-  def cellGetProperty__ = ???
+  private def cellGetProperty__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the values of one or more cell properties for @renderer in @area.
     *
-    * Gets the values of one or more cell properties for @renderer in @area.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def cellGetValist(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
@@ -491,9 +504,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     var_args
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets one or more cell properties for @cell in @area.
     *
-    * Sets one or more cell properties for @cell in @area.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def cellSet(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
@@ -506,18 +520,20 @@ class CellArea(raw: Ptr[GtkCellArea])
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets a cell property for @renderer in @area.
     *
-    * Sets a cell property for @renderer in @area.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[cell_set_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
-  def cellSetProperty__ = ???
+  private def cellSetProperty__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets one or more cell properties for @renderer in @area.
     *
-    * Sets one or more cell properties for @renderer in @area.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def cellSetValist(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
@@ -530,9 +546,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     var_args
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is sometimes needed for cases where rows need to share alignments in
+  /** This is sometimes needed for cases where rows need to share alignments in
     * one orientation but may be separately grouped in the opposing orientation.
     *
     * For instance, `GtkIconView` creates all icons (rows) to have the same
@@ -541,6 +555,9 @@ class CellArea(raw: Ptr[GtkCellArea])
     * `GtkIconView` uses this to request the heights of each row based on a
     * context which was already used to request all the row widths that are to
     * be displayed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def copyContext(
       context: CellAreaContext /* Some(Ptr[GtkCellAreaContext]) */
@@ -551,14 +568,15 @@ class CellArea(raw: Ptr[GtkCellArea])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkCellArea`Context to be used with @area for all purposes.
+  /** Creates a `GtkCellArea`Context to be used with @area for all purposes.
     * `GtkCellArea`Context stores geometry information for rows for which it was
     * operated on, it is important to use the same context for the same row of
     * data at all times (i.e. one should render and handle events with the same
     * `GtkCellArea`Context which was used to request the size of those rows of
     * data).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def createContext(): CellAreaContext /* None */ = new CellAreaContext(
     gtk_cell_area_create_context(
@@ -566,23 +584,25 @@ class CellArea(raw: Ptr[GtkCellArea])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Delegates event handling to a `GtkCellArea`.
     *
-    * Delegates event handling to a `GtkCellArea`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[event/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
-  def event__ = ???
+  private def event__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This should be called by the @area’s owning layout widget when focus is to
+  /** This should be called by the @area’s owning layout widget when focus is to
     * be passed to @area, or moved within @area for a given @direction and row
     * data.
     *
     * Implementing `GtkCellArea` classes should implement this method to receive
     * and navigate focus in its own way particular to how it lays out cells.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def focus(
       direction: DirectionType /* Some(GtkDirectionType) */
@@ -591,51 +611,56 @@ class CellArea(raw: Ptr[GtkCellArea])
     direction.raw
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Calls @callback for every `GtkCellRenderer` in @area.
     *
-    * Calls @callback for every `GtkCellRenderer` in @area.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(CellCallback), @type -> DataRecord(GtkCellCallback)))"
+    "[foreach/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CellCallback), @type -> DataRecord(GtkCellCallback)))"
   )
-  def foreach__ = ???
+  private def foreach__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Calls @callback for every `GtkCellRenderer` in @area with the allocated
+  /** Calls @callback for every `GtkCellRenderer` in @area with the allocated
     * rectangle inside @cell_area.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[foreach_alloc/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
-  def foreachAlloc__ = ???
+  private def foreachAlloc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Derives the allocation of @renderer inside @area if @area were to be
+  /** Derives the allocation of @renderer inside @area if @area were to be
     * rendered in @cell_area.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_cell_allocation contains an OUT parameter, which is not supported yet"
+    "[get_cell_allocation]: Method get_cell_allocation contains an OUT parameter, which is not supported yet"
   )
-  def getCellAllocation__ = ???
+  private def getCellAllocation__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `GtkCellRenderer` at @x and @y coordinates inside @area and
+  /** Gets the `GtkCellRenderer` at @x and @y coordinates inside @area and
     * optionally returns the full cell allocation for it inside @cell_area.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_cell_at_position contains an OUT parameter, which is not supported yet"
+    "[get_cell_at_position]: Method get_cell_at_position contains an OUT parameter, which is not supported yet"
   )
-  def getCellAtPosition__ = ???
+  private def getCellAtPosition__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the current `GtkTreePath` string for the currently applied
+  /** Gets the current `GtkTreePath` string for the currently applied
     * `GtkTreeIter`, this is implicitly updated when
     * gtk_cell_area_apply_attributes() is called and can be used to interact
     * with renderers from `GtkCellArea` subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCurrentPathString()(using Zone): String /* None */ = fromCString(
     gtk_cell_area_get_current_path_string(
@@ -643,10 +668,11 @@ class CellArea(raw: Ptr[GtkCellArea])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `GtkCellEditable` widget currently used to edit the currently
+  /** Gets the `GtkCellEditable` widget currently used to edit the currently
     * edited cell.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEditWidget(): CellEditable /* None */ = new CellEditable.Abstract(
     gtk_cell_area_get_edit_widget(
@@ -654,9 +680,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GtkCellRenderer` in @area that is currently being edited.
     *
-    * Gets the `GtkCellRenderer` in @area that is currently being edited.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEditedCell(): CellRenderer /* None */ = new CellRenderer(
     gtk_cell_area_get_edited_cell(
@@ -664,9 +691,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the currently focused cell for @area
     *
-    * Retrieves the currently focused cell for @area
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFocusCell(): CellRenderer /* None */ = new CellRenderer(
     gtk_cell_area_get_focus_cell(
@@ -674,14 +702,15 @@ class CellArea(raw: Ptr[GtkCellArea])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `GtkCellRenderer` which is expected to be focusable for which @renderer
+  /** Gets the `GtkCellRenderer` which is expected to be focusable for which @renderer
     * is, or may be a sibling.
     *
     * This is handy for `GtkCellArea` subclasses when handling events, after
     * determining the renderer at the event location it can then chose to
     * activate the focus cell for which the event cell may have been a sibling.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFocusFromSibling(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
@@ -692,18 +721,17 @@ class CellArea(raw: Ptr[GtkCellArea])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the focus sibling cell renderers for @renderer.
     *
-    * Gets the focus sibling cell renderers for @renderer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(CellRenderer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(const GList*)))"
+    "[get_focus_siblings/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(CellRenderer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(const GList*)))"
   )
-  def getFocusSiblings__ = ???
+  private def getFocusSiblings__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves a cell area’s initial minimum and natural height.
+  /** Retrieves a cell area’s initial minimum and natural height.
     *
     * @area
     *   will store some geometrical information in @context along the way; when
@@ -711,15 +739,16 @@ class CellArea(raw: Ptr[GtkCellArea])
     *   check the @minimum_height and @natural_height of this call but rather to
     *   consult gtk_cell_area_context_get_preferred_height() after a series of
     *   requests.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_preferred_height contains an OUT parameter, which is not supported yet"
+    "[get_preferred_height]: Method get_preferred_height contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredHeight__ = ???
+  private def getPreferredHeight__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves a cell area’s minimum and natural height if it would be given
+  /** Retrieves a cell area’s minimum and natural height if it would be given
     * the specified @width.
     *
     * @area
@@ -735,15 +764,16 @@ class CellArea(raw: Ptr[GtkCellArea])
     * requested with gtk_cell_area_get_preferred_width() again and then the full
     * width of the requested rows checked again with
     * gtk_cell_area_context_get_preferred_width().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
+    "[get_preferred_height_for_width]: Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredHeightForWidth__ = ???
+  private def getPreferredHeightForWidth__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves a cell area’s initial minimum and natural width.
+  /** Retrieves a cell area’s initial minimum and natural width.
     *
     * @area
     *   will store some geometrical information in @context along the way; when
@@ -751,15 +781,16 @@ class CellArea(raw: Ptr[GtkCellArea])
     *   check the @minimum_width and @natural_width of this call but rather to
     *   consult gtk_cell_area_context_get_preferred_width() after a series of
     *   requests.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_preferred_width contains an OUT parameter, which is not supported yet"
+    "[get_preferred_width]: Method get_preferred_width contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredWidth__ = ???
+  private def getPreferredWidth__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves a cell area’s minimum and natural width if it would be given the
+  /** Retrieves a cell area’s minimum and natural width if it would be given the
     * specified @height.
     *
     * @area
@@ -775,24 +806,29 @@ class CellArea(raw: Ptr[GtkCellArea])
     * requested with gtk_cell_area_get_preferred_height() again and then the
     * full height of the requested rows checked again with
     * gtk_cell_area_context_get_preferred_height().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
+    "[get_preferred_width_for_height]: Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredWidthForHeight__ = ???
+  private def getPreferredWidthForHeight__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether the area prefers a height-for-width layout or a
+  /** Gets whether the area prefers a height-for-width layout or a
     * width-for-height layout.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRequestMode(): SizeRequestMode /* None */ = SizeRequestMode.fromRaw(
     gtk_cell_area_get_request_mode(this.raw.asInstanceOf[Ptr[GtkCellArea]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if @area contains @renderer.
     *
-    * Checks if @area contains @renderer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasRenderer(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
@@ -801,30 +837,33 @@ class CellArea(raw: Ptr[GtkCellArea])
     renderer.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is a convenience function for `GtkCellArea` implementations to get
+  /** This is a convenience function for `GtkCellArea` implementations to get
     * the inner area where a given `GtkCellRenderer` will be rendered. It
     * removes any padding previously added by gtk_cell_area_request_renderer().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method inner_cell_area contains an OUT parameter, which is not supported yet"
+    "[inner_cell_area]: Method inner_cell_area contains an OUT parameter, which is not supported yet"
   )
-  def innerCellArea__ = ???
+  private def innerCellArea__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the area can do anything when activated, after applying
+  /** Returns whether the area can do anything when activated, after applying
     * new attributes to @area.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isActivatable(): Boolean /* None */ = gtk_cell_area_is_activatable(
     this.raw.asInstanceOf[Ptr[GtkCellArea]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether @sibling is one of @renderer’s focus siblings (see
+  /** Returns whether @sibling is one of @renderer’s focus siblings (see
     * gtk_cell_area_add_focus_sibling()).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isFocusSibling(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
@@ -835,9 +874,10 @@ class CellArea(raw: Ptr[GtkCellArea])
     sibling.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes @renderer from @area.
     *
-    * Removes @renderer from @area.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */
@@ -846,10 +886,11 @@ class CellArea(raw: Ptr[GtkCellArea])
     renderer.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes @sibling from @renderer’s focus sibling list (see
+  /** Removes @sibling from @renderer’s focus sibling list (see
     * gtk_cell_area_add_focus_sibling()).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeFocusSibling(
       renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
@@ -860,26 +901,28 @@ class CellArea(raw: Ptr[GtkCellArea])
     sibling.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is a convenience function for `GtkCellArea` implementations to
+  /** This is a convenience function for `GtkCellArea` implementations to
     * request size for cell renderers. It’s important to use this function to
     * request size and then use gtk_cell_area_inner_cell_area() at render and
     * event time since this function will add padding around the cell for focus
     * painting.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method request_renderer contains an OUT parameter, which is not supported yet"
+    "[request_renderer]: Method request_renderer contains an OUT parameter, which is not supported yet"
   )
-  def requestRenderer__ = ???
+  private def requestRenderer__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Explicitly sets the currently focused cell to @renderer.
+  /** Explicitly sets the currently focused cell to @renderer.
     *
     * This is generally called by implementations of `GtkCellAreaClass.focus()`
     * or `GtkCellAreaClass.event()`, however it can also be used to implement
     * functions such as gtk_tree_view_set_cursor_on_cell().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFocusCell(
       renderer: Option[CellRenderer /* Some(Ptr[GtkCellRenderer]) */ ]
@@ -890,25 +933,27 @@ class CellArea(raw: Ptr[GtkCellArea])
       .getOrElse(null.asInstanceOf[Ptr[GtkCellRenderer]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Snapshots @area’s cells according to @area’s layout onto at the given
+  /** Snapshots @area’s cells according to @area’s layout onto at the given
     * coordinates.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[snapshot/<method parameters>/background_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
-  def snapshot__ = ???
+  private def snapshot__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Explicitly stops the editing of the currently edited cell.
+  /** Explicitly stops the editing of the currently edited cell.
     *
     * If @canceled is %TRUE, the currently edited cell renderer will emit the
     * ::editing-canceled signal, otherwise the the ::editing-done signal will be
     * emitted on the current edit widget.
     *
     * See gtk_cell_area_get_edited_cell() and gtk_cell_area_get_edit_widget().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def stopEditing(
       canceled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */

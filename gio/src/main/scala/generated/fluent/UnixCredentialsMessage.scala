@@ -8,9 +8,7 @@ import sn.gnome.gio.fluent.{Credentials, SocketControlMessage}
 import sn.gnome.gio.internal.GUnixCredentialsMessage
 import sn.gnome.glib.internal.{gboolean, gint}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * This #GSocketControlMessage contains a #GCredentials instance. It may be
+/** This #GSocketControlMessage contains a #GCredentials instance. It may be
   * sent using g_socket_send_message() and received using
   * g_socket_receive_message() over UNIX sockets (ie: sockets in the
   * %G_SOCKET_FAMILY_UNIX family).
@@ -27,15 +25,19 @@ import sn.gnome.glib.internal.{gboolean, gint}
   * Before GLib 2.72, `<gio/gunixcredentialsmessage.h>` belonged to the
   * UNIX-specific GIO interfaces, thus you had to use the `gio-unix-2.0.pc`
   * pkg-config file when using it. This is no longer necessary since GLib 2.72.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class UnixCredentialsMessage(raw: Ptr[GUnixCredentialsMessage])
     extends SocketControlMessage(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the credentials stored in @message.
     *
-    * Gets the credentials stored in @message.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCredentials(): Credentials /* None */ = new Credentials(
     g_unix_credentials_message_get_credentials(
@@ -46,18 +48,20 @@ class UnixCredentialsMessage(raw: Ptr[GUnixCredentialsMessage])
 end UnixCredentialsMessage
 
 object UnixCredentialsMessage:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GUnixCredentialsMessage with credentials matching the
+  /** Creates a new #GUnixCredentialsMessage with credentials matching the
     * current processes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): UnixCredentialsMessage = new UnixCredentialsMessage(
     g_unix_credentials_message_new().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GUnixCredentialsMessage holding @credentials.
     *
-    * Creates a new #GUnixCredentialsMessage holding @credentials.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withCredentials(
       credentials: Credentials /* Some(Ptr[GCredentials]) */
@@ -67,10 +71,11 @@ object UnixCredentialsMessage:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if passing #GCredentials on a #GSocket is supported on this
+  /** Checks if passing #GCredentials on a #GSocket is supported on this
     * platform.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isSupported()
       : Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =

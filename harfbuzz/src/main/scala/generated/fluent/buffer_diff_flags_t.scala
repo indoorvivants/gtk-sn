@@ -2,9 +2,7 @@ package sn.gnome.harfbuzz.fluent
 
 import _root_.sn.gnome.harfbuzz.internal.hb_buffer_diff_flags_t
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags from comparing two #hb_buffer_t's.
+/** Flags from comparing two #hb_buffer_t's.
   *
   * Buffer with different #hb_buffer_content_type_t cannot be meaningfully
   * compared in any further detail.
@@ -15,6 +13,9 @@ import _root_.sn.gnome.harfbuzz.internal.hb_buffer_diff_flags_t
   *
   * If the buffers have the same length, we compare them glyph-by-glyph and
   * report which aspect(s) of the glyph info/position are different.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class buffer_diff_flags_t private (val raw: hb_buffer_diff_flags_t):
   def is(kv: buffer_diff_flags_t): Boolean =
@@ -42,9 +43,7 @@ object buffer_diff_flags_t:
     def |(other: buffer_diff_flags_t) =
       buffer_diff_flags_t(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags from comparing two #hb_buffer_t's.
+  /** Flags from comparing two #hb_buffer_t's.
     *
     * Buffer with different #hb_buffer_content_type_t cannot be meaningfully
     * compared in any further detail.
@@ -55,14 +54,18 @@ object buffer_diff_flags_t:
     *
     * If the buffers have the same length, we compare them glyph-by-glyph and
     * report which aspect(s) of the glyph info/position are different.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: hb_buffer_diff_flags_t, name: String)
       extends buffer_diff_flags_t(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** equal buffers.
       *
-      * equal buffers.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case EQUAL
         extends KnownValue(
@@ -70,9 +73,10 @@ object buffer_diff_flags_t:
           "EQUAL"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** buffers with different #hb_buffer_content_type_t.
       *
-      * buffers with different #hb_buffer_content_type_t.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CONTENT_TYPE_MISMATCH
         extends KnownValue(
@@ -80,9 +84,10 @@ object buffer_diff_flags_t:
           "CONTENT_TYPE_MISMATCH"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** buffers with differing length.
       *
-      * buffers with differing length.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case LENGTH_MISMATCH
         extends KnownValue(
@@ -90,9 +95,10 @@ object buffer_diff_flags_t:
           "LENGTH_MISMATCH"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** `.notdef` glyph is present in the reference buffer.
       *
-      * `.notdef` glyph is present in the reference buffer.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NOTDEF_PRESENT
         extends KnownValue(
@@ -100,9 +106,10 @@ object buffer_diff_flags_t:
           "NOTDEF_PRESENT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** dotted circle glyph is present in the reference buffer.
       *
-      * dotted circle glyph is present in the reference buffer.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DOTTED_CIRCLE_PRESENT
         extends KnownValue(
@@ -110,9 +117,10 @@ object buffer_diff_flags_t:
           "DOTTED_CIRCLE_PRESENT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** difference in #hb_glyph_info_t.codepoint
       *
-      * difference in #hb_glyph_info_t.codepoint
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CODEPOINT_MISMATCH
         extends KnownValue(
@@ -120,9 +128,10 @@ object buffer_diff_flags_t:
           "CODEPOINT_MISMATCH"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** difference in #hb_glyph_info_t.cluster
       *
-      * difference in #hb_glyph_info_t.cluster
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CLUSTER_MISMATCH
         extends KnownValue(
@@ -130,9 +139,10 @@ object buffer_diff_flags_t:
           "CLUSTER_MISMATCH"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** difference in #hb_glyph_flags_t.
       *
-      * difference in #hb_glyph_flags_t.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case GLYPH_FLAGS_MISMATCH
         extends KnownValue(
@@ -140,9 +150,10 @@ object buffer_diff_flags_t:
           "GLYPH_FLAGS_MISMATCH"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** difference in #hb_glyph_position_t.
       *
-      * difference in #hb_glyph_position_t.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case POSITION_MISMATCH
         extends KnownValue(

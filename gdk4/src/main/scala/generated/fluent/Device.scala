@@ -17,31 +17,34 @@ import sn.gnome.glib.internal.{gboolean, gint, guint, guint32}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.pango.fluent.Direction
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GdkDevice` object represents an input device, such as a keyboard, a
+/** The `GdkDevice` object represents an input device, such as a keyboard, a
   * mouse, or a touchpad.
   *
   * See the [class@Gdk.Seat] documentation for more information about the
   * various kinds of devices, and their relationships.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves whether the Caps Lock modifier of the keyboard is locked.
+  /** Retrieves whether the Caps Lock modifier of the keyboard is locked.
     *
     * This is only relevant for keyboard devices.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCapsLockState(): Boolean /* None */ = gdk_device_get_caps_lock_state(
     this.raw.asInstanceOf[Ptr[GdkDevice]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the current tool for @device.
     *
-    * Retrieves the current tool for @device.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDeviceTool(): DeviceTool /* None */ = new DeviceTool(
     gdk_device_get_device_tool(
@@ -49,78 +52,86 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the direction of effective layout of the keyboard.
+  /** Returns the direction of effective layout of the keyboard.
     *
     * This is only relevant for keyboard devices.
     *
     * The direction of a layout is the direction of the majority of its symbols.
     * See [func@Pango.unichar_direction].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDirection(): Direction /* None */ = Direction.fromRaw(
     gdk_device_get_direction(this.raw.asInstanceOf[Ptr[GdkDevice]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `GdkDisplay` to which @device pertains.
     *
-    * Returns the `GdkDisplay` to which @device pertains.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDisplay(): Display /* None */ = new Display(
     gdk_device_get_display(this.raw.asInstanceOf[Ptr[GdkDevice]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether the pointer follows device motion.
+  /** Determines whether the pointer follows device motion.
     *
     * This is not meaningful for keyboard devices, which don't have a pointer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasCursor(): Boolean /* None */ =
     gdk_device_get_has_cursor(this.raw.asInstanceOf[Ptr[GdkDevice]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the current modifier state of the keyboard.
+  /** Retrieves the current modifier state of the keyboard.
     *
     * This is only relevant for keyboard devices.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModifierState(): ModifierType /* None */ = ModifierType.fromRaw(
     gdk_device_get_modifier_state(this.raw.asInstanceOf[Ptr[GdkDevice]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The name of the device, suitable for showing in a user interface.
     *
-    * The name of the device, suitable for showing in a user interface.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     gdk_device_get_name(this.raw.asInstanceOf[Ptr[GdkDevice]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves whether the Num Lock modifier of the keyboard is locked.
+  /** Retrieves whether the Num Lock modifier of the keyboard is locked.
     *
     * This is only relevant for keyboard devices.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNumLockState(): Boolean /* None */ = gdk_device_get_num_lock_state(
     this.raw.asInstanceOf[Ptr[GdkDevice]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the number of touch points associated to @device.
     *
-    * Retrieves the number of touch points associated to @device.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNumTouches(): UInt /* None */ = gdk_device_get_num_touches(
     this.raw.asInstanceOf[Ptr[GdkDevice]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the product ID of this device.
+  /** Returns the product ID of this device.
     *
     * This ID is retrieved from the device, and does not change. See
     * [method@Gdk.Device.get_vendor_id] for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getProductId()(using Zone): String /* None */ = fromCString(
     gdk_device_get_product_id(
@@ -128,62 +139,65 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves whether the Scroll Lock modifier of the keyboard is locked.
+  /** Retrieves whether the Scroll Lock modifier of the keyboard is locked.
     *
     * This is only relevant for keyboard devices.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getScrollLockState(): Boolean /* None */ =
     gdk_device_get_scroll_lock_state(
       this.raw.asInstanceOf[Ptr[GdkDevice]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `GdkSeat` the device belongs to.
     *
-    * Returns the `GdkSeat` the device belongs to.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSeat(): Seat /* None */ = new Seat(
     gdk_device_get_seat(this.raw.asInstanceOf[Ptr[GdkDevice]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determines the type of the device.
     *
-    * Determines the type of the device.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSource(): InputSource /* None */ = InputSource.fromRaw(
     gdk_device_get_source(this.raw.asInstanceOf[Ptr[GdkDevice]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains the surface underneath @device, returning the location of the
+  /** Obtains the surface underneath @device, returning the location of the
     * device in @win_x and @win_y.
     *
     * Returns %NULL if the surface tree under @device is not known to GDK (for
     * example, belongs to another application).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_surface_at_position contains an OUT parameter, which is not supported yet"
+    "[get_surface_at_position]: Method get_surface_at_position contains an OUT parameter, which is not supported yet"
   )
-  def getSurfaceAtPosition__ = ???
+  private def getSurfaceAtPosition__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the timestamp of the last activity for this device.
+  /** Returns the timestamp of the last activity for this device.
     *
     * In practice, this means the timestamp of the last event that was received
     * from the OS for this device. (GTK may occasionally produce events for a
     * device that are not received from the OS, and will not update the
     * timestamp).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTimestamp(): UInt /* None */ = gdk_device_get_timestamp(
     this.raw.asInstanceOf[Ptr[GdkDevice]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the vendor ID of this device.
+  /** Returns the vendor ID of this device.
     *
     * This ID is retrieved from the device, and does not change.
     *
@@ -209,17 +223,21 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     *    return settings;
     *  }
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVendorId()(using Zone): String /* None */ = fromCString(
     gdk_device_get_vendor_id(this.raw.asInstanceOf[Ptr[GdkDevice]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines if layouts for both right-to-left and left-to-right languages
+  /** Determines if layouts for both right-to-left and left-to-right languages
     * are in use on the keyboard.
     *
     * This is only relevant for keyboard devices.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasBidiLayouts(): Boolean /* None */ = gdk_device_has_bidi_layouts(
     this.raw.asInstanceOf[Ptr[GdkDevice]]

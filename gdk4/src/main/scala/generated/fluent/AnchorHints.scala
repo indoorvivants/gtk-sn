@@ -2,9 +2,7 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkAnchorHints
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Positioning hints for aligning a surface relative to a rectangle.
+/** Positioning hints for aligning a surface relative to a rectangle.
   *
   * These hints determine how the surface should be positioned in the case that
   * the surface would fall off-screen if placed in its ideal position.
@@ -19,6 +17,9 @@ import _root_.sn.gnome.gdk4.internal.GdkAnchorHints
   *
   * In general, when multiple flags are set, flipping should take precedence
   * over sliding, which should take precedence over resizing.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AnchorHints private (val raw: GdkAnchorHints):
   def is(kv: AnchorHints): Boolean =
@@ -46,9 +47,7 @@ object AnchorHints:
     def |(other: AnchorHints) =
       AnchorHints(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Positioning hints for aligning a surface relative to a rectangle.
+  /** Positioning hints for aligning a surface relative to a rectangle.
     *
     * These hints determine how the surface should be positioned in the case
     * that the surface would fall off-screen if placed in its ideal position.
@@ -63,66 +62,78 @@ object AnchorHints:
     *
     * In general, when multiple flags are set, flipping should take precedence
     * over sliding, which should take precedence over resizing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GdkAnchorHints, name: String)
       extends AnchorHints(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** allow flipping anchors horizontally
       *
-      * allow flipping anchors horizontally
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FLIP_X extends KnownValue(GdkAnchorHints.GDK_ANCHOR_FLIP_X, "FLIP_X")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** allow flipping anchors vertically
       *
-      * allow flipping anchors vertically
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FLIP_Y extends KnownValue(GdkAnchorHints.GDK_ANCHOR_FLIP_Y, "FLIP_Y")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** allow sliding surface horizontally
       *
-      * allow sliding surface horizontally
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SLIDE_X
         extends KnownValue(GdkAnchorHints.GDK_ANCHOR_SLIDE_X, "SLIDE_X")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** allow sliding surface vertically
       *
-      * allow sliding surface vertically
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SLIDE_Y
         extends KnownValue(GdkAnchorHints.GDK_ANCHOR_SLIDE_Y, "SLIDE_Y")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** allow resizing surface horizontally
       *
-      * allow resizing surface horizontally
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case RESIZE_X
         extends KnownValue(GdkAnchorHints.GDK_ANCHOR_RESIZE_X, "RESIZE_X")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** allow resizing surface vertically
       *
-      * allow resizing surface vertically
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case RESIZE_Y
         extends KnownValue(GdkAnchorHints.GDK_ANCHOR_RESIZE_Y, "RESIZE_Y")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** allow flipping anchors on both axes
       *
-      * allow flipping anchors on both axes
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FLIP extends KnownValue(GdkAnchorHints.GDK_ANCHOR_FLIP, "FLIP")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** allow sliding surface on both axes
       *
-      * allow sliding surface on both axes
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SLIDE extends KnownValue(GdkAnchorHints.GDK_ANCHOR_SLIDE, "SLIDE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** allow resizing surface on both axes
       *
-      * allow resizing surface on both axes
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case RESIZE extends KnownValue(GdkAnchorHints.GDK_ANCHOR_RESIZE, "RESIZE")
   end KnownValue

@@ -8,9 +8,7 @@ import sn.gnome.gdk4.fluent.ScrollUnit
 import sn.gnome.gtk4.fluent.{EventController, EventControllerScrollFlags}
 import sn.gnome.gtk4.internal.GtkEventControllerScroll
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkEventControllerScroll` is an event controller that handles scroll
+/** `GtkEventControllerScroll` is an event controller that handles scroll
   * events.
   *
   * It is capable of handling both discrete and continuous scroll events from
@@ -45,15 +43,19 @@ import sn.gnome.gtk4.internal.GtkEventControllerScroll
   * [signal@Gtk.EventControllerScroll::decelerate] signal, emitted at the end of
   * scrolling with two X/Y velocity arguments that are consistent with the
   * motion that was received.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
     extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the flags conditioning the scroll controller behavior.
     *
-    * Gets the flags conditioning the scroll controller behavior.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFlags(): EventControllerScrollFlags /* None */ =
     EventControllerScrollFlags.fromRaw(
@@ -62,13 +64,14 @@ class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the scroll unit of the last
+  /** Gets the scroll unit of the last
     * [signal@Gtk.EventControllerScroll::scroll] signal received.
     *
     * Always returns %GDK_SCROLL_UNIT_WHEEL if the
     * %GTK_EVENT_CONTROLLER_SCROLL_DISCRETE flag is set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUnit(): ScrollUnit /* None */ = ScrollUnit.fromRaw(
     gtk_event_controller_scroll_get_unit(
@@ -76,9 +79,10 @@ class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the flags conditioning scroll controller behavior.
     *
-    * Sets the flags conditioning scroll controller behavior.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFlags(
       flags: EventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */
@@ -90,9 +94,10 @@ class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
 end EventControllerScroll
 
 object EventControllerScroll:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new event controller that will handle scroll events.
     *
-    * Creates a new event controller that will handle scroll events.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       flags: EventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */

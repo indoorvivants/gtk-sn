@@ -17,9 +17,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkScaleButton
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkScaleButton` provides a button which pops up a scale widget.
+/** `GtkScaleButton` provides a button which pops up a scale widget.
   *
   * This kind of widget is commonly used for volume controls in multimedia
   * applications, and GTK provides a [class@Gtk.VolumeButton] subclass that is
@@ -35,6 +33,9 @@ import sn.gnome.gtk4.internal.GtkScaleButton
   *
   * `GtkScaleButton` has a single CSS node with name scalebutton and `.scale`
   * style class, and contains a `button` node with a `.toggle` style class.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ScaleButton(raw: Ptr[GtkScaleButton])
     extends Widget(raw.asInstanceOf),
@@ -46,22 +47,24 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries a `GtkScaleButton` and returns its current state.
+  /** Queries a `GtkScaleButton` and returns its current state.
     *
     * Returns %TRUE if the scale button is pressed in and %FALSE if it is
     * raised.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActive(): Boolean /* None */ = gtk_scale_button_get_active(
     this.raw.asInstanceOf[Ptr[GtkScaleButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `GtkAdjustment` associated with the `GtkScaleButton`’s scale.
+  /** Gets the `GtkAdjustment` associated with the `GtkScaleButton`’s scale.
     *
     * See [method@Gtk.Range.get_adjustment] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAdjustment(): Adjustment /* None */ = new Adjustment(
     gtk_scale_button_get_adjustment(
@@ -69,9 +72,10 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the minus button of the `GtkScaleButton`.
     *
-    * Retrieves the minus button of the `GtkScaleButton`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMinusButton(): Button /* None */ = new Button(
     gtk_scale_button_get_minus_button(
@@ -79,9 +83,10 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the plus button of the `GtkScaleButton.`
     *
-    * Retrieves the plus button of the `GtkScaleButton.`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPlusButton(): Button /* None */ = new Button(
     gtk_scale_button_get_plus_button(
@@ -89,9 +94,10 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the popup of the `GtkScaleButton`.
     *
-    * Retrieves the popup of the `GtkScaleButton`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPopup(): Widget /* None */ = new Widget(
     gtk_scale_button_get_popup(
@@ -99,20 +105,22 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the current value of the scale button.
     *
-    * Gets the current value of the scale button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getValue(): Double /* None */ = gtk_scale_button_get_value(
     this.raw.asInstanceOf[Ptr[GtkScaleButton]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `GtkAdjustment` to be used as a model for the `GtkScaleButton`’s
+  /** Sets the `GtkAdjustment` to be used as a model for the `GtkScaleButton`’s
     * scale.
     *
     * See [method@Gtk.Range.set_adjustment] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAdjustment(
       adjustment: Adjustment /* Some(Ptr[GtkAdjustment]) */
@@ -121,24 +129,26 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     adjustment.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the icons to be used by the scale button.
     *
-    * Sets the icons to be used by the scale button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+    "[set_icons/<method parameters>/icons]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def setIcons__ = ???
+  private def setIcons__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the current value of the scale.
+  /** Sets the current value of the scale.
     *
     * If the value is outside the minimum or maximum range values, it will be
     * clamped to fit inside them.
     *
     * The scale button emits the [signal@Gtk.ScaleButton::value-changed] signal
     * if the value changes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setValue(value: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_scale_button_set_value(
@@ -149,15 +159,16 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
 end ScaleButton
 
 object ScaleButton:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkScaleButton`.
+  /** Creates a `GtkScaleButton`.
     *
     * The new scale button has a range between @min and @max, with a stepping of @step.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+    "[icons]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end ScaleButton

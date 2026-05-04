@@ -8,9 +8,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.internal.GtkTextTag
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A tag that can be applied to text contained in a `GtkTextBuffer`.
+/** A tag that can be applied to text contained in a `GtkTextBuffer`.
   *
   * You may wish to begin by reading the [text widget conceptual
   * overview](section-text-widget.html), which gives an overview of all the
@@ -28,18 +26,22 @@ import sn.gnome.gtk4.internal.GtkTextTag
   * property has been set or not.
   *
   * They are maintained by GTK and you should not set them independently.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TextTag(raw: Ptr[GtkTextTag]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Emits the [signal@Gtk.TextTagTable::tag-changed] signal on the
+  /** Emits the [signal@Gtk.TextTagTable::tag-changed] signal on the
     * `GtkTextTagTable` where the tag is included.
     *
     * The signal is already emitted when setting a `GtkTextTag` property. This
     * function is useful for a `GtkTextTag` subclass.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def changed(
       size_changed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -48,17 +50,16 @@ class TextTag(raw: Ptr[GtkTextTag]) extends Object(raw.asInstanceOf):
     gboolean(gint((if size_changed == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the tag priority.
     *
-    * Get the tag priority.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPriority(): Int /* None */ = gtk_text_tag_get_priority(
     this.raw.asInstanceOf[Ptr[GtkTextTag]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the priority of a `GtkTextTag`.
+  /** Sets the priority of a `GtkTextTag`.
     *
     * Valid priorities start at 0 and go to one less than
     * [method@Gtk.TextTagTable.get_size]. Each tag in a table has a unique
@@ -71,6 +72,9 @@ class TextTag(raw: Ptr[GtkTextTag]) extends Object(raw.asInstanceOf):
     * the order in which they were added to the table, or created with
     * [method@Gtk.TextBuffer.create_tag], which adds the tag to the buffer’s
     * table automatically.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPriority(priority: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_text_tag_set_priority(this.raw.asInstanceOf[Ptr[GtkTextTag]], priority)
@@ -78,9 +82,10 @@ class TextTag(raw: Ptr[GtkTextTag]) extends Object(raw.asInstanceOf):
 end TextTag
 
 object TextTag:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a `GtkTextTag`.
     *
-    * Creates a `GtkTextTag`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       name: Option[String | CString /* Some(CString) */ ]

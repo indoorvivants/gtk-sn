@@ -9,20 +9,22 @@ import sn.gnome.gio.internal.GMenuLinkIter
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GMenuLinkIter is an opaque structure type. You must access it using the
+/** #GMenuLinkIter is an opaque structure type. You must access it using the
   * functions below.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the name of the link at the current iterator position.
+  /** Gets the name of the link at the current iterator position.
     *
     * The iterator is not advanced.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     g_menu_link_iter_get_name(
@@ -30,9 +32,7 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function combines g_menu_link_iter_next() with
+  /** This function combines g_menu_link_iter_next() with
     * g_menu_link_iter_get_name() and g_menu_link_iter_get_value().
     *
     * First the iterator is advanced to the next (possibly first) link. If that
@@ -46,17 +46,21 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
     * The value returned in @out_link remains valid for as long as the iterator
     * remains at the current position. The value returned in @value must be
     * unreffed using g_object_unref() when it is no longer in use.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_next contains an OUT parameter, which is not supported yet"
+    "[get_next]: Method get_next contains an OUT parameter, which is not supported yet"
   )
-  def getNext__ = ???
+  private def getNext__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the linked #GMenuModel at the current iterator position.
+  /** Gets the linked #GMenuModel at the current iterator position.
     *
     * The iterator is not advanced.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getValue(): MenuModel /* None */ = new MenuModel(
     g_menu_link_iter_get_value(
@@ -64,14 +68,15 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Attempts to advance the iterator to the next (possibly first) link.
+  /** Attempts to advance the iterator to the next (possibly first) link.
     *
     * %TRUE is returned on success, or %FALSE if there are no more links.
     *
     * You must call this function when you first acquire the iterator to advance
     * it to the first link (and determine if the first link exists at all).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def next(): Boolean /* None */ =
     g_menu_link_iter_next(this.raw.asInstanceOf[Ptr[GMenuLinkIter]]).value.!=(0)

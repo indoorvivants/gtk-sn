@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDBusCallFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used in g_dbus_connection_call() and similar APIs.
   *
-  * Flags used in g_dbus_connection_call() and similar APIs.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusCallFlags private (val raw: GDBusCallFlags):
   def is(kv: DBusCallFlags): Boolean =
@@ -32,24 +33,27 @@ object DBusCallFlags:
     def |(other: DBusCallFlags) =
       DBusCallFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used in g_dbus_connection_call() and similar APIs.
     *
-    * Flags used in g_dbus_connection_call() and similar APIs.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GDBusCallFlags, name: String)
       extends DBusCallFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GDBusCallFlags.G_DBUS_CALL_FLAGS_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * The bus must not launch an owner for the destination name in response to
+    /** The bus must not launch an owner for the destination name in response to
       * this method invocation.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NO_AUTO_START
         extends KnownValue(
@@ -57,10 +61,11 @@ object DBusCallFlags:
           "NO_AUTO_START"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * the caller is prepared to wait for interactive authorization. Since
+    /** the caller is prepared to wait for interactive authorization. Since
       * 2.46.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ALLOW_INTERACTIVE_AUTHORIZATION
         extends KnownValue(

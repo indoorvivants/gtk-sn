@@ -53,6 +53,7 @@ end CLI
       val policy = NamingPolicy(
         namespaceToPackage = nm =>
           nm.toLowerCase match
+            case "adw" => s"sn.gnome.adwaita"
             case "gtk" => s"sn.gnome.gtk4"
             case "gdk" => s"sn.gnome.gdk4"
             case "gsk" => s"sn.gnome.gsk4"

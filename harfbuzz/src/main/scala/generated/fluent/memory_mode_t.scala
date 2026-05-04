@@ -2,9 +2,7 @@ package sn.gnome.harfbuzz.fluent
 
 import _root_.sn.gnome.harfbuzz.internal.hb_memory_mode_t
 
-/**  COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  *  Data type holding the memory modes available to
+/**  Data type holding the memory modes available to
   *  client programs.
   *
   *  Regarding these various memory-modes:
@@ -24,32 +22,38 @@ import _root_.sn.gnome.harfbuzz.internal.hb_memory_mode_t
   *  - If the font is mmap()ed, it's okay to use
   *    @HB_MEMORY_MODE_READONLY_MAY_MAKE_WRITABLE, however, using that mode
   *    correctly is very tricky.  Use @HB_MEMORY_MODE_READONLY instead.
+  *
+  *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
 enum Memory_mode_t(val raw: hb_memory_mode_t):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** HarfBuzz immediately makes a copy of the data.
     *
-    * HarfBuzz immediately makes a copy of the data.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DUPLICATE
       extends Memory_mode_t(hb_memory_mode_t.HB_MEMORY_MODE_DUPLICATE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * HarfBuzz client will never modify the data, and HarfBuzz will never modify
+  /** HarfBuzz client will never modify the data, and HarfBuzz will never modify
     * the data.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case READONLY extends Memory_mode_t(hb_memory_mode_t.HB_MEMORY_MODE_READONLY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * HarfBuzz client made a copy of the data solely for HarfBuzz, so HarfBuzz
+  /** HarfBuzz client made a copy of the data solely for HarfBuzz, so HarfBuzz
     * may modify the data.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WRITABLE extends Memory_mode_t(hb_memory_mode_t.HB_MEMORY_MODE_WRITABLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** See above
     *
-    * See above
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case READONLY_MAY_MAKE_WRITABLE
       extends Memory_mode_t(

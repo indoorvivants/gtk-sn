@@ -7,17 +7,19 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskDebugNode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A render node that emits a debugging message when drawing its child node.
   *
-  * A render node that emits a debugging message when drawing its child node.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DebugNode(raw: Ptr[GskDebugNode]) extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child node that is getting drawn by the given @node.
     *
-    * Gets the child node that is getting drawn by the given @node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): RenderNode /* None */ = new RenderNode(
     gsk_debug_node_get_child(
@@ -25,9 +27,10 @@ class DebugNode(raw: Ptr[GskDebugNode]) extends RenderNode(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the debug message that was set on this node
     *
-    * Gets the debug message that was set on this node
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMessage()(using Zone): String /* None */ = fromCString(
     gsk_debug_node_get_message(
@@ -38,11 +41,12 @@ class DebugNode(raw: Ptr[GskDebugNode]) extends RenderNode(raw.asInstanceOf):
 end DebugNode
 
 object DebugNode:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GskRenderNode` that will add debug information about the given @child.
+  /** Creates a `GskRenderNode` that will add debug information about the given @child.
     *
     * Adding this node has no visual effect.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       child: RenderNode /* Some(Ptr[GskRenderNode]) */,

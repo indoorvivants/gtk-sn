@@ -22,9 +22,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkColumnView
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkColumnView` presents a large dynamic list of items using multiple
+/** `GtkColumnView` presents a large dynamic list of items using multiple
   * columns with headers.
   *
   * `GtkColumnView` uses the factories of its columns to generate a cell widget
@@ -90,6 +88,9 @@ import sn.gnome.gtk4.internal.GtkColumnView
   * widgets are using the %GTK_ACCESSIBLE_ROLE_COLUMN_HEADER role. The row
   * widgets are using the %GTK_ACCESSIBLE_ROLE_ROW role, and individual cells
   * are using the %GTK_ACCESSIBLE_ROLE_GRID_CELL role
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ColumnView(raw: Ptr[GtkColumnView])
     extends Widget(raw.asInstanceOf),
@@ -100,9 +101,10 @@ class ColumnView(raw: Ptr[GtkColumnView])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Appends the @column to the end of the columns in @self.
     *
-    * Appends the @column to the end of the columns in @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appendColumn(
       column: ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
@@ -111,13 +113,14 @@ class ColumnView(raw: Ptr[GtkColumnView])
     column.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the list of columns in this column view.
+  /** Gets the list of columns in this column view.
     *
     * This list is constant over the lifetime of @self and can be used to
     * monitor changes to the columns of @self by connecting to the
     * ::items-changed signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getColumns(): ListModel /* None */ = new ListModel.Abstract(
     gtk_column_view_get_columns(
@@ -125,18 +128,20 @@ class ColumnView(raw: Ptr[GtkColumnView])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether rows can be selected by dragging with the mouse.
     *
-    * Returns whether rows can be selected by dragging with the mouse.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEnableRubberband(): Boolean /* None */ =
     gtk_column_view_get_enable_rubberband(
       this.raw.asInstanceOf[Ptr[GtkColumnView]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the factory that's currently used to populate section headers.
     *
-    * Gets the factory that's currently used to populate section headers.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeaderFactory(): ListItemFactory /* None */ = new ListItemFactory(
     gtk_column_view_get_header_factory(
@@ -144,9 +149,10 @@ class ColumnView(raw: Ptr[GtkColumnView])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the model that's currently used to read the items displayed.
     *
-    * Gets the model that's currently used to read the items displayed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): SelectionModel /* None */ = new SelectionModel.Abstract(
     gtk_column_view_get_model(
@@ -154,17 +160,19 @@ class ColumnView(raw: Ptr[GtkColumnView])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether columns are reorderable.
     *
-    * Returns whether columns are reorderable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getReorderable(): Boolean /* None */ = gtk_column_view_get_reorderable(
     this.raw.asInstanceOf[Ptr[GtkColumnView]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the factory set via [method@Gtk.ColumnView.set_row_factory].
     *
-    * Gets the factory set via [method@Gtk.ColumnView.set_row_factory].
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRowFactory(): ListItemFactory /* None */ = new ListItemFactory(
     gtk_column_view_get_row_factory(
@@ -172,37 +180,38 @@ class ColumnView(raw: Ptr[GtkColumnView])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the list should show separators between columns.
     *
-    * Returns whether the list should show separators between columns.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowColumnSeparators(): Boolean /* None */ =
     gtk_column_view_get_show_column_separators(
       this.raw.asInstanceOf[Ptr[GtkColumnView]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the list should show separators between rows.
     *
-    * Returns whether the list should show separators between rows.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowRowSeparators(): Boolean /* None */ =
     gtk_column_view_get_show_row_separators(
       this.raw.asInstanceOf[Ptr[GtkColumnView]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether rows will be activated on single click and selected on
+  /** Returns whether rows will be activated on single click and selected on
     * hover.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSingleClickActivate(): Boolean /* None */ =
     gtk_column_view_get_single_click_activate(
       this.raw.asInstanceOf[Ptr[GtkColumnView]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a special sorter that reflects the users sorting choices in the
+  /** Returns a special sorter that reflects the users sorting choices in the
     * column view.
     *
     * To allow users to customizable sorting by clicking on column headers, this
@@ -221,6 +230,9 @@ class ColumnView(raw: Ptr[GtkColumnView])
     * selection = gtk_no_selection_new (model);
     * gtk_column_view_set_model (view, selection);
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSorter(): Sorter /* None */ = new Sorter(
     gtk_column_view_get_sorter(
@@ -228,19 +240,21 @@ class ColumnView(raw: Ptr[GtkColumnView])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the behavior set for the <kbd>Tab</kbd> key.
     *
-    * Gets the behavior set for the <kbd>Tab</kbd> key.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTabBehavior(): ListTabBehavior /* None */ = ListTabBehavior.fromRaw(
     gtk_column_view_get_tab_behavior(this.raw.asInstanceOf[Ptr[GtkColumnView]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts a column at the given position in the columns of @self.
+  /** Inserts a column at the given position in the columns of @self.
     *
     * If @column is already a column of @self, it will be repositioned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertColumn(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
@@ -251,9 +265,10 @@ class ColumnView(raw: Ptr[GtkColumnView])
     column.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes the @column from the list of columns of @self.
     *
-    * Removes the @column from the list of columns of @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeColumn(
       column: ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
@@ -262,22 +277,24 @@ class ColumnView(raw: Ptr[GtkColumnView])
     column.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Scroll to the row at the given position - or cell if a column is given -
+  /** Scroll to the row at the given position - or cell if a column is given -
     * and performs the actions specified in @flags.
     *
     * This function works no matter if the listview is shown or focused. If it
     * isn't, then the changes will take effect once that happens.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
+    "[scroll_to/<method parameters>/scroll]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
   )
-  def scrollTo__ = ???
+  private def scrollTo__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether selections can be changed by dragging with the mouse.
     *
-    * Sets whether selections can be changed by dragging with the mouse.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEnableRubberband(
       enable_rubberband: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -286,12 +303,13 @@ class ColumnView(raw: Ptr[GtkColumnView])
     gboolean(gint((if enable_rubberband == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `GtkListItemFactory` to use for populating the
+  /** Sets the `GtkListItemFactory` to use for populating the
     * [class@Gtk.ListHeader] objects used in section headers.
     *
     * If this factory is set to %NULL, the list will not show section headers.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeaderFactory(
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
@@ -302,11 +320,12 @@ class ColumnView(raw: Ptr[GtkColumnView])
       .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the model to use.
+  /** Sets the model to use.
     *
     * This must be a [iface@Gtk.SelectionModel].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
@@ -317,9 +336,10 @@ class ColumnView(raw: Ptr[GtkColumnView])
       .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether columns should be reorderable by dragging.
     *
-    * Sets whether columns should be reorderable by dragging.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setReorderable(
       reorderable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -328,9 +348,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
     gboolean(gint((if reorderable == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the factory used for configuring rows. The factory must be for
+  /** Sets the factory used for configuring rows. The factory must be for
     * configuring [class@Gtk.ColumnViewRow] objects.
     *
     * If this factory is not set - which is the default - then the defaults will
@@ -339,6 +357,9 @@ class ColumnView(raw: Ptr[GtkColumnView])
     * This factory is not used to set the widgets displayed in the individual
     * cells. For that see [method@GtkColumnViewColumn.set_factory] and
     * [class@GtkColumnViewCell].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRowFactory(
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
@@ -349,9 +370,10 @@ class ColumnView(raw: Ptr[GtkColumnView])
       .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the list should show separators between columns.
     *
-    * Sets whether the list should show separators between columns.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowColumnSeparators(
       show_column_separators: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -360,9 +382,10 @@ class ColumnView(raw: Ptr[GtkColumnView])
     gboolean(gint((if show_column_separators == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the list should show separators between rows.
     *
-    * Sets whether the list should show separators between rows.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowRowSeparators(
       show_row_separators: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -371,10 +394,11 @@ class ColumnView(raw: Ptr[GtkColumnView])
     gboolean(gint((if show_row_separators == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether rows should be activated on single click and selected on
+  /** Sets whether rows should be activated on single click and selected on
     * hover.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSingleClickActivate(
       single_click_activate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -383,10 +407,11 @@ class ColumnView(raw: Ptr[GtkColumnView])
     gboolean(gint((if single_click_activate == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the behavior of the <kbd>Tab</kbd> and
+  /** Sets the behavior of the <kbd>Tab</kbd> and
     * <kbd>Shift</kbd>+<kbd>Tab</kbd> keys.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTabBehavior(
       tab_behavior: ListTabBehavior /* Some(GtkListTabBehavior) */
@@ -395,9 +420,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
     tab_behavior.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the sorting of the view.
+  /** Sets the sorting of the view.
     *
     * This function should be used to set up the initial sorting. At runtime,
     * users can change the sorting of a column view by clicking on the list
@@ -409,6 +432,9 @@ class ColumnView(raw: Ptr[GtkColumnView])
     * associate a sorter with the column.
     *
     * If @column is %NULL, the view will be unsorted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sortByColumn(
       column: Option[ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */ ],
@@ -424,12 +450,13 @@ class ColumnView(raw: Ptr[GtkColumnView])
 end ColumnView
 
 object ColumnView:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkColumnView`.
+  /** Creates a new `GtkColumnView`.
     *
     * You most likely want to call [method@Gtk.ColumnView.append_column] to add
     * columns next.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]

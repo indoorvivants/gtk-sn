@@ -16,9 +16,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkListBox
 
-/**  COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  *  `GtkListBox` is a vertical list.
+/**  `GtkListBox` is a vertical list.
   *
   *  A `GtkListBox` only contains `GtkListBoxRow` children. These rows can
   *  by dynamically sorted and filtered, and headers can be added dynamically
@@ -71,6 +69,8 @@ import sn.gnome.gtk4.internal.GtkListBox
   *
   *  `GtkListBox` uses the %GTK_ACCESSIBLE_ROLE_LIST role and `GtkListBoxRow` uses
   *  the %GTK_ACCESSIBLE_ROLE_LIST_ITEM role.
+  *
+  *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
 class ListBox(raw: Ptr[GtkListBox])
     extends Widget(raw.asInstanceOf),
@@ -80,12 +80,13 @@ class ListBox(raw: Ptr[GtkListBox])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Append a widget to the list.
+  /** Append a widget to the list.
     *
     * If a sort function is set, the widget will actually be inserted at the
     * calculated position.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def append(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_list_box_append(
@@ -93,9 +94,7 @@ class ListBox(raw: Ptr[GtkListBox])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Binds @model to @box.
+  /** Binds @model to @box.
     *
     * If @box was already bound to a model, that previous binding is destroyed.
     *
@@ -109,15 +108,16 @@ class ListBox(raw: Ptr[GtkListBox])
     * Note that using a model is incompatible with the filtering and sorting
     * functionality in `GtkListBox`. When using a model, filtering and sorting
     * should be implemented by the model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxCreateWidgetFunc), @type -> DataRecord(GtkListBoxCreateWidgetFunc)))"
+    "[bind_model/<method parameters>/create_widget_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxCreateWidgetFunc), @type -> DataRecord(GtkListBoxCreateWidgetFunc)))"
   )
-  def bindModel__ = ???
+  private def bindModel__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Add a drag highlight to a row.
+  /** Add a drag highlight to a row.
     *
     * This is a helper function for implementing DnD onto a `GtkListBox`. The
     * passed in @row will be highlighted by setting the
@@ -126,6 +126,9 @@ class ListBox(raw: Ptr[GtkListBox])
     *
     * The row will also be unhighlighted when the widget gets a drag leave
     * event.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dragHighlightRow(
       row: ListBoxRow /* Some(Ptr[GtkListBoxRow]) */
@@ -134,28 +137,31 @@ class ListBox(raw: Ptr[GtkListBox])
     row.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If a row has previously been highlighted via
+  /** If a row has previously been highlighted via
     * gtk_list_box_drag_highlight_row(), it will have the highlight removed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dragUnhighlightRow(): Unit /* None */ = gtk_list_box_drag_unhighlight_row(
     this.raw.asInstanceOf[Ptr[GtkListBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether rows activate on single clicks.
     *
-    * Returns whether rows activate on single clicks.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActivateOnSingleClick(): Boolean /* None */ =
     gtk_list_box_get_activate_on_single_click(
       this.raw.asInstanceOf[Ptr[GtkListBox]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the adjustment (if any) that the widget uses to for vertical
+  /** Gets the adjustment (if any) that the widget uses to for vertical
     * scrolling.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAdjustment(): Adjustment /* None */ = new Adjustment(
     gtk_list_box_get_adjustment(
@@ -163,12 +169,13 @@ class ListBox(raw: Ptr[GtkListBox])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the n-th child in the list (not counting headers).
+  /** Gets the n-th child in the list (not counting headers).
     *
     * If @index_ is negative or larger than the number of items in the list,
     * %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRowAtIndex(`index_`: Int /* Some(CInt) */ ): ListBoxRow /* None */ =
     new ListBoxRow(
@@ -178,9 +185,10 @@ class ListBox(raw: Ptr[GtkListBox])
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the row at the @y position.
     *
-    * Gets the row at the @y position.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRowAtY(y: Int /* Some(CInt) */ ): ListBoxRow /* None */ =
     new ListBoxRow(
@@ -190,12 +198,13 @@ class ListBox(raw: Ptr[GtkListBox])
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the selected row, or %NULL if no rows are selected.
+  /** Gets the selected row, or %NULL if no rows are selected.
     *
     * Note that the box may allow multiple selection, in which case you should
     * use [method@Gtk.ListBox.selected_foreach] to find all selected rows.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSelectedRow(): ListBoxRow /* None */ = new ListBoxRow(
     gtk_list_box_get_selected_row(
@@ -203,35 +212,36 @@ class ListBox(raw: Ptr[GtkListBox])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a list of all selected children.
     *
-    * Creates a list of all selected children.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(ListBoxRow))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[get_selected_rows/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(ListBoxRow))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def getSelectedRows__ = ???
+  private def getSelectedRows__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the selection mode of the listbox.
     *
-    * Gets the selection mode of the listbox.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSelectionMode(): SelectionMode /* None */ = SelectionMode.fromRaw(
     gtk_list_box_get_selection_mode(this.raw.asInstanceOf[Ptr[GtkListBox]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the list box should show separators between rows.
     *
-    * Returns whether the list box should show separators between rows.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowSeparators(): Boolean /* None */ =
     gtk_list_box_get_show_separators(
       this.raw.asInstanceOf[Ptr[GtkListBox]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Insert the @child into the @box at @position.
+  /** Insert the @child into the @box at @position.
     *
     * If a sort function is set, the widget will actually be inserted at the
     * calculated position.
@@ -239,6 +249,9 @@ class ListBox(raw: Ptr[GtkListBox])
     * If @position is -1, or larger than the total number of items in the
     * @box,
     *   then the @child will be appended to the end.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insert(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -249,47 +262,51 @@ class ListBox(raw: Ptr[GtkListBox])
     position
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Update the filtering for all rows.
+  /** Update the filtering for all rows.
     *
     * Call this when result of the filter function on the @box is changed due to
     * an external factor. For instance, this would be used if the filter
     * function just looked for a specific search string and the entry with the
     * search string has changed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def invalidateFilter(): Unit /* None */ = gtk_list_box_invalidate_filter(
     this.raw.asInstanceOf[Ptr[GtkListBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Update the separators for all rows.
+  /** Update the separators for all rows.
     *
     * Call this when result of the header function on the @box is changed due to
     * an external factor.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def invalidateHeaders(): Unit /* None */ = gtk_list_box_invalidate_headers(
     this.raw.asInstanceOf[Ptr[GtkListBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Update the sorting for all rows.
+  /** Update the sorting for all rows.
     *
     * Call this when result of the sort function on the @box is changed due to
     * an external factor.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def invalidateSort(): Unit /* None */ = gtk_list_box_invalidate_sort(
     this.raw.asInstanceOf[Ptr[GtkListBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Prepend a widget to the list.
+  /** Prepend a widget to the list.
     *
     * If a sort function is set, the widget will actually be inserted at the
     * calculated position.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def prepend(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_list_box_prepend(
@@ -297,9 +314,10 @@ class ListBox(raw: Ptr[GtkListBox])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes a child from @box.
     *
-    * Removes a child from @box.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_list_box_remove(
@@ -307,27 +325,30 @@ class ListBox(raw: Ptr[GtkListBox])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes all rows from @box.
+  /** Removes all rows from @box.
     *
     * This function does nothing if @box is backed by a model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeAll(): Unit /* None */ = gtk_list_box_remove_all(
     this.raw.asInstanceOf[Ptr[GtkListBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Select all children of @box, if the selection mode allows it.
     *
-    * Select all children of @box, if the selection mode allows it.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def selectAll(): Unit /* None */ = gtk_list_box_select_all(
     this.raw.asInstanceOf[Ptr[GtkListBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Make @row the currently selected row.
     *
-    * Make @row the currently selected row.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def selectRow(
       row: Option[ListBoxRow /* Some(Ptr[GtkListBoxRow]) */ ]
@@ -338,21 +359,23 @@ class ListBox(raw: Ptr[GtkListBox])
       .getOrElse(null.asInstanceOf[Ptr[GtkListBoxRow]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Calls a function for each selected child.
+  /** Calls a function for each selected child.
     *
     * Note that the selection cannot be modified from within this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxForeachFunc), @type -> DataRecord(GtkListBoxForeachFunc)))"
+    "[selected_foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxForeachFunc), @type -> DataRecord(GtkListBoxForeachFunc)))"
   )
-  def selectedForeach__ = ???
+  private def selectedForeach__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @single is %TRUE, rows will be activated when you click on them,
+  /** If @single is %TRUE, rows will be activated when you click on them,
     * otherwise you need to double-click.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActivateOnSingleClick(
       single: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -361,9 +384,7 @@ class ListBox(raw: Ptr[GtkListBox])
     gboolean(gint((if single == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the adjustment (if any) that the widget uses to for vertical
+  /** Sets the adjustment (if any) that the widget uses to for vertical
     * scrolling.
     *
     * For instance, this is used to get the page size for PageUp/Down key
@@ -372,6 +393,9 @@ class ListBox(raw: Ptr[GtkListBox])
     * In the normal case when the @box is packed inside a `GtkScrolledWindow`
     * the adjustment from that will be picked up automatically, so there is no
     * need to manually do that.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAdjustment(
       adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
@@ -382,9 +406,7 @@ class ListBox(raw: Ptr[GtkListBox])
       .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * By setting a filter function on the @box one can decide dynamically which
+  /** By setting a filter function on the @box one can decide dynamically which
     * of the rows to show.
     *
     * For instance, to implement a search function on a list that filters the
@@ -397,15 +419,16 @@ class ListBox(raw: Ptr[GtkListBox])
     *
     * Note that using a filter function is incompatible with using a model (see
     * [method@Gtk.ListBox.bind_model]).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxFilterFunc), @type -> DataRecord(GtkListBoxFilterFunc)))"
+    "[set_filter_func/<method parameters>/filter_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxFilterFunc), @type -> DataRecord(GtkListBoxFilterFunc)))"
   )
-  def setFilterFunc__ = ???
+  private def setFilterFunc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a header function.
+  /** Sets a header function.
     *
     * By setting a header function on the @box one can dynamically add headers
     * in front of rows, depending on the contents of the row and its position in
@@ -431,16 +454,20 @@ class ListBox(raw: Ptr[GtkListBox])
     * by [method@Gtk.ListBoxRow.changed] on the previous row, or when the
     * previous row becomes a different row). It is also called for all rows when
     * [method@Gtk.ListBox.invalidate_headers] is called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxUpdateHeaderFunc), @type -> DataRecord(GtkListBoxUpdateHeaderFunc)))"
+    "[set_header_func/<method parameters>/update_header]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxUpdateHeaderFunc), @type -> DataRecord(GtkListBoxUpdateHeaderFunc)))"
   )
-  def setHeaderFunc__ = ???
+  private def setHeaderFunc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the placeholder widget that is shown in the list when it doesn't
+  /** Sets the placeholder widget that is shown in the list when it doesn't
     * display any visible children.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPlaceholder(
       placeholder: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -451,9 +478,10 @@ class ListBox(raw: Ptr[GtkListBox])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets how selection works in the listbox.
     *
-    * Sets how selection works in the listbox.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSelectionMode(
       mode: SelectionMode /* Some(GtkSelectionMode) */
@@ -462,9 +490,10 @@ class ListBox(raw: Ptr[GtkListBox])
     mode.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the list box should show separators between rows.
     *
-    * Sets whether the list box should show separators between rows.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowSeparators(
       show_separators: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -473,9 +502,7 @@ class ListBox(raw: Ptr[GtkListBox])
     gboolean(gint((if show_separators == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a sort function.
+  /** Sets a sort function.
     *
     * By setting a sort function on the @box one can dynamically reorder the
     * rows of the list, based on the contents of the rows.
@@ -487,23 +514,28 @@ class ListBox(raw: Ptr[GtkListBox])
     *
     * Note that using a sort function is incompatible with using a model (see
     * [method@Gtk.ListBox.bind_model]).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxSortFunc), @type -> DataRecord(GtkListBoxSortFunc)))"
+    "[set_sort_func/<method parameters>/sort_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ListBoxSortFunc), @type -> DataRecord(GtkListBoxSortFunc)))"
   )
-  def setSortFunc__ = ???
+  private def setSortFunc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unselect all children of @box, if the selection mode allows it.
     *
-    * Unselect all children of @box, if the selection mode allows it.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unselectAll(): Unit /* None */ = gtk_list_box_unselect_all(
     this.raw.asInstanceOf[Ptr[GtkListBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unselects a single row of @box, if the selection mode allows it.
     *
-    * Unselects a single row of @box, if the selection mode allows it.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unselectRow(
       row: ListBoxRow /* Some(Ptr[GtkListBoxRow]) */
@@ -515,9 +547,10 @@ class ListBox(raw: Ptr[GtkListBox])
 end ListBox
 
 object ListBox:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkListBox` container.
     *
-    * Creates a new `GtkListBox` container.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): ListBox = new ListBox(gtk_list_box_new().asInstanceOf)
 end ListBox

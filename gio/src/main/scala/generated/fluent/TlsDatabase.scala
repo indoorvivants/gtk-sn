@@ -19,9 +19,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GTlsDatabase is used to look up certificates and other information from a
+/** #GTlsDatabase is used to look up certificates and other information from a
   * certificate or key store. It is an abstract base class which TLS library
   * specific subtypes override.
   *
@@ -30,14 +28,15 @@ import sn.gnome.gobject.fluent.Object
   *
   * Most common client applications will not directly interact with
   * #GTlsDatabase. It is used internally by #GTlsConnection.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a handle string for the certificate. The database will only be able
+  /** Create a handle string for the certificate. The database will only be able
     * to create a handle for certificates that originate from the database. In
     * cases where the database cannot create a handle for a certificate, %NULL
     * will be returned.
@@ -45,6 +44,9 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * This handle should be stable across various instances of the application,
     * and between applications. If a certificate is modified in the database,
     * then it is not guaranteed that this handle will continue to point to it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def createCertificateHandle(
       certificate: TlsCertificate /* Some(Ptr[GTlsCertificate]) */
@@ -55,9 +57,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Look up a certificate by its handle.
+  /** Look up a certificate by its handle.
     *
     * The handle should have been created by calling
     * g_tls_database_create_certificate_handle() on a #GTlsDatabase object of
@@ -70,6 +70,9 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * This function can block, use
     * g_tls_database_lookup_certificate_for_handle_async() to perform the lookup
     * operation asynchronously.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupCertificateForHandle(
       handle: String |
@@ -97,23 +100,25 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously look up a certificate by its handle in the database. See
+  /** Asynchronously look up a certificate by its handle in the database. See
     * g_tls_database_lookup_certificate_for_handle() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[lookup_certificate_for_handle_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def lookupCertificateForHandleAsync__ = ???
+  private def lookupCertificateForHandleAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finish an asynchronous lookup of a certificate by its handle. See
+  /** Finish an asynchronous lookup of a certificate by its handle. See
     * g_tls_database_lookup_certificate_for_handle() for more information.
     *
     * If the handle is no longer valid, or does not point to a certificate in
     * this database, then %NULL will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupCertificateForHandleFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -127,9 +132,7 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Look up the issuer of @certificate in the database. The
+  /** Look up the issuer of @certificate in the database. The
     * #GTlsCertificate:issuer property of @certificate is not modified, and the
     * two certificates are not hooked into a chain.
     *
@@ -150,6 +153,9 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     * Accordingly, this function cannot be used to make security-related
     * decisions. Only GLib itself should make security decisions about TLS
     * certificates.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupCertificateIssuer(
       certificate: TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
@@ -173,20 +179,22 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously look up the issuer of @certificate in the database. See
+  /** Asynchronously look up the issuer of @certificate in the database. See
     * g_tls_database_lookup_certificate_issuer() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[lookup_certificate_issuer_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def lookupCertificateIssuerAsync__ = ???
+  private def lookupCertificateIssuerAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finish an asynchronous lookup issuer operation. See
+  /** Finish an asynchronous lookup issuer operation. See
     * g_tls_database_lookup_certificate_issuer() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupCertificateIssuerFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -200,46 +208,47 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Look up certificates issued by this issuer in the database.
+  /** Look up certificates issued by this issuer in the database.
     *
     * This function can block, use
     * g_tls_database_lookup_certificates_issued_by_async() to perform the lookup
     * operation asynchronously.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray), @type -> DataRecord(GByteArray*)))"
+    "[lookup_certificates_issued_by/<method parameters>/issuer_raw_dn]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray), @type -> DataRecord(GByteArray*)))"
   )
-  def lookupCertificatesIssuedBy__ = ???
+  private def lookupCertificatesIssuedBy__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously look up certificates issued by this issuer in the database.
+  /** Asynchronously look up certificates issued by this issuer in the database.
     * See g_tls_database_lookup_certificates_issued_by() for more information.
     *
     * The database may choose to hold a reference to the issuer byte array for
     * the duration of this asynchronous operation. The byte array should not be
     * modified during this time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray), @type -> DataRecord(GByteArray*)))"
+    "[lookup_certificates_issued_by_async/<method parameters>/issuer_raw_dn]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray), @type -> DataRecord(GByteArray*)))"
   )
-  def lookupCertificatesIssuedByAsync__ = ???
+  private def lookupCertificatesIssuedByAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finish an asynchronous lookup of certificates. See
+  /** Finish an asynchronous lookup of certificates. See
     * g_tls_database_lookup_certificates_issued_by() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TlsCertificate))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[lookup_certificates_issued_by_finish/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TlsCertificate))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def lookupCertificatesIssuedByFinish__ = ???
+  private def lookupCertificatesIssuedByFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines the validity of a certificate chain, outside the context of a
+  /** Determines the validity of a certificate chain, outside the context of a
     * TLS session.
     *
     * @chain
@@ -300,6 +309,9 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     *
     * This function can block. Use g_tls_database_verify_chain_async() to
     * perform the verification operation asynchronously.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def verifyChain(
       chain: TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
@@ -335,20 +347,19 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously determines the validity of a certificate chain after
+  /** Asynchronously determines the validity of a certificate chain after
     * looking up and adding any missing certificates to the chain. See
     * g_tls_database_verify_chain() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[verify_chain_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def verifyChainAsync__ = ???
+  private def verifyChainAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finish an asynchronous verify chain operation. See
+  /** Finish an asynchronous verify chain operation. See
     * g_tls_database_verify_chain() for more information.
     *
     * If @chain is found to be valid, then the return value will be 0. If
@@ -360,6 +371,9 @@ class TlsDatabase(raw: Ptr[GTlsDatabase]) extends Object(raw.asInstanceOf):
     *   completes) then the return value will be
     *   %G_TLS_CERTIFICATE_GENERIC_ERROR and @error will be set accordingly. @error
     *   is not set when @chain is successfully analyzed but found to be invalid.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def verifyChainFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */

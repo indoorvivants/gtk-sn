@@ -8,9 +8,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkOverlay
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkOverlay` is a container which contains a single main child, on top of
+/** `GtkOverlay` is a container which contains a single main child, on top of
   * which it can place “overlay” widgets.
   *
   * ![An example GtkOverlay](overlay.png)
@@ -43,6 +41,9 @@ import sn.gnome.gtk4.internal.GtkOverlay
   * whose alignments cause them to be positioned at an edge get the style
   * classes “.left”, “.right”, “.top”, and/or “.bottom” according to their
   * position.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Overlay(raw: Ptr[GtkOverlay])
     extends Widget(raw.asInstanceOf),
@@ -52,15 +53,16 @@ class Overlay(raw: Ptr[GtkOverlay])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds @widget to @overlay.
+  /** Adds @widget to @overlay.
     *
     * The widget will be stacked on top of the main widget added with
     * [method@Gtk.Overlay.set_child].
     *
     * The position at which @widget is placed is determined from its
     * [property@Gtk.Widget:halign] and [property@Gtk.Widget:valign] properties.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addOverlay(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_overlay_add_overlay(
@@ -68,17 +70,19 @@ class Overlay(raw: Ptr[GtkOverlay])
       widget.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @overlay.
     *
-    * Gets the child widget of @overlay.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_overlay_get_child(this.raw.asInstanceOf[Ptr[GtkOverlay]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether @widget should be clipped within the parent.
     *
-    * Gets whether @widget should be clipped within the parent.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getClipOverlay(
       widget: Widget /* Some(Ptr[GtkWidget]) */
@@ -87,10 +91,11 @@ class Overlay(raw: Ptr[GtkOverlay])
     widget.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether @widget's size is included in the measurement of
+  /** Gets whether @widget's size is included in the measurement of
     * @overlay.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMeasureOverlay(
       widget: Widget /* Some(Ptr[GtkWidget]) */
@@ -99,9 +104,10 @@ class Overlay(raw: Ptr[GtkOverlay])
     widget.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes an overlay that was added with gtk_overlay_add_overlay().
     *
-    * Removes an overlay that was added with gtk_overlay_add_overlay().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeOverlay(
       widget: Widget /* Some(Ptr[GtkWidget]) */
@@ -110,9 +116,10 @@ class Overlay(raw: Ptr[GtkOverlay])
     widget.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the child widget of @overlay.
     *
-    * Sets the child widget of @overlay.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -123,9 +130,10 @@ class Overlay(raw: Ptr[GtkOverlay])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether @widget should be clipped within the parent.
     *
-    * Sets whether @widget should be clipped within the parent.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setClipOverlay(
       widget: Widget /* Some(Ptr[GtkWidget]) */,
@@ -136,13 +144,14 @@ class Overlay(raw: Ptr[GtkOverlay])
     gboolean(gint((if clip_overlay == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether @widget is included in the measured size of @overlay.
+  /** Sets whether @widget is included in the measured size of @overlay.
     *
     * The overlay will request the size of the largest child that has this
     * property set to %TRUE. Children who are not included may be drawn outside
     * of @overlay's allocation if they are too large.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMeasureOverlay(
       widget: Widget /* Some(Ptr[GtkWidget]) */,
@@ -156,9 +165,10 @@ class Overlay(raw: Ptr[GtkOverlay])
 end Overlay
 
 object Overlay:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkOverlay`.
     *
-    * Creates a new `GtkOverlay`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Overlay = new Overlay(gtk_overlay_new().asInstanceOf)
 end Overlay

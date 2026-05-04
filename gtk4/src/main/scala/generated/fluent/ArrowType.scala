@@ -2,38 +2,44 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkArrowType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Used to indicate the direction in which an arrow should point.
   *
-  * Used to indicate the direction in which an arrow should point.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ArrowType(val raw: GtkArrowType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Represents an upward pointing arrow.
     *
-    * Represents an upward pointing arrow.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UP extends ArrowType(GtkArrowType.GTK_ARROW_UP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Represents a downward pointing arrow.
     *
-    * Represents a downward pointing arrow.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DOWN extends ArrowType(GtkArrowType.GTK_ARROW_DOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Represents a left pointing arrow.
     *
-    * Represents a left pointing arrow.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LEFT extends ArrowType(GtkArrowType.GTK_ARROW_LEFT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Represents a right pointing arrow.
     *
-    * Represents a right pointing arrow.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RIGHT extends ArrowType(GtkArrowType.GTK_ARROW_RIGHT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No arrow.
     *
-    * No arrow.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends ArrowType(GtkArrowType.GTK_ARROW_NONE)
 end ArrowType

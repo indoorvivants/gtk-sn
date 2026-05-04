@@ -7,34 +7,37 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.internal.GAppLaunchContext
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Integrating the launch with the launching application. This is used to
+/** Integrating the launch with the launching application. This is used to
   * handle for instance startup notification and launching the new application
   * on the same screen as the launching window.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the display string for the @context. This is used to ensure new
+  /** Gets the display string for the @context. This is used to ensure new
     * applications are started on the same display as the launching application,
     * by setting the `DISPLAY` environment variable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[get_display/<method parameters>/files]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def getDisplay__ = ???
+  private def getDisplay__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the complete environment variable list to be passed to the child
+  /** Gets the complete environment variable list to be passed to the child
     * process when @context is used to launch an application. This is a
     * %NULL-terminated array of strings, where each string has the form
     * `KEY=VALUE`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEnvironment()(using Zone): Array[String] /* None */ =
     __decode_nullable_ptrs(
@@ -43,9 +46,7 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
       )
     ).map(fromCString(_))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Initiates startup notification for the application and returns the
+  /** Initiates startup notification for the application and returns the
     * `XDG_ACTIVATION_TOKEN` or `DESKTOP_STARTUP_ID` for the launched operation,
     * if supported.
     *
@@ -60,17 +61,21 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * Protocol](http://standards.freedesktop.org/startup-notification-spec/startup-notification-latest.txt).
     *
     * Support for the XDG Activation Protocol was added in GLib 2.76.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[get_startup_notify_id/<method parameters>/files]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def getStartupNotifyId__ = ???
+  private def getStartupNotifyId__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Called when an application has failed to launch, so that it can cancel the
+  /** Called when an application has failed to launch, so that it can cancel the
     * application startup notification started in
     * g_app_launch_context_get_startup_notify_id().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def launchFailed(
       startup_notify_id: String | CString /* Some(CString) */
@@ -79,10 +84,11 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     __sn_extract_string(startup_notify_id)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Arranges for @variable to be set to @value in the child's environment when @context
+  /** Arranges for @variable to be set to @value in the child's environment when @context
     * is used to launch an application.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setenv(
       variable: String | CString /* Some(CString) */,
@@ -93,10 +99,11 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     __sn_extract_string(value)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Arranges for @variable to be unset in the child's environment when @context
+  /** Arranges for @variable to be unset in the child's environment when @context
     * is used to launch an application.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetenv(
       variable: String | CString /* Some(CString) */
@@ -110,7 +117,7 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
   ): Array[Ptr[T]] =
     val ab = Array.newBuilder[Ptr[T]]
     var offset = 0
-    val tg = Tag.materializePtrTag(ptag)
+    val tg = Tag.materializePtrTag(using ptag)
     while p(offset)(using tg) != null do
       ab += p(offset)(using tg)
       offset += 1
@@ -129,10 +136,11 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
 end AppLaunchContext
 
 object AppLaunchContext:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new application launch context. This is not normally used,
+  /** Creates a new application launch context. This is not normally used,
     * instead you instantiate a subclass of this, such as #GdkAppLaunchContext.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): AppLaunchContext = new AppLaunchContext(
     g_app_launch_context_new().asInstanceOf

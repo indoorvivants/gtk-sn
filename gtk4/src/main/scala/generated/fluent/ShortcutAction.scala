@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.internal.GtkShortcutAction
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkShortcutAction` encodes an action that can be triggered by a keyboard
+/** `GtkShortcutAction` encodes an action that can be triggered by a keyboard
   * shortcut.
   *
   * `GtkShortcutActions` contain functions that allow easy presentation to end
@@ -35,47 +33,53 @@ import sn.gnome.gtk4.internal.GtkShortcutAction
   *   - [class@Gtk.NamedAction]: a shortcut action that calls
   *     gtk_widget_activate_action()
   *   - [class@Gtk.NothingAction]: a shortcut action that does nothing
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ShortcutAction(raw: Ptr[GtkShortcutAction])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Activates the action on the @widget with the given @args.
+  /** Activates the action on the @widget with the given @args.
     *
     * Note that some actions ignore the passed in @flags, @widget or @args.
     *
     * Activation of an action can fail for various reasons. If the action is not
     * supported by the @widget, if the @args don't match the action or if the
     * activation otherwise had no effect, %FALSE will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[activate/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def activate__ = ???
+  private def activate__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Prints the given action into a string for the developer.
+  /** Prints the given action into a string for the developer.
     *
     * This is meant for debugging and logging.
     *
     * The form of the representation may change at any time and is not
     * guaranteed to stay identical.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
+    "[print/<method parameters>/string]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
   )
-  def print__ = ???
+  private def print__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Prints the given action into a human-readable string.
+  /** Prints the given action into a human-readable string.
     *
     * This is a small wrapper around [method@Gtk.ShortcutAction.print] to help
     * when debugging.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def toString()(using Zone): String /* None */ = fromCString(
     gtk_shortcut_action_to_string(
@@ -86,9 +90,7 @@ class ShortcutAction(raw: Ptr[GtkShortcutAction])
 end ShortcutAction
 
 object ShortcutAction:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to parse the given string into an action.
+  /** Tries to parse the given string into an action.
     *
     * On success, the parsed action is returned. When parsing failed, %NULL is
     * returned.
@@ -100,6 +102,9 @@ object ShortcutAction:
     *   - `mnemonic-activate`, for `GtkMnemonicAction`
     *   - `action(NAME)`, for a `GtkNamedAction` for the action named `NAME`
     *   - `signal(NAME)`, for a `GtkSignalAction` for the signal `NAME`
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def parseString(
       string: String | CString /* Some(CString) */

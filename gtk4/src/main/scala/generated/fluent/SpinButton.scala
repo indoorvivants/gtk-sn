@@ -21,9 +21,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkSpinButton
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkSpinButton` is an ideal way to allow the user to set the value of some
+/** A `GtkSpinButton` is an ideal way to allow the user to set the value of some
   * attribute.
   *
   * ![An example GtkSpinButton](spinbutton.png)
@@ -134,6 +132,9 @@ import sn.gnome.gtk4.internal.GtkSpinButton
   * # Accessibility
   *
   * `GtkSpinButton` uses the %GTK_ACCESSIBLE_ROLE_SPIN_BUTTON role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SpinButton(raw: Ptr[GtkSpinButton])
     extends Widget(raw.asInstanceOf),
@@ -147,12 +148,13 @@ class SpinButton(raw: Ptr[GtkSpinButton])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Changes the properties of an existing spin button.
+  /** Changes the properties of an existing spin button.
     *
     * The adjustment, climb rate, and number of decimal places are updated
     * accordingly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def configure(
       adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ],
@@ -167,9 +169,10 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     guint(digits)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the adjustment associated with a `GtkSpinButton`.
     *
-    * Get the adjustment associated with a `GtkSpinButton`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAdjustment(): Adjustment /* None */ = new Adjustment(
     gtk_spin_button_get_adjustment(
@@ -177,65 +180,72 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the acceleration rate for repeated changes.
     *
-    * Returns the acceleration rate for repeated changes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getClimbRate(): Double /* None */ = gtk_spin_button_get_climb_rate(
     this.raw.asInstanceOf[Ptr[GtkSpinButton]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the precision of @spin_button.
     *
-    * Fetches the precision of @spin_button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDigits(): UInt /* None */ = gtk_spin_button_get_digits(
     this.raw.asInstanceOf[Ptr[GtkSpinButton]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the current step and page the increments used by @spin_button.
+  /** Gets the current step and page the increments used by @spin_button.
     *
     * See [method@Gtk.SpinButton.set_increments].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_increments contains an OUT parameter, which is not supported yet"
+    "[get_increments]: Method get_increments contains an OUT parameter, which is not supported yet"
   )
-  def getIncrements__ = ???
+  private def getIncrements__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether non-numeric text can be typed into the spin button.
     *
-    * Returns whether non-numeric text can be typed into the spin button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNumeric(): Boolean /* None */ = gtk_spin_button_get_numeric(
     this.raw.asInstanceOf[Ptr[GtkSpinButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the range allowed for @spin_button.
+  /** Gets the range allowed for @spin_button.
     *
     * See [method@Gtk.SpinButton.set_range].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_range contains an OUT parameter, which is not supported yet"
+    "[get_range]: Method get_range contains an OUT parameter, which is not supported yet"
   )
-  def getRange__ = ???
+  private def getRange__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the values are corrected to the nearest step.
     *
-    * Returns whether the values are corrected to the nearest step.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSnapToTicks(): Boolean /* None */ = gtk_spin_button_get_snap_to_ticks(
     this.raw.asInstanceOf[Ptr[GtkSpinButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the update behavior of a spin button.
+  /** Gets the update behavior of a spin button.
     *
     * See [method@Gtk.SpinButton.set_update_policy].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUpdatePolicy(): SpinButtonUpdatePolicy /* None */ =
     SpinButtonUpdatePolicy.fromRaw(
@@ -244,34 +254,38 @@ class SpinButton(raw: Ptr[GtkSpinButton])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the value in the @spin_button.
     *
-    * Get the value in the @spin_button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getValue(): Double /* None */ = gtk_spin_button_get_value(
     this.raw.asInstanceOf[Ptr[GtkSpinButton]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the value @spin_button represented as an integer.
     *
-    * Get the value @spin_button represented as an integer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getValueAsInt(): Int /* None */ = gtk_spin_button_get_value_as_int(
     this.raw.asInstanceOf[Ptr[GtkSpinButton]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the spin button’s value wraps around to the opposite limit
+  /** Returns whether the spin button’s value wraps around to the opposite limit
     * when the upper or lower limit of the range is exceeded.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWrap(): Boolean /* None */ = gtk_spin_button_get_wrap(
     this.raw.asInstanceOf[Ptr[GtkSpinButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Replaces the `GtkAdjustment` associated with @spin_button.
     *
-    * Replaces the `GtkAdjustment` associated with @spin_button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAdjustment(
       adjustment: Adjustment /* Some(Ptr[GtkAdjustment]) */
@@ -280,10 +294,11 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     adjustment.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the acceleration rate for repeated changes when you hold down a
+  /** Sets the acceleration rate for repeated changes when you hold down a
     * button or key.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setClimbRate(climb_rate: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_spin_button_set_climb_rate(
@@ -291,11 +306,12 @@ class SpinButton(raw: Ptr[GtkSpinButton])
       climb_rate
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set the precision to be displayed by @spin_button.
+  /** Set the precision to be displayed by @spin_button.
     *
     * Up to 20 digit precision is allowed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDigits(
       digits: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -304,12 +320,13 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     guint(digits)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the step and page increments for spin_button.
+  /** Sets the step and page increments for spin_button.
     *
     * This affects how quickly the value changes when the spin button’s arrows
     * are activated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIncrements(
       step: Double /* Some(Double) */,
@@ -320,10 +337,11 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     page
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the flag that determines if non-numeric text can be typed into the
+  /** Sets the flag that determines if non-numeric text can be typed into the
     * spin button.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setNumeric(
       numeric: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -332,12 +350,13 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     gboolean(gint((if numeric == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the minimum and maximum allowable values for @spin_button.
+  /** Sets the minimum and maximum allowable values for @spin_button.
     *
     * If the current value is outside this range, it will be adjusted to fit
     * within the range, otherwise it will remain unchanged.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRange(
       min: Double /* Some(Double) */,
@@ -348,11 +367,12 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     max
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the policy as to whether values are corrected to the nearest step
+  /** Sets the policy as to whether values are corrected to the nearest step
     * increment when a spin button is activated after providing an invalid
     * value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSnapToTicks(
       snap_to_ticks: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -361,12 +381,13 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     gboolean(gint((if snap_to_ticks == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the update behavior of a spin button.
+  /** Sets the update behavior of a spin button.
     *
     * This determines whether the spin button is always updated or only when a
     * valid value is set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUpdatePolicy(
       policy: SpinButtonUpdatePolicy /* Some(GtkSpinButtonUpdatePolicy) */
@@ -375,17 +396,19 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     policy.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of @spin_button.
     *
-    * Sets the value of @spin_button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setValue(value: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_spin_button_set_value(this.raw.asInstanceOf[Ptr[GtkSpinButton]], value)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the flag that determines if a spin button value wraps around to the
+  /** Sets the flag that determines if a spin button value wraps around to the
     * opposite limit when the upper or lower limit of the range is exceeded.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWrap(
       wrap: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -394,10 +417,11 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     gboolean(gint((if wrap == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Increment or decrement a spin button’s value in a specified direction by a
+  /** Increment or decrement a spin button’s value in a specified direction by a
     * specified amount.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def spin(
       direction: SpinType /* Some(GtkSpinType) */,
@@ -408,9 +432,10 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     increment
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Manually force an update of the spin button.
     *
-    * Manually force an update of the spin button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def update(): Unit /* None */ = gtk_spin_button_update(
     this.raw.asInstanceOf[Ptr[GtkSpinButton]]
@@ -419,9 +444,10 @@ class SpinButton(raw: Ptr[GtkSpinButton])
 end SpinButton
 
 object SpinButton:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkSpinButton`.
     *
-    * Creates a new `GtkSpinButton`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ],
@@ -437,9 +463,7 @@ object SpinButton:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkSpinButton` with the given properties.
+  /** Creates a new `GtkSpinButton` with the given properties.
     *
     * This is a convenience constructor that allows creation of a numeric
     * `GtkSpinButton` without manually creating an adjustment. The value is
@@ -450,6 +474,9 @@ object SpinButton:
     * Note that the way in which the precision is derived works best if @step is
     * a power of ten. If the resulting precision is not suitable for your needs,
     * use [method@Gtk.SpinButton.set_digits] to correct it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withRange(
       min: Double /* Some(Double) */,

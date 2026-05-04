@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDBusSendMessageFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used when sending #GDBusMessages on a #GDBusConnection.
   *
-  * Flags used when sending #GDBusMessages on a #GDBusConnection.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusSendMessageFlags private (val raw: GDBusSendMessageFlags):
   def is(kv: DBusSendMessageFlags): Boolean =
@@ -32,17 +33,19 @@ object DBusSendMessageFlags:
     def |(other: DBusSendMessageFlags) =
       DBusSendMessageFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used when sending #GDBusMessages on a #GDBusConnection.
     *
-    * Flags used when sending #GDBusMessages on a #GDBusConnection.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GDBusSendMessageFlags, name: String)
       extends DBusSendMessageFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(
@@ -50,10 +53,11 @@ object DBusSendMessageFlags:
           "NONE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Do not automatically assign a serial number from the #GDBusConnection
+    /** Do not automatically assign a serial number from the #GDBusConnection
       * object when sending a message.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case PRESERVE_SERIAL
         extends KnownValue(

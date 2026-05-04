@@ -9,10 +9,11 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{SectionModel, SelectionModel}
 import sn.gnome.gtk4.internal.GtkMultiSelection
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkMultiSelection` is a `GtkSelectionModel` that allows selecting multiple
+/** `GtkMultiSelection` is a `GtkSelectionModel` that allows selecting multiple
   * elements.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MultiSelection(raw: Ptr[GtkMultiSelection])
     extends Object(raw.asInstanceOf),
@@ -22,9 +23,10 @@ class MultiSelection(raw: Ptr[GtkMultiSelection])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the underlying model of @self.
     *
-    * Returns the underlying model of @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_multi_selection_get_model(
@@ -32,11 +34,12 @@ class MultiSelection(raw: Ptr[GtkMultiSelection])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the model that @self should wrap.
+  /** Sets the model that @self should wrap.
     *
     * If @model is %NULL, @self will be empty.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
       model: Option[
@@ -56,9 +59,10 @@ class MultiSelection(raw: Ptr[GtkMultiSelection])
 end MultiSelection
 
 object MultiSelection:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new selection to handle @model.
     *
-    * Creates a new selection to handle @model.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       model: Option[

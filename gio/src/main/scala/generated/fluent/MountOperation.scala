@@ -10,9 +10,7 @@ import sn.gnome.gio.internal.GMountOperation
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GMountOperation provides a mechanism for interacting with the user. It can
+/** #GMountOperation provides a mechanism for interacting with the user. It can
   * be used for authenticating mountable operations, such as loop mounting
   * files, hard drive partitions or server locations. It can also be used to ask
   * the user questions or show a list of applications preventing unmount or
@@ -32,32 +30,38 @@ import sn.gnome.gobject.fluent.Object
   * system for encrypting file containers, partitions or whole disks, typically
   * used with Windows. [VeraCrypt](https://www.veracrypt.fr/) is a maintained
   * fork of TrueCrypt with various improvements and auditing fixes.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MountOperation(raw: Ptr[GMountOperation])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Check to see whether the mount operation is being used for an anonymous
+  /** Check to see whether the mount operation is being used for an anonymous
     * user.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAnonymous(): Boolean /* None */ = g_mount_operation_get_anonymous(
     this.raw.asInstanceOf[Ptr[GMountOperation]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets a choice from the mount operation.
     *
-    * Gets a choice from the mount operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChoice(): Int /* None */ = g_mount_operation_get_choice(
     this.raw.asInstanceOf[Ptr[GMountOperation]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the domain of the mount operation.
     *
-    * Gets the domain of the mount operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDomain()(using Zone): String /* None */ = fromCString(
     g_mount_operation_get_domain(
@@ -65,29 +69,32 @@ class MountOperation(raw: Ptr[GMountOperation])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Check to see whether the mount operation is being used for a TCRYPT hidden
+  /** Check to see whether the mount operation is being used for a TCRYPT hidden
     * volume.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIsTcryptHiddenVolume(): Boolean /* None */ =
     g_mount_operation_get_is_tcrypt_hidden_volume(
       this.raw.asInstanceOf[Ptr[GMountOperation]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Check to see whether the mount operation is being used for a TCRYPT system
+  /** Check to see whether the mount operation is being used for a TCRYPT system
     * volume.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIsTcryptSystemVolume(): Boolean /* None */ =
     g_mount_operation_get_is_tcrypt_system_volume(
       this.raw.asInstanceOf[Ptr[GMountOperation]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets a password from the mount operation.
     *
-    * Gets a password from the mount operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPassword()(using Zone): String /* None */ = fromCString(
     g_mount_operation_get_password(
@@ -95,9 +102,10 @@ class MountOperation(raw: Ptr[GMountOperation])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the state of saving passwords for the mount operation.
     *
-    * Gets the state of saving passwords for the mount operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPasswordSave(): PasswordSave /* None */ = PasswordSave.fromRaw(
     g_mount_operation_get_password_save(
@@ -105,17 +113,19 @@ class MountOperation(raw: Ptr[GMountOperation])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets a PIM from the mount operation.
     *
-    * Gets a PIM from the mount operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPim(): UInt /* None */ = g_mount_operation_get_pim(
     this.raw.asInstanceOf[Ptr[GMountOperation]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the user name from the mount operation.
     *
-    * Get the user name from the mount operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUsername()(using Zone): String /* None */ = fromCString(
     g_mount_operation_get_username(
@@ -123,9 +133,10 @@ class MountOperation(raw: Ptr[GMountOperation])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Emits the #GMountOperation::reply signal.
     *
-    * Emits the #GMountOperation::reply signal.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def reply(
       result: MountOperationResult /* Some(GMountOperationResult) */
@@ -134,9 +145,10 @@ class MountOperation(raw: Ptr[GMountOperation])
     result.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the mount operation to use an anonymous user if @anonymous is %TRUE.
     *
-    * Sets the mount operation to use an anonymous user if @anonymous is %TRUE.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAnonymous(
       anonymous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -145,9 +157,10 @@ class MountOperation(raw: Ptr[GMountOperation])
     gboolean(gint((if anonymous == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets a default choice for the mount operation.
     *
-    * Sets a default choice for the mount operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChoice(choice: Int /* Some(CInt) */ ): Unit /* None */ =
     g_mount_operation_set_choice(
@@ -155,9 +168,10 @@ class MountOperation(raw: Ptr[GMountOperation])
       choice
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the mount operation's domain.
     *
-    * Sets the mount operation's domain.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDomain(
       domain: Option[String | CString /* Some(CString) */ ]
@@ -168,10 +182,11 @@ class MountOperation(raw: Ptr[GMountOperation])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the mount operation to use a hidden volume if @hidden_volume is
+  /** Sets the mount operation to use a hidden volume if @hidden_volume is
     * %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIsTcryptHiddenVolume(
       hidden_volume: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -180,10 +195,11 @@ class MountOperation(raw: Ptr[GMountOperation])
     gboolean(gint((if hidden_volume == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the mount operation to use a system volume if @system_volume is
+  /** Sets the mount operation to use a system volume if @system_volume is
     * %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIsTcryptSystemVolume(
       system_volume: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -192,9 +208,10 @@ class MountOperation(raw: Ptr[GMountOperation])
     gboolean(gint((if system_volume == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the mount operation's password to @password.
     *
-    * Sets the mount operation's password to @password.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPassword(
       password: Option[String | CString /* Some(CString) */ ]
@@ -205,9 +222,10 @@ class MountOperation(raw: Ptr[GMountOperation])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the state of saving passwords for the mount operation.
     *
-    * Sets the state of saving passwords for the mount operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPasswordSave(
       save: PasswordSave /* Some(GPasswordSave) */
@@ -216,9 +234,10 @@ class MountOperation(raw: Ptr[GMountOperation])
     save.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the mount operation's PIM to @pim.
     *
-    * Sets the mount operation's PIM to @pim.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPim(
       pim: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -227,9 +246,10 @@ class MountOperation(raw: Ptr[GMountOperation])
     guint(pim)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the user name within @op to @username.
     *
-    * Sets the user name within @op to @username.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUsername(
       username: Option[String | CString /* Some(CString) */ ]
@@ -251,9 +271,10 @@ class MountOperation(raw: Ptr[GMountOperation])
 end MountOperation
 
 object MountOperation:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new mount operation.
     *
-    * Creates a new mount operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): MountOperation = new MountOperation(
     g_mount_operation_new().asInstanceOf

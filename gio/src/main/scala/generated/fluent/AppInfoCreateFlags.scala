@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GAppInfoCreateFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used when creating a #GAppInfo.
   *
-  * Flags used when creating a #GAppInfo.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AppInfoCreateFlags private (val raw: GAppInfoCreateFlags):
   def is(kv: AppInfoCreateFlags): Boolean =
@@ -32,24 +33,27 @@ object AppInfoCreateFlags:
     def |(other: AppInfoCreateFlags) =
       AppInfoCreateFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used when creating a #GAppInfo.
     *
-    * Flags used when creating a #GAppInfo.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GAppInfoCreateFlags, name: String)
       extends AppInfoCreateFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags.
       *
-      * No flags.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(GAppInfoCreateFlags.G_APP_INFO_CREATE_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Application opens in a terminal window.
       *
-      * Application opens in a terminal window.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NEEDS_TERMINAL
         extends KnownValue(
@@ -57,9 +61,10 @@ object AppInfoCreateFlags:
           "NEEDS_TERMINAL"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Application supports URI arguments.
       *
-      * Application supports URI arguments.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SUPPORTS_URIS
         extends KnownValue(
@@ -67,9 +72,10 @@ object AppInfoCreateFlags:
           "SUPPORTS_URIS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Application supports startup notification. Since 2.26
       *
-      * Application supports startup notification. Since 2.26
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SUPPORTS_STARTUP_NOTIFICATION
         extends KnownValue(

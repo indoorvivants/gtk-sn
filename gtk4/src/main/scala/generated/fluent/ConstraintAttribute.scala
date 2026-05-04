@@ -2,117 +2,130 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkConstraintAttribute
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** The widget attributes that can be used when creating a [class@Constraint].
   *
-  * The widget attributes that can be used when creating a [class@Constraint].
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ConstraintAttribute(val raw: GtkConstraintAttribute):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No attribute, used for constant relations
     *
-    * No attribute, used for constant relations
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE
       extends ConstraintAttribute(
         GtkConstraintAttribute.GTK_CONSTRAINT_ATTRIBUTE_NONE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The left edge of a widget, regardless of text direction
     *
-    * The left edge of a widget, regardless of text direction
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LEFT
       extends ConstraintAttribute(
         GtkConstraintAttribute.GTK_CONSTRAINT_ATTRIBUTE_LEFT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The right edge of a widget, regardless of text direction
     *
-    * The right edge of a widget, regardless of text direction
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RIGHT
       extends ConstraintAttribute(
         GtkConstraintAttribute.GTK_CONSTRAINT_ATTRIBUTE_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The top edge of a widget
     *
-    * The top edge of a widget
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOP
       extends ConstraintAttribute(
         GtkConstraintAttribute.GTK_CONSTRAINT_ATTRIBUTE_TOP
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The bottom edge of a widget
     *
-    * The bottom edge of a widget
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BOTTOM
       extends ConstraintAttribute(
         GtkConstraintAttribute.GTK_CONSTRAINT_ATTRIBUTE_BOTTOM
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The leading edge of a widget, depending on text direction; equivalent to
+  /** The leading edge of a widget, depending on text direction; equivalent to
     * %GTK_CONSTRAINT_ATTRIBUTE_LEFT for LTR languages, and
     * %GTK_CONSTRAINT_ATTRIBUTE_RIGHT for RTL ones
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case START
       extends ConstraintAttribute(
         GtkConstraintAttribute.GTK_CONSTRAINT_ATTRIBUTE_START
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The trailing edge of a widget, depending on text direction; equivalent to
+  /** The trailing edge of a widget, depending on text direction; equivalent to
     * %GTK_CONSTRAINT_ATTRIBUTE_RIGHT for LTR languages, and
     * %GTK_CONSTRAINT_ATTRIBUTE_LEFT for RTL ones
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case END
       extends ConstraintAttribute(
         GtkConstraintAttribute.GTK_CONSTRAINT_ATTRIBUTE_END
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The width of a widget
     *
-    * The width of a widget
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WIDTH
       extends ConstraintAttribute(
         GtkConstraintAttribute.GTK_CONSTRAINT_ATTRIBUTE_WIDTH
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The height of a widget
     *
-    * The height of a widget
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HEIGHT
       extends ConstraintAttribute(
         GtkConstraintAttribute.GTK_CONSTRAINT_ATTRIBUTE_HEIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The center of a widget, on the horizontal axis
     *
-    * The center of a widget, on the horizontal axis
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CENTER_X
       extends ConstraintAttribute(
         GtkConstraintAttribute.GTK_CONSTRAINT_ATTRIBUTE_CENTER_X
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The center of a widget, on the vertical axis
     *
-    * The center of a widget, on the vertical axis
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CENTER_Y
       extends ConstraintAttribute(
         GtkConstraintAttribute.GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The baseline of a widget
     *
-    * The baseline of a widget
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BASELINE
       extends ConstraintAttribute(

@@ -2,9 +2,7 @@ package sn.gnome.harfbuzz.fluent
 
 import _root_.sn.gnome.harfbuzz.internal.hb_buffer_cluster_level_t
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Data type for holding HarfBuzz's clustering behavior options. The cluster
+/** Data type for holding HarfBuzz's clustering behavior options. The cluster
   * level dictates one aspect of how HarfBuzz will treat non-base characters
   * during shaping.
   *
@@ -22,38 +20,45 @@ import _root_.sn.gnome.harfbuzz.internal.hb_buffer_cluster_level_t
   *   such backward compatibility are recommended to use
   * @HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS
   *   instead of the default.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Buffer_cluster_level_t(val raw: hb_buffer_cluster_level_t):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Return cluster values grouped by graphemes into monotone order.
     *
-    * Return cluster values grouped by graphemes into monotone order.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MONOTONE_GRAPHEMES
       extends Buffer_cluster_level_t(
         hb_buffer_cluster_level_t.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Return cluster values grouped into monotone order.
     *
-    * Return cluster values grouped into monotone order.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MONOTONE_CHARACTERS
       extends Buffer_cluster_level_t(
         hb_buffer_cluster_level_t.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Don't group cluster values.
     *
-    * Don't group cluster values.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHARACTERS
       extends Buffer_cluster_level_t(
         hb_buffer_cluster_level_t.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Default cluster level, equal to @HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES.
     *
-    * Default cluster level, equal to @HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DEFAULT
       extends Buffer_cluster_level_t(

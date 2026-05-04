@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkListStore
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A list-like data structure that can be used with the [class@Gtk.TreeView].
+/** A list-like data structure that can be used with the [class@Gtk.TreeView].
   *
   * The `GtkListStore` object is a list model for use with a `GtkTreeView`
   * widget. It implements the `GtkTreeModel` interface, and consequentialy, can
@@ -159,6 +157,9 @@ import sn.gnome.gtk4.internal.GtkListStore
   *   </data>
   * </object>
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ListStore(raw: Ptr[GtkListStore])
     extends Object(raw.asInstanceOf),
@@ -170,68 +171,71 @@ class ListStore(raw: Ptr[GtkListStore])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Appends a new row to @list_store. @iter will be changed to point to this
+  /** Appends a new row to @list_store. @iter will be changed to point to this
     * new row. The row will be empty after this function is called. To fill in
     * values, you need to call gtk_list_store_set() or
     * gtk_list_store_set_value().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method append contains an OUT parameter, which is not supported yet"
+    "[append]: Method append contains an OUT parameter, which is not supported yet"
   )
-  def append__ = ???
+  private def append__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes all rows from the list store.
     *
-    * Removes all rows from the list store.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def clear(): Unit /* None */ = gtk_list_store_clear(
     this.raw.asInstanceOf[Ptr[GtkListStore]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new row at @position. @iter will be changed to point to this new
+  /** Creates a new row at @position. @iter will be changed to point to this new
     * row. If @position is -1 or is larger than the number of rows on the list,
     * then the new row will be appended to the list. The row will be empty after
     * this function is called. To fill in values, you need to call
     * gtk_list_store_set() or gtk_list_store_set_value().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method insert contains an OUT parameter, which is not supported yet"
+    "[insert]: Method insert contains an OUT parameter, which is not supported yet"
   )
-  def insert__ = ???
+  private def insert__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts a new row after @sibling. If @sibling is %NULL, then the row will
+  /** Inserts a new row after @sibling. If @sibling is %NULL, then the row will
     * be prepended to the beginning of the list. @iter will be changed to point
     * to this new row. The row will be empty after this function is called. To
     * fill in values, you need to call gtk_list_store_set() or
     * gtk_list_store_set_value().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method insert_after contains an OUT parameter, which is not supported yet"
+    "[insert_after]: Method insert_after contains an OUT parameter, which is not supported yet"
   )
-  def insertAfter__ = ???
+  private def insertAfter__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts a new row before @sibling. If @sibling is %NULL, then the row will
+  /** Inserts a new row before @sibling. If @sibling is %NULL, then the row will
     * be appended to the end of the list. @iter will be changed to point to this
     * new row. The row will be empty after this function is called. To fill in
     * values, you need to call gtk_list_store_set() or
     * gtk_list_store_set_value().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method insert_before contains an OUT parameter, which is not supported yet"
+    "[insert_before]: Method insert_before contains an OUT parameter, which is not supported yet"
   )
-  def insertBefore__ = ???
+  private def insertBefore__ = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Creates a new row at @position. @iter will be changed to point to this new
+  /**  Creates a new row at @position. @iter will be changed to point to this new
     *  row. If @position is -1, or larger than the number of rows in the list, then
     *  the new row will be appended to the list. The row will be filled with the
     *  values given to this function.
@@ -262,94 +266,101 @@ class ListStore(raw: Ptr[GtkListStore])
     *  Since emitting the `GtkTreeModel::rows-reordered` signal repeatedly can
     *  affect the performance of the program, gtk_list_store_insert_with_values()
     *  should generally be preferred when inserting rows in a sorted list store.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method insert_with_values contains an OUT parameter, which is not supported yet"
+    "[insert_with_values]: Method insert_with_values contains an OUT parameter, which is not supported yet"
   )
-  def insertWithValues__ = ???
+  private def insertWithValues__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A variant of gtk_list_store_insert_with_values() which takes the columns
+  /** A variant of gtk_list_store_insert_with_values() which takes the columns
     * and values as two arrays, instead of varargs.
     *
     * This function is mainly intended for language-bindings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method insert_with_valuesv contains an OUT parameter, which is not supported yet"
+    "[insert_with_valuesv]: Method insert_with_valuesv contains an OUT parameter, which is not supported yet"
   )
-  def insertWithValuesv__ = ???
+  private def insertWithValuesv__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if the given iter is a valid iter for this `GtkListStore`.
+  /** Checks if the given iter is a valid iter for this `GtkListStore`.
     *
     * This function is slow. Only use it for debugging and/or testing purposes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[iter_is_valid/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
-  def iterIsValid__ = ???
+  private def iterIsValid__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Moves @iter in @store to the position after @position. Note that this
+  /** Moves @iter in @store to the position after @position. Note that this
     * function only works with unsorted stores. If @position is %NULL, @iter
     * will be moved to the start of the list.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[move_after/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
-  def moveAfter__ = ???
+  private def moveAfter__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Moves @iter in @store to the position before @position. Note that this
+  /** Moves @iter in @store to the position before @position. Note that this
     * function only works with unsorted stores. If @position is %NULL, @iter
     * will be moved to the end of the list.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[move_before/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
-  def moveBefore__ = ???
+  private def moveBefore__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Prepends a new row to @list_store. @iter will be changed to point to this
+  /** Prepends a new row to @list_store. @iter will be changed to point to this
     * new row. The row will be empty after this function is called. To fill in
     * values, you need to call gtk_list_store_set() or
     * gtk_list_store_set_value().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method prepend contains an OUT parameter, which is not supported yet"
+    "[prepend]: Method prepend contains an OUT parameter, which is not supported yet"
   )
-  def prepend__ = ???
+  private def prepend__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes the given row from the list store. After being removed,
+  /** Removes the given row from the list store. After being removed,
     * @iter
     *   is set to be the next valid row, or invalidated if it pointed to the
     *   last row in @list_store.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[remove/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
-  def remove__ = ???
+  private def remove__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reorders @store to follow the order indicated by @new_order. Note that
+  /** Reorders @store to follow the order indicated by @new_order. Note that
     * this function only works with unsorted stores.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(int)))),ListMap(@type -> DataRecord(int*)))"
+    "[reorder/<method parameters>/new_order]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(int)))),ListMap(@type -> DataRecord(int*)))"
   )
-  def reorder__ = ???
+  private def reorder__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the value of one or more cells in the row referenced by @iter. The
+  /** Sets the value of one or more cells in the row referenced by @iter. The
     * variable argument list should contain integer column numbers, each column
     * number followed by the value to be set. The list is terminated by a -1.
     * For example, to set column 0 with type %G_TYPE_STRING to “Foo”, you would
@@ -357,75 +368,81 @@ class ListStore(raw: Ptr[GtkListStore])
     *
     * The value will be referenced by the store if it is a %G_TYPE_OBJECT, and
     * it will be copied if it is a %G_TYPE_STRING or %G_TYPE_BOXED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[set/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
-  def set__ = ???
+  private def set__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the types of the columns of a list store.
+  /** Sets the types of the columns of a list store.
     *
     * This function is meant primarily for objects that inherit from
     * `GtkListStore`, and should only be used when constructing a new instance.
     *
     * This function cannot be called after a row has been added, or a method on
     * the `GtkTreeModel` interface is called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(GType*)))"
+    "[set_column_types/<method parameters>/types]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(GType*)))"
   )
-  def setColumnTypes__ = ???
+  private def setColumnTypes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * See gtk_list_store_set(); this version takes a va_list for use by language
+  /** See gtk_list_store_set(); this version takes a va_list for use by language
     * bindings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[set_valist/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
-  def setValist__ = ???
+  private def setValist__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the data in the cell specified by @iter and @column. The type of @value
+  /** Sets the data in the cell specified by @iter and @column. The type of @value
     * must be convertible to the type of the column.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[set_value/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
-  def setValue__ = ???
+  private def setValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A variant of gtk_list_store_set_valist() which takes the columns and
+  /** A variant of gtk_list_store_set_valist() which takes the columns and
     * values as two arrays, instead of varargs. This function is mainly intended
     * for language-bindings and in case the number of columns to change is not
     * known until run-time.
-    */
-  @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  def setValuesv__ = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Swaps @a and @b in @store. Note that this function only works with
-    * unsorted stores.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[set_valuesv/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
-  def swap__ = ???
+  private def setValuesv__ = ???
+
+  /** Swaps @a and @b in @store. Note that this function only works with
+    * unsorted stores.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[swap/<method parameters>/a]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+  )
+  private def swap__ = ???
 
 end ListStore
 
 object ListStore:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new list store.
+  /** Creates a new list store.
     *
     * The list store will have @n_columns columns, with each column using the
     * given type passed to this function.
@@ -441,19 +458,23 @@ object ListStore:
     *
     * will create a new `GtkListStore` with three columns, of type `int`,
     * `gchararray` and `GdkTexture`, respectively.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def apply(n_columns: Int /* Some(CInt) */, args: Any*): ListStore =
     new ListStore(gtk_list_store_new(n_columns, args*).asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkListStore`.
+  /** Creates a new `GtkListStore`.
     *
     * This function is meant to be used by language bindings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(GType*)))"
+    "[types]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(GType*)))"
   )
-  def newv() = ???
+  private def newv() = ???
 
 end ListStore

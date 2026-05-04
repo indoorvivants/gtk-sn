@@ -11,9 +11,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{PropagationLimit, PropagationPhase, Widget}
 import sn.gnome.gtk4.internal.GtkEventController
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkEventController` is the base class for event controllers.
+/** `GtkEventController` is the base class for event controllers.
   *
   * These are ancillary objects associated to widgets, which react to
   * `GdkEvents`, and possibly trigger actions as a consequence.
@@ -25,17 +23,21 @@ import sn.gnome.gtk4.internal.GtkEventController
   * See the chapter on [input handling](input-handling.html) for an overview of
   * the basic concepts, such as the capture and bubble phases of event
   * propagation.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class EventController(raw: Ptr[GtkEventController])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the event that is currently being handled by the controller.
+  /** Returns the event that is currently being handled by the controller.
     *
     * At other times, %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCurrentEvent(): Event /* None */ = new Event(
     gtk_event_controller_get_current_event(
@@ -43,12 +45,13 @@ class EventController(raw: Ptr[GtkEventController])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the device of the event that is currently being handled by the
+  /** Returns the device of the event that is currently being handled by the
     * controller.
     *
     * At other times, %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCurrentEventDevice(): Device /* None */ = new Device(
     gtk_event_controller_get_current_event_device(
@@ -56,12 +59,13 @@ class EventController(raw: Ptr[GtkEventController])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the modifier state of the event that is currently being handled by
+  /** Returns the modifier state of the event that is currently being handled by
     * the controller.
     *
     * At other times, 0 is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCurrentEventState(): ModifierType /* None */ = ModifierType.fromRaw(
     gtk_event_controller_get_current_event_state(
@@ -69,21 +73,23 @@ class EventController(raw: Ptr[GtkEventController])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the timestamp of the event that is currently being handled by the
+  /** Returns the timestamp of the event that is currently being handled by the
     * controller.
     *
     * At other times, 0 is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCurrentEventTime(): UInt /* None */ =
     gtk_event_controller_get_current_event_time(
       this.raw.asInstanceOf[Ptr[GtkEventController]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the name of @controller.
     *
-    * Gets the name of @controller.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     gtk_event_controller_get_name(
@@ -91,9 +97,10 @@ class EventController(raw: Ptr[GtkEventController])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the propagation limit of the event controller.
     *
-    * Gets the propagation limit of the event controller.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPropagationLimit(): PropagationLimit /* None */ =
     PropagationLimit.fromRaw(
@@ -102,9 +109,10 @@ class EventController(raw: Ptr[GtkEventController])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the propagation phase at which @controller handles events.
     *
-    * Gets the propagation phase at which @controller handles events.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPropagationPhase(): PropagationPhase /* None */ =
     PropagationPhase.fromRaw(
@@ -113,9 +121,10 @@ class EventController(raw: Ptr[GtkEventController])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `GtkWidget` this controller relates to.
     *
-    * Returns the `GtkWidget` this controller relates to.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWidget(): Widget /* None */ = new Widget(
     gtk_event_controller_get_widget(
@@ -123,17 +132,19 @@ class EventController(raw: Ptr[GtkEventController])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Resets the @controller to a clean state.
     *
-    * Resets the @controller to a clean state.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def reset(): Unit /* None */ = gtk_event_controller_reset(
     this.raw.asInstanceOf[Ptr[GtkEventController]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets a name on the controller that can be used for debugging.
     *
-    * Sets a name on the controller that can be used for debugging.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
       name: Option[String | CString /* Some(CString) */ ]
@@ -144,13 +155,14 @@ class EventController(raw: Ptr[GtkEventController])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the event propagation limit on the event controller.
+  /** Sets the event propagation limit on the event controller.
     *
     * If the limit is set to %GTK_LIMIT_SAME_NATIVE, the controller won't handle
     * events that are targeted at widgets on a different surface, such as
     * popovers.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPropagationLimit(
       limit: PropagationLimit /* Some(GtkPropagationLimit) */
@@ -159,12 +171,13 @@ class EventController(raw: Ptr[GtkEventController])
     limit.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the propagation phase at which a controller handles events.
+  /** Sets the propagation phase at which a controller handles events.
     *
     * If @phase is %GTK_PHASE_NONE, no automatic event handling will be
     * performed, but other additional gesture maintenance will.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPropagationPhase(
       phase: PropagationPhase /* Some(GtkPropagationPhase) */
@@ -173,9 +186,10 @@ class EventController(raw: Ptr[GtkEventController])
     phase.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets a name on the controller that can be used for debugging.
     *
-    * Sets a name on the controller that can be used for debugging.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setStaticName(
       name: Option[String | CString /* Some(CString) */ ]

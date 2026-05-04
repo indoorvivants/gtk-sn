@@ -2,10 +2,11 @@ package sn.gnome.gobject.fluent
 
 import _root_.sn.gnome.gobject.internal.GTypeFundamentalFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Bit masks used to check or determine specific characteristics of a
+/** Bit masks used to check or determine specific characteristics of a
   * fundamental type.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TypeFundamentalFlags private (val raw: GTypeFundamentalFlags):
   def is(kv: TypeFundamentalFlags): Boolean =
@@ -33,25 +34,28 @@ object TypeFundamentalFlags:
     def |(other: TypeFundamentalFlags) =
       TypeFundamentalFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Bit masks used to check or determine specific characteristics of a
+  /** Bit masks used to check or determine specific characteristics of a
     * fundamental type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GTypeFundamentalFlags, name: String)
       extends TypeFundamentalFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Indicates a classed type
       *
-      * Indicates a classed type
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CLASSED
         extends KnownValue(GTypeFundamentalFlags.G_TYPE_FLAG_CLASSED, "CLASSED")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Indicates an instantiatable type (implies classed)
       *
-      * Indicates an instantiatable type (implies classed)
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case INSTANTIATABLE
         extends KnownValue(
@@ -59,9 +63,10 @@ object TypeFundamentalFlags:
           "INSTANTIATABLE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Indicates a flat derivable type
       *
-      * Indicates a flat derivable type
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DERIVABLE
         extends KnownValue(
@@ -69,9 +74,10 @@ object TypeFundamentalFlags:
           "DERIVABLE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Indicates a deep derivable type (implies derivable)
       *
-      * Indicates a deep derivable type (implies derivable)
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DEEP_DERIVABLE
         extends KnownValue(

@@ -2,11 +2,12 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkShortcutActionFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * List of flags that can be passed to action activation.
+/** List of flags that can be passed to action activation.
   *
   * More flags may be added in the future.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ShortcutActionFlags private (val raw: GtkShortcutActionFlags):
   def is(kv: ShortcutActionFlags): Boolean =
@@ -34,20 +35,22 @@ object ShortcutActionFlags:
     def |(other: ShortcutActionFlags) =
       ShortcutActionFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * List of flags that can be passed to action activation.
+  /** List of flags that can be passed to action activation.
     *
     * More flags may be added in the future.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GtkShortcutActionFlags, name: String)
       extends ShortcutActionFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * The action is the only action that can be activated. If this flag is not
+    /** The action is the only action that can be activated. If this flag is not
       * set, a future activation may select a different action.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case EXCLUSIVE
         extends KnownValue(

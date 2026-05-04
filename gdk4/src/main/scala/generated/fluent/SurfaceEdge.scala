@@ -2,59 +2,68 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkSurfaceEdge
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Determines a surface edge or corner.
   *
-  * Determines a surface edge or corner.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SurfaceEdge(val raw: GdkSurfaceEdge):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the top left corner.
     *
-    * the top left corner.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NORTH_WEST
       extends SurfaceEdge(GdkSurfaceEdge.GDK_SURFACE_EDGE_NORTH_WEST)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the top edge.
     *
-    * the top edge.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NORTH extends SurfaceEdge(GdkSurfaceEdge.GDK_SURFACE_EDGE_NORTH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the top right corner.
     *
-    * the top right corner.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NORTH_EAST
       extends SurfaceEdge(GdkSurfaceEdge.GDK_SURFACE_EDGE_NORTH_EAST)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the left edge.
     *
-    * the left edge.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WEST extends SurfaceEdge(GdkSurfaceEdge.GDK_SURFACE_EDGE_WEST)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the right edge.
     *
-    * the right edge.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EAST extends SurfaceEdge(GdkSurfaceEdge.GDK_SURFACE_EDGE_EAST)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the lower left corner.
     *
-    * the lower left corner.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SOUTH_WEST
       extends SurfaceEdge(GdkSurfaceEdge.GDK_SURFACE_EDGE_SOUTH_WEST)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the lower edge.
     *
-    * the lower edge.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SOUTH extends SurfaceEdge(GdkSurfaceEdge.GDK_SURFACE_EDGE_SOUTH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the lower right corner.
     *
-    * the lower right corner.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SOUTH_EAST
       extends SurfaceEdge(GdkSurfaceEdge.GDK_SURFACE_EDGE_SOUTH_EAST)

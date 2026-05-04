@@ -2,6 +2,7 @@ import rendition.*
 
 import com.indoorvivants.gnome.gir_schema.*
 import util.boundary.*
+import FluentErrReason.*
 
 def renderStaticMethod(meth: FunctionType)(using
     RenderingContext,
@@ -22,24 +23,26 @@ def renderStaticMethod(meth: FunctionType)(using
 
     val methodContext = globalKnowledge.targetTypes
       .inMethod(meth.identifier)
-      .getOrElse(break(FluentErr.TargetTypesMissing(meth.identifier)))
+      .getOrElse(raise(TargetTypesMissing(meth.identifier)))
 
     val renderedParameters =
-      coll.observe(
-        renderParameters(
-          meth.parameters,
-          s"method: ${meth.name}",
-          methodContext
-        )
-      )
+      coll.observe:
+        inContext("<function parameters>"):
+          renderParameters(
+            meth.parameters,
+            s"method: ${meth.name}",
+            methodContext
+          )
 
-    val returnType = renderType(
-      meth.returnType.getOrElse(
-        break(FluentErr.MethodHasNoReturnType(meth.name))
-      ),
-      position = TypePosition.ReturnType,
-      expectedRawType = Some(methodContext.getReturnType)
-    )
+    val returnType =
+      inContext("<return type>"):
+        renderType(
+          meth.returnType.getOrElse(
+            raise(MethodHasNoReturnType(meth.name))
+          ),
+          position = TypePosition.ReturnType,
+          expectedRawType = Some(methodContext.getReturnType)
+        )
 
     coll.addAll(returnType.effects)
 

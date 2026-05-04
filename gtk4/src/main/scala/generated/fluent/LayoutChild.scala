@@ -8,9 +8,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{LayoutManager, Widget}
 import sn.gnome.gtk4.internal.GtkLayoutChild
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkLayoutChild` is the base class for objects that are meant to hold layout
+/** `GtkLayoutChild` is the base class for objects that are meant to hold layout
   * properties.
   *
   * If a `GtkLayoutManager` has per-child properties, like their packing type,
@@ -20,14 +18,18 @@ import sn.gnome.gtk4.internal.GtkLayoutChild
   *
   * A `GtkLayoutChild` instance is only ever valid while a widget is part of a
   * layout.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class LayoutChild(raw: Ptr[GtkLayoutChild]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the `GtkWidget` associated to the given @layout_child.
     *
-    * Retrieves the `GtkWidget` associated to the given @layout_child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChildWidget(): Widget /* None */ = new Widget(
     gtk_layout_child_get_child_widget(
@@ -35,9 +37,10 @@ class LayoutChild(raw: Ptr[GtkLayoutChild]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the `GtkLayoutManager` instance that created the given @layout_child.
     *
-    * Retrieves the `GtkLayoutManager` instance that created the given @layout_child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLayoutManager(): LayoutManager /* None */ = new LayoutManager(
     gtk_layout_child_get_layout_manager(

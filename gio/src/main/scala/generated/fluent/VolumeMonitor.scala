@@ -8,9 +8,7 @@ import sn.gnome.gio.fluent.{Mount, Volume, VolumeMonitor}
 import sn.gnome.gio.internal.GVolumeMonitor
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GVolumeMonitor is for listing the user interesting devices and volumes on
+/** #GVolumeMonitor is for listing the user interesting devices and volumes on
   * the computer. In other words, what a file selector or file manager would
   * show in a sidebar.
   *
@@ -20,26 +18,31 @@ import sn.gnome.gobject.fluent.Object
   *
   * In order to receive updates about volumes and mounts monitored through GVFS,
   * a main loop must be running.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a list of drives connected to the system.
+  /** Gets a list of drives connected to the system.
     *
     * The returned list should be freed with g_list_free(), after its elements
     * have been unreffed with g_object_unref().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Drive))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[get_connected_drives/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Drive))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def getConnectedDrives__ = ???
+  private def getConnectedDrives__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finds a #GMount object by its UUID (see g_mount_get_uuid())
     *
-    * Finds a #GMount object by its UUID (see g_mount_get_uuid())
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMountForUuid(
       uuid: String | CString /* Some(CString) */
@@ -50,21 +53,23 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a list of the mounts on the system.
+  /** Gets a list of the mounts on the system.
     *
     * The returned list should be freed with g_list_free(), after its elements
     * have been unreffed with g_object_unref().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Mount))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[get_mounts/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Mount))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def getMounts__ = ???
+  private def getMounts__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finds a #GVolume object by its UUID (see g_volume_get_uuid())
     *
-    * Finds a #GVolume object by its UUID (see g_volume_get_uuid())
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVolumeForUuid(
       uuid: String | CString /* Some(CString) */
@@ -75,17 +80,18 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a list of the volumes on the system.
+  /** Gets a list of the volumes on the system.
     *
     * The returned list should be freed with g_list_free(), after its elements
     * have been unreffed with g_object_unref().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Volume))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[get_volumes/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Volume))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def getVolumes__ = ???
+  private def getVolumes__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -98,9 +104,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
 end VolumeMonitor
 
 object VolumeMonitor:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function should be called by any #GVolumeMonitor implementation when
+  /** This function should be called by any #GVolumeMonitor implementation when
     * a new #GMount object is created that is not associated with a #GVolume
     * object. It must be called just before emitting the @mount_added signal.
     *
@@ -127,6 +131,9 @@ object VolumeMonitor:
     * The other is for implementing a #GVolumeMonitor whose sole purpose is to
     * return #GVolume objects representing entries in the users "favorite
     * servers" list or similar.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def adoptOrphanMount(
       mount: Mount /* Some(Ptr[GMount]) */
@@ -136,9 +143,10 @@ object VolumeMonitor:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the volume monitor used by gio.
     *
-    * Gets the volume monitor used by gio.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def get(): VolumeMonitor /* Some(Ptr[GVolumeMonitor]) */ = new VolumeMonitor(
     g_volume_monitor_get().asInstanceOf

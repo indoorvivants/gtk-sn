@@ -12,12 +12,13 @@ import sn.gnome.gio.fluent.{
 }
 import sn.gnome.gio.internal.GConverterOutputStream
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Converter output stream implements #GOutputStream and allows conversion of
+/** Converter output stream implements #GOutputStream and allows conversion of
   * data of various types during reading.
   *
   * As of GLib 2.34, #GConverterOutputStream implements #GPollableOutputStream.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ConverterOutputStream(raw: Ptr[GConverterOutputStream])
     extends FilterOutputStream(raw.asInstanceOf),
@@ -25,9 +26,10 @@ class ConverterOutputStream(raw: Ptr[GConverterOutputStream])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the #GConverter that is used by @converter_stream.
     *
-    * Gets the #GConverter that is used by @converter_stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getConverter(): Converter /* None */ = new Converter.Abstract(
     g_converter_output_stream_get_converter(
@@ -38,9 +40,10 @@ class ConverterOutputStream(raw: Ptr[GConverterOutputStream])
 end ConverterOutputStream
 
 object ConverterOutputStream:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new converter output stream for the @base_stream.
     *
-    * Creates a new converter output stream for the @base_stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       base_stream: OutputStream /* Some(Ptr[GOutputStream]) */,

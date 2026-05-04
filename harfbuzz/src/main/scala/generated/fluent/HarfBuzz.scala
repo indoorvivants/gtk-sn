@@ -11,247 +11,267 @@ import sn.gnome.harfbuzz.fluent.{
 }
 
 object HarfBuzz:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the name identifier of the specified feature type in the face's
+  /** Fetches the name identifier of the specified feature type in the face's
     * `name` table.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_aat_layout_feature_type_get_name_id has no target types"
+    "[aat_layout_feature_type_get_name_id:]: Method hb_aat_layout_feature_type_get_name_id has no target types"
   )
-  def aatLayoutFeatureTypeGetNameId() = ???
+  private def aatLayoutFeatureTypeGetNameId() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of the selectors available for the specified feature in the
+  /** Fetches a list of the selectors available for the specified feature in the
     * given face.
     *
     * If upon return, @default_index is set to #HB_AAT_LAYOUT_NO_SELECTOR_INDEX,
     * then the feature type is non-exclusive. Otherwise, @default_index is the
     * index of the selector that is selected by default.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function aat_layout_feature_type_get_selector_infos contains an OUT parameter, which is not supported yet"
+    "[aat_layout_feature_type_get_selector_infos:]: Function aat_layout_feature_type_get_selector_infos contains an OUT parameter, which is not supported yet"
   )
-  def aatLayoutFeatureTypeGetSelectorInfos() = ???
+  private def aatLayoutFeatureTypeGetSelectorInfos() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches a list of the AAT feature types included in the specified face.
     *
-    * Fetches a list of the AAT feature types included in the specified face.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function aat_layout_get_feature_types contains an OUT parameter, which is not supported yet"
+    "[aat_layout_get_feature_types:]: Function aat_layout_get_feature_types contains an OUT parameter, which is not supported yet"
   )
-  def aatLayoutGetFeatureTypes() = ???
+  private def aatLayoutGetFeatureTypes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tests whether the specified face includes any positioning information in
+  /** Tests whether the specified face includes any positioning information in
     * the `kerx` table.
     *
     * <note>Note: does not examine the `GPOS` table.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_aat_layout_has_positioning has no target types"
+    "[aat_layout_has_positioning:]: Method hb_aat_layout_has_positioning has no target types"
   )
-  def aatLayoutHasPositioning() = ???
+  private def aatLayoutHasPositioning() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tests whether the specified face includes any substitutions in the `morx`
+  /** Tests whether the specified face includes any substitutions in the `morx`
     * or `mort` tables.
     *
     * <note>Note: does not examine the `GSUB` table.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_aat_layout_has_substitution has no target types"
+    "[aat_layout_has_substitution:]: Method hb_aat_layout_has_substitution has no target types"
   )
-  def aatLayoutHasSubstitution() = ???
+  private def aatLayoutHasSubstitution() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tests whether the specified face includes any tracking information in the
+  /** Tests whether the specified face includes any tracking information in the
     * `trak` table.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_aat_layout_has_tracking has no target types"
+    "[aat_layout_has_tracking:]: Method hb_aat_layout_has_tracking has no target types"
   )
-  def aatLayoutHasTracking() = ???
+  private def aatLayoutHasTracking() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes a writable copy of @blob.
     *
-    * Makes a writable copy of @blob.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_copy_writable_or_fail:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
-  def blobCopyWritableOrFail() = ???
+  private def blobCopyWritableOrFail() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new "blob" object wrapping @data. The @mode parameter is used to
+  /** Creates a new "blob" object wrapping @data. The @mode parameter is used to
     * negotiate ownership and lifecycle of @data.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(unsigned int)))"
+    "[blob_create:/<function parameters>/length]: Cannot render type Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(unsigned int)))"
   )
-  def blobCreate() = ???
+  private def blobCreate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new blob containing the data from the specified binary font
+  /** Creates a new blob containing the data from the specified binary font
     * file.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_create_from_file:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
-  def blobCreateFromFile() = ???
+  private def blobCreateFromFile() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new blob containing the data from the specified binary font
+  /** Creates a new blob containing the data from the specified binary font
     * file.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_create_from_file_or_fail:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
-  def blobCreateFromFileOrFail() = ???
+  private def blobCreateFromFileOrFail() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new "blob" object wrapping @data. The @mode parameter is used to
+  /** Creates a new "blob" object wrapping @data. The @mode parameter is used to
     * negotiate ownership and lifecycle of @data.
     *
     * Note that this function returns a freshly-allocated empty blob even if @length
     * is zero. This is in contrast to hb_blob_create(), which returns the
     * singleton empty blob (as returned by hb_blob_get_empty()) if @length is
     * zero.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(unsigned int)))"
+    "[blob_create_or_fail:/<function parameters>/length]: Cannot render type Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(unsigned int)))"
   )
-  def blobCreateOrFail() = ???
+  private def blobCreateOrFail() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a blob that represents a range of bytes in @parent. The new blob
+  /** Returns a blob that represents a range of bytes in @parent. The new blob
     * is always created with #HB_MEMORY_MODE_READONLY, meaning that it will
     * never modify data in the parent blob. The parent data is not expected to
     * be modified, and will result in undefined behavior if it is.
     *
     * Makes @parent immutable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_create_sub_blob:/<function parameters>/parent]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
-  def blobCreateSubBlob() = ???
+  private def blobCreateSubBlob() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decreases the reference count on @blob, and if it reaches zero, destroys
+  /** Decreases the reference count on @blob, and if it reaches zero, destroys
     * @blob,
     *   freeing all memory, possibly calling the destroy-callback the blob was
     *   created for if it has not been called already.
     *
     * See TODO:link object types for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_destroy:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
-  def blobDestroy() = ???
+  private def blobDestroy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the data from a blob.
     *
-    * Fetches the data from a blob.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function blob_get_data contains an OUT parameter, which is not supported yet"
+    "[blob_get_data:]: Function blob_get_data contains an OUT parameter, which is not supported yet"
   )
-  def blobGetData() = ???
+  private def blobGetData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to make blob data writable (possibly copying it) and return pointer
+  /** Tries to make blob data writable (possibly copying it) and return pointer
     * to data.
     *
     * Fails if blob has been made immutable, or if memory allocation fails.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function blob_get_data_writable contains an OUT parameter, which is not supported yet"
+    "[blob_get_data_writable:]: Function blob_get_data_writable contains an OUT parameter, which is not supported yet"
   )
-  def blobGetDataWritable() = ???
+  private def blobGetDataWritable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the singleton empty blob.
+  /** Returns the singleton empty blob.
     *
     * See TODO:link object types for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
-  def blobGetEmpty() = ???
+  private def blobGetEmpty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the length of a blob's data.
     *
-    * Fetches the length of a blob's data.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_get_length:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
-  def blobGetLength() = ???
+  private def blobGetLength() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the user data associated with the specified key, attached to the
+  /** Fetches the user data associated with the specified key, attached to the
     * specified font-functions structure.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(const hb_blob_t*)))"
+    "[blob_get_user_data:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(const hb_blob_t*)))"
   )
-  def blobGetUserData() = ???
+  private def blobGetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether a blob is immutable.
     *
-    * Tests whether a blob is immutable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_is_immutable:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
-  def blobIsImmutable() = ???
+  private def blobIsImmutable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes a blob immutable.
     *
-    * Makes a blob immutable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_make_immutable:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
-  def blobMakeImmutable() = ???
+  private def blobMakeImmutable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Increases the reference count on @blob.
+  /** Increases the reference count on @blob.
     *
     * See TODO:link object types for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_reference:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
-  def blobReference() = ???
+  private def blobReference() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Attaches a user-data key/data pair to the specified blob.
     *
-    * Attaches a user-data key/data pair to the specified blob.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_set_user_data:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
-  def blobSetUserData() = ???
+  private def blobSetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Appends a character with the Unicode value of @codepoint to @buffer, and
+  /** Appends a character with the Unicode value of @codepoint to @buffer, and
     * gives it the initial cluster value of @cluster. Clusters can be any thing
     * the client wants, they are usually used to refer to the index of the
     * character in the input text stream and are output in
@@ -259,15 +279,16 @@ object HarfBuzz:
     *
     * This function does not check the validity of @codepoint, it is up to the
     * caller to ensure it is a valid Unicode code point.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_add:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferAdd() = ???
+  private def bufferAdd() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Appends characters from @text array to @buffer. The @item_offset is the
+  /** Appends characters from @text array to @buffer. The @item_offset is the
     * position of the first character from @text that will be appended, and
     * @item_length
     *   is the number of character. When shaping part of a larger text (e.g. a
@@ -283,310 +304,340 @@ object HarfBuzz:
     * to ensure it contains a valid Unicode scalar values. In contrast,
     * hb_buffer_add_utf32() can be used that takes similar input but performs
     * sanity-check on the input.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_add_codepoints:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferAddCodepoints() = ???
+  private def bufferAddCodepoints() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Similar to hb_buffer_add_codepoints(), but allows only access to first 256
+  /** Similar to hb_buffer_add_codepoints(), but allows only access to first 256
     * Unicode code points that can fit in 8-bit strings.
     *
     * <note>Has nothing to do with non-Unicode Latin-1 encoding.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_add_latin1:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferAddLatin1() = ???
+  private def bufferAddLatin1() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * See hb_buffer_add_codepoints().
+  /** See hb_buffer_add_codepoints().
     *
     * Replaces invalid UTF-16 characters with the @buffer replacement code
     * point, see hb_buffer_set_replacement_codepoint().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_add_utf16:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferAddUtf16() = ???
+  private def bufferAddUtf16() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * See hb_buffer_add_codepoints().
+  /** See hb_buffer_add_codepoints().
     *
     * Replaces invalid UTF-32 characters with the @buffer replacement code
     * point, see hb_buffer_set_replacement_codepoint().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_add_utf32:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferAddUtf32() = ???
+  private def bufferAddUtf32() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * See hb_buffer_add_codepoints().
+  /** See hb_buffer_add_codepoints().
     *
     * Replaces invalid UTF-8 characters with the @buffer replacement code point,
     * see hb_buffer_set_replacement_codepoint().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_add_utf8:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferAddUtf8() = ???
+  private def bufferAddUtf8() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Check if allocating memory for the buffer succeeded.
     *
-    * Check if allocating memory for the buffer succeeded.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_allocation_successful:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferAllocationSuccessful() = ???
+  private def bufferAllocationSuccessful() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Append (part of) contents of another buffer to this buffer.
     *
-    * Append (part of) contents of another buffer to this buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_append:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferAppend() = ???
+  private def bufferAppend() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Similar to hb_buffer_reset(), but does not clear the Unicode functions and
+  /** Similar to hb_buffer_reset(), but does not clear the Unicode functions and
     * the replacement code point.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_clear_contents:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferClearContents() = ???
+  private def bufferClearContents() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #hb_buffer_t with all properties to defaults.
     *
-    * Creates a new #hb_buffer_t with all properties to defaults.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_create:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferCreate() = ???
+  private def bufferCreate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #hb_buffer_t, similar to hb_buffer_create(). The only
+  /** Creates a new #hb_buffer_t, similar to hb_buffer_create(). The only
     * difference is that the buffer is configured similarly to @src.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_create_similar:/<function parameters>/src]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
-  def bufferCreateSimilar() = ???
+  private def bufferCreateSimilar() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Deserializes glyphs @buffer from textual representation in the format
+  /** Deserializes glyphs @buffer from textual representation in the format
     * produced by hb_buffer_serialize_glyphs().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function buffer_deserialize_glyphs contains an OUT parameter, which is not supported yet"
+    "[buffer_deserialize_glyphs:]: Function buffer_deserialize_glyphs contains an OUT parameter, which is not supported yet"
   )
-  def bufferDeserializeGlyphs() = ???
+  private def bufferDeserializeGlyphs() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Deserializes Unicode @buffer from textual representation in the format
+  /** Deserializes Unicode @buffer from textual representation in the format
     * produced by hb_buffer_serialize_unicode().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function buffer_deserialize_unicode contains an OUT parameter, which is not supported yet"
+    "[buffer_deserialize_unicode:]: Function buffer_deserialize_unicode contains an OUT parameter, which is not supported yet"
   )
-  def bufferDeserializeUnicode() = ???
+  private def bufferDeserializeUnicode() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Deallocate the @buffer. Decreases the reference count on @buffer by one.
+  /** Deallocate the @buffer. Decreases the reference count on @buffer by one.
     * If the result is zero, then
     * @buffer
     *   and all associated resources are freed. See hb_buffer_reference().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_destroy:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferDestroy() = ???
+  private def bufferDestroy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If dottedcircle_glyph is (hb_codepoint_t) -1 then
+  /** If dottedcircle_glyph is (hb_codepoint_t) -1 then
     * #HB_BUFFER_DIFF_FLAG_DOTTED_CIRCLE_PRESENT and
     * #HB_BUFFER_DIFF_FLAG_NOTDEF_PRESENT are never returned. This should be
     * used by most callers if just comparing two buffers is needed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_diff:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferDiff() = ???
+  private def bufferDiff() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the cluster level of a buffer. The #hb_buffer_cluster_level_t
+  /** Fetches the cluster level of a buffer. The #hb_buffer_cluster_level_t
     * dictates one aspect of how HarfBuzz will treat non-base characters during
     * shaping.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_cluster_level:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
-  def bufferGetClusterLevel() = ???
+  private def bufferGetClusterLevel() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the type of @buffer contents. Buffers are either empty, contain
+  /** Fetches the type of @buffer contents. Buffers are either empty, contain
     * characters (before shaping), or contain glyphs (the result of shaping).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_content_type:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
-  def bufferGetContentType() = ???
+  private def bufferGetContentType() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** See hb_buffer_set_direction()
     *
-    * See hb_buffer_set_direction()
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_direction:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
-  def bufferGetDirection() = ???
+  private def bufferGetDirection() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches an empty #hb_buffer_t.
     *
-    * Fetches an empty #hb_buffer_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferGetEmpty() = ???
+  private def bufferGetEmpty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the #hb_buffer_flags_t of @buffer.
     *
-    * Fetches the #hb_buffer_flags_t of @buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_flags:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
-  def bufferGetFlags() = ???
+  private def bufferGetFlags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns @buffer glyph information array. Returned pointer is valid as long
+  /** Returns @buffer glyph information array. Returned pointer is valid as long
     * as @buffer contents are not modified.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function buffer_get_glyph_infos contains an OUT parameter, which is not supported yet"
+    "[buffer_get_glyph_infos:]: Function buffer_get_glyph_infos contains an OUT parameter, which is not supported yet"
   )
-  def bufferGetGlyphInfos() = ???
+  private def bufferGetGlyphInfos() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns @buffer glyph position array. Returned pointer is valid as long as @buffer
+  /** Returns @buffer glyph position array. Returned pointer is valid as long as @buffer
     * contents are not modified.
     *
     * If buffer did not have positions before, the positions will be initialized
     * to zeros, unless this function is called from within a buffer message
     * callback (see hb_buffer_set_message_func()), in which case `NULL` is
     * returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function buffer_get_glyph_positions contains an OUT parameter, which is not supported yet"
+    "[buffer_get_glyph_positions:]: Function buffer_get_glyph_positions contains an OUT parameter, which is not supported yet"
   )
-  def bufferGetGlyphPositions() = ???
+  private def bufferGetGlyphPositions() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** See hb_buffer_set_invisible_glyph().
     *
-    * See hb_buffer_set_invisible_glyph().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_invisible_glyph:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
-  def bufferGetInvisibleGlyph() = ???
+  private def bufferGetInvisibleGlyph() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** See hb_buffer_set_language().
     *
-    * See hb_buffer_set_language().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_language:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
-  def bufferGetLanguage() = ???
+  private def bufferGetLanguage() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the number of items in the buffer.
     *
-    * Returns the number of items in the buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_length:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
-  def bufferGetLength() = ???
+  private def bufferGetLength() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** See hb_buffer_set_not_found_glyph().
     *
-    * See hb_buffer_set_not_found_glyph().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_not_found_glyph:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
-  def bufferGetNotFoundGlyph() = ???
+  private def bufferGetNotFoundGlyph() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the #hb_codepoint_t that replaces invalid entries for a given
+  /** Fetches the #hb_codepoint_t that replaces invalid entries for a given
     * encoding when adding text to @buffer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_replacement_codepoint:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
-  def bufferGetReplacementCodepoint() = ???
+  private def bufferGetReplacementCodepoint() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the script of @buffer.
     *
-    * Fetches the script of @buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_script:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
-  def bufferGetScript() = ???
+  private def bufferGetScript() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets @props to the #hb_segment_properties_t of @buffer.
     *
-    * Sets @props to the #hb_segment_properties_t of @buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function buffer_get_segment_properties contains an OUT parameter, which is not supported yet"
+    "[buffer_get_segment_properties:]: Function buffer_get_segment_properties contains an OUT parameter, which is not supported yet"
   )
-  def bufferGetSegmentProperties() = ???
+  private def bufferGetSegmentProperties() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the Unicode-functions structure of a buffer.
     *
-    * Fetches the Unicode-functions structure of a buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_unicode_funcs:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
-  def bufferGetUnicodeFuncs() = ???
+  private def bufferGetUnicodeFuncs() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the user data associated with the specified key, attached to the
+  /** Fetches the user data associated with the specified key, attached to the
     * specified buffer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_user_data:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
-  def bufferGetUserData() = ???
+  private def bufferGetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets unset buffer segment properties based on buffer Unicode contents. If
+  /** Sets unset buffer segment properties based on buffer Unicode contents. If
     * buffer is not empty, it must have content type
     * #HB_BUFFER_CONTENT_TYPE_UNICODE.
     *
@@ -607,123 +658,137 @@ object HarfBuzz:
     * script into consideration when choosing a language. Note that
     * hb_language_get_default() is NOT threadsafe the first time it is called.
     * See documentation for that function for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_guess_segment_properties:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferGuessSegmentProperties() = ???
+  private def bufferGuessSegmentProperties() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether @buffer has glyph position data. A buffer gains position
+  /** Returns whether @buffer has glyph position data. A buffer gains position
     * data when hb_buffer_get_glyph_positions() is called on it, and cleared of
     * position data when hb_buffer_clear_contents() is called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_has_positions:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferHasPositions() = ???
+  private def bufferHasPositions() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reorders a glyph buffer to have canonical in-cluster glyph order /
+  /** Reorders a glyph buffer to have canonical in-cluster glyph order /
     * position. The resulting clusters should behave identical to pre-reordering
     * clusters.
     *
     * <note>This has nothing to do with Unicode normalization.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_normalize_glyphs:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferNormalizeGlyphs() = ???
+  private def bufferNormalizeGlyphs() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Pre allocates memory for @buffer to fit at least @size number of items.
     *
-    * Pre allocates memory for @buffer to fit at least @size number of items.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_pre_allocate:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferPreAllocate() = ???
+  private def bufferPreAllocate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Increases the reference count on @buffer by one. This prevents @buffer
+  /** Increases the reference count on @buffer by one. This prevents @buffer
     * from being destroyed until a matching call to hb_buffer_destroy() is made.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_reference:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferReference() = ???
+  private def bufferReference() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Resets the buffer to its initial status, as if it was just newly created
+  /** Resets the buffer to its initial status, as if it was just newly created
     * with hb_buffer_create().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_reset:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferReset() = ???
+  private def bufferReset() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Reverses buffer contents.
     *
-    * Reverses buffer contents.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_reverse:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferReverse() = ???
+  private def bufferReverse() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reverses buffer clusters. That is, the buffer contents are reversed, then
+  /** Reverses buffer clusters. That is, the buffer contents are reversed, then
     * each cluster (consecutive items having the same cluster number) are
     * reversed again.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_reverse_clusters:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferReverseClusters() = ???
+  private def bufferReverseClusters() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Reverses buffer contents between @start and @end.
     *
-    * Reverses buffer contents between @start and @end.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_reverse_range:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferReverseRange() = ???
+  private def bufferReverseRange() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Serializes @buffer into a textual representation of its content, whether
+  /** Serializes @buffer into a textual representation of its content, whether
     * Unicode codepoints or glyph identifiers and positioning information. This
     * is useful for showing the contents of the buffer, for example during
     * debugging. See the documentation of hb_buffer_serialize_unicode() and
     * hb_buffer_serialize_glyphs() for a description of the output format.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function buffer_serialize contains an OUT parameter, which is not supported yet"
+    "[buffer_serialize:]: Function buffer_serialize contains an OUT parameter, which is not supported yet"
   )
-  def bufferSerialize() = ???
+  private def bufferSerialize() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a string into an #hb_buffer_serialize_format_t. Does not check if
+  /** Parses a string into an #hb_buffer_serialize_format_t. Does not check if
     * @str
     *   is a valid buffer serialization format, use
     *   hb_buffer_serialize_list_formats() to get the list of supported formats.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char*)))"
+    "[buffer_serialize_format_from_string:/<function parameters>/str]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char*)))"
   )
-  def bufferSerializeFormatFromString() = ???
+  private def bufferSerializeFormatFromString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts @format to the string corresponding it, or `NULL` if it is not a
+  /** Converts @format to the string corresponding it, or `NULL` if it is not a
     * valid #hb_buffer_serialize_format_t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def bufferSerializeFormatToString(
       format: Buffer_serialize_format_t /* Some(hb_buffer_serialize_format_t) */
@@ -731,9 +796,7 @@ object HarfBuzz:
     hb_buffer_serialize_format_to_string(format.raw).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Serializes @buffer into a textual representation of its glyph content,
+  /** Serializes @buffer into a textual representation of its glyph content,
     * useful for showing the contents of the buffer, for example during
     * debugging. There are currently two supported serialization formats:
     *
@@ -782,24 +845,26 @@ object HarfBuzz:
     *     #hb_glyph_extents_t.y_bearing, #hb_glyph_extents_t.width and
     *     #hb_glyph_extents_t.height respectively if
     *     #HB_BUFFER_SERIALIZE_FLAG_GLYPH_EXTENTS is set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function buffer_serialize_glyphs contains an OUT parameter, which is not supported yet"
+    "[buffer_serialize_glyphs:]: Function buffer_serialize_glyphs contains an OUT parameter, which is not supported yet"
   )
-  def bufferSerializeGlyphs() = ???
+  private def bufferSerializeGlyphs() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns a list of supported buffer serialization formats.
     *
-    * Returns a list of supported buffer serialization formats.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+    "[buffer_serialize_list_formats:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def bufferSerializeListFormats() = ???
+  private def bufferSerializeListFormats() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Serializes @buffer into a textual representation of its content, when the
+  /** Serializes @buffer into a textual representation of its content, when the
     * buffer contains Unicode codepoints (i.e., before shaping). This is useful
     * for showing the contents of the buffer, for example during debugging.
     * There are currently two supported serialization formats:
@@ -828,26 +893,28 @@ object HarfBuzz:
     * ```
     * [{u:1617,cl:0},{u:1576,cl:1}]
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function buffer_serialize_unicode contains an OUT parameter, which is not supported yet"
+    "[buffer_serialize_unicode:]: Function buffer_serialize_unicode contains an OUT parameter, which is not supported yet"
   )
-  def bufferSerializeUnicode() = ???
+  private def bufferSerializeUnicode() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the cluster level of a buffer. The #hb_buffer_cluster_level_t
+  /** Sets the cluster level of a buffer. The #hb_buffer_cluster_level_t
     * dictates one aspect of how HarfBuzz will treat non-base characters during
     * shaping.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_cluster_level:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferSetClusterLevel() = ???
+  private def bufferSetClusterLevel() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the type of @buffer contents. Buffers are either empty, contain
+  /** Sets the type of @buffer contents. Buffers are either empty, contain
     * characters (before shaping), or contain glyphs (the result of shaping).
     *
     * You rarely need to call this function, since a number of other functions
@@ -872,50 +939,54 @@ object HarfBuzz:
     * The above transitions are designed such that one can use a buffer in a
     * loop of "reset : add-text : shape" without needing to ever modify the
     * content type manually.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_content_type:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferSetContentType() = ???
+  private def bufferSetContentType() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set the text flow direction of the buffer. No shaping can happen without
+  /** Set the text flow direction of the buffer. No shaping can happen without
     * setting @buffer direction, and it controls the visual direction for the
     * output glyphs; for RTL direction the glyphs will be reversed. Many layout
     * features depend on the proper setting of the direction, for example,
     * reversing RTL text before shaping, then shaping with LTR direction is not
     * the same as keeping the text in logical order and shaping with RTL
     * direction.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_direction:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferSetDirection() = ???
+  private def bufferSetDirection() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets @buffer flags to @flags. See #hb_buffer_flags_t.
     *
-    * Sets @buffer flags to @flags. See #hb_buffer_flags_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_flags:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferSetFlags() = ???
+  private def bufferSetFlags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the #hb_codepoint_t that replaces invisible characters in the shaping
+  /** Sets the #hb_codepoint_t that replaces invisible characters in the shaping
     * result. If set to zero (default), the glyph for the U+0020 SPACE character
     * is used. Otherwise, this value is used verbatim.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_invisible_glyph:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferSetInvisibleGlyph() = ???
+  private def bufferSetInvisibleGlyph() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the language of @buffer to @language.
+  /** Sets the language of @buffer to @language.
     *
     * Languages are crucial for selecting which OpenType feature to apply to the
     * buffer which can result in applying language-specific behaviour. Languages
@@ -924,59 +995,64 @@ object HarfBuzz:
     *
     * Use hb_language_from_string() to convert from BCP 47 language tags to
     * #hb_language_t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_language:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferSetLanguage() = ???
+  private def bufferSetLanguage() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Similar to hb_buffer_pre_allocate(), but clears any new items added at the
+  /** Similar to hb_buffer_pre_allocate(), but clears any new items added at the
     * end.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_length:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferSetLength() = ???
+  private def bufferSetLength() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_buffer_message_func_t.
     *
-    * Sets the implementation function for #hb_buffer_message_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_message_func:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferSetMessageFunc() = ???
+  private def bufferSetMessageFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the #hb_codepoint_t that replaces characters not found in the font
+  /** Sets the #hb_codepoint_t that replaces characters not found in the font
     * during shaping.
     *
     * The not-found glyph defaults to zero, sometimes knows as the ".notdef"
     * glyph. This API allows for differentiating the two.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_not_found_glyph:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferSetNotFoundGlyph() = ???
+  private def bufferSetNotFoundGlyph() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the #hb_codepoint_t that replaces invalid entries for a given
+  /** Sets the #hb_codepoint_t that replaces invalid entries for a given
     * encoding when adding text to @buffer.
     *
     * Default is #HB_BUFFER_REPLACEMENT_CODEPOINT_DEFAULT.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_replacement_codepoint:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferSetReplacementCodepoint() = ???
+  private def bufferSetReplacementCodepoint() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the script of @buffer to @script.
+  /** Sets the script of @buffer to @script.
     *
     * Script is crucial for choosing the proper shaping behaviour for scripts
     * that require it (e.g. Arabic) and the which OpenType features defined in
@@ -985,117 +1061,131 @@ object HarfBuzz:
     * You can pass one of the predefined #hb_script_t values, or use
     * hb_script_from_string() or hb_script_from_iso15924_tag() to get the
     * corresponding script from an ISO 15924 script tag.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_script:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferSetScript() = ???
+  private def bufferSetScript() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the segment properties of the buffer, a shortcut for calling
+  /** Sets the segment properties of the buffer, a shortcut for calling
     * hb_buffer_set_direction(), hb_buffer_set_script() and
     * hb_buffer_set_language() individually.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_segment_properties:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferSetSegmentProperties() = ???
+  private def bufferSetSegmentProperties() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the Unicode-functions structure of a buffer to
+  /** Sets the Unicode-functions structure of a buffer to
     * @unicode_funcs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_unicode_funcs:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferSetUnicodeFuncs() = ???
+  private def bufferSetUnicodeFuncs() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Attaches a user-data key/data pair to the specified buffer.
     *
-    * Attaches a user-data key/data pair to the specified buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_user_data:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
-  def bufferSetUserData() = ???
+  private def bufferSetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the alpha channel of the given @color.
     *
-    * Fetches the alpha channel of the given @color.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(color_t), @type -> DataRecord(hb_color_t)))"
+    "[color_get_alpha:/<function parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(color_t), @type -> DataRecord(hb_color_t)))"
   )
-  def colorGetAlpha() = ???
+  private def colorGetAlpha() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the blue channel of the given @color.
     *
-    * Fetches the blue channel of the given @color.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(color_t), @type -> DataRecord(hb_color_t)))"
+    "[color_get_blue:/<function parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(color_t), @type -> DataRecord(hb_color_t)))"
   )
-  def colorGetBlue() = ???
+  private def colorGetBlue() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the green channel of the given @color.
     *
-    * Fetches the green channel of the given @color.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(color_t), @type -> DataRecord(hb_color_t)))"
+    "[color_get_green:/<function parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(color_t), @type -> DataRecord(hb_color_t)))"
   )
-  def colorGetGreen() = ???
+  private def colorGetGreen() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the red channel of the given @color.
     *
-    * Fetches the red channel of the given @color.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(color_t), @type -> DataRecord(hb_color_t)))"
+    "[color_get_red:/<function parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(color_t), @type -> DataRecord(hb_color_t)))"
   )
-  def colorGetRed() = ???
+  private def colorGetRed() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of color stops from the given color line object.
+  /** Fetches a list of color stops from the given color line object.
     *
     * Note that due to variations being applied, the returned color stops may be
     * out of order. It is the callers responsibility to ensure that color stops
     * are sorted by their offset before they are used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function color_line_get_color_stops contains an OUT parameter, which is not supported yet"
+    "[color_line_get_color_stops:]: Function color_line_get_color_stops contains an OUT parameter, which is not supported yet"
   )
-  def colorLineGetColorStops() = ???
+  private def colorLineGetColorStops() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the extend mode of the color line object.
     *
-    * Fetches the extend mode of the color line object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(color_line_t), @type -> DataRecord(hb_color_line_t*)))"
+    "[color_line_get_extend:/<function parameters>/color_line]: Cannot render type Type(List(),ListMap(@name -> DataRecord(color_line_t), @type -> DataRecord(hb_color_line_t*)))"
   )
-  def colorLineGetExtend() = ???
+  private def colorLineGetExtend() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string to an #hb_direction_t.
+  /** Converts a string to an #hb_direction_t.
     *
     * Matching is loose and applies only to the first letter. For examples,
     * "LTR" and "left-to-right" will both return #HB_DIRECTION_LTR.
     *
     * Unmatched strings will return #HB_DIRECTION_INVALID.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char*)))"
+    "[direction_from_string:/<function parameters>/str]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char*)))"
   )
-  def directionFromString() = ???
+  private def directionFromString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts an #hb_direction_t to a string.
     *
-    * Converts an #hb_direction_t to a string.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def directionToString(
       direction: Direction_t /* Some(hb_direction_t) */
@@ -1103,260 +1193,284 @@ object HarfBuzz:
     hb_direction_to_string(direction.raw).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "close-path" draw operation.
     *
-    * Perform a "close-path" draw operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_close_path:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawClosePath() = ???
+  private def drawClosePath() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "cubic-to" draw operation.
     *
-    * Perform a "cubic-to" draw operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_cubic_to:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawCubicTo() = ???
+  private def drawCubicTo() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new draw callbacks object.
     *
-    * Creates a new draw callbacks object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_create:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawFuncsCreate() = ???
+  private def drawFuncsCreate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Deallocate the @dfuncs. Decreases the reference count on @dfuncs by one.
+  /** Deallocate the @dfuncs. Decreases the reference count on @dfuncs by one.
     * If the result is zero, then
     * @dfuncs
     *   and all associated resources are freed. See hb_draw_funcs_reference().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_destroy:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawFuncsDestroy() = ???
+  private def drawFuncsDestroy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the singleton empty draw-functions structure.
     *
-    * Fetches the singleton empty draw-functions structure.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawFuncsGetEmpty() = ???
+  private def drawFuncsGetEmpty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the user-data associated with the specified key, attached to the
+  /** Fetches the user-data associated with the specified key, attached to the
     * specified draw-functions structure.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(const hb_draw_funcs_t*)))"
+    "[draw_funcs_get_user_data:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(const hb_draw_funcs_t*)))"
   )
-  def drawFuncsGetUserData() = ???
+  private def drawFuncsGetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks whether @dfuncs is immutable.
     *
-    * Checks whether @dfuncs is immutable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_is_immutable:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawFuncsIsImmutable() = ???
+  private def drawFuncsIsImmutable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes @dfuncs object immutable.
     *
-    * Makes @dfuncs object immutable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_make_immutable:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawFuncsMakeImmutable() = ???
+  private def drawFuncsMakeImmutable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Increases the reference count on @dfuncs by one.
+  /** Increases the reference count on @dfuncs by one.
     *
     * This prevents @dfuncs from being destroyed until a matching call to
     * hb_draw_funcs_destroy() is made.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_reference:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawFuncsReference() = ???
+  private def drawFuncsReference() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets close-path callback to the draw functions object.
     *
-    * Sets close-path callback to the draw functions object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_set_close_path_func:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawFuncsSetClosePathFunc() = ???
+  private def drawFuncsSetClosePathFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets cubic-to callback to the draw functions object.
     *
-    * Sets cubic-to callback to the draw functions object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_set_cubic_to_func:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawFuncsSetCubicToFunc() = ???
+  private def drawFuncsSetCubicToFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets line-to callback to the draw functions object.
     *
-    * Sets line-to callback to the draw functions object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_set_line_to_func:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawFuncsSetLineToFunc() = ???
+  private def drawFuncsSetLineToFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets move-to callback to the draw functions object.
     *
-    * Sets move-to callback to the draw functions object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_set_move_to_func:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawFuncsSetMoveToFunc() = ???
+  private def drawFuncsSetMoveToFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets quadratic-to callback to the draw functions object.
     *
-    * Sets quadratic-to callback to the draw functions object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_set_quadratic_to_func:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawFuncsSetQuadraticToFunc() = ???
+  private def drawFuncsSetQuadraticToFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Attaches a user-data key/data pair to the specified draw-functions
+  /** Attaches a user-data key/data pair to the specified draw-functions
     * structure.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_set_user_data:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawFuncsSetUserData() = ???
+  private def drawFuncsSetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "line-to" draw operation.
     *
-    * Perform a "line-to" draw operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_line_to:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawLineTo() = ???
+  private def drawLineTo() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "move-to" draw operation.
     *
-    * Perform a "move-to" draw operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_move_to:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawMoveTo() = ???
+  private def drawMoveTo() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "quadratic-to" draw operation.
     *
-    * Perform a "quadratic-to" draw operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_quadratic_to:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
-  def drawQuadraticTo() = ???
+  private def drawQuadraticTo() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Add table for @tag with data provided by @blob to the face. @face must be
+  /** Add table for @tag with data provided by @blob to the face. @face must be
     * created using hb_face_builder_create().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_builder_add_table:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def faceBuilderAddTable() = ???
+  private def faceBuilderAddTable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #hb_face_t that can be used with hb_face_builder_add_table().
+  /** Creates a #hb_face_t that can be used with hb_face_builder_add_table().
     * After tables are added to the face, it can be compiled to a binary font
     * file by calling hb_face_reference_blob().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_builder_create:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def faceBuilderCreate() = ???
+  private def faceBuilderCreate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set the ordering of tables for serialization. Any tables not specified in
+  /** Set the ordering of tables for serialization. Any tables not specified in
     * the tags list will be ordered after the tables in tags, ordered by the
     * default sort ordering.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_builder_sort_tables:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def faceBuilderSortTables() = ???
+  private def faceBuilderSortTables() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Collects the mapping from Unicode characters to nominal glyphs of the @face,
+  /** Collects the mapping from Unicode characters to nominal glyphs of the @face,
     * and optionally all of the Unicode characters covered by @face.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function face_collect_nominal_glyph_mapping contains an OUT parameter, which is not supported yet"
+    "[face_collect_nominal_glyph_mapping:]: Function face_collect_nominal_glyph_mapping contains an OUT parameter, which is not supported yet"
   )
-  def faceCollectNominalGlyphMapping() = ???
+  private def faceCollectNominalGlyphMapping() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Collects all of the Unicode characters covered by @face and adds them to
+  /** Collects all of the Unicode characters covered by @face and adds them to
     * the #hb_set_t set @out.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function face_collect_unicodes contains an OUT parameter, which is not supported yet"
+    "[face_collect_unicodes:]: Function face_collect_unicodes contains an OUT parameter, which is not supported yet"
   )
-  def faceCollectUnicodes() = ???
+  private def faceCollectUnicodes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Collects all Unicode "Variation Selector" characters covered by @face and
+  /** Collects all Unicode "Variation Selector" characters covered by @face and
     * adds them to the #hb_set_t set @out.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function face_collect_variation_selectors contains an OUT parameter, which is not supported yet"
+    "[face_collect_variation_selectors:]: Function face_collect_variation_selectors contains an OUT parameter, which is not supported yet"
   )
-  def faceCollectVariationSelectors() = ???
+  private def faceCollectVariationSelectors() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Collects all Unicode characters for @variation_selector covered by @face
+  /** Collects all Unicode characters for @variation_selector covered by @face
     * and adds them to the #hb_set_t set @out.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function face_collect_variation_unicodes contains an OUT parameter, which is not supported yet"
+    "[face_collect_variation_unicodes:]: Function face_collect_variation_unicodes contains an OUT parameter, which is not supported yet"
   )
-  def faceCollectVariationUnicodes() = ???
+  private def faceCollectVariationUnicodes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the number of faces in a blob.
     *
-    * Fetches the number of faces in a blob.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[face_count:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
-  def faceCount() = ???
+  private def faceCount() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Constructs a new face object from the specified blob and a face index into
+  /** Constructs a new face object from the specified blob and a face index into
     * that blob.
     *
     * The face index is used for blobs of file formats such as TTC and DFont
@@ -1370,190 +1484,208 @@ object HarfBuzz:
     * <note>Note: The high 16-bits of @index, if non-zero, are used by
     * hb_font_create() to load named-instances in variable fonts. See
     * hb_font_create() for details.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[face_create:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
-  def faceCreate() = ???
+  private def faceCreate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Variant of hb_face_create(), built for those cases where it is more
+  /** Variant of hb_face_create(), built for those cases where it is more
     * convenient to provide data for individual tables instead of the whole font
     * data. With the caveat that hb_face_get_table_tags() does not currently
     * work with faces created this way.
     *
     * Creates a new face object from the specified @user_data and @reference_table_func,
     * with the @destroy callback.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(reference_table_func_t), @type -> DataRecord(hb_reference_table_func_t)))"
+    "[face_create_for_tables:/<function parameters>/reference_table_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(reference_table_func_t), @type -> DataRecord(hb_reference_table_func_t)))"
   )
-  def faceCreateForTables() = ???
+  private def faceCreateForTables() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decreases the reference count on a face object. When the reference count
+  /** Decreases the reference count on a face object. When the reference count
     * reaches zero, the face is destroyed, freeing all memory.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_destroy:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def faceDestroy() = ???
+  private def faceDestroy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the singleton empty face object.
     *
-    * Fetches the singleton empty face object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def faceGetEmpty() = ???
+  private def faceGetEmpty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the glyph-count value of the specified face object.
     *
-    * Fetches the glyph-count value of the specified face object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
+    "[face_get_glyph_count:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
   )
-  def faceGetGlyphCount() = ???
+  private def faceGetGlyphCount() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the face-index corresponding to the given face.
+  /** Fetches the face-index corresponding to the given face.
     *
     * <note>Note: face indices within a collection are zero-based.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
+    "[face_get_index:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
   )
-  def faceGetIndex() = ???
+  private def faceGetIndex() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of all table tags for a face, if possible. The list
+  /** Fetches a list of all table tags for a face, if possible. The list
     * returned will begin at the offset provided
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function face_get_table_tags contains an OUT parameter, which is not supported yet"
+    "[face_get_table_tags:]: Function face_get_table_tags contains an OUT parameter, which is not supported yet"
   )
-  def faceGetTableTags() = ???
+  private def faceGetTableTags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the units-per-em (UPEM) value of the specified face object.
+  /** Fetches the units-per-em (UPEM) value of the specified face object.
     *
     * Typical UPEM values for fonts are 1000, or 2048, but any value in between
     * 16 and 16,384 is allowed for OpenType fonts.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
+    "[face_get_upem:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
   )
-  def faceGetUpem() = ???
+  private def faceGetUpem() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the user data associated with the specified key, attached to the
+  /** Fetches the user data associated with the specified key, attached to the
     * specified face object.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
+    "[face_get_user_data:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
   )
-  def faceGetUserData() = ???
+  private def faceGetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether the given face object is immutable.
     *
-    * Tests whether the given face object is immutable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
+    "[face_is_immutable:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
   )
-  def faceIsImmutable() = ???
+  private def faceIsImmutable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes the given face object immutable.
     *
-    * Makes the given face object immutable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_make_immutable:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def faceMakeImmutable() = ???
+  private def faceMakeImmutable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Increases the reference count on a face object.
     *
-    * Increases the reference count on a face object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_reference:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def faceReference() = ???
+  private def faceReference() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a pointer to the binary blob that contains the specified face.
+  /** Fetches a pointer to the binary blob that contains the specified face.
     * Returns an empty blob if referencing face data is not possible.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_reference_blob:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def faceReferenceBlob() = ???
+  private def faceReferenceBlob() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches a reference to the specified table within the specified face.
     *
-    * Fetches a reference to the specified table within the specified face.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
+    "[face_reference_table:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
   )
-  def faceReferenceTable() = ???
+  private def faceReferenceTable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the glyph count for a face object to the specified value.
+  /** Sets the glyph count for a face object to the specified value.
     *
     * This API is used in rare circumstances.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_set_glyph_count:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def faceSetGlyphCount() = ???
+  private def faceSetGlyphCount() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Assigns the specified face-index to @face. Fails if the face is immutable.
+  /** Assigns the specified face-index to @face. Fails if the face is immutable.
     *
     * <note>Note: changing the index has no effect on the face itself This only
     * changes the value returned by hb_face_get_index().</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_set_index:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def faceSetIndex() = ???
+  private def faceSetIndex() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the units-per-em (upem) for a face object to the specified value.
+  /** Sets the units-per-em (upem) for a face object to the specified value.
     *
     * This API is used in rare circumstances.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_set_upem:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def faceSetUpem() = ???
+  private def faceSetUpem() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Attaches a user-data key/data pair to the given face object.
     *
-    * Attaches a user-data key/data pair to the given face object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_set_user_data:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def faceSetUserData() = ???
+  private def faceSetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a string into a #hb_feature_t.
+  /** Parses a string into a #hb_feature_t.
     *
     * The format for specifying feature strings follows. All valid CSS
     * font-feature-settings values other than 'normal' and the global values are
@@ -1595,746 +1727,818 @@ object HarfBuzz:
     * <row><entry>Mixing it all:</entry></row> <row><entry>aalt[3:5]=2</entry>
     * <entry>2</entry> <entry>3</entry> <entry>5</entry> <entry>Turn 2nd
     * alternate on for range</entry></row> </tbody> </tgroup> </informaltable>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function feature_from_string contains an OUT parameter, which is not supported yet"
+    "[feature_from_string:]: Function feature_from_string contains an OUT parameter, which is not supported yet"
   )
-  def featureFromString() = ???
+  private def featureFromString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a #hb_feature_t into a `NULL`-terminated string in the format
+  /** Converts a #hb_feature_t into a `NULL`-terminated string in the format
     * understood by hb_feature_from_string(). The client in responsible for
     * allocating big enough size for @buf, 128 bytes is more than enough.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function feature_to_string contains an OUT parameter, which is not supported yet"
+    "[feature_to_string:]: Function feature_to_string contains an OUT parameter, which is not supported yet"
   )
-  def featureToString() = ???
+  private def featureToString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds the origin coordinates to an (X,Y) point coordinate, in the specified
+  /** Adds the origin coordinates to an (X,Y) point coordinate, in the specified
     * glyph ID in the specified font.
     *
     * Calls the appropriate direction-specific variant (horizontal or vertical)
     * depending on the value of @direction.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_add_glyph_origin_for_direction contains an INOUT parameter, which is not supported yet"
+    "[font_add_glyph_origin_for_direction:]: Function font_add_glyph_origin_for_direction contains an INOUT parameter, which is not supported yet"
   )
-  def fontAddGlyphOriginForDirection() = ???
+  private def fontAddGlyphOriginForDirection() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Notifies the @font that underlying font data has changed. This has the
+  /** Notifies the @font that underlying font data has changed. This has the
     * effect of increasing the serial as returned by hb_font_get_serial(), which
     * invalidates internal caches.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_changed:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontChanged() = ???
+  private def fontChanged() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Constructs a new font object from the specified face.
+  /** Constructs a new font object from the specified face.
     *
     * <note>Note: If @face's index value (as passed to hb_face_create() has
     * non-zero top 16-bits, those bits minus one are passed to
     * hb_font_set_var_named_instance(), effectively loading a named-instance of
     * a variable font, instead of the default-instance. This allows specifying
     * which named-instance to load by default when creating the face.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[font_create:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def fontCreate() = ???
+  private def fontCreate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Constructs a sub-font font object from the specified @parent font,
+  /** Constructs a sub-font font object from the specified @parent font,
     * replicating the parent's properties.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_create_sub_font:/<function parameters>/parent]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontCreateSubFont() = ???
+  private def fontCreateSubFont() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decreases the reference count on the given font object. When the reference
+  /** Decreases the reference count on the given font object. When the reference
     * count reaches zero, the font is destroyed, freeing all memory.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_destroy:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontDestroy() = ???
+  private def fontDestroy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Draws the outline that corresponds to a glyph in the specified @font.
+  /** Draws the outline that corresponds to a glyph in the specified @font.
     *
     * The outline is returned by way of calls to the callbacks of the @dfuncs
     * objects, with @draw_data passed to them.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_draw_glyph:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontDrawGlyph() = ???
+  private def fontDrawGlyph() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #hb_font_funcs_t structure of font functions.
     *
-    * Creates a new #hb_font_funcs_t structure of font functions.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_create:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsCreate() = ???
+  private def fontFuncsCreate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decreases the reference count on a font-functions structure. When the
+  /** Decreases the reference count on a font-functions structure. When the
     * reference count reaches zero, the font-functions structure is destroyed,
     * freeing all memory.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_destroy:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsDestroy() = ???
+  private def fontFuncsDestroy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches an empty font-functions structure.
     *
-    * Fetches an empty font-functions structure.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsGetEmpty() = ???
+  private def fontFuncsGetEmpty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the user data associated with the specified key, attached to the
+  /** Fetches the user data associated with the specified key, attached to the
     * specified font-functions structure.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(const hb_font_funcs_t*)))"
+    "[font_funcs_get_user_data:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(const hb_font_funcs_t*)))"
   )
-  def fontFuncsGetUserData() = ???
+  private def fontFuncsGetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether a font-functions structure is immutable.
     *
-    * Tests whether a font-functions structure is immutable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_is_immutable:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsIsImmutable() = ???
+  private def fontFuncsIsImmutable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes a font-functions structure immutable.
     *
-    * Makes a font-functions structure immutable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_make_immutable:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsMakeImmutable() = ???
+  private def fontFuncsMakeImmutable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Increases the reference count on a font-functions structure.
     *
-    * Increases the reference count on a font-functions structure.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_reference:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsReference() = ???
+  private def fontFuncsReference() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_draw_glyph_func_t.
     *
-    * Sets the implementation function for #hb_font_draw_glyph_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_draw_glyph_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetDrawGlyphFunc() = ???
+  private def fontFuncsSetDrawGlyphFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_font_h_extents_func_t.
     *
-    * Sets the implementation function for #hb_font_get_font_h_extents_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_font_h_extents_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetFontHExtentsFunc() = ???
+  private def fontFuncsSetFontHExtentsFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_font_v_extents_func_t.
     *
-    * Sets the implementation function for #hb_font_get_font_v_extents_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_font_v_extents_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetFontVExtentsFunc() = ???
+  private def fontFuncsSetFontVExtentsFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the implementation function for
+  /** Sets the implementation function for
     * #hb_font_get_glyph_contour_point_func_t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_contour_point_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetGlyphContourPointFunc() = ???
+  private def fontFuncsSetGlyphContourPointFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_glyph_extents_func_t.
     *
-    * Sets the implementation function for #hb_font_get_glyph_extents_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_extents_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetGlyphExtentsFunc() = ???
+  private def fontFuncsSetGlyphExtentsFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_glyph_from_name_func_t.
     *
-    * Sets the implementation function for #hb_font_get_glyph_from_name_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_from_name_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetGlyphFromNameFunc() = ???
+  private def fontFuncsSetGlyphFromNameFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Deprecated. Use hb_font_funcs_set_nominal_glyph_func() and
+  /** Deprecated. Use hb_font_funcs_set_nominal_glyph_func() and
     * hb_font_funcs_set_variation_glyph_func() instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetGlyphFunc() = ???
+  private def fontFuncsSetGlyphFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_glyph_h_advance_func_t.
     *
-    * Sets the implementation function for #hb_font_get_glyph_h_advance_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_h_advance_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetGlyphHAdvanceFunc() = ???
+  private def fontFuncsSetGlyphHAdvanceFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_glyph_h_advances_func_t.
     *
-    * Sets the implementation function for #hb_font_get_glyph_h_advances_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_h_advances_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetGlyphHAdvancesFunc() = ???
+  private def fontFuncsSetGlyphHAdvancesFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_glyph_h_kerning_func_t.
     *
-    * Sets the implementation function for #hb_font_get_glyph_h_kerning_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_h_kerning_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetGlyphHKerningFunc() = ???
+  private def fontFuncsSetGlyphHKerningFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_glyph_h_origin_func_t.
     *
-    * Sets the implementation function for #hb_font_get_glyph_h_origin_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_h_origin_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetGlyphHOriginFunc() = ???
+  private def fontFuncsSetGlyphHOriginFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_glyph_name_func_t.
     *
-    * Sets the implementation function for #hb_font_get_glyph_name_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_name_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetGlyphNameFunc() = ???
+  private def fontFuncsSetGlyphNameFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the implementation function for #hb_font_get_glyph_shape_func_t,
+  /** Sets the implementation function for #hb_font_get_glyph_shape_func_t,
     * which is the same as #hb_font_draw_glyph_func_t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_shape_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetGlyphShapeFunc() = ???
+  private def fontFuncsSetGlyphShapeFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_glyph_v_advance_func_t.
     *
-    * Sets the implementation function for #hb_font_get_glyph_v_advance_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_v_advance_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetGlyphVAdvanceFunc() = ???
+  private def fontFuncsSetGlyphVAdvanceFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_glyph_v_advances_func_t.
     *
-    * Sets the implementation function for #hb_font_get_glyph_v_advances_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_v_advances_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetGlyphVAdvancesFunc() = ???
+  private def fontFuncsSetGlyphVAdvancesFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_glyph_v_kerning_func_t.
     *
-    * Sets the implementation function for #hb_font_get_glyph_v_kerning_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_v_kerning_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetGlyphVKerningFunc() = ???
+  private def fontFuncsSetGlyphVKerningFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_glyph_v_origin_func_t.
     *
-    * Sets the implementation function for #hb_font_get_glyph_v_origin_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_v_origin_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetGlyphVOriginFunc() = ???
+  private def fontFuncsSetGlyphVOriginFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_nominal_glyph_func_t.
     *
-    * Sets the implementation function for #hb_font_get_nominal_glyph_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_nominal_glyph_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetNominalGlyphFunc() = ???
+  private def fontFuncsSetNominalGlyphFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_nominal_glyphs_func_t.
     *
-    * Sets the implementation function for #hb_font_get_nominal_glyphs_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_nominal_glyphs_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetNominalGlyphsFunc() = ???
+  private def fontFuncsSetNominalGlyphsFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_paint_glyph_func_t.
     *
-    * Sets the implementation function for #hb_font_paint_glyph_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_paint_glyph_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetPaintGlyphFunc() = ???
+  private def fontFuncsSetPaintGlyphFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Attaches a user-data key/data pair to the specified font-functions
+  /** Attaches a user-data key/data pair to the specified font-functions
     * structure.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_user_data:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetUserData() = ???
+  private def fontFuncsSetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_font_get_variation_glyph_func_t.
     *
-    * Sets the implementation function for #hb_font_get_variation_glyph_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_variation_glyph_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
-  def fontFuncsSetVariationGlyphFunc() = ???
+  private def fontFuncsSetVariationGlyphFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the empty font object.
     *
-    * Fetches the empty font object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontGetEmpty() = ???
+  private def fontGetEmpty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the extents for a font in a text segment of the specified
+  /** Fetches the extents for a font in a text segment of the specified
     * direction.
     *
     * Calls the appropriate direction-specific variant (horizontal or vertical)
     * depending on the value of @direction.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_extents_for_direction contains an OUT parameter, which is not supported yet"
+    "[font_get_extents_for_direction:]: Function font_get_extents_for_direction contains an OUT parameter, which is not supported yet"
   )
-  def fontGetExtentsForDirection() = ???
+  private def fontGetExtentsForDirection() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the face associated with the specified font object.
     *
-    * Fetches the face associated with the specified font object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_face:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontGetFace() = ???
+  private def fontGetFace() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the glyph ID for a Unicode code point in the specified font, with
+  /** Fetches the glyph ID for a Unicode code point in the specified font, with
     * an optional variation selector.
     *
     * If @variation_selector is 0, calls hb_font_get_nominal_glyph(); otherwise
     * calls hb_font_get_variation_glyph().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph:]: Function font_get_glyph contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyph() = ???
+  private def fontGetGlyph() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the advance for a glyph ID from the specified font, in a text
+  /** Fetches the advance for a glyph ID from the specified font, in a text
     * segment of the specified direction.
     *
     * Calls the appropriate direction-specific variant (horizontal or vertical)
     * depending on the value of @direction.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph_advance_for_direction contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph_advance_for_direction:]: Function font_get_glyph_advance_for_direction contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyphAdvanceForDirection() = ???
+  private def fontGetGlyphAdvanceForDirection() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the advances for a sequence of glyph IDs in the specified font, in
+  /** Fetches the advances for a sequence of glyph IDs in the specified font, in
     * a text segment of the specified direction.
     *
     * Calls the appropriate direction-specific variant (horizontal or vertical)
     * depending on the value of @direction.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph_advances_for_direction contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph_advances_for_direction:]: Function font_get_glyph_advances_for_direction contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyphAdvancesForDirection() = ???
+  private def fontGetGlyphAdvancesForDirection() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the (x,y) coordinates of a specified contour-point index in the
+  /** Fetches the (x,y) coordinates of a specified contour-point index in the
     * specified glyph, within the specified font.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph_contour_point contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph_contour_point:]: Function font_get_glyph_contour_point contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyphContourPoint() = ???
+  private def fontGetGlyphContourPoint() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the (X,Y) coordinates of a specified contour-point index in the
+  /** Fetches the (X,Y) coordinates of a specified contour-point index in the
     * specified glyph ID in the specified font, with respect to the origin in a
     * text segment in the specified direction.
     *
     * Calls the appropriate direction-specific variant (horizontal or vertical)
     * depending on the value of @direction.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph_contour_point_for_origin contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph_contour_point_for_origin:]: Function font_get_glyph_contour_point_for_origin contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyphContourPointForOrigin() = ???
+  private def fontGetGlyphContourPointForOrigin() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the #hb_glyph_extents_t data for a glyph ID in the specified font.
     *
-    * Fetches the #hb_glyph_extents_t data for a glyph ID in the specified font.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph_extents contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph_extents:]: Function font_get_glyph_extents contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyphExtents() = ???
+  private def fontGetGlyphExtents() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the #hb_glyph_extents_t data for a glyph ID in the specified font,
+  /** Fetches the #hb_glyph_extents_t data for a glyph ID in the specified font,
     * with respect to the origin in a text segment in the specified direction.
     *
     * Calls the appropriate direction-specific variant (horizontal or vertical)
     * depending on the value of @direction.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph_extents_for_origin contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph_extents_for_origin:]: Function font_get_glyph_extents_for_origin contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyphExtentsForOrigin() = ???
+  private def fontGetGlyphExtentsForOrigin() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the glyph ID that corresponds to a name string in the specified @font.
+  /** Fetches the glyph ID that corresponds to a name string in the specified @font.
     *
     * <note>Note: @len == -1 means the name string is null-terminated.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph_from_name contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph_from_name:]: Function font_get_glyph_from_name contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyphFromName() = ???
+  private def fontGetGlyphFromName() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the advance for a glyph ID in the specified font, for horizontal
+  /** Fetches the advance for a glyph ID in the specified font, for horizontal
     * text segments.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_glyph_h_advance:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontGetGlyphHAdvance() = ???
+  private def fontGetGlyphHAdvance() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the advances for a sequence of glyph IDs in the specified font,
+  /** Fetches the advances for a sequence of glyph IDs in the specified font,
     * for horizontal text segments.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph_h_advances contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph_h_advances:]: Function font_get_glyph_h_advances contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyphHAdvances() = ???
+  private def fontGetGlyphHAdvances() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the kerning-adjustment value for a glyph-pair in the specified
+  /** Fetches the kerning-adjustment value for a glyph-pair in the specified
     * font, for horizontal text segments.
     *
     * <note>It handles legacy kerning only (as returned by the corresponding
     * #hb_font_funcs_t function).</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_glyph_h_kerning:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontGetGlyphHKerning() = ???
+  private def fontGetGlyphHKerning() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the (X,Y) coordinates of the origin for a glyph ID in the
+  /** Fetches the (X,Y) coordinates of the origin for a glyph ID in the
     * specified font, for horizontal text segments.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph_h_origin contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph_h_origin:]: Function font_get_glyph_h_origin contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyphHOrigin() = ???
+  private def fontGetGlyphHOrigin() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the kerning-adjustment value for a glyph-pair in the specified
+  /** Fetches the kerning-adjustment value for a glyph-pair in the specified
     * font.
     *
     * Calls the appropriate direction-specific variant (horizontal or vertical)
     * depending on the value of @direction.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph_kerning_for_direction contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph_kerning_for_direction:]: Function font_get_glyph_kerning_for_direction contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyphKerningForDirection() = ???
+  private def fontGetGlyphKerningForDirection() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the glyph-name string for a glyph ID in the specified @font.
+  /** Fetches the glyph-name string for a glyph ID in the specified @font.
     *
     * According to the OpenType specification, glyph names are limited to 63
     * characters and can only contain (a subset of) ASCII.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph_name contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph_name:]: Function font_get_glyph_name contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyphName() = ???
+  private def fontGetGlyphName() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the (X,Y) coordinates of the origin for a glyph in the specified
+  /** Fetches the (X,Y) coordinates of the origin for a glyph in the specified
     * font.
     *
     * Calls the appropriate direction-specific variant (horizontal or vertical)
     * depending on the value of @direction.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph_origin_for_direction contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph_origin_for_direction:]: Function font_get_glyph_origin_for_direction contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyphOriginForDirection() = ???
+  private def fontGetGlyphOriginForDirection() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the glyph shape that corresponds to a glyph in the specified @font.
+  /** Fetches the glyph shape that corresponds to a glyph in the specified @font.
     * The shape is returned by way of calls to the callbacks of the @dfuncs
     * objects, with @draw_data passed to them.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_glyph_shape:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontGetGlyphShape() = ???
+  private def fontGetGlyphShape() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the advance for a glyph ID in the specified font, for vertical
+  /** Fetches the advance for a glyph ID in the specified font, for vertical
     * text segments.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_glyph_v_advance:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontGetGlyphVAdvance() = ???
+  private def fontGetGlyphVAdvance() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the advances for a sequence of glyph IDs in the specified font,
+  /** Fetches the advances for a sequence of glyph IDs in the specified font,
     * for vertical text segments.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph_v_advances contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph_v_advances:]: Function font_get_glyph_v_advances contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyphVAdvances() = ???
+  private def fontGetGlyphVAdvances() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the kerning-adjustment value for a glyph-pair in the specified
+  /** Fetches the kerning-adjustment value for a glyph-pair in the specified
     * font, for vertical text segments.
     *
     * <note>It handles legacy kerning only (as returned by the corresponding
     * #hb_font_funcs_t function).</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_glyph_v_kerning:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontGetGlyphVKerning() = ???
+  private def fontGetGlyphVKerning() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the (X,Y) coordinates of the origin for a glyph ID in the
+  /** Fetches the (X,Y) coordinates of the origin for a glyph ID in the
     * specified font, for vertical text segments.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_glyph_v_origin contains an OUT parameter, which is not supported yet"
+    "[font_get_glyph_v_origin:]: Function font_get_glyph_v_origin contains an OUT parameter, which is not supported yet"
   )
-  def fontGetGlyphVOrigin() = ???
+  private def fontGetGlyphVOrigin() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the extents for a specified font, for horizontal text segments.
     *
-    * Fetches the extents for a specified font, for horizontal text segments.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_h_extents contains an OUT parameter, which is not supported yet"
+    "[font_get_h_extents:]: Function font_get_h_extents contains an OUT parameter, which is not supported yet"
   )
-  def fontGetHExtents() = ???
+  private def fontGetHExtents() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the nominal glyph ID for a Unicode code point in the specified
+  /** Fetches the nominal glyph ID for a Unicode code point in the specified
     * font.
     *
     * This version of the function should not be used to fetch glyph IDs for
     * code points modified by variation selectors. For variation-selector
     * support, user hb_font_get_variation_glyph() or use hb_font_get_glyph().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_nominal_glyph contains an OUT parameter, which is not supported yet"
+    "[font_get_nominal_glyph:]: Function font_get_nominal_glyph contains an OUT parameter, which is not supported yet"
   )
-  def fontGetNominalGlyph() = ???
+  private def fontGetNominalGlyph() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the nominal glyph IDs for a sequence of Unicode code points. Glyph
+  /** Fetches the nominal glyph IDs for a sequence of Unicode code points. Glyph
     * IDs must be returned in a #hb_codepoint_t output parameter. Stopes at the
     * first unsupported glyph ID.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_nominal_glyphs contains an OUT parameter, which is not supported yet"
+    "[font_get_nominal_glyphs:]: Function font_get_nominal_glyphs contains an OUT parameter, which is not supported yet"
   )
-  def fontGetNominalGlyphs() = ???
+  private def fontGetNominalGlyphs() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the parent font of @font.
     *
-    * Fetches the parent font of @font.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_parent:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontGetParent() = ???
+  private def fontGetParent() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the horizontal and vertical points-per-em (ppem) of a font.
     *
-    * Fetches the horizontal and vertical points-per-em (ppem) of a font.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_ppem contains an OUT parameter, which is not supported yet"
+    "[font_get_ppem:]: Function font_get_ppem contains an OUT parameter, which is not supported yet"
   )
-  def fontGetPpem() = ???
+  private def fontGetPpem() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the "point size" of a font. Used in CoreText to implement optical
+  /** Fetches the "point size" of a font. Used in CoreText to implement optical
     * sizing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_ptem:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontGetPtem() = ???
+  private def fontGetPtem() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the horizontal and vertical scale of a font.
     *
-    * Fetches the horizontal and vertical scale of a font.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_scale contains an OUT parameter, which is not supported yet"
+    "[font_get_scale:]: Function font_get_scale contains an OUT parameter, which is not supported yet"
   )
-  def fontGetScale() = ???
+  private def fontGetScale() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the internal serial number of the font. The serial number is
+  /** Returns the internal serial number of the font. The serial number is
     * increased every time a setting on the font is changed, using a setter
     * function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_serial:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontGetSerial() = ???
+  private def fontGetSerial() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the "synthetic boldness" parameters of a font.
     *
-    * Fetches the "synthetic boldness" parameters of a font.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_synthetic_bold contains an OUT parameter, which is not supported yet"
+    "[font_get_synthetic_bold:]: Function font_get_synthetic_bold contains an OUT parameter, which is not supported yet"
   )
-  def fontGetSyntheticBold() = ???
+  private def fontGetSyntheticBold() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the "synthetic slant" of a font.
     *
-    * Fetches the "synthetic slant" of a font.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_synthetic_slant:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontGetSyntheticSlant() = ???
+  private def fontGetSyntheticSlant() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the user-data object associated with the specified key, attached
+  /** Fetches the user-data object associated with the specified key, attached
     * to the specified font object.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(const hb_font_t*)))"
+    "[font_get_user_data:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(const hb_font_t*)))"
   )
-  def fontGetUserData() = ???
+  private def fontGetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the extents for a specified font, for vertical text segments.
     *
-    * Fetches the extents for a specified font, for vertical text segments.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_v_extents contains an OUT parameter, which is not supported yet"
+    "[font_get_v_extents:]: Function font_get_v_extents contains an OUT parameter, which is not supported yet"
   )
-  def fontGetVExtents() = ???
+  private def fontGetVExtents() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the list of variation coordinates (in design-space units)
+  /** Fetches the list of variation coordinates (in design-space units)
     * currently set on a font.
     *
     * Note that this returned array may only contain values for some (or none)
@@ -2342,15 +2546,16 @@ object HarfBuzz:
     *
     * Return value is valid as long as variation coordinates of the font are not
     * modified.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_var_coords_design contains an OUT parameter, which is not supported yet"
+    "[font_get_var_coords_design:]: Function font_get_var_coords_design contains an OUT parameter, which is not supported yet"
   )
-  def fontGetVarCoordsDesign() = ???
+  private def fontGetVarCoordsDesign() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the list of normalized variation coordinates currently set on a
+  /** Fetches the list of normalized variation coordinates currently set on a
     * font.
     *
     * Note that this returned array may only contain values for some (or none)
@@ -2358,46 +2563,50 @@ object HarfBuzz:
     *
     * Return value is valid as long as variation coordinates of the font are not
     * modified.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_var_coords_normalized contains an OUT parameter, which is not supported yet"
+    "[font_get_var_coords_normalized:]: Function font_get_var_coords_normalized contains an OUT parameter, which is not supported yet"
   )
-  def fontGetVarCoordsNormalized() = ???
+  private def fontGetVarCoordsNormalized() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the currently-set named-instance index of the font.
     *
-    * Returns the currently-set named-instance index of the font.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_var_named_instance:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontGetVarNamedInstance() = ???
+  private def fontGetVarNamedInstance() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the glyph ID for a Unicode code point when followed by by the
+  /** Fetches the glyph ID for a Unicode code point when followed by by the
     * specified variation-selector code point, in the specified font.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_get_variation_glyph contains an OUT parameter, which is not supported yet"
+    "[font_get_variation_glyph:]: Function font_get_variation_glyph contains an OUT parameter, which is not supported yet"
   )
-  def fontGetVariationGlyph() = ???
+  private def fontGetVariationGlyph() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the glyph ID from @font that matches the specified string. Strings
+  /** Fetches the glyph ID from @font that matches the specified string. Strings
     * of the format `gidDDD` or `uniUUUU` are parsed automatically.
     *
     * <note>Note: @len == -1 means the string is null-terminated.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_glyph_from_string contains an OUT parameter, which is not supported yet"
+    "[font_glyph_from_string:]: Function font_glyph_from_string contains an OUT parameter, which is not supported yet"
   )
-  def fontGlyphFromString() = ???
+  private def fontGlyphFromString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the name of the specified glyph ID in @font and returns it in
+  /** Fetches the name of the specified glyph ID in @font and returns it in
     * string @s.
     *
     * If the glyph ID has no name in @font, a string of the form `gidDDD` is
@@ -2405,121 +2614,132 @@ object HarfBuzz:
     *
     * According to the OpenType specification, glyph names are limited to 63
     * characters and can only contain (a subset of) ASCII.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_glyph_to_string contains an OUT parameter, which is not supported yet"
+    "[font_glyph_to_string:]: Function font_glyph_to_string contains an OUT parameter, which is not supported yet"
   )
-  def fontGlyphToString() = ???
+  private def fontGlyphToString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether a font object is immutable.
     *
-    * Tests whether a font object is immutable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_is_immutable:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontIsImmutable() = ???
+  private def fontIsImmutable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes @font immutable.
     *
-    * Makes @font immutable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_make_immutable:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontMakeImmutable() = ???
+  private def fontMakeImmutable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Paints the glyph.
+  /** Paints the glyph.
     *
     * The painting instructions are returned by way of calls to the callbacks of
     * the @funcs object, with @paint_data passed to them.
     *
     * If the font has color palettes (see hb_ot_color_has_palettes()), then @palette_index
     * selects the palette to use. If the font only has one palette, this will be 0.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_paint_glyph:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontPaintGlyph() = ???
+  private def fontPaintGlyph() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Increases the reference count on the given font object.
     *
-    * Increases the reference count on the given font object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_reference:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontReference() = ???
+  private def fontReference() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets @face as the font-face value of @font.
     *
-    * Sets @face as the font-face value of @font.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_face:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetFace() = ???
+  private def fontSetFace() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Replaces the font-functions structure attached to a font, updating the
+  /** Replaces the font-functions structure attached to a font, updating the
     * font's user-data with @font-data and the @destroy callback.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_funcs:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetFuncs() = ???
+  private def fontSetFuncs() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Replaces the user data attached to a font, updating the font's
+  /** Replaces the user data attached to a font, updating the font's
     * @destroy
     *   callback.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_funcs_data:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetFuncsData() = ???
+  private def fontSetFuncsData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the parent font of @font.
     *
-    * Sets the parent font of @font.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_parent:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetParent() = ???
+  private def fontSetParent() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the horizontal and vertical pixels-per-em (PPEM) of a font.
+  /** Sets the horizontal and vertical pixels-per-em (PPEM) of a font.
     *
     * These values are used for pixel-size-specific adjustment to shaping and
     * draw results, though for the most part they are unused and can be left
     * unset.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_ppem:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetPpem() = ???
+  private def fontSetPpem() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the "point size" of a font. Set to zero to unset. Used in CoreText to
+  /** Sets the "point size" of a font. Set to zero to unset. Used in CoreText to
     * implement optical sizing.
     *
     * <note>Note: There are 72 points in an inch.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_ptem:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetPtem() = ???
+  private def fontSetPtem() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the horizontal and vertical scale of a font.
+  /** Sets the horizontal and vertical scale of a font.
     *
     * The font scale is a number related to, but not the same as, font size.
     * Typically the client establishes a scale factor to be used between the
@@ -2541,15 +2761,16 @@ object HarfBuzz:
     *
     * Fonts default to a scale equal to the UPEM value of their face. A font
     * with this setting is sometimes called an "unscaled" font.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_scale:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetScale() = ???
+  private def fontSetScale() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the "synthetic boldness" of a font.
+  /** Sets the "synthetic boldness" of a font.
     *
     * Positive values for @x_embolden / @y_embolden make a font bolder, negative
     * values thinner. Typical values are in the 0.01 to 0.05 range. The default
@@ -2564,15 +2785,16 @@ object HarfBuzz:
     * If @in_place is `false`, then glyph advance-widths are also adjusted,
     * otherwise they are not. The in-place mode is useful for simulating [font
     * grading](https://fonts.google.com/knowledge/glossary/grade).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_synthetic_bold:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetSyntheticBold() = ???
+  private def fontSetSyntheticBold() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the "synthetic slant" of a font. By default is zero. Synthetic slant
+  /** Sets the "synthetic slant" of a font. By default is zero. Synthetic slant
     * is the graphical skew applied to the font at rendering time.
     *
     * HarfBuzz needs to know this value to adjust shaping results, metrics, and
@@ -2583,121 +2805,133 @@ object HarfBuzz:
     *
     * <note>Note: The slant value is a ratio. For example, a 20% slant would be
     * represented as a 0.2 value.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_synthetic_slant:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetSyntheticSlant() = ???
+  private def fontSetSyntheticSlant() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Attaches a user-data key/data pair to the specified font object.
     *
-    * Attaches a user-data key/data pair to the specified font object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_user_data:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetUserData() = ???
+  private def fontSetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Applies a list of variation coordinates (in design-space units) to a font.
+  /** Applies a list of variation coordinates (in design-space units) to a font.
     *
     * Note that this overrides all existing variations set on @font. Axes not
     * included in @coords will be effectively set to their default values.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_var_coords_design:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetVarCoordsDesign() = ???
+  private def fontSetVarCoordsDesign() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Applies a list of variation coordinates (in normalized units) to a font.
+  /** Applies a list of variation coordinates (in normalized units) to a font.
     *
     * Note that this overrides all existing variations set on @font. Axes not
     * included in @coords will be effectively set to their default values.
     *
     * <note>Note: Coordinates should be normalized to 2.14.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_var_coords_normalized:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetVarCoordsNormalized() = ???
+  private def fontSetVarCoordsNormalized() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets design coords of a font from a named-instance index.
     *
-    * Sets design coords of a font from a named-instance index.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_var_named_instance:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetVarNamedInstance() = ???
+  private def fontSetVarNamedInstance() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Change the value of one variation axis on the font.
+  /** Change the value of one variation axis on the font.
     *
     * Note: This function is expensive to be called repeatedly. If you want to
     * set multiple variation axes at the same time, use hb_font_set_variations()
     * instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_variation:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetVariation() = ???
+  private def fontSetVariation() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Applies a list of font-variation settings to a font.
+  /** Applies a list of font-variation settings to a font.
     *
     * Note that this overrides all existing variations set on @font. Axes not
     * included in @variations will be effectively set to their default values.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_variations:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def fontSetVariations() = ???
+  private def fontSetVariations() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Subtracts the origin coordinates from an (X,Y) point coordinate, in the
+  /** Subtracts the origin coordinates from an (X,Y) point coordinate, in the
     * specified glyph ID in the specified font.
     *
     * Calls the appropriate direction-specific variant (horizontal or vertical)
     * depending on the value of @direction.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function font_subtract_glyph_origin_for_direction contains an INOUT parameter, which is not supported yet"
+    "[font_subtract_glyph_origin_for_direction:]: Function font_subtract_glyph_origin_for_direction contains an INOUT parameter, which is not supported yet"
   )
-  def fontSubtractGlyphOriginForDirection() = ???
+  private def fontSubtractGlyphOriginForDirection() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Refreshes the state of @font when the underlying FT_Face has changed. This
+  /** Refreshes the state of @font when the underlying FT_Face has changed. This
     * function should be called after changing the size or variation-axis
     * settings on the FT_Face.
-    */
-  @annotation.compileTimeOnly("Method hb_ft_font_changed has no target types")
-  def ftFontChanged() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Fetches the FT_Load_Glyph load flags of the specified #hb_font_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[ft_font_changed:]: Method hb_ft_font_changed has no target types"
+  )
+  private def ftFontChanged() = ???
+
+  /** Fetches the FT_Load_Glyph load flags of the specified #hb_font_t.
     *
     * For more information, see
     * https://www.freetype.org/freetype2/docs/reference/ft2-base_interface.html#ft_load_xxx
     *
     * This function works with #hb_font_t objects created by hb_ft_font_create()
     * or hb_ft_font_create_referenced().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ft_font_get_load_flags has no target types"
+    "[ft_font_get_load_flags:]: Method hb_ft_font_get_load_flags has no target types"
   )
-  def ftFontGetLoadFlags() = ???
+  private def ftFontGetLoadFlags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Configures the font-functions structure of the specified #hb_font_t font
+  /** Configures the font-functions structure of the specified #hb_font_t font
     * object to use FreeType font functions.
     *
     * In particular, you can use this function to configure an existing
@@ -2713,106 +2947,120 @@ object HarfBuzz:
     * underlying FT_Face.
     *
     * <note>Note: Internally, this function creates an FT_Face. </note>
-    */
-  @annotation.compileTimeOnly("Method hb_ft_font_set_funcs has no target types")
-  def ftFontSetFuncs() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Sets the FT_Load_Glyph load flags for the specified #hb_font_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[ft_font_set_funcs:]: Method hb_ft_font_set_funcs has no target types"
+  )
+  private def ftFontSetFuncs() = ???
+
+  /** Sets the FT_Load_Glyph load flags for the specified #hb_font_t.
     *
     * For more information, see
     * https://www.freetype.org/freetype2/docs/reference/ft2-base_interface.html#ft_load_xxx
     *
     * This function works with #hb_font_t objects created by hb_ft_font_create()
     * or hb_ft_font_create_referenced().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ft_font_set_load_flags has no target types"
+    "[ft_font_set_load_flags:]: Method hb_ft_font_set_load_flags has no target types"
   )
-  def ftFontSetLoadFlags() = ???
+  private def ftFontSetLoadFlags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Releases an FT_Face previously obtained with hb_ft_font_lock_face().
     *
-    * Releases an FT_Face previously obtained with hb_ft_font_lock_face().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ft_font_unlock_face has no target types"
+    "[ft_font_unlock_face:]: Method hb_ft_font_unlock_face has no target types"
   )
-  def ftFontUnlockFace() = ???
+  private def ftFontUnlockFace() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Refreshes the state of the underlying FT_Face of @font when the hb_font_t
+  /** Refreshes the state of the underlying FT_Face of @font when the hb_font_t
     * @font
     *   has changed. This function should be called after changing the size or
     *   variation-axis settings on the @font. This call is fast if nothing has
     *   changed on @font.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ft_hb_font_changed has no target types"
+    "[ft_hb_font_changed:]: Method hb_ft_hb_font_changed has no target types"
   )
-  def ftHbFontChanged() = ???
+  private def ftHbFontChanged() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates an #hb_blob_t blob from the specified GBytes data structure.
     *
-    * Creates an #hb_blob_t blob from the specified GBytes data structure.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly("Method hb_glib_blob_create has no target types")
-  def glibBlobCreate() = ???
+  @annotation.compileTimeOnly(
+    "[glib_blob_create:]: Method hb_glib_blob_create has no target types"
+  )
+  private def glibBlobCreate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a Unicode-functions structure that is populated with the
+  /** Fetches a Unicode-functions structure that is populated with the
     * appropriate GLib function for each method.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_glib_get_unicode_funcs has no target types"
+    "[glib_get_unicode_funcs:]: Method hb_glib_get_unicode_funcs has no target types"
   )
-  def glibGetUnicodeFuncs() = ???
+  private def glibGetUnicodeFuncs() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the GUnicodeScript identifier that corresponds to the specified
+  /** Fetches the GUnicodeScript identifier that corresponds to the specified
     * #hb_script_t script.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_glib_script_from_script has no target types"
+    "[glib_script_from_script:]: Method hb_glib_script_from_script has no target types"
   )
-  def glibScriptFromScript() = ???
+  private def glibScriptFromScript() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the #hb_script_t script that corresponds to the specified
+  /** Fetches the #hb_script_t script that corresponds to the specified
     * GUnicodeScript identifier.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_glib_script_to_script has no target types"
+    "[glib_script_to_script:]: Method hb_glib_script_to_script has no target types"
   )
-  def glibScriptToScript() = ???
+  private def glibScriptToScript() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns glyph flags encoded within a #hb_glyph_info_t.
     *
-    * Returns glyph flags encoded within a #hb_glyph_info_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(glyph_info_t), @type -> DataRecord(const hb_glyph_info_t*)))"
+    "[glyph_info_get_glyph_flags:/<function parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(glyph_info_t), @type -> DataRecord(const hb_glyph_info_t*)))"
   )
-  def glyphInfoGetGlyphFlags() = ???
+  private def glyphInfoGetGlyphFlags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts @str representing a BCP 47 language tag to the corresponding
+  /** Converts @str representing a BCP 47 language tag to the corresponding
     * #hb_language_t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char*)))"
+    "[language_from_string:/<function parameters>/str]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char*)))"
   )
-  def languageFromString() = ???
+  private def languageFromString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetch the default language from current locale.
+  /** Fetch the default language from current locale.
     *
     * <note>Note that the first time this function is called, it calls
     * "setlocale (LC_CTYPE, nullptr)" to fetch current locale. The underlying
@@ -2820,333 +3068,371 @@ object HarfBuzz:
     * problems, call this function once before multiple threads can call it.
     * This function is only used from hb_buffer_guess_segment_properties() by
     * HarfBuzz itself.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(language_t), @type -> DataRecord(hb_language_t)))"
+    "[language_get_default:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(language_t), @type -> DataRecord(hb_language_t)))"
   )
-  def languageGetDefault() = ???
+  private def languageGetDefault() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Check whether a second language tag is the same or a more specific version
+  /** Check whether a second language tag is the same or a more specific version
     * of the provided language tag. For example, "fa_IR.utf8" is a more specific
     * tag for "fa" or for "fa_IR".
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(language_t), @type -> DataRecord(hb_language_t)))"
+    "[language_matches:/<function parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(language_t), @type -> DataRecord(hb_language_t)))"
   )
-  def languageMatches() = ???
+  private def languageMatches() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts an #hb_language_t to a string.
     *
-    * Converts an #hb_language_t to a string.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(language_t), @type -> DataRecord(hb_language_t)))"
+    "[language_to_string:/<function parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(language_t), @type -> DataRecord(hb_language_t)))"
   )
-  def languageToString() = ???
+  private def languageToString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether memory allocation for a set was successful.
     *
-    * Tests whether memory allocation for a set was successful.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_allocation_successful:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
-  def mapAllocationSuccessful() = ???
+  private def mapAllocationSuccessful() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Clears out the contents of @map.
     *
-    * Clears out the contents of @map.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_clear:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
-  def mapClear() = ???
+  private def mapClear() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Allocate a copy of @map.
     *
-    * Allocate a copy of @map.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_copy:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
-  def mapCopy() = ???
+  private def mapCopy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new, initially empty map.
     *
-    * Creates a new, initially empty map.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_create:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
-  def mapCreate() = ???
+  private def mapCreate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes @key and its stored value from @map.
     *
-    * Removes @key and its stored value from @map.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_del:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
-  def mapDel() = ???
+  private def mapDel() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decreases the reference count on a map. When the reference count reaches
+  /** Decreases the reference count on a map. When the reference count reaches
     * zero, the map is destroyed, freeing all memory.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_destroy:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
-  def mapDestroy() = ???
+  private def mapDestroy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the value stored for @key in @map.
     *
-    * Fetches the value stored for @key in @map.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_get:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
-  def mapGet() = ???
+  private def mapGet() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the singleton empty #hb_map_t.
     *
-    * Fetches the singleton empty #hb_map_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
-  def mapGetEmpty() = ???
+  private def mapGetEmpty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the number of key-value pairs in the map.
     *
-    * Returns the number of key-value pairs in the map.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_get_population:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
-  def mapGetPopulation() = ???
+  private def mapGetPopulation() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the user data associated with the specified key, attached to the
+  /** Fetches the user data associated with the specified key, attached to the
     * specified map.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_get_user_data:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
-  def mapGetUserData() = ???
+  private def mapGetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether @key is an element of @map.
     *
-    * Tests whether @key is an element of @map.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_has:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
-  def mapHas() = ???
+  private def mapHas() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a hash representing @map.
     *
-    * Creates a hash representing @map.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_hash:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
-  def mapHash() = ???
+  private def mapHash() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether @map is empty (contains no elements).
     *
-    * Tests whether @map is empty (contains no elements).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_is_empty:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
-  def mapIsEmpty() = ???
+  private def mapIsEmpty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether @map and @other are equal (contain the same elements).
     *
-    * Tests whether @map and @other are equal (contain the same elements).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_is_equal:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
-  def mapIsEqual() = ???
+  private def mapIsEqual() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Add the keys of @map to @keys.
     *
-    * Add the keys of @map to @keys.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_keys:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
-  def mapKeys() = ???
+  private def mapKeys() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the next key/value paire in @map.
+  /** Fetches the next key/value paire in @map.
     *
     * Set @idx to -1 to get started.
     *
     * If the map is modified during iteration, the behavior is undefined.
     *
     * The order in which the key/values are returned is undefined.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function map_next contains an OUT parameter, which is not supported yet"
+    "[map_next:]: Function map_next contains an OUT parameter, which is not supported yet"
   )
-  def mapNext() = ???
+  private def mapNext() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Increases the reference count on a map.
     *
-    * Increases the reference count on a map.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_reference:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
-  def mapReference() = ???
+  private def mapReference() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Stores @key:@value in the map.
     *
-    * Stores @key:@value in the map.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_set:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
-  def mapSet() = ???
+  private def mapSet() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Attaches a user-data key/data pair to the specified map.
     *
-    * Attaches a user-data key/data pair to the specified map.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_set_user_data:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
-  def mapSetUserData() = ???
+  private def mapSetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Add the contents of @other to @map.
     *
-    * Add the contents of @other to @map.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_update:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
-  def mapUpdate() = ???
+  private def mapUpdate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Add the values of @map to @values.
     *
-    * Add the values of @map to @values.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_values:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
-  def mapValues() = ???
+  private def mapValues() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of all color layers for the specified glyph index in the
+  /** Fetches a list of all color layers for the specified glyph index in the
     * specified face. The list returned will begin at the offset provided.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_color_glyph_get_layers contains an OUT parameter, which is not supported yet"
+    "[ot_color_glyph_get_layers:]: Function ot_color_glyph_get_layers contains an OUT parameter, which is not supported yet"
   )
-  def otColorGlyphGetLayers() = ???
+  private def otColorGlyphGetLayers() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests where a face includes COLRv1 paint data for @glyph.
     *
-    * Tests where a face includes COLRv1 paint data for @glyph.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_color_glyph_has_paint has no target types"
+    "[ot_color_glyph_has_paint:]: Method hb_ot_color_glyph_has_paint has no target types"
   )
-  def otColorGlyphHasPaint() = ???
+  private def otColorGlyphHasPaint() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the PNG image for a glyph. This function takes a font object, not
+  /** Fetches the PNG image for a glyph. This function takes a font object, not
     * a face object, as input. To get an optimally sized PNG blob, the PPEM
     * values must be set on the @font object. If PPEM is unset, the blob
     * returned will be the largest PNG available.
     *
     * If the glyph has no PNG image, the singleton empty blob is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_color_glyph_reference_png has no target types"
+    "[ot_color_glyph_reference_png:]: Method hb_ot_color_glyph_reference_png has no target types"
   )
-  def otColorGlyphReferencePng() = ???
+  private def otColorGlyphReferencePng() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the SVG document for a glyph. The blob may be either plain text or
+  /** Fetches the SVG document for a glyph. The blob may be either plain text or
     * gzip-encoded.
     *
     * If the glyph has no SVG document, the singleton empty blob is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_color_glyph_reference_svg has no target types"
+    "[ot_color_glyph_reference_svg:]: Method hb_ot_color_glyph_reference_svg has no target types"
   )
-  def otColorGlyphReferenceSvg() = ???
+  private def otColorGlyphReferenceSvg() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tests whether a face includes a `COLR` table with data according to
+  /** Tests whether a face includes a `COLR` table with data according to
     * COLRv0.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_color_has_layers has no target types"
+    "[ot_color_has_layers:]: Method hb_ot_color_has_layers has no target types"
   )
-  def otColorHasLayers() = ???
+  private def otColorHasLayers() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests where a face includes a `COLR` table with data according to COLRv1.
     *
-    * Tests where a face includes a `COLR` table with data according to COLRv1.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_color_has_paint has no target types"
+    "[ot_color_has_paint:]: Method hb_ot_color_has_paint has no target types"
   )
-  def otColorHasPaint() = ???
+  private def otColorHasPaint() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether a face includes a `CPAL` color-palette table.
     *
-    * Tests whether a face includes a `CPAL` color-palette table.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_color_has_palettes has no target types"
+    "[ot_color_has_palettes:]: Method hb_ot_color_has_palettes has no target types"
   )
-  def otColorHasPalettes() = ???
+  private def otColorHasPalettes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tests whether a face has PNG glyph images (either in `CBDT` or `sbix`
+  /** Tests whether a face has PNG glyph images (either in `CBDT` or `sbix`
     * tables).
-    */
-  @annotation.compileTimeOnly("Method hb_ot_color_has_png has no target types")
-  def otColorHasPng() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Tests whether a face includes any `SVG` glyph images.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly("Method hb_ot_color_has_svg has no target types")
-  def otColorHasSvg() = ???
+  @annotation.compileTimeOnly(
+    "[ot_color_has_png:]: Method hb_ot_color_has_png has no target types"
+  )
+  private def otColorHasPng() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether a face includes any `SVG` glyph images.
     *
-    * Fetches the `name` table Name ID that provides display names for the
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[ot_color_has_svg:]: Method hb_ot_color_has_svg has no target types"
+  )
+  private def otColorHasSvg() = ???
+
+  /** Fetches the `name` table Name ID that provides display names for the
     * specified color in a face's `CPAL` color palette.
     *
     * Display names can be generic (e.g., "Background") or specific (e.g., "Eye
     * color").
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_color_palette_color_get_name_id has no target types"
+    "[ot_color_palette_color_get_name_id:]: Method hb_ot_color_palette_color_get_name_id has no target types"
   )
-  def otColorPaletteColorGetNameId() = ???
+  private def otColorPaletteColorGetNameId() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of the colors in a color palette.
+  /** Fetches a list of the colors in a color palette.
     *
     * After calling this function, @colors will be filled with the palette
     * colors. If @colors is NULL, the function will just return the number of
@@ -3157,203 +3443,223 @@ object HarfBuzz:
     * The RGBA values in the palette are unpremultiplied. See the OpenType spec
     * [CPAL](https://learn.microsoft.com/en-us/typography/opentype/spec/cpal)
     * section for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_color_palette_get_colors contains an OUT parameter, which is not supported yet"
+    "[ot_color_palette_get_colors:]: Function ot_color_palette_get_colors contains an OUT parameter, which is not supported yet"
   )
-  def otColorPaletteGetColors() = ???
+  private def otColorPaletteGetColors() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the number of color palettes in a face.
     *
-    * Fetches the number of color palettes in a face.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_color_palette_get_count has no target types"
+    "[ot_color_palette_get_count:]: Method hb_ot_color_palette_get_count has no target types"
   )
-  def otColorPaletteGetCount() = ???
+  private def otColorPaletteGetCount() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the flags defined for a color palette.
     *
-    * Fetches the flags defined for a color palette.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_color_palette_get_flags has no target types"
+    "[ot_color_palette_get_flags:]: Method hb_ot_color_palette_get_flags has no target types"
   )
-  def otColorPaletteGetFlags() = ???
+  private def otColorPaletteGetFlags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the `name` table Name ID that provides display names for a `CPAL`
+  /** Fetches the `name` table Name ID that provides display names for a `CPAL`
     * color palette.
     *
     * Palette display names can be generic (e.g., "Default") or provide
     * specific, themed names (e.g., "Spring", "Summer", "Fall", and "Winter").
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_color_palette_get_name_id has no target types"
+    "[ot_color_palette_get_name_id:]: Method hb_ot_color_palette_get_name_id has no target types"
   )
-  def otColorPaletteGetNameId() = ???
+  private def otColorPaletteGetNameId() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the font functions to use when working with @font.
     *
-    * Sets the font functions to use when working with @font.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly("Method hb_ot_font_set_funcs has no target types")
-  def otFontSetFuncs() = ???
+  @annotation.compileTimeOnly(
+    "[ot_font_set_funcs:]: Method hb_ot_font_set_funcs has no target types"
+  )
+  private def otFontSetFuncs() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of all feature indexes in the specified face's GSUB table
+  /** Fetches a list of all feature indexes in the specified face's GSUB table
     * or GPOS table, underneath the specified scripts, languages, and features.
     * If no list of scripts is provided, all scripts will be queried. If no list
     * of languages is provided, all languages will be queried. If no list of
     * features is provided, all features will be queried.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_collect_features contains an OUT parameter, which is not supported yet"
+    "[ot_layout_collect_features:]: Function ot_layout_collect_features contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutCollectFeatures() = ???
+  private def otLayoutCollectFeatures() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the mapping from feature tags to feature indexes for the specified
+  /** Fetches the mapping from feature tags to feature indexes for the specified
     * script and language.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_collect_features_map contains an OUT parameter, which is not supported yet"
+    "[ot_layout_collect_features_map:]: Function ot_layout_collect_features_map contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutCollectFeaturesMap() = ???
+  private def otLayoutCollectFeaturesMap() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of all feature-lookup indexes in the specified face's GSUB
+  /** Fetches a list of all feature-lookup indexes in the specified face's GSUB
     * table or GPOS table, underneath the specified scripts, languages, and
     * features. If no list of scripts is provided, all scripts will be queried.
     * If no list of languages is provided, all languages will be queried. If no
     * list of features is provided, all features will be queried.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_collect_lookups contains an OUT parameter, which is not supported yet"
+    "[ot_layout_collect_lookups:]: Function ot_layout_collect_lookups contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutCollectLookups() = ???
+  private def otLayoutCollectLookups() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of the characters defined as having a variant under the
+  /** Fetches a list of the characters defined as having a variant under the
     * specified "Character Variant" ("cvXX") feature tag.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_feature_get_characters contains an OUT parameter, which is not supported yet"
+    "[ot_layout_feature_get_characters:]: Function ot_layout_feature_get_characters contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutFeatureGetCharacters() = ???
+  private def otLayoutFeatureGetCharacters() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of all lookups enumerated for the specified feature, in the
+  /** Fetches a list of all lookups enumerated for the specified feature, in the
     * specified face's GSUB table or GPOS table. The list returned will begin at
     * the offset provided.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_feature_get_lookups contains an OUT parameter, which is not supported yet"
+    "[ot_layout_feature_get_lookups:]: Function ot_layout_feature_get_lookups contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutFeatureGetLookups() = ???
+  private def otLayoutFeatureGetLookups() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches name indices from feature parameters for "Stylistic Set" ('ssXX')
+  /** Fetches name indices from feature parameters for "Stylistic Set" ('ssXX')
     * or "Character Variant" ('cvXX') features.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_feature_get_name_ids contains an OUT parameter, which is not supported yet"
+    "[ot_layout_feature_get_name_ids:]: Function ot_layout_feature_get_name_ids contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutFeatureGetNameIds() = ???
+  private def otLayoutFeatureGetNameIds() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of all lookups enumerated for the specified feature, in the
+  /** Fetches a list of all lookups enumerated for the specified feature, in the
     * specified face's GSUB table or GPOS table, enabled at the specified
     * variations index. The list returned will begin at the offset provided.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_feature_with_variations_get_lookups contains an OUT parameter, which is not supported yet"
+    "[ot_layout_feature_with_variations_get_lookups:]: Function ot_layout_feature_with_variations_get_lookups contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutFeatureWithVariationsGetLookups() = ???
+  private def otLayoutFeatureWithVariationsGetLookups() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of all attachment points for the specified glyph in the
+  /** Fetches a list of all attachment points for the specified glyph in the
     * GDEF table of the face. The list returned will begin at the offset
     * provided.
     *
     * Useful if the client program wishes to cache the list.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_get_attach_points contains an OUT parameter, which is not supported yet"
+    "[ot_layout_get_attach_points:]: Function ot_layout_get_attach_points contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutGetAttachPoints() = ???
+  private def otLayoutGetAttachPoints() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches a baseline value from the face.
     *
-    * Fetches a baseline value from the face.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_get_baseline contains an OUT parameter, which is not supported yet"
+    "[ot_layout_get_baseline:]: Function ot_layout_get_baseline contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutGetBaseline() = ???
+  private def otLayoutGetBaseline() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a baseline value from the face.
+  /** Fetches a baseline value from the face.
     *
     * This function is like hb_ot_layout_get_baseline() but takes #hb_script_t
     * and #hb_language_t instead of OpenType #hb_tag_t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_get_baseline2 contains an OUT parameter, which is not supported yet"
+    "[ot_layout_get_baseline2:]: Function ot_layout_get_baseline2 contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutGetBaseline2() = ???
+  private def otLayoutGetBaseline2() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a baseline value from the face, and synthesizes it if the font
+  /** Fetches a baseline value from the face, and synthesizes it if the font
     * does not have it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_get_baseline_with_fallback contains an OUT parameter, which is not supported yet"
+    "[ot_layout_get_baseline_with_fallback:]: Function ot_layout_get_baseline_with_fallback contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutGetBaselineWithFallback() = ???
+  private def otLayoutGetBaselineWithFallback() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a baseline value from the face, and synthesizes it if the font
+  /** Fetches a baseline value from the face, and synthesizes it if the font
     * does not have it.
     *
     * This function is like hb_ot_layout_get_baseline_with_fallback() but takes
     * #hb_script_t and #hb_language_t instead of OpenType #hb_tag_t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_get_baseline_with_fallback2 contains an OUT parameter, which is not supported yet"
+    "[ot_layout_get_baseline_with_fallback2:]: Function ot_layout_get_baseline_with_fallback2 contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutGetBaselineWithFallback2() = ???
+  private def otLayoutGetBaselineWithFallback2() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches script/language-specific font extents. These values are looked up
+  /** Fetches script/language-specific font extents. These values are looked up
     * in the `BASE` table's `MinMax` records.
     *
     * If no such extents are found, the default extents for the font are
     * fetched. As such, the return value of this function can for the most part
     * be ignored. Note that the per-script/language extents do not have a
     * line-gap value, and the line-gap is set to zero in that case.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_get_font_extents contains an OUT parameter, which is not supported yet"
+    "[ot_layout_get_font_extents:]: Function ot_layout_get_font_extents contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutGetFontExtents() = ???
+  private def otLayoutGetFontExtents() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches script/language-specific font extents. These values are looked up
+  /** Fetches script/language-specific font extents. These values are looked up
     * in the `BASE` table's `MinMax` records.
     *
     * If no such extents are found, the default extents for the font are
@@ -3363,43 +3669,47 @@ object HarfBuzz:
     *
     * This function is like hb_ot_layout_get_font_extents() but takes
     * #hb_script_t and #hb_language_t instead of OpenType #hb_tag_t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_get_font_extents2 contains an OUT parameter, which is not supported yet"
+    "[ot_layout_get_font_extents2:]: Function ot_layout_get_font_extents2 contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutGetFontExtents2() = ???
+  private def otLayoutGetFontExtents2() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the GDEF class of the requested glyph in the specified face.
     *
-    * Fetches the GDEF class of the requested glyph in the specified face.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_layout_get_glyph_class has no target types"
+    "[ot_layout_get_glyph_class:]: Method hb_ot_layout_get_glyph_class has no target types"
   )
-  def otLayoutGetGlyphClass() = ???
+  private def otLayoutGetGlyphClass() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the set of all glyphs from the face that belong to the requested
+  /** Retrieves the set of all glyphs from the face that belong to the requested
     * glyph class in the face's GDEF table.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_get_glyphs_in_class contains an OUT parameter, which is not supported yet"
+    "[ot_layout_get_glyphs_in_class:]: Function ot_layout_get_glyphs_in_class contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutGetGlyphsInClass() = ???
+  private def otLayoutGetGlyphsInClass() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the dominant horizontal baseline tag used by @script.
     *
-    * Fetches the dominant horizontal baseline tag used by @script.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_layout_get_horizontal_baseline_tag_for_script has no target types"
+    "[ot_layout_get_horizontal_baseline_tag_for_script:]: Method hb_ot_layout_get_horizontal_baseline_tag_for_script has no target types"
   )
-  def otLayoutGetHorizontalBaselineTagForScript() = ???
+  private def otLayoutGetHorizontalBaselineTagForScript() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of the caret positions defined for a ligature glyph in the
+  /** Fetches a list of the caret positions defined for a ligature glyph in the
     * GDEF table of the font. The list returned will begin at the offset
     * provided.
     *
@@ -3409,15 +3719,16 @@ object HarfBuzz:
     *
     * The positions returned by this function are 'unshaped', and will have to
     * be fixed up for kerning that may be applied to the ligature glyph.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_get_ligature_carets contains an OUT parameter, which is not supported yet"
+    "[ot_layout_get_ligature_carets:]: Function ot_layout_get_ligature_carets contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutGetLigatureCarets() = ???
+  private def otLayoutGetLigatureCarets() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches optical-size feature data (i.e., the `size` feature from GPOS).
+  /** Fetches optical-size feature data (i.e., the `size` feature from GPOS).
     * Note that the subfamily_id and the subfamily name string (accessible via
     * the subfamily_name_id) as used here are defined as pertaining only to
     * fonts within a font family that differ specifically in their respective
@@ -3427,188 +3738,206 @@ object HarfBuzz:
     * For more information on this distinction, see the [`size` feature
     * documentation](
     * https://docs.microsoft.com/en-us/typography/opentype/spec/features_pt#tag-size).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_get_size_params contains an OUT parameter, which is not supported yet"
+    "[ot_layout_get_size_params:]: Function ot_layout_get_size_params contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutGetSizeParams() = ???
+  private def otLayoutGetSizeParams() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether a face has any glyph classes defined in its GDEF table.
     *
-    * Tests whether a face has any glyph classes defined in its GDEF table.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_layout_has_glyph_classes has no target types"
+    "[ot_layout_has_glyph_classes:]: Method hb_ot_layout_has_glyph_classes has no target types"
   )
-  def otLayoutHasGlyphClasses() = ???
+  private def otLayoutHasGlyphClasses() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether the specified face includes any GPOS positioning.
     *
-    * Tests whether the specified face includes any GPOS positioning.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_layout_has_positioning has no target types"
+    "[ot_layout_has_positioning:]: Method hb_ot_layout_has_positioning has no target types"
   )
-  def otLayoutHasPositioning() = ???
+  private def otLayoutHasPositioning() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether the specified face includes any GSUB substitutions.
     *
-    * Tests whether the specified face includes any GSUB substitutions.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_layout_has_substitution has no target types"
+    "[ot_layout_has_substitution:]: Method hb_ot_layout_has_substitution has no target types"
   )
-  def otLayoutHasSubstitution() = ???
+  private def otLayoutHasSubstitution() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the index of a given feature tag in the specified face's GSUB
+  /** Fetches the index of a given feature tag in the specified face's GSUB
     * table or GPOS table, underneath the specified script and language.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_language_find_feature contains an OUT parameter, which is not supported yet"
+    "[ot_layout_language_find_feature:]: Function ot_layout_language_find_feature contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutLanguageFindFeature() = ???
+  private def otLayoutLanguageFindFeature() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of all features in the specified face's GSUB table or GPOS
+  /** Fetches a list of all features in the specified face's GSUB table or GPOS
     * table, underneath the specified script and language. The list returned
     * will begin at the offset provided.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_language_get_feature_indexes contains an OUT parameter, which is not supported yet"
+    "[ot_layout_language_get_feature_indexes:]: Function ot_layout_language_get_feature_indexes contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutLanguageGetFeatureIndexes() = ???
+  private def otLayoutLanguageGetFeatureIndexes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of all features in the specified face's GSUB table or GPOS
+  /** Fetches a list of all features in the specified face's GSUB table or GPOS
     * table, underneath the specified script and language. The list returned
     * will begin at the offset provided.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_language_get_feature_tags contains an OUT parameter, which is not supported yet"
+    "[ot_layout_language_get_feature_tags:]: Function ot_layout_language_get_feature_tags contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutLanguageGetFeatureTags() = ???
+  private def otLayoutLanguageGetFeatureTags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the tag of a requested feature index in the given face's GSUB or
+  /** Fetches the tag of a requested feature index in the given face's GSUB or
     * GPOS table, underneath the specified script and language.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_language_get_required_feature contains an OUT parameter, which is not supported yet"
+    "[ot_layout_language_get_required_feature:]: Function ot_layout_language_get_required_feature contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutLanguageGetRequiredFeature() = ???
+  private def otLayoutLanguageGetRequiredFeature() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the index of a requested feature in the given face's GSUB or GPOS
+  /** Fetches the index of a requested feature in the given face's GSUB or GPOS
     * table, underneath the specified script and language.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_language_get_required_feature_index contains an OUT parameter, which is not supported yet"
+    "[ot_layout_language_get_required_feature_index:]: Function ot_layout_language_get_required_feature_index contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutLanguageGetRequiredFeatureIndex() = ???
+  private def otLayoutLanguageGetRequiredFeatureIndex() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of all glyphs affected by the specified lookup in the
+  /** Fetches a list of all glyphs affected by the specified lookup in the
     * specified face's GSUB table or GPOS table.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_lookup_collect_glyphs contains an OUT parameter, which is not supported yet"
+    "[ot_layout_lookup_collect_glyphs:]: Function ot_layout_lookup_collect_glyphs contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutLookupCollectGlyphs() = ???
+  private def otLayoutLookupCollectGlyphs() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches alternates of a glyph from a given GSUB lookup index.
     *
-    * Fetches alternates of a glyph from a given GSUB lookup index.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_lookup_get_glyph_alternates contains an OUT parameter, which is not supported yet"
+    "[ot_layout_lookup_get_glyph_alternates:]: Function ot_layout_lookup_get_glyph_alternates contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutLookupGetGlyphAlternates() = ???
+  private def otLayoutLookupGetGlyphAlternates() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the optical bound of a glyph positioned at the margin of text. The
+  /** Fetches the optical bound of a glyph positioned at the margin of text. The
     * direction identifies which edge of the glyph to query.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_layout_lookup_get_optical_bound has no target types"
+    "[ot_layout_lookup_get_optical_bound:]: Method hb_ot_layout_lookup_get_optical_bound has no target types"
   )
-  def otLayoutLookupGetOpticalBound() = ???
+  private def otLayoutLookupGetOpticalBound() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Compute the transitive closure of glyphs needed for a specified lookup.
     *
-    * Compute the transitive closure of glyphs needed for a specified lookup.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_lookup_substitute_closure contains an OUT parameter, which is not supported yet"
+    "[ot_layout_lookup_substitute_closure:]: Function ot_layout_lookup_substitute_closure contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutLookupSubstituteClosure() = ???
+  private def otLayoutLookupSubstituteClosure() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tests whether a specified lookup in the specified face would trigger a
+  /** Tests whether a specified lookup in the specified face would trigger a
     * substitution on the given glyph sequence.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_layout_lookup_would_substitute has no target types"
+    "[ot_layout_lookup_would_substitute:]: Method hb_ot_layout_lookup_would_substitute has no target types"
   )
-  def otLayoutLookupWouldSubstitute() = ???
+  private def otLayoutLookupWouldSubstitute() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compute the transitive closure of glyphs needed for all of the provided
+  /** Compute the transitive closure of glyphs needed for all of the provided
     * lookups.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_lookups_substitute_closure contains an OUT parameter, which is not supported yet"
+    "[ot_layout_lookups_substitute_closure:]: Function ot_layout_lookups_substitute_closure contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutLookupsSubstituteClosure() = ???
+  private def otLayoutLookupsSubstituteClosure() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the index of a given language tag in the specified face's GSUB
+  /** Fetches the index of a given language tag in the specified face's GSUB
     * table or GPOS table, underneath the specified script tag.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_layout_script_find_language has no target types"
+    "[ot_layout_script_find_language:]: Method hb_ot_layout_script_find_language has no target types"
   )
-  def otLayoutScriptFindLanguage() = ???
+  private def otLayoutScriptFindLanguage() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of language tags in the given face's GSUB or GPOS table,
+  /** Fetches a list of language tags in the given face's GSUB or GPOS table,
     * underneath the specified script index. The list returned will begin at the
     * offset provided.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_script_get_language_tags contains an OUT parameter, which is not supported yet"
+    "[ot_layout_script_get_language_tags:]: Function ot_layout_script_get_language_tags contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutScriptGetLanguageTags() = ???
+  private def otLayoutScriptGetLanguageTags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the index of the first language tag fom @language_tags that is
+  /** Fetches the index of the first language tag fom @language_tags that is
     * present in the specified face's GSUB or GPOS table, underneath the
     * specified script index.
     *
     * If none of the given language tags is found, `false` is returned and
     * @language_index
     *   is set to the default language index.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_script_select_language contains an OUT parameter, which is not supported yet"
+    "[ot_layout_script_select_language:]: Function ot_layout_script_select_language contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutScriptSelectLanguage() = ???
+  private def otLayoutScriptSelectLanguage() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the index of the first language tag fom @language_tags that is
+  /** Fetches the index of the first language tag fom @language_tags that is
     * present in the specified face's GSUB or GPOS table, underneath the
     * specified script index.
     *
@@ -3617,89 +3946,97 @@ object HarfBuzz:
     *   is set to #HB_OT_LAYOUT_DEFAULT_LANGUAGE_INDEX and
     * @chosen_language
     *   is set to #HB_TAG_NONE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_script_select_language2 contains an OUT parameter, which is not supported yet"
+    "[ot_layout_script_select_language2:]: Function ot_layout_script_select_language2 contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutScriptSelectLanguage2() = ???
+  private def otLayoutScriptSelectLanguage2() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Deprecated since 2.0.0
     *
-    * Deprecated since 2.0.0
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_table_choose_script contains an OUT parameter, which is not supported yet"
+    "[ot_layout_table_choose_script:]: Function ot_layout_table_choose_script contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutTableChooseScript() = ???
+  private def otLayoutTableChooseScript() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of feature variations in the specified face's GSUB table or
+  /** Fetches a list of feature variations in the specified face's GSUB table or
     * GPOS table, at the specified variation coordinates.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_table_find_feature_variations contains an OUT parameter, which is not supported yet"
+    "[ot_layout_table_find_feature_variations:]: Function ot_layout_table_find_feature_variations contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutTableFindFeatureVariations() = ???
+  private def otLayoutTableFindFeatureVariations() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the index if a given script tag in the specified face's GSUB table
+  /** Fetches the index if a given script tag in the specified face's GSUB table
     * or GPOS table.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_table_find_script contains an OUT parameter, which is not supported yet"
+    "[ot_layout_table_find_script:]: Function ot_layout_table_find_script contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutTableFindScript() = ???
+  private def otLayoutTableFindScript() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of all feature tags in the given face's GSUB or GPOS table.
+  /** Fetches a list of all feature tags in the given face's GSUB or GPOS table.
     * Note that there might be duplicate feature tags, belonging to different
     * script/language-system pairs of the table.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_table_get_feature_tags contains an OUT parameter, which is not supported yet"
+    "[ot_layout_table_get_feature_tags:]: Function ot_layout_table_get_feature_tags contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutTableGetFeatureTags() = ???
+  private def otLayoutTableGetFeatureTags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the total number of lookups enumerated in the specified face's
+  /** Fetches the total number of lookups enumerated in the specified face's
     * GSUB table or GPOS table.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_layout_table_get_lookup_count has no target types"
+    "[ot_layout_table_get_lookup_count:]: Method hb_ot_layout_table_get_lookup_count has no target types"
   )
-  def otLayoutTableGetLookupCount() = ???
+  private def otLayoutTableGetLookupCount() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of all scripts enumerated in the specified face's GSUB
+  /** Fetches a list of all scripts enumerated in the specified face's GSUB
     * table or GPOS table. The list returned will begin at the offset provided.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_table_get_script_tags contains an OUT parameter, which is not supported yet"
+    "[ot_layout_table_get_script_tags:]: Function ot_layout_table_get_script_tags contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutTableGetScriptTags() = ???
+  private def otLayoutTableGetScriptTags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Selects an OpenType script for @table_tag from the @script_tags array.
+  /** Selects an OpenType script for @table_tag from the @script_tags array.
     *
     * If the table does not have any of the requested scripts, then `DFLT`,
     * `dflt`, and `latn` tags are tried in that order. If the table still does
     * not have any of these scripts, @script_index is set to
     * #HB_OT_LAYOUT_NO_SCRIPT_INDEX and @chosen_script is set to #HB_TAG_NONE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_layout_table_select_script contains an OUT parameter, which is not supported yet"
+    "[ot_layout_table_select_script:]: Function ot_layout_table_select_script contains an OUT parameter, which is not supported yet"
   )
-  def otLayoutTableSelectScript() = ???
+  private def otLayoutTableSelectScript() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the specified math constant. For most constants, the value
+  /** Fetches the specified math constant. For most constants, the value
     * returned is an #hb_position_t.
     *
     * However, if the requested constant is
@@ -3707,15 +4044,16 @@ object HarfBuzz:
     * #HB_OT_MATH_CONSTANT_SCRIPT_SCRIPT_PERCENT_SCALE_DOWN or
     * #HB_OT_MATH_CONSTANT_RADICAL_DEGREE_BOTTOM_RAISE_PERCENT, then the return
     * value is an integer between 0 and 100 representing that percentage.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_math_get_constant has no target types"
+    "[ot_math_get_constant:]: Method hb_ot_math_get_constant has no target types"
   )
-  def otMathGetConstant() = ???
+  private def otMathGetConstant() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the GlyphAssembly for the specified font, glyph index, and
+  /** Fetches the GlyphAssembly for the specified font, glyph index, and
     * direction. Returned are a list of #hb_ot_math_glyph_part_t glyph parts
     * that can be used to draw the glyph and an italics-correction value (if one
     * is defined in the font).
@@ -3724,25 +4062,27 @@ object HarfBuzz:
     * or vertical directions for the construction. Even though all
     * #hb_direction_t values are accepted, only the result of
     * #HB_DIRECTION_IS_HORIZONTAL is considered.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_math_get_glyph_assembly contains an OUT parameter, which is not supported yet"
+    "[ot_math_get_glyph_assembly:]: Function ot_math_get_glyph_assembly contains an OUT parameter, which is not supported yet"
   )
-  def otMathGetGlyphAssembly() = ???
+  private def otMathGetGlyphAssembly() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches an italics-correction value (if one exists) for the specified
+  /** Fetches an italics-correction value (if one exists) for the specified
     * glyph index.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_math_get_glyph_italics_correction has no target types"
+    "[ot_math_get_glyph_italics_correction:]: Method hb_ot_math_get_glyph_italics_correction has no target types"
   )
-  def otMathGetGlyphItalicsCorrection() = ???
+  private def otMathGetGlyphItalicsCorrection() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the math kerning (cut-ins) value for the specified font, glyph
+  /** Fetches the math kerning (cut-ins) value for the specified font, glyph
     * index, and
     * @kern.
     *
@@ -3750,15 +4090,16 @@ object HarfBuzz:
     * value that is greater or equal to @correction_height. If such a height
     * value is found, corresponding kerning value from the table is returned. If
     * no such height value is found, the last kerning value is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_math_get_glyph_kerning has no target types"
+    "[ot_math_get_glyph_kerning:]: Method hb_ot_math_get_glyph_kerning has no target types"
   )
-  def otMathGetGlyphKerning() = ???
+  private def otMathGetGlyphKerning() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the raw MathKern (cut-in) data for the specified font, glyph
+  /** Fetches the raw MathKern (cut-in) data for the specified font, glyph
     * index, and @kern. The corresponding list of kern values and correction
     * heights is returned as a list of #hb_ot_math_kern_entry_t structs.
     *
@@ -3774,15 +4115,16 @@ object HarfBuzz:
     *   #hb_ot_math_kern_entry_t actually comes from the font; its corresponding
     *   #hb_ot_math_kern_entry_t.max_correction_height is always set to
     *   <code>INT32_MAX</code>.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_math_get_glyph_kernings contains an OUT parameter, which is not supported yet"
+    "[ot_math_get_glyph_kernings:]: Function ot_math_get_glyph_kernings contains an OUT parameter, which is not supported yet"
   )
-  def otMathGetGlyphKernings() = ???
+  private def otMathGetGlyphKernings() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a top-accent-attachment value (if one exists) for the specified
+  /** Fetches a top-accent-attachment value (if one exists) for the specified
     * glyph index.
     *
     * For any glyph that does not have a top-accent-attachment value - that is,
@@ -3791,15 +4133,16 @@ object HarfBuzz:
     *   has no `MathTopAccentAttachment` table or no `MATH` table, any glyph) -
     *   the function synthesizes a value, returning the position at one-half the
     *   glyph's advance width.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_math_get_glyph_top_accent_attachment has no target types"
+    "[ot_math_get_glyph_top_accent_attachment:]: Method hb_ot_math_get_glyph_top_accent_attachment has no target types"
   )
-  def otMathGetGlyphTopAccentAttachment() = ???
+  private def otMathGetGlyphTopAccentAttachment() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the MathGlyphConstruction for the specified font, glyph index, and
+  /** Fetches the MathGlyphConstruction for the specified font, glyph index, and
     * direction. The corresponding list of size variants is returned as a list
     * of #hb_ot_math_glyph_variant_t structs.
     *
@@ -3807,15 +4150,16 @@ object HarfBuzz:
     * or vertical directions for the construction. Even though all
     * #hb_direction_t values are accepted, only the result of
     * #HB_DIRECTION_IS_HORIZONTAL is considered.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_math_get_glyph_variants contains an OUT parameter, which is not supported yet"
+    "[ot_math_get_glyph_variants:]: Function ot_math_get_glyph_variants contains an OUT parameter, which is not supported yet"
   )
-  def otMathGetGlyphVariants() = ???
+  private def otMathGetGlyphVariants() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the MathVariants table for the specified font and returns the
+  /** Fetches the MathVariants table for the specified font and returns the
     * minimum overlap of connecting glyphs that are required to draw a glyph
     * assembly in the specified direction.
     *
@@ -3823,316 +4167,354 @@ object HarfBuzz:
     * or vertical directions for the construction. Even though all
     * #hb_direction_t values are accepted, only the result of
     * #HB_DIRECTION_IS_HORIZONTAL is considered.</note>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_math_get_min_connector_overlap has no target types"
+    "[ot_math_get_min_connector_overlap:]: Method hb_ot_math_get_min_connector_overlap has no target types"
   )
-  def otMathGetMinConnectorOverlap() = ???
+  private def otMathGetMinConnectorOverlap() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether a face has a `MATH` table.
     *
-    * Tests whether a face has a `MATH` table.
-    */
-  @annotation.compileTimeOnly("Method hb_ot_math_has_data has no target types")
-  def otMathHasData() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tests whether the given glyph index is an extended shape in the face.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_math_is_glyph_extended_shape has no target types"
+    "[ot_math_has_data:]: Method hb_ot_math_has_data has no target types"
   )
-  def otMathIsGlyphExtendedShape() = ???
+  private def otMathHasData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether the given glyph index is an extended shape in the face.
     *
-    * Fetches all available feature types.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_meta_get_entry_tags contains an OUT parameter, which is not supported yet"
+    "[ot_math_is_glyph_extended_shape:]: Method hb_ot_math_is_glyph_extended_shape has no target types"
   )
-  def otMetaGetEntryTags() = ???
+  private def otMathIsGlyphExtendedShape() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches all available feature types.
     *
-    * It fetches metadata entry of a given tag from a font.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_meta_reference_entry has no target types"
+    "[ot_meta_get_entry_tags:]: Function ot_meta_get_entry_tags contains an OUT parameter, which is not supported yet"
   )
-  def otMetaReferenceEntry() = ???
+  private def otMetaGetEntryTags() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** It fetches metadata entry of a given tag from a font.
     *
-    * Fetches metrics value corresponding to @metrics_tag from @font.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_metrics_get_position contains an OUT parameter, which is not supported yet"
+    "[ot_meta_reference_entry:]: Method hb_ot_meta_reference_entry has no target types"
   )
-  def otMetricsGetPosition() = ???
+  private def otMetaReferenceEntry() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches metrics value corresponding to @metrics_tag from @font.
     *
-    * Fetches metrics value corresponding to @metrics_tag from @font, and
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[ot_metrics_get_position:]: Function ot_metrics_get_position contains an OUT parameter, which is not supported yet"
+  )
+  private def otMetricsGetPosition() = ???
+
+  /** Fetches metrics value corresponding to @metrics_tag from @font, and
     * synthesizes a value if it the value is missing in the font.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_metrics_get_position_with_fallback contains an OUT parameter, which is not supported yet"
+    "[ot_metrics_get_position_with_fallback:]: Function ot_metrics_get_position_with_fallback contains an OUT parameter, which is not supported yet"
   )
-  def otMetricsGetPositionWithFallback() = ???
+  private def otMetricsGetPositionWithFallback() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches metrics value corresponding to @metrics_tag from @font with the
+  /** Fetches metrics value corresponding to @metrics_tag from @font with the
     * current font variation settings applied.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_metrics_get_variation has no target types"
+    "[ot_metrics_get_variation:]: Method hb_ot_metrics_get_variation has no target types"
   )
-  def otMetricsGetVariation() = ???
+  private def otMetricsGetVariation() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches horizontal metrics value corresponding to @metrics_tag from @font
+  /** Fetches horizontal metrics value corresponding to @metrics_tag from @font
     * with the current font variation settings applied.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_metrics_get_x_variation has no target types"
+    "[ot_metrics_get_x_variation:]: Method hb_ot_metrics_get_x_variation has no target types"
   )
-  def otMetricsGetXVariation() = ???
+  private def otMetricsGetXVariation() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches vertical metrics value corresponding to @metrics_tag from @font
+  /** Fetches vertical metrics value corresponding to @metrics_tag from @font
     * with the current font variation settings applied.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_metrics_get_y_variation has no target types"
+    "[ot_metrics_get_y_variation:]: Method hb_ot_metrics_get_y_variation has no target types"
   )
-  def otMetricsGetYVariation() = ???
+  private def otMetricsGetYVariation() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a font name from the OpenType 'name' table. If @language is
+  /** Fetches a font name from the OpenType 'name' table. If @language is
     * #HB_LANGUAGE_INVALID, English ("en") is assumed. Returns string in UTF-16
     * encoding. A NUL terminator is always written for convenience, and isn't
     * included in the output @text_size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_name_get_utf16 contains an OUT parameter, which is not supported yet"
+    "[ot_name_get_utf16:]: Function ot_name_get_utf16 contains an OUT parameter, which is not supported yet"
   )
-  def otNameGetUtf16() = ???
+  private def otNameGetUtf16() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a font name from the OpenType 'name' table. If @language is
+  /** Fetches a font name from the OpenType 'name' table. If @language is
     * #HB_LANGUAGE_INVALID, English ("en") is assumed. Returns string in UTF-32
     * encoding. A NUL terminator is always written for convenience, and isn't
     * included in the output @text_size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_name_get_utf32 contains an OUT parameter, which is not supported yet"
+    "[ot_name_get_utf32:]: Function ot_name_get_utf32 contains an OUT parameter, which is not supported yet"
   )
-  def otNameGetUtf32() = ???
+  private def otNameGetUtf32() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a font name from the OpenType 'name' table. If @language is
+  /** Fetches a font name from the OpenType 'name' table. If @language is
     * #HB_LANGUAGE_INVALID, English ("en") is assumed. Returns string in UTF-8
     * encoding. A NUL terminator is always written for convenience, and isn't
     * included in the output @text_size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_name_get_utf8 contains an OUT parameter, which is not supported yet"
+    "[ot_name_get_utf8:]: Function ot_name_get_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def otNameGetUtf8() = ???
+  private def otNameGetUtf8() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Enumerates all available name IDs and language combinations. Returned
+  /** Enumerates all available name IDs and language combinations. Returned
     * array is owned by the @face and should not be modified. It can be used as
     * long as @face is alive.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_name_list_names contains an OUT parameter, which is not supported yet"
+    "[ot_name_list_names:]: Function ot_name_list_names contains an OUT parameter, which is not supported yet"
   )
-  def otNameListNames() = ???
+  private def otNameListNames() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes the transitive closure of glyphs needed for a specified input
+  /** Computes the transitive closure of glyphs needed for a specified input
     * buffer under the given font and feature list. The closure is computed as a
     * set, not as a list.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_shape_glyphs_closure contains an OUT parameter, which is not supported yet"
+    "[ot_shape_glyphs_closure:]: Function ot_shape_glyphs_closure contains an OUT parameter, which is not supported yet"
   )
-  def otShapeGlyphsClosure() = ???
+  private def otShapeGlyphsClosure() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes the complete set of GSUB or GPOS lookups that are applicable
+  /** Computes the complete set of GSUB or GPOS lookups that are applicable
     * under a given @shape_plan.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_shape_plan_collect_lookups contains an OUT parameter, which is not supported yet"
+    "[ot_shape_plan_collect_lookups:]: Function ot_shape_plan_collect_lookups contains an OUT parameter, which is not supported yet"
   )
-  def otShapePlanCollectLookups() = ???
+  private def otShapePlanCollectLookups() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts an #hb_language_t to an #hb_tag_t.
     *
-    * Converts an #hb_language_t to an #hb_tag_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_tag_from_language has no target types"
+    "[ot_tag_from_language:]: Method hb_ot_tag_from_language has no target types"
   )
-  def otTagFromLanguage() = ???
+  private def otTagFromLanguage() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts a language tag to an #hb_language_t.
     *
-    * Converts a language tag to an #hb_language_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_tag_to_language has no target types"
+    "[ot_tag_to_language:]: Method hb_ot_tag_to_language has no target types"
   )
-  def otTagToLanguage() = ???
+  private def otTagToLanguage() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts a script tag to an #hb_script_t.
     *
-    * Converts a script tag to an #hb_script_t.
-    */
-  @annotation.compileTimeOnly("Method hb_ot_tag_to_script has no target types")
-  def otTagToScript() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts an #hb_script_t to script tags.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_tags_from_script contains an OUT parameter, which is not supported yet"
+    "[ot_tag_to_script:]: Method hb_ot_tag_to_script has no target types"
   )
-  def otTagsFromScript() = ???
+  private def otTagToScript() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts an #hb_script_t to script tags.
     *
-    * Converts an #hb_script_t and an #hb_language_t to script and language
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[ot_tags_from_script:]: Function ot_tags_from_script contains an OUT parameter, which is not supported yet"
+  )
+  private def otTagsFromScript() = ???
+
+  /** Converts an #hb_script_t and an #hb_language_t to script and language
     * tags.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_tags_from_script_and_language contains an OUT parameter, which is not supported yet"
+    "[ot_tags_from_script_and_language:]: Function ot_tags_from_script_and_language contains an OUT parameter, which is not supported yet"
   )
-  def otTagsFromScriptAndLanguage() = ???
+  private def otTagsFromScriptAndLanguage() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a script tag and a language tag to an #hb_script_t and an
+  /** Converts a script tag and a language tag to an #hb_script_t and an
     * #hb_language_t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_tags_to_script_and_language contains an OUT parameter, which is not supported yet"
+    "[ot_tags_to_script_and_language:]: Function ot_tags_to_script_and_language contains an OUT parameter, which is not supported yet"
   )
-  def otTagsToScriptAndLanguage() = ???
+  private def otTagsToScriptAndLanguage() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the variation-axis information corresponding to the specified axis
+  /** Fetches the variation-axis information corresponding to the specified axis
     * tag in the specified face.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_var_find_axis contains an OUT parameter, which is not supported yet"
+    "[ot_var_find_axis:]: Function ot_var_find_axis contains an OUT parameter, which is not supported yet"
   )
-  def otVarFindAxis() = ???
+  private def otVarFindAxis() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the variation-axis information corresponding to the specified axis
+  /** Fetches the variation-axis information corresponding to the specified axis
     * tag in the specified face.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_var_find_axis_info contains an OUT parameter, which is not supported yet"
+    "[ot_var_find_axis_info:]: Function ot_var_find_axis_info contains an OUT parameter, which is not supported yet"
   )
-  def otVarFindAxisInfo() = ???
+  private def otVarFindAxisInfo() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of all variation axes in the specified face. The list
+  /** Fetches a list of all variation axes in the specified face. The list
     * returned will begin at the offset provided.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_var_get_axes contains an OUT parameter, which is not supported yet"
+    "[ot_var_get_axes:]: Function ot_var_get_axes contains an OUT parameter, which is not supported yet"
   )
-  def otVarGetAxes() = ???
+  private def otVarGetAxes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the number of OpenType variation axes included in the face.
     *
-    * Fetches the number of OpenType variation axes included in the face.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_var_get_axis_count has no target types"
+    "[ot_var_get_axis_count:]: Method hb_ot_var_get_axis_count has no target types"
   )
-  def otVarGetAxisCount() = ???
+  private def otVarGetAxisCount() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a list of all variation axes in the specified face. The list
+  /** Fetches a list of all variation axes in the specified face. The list
     * returned will begin at the offset provided.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_var_get_axis_infos contains an OUT parameter, which is not supported yet"
+    "[ot_var_get_axis_infos:]: Function ot_var_get_axis_infos contains an OUT parameter, which is not supported yet"
   )
-  def otVarGetAxisInfos() = ???
+  private def otVarGetAxisInfos() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the number of named instances included in the face.
     *
-    * Fetches the number of named instances included in the face.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_var_get_named_instance_count has no target types"
+    "[ot_var_get_named_instance_count:]: Method hb_ot_var_get_named_instance_count has no target types"
   )
-  def otVarGetNamedInstanceCount() = ???
+  private def otVarGetNamedInstanceCount() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tests whether a face includes any OpenType variation data in the `fvar`
+  /** Tests whether a face includes any OpenType variation data in the `fvar`
     * table.
-    */
-  @annotation.compileTimeOnly("Method hb_ot_var_has_data has no target types")
-  def otVarHasData() = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Fetches the design-space coordinates corresponding to the given named
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[ot_var_has_data:]: Method hb_ot_var_has_data has no target types"
+  )
+  private def otVarHasData() = ???
+
+  /** Fetches the design-space coordinates corresponding to the given named
     * instance in the face.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_var_named_instance_get_design_coords contains an OUT parameter, which is not supported yet"
+    "[ot_var_named_instance_get_design_coords:]: Function ot_var_named_instance_get_design_coords contains an OUT parameter, which is not supported yet"
   )
-  def otVarNamedInstanceGetDesignCoords() = ???
+  private def otVarNamedInstanceGetDesignCoords() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the `name` table Name ID that provides display names for the
+  /** Fetches the `name` table Name ID that provides display names for the
     * "PostScript name" defined for the given named instance in the face.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_var_named_instance_get_postscript_name_id has no target types"
+    "[ot_var_named_instance_get_postscript_name_id:]: Method hb_ot_var_named_instance_get_postscript_name_id has no target types"
   )
-  def otVarNamedInstanceGetPostscriptNameId() = ???
+  private def otVarNamedInstanceGetPostscriptNameId() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the `name` table Name ID that provides display names for the
+  /** Fetches the `name` table Name ID that provides display names for the
     * "Subfamily name" defined for the given named instance in the face.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method hb_ot_var_named_instance_get_subfamily_name_id has no target types"
+    "[ot_var_named_instance_get_subfamily_name_id:]: Method hb_ot_var_named_instance_get_subfamily_name_id has no target types"
   )
-  def otVarNamedInstanceGetSubfamilyNameId() = ???
+  private def otVarNamedInstanceGetSubfamilyNameId() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Normalizes the given design-space coordinates. The minimum and maximum
+  /** Normalizes the given design-space coordinates. The minimum and maximum
     * values for the axis are mapped to the interval [-1,1], with the default
     * axis value mapped to 0.
     *
@@ -4142,406 +4524,448 @@ object HarfBuzz:
     * Any additional scaling defined in the face's `avar` table is also applied,
     * as described at
     * https://docs.microsoft.com/en-us/typography/opentype/spec/avar
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_var_normalize_coords contains an OUT parameter, which is not supported yet"
+    "[ot_var_normalize_coords:]: Function ot_var_normalize_coords contains an OUT parameter, which is not supported yet"
   )
-  def otVarNormalizeCoords() = ???
+  private def otVarNormalizeCoords() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Normalizes all of the coordinates in the given list of variation axes.
     *
-    * Normalizes all of the coordinates in the given list of variation axes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function ot_var_normalize_variations contains an OUT parameter, which is not supported yet"
+    "[ot_var_normalize_variations:]: Function ot_var_normalize_variations contains an OUT parameter, which is not supported yet"
   )
-  def otVarNormalizeVariations() = ???
+  private def otVarNormalizeVariations() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "color" paint operation.
     *
-    * Perform a "color" paint operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_color:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintColor() = ???
+  private def paintColor() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the custom palette color for @color_index.
     *
-    * Gets the custom palette color for @color_index.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function paint_custom_palette_color contains an OUT parameter, which is not supported yet"
+    "[paint_custom_palette_color:]: Function paint_custom_palette_color contains an OUT parameter, which is not supported yet"
   )
-  def paintCustomPaletteColor() = ???
+  private def paintCustomPaletteColor() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #hb_paint_funcs_t structure of paint functions.
+  /** Creates a new #hb_paint_funcs_t structure of paint functions.
     *
     * The initial reference count of 1 should be released with
     * hb_paint_funcs_destroy() when you are done using the #hb_paint_funcs_t.
     * This function never returns `NULL`. If memory cannot be allocated, a
     * special singleton #hb_paint_funcs_t object will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_create:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsCreate() = ???
+  private def paintFuncsCreate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decreases the reference count on a paint-functions structure.
+  /** Decreases the reference count on a paint-functions structure.
     *
     * When the reference count reaches zero, the structure is destroyed, freeing
     * all memory.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_destroy:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsDestroy() = ???
+  private def paintFuncsDestroy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the singleton empty paint-functions structure.
     *
-    * Fetches the singleton empty paint-functions structure.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsGetEmpty() = ???
+  private def paintFuncsGetEmpty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the user-data associated with the specified key, attached to the
+  /** Fetches the user-data associated with the specified key, attached to the
     * specified paint-functions structure.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(const hb_paint_funcs_t*)))"
+    "[paint_funcs_get_user_data:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(const hb_paint_funcs_t*)))"
   )
-  def paintFuncsGetUserData() = ???
+  private def paintFuncsGetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether a paint-functions structure is immutable.
     *
-    * Tests whether a paint-functions structure is immutable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_is_immutable:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsIsImmutable() = ???
+  private def paintFuncsIsImmutable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Makes a paint-functions structure immutable.
+  /** Makes a paint-functions structure immutable.
     *
     * After this call, all attempts to set one of the callbacks on @funcs will
     * fail.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_make_immutable:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsMakeImmutable() = ???
+  private def paintFuncsMakeImmutable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Increases the reference count on a paint-functions structure.
+  /** Increases the reference count on a paint-functions structure.
     *
     * This prevents @funcs from being destroyed until a matching call to
     * hb_paint_funcs_destroy() is made.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_reference:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsReference() = ???
+  private def paintFuncsReference() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the paint-color callback on the paint functions struct.
     *
-    * Sets the paint-color callback on the paint functions struct.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_color_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsSetColorFunc() = ???
+  private def paintFuncsSetColorFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the custom-palette-color callback on the paint functions struct.
     *
-    * Sets the custom-palette-color callback on the paint functions struct.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_custom_palette_color_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsSetCustomPaletteColorFunc() = ???
+  private def paintFuncsSetCustomPaletteColorFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the paint-image callback on the paint functions struct.
     *
-    * Sets the paint-image callback on the paint functions struct.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_image_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsSetImageFunc() = ???
+  private def paintFuncsSetImageFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the linear-gradient callback on the paint functions struct.
     *
-    * Sets the linear-gradient callback on the paint functions struct.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_linear_gradient_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsSetLinearGradientFunc() = ???
+  private def paintFuncsSetLinearGradientFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the pop-clip callback on the paint functions struct.
     *
-    * Sets the pop-clip callback on the paint functions struct.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_pop_clip_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsSetPopClipFunc() = ???
+  private def paintFuncsSetPopClipFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the pop-group callback on the paint functions struct.
     *
-    * Sets the pop-group callback on the paint functions struct.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_pop_group_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsSetPopGroupFunc() = ???
+  private def paintFuncsSetPopGroupFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the pop-transform callback on the paint functions struct.
     *
-    * Sets the pop-transform callback on the paint functions struct.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_pop_transform_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsSetPopTransformFunc() = ???
+  private def paintFuncsSetPopTransformFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the push-clip-glyph callback on the paint functions struct.
     *
-    * Sets the push-clip-glyph callback on the paint functions struct.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_push_clip_glyph_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsSetPushClipGlyphFunc() = ???
+  private def paintFuncsSetPushClipGlyphFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the push-clip-rect callback on the paint functions struct.
     *
-    * Sets the push-clip-rect callback on the paint functions struct.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_push_clip_rectangle_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsSetPushClipRectangleFunc() = ???
+  private def paintFuncsSetPushClipRectangleFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the push-group callback on the paint functions struct.
     *
-    * Sets the push-group callback on the paint functions struct.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_push_group_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsSetPushGroupFunc() = ???
+  private def paintFuncsSetPushGroupFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the push-transform callback on the paint functions struct.
     *
-    * Sets the push-transform callback on the paint functions struct.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_push_transform_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsSetPushTransformFunc() = ???
+  private def paintFuncsSetPushTransformFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the radial-gradient callback on the paint functions struct.
     *
-    * Sets the radial-gradient callback on the paint functions struct.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_radial_gradient_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsSetRadialGradientFunc() = ???
+  private def paintFuncsSetRadialGradientFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the sweep-gradient callback on the paint functions struct.
     *
-    * Sets the sweep-gradient callback on the paint functions struct.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_sweep_gradient_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsSetSweepGradientFunc() = ???
+  private def paintFuncsSetSweepGradientFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Attaches a user-data key/data pair to the specified paint-functions
+  /** Attaches a user-data key/data pair to the specified paint-functions
     * structure.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_user_data:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintFuncsSetUserData() = ???
+  private def paintFuncsSetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "image" paint operation.
     *
-    * Perform a "image" paint operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_image:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintImage() = ???
+  private def paintImage() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "linear-gradient" paint operation.
     *
-    * Perform a "linear-gradient" paint operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_linear_gradient:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintLinearGradient() = ???
+  private def paintLinearGradient() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "pop-clip" paint operation.
     *
-    * Perform a "pop-clip" paint operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_pop_clip:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintPopClip() = ???
+  private def paintPopClip() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "pop-group" paint operation.
     *
-    * Perform a "pop-group" paint operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_pop_group:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintPopGroup() = ???
+  private def paintPopGroup() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "pop-transform" paint operation.
     *
-    * Perform a "pop-transform" paint operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_pop_transform:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintPopTransform() = ???
+  private def paintPopTransform() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "push-clip-glyph" paint operation.
     *
-    * Perform a "push-clip-glyph" paint operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_push_clip_glyph:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintPushClipGlyph() = ???
+  private def paintPushClipGlyph() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "push-clip-rect" paint operation.
     *
-    * Perform a "push-clip-rect" paint operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_push_clip_rectangle:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintPushClipRectangle() = ???
+  private def paintPushClipRectangle() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "push-group" paint operation.
     *
-    * Perform a "push-group" paint operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_push_group:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintPushGroup() = ???
+  private def paintPushGroup() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "push-transform" paint operation.
     *
-    * Perform a "push-transform" paint operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_push_transform:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintPushTransform() = ???
+  private def paintPushTransform() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "radial-gradient" paint operation.
     *
-    * Perform a "radial-gradient" paint operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_radial_gradient:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintRadialGradient() = ???
+  private def paintRadialGradient() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Perform a "sweep-gradient" paint operation.
     *
-    * Perform a "sweep-gradient" paint operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_sweep_gradient:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
-  def paintSweepGradient() = ???
+  private def paintSweepGradient() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts an ISO 15924 script tag to a corresponding #hb_script_t.
     *
-    * Converts an ISO 15924 script tag to a corresponding #hb_script_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(tag_t), @type -> DataRecord(hb_tag_t)))"
+    "[script_from_iso15924_tag:/<function parameters>/tag]: Cannot render type Type(List(),ListMap(@name -> DataRecord(tag_t), @type -> DataRecord(hb_tag_t)))"
   )
-  def scriptFromIso15924Tag() = ???
+  private def scriptFromIso15924Tag() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string @str representing an ISO 15924 script tag to a
+  /** Converts a string @str representing an ISO 15924 script tag to a
     * corresponding #hb_script_t. Shorthand for hb_tag_from_string() then
     * hb_script_from_iso15924_tag().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char*)))"
+    "[script_from_string:/<function parameters>/str]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char*)))"
   )
-  def scriptFromString() = ???
+  private def scriptFromString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the #hb_direction_t of a script when it is set horizontally. All
+  /** Fetches the #hb_direction_t of a script when it is set horizontally. All
     * right-to-left scripts will return #HB_DIRECTION_RTL. All left-to-right
     * scripts will return #HB_DIRECTION_LTR. Scripts that can be written either
     * horizontally or vertically will return #HB_DIRECTION_INVALID. Unknown
     * scripts will return #HB_DIRECTION_LTR.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def scriptGetHorizontalDirection(
       script: Script_t /* Some(hb_script_t) */
   ): Direction_t /* Some(hb_direction_t) */ =
     Direction_t.fromRaw(hb_script_get_horizontal_direction(script.raw))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts an #hb_script_t to a corresponding ISO 15924 script tag.
     *
-    * Converts an #hb_script_t to a corresponding ISO 15924 script tag.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(tag_t), @type -> DataRecord(hb_tag_t)))"
+    "[script_to_iso15924_tag:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(tag_t), @type -> DataRecord(hb_tag_t)))"
   )
-  def scriptToIso15924Tag() = ???
+  private def scriptToIso15924Tag() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks the equality of two #hb_segment_properties_t's.
     *
-    * Checks the equality of two #hb_segment_properties_t's.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(segment_properties_t), @type -> DataRecord(const hb_segment_properties_t*)))"
+    "[segment_properties_equal:/<function parameters>/a]: Cannot render type Type(List(),ListMap(@name -> DataRecord(segment_properties_t), @type -> DataRecord(const hb_segment_properties_t*)))"
   )
-  def segmentPropertiesEqual() = ???
+  private def segmentPropertiesEqual() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a hash representing @p.
     *
-    * Creates a hash representing @p.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(segment_properties_t), @type -> DataRecord(const hb_segment_properties_t*)))"
+    "[segment_properties_hash:/<function parameters>/p]: Cannot render type Type(List(),ListMap(@name -> DataRecord(segment_properties_t), @type -> DataRecord(const hb_segment_properties_t*)))"
   )
-  def segmentPropertiesHash() = ???
+  private def segmentPropertiesHash() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fills in missing fields of @p from @src in a considered manner.
+  /** Fills in missing fields of @p from @src in a considered manner.
     *
     * First, if @p does not have direction set, direction is copied from @src.
     *
@@ -4551,363 +4975,400 @@ object HarfBuzz:
     * Finally, if @p and @src have the same direction and script (which either
     * can be unset), if @p does not have language set, language is copied from
     * @src.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(segment_properties_t), @type -> DataRecord(hb_segment_properties_t*)))"
+    "[segment_properties_overlay:/<function parameters>/p]: Cannot render type Type(List(),ListMap(@name -> DataRecord(segment_properties_t), @type -> DataRecord(hb_segment_properties_t*)))"
   )
-  def segmentPropertiesOverlay() = ???
+  private def segmentPropertiesOverlay() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds @codepoint to @set.
     *
-    * Adds @codepoint to @set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_add:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setAdd() = ???
+  private def setAdd() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds all of the elements from @first to @last (inclusive) to @set.
     *
-    * Adds all of the elements from @first to @last (inclusive) to @set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_add_range:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setAddRange() = ???
+  private def setAddRange() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds @num_codepoints codepoints to a set at once. The codepoints array
+  /** Adds @num_codepoints codepoints to a set at once. The codepoints array
     * must be in increasing order, with size at least @num_codepoints.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_add_sorted_array:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setAddSortedArray() = ???
+  private def setAddSortedArray() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether memory allocation for a set was successful.
     *
-    * Tests whether memory allocation for a set was successful.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_allocation_successful:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
-  def setAllocationSuccessful() = ???
+  private def setAllocationSuccessful() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Clears out the contents of a set.
     *
-    * Clears out the contents of a set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_clear:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setClear() = ???
+  private def setClear() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Allocate a copy of @set.
     *
-    * Allocate a copy of @set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_copy:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
-  def setCopy() = ???
+  private def setCopy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new, initially empty set.
     *
-    * Creates a new, initially empty set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_create:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setCreate() = ???
+  private def setCreate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes @codepoint from @set.
     *
-    * Removes @codepoint from @set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_del:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setDel() = ???
+  private def setDel() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes all of the elements from @first to @last (inclusive) from @set.
+  /** Removes all of the elements from @first to @last (inclusive) from @set.
     *
     * If @last is #HB_SET_VALUE_INVALID, then all values greater than or equal
     * to @first are removed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_del_range:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setDelRange() = ???
+  private def setDelRange() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decreases the reference count on a set. When the reference count reaches
+  /** Decreases the reference count on a set. When the reference count reaches
     * zero, the set is destroyed, freeing all memory.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_destroy:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setDestroy() = ???
+  private def setDestroy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the singleton empty #hb_set_t.
     *
-    * Fetches the singleton empty #hb_set_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setGetEmpty() = ???
+  private def setGetEmpty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finds the largest element in the set.
     *
-    * Finds the largest element in the set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_get_max:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
-  def setGetMax() = ???
+  private def setGetMax() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finds the smallest element in the set.
     *
-    * Finds the smallest element in the set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_get_min:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
-  def setGetMin() = ???
+  private def setGetMin() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the number of elements in the set.
     *
-    * Returns the number of elements in the set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_get_population:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
-  def setGetPopulation() = ???
+  private def setGetPopulation() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the user data associated with the specified key, attached to the
+  /** Fetches the user data associated with the specified key, attached to the
     * specified set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_get_user_data:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
-  def setGetUserData() = ???
+  private def setGetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether @codepoint belongs to @set.
     *
-    * Tests whether @codepoint belongs to @set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_has:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
-  def setHas() = ???
+  private def setHas() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a hash representing @set.
     *
-    * Creates a hash representing @set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_hash:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
-  def setHash() = ???
+  private def setHash() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes @set the intersection of @set and @other.
     *
-    * Makes @set the intersection of @set and @other.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_intersect:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setIntersect() = ???
+  private def setIntersect() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Inverts the contents of @set.
     *
-    * Inverts the contents of @set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_invert:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setInvert() = ???
+  private def setInvert() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether a set is empty (contains no elements).
     *
-    * Tests whether a set is empty (contains no elements).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_is_empty:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
-  def setIsEmpty() = ???
+  private def setIsEmpty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether @set and @other are equal (contain the same elements).
     *
-    * Tests whether @set and @other are equal (contain the same elements).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_is_equal:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
-  def setIsEqual() = ???
+  private def setIsEqual() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the set is inverted.
     *
-    * Returns whether the set is inverted.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_is_inverted:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
-  def setIsInverted() = ???
+  private def setIsInverted() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether @set is a subset of @larger_set.
     *
-    * Tests whether @set is a subset of @larger_set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_is_subset:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
-  def setIsSubset() = ???
+  private def setIsSubset() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the next element in @set that is greater than current value of @codepoint.
+  /** Fetches the next element in @set that is greater than current value of @codepoint.
     *
     * Set @codepoint to #HB_SET_VALUE_INVALID to get started.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function set_next contains an INOUT parameter, which is not supported yet"
+    "[set_next:]: Function set_next contains an INOUT parameter, which is not supported yet"
   )
-  def setNext() = ???
+  private def setNext() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finds the next element in @set that is greater than @codepoint. Writes out
+  /** Finds the next element in @set that is greater than @codepoint. Writes out
     * codepoints to @out, until either the set runs out of elements, or @size
     * codepoints are written, whichever comes first.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_next_many:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
-  def setNextMany() = ???
+  private def setNextMany() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the next consecutive range of elements in @set that are greater
+  /** Fetches the next consecutive range of elements in @set that are greater
     * than current value of @last.
     *
     * Set @last to #HB_SET_VALUE_INVALID to get started.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function set_next_range contains an OUT parameter, which is not supported yet"
+    "[set_next_range:]: Function set_next_range contains an OUT parameter, which is not supported yet"
   )
-  def setNextRange() = ???
+  private def setNextRange() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the previous element in @set that is lower than current value of @codepoint.
+  /** Fetches the previous element in @set that is lower than current value of @codepoint.
     *
     * Set @codepoint to #HB_SET_VALUE_INVALID to get started.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function set_previous contains an INOUT parameter, which is not supported yet"
+    "[set_previous:]: Function set_previous contains an INOUT parameter, which is not supported yet"
   )
-  def setPrevious() = ???
+  private def setPrevious() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the previous consecutive range of elements in @set that are
+  /** Fetches the previous consecutive range of elements in @set that are
     * greater than current value of @last.
     *
     * Set @first to #HB_SET_VALUE_INVALID to get started.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function set_previous_range contains an OUT parameter, which is not supported yet"
+    "[set_previous_range:]: Function set_previous_range contains an OUT parameter, which is not supported yet"
   )
-  def setPreviousRange() = ???
+  private def setPreviousRange() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Increases the reference count on a set.
     *
-    * Increases the reference count on a set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_reference:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setReference() = ???
+  private def setReference() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes the contents of @set equal to the contents of @other.
     *
-    * Makes the contents of @set equal to the contents of @other.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_set:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setSet() = ???
+  private def setSet() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Attaches a user-data key/data pair to the specified set.
     *
-    * Attaches a user-data key/data pair to the specified set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_set_user_data:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setSetUserData() = ???
+  private def setSetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Subtracts the contents of @other from @set.
     *
-    * Subtracts the contents of @other from @set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_subtract:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setSubtract() = ???
+  private def setSubtract() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes @set the symmetric difference of @set and @other.
     *
-    * Makes @set the symmetric difference of @set and @other.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_symmetric_difference:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setSymmetricDifference() = ???
+  private def setSymmetricDifference() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes @set the union of @set and @other.
     *
-    * Makes @set the union of @set and @other.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_union:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
-  def setUnion() = ???
+  private def setUnion() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Shapes @buffer using @font turning its Unicode characters content to
+  /** Shapes @buffer using @font turning its Unicode characters content to
     * positioned glyphs. If @features is not `NULL`, it will be used to control
     * the features applied during shaping. If two @features have the same tag
     * but overlapping ranges the value of the feature with the higher index
     * takes precedence.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[shape:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def shape() = ???
+  private def shape() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * See hb_shape() for details. If @shaper_list is not `NULL`, the specified
+  /** See hb_shape() for details. If @shaper_list is not `NULL`, the specified
     * shapers will be used in the given order, otherwise the default shapers
     * list will be used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[shape_full:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def shapeFull() = ???
+  private def shapeFull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * See hb_shape_full() for basic details. If @shaper_list is not `NULL`, the
+  /** See hb_shape_full() for basic details. If @shaper_list is not `NULL`, the
     * specified shapers will be used in the given order, otherwise the default
     * shapers list will be used.
     *
@@ -4918,414 +5379,456 @@ object HarfBuzz:
     * put that in *advance. Otherwise set *advance to zero.
     *
     * This API is currently experimental and will probably change in the future.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function shape_justify contains an OUT parameter, which is not supported yet"
+    "[shape_justify:]: Function shape_justify contains an OUT parameter, which is not supported yet"
   )
-  def shapeJustify() = ???
+  private def shapeJustify() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the list of shapers supported by HarfBuzz.
     *
-    * Retrieves the list of shapers supported by HarfBuzz.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+    "[shape_list_shapers:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def shapeListShapers() = ???
+  private def shapeListShapers() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Constructs a shaping plan for a combination of @face, @user_features, @props,
+  /** Constructs a shaping plan for a combination of @face, @user_features, @props,
     * and @shaper_list.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[shape_plan_create:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def shapePlanCreate() = ???
+  private def shapePlanCreate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The variable-font version of #hb_shape_plan_create. Constructs a shaping
+  /** The variable-font version of #hb_shape_plan_create. Constructs a shaping
     * plan for a combination of @face, @user_features, @props, and @shaper_list,
     * plus the variation-space coordinates @coords.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[shape_plan_create2:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def shapePlanCreate2() = ???
+  private def shapePlanCreate2() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a cached shaping plan suitable for reuse, for a combination of @face, @user_features, @props,
+  /** Creates a cached shaping plan suitable for reuse, for a combination of @face, @user_features, @props,
     * and @shaper_list.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[shape_plan_create_cached:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def shapePlanCreateCached() = ???
+  private def shapePlanCreateCached() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The variable-font version of #hb_shape_plan_create_cached. Creates a
+  /** The variable-font version of #hb_shape_plan_create_cached. Creates a
     * cached shaping plan suitable for reuse, for a combination of @face, @user_features, @props,
     * and @shaper_list, plus the variation-space coordinates @coords.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[shape_plan_create_cached2:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
-  def shapePlanCreateCached2() = ???
+  private def shapePlanCreateCached2() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decreases the reference count on the given shaping plan. When the
+  /** Decreases the reference count on the given shaping plan. When the
     * reference count reaches zero, the shaping plan is destroyed, freeing all
     * memory.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
+    "[shape_plan_destroy:/<function parameters>/shape_plan]: Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
   )
-  def shapePlanDestroy() = ???
+  private def shapePlanDestroy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Executes the given shaping plan on the specified buffer, using the given @font
+  /** Executes the given shaping plan on the specified buffer, using the given @font
     * and @features.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
+    "[shape_plan_execute:/<function parameters>/shape_plan]: Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
   )
-  def shapePlanExecute() = ???
+  private def shapePlanExecute() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the singleton empty shaping plan.
     *
-    * Fetches the singleton empty shaping plan.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
+    "[shape_plan_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
   )
-  def shapePlanGetEmpty() = ???
+  private def shapePlanGetEmpty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the shaper from a given shaping plan.
     *
-    * Fetches the shaper from a given shaping plan.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
+    "[shape_plan_get_shaper:/<function parameters>/shape_plan]: Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
   )
-  def shapePlanGetShaper() = ???
+  private def shapePlanGetShaper() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the user data associated with the specified key, attached to the
+  /** Fetches the user data associated with the specified key, attached to the
     * specified shaping plan.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(const hb_shape_plan_t*)))"
+    "[shape_plan_get_user_data:/<function parameters>/shape_plan]: Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(const hb_shape_plan_t*)))"
   )
-  def shapePlanGetUserData() = ???
+  private def shapePlanGetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Increases the reference count on the given shaping plan.
     *
-    * Increases the reference count on the given shaping plan.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
+    "[shape_plan_reference:/<function parameters>/shape_plan]: Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
   )
-  def shapePlanReference() = ???
+  private def shapePlanReference() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Attaches a user-data key/data pair to the given shaping plan.
     *
-    * Attaches a user-data key/data pair to the given shaping plan.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
+    "[shape_plan_set_user_data:/<function parameters>/shape_plan]: Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
   )
-  def shapePlanSetUserData() = ???
+  private def shapePlanSetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Searches variation axes of a #hb_font_t object for a specific axis first,
+  /** Searches variation axes of a #hb_font_t object for a specific axis first,
     * if not set, then tries to get default style values from different tables
     * of the font.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[style_get_value:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
-  def styleGetValue() = ???
+  private def styleGetValue() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a string into an #hb_tag_t. Valid tags are four characters.
+  /** Converts a string into an #hb_tag_t. Valid tags are four characters.
     * Shorter input strings will be padded with spaces. Longer input strings
     * will be truncated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char*)))"
+    "[tag_from_string:/<function parameters>/str]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char*)))"
   )
-  def tagFromString() = ???
+  private def tagFromString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts an #hb_tag_t to a string and returns it in @buf. Strings will be
+  /** Converts an #hb_tag_t to a string and returns it in @buf. Strings will be
     * four characters long.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function tag_to_string contains an OUT parameter, which is not supported yet"
+    "[tag_to_string:]: Function tag_to_string contains an OUT parameter, which is not supported yet"
   )
-  def tagToString() = ???
+  private def tagToString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the Canonical Combining Class (ccc) property of code point @unicode.
     *
-    * Retrieves the Canonical Combining Class (ccc) property of code point @unicode.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_combining_class:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeCombiningClass() = ???
+  private def unicodeCombiningClass() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the composition of a sequence of two Unicode code points.
+  /** Fetches the composition of a sequence of two Unicode code points.
     *
     * Calls the composition function of the specified Unicode-functions
     * structure @ufuncs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function unicode_compose contains an OUT parameter, which is not supported yet"
+    "[unicode_compose:]: Function unicode_compose contains an OUT parameter, which is not supported yet"
   )
-  def unicodeCompose() = ???
+  private def unicodeCompose() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the decomposition of a Unicode code point.
+  /** Fetches the decomposition of a Unicode code point.
     *
     * Calls the decomposition function of the specified Unicode-functions
     * structure @ufuncs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function unicode_decompose contains an OUT parameter, which is not supported yet"
+    "[unicode_decompose:]: Function unicode_decompose contains an OUT parameter, which is not supported yet"
   )
-  def unicodeDecompose() = ???
+  private def unicodeDecompose() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the compatibility decomposition of a Unicode code point.
+  /** Fetches the compatibility decomposition of a Unicode code point.
     * Deprecated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function unicode_decompose_compatibility contains an OUT parameter, which is not supported yet"
+    "[unicode_decompose_compatibility:]: Function unicode_decompose_compatibility contains an OUT parameter, which is not supported yet"
   )
-  def unicodeDecomposeCompatibility() = ???
+  private def unicodeDecomposeCompatibility() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Don't use. Not used by HarfBuzz.
     *
-    * Don't use. Not used by HarfBuzz.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_eastasian_width:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeEastasianWidth() = ???
+  private def unicodeEastasianWidth() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #hb_unicode_funcs_t structure of Unicode functions.
     *
-    * Creates a new #hb_unicode_funcs_t structure of Unicode functions.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_create:/<function parameters>/parent]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsCreate() = ???
+  private def unicodeFuncsCreate() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Decreases the reference count on a Unicode-functions structure. When the
+  /** Decreases the reference count on a Unicode-functions structure. When the
     * reference count reaches zero, the Unicode-functions structure is
     * destroyed, freeing all memory.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_destroy:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsDestroy() = ???
+  private def unicodeFuncsDestroy() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches a pointer to the default Unicode-functions structure that is used
+  /** Fetches a pointer to the default Unicode-functions structure that is used
     * when no functions are explicitly set on #hb_buffer_t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_get_default:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsGetDefault() = ???
+  private def unicodeFuncsGetDefault() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the singleton empty Unicode-functions structure.
     *
-    * Fetches the singleton empty Unicode-functions structure.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsGetEmpty() = ???
+  private def unicodeFuncsGetEmpty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the parent of the Unicode-functions structure
+  /** Fetches the parent of the Unicode-functions structure
     * @ufuncs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_get_parent:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsGetParent() = ???
+  private def unicodeFuncsGetParent() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetches the user-data associated with the specified key, attached to the
+  /** Fetches the user-data associated with the specified key, attached to the
     * specified Unicode-functions structure.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(const hb_unicode_funcs_t*)))"
+    "[unicode_funcs_get_user_data:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(const hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsGetUserData() = ???
+  private def unicodeFuncsGetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tests whether the specified Unicode-functions structure is immutable.
     *
-    * Tests whether the specified Unicode-functions structure is immutable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_is_immutable:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsIsImmutable() = ???
+  private def unicodeFuncsIsImmutable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makes the specified Unicode-functions structure immutable.
     *
-    * Makes the specified Unicode-functions structure immutable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_make_immutable:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsMakeImmutable() = ???
+  private def unicodeFuncsMakeImmutable() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Increases the reference count on a Unicode-functions structure.
     *
-    * Increases the reference count on a Unicode-functions structure.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_reference:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsReference() = ???
+  private def unicodeFuncsReference() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_unicode_combining_class_func_t.
     *
-    * Sets the implementation function for #hb_unicode_combining_class_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_combining_class_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsSetCombiningClassFunc() = ???
+  private def unicodeFuncsSetCombiningClassFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_unicode_compose_func_t.
     *
-    * Sets the implementation function for #hb_unicode_compose_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_compose_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsSetComposeFunc() = ???
+  private def unicodeFuncsSetComposeFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the implementation function for
+  /** Sets the implementation function for
     * #hb_unicode_decompose_compatibility_func_t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_decompose_compatibility_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsSetDecomposeCompatibilityFunc() = ???
+  private def unicodeFuncsSetDecomposeCompatibilityFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_unicode_decompose_func_t.
     *
-    * Sets the implementation function for #hb_unicode_decompose_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_decompose_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsSetDecomposeFunc() = ???
+  private def unicodeFuncsSetDecomposeFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_unicode_eastasian_width_func_t.
     *
-    * Sets the implementation function for #hb_unicode_eastasian_width_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_eastasian_width_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsSetEastasianWidthFunc() = ???
+  private def unicodeFuncsSetEastasianWidthFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_unicode_general_category_func_t.
     *
-    * Sets the implementation function for #hb_unicode_general_category_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_general_category_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsSetGeneralCategoryFunc() = ???
+  private def unicodeFuncsSetGeneralCategoryFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_unicode_mirroring_func_t.
     *
-    * Sets the implementation function for #hb_unicode_mirroring_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_mirroring_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsSetMirroringFunc() = ???
+  private def unicodeFuncsSetMirroringFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the implementation function for #hb_unicode_script_func_t.
     *
-    * Sets the implementation function for #hb_unicode_script_func_t.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_script_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsSetScriptFunc() = ???
+  private def unicodeFuncsSetScriptFunc() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Attaches a user-data key/data pair to the specified Unicode-functions
+  /** Attaches a user-data key/data pair to the specified Unicode-functions
     * structure.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_user_data:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeFuncsSetUserData() = ???
+  private def unicodeFuncsSetUserData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the General Category (gc) property of code point @unicode.
     *
-    * Retrieves the General Category (gc) property of code point @unicode.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_general_category:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeGeneralCategory() = ???
+  private def unicodeGeneralCategory() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the Bi-directional Mirroring Glyph code point defined for code
+  /** Retrieves the Bi-directional Mirroring Glyph code point defined for code
     * point @unicode.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_mirroring:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeMirroring() = ???
+  private def unicodeMirroring() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the #hb_script_t script to which code point @unicode belongs.
     *
-    * Retrieves the #hb_script_t script to which code point @unicode belongs.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_script:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
-  def unicodeScript() = ???
+  private def unicodeScript() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a string into a #hb_variation_t.
+  /** Parses a string into a #hb_variation_t.
     *
     * The format for specifying variation settings follows. All valid CSS
     * font-variation-settings values other than 'normal' and 'inherited' are
@@ -5333,45 +5836,52 @@ object HarfBuzz:
     *
     * The format is a tag, optionally followed by an equals sign, followed by a
     * number. For example `wght=500`, or `slnt=-7.5`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function variation_from_string contains an OUT parameter, which is not supported yet"
+    "[variation_from_string:]: Function variation_from_string contains an OUT parameter, which is not supported yet"
   )
-  def variationFromString() = ???
+  private def variationFromString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts an #hb_variation_t into a `NULL`-terminated string in the format
+  /** Converts an #hb_variation_t into a `NULL`-terminated string in the format
     * understood by hb_variation_from_string(). The client in responsible for
     * allocating big enough size for @buf, 128 bytes is more than enough.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function variation_to_string contains an OUT parameter, which is not supported yet"
+    "[variation_to_string:]: Function variation_to_string contains an OUT parameter, which is not supported yet"
   )
-  def variationToString() = ???
+  private def variationToString() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns library version as three integer components.
     *
-    * Returns library version as three integer components.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function version contains an OUT parameter, which is not supported yet"
+    "[version:]: Function version contains an OUT parameter, which is not supported yet"
   )
-  def version() = ???
+  private def version() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tests the library version against a minimum value, as three integer
+  /** Tests the library version against a minimum value, as three integer
     * components.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(unsigned int)))"
+    "[version_atleast:/<function parameters>/major]: Cannot render type Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(unsigned int)))"
   )
-  def versionAtleast() = ???
+  private def versionAtleast() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns library version as a string with three components.
     *
-    * Returns library version as a string with three components.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def versionString()(using Zone): String /* Some(CString) */ = fromCString(
     hb_version_string().asInstanceOf

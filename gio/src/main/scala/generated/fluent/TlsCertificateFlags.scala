@@ -2,9 +2,7 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GTlsCertificateFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A set of flags describing TLS certification validation. This can be used to
+/** A set of flags describing TLS certification validation. This can be used to
   * describe why a particular certificate was rejected (for example, in
   * #GTlsConnection::accept-certificate).
   *
@@ -14,6 +12,9 @@ import _root_.sn.gnome.gio.internal.GTlsCertificateFlags
   * error. For example, it would be incorrect to mask %G_TLS_CERTIFICATE_EXPIRED
   * if you want to allow expired certificates, because this could potentially be
   * the only error flag set even if other problems exist with the certificate.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TlsCertificateFlags private (val raw: GTlsCertificateFlags):
   def is(kv: TlsCertificateFlags): Boolean =
@@ -41,9 +42,7 @@ object TlsCertificateFlags:
     def |(other: TlsCertificateFlags) =
       TlsCertificateFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A set of flags describing TLS certification validation. This can be used
+  /** A set of flags describing TLS certification validation. This can be used
     * to describe why a particular certificate was rejected (for example, in
     * #GTlsConnection::accept-certificate).
     *
@@ -54,14 +53,18 @@ object TlsCertificateFlags:
     * %G_TLS_CERTIFICATE_EXPIRED if you want to allow expired certificates,
     * because this could potentially be the only error flag set even if other
     * problems exist with the certificate.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GTlsCertificateFlags, name: String)
       extends TlsCertificateFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set. Since: 2.74
       *
-      * No flags set. Since: 2.74
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NO_FLAGS
         extends KnownValue(
@@ -69,9 +72,10 @@ object TlsCertificateFlags:
           "NO_FLAGS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The signing certificate authority is not known.
       *
-      * The signing certificate authority is not known.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case UNKNOWN_CA
         extends KnownValue(
@@ -79,10 +83,11 @@ object TlsCertificateFlags:
           "UNKNOWN_CA"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * The certificate does not match the expected identity of the site that it
+    /** The certificate does not match the expected identity of the site that it
       * was retrieved from.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case BAD_IDENTITY
         extends KnownValue(
@@ -90,9 +95,10 @@ object TlsCertificateFlags:
           "BAD_IDENTITY"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The certificate's activation time is still in the future
       *
-      * The certificate's activation time is still in the future
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NOT_ACTIVATED
         extends KnownValue(
@@ -100,9 +106,10 @@ object TlsCertificateFlags:
           "NOT_ACTIVATED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The certificate has expired
       *
-      * The certificate has expired
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case EXPIRED
         extends KnownValue(
@@ -110,10 +117,11 @@ object TlsCertificateFlags:
           "EXPIRED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * The certificate has been revoked according to the #GTlsConnection's
+    /** The certificate has been revoked according to the #GTlsConnection's
       * certificate revocation list.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case REVOKED
         extends KnownValue(
@@ -121,9 +129,10 @@ object TlsCertificateFlags:
           "REVOKED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The certificate's algorithm is considered insecure.
       *
-      * The certificate's algorithm is considered insecure.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case INSECURE
         extends KnownValue(
@@ -131,9 +140,10 @@ object TlsCertificateFlags:
           "INSECURE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Some other error occurred validating the certificate
       *
-      * Some other error occurred validating the certificate
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case GENERIC_ERROR
         extends KnownValue(
@@ -141,9 +151,10 @@ object TlsCertificateFlags:
           "GENERIC_ERROR"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the combination of all of the above flags
       *
-      * the combination of all of the above flags
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case VALIDATE_ALL
         extends KnownValue(

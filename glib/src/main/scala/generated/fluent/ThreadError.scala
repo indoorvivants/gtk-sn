@@ -2,14 +2,16 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GThreadError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Possible errors of thread related functions.
   *
-  * Possible errors of thread related functions.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ThreadError(val raw: GThreadError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a thread couldn't be created due to resource shortage. Try again later.
     *
-    * a thread couldn't be created due to resource shortage. Try again later.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case THREAD_ERROR_AGAIN extends ThreadError(GThreadError.G_THREAD_ERROR_AGAIN)
 end ThreadError

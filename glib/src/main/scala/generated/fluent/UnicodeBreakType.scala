@@ -2,9 +2,7 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GUnicodeBreakType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * These are the possible line break classifications.
+/** These are the possible line break classifications.
   *
   * Since new unicode versions may add new types here, applications should be
   * ready to handle unknown values. They may be regarded as
@@ -12,335 +10,382 @@ import _root_.sn.gnome.glib.internal.GUnicodeBreakType
   *
   * See [Unicode Line Breaking
   * Algorithm](https://www.unicode.org/reports/tr14/).
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum UnicodeBreakType(val raw: GUnicodeBreakType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Mandatory Break (BK)
     *
-    * Mandatory Break (BK)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MANDATORY
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_MANDATORY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Carriage Return (CR)
     *
-    * Carriage Return (CR)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CARRIAGE_RETURN
       extends UnicodeBreakType(
         GUnicodeBreakType.G_UNICODE_BREAK_CARRIAGE_RETURN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Line Feed (LF)
     *
-    * Line Feed (LF)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LINE_FEED
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_LINE_FEED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Attached Characters and Combining Marks (CM)
     *
-    * Attached Characters and Combining Marks (CM)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COMBINING_MARK
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_COMBINING_MARK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Surrogates (SG)
     *
-    * Surrogates (SG)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SURROGATE
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_SURROGATE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Zero Width Space (ZW)
     *
-    * Zero Width Space (ZW)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ZERO_WIDTH_SPACE
       extends UnicodeBreakType(
         GUnicodeBreakType.G_UNICODE_BREAK_ZERO_WIDTH_SPACE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Inseparable (IN)
     *
-    * Inseparable (IN)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INSEPARABLE
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_INSEPARABLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Non-breaking ("Glue") (GL)
     *
-    * Non-breaking ("Glue") (GL)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NON_BREAKING_GLUE
       extends UnicodeBreakType(
         GUnicodeBreakType.G_UNICODE_BREAK_NON_BREAKING_GLUE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Contingent Break Opportunity (CB)
     *
-    * Contingent Break Opportunity (CB)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CONTINGENT
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_CONTINGENT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Space (SP)
     *
-    * Space (SP)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SPACE extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_SPACE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Break Opportunity After (BA)
     *
-    * Break Opportunity After (BA)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AFTER extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_AFTER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Break Opportunity Before (BB)
     *
-    * Break Opportunity Before (BB)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BEFORE extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_BEFORE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Break Opportunity Before and After (B2)
     *
-    * Break Opportunity Before and After (B2)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BEFORE_AND_AFTER
       extends UnicodeBreakType(
         GUnicodeBreakType.G_UNICODE_BREAK_BEFORE_AND_AFTER
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Hyphen (HY)
     *
-    * Hyphen (HY)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HYPHEN extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_HYPHEN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Nonstarter (NS)
     *
-    * Nonstarter (NS)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NON_STARTER
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_NON_STARTER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Opening Punctuation (OP)
     *
-    * Opening Punctuation (OP)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OPEN_PUNCTUATION
       extends UnicodeBreakType(
         GUnicodeBreakType.G_UNICODE_BREAK_OPEN_PUNCTUATION
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Closing Punctuation (CL)
     *
-    * Closing Punctuation (CL)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CLOSE_PUNCTUATION
       extends UnicodeBreakType(
         GUnicodeBreakType.G_UNICODE_BREAK_CLOSE_PUNCTUATION
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Ambiguous Quotation (QU)
     *
-    * Ambiguous Quotation (QU)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case QUOTATION
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_QUOTATION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Exclamation/Interrogation (EX)
     *
-    * Exclamation/Interrogation (EX)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EXCLAMATION
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_EXCLAMATION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Ideographic (ID)
     *
-    * Ideographic (ID)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case IDEOGRAPHIC
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_IDEOGRAPHIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Numeric (NU)
     *
-    * Numeric (NU)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NUMERIC
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_NUMERIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Infix Separator (Numeric) (IS)
     *
-    * Infix Separator (Numeric) (IS)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INFIX_SEPARATOR
       extends UnicodeBreakType(
         GUnicodeBreakType.G_UNICODE_BREAK_INFIX_SEPARATOR
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Symbols Allowing Break After (SY)
     *
-    * Symbols Allowing Break After (SY)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SYMBOL extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_SYMBOL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Ordinary Alphabetic and Symbol Characters (AL)
     *
-    * Ordinary Alphabetic and Symbol Characters (AL)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ALPHABETIC
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_ALPHABETIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Prefix (Numeric) (PR)
     *
-    * Prefix (Numeric) (PR)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PREFIX extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_PREFIX)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Postfix (Numeric) (PO)
     *
-    * Postfix (Numeric) (PO)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case POSTFIX
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_POSTFIX)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Complex Content Dependent (South East Asian) (SA)
     *
-    * Complex Content Dependent (South East Asian) (SA)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COMPLEX_CONTEXT
       extends UnicodeBreakType(
         GUnicodeBreakType.G_UNICODE_BREAK_COMPLEX_CONTEXT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Ambiguous (Alphabetic or Ideographic) (AI)
     *
-    * Ambiguous (Alphabetic or Ideographic) (AI)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AMBIGUOUS
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_AMBIGUOUS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unknown (XX)
     *
-    * Unknown (XX)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_UNKNOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Next Line (NL)
     *
-    * Next Line (NL)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NEXT_LINE
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_NEXT_LINE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Word Joiner (WJ)
     *
-    * Word Joiner (WJ)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WORD_JOINER
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_WORD_JOINER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Hangul L Jamo (JL)
     *
-    * Hangul L Jamo (JL)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HANGUL_L_JAMO
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_HANGUL_L_JAMO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Hangul V Jamo (JV)
     *
-    * Hangul V Jamo (JV)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HANGUL_V_JAMO
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_HANGUL_V_JAMO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Hangul T Jamo (JT)
     *
-    * Hangul T Jamo (JT)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HANGUL_T_JAMO
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_HANGUL_T_JAMO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Hangul LV Syllable (H2)
     *
-    * Hangul LV Syllable (H2)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HANGUL_LV_SYLLABLE
       extends UnicodeBreakType(
         GUnicodeBreakType.G_UNICODE_BREAK_HANGUL_LV_SYLLABLE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Hangul LVT Syllable (H3)
     *
-    * Hangul LVT Syllable (H3)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HANGUL_LVT_SYLLABLE
       extends UnicodeBreakType(
         GUnicodeBreakType.G_UNICODE_BREAK_HANGUL_LVT_SYLLABLE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Closing Parenthesis (CP). Since 2.28. Deprecated: 2.70: Use
+  /** Closing Parenthesis (CP). Since 2.28. Deprecated: 2.70: Use
     * %G_UNICODE_BREAK_CLOSE_PARENTHESIS instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CLOSE_PARANTHESIS
       extends UnicodeBreakType(
         GUnicodeBreakType.G_UNICODE_BREAK_CLOSE_PARANTHESIS
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Closing Parenthesis (CP). Since 2.70
     *
-    * Closing Parenthesis (CP). Since 2.70
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CLOSE_PARENTHESIS
       extends UnicodeBreakType(
         GUnicodeBreakType.G_UNICODE_BREAK_CLOSE_PARENTHESIS
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Conditional Japanese Starter (CJ). Since: 2.32
     *
-    * Conditional Japanese Starter (CJ). Since: 2.32
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CONDITIONAL_JAPANESE_STARTER
       extends UnicodeBreakType(
         GUnicodeBreakType.G_UNICODE_BREAK_CONDITIONAL_JAPANESE_STARTER
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Hebrew Letter (HL). Since: 2.32
     *
-    * Hebrew Letter (HL). Since: 2.32
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HEBREW_LETTER
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_HEBREW_LETTER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Regional Indicator (RI). Since: 2.36
     *
-    * Regional Indicator (RI). Since: 2.36
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case REGIONAL_INDICATOR
       extends UnicodeBreakType(
         GUnicodeBreakType.G_UNICODE_BREAK_REGIONAL_INDICATOR
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Emoji Base (EB). Since: 2.50
     *
-    * Emoji Base (EB). Since: 2.50
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EMOJI_BASE
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_EMOJI_BASE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Emoji Modifier (EM). Since: 2.50
     *
-    * Emoji Modifier (EM). Since: 2.50
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EMOJI_MODIFIER
       extends UnicodeBreakType(GUnicodeBreakType.G_UNICODE_BREAK_EMOJI_MODIFIER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Zero Width Joiner (ZWJ). Since: 2.50
     *
-    * Zero Width Joiner (ZWJ). Since: 2.50
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ZERO_WIDTH_JOINER
       extends UnicodeBreakType(

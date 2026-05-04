@@ -2,9 +2,7 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkInputPurpose
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Describes primary purpose of the input widget.
+/** Describes primary purpose of the input widget.
   *
   * This information is useful for on-screen keyboards and similar input methods
   * to decide which keys should be presented to the user.
@@ -22,72 +20,86 @@ import _root_.sn.gnome.gtk4.internal.GtkInputPurpose
   *
   * This enumeration may be extended in the future; input methods should
   * interpret unknown values as “free form”.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum InputPurpose(val raw: GtkInputPurpose):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Allow any character
     *
-    * Allow any character
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FREE_FORM
       extends InputPurpose(GtkInputPurpose.GTK_INPUT_PURPOSE_FREE_FORM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Allow only alphabetic characters
     *
-    * Allow only alphabetic characters
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ALPHA extends InputPurpose(GtkInputPurpose.GTK_INPUT_PURPOSE_ALPHA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Allow only digits
     *
-    * Allow only digits
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DIGITS extends InputPurpose(GtkInputPurpose.GTK_INPUT_PURPOSE_DIGITS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Edited field expects numbers
     *
-    * Edited field expects numbers
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NUMBER extends InputPurpose(GtkInputPurpose.GTK_INPUT_PURPOSE_NUMBER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Edited field expects phone number
     *
-    * Edited field expects phone number
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PHONE extends InputPurpose(GtkInputPurpose.GTK_INPUT_PURPOSE_PHONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Edited field expects URL
     *
-    * Edited field expects URL
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case URL extends InputPurpose(GtkInputPurpose.GTK_INPUT_PURPOSE_URL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Edited field expects email address
     *
-    * Edited field expects email address
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EMAIL extends InputPurpose(GtkInputPurpose.GTK_INPUT_PURPOSE_EMAIL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Edited field expects the name of a person
     *
-    * Edited field expects the name of a person
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NAME extends InputPurpose(GtkInputPurpose.GTK_INPUT_PURPOSE_NAME)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Like %GTK_INPUT_PURPOSE_FREE_FORM, but characters are hidden
     *
-    * Like %GTK_INPUT_PURPOSE_FREE_FORM, but characters are hidden
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PASSWORD extends InputPurpose(GtkInputPurpose.GTK_INPUT_PURPOSE_PASSWORD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Like %GTK_INPUT_PURPOSE_DIGITS, but characters are hidden
     *
-    * Like %GTK_INPUT_PURPOSE_DIGITS, but characters are hidden
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PIN extends InputPurpose(GtkInputPurpose.GTK_INPUT_PURPOSE_PIN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Allow any character, in addition to control codes
     *
-    * Allow any character, in addition to control codes
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TERMINAL extends InputPurpose(GtkInputPurpose.GTK_INPUT_PURPOSE_TERMINAL)
 end InputPurpose

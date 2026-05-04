@@ -8,28 +8,30 @@ import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.fluent.{BindingFlags, Object}
 import sn.gnome.gobject.internal.GBindingGroup
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The #GBindingGroup can be used to bind multiple properties from an object
+/** The #GBindingGroup can be used to bind multiple properties from an object
   * collectively.
   *
   * Use the various methods to bind properties from a single source object to
   * multiple destination objects. Properties can be bound bidirectionally and
   * are connected when the source object is set with
   * g_binding_group_set_source().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a binding between @source_property on the source object and @target_property
+  /** Creates a binding between @source_property on the source object and @target_property
     * on @target. Whenever the @source_property is changed the @target_property
     * is updated using the same value. The binding flag %G_BINDING_SYNC_CREATE
     * is automatically specified.
     *
     * See g_object_bind_property() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def bind(
       source_property: String |
@@ -46,24 +48,23 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     flags.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a binding between @source_property on the source object and
+  /** Creates a binding between @source_property on the source object and
     * @target_property
     *   on @target, allowing you to set the transformation functions to be used
     *   by the binding. The binding flag %G_BINDING_SYNC_CREATE is automatically
     *   specified.
     *
     * See g_object_bind_property_full() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(BindingTransformFunc), @type -> DataRecord(GBindingTransformFunc)))"
+    "[bind_full/<method parameters>/transform_to]: Cannot render type Type(List(),ListMap(@name -> DataRecord(BindingTransformFunc), @type -> DataRecord(GBindingTransformFunc)))"
   )
-  def bindFull__ = ???
+  private def bindFull__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a binding between @source_property on the source object and
+  /** Creates a binding between @source_property on the source object and
     * @target_property
     *   on @target, allowing you to set the transformation functions to be used
     *   by the binding. The binding flag %G_BINDING_SYNC_CREATE is automatically
@@ -74,15 +75,19 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     * pointers.
     *
     * See g_object_bind_property_with_closures() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[bind_with_closures/<method parameters>/transform_to]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
-  def bindWithClosures__ = ???
+  private def bindWithClosures__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the source object used for binding properties.
     *
-    * Gets the source object used for binding properties.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dupSource(): Object /* None */ = new Object(
     g_binding_group_dup_source(
@@ -90,12 +95,13 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @source as the source object used for creating property bindings. If
+  /** Sets @source as the source object used for creating property bindings. If
     * there is already a source object all bindings from it will be removed.
     *
     * Note that all properties that have been bound must exist on @source.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSource(
       source: Option[Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */ ]
@@ -119,9 +125,10 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
 end BindingGroup
 
 object BindingGroup:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GBindingGroup.
     *
-    * Creates a new #GBindingGroup.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): BindingGroup = new BindingGroup(
     g_binding_group_new().asInstanceOf

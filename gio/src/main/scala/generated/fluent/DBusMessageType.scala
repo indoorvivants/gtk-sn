@@ -2,43 +2,49 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDBusMessageType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Message types used in #GDBusMessage.
   *
-  * Message types used in #GDBusMessage.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum DBusMessageType(val raw: GDBusMessageType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Message is of invalid type.
     *
-    * Message is of invalid type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID
       extends DBusMessageType(GDBusMessageType.G_DBUS_MESSAGE_TYPE_INVALID)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Method call.
     *
-    * Method call.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case METHOD_CALL
       extends DBusMessageType(GDBusMessageType.G_DBUS_MESSAGE_TYPE_METHOD_CALL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Method reply.
     *
-    * Method reply.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case METHOD_RETURN
       extends DBusMessageType(
         GDBusMessageType.G_DBUS_MESSAGE_TYPE_METHOD_RETURN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Error reply.
     *
-    * Error reply.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ERROR extends DBusMessageType(GDBusMessageType.G_DBUS_MESSAGE_TYPE_ERROR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Signal emission.
     *
-    * Signal emission.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SIGNAL
       extends DBusMessageType(GDBusMessageType.G_DBUS_MESSAGE_TYPE_SIGNAL)

@@ -23,12 +23,14 @@ inThisBuild(
 )
 
 organization := "com.indoorvivants.gnome"
-// sonatypeProfileName := "com.indoorvivants"
 
 val publishing = Seq(
   organization := "com.indoorvivants.gnome"
-  // sonatypeProfileName := "com.indoorvivants"
 )
+
+val Versions = new {
+  val Scala3 = "3.8.3"
+}
 
 lazy val root = project
   .in(file("."))
@@ -49,9 +51,18 @@ lazy val root = project
     girepository
   )
   .enablePlugins(sbtdocker.DockerPlugin)
+  .enablePlugins(ScalaUnidocPlugin)
   .settings(
+    name := "scala-native-gtk",
+    scalaVersion := Versions.Scala3,
     publish / skip := true,
     publishLocal / skip := true,
+    ScalaUnidoc / unidoc / unidocProjectFilter := inAnyProject -- inProjects(
+      `fluent-generator`,
+      girepository,
+      `gir-schema`,
+      examples
+    ),
     pushRemoteCacheTo := Some(
       MavenCache(
         "local-cache",
@@ -66,9 +77,8 @@ lazy val root = project
       val out =
         (`fluent-generator` / Compile / resourceDirectory).value / "target-types.json"
 
-      println("yo")
-
       val modules = Seq(
+        (adwaita / Compile / sourceDirectory).value -> "adwaita",
         (gtk4 / Compile / sourceDirectory).value -> "gtk4",
         (gdk4 / Compile / sourceDirectory).value -> "gdk4",
         (gsk4 / Compile / sourceDirectory).value -> "gsk4",
@@ -156,6 +166,8 @@ lazy val adwaita = project
           // .withOpaqueStructs(Set("AdwDialogClass"))
           .addExcludedSystemPath(headerPath.toPath().getParent())
       }
+      // girModuleName := "adw-1",
+      // withFluentBindings
   )
 
 lazy val gio = project
@@ -557,7 +569,7 @@ def pkgConfiguredSimple: Project => Project = { proj =>
     .enablePlugins(ScalaNativePlugin)
     .settings(publishing)
     .settings(
-      Compile / doc / sources := Seq.empty,
+      // Compile / doc / sources := Seq.empty,
       pushRemoteCacheTo := Some(
         MavenCache(
           "local-cache",
@@ -565,7 +577,7 @@ def pkgConfiguredSimple: Project => Project = { proj =>
         )
       ),
       resolvers ++= Resolver.sonatypeOssRepos("snapshots"),
-      scalaVersion := "3.3.7"
+      scalaVersion := Versions.Scala3
     )
 }
 
@@ -594,7 +606,7 @@ def buildWithDependencies(deps: String*)(bb: Binding) = {
         "*/glib-2.0/glib/*",
         "*/glib-2.0/glib.h",
         "*/glibconfig.h",
-        "*/glib-2.0/gmodule.h",
+        "*/glib-2.0/gmodule.h"
       )
     case "gio" =>
       List(
@@ -638,7 +650,7 @@ def bindingPackage(name: String) = s"sn.gnome.$name.internal"
 lazy val `fluent-generator` = project
   .in(file("fluent-generator"))
   .dependsOn(`gir-schema`)
-  .settings(scalaVersion := "3.3.7")
+  .settings(scalaVersion := Versions.Scala3)
   .settings(
     libraryDependencies += "com.outr" %%% "scribe" % "3.17.0",
     libraryDependencies += "com.indoorvivants" %%% "rendition" % "0.0.4",

@@ -10,9 +10,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Incremental image loader.
+/** Incremental image loader.
   *
   * `GdkPixbufLoader` provides a way for applications to drive the process of
   * loading an image, by letting them send the image data directly to the loader
@@ -56,14 +54,15 @@ import sn.gnome.gobject.fluent.Object
   * [method@GdkPixbuf.PixbufAnimation.get_iter] to get a
   * [class@GdkPixbuf.PixbufAnimationIter] to retrieve the pixbuf for the desired
   * time stamp.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Informs a pixbuf loader that no further writes with
+  /** Informs a pixbuf loader that no further writes with
     * gdk_pixbuf_loader_write() will occur, so that it can free its internal
     * loading structures.
     *
@@ -78,6 +77,9 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     *
     * Remember that this function does not release a reference on the loader, so
     * you will need to explicitly release any reference you hold.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def close(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gdk_pixbuf_loader_close(
@@ -86,9 +88,7 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries the #GdkPixbufAnimation that a pixbuf loader is currently
+  /** Queries the #GdkPixbufAnimation that a pixbuf loader is currently
     * creating.
     *
     * In general it only makes sense to call this function after the
@@ -97,6 +97,9 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     *
     * If the loader doesn't have enough bytes yet, and hasn't emitted the
     * `area-prepared` signal, this function will return `NULL`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAnimation(): PixbufAnimation /* None */ = new PixbufAnimation(
     gdk_pixbuf_loader_get_animation(
@@ -104,19 +107,18 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains the available information about the format of the currently
+  /** Obtains the available information about the format of the currently
     * loading image file.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PixbufFormat), @type -> DataRecord(GdkPixbufFormat*)))"
+    "[get_format/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PixbufFormat), @type -> DataRecord(GdkPixbufFormat*)))"
   )
-  def getFormat__ = ???
+  private def getFormat__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries the #GdkPixbuf that a pixbuf loader is currently creating.
+  /** Queries the #GdkPixbuf that a pixbuf loader is currently creating.
     *
     * In general it only makes sense to call this function after the
     * [signal@GdkPixbuf.PixbufLoader::area-prepared] signal has been emitted by
@@ -131,6 +133,9 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     *
     * Additionally, if the loader is an animation, it will return the "static
     * image" of the animation (see gdk_pixbuf_animation_get_static_image()).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPixbuf(): Pixbuf /* None */ = new Pixbuf(
     gdk_pixbuf_loader_get_pixbuf(
@@ -138,9 +143,7 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Causes the image to be scaled while it is loaded.
+  /** Causes the image to be scaled while it is loaded.
     *
     * The desired image size can be determined relative to the original size of
     * the image by calling gdk_pixbuf_loader_set_size() from a signal handler
@@ -148,6 +151,9 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     *
     * Attempts to set the desired image size are ignored after the emission of
     * the ::size-prepared signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSize(
       width: Int /* Some(CInt) */,
@@ -158,38 +164,39 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     height
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Parses the next `count` bytes in the given image buffer.
     *
-    * Parses the next `count` bytes in the given image buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guchar*)))"
+    "[write/<method parameters>/buf]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guchar*)))"
   )
-  def write__ = ???
+  private def write__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Parses the next contents of the given image buffer.
     *
-    * Parses the next contents of the given image buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[write_bytes/<method parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def writeBytes__ = ???
+  private def writeBytes__ = ???
 
 end PixbufLoader
 
 object PixbufLoader:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new pixbuf loader object.
     *
-    * Creates a new pixbuf loader object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): PixbufLoader = new PixbufLoader(
     gdk_pixbuf_loader_new().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new pixbuf loader object that always attempts to parse image
+  /** Creates a new pixbuf loader object that always attempts to parse image
     * data as if it were an image of MIME type @mime_type, instead of
     * identifying the type automatically.
     *
@@ -204,6 +211,9 @@ object PixbufLoader:
     * obtain the full list of supported mime types, call
     * gdk_pixbuf_format_get_mime_types() on each of the #GdkPixbufFormat structs
     * returned by gdk_pixbuf_get_formats().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withMimeType(
       mime_type: String | CString /* Some(CString) */
@@ -216,9 +226,7 @@ object PixbufLoader:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new pixbuf loader object that always attempts to parse image
+  /** Creates a new pixbuf loader object that always attempts to parse image
     * data as if it were an image of type @image_type, instead of identifying
     * the type automatically.
     *
@@ -231,6 +239,9 @@ object PixbufLoader:
     * the supported formats. To obtain the full list of supported image formats,
     * call gdk_pixbuf_format_get_name() on each of the #GdkPixbufFormat structs
     * returned by gdk_pixbuf_get_formats().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withType(
       image_type: String | CString /* Some(CString) */

@@ -2,9 +2,7 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkTouchpadGesturePhase
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Specifies the current state of a touchpad gesture.
+/** Specifies the current state of a touchpad gesture.
   *
   * All gestures are guaranteed to begin with an event with phase
   * %GDK_TOUCHPAD_GESTURE_PHASE_BEGIN, followed by 0 or several events with
@@ -22,38 +20,45 @@ import _root_.sn.gnome.gdk4.internal.GdkTouchpadGesturePhase
   * %GDK_TOUCHPAD_GESTURE_PHASE_CANCEL, this should be used as a hint to undo
   * any visible/permanent changes that were done throughout the progress of the
   * gesture.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TouchpadGesturePhase(val raw: GdkTouchpadGesturePhase):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The gesture has begun.
     *
-    * The gesture has begun.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BEGIN
       extends TouchpadGesturePhase(
         GdkTouchpadGesturePhase.GDK_TOUCHPAD_GESTURE_PHASE_BEGIN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The gesture has been updated.
     *
-    * The gesture has been updated.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UPDATE
       extends TouchpadGesturePhase(
         GdkTouchpadGesturePhase.GDK_TOUCHPAD_GESTURE_PHASE_UPDATE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The gesture was finished, changes should be permanently applied.
     *
-    * The gesture was finished, changes should be permanently applied.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case END
       extends TouchpadGesturePhase(
         GdkTouchpadGesturePhase.GDK_TOUCHPAD_GESTURE_PHASE_END
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The gesture was cancelled, all changes should be undone.
     *
-    * The gesture was cancelled, all changes should be undone.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CANCEL
       extends TouchpadGesturePhase(

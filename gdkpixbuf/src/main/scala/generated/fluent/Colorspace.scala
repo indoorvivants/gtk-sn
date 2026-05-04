@@ -2,17 +2,19 @@ package sn.gnome.gdkpixbuf.fluent
 
 import _root_.sn.gnome.gdkpixbuf.internal.GdkColorspace
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * This enumeration defines the color spaces that are supported by the
+/** This enumeration defines the color spaces that are supported by the
   * gdk-pixbuf library.
   *
   * Currently only RGB is supported.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Colorspace(val raw: GdkColorspace):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Indicates a red/green/blue additive color space.
     *
-    * Indicates a red/green/blue additive color space.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RGB extends Colorspace(GdkColorspace.GDK_COLORSPACE_RGB)
 end Colorspace

@@ -2,9 +2,7 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GTestFileType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The type of file to return the filename for, when used with
+/** The type of file to return the filename for, when used with
   * g_test_build_filename().
   *
   * These two options correspond rather directly to the 'dist' and 'built'
@@ -18,17 +16,22 @@ import _root_.sn.gnome.glib.internal.GTestFileType
   * of the build-from-git process (but then are distributed with the tarball)
   * always go in srcdir (even if doing a srcdir != builddir build from git) and
   * are considered as distributed files.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TestFileType(val raw: GTestFileType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a file that was included in the distribution tarball
     *
-    * a file that was included in the distribution tarball
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DIST extends TestFileType(GTestFileType.G_TEST_DIST)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a file that was built on the compiling machine
     *
-    * a file that was built on the compiling machine
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BUILT extends TestFileType(GTestFileType.G_TEST_BUILT)
 end TestFileType

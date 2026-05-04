@@ -7,25 +7,28 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gsk4.fluent.{BlendMode, RenderNode}
 import sn.gnome.gsk4.internal.GskBlendNode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A render node applying a blending function between its two child nodes.
   *
-  * A render node applying a blending function between its two child nodes.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class BlendNode(raw: Ptr[GskBlendNode]) extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the blend mode used by @node.
     *
-    * Retrieves the blend mode used by @node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBlendMode(): BlendMode /* None */ = BlendMode.fromRaw(
     gsk_blend_node_get_blend_mode(this.raw.asInstanceOf[Ptr[GskRenderNode]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the bottom `GskRenderNode` child of the @node.
     *
-    * Retrieves the bottom `GskRenderNode` child of the @node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBottomChild(): RenderNode /* None */ = new RenderNode(
     gsk_blend_node_get_bottom_child(
@@ -33,9 +36,10 @@ class BlendNode(raw: Ptr[GskBlendNode]) extends RenderNode(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the top `GskRenderNode` child of the @node.
     *
-    * Retrieves the top `GskRenderNode` child of the @node.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTopChild(): RenderNode /* None */ = new RenderNode(
     gsk_blend_node_get_top_child(
@@ -46,10 +50,11 @@ class BlendNode(raw: Ptr[GskBlendNode]) extends RenderNode(raw.asInstanceOf):
 end BlendNode
 
 object BlendNode:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GskRenderNode` that will use @blend_mode to blend the @top node
+  /** Creates a `GskRenderNode` that will use @blend_mode to blend the @top node
     * onto the @bottom node.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       bottom: RenderNode /* Some(Ptr[GskRenderNode]) */,

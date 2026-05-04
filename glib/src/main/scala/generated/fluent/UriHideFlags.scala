@@ -2,11 +2,12 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GUriHideFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags describing what parts of the URI to hide in g_uri_to_string_partial().
+/** Flags describing what parts of the URI to hide in g_uri_to_string_partial().
   * Note that %G_URI_HIDE_PASSWORD and %G_URI_HIDE_AUTH_PARAMS will only work if
   * the #GUri was parsed with the corresponding flags.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class UriHideFlags private (val raw: GUriHideFlags):
   def is(kv: UriHideFlags): Boolean =
@@ -34,53 +35,60 @@ object UriHideFlags:
     def |(other: UriHideFlags) =
       UriHideFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags describing what parts of the URI to hide in
+  /** Flags describing what parts of the URI to hide in
     * g_uri_to_string_partial(). Note that %G_URI_HIDE_PASSWORD and
     * %G_URI_HIDE_AUTH_PARAMS will only work if the #GUri was parsed with the
     * corresponding flags.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GUriHideFlags, name: String)
       extends UriHideFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GUriHideFlags.G_URI_HIDE_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Hide the userinfo.
       *
-      * Hide the userinfo.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case USERINFO
         extends KnownValue(GUriHideFlags.G_URI_HIDE_USERINFO, "USERINFO")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Hide the password.
       *
-      * Hide the password.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case PASSWORD
         extends KnownValue(GUriHideFlags.G_URI_HIDE_PASSWORD, "PASSWORD")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Hide the auth_params.
       *
-      * Hide the auth_params.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case AUTH_PARAMS
         extends KnownValue(GUriHideFlags.G_URI_HIDE_AUTH_PARAMS, "AUTH_PARAMS")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Hide the query.
       *
-      * Hide the query.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case QUERY extends KnownValue(GUriHideFlags.G_URI_HIDE_QUERY, "QUERY")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Hide the fragment.
       *
-      * Hide the fragment.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FRAGMENT
         extends KnownValue(GUriHideFlags.G_URI_HIDE_FRAGMENT, "FRAGMENT")

@@ -27,22 +27,24 @@ import sn.gnome.gtk4.fluent.{
 }
 
 object Gtk:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the modifier mask.
+  /** Gets the modifier mask.
     *
     * The modifier mask determines which modifiers are considered significant
     * for keyboard accelerators. This includes all keyboard modifiers except for
     * %GDK_LOCK_MASK.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def acceleratorGetDefaultModMask()
       : ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */ =
     ModifierType.fromRaw(gtk_accelerator_get_default_mod_mask())
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts an accelerator keyval and modifier mask into a string which can
+  /** Converts an accelerator keyval and modifier mask into a string which can
     * be used to represent the accelerator to the user.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def acceleratorGetLabel(
       accelerator_key: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
@@ -54,9 +56,7 @@ object Gtk:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts an accelerator keyval and modifier mask into a string that can be
+  /** Converts an accelerator keyval and modifier mask into a string that can be
     * displayed to the user.
     *
     * The string may be translated.
@@ -64,6 +64,9 @@ object Gtk:
     * This function is similar to [func@Gtk.accelerator_get_label], but handling
     * keycodes. This is only useful for system-level components, applications
     * should use [func@Gtk.accelerator_get_label] instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def acceleratorGetLabelWithKeycode(
       display: Option[
@@ -87,9 +90,7 @@ object Gtk:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts an accelerator keyval and modifier mask into a string parseable
+  /** Converts an accelerator keyval and modifier mask into a string parseable
     * by gtk_accelerator_parse().
     *
     * For example, if you pass in %GDK_KEY_q and %GDK_CONTROL_MASK, this
@@ -97,6 +98,9 @@ object Gtk:
     *
     * If you need to display accelerators in the user interface, see
     * [func@Gtk.accelerator_get_label].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def acceleratorName(
       accelerator_key: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
@@ -108,14 +112,15 @@ object Gtk:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts an accelerator keyval and modifier mask into a string parseable
+  /** Converts an accelerator keyval and modifier mask into a string parseable
     * by gtk_accelerator_parse_with_keycode().
     *
     * This is similar to [func@Gtk.accelerator_name] but handling keycodes. This
     * is only useful for system-level components, applications should use
     * [func@Gtk.accelerator_name] instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def acceleratorNameWithKeycode(
       display: Option[
@@ -139,9 +144,7 @@ object Gtk:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a string representing an accelerator.
+  /** Parses a string representing an accelerator.
     *
     * The format looks like “`<Control>a`” or “`<Shift><Alt>F1`”.
     *
@@ -164,15 +167,16 @@ object Gtk:
     *
     * If the parse operation fails, @accelerator_key and @accelerator_mods will
     * be set to 0 (zero).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function accelerator_parse contains an OUT parameter, which is not supported yet"
+    "[accelerator_parse:]: Function accelerator_parse contains an OUT parameter, which is not supported yet"
   )
-  def acceleratorParse() = ???
+  private def acceleratorParse() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a string representing an accelerator.
+  /** Parses a string representing an accelerator.
     *
     * This is similar to [func@Gtk.accelerator_parse] but handles keycodes as
     * well. This is only useful for system-level components, applications should
@@ -187,20 +191,24 @@ object Gtk:
     * If the parse fails, @accelerator_key, @accelerator_mods and
     * @accelerator_codes
     *   will be set to 0 (zero).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function accelerator_parse_with_keycode contains an OUT parameter, which is not supported yet"
+    "[accelerator_parse_with_keycode:]: Function accelerator_parse_with_keycode contains an OUT parameter, which is not supported yet"
   )
-  def acceleratorParseWithKeycode() = ???
+  private def acceleratorParseWithKeycode() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether a given keyval and modifier mask constitute a valid
+  /** Determines whether a given keyval and modifier mask constitute a valid
     * keyboard accelerator.
     *
     * For example, the %GDK_KEY_a keyval plus %GDK_CONTROL_MASK mark is valid,
     * and matches the “Ctrl+a” accelerator. But, you can't, for instance, use
     * the %GDK_KEY_Control_L keyval as an accelerator.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def acceleratorValid(
       keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
@@ -209,62 +217,63 @@ object Gtk:
     gtk_accelerator_valid(guint(keyval), modifiers.raw).value.!=(0)
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[accessible_property_init_value:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
-  def accessiblePropertyInitValue() = ???
+  private def accessiblePropertyInitValue() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[accessible_relation_init_value:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
-  def accessibleRelationInitValue() = ???
+  private def accessibleRelationInitValue() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[accessible_state_init_value:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
-  def accessibleStateInitValue() = ???
+  private def accessibleStateInitValue() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Initializes @iter to point to @target.
+  /** Initializes @iter to point to @target.
     *
     * If @target is not found, finds the next value after it. If no value >= @target
     * exists in @set, this function returns %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function bitset_iter_init_at contains an OUT parameter, which is not supported yet"
+    "[bitset_iter_init_at:]: Function bitset_iter_init_at contains an OUT parameter, which is not supported yet"
   )
-  def bitsetIterInitAt() = ???
+  private def bitsetIterInitAt() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Initializes an iterator for @set and points it to the first value in @set.
+  /** Initializes an iterator for @set and points it to the first value in @set.
     *
     * If @set is empty, %FALSE is returned and @value is set to %G_MAXUINT.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function bitset_iter_init_first contains an OUT parameter, which is not supported yet"
+    "[bitset_iter_init_first:]: Function bitset_iter_init_first contains an OUT parameter, which is not supported yet"
   )
-  def bitsetIterInitFirst() = ???
+  private def bitsetIterInitFirst() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Initializes an iterator for @set and points it to the last value in @set.
+  /** Initializes an iterator for @set and points it to the last value in @set.
     *
     * If @set is empty, %FALSE is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function bitset_iter_init_last contains an OUT parameter, which is not supported yet"
+    "[bitset_iter_init_last:]: Function bitset_iter_init_last contains an OUT parameter, which is not supported yet"
   )
-  def bitsetIterInitLast() = ???
+  private def bitsetIterInitLast() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[builder_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def builderErrorQuark() = ???
+  private def builderErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks that the GTK library in use is compatible with the given version.
+  /** Checks that the GTK library in use is compatible with the given version.
     *
     * Generally you would pass in the constants %GTK_MAJOR_VERSION,
     * %GTK_MINOR_VERSION, %GTK_MICRO_VERSION as the three arguments to this
@@ -283,6 +292,9 @@ object Gtk:
     * be linked against an old version of GTK and calling the old version of
     * gtk_check_version(), but still get loaded into an application using a
     * newer version of GTK.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def checkVersion(
       required_major: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
@@ -297,28 +309,26 @@ object Gtk:
   )
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[constraint_vfl_parser_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def constraintVflParserErrorQuark() = ???
+  private def constraintVflParserErrorQuark() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[css_parser_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def cssParserErrorQuark() = ???
+  private def cssParserErrorQuark() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[css_parser_warning_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def cssParserWarningQuark() = ???
+  private def cssParserWarningQuark() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[dialog_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def dialogErrorQuark() = ???
+  private def dialogErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Prevents [func@Gtk.init] and [func@Gtk.init_check] from automatically
+  /** Prevents [func@Gtk.init] and [func@Gtk.init_check] from automatically
     * calling `setlocale (LC_ALL, "")`.
     *
     * You would want to use this function if you wanted to set the locale for
@@ -326,52 +336,56 @@ object Gtk:
     * to set different values for different locale categories.
     *
     * Most programs should not need to call this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def disableSetlocale(): Unit /* Some(Unit) */ = gtk_disable_setlocale()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Distributes @extra_space to child @sizes by bringing smaller children up
+  /** Distributes @extra_space to child @sizes by bringing smaller children up
     * to natural size first.
     *
     * The remaining space will be added to the @minimum_size member of the
     * `GtkRequestedSize` struct. If all sizes reach their natural size then the
     * remaining space is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(RequestedSize), @type -> DataRecord(GtkRequestedSize)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GtkRequestedSize*)))"
+    "[distribute_natural_allocation:/<function parameters>/sizes]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(RequestedSize), @type -> DataRecord(GtkRequestedSize)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GtkRequestedSize*)))"
   )
-  def distributeNaturalAllocation() = ???
+  private def distributeNaturalAllocation() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a property of the `GtkEditable` delegate for @object.
+  /** Gets a property of the `GtkEditable` delegate for @object.
     *
     * This is helper function that should be called in the `get_property`
     * function of your `GtkEditable` implementation, before handling your own
     * properties.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[editable_delegate_get_property:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
-  def editableDelegateGetProperty() = ???
+  private def editableDelegateGetProperty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a property on the `GtkEditable` delegate for @object.
+  /** Sets a property on the `GtkEditable` delegate for @object.
     *
     * This is a helper function that should be called in the `set_property`
     * function of your `GtkEditable` implementation, before handling your own
     * properties.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[editable_delegate_set_property:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
-  def editableDelegateSetProperty() = ???
+  private def editableDelegateSetProperty() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Overrides the `GtkEditable` properties for @class.
+  /** Overrides the `GtkEditable` properties for @class.
     *
     * This is a helper function that should be called in class_init, after
     * installing your own properties.
@@ -386,54 +400,59 @@ object Gtk:
     * or remember the @first_prop offset and add it to the values in the
     * [enum@Gtk.EditableProperties] enumeration to get the property IDs for
     * these properties.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.ObjectClass), @type -> DataRecord(GObjectClass*)))"
+    "[editable_install_properties:/<function parameters>/object_class]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.ObjectClass), @type -> DataRecord(GObjectClass*)))"
   )
-  def editableInstallProperties() = ???
+  private def editableInstallProperties() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Calls a function for all `GtkPrinter`s.
+  /** Calls a function for all `GtkPrinter`s.
     *
     * If @func returns %TRUE, the enumeration is stopped.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method gtk_enumerate_printers has no target types"
+    "[enumerate_printers:]: Method gtk_enumerate_printers has no target types"
   )
-  def enumeratePrinters() = ???
+  private def enumeratePrinters() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Registers an error quark for `GtkFileChooser` errors.
     *
-    * Registers an error quark for `GtkFileChooser` errors.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[file_chooser_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def fileChooserErrorQuark() = ???
+  private def fileChooserErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the binary age as passed to `libtool`.
+  /** Returns the binary age as passed to `libtool`.
     *
     * If `libtool` means nothing to you, don't worry about it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBinaryAge(): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
     gtk_get_binary_age().value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the GTK debug flags that are currently active.
+  /** Returns the GTK debug flags that are currently active.
     *
     * This function is intended for GTK modules that want to adjust their debug
     * output based on GTK debug flags.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDebugFlags(): DebugFlags /* Some(GtkDebugFlags) */ =
     DebugFlags.fromRaw(gtk_get_debug_flags())
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the `PangoLanguage` for the default language currently in effect.
+  /** Returns the `PangoLanguage` for the default language currently in effect.
     *
     * Note that this can change over the life of an application.
     *
@@ -443,24 +462,26 @@ object Gtk:
     *
     * This function is equivalent to [func@Pango.Language.get_default]. See that
     * function for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
+    "[get_default_language:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
   )
-  def getDefaultLanguage() = ???
+  private def getDefaultLanguage() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the interface age as passed to `libtool`.
+  /** Returns the interface age as passed to `libtool`.
     *
     * If `libtool` means nothing to you, don't worry about it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInterfaceAge(): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
     gtk_get_interface_age().value
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Get the direction of the current locale. This is the expected
+  /**  Get the direction of the current locale. This is the expected
     *  reading direction for text and UI.
     *
     *  This function depends on the current locale being set with
@@ -486,13 +507,13 @@ object Gtk:
     *    gtk_widget_set_default_direction (gtk_get_locale_direction ());
     *  }
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def getLocaleDirection(): TextDirection /* Some(GtkTextDirection) */ =
     TextDirection.fromRaw(gtk_get_locale_direction())
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the major version number of the GTK library.
+  /** Returns the major version number of the GTK library.
     *
     * For example, in GTK version 3.1.5 this is 3.
     *
@@ -500,13 +521,14 @@ object Gtk:
     * code is running against. Contrast with the %GTK_MAJOR_VERSION macro, which
     * represents the major version of the GTK headers you have included when
     * compiling your code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMajorVersion(): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
     gtk_get_major_version().value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the micro version number of the GTK library.
+  /** Returns the micro version number of the GTK library.
     *
     * For example, in GTK version 3.1.5 this is 5.
     *
@@ -514,13 +536,14 @@ object Gtk:
     * code is are running against. Contrast with the %GTK_MICRO_VERSION macro,
     * which represents the micro version of the GTK headers you have included
     * when compiling your code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMicroVersion(): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
     gtk_get_micro_version().value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the minor version number of the GTK library.
+  /** Returns the minor version number of the GTK library.
     *
     * For example, in GTK version 3.1.5 this is 1.
     *
@@ -528,30 +551,32 @@ object Gtk:
     * code is are running against. Contrast with the %GTK_MINOR_VERSION macro,
     * which represents the minor version of the GTK headers you have included
     * when compiling your code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMinorVersion(): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
     gtk_get_minor_version().value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a color from HSV space to RGB.
+  /** Converts a color from HSV space to RGB.
     *
     * Input values must be in the [0.0, 1.0] range; output values will be in the
     * same range.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function hsv_to_rgb contains an OUT parameter, which is not supported yet"
+    "[hsv_to_rgb:]: Function hsv_to_rgb contains an OUT parameter, which is not supported yet"
   )
-  def hsvToRgb() = ???
+  private def hsvToRgb() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[icon_theme_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def iconThemeErrorQuark() = ???
+  private def iconThemeErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Call this function before using any other GTK functions in your GUI
+  /** Call this function before using any other GTK functions in your GUI
     * applications. It will initialize everything needed to operate the toolkit.
     *
     * If you are using `GtkApplication`, you usually don't have to call this
@@ -568,35 +593,41 @@ object Gtk:
     * applications. If you do need to handle SIGPIPE for some reason, reset the
     * handler after gtk_init(), but notice that other libraries (e.g. libdbus or
     * gvfs) might do similar things.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def init(): Unit /* Some(Unit) */ = gtk_init()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function does the same work as gtk_init() with only a single change:
+  /** This function does the same work as gtk_init() with only a single change:
     * It does not terminate the program if the windowing system can’t be
     * initialized. Instead it returns %FALSE on failure.
     *
     * This way the application can fall back to some other means of
     * communication with the user - for example a curses or command line
     * interface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def initCheck(): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     gtk_init_check().value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Use this function to check if GTK has been initialized.
+  /** Use this function to check if GTK has been initialized.
     *
     * See [func@Gtk.init].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isInitialized()
       : Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     gtk_is_initialized().value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finds the `GtkNative` associated with the surface.
     *
-    * Finds the `GtkNative` associated with the surface.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def nativeGetForSurface(
       surface: Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
@@ -606,39 +637,43 @@ object Gtk:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts the result of a `GCompareFunc` like strcmp() to a `GtkOrdering`
+  /** Converts the result of a `GCompareFunc` like strcmp() to a `GtkOrdering`
     * value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def orderingFromCmpfunc(
       cmpfunc_result: Int /* Some(CInt) */
   ): Ordering /* Some(GtkOrdering) */ =
     Ordering.fromRaw(gtk_ordering_from_cmpfunc(cmpfunc_result))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the name of the default paper size, which depends on the current
+  /** Returns the name of the default paper size, which depends on the current
     * locale.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def paperSizeGetDefault()(using Zone): String /* Some(CString) */ =
     fromCString(gtk_paper_size_get_default().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a list of known paper sizes.
     *
-    * Creates a list of known paper sizes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PaperSize))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[paper_size_get_paper_sizes:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PaperSize))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def paperSizeGetPaperSizes() = ???
+  private def paperSizeGetPaperSizes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GParamSpec` instance for a property holding a
+  /** Creates a new `GParamSpec` instance for a property holding a
     * `GtkExpression`.
     *
     * See `g_param_spec_internal()` for details on the property strings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecExpression(
       name: String | CString /* Some(CString) */,
@@ -657,18 +692,17 @@ object Gtk:
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Registers an error quark for `GtkPrintOperation` if necessary.
     *
-    * Registers an error quark for `GtkPrintOperation` if necessary.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[print_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def printErrorQuark() = ???
+  private def printErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Runs a page setup dialog, letting the user modify the values from
+  /** Runs a page setup dialog, letting the user modify the values from
     * @page_setup.
     *   If the user cancels the dialog, the returned `GtkPageSetup` is identical
     *   to the passed in @page_setup, otherwise it contains the modifications
@@ -677,6 +711,9 @@ object Gtk:
     * Note that this function may use a recursive mainloop to show the page
     * setup dialog. See gtk_print_run_page_setup_dialog_async() if this is a
     * problem.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def printRunPageSetupDialog(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
@@ -694,65 +731,67 @@ object Gtk:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Runs a page setup dialog, letting the user modify the values from @page_setup.
+  /** Runs a page setup dialog, letting the user modify the values from @page_setup.
     *
     * In contrast to gtk_print_run_page_setup_dialog(), this function returns
     * after showing the page setup dialog on platforms that support this, and
     * calls @done_cb from a signal handler for the ::response signal of the
     * dialog.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(PageSetupDoneFunc), @type -> DataRecord(GtkPageSetupDoneFunc)))"
+    "[print_run_page_setup_dialog_async:/<function parameters>/done_cb]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PageSetupDoneFunc), @type -> DataRecord(GtkPageSetupDoneFunc)))"
   )
-  def printRunPageSetupDialogAsync() = ???
+  private def printRunPageSetupDialogAsync() = ???
 
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[recent_manager_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
-  def recentManagerErrorQuark() = ???
+  private def recentManagerErrorQuark() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Renders an activity indicator (such as in `GtkSpinner`). The state
+  /** Renders an activity indicator (such as in `GtkSpinner`). The state
     * %GTK_STATE_FLAG_CHECKED determines whether there is activity going on.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_activity:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def renderActivity() = ???
+  private def renderActivity() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Renders an arrow pointing to @angle.
+  /** Renders an arrow pointing to @angle.
     *
     * Typical arrow rendering at 0, 1⁄2 π;, π; and 3⁄2 π:
     *
     * ![](arrows.png)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_arrow:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def renderArrow() = ???
+  private def renderArrow() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Renders the background of an element.
+  /** Renders the background of an element.
     *
     * Typical background rendering, showing the effect of `background-image`,
     * `border-width` and `border-radius`:
     *
     * ![](background.png)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_background:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def renderBackground() = ???
+  private def renderBackground() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Renders a checkmark (as in a `GtkCheckButton`).
+  /** Renders a checkmark (as in a `GtkCheckButton`).
     *
     * The %GTK_STATE_FLAG_CHECKED state determines whether the check is on or
     * off, and %GTK_STATE_FLAG_INCONSISTENT determines whether it should be
@@ -761,140 +800,154 @@ object Gtk:
     * Typical checkmark rendering:
     *
     * ![](checks.png)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_check:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def renderCheck() = ???
+  private def renderCheck() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Renders an expander (as used in `GtkTreeView` and `GtkExpander`) in the
+  /** Renders an expander (as used in `GtkTreeView` and `GtkExpander`) in the
     * area defined by @x, @y, @width, @height. The state %GTK_STATE_FLAG_CHECKED
     * determines whether the expander is collapsed or expanded.
     *
     * Typical expander rendering:
     *
     * ![](expanders.png)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_expander:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def renderExpander() = ???
+  private def renderExpander() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Renders a focus indicator on the rectangle determined by @x, @y, @width, @height.
+  /** Renders a focus indicator on the rectangle determined by @x, @y, @width, @height.
     *
     * Typical focus rendering:
     *
     * ![](focus.png)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_focus:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def renderFocus() = ???
+  private def renderFocus() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Renders a frame around the rectangle defined by @x, @y, @width, @height.
+  /** Renders a frame around the rectangle defined by @x, @y, @width, @height.
     *
     * Examples of frame rendering, showing the effect of `border-image`,
     * `border-color`, `border-width`, `border-radius` and junctions:
     *
     * ![](frames.png)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_frame:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def renderFrame() = ???
+  private def renderFrame() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Renders a handle (as in `GtkPaned` and `GtkWindow`’s resize grip), in the
+  /** Renders a handle (as in `GtkPaned` and `GtkWindow`’s resize grip), in the
     * rectangle determined by @x, @y, @width, @height.
     *
     * Handles rendered for the paned and grip classes:
     *
     * ![](handles.png)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_handle:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def renderHandle() = ???
+  private def renderHandle() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Renders the icon in @texture at the specified @x and @y coordinates.
+  /** Renders the icon in @texture at the specified @x and @y coordinates.
     *
     * This function will render the icon in @texture at exactly its size,
     * regardless of scaling factors, which may not be appropriate when drawing
     * on displays with high pixel densities.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_icon:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def renderIcon() = ???
+  private def renderIcon() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Renders @layout on the coordinates @x, @y
     *
-    * Renders @layout on the coordinates @x, @y
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_layout:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def renderLayout() = ???
+  private def renderLayout() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Renders a line from (x0, y0) to (x1, y1).
     *
-    * Renders a line from (x0, y0) to (x1, y1).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_line:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def renderLine() = ???
+  private def renderLine() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Renders an option mark (as in a radio button), the %GTK_STATE_FLAG_CHECKED
+  /** Renders an option mark (as in a radio button), the %GTK_STATE_FLAG_CHECKED
     * state will determine whether the option is on or off, and
     * %GTK_STATE_FLAG_INCONSISTENT whether it should be marked as undefined.
     *
     * Typical option mark rendering:
     *
     * ![](options.png)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_option:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def renderOption() = ???
+  private def renderOption() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts a color from RGB space to HSV.
+  /** Converts a color from RGB space to HSV.
     *
     * Input values must be in the [0.0, 1.0] range; output values will be in the
     * same range.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function rgb_to_hsv contains an OUT parameter, which is not supported yet"
+    "[rgb_to_hsv:]: Function rgb_to_hsv contains an OUT parameter, which is not supported yet"
   )
-  def rgbToHsv() = ???
+  private def rgbToHsv() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the GTK debug flags.
     *
-    * Sets the GTK debug flags.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDebugFlags(
       flags: DebugFlags /* Some(GtkDebugFlags) */
   ): Unit /* Some(Unit) */ = gtk_set_debug_flags(flags.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A convenience function for showing an application’s about dialog.
+  /** A convenience function for showing an application’s about dialog.
     *
     * The constructed dialog is associated with the parent window and reused for
     * future invocations of this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def showAboutDialog(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
@@ -908,10 +961,11 @@ object Gtk:
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function launches the default application for showing a given uri, or
+  /** This function launches the default application for showing a given uri, or
     * shows an error dialog if that fails.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def showUri(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
@@ -925,24 +979,26 @@ object Gtk:
     guint32(timestamp)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function launches the default application for showing a given uri.
+  /** This function launches the default application for showing a given uri.
     *
     * The @callback will be called when the launch is completed. It should call
     * gtk_show_uri_full_finish() to obtain the result.
     *
     * This is the recommended call to be used as it passes information necessary
     * for sandbox helpers to parent their dialogs properly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[show_uri_full:/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def showUriFull() = ???
+  private def showUriFull() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes the gtk_show_uri() call and returns the result of the operation.
     *
-    * Finishes the gtk_show_uri() call and returns the result of the operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def showUriFullFinish(
       parent: Window /* Some(Ptr[GtkWindow]) */,
@@ -977,10 +1033,11 @@ object Gtk:
       actual_role.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks whether the accessible @property of @accessible is set to a
+  /** Checks whether the accessible @property of @accessible is set to a
     * specific value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testAccessibleCheckProperty(
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
@@ -994,10 +1051,11 @@ object Gtk:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks whether the accessible @relation of @accessible is set to a
+  /** Checks whether the accessible @relation of @accessible is set to a
     * specific value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testAccessibleCheckRelation(
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
@@ -1011,10 +1069,11 @@ object Gtk:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks whether the accessible @state of @accessible is set to a specific
+  /** Checks whether the accessible @state of @accessible is set to a specific
     * value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testAccessibleCheckState(
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
@@ -1028,9 +1087,10 @@ object Gtk:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks whether the `GtkAccessible` has @property set.
     *
-    * Checks whether the `GtkAccessible` has @property set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testAccessibleHasProperty(
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
@@ -1041,9 +1101,10 @@ object Gtk:
       property.raw
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks whether the `GtkAccessible` has @relation set.
     *
-    * Checks whether the `GtkAccessible` has @relation set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testAccessibleHasRelation(
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
@@ -1054,9 +1115,10 @@ object Gtk:
       relation.raw
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks whether the `GtkAccessible:accessible-role` of the accessible is @role.
     *
-    * Checks whether the `GtkAccessible:accessible-role` of the accessible is @role.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testAccessibleHasRole(
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
@@ -1067,9 +1129,10 @@ object Gtk:
       role.raw
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks whether the `GtkAccessible` has @state set.
     *
-    * Checks whether the `GtkAccessible` has @state set.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testAccessibleHasState(
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
@@ -1080,9 +1143,7 @@ object Gtk:
       state.raw
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is used to initialize a GTK test program.
+  /** This function is used to initialize a GTK test program.
     *
     * It will in turn call g_test_init() and gtk_init() to properly initialize
     * the testing framework and graphical toolkit. It’ll also set the program’s
@@ -1091,35 +1152,38 @@ object Gtk:
     *
     * Like gtk_init() and g_test_init(), any known arguments will be processed
     * and stripped from @argc and @argv.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function test_init contains an INOUT parameter, which is not supported yet"
+    "[test_init:]: Function test_init contains an INOUT parameter, which is not supported yet"
   )
-  def testInit() = ???
+  private def testInit() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Return the type ids that have been registered after calling
+  /** Return the type ids that have been registered after calling
     * gtk_test_register_all_types().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function test_list_all_types contains an OUT parameter, which is not supported yet"
+    "[test_list_all_types:]: Function test_list_all_types contains an OUT parameter, which is not supported yet"
   )
-  def testListAllTypes() = ???
+  private def testListAllTypes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Force registration of all core GTK object types.
+  /** Force registration of all core GTK object types.
     *
     * This allows to refer to any of those object types via g_type_from_name()
     * after calling this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testRegisterAllTypes(): Unit /* Some(Unit) */ =
     gtk_test_register_all_types()
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Enters the main loop and waits for @widget to be “drawn”.
+  /** Enters the main loop and waits for @widget to be “drawn”.
     *
     * In this context that means it waits for the frame clock of
     * @widget
@@ -1127,6 +1191,9 @@ object Gtk:
     *
     * This function is intended to be used for syncing with actions that depend
     * on @widget relayouting or on interaction with the display server.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def testWidgetWaitForDraw(
       widget: Widget /* Some(Ptr[GtkWidget]) */
@@ -1134,97 +1201,106 @@ object Gtk:
     widget.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a content provider for dragging @path from @tree_model.
     *
-    * Creates a content provider for dragging @path from @tree_model.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[tree_create_row_drag_content:/<function parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def treeCreateRowDragContent() = ???
+  private def treeCreateRowDragContent() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains a @tree_model and @path from value of target type
+  /** Obtains a @tree_model and @path from value of target type
     * %GTK_TYPE_TREE_ROW_DATA.
     *
     * The returned path must be freed with gtk_tree_path_free().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function tree_get_row_drag_data contains an OUT parameter, which is not supported yet"
+    "[tree_get_row_drag_data:]: Function tree_get_row_drag_data contains an OUT parameter, which is not supported yet"
   )
-  def treeGetRowDragData() = ???
+  private def treeGetRowDragData() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Lets a set of row reference created by gtk_tree_row_reference_new_proxy()
+  /** Lets a set of row reference created by gtk_tree_row_reference_new_proxy()
     * know that the model emitted the ::row-deleted signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[tree_row_reference_deleted:/<function parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def treeRowReferenceDeleted() = ???
+  private def treeRowReferenceDeleted() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Lets a set of row reference created by gtk_tree_row_reference_new_proxy()
+  /** Lets a set of row reference created by gtk_tree_row_reference_new_proxy()
     * know that the model emitted the ::row-inserted signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[tree_row_reference_inserted:/<function parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def treeRowReferenceInserted() = ???
+  private def treeRowReferenceInserted() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Lets a set of row reference created by gtk_tree_row_reference_new_proxy()
+  /** Lets a set of row reference created by gtk_tree_row_reference_new_proxy()
     * know that the model emitted the ::rows-reordered signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[tree_row_reference_reordered:/<function parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def treeRowReferenceReordered() = ???
+  private def treeRowReferenceReordered() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the `GtkExpression` stored inside the given `value`, and
+  /** Retrieves the `GtkExpression` stored inside the given `value`, and
     * acquires a reference to it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[value_dup_expression:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
-  def valueDupExpression() = ???
+  private def valueDupExpression() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the `GtkExpression` stored inside the given `value`.
     *
-    * Retrieves the `GtkExpression` stored inside the given `value`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[value_get_expression:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
-  def valueGetExpression() = ???
+  private def valueGetExpression() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Stores the given `GtkExpression` inside `value`.
+  /** Stores the given `GtkExpression` inside `value`.
     *
     * The `GValue` will acquire a reference to the `expression`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[value_set_expression:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
-  def valueSetExpression() = ???
+  private def valueSetExpression() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Stores the given `GtkExpression` inside `value`.
+  /** Stores the given `GtkExpression` inside `value`.
     *
     * This function transfers the ownership of the `expression` to the `GValue`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[value_take_expression:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
-  def valueTakeExpression() = ???
+  private def valueTakeExpression() = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

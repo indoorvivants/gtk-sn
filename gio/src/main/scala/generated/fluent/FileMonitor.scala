@@ -9,9 +9,7 @@ import sn.gnome.gio.internal.GFileMonitor
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Monitors a file or directory for changes.
+/** Monitors a file or directory for changes.
   *
   * To obtain a #GFileMonitor for a file or directory, use g_file_monitor(),
   * g_file_monitor_file(), or g_file_monitor_directory().
@@ -22,26 +20,31 @@ import sn.gnome.gobject.fluent.Object
   * thread that the monitor was created in (though if the global default main
   * context is blocked, this may cause notifications to be blocked even if the
   * thread-default context is still running).
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Cancels a file monitor.
     *
-    * Cancels a file monitor.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def cancel(): Boolean /* None */ =
     g_file_monitor_cancel(this.raw.asInstanceOf[Ptr[GFileMonitor]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Emits the #GFileMonitor::changed signal if a change has taken place.
+  /** Emits the #GFileMonitor::changed signal if a change has taken place.
     * Should be called from file monitor implementations only.
     *
     * Implementations are responsible to call this method from the
     * [thread-default main context][g-main-context-push-thread-default] of the
     * thread that the monitor was created in.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def emitEvent(
       child: File /* Some(Ptr[GFile]) */,
@@ -54,18 +57,20 @@ class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
     event_type.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the monitor is canceled.
     *
-    * Returns whether the monitor is canceled.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isCancelled(): Boolean /* None */ = g_file_monitor_is_cancelled(
     this.raw.asInstanceOf[Ptr[GFileMonitor]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the rate limit to which the @monitor will report consecutive change
+  /** Sets the rate limit to which the @monitor will report consecutive change
     * events to the same file.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRateLimit(
       limit_msecs: Int /* Some(_root_.sn.gnome.glib.internal.gint) */

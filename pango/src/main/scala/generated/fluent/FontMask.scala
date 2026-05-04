@@ -2,10 +2,11 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoFontMask
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The bits in a `PangoFontMask` correspond to the set fields in a
+/** The bits in a `PangoFontMask` correspond to the set fields in a
   * `PangoFontDescription`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FontMask private (val raw: PangoFontMask):
   def is(kv: FontMask): Boolean =
@@ -33,65 +34,74 @@ object FontMask:
     def |(other: FontMask) =
       FontMask(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The bits in a `PangoFontMask` correspond to the set fields in a
+  /** The bits in a `PangoFontMask` correspond to the set fields in a
     * `PangoFontDescription`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: PangoFontMask, name: String)
       extends FontMask(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the font family is specified.
       *
-      * the font family is specified.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FAMILY
         extends KnownValue(PangoFontMask.PANGO_FONT_MASK_FAMILY, "FAMILY")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the font style is specified.
       *
-      * the font style is specified.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STYLE extends KnownValue(PangoFontMask.PANGO_FONT_MASK_STYLE, "STYLE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the font variant is specified.
       *
-      * the font variant is specified.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case VARIANT
         extends KnownValue(PangoFontMask.PANGO_FONT_MASK_VARIANT, "VARIANT")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the font weight is specified.
       *
-      * the font weight is specified.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case WEIGHT
         extends KnownValue(PangoFontMask.PANGO_FONT_MASK_WEIGHT, "WEIGHT")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the font stretch is specified.
       *
-      * the font stretch is specified.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STRETCH
         extends KnownValue(PangoFontMask.PANGO_FONT_MASK_STRETCH, "STRETCH")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the font size is specified.
       *
-      * the font size is specified.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SIZE extends KnownValue(PangoFontMask.PANGO_FONT_MASK_SIZE, "SIZE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the font gravity is specified (Since: 1.16.)
       *
-      * the font gravity is specified (Since: 1.16.)
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case GRAVITY
         extends KnownValue(PangoFontMask.PANGO_FONT_MASK_GRAVITY, "GRAVITY")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** OpenType font variations are specified (Since: 1.42)
       *
-      * OpenType font variations are specified (Since: 1.42)
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case VARIATIONS
         extends KnownValue(

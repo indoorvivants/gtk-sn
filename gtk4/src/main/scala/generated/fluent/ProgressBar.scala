@@ -16,9 +16,7 @@ import sn.gnome.gtk4.fluent.{
 import sn.gnome.gtk4.internal.GtkProgressBar
 import sn.gnome.pango.fluent.EllipsizeMode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkProgressBar` is typically used to display the progress of a long running
+/** `GtkProgressBar` is typically used to display the progress of a long running
   * operation.
   *
   * It provides a visual clue that processing is underway. `GtkProgressBar` can
@@ -65,6 +63,9 @@ import sn.gnome.pango.fluent.EllipsizeMode
   * # Accessibility
   *
   * `GtkProgressBar` uses the %GTK_ACCESSIBLE_ROLE_PROGRESS_BAR role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ProgressBar(raw: Ptr[GtkProgressBar])
     extends Widget(raw.asInstanceOf),
@@ -76,58 +77,64 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the ellipsizing position of the progress bar.
+  /** Returns the ellipsizing position of the progress bar.
     *
     * See [method@Gtk.ProgressBar.set_ellipsize].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEllipsize(): EllipsizeMode /* None */ = EllipsizeMode.fromRaw(
     gtk_progress_bar_get_ellipsize(this.raw.asInstanceOf[Ptr[GtkProgressBar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the current fraction of the task that’s been completed.
     *
-    * Returns the current fraction of the task that’s been completed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFraction(): Double /* None */ = gtk_progress_bar_get_fraction(
     this.raw.asInstanceOf[Ptr[GtkProgressBar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the progress bar is inverted.
     *
-    * Returns whether the progress bar is inverted.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInverted(): Boolean /* None */ = gtk_progress_bar_get_inverted(
     this.raw.asInstanceOf[Ptr[GtkProgressBar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the pulse step.
+  /** Retrieves the pulse step.
     *
     * See [method@Gtk.ProgressBar.set_pulse_step].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPulseStep(): Double /* None */ = gtk_progress_bar_get_pulse_step(
     this.raw.asInstanceOf[Ptr[GtkProgressBar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the `GtkProgressBar` shows text.
+  /** Returns whether the `GtkProgressBar` shows text.
     *
     * See [method@Gtk.ProgressBar.set_show_text].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowText(): Boolean /* None */ = gtk_progress_bar_get_show_text(
     this.raw.asInstanceOf[Ptr[GtkProgressBar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the text that is displayed with the progress bar.
+  /** Retrieves the text that is displayed with the progress bar.
     *
     * The return value is a reference to the text, not a copy of it, so will
     * become invalid if you change the text in the progress bar.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getText()(using Zone): String /* None */ = fromCString(
     gtk_progress_bar_get_text(
@@ -135,25 +142,27 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Indicates that some progress has been made, but you don’t know how much.
+  /** Indicates that some progress has been made, but you don’t know how much.
     *
     * Causes the progress bar to enter “activity mode,” where a block bounces
     * back and forth. Each call to [method@Gtk.ProgressBar.pulse] causes the
     * block to move by a little bit (the amount of movement per pulse is
     * determined by [method@Gtk.ProgressBar.set_pulse_step]).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pulse(): Unit /* None */ = gtk_progress_bar_pulse(
     this.raw.asInstanceOf[Ptr[GtkProgressBar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the mode used to ellipsize the text.
+  /** Sets the mode used to ellipsize the text.
     *
     * The text is ellipsized if there is not enough space to render the entire
     * string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEllipsize(
       mode: EllipsizeMode /* Some(_root_.sn.gnome.pango.internal.PangoEllipsizeMode) */
@@ -162,11 +171,12 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     mode.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Causes the progress bar to “fill in” the given fraction of the bar.
+  /** Causes the progress bar to “fill in” the given fraction of the bar.
     *
     * The fraction should be between 0.0 and 1.0, inclusive.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFraction(fraction: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_progress_bar_set_fraction(
@@ -174,12 +184,13 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
       fraction
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the progress bar is inverted.
+  /** Sets whether the progress bar is inverted.
     *
     * Progress bars normally grow from top to bottom or left to right. Inverted
     * progress bars grow in the opposite direction.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInverted(
       inverted: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -188,11 +199,12 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     gboolean(gint((if inverted == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the fraction of total progress bar length to move the bouncing block.
+  /** Sets the fraction of total progress bar length to move the bouncing block.
     *
     * The bouncing block is moved when [method@Gtk.ProgressBar.pulse] is called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPulseStep(fraction: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_progress_bar_set_pulse_step(
@@ -200,9 +212,7 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
       fraction
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the progress bar will show text next to the bar.
+  /** Sets whether the progress bar will show text next to the bar.
     *
     * The shown text is either the value of the [property@Gtk.ProgressBar:text]
     * property or, if that is %NULL, the [property@Gtk.ProgressBar:fraction]
@@ -212,6 +222,9 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * text (even if the actual text is blank), set
     * [property@Gtk.ProgressBar:show-text] to %TRUE and
     * [property@Gtk.ProgressBar:text] to the empty string (not %NULL).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowText(
       show_text: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -220,9 +233,7 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     gboolean(gint((if show_text == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Causes the given @text to appear next to the progress bar.
+  /** Causes the given @text to appear next to the progress bar.
     *
     * If @text is %NULL and [property@Gtk.ProgressBar:show-text] is %TRUE, the
     * current value of [property@Gtk.ProgressBar:fraction] will be displayed as
@@ -233,6 +244,9 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * percentage. If @text is the empty string, the progress bar will still be
     * styled and sized suitably for containing text, as long as
     * [property@Gtk.ProgressBar:show-text] is %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(
       text: Option[String | CString /* Some(CString) */ ]
@@ -254,9 +268,10 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
 end ProgressBar
 
 object ProgressBar:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkProgressBar`.
     *
-    * Creates a new `GtkProgressBar`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): ProgressBar = new ProgressBar(
     gtk_progress_bar_new().asInstanceOf

@@ -9,48 +9,49 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.GestureSingle
 import sn.gnome.gtk4.internal.GtkGestureStylus
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkGestureStylus` is a `GtkGesture` specific to stylus input.
+/** `GtkGestureStylus` is a `GtkGesture` specific to stylus input.
   *
   * The provided signals just relay the basic information of the stylus events.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class GestureStylus(raw: Ptr[GtkGestureStylus])
     extends GestureSingle(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the current values for the requested @axes.
+  /** Returns the current values for the requested @axes.
     *
     * This function must be called from the handler of one of the
     * [signal@Gtk.GestureStylus::down], [signal@Gtk.GestureStylus::motion],
     * [signal@Gtk.GestureStylus::up] or [signal@Gtk.GestureStylus::proximity]
     * signals.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_axes contains an OUT parameter, which is not supported yet"
+    "[get_axes]: Method get_axes contains an OUT parameter, which is not supported yet"
   )
-  def getAxes__ = ???
+  private def getAxes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the current value for the requested @axis.
+  /** Returns the current value for the requested @axis.
     *
     * This function must be called from the handler of one of the
     * [signal@Gtk.GestureStylus::down], [signal@Gtk.GestureStylus::motion],
     * [signal@Gtk.GestureStylus::up] or [signal@Gtk.GestureStylus::proximity]
     * signals.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_axis contains an OUT parameter, which is not supported yet"
+    "[get_axis]: Method get_axis contains an OUT parameter, which is not supported yet"
   )
-  def getAxis__ = ???
+  private def getAxis__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the accumulated backlog of tracking information.
+  /** Returns the accumulated backlog of tracking information.
     *
     * By default, GTK will limit rate of input events. On stylus input where
     * accuracy of strokes is paramount, this function returns the accumulated
@@ -63,20 +64,24 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     * the latest (most up-to-date) state in motion history.
     *
     * The @backlog is provided in chronological order.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_backlog contains an OUT parameter, which is not supported yet"
+    "[get_backlog]: Method get_backlog contains an OUT parameter, which is not supported yet"
   )
-  def getBacklog__ = ???
+  private def getBacklog__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the `GdkDeviceTool` currently driving input through this gesture.
+  /** Returns the `GdkDeviceTool` currently driving input through this gesture.
     *
     * This function must be called from the handler of one of the
     * [signal@Gtk.GestureStylus::down], [signal@Gtk.GestureStylus::motion],
     * [signal@Gtk.GestureStylus::up] or [signal@Gtk.GestureStylus::proximity]
     * signals.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDeviceTool(): DeviceTool /* None */ = new DeviceTool(
     gtk_gesture_stylus_get_device_tool(
@@ -84,23 +89,25 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks whether the gesture is for styluses only.
+  /** Checks whether the gesture is for styluses only.
     *
     * Stylus-only gestures will signal events exclusively from stylus input
     * devices.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStylusOnly(): Boolean /* None */ = gtk_gesture_stylus_get_stylus_only(
     this.raw.asInstanceOf[Ptr[GtkGestureStylus]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the state of stylus-only
+  /** Sets the state of stylus-only
     *
     * If true, the gesture will exclusivly handle events from stylus input
     * deivces, otherwise it'll handle events from any pointing device.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setStylusOnly(
       stylus_only: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -112,9 +119,10 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
 end GestureStylus
 
 object GestureStylus:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkGestureStylus`.
     *
-    * Creates a new `GtkGestureStylus`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): GestureStylus = new GestureStylus(
     gtk_gesture_stylus_new().asInstanceOf

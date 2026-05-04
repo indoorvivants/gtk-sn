@@ -2,11 +2,12 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoLayoutDeserializeFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags that influence the behavior of [func@Pango.Layout.deserialize].
+/** Flags that influence the behavior of [func@Pango.Layout.deserialize].
   *
   * New members may be added to this enumeration over time.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class LayoutDeserializeFlags private (val raw: PangoLayoutDeserializeFlags):
   def is(kv: LayoutDeserializeFlags): Boolean =
@@ -36,19 +37,21 @@ object LayoutDeserializeFlags:
     def |(other: LayoutDeserializeFlags) =
       LayoutDeserializeFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags that influence the behavior of [func@Pango.Layout.deserialize].
+  /** Flags that influence the behavior of [func@Pango.Layout.deserialize].
     *
     * New members may be added to this enumeration over time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: PangoLayoutDeserializeFlags, name: String)
       extends LayoutDeserializeFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Default behavior
       *
-      * Default behavior
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DEFAULT
         extends KnownValue(
@@ -56,9 +59,10 @@ object LayoutDeserializeFlags:
           "DEFAULT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Apply context information from the serialization to the `PangoContext`
       *
-      * Apply context information from the serialization to the `PangoContext`
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CONTEXT
         extends KnownValue(

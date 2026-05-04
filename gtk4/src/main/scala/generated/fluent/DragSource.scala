@@ -8,9 +8,7 @@ import sn.gnome.gdk4.fluent.{ContentProvider, Drag, DragAction, Paintable}
 import sn.gnome.gtk4.fluent.GestureSingle
 import sn.gnome.gtk4.internal.GtkDragSource
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkDragSource` is an event controller to initiate Drag-And-Drop operations.
+/** `GtkDragSource` is an event controller to initiate Drag-And-Drop operations.
   *
   * `GtkDragSource` can be set up with the necessary ingredients for a DND
   * operation ahead of time. This includes the source for the data that is being
@@ -82,31 +80,37 @@ import sn.gnome.gtk4.internal.GtkDragSource
   * actions include %GDK_ACTION_MOVE, you need to listen for the
   * [signal@Gtk.DragSource::drag-end] signal and delete the data after it has
   * been transferred.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DragSource(raw: Ptr[GtkDragSource])
     extends GestureSingle(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Cancels a currently ongoing drag operation.
     *
-    * Cancels a currently ongoing drag operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dragCancel(): Unit /* None */ = gtk_drag_source_drag_cancel(
     this.raw.asInstanceOf[Ptr[GtkDragSource]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the actions that are currently set on the `GtkDragSource`.
     *
-    * Gets the actions that are currently set on the `GtkDragSource`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActions(): DragAction /* None */ = DragAction.fromRaw(
     gtk_drag_source_get_actions(this.raw.asInstanceOf[Ptr[GtkDragSource]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the current content provider of a `GtkDragSource`.
     *
-    * Gets the current content provider of a `GtkDragSource`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getContent(): ContentProvider /* None */ = new ContentProvider(
     gtk_drag_source_get_content(
@@ -114,9 +118,10 @@ class DragSource(raw: Ptr[GtkDragSource])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the underlying `GdkDrag` object for an ongoing drag.
     *
-    * Returns the underlying `GdkDrag` object for an ongoing drag.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDrag(): Drag /* None */ = new Drag(
     gtk_drag_source_get_drag(
@@ -124,9 +129,7 @@ class DragSource(raw: Ptr[GtkDragSource])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the actions on the `GtkDragSource`.
+  /** Sets the actions on the `GtkDragSource`.
     *
     * During a DND operation, the actions are offered to potential drop targets.
     * If @actions include %GDK_ACTION_MOVE, you need to listen to the
@@ -135,6 +138,9 @@ class DragSource(raw: Ptr[GtkDragSource])
     *
     * This function can be called before a drag is started, or in a handler for
     * the [signal@Gtk.DragSource::prepare] signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActions(
       actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
@@ -143,9 +149,7 @@ class DragSource(raw: Ptr[GtkDragSource])
     actions.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a content provider on a `GtkDragSource`.
+  /** Sets a content provider on a `GtkDragSource`.
     *
     * When the data is requested in the cause of a DND operation, it will be
     * obtained from the content provider.
@@ -155,6 +159,9 @@ class DragSource(raw: Ptr[GtkDragSource])
     *
     * You may consider setting the content provider back to %NULL in a
     * [signal@Gtk.DragSource::drag-end] signal handler.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setContent(
       content: Option[
@@ -171,9 +178,7 @@ class DragSource(raw: Ptr[GtkDragSource])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a paintable to use as icon during DND operations.
+  /** Sets a paintable to use as icon during DND operations.
     *
     * The hotspot coordinates determine the point on the icon that gets aligned
     * with the hotspot of the cursor.
@@ -183,6 +188,9 @@ class DragSource(raw: Ptr[GtkDragSource])
     * This function can be called before a drag is started, or in a
     * [signal@Gtk.DragSource::prepare] or [signal@Gtk.DragSource::drag-begin]
     * signal handler.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIcon(
       paintable: Option[
@@ -206,9 +214,10 @@ class DragSource(raw: Ptr[GtkDragSource])
 end DragSource
 
 object DragSource:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkDragSource` object.
     *
-    * Creates a new `GtkDragSource` object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): DragSource = new DragSource(gtk_drag_source_new().asInstanceOf)
 end DragSource

@@ -7,21 +7,23 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.internal.GtkStringObject
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkStringObject` is the type of items in a `GtkStringList`.
+/** `GtkStringObject` is the type of items in a `GtkStringList`.
   *
   * A `GtkStringObject` is a wrapper around a `const char*`; it has a
   * [property@Gtk.StringObject:string] property that can be used for property
   * bindings and expressions.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class StringObject(raw: Ptr[GtkStringObject]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the string contained in a `GtkStringObject`.
     *
-    * Returns the string contained in a `GtkStringObject`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getString()(using Zone): String /* None */ = fromCString(
     gtk_string_object_get_string(
@@ -32,9 +34,10 @@ class StringObject(raw: Ptr[GtkStringObject]) extends Object(raw.asInstanceOf):
 end StringObject
 
 object StringObject:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Wraps a string in an object for use with `GListModel`.
     *
-    * Wraps a string in an object for use with `GListModel`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       string: String | CString /* Some(CString) */

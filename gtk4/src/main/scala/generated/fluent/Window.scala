@@ -22,9 +22,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkWindow
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkWindow` is a toplevel window which can contain other widgets.
+/** A `GtkWindow` is a toplevel window which can contain other widgets.
   *
   * ![An example GtkWindow](window.png)
   *
@@ -82,6 +80,9 @@ import sn.gnome.gtk4.internal.GtkWindow
   *   - `window.minimize`: Minimize the window.
   *   - `window.toggle-maximized`: Maximize or restore the window.
   *   - `window.close`: Close the window.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Window(raw: Ptr[GtkWindow])
     extends Widget(raw.asInstanceOf),
@@ -94,30 +95,30 @@ class Window(raw: Ptr[GtkWindow])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Requests that the window is closed.
+  /** Requests that the window is closed.
     *
     * This is similar to what happens when a window manager close button is
     * clicked.
     *
     * This function can be used with close buttons in custom titlebars.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def close(): Unit /* None */ = gtk_window_close(
     this.raw.asInstanceOf[Ptr[GtkWindow]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Drop the internal reference GTK holds on toplevel windows.
     *
-    * Drop the internal reference GTK holds on toplevel windows.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def destroy(): Unit /* None */ = gtk_window_destroy(
     this.raw.asInstanceOf[Ptr[GtkWindow]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asks to place @window in the fullscreen state.
+  /** Asks to place @window in the fullscreen state.
     *
     * Note that you shouldn’t assume the window is definitely fullscreen
     * afterward, because other entities (e.g. the user or window manager)
@@ -127,14 +128,15 @@ class Window(raw: Ptr[GtkWindow])
     * You can track the result of this operation via the
     * [property@Gdk.Toplevel:state] property, or by listening to notifications
     * of the [property@Gtk.Window:fullscreened] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fullscreen(): Unit /* None */ = gtk_window_fullscreen(
     this.raw.asInstanceOf[Ptr[GtkWindow]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asks to place @window in the fullscreen state on the given @monitor.
+  /** Asks to place @window in the fullscreen state on the given @monitor.
     *
     * Note that you shouldn't assume the window is definitely fullscreen
     * afterward, or that the windowing system allows fullscreen windows on any
@@ -143,6 +145,9 @@ class Window(raw: Ptr[GtkWindow])
     * You can track the result of this operation via the
     * [property@Gdk.Toplevel:state] property, or by listening to notifications
     * of the [property@Gtk.Window:fullscreened] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fullscreenOnMonitor(
       monitor: Monitor /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkMonitor]) */
@@ -151,9 +156,10 @@ class Window(raw: Ptr[GtkWindow])
     monitor.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GtkApplication` associated with the window.
     *
-    * Gets the `GtkApplication` associated with the window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getApplication(): Application /* None */ = new Application(
     gtk_window_get_application(
@@ -161,24 +167,24 @@ class Window(raw: Ptr[GtkWindow])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @window.
     *
-    * Gets the child widget of @window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_window_get_child(this.raw.asInstanceOf[Ptr[GtkWindow]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the window has been set to have decorations.
     *
-    * Returns whether the window has been set to have decorations.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDecorated(): Boolean /* None */ =
     gtk_window_get_decorated(this.raw.asInstanceOf[Ptr[GtkWindow]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the default size of the window.
+  /** Gets the default size of the window.
     *
     * A value of 0 for the width or height indicates that a default size has not
     * been explicitly set for that dimension, so the “natural” size of the
@@ -187,15 +193,19 @@ class Window(raw: Ptr[GtkWindow])
     * This function is the recommended way for [saving window state across
     * restarts of
     * applications](https://developer.gnome.org/documentation/tutorials/save-state.html).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_default_size contains an OUT parameter, which is not supported yet"
+    "[get_default_size]: Method get_default_size contains an OUT parameter, which is not supported yet"
   )
-  def getDefaultSize__ = ???
+  private def getDefaultSize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the default widget for @window.
     *
-    * Returns the default widget for @window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefaultWidget(): Widget /* None */ = new Widget(
     gtk_window_get_default_widget(
@@ -203,122 +213,136 @@ class Window(raw: Ptr[GtkWindow])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the window has been set to have a close button.
     *
-    * Returns whether the window has been set to have a close button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDeletable(): Boolean /* None */ =
     gtk_window_get_deletable(this.raw.asInstanceOf[Ptr[GtkWindow]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the window will be destroyed with its transient parent.
     *
-    * Returns whether the window will be destroyed with its transient parent.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDestroyWithParent(): Boolean /* None */ =
     gtk_window_get_destroy_with_parent(
       this.raw.asInstanceOf[Ptr[GtkWindow]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the current focused widget within the window.
+  /** Retrieves the current focused widget within the window.
     *
     * Note that this is the widget that would have the focus if the toplevel
     * window focused; if the toplevel window is not focused then
     * `gtk_widget_has_focus (widget)` will not be %TRUE for the widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFocus(): Widget /* None */ = new Widget(
     gtk_window_get_focus(this.raw.asInstanceOf[Ptr[GtkWindow]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether “focus rectangles” are supposed to be visible.
     *
-    * Gets whether “focus rectangles” are supposed to be visible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFocusVisible(): Boolean /* None */ = gtk_window_get_focus_visible(
     this.raw.asInstanceOf[Ptr[GtkWindow]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the group for @window.
+  /** Returns the group for @window.
     *
     * If the window has no group, then the default group is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getGroup(): WindowGroup /* None */ = new WindowGroup(
     gtk_window_get_group(this.raw.asInstanceOf[Ptr[GtkWindow]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether this window reacts to F10 key presses by activating a
+  /** Returns whether this window reacts to F10 key presses by activating a
     * menubar it contains.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHandleMenubarAccel(): Boolean /* None */ =
     gtk_window_get_handle_menubar_accel(
       this.raw.asInstanceOf[Ptr[GtkWindow]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the window will be hidden when the close button is
+  /** Returns whether the window will be hidden when the close button is
     * clicked.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHideOnClose(): Boolean /* None */ = gtk_window_get_hide_on_close(
     this.raw.asInstanceOf[Ptr[GtkWindow]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the name of the themed icon for the window.
     *
-    * Returns the name of the themed icon for the window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconName()(using Zone): String /* None */ = fromCString(
     gtk_window_get_icon_name(this.raw.asInstanceOf[Ptr[GtkWindow]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether mnemonics are supposed to be visible.
     *
-    * Gets whether mnemonics are supposed to be visible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMnemonicsVisible(): Boolean /* None */ =
     gtk_window_get_mnemonics_visible(
       this.raw.asInstanceOf[Ptr[GtkWindow]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the window is modal.
     *
-    * Returns whether the window is modal.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModal(): Boolean /* None */ =
     gtk_window_get_modal(this.raw.asInstanceOf[Ptr[GtkWindow]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value set by gtk_window_set_resizable().
     *
-    * Gets the value set by gtk_window_set_resizable().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getResizable(): Boolean /* None */ =
     gtk_window_get_resizable(this.raw.asInstanceOf[Ptr[GtkWindow]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the title of the window.
     *
-    * Retrieves the title of the window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_window_get_title(this.raw.asInstanceOf[Ptr[GtkWindow]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the custom titlebar that has been set with
+  /** Returns the custom titlebar that has been set with
     * gtk_window_set_titlebar().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTitlebar(): Widget /* None */ = new Widget(
     gtk_window_get_titlebar(this.raw.asInstanceOf[Ptr[GtkWindow]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the transient parent for this window.
     *
-    * Fetches the transient parent for this window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTransientFor(): Window /* None */ = new Window(
     gtk_window_get_transient_for(
@@ -326,29 +350,29 @@ class Window(raw: Ptr[GtkWindow])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether @window has an explicit window group.
     *
-    * Returns whether @window has an explicit window group.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasGroup(): Boolean /* None */ =
     gtk_window_has_group(this.raw.asInstanceOf[Ptr[GtkWindow]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the window is part of the current active toplevel.
+  /** Returns whether the window is part of the current active toplevel.
     *
     * The active toplevel is the window receiving keystrokes.
     *
     * The return value is %TRUE if the window is active toplevel itself. You
     * might use this function if you wanted to draw a widget differently in an
     * active window from a widget in an inactive window.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isActive(): Boolean /* None */ =
     gtk_window_is_active(this.raw.asInstanceOf[Ptr[GtkWindow]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the current fullscreen state of @window.
+  /** Retrieves the current fullscreen state of @window.
     *
     * Note that since fullscreening is ultimately handled by the window manager
     * and happens asynchronously to an application request, you shouldn’t assume
@@ -358,13 +382,14 @@ class Window(raw: Ptr[GtkWindow])
     *
     * If the window isn't yet mapped, the value returned will whether the
     * initial requested state is fullscreen.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isFullscreen(): Boolean /* None */ =
     gtk_window_is_fullscreen(this.raw.asInstanceOf[Ptr[GtkWindow]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the current maximized state of @window.
+  /** Retrieves the current maximized state of @window.
     *
     * Note that since maximization is ultimately handled by the window manager
     * and happens asynchronously to an application request, you shouldn’t assume
@@ -374,23 +399,25 @@ class Window(raw: Ptr[GtkWindow])
     *
     * If the window isn't yet mapped, the value returned will whether the
     * initial requested state is maximized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isMaximized(): Boolean /* None */ =
     gtk_window_is_maximized(this.raw.asInstanceOf[Ptr[GtkWindow]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the current suspended state of @window.
+  /** Retrieves the current suspended state of @window.
     *
     * A window being suspended means it's currently not visible to the user, for
     * example by being on a inactive workspace, minimized, obstructed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isSuspended(): Boolean /* None */ =
     gtk_window_is_suspended(this.raw.asInstanceOf[Ptr[GtkWindow]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asks to maximize @window, so that it fills the screen.
+  /** Asks to maximize @window, so that it fills the screen.
     *
     * Note that you shouldn’t assume the window is definitely maximized
     * afterward, because other entities (e.g. the user or window manager) could
@@ -402,14 +429,15 @@ class Window(raw: Ptr[GtkWindow])
     * You can track the result of this operation via the
     * [property@Gdk.Toplevel:state] property, or by listening to notifications
     * on the [property@Gtk.Window:maximized] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def maximize(): Unit /* None */ = gtk_window_maximize(
     this.raw.asInstanceOf[Ptr[GtkWindow]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asks to minimize the specified @window.
+  /** Asks to minimize the specified @window.
     *
     * Note that you shouldn’t assume the window is definitely minimized
     * afterward, because the windowing system might not support this
@@ -422,14 +450,15 @@ class Window(raw: Ptr[GtkWindow])
     *
     * You can track result of this operation via the
     * [property@Gdk.Toplevel:state] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def minimize(): Unit /* None */ = gtk_window_minimize(
     this.raw.asInstanceOf[Ptr[GtkWindow]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Presents a window to the user.
+  /** Presents a window to the user.
     *
     * This may mean raising the window in the stacking order, unminimizing it,
     * moving it to the current desktop and/or giving it the keyboard focus
@@ -437,20 +466,24 @@ class Window(raw: Ptr[GtkWindow])
     * preferences).
     *
     * If @window is hidden, this function also makes it visible.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def present(): Unit /* None */ = gtk_window_present(
     this.raw.asInstanceOf[Ptr[GtkWindow]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Presents a window to the user in response to an user interaction.
+  /** Presents a window to the user in response to an user interaction.
     *
     * See [method@Gtk.Window.present] for more details.
     *
     * The timestamp should be gathered when the window was requested to be shown
     * (when clicking a link for example), rather than once the window is ready
     * to be shown.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def presentWithTime(
       timestamp: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
@@ -459,9 +492,7 @@ class Window(raw: Ptr[GtkWindow])
     guint32(timestamp)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets or unsets the `GtkApplication` associated with the window.
+  /** Sets or unsets the `GtkApplication` associated with the window.
     *
     * The application will be kept alive for at least as long as it has any
     * windows associated with it (see g_application_hold() for a way to keep it
@@ -474,6 +505,9 @@ class Window(raw: Ptr[GtkWindow])
     * This is equivalent to calling [method@Gtk.Application.remove_window]
     * and/or [method@Gtk.Application.add_window] on the old/new applications as
     * relevant.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setApplication(
       application: Option[Application /* Some(Ptr[GtkApplication]) */ ]
@@ -484,9 +518,10 @@ class Window(raw: Ptr[GtkWindow])
       .getOrElse(null.asInstanceOf[Ptr[GtkApplication]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the child widget of @window.
     *
-    * Sets the child widget of @window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -497,9 +532,7 @@ class Window(raw: Ptr[GtkWindow])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the window should be decorated.
+  /** Sets whether the window should be decorated.
     *
     * By default, windows are decorated with a title bar, resize controls, etc.
     * Some window managers allow GTK to disable these decorations, creating a
@@ -511,6 +544,9 @@ class Window(raw: Ptr[GtkWindow])
     *
     * On Windows, this function always works, since there’s no window manager
     * policy involved.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDecorated(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -519,9 +555,7 @@ class Window(raw: Ptr[GtkWindow])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the default size of a window.
+  /** Sets the default size of a window.
     *
     * The default size of a window is the size that will be used if no other
     * constraints apply.
@@ -549,6 +583,9 @@ class Window(raw: Ptr[GtkWindow])
     * [method@Gtk.Window.get_default_size]. Using the window allocation directly
     * will not work in all circumstances and can lead to growing or shrinking
     * windows.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultSize(
       width: Int /* Some(CInt) */,
@@ -559,12 +596,13 @@ class Window(raw: Ptr[GtkWindow])
     height
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the default widget.
+  /** Sets the default widget.
     *
     * The default widget is the widget that is activated when the user presses
     * Enter in a dialog (for example).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultWidget(
       default_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -575,9 +613,7 @@ class Window(raw: Ptr[GtkWindow])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the window should be deletable.
+  /** Sets whether the window should be deletable.
     *
     * By default, windows have a close button in the window frame. Some window
     * managers allow GTK to disable this button. If you set the deletable
@@ -589,6 +625,9 @@ class Window(raw: Ptr[GtkWindow])
     *
     * On Windows, this function always works, since there’s no window manager
     * policy involved.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDeletable(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -597,13 +636,14 @@ class Window(raw: Ptr[GtkWindow])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @setting is %TRUE, then destroying the transient parent of @window will
+  /** If @setting is %TRUE, then destroying the transient parent of @window will
     * also destroy @window itself.
     *
     * This is useful for dialogs that shouldn’t persist beyond the lifetime of
     * the main window they are associated with, for example.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDestroyWithParent(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -612,12 +652,13 @@ class Window(raw: Ptr[GtkWindow])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `GdkDisplay` where the @window is displayed.
+  /** Sets the `GdkDisplay` where the @window is displayed.
     *
     * If the window is already mapped, it will be unmapped, and then remapped on
     * the new display.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDisplay(
       display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
@@ -626,15 +667,16 @@ class Window(raw: Ptr[GtkWindow])
     display.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the focus widget.
+  /** Sets the focus widget.
     *
     * If @focus is not the current focus widget, and is focusable, sets it as
     * the focus widget for the window. If @focus is %NULL, unsets the focus
     * widget for this window. To set the focus to a particular widget in the
     * toplevel, it is usually more convenient to use
     * [method@Gtk.Widget.grab_focus] instead of this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFocus(
       focus: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -645,12 +687,13 @@ class Window(raw: Ptr[GtkWindow])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether “focus rectangles” are supposed to be visible.
+  /** Sets whether “focus rectangles” are supposed to be visible.
     *
     * This property is maintained by GTK based on user input, and should not be
     * set by applications.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFocusVisible(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -659,10 +702,11 @@ class Window(raw: Ptr[GtkWindow])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether this window should react to F10 key presses by activating a
+  /** Sets whether this window should react to F10 key presses by activating a
     * menubar it contains.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHandleMenubarAccel(
       handle_menubar_accel: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -671,10 +715,11 @@ class Window(raw: Ptr[GtkWindow])
     gboolean(gint((if handle_menubar_accel == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @setting is %TRUE, then clicking the close button on the window will
+  /** If @setting is %TRUE, then clicking the close button on the window will
     * not destroy it, but only hide it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHideOnClose(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -683,15 +728,16 @@ class Window(raw: Ptr[GtkWindow])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the icon for the window from a named themed icon.
+  /** Sets the icon for the window from a named themed icon.
     *
     * See the docs for [class@Gtk.IconTheme] for more details. On some
     * platforms, the window icon is not used at all.
     *
     * Note that this has nothing to do with the WM_ICON_NAME property which is
     * mentioned in the ICCCM.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconName(
       name: Option[String | CString /* Some(CString) */ ]
@@ -702,12 +748,13 @@ class Window(raw: Ptr[GtkWindow])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether mnemonics are supposed to be visible.
+  /** Sets whether mnemonics are supposed to be visible.
     *
     * This property is maintained by GTK based on user input, and should not be
     * set by applications.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMnemonicsVisible(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -716,15 +763,16 @@ class Window(raw: Ptr[GtkWindow])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a window modal or non-modal.
+  /** Sets a window modal or non-modal.
     *
     * Modal windows prevent interaction with other windows in the same
     * application. To keep modal dialogs on top of main application windows, use
     * [method@Gtk.Window.set_transient_for] to make the dialog transient for the
     * parent; most window managers will then disallow lowering the dialog below
     * the parent.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -733,11 +781,12 @@ class Window(raw: Ptr[GtkWindow])
     gboolean(gint((if modal == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the user can resize a window.
+  /** Sets whether the user can resize a window.
     *
     * Windows are user resizable by default.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setResizable(
       resizable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -746,9 +795,7 @@ class Window(raw: Ptr[GtkWindow])
     gboolean(gint((if resizable == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the startup notification ID.
+  /** Sets the startup notification ID.
     *
     * Startup notification identifiers are used by desktop environment to track
     * application startup, to provide user feedback and other features. This
@@ -762,6 +809,9 @@ class Window(raw: Ptr[GtkWindow])
     * map event.
     *
     * This function is only useful on X11, not with other GTK targets.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setStartupId(
       startup_id: String | CString /* Some(CString) */
@@ -770,9 +820,7 @@ class Window(raw: Ptr[GtkWindow])
     __sn_extract_string(startup_id)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the title of the `GtkWindow`.
+  /** Sets the title of the `GtkWindow`.
     *
     * The title of a window will be displayed in its title bar; on the X Window
     * System, the title bar is rendered by the window manager so exactly how the
@@ -782,6 +830,9 @@ class Window(raw: Ptr[GtkWindow])
     * current document filename, for example.
     *
     * Passing %NULL does the same as setting the title to an empty string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
       title: Option[String | CString /* Some(CString) */ ]
@@ -792,9 +843,7 @@ class Window(raw: Ptr[GtkWindow])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a custom titlebar for @window.
+  /** Sets a custom titlebar for @window.
     *
     * A typical widget used here is [class@Gtk.HeaderBar], as it provides
     * various features expected of a titlebar while allowing the addition of
@@ -804,6 +853,9 @@ class Window(raw: Ptr[GtkWindow])
     * manager not to put its own titlebar on the window. Depending on the
     * system, this function may not work for a window that is already visible,
     * so you set the titlebar before calling [method@Gtk.Widget.show].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitlebar(
       titlebar: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -814,9 +866,7 @@ class Window(raw: Ptr[GtkWindow])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Dialog windows should be set transient for the main application window
+  /** Dialog windows should be set transient for the main application window
     * they were spawned from. This allows window managers to e.g. keep the
     * dialog on top of the main window, or center the dialog over the main
     * window. [ctor@Gtk.Dialog.new_with_buttons] and other convenience functions
@@ -826,6 +876,9 @@ class Window(raw: Ptr[GtkWindow])
     *
     * On Windows, this function puts the child window on top of the parent, much
     * as the window manager would have done on X.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTransientFor(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
@@ -836,9 +889,7 @@ class Window(raw: Ptr[GtkWindow])
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asks to remove the fullscreen state for @window, and return to its
+  /** Asks to remove the fullscreen state for @window, and return to its
     * previous state.
     *
     * Note that you shouldn’t assume the window is definitely not fullscreen
@@ -850,14 +901,15 @@ class Window(raw: Ptr[GtkWindow])
     * You can track the result of this operation via the
     * [property@Gdk.Toplevel:state] property, or by listening to notifications
     * of the [property@Gtk.Window:fullscreened] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unfullscreen(): Unit /* None */ = gtk_window_unfullscreen(
     this.raw.asInstanceOf[Ptr[GtkWindow]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asks to unmaximize @window.
+  /** Asks to unmaximize @window.
     *
     * Note that you shouldn’t assume the window is definitely unmaximized
     * afterward, because other entities (e.g. the user or window manager)
@@ -867,14 +919,15 @@ class Window(raw: Ptr[GtkWindow])
     * You can track the result of this operation via the
     * [property@Gdk.Toplevel:state] property, or by listening to notifications
     * on the [property@Gtk.Window:maximized] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unmaximize(): Unit /* None */ = gtk_window_unmaximize(
     this.raw.asInstanceOf[Ptr[GtkWindow]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asks to unminimize the specified @window.
+  /** Asks to unminimize the specified @window.
     *
     * Note that you shouldn’t assume the window is definitely unminimized
     * afterward, because the windowing system might not support this
@@ -884,6 +937,9 @@ class Window(raw: Ptr[GtkWindow])
     *
     * You can track result of this operation via the
     * [property@Gdk.Toplevel:state] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unminimize(): Unit /* None */ = gtk_window_unminimize(
     this.raw.asInstanceOf[Ptr[GtkWindow]]
@@ -900,9 +956,7 @@ class Window(raw: Ptr[GtkWindow])
 end Window
 
 object Window:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkWindow`.
+  /** Creates a new `GtkWindow`.
     *
     * To get an undecorated window (no window borders), use
     * [method@Gtk.Window.set_decorated].
@@ -914,49 +968,53 @@ object Window:
     * caller.
     *
     * To delete a `GtkWindow`, call [method@Gtk.Window.destroy].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Window = new Window(gtk_window_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the fallback icon name for windows.
+  /** Returns the fallback icon name for windows.
     *
     * The returned string is owned by GTK and should not be modified. It is only
     * valid until the next call to [func@Gtk.Window.set_default_icon_name].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefaultIconName()(using Zone): String /* Some(CString) */ =
     fromCString(gtk_window_get_default_icon_name().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a list of all existing toplevel windows.
+  /** Returns a list of all existing toplevel windows.
     *
     * If you want to iterate through the list and perform actions involving
     * callbacks that might destroy the widgets or add new ones, be aware that
     * the list of toplevels will change and emit the "items-changed" signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getToplevels()
       : ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */ =
     new ListModel.Abstract(gtk_window_get_toplevels().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a list of all existing toplevel windows.
+  /** Returns a list of all existing toplevel windows.
     *
     * The widgets in the list are not individually referenced. If you want to
     * iterate through the list and perform actions involving callbacks that
     * might destroy the widgets, you must call
     * `g_list_foreach (result, (GFunc)g_object_ref, NULL)` first, and then unref
     * all the widgets afterwards.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def listToplevels() = ???
+  private def listToplevels() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the window should request startup notification.
+  /** Sets whether the window should request startup notification.
     *
     * By default, after showing the first `GtkWindow`, GTK calls
     * [method@Gdk.Toplevel.set_startup_id]. Call this function to disable the
@@ -967,6 +1025,9 @@ object Window:
     * In that example, you would disable startup notification temporarily, show
     * your splash screen, then re-enable it so that showing the main window
     * would automatically result in notification.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAutoStartupNotification(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -974,12 +1035,13 @@ object Window:
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets an icon to be used as fallback.
+  /** Sets an icon to be used as fallback.
     *
     * The fallback icon is used for windows that haven't had
     * [method@Gtk.Window.set_icon_name] called on them.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultIconName(
       name: String | CString /* Some(CString) */
@@ -987,13 +1049,14 @@ object Window:
     __sn_extract_string(name)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Opens or closes the [interactive
+  /** Opens or closes the [interactive
     * debugger](running.html#interactive-debugging).
     *
     * The debugger offers access to the widget hierarchy of the application and
     * to useful debugging tools.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInteractiveDebugging(
       enable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */

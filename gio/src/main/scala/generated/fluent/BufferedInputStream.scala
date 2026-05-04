@@ -16,9 +16,7 @@ import sn.gnome.gio.internal.GBufferedInputStream
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gsize, gssize}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Buffered input stream implements #GFilterInputStream and provides for
+/** Buffered input stream implements #GFilterInputStream and provides for
   * buffered reads.
   *
   * By default, #GBufferedInputStream's buffer size is set at 4 kilobytes.
@@ -32,6 +30,9 @@ import sn.gnome.glib.internal.{gsize, gssize}
   * input stream's buffer, use g_buffered_input_stream_set_buffer_size(). Note
   * that the buffer's size cannot be reduced below the size of the data within
   * the buffer.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     extends FilterInputStream(raw.asInstanceOf),
@@ -39,9 +40,7 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to read @count bytes from the stream into the buffer. Will block
+  /** Tries to read @count bytes from the stream into the buffer. Will block
     * during this read.
     *
     * If @count is zero, returns zero and does nothing. A value of @count larger
@@ -65,6 +64,9 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     *
     * For the asynchronous, non-blocking, version of this function, see
     * g_buffered_input_stream_fill_async().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fill(
       count: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */,
@@ -80,24 +82,26 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     ).value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reads data into @stream's buffer asynchronously, up to @count size.
+  /** Reads data into @stream's buffer asynchronously, up to @count size.
     * @io_priority
     *   can be used to prioritize reads. For the synchronous version of this
     *   function, see g_buffered_input_stream_fill().
     *
     * If @count is -1 then the attempted read size is equal to the number of
     * bytes that are required to fill the buffer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[fill_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def fillAsync__ = ???
+  private def fillAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an asynchronous read.
     *
-    * Finishes an asynchronous read.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fillFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -109,48 +113,50 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     ).value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the size of the available data within the stream.
     *
-    * Gets the size of the available data within the stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAvailable(): CUnsignedLongInt /* None */ =
     g_buffered_input_stream_get_available(
       this.raw.asInstanceOf[Ptr[GBufferedInputStream]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the size of the input buffer.
     *
-    * Gets the size of the input buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBufferSize(): CUnsignedLongInt /* None */ =
     g_buffered_input_stream_get_buffer_size(
       this.raw.asInstanceOf[Ptr[GBufferedInputStream]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Peeks in the buffer, copying data of size @count into @buffer, offset @offset
+  /** Peeks in the buffer, copying data of size @count into @buffer, offset @offset
     * bytes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(void*)))"
+    "[peek/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(void*)))"
   )
-  def peek__ = ???
+  private def peek__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the buffer with the currently available bytes. The returned buffer
+  /** Returns the buffer with the currently available bytes. The returned buffer
     * must not be modified and will become invalid when reading from the stream
     * or filling the buffer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method peek_buffer contains an OUT parameter, which is not supported yet"
+    "[peek_buffer]: Method peek_buffer contains an OUT parameter, which is not supported yet"
   )
-  def peekBuffer__ = ???
+  private def peekBuffer__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to read a single byte from the stream or the buffer. Will block
+  /** Tries to read a single byte from the stream or the buffer. Will block
     * during this read.
     *
     * On success, the byte read from the stream is returned. On end of stream -1
@@ -163,6 +169,9 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     * partial result will be returned, without an error.
     *
     * On error -1 is returned and @error is set accordingly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def readByte(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -176,11 +185,12 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the size of the internal buffer of @stream to @size, or to the size
+  /** Sets the size of the internal buffer of @stream to @size, or to the size
     * of the contents of the buffer. The buffer can never be resized smaller
     * than its current contents.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setBufferSize(
       size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
@@ -192,10 +202,11 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
 end BufferedInputStream
 
 object BufferedInputStream:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GInputStream from the given @base_stream, with a buffer set
+  /** Creates a new #GInputStream from the given @base_stream, with a buffer set
     * to the default size (4 kilobytes).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       base_stream: InputStream /* Some(Ptr[GInputStream]) */
@@ -205,10 +216,11 @@ object BufferedInputStream:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GBufferedInputStream from the given @base_stream, with a
+  /** Creates a new #GBufferedInputStream from the given @base_stream, with a
     * buffer set to @size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sized(
       base_stream: InputStream /* Some(Ptr[GInputStream]) */,

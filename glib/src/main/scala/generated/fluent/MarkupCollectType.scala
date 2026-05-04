@@ -2,14 +2,15 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GMarkupCollectType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A mixed enumerated type and flags field. You must specify one type (string,
+/** A mixed enumerated type and flags field. You must specify one type (string,
   * strdup, boolean, tristate). Additionally, you may optionally bitwise OR the
   * type with the flag %G_MARKUP_COLLECT_OPTIONAL.
   *
   * It is likely that this enum will be extended in the future to support other
   * types.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MarkupCollectType private (val raw: GMarkupCollectType):
   def is(kv: MarkupCollectType): Boolean =
@@ -37,22 +38,24 @@ object MarkupCollectType:
     def |(other: MarkupCollectType) =
       MarkupCollectType(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A mixed enumerated type and flags field. You must specify one type
+  /** A mixed enumerated type and flags field. You must specify one type
     * (string, strdup, boolean, tristate). Additionally, you may optionally
     * bitwise OR the type with the flag %G_MARKUP_COLLECT_OPTIONAL.
     *
     * It is likely that this enum will be extended in the future to support
     * other types.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GMarkupCollectType, name: String)
       extends MarkupCollectType(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** used to terminate the list of attributes to collect
       *
-      * used to terminate the list of attributes to collect
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case INVALID
         extends KnownValue(
@@ -60,31 +63,34 @@ object MarkupCollectType:
           "INVALID"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * collect the string pointer directly from the attribute_values[] array.
+    /** collect the string pointer directly from the attribute_values[] array.
       * Expects a parameter of type (const char **). If
       * %G_MARKUP_COLLECT_OPTIONAL is specified and the attribute isn't present
       * then the pointer will be set to %NULL
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STRING
         extends KnownValue(GMarkupCollectType.G_MARKUP_COLLECT_STRING, "STRING")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * as with %G_MARKUP_COLLECT_STRING, but expects a parameter of type (char
+    /** as with %G_MARKUP_COLLECT_STRING, but expects a parameter of type (char
       * **) and g_strdup()s the returned pointer. The pointer must be freed with
       * g_free()
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STRDUP
         extends KnownValue(GMarkupCollectType.G_MARKUP_COLLECT_STRDUP, "STRDUP")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * expects a parameter of type (gboolean *) and parses the attribute value
+    /** expects a parameter of type (gboolean *) and parses the attribute value
       * as a boolean. Sets %FALSE if the attribute isn't present. Valid boolean
       * values consist of (case-insensitive) "false", "f", "no", "n", "0" and
       * "true", "t", "yes", "y", "1"
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case BOOLEAN
         extends KnownValue(
@@ -92,11 +98,12 @@ object MarkupCollectType:
           "BOOLEAN"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * as with %G_MARKUP_COLLECT_BOOLEAN, but in the case of a missing
+    /** as with %G_MARKUP_COLLECT_BOOLEAN, but in the case of a missing
       * attribute a value is set that compares equal to neither %FALSE nor %TRUE
       * G_MARKUP_COLLECT_OPTIONAL is implied
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case TRISTATE
         extends KnownValue(
@@ -104,11 +111,12 @@ object MarkupCollectType:
           "TRISTATE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * can be bitwise ORed with the other fields. If present, allows the
+    /** can be bitwise ORed with the other fields. If present, allows the
       * attribute not to appear. A default value is set depending on what value
       * type is used
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case OPTIONAL
         extends KnownValue(

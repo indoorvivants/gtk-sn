@@ -2,9 +2,10 @@ package sn.gnome.gobject.fluent
 
 import _root_.sn.gnome.gobject.internal.GTypeFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Bit masks used to check or determine characteristics of a type.
   *
-  * Bit masks used to check or determine characteristics of a type.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TypeFlags private (val raw: GTypeFlags):
   def is(kv: TypeFlags): Boolean =
@@ -32,32 +33,36 @@ object TypeFlags:
     def |(other: TypeFlags) =
       TypeFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Bit masks used to check or determine characteristics of a type.
     *
-    * Bit masks used to check or determine characteristics of a type.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GTypeFlags, name: String)
       extends TypeFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No special flags. Since: 2.74
       *
-      * No special flags. Since: 2.74
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GTypeFlags.G_TYPE_FLAG_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Indicates an abstract type. No instances can be created for an abstract
+    /** Indicates an abstract type. No instances can be created for an abstract
       * type
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ABSTRACT
         extends KnownValue(GTypeFlags.G_TYPE_FLAG_ABSTRACT, "ABSTRACT")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Indicates an abstract value type, i.e. a type that introduces a value
+    /** Indicates an abstract value type, i.e. a type that introduces a value
       * table, but can't be used for g_value_init()
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case VALUE_ABSTRACT
         extends KnownValue(
@@ -65,18 +70,20 @@ object TypeFlags:
           "VALUE_ABSTRACT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Indicates a final type. A final type is a non-derivable leaf node in a
+    /** Indicates a final type. A final type is a non-derivable leaf node in a
       * deep derivable type hierarchy tree. Since: 2.70
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FINAL extends KnownValue(GTypeFlags.G_TYPE_FLAG_FINAL, "FINAL")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * The type is deprecated and may be removed in a future version. A warning
+    /** The type is deprecated and may be removed in a future version. A warning
       * will be emitted if it is instantiated while running with
       * `G_ENABLE_DIAGNOSTIC=1`. Since 2.76
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DEPRECATED
         extends KnownValue(GTypeFlags.G_TYPE_FLAG_DEPRECATED, "DEPRECATED")

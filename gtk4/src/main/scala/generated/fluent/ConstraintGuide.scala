@@ -8,9 +8,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{ConstraintStrength, ConstraintTarget}
 import sn.gnome.gtk4.internal.GtkConstraintGuide
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkConstraintGuide` is an invisible layout element in a
+/** A `GtkConstraintGuide` is an invisible layout element in a
   * `GtkConstraintLayout`.
   *
   * The `GtkConstraintLayout` treats guides like widgets. They can be used as
@@ -21,6 +19,9 @@ import sn.gnome.gtk4.internal.GtkConstraintGuide
   * be aligned to, or like *flexible space*.
   *
   * Unlike a `GtkWidget`, a `GtkConstraintGuide` will not be drawn.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     extends Object(raw.asInstanceOf),
@@ -28,27 +29,30 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the maximum size of @guide.
     *
-    * Gets the maximum size of @guide.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_max_size contains an OUT parameter, which is not supported yet"
+    "[get_max_size]: Method get_max_size contains an OUT parameter, which is not supported yet"
   )
-  def getMaxSize__ = ???
+  private def getMaxSize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the minimum size of @guide.
     *
-    * Gets the minimum size of @guide.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_min_size contains an OUT parameter, which is not supported yet"
+    "[get_min_size]: Method get_min_size contains an OUT parameter, which is not supported yet"
   )
-  def getMinSize__ = ???
+  private def getMinSize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the name set using gtk_constraint_guide_set_name().
     *
-    * Retrieves the name set using gtk_constraint_guide_set_name().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     gtk_constraint_guide_get_name(
@@ -56,18 +60,20 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the natural size of @guide.
     *
-    * Gets the natural size of @guide.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_nat_size contains an OUT parameter, which is not supported yet"
+    "[get_nat_size]: Method get_nat_size contains an OUT parameter, which is not supported yet"
   )
-  def getNatSize__ = ???
+  private def getNatSize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the strength set using gtk_constraint_guide_set_strength().
     *
-    * Retrieves the strength set using gtk_constraint_guide_set_strength().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStrength(): ConstraintStrength /* None */ = ConstraintStrength.fromRaw(
     gtk_constraint_guide_get_strength(
@@ -75,12 +81,13 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the maximum size of @guide.
+  /** Sets the maximum size of @guide.
     *
     * If @guide is attached to a `GtkConstraintLayout`, the constraints will be
     * updated to reflect the new size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMaxSize(
       width: Int /* Some(CInt) */,
@@ -91,12 +98,13 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     height
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the minimum size of @guide.
+  /** Sets the minimum size of @guide.
     *
     * If @guide is attached to a `GtkConstraintLayout`, the constraints will be
     * updated to reflect the new size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMinSize(
       width: Int /* Some(CInt) */,
@@ -107,11 +115,12 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     height
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a name for the given `GtkConstraintGuide`.
+  /** Sets a name for the given `GtkConstraintGuide`.
     *
     * The name is useful for debugging purposes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
       name: Option[String | CString /* Some(CString) */ ]
@@ -122,12 +131,13 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the natural size of @guide.
+  /** Sets the natural size of @guide.
     *
     * If @guide is attached to a `GtkConstraintLayout`, the constraints will be
     * updated to reflect the new size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setNatSize(
       width: Int /* Some(CInt) */,
@@ -138,10 +148,11 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     height
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the strength of the constraint on the natural size of the given
+  /** Sets the strength of the constraint on the natural size of the given
     * `GtkConstraintGuide`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setStrength(
       strength: ConstraintStrength /* Some(GtkConstraintStrength) */
@@ -161,9 +172,10 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
 end ConstraintGuide
 
 object ConstraintGuide:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkConstraintGuide` object.
     *
-    * Creates a new `GtkConstraintGuide` object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): ConstraintGuide = new ConstraintGuide(
     gtk_constraint_guide_new().asInstanceOf

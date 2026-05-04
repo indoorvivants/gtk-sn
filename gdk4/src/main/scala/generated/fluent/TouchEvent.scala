@@ -8,17 +8,19 @@ import sn.gnome.gdk4.fluent.Event
 import sn.gnome.gdk4.internal.GdkTouchEvent
 import sn.gnome.glib.internal.{gboolean, gint}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** An event related to a touch-based device.
   *
-  * An event related to a touch-based device.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TouchEvent(raw: Ptr[GdkTouchEvent]) extends Event(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Extracts whether a touch event is emulating a pointer event.
     *
-    * Extracts whether a touch event is emulating a pointer event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEmulatingPointer(): Boolean /* None */ =
     gdk_touch_event_get_emulating_pointer(

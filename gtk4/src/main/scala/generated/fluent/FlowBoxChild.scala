@@ -8,9 +8,10 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkFlowBoxChild
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** `GtkFlowBoxChild` is the kind of widget that can be added to a `GtkFlowBox`.
   *
-  * `GtkFlowBoxChild` is the kind of widget that can be added to a `GtkFlowBox`.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
     extends Widget(raw.asInstanceOf),
@@ -20,9 +21,7 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Marks @child as changed, causing any state that depends on this to be
+  /** Marks @child as changed, causing any state that depends on this to be
     * updated.
     *
     * This affects sorting and filtering.
@@ -40,14 +39,18 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
     *
     * Another alternative is to call [method@Gtk.FlowBox.invalidate_sort] on any
     * model change, but that is more expensive.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def changed(): Unit /* None */ = gtk_flow_box_child_changed(
     this.raw.asInstanceOf[Ptr[GtkFlowBoxChild]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @self.
     *
-    * Gets the child widget of @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_flow_box_child_get_child(
@@ -55,26 +58,29 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the current index of the @child in its `GtkFlowBox` container.
     *
-    * Gets the current index of the @child in its `GtkFlowBox` container.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIndex(): Int /* None */ = gtk_flow_box_child_get_index(
     this.raw.asInstanceOf[Ptr[GtkFlowBoxChild]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the @child is currently selected in its `GtkFlowBox`
+  /** Returns whether the @child is currently selected in its `GtkFlowBox`
     * container.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isSelected(): Boolean /* None */ = gtk_flow_box_child_is_selected(
     this.raw.asInstanceOf[Ptr[GtkFlowBoxChild]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the child widget of @self.
     *
-    * Sets the child widget of @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -88,11 +94,12 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
 end FlowBoxChild
 
 object FlowBoxChild:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkFlowBoxChild`.
+  /** Creates a new `GtkFlowBoxChild`.
     *
     * This should only be used as a child of a `GtkFlowBox`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): FlowBoxChild = new FlowBoxChild(
     gtk_flow_box_child_new().asInstanceOf

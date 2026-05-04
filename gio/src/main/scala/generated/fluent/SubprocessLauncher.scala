@@ -9,24 +9,23 @@ import sn.gnome.gio.internal.GSubprocessLauncher
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * This class contains a set of options for launching child processes, such as
+/** This class contains a set of options for launching child processes, such as
   * where its standard input and output will be directed, the argument list, the
   * environment, and more.
   *
   * While the #GSubprocess class has high level functions covering popular
   * cases, use of this class allows access to more advanced options. It can also
   * be used to launch multiple subprocesses with a similar configuration.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Closes all the file descriptors previously passed to the object with
+  /** Closes all the file descriptors previously passed to the object with
     * g_subprocess_launcher_take_fd(), g_subprocess_launcher_take_stderr_fd(),
     * etc.
     *
@@ -38,18 +37,22 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * This function is called automatically when the #GSubprocessLauncher is
     * disposed, but is provided separately so that garbage collected language
     * bindings can call it earlier to guarantee when FDs are closed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def close(): Unit /* None */ = g_subprocess_launcher_close(
     this.raw.asInstanceOf[Ptr[GSubprocessLauncher]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the value of the environment variable @variable in the environment
+  /** Returns the value of the environment variable @variable in the environment
     * of processes launched from this launcher.
     *
     * On UNIX, the returned string can be an arbitrary byte string. On Windows,
     * it will be UTF-8.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getenv(
       variable: String |
@@ -61,9 +64,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets up a child setup function.
+  /** Sets up a child setup function.
     *
     * The child setup function will be called after fork() but before exec() on
     * the child's side.
@@ -76,18 +77,22 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * %NULL can be given as @child_setup to disable the functionality.
     *
     * Child setup functions are only available on UNIX.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.SpawnChildSetupFunc), @type -> DataRecord(GSpawnChildSetupFunc)))"
+    "[set_child_setup/<method parameters>/child_setup]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.SpawnChildSetupFunc), @type -> DataRecord(GSpawnChildSetupFunc)))"
   )
-  def setChildSetup__ = ???
+  private def setChildSetup__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the current working directory that processes will be launched with.
+  /** Sets the current working directory that processes will be launched with.
     *
     * By default processes are launched with the current working directory of
     * the launching process at the time of launch.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCwd(
       cwd: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -96,9 +101,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     __sn_extract_string(cwd).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Replace the entire environment of processes launched from this launcher
+  /** Replace the entire environment of processes launched from this launcher
     * with the given 'environ' variable.
     *
     * Typically you will build this variable by using g_listenv() to copy the
@@ -117,15 +120,16 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     *
     * On UNIX, all strings in this array can be arbitrary byte strings. On
     * Windows, they should be in UTF-8.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[set_environ/<method parameters>/env]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(gchar**)))"
   )
-  def setEnviron__ = ???
+  private def setEnviron__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the flags on the launcher.
+  /** Sets the flags on the launcher.
     *
     * The default flags are %G_SUBPROCESS_FLAGS_NONE.
     *
@@ -136,6 +140,9 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * You may also not set a flag that conflicts with a previous call to a
     * function like g_subprocess_launcher_set_stdin_file_path() or
     * g_subprocess_launcher_take_stdout_fd().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFlags(
       flags: SubprocessFlags /* Some(GSubprocessFlags) */
@@ -144,9 +151,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     flags.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the file path to use as the stderr for spawned processes.
+  /** Sets the file path to use as the stderr for spawned processes.
     *
     * If @path is %NULL then any previously given path is unset.
     *
@@ -160,6 +165,9 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * launcher flags contain any flags directing stderr elsewhere.
     *
     * This feature is only available on UNIX.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setStderrFilePath(
       path: Option[
@@ -174,9 +182,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the file path to use as the stdin for spawned processes.
+  /** Sets the file path to use as the stdin for spawned processes.
     *
     * If @path is %NULL then any previously given path is unset.
     *
@@ -186,6 +192,9 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * launcher flags contain any flags directing stdin elsewhere.
     *
     * This feature is only available on UNIX.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setStdinFilePath(
       path: String |
@@ -195,9 +204,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the file path to use as the stdout for spawned processes.
+  /** Sets the file path to use as the stdout for spawned processes.
     *
     * If @path is %NULL then any previously given path is unset.
     *
@@ -208,6 +215,9 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * launcher flags contain any flags directing stdout elsewhere.
     *
     * This feature is only available on UNIX.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setStdoutFilePath(
       path: Option[
@@ -222,14 +232,15 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the environment variable @variable in the environment of processes
+  /** Sets the environment variable @variable in the environment of processes
     * launched from this launcher.
     *
     * On UNIX, both the variable's name and value can be arbitrary byte strings,
     * except that the variable's name cannot contain '='. On Windows, they
     * should be in UTF-8.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setenv(
       variable: String |
@@ -244,27 +255,27 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     gboolean(gint((if overwrite == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a #GSubprocess given a provided varargs list of arguments.
     *
-    * Creates a #GSubprocess given a provided varargs list of arguments.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
+    "[spawn/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
   )
-  def spawn__ = ???
+  private def spawn__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a #GSubprocess given a provided array of arguments.
     *
-    * Creates a #GSubprocess given a provided array of arguments.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[spawnv/<method parameters>/argv]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def spawnv__ = ???
+  private def spawnv__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Transfer an arbitrary file descriptor from parent process to the child.
+  /** Transfer an arbitrary file descriptor from parent process to the child.
     * This function takes ownership of the @source_fd; it will be closed in the
     * parent when @self is freed.
     *
@@ -276,6 +287,9 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * An example use case is GNUPG, which has a command line argument
     * `--passphrase-fd` providing a file descriptor number where it expects the
     * passphrase to be written.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def takeFd(
       source_fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
@@ -286,9 +300,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     gint(target_fd)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the file descriptor to use as the stderr for spawned processes.
+  /** Sets the file descriptor to use as the stderr for spawned processes.
     *
     * If @fd is -1 then any previously given fd is unset.
     *
@@ -303,6 +315,9 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * launcher flags contain any flags directing stderr elsewhere.
     *
     * This feature is only available on UNIX.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def takeStderrFd(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
@@ -311,9 +326,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     gint(fd)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the file descriptor to use as the stdin for spawned processes.
+  /** Sets the file descriptor to use as the stdin for spawned processes.
     *
     * If @fd is -1 then any previously given fd is unset.
     *
@@ -331,6 +344,9 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * launcher flags contain any flags directing stdin elsewhere.
     *
     * This feature is only available on UNIX.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def takeStdinFd(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
@@ -339,9 +355,7 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     gint(fd)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the file descriptor to use as the stdout for spawned processes.
+  /** Sets the file descriptor to use as the stdout for spawned processes.
     *
     * If @fd is -1 then any previously given fd is unset.
     *
@@ -358,6 +372,9 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * launcher flags contain any flags directing stdout elsewhere.
     *
     * This feature is only available on UNIX.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def takeStdoutFd(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
@@ -366,13 +383,14 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     gint(fd)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes the environment variable @variable from the environment of
+  /** Removes the environment variable @variable from the environment of
     * processes launched from this launcher.
     *
     * On UNIX, the variable's name can be an arbitrary byte string not
     * containing '='. On Windows, it should be in UTF-8.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetenv(
       variable: String |
@@ -393,13 +411,14 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
 end SubprocessLauncher
 
 object SubprocessLauncher:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GSubprocessLauncher.
+  /** Creates a new #GSubprocessLauncher.
     *
     * The launcher is created with the default options. A copy of the
     * environment of the calling process is made at the time of this call and
     * will be used as the environment that the process is launched in.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       flags: SubprocessFlags /* Some(GSubprocessFlags) */

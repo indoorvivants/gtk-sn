@@ -2,85 +2,95 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkEditableProperties
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The identifiers for [iface@Gtk.Editable] properties.
+/** The identifiers for [iface@Gtk.Editable] properties.
   *
   * See [func@Gtk.Editable.install_properties] for details on how to implement
   * the `GtkEditable` interface.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum EditableProperties(val raw: GtkEditableProperties):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the property id for [property@Gtk.Editable:text]
     *
-    * the property id for [property@Gtk.Editable:text]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROP_TEXT
       extends EditableProperties(GtkEditableProperties.GTK_EDITABLE_PROP_TEXT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the property id for [property@Gtk.Editable:cursor-position]
     *
-    * the property id for [property@Gtk.Editable:cursor-position]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROP_CURSOR_POSITION
       extends EditableProperties(
         GtkEditableProperties.GTK_EDITABLE_PROP_CURSOR_POSITION
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the property id for [property@Gtk.Editable:selection-bound]
     *
-    * the property id for [property@Gtk.Editable:selection-bound]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROP_SELECTION_BOUND
       extends EditableProperties(
         GtkEditableProperties.GTK_EDITABLE_PROP_SELECTION_BOUND
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the property id for [property@Gtk.Editable:editable]
     *
-    * the property id for [property@Gtk.Editable:editable]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROP_EDITABLE
       extends EditableProperties(
         GtkEditableProperties.GTK_EDITABLE_PROP_EDITABLE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the property id for [property@Gtk.Editable:width-chars]
     *
-    * the property id for [property@Gtk.Editable:width-chars]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROP_WIDTH_CHARS
       extends EditableProperties(
         GtkEditableProperties.GTK_EDITABLE_PROP_WIDTH_CHARS
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the property id for [property@Gtk.Editable:max-width-chars]
     *
-    * the property id for [property@Gtk.Editable:max-width-chars]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROP_MAX_WIDTH_CHARS
       extends EditableProperties(
         GtkEditableProperties.GTK_EDITABLE_PROP_MAX_WIDTH_CHARS
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the property id for [property@Gtk.Editable:xalign]
     *
-    * the property id for [property@Gtk.Editable:xalign]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROP_XALIGN
       extends EditableProperties(GtkEditableProperties.GTK_EDITABLE_PROP_XALIGN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the property id for [property@Gtk.Editable:enable-undo]
     *
-    * the property id for [property@Gtk.Editable:enable-undo]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PROP_ENABLE_UNDO
       extends EditableProperties(
         GtkEditableProperties.GTK_EDITABLE_PROP_ENABLE_UNDO
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the number of properties
     *
-    * the number of properties
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NUM_PROPERTIES
       extends EditableProperties(

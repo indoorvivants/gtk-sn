@@ -2,13 +2,14 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkFontChooserLevel
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Specifies the granularity of font selection that is desired in a
+/** Specifies the granularity of font selection that is desired in a
   * `GtkFontChooser`.
   *
   * This enumeration may be extended in the future; applications should ignore
   * unknown values.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FontChooserLevel private (val raw: GtkFontChooserLevel):
   def is(kv: FontChooserLevel): Boolean =
@@ -36,21 +37,23 @@ object FontChooserLevel:
     def |(other: FontChooserLevel) =
       FontChooserLevel(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Specifies the granularity of font selection that is desired in a
+  /** Specifies the granularity of font selection that is desired in a
     * `GtkFontChooser`.
     *
     * This enumeration may be extended in the future; applications should ignore
     * unknown values.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GtkFontChooserLevel, name: String)
       extends FontChooserLevel(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Allow selecting a font family
       *
-      * Allow selecting a font family
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FAMILY
         extends KnownValue(
@@ -58,9 +61,10 @@ object FontChooserLevel:
           "FAMILY"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Allow selecting a specific font face
       *
-      * Allow selecting a specific font face
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STYLE
         extends KnownValue(
@@ -68,9 +72,10 @@ object FontChooserLevel:
           "STYLE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Allow selecting a specific font size
       *
-      * Allow selecting a specific font size
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SIZE
         extends KnownValue(
@@ -78,9 +83,10 @@ object FontChooserLevel:
           "SIZE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Allow changing OpenType font variation axes
       *
-      * Allow changing OpenType font variation axes
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case VARIATIONS
         extends KnownValue(
@@ -88,9 +94,10 @@ object FontChooserLevel:
           "VARIATIONS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Allow selecting specific OpenType font features
       *
-      * Allow selecting specific OpenType font features
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FEATURES
         extends KnownValue(

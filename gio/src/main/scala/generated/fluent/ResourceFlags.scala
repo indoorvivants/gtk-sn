@@ -2,10 +2,11 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GResourceFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * GResourceFlags give information about a particular file inside a resource
+/** GResourceFlags give information about a particular file inside a resource
   * bundle.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ResourceFlags private (val raw: GResourceFlags):
   def is(kv: ResourceFlags): Boolean =
@@ -33,24 +34,27 @@ object ResourceFlags:
     def |(other: ResourceFlags) =
       ResourceFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * GResourceFlags give information about a particular file inside a resource
+  /** GResourceFlags give information about a particular file inside a resource
     * bundle.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GResourceFlags, name: String)
       extends ResourceFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GResourceFlags.G_RESOURCE_FLAGS_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The file is compressed.
       *
-      * The file is compressed.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case COMPRESSED
         extends KnownValue(

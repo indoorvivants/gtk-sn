@@ -9,18 +9,20 @@ import sn.gnome.gobject.internal.GType
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.internal.GtkPropertyExpression
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A `GObject` property value in a `GtkExpression`.
   *
-  * A `GObject` property value in a `GtkExpression`.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PropertyExpression(raw: Ptr[GtkPropertyExpression])
     extends Expression(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the expression specifying the object of a property expression.
     *
-    * Gets the expression specifying the object of a property expression.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExpression(): Expression /* None */ = new Expression(
     gtk_property_expression_get_expression(
@@ -28,9 +30,10 @@ class PropertyExpression(raw: Ptr[GtkPropertyExpression])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GParamSpec` specifying the property of a property expression.
     *
-    * Gets the `GParamSpec` specifying the property of a property expression.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPspec(): ParamSpec /* None */ = new ParamSpec(
     gtk_property_expression_get_pspec(
@@ -41,9 +44,7 @@ class PropertyExpression(raw: Ptr[GtkPropertyExpression])
 end PropertyExpression
 
 object PropertyExpression:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates an expression that looks up a property.
+  /** Creates an expression that looks up a property.
     *
     * The object to use is found by evaluating the `expression`, or using the
     * `this` argument when `expression` is `NULL`.
@@ -53,6 +54,9 @@ object PropertyExpression:
     * will fail.
     *
     * The given `this_type` must have a property with `property_name`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       this_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
@@ -68,9 +72,7 @@ object PropertyExpression:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates an expression that looks up a property.
+  /** Creates an expression that looks up a property.
     *
     * The object to use is found by evaluating the `expression`, or using the
     * `this` argument when `expression` is `NULL`.
@@ -78,6 +80,9 @@ object PropertyExpression:
     * If the resulting object conforms to `this_type`, its property specified by
     * `pspec` will be queried. Otherwise, this expression's evaluation will
     * fail.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forPspec(
       expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ],

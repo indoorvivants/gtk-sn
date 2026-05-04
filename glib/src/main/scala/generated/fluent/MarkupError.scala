@@ -2,54 +2,62 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GMarkupError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Error codes returned by markup parsing.
   *
-  * Error codes returned by markup parsing.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum MarkupError(val raw: GMarkupError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** text being parsed was not valid UTF-8
     *
-    * text being parsed was not valid UTF-8
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BAD_UTF8 extends MarkupError(GMarkupError.G_MARKUP_ERROR_BAD_UTF8)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** document contained nothing, or only whitespace
     *
-    * document contained nothing, or only whitespace
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EMPTY extends MarkupError(GMarkupError.G_MARKUP_ERROR_EMPTY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** document was ill-formed
     *
-    * document was ill-formed
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PARSE extends MarkupError(GMarkupError.G_MARKUP_ERROR_PARSE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** error should be set by #GMarkupParser functions; element wasn't known
     *
-    * error should be set by #GMarkupParser functions; element wasn't known
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN_ELEMENT
       extends MarkupError(GMarkupError.G_MARKUP_ERROR_UNKNOWN_ELEMENT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** error should be set by #GMarkupParser functions; attribute wasn't known
     *
-    * error should be set by #GMarkupParser functions; attribute wasn't known
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN_ATTRIBUTE
       extends MarkupError(GMarkupError.G_MARKUP_ERROR_UNKNOWN_ATTRIBUTE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** error should be set by #GMarkupParser functions; content was invalid
     *
-    * error should be set by #GMarkupParser functions; content was invalid
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_CONTENT
       extends MarkupError(GMarkupError.G_MARKUP_ERROR_INVALID_CONTENT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * error should be set by #GMarkupParser functions; a required attribute was
+  /** error should be set by #GMarkupParser functions; a required attribute was
     * missing
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MISSING_ATTRIBUTE
       extends MarkupError(GMarkupError.G_MARKUP_ERROR_MISSING_ATTRIBUTE)

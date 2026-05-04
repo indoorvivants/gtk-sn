@@ -2,53 +2,60 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkSubpixelLayout
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * This enumeration describes how the red, green and blue components of
+/** This enumeration describes how the red, green and blue components of
   * physical pixels on an output device are laid out.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SubpixelLayout(val raw: GdkSubpixelLayout):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The layout is not known
     *
-    * The layout is not known
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN
       extends SubpixelLayout(GdkSubpixelLayout.GDK_SUBPIXEL_LAYOUT_UNKNOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Not organized in this way
     *
-    * Not organized in this way
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends SubpixelLayout(GdkSubpixelLayout.GDK_SUBPIXEL_LAYOUT_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The layout is horizontal, the order is RGB
     *
-    * The layout is horizontal, the order is RGB
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HORIZONTAL_RGB
       extends SubpixelLayout(
         GdkSubpixelLayout.GDK_SUBPIXEL_LAYOUT_HORIZONTAL_RGB
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The layout is horizontal, the order is BGR
     *
-    * The layout is horizontal, the order is BGR
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HORIZONTAL_BGR
       extends SubpixelLayout(
         GdkSubpixelLayout.GDK_SUBPIXEL_LAYOUT_HORIZONTAL_BGR
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The layout is vertical, the order is RGB
     *
-    * The layout is vertical, the order is RGB
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case VERTICAL_RGB
       extends SubpixelLayout(GdkSubpixelLayout.GDK_SUBPIXEL_LAYOUT_VERTICAL_RGB)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The layout is vertical, the order is BGR
     *
-    * The layout is vertical, the order is BGR
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case VERTICAL_BGR
       extends SubpixelLayout(GdkSubpixelLayout.GDK_SUBPIXEL_LAYOUT_VERTICAL_BGR)

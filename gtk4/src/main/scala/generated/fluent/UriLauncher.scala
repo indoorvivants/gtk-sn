@@ -10,9 +10,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.internal.GtkUriLauncher
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkUriLauncher` object collects the arguments that are needed to open a
+/** A `GtkUriLauncher` object collects the arguments that are needed to open a
   * uri with an application.
   *
   * Depending on system configuration, user preferences and available APIs, this
@@ -24,14 +22,18 @@ import sn.gnome.gtk4.internal.GtkUriLauncher
   * calling [method@Gtk.UriLauncher.launch_finish].
   *
   * To launch a file, use [class@Gtk.FileLauncher].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class UriLauncher(raw: Ptr[GtkUriLauncher]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the uri that will be opened.
     *
-    * Gets the uri that will be opened.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUri()(using Zone): String /* None */ = fromCString(
     gtk_uri_launcher_get_uri(
@@ -39,23 +41,25 @@ class UriLauncher(raw: Ptr[GtkUriLauncher]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Launch an application to open the uri.
+  /** Launch an application to open the uri.
     *
     * This may present an app chooser dialog to the user.
     *
     * The @callback will be called when the operation is completed. It should
     * call [method@Gtk.UriLauncher.launch_finish] to obtain the result.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[launch/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def launch__ = ???
+  private def launch__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes the [method@Gtk.UriLauncher.launch] call and returns the result.
     *
-    * Finishes the [method@Gtk.UriLauncher.launch] call and returns the result.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def launchFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
@@ -67,9 +71,10 @@ class UriLauncher(raw: Ptr[GtkUriLauncher]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the uri that will be opened.
     *
-    * Sets the uri that will be opened.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUri(
       uri: Option[String | CString /* Some(CString) */ ]
@@ -91,9 +96,10 @@ class UriLauncher(raw: Ptr[GtkUriLauncher]) extends Object(raw.asInstanceOf):
 end UriLauncher
 
 object UriLauncher:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkUriLauncher` object.
     *
-    * Creates a new `GtkUriLauncher` object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       uri: Option[String | CString /* Some(CString) */ ]

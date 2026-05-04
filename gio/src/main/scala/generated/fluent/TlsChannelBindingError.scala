@@ -2,58 +2,64 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GTlsChannelBindingError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * An error code used with %G_TLS_CHANNEL_BINDING_ERROR in a #GError to
+/** An error code used with %G_TLS_CHANNEL_BINDING_ERROR in a #GError to
   * indicate a TLS channel binding retrieval error.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TlsChannelBindingError(val raw: GTlsChannelBindingError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Either entire binding retrieval facility or specific binding type is not
+  /** Either entire binding retrieval facility or specific binding type is not
     * implemented in the TLS backend.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_IMPLEMENTED
       extends TlsChannelBindingError(
         GTlsChannelBindingError.G_TLS_CHANNEL_BINDING_ERROR_NOT_IMPLEMENTED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The handshake is not yet complete on the connection which is a strong
+  /** The handshake is not yet complete on the connection which is a strong
     * requirement for any existing binding type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_STATE
       extends TlsChannelBindingError(
         GTlsChannelBindingError.G_TLS_CHANNEL_BINDING_ERROR_INVALID_STATE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Handshake is complete but binding data is not available. That normally
+  /** Handshake is complete but binding data is not available. That normally
     * indicates the TLS implementation failed to provide the binding data. For
     * example, some implementations do not provide a peer certificate for
     * resumed connections.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_AVAILABLE
       extends TlsChannelBindingError(
         GTlsChannelBindingError.G_TLS_CHANNEL_BINDING_ERROR_NOT_AVAILABLE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Binding type is not supported on the current connection. This error could
+  /** Binding type is not supported on the current connection. This error could
     * be triggered when requesting `tls-server-end-point` binding data for a
     * certificate which has no hash function or uses multiple hash functions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_SUPPORTED
       extends TlsChannelBindingError(
         GTlsChannelBindingError.G_TLS_CHANNEL_BINDING_ERROR_NOT_SUPPORTED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Any other backend error preventing binding data retrieval.
     *
-    * Any other backend error preventing binding data retrieval.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GENERAL_ERROR
       extends TlsChannelBindingError(

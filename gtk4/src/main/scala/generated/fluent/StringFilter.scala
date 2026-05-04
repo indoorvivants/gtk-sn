@@ -8,9 +8,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.{Expression, Filter, StringFilterMatchMode}
 import sn.gnome.gtk4.internal.GtkStringFilter
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkStringFilter` determines whether to include items by comparing strings
+/** `GtkStringFilter` determines whether to include items by comparing strings
   * to a fixed search term.
   *
   * The strings are obtained from the items by evaluating a `GtkExpression` set
@@ -23,15 +21,19 @@ import sn.gnome.gtk4.internal.GtkStringFilter
   *
   * It is also possible to make case-insensitive comparisons, with
   * [method@Gtk.StringFilter.set_ignore_case].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the expression that the string filter uses to obtain strings from
+  /** Gets the expression that the string filter uses to obtain strings from
     * items.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExpression(): Expression /* None */ = new Expression(
     gtk_string_filter_get_expression(
@@ -39,17 +41,19 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the filter ignores case differences.
     *
-    * Returns whether the filter ignores case differences.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIgnoreCase(): Boolean /* None */ = gtk_string_filter_get_ignore_case(
     this.raw.asInstanceOf[Ptr[GtkStringFilter]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the match mode that the filter is using.
     *
-    * Returns the match mode that the filter is using.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMatchMode(): StringFilterMatchMode /* None */ =
     StringFilterMatchMode.fromRaw(
@@ -58,9 +62,10 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the search term.
     *
-    * Gets the search term.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSearch()(using Zone): String /* None */ = fromCString(
     gtk_string_filter_get_search(
@@ -68,12 +73,13 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the expression that the string filter uses to obtain strings from
+  /** Sets the expression that the string filter uses to obtain strings from
     * items.
     *
     * The expression must have a value type of %G_TYPE_STRING.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setExpression(
       expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
@@ -84,9 +90,10 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the filter ignores case differences.
     *
-    * Sets whether the filter ignores case differences.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIgnoreCase(
       ignore_case: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -95,9 +102,10 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
     gboolean(gint((if ignore_case == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the match mode for the filter.
     *
-    * Sets the match mode for the filter.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMatchMode(
       mode: StringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
@@ -106,9 +114,10 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
     mode.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the string to search for.
     *
-    * Sets the string to search for.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSearch(
       search: Option[String | CString /* Some(CString) */ ]
@@ -130,12 +139,13 @@ class StringFilter(raw: Ptr[GtkStringFilter]) extends Filter(raw.asInstanceOf):
 end StringFilter
 
 object StringFilter:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new string filter.
+  /** Creates a new string filter.
     *
     * You will want to set up the filter by providing a string to search for and
     * by providing a property to look up on the item.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]

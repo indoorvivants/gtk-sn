@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDBusProxyFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used when constructing an instance of a #GDBusProxy derived class.
   *
-  * Flags used when constructing an instance of a #GDBusProxy derived class.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusProxyFlags private (val raw: GDBusProxyFlags):
   def is(kv: DBusProxyFlags): Boolean =
@@ -32,24 +33,27 @@ object DBusProxyFlags:
     def |(other: DBusProxyFlags) =
       DBusProxyFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used when constructing an instance of a #GDBusProxy derived class.
     *
-    * Flags used when constructing an instance of a #GDBusProxy derived class.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GDBusProxyFlags, name: String)
       extends DBusProxyFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(GDBusProxyFlags.G_DBUS_PROXY_FLAGS_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Don't load properties.
       *
-      * Don't load properties.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DO_NOT_LOAD_PROPERTIES
         extends KnownValue(
@@ -57,9 +61,10 @@ object DBusProxyFlags:
           "DO_NOT_LOAD_PROPERTIES"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Don't connect to signals on the remote object.
       *
-      * Don't connect to signals on the remote object.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DO_NOT_CONNECT_SIGNALS
         extends KnownValue(
@@ -67,11 +72,12 @@ object DBusProxyFlags:
           "DO_NOT_CONNECT_SIGNALS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * If the proxy is for a well-known name, do not ask the bus to launch an
+    /** If the proxy is for a well-known name, do not ask the bus to launch an
       * owner during proxy initialization or a method call. This flag is only
       * meaningful in proxies for well-known names.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DO_NOT_AUTO_START
         extends KnownValue(
@@ -79,15 +85,16 @@ object DBusProxyFlags:
           "DO_NOT_AUTO_START"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * If set, the property value for any __invalidated property__ will be
+    /** If set, the property value for any __invalidated property__ will be
       * (asynchronously) retrieved upon receiving the
       * [`PropertiesChanged`](http://dbus.freedesktop.org/doc/dbus-specification.html#standard-interfaces-properties)
       * D-Bus signal and the property will not cause emission of the
       * #GDBusProxy::g-properties-changed signal. When the value is received the
       * #GDBusProxy::g-properties-changed signal is emitted for the property
       * along with the retrieved value. Since 2.32.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case GET_INVALIDATED_PROPERTIES
         extends KnownValue(
@@ -95,13 +102,14 @@ object DBusProxyFlags:
           "GET_INVALIDATED_PROPERTIES"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * If the proxy is for a well-known name, do not ask the bus to launch an
+    /** If the proxy is for a well-known name, do not ask the bus to launch an
       * owner during proxy initialization, but allow it to be autostarted by a
       * method call. This flag is only meaningful in proxies for well-known
       * names, and only if %G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START is not also
       * specified.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DO_NOT_AUTO_START_AT_CONSTRUCTION
         extends KnownValue(
@@ -109,11 +117,12 @@ object DBusProxyFlags:
           "DO_NOT_AUTO_START_AT_CONSTRUCTION"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Don't actually send the AddMatch D-Bus call for this signal
+    /** Don't actually send the AddMatch D-Bus call for this signal
       * subscription. This gives you more control over which match rules you add
       * (but you must add them manually). (Since: 2.72)
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NO_MATCH_RULE
         extends KnownValue(

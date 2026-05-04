@@ -8,18 +8,20 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.internal.GtkObjectExpression
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A `GObject` value in a `GtkExpression`.
   *
-  * A `GObject` value in a `GtkExpression`.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ObjectExpression(raw: Ptr[GtkObjectExpression])
     extends Expression(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the object that the expression evaluates to.
     *
-    * Gets the object that the expression evaluates to.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getObject(): Object /* None */ = new Object(
     gtk_object_expression_get_object(
@@ -30,9 +32,7 @@ class ObjectExpression(raw: Ptr[GtkObjectExpression])
 end ObjectExpression
 
 object ObjectExpression:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates an expression evaluating to the given `object` with a weak
+  /** Creates an expression evaluating to the given `object` with a weak
     * reference.
     *
     * Once the `object` is disposed, it will fail to evaluate.
@@ -41,6 +41,9 @@ object ObjectExpression:
     *
     * If you want to keep a reference to `object`, use
     * [ctor@Gtk.ConstantExpression.new].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       `object`: Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */

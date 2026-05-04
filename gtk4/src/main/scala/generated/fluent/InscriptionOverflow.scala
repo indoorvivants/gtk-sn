@@ -2,42 +2,47 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkInscriptionOverflow
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The different methods to handle text in #GtkInscription when it doesn't fit
+/** The different methods to handle text in #GtkInscription when it doesn't fit
   * the available space.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum InscriptionOverflow(val raw: GtkInscriptionOverflow):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Clip the remaining text
     *
-    * Clip the remaining text
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CLIP
       extends InscriptionOverflow(
         GtkInscriptionOverflow.GTK_INSCRIPTION_OVERFLOW_CLIP
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Omit characters at the start of the text
     *
-    * Omit characters at the start of the text
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ELLIPSIZE_START
       extends InscriptionOverflow(
         GtkInscriptionOverflow.GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_START
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Omit characters at the middle of the text
     *
-    * Omit characters at the middle of the text
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ELLIPSIZE_MIDDLE
       extends InscriptionOverflow(
         GtkInscriptionOverflow.GTK_INSCRIPTION_OVERFLOW_ELLIPSIZE_MIDDLE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Omit characters at the end of the text
     *
-    * Omit characters at the end of the text
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ELLIPSIZE_END
       extends InscriptionOverflow(

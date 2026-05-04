@@ -2,30 +2,34 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkDevicePadFeature
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A pad feature.
   *
-  * A pad feature.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum DevicePadFeature(val raw: GdkDevicePadFeature):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a button
     *
-    * a button
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BUTTON
       extends DevicePadFeature(
         GdkDevicePadFeature.GDK_DEVICE_PAD_FEATURE_BUTTON
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a ring-shaped interactive area
     *
-    * a ring-shaped interactive area
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RING
       extends DevicePadFeature(GdkDevicePadFeature.GDK_DEVICE_PAD_FEATURE_RING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a straight interactive area
     *
-    * a straight interactive area
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STRIP
       extends DevicePadFeature(GdkDevicePadFeature.GDK_DEVICE_PAD_FEATURE_STRIP)

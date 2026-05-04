@@ -11,9 +11,10 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.TreeListRow
 import sn.gnome.gtk4.internal.GtkTreeListModel
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** `GtkTreeListModel` is a list model that can create child models on demand.
   *
-  * `GtkTreeListModel` is a list model that can create child models on demand.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TreeListModel(raw: Ptr[GtkTreeListModel])
     extends Object(raw.asInstanceOf),
@@ -21,21 +22,20 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether the model is set to automatically expand new rows that get
+  /** Gets whether the model is set to automatically expand new rows that get
     * added.
     *
     * This can be either rows added by changes to the underlying models or via
     * [method@Gtk.TreeListRow.set_expanded].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAutoexpand(): Boolean /* None */ = gtk_tree_list_model_get_autoexpand(
     this.raw.asInstanceOf[Ptr[GtkTreeListModel]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the row item corresponding to the child at index @position for
+  /** Gets the row item corresponding to the child at index @position for
     * @self's
     *   root model.
     *
@@ -43,6 +43,9 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     * %NULL is returned.
     *
     * Do not confuse this function with [method@Gtk.TreeListModel.get_row].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChildRow(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -53,9 +56,10 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the root model that @self was created with.
     *
-    * Gets the root model that @self was created with.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_tree_list_model_get_model(
@@ -63,9 +67,7 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether the model is passing through original row items.
+  /** Gets whether the model is passing through original row items.
     *
     * If this function returns %FALSE, the `GListModel` functions for @self
     * return custom `GtkTreeListRow` objects. You need to call
@@ -75,15 +77,16 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     * If %TRUE, the values of the child models are passed through in their
     * original state. You then need to call [method@Gtk.TreeListModel.get_row]
     * to get the custom `GtkTreeListRow`s.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPassthrough(): Boolean /* None */ =
     gtk_tree_list_model_get_passthrough(
       this.raw.asInstanceOf[Ptr[GtkTreeListModel]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the row object for the given row.
+  /** Gets the row object for the given row.
     *
     * If @position is greater than the number of items in @self, %NULL is
     * returned.
@@ -100,6 +103,9 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     *
     * Do not confuse this function with
     * [method@Gtk.TreeListModel.get_child_row].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRow(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -110,13 +116,14 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the model should autoexpand.
+  /** Sets whether the model should autoexpand.
     *
     * If set to %TRUE, the model will recursively expand all rows that get added
     * to the model. This can be either rows added by changes to the underlying
     * models or via [method@Gtk.TreeListRow.set_expanded].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAutoexpand(
       autoexpand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -128,14 +135,15 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
 end TreeListModel
 
 object TreeListModel:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new empty `GtkTreeListModel` displaying @root with all rows
+  /** Creates a new empty `GtkTreeListModel` displaying @root with all rows
     * collapsed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeListModelCreateModelFunc), @type -> DataRecord(GtkTreeListModelCreateModelFunc)))"
+    "[create_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeListModelCreateModelFunc), @type -> DataRecord(GtkTreeListModelCreateModelFunc)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end TreeListModel

@@ -8,18 +8,20 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkAssistantPage
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** `GtkAssistantPage` is an auxiliary object used by `GtkAssistant.
   *
-  * `GtkAssistantPage` is an auxiliary object used by `GtkAssistant.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AssistantPage(raw: Ptr[GtkAssistantPage])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the child to which @page belongs.
     *
-    * Returns the child to which @page belongs.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_assistant_page_get_child(

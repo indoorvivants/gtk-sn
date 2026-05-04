@@ -1,6 +1,7 @@
 import com.indoorvivants.gnome.gir_schema.*
 
 import scala.util.boundary, boundary.break
+import FluentErrReason.*
 
 def filterDefinitions(
     namespace: Option[AugmentedNamespace] = None,
@@ -104,7 +105,8 @@ def filterDefinitions(
       "ot_math_kern_t",
       "ot_meta_tag_t",
       "ot_metrics_tag_t",
-      "ot_name_id_predefined_t"
+      "ot_name_id_predefined_t",
+      "PackDirection"
     )
 
     weirdEnums.foreach(weirdEnum(_))
@@ -224,5 +226,5 @@ def filterDefinitions(
     None
 
   msg.foreach: m =>
-    boundary.break(FluentErr.Other(m))
+    raise(Other(m))
 end filterDefinitions

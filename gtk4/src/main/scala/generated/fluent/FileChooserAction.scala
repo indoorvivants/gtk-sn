@@ -2,36 +2,40 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkFileChooserAction
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Describes whether a `GtkFileChooser` is being used to open existing files or
+/** Describes whether a `GtkFileChooser` is being used to open existing files or
   * to save to a possibly new file.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum FileChooserAction(val raw: GtkFileChooserAction):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Indicates open mode. The file chooser will only let the user pick an
+  /** Indicates open mode. The file chooser will only let the user pick an
     * existing file.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OPEN
       extends FileChooserAction(
         GtkFileChooserAction.GTK_FILE_CHOOSER_ACTION_OPEN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Indicates save mode. The file chooser will let the user pick an existing
+  /** Indicates save mode. The file chooser will let the user pick an existing
     * file, or type in a new filename.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SAVE
       extends FileChooserAction(
         GtkFileChooserAction.GTK_FILE_CHOOSER_ACTION_SAVE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Indicates an Open mode for selecting folders. The file chooser will let
+  /** Indicates an Open mode for selecting folders. The file chooser will let
     * the user pick an existing folder.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SELECT_FOLDER
       extends FileChooserAction(

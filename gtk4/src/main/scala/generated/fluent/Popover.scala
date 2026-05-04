@@ -16,9 +16,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkPopover
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkPopover` is a bubble-like context popup.
+/** `GtkPopover` is a bubble-like context popup.
   *
   * ![An example GtkPopover](popover.png)
   *
@@ -94,6 +92,9 @@ import sn.gnome.gtk4.internal.GtkPopover
   * the same. The arrow also does not support any border shape other than solid,
   * no border-radius, only one border width (border-bottom-width is used) and no
   * box-shadow.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Popover(raw: Ptr[GtkPopover])
     extends Widget(raw.asInstanceOf),
@@ -105,115 +106,124 @@ class Popover(raw: Ptr[GtkPopover])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the popover is modal.
+  /** Returns whether the popover is modal.
     *
     * See [method@Gtk.Popover.set_autohide] for the implications of this.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAutohide(): Boolean /* None */ =
     gtk_popover_get_autohide(this.raw.asInstanceOf[Ptr[GtkPopover]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the popover will close after a modal child is closed.
     *
-    * Returns whether the popover will close after a modal child is closed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCascadePopdown(): Boolean /* None */ = gtk_popover_get_cascade_popdown(
     this.raw.asInstanceOf[Ptr[GtkPopover]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @popover.
     *
-    * Gets the child widget of @popover.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_popover_get_child(this.raw.asInstanceOf[Ptr[GtkPopover]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether this popover is showing an arrow pointing at the widget that
+  /** Gets whether this popover is showing an arrow pointing at the widget that
     * it is relative to.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasArrow(): Boolean /* None */ = gtk_popover_get_has_arrow(
     this.raw.asInstanceOf[Ptr[GtkPopover]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether mnemonics are visible.
     *
-    * Gets whether mnemonics are visible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMnemonicsVisible(): Boolean /* None */ =
     gtk_popover_get_mnemonics_visible(
       this.raw.asInstanceOf[Ptr[GtkPopover]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the offset previous set with [method@Gtk.Popover.set_offset()].
     *
-    * Gets the offset previous set with [method@Gtk.Popover.set_offset()].
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_offset contains an OUT parameter, which is not supported yet"
+    "[get_offset]: Method get_offset contains an OUT parameter, which is not supported yet"
   )
-  def getOffset__ = ???
+  private def getOffset__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the rectangle that the popover points to.
+  /** Gets the rectangle that the popover points to.
     *
     * If a rectangle to point to has been set, this function will return %TRUE
     * and fill in @rect with such rectangle, otherwise it will return %FALSE and
     * fill in @rect with the parent widget coordinates.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_pointing_to contains an OUT parameter, which is not supported yet"
+    "[get_pointing_to]: Method get_pointing_to contains an OUT parameter, which is not supported yet"
   )
-  def getPointingTo__ = ???
+  private def getPointingTo__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the preferred position of @popover.
     *
-    * Returns the preferred position of @popover.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPosition(): PositionType /* None */ = PositionType.fromRaw(
     gtk_popover_get_position(this.raw.asInstanceOf[Ptr[GtkPopover]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Pops @popover down.
+  /** Pops @popover down.
     *
     * This may have the side-effect of closing a parent popover as well. See
     * [property@Gtk.Popover:cascade-popdown].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def popdown(): Unit /* None */ = gtk_popover_popdown(
     this.raw.asInstanceOf[Ptr[GtkPopover]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Pops @popover up.
     *
-    * Pops @popover up.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def popup(): Unit /* None */ = gtk_popover_popup(
     this.raw.asInstanceOf[Ptr[GtkPopover]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Allocate a size for the `GtkPopover`.
+  /** Allocate a size for the `GtkPopover`.
     *
     * This function needs to be called in size-allocate by widgets who have a
     * `GtkPopover` as child. When using a layout manager, this is happening
     * automatically.
     *
     * To make a popover appear on screen, use [method@Gtk.Popover.popup].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def present(): Unit /* None */ = gtk_popover_present(
     this.raw.asInstanceOf[Ptr[GtkPopover]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether @popover is modal.
+  /** Sets whether @popover is modal.
     *
     * A modal popover will grab the keyboard focus on it when being displayed.
     * Focus will wrap around within the popover. Clicking outside the popover
@@ -221,6 +231,9 @@ class Popover(raw: Ptr[GtkPopover])
     *
     * Called this function on an already showing popup with a new autohide value
     * different from the current one, will cause the popup to be hidden.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAutohide(
       autohide: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -229,12 +242,13 @@ class Popover(raw: Ptr[GtkPopover])
     gboolean(gint((if autohide == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @cascade_popdown is %TRUE, the popover will be closed when a child
+  /** If @cascade_popdown is %TRUE, the popover will be closed when a child
     * modal popover is closed.
     *
     * If %FALSE, @popover will stay visible.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCascadePopdown(
       cascade_popdown: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -243,9 +257,10 @@ class Popover(raw: Ptr[GtkPopover])
     gboolean(gint((if cascade_popdown == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the child widget of @popover.
     *
-    * Sets the child widget of @popover.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -256,13 +271,14 @@ class Popover(raw: Ptr[GtkPopover])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the default widget of a `GtkPopover`.
+  /** Sets the default widget of a `GtkPopover`.
     *
     * The default widget is the widget that’s activated when the user presses
     * Enter in a dialog (for example). This function sets or unsets the default
     * widget for a `GtkPopover`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultWidget(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -273,10 +289,11 @@ class Popover(raw: Ptr[GtkPopover])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether this popover should draw an arrow pointing at the widget it
+  /** Sets whether this popover should draw an arrow pointing at the widget it
     * is relative to.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHasArrow(
       has_arrow: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -285,9 +302,10 @@ class Popover(raw: Ptr[GtkPopover])
     gboolean(gint((if has_arrow == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether mnemonics should be visible.
     *
-    * Sets whether mnemonics should be visible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMnemonicsVisible(
       mnemonics_visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -296,12 +314,13 @@ class Popover(raw: Ptr[GtkPopover])
     gboolean(gint((if mnemonics_visible == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the offset to use when calculating the position of the popover.
+  /** Sets the offset to use when calculating the position of the popover.
     *
     * These values are used when preparing the [struct@Gdk.PopupLayout] for
     * positioning the popover.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOffset(
       x_offset: Int /* Some(CInt) */,
@@ -312,26 +331,28 @@ class Popover(raw: Ptr[GtkPopover])
     y_offset
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the rectangle that @popover points to.
+  /** Sets the rectangle that @popover points to.
     *
     * This is in the coordinate space of the @popover parent.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[set_pointing_to/<method parameters>/rect]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
-  def setPointingTo__ = ???
+  private def setPointingTo__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the preferred position for @popover to appear.
+  /** Sets the preferred position for @popover to appear.
     *
     * If the @popover is currently visible, it will be immediately updated.
     *
     * This preference will be respected where possible, although on lack of
     * space (eg. if close to the window edges), the `GtkPopover` may choose to
     * appear on the opposite side.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPosition(
       position: PositionType /* Some(GtkPositionType) */
@@ -343,9 +364,10 @@ class Popover(raw: Ptr[GtkPopover])
 end Popover
 
 object Popover:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkPopover`.
     *
-    * Creates a new `GtkPopover`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Popover = new Popover(gtk_popover_new().asInstanceOf)
 end Popover

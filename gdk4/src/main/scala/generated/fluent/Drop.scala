@@ -8,9 +8,7 @@ import sn.gnome.gdk4.fluent.{Device, Display, Drag, DragAction, Surface}
 import sn.gnome.gdk4.internal.GdkDrop
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GdkDrop` object represents the target of an ongoing DND operation.
+/** The `GdkDrop` object represents the target of an ongoing DND operation.
   *
   * Possible drop sites get informed about the status of the ongoing drag
   * operation with events of type %GDK_DRAG_ENTER, %GDK_DRAG_LEAVE,
@@ -24,24 +22,26 @@ import sn.gnome.gobject.fluent.Object
   * GTK provides a higher level abstraction based on top of these functions, and
   * so they are not normally needed in GTK applications. See the "Drag and Drop"
   * section of the GTK documentation for more information.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Ends the drag operation after a drop.
+  /** Ends the drag operation after a drop.
     *
     * The @action must be a single action selected from the actions available
     * via [method@Gdk.Drop.get_actions].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def finish(action: DragAction /* Some(GdkDragAction) */ ): Unit /* None */ =
     gdk_drop_finish(this.raw.asInstanceOf[Ptr[GdkDrop]], action.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the possible actions for this `GdkDrop`.
+  /** Returns the possible actions for this `GdkDrop`.
     *
     * If this value contains multiple actions - i.e.
     * [func@Gdk.DragAction.is_unique] returns %FALSE for the result -
@@ -54,69 +54,76 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * response to source side actions as well as to calls to
     * [method@Gdk.Drop.status] or [method@Gdk.Drop.finish]. The source side will
     * not change this value anymore once a drop has started.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActions(): DragAction /* None */ = DragAction.fromRaw(
     gdk_drop_get_actions(this.raw.asInstanceOf[Ptr[GdkDrop]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `GdkDevice` performing the drop.
     *
-    * Returns the `GdkDevice` performing the drop.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDevice(): Device /* None */ = new Device(
     gdk_drop_get_device(this.raw.asInstanceOf[Ptr[GdkDrop]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GdkDisplay` that @self was created for.
     *
-    * Gets the `GdkDisplay` that @self was created for.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDisplay(): Display /* None */ = new Display(
     gdk_drop_get_display(this.raw.asInstanceOf[Ptr[GdkDrop]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If this is an in-app drag-and-drop operation, returns the `GdkDrag` that
+  /** If this is an in-app drag-and-drop operation, returns the `GdkDrag` that
     * corresponds to this drop.
     *
     * If it is not, %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDrag(): Drag /* None */ = new Drag(
     gdk_drop_get_drag(this.raw.asInstanceOf[Ptr[GdkDrop]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the `GdkContentFormats` that the drop offers the data to be read
+  /** Returns the `GdkContentFormats` that the drop offers the data to be read
     * in.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
-  def getFormats__ = ???
+  private def getFormats__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `GdkSurface` performing the drop.
     *
-    * Returns the `GdkSurface` performing the drop.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSurface(): Surface /* None */ = new Surface(
     gdk_drop_get_surface(this.raw.asInstanceOf[Ptr[GdkDrop]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously read the dropped data from a `GdkDrop` in a format that
+  /** Asynchronously read the dropped data from a `GdkDrop` in a format that
     * complies with one of the mime types.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+    "[read_async/<method parameters>/mime_types]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def readAsync__ = ???
+  private def readAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an async drop read operation.
+  /** Finishes an async drop read operation.
     *
     * Note that you must not use blocking read calls on the returned stream in
     * the GTK thread, since some platforms might require communication with GTK
@@ -124,15 +131,16 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * g_input_stream_read_bytes_async().
     *
     * See [method@Gdk.Drop.read_async].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method read_finish contains an OUT parameter, which is not supported yet"
+    "[read_finish]: Method read_finish contains an OUT parameter, which is not supported yet"
   )
-  def readFinish__ = ???
+  private def readFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously request the drag operation's contents converted to the
+  /** Asynchronously request the drag operation's contents converted to the
     * given @type.
     *
     * When the operation is finished @callback will be called. You must then
@@ -141,26 +149,28 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * For local drag-and-drop operations that are available in the given
     * `GType`, the value will be copied directly. Otherwise, GDK will try to use
     * [func@Gdk.content_deserialize_async] to convert the data.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[read_value_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def readValueAsync__ = ???
+  private def readValueAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an async drop read.
+  /** Finishes an async drop read.
     *
     * See [method@Gdk.Drop.read_value_async].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[read_value_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
-  def readValueFinish__ = ???
+  private def readValueFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Selects all actions that are potentially supported by the destination.
+  /** Selects all actions that are potentially supported by the destination.
     *
     * When calling this function, do not restrict the passed in actions to the
     * ones provided by [method@Gdk.Drop.get_actions]. Those actions may change
@@ -173,6 +183,9 @@ class Drop(raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * %GDK_DRAG_ENTER or %GDK_DRAG_MOTION events. If the destination does not
     * yet know the exact actions it supports, it should set any possible actions
     * first and then later call this function again.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def status(
       actions: DragAction /* Some(GdkDragAction) */,

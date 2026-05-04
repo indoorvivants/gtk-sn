@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GResourceLookupFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** GResourceLookupFlags determine how resource path lookups are handled.
   *
-  * GResourceLookupFlags determine how resource path lookups are handled.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ResourceLookupFlags private (val raw: GResourceLookupFlags):
   def is(kv: ResourceLookupFlags): Boolean =
@@ -32,17 +33,19 @@ object ResourceLookupFlags:
     def |(other: ResourceLookupFlags) =
       ResourceLookupFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** GResourceLookupFlags determine how resource path lookups are handled.
     *
-    * GResourceLookupFlags determine how resource path lookups are handled.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GResourceLookupFlags, name: String)
       extends ResourceLookupFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(

@@ -24,9 +24,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkEntry
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkEntry` is a single line text entry widget.
+/** `GtkEntry` is a single line text entry widget.
   *
   * ![An example GtkEntry](entry.png)
   *
@@ -111,6 +109,9 @@ import sn.gnome.gtk4.internal.GtkEntry
   * # Accessibility
   *
   * `GtkEntry` uses the %GTK_ACCESSIBLE_ROLE_TEXT_BOX role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Entry(raw: Ptr[GtkEntry])
     extends Widget(raw.asInstanceOf),
@@ -122,77 +123,86 @@ class Entry(raw: Ptr[GtkEntry])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the value set by gtk_entry_set_activates_default().
     *
-    * Retrieves the value set by gtk_entry_set_activates_default().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActivatesDefault(): Boolean /* None */ =
     gtk_entry_get_activates_default(this.raw.asInstanceOf[Ptr[GtkEntry]]).value
       .!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value set by gtk_entry_set_alignment().
+  /** Gets the value set by gtk_entry_set_alignment().
     *
     * See also: [property@Gtk.Editable:xalign]
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAlignment(): Float /* None */ = gtk_entry_get_alignment(
     this.raw.asInstanceOf[Ptr[GtkEntry]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the attribute list of the `GtkEntry`.
+  /** Gets the attribute list of the `GtkEntry`.
     *
     * See [method@Gtk.Entry.set_attributes].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
-  def getAttributes__ = ???
+  private def getAttributes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get the `GtkEntryBuffer` object which holds the text for this widget.
     *
-    * Get the `GtkEntryBuffer` object which holds the text for this widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBuffer(): EntryBuffer /* None */ = new EntryBuffer(
     gtk_entry_get_buffer(this.raw.asInstanceOf[Ptr[GtkEntry]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the auxiliary completion object currently in use by @entry.
     *
-    * Returns the auxiliary completion object currently in use by @entry.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCompletion(): EntryCompletion /* None */ = new EntryCompletion(
     gtk_entry_get_completion(this.raw.asInstanceOf[Ptr[GtkEntry]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the index of the icon which is the source of the current DND
+  /** Returns the index of the icon which is the source of the current DND
     * operation, or -1.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCurrentIconDragSource(): Int /* None */ =
     gtk_entry_get_current_icon_drag_source(this.raw.asInstanceOf[Ptr[GtkEntry]])
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the menu model set with gtk_entry_set_extra_menu().
     *
-    * Gets the menu model set with gtk_entry_set_extra_menu().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExtraMenu(): MenuModel /* None */ = new MenuModel(
     gtk_entry_get_extra_menu(this.raw.asInstanceOf[Ptr[GtkEntry]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value set by gtk_entry_set_has_frame().
     *
-    * Gets the value set by gtk_entry_set_has_frame().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasFrame(): Boolean /* None */ =
     gtk_entry_get_has_frame(this.raw.asInstanceOf[Ptr[GtkEntry]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the icon is activatable.
     *
-    * Returns whether the icon is activatable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconActivatable(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
@@ -201,9 +211,7 @@ class Entry(raw: Ptr[GtkEntry])
     icon_pos.raw
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the area where entry’s icon at @icon_pos is drawn.
+  /** Gets the area where entry’s icon at @icon_pos is drawn.
     *
     * This function is useful when drawing something to the entry in a draw
     * callback.
@@ -213,19 +221,23 @@ class Entry(raw: Ptr[GtkEntry])
     * @icon_area
     *   will be filled with the icon's allocation, relative to @entry's
     *   allocation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_icon_area contains an OUT parameter, which is not supported yet"
+    "[get_icon_area]: Method get_icon_area contains an OUT parameter, which is not supported yet"
   )
-  def getIconArea__ = ???
+  private def getIconArea__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finds the icon at the given position and return its index.
+  /** Finds the icon at the given position and return its index.
     *
     * The position’s coordinates are relative to the @entry’s top left corner.
     * If @x, @y doesn’t lie inside an icon, -1 is returned. This function is
     * intended for use in a [signal@Gtk.Widget::query-tooltip] signal handler.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconAtPos(
       x: Int /* Some(CInt) */,
@@ -233,12 +245,13 @@ class Entry(raw: Ptr[GtkEntry])
   ): Int /* None */ =
     gtk_entry_get_icon_at_pos(this.raw.asInstanceOf[Ptr[GtkEntry]], x, y)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the `GIcon` used for the icon.
+  /** Retrieves the `GIcon` used for the icon.
     *
     * %NULL will be returned if there is no icon or if the icon was set by some
     * other method (e.g., by `GdkPaintable` or icon name).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconGicon(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
@@ -249,12 +262,13 @@ class Entry(raw: Ptr[GtkEntry])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the icon name used for the icon.
+  /** Retrieves the icon name used for the icon.
     *
     * %NULL is returned if there is no icon or if the icon was set by some other
     * method (e.g., by `GdkPaintable` or gicon).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconName(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
@@ -265,11 +279,12 @@ class Entry(raw: Ptr[GtkEntry])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the `GdkPaintable` used for the icon.
+  /** Retrieves the `GdkPaintable` used for the icon.
     *
     * If no `GdkPaintable` was used for the icon, %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconPaintable(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
@@ -280,9 +295,10 @@ class Entry(raw: Ptr[GtkEntry])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the icon appears sensitive or insensitive.
     *
-    * Returns whether the icon appears sensitive or insensitive.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconSensitive(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
@@ -291,12 +307,13 @@ class Entry(raw: Ptr[GtkEntry])
     icon_pos.raw
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the type of representation being used by the icon to store image
+  /** Gets the type of representation being used by the icon to store image
     * data.
     *
     * If the icon has no image data, the return value will be %GTK_IMAGE_EMPTY.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconStorageType(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
@@ -307,9 +324,10 @@ class Entry(raw: Ptr[GtkEntry])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the contents of the tooltip on the icon at the specified position in @entry.
     *
-    * Gets the contents of the tooltip on the icon at the specified position in @entry.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconTooltipMarkup(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
@@ -320,9 +338,10 @@ class Entry(raw: Ptr[GtkEntry])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the contents of the tooltip on the icon at the specified position in @entry.
     *
-    * Gets the contents of the tooltip on the icon at the specified position in @entry.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconTooltipText(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
@@ -333,52 +352,58 @@ class Entry(raw: Ptr[GtkEntry])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the input hints of this `GtkEntry`.
     *
-    * Gets the input hints of this `GtkEntry`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInputHints(): InputHints /* None */ = InputHints.fromRaw(
     gtk_entry_get_input_hints(this.raw.asInstanceOf[Ptr[GtkEntry]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the input purpose of the `GtkEntry`.
     *
-    * Gets the input purpose of the `GtkEntry`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInputPurpose(): InputPurpose /* None */ = InputPurpose.fromRaw(
     gtk_entry_get_input_purpose(this.raw.asInstanceOf[Ptr[GtkEntry]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the character displayed in place of the actual text in “password
+  /** Retrieves the character displayed in place of the actual text in “password
     * mode”.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInvisibleChar(): CUnsignedInt /* None */ =
     gtk_entry_get_invisible_char(this.raw.asInstanceOf[Ptr[GtkEntry]]).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the maximum allowed length of the text in @entry.
+  /** Retrieves the maximum allowed length of the text in @entry.
     *
     * See [method@Gtk.Entry.set_max_length].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMaxLength(): Int /* None */ = gtk_entry_get_max_length(
     this.raw.asInstanceOf[Ptr[GtkEntry]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the `GtkEntry` is in overwrite mode.
     *
-    * Gets whether the `GtkEntry` is in overwrite mode.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOverwriteMode(): Boolean /* None */ = gtk_entry_get_overwrite_mode(
     this.raw.asInstanceOf[Ptr[GtkEntry]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the text that will be displayed when @entry is empty and
+  /** Retrieves the text that will be displayed when @entry is empty and
     * unfocused
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPlaceholderText()(using Zone): String /* None */ = fromCString(
     gtk_entry_get_placeholder_text(
@@ -386,98 +411,107 @@ class Entry(raw: Ptr[GtkEntry])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the current fraction of the task that’s been completed.
+  /** Returns the current fraction of the task that’s been completed.
     *
     * See [method@Gtk.Entry.set_progress_fraction].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getProgressFraction(): Double /* None */ =
     gtk_entry_get_progress_fraction(this.raw.asInstanceOf[Ptr[GtkEntry]])
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the pulse step set with gtk_entry_set_progress_pulse_step().
     *
-    * Retrieves the pulse step set with gtk_entry_set_progress_pulse_step().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getProgressPulseStep(): Double /* None */ =
     gtk_entry_get_progress_pulse_step(this.raw.asInstanceOf[Ptr[GtkEntry]])
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the tabstops of the `GtkEntry`.
+  /** Gets the tabstops of the `GtkEntry`.
     *
     * See [method@Gtk.Entry.set_tabs].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
-  def getTabs__ = ???
+  private def getTabs__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the current length of the text in @entry.
+  /** Retrieves the current length of the text in @entry.
     *
     * This is equivalent to getting @entry's `GtkEntryBuffer` and calling
     * [method@Gtk.EntryBuffer.get_length] on it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTextLength(): UShort /* None */ = gtk_entry_get_text_length(
     this.raw.asInstanceOf[Ptr[GtkEntry]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves whether the text in @entry is visible.
+  /** Retrieves whether the text in @entry is visible.
     *
     * See [method@Gtk.Entry.set_visibility].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVisibility(): Boolean /* None */ =
     gtk_entry_get_visibility(this.raw.asInstanceOf[Ptr[GtkEntry]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Causes @entry to have keyboard focus.
+  /** Causes @entry to have keyboard focus.
     *
     * It behaves like [method@Gtk.Widget.grab_focus], except that it doesn't
     * select the contents of the entry. You only want to call this on some
     * special entries which the user usually doesn't want to replace all text
     * in, such as search-as-you-type entries.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def grabFocusWithoutSelecting(): Boolean /* None */ =
     gtk_entry_grab_focus_without_selecting(
       this.raw.asInstanceOf[Ptr[GtkEntry]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Indicates that some progress is made, but you don’t know how much.
+  /** Indicates that some progress is made, but you don’t know how much.
     *
     * Causes the entry’s progress indicator to enter “activity mode”, where a
     * block bounces back and forth. Each call to gtk_entry_progress_pulse()
     * causes the block to move by a little bit (the amount of movement per pulse
     * is determined by [method@Gtk.Entry.set_progress_pulse_step]).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def progressPulse(): Unit /* None */ = gtk_entry_progress_pulse(
     this.raw.asInstanceOf[Ptr[GtkEntry]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reset the input method context of the entry if needed.
+  /** Reset the input method context of the entry if needed.
     *
     * This can be necessary in the case where modifying the buffer would confuse
     * on-going input method behavior.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def resetImContext(): Unit /* None */ = gtk_entry_reset_im_context(
     this.raw.asInstanceOf[Ptr[GtkEntry]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether pressing Enter in the @entry will activate the default widget
+  /** Sets whether pressing Enter in the @entry will activate the default widget
     * for the window containing the entry.
     *
     * This usually means that the dialog containing the entry will be closed,
     * since the default widget is usually one of the dialog buttons.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActivatesDefault(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -486,14 +520,15 @@ class Entry(raw: Ptr[GtkEntry])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the alignment for the contents of the entry.
+  /** Sets the alignment for the contents of the entry.
     *
     * This controls the horizontal positioning of the contents when the
     * displayed text is shorter than the width of the entry.
     *
     * See also: [property@Gtk.Editable:xalign]
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAlignment(xalign: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_entry_set_alignment(
@@ -501,23 +536,25 @@ class Entry(raw: Ptr[GtkEntry])
       xalign.asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a `PangoAttrList`.
+  /** Sets a `PangoAttrList`.
     *
     * The attributes in the list are applied to the entry text.
     *
     * Since the attributes will be applied to text that changes as the user
     * types, it makes most sense to use attributes with unlimited extent.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
-  def setAttributes__ = ???
+  private def setAttributes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Set the `GtkEntryBuffer` object which holds the text for this widget.
     *
-    * Set the `GtkEntryBuffer` object which holds the text for this widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setBuffer(
       buffer: EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */
@@ -526,13 +563,14 @@ class Entry(raw: Ptr[GtkEntry])
     buffer.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @completion to be the auxiliary completion object to use with @entry.
+  /** Sets @completion to be the auxiliary completion object to use with @entry.
     *
     * All further configuration of the completion mechanism is done on @completion
     * using the `GtkEntryCompletion` API. Completion is disabled if @completion
     * is set to %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCompletion(
       completion: Option[EntryCompletion /* Some(Ptr[GtkEntryCompletion]) */ ]
@@ -543,9 +581,10 @@ class Entry(raw: Ptr[GtkEntry])
       .getOrElse(null.asInstanceOf[Ptr[GtkEntryCompletion]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets a menu model to add when constructing the context menu for @entry.
     *
-    * Sets a menu model to add when constructing the context menu for @entry.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setExtraMenu(
       model: Option[
@@ -562,9 +601,10 @@ class Entry(raw: Ptr[GtkEntry])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the entry has a beveled frame around it.
     *
-    * Sets whether the entry has a beveled frame around it.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHasFrame(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -573,9 +613,10 @@ class Entry(raw: Ptr[GtkEntry])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the icon is activatable.
     *
-    * Sets whether the icon is activatable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconActivatable(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
@@ -586,12 +627,13 @@ class Entry(raw: Ptr[GtkEntry])
     gboolean(gint((if activatable == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets up the icon at the given position as drag source.
+  /** Sets up the icon at the given position as drag source.
     *
     * This makes it so that GTK will start a drag operation when the user clicks
     * and drags the icon.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconDragSource(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
@@ -604,14 +646,15 @@ class Entry(raw: Ptr[GtkEntry])
     actions.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the icon shown in the entry at the specified position from the
+  /** Sets the icon shown in the entry at the specified position from the
     * current icon theme.
     *
     * If the icon isn’t known, a “broken image” icon will be displayed instead.
     *
     * If @icon is %NULL, no icon will be shown in the specified position.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconFromGicon(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
@@ -626,15 +669,16 @@ class Entry(raw: Ptr[GtkEntry])
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GIcon]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the icon shown in the entry at the specified position from the
+  /** Sets the icon shown in the entry at the specified position from the
     * current icon theme.
     *
     * If the icon name isn’t known, a “broken image” icon will be displayed
     * instead.
     *
     * If @icon_name is %NULL, no icon will be shown in the specified position.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconFromIconName(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
@@ -647,11 +691,12 @@ class Entry(raw: Ptr[GtkEntry])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the icon shown in the specified position using a `GdkPaintable`.
+  /** Sets the icon shown in the specified position using a `GdkPaintable`.
     *
     * If @paintable is %NULL, no icon will be shown in the specified position.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconFromPaintable(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
@@ -670,9 +715,10 @@ class Entry(raw: Ptr[GtkEntry])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the sensitivity for the specified icon.
     *
-    * Sets the sensitivity for the specified icon.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconSensitive(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
@@ -683,9 +729,7 @@ class Entry(raw: Ptr[GtkEntry])
     gboolean(gint((if sensitive == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @tooltip as the contents of the tooltip for the icon at the specified
+  /** Sets @tooltip as the contents of the tooltip for the icon at the specified
     * position.
     *
     * @tooltip
@@ -695,6 +739,9 @@ class Entry(raw: Ptr[GtkEntry])
     *
     * See also [method@Gtk.Widget.set_tooltip_markup] and
     * [method@Gtk.Entry.set_icon_tooltip_text].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconTooltipMarkup(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
@@ -707,9 +754,7 @@ class Entry(raw: Ptr[GtkEntry])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @tooltip as the contents of the tooltip for the icon at the specified
+  /** Sets @tooltip as the contents of the tooltip for the icon at the specified
     * position.
     *
     * Use %NULL for @tooltip to remove an existing tooltip.
@@ -724,6 +769,9 @@ class Entry(raw: Ptr[GtkEntry])
     * [method@Gtk.Widget.set_has_tooltip] to set
     * [property@Gtk.Widget:has-tooltip] back to %TRUE, or setting at least one
     * non-empty tooltip on any icon achieves the same result.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconTooltipText(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
@@ -736,20 +784,22 @@ class Entry(raw: Ptr[GtkEntry])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set additional hints which allow input methods to fine-tune their
+  /** Set additional hints which allow input methods to fine-tune their
     * behavior.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInputHints(
       hints: InputHints /* Some(GtkInputHints) */
   ): Unit /* None */ =
     gtk_entry_set_input_hints(this.raw.asInstanceOf[Ptr[GtkEntry]], hints.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the input purpose which can be used by input methods to adjust their
+  /** Sets the input purpose which can be used by input methods to adjust their
     * behavior.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInputPurpose(
       purpose: InputPurpose /* Some(GtkInputPurpose) */
@@ -758,15 +808,16 @@ class Entry(raw: Ptr[GtkEntry])
     purpose.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the character to use in place of the actual text in “password mode”.
+  /** Sets the character to use in place of the actual text in “password mode”.
     *
     * See [method@Gtk.Entry.set_visibility] for how to enable “password mode”.
     *
     * By default, GTK picks the best invisible char available in the current
     * font. If you set the invisible char to 0, then the user will get no
     * feedback at all; there will be no text on the screen as they type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInvisibleChar(
       ch: CUnsignedInt /* Some(_root_.sn.gnome.glib.internal.gunichar) */
@@ -775,22 +826,24 @@ class Entry(raw: Ptr[GtkEntry])
     gunichar(guint32(ch))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the maximum allowed length of the contents of the widget.
+  /** Sets the maximum allowed length of the contents of the widget.
     *
     * If the current contents are longer than the given length, then they will
     * be truncated to fit. The length is in characters.
     *
     * This is equivalent to getting @entry's `GtkEntryBuffer` and calling
     * [method@Gtk.EntryBuffer.set_max_length] on it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMaxLength(max: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_entry_set_max_length(this.raw.asInstanceOf[Ptr[GtkEntry]], max)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the text is overwritten when typing in the `GtkEntry`.
     *
-    * Sets whether the text is overwritten when typing in the `GtkEntry`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOverwriteMode(
       overwrite: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -799,12 +852,13 @@ class Entry(raw: Ptr[GtkEntry])
     gboolean(gint((if overwrite == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets text to be displayed in @entry when it is empty.
+  /** Sets text to be displayed in @entry when it is empty.
     *
     * This can be used to give a visual hint of the expected contents of the
     * `GtkEntry`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPlaceholderText(
       text: Option[String | CString /* Some(CString) */ ]
@@ -815,12 +869,13 @@ class Entry(raw: Ptr[GtkEntry])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Causes the entry’s progress indicator to “fill in” the given fraction of
+  /** Causes the entry’s progress indicator to “fill in” the given fraction of
     * the bar.
     *
     * The fraction should be between 0.0 and 1.0, inclusive.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setProgressFraction(
       fraction: Double /* Some(Double) */
@@ -829,12 +884,13 @@ class Entry(raw: Ptr[GtkEntry])
     fraction
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the fraction of total entry width to move the progress bouncing block
+  /** Sets the fraction of total entry width to move the progress bouncing block
     * for each pulse.
     *
     * Use [method@Gtk.Entry.progress_pulse] to pulse the progress.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setProgressPulseStep(
       fraction: Double /* Some(Double) */
@@ -843,20 +899,19 @@ class Entry(raw: Ptr[GtkEntry])
     fraction
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a `PangoTabArray`.
+  /** Sets a `PangoTabArray`.
     *
     * The tabstops in the array are applied to the entry text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
-  def setTabs__ = ???
+  private def setTabs__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the contents of the entry are visible or not.
+  /** Sets whether the contents of the entry are visible or not.
     *
     * When visibility is set to %FALSE, characters are displayed as the
     * invisible char, and will also appear that way when the text in the entry
@@ -870,6 +925,9 @@ class Entry(raw: Ptr[GtkEntry])
     * %GTK_INPUT_PURPOSE_PASSWORD or %GTK_INPUT_PURPOSE_PIN to inform input
     * methods about the purpose of this entry, in addition to setting visibility
     * to %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVisibility(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -878,10 +936,11 @@ class Entry(raw: Ptr[GtkEntry])
     gboolean(gint((if visible == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Unsets the invisible char, so that the default invisible char is used
+  /** Unsets the invisible char, so that the default invisible char is used
     * again. See [method@Gtk.Entry.set_invisible_char].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetInvisibleChar(): Unit /* None */ = gtk_entry_unset_invisible_char(
     this.raw.asInstanceOf[Ptr[GtkEntry]]
@@ -898,15 +957,17 @@ class Entry(raw: Ptr[GtkEntry])
 end Entry
 
 object Entry:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new entry.
     *
-    * Creates a new entry.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Entry = new Entry(gtk_entry_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new entry with the specified text buffer.
     *
-    * Creates a new entry with the specified text buffer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withBuffer(buffer: EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */ ): Entry =
     new Entry(

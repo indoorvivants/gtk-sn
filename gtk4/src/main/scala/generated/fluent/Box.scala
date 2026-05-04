@@ -16,9 +16,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkBox
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkBox` widget arranges child widgets into a single row or column.
+/** The `GtkBox` widget arranges child widgets into a single row or column.
   *
   * ![An example GtkBox](box.png)
   *
@@ -53,6 +51,9 @@ import sn.gnome.gtk4.internal.GtkBox
   *
   * Starting from GTK 4.12, `GtkBox` uses the `GTK_ACCESSIBLE_ROLE_GENERIC`
   * role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Box(raw: Ptr[GtkBox])
     extends Widget(raw.asInstanceOf),
@@ -63,9 +64,10 @@ class Box(raw: Ptr[GtkBox])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds @child as the last child to @box.
     *
-    * Adds @child as the last child to @box.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def append(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_box_append(
@@ -73,44 +75,49 @@ class Box(raw: Ptr[GtkBox])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value set by gtk_box_set_baseline_child().
     *
-    * Gets the value set by gtk_box_set_baseline_child().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBaselineChild(): Int /* None */ = gtk_box_get_baseline_child(
     this.raw.asInstanceOf[Ptr[GtkBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value set by gtk_box_set_baseline_position().
     *
-    * Gets the value set by gtk_box_set_baseline_position().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBaselinePosition(): BaselinePosition /* None */ =
     BaselinePosition.fromRaw(
       gtk_box_get_baseline_position(this.raw.asInstanceOf[Ptr[GtkBox]])
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the box is homogeneous (all children are the same size).
     *
-    * Returns whether the box is homogeneous (all children are the same size).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHomogeneous(): Boolean /* None */ =
     gtk_box_get_homogeneous(this.raw.asInstanceOf[Ptr[GtkBox]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the value set by gtk_box_set_spacing().
     *
-    * Gets the value set by gtk_box_set_spacing().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSpacing(): Int /* None */ = gtk_box_get_spacing(
     this.raw.asInstanceOf[Ptr[GtkBox]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts @child in the position after @sibling in the list of @box
+  /** Inserts @child in the position after @sibling in the list of @box
     * children.
     *
     * If @sibling is %NULL, insert @child at the first position.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertChildAfter(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -123,9 +130,10 @@ class Box(raw: Ptr[GtkBox])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds @child as the first child to @box.
     *
-    * Adds @child as the first child to @box.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def prepend(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_box_prepend(
@@ -133,12 +141,13 @@ class Box(raw: Ptr[GtkBox])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a child widget from @box.
+  /** Removes a child widget from @box.
     *
     * The child must have been added before with [method@Gtk.Box.append],
     * [method@Gtk.Box.prepend], or [method@Gtk.Box.insert_child_after].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_box_remove(
@@ -146,11 +155,12 @@ class Box(raw: Ptr[GtkBox])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Moves @child to the position after @sibling in the list of @box children.
+  /** Moves @child to the position after @sibling in the list of @box children.
     *
     * If @sibling is %NULL, move @child to the first position.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def reorderChildAfter(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -163,18 +173,17 @@ class Box(raw: Ptr[GtkBox])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the baseline child of a box.
+  /** Sets the baseline child of a box.
     *
     * This affects only vertical boxes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setBaselineChild(child: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_box_set_baseline_child(this.raw.asInstanceOf[Ptr[GtkBox]], child)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the baseline position of a box.
+  /** Sets the baseline position of a box.
     *
     * This affects only horizontal boxes with at least one baseline aligned
     * child. If there is more vertical space available than requested, and the
@@ -182,6 +191,9 @@ class Box(raw: Ptr[GtkBox])
     * @position
     *   is used to allocate the baseline with respect to the extra space
     *   available.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setBaselinePosition(
       position: BaselinePosition /* Some(GtkBaselinePosition) */
@@ -190,9 +202,10 @@ class Box(raw: Ptr[GtkBox])
     position.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether or not all children of @box are given equal space in the box.
     *
-    * Sets whether or not all children of @box are given equal space in the box.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHomogeneous(
       homogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -201,9 +214,10 @@ class Box(raw: Ptr[GtkBox])
     gboolean(gint((if homogeneous == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the number of pixels to place between children of @box.
     *
-    * Sets the number of pixels to place between children of @box.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSpacing(spacing: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_box_set_spacing(this.raw.asInstanceOf[Ptr[GtkBox]], spacing)
@@ -211,9 +225,10 @@ class Box(raw: Ptr[GtkBox])
 end Box
 
 object Box:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkBox`.
     *
-    * Creates a new `GtkBox`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       orientation: Orientation /* Some(GtkOrientation) */,

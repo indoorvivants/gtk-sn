@@ -2,43 +2,48 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkFileChooserError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * These identify the various errors that can occur while calling
+/** These identify the various errors that can occur while calling
   * `GtkFileChooser` functions.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum FileChooserError(val raw: GtkFileChooserError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Indicates that a file does not exist.
     *
-    * Indicates that a file does not exist.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONEXISTENT
       extends FileChooserError(
         GtkFileChooserError.GTK_FILE_CHOOSER_ERROR_NONEXISTENT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Indicates a malformed filename.
     *
-    * Indicates a malformed filename.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BAD_FILENAME
       extends FileChooserError(
         GtkFileChooserError.GTK_FILE_CHOOSER_ERROR_BAD_FILENAME
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Indicates a duplicate path (e.g. when adding a bookmark).
     *
-    * Indicates a duplicate path (e.g. when adding a bookmark).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ALREADY_EXISTS
       extends FileChooserError(
         GtkFileChooserError.GTK_FILE_CHOOSER_ERROR_ALREADY_EXISTS
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Indicates an incomplete hostname (e.g. "http://foo" without a slash after
+  /** Indicates an incomplete hostname (e.g. "http://foo" without a slash after
     * that).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INCOMPLETE_HOSTNAME
       extends FileChooserError(

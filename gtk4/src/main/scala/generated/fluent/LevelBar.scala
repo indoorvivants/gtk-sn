@@ -16,9 +16,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkLevelBar
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkLevelBar` is a widget that can be used as a level indicator.
+/** `GtkLevelBar` is a widget that can be used as a level indicator.
   *
   * Typical use cases are displaying the strength of a password, or showing the
   * charge level of a battery.
@@ -115,6 +113,9 @@ import sn.gnome.gtk4.internal.GtkLevelBar
   * # Accessibility
   *
   * `GtkLevelBar` uses the %GTK_ACCESSIBLE_ROLE_METER role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class LevelBar(raw: Ptr[GtkLevelBar])
     extends Widget(raw.asInstanceOf),
@@ -126,9 +127,7 @@ class LevelBar(raw: Ptr[GtkLevelBar])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a new offset marker on @self at the position specified by @value.
+  /** Adds a new offset marker on @self at the position specified by @value.
     *
     * When the bar value is in the interval topped by @value (or between @value
     * and [property@Gtk.LevelBar:max-value] in case the offset is the last one
@@ -136,6 +135,9 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     * rendering the level bar fill.
     *
     * If another offset marker named @name exists, its value will be replaced by @value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addOffsetValue(
       name: String | CString /* Some(CString) */,
@@ -146,61 +148,68 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     value
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the levelbar is inverted.
     *
-    * Returns whether the levelbar is inverted.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInverted(): Boolean /* None */ = gtk_level_bar_get_inverted(
     this.raw.asInstanceOf[Ptr[GtkLevelBar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `max-value` of the `GtkLevelBar`.
     *
-    * Returns the `max-value` of the `GtkLevelBar`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMaxValue(): Double /* None */ = gtk_level_bar_get_max_value(
     this.raw.asInstanceOf[Ptr[GtkLevelBar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `min-value` of the `GtkLevelBar`.
     *
-    * Returns the `min-value` of the `GtkLevelBar`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMinValue(): Double /* None */ = gtk_level_bar_get_min_value(
     this.raw.asInstanceOf[Ptr[GtkLevelBar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `mode` of the `GtkLevelBar`.
     *
-    * Returns the `mode` of the `GtkLevelBar`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMode(): LevelBarMode /* None */ = LevelBarMode.fromRaw(
     gtk_level_bar_get_mode(this.raw.asInstanceOf[Ptr[GtkLevelBar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fetches the value specified for the offset marker @name in @self.
     *
-    * Fetches the value specified for the offset marker @name in @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_offset_value contains an OUT parameter, which is not supported yet"
+    "[get_offset_value]: Method get_offset_value contains an OUT parameter, which is not supported yet"
   )
-  def getOffsetValue__ = ???
+  private def getOffsetValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `value` of the `GtkLevelBar`.
     *
-    * Returns the `value` of the `GtkLevelBar`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getValue(): Double /* None */ = gtk_level_bar_get_value(
     this.raw.asInstanceOf[Ptr[GtkLevelBar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes an offset marker from a `GtkLevelBar`.
+  /** Removes an offset marker from a `GtkLevelBar`.
     *
     * The marker must have been previously added with
     * [method@Gtk.LevelBar.add_offset_value].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeOffsetValue(
       name: Option[String | CString /* Some(CString) */ ]
@@ -211,9 +220,10 @@ class LevelBar(raw: Ptr[GtkLevelBar])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the `GtkLevelBar` is inverted.
     *
-    * Sets whether the `GtkLevelBar` is inverted.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInverted(
       inverted: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -222,38 +232,42 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     gboolean(gint((if inverted == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `max-value` of the `GtkLevelBar`.
+  /** Sets the `max-value` of the `GtkLevelBar`.
     *
     * You probably want to update preexisting level offsets after calling this
     * function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMaxValue(value: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_level_bar_set_max_value(this.raw.asInstanceOf[Ptr[GtkLevelBar]], value)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `min-value` of the `GtkLevelBar`.
+  /** Sets the `min-value` of the `GtkLevelBar`.
     *
     * You probably want to update preexisting level offsets after calling this
     * function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMinValue(value: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_level_bar_set_min_value(this.raw.asInstanceOf[Ptr[GtkLevelBar]], value)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the `mode` of the `GtkLevelBar`.
     *
-    * Sets the `mode` of the `GtkLevelBar`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMode(
       mode: LevelBarMode /* Some(GtkLevelBarMode) */
   ): Unit /* None */ =
     gtk_level_bar_set_mode(this.raw.asInstanceOf[Ptr[GtkLevelBar]], mode.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the value of the `GtkLevelBar`.
     *
-    * Sets the value of the `GtkLevelBar`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setValue(value: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_level_bar_set_value(this.raw.asInstanceOf[Ptr[GtkLevelBar]], value)
@@ -269,15 +283,17 @@ class LevelBar(raw: Ptr[GtkLevelBar])
 end LevelBar
 
 object LevelBar:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkLevelBar`.
     *
-    * Creates a new `GtkLevelBar`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): LevelBar = new LevelBar(gtk_level_bar_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkLevelBar` for the specified interval.
     *
-    * Creates a new `GtkLevelBar` for the specified interval.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forInterval(
       min_value: Double /* Some(Double) */,

@@ -27,10 +27,11 @@ import sn.gnome.glib.internal.{
   guint64
 }
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Data output stream implements #GOutputStream and includes functions for
+/** Data output stream implements #GOutputStream and includes functions for
   * writing data directly to an output stream.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DataOutputStream(raw: Ptr[GDataOutputStream])
     extends FilterOutputStream(raw.asInstanceOf),
@@ -38,9 +39,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the byte order for the stream.
     *
-    * Gets the byte order for the stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getByteOrder(): DataStreamByteOrder /* None */ =
     DataStreamByteOrder.fromRaw(
@@ -49,9 +51,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Puts a byte into the output stream.
     *
-    * Puts a byte into the output stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def putByte(
       data: UByte /* Some(_root_.sn.gnome.glib.internal.guchar) */,
@@ -67,9 +70,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Puts a signed 16-bit integer into the output stream.
     *
-    * Puts a signed 16-bit integer into the output stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def putInt16(
       data: CShort /* Some(_root_.sn.gnome.glib.internal.gint16) */,
@@ -85,9 +89,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Puts a signed 32-bit integer into the output stream.
     *
-    * Puts a signed 32-bit integer into the output stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def putInt32(
       data: CInt /* Some(_root_.sn.gnome.glib.internal.gint32) */,
@@ -103,9 +108,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Puts a signed 64-bit integer into the stream.
     *
-    * Puts a signed 64-bit integer into the stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def putInt64(
       data: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
@@ -121,9 +127,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Puts a string into the output stream.
     *
-    * Puts a string into the output stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def putString(
       str: String | CString /* Some(CString) */,
@@ -139,9 +146,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Puts an unsigned 16-bit integer into the output stream.
     *
-    * Puts an unsigned 16-bit integer into the output stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def putUint16(
       data: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
@@ -157,9 +165,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Puts an unsigned 32-bit integer into the stream.
     *
-    * Puts an unsigned 32-bit integer into the stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def putUint32(
       data: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
@@ -175,9 +184,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Puts an unsigned 64-bit integer into the stream.
     *
-    * Puts an unsigned 64-bit integer into the stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def putUint64(
       data: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */,
@@ -193,9 +203,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the byte order of the data output stream to @order.
     *
-    * Sets the byte order of the data output stream to @order.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setByteOrder(
       order: DataStreamByteOrder /* Some(GDataStreamByteOrder) */
@@ -215,9 +226,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
 end DataOutputStream
 
 object DataOutputStream:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new data output stream for @base_stream.
     *
-    * Creates a new data output stream for @base_stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       base_stream: OutputStream /* Some(Ptr[GOutputStream]) */

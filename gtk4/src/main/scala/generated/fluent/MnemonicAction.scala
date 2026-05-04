@@ -7,9 +7,10 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.{MnemonicAction, ShortcutAction}
 import sn.gnome.gtk4.internal.GtkMnemonicAction
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A `GtkShortcutAction` that calls gtk_widget_mnemonic_activate().
   *
-  * A `GtkShortcutAction` that calls gtk_widget_mnemonic_activate().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MnemonicAction(raw: Ptr[GtkMnemonicAction])
     extends ShortcutAction(raw.asInstanceOf):
@@ -19,12 +20,13 @@ class MnemonicAction(raw: Ptr[GtkMnemonicAction])
 end MnemonicAction
 
 object MnemonicAction:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the mnemonic action.
+  /** Gets the mnemonic action.
     *
     * This is an action that calls gtk_widget_mnemonic_activate() on the given
     * widget upon activation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def get(): MnemonicAction /* Some(Ptr[GtkShortcutAction]) */ =
     new MnemonicAction(gtk_mnemonic_action_get().asInstanceOf)

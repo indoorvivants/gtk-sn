@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkSearchBar
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkSearchBar` is a container made to have a search entry.
+/** `GtkSearchBar` is a container made to have a search entry.
   *
   * ![An example GtkSearchBar](search-bar.png)
   *
@@ -59,6 +57,9 @@ import sn.gnome.gtk4.internal.GtkSearchBar
   * # Accessibility
   *
   * `GtkSearchBar` uses the %GTK_ACCESSIBLE_ROLE_SEARCH role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SearchBar(raw: Ptr[GtkSearchBar])
     extends Widget(raw.asInstanceOf),
@@ -68,14 +69,15 @@ class SearchBar(raw: Ptr[GtkSearchBar])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Connects the `GtkEditable` widget passed as the one to be used in this
+  /** Connects the `GtkEditable` widget passed as the one to be used in this
     * search bar.
     *
     * The entry should be a descendant of the search bar. Calling this function
     * manually is only required if the entry isn’t the direct child of the
     * search bar (as in our main example).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def connectEntry(
       entry: Editable /* Some(Ptr[GtkEditable]) */
@@ -84,9 +86,10 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     entry.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @bar.
     *
-    * Gets the child widget of @bar.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_search_bar_get_child(
@@ -94,9 +97,10 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the widget that @bar is capturing key events from.
     *
-    * Gets the widget that @bar is capturing key events from.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getKeyCaptureWidget(): Widget /* None */ = new Widget(
     gtk_search_bar_get_key_capture_widget(
@@ -104,26 +108,29 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the search mode is on or off.
     *
-    * Returns whether the search mode is on or off.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSearchMode(): Boolean /* None */ = gtk_search_bar_get_search_mode(
     this.raw.asInstanceOf[Ptr[GtkSearchBar]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the close button is shown.
     *
-    * Returns whether the close button is shown.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowCloseButton(): Boolean /* None */ =
     gtk_search_bar_get_show_close_button(
       this.raw.asInstanceOf[Ptr[GtkSearchBar]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the child widget of @bar.
     *
-    * Sets the child widget of @bar.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -134,9 +141,7 @@ class SearchBar(raw: Ptr[GtkSearchBar])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @widget as the widget that @bar will capture key events from.
+  /** Sets @widget as the widget that @bar will capture key events from.
     *
     * If key events are handled by the search bar, the bar will be shown, and
     * the entry populated with the entered text.
@@ -146,6 +151,9 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     * will receive text input before it gets captured. If that is not desired,
     * you can capture and forward the events yourself with
     * [method@Gtk.EventControllerKey.forward].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setKeyCaptureWidget(
       widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -156,9 +164,10 @@ class SearchBar(raw: Ptr[GtkSearchBar])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Switches the search mode on or off.
     *
-    * Switches the search mode on or off.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSearchMode(
       search_mode: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -167,13 +176,14 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     gboolean(gint((if search_mode == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Shows or hides the close button.
+  /** Shows or hides the close button.
     *
     * Applications that already have a “search” toggle button should not show a
     * close button in their search bar, as it duplicates the role of the toggle
     * button.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowCloseButton(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -185,12 +195,13 @@ class SearchBar(raw: Ptr[GtkSearchBar])
 end SearchBar
 
 object SearchBar:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkSearchBar`.
+  /** Creates a `GtkSearchBar`.
     *
     * You will need to tell it about which widget is going to be your text entry
     * using [method@Gtk.SearchBar.connect_entry].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): SearchBar = new SearchBar(gtk_search_bar_new().asInstanceOf)
 end SearchBar

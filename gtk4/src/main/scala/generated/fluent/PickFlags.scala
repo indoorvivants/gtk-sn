@@ -2,9 +2,10 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkPickFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags that influence the behavior of [method@Widget.pick].
   *
-  * Flags that influence the behavior of [method@Widget.pick].
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PickFlags private (val raw: GtkPickFlags):
   def is(kv: PickFlags): Boolean =
@@ -32,31 +33,35 @@ object PickFlags:
     def |(other: PickFlags) =
       PickFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags that influence the behavior of [method@Widget.pick].
     *
-    * Flags that influence the behavior of [method@Widget.pick].
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GtkPickFlags, name: String)
       extends PickFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The default behavior, include widgets that are receiving events
       *
-      * The default behavior, include widgets that are receiving events
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DEFAULT extends KnownValue(GtkPickFlags.GTK_PICK_DEFAULT, "DEFAULT")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Include widgets that are insensitive
       *
-      * Include widgets that are insensitive
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case INSENSITIVE
         extends KnownValue(GtkPickFlags.GTK_PICK_INSENSITIVE, "INSENSITIVE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Include widgets that are marked as non-targetable. See
+    /** Include widgets that are marked as non-targetable. See
       * [property@Widget:can-target]
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NON_TARGETABLE
         extends KnownValue(

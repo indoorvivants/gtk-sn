@@ -2,46 +2,53 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkScrollStep
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Passed as argument to various keybinding signals.
   *
-  * Passed as argument to various keybinding signals.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ScrollStep(val raw: GtkScrollStep):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Scroll in steps.
     *
-    * Scroll in steps.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STEPS extends ScrollStep(GtkScrollStep.GTK_SCROLL_STEPS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Scroll by pages.
     *
-    * Scroll by pages.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PAGES extends ScrollStep(GtkScrollStep.GTK_SCROLL_PAGES)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Scroll to ends.
     *
-    * Scroll to ends.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ENDS extends ScrollStep(GtkScrollStep.GTK_SCROLL_ENDS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Scroll in horizontal steps.
     *
-    * Scroll in horizontal steps.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HORIZONTAL_STEPS
       extends ScrollStep(GtkScrollStep.GTK_SCROLL_HORIZONTAL_STEPS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Scroll by horizontal pages.
     *
-    * Scroll by horizontal pages.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HORIZONTAL_PAGES
       extends ScrollStep(GtkScrollStep.GTK_SCROLL_HORIZONTAL_PAGES)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Scroll to the horizontal ends.
     *
-    * Scroll to the horizontal ends.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HORIZONTAL_ENDS
       extends ScrollStep(GtkScrollStep.GTK_SCROLL_HORIZONTAL_ENDS)

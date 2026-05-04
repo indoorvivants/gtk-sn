@@ -14,9 +14,7 @@ import sn.gnome.gio.fluent.{
 import sn.gnome.gio.internal.GFileInputStream
 import sn.gnome.glib.fluent.GResult
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * GFileInputStream provides input streams that take their content from a file.
+/** GFileInputStream provides input streams that take their content from a file.
   *
   * GFileInputStream implements #GSeekable, which allows the input stream to
   * jump to arbitrary positions in the file, provided the filesystem of the file
@@ -24,6 +22,9 @@ import sn.gnome.glib.fluent.GResult
   * g_seekable_tell(). To find out if a file input stream supports seeking, use
   * g_seekable_can_seek(). To position a file input stream, use
   * g_seekable_seek().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileInputStream(raw: Ptr[GFileInputStream])
     extends InputStream(raw.asInstanceOf),
@@ -31,13 +32,14 @@ class FileInputStream(raw: Ptr[GFileInputStream])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries a file input stream the given @attributes. This function blocks
+  /** Queries a file input stream the given @attributes. This function blocks
     * while querying the stream. For the asynchronous (non-blocking) version of
     * this function, see g_file_input_stream_query_info_async(). While the
     * stream is blocked, the stream will set the pending flag internally, and
     * any other operations on the stream will fail with %G_IO_ERROR_PENDING.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def queryInfo(
       attributes: String | CString /* Some(CString) */,
@@ -55,9 +57,7 @@ class FileInputStream(raw: Ptr[GFileInputStream])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries the stream information asynchronously. When the operation is
+  /** Queries the stream information asynchronously. When the operation is
     * finished @callback will be called. You can then call
     * g_file_input_stream_query_info_finish() to get the result of the
     * operation.
@@ -68,15 +68,19 @@ class FileInputStream(raw: Ptr[GFileInputStream])
     * If @cancellable is not %NULL, then the operation can be cancelled by
     * triggering the cancellable object from another thread. If the operation
     * was cancelled, the error %G_IO_ERROR_CANCELLED will be set
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[query_info_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def queryInfoAsync__ = ???
+  private def queryInfoAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an asynchronous info query operation.
     *
-    * Finishes an asynchronous info query operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def queryInfoFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */

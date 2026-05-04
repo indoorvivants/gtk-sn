@@ -2,9 +2,7 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkSystemSetting
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Values that can be passed to the [vfunc@Gtk.Widget.system_setting_changed]
+/** Values that can be passed to the [vfunc@Gtk.Widget.system_setting_changed]
   * vfunc.
   *
   * The values indicate which system setting has changed. Widgets may need to
@@ -13,44 +11,52 @@ import _root_.sn.gnome.gtk4.internal.GtkSystemSetting
   * Most of the values correspond to [class@Settings] properties.
   *
   * More values may be added over time.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SystemSetting(val raw: GtkSystemSetting):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the [property@Gtk.Settings:gtk-xft-dpi] setting has changed
     *
-    * the [property@Gtk.Settings:gtk-xft-dpi] setting has changed
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DPI extends SystemSetting(GtkSystemSetting.GTK_SYSTEM_SETTING_DPI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The [property@Gtk.Settings:gtk-font-name] setting has changed
     *
-    * The [property@Gtk.Settings:gtk-font-name] setting has changed
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FONT_NAME
       extends SystemSetting(GtkSystemSetting.GTK_SYSTEM_SETTING_FONT_NAME)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The font configuration has changed in a way that requires text to be
+  /** The font configuration has changed in a way that requires text to be
     * redrawn. This can be any of the [property@Gtk.Settings:gtk-xft-antialias],
     * [property@Gtk.Settings:gtk-xft-hinting],
     * [property@Gtk.Settings:gtk-xft-hintstyle],
     * [property@Gtk.Settings:gtk-xft-rgba] or
     * [property@Gtk.Settings:gtk-fontconfig-timestamp] settings
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FONT_CONFIG
       extends SystemSetting(GtkSystemSetting.GTK_SYSTEM_SETTING_FONT_CONFIG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The display has changed
     *
-    * The display has changed
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DISPLAY
       extends SystemSetting(GtkSystemSetting.GTK_SYSTEM_SETTING_DISPLAY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The icon theme has changed in a way that requires icons to be looked up
+  /** The icon theme has changed in a way that requires icons to be looked up
     * again
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ICON_THEME
       extends SystemSetting(GtkSystemSetting.GTK_SYSTEM_SETTING_ICON_THEME)

@@ -2,44 +2,49 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkConstraintStrength
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The strength of a constraint, expressed as a symbolic constant.
+/** The strength of a constraint, expressed as a symbolic constant.
   *
   * The strength of a [class@Constraint] can be expressed with any positive
   * integer; the values of this enumeration can be used for readability.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ConstraintStrength(val raw: GtkConstraintStrength):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The constraint is required towards solving the layout
     *
-    * The constraint is required towards solving the layout
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case REQUIRED
       extends ConstraintStrength(
         GtkConstraintStrength.GTK_CONSTRAINT_STRENGTH_REQUIRED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A strong constraint
     *
-    * A strong constraint
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STRONG
       extends ConstraintStrength(
         GtkConstraintStrength.GTK_CONSTRAINT_STRENGTH_STRONG
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A medium constraint
     *
-    * A medium constraint
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MEDIUM
       extends ConstraintStrength(
         GtkConstraintStrength.GTK_CONSTRAINT_STRENGTH_MEDIUM
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A weak constraint
     *
-    * A weak constraint
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WEAK
       extends ConstraintStrength(

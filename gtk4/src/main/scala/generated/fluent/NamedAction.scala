@@ -7,18 +7,20 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.ShortcutAction
 import sn.gnome.gtk4.internal.GtkNamedAction
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A `GtkShortcutAction` that activates an action by name.
   *
-  * A `GtkShortcutAction` that activates an action by name.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class NamedAction(raw: Ptr[GtkNamedAction])
     extends ShortcutAction(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the name of the action that will be activated.
     *
-    * Returns the name of the action that will be activated.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActionName()(using Zone): String /* None */ = fromCString(
     gtk_named_action_get_action_name(
@@ -29,15 +31,16 @@ class NamedAction(raw: Ptr[GtkNamedAction])
 end NamedAction
 
 object NamedAction:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates an action that when activated, activates the named action on the
+  /** Creates an action that when activated, activates the named action on the
     * widget.
     *
     * It also passes the given arguments to it.
     *
     * See [method@Gtk.Widget.insert_action_group] for how to add actions to
     * widgets.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       name: String | CString /* Some(CString) */

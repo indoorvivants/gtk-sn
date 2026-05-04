@@ -16,9 +16,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GSubprocess allows the creation of and interaction with child processes.
+/** #GSubprocess allows the creation of and interaction with child processes.
   *
   * Processes can be communicated with using standard GIO-style APIs (ie:
   * #GInputStream, #GOutputStream). There are GIO-style APIs to wait for process
@@ -70,6 +68,9 @@ import sn.gnome.gobject.fluent.Object
   * process exits, the status can be checked using functions such as
   * g_subprocess_get_if_exited() (which are similar to the familiar
   * WIFEXITED-style POSIX macros).
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Subprocess(raw: Ptr[GSubprocess])
     extends Object(raw.asInstanceOf),
@@ -77,9 +78,7 @@ class Subprocess(raw: Ptr[GSubprocess])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Communicate with the subprocess until it terminates, and all input and
+  /** Communicate with the subprocess until it terminates, and all input and
     * output has been completed.
     *
     * If @stdin_buf is given, the subprocess must have been created with
@@ -122,80 +121,87 @@ class Subprocess(raw: Ptr[GSubprocess])
     * operation was cancelled. You should especially not attempt to interact
     * with the pipes while the operation is in progress (either from another
     * thread or if using the asynchronous version).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method communicate contains an OUT parameter, which is not supported yet"
+    "[communicate]: Method communicate contains an OUT parameter, which is not supported yet"
   )
-  def communicate__ = ???
+  private def communicate__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronous version of g_subprocess_communicate(). Complete invocation
+  /** Asynchronous version of g_subprocess_communicate(). Complete invocation
     * with g_subprocess_communicate_finish().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[communicate_async/<method parameters>/stdin_buf]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def communicateAsync__ = ???
+  private def communicateAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Complete an invocation of g_subprocess_communicate_async().
     *
-    * Complete an invocation of g_subprocess_communicate_async().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method communicate_finish contains an OUT parameter, which is not supported yet"
+    "[communicate_finish]: Method communicate_finish contains an OUT parameter, which is not supported yet"
   )
-  def communicateFinish__ = ???
+  private def communicateFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like g_subprocess_communicate(), but validates the output of the process
+  /** Like g_subprocess_communicate(), but validates the output of the process
     * as UTF-8, and returns it as a regular NUL terminated string.
     *
     * On error, @stdout_buf and @stderr_buf will be set to undefined values and
     * should not be used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method communicate_utf8 contains an OUT parameter, which is not supported yet"
+    "[communicate_utf8]: Method communicate_utf8 contains an OUT parameter, which is not supported yet"
   )
-  def communicateUtf8__ = ???
+  private def communicateUtf8__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronous version of g_subprocess_communicate_utf8(). Complete
+  /** Asynchronous version of g_subprocess_communicate_utf8(). Complete
     * invocation with g_subprocess_communicate_utf8_finish().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[communicate_utf8_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def communicateUtf8Async__ = ???
+  private def communicateUtf8Async__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Complete an invocation of g_subprocess_communicate_utf8_async().
     *
-    * Complete an invocation of g_subprocess_communicate_utf8_async().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method communicate_utf8_finish contains an OUT parameter, which is not supported yet"
+    "[communicate_utf8_finish]: Method communicate_utf8_finish contains an OUT parameter, which is not supported yet"
   )
-  def communicateUtf8Finish__ = ???
+  private def communicateUtf8Finish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Use an operating-system specific method to attempt an immediate, forceful
+  /** Use an operating-system specific method to attempt an immediate, forceful
     * termination of the process. There is no mechanism to determine whether or
     * not the request itself was successful; however, you can use
     * g_subprocess_wait() to monitor the status of the process after calling
     * this function.
     *
     * On Unix, this function sends %SIGKILL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forceExit(): Unit /* None */ = g_subprocess_force_exit(
     this.raw.asInstanceOf[Ptr[GSubprocess]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Check the exit status of the subprocess, given that it exited normally.
+  /** Check the exit status of the subprocess, given that it exited normally.
     * This is the value passed to the exit() system call or the return value
     * from main.
     *
@@ -203,16 +209,20 @@ class Subprocess(raw: Ptr[GSubprocess])
     *
     * It is an error to call this function before g_subprocess_wait() and unless
     * g_subprocess_get_if_exited() returned %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExitStatus(): Int /* None */ = g_subprocess_get_exit_status(
     this.raw.asInstanceOf[Ptr[GSubprocess]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * On UNIX, returns the process ID as a decimal string. On Windows, returns
+  /** On UNIX, returns the process ID as a decimal string. On Windows, returns
     * the result of GetProcessId() also as a string. If the subprocess has
     * terminated, this will return %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIdentifier()(using Zone): String /* None */ = fromCString(
     g_subprocess_get_identifier(
@@ -220,36 +230,36 @@ class Subprocess(raw: Ptr[GSubprocess])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Check if the given subprocess exited normally (ie: by way of exit() or
+  /** Check if the given subprocess exited normally (ie: by way of exit() or
     * return from main()).
     *
     * This is equivalent to the system WIFEXITED macro.
     *
     * It is an error to call this function before g_subprocess_wait() has
     * returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIfExited(): Boolean /* None */ = g_subprocess_get_if_exited(
     this.raw.asInstanceOf[Ptr[GSubprocess]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Check if the given subprocess terminated in response to a signal.
+  /** Check if the given subprocess terminated in response to a signal.
     *
     * This is equivalent to the system WIFSIGNALED macro.
     *
     * It is an error to call this function before g_subprocess_wait() has
     * returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIfSignaled(): Boolean /* None */ = g_subprocess_get_if_signaled(
     this.raw.asInstanceOf[Ptr[GSubprocess]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the raw status code of the process, as from waitpid().
+  /** Gets the raw status code of the process, as from waitpid().
     *
     * This value has no particular meaning, but it can be used with the macros
     * defined by the system headers such as WIFEXITED. It can also be used with
@@ -260,18 +270,22 @@ class Subprocess(raw: Ptr[GSubprocess])
     *
     * It is an error to call this function before g_subprocess_wait() has
     * returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStatus(): Int /* None */ = g_subprocess_get_status(
     this.raw.asInstanceOf[Ptr[GSubprocess]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the #GInputStream from which to read the stderr output of
+  /** Gets the #GInputStream from which to read the stderr output of
     * @subprocess.
     *
     * The process must have been created with %G_SUBPROCESS_FLAGS_STDERR_PIPE,
     * otherwise %NULL will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStderrPipe(): InputStream /* None */ = new InputStream(
     g_subprocess_get_stderr_pipe(
@@ -279,13 +293,14 @@ class Subprocess(raw: Ptr[GSubprocess])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the #GOutputStream that you can write to in order to give data to the
+  /** Gets the #GOutputStream that you can write to in order to give data to the
     * stdin of @subprocess.
     *
     * The process must have been created with %G_SUBPROCESS_FLAGS_STDIN_PIPE and
     * not %G_SUBPROCESS_FLAGS_STDIN_INHERIT, otherwise %NULL will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStdinPipe(): OutputStream /* None */ = new OutputStream(
     g_subprocess_get_stdin_pipe(
@@ -293,13 +308,14 @@ class Subprocess(raw: Ptr[GSubprocess])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the #GInputStream from which to read the stdout output of
+  /** Gets the #GInputStream from which to read the stdout output of
     * @subprocess.
     *
     * The process must have been created with %G_SUBPROCESS_FLAGS_STDOUT_PIPE,
     * otherwise %NULL will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStdoutPipe(): InputStream /* None */ = new InputStream(
     g_subprocess_get_stdout_pipe(
@@ -307,42 +323,45 @@ class Subprocess(raw: Ptr[GSubprocess])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if the process was "successful". A process is considered successful
+  /** Checks if the process was "successful". A process is considered successful
     * if it exited cleanly with an exit status of 0, either by way of the exit()
     * system call or return from main().
     *
     * It is an error to call this function before g_subprocess_wait() has
     * returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSuccessful(): Boolean /* None */ = g_subprocess_get_successful(
     this.raw.asInstanceOf[Ptr[GSubprocess]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get the signal number that caused the subprocess to terminate, given that
+  /** Get the signal number that caused the subprocess to terminate, given that
     * it terminated due to a signal.
     *
     * This is equivalent to the system WTERMSIG macro.
     *
     * It is an error to call this function before g_subprocess_wait() and unless
     * g_subprocess_get_if_signaled() returned %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTermSig(): Int /* None */ = g_subprocess_get_term_sig(
     this.raw.asInstanceOf[Ptr[GSubprocess]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sends the UNIX signal @signal_num to the subprocess, if it is still
+  /** Sends the UNIX signal @signal_num to the subprocess, if it is still
     * running.
     *
     * This API is race-free. If the subprocess has terminated, it will not be
     * signalled.
     *
     * This API is not available on Windows.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sendSignal(
       signal_num: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
@@ -351,9 +370,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     gint(signal_num)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Synchronously wait for the subprocess to terminate.
+  /** Synchronously wait for the subprocess to terminate.
     *
     * After the process terminates you can query its exit status with functions
     * such as g_subprocess_get_if_exited() and g_subprocess_get_exit_status().
@@ -363,6 +380,9 @@ class Subprocess(raw: Ptr[GSubprocess])
     *
     * Cancelling @cancellable doesn't kill the subprocess. Call
     * g_subprocess_force_exit() if it is desirable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def _wait(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -376,20 +396,22 @@ class Subprocess(raw: Ptr[GSubprocess])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Wait for the subprocess to terminate.
+  /** Wait for the subprocess to terminate.
     *
     * This is the asynchronous version of g_subprocess_wait().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[wait_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def waitAsync__ = ???
+  private def waitAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Combines g_subprocess_wait() with g_spawn_check_wait_status().
     *
-    * Combines g_subprocess_wait() with g_spawn_check_wait_status().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def waitCheck(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -403,20 +425,22 @@ class Subprocess(raw: Ptr[GSubprocess])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Combines g_subprocess_wait_async() with g_spawn_check_wait_status().
+  /** Combines g_subprocess_wait_async() with g_spawn_check_wait_status().
     *
     * This is the asynchronous version of g_subprocess_wait_check().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[wait_check_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def waitCheckAsync__ = ???
+  private def waitCheckAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Collects the result of a previous call to g_subprocess_wait_check_async().
     *
-    * Collects the result of a previous call to g_subprocess_wait_check_async().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def waitCheckFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -428,9 +452,10 @@ class Subprocess(raw: Ptr[GSubprocess])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Collects the result of a previous call to g_subprocess_wait_async().
     *
-    * Collects the result of a previous call to g_subprocess_wait_async().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def waitFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -445,9 +470,7 @@ class Subprocess(raw: Ptr[GSubprocess])
 end Subprocess
 
 object Subprocess:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a new process with the given flags and varargs argument list. By
+  /** Create a new process with the given flags and varargs argument list. By
     * default, matching the g_spawn_async() defaults, the child's stdin will be
     * set to the system null device, and stdout/stderr will be inherited from
     * the parent. You can use
@@ -455,21 +478,25 @@ object Subprocess:
     *   to control this behavior.
     *
     * The argument list must be terminated with %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
+    "[error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Create a new process with the given flags and argument list.
+  /** Create a new process with the given flags and argument list.
     *
     * The argument list is expected to be %NULL-terminated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[argv]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def newv() = ???
+  private def newv() = ???
 
 end Subprocess

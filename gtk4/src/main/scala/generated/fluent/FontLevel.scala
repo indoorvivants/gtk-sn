@@ -2,36 +2,41 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkFontLevel
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The level of granularity for the font selection.
+/** The level of granularity for the font selection.
   *
   * Depending on this value, the `PangoFontDescription` that is returned by
   * [method@Gtk.FontDialogButton.get_font_desc] will have more or less fields
   * set.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum FontLevel(val raw: GtkFontLevel):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Select a font family
     *
-    * Select a font family
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FAMILY extends FontLevel(GtkFontLevel.GTK_FONT_LEVEL_FAMILY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Select a font face (i.e. a family and a style)
     *
-    * Select a font face (i.e. a family and a style)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FACE extends FontLevel(GtkFontLevel.GTK_FONT_LEVEL_FACE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Select a font (i.e. a face with a size, and possibly font variations)
     *
-    * Select a font (i.e. a face with a size, and possibly font variations)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FONT extends FontLevel(GtkFontLevel.GTK_FONT_LEVEL_FONT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Select a font and font features
     *
-    * Select a font and font features
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FEATURES extends FontLevel(GtkFontLevel.GTK_FONT_LEVEL_FEATURES)
 end FontLevel

@@ -22,9 +22,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint, guint16}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GSocketClient is a lightweight high-level utility class for connecting to a
+/** #GSocketClient is a lightweight high-level utility class for connecting to a
   * network host using a connection oriented socket type.
   *
   * You create a #GSocketClient object, set any options you want, and then call
@@ -37,14 +35,15 @@ import sn.gnome.gobject.fluent.Object
   *
   * As #GSocketClient is a lightweight object, you don't need to cache it. You
   * can just create a new one any time you need one.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Enable proxy protocols to be handled by the application. When the
+  /** Enable proxy protocols to be handled by the application. When the
     * indicated proxy protocol is returned by the #GProxyResolver,
     * #GSocketClient will consider this protocol as supported but will not try
     * to find a #GProxy instance to handle handshaking. The application must
@@ -62,6 +61,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * When the proxy is detected as being an application proxy, TLS handshake
     * will be skipped. This is required to let the application do the proxy
     * specific handshake.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addApplicationProxy(
       protocol: String |
@@ -71,9 +73,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     __sn_extract_string(protocol).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to resolve the @connectable and make a network connection to it.
+  /** Tries to resolve the @connectable and make a network connection to it.
     *
     * Upon a successful connection, a new #GSocketConnection is constructed and
     * returned. The caller owns this new object and must drop their reference to
@@ -92,6 +92,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *
     * If a local address is specified with g_socket_client_set_local_address()
     * the socket will be bound to this address before connecting.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def connect(
       connectable: SocketConnectable /* Some(Ptr[GSocketConnectable]) */,
@@ -109,9 +112,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is the asynchronous version of g_socket_client_connect().
+  /** This is the asynchronous version of g_socket_client_connect().
     *
     * You may wish to prefer the asynchronous version even in synchronous
     * command line programs because, since 2.60, it implements [RFC
@@ -123,15 +124,19 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *
     * When the operation is finished @callback will be called. You can then call
     * g_socket_client_connect_finish() to get the result of the operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[connect_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def connectAsync__ = ???
+  private def connectAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an async connect operation. See g_socket_client_connect_async()
     *
-    * Finishes an async connect operation. See g_socket_client_connect_async()
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def connectFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -145,9 +150,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is a helper function for g_socket_client_connect().
+  /** This is a helper function for g_socket_client_connect().
     *
     * Attempts to create a TCP connection to the named host.
     *
@@ -179,6 +182,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * In the event of any failure (DNS error, service not found, no hosts
     * connectable) %NULL is returned and @error (if non-%NULL) is set
     * accordingly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def connectToHost(
       host_and_port: String |
@@ -200,23 +206,25 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is the asynchronous version of g_socket_client_connect_to_host().
+  /** This is the asynchronous version of g_socket_client_connect_to_host().
     *
     * When the operation is finished @callback will be called. You can then call
     * g_socket_client_connect_to_host_finish() to get the result of the
     * operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[connect_to_host_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def connectToHostAsync__ = ???
+  private def connectToHostAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an async connect operation. See
+  /** Finishes an async connect operation. See
     * g_socket_client_connect_to_host_async()
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def connectToHostFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -230,9 +238,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Attempts to create a TCP connection to a service.
+  /** Attempts to create a TCP connection to a service.
     *
     * This call looks up the SRV record for @service at @domain for the "tcp"
     * protocol. It then attempts to connect, in turn, to each of the hosts
@@ -246,6 +252,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * In the event of any failure (DNS error, service not found, no hosts
     * connectable) %NULL is returned and @error (if non-%NULL) is set
     * accordingly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def connectToService(
       domain: String |
@@ -268,19 +277,21 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** This is the asynchronous version of g_socket_client_connect_to_service().
     *
-    * This is the asynchronous version of g_socket_client_connect_to_service().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[connect_to_service_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def connectToServiceAsync__ = ???
+  private def connectToServiceAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an async connect operation. See
+  /** Finishes an async connect operation. See
     * g_socket_client_connect_to_service_async()
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def connectToServiceFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -294,9 +305,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is a helper function for g_socket_client_connect().
+  /** This is a helper function for g_socket_client_connect().
     *
     * Attempts to create a TCP connection with a network URI.
     *
@@ -318,6 +327,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * In the event of any failure (DNS error, service not found, no hosts
     * connectable) %NULL is returned and @error (if non-%NULL) is set
     * accordingly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def connectToUri(
       uri: String |
@@ -339,23 +351,25 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This is the asynchronous version of g_socket_client_connect_to_uri().
+  /** This is the asynchronous version of g_socket_client_connect_to_uri().
     *
     * When the operation is finished @callback will be called. You can then call
     * g_socket_client_connect_to_uri_finish() to get the result of the
     * operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[connect_to_uri_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def connectToUriAsync__ = ???
+  private def connectToUriAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes an async connect operation. See
+  /** Finishes an async connect operation. See
     * g_socket_client_connect_to_uri_async()
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def connectToUriFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -369,29 +383,32 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the proxy enable state; see g_socket_client_set_enable_proxy()
     *
-    * Gets the proxy enable state; see g_socket_client_set_enable_proxy()
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEnableProxy(): Boolean /* None */ = g_socket_client_get_enable_proxy(
     this.raw.asInstanceOf[Ptr[GSocketClient]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the socket family of the socket client.
+  /** Gets the socket family of the socket client.
     *
     * See g_socket_client_set_family() for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFamily(): SocketFamily /* None */ = SocketFamily.fromRaw(
     g_socket_client_get_family(this.raw.asInstanceOf[Ptr[GSocketClient]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the local address of the socket client.
+  /** Gets the local address of the socket client.
     *
     * See g_socket_client_set_local_address() for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLocalAddress(): SocketAddress /* None */ = new SocketAddress(
     g_socket_client_get_local_address(
@@ -399,21 +416,23 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the protocol name type of the socket client.
+  /** Gets the protocol name type of the socket client.
     *
     * See g_socket_client_set_protocol() for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getProtocol(): SocketProtocol /* None */ = SocketProtocol.fromRaw(
     g_socket_client_get_protocol(this.raw.asInstanceOf[Ptr[GSocketClient]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the #GProxyResolver being used by @client. Normally, this will be the
+  /** Gets the #GProxyResolver being used by @client. Normally, this will be the
     * resolver returned by g_proxy_resolver_get_default(), but you can override
     * it with g_socket_client_set_proxy_resolver().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getProxyResolver(): ProxyResolver /* None */ = new ProxyResolver.Abstract(
     g_socket_client_get_proxy_resolver(
@@ -421,43 +440,47 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the socket type of the socket client.
+  /** Gets the socket type of the socket client.
     *
     * See g_socket_client_set_socket_type() for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSocketType(): SocketType /* None */ = SocketType.fromRaw(
     g_socket_client_get_socket_type(this.raw.asInstanceOf[Ptr[GSocketClient]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the I/O timeout time for sockets created by @client.
+  /** Gets the I/O timeout time for sockets created by @client.
     *
     * See g_socket_client_set_timeout() for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTimeout(): UInt /* None */ = g_socket_client_get_timeout(
     this.raw.asInstanceOf[Ptr[GSocketClient]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether @client creates TLS connections. See
+  /** Gets whether @client creates TLS connections. See
     * g_socket_client_set_tls() for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTls(): Boolean /* None */ = g_socket_client_get_tls(
     this.raw.asInstanceOf[Ptr[GSocketClient]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the TLS validation flags used creating TLS connections via
+  /** Gets the TLS validation flags used creating TLS connections via
     * @client.
     *
     * This function does not work as originally designed and is impossible to
     * use correctly. See #GSocketClient:tls-validation-flags for more
     * information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTlsValidationFlags(): TlsCertificateFlags /* None */ =
     TlsCertificateFlags.fromRaw(
@@ -466,14 +489,15 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether or not @client attempts to make connections via a proxy
+  /** Sets whether or not @client attempts to make connections via a proxy
     * server. When enabled (the default), #GSocketClient will use a
     * #GProxyResolver to determine if a proxy protocol such as SOCKS is needed,
     * and automatically do the necessary proxy negotiation.
     *
     * See also g_socket_client_set_proxy_resolver().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEnableProxy(
       enable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -482,15 +506,16 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     gboolean(gint((if enable == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the socket family of the socket client. If this is set to something
+  /** Sets the socket family of the socket client. If this is set to something
     * other than %G_SOCKET_FAMILY_INVALID then the sockets created by this
     * object will be of the specified family.
     *
     * This might be useful for instance if you want to force the local
     * connection to be an ipv4 socket, even though the address might be an ipv6
     * mapped to ipv4 address.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFamily(
       family: SocketFamily /* Some(GSocketFamily) */
@@ -499,14 +524,15 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     family.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the local address of the socket client. The sockets created by this
+  /** Sets the local address of the socket client. The sockets created by this
     * object will bound to the specified address (if not %NULL) before
     * connecting.
     *
     * This is useful if you want to ensure that the local side of the connection
     * is on a specific port, or on a specific interface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLocalAddress(
       address: Option[SocketAddress /* Some(Ptr[GSocketAddress]) */ ]
@@ -517,13 +543,14 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[GSocketAddress]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the protocol of the socket client. The sockets created by this object
+  /** Sets the protocol of the socket client. The sockets created by this object
     * will use of the specified protocol.
     *
     * If @protocol is %G_SOCKET_PROTOCOL_DEFAULT that means to use the default
     * protocol for the socket family and type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setProtocol(
       protocol: SocketProtocol /* Some(GSocketProtocol) */
@@ -532,15 +559,16 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     protocol.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Overrides the #GProxyResolver used by @client. You can call this if you
+  /** Overrides the #GProxyResolver used by @client. You can call this if you
     * want to use specific proxies, rather than using the system default proxy
     * settings.
     *
     * Note that whether or not the proxy resolver is actually used depends on
     * the setting of #GSocketClient:enable-proxy, which is not changed by this
     * function (but which is %TRUE by default)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setProxyResolver(
       proxy_resolver: Option[ProxyResolver /* Some(Ptr[GProxyResolver]) */ ]
@@ -551,13 +579,14 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[GProxyResolver]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the socket type of the socket client. The sockets created by this
+  /** Sets the socket type of the socket client. The sockets created by this
     * object will be of the specified type.
     *
     * It doesn't make sense to specify a type of %G_SOCKET_TYPE_DATAGRAM, as
     * GSocketClient is used for connection oriented services.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSocketType(
       `type`: SocketType /* Some(GSocketType) */
@@ -566,14 +595,15 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     `type`.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the I/O timeout for sockets created by @client. @timeout is a time in
+  /** Sets the I/O timeout for sockets created by @client. @timeout is a time in
     * seconds, or 0 for no timeout (the default).
     *
     * The timeout value affects the initial connection attempt as well, so
     * setting this may cause calls to g_socket_client_connect(), etc, to fail
     * with %G_IO_ERROR_TIMED_OUT.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTimeout(
       timeout: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -582,9 +612,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     guint(timeout)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether @client creates TLS (aka SSL) connections. If @tls is %TRUE, @client
+  /** Sets whether @client creates TLS (aka SSL) connections. If @tls is %TRUE, @client
     * will wrap its connections in a #GTlsClientConnection and perform a TLS
     * handshake when connecting.
     *
@@ -601,6 +629,9 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     *   #GSocketClient::event signal and wait for it to be emitted with
     *   %G_SOCKET_CLIENT_TLS_HANDSHAKING, which will give you a chance to see
     *   the #GTlsClientConnection before the handshake starts.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTls(
       tls: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -609,14 +640,15 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     gboolean(gint((if tls == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the TLS validation flags used when creating TLS connections via @client.
+  /** Sets the TLS validation flags used when creating TLS connections via @client.
     * The default value is %G_TLS_CERTIFICATE_VALIDATE_ALL.
     *
     * This function does not work as originally designed and is impossible to
     * use correctly. See #GSocketClient:tls-validation-flags for more
     * information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTlsValidationFlags(
       flags: TlsCertificateFlags /* Some(GTlsCertificateFlags) */
@@ -636,9 +668,10 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
 end SocketClient
 
 object SocketClient:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GSocketClient with the default options.
     *
-    * Creates a new #GSocketClient with the default options.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): SocketClient = new SocketClient(
     g_socket_client_new().asInstanceOf

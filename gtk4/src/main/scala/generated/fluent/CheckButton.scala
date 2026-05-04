@@ -15,9 +15,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkCheckButton
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkCheckButton` places a label next to an indicator.
+/** A `GtkCheckButton` places a label next to an indicator.
   *
   * ![Example GtkCheckButtons](check-button.png)
   *
@@ -75,6 +73,9 @@ import sn.gnome.gtk4.internal.GtkCheckButton
   * # Accessibility
   *
   * `GtkCheckButton` uses the %GTK_ACCESSIBLE_ROLE_CHECKBOX role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class CheckButton(raw: Ptr[GtkCheckButton])
     extends Widget(raw.asInstanceOf),
@@ -85,18 +86,20 @@ class CheckButton(raw: Ptr[GtkCheckButton])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the check button is active.
     *
-    * Returns whether the check button is active.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActive(): Boolean /* None */ = gtk_check_button_get_active(
     this.raw.asInstanceOf[Ptr[GtkCheckButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the child widget of @button or `NULL` if [property@CheckButton:label]
+  /** Gets the child widget of @button or `NULL` if [property@CheckButton:label]
     * is set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_check_button_get_child(
@@ -104,18 +107,20 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the check button is in an inconsistent state.
     *
-    * Returns whether the check button is in an inconsistent state.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInconsistent(): Boolean /* None */ = gtk_check_button_get_inconsistent(
     this.raw.asInstanceOf[Ptr[GtkCheckButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the label of the check button or `NULL` if
+  /** Returns the label of the check button or `NULL` if
     * [property@CheckButton:child] is set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLabel()(using Zone): String /* None */ = fromCString(
     gtk_check_button_get_label(
@@ -123,18 +128,20 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether underlines in the label indicate mnemonics.
     *
-    * Returns whether underlines in the label indicate mnemonics.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseUnderline(): Boolean /* None */ =
     gtk_check_button_get_use_underline(
       this.raw.asInstanceOf[Ptr[GtkCheckButton]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Changes the check buttons active state.
     *
-    * Changes the check buttons active state.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActive(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -143,15 +150,16 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the child widget of @button.
+  /** Sets the child widget of @button.
     *
     * Note that by using this API, you take full responsibility for setting up
     * the proper accessibility label and description information for @button.
     * Most likely, you'll either set the accessibility label or description for @button
     * explicitly, or you'll set a labelled-by or described-by relations from @child
     * to @button.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -162,9 +170,7 @@ class CheckButton(raw: Ptr[GtkCheckButton])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds @self to the group of @group.
+  /** Adds @self to the group of @group.
     *
     * In a group of multiple check buttons, only one button can be active at a
     * time. The behavior of a checkbutton in a group is also commonly known as a
@@ -178,6 +184,9 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     * Note that the same effect can be achieved via the [iface@Gtk.Actionable]
     * API, by using the same action with parameter type and state type 's' for
     * all buttons in the group, and giving each button its own target value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setGroup(
       group: Option[CheckButton /* Some(Ptr[GtkCheckButton]) */ ]
@@ -188,12 +197,13 @@ class CheckButton(raw: Ptr[GtkCheckButton])
       .getOrElse(null.asInstanceOf[Ptr[GtkCheckButton]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `GtkCheckButton` to inconsistent state.
+  /** Sets the `GtkCheckButton` to inconsistent state.
     *
     * You should turn off the inconsistent state again if the user checks the
     * check button. This has to be done manually.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInconsistent(
       inconsistent: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -202,13 +212,14 @@ class CheckButton(raw: Ptr[GtkCheckButton])
     gboolean(gint((if inconsistent == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the text of @self.
+  /** Sets the text of @self.
     *
     * If [property@Gtk.CheckButton:use-underline] is %TRUE, an underscore in @label
     * is interpreted as mnemonic indicator, see
     * [method@Gtk.CheckButton.set_use_underline] for details on this behavior.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabel(
       label: Option[String | CString /* Some(CString) */ ]
@@ -219,13 +230,14 @@ class CheckButton(raw: Ptr[GtkCheckButton])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether underlines in the label indicate mnemonics.
+  /** Sets whether underlines in the label indicate mnemonics.
     *
     * If @setting is %TRUE, an underscore character in @self's label indicates a
     * mnemonic accelerator key. This behavior is similar to
     * [property@Gtk.Label:use-underline].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseUnderline(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -245,17 +257,19 @@ class CheckButton(raw: Ptr[GtkCheckButton])
 end CheckButton
 
 object CheckButton:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkCheckButton`.
     *
-    * Creates a new `GtkCheckButton`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): CheckButton = new CheckButton(
     gtk_check_button_new().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkCheckButton` with the given text.
     *
-    * Creates a new `GtkCheckButton` with the given text.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withLabel(
       label: Option[String | CString /* Some(CString) */ ]
@@ -267,9 +281,10 @@ object CheckButton:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkCheckButton` with the given text and a mnemonic.
     *
-    * Creates a new `GtkCheckButton` with the given text and a mnemonic.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withMnemonic(
       label: Option[String | CString /* Some(CString) */ ]

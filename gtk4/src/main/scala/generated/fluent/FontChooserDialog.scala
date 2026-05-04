@@ -17,9 +17,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkFontChooserDialog
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkFontChooserDialog` widget is a dialog for selecting a font.
+/** The `GtkFontChooserDialog` widget is a dialog for selecting a font.
   *
   * ![An example GtkFontChooserDialog](fontchooser.png)
   *
@@ -37,6 +35,9 @@ import sn.gnome.gtk4.internal.GtkFontChooserDialog
   *
   * `GtkFontChooserDialog` has a single CSS node with the name `window` and
   * style class `.fontchooser`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FontChooserDialog(raw: Ptr[GtkFontChooserDialog])
     extends Dialog(raw.asInstanceOf),
@@ -53,9 +54,10 @@ class FontChooserDialog(raw: Ptr[GtkFontChooserDialog])
 end FontChooserDialog
 
 object FontChooserDialog:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkFontChooserDialog`.
     *
-    * Creates a new `GtkFontChooserDialog`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       title: Option[String | CString /* Some(CString) */ ],

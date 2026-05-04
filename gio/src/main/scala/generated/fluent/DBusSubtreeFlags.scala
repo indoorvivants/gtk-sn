@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDBusSubtreeFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags passed to g_dbus_connection_register_subtree().
   *
-  * Flags passed to g_dbus_connection_register_subtree().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusSubtreeFlags private (val raw: GDBusSubtreeFlags):
   def is(kv: DBusSubtreeFlags): Boolean =
@@ -32,26 +33,29 @@ object DBusSubtreeFlags:
     def |(other: DBusSubtreeFlags) =
       DBusSubtreeFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags passed to g_dbus_connection_register_subtree().
     *
-    * Flags passed to g_dbus_connection_register_subtree().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GDBusSubtreeFlags, name: String)
       extends DBusSubtreeFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(GDBusSubtreeFlags.G_DBUS_SUBTREE_FLAGS_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Method calls to objects not in the enumerated range will still be
+    /** Method calls to objects not in the enumerated range will still be
       * dispatched. This is useful if you want to dynamically spawn objects in
       * the subtree.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DISPATCH_TO_UNENUMERATED_NODES
         extends KnownValue(

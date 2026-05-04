@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.CellRenderer
 import sn.gnome.gtk4.internal.GtkCellRendererSpinner
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Renders a spinning animation in a cell
+/** Renders a spinning animation in a cell
   *
   * `GtkCellRendererSpinner` renders a spinning animation in a cell, very
   * similar to `GtkSpinner`. It can often be used as an alternative to a
@@ -21,6 +19,9 @@ import sn.gnome.gtk4.internal.GtkCellRendererSpinner
   * at regular intervals. The usual way to set the cell renderer properties for
   * each cell is to bind them to columns in your tree model using e.g.
   * gtk_tree_view_column_add_attribute().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class CellRendererSpinner(raw: Ptr[GtkCellRendererSpinner])
     extends CellRenderer(raw.asInstanceOf):
@@ -30,10 +31,11 @@ class CellRendererSpinner(raw: Ptr[GtkCellRendererSpinner])
 end CellRendererSpinner
 
 object CellRendererSpinner:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a new cell renderer which will show a spinner to indicate
+  /** Returns a new cell renderer which will show a spinner to indicate
     * activity.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): CellRendererSpinner = new CellRendererSpinner(
     gtk_cell_renderer_spinner_new().asInstanceOf

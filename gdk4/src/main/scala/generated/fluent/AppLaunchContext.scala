@@ -11,9 +11,7 @@ import sn.gnome.gio.fluent.Icon
 import sn.gnome.glib.internal.guint32
 import sn.gnome.gio.fluent.AppLaunchContext as _AppLaunchContext
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GdkAppLaunchContext` handles launching an application in a graphical
+/** `GdkAppLaunchContext` handles launching an application in a graphical
   * context.
   *
   * It is an implementation of `GAppLaunchContext` that provides startup
@@ -33,15 +31,19 @@ import sn.gnome.gio.fluent.AppLaunchContext as _AppLaunchContext
   *
   * g_object_unref (context);
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     extends _AppLaunchContext(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GdkDisplay` that @context is for.
     *
-    * Gets the `GdkDisplay` that @context is for.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDisplay(): Display /* None */ = new Display(
     gdk_app_launch_context_get_display(
@@ -49,9 +51,7 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the workspace on which applications will be launched.
+  /** Sets the workspace on which applications will be launched.
     *
     * This only works when running under a window manager that supports multiple
     * workspaces, as described in the [Extended Window Manager
@@ -63,6 +63,9 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     * When the workspace is not specified or @desktop is set to -1, it is up to
     * the window manager to pick one, typically it will be the current
     * workspace.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDesktop(desktop: Int /* Some(CInt) */ ): Unit /* None */ =
     gdk_app_launch_context_set_desktop(
@@ -70,14 +73,15 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
       desktop
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the icon for applications that are launched with this context.
+  /** Sets the icon for applications that are launched with this context.
     *
     * Window Managers can use this information when displaying startup
     * notification.
     *
     * See also [method@Gdk.AppLaunchContext.set_icon_name].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIcon(
       icon: Option[Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */ ]
@@ -90,9 +94,7 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GIcon]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the icon for applications that are launched with this context.
+  /** Sets the icon for applications that are launched with this context.
     *
     * The @icon_name will be interpreted in the same way as the Icon field in
     * desktop files. See also [method@Gdk.AppLaunchContext.set_icon].
@@ -101,6 +103,9 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     * neither @icon or @icon_name is set, the icon is taken from either the file
     * that is passed to launched application or from the `GAppInfo` for the
     * launched application itself.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconName(
       icon_name: Option[String | CString /* Some(CString) */ ]
@@ -111,9 +116,7 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the timestamp of @context.
+  /** Sets the timestamp of @context.
     *
     * The timestamp should ideally be taken from the event that triggered the
     * launch.
@@ -121,6 +124,9 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     * Window managers can use this information to avoid moving the focus to the
     * newly launched application when the user is busy typing in another window.
     * This is also known as 'focus stealing prevention'.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTimestamp(
       timestamp: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */

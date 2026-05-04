@@ -9,9 +9,10 @@ import sn.gnome.gio.fluent.{SocketAddress, SocketConnectable}
 import sn.gnome.gio.internal.GNativeSocketAddress
 import sn.gnome.glib.internal.{gpointer, gsize}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A socket address of some unknown native type.
   *
-  * A socket address of some unknown native type.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class NativeSocketAddress(raw: Ptr[GNativeSocketAddress])
     extends SocketAddress(raw.asInstanceOf),
@@ -22,9 +23,10 @@ class NativeSocketAddress(raw: Ptr[GNativeSocketAddress])
 end NativeSocketAddress
 
 object NativeSocketAddress:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GNativeSocketAddress for @native and @len.
     *
-    * Creates a new #GNativeSocketAddress for @native and @len.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       native: Option[

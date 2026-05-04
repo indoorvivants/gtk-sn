@@ -2,90 +2,104 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkAxisUse
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Defines how device axes are interpreted by GTK.
+/** Defines how device axes are interpreted by GTK.
   *
   * Note that the X and Y axes are not really needed; pointer devices report
   * their location via the x/y members of events regardless. Whether X and Y are
   * present as axes depends on the GDK backend.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum AxisUse(val raw: GdkAxisUse):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the axis is ignored.
     *
-    * the axis is ignored.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case IGNORE extends AxisUse(GdkAxisUse.GDK_AXIS_IGNORE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the axis is used as the x axis.
     *
-    * the axis is used as the x axis.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case X extends AxisUse(GdkAxisUse.GDK_AXIS_X)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the axis is used as the y axis.
     *
-    * the axis is used as the y axis.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case Y extends AxisUse(GdkAxisUse.GDK_AXIS_Y)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the axis is used as the scroll x delta
     *
-    * the axis is used as the scroll x delta
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DELTA_X extends AxisUse(GdkAxisUse.GDK_AXIS_DELTA_X)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the axis is used as the scroll y delta
     *
-    * the axis is used as the scroll y delta
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DELTA_Y extends AxisUse(GdkAxisUse.GDK_AXIS_DELTA_Y)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the axis is used for pressure information.
     *
-    * the axis is used for pressure information.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PRESSURE extends AxisUse(GdkAxisUse.GDK_AXIS_PRESSURE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the axis is used for x tilt information.
     *
-    * the axis is used for x tilt information.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case XTILT extends AxisUse(GdkAxisUse.GDK_AXIS_XTILT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the axis is used for y tilt information.
     *
-    * the axis is used for y tilt information.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case YTILT extends AxisUse(GdkAxisUse.GDK_AXIS_YTILT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the axis is used for wheel information.
     *
-    * the axis is used for wheel information.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WHEEL extends AxisUse(GdkAxisUse.GDK_AXIS_WHEEL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the axis is used for pen/tablet distance information
     *
-    * the axis is used for pen/tablet distance information
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DISTANCE extends AxisUse(GdkAxisUse.GDK_AXIS_DISTANCE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the axis is used for pen rotation information
     *
-    * the axis is used for pen rotation information
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ROTATION extends AxisUse(GdkAxisUse.GDK_AXIS_ROTATION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** the axis is used for pen slider information
     *
-    * the axis is used for pen slider information
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SLIDER extends AxisUse(GdkAxisUse.GDK_AXIS_SLIDER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a constant equal to the numerically highest axis value.
     *
-    * a constant equal to the numerically highest axis value.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LAST extends AxisUse(GdkAxisUse.GDK_AXIS_LAST)
 end AxisUse

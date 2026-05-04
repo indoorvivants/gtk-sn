@@ -2,61 +2,70 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkDeleteType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Passed to various keybinding signals for deleting text.
   *
-  * Passed to various keybinding signals for deleting text.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum DeleteType(val raw: GtkDeleteType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Delete characters.
     *
-    * Delete characters.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHARS extends DeleteType(GtkDeleteType.GTK_DELETE_CHARS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Delete only the portion of the word to the left/right of cursor if we’re
+  /** Delete only the portion of the word to the left/right of cursor if we’re
     * in the middle of a word.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WORD_ENDS extends DeleteType(GtkDeleteType.GTK_DELETE_WORD_ENDS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Delete words.
     *
-    * Delete words.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WORDS extends DeleteType(GtkDeleteType.GTK_DELETE_WORDS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Delete display-lines. Display-lines refers to the visible lines, with
+  /** Delete display-lines. Display-lines refers to the visible lines, with
     * respect to the current line breaks. As opposed to paragraphs, which are
     * defined by line breaks in the input.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DISPLAY_LINES extends DeleteType(GtkDeleteType.GTK_DELETE_DISPLAY_LINES)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Delete only the portion of the display-line to the left/right of cursor.
     *
-    * Delete only the portion of the display-line to the left/right of cursor.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DISPLAY_LINE_ENDS
       extends DeleteType(GtkDeleteType.GTK_DELETE_DISPLAY_LINE_ENDS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Delete to the end of the paragraph. Like C-k in Emacs (or its reverse).
     *
-    * Delete to the end of the paragraph. Like C-k in Emacs (or its reverse).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PARAGRAPH_ENDS
       extends DeleteType(GtkDeleteType.GTK_DELETE_PARAGRAPH_ENDS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Delete entire line. Like C-k in pico.
     *
-    * Delete entire line. Like C-k in pico.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PARAGRAPHS extends DeleteType(GtkDeleteType.GTK_DELETE_PARAGRAPHS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Delete only whitespace. Like M-\ in Emacs.
     *
-    * Delete only whitespace. Like M-\ in Emacs.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WHITESPACE extends DeleteType(GtkDeleteType.GTK_DELETE_WHITESPACE)
 end DeleteType

@@ -2,23 +2,26 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkFullscreenMode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Indicates which monitor a surface should span over when in fullscreen mode.
   *
-  * Indicates which monitor a surface should span over when in fullscreen mode.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum FullscreenMode(val raw: GdkFullscreenMode):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fullscreen on current monitor only.
     *
-    * Fullscreen on current monitor only.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CURRENT_MONITOR
       extends FullscreenMode(
         GdkFullscreenMode.GDK_FULLSCREEN_ON_CURRENT_MONITOR
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Span across all monitors when fullscreen.
     *
-    * Span across all monitors when fullscreen.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ALL_MONITORS
       extends FullscreenMode(GdkFullscreenMode.GDK_FULLSCREEN_ON_ALL_MONITORS)

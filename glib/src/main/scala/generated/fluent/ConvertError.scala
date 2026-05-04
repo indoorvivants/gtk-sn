@@ -2,62 +2,71 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GConvertError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Error codes returned by character set conversion routines.
   *
-  * Error codes returned by character set conversion routines.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ConvertError(val raw: GConvertError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Conversion between the requested character sets is not supported.
     *
-    * Conversion between the requested character sets is not supported.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NO_CONVERSION
       extends ConvertError(GConvertError.G_CONVERT_ERROR_NO_CONVERSION)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Invalid byte sequence in conversion input; or the character sequence could
+  /** Invalid byte sequence in conversion input; or the character sequence could
     * not be represented in the target character set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ILLEGAL_SEQUENCE
       extends ConvertError(GConvertError.G_CONVERT_ERROR_ILLEGAL_SEQUENCE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Conversion failed for some reason.
     *
-    * Conversion failed for some reason.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FAILED extends ConvertError(GConvertError.G_CONVERT_ERROR_FAILED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Partial character sequence at end of input.
     *
-    * Partial character sequence at end of input.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PARTIAL_INPUT
       extends ConvertError(GConvertError.G_CONVERT_ERROR_PARTIAL_INPUT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** URI is invalid.
     *
-    * URI is invalid.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BAD_URI extends ConvertError(GConvertError.G_CONVERT_ERROR_BAD_URI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Pathname is not an absolute path.
     *
-    * Pathname is not an absolute path.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_ABSOLUTE_PATH
       extends ConvertError(GConvertError.G_CONVERT_ERROR_NOT_ABSOLUTE_PATH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No memory available. Since: 2.40
     *
-    * No memory available. Since: 2.40
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NO_MEMORY extends ConvertError(GConvertError.G_CONVERT_ERROR_NO_MEMORY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An embedded NUL character is present in conversion output where a
+  /** An embedded NUL character is present in conversion output where a
     * NUL-terminated string is expected. Since: 2.56
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EMBEDDED_NUL
       extends ConvertError(GConvertError.G_CONVERT_ERROR_EMBEDDED_NUL)

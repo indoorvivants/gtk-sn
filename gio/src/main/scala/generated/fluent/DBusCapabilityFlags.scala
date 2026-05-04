@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDBusCapabilityFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Capabilities negotiated with the remote peer.
   *
-  * Capabilities negotiated with the remote peer.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusCapabilityFlags private (val raw: GDBusCapabilityFlags):
   def is(kv: DBusCapabilityFlags): Boolean =
@@ -32,17 +33,19 @@ object DBusCapabilityFlags:
     def |(other: DBusCapabilityFlags) =
       DBusCapabilityFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Capabilities negotiated with the remote peer.
     *
-    * Capabilities negotiated with the remote peer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GDBusCapabilityFlags, name: String)
       extends DBusCapabilityFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(
@@ -50,10 +53,11 @@ object DBusCapabilityFlags:
           "NONE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * The connection supports exchanging UNIX file descriptors with the remote
+    /** The connection supports exchanging UNIX file descriptors with the remote
       * peer.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case UNIX_FD_PASSING
         extends KnownValue(

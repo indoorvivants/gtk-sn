@@ -2,57 +2,66 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GDateWeekday
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Enumeration representing a day of the week; %G_DATE_MONDAY, %G_DATE_TUESDAY,
+/** Enumeration representing a day of the week; %G_DATE_MONDAY, %G_DATE_TUESDAY,
   * etc. %G_DATE_BAD_WEEKDAY is an invalid weekday.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum DateWeekday(val raw: GDateWeekday):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** invalid value
     *
-    * invalid value
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BAD_WEEKDAY extends DateWeekday(GDateWeekday.G_DATE_BAD_WEEKDAY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Monday
     *
-    * Monday
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MONDAY extends DateWeekday(GDateWeekday.G_DATE_MONDAY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tuesday
     *
-    * Tuesday
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TUESDAY extends DateWeekday(GDateWeekday.G_DATE_TUESDAY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Wednesday
     *
-    * Wednesday
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WEDNESDAY extends DateWeekday(GDateWeekday.G_DATE_WEDNESDAY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Thursday
     *
-    * Thursday
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case THURSDAY extends DateWeekday(GDateWeekday.G_DATE_THURSDAY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Friday
     *
-    * Friday
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FRIDAY extends DateWeekday(GDateWeekday.G_DATE_FRIDAY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Saturday
     *
-    * Saturday
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SATURDAY extends DateWeekday(GDateWeekday.G_DATE_SATURDAY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sunday
     *
-    * Sunday
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SUNDAY extends DateWeekday(GDateWeekday.G_DATE_SUNDAY)
 end DateWeekday

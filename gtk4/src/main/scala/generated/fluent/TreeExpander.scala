@@ -15,9 +15,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkTreeExpander
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkTreeExpander` is a widget that provides an expander for a list.
+/** `GtkTreeExpander` is a widget that provides an expander for a list.
   *
   * It is typically placed as a bottommost child into a `GtkListView` to allow
   * users to expand and collapse children in a list with a
@@ -70,6 +68,9 @@ import sn.gnome.gtk4.internal.GtkTreeExpander
   *
   * Since GTK 4.12, `GtkTreeExpander` uses the `GTK_ACCESSIBLE_ROLE_BUTTON`
   * role. Toggling it will change the `GTK_ACCESSIBLE_STATE_EXPANDED` state.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TreeExpander(raw: Ptr[GtkTreeExpander])
     extends Widget(raw.asInstanceOf),
@@ -79,9 +80,10 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget displayed by @self.
     *
-    * Gets the child widget displayed by @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_tree_expander_get_child(
@@ -89,43 +91,47 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the TreeExpander should be hidden in a GtkTreeListRow.
     *
-    * Gets whether the TreeExpander should be hidden in a GtkTreeListRow.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHideExpander(): Boolean /* None */ =
     gtk_tree_expander_get_hide_expander(
       this.raw.asInstanceOf[Ptr[GtkTreeExpander]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** TreeExpander indents each level of depth with an additional indent.
     *
-    * TreeExpander indents each level of depth with an additional indent.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIndentForDepth(): Boolean /* None */ =
     gtk_tree_expander_get_indent_for_depth(
       this.raw.asInstanceOf[Ptr[GtkTreeExpander]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * TreeExpander indents the child by the width of an expander-icon if it is
+  /** TreeExpander indents the child by the width of an expander-icon if it is
     * not expandable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIndentForIcon(): Boolean /* None */ =
     gtk_tree_expander_get_indent_for_icon(
       this.raw.asInstanceOf[Ptr[GtkTreeExpander]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Forwards the item set on the `GtkTreeListRow` that @self is managing.
+  /** Forwards the item set on the `GtkTreeListRow` that @self is managing.
     *
     * This call is essentially equivalent to calling:
     *
     * ```c
     * gtk_tree_list_row_get_item (gtk_tree_expander_get_list_row (@self));
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getItem(): Object /* None */ = new Object(
     gtk_tree_expander_get_item(
@@ -133,9 +139,10 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the list row managed by @self.
     *
-    * Gets the list row managed by @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getListRow(): TreeListRow /* None */ = new TreeListRow(
     gtk_tree_expander_get_list_row(
@@ -143,9 +150,10 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the content widget to display.
     *
-    * Sets the content widget to display.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -156,9 +164,10 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the expander icon should be visible in a GtkTreeListRow.
     *
-    * Sets whether the expander icon should be visible in a GtkTreeListRow.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHideExpander(
       hide_expander: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -167,9 +176,10 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
     gboolean(gint((if hide_expander == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets if the TreeExpander should indent the child according to its depth.
     *
-    * Sets if the TreeExpander should indent the child according to its depth.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIndentForDepth(
       indent_for_depth: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -178,10 +188,11 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
     gboolean(gint((if indent_for_depth == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets if the TreeExpander should indent the child by the width of an
+  /** Sets if the TreeExpander should indent the child by the width of an
     * expander-icon when it is not expandable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIndentForIcon(
       indent_for_icon: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -190,9 +201,10 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
     gboolean(gint((if indent_for_icon == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the tree list row that this expander should manage.
     *
-    * Sets the tree list row that this expander should manage.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setListRow(
       list_row: Option[TreeListRow /* Some(Ptr[GtkTreeListRow]) */ ]
@@ -206,9 +218,10 @@ class TreeExpander(raw: Ptr[GtkTreeExpander])
 end TreeExpander
 
 object TreeExpander:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkTreeExpander`
     *
-    * Creates a new `GtkTreeExpander`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): TreeExpander = new TreeExpander(
     gtk_tree_expander_new().asInstanceOf

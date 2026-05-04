@@ -20,9 +20,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkAppChooserDialog
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkAppChooserDialog` shows a `GtkAppChooserWidget` inside a `GtkDialog`.
+/** `GtkAppChooserDialog` shows a `GtkAppChooserWidget` inside a `GtkDialog`.
   *
   * ![An example GtkAppChooserDialog](appchooserdialog.png)
   *
@@ -38,6 +36,9 @@ import sn.gnome.gtk4.internal.GtkAppChooserDialog
   *
   * `GtkAppChooserDialog` has a single CSS node with the name `window` and style
   * class `.appchooser`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AppChooserDialog(raw: Ptr[GtkAppChooserDialog])
     extends Dialog(raw.asInstanceOf),
@@ -51,9 +52,10 @@ class AppChooserDialog(raw: Ptr[GtkAppChooserDialog])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the text to display at the top of the dialog.
     *
-    * Returns the text to display at the top of the dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeading()(using Zone): String /* None */ = fromCString(
     gtk_app_chooser_dialog_get_heading(
@@ -61,9 +63,10 @@ class AppChooserDialog(raw: Ptr[GtkAppChooserDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `GtkAppChooserWidget` of this dialog.
     *
-    * Returns the `GtkAppChooserWidget` of this dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWidget(): Widget /* None */ = new Widget(
     gtk_app_chooser_dialog_get_widget(
@@ -71,11 +74,12 @@ class AppChooserDialog(raw: Ptr[GtkAppChooserDialog])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the text to display at the top of the dialog.
+  /** Sets the text to display at the top of the dialog.
     *
     * If the heading is not set, the dialog displays a default text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeading(
       heading: String | CString /* Some(CString) */
@@ -95,11 +99,12 @@ class AppChooserDialog(raw: Ptr[GtkAppChooserDialog])
 end AppChooserDialog
 
 object AppChooserDialog:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkAppChooserDialog` for the provided `GFile`.
+  /** Creates a new `GtkAppChooserDialog` for the provided `GFile`.
     *
     * The dialog will show applications that can open the file.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
@@ -115,11 +120,12 @@ object AppChooserDialog:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkAppChooserDialog` for the provided content type.
+  /** Creates a new `GtkAppChooserDialog` for the provided content type.
     *
     * The dialog will show applications that can open the content type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forContentType(
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],

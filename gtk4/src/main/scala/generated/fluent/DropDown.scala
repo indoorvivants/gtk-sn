@@ -19,9 +19,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkDropDown
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkDropDown` is a widget that allows the user to choose an item from a list
+/** `GtkDropDown` is a widget that allows the user to choose an item from a list
   * of options.
   *
   * ![An example GtkDropDown](drop-down.png)
@@ -73,6 +71,9 @@ import sn.gnome.gtk4.internal.GtkDropDown
   * ## Accessibility
   *
   * `GtkDropDown` uses the %GTK_ACCESSIBLE_ROLE_COMBO_BOX role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DropDown(raw: Ptr[GtkDropDown])
     extends Widget(raw.asInstanceOf),
@@ -82,19 +83,21 @@ class DropDown(raw: Ptr[GtkDropDown])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether search is enabled.
     *
-    * Returns whether search is enabled.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEnableSearch(): Boolean /* None */ = gtk_drop_down_get_enable_search(
     this.raw.asInstanceOf[Ptr[GtkDropDown]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the expression set that is used to obtain strings from items.
+  /** Gets the expression set that is used to obtain strings from items.
     *
     * See [method@Gtk.DropDown.set_expression].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExpression(): Expression /* None */ = new Expression(
     gtk_drop_down_get_expression(
@@ -102,13 +105,14 @@ class DropDown(raw: Ptr[GtkDropDown])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the factory that's currently used to populate list items.
+  /** Gets the factory that's currently used to populate list items.
     *
     * The factory returned by this function is always used for the item in the
     * button. It is also used for items in the popup if
     * [property@Gtk.DropDown:list-factory] is not set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFactory(): ListItemFactory /* None */ = new ListItemFactory(
     gtk_drop_down_get_factory(
@@ -116,10 +120,11 @@ class DropDown(raw: Ptr[GtkDropDown])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the factory that's currently used to create header widgets for the
+  /** Gets the factory that's currently used to create header widgets for the
     * popup.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeaderFactory(): ListItemFactory /* None */ = new ListItemFactory(
     gtk_drop_down_get_header_factory(
@@ -127,10 +132,11 @@ class DropDown(raw: Ptr[GtkDropDown])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the factory that's currently used to populate list items in the
+  /** Gets the factory that's currently used to populate list items in the
     * popup.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getListFactory(): ListItemFactory /* None */ = new ListItemFactory(
     gtk_drop_down_get_list_factory(
@@ -138,9 +144,10 @@ class DropDown(raw: Ptr[GtkDropDown])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the model that provides the displayed items.
     *
-    * Gets the model that provides the displayed items.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_drop_down_get_model(
@@ -148,9 +155,10 @@ class DropDown(raw: Ptr[GtkDropDown])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the match mode that the search filter is using.
     *
-    * Returns the match mode that the search filter is using.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSearchMatchMode(): StringFilterMatchMode /* None */ =
     StringFilterMatchMode.fromRaw(
@@ -159,17 +167,19 @@ class DropDown(raw: Ptr[GtkDropDown])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the position of the selected item.
     *
-    * Gets the position of the selected item.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSelected(): UInt /* None */ = gtk_drop_down_get_selected(
     this.raw.asInstanceOf[Ptr[GtkDropDown]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the selected item. If no item is selected, %NULL is returned.
     *
-    * Gets the selected item. If no item is selected, %NULL is returned.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSelectedItem(): Object /* None */ = new Object(
     gtk_drop_down_get_selected_item(
@@ -177,21 +187,23 @@ class DropDown(raw: Ptr[GtkDropDown])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether to show an arrow within the widget.
     *
-    * Returns whether to show an arrow within the widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowArrow(): Boolean /* None */ = gtk_drop_down_get_show_arrow(
     this.raw.asInstanceOf[Ptr[GtkDropDown]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether a search entry will be shown in the popup that allows to
+  /** Sets whether a search entry will be shown in the popup that allows to
     * search for items in the list.
     *
     * Note that [property@Gtk.DropDown:expression] must be set for search to
     * work.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEnableSearch(
       enable_search: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -200,12 +212,13 @@ class DropDown(raw: Ptr[GtkDropDown])
     gboolean(gint((if enable_search == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the expression that gets evaluated to obtain strings from items.
+  /** Sets the expression that gets evaluated to obtain strings from items.
     *
     * This is used for search in the popup. The expression must have a value
     * type of %G_TYPE_STRING.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setExpression(
       expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
@@ -216,9 +229,10 @@ class DropDown(raw: Ptr[GtkDropDown])
       .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the `GtkListItemFactory` to use for populating list items.
     *
-    * Sets the `GtkListItemFactory` to use for populating list items.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFactory(
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
@@ -229,10 +243,11 @@ class DropDown(raw: Ptr[GtkDropDown])
       .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `GtkListItemFactory` to use for creating header widgets for the
+  /** Sets the `GtkListItemFactory` to use for creating header widgets for the
     * popup.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeaderFactory(
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
@@ -243,10 +258,11 @@ class DropDown(raw: Ptr[GtkDropDown])
       .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `GtkListItemFactory` to use for populating list items in the
+  /** Sets the `GtkListItemFactory` to use for populating list items in the
     * popup.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setListFactory(
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
@@ -257,9 +273,10 @@ class DropDown(raw: Ptr[GtkDropDown])
       .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the `GListModel` to use.
     *
-    * Sets the `GListModel` to use.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
       model: Option[
@@ -276,9 +293,10 @@ class DropDown(raw: Ptr[GtkDropDown])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the match mode for the search filter.
     *
-    * Sets the match mode for the search filter.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSearchMatchMode(
       search_match_mode: StringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
@@ -287,9 +305,10 @@ class DropDown(raw: Ptr[GtkDropDown])
     search_match_mode.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Selects the item at the given position.
     *
-    * Selects the item at the given position.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSelected(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -298,9 +317,10 @@ class DropDown(raw: Ptr[GtkDropDown])
     guint(position)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether an arrow will be displayed within the widget.
     *
-    * Sets whether an arrow will be displayed within the widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowArrow(
       show_arrow: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -312,12 +332,13 @@ class DropDown(raw: Ptr[GtkDropDown])
 end DropDown
 
 object DropDown:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkDropDown`.
+  /** Creates a new `GtkDropDown`.
     *
     * You may want to call [method@Gtk.DropDown.set_factory] to set up a way to
     * map its items to widgets.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       model: Option[
@@ -339,13 +360,14 @@ object DropDown:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkDropDown` that is populated with the strings.
     *
-    * Creates a new `GtkDropDown` that is populated with the strings.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
+    "[strings]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
-  def new_from_strings() = ???
+  private def new_from_strings() = ???
 
 end DropDown

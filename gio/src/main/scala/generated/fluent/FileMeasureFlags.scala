@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GFileMeasureFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags that can be used with g_file_measure_disk_usage().
   *
-  * Flags that can be used with g_file_measure_disk_usage().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileMeasureFlags private (val raw: GFileMeasureFlags):
   def is(kv: FileMeasureFlags): Boolean =
@@ -32,24 +33,27 @@ object FileMeasureFlags:
     def |(other: FileMeasureFlags) =
       FileMeasureFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags that can be used with g_file_measure_disk_usage().
     *
-    * Flags that can be used with g_file_measure_disk_usage().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GFileMeasureFlags, name: String)
       extends FileMeasureFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GFileMeasureFlags.G_FILE_MEASURE_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Report any error encountered while traversing the directory tree.
+    /** Report any error encountered while traversing the directory tree.
       * Normally errors are only reported for the toplevel file.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case REPORT_ANY_ERROR
         extends KnownValue(
@@ -57,14 +61,15 @@ object FileMeasureFlags:
           "REPORT_ANY_ERROR"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Tally usage based on apparent file sizes. Normally, the block-size is
+    /** Tally usage based on apparent file sizes. Normally, the block-size is
       * used, if available, as this is a more accurate representation of disk
       * space used. Compare with `du --apparent-size`. Since GLib 2.78. and
       * similarly to `du` since GNU Coreutils 9.2, this will ignore the sizes of
       * file types other than regular files and links, as the sizes of other
       * file types are not specified in a standard way.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case APPARENT_SIZE
         extends KnownValue(
@@ -72,9 +77,10 @@ object FileMeasureFlags:
           "APPARENT_SIZE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Do not cross mount point boundaries. Compare with `du -x`.
       *
-      * Do not cross mount point boundaries. Compare with `du -x`.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NO_XDEV
         extends KnownValue(GFileMeasureFlags.G_FILE_MEASURE_NO_XDEV, "NO_XDEV")

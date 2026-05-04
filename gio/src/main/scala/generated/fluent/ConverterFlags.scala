@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GConverterFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used when calling a g_converter_convert().
   *
-  * Flags used when calling a g_converter_convert().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ConverterFlags private (val raw: GConverterFlags):
   def is(kv: ConverterFlags): Boolean =
@@ -32,23 +33,26 @@ object ConverterFlags:
     def |(other: ConverterFlags) =
       ConverterFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used when calling a g_converter_convert().
     *
-    * Flags used when calling a g_converter_convert().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GConverterFlags, name: String)
       extends ConverterFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags.
       *
-      * No flags.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GConverterFlags.G_CONVERTER_NO_FLAGS, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** At end of input data
       *
-      * At end of input data
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case INPUT_AT_END
         extends KnownValue(
@@ -56,9 +60,10 @@ object ConverterFlags:
           "INPUT_AT_END"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Flush data
       *
-      * Flush data
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FLUSH extends KnownValue(GConverterFlags.G_CONVERTER_FLUSH, "FLUSH")
   end KnownValue

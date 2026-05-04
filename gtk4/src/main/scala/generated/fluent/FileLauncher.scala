@@ -10,9 +10,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.internal.GtkFileLauncher
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkFileLauncher` object collects the arguments that are needed to open a
+/** A `GtkFileLauncher` object collects the arguments that are needed to open a
   * file with an application.
   *
   * Depending on system configuration, user preferences and available APIs, this
@@ -24,22 +22,27 @@ import sn.gnome.gtk4.internal.GtkFileLauncher
   * calling [method@Gtk.FileLauncher.launch_finish].
   *
   * To launch uris that don't represent files, use [class@Gtk.UriLauncher].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileLauncher(raw: Ptr[GtkFileLauncher]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether to ask the user to choose an app for opening the file.
     *
-    * Returns whether to ask the user to choose an app for opening the file.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAlwaysAsk(): Boolean /* None */ = gtk_file_launcher_get_always_ask(
     this.raw.asInstanceOf[Ptr[GtkFileLauncher]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the file that will be opened.
     *
-    * Gets the file that will be opened.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFile(): File /* None */ = new File.Abstract(
     gtk_file_launcher_get_file(
@@ -47,23 +50,25 @@ class FileLauncher(raw: Ptr[GtkFileLauncher]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Launch an application to open the file.
+  /** Launch an application to open the file.
     *
     * This may present an app chooser dialog to the user.
     *
     * The @callback will be called when the operation is completed. It should
     * call [method@Gtk.FileLauncher.launch_finish] to obtain the result.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[launch/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def launch__ = ???
+  private def launch__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes the [method@Gtk.FileLauncher.launch] call and returns the result.
     *
-    * Finishes the [method@Gtk.FileLauncher.launch] call and returns the result.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def launchFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
@@ -75,9 +80,7 @@ class FileLauncher(raw: Ptr[GtkFileLauncher]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Launch a file manager to show the file in its parent directory.
+  /** Launch a file manager to show the file in its parent directory.
     *
     * This is only supported native files. It will fail if @file is e.g. a
     * http:// uri.
@@ -85,16 +88,20 @@ class FileLauncher(raw: Ptr[GtkFileLauncher]) extends Object(raw.asInstanceOf):
     * The @callback will be called when the operation is completed. It should
     * call [method@Gtk.FileLauncher.open_containing_folder_finish] to obtain the
     * result.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[open_containing_folder/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def openContainingFolder__ = ???
+  private def openContainingFolder__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes the [method@Gtk.FileLauncher.open_containing_folder] call and
+  /** Finishes the [method@Gtk.FileLauncher.open_containing_folder] call and
     * returns the result.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def openContainingFolderFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
@@ -106,11 +113,12 @@ class FileLauncher(raw: Ptr[GtkFileLauncher]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether to awlays ask the user to choose an app for opening the file.
+  /** Sets whether to awlays ask the user to choose an app for opening the file.
     * If `FALSE`, the file might be opened with a default app or the previous
     * choice.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAlwaysAsk(
       always_ask: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -119,9 +127,10 @@ class FileLauncher(raw: Ptr[GtkFileLauncher]) extends Object(raw.asInstanceOf):
     gboolean(gint((if always_ask == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the file that will be opened.
     *
-    * Sets the file that will be opened.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFile(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
@@ -137,9 +146,10 @@ class FileLauncher(raw: Ptr[GtkFileLauncher]) extends Object(raw.asInstanceOf):
 end FileLauncher
 
 object FileLauncher:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkFileLauncher` object.
     *
-    * Creates a new `GtkFileLauncher` object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]

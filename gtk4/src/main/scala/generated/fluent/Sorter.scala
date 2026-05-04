@@ -9,9 +9,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{Ordering, SorterChange, SorterOrder}
 import sn.gnome.gtk4.internal.GtkSorter
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkSorter` is an object to describe sorting criteria.
+/** `GtkSorter` is an object to describe sorting criteria.
   *
   * Its primary user is [class@Gtk.SortListModel]
   *
@@ -30,14 +28,15 @@ import sn.gnome.gtk4.internal.GtkSorter
   *
   * Of course, in particular for large lists, it is also possible to subclass
   * `GtkSorter` and provide one's own sorter.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Notifies all users of the sorter that it has changed.
+  /** Notifies all users of the sorter that it has changed.
     *
     * This emits the [signal@Gtk.Sorter::changed] signal. Users of the sorter
     * should then update the sort order via [method@Gtk.Sorter.compare].
@@ -48,15 +47,16 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
     *
     * This function is intended for implementors of `GtkSorter` subclasses and
     * should not be called from other functions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def changed(
       change: SorterChange /* Some(GtkSorterChange) */
   ): Unit /* None */ =
     gtk_sorter_changed(this.raw.asInstanceOf[Ptr[GtkSorter]], change.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Compares two given items according to the sort order implemented by the
+  /** Compares two given items according to the sort order implemented by the
     * sorter.
     *
     * Sorters implement a partial order:
@@ -67,6 +67,9 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
     *
     * The sorter may signal it conforms to additional constraints via the return
     * value of [method@Gtk.Sorter.get_order].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def compare(
       item1: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
@@ -81,13 +84,14 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the order that @self conforms to.
+  /** Gets the order that @self conforms to.
     *
     * See [enum@Gtk.SorterOrder] for details of the possible return values.
     *
     * This function is intended to allow optimizations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOrder(): SorterOrder /* None */ = SorterOrder.fromRaw(
     gtk_sorter_get_order(this.raw.asInstanceOf[Ptr[GtkSorter]])

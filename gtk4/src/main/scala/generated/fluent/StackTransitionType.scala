@@ -2,219 +2,243 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkStackTransitionType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Possible transitions between pages in a `GtkStack` widget.
+/** Possible transitions between pages in a `GtkStack` widget.
   *
   * New values may be added to this enumeration over time.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum StackTransitionType(val raw: GtkStackTransitionType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No transition
     *
-    * No transition
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_NONE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A cross-fade
     *
-    * A cross-fade
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CROSSFADE
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_CROSSFADE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Slide from left to right
     *
-    * Slide from left to right
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SLIDE_RIGHT
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_SLIDE_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Slide from right to left
     *
-    * Slide from right to left
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SLIDE_LEFT
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Slide from bottom up
     *
-    * Slide from bottom up
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SLIDE_UP
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_SLIDE_UP
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Slide from top down
     *
-    * Slide from top down
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SLIDE_DOWN
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_SLIDE_DOWN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Slide from left or right according to the children order
     *
-    * Slide from left or right according to the children order
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SLIDE_LEFT_RIGHT
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Slide from top down or bottom up according to the order
     *
-    * Slide from top down or bottom up according to the order
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SLIDE_UP_DOWN
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_SLIDE_UP_DOWN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Cover the old page by sliding up
     *
-    * Cover the old page by sliding up
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OVER_UP
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_OVER_UP
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Cover the old page by sliding down
     *
-    * Cover the old page by sliding down
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OVER_DOWN
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_OVER_DOWN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Cover the old page by sliding to the left
     *
-    * Cover the old page by sliding to the left
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OVER_LEFT
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_OVER_LEFT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Cover the old page by sliding to the right
     *
-    * Cover the old page by sliding to the right
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OVER_RIGHT
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_OVER_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Uncover the new page by sliding up
     *
-    * Uncover the new page by sliding up
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNDER_UP
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_UNDER_UP
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Uncover the new page by sliding down
     *
-    * Uncover the new page by sliding down
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNDER_DOWN
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_UNDER_DOWN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Uncover the new page by sliding to the left
     *
-    * Uncover the new page by sliding to the left
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNDER_LEFT
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_UNDER_LEFT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Uncover the new page by sliding to the right
     *
-    * Uncover the new page by sliding to the right
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNDER_RIGHT
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_UNDER_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Cover the old page sliding up or uncover the new page sliding down,
+  /** Cover the old page sliding up or uncover the new page sliding down,
     * according to order
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OVER_UP_DOWN
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_OVER_UP_DOWN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Cover the old page sliding down or uncover the new page sliding up,
+  /** Cover the old page sliding down or uncover the new page sliding up,
     * according to order
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OVER_DOWN_UP
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_OVER_DOWN_UP
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Cover the old page sliding left or uncover the new page sliding right,
+  /** Cover the old page sliding left or uncover the new page sliding right,
     * according to order
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OVER_LEFT_RIGHT
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_OVER_LEFT_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Cover the old page sliding right or uncover the new page sliding left,
+  /** Cover the old page sliding right or uncover the new page sliding left,
     * according to order
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OVER_RIGHT_LEFT
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_OVER_RIGHT_LEFT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Pretend the pages are sides of a cube and rotate that cube to the left
     *
-    * Pretend the pages are sides of a cube and rotate that cube to the left
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ROTATE_LEFT
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Pretend the pages are sides of a cube and rotate that cube to the right
     *
-    * Pretend the pages are sides of a cube and rotate that cube to the right
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ROTATE_RIGHT
       extends StackTransitionType(
         GtkStackTransitionType.GTK_STACK_TRANSITION_TYPE_ROTATE_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Pretend the pages are sides of a cube and rotate that cube to the left or
+  /** Pretend the pages are sides of a cube and rotate that cube to the left or
     * right according to the children order
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ROTATE_LEFT_RIGHT
       extends StackTransitionType(

@@ -2,35 +2,39 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkCssParserWarning
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Warnings that can occur while parsing CSS.
+/** Warnings that can occur while parsing CSS.
   *
   * Unlike `GtkCssParserError`s, warnings do not cause the parser to skip any
   * input, but they indicate issues that should be fixed.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum CssParserWarning(val raw: GtkCssParserWarning):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The given construct is deprecated and will be removed in a future version
     *
-    * The given construct is deprecated and will be removed in a future version
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DEPRECATED
       extends CssParserWarning(
         GtkCssParserWarning.GTK_CSS_PARSER_WARNING_DEPRECATED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A syntax construct was used that should be avoided
     *
-    * A syntax construct was used that should be avoided
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SYNTAX
       extends CssParserWarning(
         GtkCssParserWarning.GTK_CSS_PARSER_WARNING_SYNTAX
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A feature is not implemented
     *
-    * A feature is not implemented
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNIMPLEMENTED
       extends CssParserWarning(

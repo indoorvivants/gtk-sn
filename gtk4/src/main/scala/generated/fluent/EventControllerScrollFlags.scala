@@ -2,9 +2,10 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkEventControllerScrollFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Describes the behavior of a `GtkEventControllerScroll`.
   *
-  * Describes the behavior of a `GtkEventControllerScroll`.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class EventControllerScrollFlags private (
     val raw: GtkEventControllerScrollFlags
@@ -35,17 +36,19 @@ object EventControllerScrollFlags:
     def |(other: EventControllerScrollFlags) =
       EventControllerScrollFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Describes the behavior of a `GtkEventControllerScroll`.
     *
-    * Describes the behavior of a `GtkEventControllerScroll`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GtkEventControllerScrollFlags, name: String)
       extends EventControllerScrollFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Don't emit scroll.
       *
-      * Don't emit scroll.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(
@@ -53,9 +56,10 @@ object EventControllerScrollFlags:
           "NONE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Emit scroll with vertical deltas.
       *
-      * Emit scroll with vertical deltas.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case VERTICAL
         extends KnownValue(
@@ -63,9 +67,10 @@ object EventControllerScrollFlags:
           "VERTICAL"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Emit scroll with horizontal deltas.
       *
-      * Emit scroll with horizontal deltas.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case HORIZONTAL
         extends KnownValue(
@@ -73,9 +78,10 @@ object EventControllerScrollFlags:
           "HORIZONTAL"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Only emit deltas that are multiples of 1.
       *
-      * Only emit deltas that are multiples of 1.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DISCRETE
         extends KnownValue(
@@ -83,9 +89,10 @@ object EventControllerScrollFlags:
           "DISCRETE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Emit ::decelerate after continuous scroll finishes.
       *
-      * Emit ::decelerate after continuous scroll finishes.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case KINETIC
         extends KnownValue(
@@ -93,9 +100,10 @@ object EventControllerScrollFlags:
           "KINETIC"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Emit scroll on both axes.
       *
-      * Emit scroll on both axes.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case BOTH_AXES
         extends KnownValue(

@@ -2,10 +2,11 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkPopoverMenuFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags that affect how [class@Gtk.PopoverMenu] widgets built from a
+/** Flags that affect how [class@Gtk.PopoverMenu] widgets built from a
   * [class@Gio.MenuModel] are created and displayed.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PopoverMenuFlags private (val raw: GtkPopoverMenuFlags):
   def is(kv: PopoverMenuFlags): Boolean =
@@ -33,19 +34,21 @@ object PopoverMenuFlags:
     def |(other: PopoverMenuFlags) =
       PopoverMenuFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags that affect how [class@Gtk.PopoverMenu] widgets built from a
+  /** Flags that affect how [class@Gtk.PopoverMenu] widgets built from a
     * [class@Gio.MenuModel] are created and displayed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GtkPopoverMenuFlags, name: String)
       extends PopoverMenuFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Create submenus as nested popovers. Without this flag, submenus are
+    /** Create submenus as nested popovers. Without this flag, submenus are
       * created as sliding pages that replace the main menu.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NESTED
         extends KnownValue(

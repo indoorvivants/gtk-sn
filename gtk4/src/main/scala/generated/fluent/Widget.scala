@@ -34,9 +34,7 @@ import sn.gnome.gtk4.fluent.{
 import sn.gnome.gtk4.internal.GtkWidget
 import sn.gnome.pango.fluent.{Context, FontMap, Layout}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The base class for all widgets.
+/** The base class for all widgets.
   *
   * `GtkWidget` is the base class all widgets in GTK derive from. It manages the
   * widget lifecycle, layout, states and style.
@@ -420,6 +418,9 @@ import sn.gnome.pango.fluent.{Context, FontMap, Layout}
   *   gtk_widget_class_bind_template_callback (GTK_WIDGET_CLASS (klass), hello_button_clicked);
   * }
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Widget(raw: Ptr[GtkWidget])
     extends InitiallyUnowned(raw.asInstanceOf),
@@ -429,10 +430,11 @@ class Widget(raw: Ptr[GtkWidget])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Enable or disable an action installed with
+  /** Enable or disable an action installed with
     * gtk_widget_class_install_action().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def actionSetEnabled(
       action_name: String | CString /* Some(CString) */,
@@ -443,9 +445,7 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if enabled == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * For widgets that can be “activated” (buttons, menu items, etc.), this
+  /** For widgets that can be “activated” (buttons, menu items, etc.), this
     * function activates them.
     *
     * The activation will emit the signal set using
@@ -459,17 +459,21 @@ class Widget(raw: Ptr[GtkWidget])
     * created with [ctor@Gtk.SignalAction.new].
     *
     * If @widget isn't activatable, the function returns %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def activate(): Boolean /* None */ =
     gtk_widget_activate(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up the action in the action groups associated with @widget and its
+  /** Looks up the action in the action groups associated with @widget and its
     * ancestors, and activates it.
     *
     * This is a wrapper around [method@Gtk.Widget.activate_action_variant] that
     * constructs the @args variant according to @format_string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def activateAction(
       name: String | CString /* Some(CString) */,
@@ -484,9 +488,7 @@ class Widget(raw: Ptr[GtkWidget])
     args*
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up the action in the action groups associated with
+  /** Looks up the action in the action groups associated with
     * @widget
     *   and its ancestors, and activates it.
     *
@@ -496,26 +498,31 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * The arguments must match the actions expected parameter type, as returned
     * by `g_action_get_parameter_type()`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[activate_action_variant/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def activateActionVariant__ = ???
+  private def activateActionVariant__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Activates the `default.activate` action from @widget.
     *
-    * Activates the `default.activate` action from @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def activateDefault(): Unit /* None */ = gtk_widget_activate_default(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds @controller to @widget so that it will receive events.
+  /** Adds @controller to @widget so that it will receive events.
     *
     * You will usually want to call this function right after creating any kind
     * of [class@Gtk.EventController].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addController(
       controller: EventController /* Some(Ptr[GtkEventController]) */
@@ -524,14 +531,15 @@ class Widget(raw: Ptr[GtkWidget])
     controller.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a style class to @widget.
+  /** Adds a style class to @widget.
     *
     * After calling this function, the widget’s style will match for @css_class,
     * according to CSS matching rules.
     *
     * Use [method@Gtk.Widget.remove_css_class] to remove the style again.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addCssClass(
       css_class: String | CString /* Some(CString) */
@@ -540,13 +548,14 @@ class Widget(raw: Ptr[GtkWidget])
     __sn_extract_string(css_class)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a widget to the list of mnemonic labels for this widget.
+  /** Adds a widget to the list of mnemonic labels for this widget.
     *
     * See [method@Gtk.Widget.list_mnemonic_labels]. Note the list of mnemonic
     * labels for the widget is cleared when the widget is destroyed, so the
     * caller must make sure to update its internal state at this point as well.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addMnemonicLabel(
       label: Widget /* Some(Ptr[GtkWidget]) */
@@ -555,9 +564,7 @@ class Widget(raw: Ptr[GtkWidget])
     label.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queues an animation frame update and adds a callback to be called before
+  /** Queues an animation frame update and adds a callback to be called before
     * each frame.
     *
     * Until the tick callback is removed, it will be called frequently (usually
@@ -578,15 +585,16 @@ class Widget(raw: Ptr[GtkWidget])
     * This is a more convenient alternative to connecting directly to the
     * [signal@Gdk.FrameClock::update] signal of `GdkFrameClock`, since you don't
     * have to worry about when a `GdkFrameClock` is assigned to a widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TickCallback), @type -> DataRecord(GtkTickCallback)))"
+    "[add_tick_callback/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TickCallback), @type -> DataRecord(GtkTickCallback)))"
   )
-  def addTickCallback__ = ???
+  private def addTickCallback__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is only used by `GtkWidget` subclasses, to assign a size,
+  /** This function is only used by `GtkWidget` subclasses, to assign a size,
     * position and (optionally) baseline to their child widgets.
     *
     * In this function, the allocation and baseline may be adjusted. The given
@@ -595,15 +603,16 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * For a version that does not take a transform, see
     * [method@Gtk.Widget.size_allocate].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
+    "[allocate/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
-  def allocate__ = ???
+  private def allocate__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Called by widgets as the user moves around the window using keyboard
+  /** Called by widgets as the user moves around the window using keyboard
     * shortcuts.
     *
     * The @direction argument indicates what kind of motion is taking place (up,
@@ -623,6 +632,9 @@ class Widget(raw: Ptr[GtkWidget])
     * This function is used by custom widget implementations; if you're writing
     * an app, you’d use [method@Gtk.Widget.grab_focus] to move the focus to a
     * particular widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def childFocus(
       direction: DirectionType /* Some(GtkDirectionType) */
@@ -631,9 +643,7 @@ class Widget(raw: Ptr[GtkWidget])
     direction.raw
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes the bounds for @widget in the coordinate space of @target.
+  /** Computes the bounds for @widget in the coordinate space of @target.
     *
     * The bounds of widget are (the bounding box of) the region that it is
     * expected to draw in. See the [coordinate system](coordinates.html)
@@ -645,15 +655,16 @@ class Widget(raw: Ptr[GtkWidget])
     * and @bounds is set to the zero rectangle.
     *
     * It is valid for @widget and @target to be the same widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method compute_bounds contains an OUT parameter, which is not supported yet"
+    "[compute_bounds]: Method compute_bounds contains an OUT parameter, which is not supported yet"
   )
-  def computeBounds__ = ???
+  private def computeBounds__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes whether a container should give this widget extra space when
+  /** Computes whether a container should give this widget extra space when
     * possible.
     *
     * Containers should check this, rather than looking at
@@ -666,6 +677,9 @@ class Widget(raw: Ptr[GtkWidget])
     * The computed expand value uses either the expand setting explicitly set on
     * the widget itself, or, if none has been explicitly set, the widget may
     * expand if some of its children do.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def computeExpand(
       orientation: Orientation /* Some(GtkOrientation) */
@@ -674,22 +688,21 @@ class Widget(raw: Ptr[GtkWidget])
     orientation.raw
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Translates the given @point in @widget's coordinates to coordinates
+  /** Translates the given @point in @widget's coordinates to coordinates
     * relative to @target’s coordinate system.
     *
     * In order to perform this operation, both widgets must share a common
     * ancestor.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method compute_point contains an OUT parameter, which is not supported yet"
+    "[compute_point]: Method compute_point contains an OUT parameter, which is not supported yet"
   )
-  def computePoint__ = ???
+  private def computePoint__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Computes a matrix suitable to describe a transformation from
+  /** Computes a matrix suitable to describe a transformation from
     * @widget's
     *   coordinate system into @target's coordinate system.
     *
@@ -699,18 +712,22 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * To learn more about widget coordinate systems, see the coordinate system
     * [overview](coordinates.html).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method compute_transform contains an OUT parameter, which is not supported yet"
+    "[compute_transform]: Method compute_transform contains an OUT parameter, which is not supported yet"
   )
-  def computeTransform__ = ???
+  private def computeTransform__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tests if the point at (@x, @y) is contained in @widget.
+  /** Tests if the point at (@x, @y) is contained in @widget.
     *
     * The coordinates for (@x, @y) must be in widget coordinates, so (0, 0) is
     * assumed to be the top left of @widget's content area.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def contains(
       x: Double /* Some(Double) */,
@@ -718,12 +735,13 @@ class Widget(raw: Ptr[GtkWidget])
   ): Boolean /* None */ =
     gtk_widget_contains(this.raw.asInstanceOf[Ptr[GtkWidget]], x, y).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `PangoContext` with the appropriate font map, font options,
+  /** Creates a new `PangoContext` with the appropriate font map, font options,
     * font description, and base direction for drawing text for this widget.
     *
     * See also [method@Gtk.Widget.get_pango_context].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def createPangoContext(): Context /* None */ = new Context(
     gtk_widget_create_pango_context(
@@ -731,15 +749,16 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `PangoLayout` with the appropriate font map, font
+  /** Creates a new `PangoLayout` with the appropriate font map, font
     * description, and base direction for drawing text for this widget.
     *
     * If you keep a `PangoLayout` created in this way around, you need to
     * re-create it when the widget `PangoContext` is replaced. This can be
     * tracked by listening to changes of the [property@Gtk.Widget:root] property
     * on the widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def createPangoLayout(
       text: Option[String | CString /* Some(CString) */ ]
@@ -752,9 +771,7 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Clears the template children for the given widget.
+  /** Clears the template children for the given widget.
     *
     * This function is the opposite of [method@Gtk.Widget.init_template], and it
     * is used to clear all the template children from a widget instance. If you
@@ -779,6 +796,9 @@ class Widget(raw: Ptr[GtkWidget])
     *   G_OBJECT_CLASS (some_widget_parent_class)->dispose (gobject);
     * }
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def disposeTemplate(
       widget_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */
@@ -787,9 +807,10 @@ class Widget(raw: Ptr[GtkWidget])
     widget_type
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks to see if a drag movement has passed the GTK drag threshold.
     *
-    * Checks to see if a drag movement has passed the GTK drag threshold.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def dragCheckThreshold(
       start_x: Int /* Some(CInt) */,
@@ -804,9 +825,7 @@ class Widget(raw: Ptr[GtkWidget])
     current_y
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Notifies the user about an input-related error on this widget.
+  /** Notifies the user about an input-related error on this widget.
     *
     * If the [property@Gtk.Settings:gtk-error-bell] setting is %TRUE, it calls
     * [method@Gdk.Surface.beep], otherwise it does nothing.
@@ -814,47 +833,51 @@ class Widget(raw: Ptr[GtkWidget])
     * Note that the effect of [method@Gdk.Surface.beep] can be configured in
     * many ways, depending on the windowing backend and the desktop environment
     * or window manager that is used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def errorBell(): Unit /* None */ = gtk_widget_error_bell(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the baseline that has currently been allocated to @widget.
+  /** Returns the baseline that has currently been allocated to @widget.
     *
     * This function is intended to be used when implementing handlers for the
     * `GtkWidget`Class.snapshot() function, and when allocating child widgets in
     * `GtkWidget`Class.size_allocate().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAllocatedBaseline(): Int /* None */ =
     gtk_widget_get_allocated_baseline(this.raw.asInstanceOf[Ptr[GtkWidget]])
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the height that has currently been allocated to @widget.
+  /** Returns the height that has currently been allocated to @widget.
     *
     * To learn more about widget sizes, see the coordinate system
     * [overview](coordinates.html).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAllocatedHeight(): Int /* None */ = gtk_widget_get_allocated_height(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the width that has currently been allocated to @widget.
+  /** Returns the width that has currently been allocated to @widget.
     *
     * To learn more about widget sizes, see the coordinate system
     * [overview](coordinates.html).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAllocatedWidth(): Int /* None */ = gtk_widget_get_allocated_width(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the widget’s allocation.
+  /** Retrieves the widget’s allocation.
     *
     * Note, when implementing a layout container: a widget’s allocation will be
     * its “adjusted” allocation, that is, the widget’s parent typically calls
@@ -868,15 +891,16 @@ class Widget(raw: Ptr[GtkWidget])
     * So a layout container is guaranteed that its children stay inside the
     * assigned bounds, but not that they have exactly the bounds the container
     * assigned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_allocation contains an OUT parameter, which is not supported yet"
+    "[get_allocation]: Method get_allocation contains an OUT parameter, which is not supported yet"
   )
-  def getAllocation__ = ???
+  private def getAllocation__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the first ancestor of @widget with type @widget_type.
+  /** Gets the first ancestor of @widget with type @widget_type.
     *
     * For example, `gtk_widget_get_ancestor (widget, GTK_TYPE_BOX)` gets the
     * first `GtkBox` that’s an ancestor of @widget. No reference will be added
@@ -884,6 +908,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * Note that unlike [method@Gtk.Widget.is_ancestor], this function considers @widget
     * to be an ancestor of itself.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAncestor(
       widget_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */
@@ -894,115 +921,123 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the baseline that has currently been allocated to @widget.
+  /** Returns the baseline that has currently been allocated to @widget.
     *
     * This function is intended to be used when implementing handlers for the
     * `GtkWidget`Class.snapshot() function, and when allocating child widgets in
     * `GtkWidget`Class.size_allocate().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getBaseline(): Int /* None */ = gtk_widget_get_baseline(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether the input focus can enter @widget or any of its
+  /** Determines whether the input focus can enter @widget or any of its
     * children.
     *
     * See [method@Gtk.Widget.set_focusable].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCanFocus(): Boolean /* None */ =
     gtk_widget_get_can_focus(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Queries whether @widget can be the target of pointer events.
     *
-    * Queries whether @widget can be the target of pointer events.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCanTarget(): Boolean /* None */ =
     gtk_widget_get_can_target(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value set with gtk_widget_set_child_visible().
+  /** Gets the value set with gtk_widget_set_child_visible().
     *
     * If you feel a need to use this function, your code probably needs
     * reorganization.
     *
     * This function is only useful for container implementations and should
     * never be called by an application.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChildVisible(): Boolean /* None */ = gtk_widget_get_child_visible(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the clipboard object for @widget.
+  /** Gets the clipboard object for @widget.
     *
     * This is a utility function to get the clipboard object for the
     * `GdkDisplay` that @widget is using.
     *
     * Note that this function always works, even when @widget is not realized
     * yet.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getClipboard(): Clipboard /* None */ = new Clipboard(
     gtk_widget_get_clipboard(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the current foreground color for the widget’s CSS style.
+  /** Gets the current foreground color for the widget’s CSS style.
     *
     * This function should only be used in snapshot implementations that need to
     * do custom drawing with the foreground color.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_color contains an OUT parameter, which is not supported yet"
+    "[get_color]: Method get_color contains an OUT parameter, which is not supported yet"
   )
-  def getColor__ = ???
+  private def getColor__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the list of style classes applied to @widget.
     *
-    * Returns the list of style classes applied to @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCssClasses()(using Zone): Array[String] /* None */ =
     __decode_nullable_ptrs(
       gtk_widget_get_css_classes(this.raw.asInstanceOf[Ptr[GtkWidget]])
     ).map(fromCString(_))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the CSS name that is used for @self.
     *
-    * Returns the CSS name that is used for @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCssName()(using Zone): String /* None */ = fromCString(
     gtk_widget_get_css_name(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries the cursor set on @widget.
+  /** Queries the cursor set on @widget.
     *
     * See [method@Gtk.Widget.set_cursor] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCursor(): Cursor /* None */ = new Cursor(
     gtk_widget_get_cursor(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the reading direction for a particular widget.
+  /** Gets the reading direction for a particular widget.
     *
     * See [method@Gtk.Widget.set_direction].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDirection(): TextDirection /* None */ = TextDirection.fromRaw(
     gtk_widget_get_direction(this.raw.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get the `GdkDisplay` for the toplevel window associated with this widget.
+  /** Get the `GdkDisplay` for the toplevel window associated with this widget.
     *
     * This function can only be called after the widget has been added to a
     * widget hierarchy with a `GtkWindow` at the top.
@@ -1010,16 +1045,20 @@ class Widget(raw: Ptr[GtkWidget])
     * In general, you should only create display specific resources when a
     * widget has been realized, and you should free those resources when the
     * widget is unrealized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDisplay(): Display /* None */ = new Display(
     gtk_widget_get_display(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the widget’s first child.
+  /** Returns the widget’s first child.
     *
     * This API is primarily meant for widget implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFirstChild(): Widget /* None */ = new Widget(
     gtk_widget_get_first_child(
@@ -1027,9 +1066,10 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the current focus child of @widget.
     *
-    * Returns the current focus child of @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFocusChild(): Widget /* None */ = new Widget(
     gtk_widget_get_focus_child(
@@ -1037,50 +1077,52 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the widget should grab focus when it is clicked with the
+  /** Returns whether the widget should grab focus when it is clicked with the
     * mouse.
     *
     * See [method@Gtk.Widget.set_focus_on_click].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFocusOnClick(): Boolean /* None */ = gtk_widget_get_focus_on_click(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether @widget can own the input focus.
+  /** Determines whether @widget can own the input focus.
     *
     * See [method@Gtk.Widget.set_focusable].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFocusable(): Boolean /* None */ =
     gtk_widget_get_focusable(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the font map of @widget.
+  /** Gets the font map of @widget.
     *
     * See [method@Gtk.Widget.set_font_map].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFontMap(): FontMap /* None */ = new FontMap(
     gtk_widget_get_font_map(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the `cairo_font_options_t` of widget.
+  /** Returns the `cairo_font_options_t` of widget.
     *
     * Seee [method@Gtk.Widget.set_font_options].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
+    "[get_font_options/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
   )
-  def getFontOptions__ = ???
+  private def getFontOptions__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains the frame clock for a widget.
+  /** Obtains the frame clock for a widget.
     *
     * The frame clock is a global “ticker” that can be used to drive animations
     * and repaints. The most common reason to get the frame clock is to call
@@ -1102,6 +1144,9 @@ class Widget(raw: Ptr[GtkWidget])
     * widget’s frame clock.
     *
     * Unrealized widgets do not have a frame clock.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFrameClock(): FrameClock /* None */ = new FrameClock(
     gtk_widget_get_frame_clock(
@@ -1109,30 +1154,30 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the horizontal alignment of @widget.
+  /** Gets the horizontal alignment of @widget.
     *
     * For backwards compatibility reasons this method will never return one of
     * the baseline alignments, but instead it will convert it to
     * `GTK_ALIGN_FILL` or `GTK_ALIGN_CENTER`.
     *
     * Baselines are not supported for horizontal alignment.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHalign(): Align /* None */ =
     Align.fromRaw(gtk_widget_get_halign(this.raw.asInstanceOf[Ptr[GtkWidget]]))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the current value of the `has-tooltip` property.
     *
-    * Returns the current value of the `has-tooltip` property.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasTooltip(): Boolean /* None */ = gtk_widget_get_has_tooltip(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the content height of the widget.
+  /** Returns the content height of the widget.
     *
     * This function returns the height passed to its size-allocate
     * implementation, which is the height you should be using in
@@ -1142,14 +1187,15 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * To learn more about widget sizes, see the coordinate system
     * [overview](coordinates.html).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeight(): Int /* None */ = gtk_widget_get_height(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether the widget would like any available extra horizontal space.
+  /** Gets whether the widget would like any available extra horizontal space.
     *
     * When a user resizes a `GtkWindow`, widgets with expand=TRUE generally
     * receive the extra space. For example, a list or scrollable area or
@@ -1163,13 +1209,14 @@ class Widget(raw: Ptr[GtkWidget])
     * This function only looks at the widget’s own hexpand flag, rather than
     * computing whether the entire widget tree rooted at this widget wants to
     * expand.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHexpand(): Boolean /* None */ =
     gtk_widget_get_hexpand(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether gtk_widget_set_hexpand() has been used to explicitly set the
+  /** Gets whether gtk_widget_set_hexpand() has been used to explicitly set the
     * expand flag on this widget.
     *
     * If [property@Gtk.Widget:hexpand] property is set, then it overrides any
@@ -1179,16 +1226,20 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * There are few reasons to use this function, but it’s here for completeness
     * and consistency.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHexpandSet(): Boolean /* None */ = gtk_widget_get_hexpand_set(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the widget’s last child.
+  /** Returns the widget’s last child.
     *
     * This API is primarily meant for widget implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLastChild(): Widget /* None */ = new Widget(
     gtk_widget_get_last_child(
@@ -1196,11 +1247,12 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the layout manager used by @widget.
+  /** Retrieves the layout manager used by @widget.
     *
     * See [method@Gtk.Widget.set_layout_manager].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLayoutManager(): LayoutManager /* None */ = new LayoutManager(
     gtk_widget_get_layout_manager(
@@ -1208,73 +1260,81 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Whether the widget is mapped.
     *
-    * Whether the widget is mapped.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMapped(): Boolean /* None */ =
     gtk_widget_get_mapped(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the bottom margin of @widget.
     *
-    * Gets the bottom margin of @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMarginBottom(): Int /* None */ = gtk_widget_get_margin_bottom(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the end margin of @widget.
     *
-    * Gets the end margin of @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMarginEnd(): Int /* None */ = gtk_widget_get_margin_end(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the start margin of @widget.
     *
-    * Gets the start margin of @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMarginStart(): Int /* None */ = gtk_widget_get_margin_start(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the top margin of @widget.
     *
-    * Gets the top margin of @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMarginTop(): Int /* None */ = gtk_widget_get_margin_top(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the name of a widget.
+  /** Retrieves the name of a widget.
     *
     * See [method@Gtk.Widget.set_name] for the significance of widget names.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     gtk_widget_get_name(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the nearest `GtkNative` ancestor of @widget.
+  /** Returns the nearest `GtkNative` ancestor of @widget.
     *
     * This function will return %NULL if the widget is not contained inside a
     * widget tree with a native ancestor.
     *
     * `GtkNative` widgets will return themselves here.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNative(): Native /* None */ = new Native.Abstract(
     gtk_widget_get_native(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the widget’s next sibling.
+  /** Returns the widget’s next sibling.
     *
     * This API is primarily meant for widget implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNextSibling(): Widget /* None */ = new Widget(
     gtk_widget_get_next_sibling(
@@ -1282,27 +1342,27 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * #Fetches the requested opacity for this widget.
+  /** #Fetches the requested opacity for this widget.
     *
     * See [method@Gtk.Widget.set_opacity].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOpacity(): Double /* None */ = gtk_widget_get_opacity(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the widget’s overflow value.
     *
-    * Returns the widget’s overflow value.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOverflow(): Overflow /* None */ = Overflow.fromRaw(
     gtk_widget_get_overflow(this.raw.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a `PangoContext` with the appropriate font map, font description, and
+  /** Gets a `PangoContext` with the appropriate font map, font description, and
     * base direction for this widget.
     *
     * Unlike the context returned by [method@Gtk.Widget.create_pango_context],
@@ -1311,6 +1371,9 @@ class Widget(raw: Ptr[GtkWidget])
     * be updated to match any changes to the widget’s attributes. This can be
     * tracked by listening to changes of the [property@Gtk.Widget:root] property
     * on the widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPangoContext(): Context /* None */ = new Context(
     gtk_widget_get_pango_context(
@@ -1318,17 +1381,16 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the parent widget of @widget.
     *
-    * Returns the parent widget of @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getParent(): Widget /* None */ = new Widget(
     gtk_widget_get_parent(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the minimum and natural size of a widget, taking into account
+  /** Retrieves the minimum and natural size of a widget, taking into account
     * the widget’s preference for height-for-width management.
     *
     * This is used to retrieve a suitable size by container widgets which do not
@@ -1342,17 +1404,21 @@ class Widget(raw: Ptr[GtkWidget])
     * required height for the minimum width.
     *
     * Use [method@Gtk.Widget.measure] if you want to support baseline alignment.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_preferred_size contains an OUT parameter, which is not supported yet"
+    "[get_preferred_size]: Method get_preferred_size contains an OUT parameter, which is not supported yet"
   )
-  def getPreferredSize__ = ???
+  private def getPreferredSize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the widget’s previous sibling.
+  /** Returns the widget’s previous sibling.
     *
     * This API is primarily meant for widget implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPrevSibling(): Widget /* None */ = new Widget(
     gtk_widget_get_prev_sibling(
@@ -1360,15 +1426,16 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the primary clipboard of @widget.
+  /** Gets the primary clipboard of @widget.
     *
     * This is a utility function to get the primary clipboard object for the
     * `GdkDisplay` that @widget is using.
     *
     * Note that this function always works, even when @widget is not realized
     * yet.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPrimaryClipboard(): Clipboard /* None */ = new Clipboard(
     gtk_widget_get_primary_clipboard(
@@ -1376,67 +1443,70 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determines whether @widget is realized.
     *
-    * Determines whether @widget is realized.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRealized(): Boolean /* None */ =
     gtk_widget_get_realized(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether @widget is always treated as the default widget within
+  /** Determines whether @widget is always treated as the default widget within
     * its toplevel when it has the focus, even if another widget is the default.
     *
     * See [method@Gtk.Widget.set_receives_default].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getReceivesDefault(): Boolean /* None */ =
     gtk_widget_get_receives_default(this.raw.asInstanceOf[Ptr[GtkWidget]]).value
       .!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether the widget prefers a height-for-width layout or a
+  /** Gets whether the widget prefers a height-for-width layout or a
     * width-for-height layout.
     *
     * Single-child widgets generally propagate the preference of their child,
     * more complex widgets need to request something either in context of their
     * children or in context of their allocation capabilities.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRequestMode(): SizeRequestMode /* None */ = SizeRequestMode.fromRaw(
     gtk_widget_get_request_mode(this.raw.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the `GtkRoot` widget of @widget.
+  /** Returns the `GtkRoot` widget of @widget.
     *
     * This function will return %NULL if the widget is not contained inside a
     * widget tree with a root widget.
     *
     * `GtkRoot` widgets will return themselves here.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRoot(): Root /* None */ = new Root.Abstract(
     gtk_widget_get_root(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the internal scale factor that maps from window coordinates to
+  /** Retrieves the internal scale factor that maps from window coordinates to
     * the actual device pixels.
     *
     * On traditional systems this is 1, on high density outputs, it can be a
     * higher value (typically 2).
     *
     * See [method@Gdk.Surface.get_scale_factor].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getScaleFactor(): Int /* None */ = gtk_widget_get_scale_factor(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the widget’s sensitivity.
+  /** Returns the widget’s sensitivity.
     *
     * This function returns the value that has been set using
     * [method@Gtk.Widget.set_sensitive]).
@@ -1444,26 +1514,28 @@ class Widget(raw: Ptr[GtkWidget])
     * The effective sensitivity of a widget is however determined by both its
     * own and its parent widget’s sensitivity. See
     * [method@Gtk.Widget.is_sensitive].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSensitive(): Boolean /* None */ =
     gtk_widget_get_sensitive(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the settings object holding the settings used for this widget.
+  /** Gets the settings object holding the settings used for this widget.
     *
     * Note that this function can only be called when the `GtkWidget` is
     * attached to a toplevel, since the settings object is specific to a
     * particular `GdkDisplay`. If you want to monitor the widget for changes in
     * its settings, connect to the `notify::display` signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSettings(): Settings /* None */ = new Settings(
     gtk_widget_get_settings(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the content width or height of the widget.
+  /** Returns the content width or height of the widget.
     *
     * Which dimension is returned depends on @orientation.
     *
@@ -1475,15 +1547,16 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * To learn more about widget sizes, see the coordinate system
     * [overview](coordinates.html).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSize(
       orientation: Orientation /* Some(GtkOrientation) */
   ): Int /* None */ =
     gtk_widget_get_size(this.raw.asInstanceOf[Ptr[GtkWidget]], orientation.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the size request that was explicitly set for the widget using
+  /** Gets the size request that was explicitly set for the widget using
     * gtk_widget_set_size_request().
     *
     * A value of -1 stored in @width or @height indicates that that dimension
@@ -1491,15 +1564,16 @@ class Widget(raw: Ptr[GtkWidget])
     * be used instead. See [method@Gtk.Widget.set_size_request]. To get the size
     * a widget will actually request, call [method@Gtk.Widget.measure] instead
     * of this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_size_request contains an OUT parameter, which is not supported yet"
+    "[get_size_request]: Method get_size_request contains an OUT parameter, which is not supported yet"
   )
-  def getSizeRequest__ = ???
+  private def getSizeRequest__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the widget state as a flag set.
+  /** Returns the widget state as a flag set.
     *
     * It is worth mentioning that the effective %GTK_STATE_FLAG_INSENSITIVE
     * state will be returned, that is, also based on parent insensitivity, even
@@ -1508,16 +1582,20 @@ class Widget(raw: Ptr[GtkWidget])
     * Also note that if you are looking for a way to obtain the
     * [flags@Gtk.StateFlags] to pass to a [class@Gtk.StyleContext] method, you
     * should look at [method@Gtk.StyleContext.get_state].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStateFlags(): StateFlags /* None */ = StateFlags.fromRaw(
     gtk_widget_get_state_flags(this.raw.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the style context associated to @widget.
+  /** Returns the style context associated to @widget.
     *
     * The returned object is guaranteed to be the same for the lifetime of @widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStyleContext(): StyleContext /* None */ = new StyleContext(
     gtk_widget_get_style_context(
@@ -1525,9 +1603,7 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fetch an object build from the template XML for @widget_type in this @widget
+  /** Fetch an object build from the template XML for @widget_type in this @widget
     * instance.
     *
     * This will only report children which were previously declared with
@@ -1536,6 +1612,9 @@ class Widget(raw: Ptr[GtkWidget])
     * This function is only meant to be called for code which is private to the @widget_type
     * which declared the child and is meant for language bindings which cannot
     * easily make use of the GObject structure offsets.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTemplateChild(
       widget_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
@@ -1548,12 +1627,13 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the contents of the tooltip for @widget.
+  /** Gets the contents of the tooltip for @widget.
     *
     * If the tooltip has not been set using
     * [method@Gtk.Widget.set_tooltip_markup], this function returns %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTooltipMarkup()(using Zone): String /* None */ = fromCString(
     gtk_widget_get_tooltip_markup(
@@ -1561,13 +1641,14 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the contents of the tooltip for @widget.
+  /** Gets the contents of the tooltip for @widget.
     *
     * If the @widget's tooltip was set using
     * [method@Gtk.Widget.set_tooltip_markup], this function will return the
     * escaped text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTooltipText()(using Zone): String /* None */ = fromCString(
     gtk_widget_get_tooltip_text(
@@ -1575,36 +1656,37 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the vertical alignment of @widget.
     *
-    * Gets the vertical alignment of @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getValign(): Align /* None */ =
     Align.fromRaw(gtk_widget_get_valign(this.raw.asInstanceOf[Ptr[GtkWidget]]))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether the widget would like any available extra vertical space.
+  /** Gets whether the widget would like any available extra vertical space.
     *
     * See [method@Gtk.Widget.get_hexpand] for more detail.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVexpand(): Boolean /* None */ =
     gtk_widget_get_vexpand(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether gtk_widget_set_vexpand() has been used to explicitly set the
+  /** Gets whether gtk_widget_set_vexpand() has been used to explicitly set the
     * expand flag on this widget.
     *
     * See [method@Gtk.Widget.get_hexpand_set] for more detail.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVexpandSet(): Boolean /* None */ = gtk_widget_get_vexpand_set(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether the widget is visible.
+  /** Determines whether the widget is visible.
     *
     * If you want to take into account whether the widget’s parent is also
     * marked as visible, use [method@Gtk.Widget.is_visible] instead.
@@ -1612,13 +1694,14 @@ class Widget(raw: Ptr[GtkWidget])
     * This function does not check if the widget is obscured in any way.
     *
     * See [method@Gtk.Widget.set_visible].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVisible(): Boolean /* None */ =
     gtk_widget_get_visible(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the content width of the widget.
+  /** Returns the content width of the widget.
     *
     * This function returns the width passed to its size-allocate
     * implementation, which is the width you should be using in
@@ -1628,14 +1711,15 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * To learn more about widget sizes, see the coordinate system
     * [overview](coordinates.html).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWidth(): Int /* None */ = gtk_widget_get_width(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Causes @widget to have the keyboard focus for the `GtkWindow` it's inside.
+  /** Causes @widget to have the keyboard focus for the `GtkWindow` it's inside.
     *
     * If @widget is not focusable, or its [vfunc@Gtk.Widget.grab_focus]
     * implementation cannot transfer the focus to a descendant of @widget that
@@ -1643,13 +1727,17 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * Calling [method@Gtk.Widget.grab_focus] on an already focused widget is
     * allowed, should not have an effect, and return %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def grabFocus(): Boolean /* None */ =
     gtk_widget_grab_focus(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether @css_class is currently applied to @widget.
     *
-    * Returns whether @css_class is currently applied to @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasCssClass(
       css_class: String | CString /* Some(CString) */
@@ -1658,27 +1746,27 @@ class Widget(raw: Ptr[GtkWidget])
     __sn_extract_string(css_class)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether @widget is the current default widget within its
+  /** Determines whether @widget is the current default widget within its
     * toplevel.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasDefault(): Boolean /* None */ =
     gtk_widget_has_default(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines if the widget has the global input focus.
+  /** Determines if the widget has the global input focus.
     *
     * See [method@Gtk.Widget.is_focus] for the difference between having the
     * global input focus, and only having the focus within a toplevel.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasFocus(): Boolean /* None */ =
     gtk_widget_has_focus(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines if the widget should show a visible indication that it has the
+  /** Determines if the widget should show a visible indication that it has the
     * global input focus.
     *
     * This is a convenience function that takes into account whether focus
@@ -1688,33 +1776,36 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * To find out if the widget has the global input focus, use
     * [method@Gtk.Widget.has_focus].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasVisibleFocus(): Boolean /* None */ = gtk_widget_has_visible_focus(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reverses the effects of gtk_widget_show().
+  /** Reverses the effects of gtk_widget_show().
     *
     * This is causing the widget to be hidden (invisible to the user).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hide(): Unit /* None */ = gtk_widget_hide(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the widget is currently being destroyed.
+  /** Returns whether the widget is currently being destroyed.
     *
     * This information can sometimes be used to avoid doing unnecessary work.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def inDestruction(): Boolean /* None */ =
     gtk_widget_in_destruction(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates and initializes child widgets defined in templates.
+  /** Creates and initializes child widgets defined in templates.
     *
     * This function must be called in the instance initializer for any class
     * which assigned itself a template using
@@ -1734,14 +1825,15 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * A good rule of thumb is to call this function as the first thing in an
     * instance initialization function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def initTemplate(): Unit /* None */ = gtk_widget_init_template(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts @group into @widget.
+  /** Inserts @group into @widget.
     *
     * Children of @widget that implement [iface@Gtk.Actionable] can then be
     * associated with actions in @group by setting their “action-name” to @prefix.`action-name`.
@@ -1752,6 +1844,9 @@ class Widget(raw: Ptr[GtkWidget])
     * with the same name.
     *
     * If @group is %NULL, a previously inserted group for @name is removed from @widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertActionGroup(
       name: String | CString /* Some(CString) */,
@@ -1770,9 +1865,7 @@ class Widget(raw: Ptr[GtkWidget])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts @widget into the child widget list of @parent.
+  /** Inserts @widget into the child widget list of @parent.
     *
     * It will be placed after @previous_sibling, or at the beginning if
     * @previous_sibling
@@ -1786,6 +1879,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * This API is primarily meant for widget implementations; if you are just
     * using a widget, you *must* use its own API for adding children.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertAfter(
       parent: Widget /* Some(Ptr[GtkWidget]) */,
@@ -1798,9 +1894,7 @@ class Widget(raw: Ptr[GtkWidget])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Inserts @widget into the child widget list of @parent.
+  /** Inserts @widget into the child widget list of @parent.
     *
     * It will be placed before @next_sibling, or at the end if
     * @next_sibling
@@ -1814,6 +1908,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * This API is primarily meant for widget implementations; if you are just
     * using a widget, you *must* use its own API for adding children.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertBefore(
       parent: Widget /* Some(Ptr[GtkWidget]) */,
@@ -1826,10 +1923,11 @@ class Widget(raw: Ptr[GtkWidget])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether @widget is somewhere inside @ancestor, possibly with
+  /** Determines whether @widget is somewhere inside @ancestor, possibly with
     * intermediate containers.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isAncestor(
       ancestor: Widget /* Some(Ptr[GtkWidget]) */
@@ -1838,50 +1936,52 @@ class Widget(raw: Ptr[GtkWidget])
     ancestor.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether @widget can be drawn to.
+  /** Determines whether @widget can be drawn to.
     *
     * A widget can be drawn if it is mapped and visible.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isDrawable(): Boolean /* None */ =
     gtk_widget_is_drawable(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines if the widget is the focus widget within its toplevel.
+  /** Determines if the widget is the focus widget within its toplevel.
     *
     * This does not mean that the [property@Gtk.Widget:has-focus] property is
     * necessarily set; [property@Gtk.Widget:has-focus] will only be set if the
     * toplevel widget additionally has the global input focus.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isFocus(): Boolean /* None */ =
     gtk_widget_is_focus(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the widget’s effective sensitivity.
+  /** Returns the widget’s effective sensitivity.
     *
     * This means it is sensitive itself and also its parent widget is sensitive.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isSensitive(): Boolean /* None */ =
     gtk_widget_is_sensitive(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines whether the widget and all its parents are marked as visible.
+  /** Determines whether the widget and all its parents are marked as visible.
     *
     * This function does not check if the widget is obscured in any way.
     *
     * See also [method@Gtk.Widget.get_visible] and
     * [method@Gtk.Widget.set_visible].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isVisible(): Boolean /* None */ =
     gtk_widget_is_visible(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Emits the `::keynav-failed` signal on the widget.
+  /** Emits the `::keynav-failed` signal on the widget.
     *
     * This function should be called whenever keyboard navigation within a
     * single widget hits a boundary.
@@ -1906,6 +2006,9 @@ class Widget(raw: Ptr[GtkWidget])
     * [class@Gtk.Entry] widgets where the user should be able to navigate the
     * entire row with the cursor keys, as e.g. known from user interfaces that
     * require entering license keys.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def keynavFailed(
       direction: DirectionType /* Some(GtkDirectionType) */
@@ -1914,9 +2017,7 @@ class Widget(raw: Ptr[GtkWidget])
     direction.raw
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the widgets for which this widget is the target of a mnemonic.
+  /** Returns the widgets for which this widget is the target of a mnemonic.
     *
     * Typically, these widgets will be labels. See, for example,
     * [method@Gtk.Label.set_mnemonic_widget].
@@ -1926,25 +2027,27 @@ class Widget(raw: Ptr[GtkWidget])
     * might destroy the widgets, you must call
     * `g_list_foreach (result, (GFunc)g_object_ref, NULL)` first, and then unref
     * all the widgets afterwards.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[list_mnemonic_labels/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def listMnemonicLabels__ = ???
+  private def listMnemonicLabels__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Causes a widget to be mapped if it isn’t already.
+  /** Causes a widget to be mapped if it isn’t already.
     *
     * This function is only for use in widget implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def map(): Unit /* None */ = gtk_widget_map(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Measures @widget in the orientation @orientation and for the given @for_size.
+  /** Measures @widget in the orientation @orientation and for the given @for_size.
     *
     * As an example, if @orientation is %GTK_ORIENTATION_HORIZONTAL and @for_size
     * is 300, this functions will compute the minimum and natural width of @widget
@@ -1953,17 +2056,21 @@ class Widget(raw: Ptr[GtkWidget])
     * See [GtkWidget’s geometry management
     * section](class.Widget.html#height-for-width-geometry-management) for a
     * more details on implementing `GtkWidgetClass.measure()`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method measure contains an OUT parameter, which is not supported yet"
+    "[measure]: Method measure contains an OUT parameter, which is not supported yet"
   )
-  def measure__ = ???
+  private def measure__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Emits the ::mnemonic-activate signal.
+  /** Emits the ::mnemonic-activate signal.
     *
     * See [signal@Gtk.Widget::mnemonic-activate].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def mnemonicActivate(
       group_cycling: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -1972,9 +2079,7 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if group_cycling == true then 1 else 0)))
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a `GListModel` to track the children of @widget.
+  /** Returns a `GListModel` to track the children of @widget.
     *
     * Calling this function will enable extra internal bookkeeping to track
     * children and emit signals on the returned listmodel. It may slow down
@@ -1982,6 +2087,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * Applications should try hard to avoid calling this function because of the
     * slowdowns.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def observeChildren(): ListModel /* None */ = new ListModel.Abstract(
     gtk_widget_observe_children(
@@ -1989,9 +2097,7 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a `GListModel` to track the [class@Gtk.EventController]s of @widget.
+  /** Returns a `GListModel` to track the [class@Gtk.EventController]s of @widget.
     *
     * Calling this function will enable extra internal bookkeeping to track
     * controllers and emit signals on the returned listmodel. It may slow down
@@ -1999,6 +2105,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * Applications should try hard to avoid calling this function because of the
     * slowdowns.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def observeControllers(): ListModel /* None */ = new ListModel.Abstract(
     gtk_widget_observe_controllers(
@@ -2006,9 +2115,7 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finds the descendant of @widget closest to the point (@x, @y).
+  /** Finds the descendant of @widget closest to the point (@x, @y).
     *
     * The point must be given in widget coordinates, so (0, 0) is assumed to be
     * the top left of @widget's content area.
@@ -2020,6 +2127,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * This function is used on the toplevel to determine the widget below the
     * mouse cursor for purposes of hover highlighting and delivering events.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pick(
       x: Double /* Some(Double) */,
@@ -2034,9 +2144,7 @@ class Widget(raw: Ptr[GtkWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags the widget for a rerun of the [vfunc@Gtk.Widget.size_allocate]
+  /** Flags the widget for a rerun of the [vfunc@Gtk.Widget.size_allocate]
     * function.
     *
     * Use this function instead of [method@Gtk.Widget.queue_resize] when the @widget's
@@ -2045,26 +2153,28 @@ class Widget(raw: Ptr[GtkWidget])
     * An example user of this function is [method@Gtk.Widget.set_halign].
     *
     * This function is only for use in widget implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def queueAllocate(): Unit /* None */ = gtk_widget_queue_allocate(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Schedules this widget to be redrawn in the paint phase of the current or
+  /** Schedules this widget to be redrawn in the paint phase of the current or
     * the next frame.
     *
     * This means @widget's [vfunc@Gtk.Widget.snapshot] implementation will be
     * called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def queueDraw(): Unit /* None */ = gtk_widget_queue_draw(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags a widget to have its size renegotiated.
+  /** Flags a widget to have its size renegotiated.
     *
     * This should be called when a widget for some reason has a new size
     * request. For example, when you change the text in a [class@Gtk.Label], the
@@ -2076,14 +2186,15 @@ class Widget(raw: Ptr[GtkWidget])
     * [vfunc@Gtk.Widget.size_allocate] will be silently ignored.
     *
     * This function is only for use in widget implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def queueResize(): Unit /* None */ = gtk_widget_queue_resize(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates the GDK resources associated with a widget.
+  /** Creates the GDK resources associated with a widget.
     *
     * Normally realization happens implicitly; if you show a widget and all its
     * parent containers, then the widget will be realized and mapped
@@ -2098,20 +2209,24 @@ class Widget(raw: Ptr[GtkWidget])
     * useful otherwise. Many times when you think you might need it, a better
     * approach is to connect to a signal that will be called after the widget is
     * realized automatically, such as [signal@Gtk.Widget::realize].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def realize(): Unit /* None */ = gtk_widget_realize(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes @controller from @widget, so that it doesn't process events
+  /** Removes @controller from @widget, so that it doesn't process events
     * anymore.
     *
     * It should not be used again.
     *
     * Widgets will remove all event controllers automatically when they are
     * destroyed, there is normally no need to call this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeController(
       controller: EventController /* Some(Ptr[GtkEventController]) */
@@ -2120,11 +2235,12 @@ class Widget(raw: Ptr[GtkWidget])
     controller.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a style from @widget.
+  /** Removes a style from @widget.
     *
     * After this, the style of @widget will stop matching for @css_class.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeCssClass(
       css_class: String | CString /* Some(CString) */
@@ -2133,13 +2249,14 @@ class Widget(raw: Ptr[GtkWidget])
     __sn_extract_string(css_class)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a widget from the list of mnemonic labels for this widget.
+  /** Removes a widget from the list of mnemonic labels for this widget.
     *
     * See [method@Gtk.Widget.list_mnemonic_labels]. The widget must have
     * previously been added to the list with
     * [method@Gtk.Widget.add_mnemonic_label].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeMnemonicLabel(
       label: Widget /* Some(Ptr[GtkWidget]) */
@@ -2148,10 +2265,11 @@ class Widget(raw: Ptr[GtkWidget])
     label.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a tick callback previously registered with
+  /** Removes a tick callback previously registered with
     * gtk_widget_add_tick_callback().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeTickCallback(
       id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -2160,9 +2278,7 @@ class Widget(raw: Ptr[GtkWidget])
     guint(id)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Specifies whether the input focus can enter the widget or any of its
+  /** Specifies whether the input focus can enter the widget or any of its
     * children.
     *
     * Applications should set @can_focus to %FALSE to mark a widget as for
@@ -2175,6 +2291,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * See [method@Gtk.Widget.grab_focus] for actually setting the input focus on
     * a widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCanFocus(
       can_focus: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -2183,9 +2302,10 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if can_focus == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether @widget can be the target of pointer events.
     *
-    * Sets whether @widget can be the target of pointer events.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCanTarget(
       can_target: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -2194,9 +2314,7 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if can_target == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether @widget should be mapped along with its parent.
+  /** Sets whether @widget should be mapped along with its parent.
     *
     * The child visibility can be set for widget before it is added to a
     * container with [method@Gtk.Widget.set_parent], to avoid mapping children
@@ -2210,6 +2328,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * This function is only useful for container implementations and should
     * never be called by an application.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChildVisible(
       child_visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -2218,21 +2339,23 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if child_visible == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Clear all style classes applied to @widget and replace them with @classes.
     *
-    * Clear all style classes applied to @widget and replace them with @classes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+    "[set_css_classes/<method parameters>/classes]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def setCssClasses__ = ???
+  private def setCssClasses__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the cursor to be shown when pointer devices point towards @widget.
+  /** Sets the cursor to be shown when pointer devices point towards @widget.
     *
     * If the @cursor is NULL, @widget will use the cursor inherited from the
     * parent widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCursor(
       cursor: Option[
@@ -2249,9 +2372,7 @@ class Widget(raw: Ptr[GtkWidget])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a named cursor to be shown when pointer devices point towards @widget.
+  /** Sets a named cursor to be shown when pointer devices point towards @widget.
     *
     * This is a utility function that creates a cursor via
     * [ctor@Gdk.Cursor.new_from_name] and then sets it on @widget with
@@ -2259,6 +2380,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * On top of that, this function allows @name to be %NULL, which will do the
     * same as calling [method@Gtk.Widget.set_cursor] with a %NULL cursor.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCursorFromName(
       name: Option[String | CString /* Some(CString) */ ]
@@ -2269,9 +2393,7 @@ class Widget(raw: Ptr[GtkWidget])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the reading direction on a particular widget.
+  /** Sets the reading direction on a particular widget.
     *
     * This direction controls the primary direction for widgets containing text,
     * and also the direction in which the children of a container are packed.
@@ -2284,19 +2406,23 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * If the direction is set to %GTK_TEXT_DIR_NONE, then the value set by
     * [func@Gtk.Widget.set_default_direction] will be used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDirection(
       dir: TextDirection /* Some(GtkTextDirection) */
   ): Unit /* None */ =
     gtk_widget_set_direction(this.raw.asInstanceOf[Ptr[GtkWidget]], dir.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set @child as the current focus child of @widget.
+  /** Set @child as the current focus child of @widget.
     *
     * This function is only suitable for widget implementations. If you want a
     * certain widget to get the input focus, call [method@Gtk.Widget.grab_focus]
     * on it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFocusChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -2307,14 +2433,15 @@ class Widget(raw: Ptr[GtkWidget])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the widget should grab focus when it is clicked with the
+  /** Sets whether the widget should grab focus when it is clicked with the
     * mouse.
     *
     * Making mouse clicks not grab focus is useful in places like toolbars where
     * you don’t want the keyboard focus removed from the main area of the
     * application.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFocusOnClick(
       focus_on_click: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -2323,9 +2450,7 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if focus_on_click == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Specifies whether @widget can own the input focus.
+  /** Specifies whether @widget can own the input focus.
     *
     * Widget implementations should set @focusable to %TRUE in their init()
     * function if they want to receive keyboard input.
@@ -2337,6 +2462,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * See [method@Gtk.Widget.grab_focus] for actually setting the input focus on
     * a widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFocusable(
       focusable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -2345,15 +2473,16 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if focusable == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the font map to use for Pango rendering.
+  /** Sets the font map to use for Pango rendering.
     *
     * The font map is the object that is used to look up fonts. Setting a custom
     * font map can be useful in special situations, e.g. when you need to add
     * application-specific fonts to the set of available fonts.
     *
     * When not set, the widget will inherit the font map from its parent.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFontMap(
       font_map: Option[
@@ -2370,27 +2499,30 @@ class Widget(raw: Ptr[GtkWidget])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `cairo_font_options_t` used for Pango rendering in this widget.
+  /** Sets the `cairo_font_options_t` used for Pango rendering in this widget.
     *
     * When not set, the default font options for the `GdkDisplay` will be used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
+    "[set_font_options/<method parameters>/options]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
   )
-  def setFontOptions__ = ???
+  private def setFontOptions__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the horizontal alignment of @widget.
     *
-    * Sets the horizontal alignment of @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHalign(align: Align /* Some(GtkAlign) */ ): Unit /* None */ =
     gtk_widget_set_halign(this.raw.asInstanceOf[Ptr[GtkWidget]], align.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the `has-tooltip` property on @widget to @has_tooltip.
     *
-    * Sets the `has-tooltip` property on @widget to @has_tooltip.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHasTooltip(
       has_tooltip: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -2399,9 +2531,7 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if has_tooltip == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the widget would like any available extra horizontal space.
+  /** Sets whether the widget would like any available extra horizontal space.
     *
     * When a user resizes a `GtkWindow`, widgets with expand=TRUE generally
     * receive the extra space. For example, a list or scrollable area or
@@ -2425,6 +2555,9 @@ class Widget(raw: Ptr[GtkWidget])
     * the hexpand-set property (see [method@Gtk.Widget.set_hexpand_set]) which
     * causes the widget’s hexpand value to be used, rather than looking at
     * children and widget state.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHexpand(
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -2433,9 +2566,7 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if expand == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the hexpand flag will be used.
+  /** Sets whether the hexpand flag will be used.
     *
     * The [property@Gtk.Widget:hexpand-set] property will be set automatically
     * when you call [method@Gtk.Widget.set_hexpand] to set hexpand, so the most
@@ -2448,6 +2579,9 @@ class Widget(raw: Ptr[GtkWidget])
     *
     * There are few reasons to use this function, but it’s here for completeness
     * and consistency.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHexpandSet(
       set: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -2456,10 +2590,11 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if set == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the layout manager delegate instance that provides an implementation
+  /** Sets the layout manager delegate instance that provides an implementation
     * for measuring and allocating the children of @widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLayoutManager(
       layout_manager: Option[LayoutManager /* Some(Ptr[GtkLayoutManager]) */ ]
@@ -2470,37 +2605,39 @@ class Widget(raw: Ptr[GtkWidget])
       .getOrElse(null.asInstanceOf[Ptr[GtkLayoutManager]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the bottom margin of @widget.
     *
-    * Sets the bottom margin of @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarginBottom(margin: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_widget_set_margin_bottom(this.raw.asInstanceOf[Ptr[GtkWidget]], margin)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the end margin of @widget.
     *
-    * Sets the end margin of @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarginEnd(margin: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_widget_set_margin_end(this.raw.asInstanceOf[Ptr[GtkWidget]], margin)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the start margin of @widget.
     *
-    * Sets the start margin of @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarginStart(margin: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_widget_set_margin_start(this.raw.asInstanceOf[Ptr[GtkWidget]], margin)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the top margin of @widget.
     *
-    * Sets the top margin of @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarginTop(margin: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_widget_set_margin_top(this.raw.asInstanceOf[Ptr[GtkWidget]], margin)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a widgets name.
+  /** Sets a widgets name.
     *
     * Setting a name allows you to refer to the widget from a CSS file. You can
     * apply a style to widgets with a particular name in the CSS file. See the
@@ -2511,6 +2648,9 @@ class Widget(raw: Ptr[GtkWidget])
     * represent elements in a selector (period, #, >, *...), so using these will
     * make your widget impossible to match by name. Any combination of
     * alphanumeric symbols, dashes and underscores will suffice.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
       name: String | CString /* Some(CString) */
@@ -2519,9 +2659,7 @@ class Widget(raw: Ptr[GtkWidget])
     __sn_extract_string(name)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Request the @widget to be rendered partially transparent.
+  /** Request the @widget to be rendered partially transparent.
     *
     * An opacity of 0 is fully transparent and an opacity of 1 is fully opaque.
     *
@@ -2541,13 +2679,14 @@ class Widget(raw: Ptr[GtkWidget])
     * with their own surface will use their own opacity value, and thus by
     * default appear non-translucent, even if they are attached to a toplevel
     * that is translucent.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOpacity(opacity: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_widget_set_opacity(this.raw.asInstanceOf[Ptr[GtkWidget]], opacity)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets how @widget treats content that is drawn outside the widget's content
+  /** Sets how @widget treats content that is drawn outside the widget's content
     * area.
     *
     * See the definition of [enum@Gtk.Overflow] for details.
@@ -2556,21 +2695,25 @@ class Widget(raw: Ptr[GtkWidget])
     * by application code.
     *
     * The default value is %GTK_OVERFLOW_VISIBLE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setOverflow(
       overflow: Overflow /* Some(GtkOverflow) */
   ): Unit /* None */ =
     gtk_widget_set_overflow(this.raw.asInstanceOf[Ptr[GtkWidget]], overflow.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @parent as the parent widget of @widget.
+  /** Sets @parent as the parent widget of @widget.
     *
     * This takes care of details such as updating the state and style of the
     * child to reflect its new location and resizing the parent. The opposite
     * function is [method@Gtk.Widget.unparent].
     *
     * This function is useful only when implementing subclasses of `GtkWidget`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setParent(parent: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_widget_set_parent(
@@ -2578,10 +2721,11 @@ class Widget(raw: Ptr[GtkWidget])
       parent.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Specifies whether @widget will be treated as the default widget within its
+  /** Specifies whether @widget will be treated as the default widget within its
     * toplevel when it has the focus, even if another widget is the default.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setReceivesDefault(
       receives_default: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -2590,14 +2734,15 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if receives_default == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the sensitivity of a widget.
+  /** Sets the sensitivity of a widget.
     *
     * A widget is sensitive if the user can interact with it. Insensitive
     * widgets are “grayed out” and the user can’t interact with them.
     * Insensitive widgets are known as “inactive”, “disabled”, or “ghosted” in
     * some other toolkits.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSensitive(
       sensitive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -2606,9 +2751,7 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if sensitive == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the minimum size of a widget.
+  /** Sets the minimum size of a widget.
     *
     * That is, the widget’s size request will be at least @width by @height. You
     * can use this function to force a widget to be larger than it normally
@@ -2637,6 +2780,9 @@ class Widget(raw: Ptr[GtkWidget])
     * [property@Gtk.Widget:margin-top], and [property@Gtk.Widget:margin-bottom],
     * but it does include pretty much all other padding or border properties set
     * by any subclass of `GtkWidget`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSizeRequest(
       width: Int /* Some(CInt) */,
@@ -2647,9 +2793,7 @@ class Widget(raw: Ptr[GtkWidget])
     height
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Turns on flag values in the current widget state.
+  /** Turns on flag values in the current widget state.
     *
     * Typical widget states are insensitive, prelighted, etc.
     *
@@ -2658,6 +2802,9 @@ class Widget(raw: Ptr[GtkWidget])
     * direction, use [method@Gtk.Widget.set_direction].
     *
     * This function is for use in widget implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setStateFlags(
       flags: StateFlags /* Some(GtkStateFlags) */,
@@ -2668,9 +2815,7 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if clear == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @markup as the contents of the tooltip, which is marked up with Pango
+  /** Sets @markup as the contents of the tooltip, which is marked up with Pango
     * markup.
     *
     * This function will take care of setting the
@@ -2678,6 +2823,9 @@ class Widget(raw: Ptr[GtkWidget])
     * handler for the [signal@Gtk.Widget::query-tooltip] signal.
     *
     * See also [method@Gtk.Tooltip.set_markup].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTooltipMarkup(
       markup: Option[String | CString /* Some(CString) */ ]
@@ -2688,9 +2836,7 @@ class Widget(raw: Ptr[GtkWidget])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @text as the contents of the tooltip.
+  /** Sets @text as the contents of the tooltip.
     *
     * If @text contains any markup, it will be escaped.
     *
@@ -2699,6 +2845,9 @@ class Widget(raw: Ptr[GtkWidget])
     * [signal@Gtk.Widget::query-tooltip] signal.
     *
     * See also [method@Gtk.Tooltip.set_text].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTooltipText(
       text: Option[String | CString /* Some(CString) */ ]
@@ -2709,18 +2858,20 @@ class Widget(raw: Ptr[GtkWidget])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the vertical alignment of @widget.
     *
-    * Sets the vertical alignment of @widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setValign(align: Align /* Some(GtkAlign) */ ): Unit /* None */ =
     gtk_widget_set_valign(this.raw.asInstanceOf[Ptr[GtkWidget]], align.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the widget would like any available extra vertical space.
+  /** Sets whether the widget would like any available extra vertical space.
     *
     * See [method@Gtk.Widget.set_hexpand] for more detail.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVexpand(
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -2729,11 +2880,12 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if expand == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the vexpand flag will be used.
+  /** Sets whether the vexpand flag will be used.
     *
     * See [method@Gtk.Widget.set_hexpand_set] for more detail.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVexpandSet(
       set: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -2742,12 +2894,13 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if set == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the visibility state of @widget.
+  /** Sets the visibility state of @widget.
     *
     * Note that setting this to %TRUE doesn’t mean the widget is actually
     * viewable, see [method@Gtk.Widget.get_visible].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVisible(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -2756,20 +2909,19 @@ class Widget(raw: Ptr[GtkWidget])
     gboolean(gint((if visible == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether @widget should contribute to the measuring and allocation
+  /** Returns whether @widget should contribute to the measuring and allocation
     * of its parent.
     *
     * This is %FALSE for invisible children, but also for children that have
     * their own surface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def shouldLayout(): Boolean /* None */ =
     gtk_widget_should_layout(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags a widget to be displayed.
+  /** Flags a widget to be displayed.
     *
     * Any widget that isn’t shown will not appear on the screen.
     *
@@ -2779,26 +2931,28 @@ class Widget(raw: Ptr[GtkWidget])
     * When a toplevel container is shown, it is immediately realized and mapped;
     * other shown widgets are realized and mapped when their toplevel container
     * is realized and mapped.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def show(): Unit /* None */ = gtk_widget_show(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Allocates widget with a transformation that translates the origin to the
+  /** Allocates widget with a transformation that translates the origin to the
     * position in @allocation.
     *
     * This is a simple form of [method@Gtk.Widget.allocate].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Allocation), @type -> DataRecord(const GtkAllocation*)))"
+    "[size_allocate/<method parameters>/allocation]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Allocation), @type -> DataRecord(const GtkAllocation*)))"
   )
-  def sizeAllocate__ = ???
+  private def sizeAllocate__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Snapshot the a child of @widget.
+  /** Snapshot the a child of @widget.
     *
     * When a widget receives a call to the snapshot function, it must send
     * synthetic [vfunc@Gtk.Widget.snapshot] calls to all children. This function
@@ -2812,6 +2966,9 @@ class Widget(raw: Ptr[GtkWidget])
     *   and deciding whether the child needs to be snapshot.
     *
     * This function does nothing for children that implement `GtkNative`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def snapshotChild(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -2822,67 +2979,73 @@ class Widget(raw: Ptr[GtkWidget])
     snapshot.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Translate coordinates relative to @src_widget’s allocation to coordinates
+  /** Translate coordinates relative to @src_widget’s allocation to coordinates
     * relative to @dest_widget’s allocations.
     *
     * In order to perform this operation, both widget must share a common
     * ancestor.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method translate_coordinates contains an OUT parameter, which is not supported yet"
+    "[translate_coordinates]: Method translate_coordinates contains an OUT parameter, which is not supported yet"
   )
-  def translateCoordinates__ = ???
+  private def translateCoordinates__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Triggers a tooltip query on the display where the toplevel of @widget is
+  /** Triggers a tooltip query on the display where the toplevel of @widget is
     * located.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def triggerTooltipQuery(): Unit /* None */ = gtk_widget_trigger_tooltip_query(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Causes a widget to be unmapped if it’s currently mapped.
+  /** Causes a widget to be unmapped if it’s currently mapped.
     *
     * This function is only for use in widget implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unmap(): Unit /* None */ = gtk_widget_unmap(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Dissociate @widget from its parent.
+  /** Dissociate @widget from its parent.
     *
     * This function is only for use in widget implementations, typically in
     * dispose.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unparent(): Unit /* None */ = gtk_widget_unparent(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Causes a widget to be unrealized (frees all GDK resources associated with
+  /** Causes a widget to be unrealized (frees all GDK resources associated with
     * the widget).
     *
     * This function is only useful in widget implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unrealize(): Unit /* None */ = gtk_widget_unrealize(
     this.raw.asInstanceOf[Ptr[GtkWidget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Turns off flag values for the current widget state.
+  /** Turns off flag values for the current widget state.
     *
     * See [method@Gtk.Widget.set_state_flags].
     *
     * This function is for use in widget implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetStateFlags(
       flags: StateFlags /* Some(GtkStateFlags) */
@@ -2905,7 +3068,7 @@ class Widget(raw: Ptr[GtkWidget])
   ): Array[Ptr[T]] =
     val ab = Array.newBuilder[Ptr[T]]
     var offset = 0
-    val tg = Tag.materializePtrTag(ptag)
+    val tg = Tag.materializePtrTag(using ptag)
     while p(offset)(using tg) != null do
       ab += p(offset)(using tg)
       offset += 1
@@ -2915,20 +3078,22 @@ class Widget(raw: Ptr[GtkWidget])
 end Widget
 
 object Widget:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains the current default reading direction.
+  /** Obtains the current default reading direction.
     *
     * See [func@Gtk.Widget.set_default_direction].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefaultDirection(): TextDirection /* Some(GtkTextDirection) */ =
     TextDirection.fromRaw(gtk_widget_get_default_direction())
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the default reading direction for widgets.
+  /** Sets the default reading direction for widgets.
     *
     * See [method@Gtk.Widget.set_direction].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultDirection(
       dir: TextDirection /* Some(GtkTextDirection) */

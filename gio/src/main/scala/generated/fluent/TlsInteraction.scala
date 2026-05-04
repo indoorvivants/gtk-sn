@@ -16,9 +16,7 @@ import sn.gnome.gio.internal.GTlsInteraction
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GTlsInteraction provides a mechanism for the TLS connection and database
+/** #GTlsInteraction provides a mechanism for the TLS connection and database
   * code to interact with the user. It can be used to ask the user for
   * passwords.
   *
@@ -38,15 +36,16 @@ import sn.gnome.gobject.fluent.Object
   * initialization function. Any interactions not implemented will return
   * %G_TLS_INTERACTION_UNHANDLED. If a derived class implements an async method,
   * it must also implement the corresponding finish method.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TlsInteraction(raw: Ptr[GTlsInteraction])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Run synchronous interaction to ask the user for a password. In general,
+  /** Run synchronous interaction to ask the user for a password. In general,
     * g_tls_interaction_invoke_ask_password() should be used instead of this
     * function.
     *
@@ -59,6 +58,9 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * then %G_TLS_INTERACTION_FAILED will be returned with an error that
     * contains a %G_IO_ERROR_CANCELLED error code. Certain implementations may
     * not support immediate cancellation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def askPassword(
       password: TlsPassword /* Some(Ptr[GTlsPassword]) */,
@@ -76,9 +78,7 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Run asynchronous interaction to ask the user for a password. In general,
+  /** Run asynchronous interaction to ask the user for a password. In general,
     * g_tls_interaction_invoke_ask_password() should be used instead of this
     * function.
     *
@@ -93,15 +93,16 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * not support immediate cancellation.
     *
     * Certain implementations may not support immediate cancellation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[ask_password_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def askPasswordAsync__ = ???
+  private def askPasswordAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Complete an ask password user interaction request. This should be once the
+  /** Complete an ask password user interaction request. This should be once the
     * g_tls_interaction_ask_password_async() completion callback is called.
     *
     * If %G_TLS_INTERACTION_HANDLED is returned, then the #GTlsPassword passed
@@ -110,6 +111,9 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * If the interaction is cancelled by the cancellation object, or by the user
     * then %G_TLS_INTERACTION_FAILED will be returned with an error that
     * contains a %G_IO_ERROR_CANCELLED error code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def askPasswordFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -123,9 +127,7 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Invoke the interaction to ask the user for a password. It invokes this
+  /** Invoke the interaction to ask the user for a password. It invokes this
     * interaction in the main loop, specifically the #GMainContext returned by
     * g_main_context_get_thread_default() when the interaction is created. This
     * is called by called by #GTlsConnection or #GTlsDatabase to ask the user
@@ -144,6 +146,9 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * then %G_TLS_INTERACTION_FAILED will be returned with an error that
     * contains a %G_IO_ERROR_CANCELLED error code. Certain implementations may
     * not support immediate cancellation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def invokeAskPassword(
       password: TlsPassword /* Some(Ptr[GTlsPassword]) */,
@@ -161,9 +166,7 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Invoke the interaction to ask the user to choose a certificate to use with
+  /** Invoke the interaction to ask the user to choose a certificate to use with
     * the connection. It invokes this interaction in the main loop, specifically
     * the #GMainContext returned by g_main_context_get_thread_default() when the
     * interaction is created. This is called by called by #GTlsConnection when
@@ -182,6 +185,9 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * then %G_TLS_INTERACTION_FAILED will be returned with an error that
     * contains a %G_IO_ERROR_CANCELLED error code. Certain implementations may
     * not support immediate cancellation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def invokeRequestCertificate(
       connection: TlsConnection /* Some(Ptr[GTlsConnection]) */,
@@ -201,9 +207,7 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Run synchronous interaction to ask the user to choose a certificate to use
+  /** Run synchronous interaction to ask the user to choose a certificate to use
     * with the connection. In general,
     * g_tls_interaction_invoke_request_certificate() should be used instead of
     * this function.
@@ -221,6 +225,9 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * then %G_TLS_INTERACTION_FAILED will be returned with an error that
     * contains a %G_IO_ERROR_CANCELLED error code. Certain implementations may
     * not support immediate cancellation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def requestCertificate(
       connection: TlsConnection /* Some(Ptr[GTlsConnection]) */,
@@ -240,9 +247,7 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Run asynchronous interaction to ask the user for a certificate to use with
+  /** Run asynchronous interaction to ask the user for a certificate to use with
     * the connection. In general, g_tls_interaction_invoke_request_certificate()
     * should be used instead of this function.
     *
@@ -250,15 +255,16 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * may also choose to provide a certificate from elsewhere. @callback will be
     * called when the operation completes. Alternatively the user may abort this
     * certificate request, which will usually abort the TLS connection.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[request_certificate_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def requestCertificateAsync__ = ???
+  private def requestCertificateAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Complete a request certificate user interaction request. This should be
+  /** Complete a request certificate user interaction request. This should be
     * once the g_tls_interaction_request_certificate_async() completion callback
     * is called.
     *
@@ -269,6 +275,9 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * If the interaction is cancelled by the cancellation object, or by the user
     * then %G_TLS_INTERACTION_FAILED will be returned with an error that
     * contains a %G_IO_ERROR_CANCELLED error code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def requestCertificateFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */

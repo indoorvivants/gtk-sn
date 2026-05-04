@@ -2,41 +2,46 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkTreeViewGridLines
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Used to indicate which grid lines to draw in a tree view.
   *
-  * Used to indicate which grid lines to draw in a tree view.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TreeViewGridLines(val raw: GtkTreeViewGridLines):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No grid lines.
     *
-    * No grid lines.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE
       extends TreeViewGridLines(
         GtkTreeViewGridLines.GTK_TREE_VIEW_GRID_LINES_NONE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Horizontal grid lines.
     *
-    * Horizontal grid lines.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HORIZONTAL
       extends TreeViewGridLines(
         GtkTreeViewGridLines.GTK_TREE_VIEW_GRID_LINES_HORIZONTAL
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Vertical grid lines.
     *
-    * Vertical grid lines.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case VERTICAL
       extends TreeViewGridLines(
         GtkTreeViewGridLines.GTK_TREE_VIEW_GRID_LINES_VERTICAL
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Horizontal and vertical grid lines.
     *
-    * Horizontal and vertical grid lines.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BOTH
       extends TreeViewGridLines(

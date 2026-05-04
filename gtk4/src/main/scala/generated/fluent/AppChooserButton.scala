@@ -15,9 +15,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkAppChooserButton
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkAppChooserButton` lets the user select an application.
+/** The `GtkAppChooserButton` lets the user select an application.
   *
   * ![An example GtkAppChooserButton](appchooserbutton.png)
   *
@@ -45,6 +43,9 @@ import sn.gnome.gtk4.internal.GtkAppChooserButton
   *
   * `GtkAppChooserButton` has a single CSS node with the name
   * “appchooserbutton”.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     extends Widget(raw.asInstanceOf),
@@ -55,9 +56,7 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Appends a custom item to the list of applications that is shown in the
+  /** Appends a custom item to the list of applications that is shown in the
     * popup.
     *
     * The item name must be unique per-widget. Clients can use the provided name
@@ -66,6 +65,9 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     * in the list.
     *
     * See also [method@Gtk.AppChooserButton.append_separator].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appendCustomItem(
       name: String | CString /* Some(CString) */,
@@ -78,19 +80,21 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     icon.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Appends a separator to the list of applications that is shown in the
+  /** Appends a separator to the list of applications that is shown in the
     * popup.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appendSeparator(): Unit /* None */ =
     gtk_app_chooser_button_append_separator(
       this.raw.asInstanceOf[Ptr[GtkAppChooserButton]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the text to display at the top of the dialog.
     *
-    * Returns the text to display at the top of the dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeading()(using Zone): String /* None */ = fromCString(
     gtk_app_chooser_button_get_heading(
@@ -98,42 +102,46 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the dialog is modal.
     *
-    * Gets whether the dialog is modal.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModal(): Boolean /* None */ = gtk_app_chooser_button_get_modal(
     this.raw.asInstanceOf[Ptr[GtkAppChooserButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the dropdown menu should show the default application at
+  /** Returns whether the dropdown menu should show the default application at
     * the top.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowDefaultItem(): Boolean /* None */ =
     gtk_app_chooser_button_get_show_default_item(
       this.raw.asInstanceOf[Ptr[GtkAppChooserButton]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the dropdown menu shows an item for a
+  /** Returns whether the dropdown menu shows an item for a
     * `GtkAppChooserDialog`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowDialogItem(): Boolean /* None */ =
     gtk_app_chooser_button_get_show_dialog_item(
       this.raw.asInstanceOf[Ptr[GtkAppChooserButton]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Selects a custom item.
+  /** Selects a custom item.
     *
     * See [method@Gtk.AppChooserButton.append_custom_item].
     *
     * Use [method@Gtk.AppChooser.refresh] to bring the selection to its initial
     * state.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActiveCustomItem(name: String | CString /* Some(CString) */ )(using
       Zone
@@ -142,11 +150,12 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     __sn_extract_string(name)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the text to display at the top of the dialog.
+  /** Sets the text to display at the top of the dialog.
     *
     * If the heading is not set, the dialog displays a default text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeading(
       heading: String | CString /* Some(CString) */
@@ -155,9 +164,10 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     __sn_extract_string(heading)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the dialog should be modal.
     *
-    * Sets whether the dialog should be modal.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -166,10 +176,11 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     gboolean(gint((if modal == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the dropdown menu of this button should show the default
+  /** Sets whether the dropdown menu of this button should show the default
     * application for the given content type at top.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowDefaultItem(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -178,10 +189,11 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the dropdown menu of this button should show an entry to
+  /** Sets whether the dropdown menu of this button should show an entry to
     * trigger a `GtkAppChooserDialog`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowDialogItem(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -201,10 +213,11 @@ class AppChooserButton(raw: Ptr[GtkAppChooserButton])
 end AppChooserButton
 
 object AppChooserButton:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkAppChooserButton` for applications that can handle
+  /** Creates a new `GtkAppChooserButton` for applications that can handle
     * content of the given type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       content_type: String | CString /* Some(CString) */

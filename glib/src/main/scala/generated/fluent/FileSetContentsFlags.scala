@@ -2,10 +2,11 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GFileSetContentsFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags to pass to g_file_set_contents_full() to affect its safety and
+/** Flags to pass to g_file_set_contents_full() to affect its safety and
   * performance.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileSetContentsFlags private (val raw: GFileSetContentsFlags):
   def is(kv: FileSetContentsFlags): Boolean =
@@ -33,19 +34,21 @@ object FileSetContentsFlags:
     def |(other: FileSetContentsFlags) =
       FileSetContentsFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags to pass to g_file_set_contents_full() to affect its safety and
+  /** Flags to pass to g_file_set_contents_full() to affect its safety and
     * performance.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GFileSetContentsFlags, name: String)
       extends FileSetContentsFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * No guarantees about file consistency or durability. The most dangerous
+    /** No guarantees about file consistency or durability. The most dangerous
       * setting, which is slightly faster than other settings.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(
@@ -53,12 +56,13 @@ object FileSetContentsFlags:
           "NONE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Guarantee file consistency: after a crash, either the old version of the
+    /** Guarantee file consistency: after a crash, either the old version of the
       * file or the new version of the file will be available, but not a
       * mixture. On Unix systems this equates to an `fsync()` on the file and
       * use of an atomic `rename()` of the new version of the file over the old.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CONSISTENT
         extends KnownValue(
@@ -66,13 +70,14 @@ object FileSetContentsFlags:
           "CONSISTENT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Guarantee file durability: after a crash, the new version of the file
+    /** Guarantee file durability: after a crash, the new version of the file
       * will be available. On Unix systems this equates to an `fsync()` on the
       * file (if %G_FILE_SET_CONTENTS_CONSISTENT is unset), or the effects of
       * %G_FILE_SET_CONTENTS_CONSISTENT plus an `fsync()` on the directory
       * containing the file after calling `rename()`.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DURABLE
         extends KnownValue(
@@ -80,12 +85,13 @@ object FileSetContentsFlags:
           "DURABLE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Only apply consistency and durability guarantees if the file already
+    /** Only apply consistency and durability guarantees if the file already
       * exists. This may speed up file operations if the file doesn’t currently
       * exist, but may result in a corrupted version of the new file if the
       * system crashes while writing it.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ONLY_EXISTING
         extends KnownValue(

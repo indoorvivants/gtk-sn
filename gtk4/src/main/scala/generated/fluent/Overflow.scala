@@ -2,25 +2,28 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkOverflow
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Defines how content overflowing a given area should be handled.
+/** Defines how content overflowing a given area should be handled.
   *
   * This is used in [method@Gtk.Widget.set_overflow]. The
   * [property@Gtk.Widget:overflow] property is modeled after the CSS overflow
   * property, but implements it only partially.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Overflow(val raw: GtkOverflow):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No change is applied. Content is drawn at the specified position.
     *
-    * No change is applied. Content is drawn at the specified position.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case VISIBLE extends Overflow(GtkOverflow.GTK_OVERFLOW_VISIBLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Content is clipped to the bounds of the area. Content outside the area is
+  /** Content is clipped to the bounds of the area. Content outside the area is
     * not drawn and cannot be interacted with.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HIDDEN extends Overflow(GtkOverflow.GTK_OVERFLOW_HIDDEN)
 end Overflow

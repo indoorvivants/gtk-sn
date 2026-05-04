@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GIOStreamSpliceFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** GIOStreamSpliceFlags determine how streams should be spliced.
   *
-  * GIOStreamSpliceFlags determine how streams should be spliced.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class IOStreamSpliceFlags private (val raw: GIOStreamSpliceFlags):
   def is(kv: IOStreamSpliceFlags): Boolean =
@@ -32,24 +33,27 @@ object IOStreamSpliceFlags:
     def |(other: IOStreamSpliceFlags) =
       IOStreamSpliceFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** GIOStreamSpliceFlags determine how streams should be spliced.
     *
-    * GIOStreamSpliceFlags determine how streams should be spliced.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GIOStreamSpliceFlags, name: String)
       extends IOStreamSpliceFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Do not close either stream.
       *
-      * Do not close either stream.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(GIOStreamSpliceFlags.G_IO_STREAM_SPLICE_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Close the first stream after the splice.
       *
-      * Close the first stream after the splice.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CLOSE_STREAM1
         extends KnownValue(
@@ -57,9 +61,10 @@ object IOStreamSpliceFlags:
           "CLOSE_STREAM1"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Close the second stream after the splice.
       *
-      * Close the second stream after the splice.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CLOSE_STREAM2
         extends KnownValue(
@@ -67,9 +72,10 @@ object IOStreamSpliceFlags:
           "CLOSE_STREAM2"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Wait for both splice operations to finish before calling the callback.
       *
-      * Wait for both splice operations to finish before calling the callback.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case WAIT_FOR_BOTH
         extends KnownValue(

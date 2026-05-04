@@ -2,34 +2,38 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GTlsInteractionResult
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GTlsInteractionResult is returned by various functions in #GTlsInteraction
+/** #GTlsInteractionResult is returned by various functions in #GTlsInteraction
   * when finishing an interaction request.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TlsInteractionResult(val raw: GTlsInteractionResult):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The interaction was unhandled (i.e. not implemented).
     *
-    * The interaction was unhandled (i.e. not implemented).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNHANDLED
       extends TlsInteractionResult(
         GTlsInteractionResult.G_TLS_INTERACTION_UNHANDLED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The interaction completed, and resulting data is available.
     *
-    * The interaction completed, and resulting data is available.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HANDLED
       extends TlsInteractionResult(
         GTlsInteractionResult.G_TLS_INTERACTION_HANDLED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The interaction has failed, or was cancelled. and the operation should be
+  /** The interaction has failed, or was cancelled. and the operation should be
     * aborted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FAILED
       extends TlsInteractionResult(

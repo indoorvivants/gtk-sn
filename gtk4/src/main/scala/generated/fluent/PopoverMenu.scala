@@ -18,9 +18,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkPopoverMenu
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkPopoverMenu` is a subclass of `GtkPopover` that implements menu
+/** `GtkPopoverMenu` is a subclass of `GtkPopover` that implements menu
   * behavior.
   *
   * ![An example GtkPopoverMenu](menu.png)
@@ -132,6 +130,9 @@ import sn.gnome.gtk4.internal.GtkPopoverMenu
   * the %GTK_ACCESSIBLE_ROLE_MENU_ITEM, %GTK_ACCESSIBLE_ROLE_MENU_ITEM_CHECKBOX
   * or %GTK_ACCESSIBLE_ROLE_MENU_ITEM_RADIO roles, depending on the action they
   * are connected to.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     extends Popover(raw.asInstanceOf),
@@ -143,12 +144,13 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a custom widget to a generated menu.
+  /** Adds a custom widget to a generated menu.
     *
     * For this to work, the menu model of @popover must have an item with a
     * `custom` attribute that matches @id.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addChild(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -159,18 +161,20 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     __sn_extract_string(id)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the flags that @popover uses to create/display a menu from its
+  /** Returns the flags that @popover uses to create/display a menu from its
     * model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFlags(): PopoverMenuFlags /* None */ = PopoverMenuFlags.fromRaw(
     gtk_popover_menu_get_flags(this.raw.asInstanceOf[Ptr[GtkPopoverMenu]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the menu model used to populate the popover.
     *
-    * Returns the menu model used to populate the popover.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMenuModel(): MenuModel /* None */ = new MenuModel(
     gtk_popover_menu_get_menu_model(
@@ -178,10 +182,11 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a widget that has previously been added with
+  /** Removes a widget that has previously been added with
     * [method@Gtk.PopoverMenu.add_child()]
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeChild(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -190,13 +195,14 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     child.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the flags that @popover uses to create/display a menu from its model.
+  /** Sets the flags that @popover uses to create/display a menu from its model.
     *
     * If a model is set and the flags change, contents are rebuilt, so if
     * setting properties individually, set flags before model to avoid a
     * redundant rebuild.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFlags(
       flags: PopoverMenuFlags /* Some(GtkPopoverMenuFlags) */
@@ -205,12 +211,13 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     flags.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a new menu model on @popover.
+  /** Sets a new menu model on @popover.
     *
     * The existing contents of @popover are removed, and the @popover is
     * populated with new contents according to @model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMenuModel(
       model: Option[
@@ -238,9 +245,7 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
 end PopoverMenu
 
 object PopoverMenu:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkPopoverMenu` and populates it according to @model.
+  /** Creates a `GtkPopoverMenu` and populates it according to @model.
     *
     * The created buttons are connected to actions found in the
     * `GtkApplicationWindow` to which the popover belongs - typically by means
@@ -252,6 +257,9 @@ object PopoverMenu:
     *
     * This function creates menus with sliding submenus. See
     * [ctor@Gtk.PopoverMenu.new_from_model_full] for a way to control this.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromModel(
       model: Option[
@@ -269,9 +277,7 @@ object PopoverMenu:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkPopoverMenu` and populates it according to @model.
+  /** Creates a `GtkPopoverMenu` and populates it according to @model.
     *
     * The created buttons are connected to actions found in the action groups
     * that are accessible from the parent widget. This includes the
@@ -282,6 +288,9 @@ object PopoverMenu:
     * The only flag that is supported currently is %GTK_POPOVER_MENU_NESTED,
     * which makes GTK create traditional, nested submenus instead of the default
     * sliding submenus.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromModelFull(
       model: MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */,

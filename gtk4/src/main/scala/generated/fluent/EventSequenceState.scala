@@ -2,30 +2,34 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkEventSequenceState
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Describes the state of a [struct@Gdk.EventSequence] in a [class@Gesture].
   *
-  * Describes the state of a [struct@Gdk.EventSequence] in a [class@Gesture].
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum EventSequenceState(val raw: GtkEventSequenceState):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The sequence is handled, but not grabbed.
     *
-    * The sequence is handled, but not grabbed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE
       extends EventSequenceState(GtkEventSequenceState.GTK_EVENT_SEQUENCE_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The sequence is handled and grabbed.
     *
-    * The sequence is handled and grabbed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CLAIMED
       extends EventSequenceState(
         GtkEventSequenceState.GTK_EVENT_SEQUENCE_CLAIMED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The sequence is denied.
     *
-    * The sequence is denied.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DENIED
       extends EventSequenceState(

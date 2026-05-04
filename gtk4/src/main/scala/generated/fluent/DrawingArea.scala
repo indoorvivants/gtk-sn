@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkDrawingArea
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkDrawingArea` is a widget that allows drawing with cairo.
+/** `GtkDrawingArea` is a widget that allows drawing with cairo.
   *
   * ![An example GtkDrawingArea](drawingarea.png)
   *
@@ -84,6 +82,9 @@ import sn.gnome.gtk4.internal.GtkDrawingArea
   *
   * If you need more complex control over your widget, you should consider
   * creating your own `GtkWidget` subclass.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DrawingArea(raw: Ptr[GtkDrawingArea])
     extends Widget(raw.asInstanceOf),
@@ -93,25 +94,25 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the content height of the `GtkDrawingArea`.
     *
-    * Retrieves the content height of the `GtkDrawingArea`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getContentHeight(): Int /* None */ = gtk_drawing_area_get_content_height(
     this.raw.asInstanceOf[Ptr[GtkDrawingArea]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the content width of the `GtkDrawingArea`.
     *
-    * Retrieves the content width of the `GtkDrawingArea`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getContentWidth(): Int /* None */ = gtk_drawing_area_get_content_width(
     this.raw.asInstanceOf[Ptr[GtkDrawingArea]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the desired height of the contents of the drawing area.
+  /** Sets the desired height of the contents of the drawing area.
     *
     * Note that because widgets may be allocated larger sizes than they
     * requested, it is possible that the actual height passed to your draw
@@ -119,6 +120,9 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     * [method@Gtk.Widget.set_valign] to avoid that.
     *
     * If the height is set to 0 (the default), the drawing area may disappear.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setContentHeight(height: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_drawing_area_set_content_height(
@@ -126,9 +130,7 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
       height
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the desired width of the contents of the drawing area.
+  /** Sets the desired width of the contents of the drawing area.
     *
     * Note that because widgets may be allocated larger sizes than they
     * requested, it is possible that the actual width passed to your draw
@@ -136,6 +138,9 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     * [method@Gtk.Widget.set_halign] to avoid that.
     *
     * If the width is set to 0 (the default), the drawing area may disappear.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setContentWidth(width: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_drawing_area_set_content_width(
@@ -143,9 +148,7 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
       width
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Setting a draw function is the main thing you want to do when using a
+  /** Setting a draw function is the main thing you want to do when using a
     * drawing area.
     *
     * The draw function is called whenever GTK needs to draw the contents of the
@@ -160,18 +163,22 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     * If what you are drawing does change, call [method@Gtk.Widget.queue_draw]
     * on the drawing area. This will cause a redraw and will call @draw_func
     * again.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(DrawingAreaDrawFunc), @type -> DataRecord(GtkDrawingAreaDrawFunc)))"
+    "[set_draw_func/<method parameters>/draw_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DrawingAreaDrawFunc), @type -> DataRecord(GtkDrawingAreaDrawFunc)))"
   )
-  def setDrawFunc__ = ???
+  private def setDrawFunc__ = ???
 
 end DrawingArea
 
 object DrawingArea:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new drawing area.
     *
-    * Creates a new drawing area.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): DrawingArea = new DrawingArea(
     gtk_drawing_area_new().asInstanceOf

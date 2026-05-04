@@ -11,13 +11,14 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.SectionModel
 import sn.gnome.gtk4.internal.GtkFlattenListModel
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkFlattenListModel` is a list model that concatenates other list models.
+/** `GtkFlattenListModel` is a list model that concatenates other list models.
   *
   * `GtkFlattenListModel` takes a list model containing list models, and
   * flattens it into a single model. Each list model becomes a section in the
   * single model.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FlattenListModel(raw: Ptr[GtkFlattenListModel])
     extends Object(raw.asInstanceOf),
@@ -26,9 +27,10 @@ class FlattenListModel(raw: Ptr[GtkFlattenListModel])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the model set via gtk_flatten_list_model_set_model().
     *
-    * Gets the model set via gtk_flatten_list_model_set_model().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_flatten_list_model_get_model(
@@ -36,9 +38,10 @@ class FlattenListModel(raw: Ptr[GtkFlattenListModel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the model containing the item at the given position.
     *
-    * Returns the model containing the item at the given position.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModelForItem(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -49,9 +52,10 @@ class FlattenListModel(raw: Ptr[GtkFlattenListModel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets a new model to be flattened.
     *
-    * Sets a new model to be flattened.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
       model: Option[
@@ -71,9 +75,10 @@ class FlattenListModel(raw: Ptr[GtkFlattenListModel])
 end FlattenListModel
 
 object FlattenListModel:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkFlattenListModel` that flattens @list.
     *
-    * Creates a new `GtkFlattenListModel` that flattens @list.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       model: Option[

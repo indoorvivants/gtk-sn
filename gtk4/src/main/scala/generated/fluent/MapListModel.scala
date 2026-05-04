@@ -10,9 +10,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.SectionModel
 import sn.gnome.gtk4.internal.GtkMapListModel
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkMapListModel` maps the items in a list model to different items.
+/** A `GtkMapListModel` maps the items in a list model to different items.
   *
   * `GtkMapListModel` uses a [callback@Gtk.MapListModelMapFunc].
   *
@@ -41,6 +39,9 @@ import sn.gnome.gtk4.internal.GtkMapListModel
   * are no longer needed and recreate them if necessary.
   *
   * `GtkMapListModel` passes through sections from the underlying model.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MapListModel(raw: Ptr[GtkMapListModel])
     extends Object(raw.asInstanceOf),
@@ -49,9 +50,10 @@ class MapListModel(raw: Ptr[GtkMapListModel])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the model that is currently being mapped or %NULL if none.
     *
-    * Gets the model that is currently being mapped or %NULL if none.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_map_list_model_get_model(
@@ -59,17 +61,16 @@ class MapListModel(raw: Ptr[GtkMapListModel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if a map function is currently set on @self.
     *
-    * Checks if a map function is currently set on @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasMap(): Boolean /* None */ = gtk_map_list_model_has_map(
     this.raw.asInstanceOf[Ptr[GtkMapListModel]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the function used to map items.
+  /** Sets the function used to map items.
     *
     * The function will be called whenever an item needs to be mapped and must
     * return the item to use for the given input item.
@@ -80,19 +81,23 @@ class MapListModel(raw: Ptr[GtkMapListModel])
     * GTK makes no effort to ensure that @map_func conforms to the item type of @self.
     * It assumes that the caller knows what they are doing and the map function
     * returns items of the appropriate type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(MapListModelMapFunc), @type -> DataRecord(GtkMapListModelMapFunc)))"
+    "[set_map_func/<method parameters>/map_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(MapListModelMapFunc), @type -> DataRecord(GtkMapListModelMapFunc)))"
   )
-  def setMapFunc__ = ???
+  private def setMapFunc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the model to be mapped.
+  /** Sets the model to be mapped.
     *
     * GTK makes no effort to ensure that @model conforms to the item type
     * expected by the map function. It assumes that the caller knows what they
     * are doing and have set up an appropriate map function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
       model: Option[
@@ -112,13 +117,14 @@ class MapListModel(raw: Ptr[GtkMapListModel])
 end MapListModel
 
 object MapListModel:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkMapListModel` for the given arguments.
     *
-    * Creates a new `GtkMapListModel` for the given arguments.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(MapListModelMapFunc), @type -> DataRecord(GtkMapListModelMapFunc)))"
+    "[map_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(MapListModelMapFunc), @type -> DataRecord(GtkMapListModelMapFunc)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end MapListModel

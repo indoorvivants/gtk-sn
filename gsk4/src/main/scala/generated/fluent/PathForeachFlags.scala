@@ -2,15 +2,16 @@ package sn.gnome.gsk4.fluent
 
 import _root_.sn.gnome.gsk4.internal.GskPathForeachFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags that can be passed to gsk_path_foreach() to influence what kinds of
+/** Flags that can be passed to gsk_path_foreach() to influence what kinds of
   * operations the path is decomposed into.
   *
   * By default, [method@Gsk.Path.foreach] will only emit a path with all
   * operations flattened to straight lines to allow for maximum compatibility.
   * The only operations emitted will be `GSK_PATH_MOVE`, `GSK_PATH_LINE` and
   * `GSK_PATH_CLOSE`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PathForeachFlags private (val raw: GskPathForeachFlags):
   def is(kv: PathForeachFlags): Boolean =
@@ -38,23 +39,25 @@ object PathForeachFlags:
     def |(other: PathForeachFlags) =
       PathForeachFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags that can be passed to gsk_path_foreach() to influence what kinds of
+  /** Flags that can be passed to gsk_path_foreach() to influence what kinds of
     * operations the path is decomposed into.
     *
     * By default, [method@Gsk.Path.foreach] will only emit a path with all
     * operations flattened to straight lines to allow for maximum compatibility.
     * The only operations emitted will be `GSK_PATH_MOVE`, `GSK_PATH_LINE` and
     * `GSK_PATH_CLOSE`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GskPathForeachFlags, name: String)
       extends PathForeachFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** The default behavior, only allow lines.
       *
-      * The default behavior, only allow lines.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ONLY_LINES
         extends KnownValue(
@@ -62,9 +65,10 @@ object PathForeachFlags:
           "ONLY_LINES"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Allow emission of `GSK_PATH_QUAD` operations
       *
-      * Allow emission of `GSK_PATH_QUAD` operations
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case QUAD
         extends KnownValue(
@@ -72,9 +76,10 @@ object PathForeachFlags:
           "QUAD"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Allow emission of `GSK_PATH_CUBIC` operations.
       *
-      * Allow emission of `GSK_PATH_CUBIC` operations.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CUBIC
         extends KnownValue(
@@ -82,9 +87,10 @@ object PathForeachFlags:
           "CUBIC"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Allow emission of `GSK_PATH_CONIC` operations.
       *
-      * Allow emission of `GSK_PATH_CONIC` operations.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CONIC
         extends KnownValue(

@@ -2,68 +2,77 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoUnderline
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `PangoUnderline` enumeration is used to specify whether text should be
+/** The `PangoUnderline` enumeration is used to specify whether text should be
   * underlined, and if so, the type of underlining.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Underline(val raw: PangoUnderline):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** no underline should be drawn
     *
-    * no underline should be drawn
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends Underline(PangoUnderline.PANGO_UNDERLINE_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a single underline should be drawn
     *
-    * a single underline should be drawn
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SINGLE extends Underline(PangoUnderline.PANGO_UNDERLINE_SINGLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a double underline should be drawn
     *
-    * a double underline should be drawn
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DOUBLE extends Underline(PangoUnderline.PANGO_UNDERLINE_DOUBLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * a single underline should be drawn at a position beneath the ink extents
+  /** a single underline should be drawn at a position beneath the ink extents
     * of the text being underlined. This should be used only for underlining
     * single characters, such as for keyboard accelerators.
     * %PANGO_UNDERLINE_SINGLE should be used for extended portions of text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LOW extends Underline(PangoUnderline.PANGO_UNDERLINE_LOW)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * an underline indicating an error should be drawn below. The exact style of
+  /** an underline indicating an error should be drawn below. The exact style of
     * rendering is up to the `PangoRenderer` in use, but typical styles include
     * wavy or dotted lines. This underline is typically used to indicate an
     * error such as a possible mispelling; in some cases a contrasting color may
     * automatically be used. This type of underlining is available since Pango
     * 1.4.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ERROR extends Underline(PangoUnderline.PANGO_UNDERLINE_ERROR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like @PANGO_UNDERLINE_SINGLE, but drawn continuously across multiple runs.
+  /** Like @PANGO_UNDERLINE_SINGLE, but drawn continuously across multiple runs.
     * This type of underlining is available since Pango 1.46.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SINGLE_LINE extends Underline(PangoUnderline.PANGO_UNDERLINE_SINGLE_LINE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like @PANGO_UNDERLINE_DOUBLE, but drawn continuously across multiple runs.
+  /** Like @PANGO_UNDERLINE_DOUBLE, but drawn continuously across multiple runs.
     * This type of underlining is available since Pango 1.46.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DOUBLE_LINE extends Underline(PangoUnderline.PANGO_UNDERLINE_DOUBLE_LINE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Like @PANGO_UNDERLINE_ERROR, but drawn continuously across multiple runs.
+  /** Like @PANGO_UNDERLINE_ERROR, but drawn continuously across multiple runs.
     * This type of underlining is available since Pango 1.46.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ERROR_LINE extends Underline(PangoUnderline.PANGO_UNDERLINE_ERROR_LINE)
 end Underline

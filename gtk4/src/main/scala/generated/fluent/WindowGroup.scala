@@ -8,9 +8,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkWindowGroup
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkWindowGroup` makes group of windows behave like separate applications.
+/** `GtkWindowGroup` makes group of windows behave like separate applications.
   *
   * It achieves this by limiting the effect of GTK grabs and modality to windows
   * in the same group.
@@ -25,14 +23,18 @@ import sn.gnome.gtk4.internal.GtkWindowGroup
   * window group are subsequently destroyed, then they will be removed from the
   * window group and drop their references on the window group; when all window
   * have been removed, the window group will be freed.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class WindowGroup(raw: Ptr[GtkWindowGroup]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds a window to a `GtkWindowGroup`.
     *
-    * Adds a window to a `GtkWindowGroup`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addWindow(window: Window /* Some(Ptr[GtkWindow]) */ ): Unit /* None */ =
     gtk_window_group_add_window(
@@ -40,18 +42,20 @@ class WindowGroup(raw: Ptr[GtkWindowGroup]) extends Object(raw.asInstanceOf):
       window.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns a list of the `GtkWindows` that belong to @window_group.
     *
-    * Returns a list of the `GtkWindows` that belong to @window_group.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Window))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[list_windows/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Window))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def listWindows__ = ???
+  private def listWindows__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes a window from a `GtkWindowGroup`.
     *
-    * Removes a window from a `GtkWindowGroup`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeWindow(
       window: Window /* Some(Ptr[GtkWindow]) */
@@ -63,11 +67,12 @@ class WindowGroup(raw: Ptr[GtkWindowGroup]) extends Object(raw.asInstanceOf):
 end WindowGroup
 
 object WindowGroup:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkWindowGroup` object.
+  /** Creates a new `GtkWindowGroup` object.
     *
     * Modality of windows only affects windows within the same `GtkWindowGroup`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): WindowGroup = new WindowGroup(
     gtk_window_group_new().asInstanceOf

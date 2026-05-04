@@ -2,13 +2,14 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkTreeModelFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * These flags indicate various properties of a `GtkTreeModel`.
+/** These flags indicate various properties of a `GtkTreeModel`.
   *
   * They are returned by [method@Gtk.TreeModel.get_flags], and must be static
   * for the lifetime of the object. A more complete description of
   * %GTK_TREE_MODEL_ITERS_PERSIST can be found in the overview of this section.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TreeModelFlags private (val raw: GtkTreeModelFlags):
   def is(kv: TreeModelFlags): Boolean =
@@ -36,22 +37,24 @@ object TreeModelFlags:
     def |(other: TreeModelFlags) =
       TreeModelFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * These flags indicate various properties of a `GtkTreeModel`.
+  /** These flags indicate various properties of a `GtkTreeModel`.
     *
     * They are returned by [method@Gtk.TreeModel.get_flags], and must be static
     * for the lifetime of the object. A more complete description of
     * %GTK_TREE_MODEL_ITERS_PERSIST can be found in the overview of this
     * section.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GtkTreeModelFlags, name: String)
       extends TreeModelFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** iterators survive all signals emitted by the tree
       *
-      * iterators survive all signals emitted by the tree
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ITERS_PERSIST
         extends KnownValue(
@@ -59,9 +62,10 @@ object TreeModelFlags:
           "ITERS_PERSIST"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the model is a list only, and never has children
       *
-      * the model is a list only, and never has children
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case LIST_ONLY
         extends KnownValue(

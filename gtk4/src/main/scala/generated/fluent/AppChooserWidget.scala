@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkAppChooserWidget
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkAppChooserWidget` is a widget for selecting applications.
+/** `GtkAppChooserWidget` is a widget for selecting applications.
   *
   * It is the main building block for [class@Gtk.AppChooserDialog]. Most
   * applications only need to use the latter; but you can use this widget as
@@ -38,6 +36,9 @@ import sn.gnome.gtk4.internal.GtkAppChooserWidget
   * ## CSS nodes
   *
   * `GtkAppChooserWidget` has a single CSS node with name appchooser.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     extends Widget(raw.asInstanceOf),
@@ -48,10 +49,11 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the text that is shown if there are not applications that can
+  /** Returns the text that is shown if there are not applications that can
     * handle the content type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefaultText()(using Zone): String /* None */ = fromCString(
     gtk_app_chooser_widget_get_default_text(
@@ -59,58 +61,64 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the app chooser should show all applications in a flat list.
     *
-    * Gets whether the app chooser should show all applications in a flat list.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowAll(): Boolean /* None */ = gtk_app_chooser_widget_get_show_all(
     this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether the app chooser should show the default handler for the
+  /** Gets whether the app chooser should show the default handler for the
     * content type in a separate section.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowDefault(): Boolean /* None */ =
     gtk_app_chooser_widget_get_show_default(
       this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether the app chooser should show related applications for the
+  /** Gets whether the app chooser should show related applications for the
     * content type in a separate section.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowFallback(): Boolean /* None */ =
     gtk_app_chooser_widget_get_show_fallback(
       this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether the app chooser should show applications which are unrelated
+  /** Gets whether the app chooser should show applications which are unrelated
     * to the content type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowOther(): Boolean /* None */ =
     gtk_app_chooser_widget_get_show_other(
       this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether the app chooser should show recommended applications for the
+  /** Gets whether the app chooser should show recommended applications for the
     * content type in a separate section.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowRecommended(): Boolean /* None */ =
     gtk_app_chooser_widget_get_show_recommended(
       this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the text that is shown if there are not applications that can handle
+  /** Sets the text that is shown if there are not applications that can handle
     * the content type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultText(
       text: String | CString /* Some(CString) */
@@ -119,9 +127,10 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     __sn_extract_string(text)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the app chooser should show all applications in a flat list.
     *
-    * Sets whether the app chooser should show all applications in a flat list.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowAll(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -130,10 +139,11 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the app chooser should show the default handler for the
+  /** Sets whether the app chooser should show the default handler for the
     * content type in a separate section.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowDefault(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -142,10 +152,11 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the app chooser should show related applications for the
+  /** Sets whether the app chooser should show related applications for the
     * content type in a separate section.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowFallback(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -154,10 +165,11 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the app chooser should show applications which are unrelated
+  /** Sets whether the app chooser should show applications which are unrelated
     * to the content type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowOther(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -166,10 +178,11 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the app chooser should show recommended applications for the
+  /** Sets whether the app chooser should show recommended applications for the
     * content type in a separate section.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowRecommended(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -189,10 +202,11 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
 end AppChooserWidget
 
 object AppChooserWidget:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkAppChooserWidget` for applications that can handle
+  /** Creates a new `GtkAppChooserWidget` for applications that can handle
     * content of the given type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       content_type: String | CString /* Some(CString) */

@@ -9,9 +9,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkPopoverMenuBar
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkPopoverMenuBar` presents a horizontal bar of items that pop up popover
+/** `GtkPopoverMenuBar` presents a horizontal bar of items that pop up popover
   * menus when clicked.
   *
   * ![An example GtkPopoverMenuBar](menubar.png)
@@ -39,6 +37,9 @@ import sn.gnome.gtk4.internal.GtkPopoverMenuBar
   * `GtkPopoverMenuBar` uses the %GTK_ACCESSIBLE_ROLE_MENU_BAR role, the menu
   * items use the %GTK_ACCESSIBLE_ROLE_MENU_ITEM role and the menus use the
   * %GTK_ACCESSIBLE_ROLE_MENU role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PopoverMenuBar(raw: Ptr[GtkPopoverMenuBar])
     extends Widget(raw.asInstanceOf),
@@ -48,12 +49,13 @@ class PopoverMenuBar(raw: Ptr[GtkPopoverMenuBar])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a custom widget to a generated menubar.
+  /** Adds a custom widget to a generated menubar.
     *
     * For this to work, the menu model of @bar must have an item with a `custom`
     * attribute that matches @id.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addChild(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -64,9 +66,10 @@ class PopoverMenuBar(raw: Ptr[GtkPopoverMenuBar])
     __sn_extract_string(id)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the model from which the contents of @bar are taken.
     *
-    * Returns the model from which the contents of @bar are taken.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMenuModel(): MenuModel /* None */ = new MenuModel(
     gtk_popover_menu_bar_get_menu_model(
@@ -74,10 +77,11 @@ class PopoverMenuBar(raw: Ptr[GtkPopoverMenuBar])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a widget that has previously been added with
+  /** Removes a widget that has previously been added with
     * gtk_popover_menu_bar_add_child().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeChild(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -86,9 +90,10 @@ class PopoverMenuBar(raw: Ptr[GtkPopoverMenuBar])
     child.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets a menu model from which @bar should take its contents.
     *
-    * Sets a menu model from which @bar should take its contents.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMenuModel(
       model: Option[
@@ -116,9 +121,10 @@ class PopoverMenuBar(raw: Ptr[GtkPopoverMenuBar])
 end PopoverMenuBar
 
 object PopoverMenuBar:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a `GtkPopoverMenuBar` from a `GMenuModel`.
     *
-    * Creates a `GtkPopoverMenuBar` from a `GMenuModel`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromModel(
       model: Option[

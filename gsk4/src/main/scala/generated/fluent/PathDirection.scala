@@ -2,9 +2,7 @@ package sn.gnome.gsk4.fluent
 
 import _root_.sn.gnome.gsk4.internal.GskPathDirection
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The values of the `GskPathDirection` enum are used to pick one of the four
+/** The values of the `GskPathDirection` enum are used to pick one of the four
   * tangents at a given point on the path.
   *
   * Note that the directions for @GSK_PATH_FROM_START/@GSK_PATH_TO_END and
@@ -14,29 +12,36 @@ import _root_.sn.gnome.gsk4.internal.GskPathDirection
   *
   * <picture> <source srcset="directions-dark.png" media="(prefers-color-scheme:
   * dark)"> <img alt="Path Tangents" src="directions-light.png"> </picture>
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PathDirection(val raw: GskPathDirection):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The tangent in path direction of the incoming side of the path
     *
-    * The tangent in path direction of the incoming side of the path
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FROM_START extends PathDirection(GskPathDirection.GSK_PATH_FROM_START)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The tangent against path direction of the incoming side of the path
     *
-    * The tangent against path direction of the incoming side of the path
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TO_START extends PathDirection(GskPathDirection.GSK_PATH_TO_START)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The tangent in path direction of the outgoing side of the path
     *
-    * The tangent in path direction of the outgoing side of the path
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TO_END extends PathDirection(GskPathDirection.GSK_PATH_TO_END)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The tangent against path direction of the outgoing side of the path
     *
-    * The tangent against path direction of the outgoing side of the path
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FROM_END extends PathDirection(GskPathDirection.GSK_PATH_FROM_END)
 end PathDirection

@@ -7,24 +7,26 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.ShortcutTrigger
 import sn.gnome.gtk4.internal.GtkAlternativeTrigger
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkShortcutTrigger` that combines two triggers.
+/** A `GtkShortcutTrigger` that combines two triggers.
   *
   * The `GtkAlternativeTrigger` triggers when either of two trigger.
   *
   * This can be cascaded to combine more than two triggers.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class AlternativeTrigger(raw: Ptr[GtkAlternativeTrigger])
     extends ShortcutTrigger(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the first of the two alternative triggers that may trigger @self.
+  /** Gets the first of the two alternative triggers that may trigger @self.
     *
     * [method@Gtk.AlternativeTrigger.get_second] will return the other one.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFirst(): ShortcutTrigger /* None */ = new ShortcutTrigger(
     gtk_alternative_trigger_get_first(
@@ -32,11 +34,12 @@ class AlternativeTrigger(raw: Ptr[GtkAlternativeTrigger])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the second of the two alternative triggers that may trigger @self.
+  /** Gets the second of the two alternative triggers that may trigger @self.
     *
     * [method@Gtk.AlternativeTrigger.get_first] will return the other one.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSecond(): ShortcutTrigger /* None */ = new ShortcutTrigger(
     gtk_alternative_trigger_get_second(
@@ -47,13 +50,14 @@ class AlternativeTrigger(raw: Ptr[GtkAlternativeTrigger])
 end AlternativeTrigger
 
 object AlternativeTrigger:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkShortcutTrigger` that will trigger whenever either of the
+  /** Creates a `GtkShortcutTrigger` that will trigger whenever either of the
     * two given triggers gets triggered.
     *
     * Note that nesting is allowed, so if you want more than two alternative,
     * create a new alternative trigger for each option.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       first: ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */,

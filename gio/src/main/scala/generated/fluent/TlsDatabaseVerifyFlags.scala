@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GTlsDatabaseVerifyFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags for g_tls_database_verify_chain().
   *
-  * Flags for g_tls_database_verify_chain().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TlsDatabaseVerifyFlags private (val raw: GTlsDatabaseVerifyFlags):
   def is(kv: TlsDatabaseVerifyFlags): Boolean =
@@ -32,17 +33,19 @@ object TlsDatabaseVerifyFlags:
     def |(other: TlsDatabaseVerifyFlags) =
       TlsDatabaseVerifyFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags for g_tls_database_verify_chain().
     *
-    * Flags for g_tls_database_verify_chain().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GTlsDatabaseVerifyFlags, name: String)
       extends TlsDatabaseVerifyFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No verification flags
       *
-      * No verification flags
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(

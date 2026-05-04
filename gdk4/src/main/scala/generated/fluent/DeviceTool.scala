@@ -10,25 +10,25 @@ import sn.gnome.gdk4.internal.GdkDeviceTool
 import sn.gnome.glib.internal.guint64
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A physical tool associated to a `GdkDevice`.
   *
-  * A physical tool associated to a `GdkDevice`.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DeviceTool(raw: Ptr[GdkDeviceTool]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the axes of the tool.
     *
-    * Gets the axes of the tool.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAxes(): AxisFlags /* None */ = AxisFlags.fromRaw(
     gdk_device_tool_get_axes(this.raw.asInstanceOf[Ptr[GdkDeviceTool]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the hardware ID of this tool, or 0 if it's not known.
+  /** Gets the hardware ID of this tool, or 0 if it's not known.
     *
     * When non-zero, the identifier is unique for the given tool model, meaning
     * that two identical tools will share the same @hardware_id, but will have
@@ -38,26 +38,31 @@ class DeviceTool(raw: Ptr[GdkDeviceTool]) extends Object(raw.asInstanceOf):
     * `GdkDeviceTool` than [method@Gdk.DeviceTool.get_tool_type], as a tablet
     * may support multiple devices with the same `GdkDeviceToolType`, but
     * different hardware identifiers.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHardwareId(): CUnsignedLongInt /* None */ =
     gdk_device_tool_get_hardware_id(
       this.raw.asInstanceOf[Ptr[GdkDeviceTool]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the serial number of this tool.
+  /** Gets the serial number of this tool.
     *
     * This value can be used to identify a physical tool (eg. a tablet pen)
     * across program executions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSerial(): CUnsignedLongInt /* None */ = gdk_device_tool_get_serial(
     this.raw.asInstanceOf[Ptr[GdkDeviceTool]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GdkDeviceToolType` of the tool.
     *
-    * Gets the `GdkDeviceToolType` of the tool.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getToolType(): DeviceToolType /* None */ = DeviceToolType.fromRaw(
     gdk_device_tool_get_tool_type(this.raw.asInstanceOf[Ptr[GdkDeviceTool]])

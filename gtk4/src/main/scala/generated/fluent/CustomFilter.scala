@@ -7,17 +7,16 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.Filter
 import sn.gnome.gtk4.internal.GtkCustomFilter
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** `GtkCustomFilter` determines whether to include items with a callback.
   *
-  * `GtkCustomFilter` determines whether to include items with a callback.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class CustomFilter(raw: Ptr[GtkCustomFilter]) extends Filter(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the function used for filtering items.
+  /** Sets the function used for filtering items.
     *
     * If @match_func is %NULL, the filter matches all items.
     *
@@ -25,27 +24,31 @@ class CustomFilter(raw: Ptr[GtkCustomFilter]) extends Filter(raw.asInstanceOf):
     * needs to be called.
     *
     * If a previous function was set, its @user_destroy will be called now.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(CustomFilterFunc), @type -> DataRecord(GtkCustomFilterFunc)))"
+    "[set_filter_func/<method parameters>/match_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CustomFilterFunc), @type -> DataRecord(GtkCustomFilterFunc)))"
   )
-  def setFilterFunc__ = ???
+  private def setFilterFunc__ = ???
 
 end CustomFilter
 
 object CustomFilter:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new filter using the given @match_func to filter items.
+  /** Creates a new filter using the given @match_func to filter items.
     *
     * If @match_func is %NULL, the filter matches all items.
     *
     * If the filter func changes its filtering behavior, gtk_filter_changed()
     * needs to be called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(CustomFilterFunc), @type -> DataRecord(GtkCustomFilterFunc)))"
+    "[match_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CustomFilterFunc), @type -> DataRecord(GtkCustomFilterFunc)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end CustomFilter

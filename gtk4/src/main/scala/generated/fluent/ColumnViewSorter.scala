@@ -9,9 +9,7 @@ import sn.gnome.glib.internal.guint
 import sn.gnome.gtk4.fluent.{ColumnViewColumn, SortType, Sorter}
 import sn.gnome.gtk4.internal.GtkColumnViewSorter
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkColumnViewSorter` is a sorter implementation that is geared towards the
+/** `GtkColumnViewSorter` is a sorter implementation that is geared towards the
   * needs of `GtkColumnView`.
   *
   * The sorter returned by [method@Gtk.ColumnView.get_sorter] is a
@@ -42,45 +40,51 @@ import sn.gnome.gtk4.internal.GtkColumnViewSorter
   *     gtk_column_view_sort_by_column (view, column, order);
   *   }
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
     extends Sorter(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the number of columns by which the sorter sorts.
+  /** Returns the number of columns by which the sorter sorts.
     *
     * If the sorter of the primary sort column does not determine a total order,
     * then the secondary sorters are consulted to break the ties.
     *
     * Use the [signal@Gtk.Sorter::changed] signal to get notified when the
     * number of sort columns changes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNSortColumns(): UInt /* None */ =
     gtk_column_view_sorter_get_n_sort_columns(
       this.raw.asInstanceOf[Ptr[GtkColumnViewSorter]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the @position'th sort column and its associated sort order.
+  /** Gets the @position'th sort column and its associated sort order.
     *
     * Use the [signal@Gtk.Sorter::changed] signal to get notified when sort
     * columns change.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_nth_sort_column contains an OUT parameter, which is not supported yet"
+    "[get_nth_sort_column]: Method get_nth_sort_column contains an OUT parameter, which is not supported yet"
   )
-  def getNthSortColumn__ = ???
+  private def getNthSortColumn__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the primary sort column.
+  /** Returns the primary sort column.
     *
     * The primary sort column is the one that displays the triangle in a column
     * view header.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPrimarySortColumn(): ColumnViewColumn /* None */ =
     new ColumnViewColumn(
@@ -89,15 +93,16 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the primary sort order.
+  /** Returns the primary sort order.
     *
     * The primary sort order determines whether the triangle displayed in the
     * column view header of the primary sort column points upwards or downwards.
     *
     * If there is no primary sort column, then this function returns
     * `GTK_SORT_ASCENDING`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPrimarySortOrder(): SortType /* None */ = SortType.fromRaw(
     gtk_column_view_sorter_get_primary_sort_order(

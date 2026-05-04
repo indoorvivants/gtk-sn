@@ -16,9 +16,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkIconTheme
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkIconTheme` provides a facility for loading themed icons.
+/** `GtkIconTheme` provides a facility for loading themed icons.
   *
   * The main reason for using a name rather than simply providing a filename is
   * to allow different icons to be used depending on what “icon theme” is
@@ -51,20 +49,24 @@ import sn.gnome.gtk4.internal.GtkIconTheme
   * // Use the paintable
   * g_object_unref (icon);
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a resource path that will be looked at when looking for icons,
+  /** Adds a resource path that will be looked at when looking for icons,
     * similar to search paths.
     *
     * See [method@Gtk.IconTheme.set_resource_path].
     *
     * This function should be used to make application-specific icons available
     * as part of the icon theme.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addResourcePath(
       path: String | CString /* Some(CString) */
@@ -73,11 +75,12 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     __sn_extract_string(path)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Appends a directory to the search path.
+  /** Appends a directory to the search path.
     *
     * See [method@Gtk.IconTheme.set_search_path].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addSearchPath(
       path: String | CString /* Some(CString) */
@@ -86,9 +89,10 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     __sn_extract_string(path)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the display that the `GtkIconTheme` object was created for.
     *
-    * Returns the display that the `GtkIconTheme` object was created for.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDisplay(): Display /* None */ = new Display(
     gtk_icon_theme_get_display(
@@ -96,55 +100,60 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Lists the names of icons in the current icon theme.
     *
-    * Lists the names of icons in the current icon theme.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconNames()(using Zone): Array[String] /* None */ =
     __decode_nullable_ptrs(
       gtk_icon_theme_get_icon_names(this.raw.asInstanceOf[Ptr[GtkIconTheme]])
     ).map(fromCString(_))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns an array of integers describing the sizes at which the icon is
+  /** Returns an array of integers describing the sizes at which the icon is
     * available without scaling.
     *
     * A size of -1 means that the icon is available in a scalable format. The
     * array is zero-terminated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(int)))),ListMap(@type -> DataRecord(int*)))"
+    "[get_icon_sizes/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(int)))),ListMap(@type -> DataRecord(int*)))"
   )
-  def getIconSizes__ = ???
+  private def getIconSizes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the current resource path.
+  /** Gets the current resource path.
     *
     * See [method@Gtk.IconTheme.set_resource_path].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getResourcePath()(using Zone): Array[String] /* None */ =
     __decode_nullable_ptrs(
       gtk_icon_theme_get_resource_path(this.raw.asInstanceOf[Ptr[GtkIconTheme]])
     ).map(fromCString(_))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the current search path.
+  /** Gets the current search path.
     *
     * See [method@Gtk.IconTheme.set_search_path].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSearchPath()(using Zone): Array[String] /* None */ =
     __decode_nullable_ptrs(
       gtk_icon_theme_get_search_path(this.raw.asInstanceOf[Ptr[GtkIconTheme]])
     ).map(fromCString(_))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the current icon theme name.
+  /** Gets the current icon theme name.
     *
     * Returns (transfer full): the current icon theme name,
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getThemeName()(using Zone): String /* None */ = fromCString(
     gtk_icon_theme_get_theme_name(
@@ -152,9 +161,10 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks whether an icon theme includes an icon for a particular `GIcon`.
     *
-    * Checks whether an icon theme includes an icon for a particular `GIcon`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasGicon(
       gicon: Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
@@ -163,9 +173,10 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     gicon.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks whether an icon theme includes an icon for a particular name.
     *
-    * Checks whether an icon theme includes an icon for a particular name.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasIcon(
       icon_name: String | CString /* Some(CString) */
@@ -174,12 +185,13 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     __sn_extract_string(icon_name)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up a icon for a desired size and window scale.
+  /** Looks up a icon for a desired size and window scale.
     *
     * The icon can then be rendered by using it as a `GdkPaintable`, or you can
     * get information such as the filename and size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupByGicon(
       icon: Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */,
@@ -198,9 +210,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up a named icon for a desired size and window scale, returning a
+  /** Looks up a named icon for a desired size and window scale, returning a
     * `GtkIconPaintable`.
     *
     * The icon can then be rendered by using it as a `GdkPaintable`, or you can
@@ -216,15 +226,16 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * Note that you probably want to listen for icon theme changes and update
     * the icon. This is usually done by overriding the
     * GtkWidgetClass.css-changed() function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+    "[lookup_icon/<method parameters>/fallbacks]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def lookupIcon__ = ???
+  private def lookupIcon__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the resource paths that will be looked at when looking for icons,
+  /** Sets the resource paths that will be looked at when looking for icons,
     * similar to search paths.
     *
     * The resources are considered as part of the hicolor icon theme and must be
@@ -234,15 +245,16 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * Icons that are directly placed in the resource path instead of a
     * subdirectory are also considered as ultimate fallback, but they are
     * treated like unthemed icons.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
+    "[set_resource_path/<method parameters>/path]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
-  def setResourcePath__ = ???
+  private def setResourcePath__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the search path for the icon theme object.
+  /** Sets the search path for the icon theme object.
     *
     * When looking for an icon theme, GTK will search for a subdirectory of one
     * or more of the directories in @path with the same name as the icon theme
@@ -257,19 +269,23 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     *   then that image will be used for the icon name. (This is legacy feature,
     *   and new icons should be put into the fallback icon theme, which is
     *   called hicolor, rather than directly on the icon path.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const char* const*)))"
+    "[set_search_path/<method parameters>/path]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
-  def setSearchPath__ = ???
+  private def setSearchPath__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the name of the icon theme that the `GtkIconTheme` object uses
+  /** Sets the name of the icon theme that the `GtkIconTheme` object uses
     * overriding system configuration.
     *
     * This function cannot be called on the icon theme objects returned from
     * [func@Gtk.IconTheme.get_for_display].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setThemeName(
       theme_name: Option[String | CString /* Some(CString) */ ]
@@ -294,7 +310,7 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
   ): Array[Ptr[T]] =
     val ab = Array.newBuilder[Ptr[T]]
     var offset = 0
-    val tg = Tag.materializePtrTag(ptag)
+    val tg = Tag.materializePtrTag(using ptag)
     while p(offset)(using tg) != null do
       ab += p(offset)(using tg)
       offset += 1
@@ -304,20 +320,19 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
 end IconTheme
 
 object IconTheme:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new icon theme object.
+  /** Creates a new icon theme object.
     *
     * Icon theme objects are used to lookup up an icon by name in a particular
     * icon theme. Usually, you’ll want to use
     * [func@Gtk.IconTheme.get_for_display] rather than creating a new icon theme
     * object for scratch.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): IconTheme = new IconTheme(gtk_icon_theme_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the icon theme object associated with @display.
+  /** Gets the icon theme object associated with @display.
     *
     * If this function has not previously been called for the given display, a
     * new icon theme object will be created and associated with the display.
@@ -325,6 +340,9 @@ object IconTheme:
     * is usually a better choice than calling [ctor@Gtk.IconTheme.new] and
     * setting the display yourself; by using this function a single icon theme
     * object will be shared between users.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getForDisplay(
       display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */

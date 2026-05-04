@@ -2,524 +2,582 @@ package sn.gnome.harfbuzz.fluent
 
 import _root_.sn.gnome.harfbuzz.internal.hb_unicode_combining_class_t
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Data type for the Canonical_Combining_Class (ccc) property from the Unicode
+/** Data type for the Canonical_Combining_Class (ccc) property from the Unicode
   * Character Database.
   *
   * <note>Note: newer versions of Unicode may add new values. Client programs
   * should be ready to handle any value in the 0..254 range being returned from
   * hb_unicode_combining_class().</note>
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Unicode_combining_class_t(val raw: hb_unicode_combining_class_t):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Spacing and enclosing marks; also many vowel and consonant signs, even if
+  /** Spacing and enclosing marks; also many vowel and consonant signs, even if
     * nonspacing
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_REORDERED
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_NOT_REORDERED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Marks which overlay a base letter or symbol
     *
-    * Marks which overlay a base letter or symbol
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OVERLAY
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_OVERLAY
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Diacritic nukta marks in Brahmi-derived scripts
     *
-    * Diacritic nukta marks in Brahmi-derived scripts
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NUKTA
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_NUKTA
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Hiragana/Katakana voicing marks
     *
-    * Hiragana/Katakana voicing marks
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case KANA_VOICING
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_KANA_VOICING
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Viramas
     *
-    * Viramas
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case VIRAMA
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_VIRAMA
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC10
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC10
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC11
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC11
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC12
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC12
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC13
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC13
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC14
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC14
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC15
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC15
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC16
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC16
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC17
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC17
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC18
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC18
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC19
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC19
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC20
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC20
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC21
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC21
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC22
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC22
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC23
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC23
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC24
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC24
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC25
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC25
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Hebrew]
     *
-    * [Hebrew]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC26
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC26
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Arabic]
     *
-    * [Arabic]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC27
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC27
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Arabic]
     *
-    * [Arabic]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC28
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC28
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Arabic]
     *
-    * [Arabic]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC29
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC29
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Arabic]
     *
-    * [Arabic]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC30
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC30
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Arabic]
     *
-    * [Arabic]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC31
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC31
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Arabic]
     *
-    * [Arabic]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC32
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC32
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Arabic]
     *
-    * [Arabic]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC33
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC33
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Arabic]
     *
-    * [Arabic]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC34
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC34
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Arabic]
     *
-    * [Arabic]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC35
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC35
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Syriac]
     *
-    * [Syriac]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC36
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC36
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Telugu]
     *
-    * [Telugu]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC84
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC84
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Telugu]
     *
-    * [Telugu]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC91
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC91
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Thai]
     *
-    * [Thai]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC103
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC103
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Thai]
     *
-    * [Thai]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC107
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC107
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Lao]
     *
-    * [Lao]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC118
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC118
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Lao]
     *
-    * [Lao]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC122
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC122
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Tibetan]
     *
-    * [Tibetan]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC129
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC129
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Tibetan]
     *
-    * [Tibetan]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC130
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC130
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** [Tibetan] Since: 7.2.0
     *
-    * [Tibetan] Since: 7.2.0
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CCC132
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_CCC132
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Marks attached at the bottom left
     *
-    * Marks attached at the bottom left
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ATTACHED_BELOW_LEFT
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_ATTACHED_BELOW_LEFT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Marks attached directly below
     *
-    * Marks attached directly below
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ATTACHED_BELOW
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_ATTACHED_BELOW
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Marks attached directly above
     *
-    * Marks attached directly above
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ATTACHED_ABOVE
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_ATTACHED_ABOVE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Marks attached at the top right
     *
-    * Marks attached at the top right
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ATTACHED_ABOVE_RIGHT
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_ATTACHED_ABOVE_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Distinct marks at the bottom left
     *
-    * Distinct marks at the bottom left
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BELOW_LEFT
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_BELOW_LEFT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Distinct marks directly below
     *
-    * Distinct marks directly below
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BELOW
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_BELOW
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Distinct marks at the bottom right
     *
-    * Distinct marks at the bottom right
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BELOW_RIGHT
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_BELOW_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Distinct marks to the left
     *
-    * Distinct marks to the left
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LEFT
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_LEFT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Distinct marks to the right
     *
-    * Distinct marks to the right
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RIGHT
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Distinct marks at the top left
     *
-    * Distinct marks at the top left
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ABOVE_LEFT
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_ABOVE_LEFT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Distinct marks directly above
     *
-    * Distinct marks directly above
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ABOVE
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_ABOVE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Distinct marks at the top right
     *
-    * Distinct marks at the top right
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ABOVE_RIGHT
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_ABOVE_RIGHT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Distinct marks subtending two bases
     *
-    * Distinct marks subtending two bases
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DOUBLE_BELOW
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_DOUBLE_BELOW
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Distinct marks extending above two bases
     *
-    * Distinct marks extending above two bases
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DOUBLE_ABOVE
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_DOUBLE_ABOVE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Greek iota subscript only
     *
-    * Greek iota subscript only
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case IOTA_SUBSCRIPT
       extends Unicode_combining_class_t(
         hb_unicode_combining_class_t.HB_UNICODE_COMBINING_CLASS_IOTA_SUBSCRIPT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Invalid combining class
     *
-    * Invalid combining class
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID
       extends Unicode_combining_class_t(

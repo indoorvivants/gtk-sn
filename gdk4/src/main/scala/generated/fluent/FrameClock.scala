@@ -10,9 +10,7 @@ import sn.gnome.gdk4.internal.GdkFrameClock
 import sn.gnome.glib.internal.gint64
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GdkFrameClock` tells the application when to update and repaint a
+/** A `GdkFrameClock` tells the application when to update and repaint a
   * surface.
   *
   * This may be synced to the vertical refresh rate of the monitor, for example.
@@ -46,122 +44,132 @@ import sn.gnome.gobject.fluent.Object
   * [method@Gdk.FrameClock.get_frame_time] and the value inside the
   * [signal@Gdk.FrameClock::update] signal of the clock, they will stay exactly
   * synchronized.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Starts updates for an animation.
+  /** Starts updates for an animation.
     *
     * Until a matching call to [method@Gdk.FrameClock.end_updating] is made, the
     * frame clock will continually request a new frame with the
     * %GDK_FRAME_CLOCK_PHASE_UPDATE phase. This function may be called multiple
     * times and frames will be requested until gdk_frame_clock_end_updating() is
     * called the same number of times.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def beginUpdating(): Unit /* None */ = gdk_frame_clock_begin_updating(
     this.raw.asInstanceOf[Ptr[GdkFrameClock]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Stops updates for an animation.
+  /** Stops updates for an animation.
     *
     * See the documentation for [method@Gdk.FrameClock.begin_updating].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def endUpdating(): Unit /* None */ = gdk_frame_clock_end_updating(
     this.raw.asInstanceOf[Ptr[GdkFrameClock]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the frame timings for the current frame.
     *
-    * Gets the frame timings for the current frame.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))"
+    "[get_current_timings/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))"
   )
-  def getCurrentTimings__ = ???
+  private def getCurrentTimings__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Calculates the current frames-per-second, based on the frame timings of @frame_clock.
     *
-    * Calculates the current frames-per-second, based on the frame timings of @frame_clock.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFps(): Double /* None */ = gdk_frame_clock_get_fps(
     this.raw.asInstanceOf[Ptr[GdkFrameClock]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * `GdkFrameClock` maintains a 64-bit counter that increments for each frame
+  /** `GdkFrameClock` maintains a 64-bit counter that increments for each frame
     * drawn.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFrameCounter(): CLongInt /* None */ =
     gdk_frame_clock_get_frame_counter(
       this.raw.asInstanceOf[Ptr[GdkFrameClock]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the time that should currently be used for animations.
+  /** Gets the time that should currently be used for animations.
     *
     * Inside the processing of a frame, it’s the time used to compute the
     * animation position of everything in a frame. Outside of a frame, it's the
     * time of the conceptual “previous frame,” which may be either the actual
     * previous frame time, or if that’s too old, an updated time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFrameTime(): CLongInt /* None */ = gdk_frame_clock_get_frame_time(
     this.raw.asInstanceOf[Ptr[GdkFrameClock]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the frame counter for the oldest frame available in history.
+  /** Returns the frame counter for the oldest frame available in history.
     *
     * `GdkFrameClock` internally keeps a history of `GdkFrameTimings` objects
     * for recent frames that can be retrieved with
     * [method@Gdk.FrameClock.get_timings]. The set of stored frames is the set
     * from the counter values given by [method@Gdk.FrameClock.get_history_start]
     * and [method@Gdk.FrameClock.get_frame_counter], inclusive.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHistoryStart(): CLongInt /* None */ =
     gdk_frame_clock_get_history_start(
       this.raw.asInstanceOf[Ptr[GdkFrameClock]]
     ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Predicts a presentation time, based on history.
+  /** Predicts a presentation time, based on history.
     *
     * Using the frame history stored in the frame clock, finds the last known
     * presentation time and refresh interval, and assuming that presentation
     * times are separated by the refresh interval, predicts a presentation time
     * that is a multiple of the refresh interval after the last presentation
     * time, and later than @base_time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_refresh_info contains an OUT parameter, which is not supported yet"
+    "[get_refresh_info]: Method get_refresh_info contains an OUT parameter, which is not supported yet"
   )
-  def getRefreshInfo__ = ???
+  private def getRefreshInfo__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves a `GdkFrameTimings` object holding timing information for the
+  /** Retrieves a `GdkFrameTimings` object holding timing information for the
     * current frame or a recent frame.
     *
     * The `GdkFrameTimings` object may not yet be complete: see
     * [method@Gdk.FrameTimings.get_complete] and
     * [method@Gdk.FrameClock.get_history_start].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))"
+    "[get_timings/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))"
   )
-  def getTimings__ = ???
+  private def getTimings__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asks the frame clock to run a particular phase.
+  /** Asks the frame clock to run a particular phase.
     *
     * The signal corresponding the requested phase will be emitted the next time
     * the frame clock processes. Multiple calls to
@@ -171,6 +179,9 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * of time, you should use [method@Gdk.FrameClock.begin_updating] instead,
     * since this allows GTK to adjust system parameters to get maximally smooth
     * animations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def requestPhase(
       phase: FrameClockPhase /* Some(GdkFrameClockPhase) */

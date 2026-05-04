@@ -2,72 +2,82 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GOptionArg
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The #GOptionArg enum values determine which type of extra argument the
+/** The #GOptionArg enum values determine which type of extra argument the
   * options expect to find. If an option expects an extra argument, it can be
   * specified in several ways; with a short option: `-x arg`, with a long
   * option: `--name arg` or combined in a single argument: `--name=arg`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum OptionArg(val raw: GOptionArg):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No extra argument. This is useful for simple flags or booleans.
     *
-    * No extra argument. This is useful for simple flags or booleans.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends OptionArg(GOptionArg.G_OPTION_ARG_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The option takes a UTF-8 string argument.
     *
-    * The option takes a UTF-8 string argument.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STRING extends OptionArg(GOptionArg.G_OPTION_ARG_STRING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The option takes an integer argument.
     *
-    * The option takes an integer argument.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INT extends OptionArg(GOptionArg.G_OPTION_ARG_INT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The option provides a callback (of type #GOptionArgFunc) to parse the
+  /** The option provides a callback (of type #GOptionArgFunc) to parse the
     * extra argument.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CALLBACK extends OptionArg(GOptionArg.G_OPTION_ARG_CALLBACK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The option takes a filename as argument, which will be in the GLib
+  /** The option takes a filename as argument, which will be in the GLib
     * filename encoding rather than UTF-8.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FILENAME extends OptionArg(GOptionArg.G_OPTION_ARG_FILENAME)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The option takes a string argument, multiple uses of the option are
+  /** The option takes a string argument, multiple uses of the option are
     * collected into an array of strings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STRING_ARRAY extends OptionArg(GOptionArg.G_OPTION_ARG_STRING_ARRAY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The option takes a filename as argument, multiple uses of the option are
+  /** The option takes a filename as argument, multiple uses of the option are
     * collected into an array of strings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FILENAME_ARRAY extends OptionArg(GOptionArg.G_OPTION_ARG_FILENAME_ARRAY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The option takes a double argument. The argument can be formatted either
+  /** The option takes a double argument. The argument can be formatted either
     * for the user's locale or for the "C" locale. Since 2.12
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DOUBLE extends OptionArg(GOptionArg.G_OPTION_ARG_DOUBLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The option takes a 64-bit integer. Like %G_OPTION_ARG_INT but for larger
+  /** The option takes a 64-bit integer. Like %G_OPTION_ARG_INT but for larger
     * numbers. The number can be in decimal base, or in hexadecimal (when
     * prefixed with `0x`, for example, `0xffffffff`). Since 2.12
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INT64 extends OptionArg(GOptionArg.G_OPTION_ARG_INT64)
 end OptionArg

@@ -10,9 +10,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * GIOStream represents an object that has both read and write streams.
+/** GIOStream represents an object that has both read and write streams.
   * Generally the two streams act as separate input and output streams, but they
   * share some common resources and state. For instance, for seekable streams,
   * both streams may use the same position.
@@ -58,22 +56,24 @@ import sn.gnome.gobject.fluent.Object
   * the wrapper stream is idle. Note that the semantics of such operations may
   * not be well-defined due to the state the wrapper stream leaves the base
   * stream in (though they are guaranteed not to crash).
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Clears the pending flag on @stream.
     *
-    * Clears the pending flag on @stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def clearPending(): Unit /* None */ = g_io_stream_clear_pending(
     this.raw.asInstanceOf[Ptr[GIOStream]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Closes the stream, releasing resources related to it. This will also close
+  /** Closes the stream, releasing resources related to it. This will also close
     * the individual input and output streams, if they are not already closed.
     *
     * Once the stream is closed, all other operations will return
@@ -105,6 +105,9 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     *
     * The default implementation of this method just calls close on the
     * individual input/output streams.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def close(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -118,9 +121,7 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Requests an asynchronous close of the stream, releasing resources related
+  /** Requests an asynchronous close of the stream, releasing resources related
     * to it. When the operation is finished @callback will be called. You can
     * then call g_io_stream_close_finish() to get the result of the operation.
     *
@@ -129,15 +130,19 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * The asynchronous methods have a default fallback that uses threads to
     * implement asynchronicity, so they are optional for inheriting classes.
     * However, if you override one you must override all.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[close_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def closeAsync__ = ???
+  private def closeAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Closes a stream.
     *
-    * Closes a stream.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def closeFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -149,9 +154,10 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the input stream for this object. This is used for reading.
     *
-    * Gets the input stream for this object. This is used for reading.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInputStream(): InputStream /* None */ = new InputStream(
     g_io_stream_get_input_stream(
@@ -159,9 +165,10 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the output stream for this object. This is used for writing.
     *
-    * Gets the output stream for this object. This is used for writing.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getOutputStream(): OutputStream /* None */ = new OutputStream(
     g_io_stream_get_output_stream(
@@ -169,25 +176,28 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if a stream has pending actions.
     *
-    * Checks if a stream has pending actions.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasPending(): Boolean /* None */ =
     g_io_stream_has_pending(this.raw.asInstanceOf[Ptr[GIOStream]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Checks if a stream is closed.
     *
-    * Checks if a stream is closed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isClosed(): Boolean /* None */ =
     g_io_stream_is_closed(this.raw.asInstanceOf[Ptr[GIOStream]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @stream to have actions pending. If the pending flag is already set
+  /** Sets @stream to have actions pending. If the pending flag is already set
     * or @stream is closed, it will return %FALSE and set
     * @error.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPending(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     g_io_stream_set_pending(
@@ -196,27 +206,29 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously splice the output stream of @stream1 to the input stream of
+  /** Asynchronously splice the output stream of @stream1 to the input stream of
     * @stream2,
     *   and splice the output stream of @stream2 to the input stream of
     * @stream1.
     *
     * When the operation is finished @callback will be called. You can then call
     * g_io_stream_splice_finish() to get the result of the operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[splice_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def spliceAsync__ = ???
+  private def spliceAsync__ = ???
 
 end IOStream
 
 object IOStream:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finishes an asynchronous io stream splice operation.
     *
-    * Finishes an asynchronous io stream splice operation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def spliceFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */

@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GFileCopyFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used when copying or moving files.
   *
-  * Flags used when copying or moving files.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileCopyFlags private (val raw: GFileCopyFlags):
   def is(kv: FileCopyFlags): Boolean =
@@ -32,36 +33,41 @@ object FileCopyFlags:
     def |(other: FileCopyFlags) =
       FileCopyFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used when copying or moving files.
     *
-    * Flags used when copying or moving files.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GFileCopyFlags, name: String)
       extends FileCopyFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GFileCopyFlags.G_FILE_COPY_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Overwrite any existing files
       *
-      * Overwrite any existing files
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case OVERWRITE
         extends KnownValue(GFileCopyFlags.G_FILE_COPY_OVERWRITE, "OVERWRITE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Make a backup of any existing files.
       *
-      * Make a backup of any existing files.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case BACKUP extends KnownValue(GFileCopyFlags.G_FILE_COPY_BACKUP, "BACKUP")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Don't follow symlinks.
       *
-      * Don't follow symlinks.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NOFOLLOW_SYMLINKS
         extends KnownValue(
@@ -69,10 +75,11 @@ object FileCopyFlags:
           "NOFOLLOW_SYMLINKS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Copy all file metadata instead of just default set used for copy (see
+    /** Copy all file metadata instead of just default set used for copy (see
       * #GFileInfo).
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ALL_METADATA
         extends KnownValue(
@@ -80,9 +87,10 @@ object FileCopyFlags:
           "ALL_METADATA"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Don't use copy and delete fallback if native move not supported.
       *
-      * Don't use copy and delete fallback if native move not supported.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NO_FALLBACK_FOR_MOVE
         extends KnownValue(
@@ -90,10 +98,11 @@ object FileCopyFlags:
           "NO_FALLBACK_FOR_MOVE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Leaves target file with default perms, instead of setting the source
+    /** Leaves target file with default perms, instead of setting the source
       * file perms.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case TARGET_DEFAULT_PERMS
         extends KnownValue(

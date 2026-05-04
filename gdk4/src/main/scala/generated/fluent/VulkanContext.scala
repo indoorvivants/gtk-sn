@@ -8,9 +8,7 @@ import sn.gnome.gdk4.fluent.DrawContext
 import sn.gnome.gdk4.internal.GdkVulkanContext
 import sn.gnome.gio.fluent.Initable
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GdkVulkanContext` is an object representing the platform-specific Vulkan
+/** `GdkVulkanContext` is an object representing the platform-specific Vulkan
   * draw context.
   *
   * `GdkVulkanContext`s are created for a surface using
@@ -19,6 +17,9 @@ import sn.gnome.gio.fluent.Initable
   *
   * Support for `GdkVulkanContext` is platform-specific and context creation can
   * fail, returning %NULL context.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class VulkanContext(raw: Ptr[GdkVulkanContext])
     extends DrawContext(raw.asInstanceOf),

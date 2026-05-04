@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GMountMountFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used when mounting a mount.
   *
-  * Flags used when mounting a mount.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MountMountFlags private (val raw: GMountMountFlags):
   def is(kv: MountMountFlags): Boolean =
@@ -32,17 +33,19 @@ object MountMountFlags:
     def |(other: MountMountFlags) =
       MountMountFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used when mounting a mount.
     *
-    * Flags used when mounting a mount.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GMountMountFlags, name: String)
       extends MountMountFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE extends KnownValue(GMountMountFlags.G_MOUNT_MOUNT_NONE, "NONE")
   end KnownValue

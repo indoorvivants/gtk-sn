@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkSwitch
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkSwitch` is a "light switch" that has two states: on or off.
+/** `GtkSwitch` is a "light switch" that has two states: on or off.
   *
   * ![An example GtkSwitch](switch.png)
   *
@@ -49,6 +47,9 @@ import sn.gnome.gtk4.internal.GtkSwitch
   * # Accessibility
   *
   * `GtkSwitch` uses the %GTK_ACCESSIBLE_ROLE_SWITCH role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Switch(raw: Ptr[GtkSwitch])
     extends Widget(raw.asInstanceOf),
@@ -59,23 +60,26 @@ class Switch(raw: Ptr[GtkSwitch])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the `GtkSwitch` is in its “on” or “off” state.
     *
-    * Gets whether the `GtkSwitch` is in its “on” or “off” state.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActive(): Boolean /* None */ =
     gtk_switch_get_active(this.raw.asInstanceOf[Ptr[GtkSwitch]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the underlying state of the `GtkSwitch`.
     *
-    * Gets the underlying state of the `GtkSwitch`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getState(): Boolean /* None */ =
     gtk_switch_get_state(this.raw.asInstanceOf[Ptr[GtkSwitch]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Changes the state of @self to the desired one.
     *
-    * Changes the state of @self to the desired one.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActive(
       is_active: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -84,14 +88,15 @@ class Switch(raw: Ptr[GtkSwitch])
     gboolean(gint((if is_active == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the underlying state of the `GtkSwitch`.
+  /** Sets the underlying state of the `GtkSwitch`.
     *
     * This function is typically called from a [signal@Gtk.Switch::state-set]
     * signal handler in order to set up delayed state changes.
     *
     * See [signal@Gtk.Switch::state-set] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setState(
       state: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -103,9 +108,10 @@ class Switch(raw: Ptr[GtkSwitch])
 end Switch
 
 object Switch:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkSwitch` widget.
     *
-    * Creates a new `GtkSwitch` widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Switch = new Switch(gtk_switch_new().asInstanceOf)
 end Switch

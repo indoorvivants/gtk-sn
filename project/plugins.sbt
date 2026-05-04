@@ -22,6 +22,8 @@ addSbtPlugin(
   "com.indoorvivants" % "bindgen-sbt-plugin" % BindgenVersion
 )
 
+addSbtPlugin("com.github.sbt" % "sbt-unidoc" % "0.6.1")
+
 addSbtPlugin("com.eed3si9n" % "sbt-buildinfo" % "0.11.0")
 
 addSbtPlugin("org.jmotor.sbt" % "sbt-dependency-updates" % "1.2.7")

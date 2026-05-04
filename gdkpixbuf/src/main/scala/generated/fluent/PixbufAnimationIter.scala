@@ -9,19 +9,18 @@ import sn.gnome.gdkpixbuf.internal.GdkPixbufAnimationIter
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * An opaque object representing an iterator which points to a certain position
+/** An opaque object representing an iterator which points to a certain position
   * in an animation.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Possibly advances an animation to a new frame.
+  /** Possibly advances an animation to a new frame.
     *
     * Chooses the frame based on the start time passed to
     * gdk_pixbuf_animation_get_iter().
@@ -43,15 +42,16 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     * display, assuming the display had been rendered prior to advancing; if
     * `TRUE`, you need to call gdk_pixbuf_animation_iter_get_pixbuf() and update
     * the display with the new pixbuf.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(const GTimeVal*)))"
+    "[advance/<method parameters>/current_time]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(const GTimeVal*)))"
   )
-  def advance__ = ???
+  private def advance__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the number of milliseconds the current pixbuf should be displayed, or
+  /** Gets the number of milliseconds the current pixbuf should be displayed, or
     * -1 if the current pixbuf should be displayed forever.
     *
     * The `g_timeout_add()` function conveniently takes a timeout in
@@ -60,14 +60,15 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     * Note that some formats, like GIF, might clamp the timeout values in the
     * image file to avoid updates that are just too quick. The minimum timeout
     * for GIF images is currently 20 milliseconds.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDelayTime(): Int /* None */ = gdk_pixbuf_animation_iter_get_delay_time(
     this.raw.asInstanceOf[Ptr[GdkPixbufAnimationIter]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the current pixbuf which should be displayed.
+  /** Gets the current pixbuf which should be displayed.
     *
     * The pixbuf might not be the same size as the animation itself
     * (gdk_pixbuf_animation_get_width(), gdk_pixbuf_animation_get_height()).
@@ -82,6 +83,9 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     *
     * Copy the pixbuf to keep it (don't just add a reference), as it may get
     * recycled as you advance the iterator.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPixbuf(): Pixbuf /* None */ = new Pixbuf(
     gdk_pixbuf_animation_iter_get_pixbuf(
@@ -89,14 +93,15 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Used to determine how to respond to the area_updated signal on
+  /** Used to determine how to respond to the area_updated signal on
     * #GdkPixbufLoader when loading an animation.
     *
     * The `::area_updated` signal is emitted for an area of the frame currently
     * streaming in to the loader. So if you're on the currently loading frame,
     * you will need to redraw the screen for the updated area.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def onCurrentlyLoadingFrame(): Boolean /* None */ =
     gdk_pixbuf_animation_iter_on_currently_loading_frame(

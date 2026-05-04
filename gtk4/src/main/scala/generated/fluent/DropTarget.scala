@@ -10,9 +10,7 @@ import sn.gnome.gobject.internal.GType
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkDropTarget
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkDropTarget` is an event controller to receive Drag-and-Drop operations.
+/** `GtkDropTarget` is an event controller to receive Drag-and-Drop operations.
   *
   * The most basic way to use a `GtkDropTarget` to receive drops on a widget is
   * to create it via [ctor@Gtk.DropTarget.new], passing in the `GType` of the
@@ -80,25 +78,30 @@ import sn.gnome.gtk4.internal.GtkDropTarget
   * If you are not interested in receiving the drop, but just want to update UI
   * state during a Drag-and-Drop operation (e.g. switching tabs), you can use
   * [class@Gtk.DropControllerMotion].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DropTarget(raw: Ptr[GtkDropTarget])
     extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the actions that this drop target supports.
     *
-    * Gets the actions that this drop target supports.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActions(): DragAction /* None */ = DragAction.fromRaw(
     gtk_drop_target_get_actions(this.raw.asInstanceOf[Ptr[GtkDropTarget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the currently handled drop operation.
+  /** Gets the currently handled drop operation.
     *
     * If no drop operation is going on, %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCurrentDrop(): Drop /* None */ = new Drop(
     gtk_drop_target_get_current_drop(
@@ -106,11 +109,12 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the currently handled drop operation.
+  /** Gets the currently handled drop operation.
     *
     * If no drop operation is going on, %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDrop(): Drop /* None */ = new Drop(
     gtk_drop_target_get_drop(
@@ -118,48 +122,50 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the data formats that this drop target accepts.
+  /** Gets the data formats that this drop target accepts.
     *
     * If the result is %NULL, all formats are expected to be supported.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
-  def getFormats__ = ???
+  private def getFormats__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the list of supported `GType`s that can be dropped on the target.
+  /** Gets the list of supported `GType`s that can be dropped on the target.
     *
     * If no types have been set, `NULL` will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_gtypes contains an OUT parameter, which is not supported yet"
+    "[get_gtypes]: Method get_gtypes contains an OUT parameter, which is not supported yet"
   )
-  def getGtypes__ = ???
+  private def getGtypes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether data should be preloaded on hover.
     *
-    * Gets whether data should be preloaded on hover.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPreload(): Boolean /* None */ = gtk_drop_target_get_preload(
     this.raw.asInstanceOf[Ptr[GtkDropTarget]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the current drop data, as a `GValue`.
     *
-    * Gets the current drop data, as a `GValue`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
-  def getValue__ = ???
+  private def getValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Rejects the ongoing drop operation.
+  /** Rejects the ongoing drop operation.
     *
     * If no drop operation is ongoing, i.e when
     * [property@Gtk.DropTarget:current-drop] is %NULL, this function does
@@ -167,14 +173,18 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     *
     * This function should be used when delaying the decision on whether to
     * accept a drag or not until after reading the data.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def reject(): Unit /* None */ = gtk_drop_target_reject(
     this.raw.asInstanceOf[Ptr[GtkDropTarget]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the actions that this drop target supports.
     *
-    * Sets the actions that this drop target supports.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActions(
       actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
@@ -183,18 +193,20 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     actions.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the supported `GTypes` for this drop target.
     *
-    * Sets the supported `GTypes` for this drop target.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GType*)))"
+    "[set_gtypes/<method parameters>/types]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GType*)))"
   )
-  def setGtypes__ = ???
+  private def setGtypes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether data should be preloaded on hover.
     *
-    * Sets whether data should be preloaded on hover.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setPreload(
       preload: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -206,12 +218,13 @@ class DropTarget(raw: Ptr[GtkDropTarget])
 end DropTarget
 
 object DropTarget:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkDropTarget` object.
+  /** Creates a new `GtkDropTarget` object.
     *
     * If the drop target should support more than 1 type, pass %G_TYPE_INVALID
     * for @type and then call [method@Gtk.DropTarget.set_gtypes].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       `type`: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,

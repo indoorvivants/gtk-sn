@@ -17,9 +17,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkNotebook
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkNotebook` is a container whose children are pages switched between using
+/** `GtkNotebook` is a container whose children are pages switched between using
   * tabs.
   *
   * ![An example GtkNotebook](notebook.png)
@@ -111,6 +109,9 @@ import sn.gnome.gtk4.internal.GtkNotebook
   *   - %GTK_ACCESSIBLE_ROLE_TAB_LIST for the list of tabs
   *   - %GTK_ACCESSIBLE_ROLE_TAB role for each tab
   *   - %GTK_ACCESSIBLE_ROLE_TAB_PANEL for each page
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Notebook(raw: Ptr[GtkNotebook])
     extends Widget(raw.asInstanceOf),
@@ -120,9 +121,10 @@ class Notebook(raw: Ptr[GtkNotebook])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Appends a page to @notebook.
     *
-    * Appends a page to @notebook.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appendPage(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -135,10 +137,11 @@ class Notebook(raw: Ptr[GtkNotebook])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Appends a page to @notebook, specifying the widget to use as the label in
+  /** Appends a page to @notebook, specifying the widget to use as the label in
     * the popup menu.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appendPageMenu(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -155,13 +158,14 @@ class Notebook(raw: Ptr[GtkNotebook])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes the child from the notebook.
+  /** Removes the child from the notebook.
     *
     * This function is very similar to [method@Gtk.Notebook.remove_page], but
     * additionally informs the notebook that the removal is happening as part of
     * a tab DND operation, which should not be cancelled.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def detachTab(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_notebook_detach_tab(
@@ -169,11 +173,12 @@ class Notebook(raw: Ptr[GtkNotebook])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets one of the action widgets.
+  /** Gets one of the action widgets.
     *
     * See [method@Gtk.Notebook.set_action_widget].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActionWidget(
       pack_type: PackType /* Some(GtkPackType) */
@@ -184,17 +189,19 @@ class Notebook(raw: Ptr[GtkNotebook])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the page number of the current page.
     *
-    * Returns the page number of the current page.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCurrentPage(): Int /* None */ = gtk_notebook_get_current_page(
     this.raw.asInstanceOf[Ptr[GtkNotebook]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the current group name for @notebook.
     *
-    * Gets the current group name for @notebook.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getGroupName()(using Zone): String /* None */ = fromCString(
     gtk_notebook_get_group_name(
@@ -202,9 +209,10 @@ class Notebook(raw: Ptr[GtkNotebook])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the menu label widget of the page containing @child.
     *
-    * Retrieves the menu label widget of the page containing @child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMenuLabel(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -215,10 +223,11 @@ class Notebook(raw: Ptr[GtkNotebook])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the text of the menu label for the page containing
+  /** Retrieves the text of the menu label for the page containing
     * @child.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMenuLabelText(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -229,17 +238,19 @@ class Notebook(raw: Ptr[GtkNotebook])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the number of pages in a notebook.
     *
-    * Gets the number of pages in a notebook.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNPages(): Int /* None */ = gtk_notebook_get_n_pages(
     this.raw.asInstanceOf[Ptr[GtkNotebook]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the child widget contained in page number @page_num.
     *
-    * Returns the child widget contained in page number @page_num.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNthPage(page_num: Int /* Some(CInt) */ ): Widget /* None */ =
     new Widget(
@@ -249,9 +260,10 @@ class Notebook(raw: Ptr[GtkNotebook])
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `GtkNotebookPage` for @child.
     *
-    * Returns the `GtkNotebookPage` for @child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPage(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -262,45 +274,50 @@ class Notebook(raw: Ptr[GtkNotebook])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a `GListModel` that contains the pages of the notebook.
+  /** Returns a `GListModel` that contains the pages of the notebook.
     *
     * This can be used to keep an up-to-date view. The model also implements
     * [iface@Gtk.SelectionModel] and can be used to track and modify the visible
     * page.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPages(): ListModel /* None */ = new ListModel.Abstract(
     gtk_notebook_get_pages(this.raw.asInstanceOf[Ptr[GtkNotebook]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the tab label area has arrows for scrolling.
     *
-    * Returns whether the tab label area has arrows for scrolling.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getScrollable(): Boolean /* None */ = gtk_notebook_get_scrollable(
     this.raw.asInstanceOf[Ptr[GtkNotebook]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether a bevel will be drawn around the notebook pages.
     *
-    * Returns whether a bevel will be drawn around the notebook pages.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowBorder(): Boolean /* None */ = gtk_notebook_get_show_border(
     this.raw.asInstanceOf[Ptr[GtkNotebook]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the tabs of the notebook are shown.
     *
-    * Returns whether the tabs of the notebook are shown.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowTabs(): Boolean /* None */ = gtk_notebook_get_show_tabs(
     this.raw.asInstanceOf[Ptr[GtkNotebook]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the tab contents can be detached from @notebook.
     *
-    * Returns whether the tab contents can be detached from @notebook.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTabDetachable(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -309,12 +326,13 @@ class Notebook(raw: Ptr[GtkNotebook])
     child.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the tab label widget for the page @child.
+  /** Returns the tab label widget for the page @child.
     *
     * %NULL is returned if @child is not in @notebook or if no tab label has
     * specifically been set for @child.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTabLabel(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -325,10 +343,11 @@ class Notebook(raw: Ptr[GtkNotebook])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the text of the tab label for the page containing
+  /** Retrieves the text of the tab label for the page containing
     * @child.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTabLabelText(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -339,17 +358,19 @@ class Notebook(raw: Ptr[GtkNotebook])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the edge at which the tabs are drawn.
     *
-    * Gets the edge at which the tabs are drawn.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTabPos(): PositionType /* None */ = PositionType.fromRaw(
     gtk_notebook_get_tab_pos(this.raw.asInstanceOf[Ptr[GtkNotebook]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the tab can be reordered via drag and drop or not.
     *
-    * Gets whether the tab can be reordered via drag and drop or not.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTabReorderable(
       child: Widget /* Some(Ptr[GtkWidget]) */
@@ -358,9 +379,10 @@ class Notebook(raw: Ptr[GtkNotebook])
     child.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Insert a page into @notebook at the given position.
     *
-    * Insert a page into @notebook at the given position.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertPage(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -375,10 +397,11 @@ class Notebook(raw: Ptr[GtkNotebook])
     position
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Insert a page into @notebook at the given position, specifying the widget
+  /** Insert a page into @notebook at the given position, specifying the widget
     * to use as the label in the popup menu.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertPageMenu(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -397,19 +420,21 @@ class Notebook(raw: Ptr[GtkNotebook])
     position
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Switches to the next page.
+  /** Switches to the next page.
     *
     * Nothing happens if the current page is the last page.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def nextPage(): Unit /* None */ = gtk_notebook_next_page(
     this.raw.asInstanceOf[Ptr[GtkNotebook]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finds the index of the page which contains the given child widget.
     *
-    * Finds the index of the page which contains the given child widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def pageNum(child: Widget /* Some(Ptr[GtkWidget]) */ ): Int /* None */ =
     gtk_notebook_page_num(
@@ -417,28 +442,31 @@ class Notebook(raw: Ptr[GtkNotebook])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Disables the popup menu.
     *
-    * Disables the popup menu.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def popupDisable(): Unit /* None */ = gtk_notebook_popup_disable(
     this.raw.asInstanceOf[Ptr[GtkNotebook]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Enables the popup menu.
+  /** Enables the popup menu.
     *
     * If the user clicks with the right mouse button on the tab labels, a menu
     * with all the pages will be popped up.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def popupEnable(): Unit /* None */ = gtk_notebook_popup_enable(
     this.raw.asInstanceOf[Ptr[GtkNotebook]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Prepends a page to @notebook.
     *
-    * Prepends a page to @notebook.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def prependPage(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -451,10 +479,11 @@ class Notebook(raw: Ptr[GtkNotebook])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Prepends a page to @notebook, specifying the widget to use as the label in
+  /** Prepends a page to @notebook, specifying the widget to use as the label in
     * the popup menu.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def prependPageMenu(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -471,30 +500,33 @@ class Notebook(raw: Ptr[GtkNotebook])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Switches to the previous page.
+  /** Switches to the previous page.
     *
     * Nothing happens if the current page is the first page.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def prevPage(): Unit /* None */ = gtk_notebook_prev_page(
     this.raw.asInstanceOf[Ptr[GtkNotebook]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes a page from the notebook given its index in the notebook.
     *
-    * Removes a page from the notebook given its index in the notebook.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removePage(page_num: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_notebook_remove_page(this.raw.asInstanceOf[Ptr[GtkNotebook]], page_num)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reorders the page containing @child, so that it appears in position
+  /** Reorders the page containing @child, so that it appears in position
     * @position.
     *
     * If @position is greater than or equal to the number of children in the
     * list or negative, @child will be moved to the end of the list.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def reorderChild(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -505,13 +537,14 @@ class Notebook(raw: Ptr[GtkNotebook])
     position
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @widget as one of the action widgets.
+  /** Sets @widget as one of the action widgets.
     *
     * Depending on the pack type the widget will be placed before or after the
     * tabs. You can use a `GtkBox` if you need to pack more than one widget on
     * the same side.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActionWidget(
       widget: Widget /* Some(Ptr[GtkWidget]) */,
@@ -522,13 +555,14 @@ class Notebook(raw: Ptr[GtkNotebook])
     pack_type.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Switches to the page number @page_num.
+  /** Switches to the page number @page_num.
     *
     * Note that due to historical reasons, GtkNotebook refuses to switch to a
     * page unless the child widget is visible. Therefore, it is recommended to
     * show child widgets before adding them to a notebook.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCurrentPage(page_num: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_notebook_set_current_page(
@@ -536,13 +570,14 @@ class Notebook(raw: Ptr[GtkNotebook])
       page_num
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a group name for @notebook.
+  /** Sets a group name for @notebook.
     *
     * Notebooks with the same name will be able to exchange tabs via drag and
     * drop. A notebook with a %NULL group name will not be able to exchange tabs
     * with any other notebook.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setGroupName(
       group_name: Option[String | CString /* Some(CString) */ ]
@@ -553,9 +588,10 @@ class Notebook(raw: Ptr[GtkNotebook])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Changes the menu label for the page containing @child.
     *
-    * Changes the menu label for the page containing @child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMenuLabel(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -568,9 +604,10 @@ class Notebook(raw: Ptr[GtkNotebook])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new label and sets it as the menu label of @child.
     *
-    * Creates a new label and sets it as the menu label of @child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMenuLabelText(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -581,10 +618,11 @@ class Notebook(raw: Ptr[GtkNotebook])
     __sn_extract_string(menu_text)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the tab label area will have arrows for scrolling if there
+  /** Sets whether the tab label area will have arrows for scrolling if there
     * are too many tabs to fit in the area.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setScrollable(
       scrollable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -593,11 +631,12 @@ class Notebook(raw: Ptr[GtkNotebook])
     gboolean(gint((if scrollable == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether a bevel will be drawn around the notebook pages.
+  /** Sets whether a bevel will be drawn around the notebook pages.
     *
     * This only has a visual effect when the tabs are not shown.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowBorder(
       show_border: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -606,9 +645,10 @@ class Notebook(raw: Ptr[GtkNotebook])
     gboolean(gint((if show_border == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether to show the tabs for the notebook or not.
     *
-    * Sets whether to show the tabs for the notebook or not.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowTabs(
       show_tabs: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -617,9 +657,7 @@ class Notebook(raw: Ptr[GtkNotebook])
     gboolean(gint((if show_tabs == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the tab can be detached from @notebook to another notebook or
+  /** Sets whether the tab can be detached from @notebook to another notebook or
     * widget.
     *
     * Note that two notebooks must share a common group identifier (see
@@ -662,6 +700,9 @@ class Notebook(raw: Ptr[GtkNotebook])
     *
     * If you want a notebook to accept drags from other widgets, you will have
     * to set your own DnD code to do it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTabDetachable(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -672,12 +713,13 @@ class Notebook(raw: Ptr[GtkNotebook])
     gboolean(gint((if detachable == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Changes the tab label for @child.
+  /** Changes the tab label for @child.
     *
     * If %NULL is specified for @tab_label, then the page will have the label
     * “page N”.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTabLabel(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -690,9 +732,10 @@ class Notebook(raw: Ptr[GtkNotebook])
       .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new label and sets it as the tab label for the page containing @child.
     *
-    * Creates a new label and sets it as the tab label for the page containing @child.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTabLabelText(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -703,18 +746,20 @@ class Notebook(raw: Ptr[GtkNotebook])
     __sn_extract_string(tab_text)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the edge at which the tabs are drawn.
     *
-    * Sets the edge at which the tabs are drawn.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTabPos(
       pos: PositionType /* Some(GtkPositionType) */
   ): Unit /* None */ =
     gtk_notebook_set_tab_pos(this.raw.asInstanceOf[Ptr[GtkNotebook]], pos.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the notebook tab can be reordered via drag and drop or not.
     *
-    * Sets whether the notebook tab can be reordered via drag and drop or not.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTabReorderable(
       child: Widget /* Some(Ptr[GtkWidget]) */,
@@ -736,9 +781,10 @@ class Notebook(raw: Ptr[GtkNotebook])
 end Notebook
 
 object Notebook:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkNotebook` widget with no pages.
     *
-    * Creates a new `GtkNotebook` widget with no pages.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Notebook = new Notebook(gtk_notebook_new().asInstanceOf)
 end Notebook

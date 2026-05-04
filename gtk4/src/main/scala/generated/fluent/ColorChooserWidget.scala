@@ -13,9 +13,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkColorChooserWidget
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkColorChooserWidget` widget lets the user select a color.
+/** The `GtkColorChooserWidget` widget lets the user select a color.
   *
   * By default, the chooser presents a predefined palette of colors, plus a
   * small number of settable custom colors. It is also possible to select a
@@ -39,6 +37,9 @@ import sn.gnome.gtk4.internal.GtkColorChooserWidget
   * # CSS names
   *
   * `GtkColorChooserWidget` has a single CSS node with name colorchooser.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ColorChooserWidget(raw: Ptr[GtkColorChooserWidget])
     extends Widget(raw.asInstanceOf),
@@ -52,9 +53,10 @@ class ColorChooserWidget(raw: Ptr[GtkColorChooserWidget])
 end ColorChooserWidget
 
 object ColorChooserWidget:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkColorChooserWidget`.
     *
-    * Creates a new `GtkColorChooserWidget`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): ColorChooserWidget = new ColorChooserWidget(
     gtk_color_chooser_widget_new().asInstanceOf

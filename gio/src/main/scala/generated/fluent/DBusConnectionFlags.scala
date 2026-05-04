@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDBusConnectionFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used when creating a new #GDBusConnection.
   *
-  * Flags used when creating a new #GDBusConnection.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusConnectionFlags private (val raw: GDBusConnectionFlags):
   def is(kv: DBusConnectionFlags): Boolean =
@@ -32,17 +33,19 @@ object DBusConnectionFlags:
     def |(other: DBusConnectionFlags) =
       DBusConnectionFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used when creating a new #GDBusConnection.
     *
-    * Flags used when creating a new #GDBusConnection.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GDBusConnectionFlags, name: String)
       extends DBusConnectionFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(
@@ -50,9 +53,10 @@ object DBusConnectionFlags:
           "NONE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Perform authentication against server.
       *
-      * Perform authentication against server.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case AUTHENTICATION_CLIENT
         extends KnownValue(
@@ -60,9 +64,10 @@ object DBusConnectionFlags:
           "AUTHENTICATION_CLIENT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Perform authentication against client.
       *
-      * Perform authentication against client.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case AUTHENTICATION_SERVER
         extends KnownValue(
@@ -70,10 +75,11 @@ object DBusConnectionFlags:
           "AUTHENTICATION_SERVER"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * When authenticating as a server, allow the anonymous authentication
+    /** When authenticating as a server, allow the anonymous authentication
       * method.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case AUTHENTICATION_ALLOW_ANONYMOUS
         extends KnownValue(
@@ -81,10 +87,11 @@ object DBusConnectionFlags:
           "AUTHENTICATION_ALLOW_ANONYMOUS"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Pass this flag if connecting to a peer that is a message bus. This means
+    /** Pass this flag if connecting to a peer that is a message bus. This means
       * that the Hello() method will be invoked as part of the connection setup.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case MESSAGE_BUS_CONNECTION
         extends KnownValue(
@@ -92,10 +99,11 @@ object DBusConnectionFlags:
           "MESSAGE_BUS_CONNECTION"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * If set, processing of D-Bus messages is delayed until
+    /** If set, processing of D-Bus messages is delayed until
       * g_dbus_connection_start_message_processing() is called.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DELAY_MESSAGE_PROCESSING
         extends KnownValue(
@@ -103,10 +111,11 @@ object DBusConnectionFlags:
           "DELAY_MESSAGE_PROCESSING"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * When authenticating as a server, require the UID of the peer to be the
+    /** When authenticating as a server, require the UID of the peer to be the
       * same as the UID of the server. (Since: 2.68)
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case AUTHENTICATION_REQUIRE_SAME_USER
         extends KnownValue(
@@ -114,14 +123,15 @@ object DBusConnectionFlags:
           "AUTHENTICATION_REQUIRE_SAME_USER"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * When authenticating, try to use protocols that work across a Linux user
+    /** When authenticating, try to use protocols that work across a Linux user
       * namespace boundary, even if this reduces interoperability with older
       * D-Bus implementations. This currently affects client-side `EXTERNAL`
       * authentication, for which this flag makes connections to a server in
       * another user namespace succeed, but causes a deadlock when connecting to
       * a GDBus server older than 2.73.3. Since: 2.74
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CROSS_NAMESPACE
         extends KnownValue(

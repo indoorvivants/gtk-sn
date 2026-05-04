@@ -8,22 +8,24 @@ import sn.gnome.gio.internal.GMenuAttributeIter
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GMenuAttributeIter is an opaque structure type. You must access it using
+/** #GMenuAttributeIter is an opaque structure type. You must access it using
   * the functions below.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the name of the attribute at the current iterator position, as a
+  /** Gets the name of the attribute at the current iterator position, as a
     * string.
     *
     * The iterator is not advanced.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     g_menu_attribute_iter_get_name(
@@ -31,9 +33,7 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function combines g_menu_attribute_iter_next() with
+  /** This function combines g_menu_attribute_iter_next() with
     * g_menu_attribute_iter_get_name() and g_menu_attribute_iter_get_value().
     *
     * First the iterator is advanced to the next (possibly first) attribute. If
@@ -47,32 +47,37 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     * The value returned in @name remains valid for as long as the iterator
     * remains at the current position. The value returned in @value must be
     * unreffed using g_variant_unref() when it is no longer in use.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_next contains an OUT parameter, which is not supported yet"
+    "[get_next]: Method get_next contains an OUT parameter, which is not supported yet"
   )
-  def getNext__ = ???
+  private def getNext__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of the attribute at the current iterator position.
+  /** Gets the value of the attribute at the current iterator position.
     *
     * The iterator is not advanced.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def getValue__ = ???
+  private def getValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Attempts to advance the iterator to the next (possibly first) attribute.
+  /** Attempts to advance the iterator to the next (possibly first) attribute.
     *
     * %TRUE is returned on success, or %FALSE if there are no more attributes.
     *
     * You must call this function when you first acquire the iterator to advance
     * it to the first attribute (and determine if the first attribute exists at
     * all).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def next(): Boolean /* None */ = g_menu_attribute_iter_next(
     this.raw.asInstanceOf[Ptr[GMenuAttributeIter]]

@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkShortcutsGroup
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkShortcutsGroup` represents a group of related keyboard shortcuts or
+/** A `GtkShortcutsGroup` represents a group of related keyboard shortcuts or
   * gestures.
   *
   * The group has a title. It may optionally be associated with a view of the
@@ -32,6 +30,9 @@ import sn.gnome.gtk4.internal.GtkShortcutsGroup
   *
   * If you need to add a shortcut programmatically, use
   * [method@Gtk.ShortcutsGroup.add_shortcut].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ShortcutsGroup(raw: Ptr[GtkShortcutsGroup])
     extends Box(raw.asInstanceOf),
@@ -42,13 +43,14 @@ class ShortcutsGroup(raw: Ptr[GtkShortcutsGroup])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a shortcut to the shortcuts group.
+  /** Adds a shortcut to the shortcuts group.
     *
     * This is the programmatic equivalent to using [class@Gtk.Builder] and a
     * `<child>` tag to add the child. Adding children with other API is not
     * appropriate as `GtkShortcutsGroup` manages its children internally.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addShortcut(
       shortcut: ShortcutsShortcut /* Some(Ptr[GtkShortcutsShortcut]) */

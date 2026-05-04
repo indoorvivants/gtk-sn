@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.GestureSingle
 import sn.gnome.gtk4.internal.GtkGestureLongPress
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkGestureLongPress` is a `GtkGesture` for long presses.
+/** `GtkGestureLongPress` is a `GtkGesture` for long presses.
   *
   * This gesture is also known as “Press and Hold”.
   *
@@ -24,27 +22,32 @@ import sn.gnome.gtk4.internal.GtkGestureLongPress
   * determined by the [property@Gtk.Settings:gtk-long-press-time] setting. It
   * can be modified by the [property@Gtk.GestureLongPress:delay-factor]
   * property.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class GestureLongPress(raw: Ptr[GtkGestureLongPress])
     extends GestureSingle(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the delay factor.
     *
-    * Returns the delay factor.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDelayFactor(): Double /* None */ =
     gtk_gesture_long_press_get_delay_factor(
       this.raw.asInstanceOf[Ptr[GtkGestureLongPress]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Applies the given delay factor.
+  /** Applies the given delay factor.
     *
     * The default long press time will be multiplied by this value. Valid values
     * are in the range [0.5..2.0].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDelayFactor(
       delay_factor: Double /* Some(Double) */
@@ -56,9 +59,10 @@ class GestureLongPress(raw: Ptr[GtkGestureLongPress])
 end GestureLongPress
 
 object GestureLongPress:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns a newly created `GtkGesture` that recognizes long presses.
     *
-    * Returns a newly created `GtkGesture` that recognizes long presses.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): GestureLongPress = new GestureLongPress(
     gtk_gesture_long_press_new().asInstanceOf

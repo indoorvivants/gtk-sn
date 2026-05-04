@@ -2,21 +2,24 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoOverline
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `PangoOverline` enumeration is used to specify whether text should be
+/** The `PangoOverline` enumeration is used to specify whether text should be
   * overlined, and if so, the type of line.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Overline(val raw: PangoOverline):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** no overline should be drawn
     *
-    * no overline should be drawn
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends Overline(PangoOverline.PANGO_OVERLINE_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Draw a single line above the ink extents of the text being underlined.
     *
-    * Draw a single line above the ink extents of the text being underlined.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SINGLE extends Overline(PangoOverline.PANGO_OVERLINE_SINGLE)
 end Overline

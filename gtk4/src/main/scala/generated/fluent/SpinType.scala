@@ -2,51 +2,59 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkSpinType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The values of the GtkSpinType enumeration are used to specify the change to
+/** The values of the GtkSpinType enumeration are used to specify the change to
   * make in gtk_spin_button_spin().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SpinType(val raw: GtkSpinType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Increment by the adjustments step increment.
     *
-    * Increment by the adjustments step increment.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STEP_FORWARD extends SpinType(GtkSpinType.GTK_SPIN_STEP_FORWARD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Decrement by the adjustments step increment.
     *
-    * Decrement by the adjustments step increment.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STEP_BACKWARD extends SpinType(GtkSpinType.GTK_SPIN_STEP_BACKWARD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Increment by the adjustments page increment.
     *
-    * Increment by the adjustments page increment.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PAGE_FORWARD extends SpinType(GtkSpinType.GTK_SPIN_PAGE_FORWARD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Decrement by the adjustments page increment.
     *
-    * Decrement by the adjustments page increment.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PAGE_BACKWARD extends SpinType(GtkSpinType.GTK_SPIN_PAGE_BACKWARD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Go to the adjustments lower bound.
     *
-    * Go to the adjustments lower bound.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HOME extends SpinType(GtkSpinType.GTK_SPIN_HOME)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Go to the adjustments upper bound.
     *
-    * Go to the adjustments upper bound.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case END extends SpinType(GtkSpinType.GTK_SPIN_END)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Change by a specified amount.
     *
-    * Change by a specified amount.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case USER_DEFINED extends SpinType(GtkSpinType.GTK_SPIN_USER_DEFINED)
 end SpinType

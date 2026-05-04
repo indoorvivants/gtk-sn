@@ -14,9 +14,7 @@ import sn.gnome.gio.fluent.{
 import sn.gnome.gio.internal.GFileIOStream
 import sn.gnome.glib.fluent.GResult
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * GFileIOStream provides io streams that both read and write to the same file
+/** GFileIOStream provides io streams that both read and write to the same file
   * handle.
   *
   * GFileIOStream implements #GSeekable, which allows the io stream to jump to
@@ -33,6 +31,9 @@ import sn.gnome.glib.fluent.GResult
   * The default implementation of all the #GFileIOStream operations and the
   * implementation of #GSeekable just call into the same operations on the
   * output stream.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileIOStream(raw: Ptr[GFileIOStream])
     extends IOStream(raw.asInstanceOf),
@@ -40,11 +41,12 @@ class FileIOStream(raw: Ptr[GFileIOStream])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the entity tag for the file when it has been written. This must be
+  /** Gets the entity tag for the file when it has been written. This must be
     * called after the stream has been written and closed, as the etag can
     * change while writing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEtag()(using Zone): String /* None */ = fromCString(
     g_file_io_stream_get_etag(
@@ -52,9 +54,7 @@ class FileIOStream(raw: Ptr[GFileIOStream])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries a file io stream for the given @attributes. This function blocks
+  /** Queries a file io stream for the given @attributes. This function blocks
     * while querying the stream. For the asynchronous version of this function,
     * see g_file_io_stream_query_info_async(). While the stream is blocked, the
     * stream will set the pending flag internally, and any other operations on
@@ -70,6 +70,9 @@ class FileIOStream(raw: Ptr[GFileIOStream])
     * triggering the cancellable object from another thread. If the operation
     * was cancelled, the error %G_IO_ERROR_CANCELLED will be set, and %NULL will
     * be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def queryInfo(
       attributes: String | CString /* Some(CString) */,
@@ -87,25 +90,27 @@ class FileIOStream(raw: Ptr[GFileIOStream])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously queries the @stream for a #GFileInfo. When completed,
+  /** Asynchronously queries the @stream for a #GFileInfo. When completed,
     * @callback
     *   will be called with a #GAsyncResult which can be used to finish the
     *   operation with g_file_io_stream_query_info_finish().
     *
     * For the synchronous version of this function, see
     * g_file_io_stream_query_info().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[query_info_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def queryInfoAsync__ = ???
+  private def queryInfoAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finalizes the asynchronous query started by
+  /** Finalizes the asynchronous query started by
     * g_file_io_stream_query_info_async().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def queryInfoFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */

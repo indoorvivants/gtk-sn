@@ -21,9 +21,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GdkDisplay` objects are the GDK representation of a workstation.
+/** `GdkDisplay` objects are the GDK representation of a workstation.
   *
   * Their purpose are two-fold:
   *
@@ -39,32 +37,35 @@ import sn.gnome.gobject.fluent.Object
   *
   * Output devices are represented by [class@Gdk.Monitor] objects, which can be
   * accessed with [method@Gdk.Display.get_monitor_at_surface] and similar APIs.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Emits a short beep on @display
     *
-    * Emits a short beep on @display
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def beep(): Unit /* None */ = gdk_display_beep(
     this.raw.asInstanceOf[Ptr[GdkDisplay]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Closes the connection to the windowing system for the given display.
+  /** Closes the connection to the windowing system for the given display.
     *
     * This cleans up associated resources.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def close(): Unit /* None */ = gdk_display_close(
     this.raw.asInstanceOf[Ptr[GdkDisplay]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GdkGLContext` for the `GdkDisplay`.
+  /** Creates a new `GdkGLContext` for the `GdkDisplay`.
     *
     * The context is disconnected from any particular surface or surface and
     * cannot be used to draw to any surface. It can only be used to draw to
@@ -73,6 +74,9 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * If the creation of the `GdkGLContext` failed, @error will be set. Before
     * using the returned `GdkGLContext`, you will need to call
     * [method@Gdk.GLContext.make_current] or [method@Gdk.GLContext.realize].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def createGlContext(): GResult[GLContext /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -84,9 +88,10 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns %TRUE if there is an ongoing grab on @device for @display.
     *
-    * Returns %TRUE if there is an ongoing grab on @device for @display.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def deviceIsGrabbed(
       device: Device /* Some(Ptr[GdkDevice]) */
@@ -95,9 +100,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     device.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flushes any requests queued for the windowing system.
+  /** Flushes any requests queued for the windowing system.
     *
     * This happens automatically when the main loop blocks waiting for new
     * events, but if your application is drawing without returning control to
@@ -108,15 +111,19 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     *
     * This is most useful for X11. On windowing systems where requests are
     * handled synchronously, this function will do nothing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def flush(): Unit /* None */ = gdk_display_flush(
     this.raw.asInstanceOf[Ptr[GdkDisplay]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a `GdkAppLaunchContext` suitable for launching applications on the
+  /** Returns a `GdkAppLaunchContext` suitable for launching applications on the
     * given display.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAppLaunchContext(): AppLaunchContext /* None */ = new AppLaunchContext(
     gdk_display_get_app_launch_context(
@@ -124,9 +131,10 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the clipboard used for copy/paste operations.
     *
-    * Gets the clipboard used for copy/paste operations.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getClipboard(): Clipboard /* None */ = new Clipboard(
     gdk_display_get_clipboard(
@@ -134,12 +142,13 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the default `GdkSeat` for this display.
+  /** Returns the default `GdkSeat` for this display.
     *
     * Note that a display may not have a seat. In this case, this function will
     * return %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefaultSeat(): Seat /* None */ = new Seat(
     gdk_display_get_default_seat(
@@ -147,9 +156,10 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the monitor in which the largest area of @surface resides.
     *
-    * Gets the monitor in which the largest area of @surface resides.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMonitorAtSurface(
       surface: Surface /* Some(Ptr[GdkSurface]) */
@@ -160,15 +170,16 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the list of monitors associated with this display.
+  /** Gets the list of monitors associated with this display.
     *
     * Subsequent calls to this function will always return the same list for the
     * same display.
     *
     * You can listen to the GListModel::items-changed signal on this list to
     * monitor changes to the monitor of this display.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMonitors(): ListModel /* None */ = new ListModel.Abstract(
     gdk_display_get_monitors(
@@ -176,20 +187,22 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the name of the display.
     *
-    * Gets the name of the display.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     gdk_display_get_name(this.raw.asInstanceOf[Ptr[GdkDisplay]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the clipboard used for the primary selection.
+  /** Gets the clipboard used for the primary selection.
     *
     * On backends where the primary clipboard is not supported natively, GDK
     * emulates this clipboard locally.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPrimaryClipboard(): Clipboard /* None */ = new Clipboard(
     gdk_display_get_primary_clipboard(
@@ -197,19 +210,21 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves a desktop-wide setting such as double-click time for the @display.
     *
-    * Retrieves a desktop-wide setting such as double-click time for the @display.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[get_setting/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
-  def getSetting__ = ???
+  private def getSetting__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the startup notification ID for a Wayland display, or %NULL if no ID
+  /** Gets the startup notification ID for a Wayland display, or %NULL if no ID
     * has been defined.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStartupNotificationId()(using Zone): String /* None */ = fromCString(
     gdk_display_get_startup_notification_id(
@@ -217,16 +232,15 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Finds out if the display has been closed.
     *
-    * Finds out if the display has been closed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isClosed(): Boolean /* None */ =
     gdk_display_is_closed(this.raw.asInstanceOf[Ptr[GdkDisplay]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether surfaces can reasonably be expected to have their alpha
+  /** Returns whether surfaces can reasonably be expected to have their alpha
     * channel drawn correctly on the screen.
     *
     * Check [method@Gdk.Display.is_rgba] for whether the display supports an
@@ -236,14 +250,15 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * on @display.
     *
     * On modern displays, this value is always %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isComposited(): Boolean /* None */ = gdk_display_is_composited(
     this.raw.asInstanceOf[Ptr[GdkDisplay]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether surfaces on this @display are created with an alpha
+  /** Returns whether surfaces on this @display are created with an alpha
     * channel.
     *
     * Even if a %TRUE is returned, it is possible that the surface’s alpha
@@ -253,22 +268,24 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * [method@Gdk.Display.is_composited] to check if that is the case.
     *
     * On modern displays, this value is always %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isRgba(): Boolean /* None */ =
     gdk_display_is_rgba(this.raw.asInstanceOf[Ptr[GdkDisplay]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the list of seats known to @display.
     *
-    * Returns the list of seats known to @display.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Seat))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[list_seats/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Seat))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def listSeats__ = ???
+  private def listSeats__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the keyvals bound to @keycode.
+  /** Returns the keyvals bound to @keycode.
     *
     * The Nth `GdkKeymapKey` in @keys is bound to the Nth keyval in @keyvals.
     *
@@ -276,15 +293,16 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * entries is selected by considering the effective keyboard group and level.
     *
     * Free the returned arrays with g_free().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method map_keycode contains an OUT parameter, which is not supported yet"
+    "[map_keycode]: Method map_keycode contains an OUT parameter, which is not supported yet"
   )
-  def mapKeycode__ = ???
+  private def mapKeycode__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains a list of keycode/group/level combinations that will generate @keyval.
+  /** Obtains a list of keycode/group/level combinations that will generate @keyval.
     *
     * Groups and levels are two kinds of keyboard mode; in general, the level
     * determines whether the top or bottom symbol on a key is used, and the
@@ -298,21 +316,25 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * group. The level is computed from the modifier mask.
     *
     * The returned array should be freed with g_free().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method map_keyval contains an OUT parameter, which is not supported yet"
+    "[map_keyval]: Method map_keyval contains an OUT parameter, which is not supported yet"
   )
-  def mapKeyval__ = ???
+  private def mapKeyval__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Indicates to the GUI environment that the application has finished
+  /** Indicates to the GUI environment that the application has finished
     * loading, using a given identifier.
     *
     * GTK will call this function automatically for [class@Gtk.Window] with
     * custom startup-notification identifier unless
     * [method@Gtk.Window.set_auto_startup_notification] is called to disable
     * that feature.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def notifyStartupComplete(
       startup_id: String | CString /* Some(CString) */
@@ -321,9 +343,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     __sn_extract_string(startup_id)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks that OpenGL is available for @self and ensures that it is properly
+  /** Checks that OpenGL is available for @self and ensures that it is properly
     * initialized. When this fails, an @error will be set describing the error
     * and this function returns %FALSE.
     *
@@ -336,6 +356,9 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * You never need to call this function, GDK will call it automatically as
     * needed. But you can use it as a check when setting up code that might make
     * use of OpenGL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def prepareGl(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
     gdk_display_prepare_gl(
@@ -344,9 +367,10 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds the given event to the event queue for @display.
     *
-    * Adds the given event to the event queue for @display.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def putEvent(event: Event /* Some(Ptr[GdkEvent]) */ ): Unit /* None */ =
     gdk_display_put_event(
@@ -354,23 +378,22 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
       event.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the display supports input shapes.
+  /** Returns %TRUE if the display supports input shapes.
     *
     * This means that [method@Gdk.Surface.set_input_region] can be used to
     * modify the input shape of surfaces on @display.
     *
     * On modern displays, this value is always %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def supportsInputShapes(): Boolean /* None */ =
     gdk_display_supports_input_shapes(
       this.raw.asInstanceOf[Ptr[GdkDisplay]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flushes any requests queued for the windowing system and waits until all
+  /** Flushes any requests queued for the windowing system and waits until all
     * requests have been handled.
     *
     * This is often used for making sure that the display is synchronized with
@@ -381,14 +404,15 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     *
     * This is most useful for X11. On windowing systems where requests are
     * handled synchronously, this function will do nothing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sync(): Unit /* None */ = gdk_display_sync(
     this.raw.asInstanceOf[Ptr[GdkDisplay]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Translates the contents of a `GdkEventKey` into a keyval, effective group,
+  /** Translates the contents of a `GdkEventKey` into a keyval, effective group,
     * and level.
     *
     * Modifiers that affected the translation and are thus unavailable for
@@ -407,11 +431,14 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * This function should rarely be needed, since `GdkEventKey` already
     * contains the translated keyval. It is exported for the benefit of
     * virtualized test environments.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method translate_key contains an OUT parameter, which is not supported yet"
+    "[translate_key]: Method translate_key contains an OUT parameter, which is not supported yet"
   )
-  def translateKey__ = ???
+  private def translateKey__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -424,23 +451,25 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
 end Display
 
 object Display:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the default `GdkDisplay`.
+  /** Gets the default `GdkDisplay`.
     *
     * This is a convenience function for:
     *
     * gdk_display_manager_get_default_display (gdk_display_manager_get ())
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefault(): Display /* Some(Ptr[GdkDisplay]) */ = new Display(
     gdk_display_get_default().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Opens a display.
+  /** Opens a display.
     *
     * If opening the display fails, `NULL` is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def open(
       display_name: Option[String | CString /* Some(CString) */ ]

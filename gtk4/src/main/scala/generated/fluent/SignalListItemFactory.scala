@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.ListItemFactory
 import sn.gnome.gtk4.internal.GtkSignalListItemFactory
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkSignalListItemFactory` is a `GtkListItemFactory` that emits signals to
+/** `GtkSignalListItemFactory` is a `GtkListItemFactory` that emits signals to
   * manage listitems.
   *
   * Signals are emitted for every listitem in the same order:
@@ -47,6 +45,9 @@ import sn.gnome.gtk4.internal.GtkSignalListItemFactory
   * signal is recommended. The signal can be connected in the
   * [signal@Gtk.SignalListItemFactory::setup] signal and removed again during
   * [signal@Gtk.SignalListItemFactory::teardown].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SignalListItemFactory(raw: Ptr[GtkSignalListItemFactory])
     extends ListItemFactory(raw.asInstanceOf):
@@ -56,11 +57,12 @@ class SignalListItemFactory(raw: Ptr[GtkSignalListItemFactory])
 end SignalListItemFactory
 
 object SignalListItemFactory:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkSignalListItemFactory`.
+  /** Creates a new `GtkSignalListItemFactory`.
     *
     * You need to connect signal handlers before you use it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): SignalListItemFactory = new SignalListItemFactory(
     gtk_signal_list_item_factory_new().asInstanceOf

@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkWindowHandle
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkWindowHandle` is a titlebar area widget.
+/** `GtkWindowHandle` is a titlebar area widget.
   *
   * When added into a window, it can be dragged to move the window, and handles
   * right click, double click and middle click as expected of a titlebar.
@@ -24,6 +22,9 @@ import sn.gnome.gtk4.internal.GtkWindowHandle
   *
   * Starting from GTK 4.12, `GtkWindowHandle` uses the
   * `GTK_ACCESSIBLE_ROLE_GENERIC` role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class WindowHandle(raw: Ptr[GtkWindowHandle])
     extends Widget(raw.asInstanceOf),
@@ -33,9 +34,10 @@ class WindowHandle(raw: Ptr[GtkWindowHandle])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the child widget of @self.
     *
-    * Gets the child widget of @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(): Widget /* None */ = new Widget(
     gtk_window_handle_get_child(
@@ -43,9 +45,10 @@ class WindowHandle(raw: Ptr[GtkWindowHandle])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the child widget of @self.
     *
-    * Sets the child widget of @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
       child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -59,9 +62,10 @@ class WindowHandle(raw: Ptr[GtkWindowHandle])
 end WindowHandle
 
 object WindowHandle:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkWindowHandle`.
     *
-    * Creates a new `GtkWindowHandle`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): WindowHandle = new WindowHandle(
     gtk_window_handle_new().asInstanceOf

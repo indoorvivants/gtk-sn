@@ -2,32 +2,37 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkUnit
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** See also gtk_print_settings_set_paper_width().
   *
-  * See also gtk_print_settings_set_paper_width().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum GTKUnit(val raw: GtkUnit):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No units.
     *
-    * No units.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends GTKUnit(GtkUnit.GTK_UNIT_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Dimensions in points.
     *
-    * Dimensions in points.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case POINTS extends GTKUnit(GtkUnit.GTK_UNIT_POINTS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Dimensions in inches.
     *
-    * Dimensions in inches.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INCH extends GTKUnit(GtkUnit.GTK_UNIT_INCH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Dimensions in millimeters
     *
-    * Dimensions in millimeters
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MM extends GTKUnit(GtkUnit.GTK_UNIT_MM)
 end GTKUnit

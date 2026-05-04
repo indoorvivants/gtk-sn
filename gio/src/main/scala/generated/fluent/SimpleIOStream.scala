@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{IOStream, InputStream, OutputStream}
 import sn.gnome.gio.internal.GSimpleIOStream
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * GSimpleIOStream creates a #GIOStream from an arbitrary #GInputStream and
+/** GSimpleIOStream creates a #GIOStream from an arbitrary #GInputStream and
   * #GOutputStream. This allows any pair of input and output streams to be used
   * with #GIOStream methods.
   *
@@ -17,6 +15,9 @@ import sn.gnome.gio.internal.GSimpleIOStream
   * other means, for instance creating them with platform specific methods as
   * g_unix_input_stream_new() or g_win32_input_stream_new(), and you want to
   * take advantage of the methods provided by #GIOStream.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SimpleIOStream(raw: Ptr[GSimpleIOStream])
     extends IOStream(raw.asInstanceOf):
@@ -26,10 +27,11 @@ class SimpleIOStream(raw: Ptr[GSimpleIOStream])
 end SimpleIOStream
 
 object SimpleIOStream:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GSimpleIOStream wrapping @input_stream and @output_stream.
+  /** Creates a new #GSimpleIOStream wrapping @input_stream and @output_stream.
     * See also #GIOStream.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       input_stream: InputStream /* Some(Ptr[GInputStream]) */,

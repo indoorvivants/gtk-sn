@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkEditableLabel
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkEditableLabel` is a label that allows users to edit the text by
+/** A `GtkEditableLabel` is a label that allows users to edit the text by
   * switching to an “edit mode”.
   *
   * ![An example GtkEditableLabel](editable-label.png)
@@ -42,6 +40,9 @@ import sn.gnome.gtk4.internal.GtkEditableLabel
   *
   * For all the subnodes added to the text node in various situations, see
   * [class@Gtk.Text].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class EditableLabel(raw: Ptr[GtkEditableLabel])
     extends Widget(raw.asInstanceOf),
@@ -52,30 +53,33 @@ class EditableLabel(raw: Ptr[GtkEditableLabel])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the label is currently in “editing mode”.
     *
-    * Returns whether the label is currently in “editing mode”.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEditing(): Boolean /* None */ = gtk_editable_label_get_editing(
     this.raw.asInstanceOf[Ptr[GtkEditableLabel]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Switches the label into “editing mode”.
     *
-    * Switches the label into “editing mode”.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def startEditing(): Unit /* None */ = gtk_editable_label_start_editing(
     this.raw.asInstanceOf[Ptr[GtkEditableLabel]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Switches the label out of “editing mode”.
+  /** Switches the label out of “editing mode”.
     *
     * If @commit is %TRUE, the resulting text is kept as the
     * [property@Gtk.Editable:text] property value, otherwise the resulting text
     * is discarded and the label will keep its previous
     * [property@Gtk.Editable:text] property value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def stopEditing(
       commit: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -87,9 +91,10 @@ class EditableLabel(raw: Ptr[GtkEditableLabel])
 end EditableLabel
 
 object EditableLabel:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkEditableLabel` widget.
     *
-    * Creates a new `GtkEditableLabel` widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       str: String | CString /* Some(CString) */

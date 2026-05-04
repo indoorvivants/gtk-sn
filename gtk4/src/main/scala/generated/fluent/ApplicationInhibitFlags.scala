@@ -2,11 +2,12 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkApplicationInhibitFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Types of user actions that may be blocked by `GtkApplication`.
+/** Types of user actions that may be blocked by `GtkApplication`.
   *
   * See [method@Gtk.Application.inhibit].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ApplicationInhibitFlags private (val raw: GtkApplicationInhibitFlags):
   def is(kv: ApplicationInhibitFlags): Boolean =
@@ -36,20 +37,22 @@ object ApplicationInhibitFlags:
     def |(other: ApplicationInhibitFlags) =
       ApplicationInhibitFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Types of user actions that may be blocked by `GtkApplication`.
+  /** Types of user actions that may be blocked by `GtkApplication`.
     *
     * See [method@Gtk.Application.inhibit].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GtkApplicationInhibitFlags, name: String)
       extends ApplicationInhibitFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Inhibit ending the user session by logging out or by shutting down the
+    /** Inhibit ending the user session by logging out or by shutting down the
       * computer
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case LOGOUT
         extends KnownValue(
@@ -57,9 +60,10 @@ object ApplicationInhibitFlags:
           "LOGOUT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Inhibit user switching
       *
-      * Inhibit user switching
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SWITCH
         extends KnownValue(
@@ -67,9 +71,10 @@ object ApplicationInhibitFlags:
           "SWITCH"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Inhibit suspending the session or computer
       *
-      * Inhibit suspending the session or computer
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SUSPEND
         extends KnownValue(
@@ -77,9 +82,10 @@ object ApplicationInhibitFlags:
           "SUSPEND"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Inhibit the session being marked as idle (and possibly locked)
       *
-      * Inhibit the session being marked as idle (and possibly locked)
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case IDLE
         extends KnownValue(

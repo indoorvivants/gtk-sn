@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GOutputStreamSpliceFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** GOutputStreamSpliceFlags determine how streams should be spliced.
   *
-  * GOutputStreamSpliceFlags determine how streams should be spliced.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class OutputStreamSpliceFlags private (val raw: GOutputStreamSpliceFlags):
   def is(kv: OutputStreamSpliceFlags): Boolean =
@@ -32,17 +33,19 @@ object OutputStreamSpliceFlags:
     def |(other: OutputStreamSpliceFlags) =
       OutputStreamSpliceFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** GOutputStreamSpliceFlags determine how streams should be spliced.
     *
-    * GOutputStreamSpliceFlags determine how streams should be spliced.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GOutputStreamSpliceFlags, name: String)
       extends OutputStreamSpliceFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Do not close either stream.
       *
-      * Do not close either stream.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(
@@ -50,9 +53,10 @@ object OutputStreamSpliceFlags:
           "NONE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Close the source stream after the splice.
       *
-      * Close the source stream after the splice.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CLOSE_SOURCE
         extends KnownValue(
@@ -60,9 +64,10 @@ object OutputStreamSpliceFlags:
           "CLOSE_SOURCE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Close the target stream after the splice.
       *
-      * Close the target stream after the splice.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case CLOSE_TARGET
         extends KnownValue(

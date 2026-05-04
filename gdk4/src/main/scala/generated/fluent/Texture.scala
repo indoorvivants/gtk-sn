@@ -12,9 +12,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GdkTexture` is the basic element used to refer to pixel data.
+/** `GdkTexture` is the basic element used to refer to pixel data.
   *
   * It is primarily meant for pixel data that will not change over multiple
   * frames, and will be used for a long time.
@@ -29,6 +27,9 @@ import sn.gnome.gobject.fluent.Object
   * `GdkTexture` is an immutable object: That means you cannot change anything
   * about it other than increasing the reference count via
   * [method@GObject.Object.ref], and consequently, it is a thread-safe object.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Texture(raw: Ptr[GdkTexture])
     extends Object(raw.asInstanceOf),
@@ -38,9 +39,7 @@ class Texture(raw: Ptr[GdkTexture])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Downloads the @texture into local memory.
+  /** Downloads the @texture into local memory.
     *
     * This may be an expensive operation, as the actual texture data may reside
     * on a GPU or on a remote display server.
@@ -62,15 +61,16 @@ class Texture(raw: Ptr[GdkTexture])
     *
     * For more flexible download capabilites, see
     * [struct@Gdk.TextureDownloader].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(guchar*)))"
+    "[download/<method parameters>/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(guchar*)))"
   )
-  def download__ = ???
+  private def download__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the memory format most closely associated with the data of the
+  /** Gets the memory format most closely associated with the data of the
     * texture.
     *
     * Note that it may not be an exact match for texture data stored on the GPU
@@ -79,36 +79,42 @@ class Texture(raw: Ptr[GdkTexture])
     * The format can give an indication about the bit depth and opacity of the
     * texture and is useful to determine the best format for downloading the
     * texture.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFormat(): MemoryFormat /* None */ = MemoryFormat.fromRaw(
     gdk_texture_get_format(this.raw.asInstanceOf[Ptr[GdkTexture]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the height of the @texture, in pixels.
     *
-    * Returns the height of the @texture, in pixels.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeight(): Int /* None */ = gdk_texture_get_height(
     this.raw.asInstanceOf[Ptr[GdkTexture]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the width of @texture, in pixels.
     *
-    * Returns the width of @texture, in pixels.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWidth(): Int /* None */ = gdk_texture_get_width(
     this.raw.asInstanceOf[Ptr[GdkTexture]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Store the given @texture to the @filename as a PNG file.
+  /** Store the given @texture to the @filename as a PNG file.
     *
     * This is a utility function intended for debugging and testing. If you want
     * more control over formats, proper error handling or want to store to a
     * [iface@Gio.File] or other location, you might want to use
     * [method@Gdk.Texture.save_to_png_bytes] or look into the gdk-pixbuf
     * library.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def saveToPng(
       filename: String | CString /* Some(CString) */
@@ -117,9 +123,7 @@ class Texture(raw: Ptr[GdkTexture])
     __sn_extract_string(filename)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Store the given @texture in memory as a PNG file.
+  /** Store the given @texture in memory as a PNG file.
     *
     * Use [ctor@Gdk.Texture.new_from_bytes] to read it back.
     *
@@ -132,17 +136,21 @@ class Texture(raw: Ptr[GdkTexture])
     *
     * If you are dealing with high dynamic range float data, you might also want
     * to consider [method@Gdk.Texture.save_to_tiff_bytes] instead.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[save_to_png_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def saveToPngBytes__ = ???
+  private def saveToPngBytes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Store the given @texture to the @filename as a TIFF file.
+  /** Store the given @texture to the @filename as a TIFF file.
     *
     * GTK will attempt to store data without loss.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def saveToTiff(
       filename: String | CString /* Some(CString) */
@@ -151,9 +159,7 @@ class Texture(raw: Ptr[GdkTexture])
     __sn_extract_string(filename)
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Store the given @texture in memory as a TIFF file.
+  /** Store the given @texture in memory as a TIFF file.
     *
     * Use [ctor@Gdk.Texture.new_from_bytes] to read it back.
     *
@@ -164,11 +170,14 @@ class Texture(raw: Ptr[GdkTexture])
     * If that is not your concern and you are interested in a smaller size and a
     * more portable format, you might want to use
     * [method@Gdk.Texture.save_to_png_bytes].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[save_to_tiff_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def saveToTiffBytes__ = ???
+  private def saveToTiffBytes__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -181,13 +190,14 @@ class Texture(raw: Ptr[GdkTexture])
 end Texture
 
 object Texture:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new texture object representing the `GdkPixbuf`.
+  /** Creates a new texture object representing the `GdkPixbuf`.
     *
     * This function is threadsafe, so that you can e.g. use GTask and
     * [method@Gio.Task.run_in_thread] to avoid blocking the main thread while
     * loading a big image.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def forPixbuf(
       pixbuf: Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
@@ -197,9 +207,7 @@ object Texture:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new texture by loading an image from memory,
+  /** Creates a new texture by loading an image from memory,
     *
     * The file format is detected automatically. The supported formats are PNG,
     * JPEG and TIFF, though more formats might be available.
@@ -209,15 +217,16 @@ object Texture:
     * This function is threadsafe, so that you can e.g. use GTask and
     * [method@Gio.Task.run_in_thread] to avoid blocking the main thread while
     * loading a big image.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def new_from_bytes() = ???
+  private def new_from_bytes() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new texture by loading an image from a file.
+  /** Creates a new texture by loading an image from a file.
     *
     * The file format is detected automatically. The supported formats are PNG,
     * JPEG and TIFF, though more formats might be available.
@@ -227,6 +236,9 @@ object Texture:
     * This function is threadsafe, so that you can e.g. use GTask and
     * [method@Gio.Task.run_in_thread] to avoid blocking the main thread while
     * loading a big image.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFile(
       file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
@@ -239,9 +251,7 @@ object Texture:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new texture by loading an image from a file.
+  /** Creates a new texture by loading an image from a file.
     *
     * The file format is detected automatically. The supported formats are PNG,
     * JPEG and TIFF, though more formats might be available.
@@ -251,6 +261,9 @@ object Texture:
     * This function is threadsafe, so that you can e.g. use GTask and
     * [method@Gio.Task.run_in_thread] to avoid blocking the main thread while
     * loading a big image.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFilename(
       path: String | CString /* Some(CString) */
@@ -263,9 +276,7 @@ object Texture:
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new texture by loading an image from a resource.
+  /** Creates a new texture by loading an image from a resource.
     *
     * The file format is detected automatically. The supported formats are PNG
     * and JPEG, though more formats might be available.
@@ -278,6 +289,9 @@ object Texture:
     * This function is threadsafe, so that you can e.g. use GTask and
     * [method@Gio.Task.run_in_thread] to avoid blocking the main thread while
     * loading a big image.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromResource(
       resource_path: String | CString /* Some(CString) */

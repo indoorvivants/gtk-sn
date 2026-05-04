@@ -9,33 +9,36 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.pango.fluent.FontFamily
 import sn.gnome.pango.internal.PangoFontFace
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `PangoFontFace` is used to represent a group of fonts with the same
+/** A `PangoFontFace` is used to represent a group of fonts with the same
   * family, slant, weight, and width, but varying sizes.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a font description that matches the face.
+  /** Returns a font description that matches the face.
     *
     * The resulting font description will have the family, style, variant,
     * weight and stretch of the face, but its size field will be unset.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[describe/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
-  def describe__ = ???
+  private def describe__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a name representing the style of this face.
+  /** Gets a name representing the style of this face.
     *
     * Note that a font family may contain multiple faces with the same name
     * (e.g. a variable and a non-variable face for the same style).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFaceName()(using Zone): String /* None */ = fromCString(
     pango_font_face_get_face_name(
@@ -43,9 +46,10 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `PangoFontFamily` that @face belongs to.
     *
-    * Gets the `PangoFontFamily` that @face belongs to.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFamily(): FontFamily /* None */ = new FontFamily(
     pango_font_face_get_family(
@@ -53,29 +57,31 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether a `PangoFontFace` is synthesized.
+  /** Returns whether a `PangoFontFace` is synthesized.
     *
     * This will be the case if the underlying font rendering engine creates this
     * face from another face, by shearing, emboldening, lightening or modifying
     * it in some other way.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isSynthesized(): Boolean /* None */ = pango_font_face_is_synthesized(
     this.raw.asInstanceOf[Ptr[PangoFontFace]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * List the available sizes for a font.
+  /** List the available sizes for a font.
     *
     * This is only applicable to bitmap fonts. For scalable fonts, stores %NULL
     * at the location pointed to by @sizes and 0 at the location pointed to by @n_sizes.
     * The sizes returned are in Pango units and are sorted in ascending order.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method list_sizes contains an OUT parameter, which is not supported yet"
+    "[list_sizes]: Method list_sizes contains an OUT parameter, which is not supported yet"
   )
-  def listSizes__ = ???
+  private def listSizes__ = ???
 
 end FontFace

@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkEmojiChooser
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkEmojiChooser` is used by text widgets such as `GtkEntry` or
+/** The `GtkEmojiChooser` is used by text widgets such as `GtkEntry` or
   * `GtkTextView` to let users insert Emoji characters.
   *
   * ![An example GtkEmojiChooser](emojichooser.png)
@@ -42,6 +40,9 @@ import sn.gnome.gtk4.internal.GtkEmojiChooser
   * .emoji-searchbar style class itself. The bottom toolbar used to switch
   * between different emoji categories consists of buttons with the
   * .emoji-section style class and gets the .emoji-toolbar style class itself.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class EmojiChooser(raw: Ptr[GtkEmojiChooser])
     extends Popover(raw.asInstanceOf),
@@ -56,9 +57,10 @@ class EmojiChooser(raw: Ptr[GtkEmojiChooser])
 end EmojiChooser
 
 object EmojiChooser:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkEmojiChooser`.
     *
-    * Creates a new `GtkEmojiChooser`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): EmojiChooser = new EmojiChooser(
     gtk_emoji_chooser_new().asInstanceOf

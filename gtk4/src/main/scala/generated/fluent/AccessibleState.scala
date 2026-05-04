@@ -2,81 +2,91 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkAccessibleState
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** The possible accessible states of a [iface@Accessible].
   *
-  * The possible accessible states of a [iface@Accessible].
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum AccessibleState(val raw: GtkAccessibleState):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A “busy” state. This state has boolean values
     *
-    * A “busy” state. This state has boolean values
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BUSY
       extends AccessibleState(GtkAccessibleState.GTK_ACCESSIBLE_STATE_BUSY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A “checked” state; indicates the current state of a [class@CheckButton].
+  /** A “checked” state; indicates the current state of a [class@CheckButton].
     * Value type: [enum@AccessibleTristate]
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHECKED
       extends AccessibleState(GtkAccessibleState.GTK_ACCESSIBLE_STATE_CHECKED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A “disabled” state; corresponds to the [property@Widget:sensitive]
+  /** A “disabled” state; corresponds to the [property@Widget:sensitive]
     * property. It indicates a UI element that is perceivable, but not editable
     * or operable. Value type: boolean
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DISABLED
       extends AccessibleState(GtkAccessibleState.GTK_ACCESSIBLE_STATE_DISABLED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An “expanded” state; corresponds to the [property@Expander:expanded]
+  /** An “expanded” state; corresponds to the [property@Expander:expanded]
     * property. Value type: boolean or undefined
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EXPANDED
       extends AccessibleState(GtkAccessibleState.GTK_ACCESSIBLE_STATE_EXPANDED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A “hidden” state; corresponds to the [property@Widget:visible] property.
+  /** A “hidden” state; corresponds to the [property@Widget:visible] property.
     * You can use this state explicitly on UI elements that should not be
     * exposed to an assistive technology. Value type: boolean See also:
     * %GTK_ACCESSIBLE_STATE_DISABLED
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HIDDEN
       extends AccessibleState(GtkAccessibleState.GTK_ACCESSIBLE_STATE_HIDDEN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * An “invalid” state; set when a widget is showing an error. Value type:
+  /** An “invalid” state; set when a widget is showing an error. Value type:
     * [enum@AccessibleInvalidState]
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID
       extends AccessibleState(GtkAccessibleState.GTK_ACCESSIBLE_STATE_INVALID)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A “pressed” state; indicates the current state of a [class@ToggleButton].
+  /** A “pressed” state; indicates the current state of a [class@ToggleButton].
     * Value type: [enum@AccessibleTristate] enumeration
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PRESSED
       extends AccessibleState(GtkAccessibleState.GTK_ACCESSIBLE_STATE_PRESSED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * A “selected” state; set when a widget is selected. Value type: boolean or
+  /** A “selected” state; set when a widget is selected. Value type: boolean or
     * undefined
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SELECTED
       extends AccessibleState(GtkAccessibleState.GTK_ACCESSIBLE_STATE_SELECTED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Indicates that a widget with the GTK_ACCESSIBLE_ROLE_LINK has been
+  /** Indicates that a widget with the GTK_ACCESSIBLE_ROLE_LINK has been
     * visited. Value type: boolean. Since: 4.12
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case VISITED
       extends AccessibleState(GtkAccessibleState.GTK_ACCESSIBLE_STATE_VISITED)

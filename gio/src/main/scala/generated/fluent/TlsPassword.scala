@@ -9,17 +9,19 @@ import sn.gnome.gio.internal.GTlsPassword
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Holds a password used in TLS.
   *
-  * Holds a password used in TLS.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get a description string about what the password will be used for.
     *
-    * Get a description string about what the password will be used for.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDescription()(using Zone): String /* None */ = fromCString(
     g_tls_password_get_description(
@@ -27,31 +29,34 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Get flags about the password.
     *
-    * Get flags about the password.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFlags(): TlsPasswordFlags /* None */ = TlsPasswordFlags.fromRaw(
     g_tls_password_get_flags(this.raw.asInstanceOf[Ptr[GTlsPassword]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get the password value. If @length is not %NULL then it will be filled in
+  /** Get the password value. If @length is not %NULL then it will be filled in
     * with the length of the password value. (Note that the password value is
     * not nul-terminated, so you can only pass %NULL for @length in contexts
     * where you know the password will have a certain fixed length.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_value contains an OUT parameter, which is not supported yet"
+    "[get_value]: Method get_value contains an OUT parameter, which is not supported yet"
   )
-  def getValue__ = ???
+  private def getValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get a user readable translated warning. Usually this warning is a
+  /** Get a user readable translated warning. Usually this warning is a
     * representation of the password flags returned from
     * g_tls_password_get_flags().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWarning()(using Zone): String /* None */ = fromCString(
     g_tls_password_get_warning(
@@ -59,9 +64,10 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Set a description string about what the password will be used for.
     *
-    * Set a description string about what the password will be used for.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDescription(
       description: String |
@@ -71,9 +77,10 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     __sn_extract_string(description).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Set flags about the password.
     *
-    * Set flags about the password.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFlags(
       flags: TlsPasswordFlags /* Some(GTlsPasswordFlags) */
@@ -82,9 +89,7 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     flags.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set the value for this password. The @value will be copied by the password
+  /** Set the value for this password. The @value will be copied by the password
     * object.
     *
     * Specify the @length, for a non-nul-terminated password. Pass -1 as
@@ -92,15 +97,16 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     *   if using a nul-terminated password, and @length will be calculated
     *   automatically. (Note that the terminating nul is not considered part of
     *   the password in this case.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guchar*)))"
+    "[set_value/<method parameters>/value]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guchar*)))"
   )
-  def setValue__ = ???
+  private def setValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Provide the value for this password.
+  /** Provide the value for this password.
     *
     * The @value will be owned by the password object, and later freed using the @destroy
     * function callback.
@@ -110,17 +116,21 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     *   if using a nul-terminated password, and @length will be calculated
     *   automatically. (Note that the terminating nul is not considered part of
     *   the password in this case.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
+    "[set_value_full/<method parameters>/value]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
   )
-  def setValueFull__ = ???
+  private def setValueFull__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set a user readable translated warning. Usually this warning is a
+  /** Set a user readable translated warning. Usually this warning is a
     * representation of the password flags returned from
     * g_tls_password_get_flags().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWarning(
       warning: String |
@@ -141,9 +151,10 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
 end TlsPassword
 
 object TlsPassword:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Create a new #GTlsPassword object.
     *
-    * Create a new #GTlsPassword object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       flags: TlsPasswordFlags /* Some(GTlsPasswordFlags) */,

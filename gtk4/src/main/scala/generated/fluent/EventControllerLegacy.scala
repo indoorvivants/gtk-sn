@@ -7,13 +7,14 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkEventControllerLegacy
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkEventControllerLegacy` is an event controller that provides raw access
+/** `GtkEventControllerLegacy` is an event controller that provides raw access
   * to the event stream.
   *
   * It should only be used as a last resort if none of the other event
   * controllers or gestures do the job.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class EventControllerLegacy(raw: Ptr[GtkEventControllerLegacy])
     extends EventController(raw.asInstanceOf):
@@ -23,9 +24,10 @@ class EventControllerLegacy(raw: Ptr[GtkEventControllerLegacy])
 end EventControllerLegacy
 
 object EventControllerLegacy:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new legacy event controller.
     *
-    * Creates a new legacy event controller.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): EventControllerLegacy = new EventControllerLegacy(
     gtk_event_controller_legacy_new().asInstanceOf

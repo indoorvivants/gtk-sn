@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.internal.GSettingsBackend
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The #GSettingsBackend interface defines a generic interface for
+/** The #GSettingsBackend interface defines a generic interface for
   * non-strictly-typed data that is stored in a hierarchy. To implement an
   * alternative storage backend for #GSettings, you need to implement the
   * #GSettingsBackend interface and then make it implement the extension point
@@ -32,15 +30,16 @@ import sn.gnome.gobject.fluent.Object
   * but does not carry the same stability guarantees as the public GIO API. For
   * this reason, you have to define the C preprocessor symbol
   * %G_SETTINGS_ENABLE_BACKEND before including `gio/gsettingsbackend.h`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SettingsBackend(raw: Ptr[GSettingsBackend])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Signals that a single key has possibly changed. Backend implementations
+  /** Signals that a single key has possibly changed. Backend implementations
     * should call this if a key has possibly changed its value.
     *
     * @key
@@ -62,23 +61,29 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * In the case that this call is in response to a call to
     * g_settings_backend_write() then @origin_tag must be set to the same value
     * that was passed to that call.
-    */
-  @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  def changed__ = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * This call is a convenience wrapper. It gets the list of changes from
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[changed]: GSettingsBackend methods are not rendered"
+  )
+  private def changed__ = ???
+
+  /** This call is a convenience wrapper. It gets the list of changes from
     * @tree,
     *   computes the longest common prefix and calls
     *   g_settings_backend_changed().
-    */
-  @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  def changedTree__ = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Signals that a list of keys have possibly changed. Backend implementations
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[changed_tree]: GSettingsBackend methods are not rendered"
+  )
+  private def changedTree__ = ???
+
+  /** Signals that a list of keys have possibly changed. Backend implementations
     * should call this if keys have possibly changed their values.
     *
     * @path
@@ -98,13 +103,16 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * For efficiency reasons, the implementation should strive for @path to be
     * as long as possible (ie: the longest common prefix of all of the keys that
     * were changed) but this is not strictly required.
-    */
-  @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  def keysChanged__ = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Signals that all keys below a given path may have possibly changed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[keys_changed]: GSettingsBackend methods are not rendered"
+  )
+  private def keysChanged__ = ???
+
+  /** Signals that all keys below a given path may have possibly changed.
     * Backend implementations should call this if an entire path of keys have
     * possibly changed their values.
     *
@@ -125,37 +133,46 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * were changed) but this is not strictly required. As an example, if this
     * function is called with the path of "/" then every single key in the
     * application will be notified of a possible change.
-    */
-  @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  def pathChanged__ = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Signals that the writability of all keys below a given path may have
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[path_changed]: GSettingsBackend methods are not rendered"
+  )
+  private def pathChanged__ = ???
+
+  /** Signals that the writability of all keys below a given path may have
     * changed.
     *
     * Since GSettings performs no locking operations for itself, this call will
     * always be made in response to external events.
-    */
-  @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  def pathWritableChanged__ = ???
-
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
     *
-    * Signals that the writability of a single key has possibly changed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[path_writable_changed]: GSettingsBackend methods are not rendered"
+  )
+  private def pathWritableChanged__ = ???
+
+  /** Signals that the writability of a single key has possibly changed.
     *
     * Since GSettings performs no locking operations for itself, this call will
     * always be made in response to external events.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly("GSettingsBackend methods are not rendered")
-  def writableChanged__ = ???
+  @annotation.compileTimeOnly(
+    "[writable_changed]: GSettingsBackend methods are not rendered"
+  )
+  private def writableChanged__ = ???
 
 end SettingsBackend
 
 object SettingsBackend:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Calculate the longest common prefix of all keys in a tree and write out an
+  /** Calculate the longest common prefix of all keys in a tree and write out an
     * array of the key names relative to that prefix and, optionally, the value
     * to store at each of those keys.
     *
@@ -163,23 +180,27 @@ object SettingsBackend:
     * g_free(). You should not attempt to free or unref the contents of
     * @keys
     *   or @values.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
     "Function flatten_tree contains an OUT parameter, which is not supported yet"
   )
-  def flattenTree() = ???
+  private def flattenTree() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the default #GSettingsBackend. It is possible to override the
+  /** Returns the default #GSettingsBackend. It is possible to override the
     * default by setting the `GSETTINGS_BACKEND` environment variable to the
     * name of a settings backend.
     *
     * The user gets a reference to the backend.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
     "Method g_settings_backend_get_default has no target types"
   )
-  def getDefault() = ???
+  private def getDefault() = ???
 
 end SettingsBackend

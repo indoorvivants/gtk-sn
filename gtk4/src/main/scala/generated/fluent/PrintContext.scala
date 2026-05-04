@@ -9,9 +9,7 @@ import sn.gnome.gtk4.fluent.PageSetup
 import sn.gnome.gtk4.internal.GtkPrintContext
 import sn.gnome.pango.fluent.{Context, FontMap, Layout}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkPrintContext` encapsulates context information that is required when
+/** A `GtkPrintContext` encapsulates context information that is required when
   * drawing pages for printing.
   *
   * This includes the cairo context and important parameters like page size and
@@ -81,14 +79,18 @@ import sn.gnome.pango.fluent.{Context, FontMap, Layout}
   *   g_object_unref (layout);
   * }
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `PangoContext` that can be used with the `GtkPrintContext`.
     *
-    * Creates a new `PangoContext` that can be used with the `GtkPrintContext`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def createPangoContext(): Context /* None */ = new Context(
     gtk_print_context_create_pango_context(
@@ -96,10 +98,11 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `PangoLayout` that is suitable for use with the
+  /** Creates a new `PangoLayout` that is suitable for use with the
     * `GtkPrintContext`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def createPangoLayout(): Layout /* None */ = new Layout(
     gtk_print_context_create_pango_layout(
@@ -107,54 +110,60 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Obtains the cairo context that is associated with the `GtkPrintContext`.
     *
-    * Obtains the cairo context that is associated with the `GtkPrintContext`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[get_cairo_context/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def getCairoContext__ = ???
+  private def getCairoContext__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains the horizontal resolution of the `GtkPrintContext`, in dots per
+  /** Obtains the horizontal resolution of the `GtkPrintContext`, in dots per
     * inch.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDpiX(): Double /* None */ = gtk_print_context_get_dpi_x(
     this.raw.asInstanceOf[Ptr[GtkPrintContext]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains the vertical resolution of the `GtkPrintContext`, in dots per
+  /** Obtains the vertical resolution of the `GtkPrintContext`, in dots per
     * inch.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDpiY(): Double /* None */ = gtk_print_context_get_dpi_y(
     this.raw.asInstanceOf[Ptr[GtkPrintContext]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Obtains the hardware printer margins of the `GtkPrintContext`, in units.
     *
-    * Obtains the hardware printer margins of the `GtkPrintContext`, in units.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_hard_margins contains an OUT parameter, which is not supported yet"
+    "[get_hard_margins]: Method get_hard_margins contains an OUT parameter, which is not supported yet"
   )
-  def getHardMargins__ = ???
+  private def getHardMargins__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Obtains the height of the `GtkPrintContext`, in pixels.
     *
-    * Obtains the height of the `GtkPrintContext`, in pixels.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeight(): Double /* None */ = gtk_print_context_get_height(
     this.raw.asInstanceOf[Ptr[GtkPrintContext]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtains the `GtkPageSetup` that determines the page dimensions of the
+  /** Obtains the `GtkPageSetup` that determines the page dimensions of the
     * `GtkPrintContext`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPageSetup(): PageSetup /* None */ = new PageSetup(
     gtk_print_context_get_page_setup(
@@ -162,10 +171,11 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a `PangoFontMap` that is suitable for use with the
+  /** Returns a `PangoFontMap` that is suitable for use with the
     * `GtkPrintContext`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPangoFontmap(): FontMap /* None */ = new FontMap(
     gtk_print_context_get_pango_fontmap(
@@ -173,25 +183,27 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Obtains the width of the `GtkPrintContext`, in pixels.
     *
-    * Obtains the width of the `GtkPrintContext`, in pixels.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWidth(): Double /* None */ = gtk_print_context_get_width(
     this.raw.asInstanceOf[Ptr[GtkPrintContext]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a new cairo context on a print context.
+  /** Sets a new cairo context on a print context.
     *
     * This function is intended to be used when implementing an internal print
     * preview, it is not needed for printing, since GTK itself creates a
     * suitable cairo context in that case.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[set_cairo_context/<method parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
-  def setCairoContext__ = ???
+  private def setCairoContext__ = ???
 
 end PrintContext

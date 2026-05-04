@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GBusNameOwnerFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used in g_bus_own_name().
   *
-  * Flags used in g_bus_own_name().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class BusNameOwnerFlags private (val raw: GBusNameOwnerFlags):
   def is(kv: BusNameOwnerFlags): Boolean =
@@ -32,17 +33,19 @@ object BusNameOwnerFlags:
     def |(other: BusNameOwnerFlags) =
       BusNameOwnerFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used in g_bus_own_name().
     *
-    * Flags used in g_bus_own_name().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GBusNameOwnerFlags, name: String)
       extends BusNameOwnerFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(
@@ -50,9 +53,10 @@ object BusNameOwnerFlags:
           "NONE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Allow another message bus connection to claim the name.
       *
-      * Allow another message bus connection to claim the name.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ALLOW_REPLACEMENT
         extends KnownValue(
@@ -60,11 +64,12 @@ object BusNameOwnerFlags:
           "ALLOW_REPLACEMENT"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * If another message bus connection owns the name and have specified
+    /** If another message bus connection owns the name and have specified
       * %G_BUS_NAME_OWNER_FLAGS_ALLOW_REPLACEMENT, then take the name from the
       * other connection.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case REPLACE
         extends KnownValue(
@@ -72,11 +77,12 @@ object BusNameOwnerFlags:
           "REPLACE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * If another message bus connection owns the name, immediately return an
+    /** If another message bus connection owns the name, immediately return an
       * error from g_bus_own_name() rather than entering the waiting queue for
       * that name. (Since 2.54)
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case DO_NOT_QUEUE
         extends KnownValue(

@@ -21,7 +21,7 @@ class TargetTypesGenerator(functionPaths: Seq[Path]):
     import upickle.default.*
     Files.createDirectories(outputFile.getParent)
 
-    os.write.over(os.Path(outputFile), write(b.result()))
+    os.write.over(os.Path(outputFile), write(b.result(), indent = 4))
   end run
 
   case class Function(

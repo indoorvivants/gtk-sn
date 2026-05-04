@@ -2,117 +2,136 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GVariantClass
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** The range of possible top-level types of #GVariant instances.
   *
-  * The range of possible top-level types of #GVariant instances.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum VariantClass(val raw: GVariantClass):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is a boolean.
     *
-    * The #GVariant is a boolean.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BOOLEAN extends VariantClass(GVariantClass.G_VARIANT_CLASS_BOOLEAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is a byte.
     *
-    * The #GVariant is a byte.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BYTE extends VariantClass(GVariantClass.G_VARIANT_CLASS_BYTE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is a signed 16 bit integer.
     *
-    * The #GVariant is a signed 16 bit integer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INT16 extends VariantClass(GVariantClass.G_VARIANT_CLASS_INT16)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is an unsigned 16 bit integer.
     *
-    * The #GVariant is an unsigned 16 bit integer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UINT16 extends VariantClass(GVariantClass.G_VARIANT_CLASS_UINT16)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is a signed 32 bit integer.
     *
-    * The #GVariant is a signed 32 bit integer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INT32 extends VariantClass(GVariantClass.G_VARIANT_CLASS_INT32)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is an unsigned 32 bit integer.
     *
-    * The #GVariant is an unsigned 32 bit integer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UINT32 extends VariantClass(GVariantClass.G_VARIANT_CLASS_UINT32)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is a signed 64 bit integer.
     *
-    * The #GVariant is a signed 64 bit integer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INT64 extends VariantClass(GVariantClass.G_VARIANT_CLASS_INT64)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is an unsigned 64 bit integer.
     *
-    * The #GVariant is an unsigned 64 bit integer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UINT64 extends VariantClass(GVariantClass.G_VARIANT_CLASS_UINT64)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is a file handle index.
     *
-    * The #GVariant is a file handle index.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HANDLE extends VariantClass(GVariantClass.G_VARIANT_CLASS_HANDLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is a double precision floating point value.
     *
-    * The #GVariant is a double precision floating point value.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DOUBLE extends VariantClass(GVariantClass.G_VARIANT_CLASS_DOUBLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is a normal string.
     *
-    * The #GVariant is a normal string.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STRING extends VariantClass(GVariantClass.G_VARIANT_CLASS_STRING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is a D-Bus object path string.
     *
-    * The #GVariant is a D-Bus object path string.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OBJECT_PATH
       extends VariantClass(GVariantClass.G_VARIANT_CLASS_OBJECT_PATH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is a D-Bus signature string.
     *
-    * The #GVariant is a D-Bus signature string.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SIGNATURE extends VariantClass(GVariantClass.G_VARIANT_CLASS_SIGNATURE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is a variant.
     *
-    * The #GVariant is a variant.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case VARIANT extends VariantClass(GVariantClass.G_VARIANT_CLASS_VARIANT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is a maybe-typed value.
     *
-    * The #GVariant is a maybe-typed value.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MAYBE extends VariantClass(GVariantClass.G_VARIANT_CLASS_MAYBE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is an array.
     *
-    * The #GVariant is an array.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ARRAY extends VariantClass(GVariantClass.G_VARIANT_CLASS_ARRAY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is a tuple.
     *
-    * The #GVariant is a tuple.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TUPLE extends VariantClass(GVariantClass.G_VARIANT_CLASS_TUPLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The #GVariant is a dictionary entry.
     *
-    * The #GVariant is a dictionary entry.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DICT_ENTRY extends VariantClass(GVariantClass.G_VARIANT_CLASS_DICT_ENTRY)
 end VariantClass

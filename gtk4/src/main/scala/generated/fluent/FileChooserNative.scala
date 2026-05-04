@@ -12,9 +12,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkFileChooserNative
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkFileChooserNative` is an abstraction of a dialog suitable for use with
+/** `GtkFileChooserNative` is an abstraction of a dialog suitable for use with
   * “File Open” or “File Save as” commands.
   *
   * By default, this just uses a `GtkFileChooserDialog` to implement the actual
@@ -158,6 +156,9 @@ import sn.gnome.gtk4.internal.GtkFileChooserNative
   * not supported:
   *
   * * Shortcut folders.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FileChooserNative(raw: Ptr[GtkFileChooserNative])
     extends NativeDialog(raw.asInstanceOf),
@@ -165,9 +166,10 @@ class FileChooserNative(raw: Ptr[GtkFileChooserNative])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the custom label text for the accept button.
     *
-    * Retrieves the custom label text for the accept button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAcceptLabel()(using Zone): String /* None */ = fromCString(
     gtk_file_chooser_native_get_accept_label(
@@ -175,9 +177,10 @@ class FileChooserNative(raw: Ptr[GtkFileChooserNative])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the custom label text for the cancel button.
     *
-    * Retrieves the custom label text for the cancel button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCancelLabel()(using Zone): String /* None */ = fromCString(
     gtk_file_chooser_native_get_cancel_label(
@@ -185,9 +188,7 @@ class FileChooserNative(raw: Ptr[GtkFileChooserNative])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the custom label text for the accept button.
+  /** Sets the custom label text for the accept button.
     *
     * If characters in @label are preceded by an underscore, they are
     * underlined. If you need a literal underscore character in a label, use
@@ -195,6 +196,9 @@ class FileChooserNative(raw: Ptr[GtkFileChooserNative])
     * keyboard accelerator called a mnemonic.
     *
     * Pressing Alt and that key should activate the button.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setAcceptLabel(
       accept_label: Option[String | CString /* Some(CString) */ ]
@@ -205,9 +209,7 @@ class FileChooserNative(raw: Ptr[GtkFileChooserNative])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the custom label text for the cancel button.
+  /** Sets the custom label text for the cancel button.
     *
     * If characters in @label are preceded by an underscore, they are
     * underlined. If you need a literal underscore character in a label, use
@@ -215,6 +217,9 @@ class FileChooserNative(raw: Ptr[GtkFileChooserNative])
     * keyboard accelerator called a mnemonic.
     *
     * Pressing Alt and that key should activate the button.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCancelLabel(
       cancel_label: Option[String | CString /* Some(CString) */ ]
@@ -236,9 +241,10 @@ class FileChooserNative(raw: Ptr[GtkFileChooserNative])
 end FileChooserNative
 
 object FileChooserNative:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkFileChooserNative`.
     *
-    * Creates a new `GtkFileChooserNative`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       title: Option[String | CString /* Some(CString) */ ],

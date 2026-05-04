@@ -2,27 +2,31 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkSensitivityType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Determines how GTK handles the sensitivity of various controls, such as
+/** Determines how GTK handles the sensitivity of various controls, such as
   * combo box buttons.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SensitivityType(val raw: GtkSensitivityType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The control is made insensitive if no action can be triggered
     *
-    * The control is made insensitive if no action can be triggered
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AUTO extends SensitivityType(GtkSensitivityType.GTK_SENSITIVITY_AUTO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The control is always sensitive
     *
-    * The control is always sensitive
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ON extends SensitivityType(GtkSensitivityType.GTK_SENSITIVITY_ON)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The control is always insensitive
     *
-    * The control is always insensitive
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OFF extends SensitivityType(GtkSensitivityType.GTK_SENSITIVITY_OFF)
 end SensitivityType

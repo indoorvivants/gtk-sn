@@ -7,23 +7,25 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.IMContext
 import sn.gnome.gtk4.internal.GtkIMMulticontext
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkIMMulticontext` is an input method context supporting multiple,
+/** `GtkIMMulticontext` is an input method context supporting multiple,
   * switchable input methods.
   *
   * Text widgets such as `GtkText` or `GtkTextView` use a `GtkIMMultiContext` to
   * implement their `im-module` property for switching between different input
   * methods.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class IMMulticontext(raw: Ptr[GtkIMMulticontext])
     extends IMContext(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the id of the currently active delegate of the @context.
     *
-    * Gets the id of the currently active delegate of the @context.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getContextId()(using Zone): String /* None */ = fromCString(
     gtk_im_multicontext_get_context_id(
@@ -31,15 +33,16 @@ class IMMulticontext(raw: Ptr[GtkIMMulticontext])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the context id for @context.
+  /** Sets the context id for @context.
     *
     * This causes the currently active delegate of @context to be replaced by
     * the delegate corresponding to the new context id.
     *
     * Setting this to a non-%NULL value overrides the system-wide IM module
     * setting. See the [property@Gtk.Settings:gtk-im-module] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setContextId(
       context_id: Option[String | CString /* Some(CString) */ ]
@@ -61,9 +64,10 @@ class IMMulticontext(raw: Ptr[GtkIMMulticontext])
 end IMMulticontext
 
 object IMMulticontext:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkIMMulticontext`.
     *
-    * Creates a new `GtkIMMulticontext`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): IMMulticontext = new IMMulticontext(
     gtk_im_multicontext_new().asInstanceOf

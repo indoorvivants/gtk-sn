@@ -8,9 +8,7 @@ import sn.gnome.gdk4.fluent.{Display, DisplayManager}
 import sn.gnome.gdk4.internal.GdkDisplayManager
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A singleton object that offers notification when displays appear or
+/** A singleton object that offers notification when displays appear or
   * disappear.
   *
   * You can use [func@Gdk.DisplayManager.get] to obtain the `GdkDisplayManager`
@@ -51,15 +49,19 @@ import sn.gnome.gobject.fluent.Object
   * #endif
   *   g_error ("Unsupported GDK backend");
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DisplayManager(raw: Ptr[GdkDisplayManager])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the default `GdkDisplay`.
     *
-    * Gets the default `GdkDisplay`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDefaultDisplay(): Display /* None */ = new Display(
     gdk_display_manager_get_default_display(
@@ -67,18 +69,20 @@ class DisplayManager(raw: Ptr[GdkDisplayManager])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** List all currently open displays.
     *
-    * List all currently open displays.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Display))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+    "[list_displays/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Display))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
-  def listDisplays__ = ???
+  private def listDisplays__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Opens a display.
     *
-    * Opens a display.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def openDisplay(
       name: Option[String | CString /* Some(CString) */ ]
@@ -91,9 +95,10 @@ class DisplayManager(raw: Ptr[GdkDisplayManager])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets @display as the default display.
     *
-    * Sets @display as the default display.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultDisplay(
       display: Display /* Some(Ptr[GdkDisplay]) */
@@ -113,9 +118,7 @@ class DisplayManager(raw: Ptr[GdkDisplayManager])
 end DisplayManager
 
 object DisplayManager:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the singleton `GdkDisplayManager` object.
+  /** Gets the singleton `GdkDisplayManager` object.
     *
     * When called for the first time, this function consults the `GDK_BACKEND`
     * environment variable to find out which of the supported GDK backends to
@@ -123,6 +126,9 @@ object DisplayManager:
     *
     * Applications can use [func@set_allowed_backends] to limit what backends
     * will be used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def get(): DisplayManager /* Some(Ptr[GdkDisplayManager]) */ =
     new DisplayManager(gdk_display_manager_get().asInstanceOf)

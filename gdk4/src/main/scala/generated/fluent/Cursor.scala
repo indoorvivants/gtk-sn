@@ -8,9 +8,7 @@ import sn.gnome.gdk4.fluent.{Cursor, Texture}
 import sn.gnome.gdk4.internal.GdkCursor
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GdkCursor` is used to create and destroy cursors.
+/** `GdkCursor` is used to create and destroy cursors.
   *
   * Cursors are immutable objects, so once you created them, there is no way to
   * modify them later. You should create a new cursor when you want to change
@@ -45,68 +43,76 @@ import sn.gnome.gobject.fluent.Object
   * fallback cursors again, so it is possible to provide a chain of
   * progressively easier to support cursors. If none of the provided cursors can
   * be supported, the default cursor will be the ultimate fallback.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the fallback for this @cursor.
+  /** Returns the fallback for this @cursor.
     *
     * The fallback will be used if this cursor is not available on a given
     * `GdkDisplay`. For named cursors, this can happen when using nonstandard
     * names or when using an incomplete cursor theme. For textured cursors, this
     * can happen when the texture is too large or when the `GdkDisplay` it is
     * used on does not support textured cursors.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFallback(): Cursor /* None */ = new Cursor(
     gdk_cursor_get_fallback(this.raw.asInstanceOf[Ptr[GdkCursor]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the horizontal offset of the hotspot.
+  /** Returns the horizontal offset of the hotspot.
     *
     * The hotspot indicates the pixel that will be directly above the cursor.
     *
     * Note that named cursors may have a nonzero hotspot, but this function will
     * only return the hotspot position for cursors created with
     * [ctor@Gdk.Cursor.new_from_texture].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHotspotX(): Int /* None */ = gdk_cursor_get_hotspot_x(
     this.raw.asInstanceOf[Ptr[GdkCursor]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the vertical offset of the hotspot.
+  /** Returns the vertical offset of the hotspot.
     *
     * The hotspot indicates the pixel that will be directly above the cursor.
     *
     * Note that named cursors may have a nonzero hotspot, but this function will
     * only return the hotspot position for cursors created with
     * [ctor@Gdk.Cursor.new_from_texture].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHotspotY(): Int /* None */ = gdk_cursor_get_hotspot_y(
     this.raw.asInstanceOf[Ptr[GdkCursor]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the name of the cursor.
+  /** Returns the name of the cursor.
     *
     * If the cursor is not a named cursor, %NULL will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getName()(using Zone): String /* None */ = fromCString(
     gdk_cursor_get_name(this.raw.asInstanceOf[Ptr[GdkCursor]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the texture for the cursor.
+  /** Returns the texture for the cursor.
     *
     * If the cursor is a named cursor, %NULL will be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTexture(): Texture /* None */ = new Texture(
     gdk_cursor_get_texture(this.raw.asInstanceOf[Ptr[GdkCursor]]).asInstanceOf
@@ -115,9 +121,7 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
 end Cursor
 
 object Cursor:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new cursor by looking up @name in the current cursor theme.
+  /** Creates a new cursor by looking up @name in the current cursor theme.
     *
     * A recommended set of cursor names that will work across different
     * platforms can be found in the CSS specification:
@@ -133,6 +137,9 @@ object Cursor:
     * | ![](w_resize_cursor.png) "w-resize"         | ![](ne_resize_cursor.png) "ne-resize" | ![](nw_resize_cursor.png) "nw-resize"         | ![](sw_resize_cursor.png) "sw-resize"     |
     * | ![](se_resize_cursor.png) "se-resize"       | ![](ew_resize_cursor.png) "ew-resize" | ![](ns_resize_cursor.png) "ns-resize"         | ![](nesw_resize_cursor.png) "nesw-resize" |
     * | ![](nwse_resize_cursor.png) "nwse-resize"   | ![](zoom_in_cursor.png) "zoom-in"     | ![](zoom_out_cursor.png) "zoom-out"           |                                           |
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromName(
       name: String | CString /* Some(CString) */,
@@ -146,9 +153,10 @@ object Cursor:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new cursor from a `GdkTexture`.
     *
-    * Creates a new cursor from a `GdkTexture`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromTexture(
       texture: Texture /* Some(Ptr[GdkTexture]) */,

@@ -7,9 +7,10 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.ShortcutAction
 import sn.gnome.gtk4.internal.GtkCallbackAction
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** A `GtkShortcutAction` that invokes a callback.
   *
-  * A `GtkShortcutAction` that invokes a callback.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class CallbackAction(raw: Ptr[GtkCallbackAction])
     extends ShortcutAction(raw.asInstanceOf):
@@ -19,13 +20,14 @@ class CallbackAction(raw: Ptr[GtkCallbackAction])
 end CallbackAction
 
 object CallbackAction:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Create a custom action that calls the given @callback when activated.
     *
-    * Create a custom action that calls the given @callback when activated.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(ShortcutFunc), @type -> DataRecord(GtkShortcutFunc)))"
+    "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ShortcutFunc), @type -> DataRecord(GtkShortcutFunc)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end CallbackAction

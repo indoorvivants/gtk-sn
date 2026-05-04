@@ -7,10 +7,11 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gobject.fluent.ParamSpec
 import sn.gnome.gobject.internal.GParamSpecFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A #GParamSpec derived structure that contains the meta data for flags
+/** A #GParamSpec derived structure that contains the meta data for flags
   * properties.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ParamSpecFlags(raw: Ptr[GParamSpecFlags])
     extends ParamSpec(raw.asInstanceOf):

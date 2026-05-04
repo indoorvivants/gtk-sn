@@ -2,9 +2,7 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GUnicodeScript
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The #GUnicodeScript enumeration identifies different writing systems. The
+/** The #GUnicodeScript enumeration identifies different writing systems. The
   * values correspond to the names as defined in the Unicode standard. The
   * enumeration has been added in GLib 2.14, and is interchangeable with
   * #PangoScript.
@@ -12,1071 +10,1240 @@ import _root_.sn.gnome.glib.internal.GUnicodeScript
   * Note that new types may be added in the future. Applications should be ready
   * to handle unknown values. See [Unicode Standard Annex #24: Script
   * names](http://www.unicode.org/reports/tr24/).
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum UnicodeScript(val raw: GUnicodeScript):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a value never returned from g_unichar_get_script()
     *
-    * a value never returned from g_unichar_get_script()
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_CODE
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_INVALID_CODE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** a character used by multiple different scripts
     *
-    * a character used by multiple different scripts
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COMMON extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_COMMON)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * a mark glyph that takes its script from the base glyph to which it is
+  /** a mark glyph that takes its script from the base glyph to which it is
     * attached
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INHERITED
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_INHERITED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Arabic
     *
-    * Arabic
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ARABIC extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_ARABIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Armenian
     *
-    * Armenian
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ARMENIAN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_ARMENIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Bengali
     *
-    * Bengali
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BENGALI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_BENGALI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Bopomofo
     *
-    * Bopomofo
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BOPOMOFO extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_BOPOMOFO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Cherokee
     *
-    * Cherokee
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHEROKEE extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_CHEROKEE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Coptic
     *
-    * Coptic
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case COPTIC extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_COPTIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Cyrillic
     *
-    * Cyrillic
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CYRILLIC extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_CYRILLIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Deseret
     *
-    * Deseret
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DESERET extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_DESERET)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Devanagari
     *
-    * Devanagari
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DEVANAGARI
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_DEVANAGARI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Ethiopic
     *
-    * Ethiopic
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ETHIOPIC extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_ETHIOPIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Georgian
     *
-    * Georgian
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GEORGIAN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_GEORGIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gothic
     *
-    * Gothic
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GOTHIC extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_GOTHIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Greek
     *
-    * Greek
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GREEK extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_GREEK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gujarati
     *
-    * Gujarati
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GUJARATI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_GUJARATI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gurmukhi
     *
-    * Gurmukhi
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GURMUKHI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_GURMUKHI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Han
     *
-    * Han
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HAN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_HAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Hangul
     *
-    * Hangul
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HANGUL extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_HANGUL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Hebrew
     *
-    * Hebrew
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HEBREW extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_HEBREW)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Hiragana
     *
-    * Hiragana
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HIRAGANA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_HIRAGANA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Kannada
     *
-    * Kannada
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case KANNADA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_KANNADA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Katakana
     *
-    * Katakana
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case KATAKANA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_KATAKANA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Khmer
     *
-    * Khmer
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case KHMER extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_KHMER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Lao
     *
-    * Lao
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LAO extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_LAO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Latin
     *
-    * Latin
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LATIN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_LATIN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Malayalam
     *
-    * Malayalam
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MALAYALAM
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MALAYALAM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Mongolian
     *
-    * Mongolian
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MONGOLIAN
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MONGOLIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Myanmar
     *
-    * Myanmar
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MYANMAR extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MYANMAR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Ogham
     *
-    * Ogham
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OGHAM extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_OGHAM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Old Italic
     *
-    * Old Italic
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OLD_ITALIC
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_OLD_ITALIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Oriya
     *
-    * Oriya
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ORIYA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_ORIYA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Runic
     *
-    * Runic
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RUNIC extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_RUNIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sinhala
     *
-    * Sinhala
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SINHALA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_SINHALA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Syriac
     *
-    * Syriac
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SYRIAC extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_SYRIAC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tamil
     *
-    * Tamil
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TAMIL extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_TAMIL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Telugu
     *
-    * Telugu
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TELUGU extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_TELUGU)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Thaana
     *
-    * Thaana
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case THAANA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_THAANA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Thai
     *
-    * Thai
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case THAI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_THAI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tibetan
     *
-    * Tibetan
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TIBETAN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_TIBETAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Canadian Aboriginal
     *
-    * Canadian Aboriginal
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CANADIAN_ABORIGINAL
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_CANADIAN_ABORIGINAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Yi
     *
-    * Yi
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case YI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_YI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tagalog
     *
-    * Tagalog
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TAGALOG extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_TAGALOG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Hanunoo
     *
-    * Hanunoo
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HANUNOO extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_HANUNOO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Buhid
     *
-    * Buhid
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BUHID extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_BUHID)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tagbanwa
     *
-    * Tagbanwa
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TAGBANWA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_TAGBANWA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Braille
     *
-    * Braille
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BRAILLE extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_BRAILLE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Cypriot
     *
-    * Cypriot
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CYPRIOT extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_CYPRIOT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Limbu
     *
-    * Limbu
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LIMBU extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_LIMBU)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Osmanya
     *
-    * Osmanya
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OSMANYA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_OSMANYA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Shavian
     *
-    * Shavian
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SHAVIAN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_SHAVIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Linear B
     *
-    * Linear B
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LINEAR_B extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_LINEAR_B)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tai Le
     *
-    * Tai Le
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TAI_LE extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_TAI_LE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Ugaritic
     *
-    * Ugaritic
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UGARITIC extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_UGARITIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** New Tai Lue
     *
-    * New Tai Lue
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NEW_TAI_LUE
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_NEW_TAI_LUE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Buginese
     *
-    * Buginese
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BUGINESE extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_BUGINESE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Glagolitic
     *
-    * Glagolitic
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GLAGOLITIC
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_GLAGOLITIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tifinagh
     *
-    * Tifinagh
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TIFINAGH extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_TIFINAGH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Syloti Nagri
     *
-    * Syloti Nagri
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SYLOTI_NAGRI
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_SYLOTI_NAGRI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Old Persian
     *
-    * Old Persian
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OLD_PERSIAN
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_OLD_PERSIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Kharoshthi
     *
-    * Kharoshthi
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case KHAROSHTHI
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_KHAROSHTHI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** an unassigned code point
     *
-    * an unassigned code point
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_UNKNOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Balinese
     *
-    * Balinese
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BALINESE extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_BALINESE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Cuneiform
     *
-    * Cuneiform
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CUNEIFORM
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_CUNEIFORM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Phoenician
     *
-    * Phoenician
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PHOENICIAN
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_PHOENICIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Phags-pa
     *
-    * Phags-pa
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PHAGS_PA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_PHAGS_PA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** N'Ko
     *
-    * N'Ko
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NKO extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_NKO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Kayah Li. Since 2.16.3
     *
-    * Kayah Li. Since 2.16.3
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case KAYAH_LI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_KAYAH_LI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Lepcha. Since 2.16.3
     *
-    * Lepcha. Since 2.16.3
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LEPCHA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_LEPCHA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Rejang. Since 2.16.3
     *
-    * Rejang. Since 2.16.3
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case REJANG extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_REJANG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sundanese. Since 2.16.3
     *
-    * Sundanese. Since 2.16.3
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SUNDANESE
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_SUNDANESE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Saurashtra. Since 2.16.3
     *
-    * Saurashtra. Since 2.16.3
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SAURASHTRA
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_SAURASHTRA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Cham. Since 2.16.3
     *
-    * Cham. Since 2.16.3
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHAM extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_CHAM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Ol Chiki. Since 2.16.3
     *
-    * Ol Chiki. Since 2.16.3
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OL_CHIKI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_OL_CHIKI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Vai. Since 2.16.3
     *
-    * Vai. Since 2.16.3
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case VAI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_VAI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Carian. Since 2.16.3
     *
-    * Carian. Since 2.16.3
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CARIAN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_CARIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Lycian. Since 2.16.3
     *
-    * Lycian. Since 2.16.3
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LYCIAN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_LYCIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Lydian. Since 2.16.3
     *
-    * Lydian. Since 2.16.3
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LYDIAN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_LYDIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Avestan. Since 2.26
     *
-    * Avestan. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AVESTAN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_AVESTAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Bamum. Since 2.26
     *
-    * Bamum. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BAMUM extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_BAMUM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Egyptian Hieroglpyhs. Since 2.26
     *
-    * Egyptian Hieroglpyhs. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EGYPTIAN_HIEROGLYPHS
       extends UnicodeScript(
         GUnicodeScript.G_UNICODE_SCRIPT_EGYPTIAN_HIEROGLYPHS
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Imperial Aramaic. Since 2.26
     *
-    * Imperial Aramaic. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case IMPERIAL_ARAMAIC
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_IMPERIAL_ARAMAIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Inscriptional Pahlavi. Since 2.26
     *
-    * Inscriptional Pahlavi. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INSCRIPTIONAL_PAHLAVI
       extends UnicodeScript(
         GUnicodeScript.G_UNICODE_SCRIPT_INSCRIPTIONAL_PAHLAVI
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Inscriptional Parthian. Since 2.26
     *
-    * Inscriptional Parthian. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INSCRIPTIONAL_PARTHIAN
       extends UnicodeScript(
         GUnicodeScript.G_UNICODE_SCRIPT_INSCRIPTIONAL_PARTHIAN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Javanese. Since 2.26
     *
-    * Javanese. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case JAVANESE extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_JAVANESE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Kaithi. Since 2.26
     *
-    * Kaithi. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case KAITHI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_KAITHI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Lisu. Since 2.26
     *
-    * Lisu. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LISU extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_LISU)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Meetei Mayek. Since 2.26
     *
-    * Meetei Mayek. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MEETEI_MAYEK
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MEETEI_MAYEK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Old South Arabian. Since 2.26
     *
-    * Old South Arabian. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OLD_SOUTH_ARABIAN
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_OLD_SOUTH_ARABIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Old Turkic. Since 2.28
     *
-    * Old Turkic. Since 2.28
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OLD_TURKIC
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_OLD_TURKIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Samaritan. Since 2.26
     *
-    * Samaritan. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SAMARITAN
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_SAMARITAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tai Tham. Since 2.26
     *
-    * Tai Tham. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TAI_THAM extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_TAI_THAM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tai Viet. Since 2.26
     *
-    * Tai Viet. Since 2.26
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TAI_VIET extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_TAI_VIET)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Batak. Since 2.28
     *
-    * Batak. Since 2.28
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BATAK extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_BATAK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Brahmi. Since 2.28
     *
-    * Brahmi. Since 2.28
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BRAHMI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_BRAHMI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Mandaic. Since 2.28
     *
-    * Mandaic. Since 2.28
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MANDAIC extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MANDAIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Chakma. Since: 2.32
     *
-    * Chakma. Since: 2.32
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHAKMA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_CHAKMA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Meroitic Cursive. Since: 2.32
     *
-    * Meroitic Cursive. Since: 2.32
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MEROITIC_CURSIVE
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MEROITIC_CURSIVE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Meroitic Hieroglyphs. Since: 2.32
     *
-    * Meroitic Hieroglyphs. Since: 2.32
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MEROITIC_HIEROGLYPHS
       extends UnicodeScript(
         GUnicodeScript.G_UNICODE_SCRIPT_MEROITIC_HIEROGLYPHS
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Miao. Since: 2.32
     *
-    * Miao. Since: 2.32
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MIAO extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MIAO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sharada. Since: 2.32
     *
-    * Sharada. Since: 2.32
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SHARADA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_SHARADA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sora Sompeng. Since: 2.32
     *
-    * Sora Sompeng. Since: 2.32
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SORA_SOMPENG
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_SORA_SOMPENG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Takri. Since: 2.32
     *
-    * Takri. Since: 2.32
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TAKRI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_TAKRI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Bassa. Since: 2.42
     *
-    * Bassa. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BASSA_VAH
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_BASSA_VAH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Caucasian Albanian. Since: 2.42
     *
-    * Caucasian Albanian. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CAUCASIAN_ALBANIAN
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_CAUCASIAN_ALBANIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Duployan. Since: 2.42
     *
-    * Duployan. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DUPLOYAN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_DUPLOYAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Elbasan. Since: 2.42
     *
-    * Elbasan. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ELBASAN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_ELBASAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Grantha. Since: 2.42
     *
-    * Grantha. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GRANTHA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_GRANTHA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Kjohki. Since: 2.42
     *
-    * Kjohki. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case KHOJKI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_KHOJKI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Khudawadi, Sindhi. Since: 2.42
     *
-    * Khudawadi, Sindhi. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case KHUDAWADI
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_KHUDAWADI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Linear A. Since: 2.42
     *
-    * Linear A. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LINEAR_A extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_LINEAR_A)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Mahajani. Since: 2.42
     *
-    * Mahajani. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MAHAJANI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MAHAJANI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Manichaean. Since: 2.42
     *
-    * Manichaean. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MANICHAEAN
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MANICHAEAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Mende Kikakui. Since: 2.42
     *
-    * Mende Kikakui. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MENDE_KIKAKUI
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MENDE_KIKAKUI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Modi. Since: 2.42
     *
-    * Modi. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MODI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MODI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Mro. Since: 2.42
     *
-    * Mro. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MRO extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MRO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Nabataean. Since: 2.42
     *
-    * Nabataean. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NABATAEAN
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_NABATAEAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Old North Arabian. Since: 2.42
     *
-    * Old North Arabian. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OLD_NORTH_ARABIAN
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_OLD_NORTH_ARABIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Old Permic. Since: 2.42
     *
-    * Old Permic. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OLD_PERMIC
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_OLD_PERMIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Pahawh Hmong. Since: 2.42
     *
-    * Pahawh Hmong. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PAHAWH_HMONG
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_PAHAWH_HMONG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Palmyrene. Since: 2.42
     *
-    * Palmyrene. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PALMYRENE
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_PALMYRENE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Pau Cin Hau. Since: 2.42
     *
-    * Pau Cin Hau. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PAU_CIN_HAU
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_PAU_CIN_HAU)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Psalter Pahlavi. Since: 2.42
     *
-    * Psalter Pahlavi. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PSALTER_PAHLAVI
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_PSALTER_PAHLAVI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Siddham. Since: 2.42
     *
-    * Siddham. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SIDDHAM extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_SIDDHAM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tirhuta. Since: 2.42
     *
-    * Tirhuta. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TIRHUTA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_TIRHUTA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Warang Citi. Since: 2.42
     *
-    * Warang Citi. Since: 2.42
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WARANG_CITI
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_WARANG_CITI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Ahom. Since: 2.48
     *
-    * Ahom. Since: 2.48
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AHOM extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_AHOM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Anatolian Hieroglyphs. Since: 2.48
     *
-    * Anatolian Hieroglyphs. Since: 2.48
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ANATOLIAN_HIEROGLYPHS
       extends UnicodeScript(
         GUnicodeScript.G_UNICODE_SCRIPT_ANATOLIAN_HIEROGLYPHS
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Hatran. Since: 2.48
     *
-    * Hatran. Since: 2.48
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HATRAN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_HATRAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Multani. Since: 2.48
     *
-    * Multani. Since: 2.48
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MULTANI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MULTANI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Old Hungarian. Since: 2.48
     *
-    * Old Hungarian. Since: 2.48
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OLD_HUNGARIAN
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_OLD_HUNGARIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Signwriting. Since: 2.48
     *
-    * Signwriting. Since: 2.48
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SIGNWRITING
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_SIGNWRITING)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adlam. Since: 2.50
     *
-    * Adlam. Since: 2.50
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ADLAM extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_ADLAM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Bhaiksuki. Since: 2.50
     *
-    * Bhaiksuki. Since: 2.50
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case BHAIKSUKI
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_BHAIKSUKI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Marchen. Since: 2.50
     *
-    * Marchen. Since: 2.50
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MARCHEN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MARCHEN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Newa. Since: 2.50
     *
-    * Newa. Since: 2.50
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NEWA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_NEWA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Osage. Since: 2.50
     *
-    * Osage. Since: 2.50
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OSAGE extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_OSAGE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tangut. Since: 2.50
     *
-    * Tangut. Since: 2.50
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TANGUT extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_TANGUT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Masaram Gondi. Since: 2.54
     *
-    * Masaram Gondi. Since: 2.54
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MASARAM_GONDI
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MASARAM_GONDI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Nushu. Since: 2.54
     *
-    * Nushu. Since: 2.54
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NUSHU extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_NUSHU)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Soyombo. Since: 2.54
     *
-    * Soyombo. Since: 2.54
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SOYOMBO extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_SOYOMBO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Zanabazar Square. Since: 2.54
     *
-    * Zanabazar Square. Since: 2.54
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ZANABAZAR_SQUARE
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_ZANABAZAR_SQUARE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Dogra. Since: 2.58
     *
-    * Dogra. Since: 2.58
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DOGRA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_DOGRA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gunjala Gondi. Since: 2.58
     *
-    * Gunjala Gondi. Since: 2.58
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GUNJALA_GONDI
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_GUNJALA_GONDI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Hanifi Rohingya. Since: 2.58
     *
-    * Hanifi Rohingya. Since: 2.58
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case HANIFI_ROHINGYA
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_HANIFI_ROHINGYA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Makasar. Since: 2.58
     *
-    * Makasar. Since: 2.58
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MAKASAR extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MAKASAR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Medefaidrin. Since: 2.58
     *
-    * Medefaidrin. Since: 2.58
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MEDEFAIDRIN
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MEDEFAIDRIN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Old Sogdian. Since: 2.58
     *
-    * Old Sogdian. Since: 2.58
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OLD_SOGDIAN
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_OLD_SOGDIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sogdian. Since: 2.58
     *
-    * Sogdian. Since: 2.58
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SOGDIAN extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_SOGDIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Elym. Since: 2.62
     *
-    * Elym. Since: 2.62
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ELYMAIC extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_ELYMAIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Nand. Since: 2.62
     *
-    * Nand. Since: 2.62
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NANDINAGARI
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_NANDINAGARI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Rohg. Since: 2.62
     *
-    * Rohg. Since: 2.62
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NYIAKENG_PUACHUE_HMONG
       extends UnicodeScript(
         GUnicodeScript.G_UNICODE_SCRIPT_NYIAKENG_PUACHUE_HMONG
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Wcho. Since: 2.62
     *
-    * Wcho. Since: 2.62
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case WANCHO extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_WANCHO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Chorasmian. Since: 2.66
     *
-    * Chorasmian. Since: 2.66
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHORASMIAN
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_CHORASMIAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Dives Akuru. Since: 2.66
     *
-    * Dives Akuru. Since: 2.66
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DIVES_AKURU
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_DIVES_AKURU)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Khitan small script. Since: 2.66
     *
-    * Khitan small script. Since: 2.66
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case KHITAN_SMALL_SCRIPT
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_KHITAN_SMALL_SCRIPT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Yezidi. Since: 2.66
     *
-    * Yezidi. Since: 2.66
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case YEZIDI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_YEZIDI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Cypro-Minoan. Since: 2.72
     *
-    * Cypro-Minoan. Since: 2.72
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CYPRO_MINOAN
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_CYPRO_MINOAN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Old Uyghur. Since: 2.72
     *
-    * Old Uyghur. Since: 2.72
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OLD_UYGHUR
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_OLD_UYGHUR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Tangsa. Since: 2.72
     *
-    * Tangsa. Since: 2.72
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TANGSA extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_TANGSA)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Toto. Since: 2.72
     *
-    * Toto. Since: 2.72
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOTO extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_TOTO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Vithkuqi. Since: 2.72
     *
-    * Vithkuqi. Since: 2.72
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case VITHKUQI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_VITHKUQI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Mathematical notation. Since: 2.72
     *
-    * Mathematical notation. Since: 2.72
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MATH extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_MATH)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Kawi. Since 2.74
     *
-    * Kawi. Since 2.74
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case KAWI extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_KAWI)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Nag Mundari. Since 2.74
     *
-    * Nag Mundari. Since 2.74
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NAG_MUNDARI
       extends UnicodeScript(GUnicodeScript.G_UNICODE_SCRIPT_NAG_MUNDARI)

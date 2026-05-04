@@ -8,9 +8,7 @@ import sn.gnome.gdk4.fluent.{DragAction, Drop}
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkDropTargetAsync
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkDropTargetAsync` is an event controller to receive Drag-and-Drop
+/** `GtkDropTargetAsync` is an event controller to receive Drag-and-Drop
   * operations, asynchronously.
   *
   * It is the more complete but also more complex method of handling drop
@@ -43,15 +41,19 @@ import sn.gnome.gtk4.internal.GtkDropTargetAsync
   * Between the ::drag-enter and ::drag-leave signals the widget is a current
   * drop target, and will receive the %GTK_STATE_FLAG_DROP_ACTIVE state, which
   * can be used by themes to style the widget as a drop target.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the actions that this drop target supports.
     *
-    * Gets the actions that this drop target supports.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActions(): DragAction /* None */ = DragAction.fromRaw(
     gtk_drop_target_async_get_actions(
@@ -59,23 +61,25 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the data formats that this drop target accepts.
+  /** Gets the data formats that this drop target accepts.
     *
     * If the result is %NULL, all formats are expected to be supported.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
-  def getFormats__ = ???
+  private def getFormats__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the @drop as not accepted on this drag site.
+  /** Sets the @drop as not accepted on this drag site.
     *
     * This function should be used when delaying the decision on whether to
     * accept a drag or not until after reading the data.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def rejectDrop(
       drop: Drop /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrop]) */
@@ -84,9 +88,10 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     drop.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the actions that this drop target supports.
     *
-    * Sets the actions that this drop target supports.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActions(
       actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
@@ -95,25 +100,27 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     actions.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the data formats that this drop target will accept.
     *
-    * Sets the data formats that this drop target will accept.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[set_formats/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
-  def setFormats__ = ???
+  private def setFormats__ = ???
 
 end DropTargetAsync
 
 object DropTargetAsync:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkDropTargetAsync` object.
     *
-    * Creates a new `GtkDropTargetAsync` object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end DropTargetAsync

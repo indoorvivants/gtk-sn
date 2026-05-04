@@ -2,30 +2,34 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkCollation
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Describes how a [class@Gtk.StringSorter] turns strings into sort keys to
+/** Describes how a [class@Gtk.StringSorter] turns strings into sort keys to
   * compare them.
   *
   * Note that the result of sorting will in general depend on the current locale
   * unless the mode is @GTK_COLLATION_NONE.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Collation(val raw: GtkCollation):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Don't do any collation
     *
-    * Don't do any collation
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends Collation(GtkCollation.GTK_COLLATION_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Use [func@GLib.utf8_collate_key]
     *
-    * Use [func@GLib.utf8_collate_key]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNICODE extends Collation(GtkCollation.GTK_COLLATION_UNICODE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Use [func@GLib.utf8_collate_key_for_filename]
     *
-    * Use [func@GLib.utf8_collate_key_for_filename]
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FILENAME extends Collation(GtkCollation.GTK_COLLATION_FILENAME)
 end Collation

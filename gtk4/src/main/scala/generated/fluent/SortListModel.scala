@@ -11,9 +11,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{SectionModel, Sorter}
 import sn.gnome.gtk4.internal.GtkSortListModel
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GListModel` that sorts the elements of an underlying model according to a
+/** A `GListModel` that sorts the elements of an underlying model according to a
   * `GtkSorter`.
   *
   * The model is a stable sort. If two items compare equal according to the
@@ -37,6 +35,9 @@ import sn.gnome.gtk4.internal.GtkSortListModel
   * it will be put into the same section. The
   * [property@Gtk.SortListModel:sorter] will then be used to sort items inside
   * their sections.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class SortListModel(raw: Ptr[GtkSortListModel])
     extends Object(raw.asInstanceOf),
@@ -45,20 +46,22 @@ class SortListModel(raw: Ptr[GtkSortListModel])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether incremental sorting is enabled.
+  /** Returns whether incremental sorting is enabled.
     *
     * See [method@Gtk.SortListModel.set_incremental].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIncremental(): Boolean /* None */ =
     gtk_sort_list_model_get_incremental(
       this.raw.asInstanceOf[Ptr[GtkSortListModel]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the model currently sorted or %NULL if none.
     *
-    * Gets the model currently sorted or %NULL if none.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): ListModel /* None */ = new ListModel.Abstract(
     gtk_sort_list_model_get_model(
@@ -66,9 +69,7 @@ class SortListModel(raw: Ptr[GtkSortListModel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Estimates progress of an ongoing sorting operation.
+  /** Estimates progress of an ongoing sorting operation.
     *
     * The estimate is the number of items that would still need to be sorted to
     * finish the sorting operation if this was a linear algorithm. So this
@@ -83,14 +84,18 @@ class SortListModel(raw: Ptr[GtkSortListModel])
     *
     * If no sort operation is ongoing - in particular when
     * [property@Gtk.SortListModel:incremental] is %FALSE - this function returns 0.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPending(): UInt /* None */ = gtk_sort_list_model_get_pending(
     this.raw.asInstanceOf[Ptr[GtkSortListModel]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the section sorter that is used to sort items of @self into sections.
     *
-    * Gets the section sorter that is used to sort items of @self into sections.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSectionSorter(): Sorter /* None */ = new Sorter(
     gtk_sort_list_model_get_section_sorter(
@@ -98,9 +103,10 @@ class SortListModel(raw: Ptr[GtkSortListModel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the sorter that is used to sort @self.
     *
-    * Gets the sorter that is used to sort @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSorter(): Sorter /* None */ = new Sorter(
     gtk_sort_list_model_get_sorter(
@@ -108,9 +114,7 @@ class SortListModel(raw: Ptr[GtkSortListModel])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the sort model to do an incremental sort.
+  /** Sets the sort model to do an incremental sort.
     *
     * When incremental sorting is enabled, the `GtkSortListModel` will not do a
     * complete sort immediately, but will instead queue an idle handler that
@@ -126,6 +130,9 @@ class SortListModel(raw: Ptr[GtkSortListModel])
     *
     * See [method@Gtk.SortListModel.get_pending] for progress information about
     * an ongoing incremental sorting operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIncremental(
       incremental: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -134,11 +141,12 @@ class SortListModel(raw: Ptr[GtkSortListModel])
     gboolean(gint((if incremental == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the model to be sorted.
+  /** Sets the model to be sorted.
     *
     * The @model's item type must conform to the item type of @self.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
       model: Option[
@@ -155,9 +163,10 @@ class SortListModel(raw: Ptr[GtkSortListModel])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets a new section sorter on @self.
     *
-    * Sets a new section sorter on @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSectionSorter(
       sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ]
@@ -168,9 +177,10 @@ class SortListModel(raw: Ptr[GtkSortListModel])
       .getOrElse(null.asInstanceOf[Ptr[GtkSorter]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets a new sorter on @self.
     *
-    * Sets a new sorter on @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSorter(
       sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ]
@@ -184,9 +194,10 @@ class SortListModel(raw: Ptr[GtkSortListModel])
 end SortListModel
 
 object SortListModel:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new sort list model that uses the @sorter to sort @model.
     *
-    * Creates a new sort list model that uses the @sorter to sort @model.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       model: Option[

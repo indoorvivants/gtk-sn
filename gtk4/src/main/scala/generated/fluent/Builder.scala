@@ -12,9 +12,7 @@ import sn.gnome.gobject.internal.GType
 import sn.gnome.gtk4.fluent.BuilderScope
 import sn.gnome.gtk4.internal.GtkBuilder
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkBuilder` reads XML descriptions of a user interface and instantiates
+/** A `GtkBuilder` reads XML descriptions of a user interface and instantiates
   * the described objects.
   *
   * To create a `GtkBuilder` from a user interface description, call
@@ -300,14 +298,15 @@ import sn.gnome.gtk4.internal.GtkBuilder
   * For more information, see the [`GtkWidget`
   * documentation](class.Widget.html#building-composite-widgets-from-template-xml)
   * for details.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a file containing a UI definition and merges it with the current
+  /** Parses a file containing a UI definition and merges it with the current
     * contents of @builder.
     *
     * This function is useful if you need to call
@@ -325,6 +324,9 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * program, and it’s possible that memory was leaked leading up to the
     * reported failure. The only reasonable thing to do when an error is
     * detected is to call `g_error()`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addFromFile(
       filename: String | CString /* Some(CString) */
@@ -336,9 +338,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a resource file containing a UI definition and merges it with the
+  /** Parses a resource file containing a UI definition and merges it with the
     * current contents of @builder.
     *
     * This function is useful if you need to call
@@ -353,6 +353,9 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * It’s not really reasonable to attempt to handle failures of this call. The
     * only reasonable thing to do when an error is detected is to call
     * g_error().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addFromResource(
       resource_path: String | CString /* Some(CString) */
@@ -364,9 +367,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a string containing a UI definition and merges it with the current
+  /** Parses a string containing a UI definition and merges it with the current
     * contents of @builder.
     *
     * This function is useful if you need to call
@@ -381,6 +382,9 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * It’s not really reasonable to attempt to handle failures of this call. The
     * only reasonable thing to do when an error is detected is to call
     * g_error().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addFromString(
       buffer: String | CString /* Some(CString) */,
@@ -394,9 +398,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a file containing a UI definition building only the requested
+  /** Parses a file containing a UI definition building only the requested
     * objects and merges them with the current contents of @builder.
     *
     * Upon errors, 0 will be returned and @error will be assigned a `GError`
@@ -405,15 +407,16 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * If you are adding an object that depends on an object that is not its
     * child (for instance a `GtkTreeView` that depends on its `GtkTreeModel`),
     * you have to explicitly list all of them in @object_ids.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+    "[add_objects_from_file/<method parameters>/object_ids]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def addObjectsFromFile__ = ???
+  private def addObjectsFromFile__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a resource file containing a UI definition, building only the
+  /** Parses a resource file containing a UI definition, building only the
     * requested objects and merges them with the current contents of @builder.
     *
     * Upon errors, 0 will be returned and @error will be assigned a `GError`
@@ -422,15 +425,16 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * If you are adding an object that depends on an object that is not its
     * child (for instance a `GtkTreeView` that depends on its `GtkTreeModel`),
     * you have to explicitly list all of them in @object_ids.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+    "[add_objects_from_resource/<method parameters>/object_ids]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def addObjectsFromResource__ = ???
+  private def addObjectsFromResource__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses a string containing a UI definition, building only the requested
+  /** Parses a string containing a UI definition, building only the requested
     * objects and merges them with the current contents of
     * @builder.
     *
@@ -440,35 +444,40 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * If you are adding an object that depends on an object that is not its
     * child (for instance a `GtkTreeView` that depends on its `GtkTreeModel`),
     * you have to explicitly list all of them in @object_ids.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+    "[add_objects_from_string/<method parameters>/object_ids]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
   )
-  def addObjectsFromString__ = ???
+  private def addObjectsFromString__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a closure to invoke the function called @function_name.
+  /** Creates a closure to invoke the function called @function_name.
     *
     * This is using the create_closure() implementation of @builder's
     * [iface@Gtk.BuilderScope].
     *
     * If no closure could be created, %NULL will be returned and @error will be
     * set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
+    "[create_closure/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
   )
-  def createClosure__ = ???
+  private def createClosure__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Add @object to the @builder object pool so it can be referenced just like
+  /** Add @object to the @builder object pool so it can be referenced just like
     * any other object built by builder.
     *
     * Only a single object may be added using @name. However, it is not an error
     * to expose the same object under multiple names. `gtk_builder_get_object()`
     * may be used to determine if an object has already been added with @name.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def exposeObject(
       name: String | CString /* Some(CString) */,
@@ -479,13 +488,14 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     `object`.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Main private entry point for building composite components from template
+  /** Main private entry point for building composite components from template
     * XML.
     *
     * Most likely you do not need to call this function in applications as
     * templates are handled by `GtkWidget`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def extendWithTemplate(
       `object`: Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */,
@@ -503,9 +513,10 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the current object set via gtk_builder_set_current_object().
     *
-    * Gets the current object set via gtk_builder_set_current_object().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCurrentObject(): Object /* None */ = new Object(
     gtk_builder_get_current_object(
@@ -513,12 +524,13 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the object named @name.
+  /** Gets the object named @name.
     *
     * Note that this function does not increment the reference count of the
     * returned object.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getObject(
       name: String | CString /* Some(CString) */
@@ -529,29 +541,32 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets all objects that have been constructed by @builder.
+  /** Gets all objects that have been constructed by @builder.
     *
     * Note that this function does not increment the reference counts of the
     * returned objects.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GObject.Object))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+    "[get_objects/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GObject.Object))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
-  def getObjects__ = ???
+  private def getObjects__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the scope in use that was set via gtk_builder_set_scope().
     *
-    * Gets the scope in use that was set via gtk_builder_set_scope().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getScope(): BuilderScope /* None */ = new BuilderScope.Abstract(
     gtk_builder_get_scope(this.raw.asInstanceOf[Ptr[GtkBuilder]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the translation domain of @builder.
     *
-    * Gets the translation domain of @builder.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTranslationDomain()(using Zone): String /* None */ = fromCString(
     gtk_builder_get_translation_domain(
@@ -559,13 +574,14 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Looks up a type by name.
+  /** Looks up a type by name.
     *
     * This is using the virtual function that `GtkBuilder` has for that purpose.
     * This is mainly used when implementing the `GtkBuildable` interface on a
     * type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTypeFromName(
       type_name: String | CString /* Some(CString) */
@@ -574,9 +590,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     __sn_extract_string(type_name)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the current object for the @builder.
+  /** Sets the current object for the @builder.
     *
     * The current object can be thought of as the `this` object that the builder
     * is working for and will often be used as the default object when an object
@@ -585,6 +599,9 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * [method@Gtk.Widget.init_template] for example will set the current object
     * to the widget the template is inited for. For functions like
     * [ctor@Gtk.Builder.new_from_resource], the current object will be %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCurrentObject(
       current_object: Option[
@@ -601,11 +618,12 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the scope the builder should operate in.
+  /** Sets the scope the builder should operate in.
     *
     * If @scope is %NULL, a new [class@Gtk.BuilderCScope] will be created.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setScope(
       scope: Option[BuilderScope /* Some(Ptr[GtkBuilderScope]) */ ]
@@ -616,9 +634,10 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[GtkBuilderScope]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the translation domain of @builder.
     *
-    * Sets the translation domain of @builder.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTranslationDomain(
       domain: Option[String | CString /* Some(CString) */ ]
@@ -629,9 +648,7 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Demarshals a value from a string.
+  /** Demarshals a value from a string.
     *
     * This function calls g_value_init() on the @value argument, so it need not
     * be initialised beforehand.
@@ -641,15 +658,16 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     *
     * Upon errors %FALSE will be returned and @error will be assigned a `GError`
     * from the %GTK_BUILDER_ERROR domain.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method value_from_string contains an OUT parameter, which is not supported yet"
+    "[value_from_string]: Method value_from_string contains an OUT parameter, which is not supported yet"
   )
-  def valueFromString__ = ???
+  private def valueFromString__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Demarshals a value from a string.
+  /** Demarshals a value from a string.
     *
     * Unlike [method@Gtk.Builder.value_from_string], this function takes a
     * `GType` instead of `GParamSpec`.
@@ -659,11 +677,14 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     *
     * Upon errors %FALSE will be returned and @error will be assigned a `GError`
     * from the %GTK_BUILDER_ERROR domain.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method value_from_string_type contains an OUT parameter, which is not supported yet"
+    "[value_from_string_type]: Method value_from_string_type contains an OUT parameter, which is not supported yet"
   )
-  def valueFromStringType__ = ???
+  private def valueFromStringType__ = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -676,24 +697,26 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
 end Builder
 
 object Builder:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new empty builder object.
+  /** Creates a new empty builder object.
     *
     * This function is only useful if you intend to make multiple calls to
     * [method@Gtk.Builder.add_from_file], [method@Gtk.Builder.add_from_resource]
     * or [method@Gtk.Builder.add_from_string] in order to merge multiple UI
     * descriptions into a single builder.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Builder = new Builder(gtk_builder_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses the UI definition in the file @filename.
+  /** Parses the UI definition in the file @filename.
     *
     * If there is an error opening the file or parsing the description then the
     * program will be aborted. You should only ever attempt to parse user
     * interface descriptions that are shipped as part of your program.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFile(
       filename: String | CString /* Some(CString) */
@@ -701,12 +724,13 @@ object Builder:
     gtk_builder_new_from_file(__sn_extract_string(filename)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses the UI definition at @resource_path.
+  /** Parses the UI definition at @resource_path.
     *
     * If there is an error locating the resource or parsing the description,
     * then the program will be aborted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromResource(
       resource_path: String | CString /* Some(CString) */
@@ -716,9 +740,7 @@ object Builder:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Parses the UI definition in @string.
+  /** Parses the UI definition in @string.
     *
     * If @string is %NULL-terminated, then @length should be -1. If @length is
     * not -1, then it is the length of @string.
@@ -726,6 +748,9 @@ object Builder:
     * If there is an error parsing @string then the program will be aborted. You
     * should not attempt to parse user interface description from untrusted
     * sources.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromString(
       string: String | CString /* Some(CString) */,

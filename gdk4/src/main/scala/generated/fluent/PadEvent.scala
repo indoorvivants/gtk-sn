@@ -9,38 +9,42 @@ import sn.gnome.gdk4.fluent.Event
 import sn.gnome.gdk4.internal.GdkPadEvent
 import sn.gnome.glib.internal.guint
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** An event related to a pad-based device.
   *
-  * An event related to a pad-based device.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class PadEvent(raw: Ptr[GdkPadEvent]) extends Event(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Extracts the information from a pad strip or ring event.
     *
-    * Extracts the information from a pad strip or ring event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_axis_value contains an OUT parameter, which is not supported yet"
+    "[get_axis_value]: Method get_axis_value contains an OUT parameter, which is not supported yet"
   )
-  def getAxisValue__ = ???
+  private def getAxisValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Extracts information about the pressed button from a pad event.
     *
-    * Extracts information about the pressed button from a pad event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getButton(): UInt /* None */ = gdk_pad_event_get_button(
     this.raw.asInstanceOf[Ptr[GdkEvent]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Extracts group and mode information from a pad event.
     *
-    * Extracts group and mode information from a pad event.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_group_mode contains an OUT parameter, which is not supported yet"
+    "[get_group_mode]: Method get_group_mode contains an OUT parameter, which is not supported yet"
   )
-  def getGroupMode__ = ???
+  private def getGroupMode__ = ???
 
 end PadEvent

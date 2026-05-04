@@ -2,104 +2,121 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkScrollType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Scrolling types.
   *
-  * Scrolling types.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ScrollType(val raw: GtkScrollType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No scrolling.
     *
-    * No scrolling.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends ScrollType(GtkScrollType.GTK_SCROLL_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Jump to new location.
     *
-    * Jump to new location.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case JUMP extends ScrollType(GtkScrollType.GTK_SCROLL_JUMP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Step backward.
     *
-    * Step backward.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STEP_BACKWARD extends ScrollType(GtkScrollType.GTK_SCROLL_STEP_BACKWARD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Step forward.
     *
-    * Step forward.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STEP_FORWARD extends ScrollType(GtkScrollType.GTK_SCROLL_STEP_FORWARD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Page backward.
     *
-    * Page backward.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PAGE_BACKWARD extends ScrollType(GtkScrollType.GTK_SCROLL_PAGE_BACKWARD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Page forward.
     *
-    * Page forward.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PAGE_FORWARD extends ScrollType(GtkScrollType.GTK_SCROLL_PAGE_FORWARD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Step up.
     *
-    * Step up.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STEP_UP extends ScrollType(GtkScrollType.GTK_SCROLL_STEP_UP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Step down.
     *
-    * Step down.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STEP_DOWN extends ScrollType(GtkScrollType.GTK_SCROLL_STEP_DOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Page up.
     *
-    * Page up.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PAGE_UP extends ScrollType(GtkScrollType.GTK_SCROLL_PAGE_UP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Page down.
     *
-    * Page down.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PAGE_DOWN extends ScrollType(GtkScrollType.GTK_SCROLL_PAGE_DOWN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Step to the left.
     *
-    * Step to the left.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STEP_LEFT extends ScrollType(GtkScrollType.GTK_SCROLL_STEP_LEFT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Step to the right.
     *
-    * Step to the right.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STEP_RIGHT extends ScrollType(GtkScrollType.GTK_SCROLL_STEP_RIGHT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Page to the left.
     *
-    * Page to the left.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PAGE_LEFT extends ScrollType(GtkScrollType.GTK_SCROLL_PAGE_LEFT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Page to the right.
     *
-    * Page to the right.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PAGE_RIGHT extends ScrollType(GtkScrollType.GTK_SCROLL_PAGE_RIGHT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Scroll to start.
     *
-    * Scroll to start.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case START extends ScrollType(GtkScrollType.GTK_SCROLL_START)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Scroll to end.
     *
-    * Scroll to end.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case END extends ScrollType(GtkScrollType.GTK_SCROLL_END)
 end ScrollType

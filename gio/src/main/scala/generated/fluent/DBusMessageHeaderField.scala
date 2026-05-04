@@ -2,95 +2,106 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDBusMessageHeaderField
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Header fields used in #GDBusMessage.
   *
-  * Header fields used in #GDBusMessage.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum DBusMessageHeaderField(val raw: GDBusMessageHeaderField):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Not a valid header field.
     *
-    * Not a valid header field.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID
       extends DBusMessageHeaderField(
         GDBusMessageHeaderField.G_DBUS_MESSAGE_HEADER_FIELD_INVALID
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The object path.
     *
-    * The object path.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PATH
       extends DBusMessageHeaderField(
         GDBusMessageHeaderField.G_DBUS_MESSAGE_HEADER_FIELD_PATH
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The interface name.
     *
-    * The interface name.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INTERFACE
       extends DBusMessageHeaderField(
         GDBusMessageHeaderField.G_DBUS_MESSAGE_HEADER_FIELD_INTERFACE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The method or signal name.
     *
-    * The method or signal name.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MEMBER
       extends DBusMessageHeaderField(
         GDBusMessageHeaderField.G_DBUS_MESSAGE_HEADER_FIELD_MEMBER
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The name of the error that occurred.
     *
-    * The name of the error that occurred.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ERROR_NAME
       extends DBusMessageHeaderField(
         GDBusMessageHeaderField.G_DBUS_MESSAGE_HEADER_FIELD_ERROR_NAME
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The serial number the message is a reply to.
     *
-    * The serial number the message is a reply to.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case REPLY_SERIAL
       extends DBusMessageHeaderField(
         GDBusMessageHeaderField.G_DBUS_MESSAGE_HEADER_FIELD_REPLY_SERIAL
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The name the message is intended for.
     *
-    * The name the message is intended for.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DESTINATION
       extends DBusMessageHeaderField(
         GDBusMessageHeaderField.G_DBUS_MESSAGE_HEADER_FIELD_DESTINATION
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unique name of the sender of the message (filled in by the bus).
     *
-    * Unique name of the sender of the message (filled in by the bus).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SENDER
       extends DBusMessageHeaderField(
         GDBusMessageHeaderField.G_DBUS_MESSAGE_HEADER_FIELD_SENDER
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The signature of the message body.
     *
-    * The signature of the message body.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SIGNATURE
       extends DBusMessageHeaderField(
         GDBusMessageHeaderField.G_DBUS_MESSAGE_HEADER_FIELD_SIGNATURE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The number of UNIX file descriptors that accompany the message.
     *
-    * The number of UNIX file descriptors that accompany the message.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NUM_UNIX_FDS
       extends DBusMessageHeaderField(

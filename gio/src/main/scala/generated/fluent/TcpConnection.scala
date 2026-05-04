@@ -8,29 +8,29 @@ import sn.gnome.gio.fluent.SocketConnection
 import sn.gnome.gio.internal.GTcpConnection
 import sn.gnome.glib.internal.{gboolean, gint}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * This is the subclass of #GSocketConnection that is created for TCP/IP
+/** This is the subclass of #GSocketConnection that is created for TCP/IP
   * sockets.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TcpConnection(raw: Ptr[GTcpConnection])
     extends SocketConnection(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if graceful disconnects are used. See
+  /** Checks if graceful disconnects are used. See
     * g_tcp_connection_set_graceful_disconnect().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getGracefulDisconnect(): Boolean /* None */ =
     g_tcp_connection_get_graceful_disconnect(
       this.raw.asInstanceOf[Ptr[GTcpConnection]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This enables graceful disconnects on close. A graceful disconnect means
+  /** This enables graceful disconnects on close. A graceful disconnect means
     * that we signal the receiving end that the connection is terminated and
     * wait for it to close the connection before closing the connection.
     *
@@ -39,6 +39,9 @@ class TcpConnection(raw: Ptr[GTcpConnection])
     * However, it also means we have to wait for all the data to reach the other
     * side and for it to acknowledge this by closing the socket, which may take
     * a while. For this reason it is disabled by default.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setGracefulDisconnect(
       graceful_disconnect: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */

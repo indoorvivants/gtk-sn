@@ -7,9 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gtk4.fluent.GestureSingle
 import sn.gnome.gtk4.internal.GtkGestureSwipe
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkGestureSwipe` is a `GtkGesture` for swipe gestures.
+/** `GtkGestureSwipe` is a `GtkGesture` for swipe gestures.
   *
   * After a press/move/.../move/release sequence happens, the
   * [signal@Gtk.GestureSwipe::swipe] signal will be emitted, providing the
@@ -20,31 +18,36 @@ import sn.gnome.gtk4.internal.GtkGestureSwipe
   * [signal@Gtk.Gesture::update] handler.
   *
   * All velocities are reported in pixels/sec units.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class GestureSwipe(raw: Ptr[GtkGestureSwipe])
     extends GestureSingle(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the current velocity.
+  /** Gets the current velocity.
     *
     * If the gesture is recognized, this function returns %TRUE and fills in @velocity_x
     * and @velocity_y with the recorded velocity, as per the last events
     * processed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_velocity contains an OUT parameter, which is not supported yet"
+    "[get_velocity]: Method get_velocity contains an OUT parameter, which is not supported yet"
   )
-  def getVelocity__ = ???
+  private def getVelocity__ = ???
 
 end GestureSwipe
 
 object GestureSwipe:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns a newly created `GtkGesture` that recognizes swipes.
     *
-    * Returns a newly created `GtkGesture` that recognizes swipes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): GestureSwipe = new GestureSwipe(
     gtk_gesture_swipe_new().asInstanceOf

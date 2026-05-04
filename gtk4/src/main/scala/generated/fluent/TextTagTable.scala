@@ -9,9 +9,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{Buildable, TextTag}
 import sn.gnome.gtk4.internal.GtkTextTagTable
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The collection of tags in a `GtkTextBuffer`
+/** The collection of tags in a `GtkTextBuffer`
   *
   * You may wish to begin by reading the [text widget conceptual
   * overview](section-text-widget.html), which gives an overview of all the
@@ -32,6 +30,9 @@ import sn.gnome.gtk4.internal.GtkTextTagTable
   *  </child>
   * </object>
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TextTagTable(raw: Ptr[GtkTextTagTable])
     extends Object(raw.asInstanceOf),
@@ -39,15 +40,16 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Add a tag to the table.
+  /** Add a tag to the table.
     *
     * The tag is assigned the highest priority in the table.
     *
     * @tag
     *   must not be in a tag table already, and may not have the same name as an
     *   already-added tag.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def add(tag: TextTag /* Some(Ptr[GtkTextTag]) */ ): Boolean /* None */ =
     gtk_text_tag_table_add(
@@ -55,29 +57,32 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
       tag.getUnsafeRawPointer().asInstanceOf
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Calls @func on each tag in @table, with user data @data.
+  /** Calls @func on each tag in @table, with user data @data.
     *
     * Note that the table may not be modified while iterating over it (you can’t
     * add/remove tags).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TextTagTableForeach), @type -> DataRecord(GtkTextTagTableForeach)))"
+    "[foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextTagTableForeach), @type -> DataRecord(GtkTextTagTableForeach)))"
   )
-  def foreach__ = ???
+  private def foreach__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the size of the table (number of tags)
     *
-    * Returns the size of the table (number of tags)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSize(): Int /* None */ = gtk_text_tag_table_get_size(
     this.raw.asInstanceOf[Ptr[GtkTextTagTable]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Look up a named tag.
     *
-    * Look up a named tag.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def lookup(
       name: String | CString /* Some(CString) */
@@ -88,13 +93,14 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Remove a tag from the table.
+  /** Remove a tag from the table.
     *
     * If a `GtkTextBuffer` has @table as its tag table, the tag is removed from
     * the buffer. The table’s reference to the tag is removed, so the tag will
     * end up destroyed if you don’t have a reference to it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(tag: TextTag /* Some(Ptr[GtkTextTag]) */ ): Unit /* None */ =
     gtk_text_tag_table_remove(
@@ -113,11 +119,12 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
 end TextTagTable
 
 object TextTagTable:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkTextTagTable`.
+  /** Creates a new `GtkTextTagTable`.
     *
     * The table contains no tags by default.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): TextTagTable = new TextTagTable(
     gtk_text_tag_table_new().asInstanceOf

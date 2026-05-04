@@ -8,20 +8,22 @@ import sn.gnome.gio.internal.GFilenameCompleter
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Completes partial file and directory names given a partial string by looking
+/** Completes partial file and directory names given a partial string by looking
   * in the file system for clues. Can return a list of possible completion
   * strings for widget implementations.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FilenameCompleter(raw: Ptr[GFilenameCompleter])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Obtains a completion for @initial_text from @completer.
     *
-    * Obtains a completion for @initial_text from @completer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCompletionSuffix(
       initial_text: String | CString /* Some(CString) */
@@ -32,9 +34,10 @@ class FilenameCompleter(raw: Ptr[GFilenameCompleter])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets an array of completion strings for a given initial text.
     *
-    * Gets an array of completion strings for a given initial text.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCompletions(
       initial_text: String | CString /* Some(CString) */
@@ -45,10 +48,11 @@ class FilenameCompleter(raw: Ptr[GFilenameCompleter])
     )
   ).map(fromCString(_))
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @dirs_only is %TRUE, @completer will only complete directory names, and
+  /** If @dirs_only is %TRUE, @completer will only complete directory names, and
     * not file names.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDirsOnly(
       dirs_only: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -71,7 +75,7 @@ class FilenameCompleter(raw: Ptr[GFilenameCompleter])
   ): Array[Ptr[T]] =
     val ab = Array.newBuilder[Ptr[T]]
     var offset = 0
-    val tg = Tag.materializePtrTag(ptag)
+    val tg = Tag.materializePtrTag(using ptag)
     while p(offset)(using tg) != null do
       ab += p(offset)(using tg)
       offset += 1
@@ -81,9 +85,10 @@ class FilenameCompleter(raw: Ptr[GFilenameCompleter])
 end FilenameCompleter
 
 object FilenameCompleter:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new filename completer.
     *
-    * Creates a new filename completer.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): FilenameCompleter = new FilenameCompleter(
     g_filename_completer_new().asInstanceOf

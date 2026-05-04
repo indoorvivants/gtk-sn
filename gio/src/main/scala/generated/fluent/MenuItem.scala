@@ -9,18 +9,17 @@ import sn.gnome.gio.internal.GMenuItem
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GMenuItem is an opaque structure type. You must access it using the
+/** #GMenuItem is an opaque structure type. You must access it using the
   * functions below.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries the named @attribute on @menu_item.
+  /** Queries the named @attribute on @menu_item.
     *
     * If the attribute exists and matches the #GVariantType corresponding to @format_string
     * then @format_string is used to deconstruct the value into the positional
@@ -28,6 +27,9 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     *
     * If the attribute does not exist, or it does exist but has the wrong type,
     * then the positional parameters are ignored and %FALSE is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def getAttribute(
       attribute: String |
@@ -42,22 +44,24 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     args*
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries the named @attribute on @menu_item.
+  /** Queries the named @attribute on @menu_item.
     *
     * If @expected_type is specified and the attribute does not have this type,
     * %NULL is returned. %NULL is also returned if the attribute simply does not
     * exist.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
+    "[get_attribute_value/<method parameters>/expected_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
   )
-  def getAttributeValue__ = ???
+  private def getAttributeValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Queries the named @link on @menu_item.
     *
-    * Queries the named @link on @menu_item.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLink(
       link: String |
@@ -69,9 +73,7 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets or unsets the "action" and "target" attributes of @menu_item.
+  /** Sets or unsets the "action" and "target" attributes of @menu_item.
     *
     * If @action is %NULL then both the "action" and "target" attributes are
     * unset (and @format_string is ignored along with the positional
@@ -90,6 +92,9 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     *
     * See also g_menu_item_set_action_and_target_value() for a description of
     * the semantics of the action and target attributes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def setActionAndTarget(
       action: Option[
@@ -114,9 +119,7 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets or unsets the "action" and "target" attributes of @menu_item.
+  /** Sets or unsets the "action" and "target" attributes of @menu_item.
     *
     * If @action is %NULL then both the "action" and "target" attributes are
     * unset (and @target_value is ignored).
@@ -152,15 +155,16 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     * See g_menu_item_set_action_and_target() or
     * g_menu_item_set_detailed_action() for two equivalent calls that are
     * probably more convenient for most uses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[set_action_and_target_value/<method parameters>/target_value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def setActionAndTargetValue__ = ???
+  private def setActionAndTargetValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets or unsets an attribute on @menu_item.
+  /** Sets or unsets an attribute on @menu_item.
     *
     * The attribute to set or unset is specified by @attribute. This can be one
     * of the standard attribute names %G_MENU_ATTRIBUTE_LABEL,
@@ -176,6 +180,9 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     *
     * See also g_menu_item_set_attribute_value() for an equivalent call that
     * directly accepts a #GVariant.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def setAttribute(
       attribute: String |
@@ -195,9 +202,7 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets or unsets an attribute on @menu_item.
+  /** Sets or unsets an attribute on @menu_item.
     *
     * The attribute to set or unset is specified by @attribute. This can be one
     * of the standard attribute names %G_MENU_ATTRIBUTE_LABEL,
@@ -214,15 +219,16 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     *
     * See also g_menu_item_set_attribute() for a more convenient way to do the
     * same.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[set_attribute_value/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def setAttributeValue__ = ???
+  private def setAttributeValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the "action" and possibly the "target" attribute of @menu_item.
+  /** Sets the "action" and possibly the "target" attribute of @menu_item.
     *
     * The format of @detailed_action is the same format parsed by
     * g_action_parse_detailed_name().
@@ -233,6 +239,9 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     *
     * See also g_menu_item_set_action_and_target_value() for a description of
     * the semantics of the action and target attributes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDetailedAction(
       detailed_action: String |
@@ -242,9 +251,7 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     __sn_extract_string(detailed_action).asInstanceOf[Ptr[gchar]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets (or unsets) the icon on @menu_item.
+  /** Sets (or unsets) the icon on @menu_item.
     *
     * This call is the same as calling g_icon_serialize() and using the result
     * as the value to g_menu_item_set_attribute_value() for
@@ -255,6 +262,9 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     * items corresponding to verbs (eg: stock icons for 'Save' or 'Quit').
     *
     * If @icon is %NULL then the icon is unset.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setIcon(icon: Icon /* Some(Ptr[GIcon]) */ ): Unit /* None */ =
     g_menu_item_set_icon(
@@ -262,12 +272,13 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
       icon.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets or unsets the "label" attribute of @menu_item.
+  /** Sets or unsets the "label" attribute of @menu_item.
     *
     * If @label is non-%NULL it is used as the label for the menu item. If it is
     * %NULL then the label attribute is unset.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabel(
       label: Option[
@@ -282,9 +293,7 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a link from @menu_item to @model if non-%NULL, or unsets it.
+  /** Creates a link from @menu_item to @model if non-%NULL, or unsets it.
     *
     * Links are used to establish a relationship between a particular menu item
     * and another menu. For example, %G_MENU_LINK_SUBMENU is used to associate a
@@ -294,6 +303,9 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     * restricted to lowercase characters, numbers and '-'. Furthermore, the
     * names must begin with a lowercase character, must not end with a '-', and
     * must not contain consecutive dashes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLink(
       link: String |
@@ -307,14 +319,15 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[GMenuModel]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets or unsets the "section" link of @menu_item to @section.
+  /** Sets or unsets the "section" link of @menu_item to @section.
     *
     * The effect of having one menu appear as a section of another is exactly as
     * it sounds: the items from @section become a direct part of the menu that @menu_item
     * is added to. See g_menu_item_new_section() for more information about what
     * it means for a menu item to be a section.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSection(
       section: Option[MenuModel /* Some(Ptr[GMenuModel]) */ ]
@@ -325,15 +338,16 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
       .getOrElse(null.asInstanceOf[Ptr[GMenuModel]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets or unsets the "submenu" link of @menu_item to @submenu.
+  /** Sets or unsets the "submenu" link of @menu_item to @submenu.
     *
     * If @submenu is non-%NULL, it is linked to. If it is %NULL then the link is
     * unset.
     *
     * The effect of having one menu appear as a submenu of another is exactly as
     * it sounds.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSubmenu(
       submenu: Option[MenuModel /* Some(Ptr[GMenuModel]) */ ]
@@ -355,9 +369,7 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
 end MenuItem
 
 object MenuItem:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GMenuItem.
+  /** Creates a new #GMenuItem.
     *
     * If @label is non-%NULL it is used to set the "label" attribute of the new
     * item.
@@ -365,6 +377,9 @@ object MenuItem:
     * If @detailed_action is non-%NULL it is used to set the "action" and
     * possibly the "target" attribute of the new item. See
     * g_menu_item_set_detailed_action() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       label: Option[
@@ -388,13 +403,14 @@ object MenuItem:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GMenuItem as an exact copy of an existing menu item in a
+  /** Creates a #GMenuItem as an exact copy of an existing menu item in a
     * #GMenuModel.
     *
     * @item_index
     *   must be valid (ie: be sure to call g_menu_model_get_n_items() first).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromModel(
       model: MenuModel /* Some(Ptr[GMenuModel]) */,
@@ -406,9 +422,7 @@ object MenuItem:
     ).asInstanceOf
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Creates a new #GMenuItem representing a section.
+  /**  Creates a new #GMenuItem representing a section.
     *
     *  This is a convenience API around g_menu_item_new() and
     *  g_menu_item_set_section().
@@ -468,6 +482,8 @@ object MenuItem:
     *    </item>
     *  </menu>
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def section(
       label: Option[
@@ -485,12 +501,13 @@ object MenuItem:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GMenuItem representing a submenu.
+  /** Creates a new #GMenuItem representing a submenu.
     *
     * This is a convenience API around g_menu_item_new() and
     * g_menu_item_set_submenu().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def submenu(
       label: Option[

@@ -2,32 +2,37 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GConverterResult
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Results returned from g_converter_convert().
   *
-  * Results returned from g_converter_convert().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ConverterResult(val raw: GConverterResult):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** There was an error during conversion.
     *
-    * There was an error during conversion.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ERROR extends ConverterResult(GConverterResult.G_CONVERTER_ERROR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Some data was consumed or produced
     *
-    * Some data was consumed or produced
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CONVERTED extends ConverterResult(GConverterResult.G_CONVERTER_CONVERTED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The conversion is finished
     *
-    * The conversion is finished
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FINISHED extends ConverterResult(GConverterResult.G_CONVERTER_FINISHED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flushing is finished
     *
-    * Flushing is finished
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FLUSHED extends ConverterResult(GConverterResult.G_CONVERTER_FLUSHED)
 end ConverterResult

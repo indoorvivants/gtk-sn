@@ -2,9 +2,10 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GMountUnmountFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Flags used when an unmounting a mount.
   *
-  * Flags used when an unmounting a mount.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MountUnmountFlags private (val raw: GMountUnmountFlags):
   def is(kv: MountUnmountFlags): Boolean =
@@ -32,24 +33,27 @@ object MountUnmountFlags:
     def |(other: MountUnmountFlags) =
       MountUnmountFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Flags used when an unmounting a mount.
     *
-    * Flags used when an unmounting a mount.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GMountUnmountFlags, name: String)
       extends MountUnmountFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** No flags set.
       *
-      * No flags set.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(GMountUnmountFlags.G_MOUNT_UNMOUNT_NONE, "NONE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Unmount even if there are outstanding file operations on the mount.
       *
-      * Unmount even if there are outstanding file operations on the mount.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FORCE
         extends KnownValue(GMountUnmountFlags.G_MOUNT_UNMOUNT_FORCE, "FORCE")

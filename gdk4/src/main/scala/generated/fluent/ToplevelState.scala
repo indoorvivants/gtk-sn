@@ -2,15 +2,16 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkToplevelState
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Specifies the state of a toplevel surface.
+/** Specifies the state of a toplevel surface.
   *
   * On platforms that support information about individual edges, the
   * %GDK_TOPLEVEL_STATE_TILED state will be set whenever any of the individual
   * tiled states is set. On platforms that lack that support, the tiled state
   * will give an indication of tiledness without any of the per-edge states
   * being set.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ToplevelState private (val raw: GdkToplevelState):
   def is(kv: ToplevelState): Boolean =
@@ -38,23 +39,25 @@ object ToplevelState:
     def |(other: ToplevelState) =
       ToplevelState(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Specifies the state of a toplevel surface.
+  /** Specifies the state of a toplevel surface.
     *
     * On platforms that support information about individual edges, the
     * %GDK_TOPLEVEL_STATE_TILED state will be set whenever any of the individual
     * tiled states is set. On platforms that lack that support, the tiled state
     * will give an indication of tiledness without any of the per-edge states
     * being set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GdkToplevelState, name: String)
       extends ToplevelState(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the surface is minimized
       *
-      * the surface is minimized
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case MINIMIZED
         extends KnownValue(
@@ -62,9 +65,10 @@ object ToplevelState:
           "MINIMIZED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the surface is maximized
       *
-      * the surface is maximized
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case MAXIMIZED
         extends KnownValue(
@@ -72,16 +76,18 @@ object ToplevelState:
           "MAXIMIZED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the surface is sticky
       *
-      * the surface is sticky
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case STICKY
         extends KnownValue(GdkToplevelState.GDK_TOPLEVEL_STATE_STICKY, "STICKY")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the surface is maximized without decorations
       *
-      * the surface is maximized without decorations
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FULLSCREEN
         extends KnownValue(
@@ -89,23 +95,26 @@ object ToplevelState:
           "FULLSCREEN"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the surface is kept above other surfaces
       *
-      * the surface is kept above other surfaces
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case ABOVE
         extends KnownValue(GdkToplevelState.GDK_TOPLEVEL_STATE_ABOVE, "ABOVE")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the surface is kept below other surfaces
       *
-      * the surface is kept below other surfaces
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case BELOW
         extends KnownValue(GdkToplevelState.GDK_TOPLEVEL_STATE_BELOW, "BELOW")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the surface is presented as focused (with active decorations)
       *
-      * the surface is presented as focused (with active decorations)
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FOCUSED
         extends KnownValue(
@@ -113,16 +122,18 @@ object ToplevelState:
           "FOCUSED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the surface is in a tiled state
       *
-      * the surface is in a tiled state
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case TILED
         extends KnownValue(GdkToplevelState.GDK_TOPLEVEL_STATE_TILED, "TILED")
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** whether the top edge is tiled
       *
-      * whether the top edge is tiled
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case TOP_TILED
         extends KnownValue(
@@ -130,9 +141,10 @@ object ToplevelState:
           "TOP_TILED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** whether the top edge is resizable
       *
-      * whether the top edge is resizable
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case TOP_RESIZABLE
         extends KnownValue(
@@ -140,9 +152,10 @@ object ToplevelState:
           "TOP_RESIZABLE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** whether the right edge is tiled
       *
-      * whether the right edge is tiled
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case RIGHT_TILED
         extends KnownValue(
@@ -150,9 +163,10 @@ object ToplevelState:
           "RIGHT_TILED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** whether the right edge is resizable
       *
-      * whether the right edge is resizable
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case RIGHT_RESIZABLE
         extends KnownValue(
@@ -160,9 +174,10 @@ object ToplevelState:
           "RIGHT_RESIZABLE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** whether the bottom edge is tiled
       *
-      * whether the bottom edge is tiled
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case BOTTOM_TILED
         extends KnownValue(
@@ -170,9 +185,10 @@ object ToplevelState:
           "BOTTOM_TILED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** whether the bottom edge is resizable
       *
-      * whether the bottom edge is resizable
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case BOTTOM_RESIZABLE
         extends KnownValue(
@@ -180,9 +196,10 @@ object ToplevelState:
           "BOTTOM_RESIZABLE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** whether the left edge is tiled
       *
-      * whether the left edge is tiled
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case LEFT_TILED
         extends KnownValue(
@@ -190,9 +207,10 @@ object ToplevelState:
           "LEFT_TILED"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** whether the left edge is resizable
       *
-      * whether the left edge is resizable
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case LEFT_RESIZABLE
         extends KnownValue(
@@ -200,9 +218,10 @@ object ToplevelState:
           "LEFT_RESIZABLE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** the surface is not visible to the user
       *
-      * the surface is not visible to the user
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SUSPENDED
         extends KnownValue(

@@ -2,9 +2,10 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkIconLookupFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Used to specify options for gtk_icon_theme_lookup_icon().
   *
-  * Used to specify options for gtk_icon_theme_lookup_icon().
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class IconLookupFlags private (val raw: GtkIconLookupFlags):
   def is(kv: IconLookupFlags): Boolean =
@@ -32,18 +33,20 @@ object IconLookupFlags:
     def |(other: IconLookupFlags) =
       IconLookupFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Used to specify options for gtk_icon_theme_lookup_icon().
     *
-    * Used to specify options for gtk_icon_theme_lookup_icon().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GtkIconLookupFlags, name: String)
       extends IconLookupFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Try to always load regular icons, even when symbolic icon names are
+    /** Try to always load regular icons, even when symbolic icon names are
       * given
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FORCE_REGULAR
         extends KnownValue(
@@ -51,10 +54,11 @@ object IconLookupFlags:
           "FORCE_REGULAR"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Try to always load symbolic icons, even when regular icon names are
+    /** Try to always load symbolic icons, even when regular icon names are
       * given
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case FORCE_SYMBOLIC
         extends KnownValue(
@@ -62,10 +66,11 @@ object IconLookupFlags:
           "FORCE_SYMBOLIC"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
-      *
-      * Starts loading the texture in the background so it is ready when later
+    /** Starts loading the texture in the background so it is ready when later
       * needed.
+      *
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case PRELOAD
         extends KnownValue(

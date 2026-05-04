@@ -15,9 +15,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkFontDialogButton
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkFontDialogButton` is wrapped around a [class@Gtk.FontDialog] and
+/** The `GtkFontDialogButton` is wrapped around a [class@Gtk.FontDialog] and
   * allows to open a font chooser dialog to change the font.
   *
   * ![An example GtkFontDialogButton](font-button.png)
@@ -34,6 +32,9 @@ import sn.gnome.gtk4.internal.GtkFontDialogButton
   *
   * `GtkFontDialogButton` has a single CSS node with name fontbutton which
   * contains a button node with the .font style class.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     extends Widget(raw.asInstanceOf),
@@ -43,9 +44,10 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the `GtkFontDialog` of @self.
     *
-    * Returns the `GtkFontDialog` of @self.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDialog(): FontDialog /* None */ = new FontDialog(
     gtk_font_dialog_button_get_dialog(
@@ -53,21 +55,20 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the font of the button.
+  /** Returns the font of the button.
     *
     * This function is what should be used to obtain the font that was chosen by
     * the user. To get informed about changes, listen to "notify::font-desc".
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[get_font_desc/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
-  def getFontDesc__ = ???
+  private def getFontDesc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the font features of the button.
+  /** Returns the font features of the button.
     *
     * This function is what should be used to obtain the font features that were
     * chosen by the user. To get informed about changes, listen to
@@ -75,6 +76,9 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     *
     * Note that the button will only let users choose font features if
     * [property@Gtk.FontDialogButton:level] is set to `GTK_FONT_LEVEL_FEATURES`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFontFeatures()(using Zone): String /* None */ = fromCString(
     gtk_font_dialog_button_get_font_features(
@@ -82,19 +86,21 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the language that is used for font features.
     *
-    * Returns the language that is used for font features.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
+    "[get_language/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
   )
-  def getLanguage__ = ???
+  private def getLanguage__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the level of detail at which this dialog lets the user select
+  /** Returns the level of detail at which this dialog lets the user select
     * fonts.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLevel(): FontLevel /* None */ = FontLevel.fromRaw(
     gtk_font_dialog_button_get_level(
@@ -102,26 +108,29 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the selected font is used in the label.
     *
-    * Returns whether the selected font is used in the label.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseFont(): Boolean /* None */ = gtk_font_dialog_button_get_use_font(
     this.raw.asInstanceOf[Ptr[GtkFontDialogButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the selected font size is used in the label.
     *
-    * Returns whether the selected font size is used in the label.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseSize(): Boolean /* None */ = gtk_font_dialog_button_get_use_size(
     this.raw.asInstanceOf[Ptr[GtkFontDialogButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a `GtkFontDialog` object to use for creating the font chooser dialog
+  /** Sets a `GtkFontDialog` object to use for creating the font chooser dialog
     * that is presented when the user clicks the button.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDialog(
       dialog: FontDialog /* Some(Ptr[GtkFontDialog]) */
@@ -130,18 +139,20 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     dialog.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the font of the button.
     *
-    * Sets the font of the button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
+    "[set_font_desc/<method parameters>/font_desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
-  def setFontDesc__ = ???
+  private def setFontDesc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the font features of the button.
     *
-    * Sets the font features of the button.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFontFeatures(
       font_features: Option[String | CString /* Some(CString) */ ]
@@ -152,18 +163,20 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the language to use for font features.
     *
-    * Sets the language to use for font features.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
+    "[set_language/<method parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
   )
-  def setLanguage__ = ???
+  private def setLanguage__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the level of detail at which this dialog lets the user select fonts.
     *
-    * Sets the level of detail at which this dialog lets the user select fonts.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLevel(level: FontLevel /* Some(GtkFontLevel) */ ): Unit /* None */ =
     gtk_font_dialog_button_set_level(
@@ -171,10 +184,11 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
       level.raw
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @use_font is `TRUE`, the font name will be written using the selected
+  /** If @use_font is `TRUE`, the font name will be written using the selected
     * font.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseFont(
       use_font: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -183,10 +197,11 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     gboolean(gint((if use_font == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @use_size is `TRUE`, the font name will be written using the selected
+  /** If @use_size is `TRUE`, the font name will be written using the selected
     * font size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseSize(
       use_size: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -206,12 +221,13 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
 end FontDialogButton
 
 object FontDialogButton:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkFontDialogButton` with the given `GtkFontDialog`.
+  /** Creates a new `GtkFontDialogButton` with the given `GtkFontDialog`.
     *
     * You can pass `NULL` to this function and set a `GtkFontDialog` later. The
     * button will be insensitive until that happens.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       dialog: Option[FontDialog /* Some(Ptr[GtkFontDialog]) */ ]

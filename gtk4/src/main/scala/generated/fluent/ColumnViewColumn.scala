@@ -10,9 +10,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{ColumnView, ListItemFactory, Sorter}
 import sn.gnome.gtk4.internal.GtkColumnViewColumn
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkColumnViewColumn` represents the columns being added to a
+/** `GtkColumnViewColumn` represents the columns being added to a
   * `GtkColumnView`.
   *
   * The main ingredient for a `GtkColumnViewColumn` is the `GtkListItemFactory`
@@ -25,17 +23,21 @@ import sn.gnome.gtk4.internal.GtkColumnViewColumn
   * A sorter can be associated with a column using
   * [method@Gtk.ColumnViewColumn.set_sorter], to let users influence sorting by
   * clicking on the column header.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the column view that's currently displaying this column.
+  /** Gets the column view that's currently displaying this column.
     *
     * If @self has not been added to a column view yet, %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getColumnView(): ColumnView /* None */ = new ColumnView(
     gtk_column_view_column_get_column_view(
@@ -43,18 +45,20 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether this column should expand.
     *
-    * Returns whether this column should expand.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExpand(): Boolean /* None */ = gtk_column_view_column_get_expand(
     this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the factory that's currently used to populate list items for this
+  /** Gets the factory that's currently used to populate list items for this
     * column.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFactory(): ListItemFactory /* None */ = new ListItemFactory(
     gtk_column_view_column_get_factory(
@@ -62,18 +66,20 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the fixed width of the column.
     *
-    * Gets the fixed width of the column.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFixedWidth(): Int /* None */ = gtk_column_view_column_get_fixed_width(
     this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the menu model that is used to create the context menu for the column
+  /** Gets the menu model that is used to create the context menu for the column
     * header.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeaderMenu(): MenuModel /* None */ = new MenuModel(
     gtk_column_view_column_get_header_menu(
@@ -81,9 +87,10 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the ID set with gtk_column_view_column_set_id().
     *
-    * Returns the ID set with gtk_column_view_column_set_id().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getId()(using Zone): String /* None */ = fromCString(
     gtk_column_view_column_get_id(
@@ -91,17 +98,19 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether this column is resizable.
     *
-    * Returns whether this column is resizable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getResizable(): Boolean /* None */ = gtk_column_view_column_get_resizable(
     this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the sorter that is associated with the column.
     *
-    * Returns the sorter that is associated with the column.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSorter(): Sorter /* None */ = new Sorter(
     gtk_column_view_column_get_sorter(
@@ -109,9 +118,10 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the title set with gtk_column_view_column_set_title().
     *
-    * Returns the title set with gtk_column_view_column_set_title().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_column_view_column_get_title(
@@ -119,20 +129,22 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether this column is visible.
     *
-    * Returns whether this column is visible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getVisible(): Boolean /* None */ = gtk_column_view_column_get_visible(
     this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the column to take available extra space.
+  /** Sets the column to take available extra space.
     *
     * The extra space is shared equally amongst all columns that have the expand
     * set to %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setExpand(
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -141,10 +153,11 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     gboolean(gint((if expand == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `GtkListItemFactory` to use for populating list items for this
+  /** Sets the `GtkListItemFactory` to use for populating list items for this
     * column.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFactory(
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
@@ -155,13 +168,14 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
       .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @fixed_width is not -1, sets the fixed width of @column; otherwise
+  /** If @fixed_width is not -1, sets the fixed width of @column; otherwise
     * unsets it.
     *
     * Setting a fixed width overrides the automatically calculated width.
     * Interactive resizing also sets the “fixed-width” property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFixedWidth(fixed_width: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_column_view_column_set_fixed_width(
@@ -169,10 +183,11 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
       fixed_width
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the menu model that is used to create the context menu for the column
+  /** Sets the menu model that is used to create the context menu for the column
     * header.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeaderMenu(
       menu: Option[
@@ -189,14 +204,15 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
       )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the id of this column.
+  /** Sets the id of this column.
     *
     * GTK makes no use of this, but applications can use it when storing column
     * view configuration.
     *
     * It is up to callers to ensure uniqueness of IDs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setId(
       id: Option[String | CString /* Some(CString) */ ]
@@ -206,9 +222,10 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether this column should be resizable by dragging.
     *
-    * Sets whether this column should be resizable by dragging.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setResizable(
       resizable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -217,9 +234,7 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     gboolean(gint((if resizable == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Associates a sorter with the column.
+  /** Associates a sorter with the column.
     *
     * If @sorter is %NULL, the column will not let users change the sorting by
     * clicking on its header.
@@ -229,6 +244,9 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     *
     * See [method@Gtk.ColumnView.get_sorter] for the necessary steps for setting
     * up customizable sorting for [class@Gtk.ColumnView].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSorter(
       sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ]
@@ -239,12 +257,13 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
       .getOrElse(null.asInstanceOf[Ptr[GtkSorter]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the title of this column.
+  /** Sets the title of this column.
     *
     * The title is displayed in the header of a `GtkColumnView` for this column
     * and is therefore user-facing text that should be translated.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
       title: Option[String | CString /* Some(CString) */ ]
@@ -255,9 +274,10 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether this column should be visible in views.
     *
-    * Sets whether this column should be visible in views.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setVisible(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -277,9 +297,7 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
 end ColumnViewColumn
 
 object ColumnViewColumn:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkColumnViewColumn` that uses the given @factory for
+  /** Creates a new `GtkColumnViewColumn` that uses the given @factory for
     * mapping items to widgets.
     *
     * You most likely want to call [method@Gtk.ColumnView.append_column] next.
@@ -290,6 +308,9 @@ object ColumnViewColumn:
     * column = gtk_column_view_column_new (_("Name"),
     *   gtk_builder_list_item_factory_new_from_resource ("/name.ui"));
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       title: Option[String | CString /* Some(CString) */ ],

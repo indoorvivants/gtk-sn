@@ -2,29 +2,33 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkShortcutScope
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Describes where [class@Shortcut]s added to a [class@ShortcutController] get
+/** Describes where [class@Shortcut]s added to a [class@ShortcutController] get
   * handled.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum ShortcutScope(val raw: GtkShortcutScope):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Shortcuts are handled inside the widget the controller belongs to.
     *
-    * Shortcuts are handled inside the widget the controller belongs to.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LOCAL extends ShortcutScope(GtkShortcutScope.GTK_SHORTCUT_SCOPE_LOCAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Shortcuts are handled by the first ancestor that is a
+  /** Shortcuts are handled by the first ancestor that is a
     * [iface@ShortcutManager]
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MANAGED
       extends ShortcutScope(GtkShortcutScope.GTK_SHORTCUT_SCOPE_MANAGED)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Shortcuts are handled by the root widget.
     *
-    * Shortcuts are handled by the root widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GLOBAL extends ShortcutScope(GtkShortcutScope.GTK_SHORTCUT_SCOPE_GLOBAL)
 end ShortcutScope

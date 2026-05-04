@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkFontButton
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkFontButton` allows to open a font chooser dialog to change the font.
+/** The `GtkFontButton` allows to open a font chooser dialog to change the font.
   *
   * ![An example GtkFontButton](font-button.png)
   *
@@ -32,6 +30,9 @@ import sn.gnome.gtk4.internal.GtkFontButton
   *
   * `GtkFontButton` has a single CSS node with name fontbutton which contains a
   * button node with the .font style class.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class FontButton(raw: Ptr[GtkFontButton])
     extends Widget(raw.asInstanceOf),
@@ -42,17 +43,19 @@ class FontButton(raw: Ptr[GtkFontButton])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the dialog is modal.
     *
-    * Gets whether the dialog is modal.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModal(): Boolean /* None */ = gtk_font_button_get_modal(
     this.raw.asInstanceOf[Ptr[GtkFontButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the title of the font chooser dialog.
     *
-    * Retrieves the title of the font chooser dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_font_button_get_title(
@@ -60,25 +63,28 @@ class FontButton(raw: Ptr[GtkFontButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the selected font is used in the label.
     *
-    * Returns whether the selected font is used in the label.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseFont(): Boolean /* None */ = gtk_font_button_get_use_font(
     this.raw.asInstanceOf[Ptr[GtkFontButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the selected size is used in the label.
     *
-    * Returns whether the selected size is used in the label.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseSize(): Boolean /* None */ = gtk_font_button_get_use_size(
     this.raw.asInstanceOf[Ptr[GtkFontButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the dialog should be modal.
     *
-    * Sets whether the dialog should be modal.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -87,9 +93,10 @@ class FontButton(raw: Ptr[GtkFontButton])
     gboolean(gint((if modal == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the title for the font chooser dialog.
     *
-    * Sets the title for the font chooser dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
       title: String | CString /* Some(CString) */
@@ -98,10 +105,11 @@ class FontButton(raw: Ptr[GtkFontButton])
     __sn_extract_string(title)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @use_font is %TRUE, the font name will be written using the selected
+  /** If @use_font is %TRUE, the font name will be written using the selected
     * font.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseFont(
       use_font: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -110,10 +118,11 @@ class FontButton(raw: Ptr[GtkFontButton])
     gboolean(gint((if use_font == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @use_size is %TRUE, the font name will be written using the selected
+  /** If @use_size is %TRUE, the font name will be written using the selected
     * size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseSize(
       use_size: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -133,15 +142,17 @@ class FontButton(raw: Ptr[GtkFontButton])
 end FontButton
 
 object FontButton:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new font picker widget.
     *
-    * Creates a new font picker widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): FontButton = new FontButton(gtk_font_button_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new font picker widget showing the given font.
     *
-    * Creates a new font picker widget showing the given font.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withFont(
       fontname: String | CString /* Some(CString) */

@@ -2,34 +2,38 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkTreeViewColumnSizing
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The sizing method the column uses to determine its width. Please note that
+/** The sizing method the column uses to determine its width. Please note that
   * %GTK_TREE_VIEW_COLUMN_AUTOSIZE are inefficient for large views, and can make
   * columns appear choppy.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TreeViewColumnSizing(val raw: GtkTreeViewColumnSizing):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Columns only get bigger in reaction to changes in the model
     *
-    * Columns only get bigger in reaction to changes in the model
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case GROW_ONLY
       extends TreeViewColumnSizing(
         GtkTreeViewColumnSizing.GTK_TREE_VIEW_COLUMN_GROW_ONLY
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Columns resize to be the optimal size every time the model changes.
     *
-    * Columns resize to be the optimal size every time the model changes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AUTOSIZE
       extends TreeViewColumnSizing(
         GtkTreeViewColumnSizing.GTK_TREE_VIEW_COLUMN_AUTOSIZE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Columns are a fixed numbers of pixels wide.
     *
-    * Columns are a fixed numbers of pixels wide.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FIXED
       extends TreeViewColumnSizing(

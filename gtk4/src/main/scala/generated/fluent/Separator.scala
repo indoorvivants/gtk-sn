@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkSeparator
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkSeparator` is a horizontal or vertical separator widget.
+/** `GtkSeparator` is a horizontal or vertical separator widget.
   *
   * ![An example GtkSeparator](separator.png)
   *
@@ -31,6 +29,9 @@ import sn.gnome.gtk4.internal.GtkSeparator
   * # Accessibility
   *
   * `GtkSeparator` uses the %GTK_ACCESSIBLE_ROLE_SEPARATOR role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Separator(raw: Ptr[GtkSeparator])
     extends Widget(raw.asInstanceOf),
@@ -44,9 +45,10 @@ class Separator(raw: Ptr[GtkSeparator])
 end Separator
 
 object Separator:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkSeparator` with the given orientation.
     *
-    * Creates a new `GtkSeparator` with the given orientation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(orientation: Orientation /* Some(GtkOrientation) */ ): Separator =
     new Separator(gtk_separator_new(orientation.raw).asInstanceOf)

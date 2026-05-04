@@ -2,54 +2,60 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GDriveStartStopType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Enumeration describing how a drive can be started/stopped.
   *
-  * Enumeration describing how a drive can be started/stopped.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum DriveStartStopType(val raw: GDriveStartStopType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unknown or drive doesn't support start/stop.
     *
-    * Unknown or drive doesn't support start/stop.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN
       extends DriveStartStopType(
         GDriveStartStopType.G_DRIVE_START_STOP_TYPE_UNKNOWN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The stop method will physically shut down the drive and e.g. power down
+  /** The stop method will physically shut down the drive and e.g. power down
     * the port the drive is attached to.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SHUTDOWN
       extends DriveStartStopType(
         GDriveStartStopType.G_DRIVE_START_STOP_TYPE_SHUTDOWN
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The start/stop methods are used for connecting/disconnect to the drive
+  /** The start/stop methods are used for connecting/disconnect to the drive
     * over the network.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NETWORK
       extends DriveStartStopType(
         GDriveStartStopType.G_DRIVE_START_STOP_TYPE_NETWORK
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The start/stop methods will assemble/disassemble a virtual drive from
+  /** The start/stop methods will assemble/disassemble a virtual drive from
     * several physical drives.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MULTIDISK
       extends DriveStartStopType(
         GDriveStartStopType.G_DRIVE_START_STOP_TYPE_MULTIDISK
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The start/stop methods will unlock/lock the disk (for example using the
+  /** The start/stop methods will unlock/lock the disk (for example using the
     * ATA <quote>SECURITY UNLOCK DEVICE</quote> command)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PASSWORD
       extends DriveStartStopType(

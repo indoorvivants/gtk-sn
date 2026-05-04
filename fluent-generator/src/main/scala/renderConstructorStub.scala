@@ -3,9 +3,9 @@ import util.boundary.*
 import com.indoorvivants.gnome.gir_schema.*
 
 def renderConstructorStub(f: Constructor, msg: FluentErr)(using RenderingContext) =
-  scribe.warn(s"Failed to render constructor ${f.name}: ${msg.message}")
+  scribe.warn(s"Failed to render constructor ${f.name}: ${msg.getMessage}")
   renderComment(f.doc)
-  line(s"@annotation.compileTimeOnly(\"${msg.message}\")")
-  line(s"def ${escape(f.name)}() = ???")
+  line(s"@annotation.compileTimeOnly(\"${msg.getMessage}\")")
+  line(s"private def ${escape(f.name)}() = ???")
   emptyLine()
 

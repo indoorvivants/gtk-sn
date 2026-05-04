@@ -2,37 +2,42 @@ package sn.gnome.gdk4.fluent
 
 import _root_.sn.gnome.gdk4.internal.GdkTextureError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Possible errors that can be returned by `GdkTexture` constructors.
   *
-  * Possible errors that can be returned by `GdkTexture` constructors.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TextureError(val raw: GdkTextureError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Not enough memory to handle this image
     *
-    * Not enough memory to handle this image
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOO_LARGE
       extends TextureError(GdkTextureError.GDK_TEXTURE_ERROR_TOO_LARGE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The image data appears corrupted
     *
-    * The image data appears corrupted
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CORRUPT_IMAGE
       extends TextureError(GdkTextureError.GDK_TEXTURE_ERROR_CORRUPT_IMAGE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The image contains features that cannot be loaded
     *
-    * The image contains features that cannot be loaded
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNSUPPORTED_CONTENT
       extends TextureError(
         GdkTextureError.GDK_TEXTURE_ERROR_UNSUPPORTED_CONTENT
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The image format is not supported
     *
-    * The image format is not supported
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNSUPPORTED_FORMAT
       extends TextureError(GdkTextureError.GDK_TEXTURE_ERROR_UNSUPPORTED_FORMAT)

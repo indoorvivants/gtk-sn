@@ -2,9 +2,7 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoAlignment
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `PangoAlignment` describes how to align the lines of a `PangoLayout` within
+/** `PangoAlignment` describes how to align the lines of a `PangoLayout` within
   * the available space.
   *
   * If the `PangoLayout` is set to justify using
@@ -12,23 +10,29 @@ import _root_.sn.gnome.pango.internal.PangoAlignment
   *
   * See [method@Pango.Layout.set_auto_dir] for how text direction affects the
   * interpretation of `PangoAlignment` values.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum Alignment(val raw: PangoAlignment):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Put all available space on the right
     *
-    * Put all available space on the right
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LEFT extends Alignment(PangoAlignment.PANGO_ALIGN_LEFT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Center the line within the available space
     *
-    * Center the line within the available space
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CENTER extends Alignment(PangoAlignment.PANGO_ALIGN_CENTER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Put all available space on the left
     *
-    * Put all available space on the left
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case RIGHT extends Alignment(PangoAlignment.PANGO_ALIGN_RIGHT)
 end Alignment

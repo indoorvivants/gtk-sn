@@ -2,21 +2,24 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkIconThemeError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Error codes for `GtkIconTheme` operations.
   *
-  * Error codes for `GtkIconTheme` operations.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum IconThemeError(val raw: GtkIconThemeError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** The icon specified does not exist in the theme
     *
-    * The icon specified does not exist in the theme
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOT_FOUND
       extends IconThemeError(GtkIconThemeError.GTK_ICON_THEME_NOT_FOUND)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** An unspecified error occurred.
     *
-    * An unspecified error occurred.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FAILED extends IconThemeError(GtkIconThemeError.GTK_ICON_THEME_FAILED)
 end IconThemeError

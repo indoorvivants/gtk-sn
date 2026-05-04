@@ -11,9 +11,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.internal.GtkStringList
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkStringList` is a list model that wraps an array of strings.
+/** `GtkStringList` is a list model that wraps an array of strings.
   *
   * The objects in the model are of type [class@Gtk.StringObject] and have a
   * "string" property that can be used inside expressions.
@@ -39,6 +37,9 @@ import sn.gnome.gtk4.internal.GtkStringList
   *   </items>
   * </object>
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class StringList(raw: Ptr[GtkStringList])
     extends Object(raw.asInstanceOf),
@@ -47,12 +48,13 @@ class StringList(raw: Ptr[GtkStringList])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Appends @string to @self.
+  /** Appends @string to @self.
     *
     * The @string will be copied. See [method@Gtk.StringList.take] for a way to
     * avoid that.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def append(
       string: String | CString /* Some(CString) */
@@ -61,14 +63,15 @@ class StringList(raw: Ptr[GtkStringList])
     __sn_extract_string(string)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the string that is at @position in @self.
+  /** Gets the string that is at @position in @self.
     *
     * If @self does not contain @position items, %NULL is returned.
     *
     * This function returns the const char *. To get the object wrapping it, use
     * g_list_model_get_item().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getString(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -79,12 +82,13 @@ class StringList(raw: Ptr[GtkStringList])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes the string at @position from @self.
+  /** Removes the string at @position from @self.
     *
     * @position
     *   must be smaller than the current length of the list.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -93,9 +97,7 @@ class StringList(raw: Ptr[GtkStringList])
     guint(position)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Changes @self by removing @n_removals strings and adding @additions to it.
+  /** Changes @self by removing @n_removals strings and adding @additions to it.
     *
     * This function is more efficient than [method@Gtk.StringList.append] and
     * [method@Gtk.StringList.remove], because it only emits the ::items-changed
@@ -107,15 +109,16 @@ class StringList(raw: Ptr[GtkStringList])
     * @position
     *   + @n_removals must be less than or equal to the length of the list at
     *   the time this function is called).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
+    "[splice/<method parameters>/additions]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
-  def splice__ = ???
+  private def splice__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds @string to self at the end, and takes ownership of it.
+  /** Adds @string to self at the end, and takes ownership of it.
     *
     * This variant of [method@Gtk.StringList.append] is convenient for
     * formatting strings:
@@ -123,6 +126,9 @@ class StringList(raw: Ptr[GtkStringList])
     * ```c
     * gtk_string_list_take (self, g_strdup_print ("%d dollars", lots));
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def take(
       string: String | CString /* Some(CString) */
@@ -142,13 +148,14 @@ class StringList(raw: Ptr[GtkStringList])
 end StringList
 
 object StringList:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkStringList` with the given @strings.
     *
-    * Creates a new `GtkStringList` with the given @strings.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
+    "[strings]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
-  def `new`() = ???
+  private def `new`() = ???
 
 end StringList

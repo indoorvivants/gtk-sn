@@ -19,24 +19,26 @@ import sn.gnome.gio.internal.GTlsConnection
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GTlsConnection is the base TLS connection class type, which wraps a
+/** #GTlsConnection is the base TLS connection class type, which wraps a
   * #GIOStream and provides TLS encryption on top of it. Its subclasses,
   * #GTlsClientConnection and #GTlsServerConnection, implement client-side and
   * server-side TLS, respectively.
   *
   * For DTLS (Datagram TLS) support, see #GDtlsConnection.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TlsConnection(raw: Ptr[GTlsConnection])
     extends IOStream(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Used by #GTlsConnection implementations to emit the
+  /** Used by #GTlsConnection implementations to emit the
     * #GTlsConnection::accept-certificate signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def emitAcceptCertificate(
       peer_cert: TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
@@ -47,9 +49,10 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     errors.raw
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @conn's certificate, as set by g_tls_connection_set_certificate().
     *
-    * Gets @conn's certificate, as set by g_tls_connection_set_certificate().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCertificate(): TlsCertificate /* None */ = new TlsCertificate(
     g_tls_connection_get_certificate(
@@ -57,9 +60,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Query the TLS backend for TLS channel binding data of @type for @conn.
+  /** Query the TLS backend for TLS channel binding data of @type for @conn.
     *
     * This call retrieves TLS channel binding data as specified in RFC
     * [5056](https://tools.ietf.org/html/rfc5056), RFC
@@ -72,15 +73,16 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * available though. That could happen if TLS connection does not support @type
     * or the binding data is not available yet due to additional negotiation or
     * input required.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_channel_binding_data contains an OUT parameter, which is not supported yet"
+    "[get_channel_binding_data]: Method get_channel_binding_data contains an OUT parameter, which is not supported yet"
   )
-  def getChannelBindingData__ = ???
+  private def getChannelBindingData__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the name of the current TLS ciphersuite, or %NULL if the
+  /** Returns the name of the current TLS ciphersuite, or %NULL if the
     * connection has not handshaked or has been closed. Beware that the TLS
     * backend may use any of multiple different naming conventions, because
     * OpenSSL and GnuTLS have their own ciphersuite naming conventions that are
@@ -88,6 +90,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * registered ciphersuite names. The ciphersuite name is intended to be
     * displayed to the user for informative purposes only, and parsing it is not
     * recommended.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCiphersuiteName()(using Zone): String /* None */ = fromCString(
     g_tls_connection_get_ciphersuite_name(
@@ -95,10 +100,11 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the certificate database that @conn uses to verify peer certificates.
+  /** Gets the certificate database that @conn uses to verify peer certificates.
     * See g_tls_connection_set_database().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDatabase(): TlsDatabase /* None */ = new TlsDatabase(
     g_tls_connection_get_database(
@@ -106,11 +112,12 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get the object that will be used to interact with the user. It will be
+  /** Get the object that will be used to interact with the user. It will be
     * used for things like prompting the user for passwords. If %NULL is
     * returned, then no user interaction will occur for this connection.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getInteraction(): TlsInteraction /* None */ = new TlsInteraction(
     g_tls_connection_get_interaction(
@@ -118,15 +125,16 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the name of the application-layer protocol negotiated during the
+  /** Gets the name of the application-layer protocol negotiated during the
     * handshake.
     *
     * If the peer did not use the ALPN extension, or did not advertise a
     * protocol that matched one of @conn's protocols, or the TLS backend does
     * not support ALPN, then this will be %NULL. See
     * g_tls_connection_set_advertised_protocols().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNegotiatedProtocol()(using Zone): String /* None */ = fromCString(
     g_tls_connection_get_negotiated_protocol(
@@ -134,11 +142,12 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets @conn's peer's certificate after the handshake has completed or
+  /** Gets @conn's peer's certificate after the handshake has completed or
     * failed. (It is not set during the emission of
     * #GTlsConnection::accept-certificate.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPeerCertificate(): TlsCertificate /* None */ = new TlsCertificate(
     g_tls_connection_get_peer_certificate(
@@ -146,13 +155,14 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the errors associated with validating @conn's peer's certificate,
+  /** Gets the errors associated with validating @conn's peer's certificate,
     * after the handshake has completed or failed. (It is not set during the
     * emission of #GTlsConnection::accept-certificate.)
     *
     * See #GTlsConnection:peer-certificate-errors for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPeerCertificateErrors(): TlsCertificateFlags /* None */ =
     TlsCertificateFlags.fromRaw(
@@ -161,12 +171,13 @@ class TlsConnection(raw: Ptr[GTlsConnection])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the current TLS protocol version, which may be
+  /** Returns the current TLS protocol version, which may be
     * %G_TLS_PROTOCOL_VERSION_UNKNOWN if the connection has not handshaked, or
     * has been closed, or if the TLS backend has implemented a protocol version
     * that is not a recognized #GTlsProtocolVersion.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getProtocolVersion(): TlsProtocolVersion /* None */ =
     TlsProtocolVersion.fromRaw(
@@ -175,10 +186,11 @@ class TlsConnection(raw: Ptr[GTlsConnection])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets @conn rehandshaking mode. See g_tls_connection_set_rehandshake_mode()
+  /** Gets @conn rehandshaking mode. See g_tls_connection_set_rehandshake_mode()
     * for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRehandshakeMode(): TlsRehandshakeMode /* None */ =
     TlsRehandshakeMode.fromRaw(
@@ -187,30 +199,30 @@ class TlsConnection(raw: Ptr[GTlsConnection])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tests whether or not @conn expects a proper TLS close notification when
+  /** Tests whether or not @conn expects a proper TLS close notification when
     * the connection is closed. See g_tls_connection_set_require_close_notify()
     * for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRequireCloseNotify(): Boolean /* None */ =
     g_tls_connection_get_require_close_notify(
       this.raw.asInstanceOf[Ptr[GTlsConnection]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets whether @conn uses the system certificate database to verify peer
+  /** Gets whether @conn uses the system certificate database to verify peer
     * certificates. See g_tls_connection_set_use_system_certdb().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseSystemCertdb(): Boolean /* None */ =
     g_tls_connection_get_use_system_certdb(
       this.raw.asInstanceOf[Ptr[GTlsConnection]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Attempts a TLS handshake on @conn.
+  /** Attempts a TLS handshake on @conn.
     *
     * On the client side, it is never necessary to call this method; although
     * the connection needs to perform a handshake after connecting (or after
@@ -239,6 +251,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * recommended.
     *
     * #GTlsConnection::accept_certificate may be emitted during the handshake.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def handshake(
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
@@ -252,20 +267,22 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Asynchronously performs a TLS handshake on @conn. See
+  /** Asynchronously performs a TLS handshake on @conn. See
     * g_tls_connection_handshake() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[handshake_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  def handshakeAsync__ = ???
+  private def handshakeAsync__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finish an asynchronous TLS handshake operation. See
+  /** Finish an asynchronous TLS handshake operation. See
     * g_tls_connection_handshake() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def handshakeFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
@@ -277,9 +294,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the list of application-layer protocols to advertise that the caller
+  /** Sets the list of application-layer protocols to advertise that the caller
     * is willing to speak on this connection. The Application-Layer Protocol
     * Negotiation (ALPN) extension will be used to negotiate a compatible
     * protocol with the peer; use g_tls_connection_get_negotiated_protocol() to
@@ -289,15 +304,16 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * See [IANA TLS ALPN Protocol
     * IDs](https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids)
     * for a list of registered protocol IDs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[set_advertised_protocols/<method parameters>/protocols]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def setAdvertisedProtocols__ = ???
+  private def setAdvertisedProtocols__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This sets the certificate that @conn will present to its peer during the
+  /** This sets the certificate that @conn will present to its peer during the
     * TLS handshake. For a #GTlsServerConnection, it is mandatory to set this,
     * and that will normally be done at construct time.
     *
@@ -312,6 +328,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * without a certificate; in that case, if you don't provide a certificate,
     * you can tell that the server requested one by the fact that
     * g_tls_client_connection_get_accepted_cas() will return non-%NULL.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setCertificate(
       certificate: TlsCertificate /* Some(Ptr[GTlsCertificate]) */
@@ -320,9 +339,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     certificate.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the certificate database that is used to verify peer certificates.
+  /** Sets the certificate database that is used to verify peer certificates.
     * This is set to the default database by default. See
     * g_tls_backend_get_default_database(). If set to %NULL, then peer
     * certificate validation will always set the %G_TLS_CERTIFICATE_UNKNOWN_CA
@@ -332,6 +349,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     *
     * There are nonintuitive security implications when using a non-default
     * database. See #GTlsConnection:database for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDatabase(
       database: Option[TlsDatabase /* Some(Ptr[GTlsDatabase]) */ ]
@@ -342,14 +362,15 @@ class TlsConnection(raw: Ptr[GTlsConnection])
       .getOrElse(null.asInstanceOf[Ptr[GTlsDatabase]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Set the object that will be used to interact with the user. It will be
+  /** Set the object that will be used to interact with the user. It will be
     * used for things like prompting the user for passwords.
     *
     * The @interaction argument will normally be a derived subclass of
     * #GTlsInteraction. %NULL can also be provided if no user interaction should
     * occur for this connection.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setInteraction(
       interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ]
@@ -360,12 +381,13 @@ class TlsConnection(raw: Ptr[GTlsConnection])
       .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Since GLib 2.64, changing the rehandshake mode is no longer supported and
+  /** Since GLib 2.64, changing the rehandshake mode is no longer supported and
     * will have no effect. With TLS 1.3, rehandshaking has been removed from the
     * TLS protocol, replaced by separate post-handshake authentication and rekey
     * operations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRehandshakeMode(
       mode: TlsRehandshakeMode /* Some(GTlsRehandshakeMode) */
@@ -374,9 +396,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     mode.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether or not @conn expects a proper TLS close notification before
+  /** Sets whether or not @conn expects a proper TLS close notification before
     * the connection is closed. If this is %TRUE (the default), then @conn will
     * expect to receive a TLS close notification from its peer before the
     * connection is closed, and will return a %G_TLS_ERROR_EOF error if the
@@ -401,6 +421,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * #GTlsConnection:base-io-stream rather than closing @conn itself, but note
     * that this may only be done when no other operations are pending on @conn
     * or the base I/O stream.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRequireCloseNotify(
       require_close_notify: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -409,14 +432,15 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     gboolean(gint((if require_close_notify == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether @conn uses the system certificate database to verify peer
+  /** Sets whether @conn uses the system certificate database to verify peer
     * certificates. This is %TRUE by default. If set to %FALSE, then peer
     * certificate validation will always set the %G_TLS_CERTIFICATE_UNKNOWN_CA
     * error (meaning #GTlsConnection::accept-certificate will always be emitted
     * on client-side connections, unless that bit is not set in
     * #GTlsClientConnection:validation-flags).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseSystemCertdb(
       use_system_certdb: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */

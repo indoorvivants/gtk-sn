@@ -2,134 +2,156 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GSpawnError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Error codes returned by spawning processes.
   *
-  * Error codes returned by spawning processes.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SpawnError(val raw: GSpawnError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Fork failed due to lack of memory.
     *
-    * Fork failed due to lack of memory.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FORK extends SpawnError(GSpawnError.G_SPAWN_ERROR_FORK)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Read or select on pipes failed.
     *
-    * Read or select on pipes failed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case READ extends SpawnError(GSpawnError.G_SPAWN_ERROR_READ)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Changing to working directory failed.
     *
-    * Changing to working directory failed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case CHDIR extends SpawnError(GSpawnError.G_SPAWN_ERROR_CHDIR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `EACCES`
     *
-    * execv() returned `EACCES`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ACCES extends SpawnError(GSpawnError.G_SPAWN_ERROR_ACCES)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `EPERM`
     *
-    * execv() returned `EPERM`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PERM extends SpawnError(GSpawnError.G_SPAWN_ERROR_PERM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `E2BIG`
     *
-    * execv() returned `E2BIG`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TOO_BIG extends SpawnError(GSpawnError.G_SPAWN_ERROR_TOO_BIG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** deprecated alias for %G_SPAWN_ERROR_TOO_BIG (deprecated since GLib 2.32)
     *
-    * deprecated alias for %G_SPAWN_ERROR_TOO_BIG (deprecated since GLib 2.32)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case `2BIG` extends SpawnError(GSpawnError.G_SPAWN_ERROR_2BIG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `ENOEXEC`
     *
-    * execv() returned `ENOEXEC`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOEXEC extends SpawnError(GSpawnError.G_SPAWN_ERROR_NOEXEC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `ENAMETOOLONG`
     *
-    * execv() returned `ENAMETOOLONG`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NAMETOOLONG extends SpawnError(GSpawnError.G_SPAWN_ERROR_NAMETOOLONG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `ENOENT`
     *
-    * execv() returned `ENOENT`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOENT extends SpawnError(GSpawnError.G_SPAWN_ERROR_NOENT)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `ENOMEM`
     *
-    * execv() returned `ENOMEM`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOMEM extends SpawnError(GSpawnError.G_SPAWN_ERROR_NOMEM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `ENOTDIR`
     *
-    * execv() returned `ENOTDIR`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOTDIR extends SpawnError(GSpawnError.G_SPAWN_ERROR_NOTDIR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `ELOOP`
     *
-    * execv() returned `ELOOP`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LOOP extends SpawnError(GSpawnError.G_SPAWN_ERROR_LOOP)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `ETXTBUSY`
     *
-    * execv() returned `ETXTBUSY`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case TXTBUSY extends SpawnError(GSpawnError.G_SPAWN_ERROR_TXTBUSY)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `EIO`
     *
-    * execv() returned `EIO`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case IO extends SpawnError(GSpawnError.G_SPAWN_ERROR_IO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `ENFILE`
     *
-    * execv() returned `ENFILE`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NFILE extends SpawnError(GSpawnError.G_SPAWN_ERROR_NFILE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `EMFILE`
     *
-    * execv() returned `EMFILE`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MFILE extends SpawnError(GSpawnError.G_SPAWN_ERROR_MFILE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `EINVAL`
     *
-    * execv() returned `EINVAL`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVAL extends SpawnError(GSpawnError.G_SPAWN_ERROR_INVAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `EISDIR`
     *
-    * execv() returned `EISDIR`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ISDIR extends SpawnError(GSpawnError.G_SPAWN_ERROR_ISDIR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** execv() returned `ELIBBAD`
     *
-    * execv() returned `ELIBBAD`
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case LIBBAD extends SpawnError(GSpawnError.G_SPAWN_ERROR_LIBBAD)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Some other fatal failure, `error->message` should explain.
     *
-    * Some other fatal failure, `error->message` should explain.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FAILED extends SpawnError(GSpawnError.G_SPAWN_ERROR_FAILED)
 end SpawnError

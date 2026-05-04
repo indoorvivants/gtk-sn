@@ -2,63 +2,73 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GIOChannelError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Error codes returned by #GIOChannel operations.
   *
-  * Error codes returned by #GIOChannel operations.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum IOChannelError(val raw: GIOChannelError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File too large.
     *
-    * File too large.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FBIG extends IOChannelError(GIOChannelError.G_IO_CHANNEL_ERROR_FBIG)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Invalid argument.
     *
-    * Invalid argument.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVAL extends IOChannelError(GIOChannelError.G_IO_CHANNEL_ERROR_INVAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** IO error.
     *
-    * IO error.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case IO extends IOChannelError(GIOChannelError.G_IO_CHANNEL_ERROR_IO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** File is a directory.
     *
-    * File is a directory.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ISDIR extends IOChannelError(GIOChannelError.G_IO_CHANNEL_ERROR_ISDIR)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No space left on device.
     *
-    * No space left on device.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NOSPC extends IOChannelError(GIOChannelError.G_IO_CHANNEL_ERROR_NOSPC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** No such device or address.
     *
-    * No such device or address.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NXIO extends IOChannelError(GIOChannelError.G_IO_CHANNEL_ERROR_NXIO)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Value too large for defined datatype.
     *
-    * Value too large for defined datatype.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case OVERFLOW
       extends IOChannelError(GIOChannelError.G_IO_CHANNEL_ERROR_OVERFLOW)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Broken pipe.
     *
-    * Broken pipe.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case PIPE extends IOChannelError(GIOChannelError.G_IO_CHANNEL_ERROR_PIPE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Some other error.
     *
-    * Some other error.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case FAILED extends IOChannelError(GIOChannelError.G_IO_CHANNEL_ERROR_FAILED)
 end IOChannelError

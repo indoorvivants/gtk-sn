@@ -9,10 +9,11 @@ import sn.gnome.gio.fluent.{InetAddress, SocketAddress, SocketConnectable}
 import sn.gnome.gio.internal.GInetSocketAddress
 import sn.gnome.glib.internal.{guint, guint16, guint32}
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * An IPv4 or IPv6 socket address; that is, the combination of a #GInetAddress
+/** An IPv4 or IPv6 socket address; that is, the combination of a #GInetAddress
   * and a port number.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class InetSocketAddress(raw: Ptr[GInetSocketAddress])
     extends SocketAddress(raw.asInstanceOf),
@@ -20,9 +21,10 @@ class InetSocketAddress(raw: Ptr[GInetSocketAddress])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @address's #GInetAddress.
     *
-    * Gets @address's #GInetAddress.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getAddress(): InetAddress /* None */ = new InetAddress(
     g_inet_socket_address_get_address(
@@ -30,27 +32,30 @@ class InetSocketAddress(raw: Ptr[GInetSocketAddress])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `sin6_flowinfo` field from @address, which must be an IPv6
+  /** Gets the `sin6_flowinfo` field from @address, which must be an IPv6
     * address.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFlowinfo(): UInt /* None */ = g_inet_socket_address_get_flowinfo(
     this.raw.asInstanceOf[Ptr[GInetSocketAddress]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets @address's port.
     *
-    * Gets @address's port.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getPort(): UShort /* None */ = g_inet_socket_address_get_port(
     this.raw.asInstanceOf[Ptr[GInetSocketAddress]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `sin6_scope_id` field from @address, which must be an IPv6
+  /** Gets the `sin6_scope_id` field from @address, which must be an IPv6
     * address.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getScopeId(): UInt /* None */ = g_inet_socket_address_get_scope_id(
     this.raw.asInstanceOf[Ptr[GInetSocketAddress]]
@@ -59,9 +64,10 @@ class InetSocketAddress(raw: Ptr[GInetSocketAddress])
 end InetSocketAddress
 
 object InetSocketAddress:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new #GInetSocketAddress for @address and @port.
     *
-    * Creates a new #GInetSocketAddress for @address and @port.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       address: InetAddress /* Some(Ptr[GInetAddress]) */,
@@ -73,12 +79,13 @@ object InetSocketAddress:
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GInetSocketAddress for @address and @port.
+  /** Creates a new #GInetSocketAddress for @address and @port.
     *
     * If @address is an IPv6 address, it can also contain a scope ID (separated
     * from the address by a `%`).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromString(
       address: String | CString /* Some(CString) */,

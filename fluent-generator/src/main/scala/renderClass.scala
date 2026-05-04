@@ -2,13 +2,7 @@ import com.indoorvivants.gnome.gir_schema.*
 import rendition.*
 
 import scala.util.boundary, boundary.*
-
-def renderMethodStub(f: Method, msg: FluentErr)(using RenderingContext) =
-  scribe.warn(s"Failed to render function ${f.name}: ${msg.message}")
-  renderComment(f.doc)
-  line(s"@annotation.compileTimeOnly(\"${msg.message}\")")
-  line(s"def ${camelify(f.name)}__ = ???")
-  emptyLine()
+import FluentErrReason.*
 
 def renderClass(
     ns: AugmentedNamespace,
@@ -28,7 +22,7 @@ def renderClass(
             "GtkSnapshot"
           )
         )
-        .getOrElse(break(FluentErr.ClassHasNoCType(cls.name)))
+        .getOrElse(raise(ClassHasNoCType(cls.name)))
 
     coll.add(
       Effect.RequiresImport(
@@ -61,12 +55,13 @@ def renderClass(
       emptyLine()
       cls.methods.foreach: meth =>
         transact[FluentErr]:
-          filterDefinitions(
-            namespace = Some(ns),
-            cls = Some(cls),
-            method = Some(meth)
-          )
-          handleExceptions(coll.observe(renderClassMethod(cls, meth)))
+          inContext(meth.name):
+            filterDefinitions(
+              namespace = Some(ns),
+              cls = Some(cls),
+              method = Some(meth)
+            )
+            coll.observe(renderClassMethod(cls, meth))
         .foreach(renderMethodStub(meth, _))
 
       coll

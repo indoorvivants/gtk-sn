@@ -9,9 +9,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{SelectionMode, TreeView}
 import sn.gnome.gtk4.internal.GtkTreeSelection
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The selection object for GtkTreeView
+/** The selection object for GtkTreeView
   *
   * The `GtkTreeSelection` object is a helper object to manage the selection for
   * a `GtkTreeView` widget. The `GtkTreeSelection` object is automatically
@@ -35,54 +33,59 @@ import sn.gnome.gtk4.internal.GtkTreeSelection
   * Additionally, it may on occasion emit a `GtkTreeSelection`::changed signal
   * when nothing has happened (mostly as a result of programmers calling
   * select_row on an already selected row).
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TreeSelection(raw: Ptr[GtkTreeSelection])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the number of rows that have been selected in @tree.
     *
-    * Returns the number of rows that have been selected in @tree.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def countSelectedRows(): Int /* None */ =
     gtk_tree_selection_count_selected_rows(
       this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the selection mode for @selection. See gtk_tree_selection_set_mode().
     *
-    * Gets the selection mode for @selection. See gtk_tree_selection_set_mode().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMode(): SelectionMode /* None */ = SelectionMode.fromRaw(
     gtk_tree_selection_get_mode(this.raw.asInstanceOf[Ptr[GtkTreeSelection]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the current selection function.
     *
-    * Returns the current selection function.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionFunc), @type -> DataRecord(GtkTreeSelectionFunc)))"
+    "[get_select_function/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionFunc), @type -> DataRecord(GtkTreeSelectionFunc)))"
   )
-  def getSelectFunction__ = ???
+  private def getSelectFunction__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @iter to the currently selected node if @selection is set to
+  /** Sets @iter to the currently selected node if @selection is set to
     * %GTK_SELECTION_SINGLE or %GTK_SELECTION_BROWSE. @iter may be NULL if you
     * just want to test if @selection has any selected nodes. @model is filled
     * with the current model as a convenience. This function will not work if
     * you use @selection is %GTK_SELECTION_MULTIPLE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_selected contains an OUT parameter, which is not supported yet"
+    "[get_selected]: Method get_selected contains an OUT parameter, which is not supported yet"
   )
-  def getSelected__ = ???
+  private def getSelected__ = ???
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Creates a list of path of all selected rows. Additionally, if you are
+  /**  Creates a list of path of all selected rows. Additionally, if you are
     *  planning on modifying the model after calling this function, you may
     *  want to convert the returned list into a list of `GtkTreeRowReference`s.
     *  To do this, you can use gtk_tree_row_reference_new().
@@ -91,15 +94,18 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     *  |[<!-- language="C" -->
     *  g_list_free_full (list, (GDestroyNotify) gtk_tree_path_free);
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_selected_rows contains an OUT parameter, which is not supported yet"
+    "[get_selected_rows]: Method get_selected_rows contains an OUT parameter, which is not supported yet"
   )
-  def getSelectedRows__ = ???
+  private def getSelectedRows__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the tree view associated with @selection.
     *
-    * Returns the tree view associated with @selection.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTreeView(): TreeView /* None */ = new TreeView(
     gtk_tree_selection_get_tree_view(
@@ -107,88 +113,97 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the user data for the selection function.
     *
-    * Returns the user data for the selection function.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUserData(): Ptr[Byte] /* None */ = gtk_tree_selection_get_user_data(
     this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns %TRUE if the row at @iter is currently selected.
     *
-    * Returns %TRUE if the row at @iter is currently selected.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[iter_is_selected/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
-  def iterIsSelected__ = ???
+  private def iterIsSelected__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns %TRUE if the row pointed to by @path is currently selected. If @path
+  /** Returns %TRUE if the row pointed to by @path is currently selected. If @path
     * does not point to a valid location, %FALSE is returned
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[path_is_selected/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def pathIsSelected__ = ???
+  private def pathIsSelected__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Selects all the nodes. @selection must be set to %GTK_SELECTION_MULTIPLE
+  /** Selects all the nodes. @selection must be set to %GTK_SELECTION_MULTIPLE
     * mode.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def selectAll(): Unit /* None */ = gtk_tree_selection_select_all(
     this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Selects the specified iterator.
     *
-    * Selects the specified iterator.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[select_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
-  def selectIter__ = ???
+  private def selectIter__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Select the row at @path.
     *
-    * Select the row at @path.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[select_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def selectPath__ = ???
+  private def selectPath__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Selects a range of nodes, determined by @start_path and @end_path
+  /** Selects a range of nodes, determined by @start_path and @end_path
     * inclusive.
     * @selection
     *   must be set to %GTK_SELECTION_MULTIPLE mode.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[select_range/<method parameters>/start_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def selectRange__ = ???
+  private def selectRange__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Calls a function for each selected node. Note that you cannot modify the
+  /** Calls a function for each selected node. Note that you cannot modify the
     * tree or selection from within this function. As a result,
     * gtk_tree_selection_get_selected_rows() might be more useful.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionForeachFunc), @type -> DataRecord(GtkTreeSelectionForeachFunc)))"
+    "[selected_foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionForeachFunc), @type -> DataRecord(GtkTreeSelectionForeachFunc)))"
   )
-  def selectedForeach__ = ???
+  private def selectedForeach__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the selection mode of the @selection. If the previous type was
+  /** Sets the selection mode of the @selection. If the previous type was
     * %GTK_SELECTION_MULTIPLE, then the anchor is kept selected, if it was
     * previously selected.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMode(
       `type`: SelectionMode /* Some(GtkSelectionMode) */
@@ -197,54 +212,59 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     `type`.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the selection function.
+  /** Sets the selection function.
     *
     * If set, this function is called before any node is selected or unselected,
     * giving some control over which nodes are selected. The select function
     * should return %TRUE if the state of the node may be toggled, and %FALSE if
     * the state of the node should be left unchanged.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionFunc), @type -> DataRecord(GtkTreeSelectionFunc)))"
+    "[set_select_function/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionFunc), @type -> DataRecord(GtkTreeSelectionFunc)))"
   )
-  def setSelectFunction__ = ???
+  private def setSelectFunction__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unselects all the nodes.
     *
-    * Unselects all the nodes.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unselectAll(): Unit /* None */ = gtk_tree_selection_unselect_all(
     this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unselects the specified iterator.
     *
-    * Unselects the specified iterator.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[unselect_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
-  def unselectIter__ = ???
+  private def unselectIter__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unselects the row at @path.
     *
-    * Unselects the row at @path.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[unselect_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def unselectPath__ = ???
+  private def unselectPath__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Unselects a range of nodes, determined by @start_path and @end_path
+  /** Unselects a range of nodes, determined by @start_path and @end_path
     * inclusive.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[unselect_range/<method parameters>/start_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def unselectRange__ = ???
+  private def unselectRange__ = ???
 
 end TreeSelection

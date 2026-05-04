@@ -13,9 +13,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkConstraintLayout
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A layout manager using constraints to describe relations between widgets.
+/** A layout manager using constraints to describe relations between widgets.
   *
   * `GtkConstraintLayout` is a layout manager that uses relations between widget
   * attributes, expressed via [class@Gtk.Constraint] instances, to measure and
@@ -178,6 +176,9 @@ import sn.gnome.gtk4.internal.GtkConstraintLayout
   *   // divided by 2 plus 12
   *   [button1(button2 / 2 + 12)]
   * ```
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     extends LayoutManager(raw.asInstanceOf),
@@ -185,9 +186,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a constraint to the layout manager.
+  /** Adds a constraint to the layout manager.
     *
     * The [property@Gtk.Constraint:source] and [property@Gtk.Constraint:target]
     * properties of `constraint` can be:
@@ -200,6 +199,9 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     *
     * The @layout acquires the ownership of @constraint after calling this
     * function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addConstraint(
       constraint: Constraint /* Some(Ptr[GtkConstraint]) */
@@ -208,22 +210,21 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     constraint.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a list of constraints from a VFL description.
+  /** Creates a list of constraints from a VFL description.
     *
     * This function is a convenience wrapper around
     * [method@Gtk.ConstraintLayout.add_constraints_from_descriptionv], using
     * variadic arguments to populate the view/target map.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char* const*)))"
+    "[add_constraints_from_description/<method parameters>/lines]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char* const*)))"
   )
-  def addConstraintsFromDescription__ = ???
+  private def addConstraintsFromDescription__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a list of constraints from a VFL description.
+  /** Creates a list of constraints from a VFL description.
     *
     * The Visual Format Language, VFL, is based on Apple's AutoLayout
     * [VFL](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html).
@@ -301,21 +302,25 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     *   // Named attributes
     *   [button1(==button2.height)]
     * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char* const*)))"
+    "[add_constraints_from_descriptionv/<method parameters>/lines]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char* const*)))"
   )
-  def addConstraintsFromDescriptionv__ = ???
+  private def addConstraintsFromDescriptionv__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Adds a guide to `layout`.
+  /** Adds a guide to `layout`.
     *
     * A guide can be used as the source or target of constraints, like a widget,
     * but it is not visible.
     *
     * The `layout` acquires the ownership of `guide` after calling this
     * function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def addGuide(
       guide: ConstraintGuide /* Some(Ptr[GtkConstraintGuide]) */
@@ -324,9 +329,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     guide.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a `GListModel` to track the constraints that are part of the
+  /** Returns a `GListModel` to track the constraints that are part of the
     * layout.
     *
     * Calling this function will enable extra internal bookkeeping to track
@@ -335,6 +338,9 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     *
     * Applications should try hard to avoid calling this function because of the
     * slowdowns.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def observeConstraints(): ListModel /* None */ = new ListModel.Abstract(
     gtk_constraint_layout_observe_constraints(
@@ -342,9 +348,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a `GListModel` to track the guides that are part of the layout.
+  /** Returns a `GListModel` to track the guides that are part of the layout.
     *
     * Calling this function will enable extra internal bookkeeping to track
     * guides and emit signals on the returned listmodel. It may slow down
@@ -352,6 +356,9 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     *
     * Applications should try hard to avoid calling this function because of the
     * slowdowns.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def observeGuides(): ListModel /* None */ = new ListModel.Abstract(
     gtk_constraint_layout_observe_guides(
@@ -359,19 +366,21 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes all constraints from the layout manager.
     *
-    * Removes all constraints from the layout manager.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeAllConstraints(): Unit /* None */ =
     gtk_constraint_layout_remove_all_constraints(
       this.raw.asInstanceOf[Ptr[GtkConstraintLayout]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes `constraint` from the layout manager, so that it no longer
+  /** Removes `constraint` from the layout manager, so that it no longer
     * influences the layout.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeConstraint(
       constraint: Constraint /* Some(Ptr[GtkConstraint]) */
@@ -380,10 +389,11 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     constraint.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes `guide` from the layout manager, so that it no longer influences
+  /** Removes `guide` from the layout manager, so that it no longer influences
     * the layout.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeGuide(
       guide: ConstraintGuide /* Some(Ptr[GtkConstraintGuide]) */
@@ -395,9 +405,10 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
 end ConstraintLayout
 
 object ConstraintLayout:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkConstraintLayout` layout manager.
     *
-    * Creates a new `GtkConstraintLayout` layout manager.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): ConstraintLayout = new ConstraintLayout(
     gtk_constraint_layout_new().asInstanceOf

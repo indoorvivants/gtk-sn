@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkStackSwitcher
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkStackSwitcher` shows a row of buttons to switch between `GtkStack`
+/** The `GtkStackSwitcher` shows a row of buttons to switch between `GtkStack`
   * pages.
   *
   * ![An example GtkStackSwitcher](stackswitcher.png)
@@ -47,6 +45,9 @@ import sn.gnome.gtk4.internal.GtkStackSwitcher
   *
   * Since GTK 4.4, `GtkStackSwitcher` implements `GtkOrientable` allowing the
   * stack switcher to be made vertical with `gtk_orientable_set_orientation()`.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class StackSwitcher(raw: Ptr[GtkStackSwitcher])
     extends Widget(raw.asInstanceOf),
@@ -57,9 +58,10 @@ class StackSwitcher(raw: Ptr[GtkStackSwitcher])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Retrieves the stack.
     *
-    * Retrieves the stack.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStack(): Stack /* None */ = new Stack(
     gtk_stack_switcher_get_stack(
@@ -67,9 +69,10 @@ class StackSwitcher(raw: Ptr[GtkStackSwitcher])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the stack to control.
     *
-    * Sets the stack to control.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setStack(
       stack: Option[Stack /* Some(Ptr[GtkStack]) */ ]
@@ -83,9 +86,10 @@ class StackSwitcher(raw: Ptr[GtkStackSwitcher])
 end StackSwitcher
 
 object StackSwitcher:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Create a new `GtkStackSwitcher`.
     *
-    * Create a new `GtkStackSwitcher`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): StackSwitcher = new StackSwitcher(
     gtk_stack_switcher_new().asInstanceOf

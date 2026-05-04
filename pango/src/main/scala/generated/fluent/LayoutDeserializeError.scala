@@ -2,32 +2,36 @@ package sn.gnome.pango.fluent
 
 import _root_.sn.gnome.pango.internal.PangoLayoutDeserializeError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** Errors that can be returned by [func@Pango.Layout.deserialize].
   *
-  * Errors that can be returned by [func@Pango.Layout.deserialize].
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum LayoutDeserializeError(val raw: PangoLayoutDeserializeError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Unspecified error
     *
-    * Unspecified error
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID
       extends LayoutDeserializeError(
         PangoLayoutDeserializeError.PANGO_LAYOUT_DESERIALIZE_INVALID
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A JSon value could not be interpreted
     *
-    * A JSon value could not be interpreted
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID_VALUE
       extends LayoutDeserializeError(
         PangoLayoutDeserializeError.PANGO_LAYOUT_DESERIALIZE_INVALID_VALUE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** A required JSon member was not found
     *
-    * A required JSon member was not found
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case MISSING_VALUE
       extends LayoutDeserializeError(

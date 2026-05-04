@@ -8,9 +8,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.{TreeDragSource, TreeModel, TreeSortable}
 import sn.gnome.gtk4.internal.GtkTreeModelSort
 
-/**  COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  *  A GtkTreeModel which makes an underlying tree model sortable
+/**  A GtkTreeModel which makes an underlying tree model sortable
   *
   *  The `GtkTreeModelSort` is a model which implements the `GtkTreeSortable`
   *  interface.  It does not hold any data itself, but rather is created with
@@ -106,6 +104,8 @@ import sn.gnome.gtk4.internal.GtkTreeModelSort
   *    g_free (modified_data);
   *  }
   *  ]|
+  *
+  *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
 class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     extends Object(raw.asInstanceOf),
@@ -115,68 +115,74 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function should almost never be called. It clears the @tree_model_sort
+  /** This function should almost never be called. It clears the @tree_model_sort
     * of any cached iterators that haven’t been reffed with
     * gtk_tree_model_ref_node(). This might be useful if the child model being
     * sorted is static (and doesn’t change often) and there has been a lot of
     * unreffed access to nodes. As a side effect of this function, all unreffed
     * iters will be invalid.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def clearCache(): Unit /* None */ = gtk_tree_model_sort_clear_cache(
     this.raw.asInstanceOf[Ptr[GtkTreeModelSort]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @sort_iter to point to the row in @tree_model_sort that corresponds
+  /** Sets @sort_iter to point to the row in @tree_model_sort that corresponds
     * to the row pointed at by @child_iter. If @sort_iter was not set, %FALSE is
     * returned. Note: a boolean is only returned since 2.14.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method convert_child_iter_to_iter contains an OUT parameter, which is not supported yet"
+    "[convert_child_iter_to_iter]: Method convert_child_iter_to_iter contains an OUT parameter, which is not supported yet"
   )
-  def convertChildIterToIter__ = ???
+  private def convertChildIterToIter__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts @child_path to a path relative to @tree_model_sort. That is,
+  /** Converts @child_path to a path relative to @tree_model_sort. That is,
     * @child_path
     *   points to a path in the child model. The returned path will point to the
     *   same row in the sorted model. If @child_path isn’t a valid path on the
     *   child model, then %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[convert_child_path_to_path/<method parameters>/child_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def convertChildPathToPath__ = ???
+  private def convertChildPathToPath__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets @child_iter to point to the row pointed to by @sorted_iter.
     *
-    * Sets @child_iter to point to the row pointed to by @sorted_iter.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method convert_iter_to_child_iter contains an OUT parameter, which is not supported yet"
+    "[convert_iter_to_child_iter]: Method convert_iter_to_child_iter contains an OUT parameter, which is not supported yet"
   )
-  def convertIterToChildIter__ = ???
+  private def convertIterToChildIter__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts @sorted_path to a path on the child model of @tree_model_sort.
+  /** Converts @sorted_path to a path on the child model of @tree_model_sort.
     * That is, @sorted_path points to a location in @tree_model_sort. The
     * returned path will point to the same location in the model not being
     * sorted. If @sorted_path does not point to a location in the child model,
     * %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[convert_path_to_child_path/<method parameters>/sorted_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def convertPathToChildPath__ = ???
+  private def convertPathToChildPath__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the model the `GtkTreeModelSort` is sorting.
     *
-    * Returns the model the `GtkTreeModelSort` is sorting.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
     gtk_tree_model_sort_get_model(
@@ -184,24 +190,26 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * > This function is slow. Only use it for debugging and/or testing >
+  /** > This function is slow. Only use it for debugging and/or testing >
     * purposes.
     *
     * Checks if the given iter is a valid iter for this `GtkTreeModelSort`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[iter_is_valid/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
-  def iterIsValid__ = ???
+  private def iterIsValid__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This resets the default sort function to be in the “unsorted” state. That
+  /** This resets the default sort function to be in the “unsorted” state. That
     * is, it is in the same order as the child model. It will re-sort the model
     * to be in the same order as the child model only if the `GtkTreeModelSort`
     * is in “unsorted” state.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def resetDefaultSortFunc(): Unit /* None */ =
     gtk_tree_model_sort_reset_default_sort_func(
@@ -211,9 +219,10 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
 end TreeModelSort
 
 object TreeModelSort:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkTreeModelSort`, with @child_model as the child model.
     *
-    * Creates a new `GtkTreeModelSort`, with @child_model as the child model.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withModel(
       child_model: TreeModel /* Some(Ptr[GtkTreeModel]) */

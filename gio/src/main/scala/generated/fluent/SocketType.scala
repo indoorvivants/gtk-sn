@@ -2,34 +2,39 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GSocketType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags used when creating a #GSocket. Some protocols may not implement all
+/** Flags used when creating a #GSocket. Some protocols may not implement all
   * the socket types.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum SocketType(val raw: GSocketType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Type unknown or wrong
     *
-    * Type unknown or wrong
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVALID extends SocketType(GSocketType.G_SOCKET_TYPE_INVALID)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Reliable connection-based byte streams (e.g. TCP).
     *
-    * Reliable connection-based byte streams (e.g. TCP).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case STREAM extends SocketType(GSocketType.G_SOCKET_TYPE_STREAM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Connectionless, unreliable datagram passing. (e.g. UDP)
     *
-    * Connectionless, unreliable datagram passing. (e.g. UDP)
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case DATAGRAM extends SocketType(GSocketType.G_SOCKET_TYPE_DATAGRAM)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Reliable connection-based passing of datagrams of fixed maximum length
+  /** Reliable connection-based passing of datagrams of fixed maximum length
     * (e.g. SCTP).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case SEQPACKET extends SocketType(GSocketType.G_SOCKET_TYPE_SEQPACKET)
 end SocketType

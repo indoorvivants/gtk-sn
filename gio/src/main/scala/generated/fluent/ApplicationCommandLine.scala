@@ -9,9 +9,7 @@ import sn.gnome.gio.internal.GApplicationCommandLine
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
-/**  COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  *  #GApplicationCommandLine represents a command-line invocation of
+/**  #GApplicationCommandLine represents a command-line invocation of
   *  an application.  It is created by #GApplication and emitted
   *  in the #GApplication::command-line signal and virtual function.
   *
@@ -171,20 +169,23 @@ import sn.gnome.gobject.fluent.Object
   *
   *  The complete example can be found here:
   *  [gapplication-example-cmdline3.c](https://gitlab.gnome.org/GNOME/glib/-/blob/HEAD/gio/tests/gapplication-example-cmdline3.c)
+  *
+  *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
 class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GFile corresponding to a filename that was given as part of the
+  /** Creates a #GFile corresponding to a filename that was given as part of the
     * invocation of @cmdline.
     *
     * This differs from g_file_new_for_commandline_arg() in that it resolves
     * relative pathnames using the current working directory of the invoking
     * process rather than the local process.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def createFileForArg(
       arg: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -195,9 +196,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the list of arguments that was passed on the command line.
+  /** Gets the list of arguments that was passed on the command line.
     *
     * The strings in the array may contain non-UTF-8 data on UNIX (such as
     * filenames or arguments given in the system locale) but are always in UTF-8
@@ -208,15 +207,16 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     *
     * The return value is %NULL-terminated and should be freed using
     * g_strfreev().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_arguments contains an OUT parameter, which is not supported yet"
+    "[get_arguments]: Method get_arguments contains an OUT parameter, which is not supported yet"
   )
-  def getArguments__ = ???
+  private def getArguments__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the working directory of the command line invocation. The string may
+  /** Gets the working directory of the command line invocation. The string may
     * contain non-utf8 data.
     *
     * It is possible that the remote application did not send a working
@@ -224,6 +224,9 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     *
     * The return value should not be modified or freed and is valid for as long
     * as @cmdline exists.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getCwd()(using Zone): String /* None */ = fromCString(
     g_application_command_line_get_cwd(
@@ -231,9 +234,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the contents of the 'environ' variable of the command line
+  /** Gets the contents of the 'environ' variable of the command line
     * invocation, as would be returned by g_get_environ(), ie as a
     * %NULL-terminated list of strings in the form 'NAME=VALUE'. The strings may
     * contain non-utf8 data.
@@ -248,34 +249,37 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     *
     * See g_application_command_line_getenv() if you are only interested in the
     * value of a single environment variable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[get_environ/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def getEnviron__ = ???
+  private def getEnviron__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the exit status of @cmdline. See
+  /** Gets the exit status of @cmdline. See
     * g_application_command_line_set_exit_status() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExitStatus(): Int /* None */ =
     g_application_command_line_get_exit_status(
       this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Determines if @cmdline represents a remote invocation.
     *
-    * Determines if @cmdline represents a remote invocation.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getIsRemote(): Boolean /* None */ =
     g_application_command_line_get_is_remote(
       this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the options that were passed to g_application_command_line().
+  /** Gets the options that were passed to g_application_command_line().
     *
     * If you did not override local_command_line() then these are the same
     * options that were parsed according to the #GOptionEntrys added to the
@@ -287,15 +291,16 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     *
     * The data has been passed via an untrusted external process, so the types
     * of all values must be checked before being used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantDict), @type -> DataRecord(GVariantDict*)))"
+    "[get_options_dict/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantDict), @type -> DataRecord(GVariantDict*)))"
   )
-  def getOptionsDict__ = ???
+  private def getOptionsDict__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the platform data associated with the invocation of @cmdline.
+  /** Gets the platform data associated with the invocation of @cmdline.
     *
     * This is a #GVariant dictionary containing information about the context in
     * which the invocation occurred. It typically contains information like the
@@ -305,15 +310,16 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * values must be validated before being used.
     *
     * For local invocation, it will be %NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[get_platform_data/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  def getPlatformData__ = ???
+  private def getPlatformData__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the stdin of the invoking process.
+  /** Gets the stdin of the invoking process.
     *
     * The #GInputStream can be used to read data passed to the standard input of
     * the invoking process. This doesn't work on all platforms. Presently, it is
@@ -322,6 +328,9 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * future, support may be expanded to other platforms.
     *
     * You must only call this function once per commandline invocation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getStdin(): InputStream /* None */ = new InputStream(
     g_application_command_line_get_stdin(
@@ -329,9 +338,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the value of a particular environment variable of the command line
+  /** Gets the value of a particular environment variable of the command line
     * invocation, as would be returned by g_getenv(). The strings may contain
     * non-utf8 data.
     *
@@ -342,6 +349,9 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     *
     * The return value should not be modified or freed and is valid for as long
     * as @cmdline exists.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getenv(
       name: String |
@@ -353,14 +363,15 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Formats a message and prints it using the stdout print handler in the
+  /** Formats a message and prints it using the stdout print handler in the
     * invoking process.
     *
     * If @cmdline is a local invocation then this is exactly equivalent to
     * g_print(). If @cmdline is remote then this is equivalent to calling
     * g_print() in the invoking process.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def print(
       format: String |
@@ -372,14 +383,15 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Formats a message and prints it using the stderr print handler in the
+  /** Formats a message and prints it using the stderr print handler in the
     * invoking process.
     *
     * If @cmdline is a local invocation then this is exactly equivalent to
     * g_printerr(). If @cmdline is remote then this is equivalent to calling
     * g_printerr() in the invoking process.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def printerr(
       format: String |
@@ -391,9 +403,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the exit status that will be used when the invoking process exits.
+  /** Sets the exit status that will be used when the invoking process exits.
     *
     * The return value of the #GApplication::command-line signal is passed to
     * this function when the handler returns. This is the usual way of setting
@@ -413,6 +423,9 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * 'successful' in a certain sense, and the exit status is always zero. If
     * the application use count is zero, though, the exit status of the local
     * #GApplicationCommandLine is used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setExitStatus(exit_status: Int /* Some(CInt) */ ): Unit /* None */ =
     g_application_command_line_set_exit_status(

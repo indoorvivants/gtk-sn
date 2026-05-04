@@ -14,12 +14,13 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkVolumeButton
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkVolumeButton` is a `GtkScaleButton` subclass tailored for volume
+/** `GtkVolumeButton` is a `GtkScaleButton` subclass tailored for volume
   * control.
   *
   * ![An example GtkVolumeButton](volumebutton.png)
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class VolumeButton(raw: Ptr[GtkVolumeButton])
     extends ScaleButton(raw.asInstanceOf),
@@ -34,13 +35,14 @@ class VolumeButton(raw: Ptr[GtkVolumeButton])
 end VolumeButton
 
 object VolumeButton:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `GtkVolumeButton`.
+  /** Creates a `GtkVolumeButton`.
     *
     * The button has a range between 0.0 and 1.0, with a stepping of 0.02.
     * Volume values can be obtained and modified using the functions from
     * [class@Gtk.ScaleButton].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): VolumeButton = new VolumeButton(
     gtk_volume_button_new().asInstanceOf

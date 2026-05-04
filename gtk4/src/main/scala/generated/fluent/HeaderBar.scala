@@ -8,9 +8,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkHeaderBar
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkHeaderBar` is a widget for creating custom title bars for windows.
+/** `GtkHeaderBar` is a widget for creating custom title bars for windows.
   *
   * ![An example GtkHeaderBar](headerbar.png)
   *
@@ -81,6 +79,9 @@ import sn.gnome.gtk4.internal.GtkHeaderBar
   * # Accessibility
   *
   * `GtkHeaderBar` uses the %GTK_ACCESSIBLE_ROLE_GROUP role.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class HeaderBar(raw: Ptr[GtkHeaderBar])
     extends Widget(raw.asInstanceOf),
@@ -90,9 +91,10 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the decoration layout of the `GtkHeaderBar`.
     *
-    * Gets the decoration layout of the `GtkHeaderBar`.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getDecorationLayout()(using Zone): String /* None */ = fromCString(
     gtk_header_bar_get_decoration_layout(
@@ -100,20 +102,22 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether this header bar shows the standard window title buttons.
     *
-    * Returns whether this header bar shows the standard window title buttons.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowTitleButtons(): Boolean /* None */ =
     gtk_header_bar_get_show_title_buttons(
       this.raw.asInstanceOf[Ptr[GtkHeaderBar]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves the title widget of the header.
+  /** Retrieves the title widget of the header.
     *
     * See [method@Gtk.HeaderBar.set_title_widget].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTitleWidget(): Widget /* None */ = new Widget(
     gtk_header_bar_get_title_widget(
@@ -121,9 +125,10 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds @child to @bar, packed with reference to the end of the @bar.
     *
-    * Adds @child to @bar, packed with reference to the end of the @bar.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def packEnd(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_header_bar_pack_end(
@@ -131,9 +136,10 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Adds @child to @bar, packed with reference to the start of the @bar.
     *
-    * Adds @child to @bar, packed with reference to the start of the @bar.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def packStart(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_header_bar_pack_start(
@@ -141,13 +147,14 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Removes a child from the `GtkHeaderBar`.
+  /** Removes a child from the `GtkHeaderBar`.
     *
     * The child must have been added with [method@Gtk.HeaderBar.pack_start],
     * [method@Gtk.HeaderBar.pack_end] or
     * [method@Gtk.HeaderBar.set_title_widget].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
     gtk_header_bar_remove(
@@ -155,9 +162,7 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
       child.getUnsafeRawPointer().asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the decoration layout for this header bar.
+  /** Sets the decoration layout for this header bar.
     *
     * This property overrides the [property@Gtk.Settings:gtk-decoration-layout]
     * setting.
@@ -174,6 +179,9 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     *
     * For example, “icon:minimize,maximize,close” specifies an icon on the left,
     * and minimize, maximize and close buttons on the right.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setDecorationLayout(
       layout: Option[String | CString /* Some(CString) */ ]
@@ -184,9 +192,10 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether this header bar shows the standard window title buttons.
     *
-    * Sets whether this header bar shows the standard window title buttons.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowTitleButtons(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -195,9 +204,7 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the title for the `GtkHeaderBar`.
+  /** Sets the title for the `GtkHeaderBar`.
     *
     * When set to %NULL, the headerbar will display the title of the window it
     * is contained in.
@@ -207,6 +214,9 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     *
     * You should set the title widget to %NULL, for the window title label to be
     * visible again.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitleWidget(
       title_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
@@ -228,9 +238,10 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
 end HeaderBar
 
 object HeaderBar:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkHeaderBar` widget.
     *
-    * Creates a new `GtkHeaderBar` widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): HeaderBar = new HeaderBar(gtk_header_bar_new().asInstanceOf)
 end HeaderBar

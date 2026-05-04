@@ -10,7 +10,7 @@ def renderComment(doc: Doc)(using RenderingContext): Unit =
 
   line("/**")
 
-  val lines = Iterator("COMMENT FOR THE ORIGINAL C DEFINITION\n") ++ strings.mkString("\n").linesIterator
+  val lines = strings.mkString("\n").linesIterator ++ Iterator("", "NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA")
   lines.foreach { l =>
     line(" *  " + l.replace("*/", "").replace("/*", "")) // TAKE THAT
   }

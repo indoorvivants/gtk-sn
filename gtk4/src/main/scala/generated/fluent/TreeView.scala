@@ -21,9 +21,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkTreeView
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A widget for displaying both trees and lists
+/** A widget for displaying both trees and lists
   *
   * Widget that displays any object that implements the [iface@Gtk.TreeModel]
   * interface.
@@ -112,6 +110,9 @@ import sn.gnome.gtk4.internal.GtkTreeView
   *
   * For the drop target location during DND, a subnode with name `dndtarget` is
   * used.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class TreeView(raw: Ptr[GtkTreeView])
     extends Widget(raw.asInstanceOf),
@@ -122,11 +123,12 @@ class TreeView(raw: Ptr[GtkTreeView])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Appends @column to the list of columns. If @tree_view has “fixed_height”
+  /** Appends @column to the list of columns. If @tree_view has “fixed_height”
     * mode enabled, then @column must have its “sizing” property set to be
     * GTK_TREE_VIEW_COLUMN_FIXED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appendColumn(
       column: TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
@@ -135,160 +137,174 @@ class TreeView(raw: Ptr[GtkTreeView])
     column.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Recursively collapses all visible, expanded nodes in @tree_view.
     *
-    * Recursively collapses all visible, expanded nodes in @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def collapseAll(): Unit /* None */ = gtk_tree_view_collapse_all(
     this.raw.asInstanceOf[Ptr[GtkTreeView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Collapses a row (hides its child rows, if they exist).
     *
-    * Collapses a row (hides its child rows, if they exist).
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[collapse_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def collapseRow__ = ???
+  private def collapseRow__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Resizes all columns to their optimal width. Only works after the treeview
+  /** Resizes all columns to their optimal width. Only works after the treeview
     * has been realized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def columnsAutosize(): Unit /* None */ = gtk_tree_view_columns_autosize(
     this.raw.asInstanceOf[Ptr[GtkTreeView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts bin_window coordinates to coordinates for the tree (the full
+  /** Converts bin_window coordinates to coordinates for the tree (the full
     * scrollable area of the tree).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method convert_bin_window_to_tree_coords contains an OUT parameter, which is not supported yet"
+    "[convert_bin_window_to_tree_coords]: Method convert_bin_window_to_tree_coords contains an OUT parameter, which is not supported yet"
   )
-  def convertBinWindowToTreeCoords__ = ???
+  private def convertBinWindowToTreeCoords__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts bin_window coordinates to widget relative coordinates.
     *
-    * Converts bin_window coordinates to widget relative coordinates.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method convert_bin_window_to_widget_coords contains an OUT parameter, which is not supported yet"
+    "[convert_bin_window_to_widget_coords]: Method convert_bin_window_to_widget_coords contains an OUT parameter, which is not supported yet"
   )
-  def convertBinWindowToWidgetCoords__ = ???
+  private def convertBinWindowToWidgetCoords__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts tree coordinates (coordinates in full scrollable area of the
+  /** Converts tree coordinates (coordinates in full scrollable area of the
     * tree) to bin_window coordinates.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method convert_tree_to_bin_window_coords contains an OUT parameter, which is not supported yet"
+    "[convert_tree_to_bin_window_coords]: Method convert_tree_to_bin_window_coords contains an OUT parameter, which is not supported yet"
   )
-  def convertTreeToBinWindowCoords__ = ???
+  private def convertTreeToBinWindowCoords__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts tree coordinates (coordinates in full scrollable area of the
+  /** Converts tree coordinates (coordinates in full scrollable area of the
     * tree) to widget coordinates.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method convert_tree_to_widget_coords contains an OUT parameter, which is not supported yet"
+    "[convert_tree_to_widget_coords]: Method convert_tree_to_widget_coords contains an OUT parameter, which is not supported yet"
   )
-  def convertTreeToWidgetCoords__ = ???
+  private def convertTreeToWidgetCoords__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Converts widget coordinates to coordinates for the bin_window.
     *
-    * Converts widget coordinates to coordinates for the bin_window.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method convert_widget_to_bin_window_coords contains an OUT parameter, which is not supported yet"
+    "[convert_widget_to_bin_window_coords]: Method convert_widget_to_bin_window_coords contains an OUT parameter, which is not supported yet"
   )
-  def convertWidgetToBinWindowCoords__ = ???
+  private def convertWidgetToBinWindowCoords__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Converts widget coordinates to coordinates for the tree (the full
+  /** Converts widget coordinates to coordinates for the tree (the full
     * scrollable area of the tree).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method convert_widget_to_tree_coords contains an OUT parameter, which is not supported yet"
+    "[convert_widget_to_tree_coords]: Method convert_widget_to_tree_coords contains an OUT parameter, which is not supported yet"
   )
-  def convertWidgetToTreeCoords__ = ???
+  private def convertWidgetToTreeCoords__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a `cairo_surface_t` representation of the row at @path. This image
+  /** Creates a `cairo_surface_t` representation of the row at @path. This image
     * is used for a drag icon.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[create_row_drag_icon/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def createRowDragIcon__ = ???
+  private def createRowDragIcon__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Turns @tree_view into a drop destination for automatic DND. Calling this
+  /** Turns @tree_view into a drop destination for automatic DND. Calling this
     * method sets `GtkTreeView`:reorderable to %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[enable_model_drag_dest/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
-  def enableModelDragDest__ = ???
+  private def enableModelDragDest__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Turns @tree_view into a drag source for automatic DND. Calling this method
+  /** Turns @tree_view into a drag source for automatic DND. Calling this method
     * sets `GtkTreeView`:reorderable to %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[enable_model_drag_source/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
-  def enableModelDragSource__ = ???
+  private def enableModelDragSource__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Recursively expands all nodes in the @tree_view.
     *
-    * Recursively expands all nodes in the @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def expandAll(): Unit /* None */ = gtk_tree_view_expand_all(
     this.raw.asInstanceOf[Ptr[GtkTreeView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Opens the row so its children are visible.
     *
-    * Opens the row so its children are visible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[expand_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def expandRow__ = ???
+  private def expandRow__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Expands the row at @path. This will also expand all parent rows of
+  /** Expands the row at @path. This will also expand all parent rows of
     * @path
     *   as necessary.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[expand_to_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def expandToPath__ = ???
+  private def expandToPath__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the setting set by gtk_tree_view_set_activate_on_single_click().
     *
-    * Gets the setting set by gtk_tree_view_set_activate_on_single_click().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getActivateOnSingleClick(): Boolean /* None */ =
     gtk_tree_view_get_activate_on_single_click(
       this.raw.asInstanceOf[Ptr[GtkTreeView]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fills the bounding rectangle in bin_window coordinates for the cell at the
+  /** Fills the bounding rectangle in bin_window coordinates for the cell at the
     * row specified by @path and the column specified by @column. If @path is
     * %NULL, or points to a node not found in the tree, the @y and @height
     * fields of the rectangle will be filled with 0. If @column is %NULL, the @x
@@ -299,15 +315,16 @@ class TreeView(raw: Ptr[GtkTreeView])
     *   cover the entire bin window. Contrast with the @cell_area, returned by
     *   gtk_tree_view_get_cell_area(), which returns only the cell itself,
     *   excluding surrounding borders and the tree expander area.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_background_area contains an OUT parameter, which is not supported yet"
+    "[get_background_area]: Method get_background_area contains an OUT parameter, which is not supported yet"
   )
-  def getBackgroundArea__ = ???
+  private def getBackgroundArea__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fills the bounding rectangle in bin_window coordinates for the cell at the
+  /** Fills the bounding rectangle in bin_window coordinates for the cell at the
     * row specified by @path and the column specified by @column. If @path is
     * %NULL, or points to a path not currently displayed, the @y and @height
     * fields of the rectangle will be filled with 0. If @column is %NULL, the @x
@@ -316,15 +333,19 @@ class TreeView(raw: Ptr[GtkTreeView])
     * example. The returned rectangle is equivalent to the @cell_area passed to
     * gtk_cell_renderer_render(). This function is only valid if @tree_view is
     * realized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_cell_area contains an OUT parameter, which is not supported yet"
+    "[get_cell_area]: Method get_cell_area contains an OUT parameter, which is not supported yet"
   )
-  def getCellArea__ = ???
+  private def getCellArea__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GtkTreeViewColumn` at the given position in the #tree_view.
     *
-    * Gets the `GtkTreeViewColumn` at the given position in the #tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getColumn(n: Int /* Some(CInt) */ ): TreeViewColumn /* None */ =
     new TreeViewColumn(
@@ -334,75 +355,82 @@ class TreeView(raw: Ptr[GtkTreeView])
       ).asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a `GList` of all the `GtkTreeViewColumn`s currently in @tree_view.
+  /** Returns a `GList` of all the `GtkTreeViewColumn`s currently in @tree_view.
     * The returned list must be freed with g_list_free ().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreeViewColumn))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[get_columns/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreeViewColumn))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
-  def getColumns__ = ???
+  private def getColumns__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fills in @path and @focus_column with the current path and focus column.
+  /** Fills in @path and @focus_column with the current path and focus column.
     * If the cursor isn’t currently set, then *@path will be %NULL. If no column
     * currently has focus, then *@focus_column will be %NULL.
     *
     * The returned `GtkTreePath` must be freed with gtk_tree_path_free() when
     * you are done with it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_cursor contains an OUT parameter, which is not supported yet"
+    "[get_cursor]: Method get_cursor contains an OUT parameter, which is not supported yet"
   )
-  def getCursor__ = ???
+  private def getCursor__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determines the destination row for a given position. @drag_x and
+  /** Determines the destination row for a given position. @drag_x and
     * @drag_y
     *   are expected to be in widget coordinates. This function is only
     *   meaningful if @tree_view is realized. Therefore this function will
     *   always return %FALSE if @tree_view is not realized or does not have a
     *   model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_dest_row_at_pos contains an OUT parameter, which is not supported yet"
+    "[get_dest_row_at_pos]: Method get_dest_row_at_pos contains an OUT parameter, which is not supported yet"
   )
-  def getDestRowAtPos__ = ???
+  private def getDestRowAtPos__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets information about the row that is highlighted for feedback.
     *
-    * Gets information about the row that is highlighted for feedback.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_drag_dest_row contains an OUT parameter, which is not supported yet"
+    "[get_drag_dest_row]: Method get_drag_dest_row contains an OUT parameter, which is not supported yet"
   )
-  def getDragDestRow__ = ???
+  private def getDragDestRow__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether or not the tree allows to start interactive searching by
+  /** Returns whether or not the tree allows to start interactive searching by
     * typing in text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEnableSearch(): Boolean /* None */ = gtk_tree_view_get_enable_search(
     this.raw.asInstanceOf[Ptr[GtkTreeView]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether or not tree lines are drawn in @tree_view.
     *
-    * Returns whether or not tree lines are drawn in @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getEnableTreeLines(): Boolean /* None */ =
     gtk_tree_view_get_enable_tree_lines(
       this.raw.asInstanceOf[Ptr[GtkTreeView]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the column that is the current expander column, or %NULL if none
+  /** Returns the column that is the current expander column, or %NULL if none
     * has been set. This column has the expander arrow drawn next to it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getExpanderColumn(): TreeViewColumn /* None */ = new TreeViewColumn(
     gtk_tree_view_get_expander_column(
@@ -410,69 +438,77 @@ class TreeView(raw: Ptr[GtkTreeView])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether fixed height mode is turned on for @tree_view.
     *
-    * Returns whether fixed height mode is turned on for @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFixedHeightMode(): Boolean /* None */ =
     gtk_tree_view_get_fixed_height_mode(
       this.raw.asInstanceOf[Ptr[GtkTreeView]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns which grid lines are enabled in @tree_view.
     *
-    * Returns which grid lines are enabled in @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getGridLines(): TreeViewGridLines /* None */ = TreeViewGridLines.fromRaw(
     gtk_tree_view_get_grid_lines(this.raw.asInstanceOf[Ptr[GtkTreeView]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether all header columns are clickable.
     *
-    * Returns whether all header columns are clickable.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeadersClickable(): Boolean /* None */ =
     gtk_tree_view_get_headers_clickable(
       this.raw.asInstanceOf[Ptr[GtkTreeView]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns %TRUE if the headers on the @tree_view are visible.
     *
-    * Returns %TRUE if the headers on the @tree_view are visible.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHeadersVisible(): Boolean /* None */ =
     gtk_tree_view_get_headers_visible(
       this.raw.asInstanceOf[Ptr[GtkTreeView]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether hover expansion mode is turned on for @tree_view.
     *
-    * Returns whether hover expansion mode is turned on for @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHoverExpand(): Boolean /* None */ = gtk_tree_view_get_hover_expand(
     this.raw.asInstanceOf[Ptr[GtkTreeView]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether hover selection mode is turned on for @tree_view.
     *
-    * Returns whether hover selection mode is turned on for @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getHoverSelection(): Boolean /* None */ =
     gtk_tree_view_get_hover_selection(
       this.raw.asInstanceOf[Ptr[GtkTreeView]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the amount, in pixels, of extra indentation for child levels in @tree_view.
     *
-    * Returns the amount, in pixels, of extra indentation for child levels in @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getLevelIndentation(): Int /* None */ =
     gtk_tree_view_get_level_indentation(this.raw.asInstanceOf[Ptr[GtkTreeView]])
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the model the `GtkTreeView` is based on. Returns %NULL if the
+  /** Returns the model the `GtkTreeView` is based on. Returns %NULL if the
     * model is unset.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
     gtk_tree_view_get_model(
@@ -480,17 +516,16 @@ class TreeView(raw: Ptr[GtkTreeView])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Queries the number of columns in the given @tree_view.
     *
-    * Queries the number of columns in the given @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNColumns(): UInt /* None */ = gtk_tree_view_get_n_columns(
     this.raw.asInstanceOf[Ptr[GtkTreeView]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finds the path at the point (@x, @y), relative to bin_window coordinates.
+  /** Finds the path at the point (@x, @y), relative to bin_window coordinates.
     * That is, @x and @y are relative to an events coordinates. Widget-relative
     * coordinates must be converted using
     * gtk_tree_view_convert_widget_to_bin_window_coords(). It is primarily for
@@ -507,53 +542,61 @@ class TreeView(raw: Ptr[GtkTreeView])
     * For converting widget coordinates (eg. the ones you get from
     * GtkWidget::query-tooltip), please see
     * gtk_tree_view_convert_widget_to_bin_window_coords().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_path_at_pos contains an OUT parameter, which is not supported yet"
+    "[get_path_at_pos]: Method get_path_at_pos contains an OUT parameter, which is not supported yet"
   )
-  def getPathAtPos__ = ???
+  private def getPathAtPos__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Retrieves whether the user can reorder the tree via drag-and-drop. See
+  /** Retrieves whether the user can reorder the tree via drag-and-drop. See
     * gtk_tree_view_set_reorderable().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getReorderable(): Boolean /* None */ = gtk_tree_view_get_reorderable(
     this.raw.asInstanceOf[Ptr[GtkTreeView]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the current row separator function.
     *
-    * Returns the current row separator function.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
+    "[get_row_separator_func/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
   )
-  def getRowSeparatorFunc__ = ???
+  private def getRowSeparatorFunc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether rubber banding is turned on for @tree_view. If the
+  /** Returns whether rubber banding is turned on for @tree_view. If the
     * selection mode is %GTK_SELECTION_MULTIPLE, rubber banding will allow the
     * user to select multiple rows by dragging the mouse.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getRubberBanding(): Boolean /* None */ = gtk_tree_view_get_rubber_banding(
     this.raw.asInstanceOf[Ptr[GtkTreeView]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the column searched on by the interactive search code.
     *
-    * Gets the column searched on by the interactive search code.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSearchColumn(): Int /* None */ = gtk_tree_view_get_search_column(
     this.raw.asInstanceOf[Ptr[GtkTreeView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the `GtkEntry` which is currently in use as interactive search
+  /** Returns the `GtkEntry` which is currently in use as interactive search
     * entry for @tree_view. In case the built-in entry is being used, %NULL will
     * be returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSearchEntry(): Editable /* None */ = new Editable.Abstract(
     gtk_tree_view_get_search_entry(
@@ -561,18 +604,20 @@ class TreeView(raw: Ptr[GtkTreeView])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the compare function currently in use.
     *
-    * Returns the compare function currently in use.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewSearchEqualFunc), @type -> DataRecord(GtkTreeViewSearchEqualFunc)))"
+    "[get_search_equal_func/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewSearchEqualFunc), @type -> DataRecord(GtkTreeViewSearchEqualFunc)))"
   )
-  def getSearchEqualFunc__ = ???
+  private def getSearchEqualFunc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `GtkTreeSelection` associated with @tree_view.
     *
-    * Gets the `GtkTreeSelection` associated with @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSelection(): TreeSelection /* None */ = new TreeSelection(
     gtk_tree_view_get_selection(
@@ -580,26 +625,26 @@ class TreeView(raw: Ptr[GtkTreeView])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether or not expanders are drawn in @tree_view.
     *
-    * Returns whether or not expanders are drawn in @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getShowExpanders(): Boolean /* None */ = gtk_tree_view_get_show_expanders(
     this.raw.asInstanceOf[Ptr[GtkTreeView]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the column of @tree_view’s model which is being used for
+  /** Returns the column of @tree_view’s model which is being used for
     * displaying tooltips on @tree_view’s rows.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTooltipColumn(): Int /* None */ = gtk_tree_view_get_tooltip_column(
     this.raw.asInstanceOf[Ptr[GtkTreeView]]
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  This function is supposed to be used in a ::query-tooltip
+  /**  This function is supposed to be used in a ::query-tooltip
     *  signal handler for `GtkTreeView`. The @x, @y and @keyboard_tip values
     *  which are received in the signal handler, should be passed to this
     *  function without modification.
@@ -610,43 +655,48 @@ class TreeView(raw: Ptr[GtkTreeView])
     *  @model, @path and @iter which have been provided will be set to point to
     *  that row and the corresponding model. @x and @y will always be converted
     *  to be relative to @tree_view’s bin_window if @keyboard_tooltip is %FALSE.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_tooltip_context contains an OUT parameter, which is not supported yet"
+    "[get_tooltip_context]: Method get_tooltip_context contains an OUT parameter, which is not supported yet"
   )
-  def getTooltipContext__ = ???
+  private def getTooltipContext__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @start_path and @end_path to be the first and last visible path. Note
+  /** Sets @start_path and @end_path to be the first and last visible path. Note
     * that there may be invisible paths in between.
     *
     * The paths should be freed with gtk_tree_path_free() after use.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_visible_range contains an OUT parameter, which is not supported yet"
+    "[get_visible_range]: Method get_visible_range contains an OUT parameter, which is not supported yet"
   )
-  def getVisibleRange__ = ???
+  private def getVisibleRange__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Fills @visible_rect with the currently-visible region of the buffer, in
+  /** Fills @visible_rect with the currently-visible region of the buffer, in
     * tree coordinates. Convert to bin_window coordinates with
     * gtk_tree_view_convert_tree_to_bin_window_coords(). Tree coordinates start
     * at 0,0 for row 0 of the tree, and cover the entire scrollable area of the
     * tree.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_visible_rect contains an OUT parameter, which is not supported yet"
+    "[get_visible_rect]: Method get_visible_rect contains an OUT parameter, which is not supported yet"
   )
-  def getVisibleRect__ = ???
+  private def getVisibleRect__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This inserts the @column into the @tree_view at @position. If @position is
+  /** This inserts the @column into the @tree_view at @position. If @position is
     * -1, then the column is inserted at the end. If @tree_view has
     * “fixed_height” mode enabled, then @column must have its “sizing” property
     * set to be GTK_TREE_VIEW_COLUMN_FIXED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def insertColumn(
       column: TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */,
@@ -657,14 +707,15 @@ class TreeView(raw: Ptr[GtkTreeView])
     position
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new `GtkTreeViewColumn` and inserts it into the @tree_view at
+  /** Creates a new `GtkTreeViewColumn` and inserts it into the @tree_view at
     * @position.
     *   If @position is -1, then the newly created column is inserted at the
     *   end. The column is initialized with the attributes given. If @tree_view
     *   has “fixed_height” mode enabled, then the new column will have its
     *   sizing property set to be GTK_TREE_VIEW_COLUMN_FIXED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def insertColumnWithAttributes(
       position: Int /* Some(CInt) */,
@@ -679,24 +730,23 @@ class TreeView(raw: Ptr[GtkTreeView])
     args*
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Convenience function that inserts a new column into the `GtkTreeView` with
+  /** Convenience function that inserts a new column into the `GtkTreeView` with
     * the given cell renderer and a `GtkTreeCellDataFunc` to set cell renderer
     * attributes (normally using data from the model). See also
     * gtk_tree_view_column_set_cell_data_func(),
     * gtk_tree_view_column_pack_start(). If @tree_view has “fixed_height” mode
     * enabled, then the new column will have its “sizing” property set to be
     * GTK_TREE_VIEW_COLUMN_FIXED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeCellDataFunc), @type -> DataRecord(GtkTreeCellDataFunc)))"
+    "[insert_column_with_data_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeCellDataFunc), @type -> DataRecord(GtkTreeCellDataFunc)))"
   )
-  def insertColumnWithDataFunc__ = ???
+  private def insertColumnWithDataFunc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Determine whether the point (@x, @y) in @tree_view is blank, that is no
+  /** Determine whether the point (@x, @y) in @tree_view is blank, that is no
     * cell content nor an expander arrow is drawn at the location. If so, the
     * location can be considered as the background. You might wish to take
     * special action on clicks on the background, such as clearing a current
@@ -713,35 +763,41 @@ class TreeView(raw: Ptr[GtkTreeView])
     * The @path, @column, @cell_x and @cell_y arguments will be filled in
     * likewise as for gtk_tree_view_get_path_at_pos(). Please see
     * gtk_tree_view_get_path_at_pos() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method is_blank_at_pos contains an OUT parameter, which is not supported yet"
+    "[is_blank_at_pos]: Method is_blank_at_pos contains an OUT parameter, which is not supported yet"
   )
-  def isBlankAtPos__ = ???
+  private def isBlankAtPos__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether a rubber banding operation is currently being done in @tree_view.
     *
-    * Returns whether a rubber banding operation is currently being done in @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isRubberBandingActive(): Boolean /* None */ =
     gtk_tree_view_is_rubber_banding_active(
       this.raw.asInstanceOf[Ptr[GtkTreeView]]
     ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Calls @func on all expanded rows.
     *
-    * Calls @func on all expanded rows.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewMappingFunc), @type -> DataRecord(GtkTreeViewMappingFunc)))"
+    "[map_expanded_rows/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewMappingFunc), @type -> DataRecord(GtkTreeViewMappingFunc)))"
   )
-  def mapExpandedRows__ = ???
+  private def mapExpandedRows__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Moves @column to be after to @base_column. If @base_column is %NULL, then
+  /** Moves @column to be after to @base_column. If @base_column is %NULL, then
     * @column
     *   is placed in the first position.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def moveColumnAfter(
       column: TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */,
@@ -754,9 +810,10 @@ class TreeView(raw: Ptr[GtkTreeView])
       .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Removes @column from @tree_view.
     *
-    * Removes @column from @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def removeColumn(
       column: TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
@@ -765,27 +822,27 @@ class TreeView(raw: Ptr[GtkTreeView])
     column.getUnsafeRawPointer().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Activates the cell determined by @path and @column.
     *
-    * Activates the cell determined by @path and @column.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[row_activated/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def rowActivated__ = ???
+  private def rowActivated__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns %TRUE if the node pointed to by @path is expanded in @tree_view.
     *
-    * Returns %TRUE if the node pointed to by @path is expanded in @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[row_expanded/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def rowExpanded__ = ???
+  private def rowExpanded__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Moves the alignments of @tree_view to the position specified by @column
+  /** Moves the alignments of @tree_view to the position specified by @column
     * and
     * @path.
     *   If @column is %NULL, then no horizontal scrolling occurs. Likewise, if @path
@@ -804,20 +861,24 @@ class TreeView(raw: Ptr[GtkTreeView])
     * This function only works if the model is set, and @path is a valid row on
     * the model. If the model changes before the @tree_view is realized, the
     * centered path will be modified to reflect this change.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[scroll_to_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def scrollToCell__ = ???
+  private def scrollToCell__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Scrolls the tree view such that the top-left corner of the visible area is @tree_x, @tree_y,
+  /** Scrolls the tree view such that the top-left corner of the visible area is @tree_x, @tree_y,
     * where @tree_x and @tree_y are specified in tree coordinates. The @tree_view
     * must be realized before this function is called. If it isn't, you probably
     * want to be using gtk_tree_view_scroll_to_cell().
     *
     * If either @tree_x or @tree_y are -1, then that direction isn’t scrolled.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def scrollToPoint(
       tree_x: Int /* Some(CInt) */,
@@ -828,10 +889,11 @@ class TreeView(raw: Ptr[GtkTreeView])
     tree_y
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Cause the `GtkTreeView`::row-activated signal to be emitted on a single
+  /** Cause the `GtkTreeView`::row-activated signal to be emitted on a single
     * click instead of a double click.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setActivateOnSingleClick(
       single: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -840,9 +902,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     gboolean(gint((if single == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets a user function for determining where a column may be dropped when
+  /** Sets a user function for determining where a column may be dropped when
     * dragged. This function is called on every column pair in turn at the
     * beginning of a column drag to determine where a drop can take place. The
     * arguments passed to @func are: the @tree_view, the `GtkTreeViewColumn`
@@ -853,15 +913,16 @@ class TreeView(raw: Ptr[GtkTreeView])
     * @tree_view
     *   reverts to the default behavior of allowing all columns to be dropped
     *   everywhere.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewColumnDropFunc), @type -> DataRecord(GtkTreeViewColumnDropFunc)))"
+    "[set_column_drag_function/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewColumnDropFunc), @type -> DataRecord(GtkTreeViewColumnDropFunc)))"
   )
-  def setColumnDragFunction__ = ???
+  private def setColumnDragFunction__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the current keyboard focus to be at @path, and selects it. This is
+  /** Sets the current keyboard focus to be at @path, and selects it. This is
     * useful when you want to focus the user’s attention on a particular row. If
     * @focus_column
     *   is not %NULL, then focus is given to the column specified by it.
@@ -873,15 +934,16 @@ class TreeView(raw: Ptr[GtkTreeView])
     *
     * If @path is invalid for @model, the current cursor (if any) will be unset
     * and the function will return without failing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[set_cursor/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def setCursor__ = ???
+  private def setCursor__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the current keyboard focus to be at @path, and selects it. This is
+  /** Sets the current keyboard focus to be at @path, and selects it. This is
     * useful when you want to focus the user’s attention on a particular row. If
     * @focus_column
     *   is not %NULL, then focus is given to the column specified by it. If @focus_column
@@ -896,29 +958,34 @@ class TreeView(raw: Ptr[GtkTreeView])
     *
     * If @path is invalid for @model, the current cursor (if any) will be unset
     * and the function will return without failing.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[set_cursor_on_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def setCursorOnCell__ = ???
+  private def setCursorOnCell__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the row that is highlighted for feedback. If @path is %NULL, an
+  /** Sets the row that is highlighted for feedback. If @path is %NULL, an
     * existing highlight is removed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[set_drag_dest_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def setDragDestRow__ = ???
+  private def setDragDestRow__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If @enable_search is set, then the user can type in text to search through
+  /** If @enable_search is set, then the user can type in text to search through
     * the tree interactively (this is sometimes called "typeahead find").
     *
     * Note that even if this is %FALSE, the user can still initiate a search
     * using the “start-interactive-search” key binding.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEnableSearch(
       enable_search: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -927,10 +994,11 @@ class TreeView(raw: Ptr[GtkTreeView])
     gboolean(gint((if enable_search == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether to draw lines interconnecting the expanders in @tree_view.
+  /** Sets whether to draw lines interconnecting the expanders in @tree_view.
     * This does not have any visible effects for lists.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setEnableTreeLines(
       enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -939,14 +1007,15 @@ class TreeView(raw: Ptr[GtkTreeView])
     gboolean(gint((if enabled == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the column to draw the expander arrow at. It must be in @tree_view.
+  /** Sets the column to draw the expander arrow at. It must be in @tree_view.
     * If @column is %NULL, then the expander arrow is always at the first
     * visible column.
     *
     * If you do not want expander arrow to appear in your tree, set the expander
     * column to a hidden column.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setExpanderColumn(
       column: Option[TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */ ]
@@ -957,12 +1026,13 @@ class TreeView(raw: Ptr[GtkTreeView])
       .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Enables or disables the fixed height mode of @tree_view. Fixed height mode
+  /** Enables or disables the fixed height mode of @tree_view. Fixed height mode
     * speeds up `GtkTreeView` by assuming that all rows have the same height.
     * Only enable this option if all rows are the same height and all columns
     * are of type %GTK_TREE_VIEW_COLUMN_FIXED.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setFixedHeightMode(
       enable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -971,9 +1041,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     gboolean(gint((if enable == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets which grid lines to draw in @tree_view.
     *
-    * Sets which grid lines to draw in @tree_view.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setGridLines(
       grid_lines: TreeViewGridLines /* Some(GtkTreeViewGridLines) */
@@ -982,9 +1053,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     grid_lines.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Allow the column title buttons to be clicked.
     *
-    * Allow the column title buttons to be clicked.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeadersClickable(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -993,9 +1065,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the visibility state of the headers.
     *
-    * Sets the visibility state of the headers.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeadersVisible(
       headers_visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -1004,10 +1077,11 @@ class TreeView(raw: Ptr[GtkTreeView])
     gboolean(gint((if headers_visible == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Enables or disables the hover expansion mode of @tree_view. Hover
+  /** Enables or disables the hover expansion mode of @tree_view. Hover
     * expansion makes rows expand or collapse if the pointer moves over them.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHoverExpand(
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -1016,12 +1090,13 @@ class TreeView(raw: Ptr[GtkTreeView])
     gboolean(gint((if expand == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Enables or disables the hover selection mode of @tree_view. Hover
+  /** Enables or disables the hover selection mode of @tree_view. Hover
     * selection makes the selected row follow the pointer. Currently, this works
     * only for the selection modes %GTK_SELECTION_SINGLE and
     * %GTK_SELECTION_BROWSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setHoverSelection(
       hover: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -1030,13 +1105,14 @@ class TreeView(raw: Ptr[GtkTreeView])
     gboolean(gint((if hover == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the amount of extra indentation for child levels to use in @tree_view
+  /** Sets the amount of extra indentation for child levels to use in @tree_view
     * in addition to the default indentation. The value should be specified in
     * pixels, a value of 0 disables this feature and in this case only the
     * default indentation will be used. This does not have any visible effects
     * for lists.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setLevelIndentation(indentation: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_tree_view_set_level_indentation(
@@ -1044,11 +1120,12 @@ class TreeView(raw: Ptr[GtkTreeView])
       indentation
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the model for a `GtkTreeView`. If the @tree_view already has a model
+  /** Sets the model for a `GtkTreeView`. If the @tree_view already has a model
     * set, it will remove it before setting the new model. If @model is %NULL,
     * then it will unset the old model.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
       model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
@@ -1059,9 +1136,7 @@ class TreeView(raw: Ptr[GtkTreeView])
       .getOrElse(null.asInstanceOf[Ptr[GtkTreeModel]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function is a convenience function to allow you to reorder models
+  /** This function is a convenience function to allow you to reorder models
     * that support the `GtkTreeDragSourceIface` and the `GtkTreeDragDestIface`.
     * Both `GtkTreeStore` and `GtkListStore` support these. If @reorderable is
     * %TRUE, then the user can reorder the model by dragging and dropping rows.
@@ -1074,6 +1149,9 @@ class TreeView(raw: Ptr[GtkTreeView])
     * This function does not give you any degree of control over the order --
     * any reordering is allowed. If more control is needed, you should probably
     * handle drag and drop manually.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setReorderable(
       reorderable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -1082,22 +1160,24 @@ class TreeView(raw: Ptr[GtkTreeView])
     gboolean(gint((if reorderable == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the row separator function, which is used to determine whether a row
+  /** Sets the row separator function, which is used to determine whether a row
     * should be drawn as a separator. If the row separator function is %NULL, no
     * separators are drawn. This is the default value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
+    "[set_row_separator_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
   )
-  def setRowSeparatorFunc__ = ???
+  private def setRowSeparatorFunc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Enables or disables rubber banding in @tree_view. If the selection mode is
+  /** Enables or disables rubber banding in @tree_view. If the selection mode is
     * %GTK_SELECTION_MULTIPLE, rubber banding will allow the user to select
     * multiple rows by dragging the mouse.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setRubberBanding(
       enable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -1106,9 +1186,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     gboolean(gint((if enable == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets @column as the column where the interactive search code should search
+  /** Sets @column as the column where the interactive search code should search
     * in for the current model.
     *
     * If the search column is set, users can use the “start-interactive-search”
@@ -1117,6 +1195,9 @@ class TreeView(raw: Ptr[GtkTreeView])
     *
     * Note that @column refers to a column of the current model. The search
     * column is reset to -1 when the model is changed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSearchColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_tree_view_set_search_column(
@@ -1124,15 +1205,16 @@ class TreeView(raw: Ptr[GtkTreeView])
       column
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the entry which the interactive search code will use for this
+  /** Sets the entry which the interactive search code will use for this
     * @tree_view.
     *   This is useful when you want to provide a search entry in our interface
     *   at all time at a fixed position. Passing %NULL for
     * @entry
     *   will make the interactive search code use the built-in popup entry
     *   again.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSearchEntry(
       entry: Option[Editable /* Some(Ptr[GtkEditable]) */ ]
@@ -1143,26 +1225,28 @@ class TreeView(raw: Ptr[GtkTreeView])
       .getOrElse(null.asInstanceOf[Ptr[GtkEditable]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the compare function for the interactive search capabilities; note
+  /** Sets the compare function for the interactive search capabilities; note
     * that somewhat like strcmp() returning 0 for equality
     * `GtkTreeView`SearchEqualFunc returns %FALSE on matches.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewSearchEqualFunc), @type -> DataRecord(GtkTreeViewSearchEqualFunc)))"
+    "[set_search_equal_func/<method parameters>/search_equal_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewSearchEqualFunc), @type -> DataRecord(GtkTreeViewSearchEqualFunc)))"
   )
-  def setSearchEqualFunc__ = ???
+  private def setSearchEqualFunc__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether to draw and enable expanders and indent child rows in
+  /** Sets whether to draw and enable expanders and indent child rows in
     * @tree_view.
     *   When disabled there will be no expanders visible in trees and there will
     *   be no way to expand and collapse rows by default. Also note that hiding
     *   the expanders will disable the default indentation. You can set a custom
     *   indentation in this case using gtk_tree_view_set_level_indentation().
     *   This does not have any visible effects for lists.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setShowExpanders(
       enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -1171,9 +1255,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     gboolean(gint((if enabled == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the tip area of @tooltip to the area @path, @column and @cell have in
+  /** Sets the tip area of @tooltip to the area @path, @column and @cell have in
     * common. For example if @path is %NULL and @column is set, the tip area
     * will be set to the full area covered by @column. See also
     * gtk_tooltip_set_tip_area().
@@ -1184,15 +1266,16 @@ class TreeView(raw: Ptr[GtkTreeView])
     * under the mouse cursor for this function to operate correctly.
     *
     * See also gtk_tree_view_set_tooltip_column() for a simpler alternative.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[set_tooltip_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def setTooltipCell__ = ???
+  private def setTooltipCell__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * If you only plan to have simple (text-only) tooltips on full rows, you can
+  /** If you only plan to have simple (text-only) tooltips on full rows, you can
     * use this function to have `GtkTreeView` handle these automatically for
     * you. @column should be set to the column in @tree_view’s model containing
     * the tooltip texts, or -1 to disable this feature.
@@ -1203,6 +1286,9 @@ class TreeView(raw: Ptr[GtkTreeView])
     *
     * Note that the signal handler sets the text with gtk_tooltip_set_markup(),
     * so &, <, etc have to be escaped in the text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTooltipColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_tree_view_set_tooltip_column(
@@ -1210,30 +1296,33 @@ class TreeView(raw: Ptr[GtkTreeView])
       column
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the tip area of @tooltip to be the area covered by the row at @path.
+  /** Sets the tip area of @tooltip to be the area covered by the row at @path.
     * See also gtk_tree_view_set_tooltip_column() for a simpler alternative. See
     * also gtk_tooltip_set_tip_area().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[set_tooltip_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
-  def setTooltipRow__ = ???
+  private def setTooltipRow__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Undoes the effect of gtk_tree_view_enable_model_drag_dest(). Calling this
+  /** Undoes the effect of gtk_tree_view_enable_model_drag_dest(). Calling this
     * method sets `GtkTreeView`:reorderable to %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetRowsDragDest(): Unit /* None */ = gtk_tree_view_unset_rows_drag_dest(
     this.raw.asInstanceOf[Ptr[GtkTreeView]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Undoes the effect of gtk_tree_view_enable_model_drag_source(). Calling
+  /** Undoes the effect of gtk_tree_view_enable_model_drag_source(). Calling
     * this method sets `GtkTreeView`:reorderable to %FALSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetRowsDragSource(): Unit /* None */ =
     gtk_tree_view_unset_rows_drag_source(
@@ -1251,15 +1340,17 @@ class TreeView(raw: Ptr[GtkTreeView])
 end TreeView
 
 object TreeView:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkTreeView` widget.
     *
-    * Creates a new `GtkTreeView` widget.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): TreeView = new TreeView(gtk_tree_view_new().asInstanceOf)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkTreeView` widget with the model initialized to @model.
     *
-    * Creates a new `GtkTreeView` widget with the model initialized to @model.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def withModel(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ ): TreeView =
     new TreeView(

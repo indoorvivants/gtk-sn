@@ -8,9 +8,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkSpinner
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkSpinner` widget displays an icon-size spinning animation.
+/** A `GtkSpinner` widget displays an icon-size spinning animation.
   *
   * It is often used as an alternative to a [class@Gtk.ProgressBar] for
   * displaying indefinite activity, instead of actual progress.
@@ -24,6 +22,9 @@ import sn.gnome.gtk4.internal.GtkSpinner
   *
   * `GtkSpinner` has a single CSS node with the name spinner. When the animation
   * is active, the :checked pseudoclass is added to this node.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Spinner(raw: Ptr[GtkSpinner])
     extends Widget(raw.asInstanceOf),
@@ -33,16 +34,18 @@ class Spinner(raw: Ptr[GtkSpinner])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the spinner is spinning.
     *
-    * Returns whether the spinner is spinning.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getSpinning(): Boolean /* None */ =
     gtk_spinner_get_spinning(this.raw.asInstanceOf[Ptr[GtkSpinner]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the activity of the spinner.
     *
-    * Sets the activity of the spinner.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setSpinning(
       spinning: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -51,17 +54,19 @@ class Spinner(raw: Ptr[GtkSpinner])
     gboolean(gint((if spinning == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Starts the animation of the spinner.
     *
-    * Starts the animation of the spinner.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def start(): Unit /* None */ = gtk_spinner_start(
     this.raw.asInstanceOf[Ptr[GtkSpinner]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Stops the animation of the spinner.
     *
-    * Stops the animation of the spinner.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def stop(): Unit /* None */ = gtk_spinner_stop(
     this.raw.asInstanceOf[Ptr[GtkSpinner]]
@@ -70,9 +75,10 @@ class Spinner(raw: Ptr[GtkSpinner])
 end Spinner
 
 object Spinner:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns a new spinner widget. Not yet started.
     *
-    * Returns a new spinner widget. Not yet started.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Spinner = new Spinner(gtk_spinner_new().asInstanceOf)
 end Spinner

@@ -15,9 +15,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GDBusServer is a helper for listening to and accepting D-Bus connections.
+/** #GDBusServer is a helper for listening to and accepting D-Bus connections.
   * This can be used to create a new D-Bus server, allowing two peers to use the
   * D-Bus protocol for their own specialized communication. A server instance
   * provided in this way will not perform message routing or implement the
@@ -35,6 +33,9 @@ import sn.gnome.gobject.fluent.Object
   * that is running the #GDBusServer. Since GLib 2.68 this can be achieved more
   * simply by passing the %G_DBUS_SERVER_FLAGS_AUTHENTICATION_REQUIRE_SAME_USER
   * flag to the server.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class DBusServer(raw: Ptr[GDBusServer])
     extends Object(raw.asInstanceOf),
@@ -42,13 +43,14 @@ class DBusServer(raw: Ptr[GDBusServer])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a [D-Bus
+  /** Gets a [D-Bus
     * address](https://dbus.freedesktop.org/doc/dbus-specification.html#addresses)
     * string that can be used by clients to connect to @server.
     *
     * This is valid and non-empty if initializing the #GDBusServer succeeded.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getClientAddress()(using Zone): String /* None */ = fromCString(
     g_dbus_server_get_client_address(
@@ -56,40 +58,45 @@ class DBusServer(raw: Ptr[GDBusServer])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the flags for @server.
     *
-    * Gets the flags for @server.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFlags(): DBusServerFlags /* None */ = DBusServerFlags.fromRaw(
     g_dbus_server_get_flags(this.raw.asInstanceOf[Ptr[GDBusServer]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the GUID for @server, as provided to g_dbus_server_new_sync().
     *
-    * Gets the GUID for @server, as provided to g_dbus_server_new_sync().
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getGuid()(using Zone): String /* None */ = fromCString(
     g_dbus_server_get_guid(this.raw.asInstanceOf[Ptr[GDBusServer]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether @server is active.
     *
-    * Gets whether @server is active.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isActive(): Boolean /* None */ =
     g_dbus_server_is_active(this.raw.asInstanceOf[Ptr[GDBusServer]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Starts @server.
     *
-    * Starts @server.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def start(): Unit /* None */ = g_dbus_server_start(
     this.raw.asInstanceOf[Ptr[GDBusServer]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Stops @server.
     *
-    * Stops @server.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def stop(): Unit /* None */ = g_dbus_server_stop(
     this.raw.asInstanceOf[Ptr[GDBusServer]]
@@ -98,9 +105,7 @@ class DBusServer(raw: Ptr[GDBusServer])
 end DBusServer
 
 object DBusServer:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new D-Bus server that listens on the first address in
+  /** Creates a new D-Bus server that listens on the first address in
     * @address
     *   that works.
     *
@@ -121,6 +126,9 @@ object DBusServer:
     *
     * This is a synchronous failable constructor. There is currently no
     * asynchronous version.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def sync(
       address: String |

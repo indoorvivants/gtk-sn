@@ -8,9 +8,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.internal.GtkColorDialog
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `GtkColorDialog` object collects the arguments that are needed to present
+/** A `GtkColorDialog` object collects the arguments that are needed to present
   * a color chooser dialog to the user, such as a title for the dialog and
   * whether it should be modal.
   *
@@ -20,46 +18,53 @@ import sn.gnome.gtk4.internal.GtkColorDialog
   *
   * See [class@Gtk.ColorDialogButton] for a convenient control that uses
   * `GtkColorDialog` and presents the results.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * This function initiates a color choice operation by presenting a color
+  /** This function initiates a color choice operation by presenting a color
     * chooser dialog to the user.
     *
     * The @callback will be called when the dialog is dismissed. It should call
     * [method@Gtk.ColorDialog.choose_rgba_finish] to obtain the result.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
+    "[choose_rgba/<method parameters>/initial_color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
-  def chooseRgba__ = ???
+  private def chooseRgba__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Finishes the [method@Gtk.ColorDialog.choose_rgba] call and returns the
+  /** Finishes the [method@Gtk.ColorDialog.choose_rgba] call and returns the
     * resulting color.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(GdkRGBA*)))"
+    "[choose_rgba_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(GdkRGBA*)))"
   )
-  def chooseRgbaFinish__ = ???
+  private def chooseRgbaFinish__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns whether the color chooser dialog blocks interaction with the
+  /** Returns whether the color chooser dialog blocks interaction with the
     * parent window while it is presented.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModal(): Boolean /* None */ = gtk_color_dialog_get_modal(
     this.raw.asInstanceOf[Ptr[GtkColorDialog]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns the title that will be shown on the color chooser dialog.
     *
-    * Returns the title that will be shown on the color chooser dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_color_dialog_get_title(
@@ -67,18 +72,20 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether colors may have alpha.
     *
-    * Returns whether colors may have alpha.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWithAlpha(): Boolean /* None */ = gtk_color_dialog_get_with_alpha(
     this.raw.asInstanceOf[Ptr[GtkColorDialog]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets whether the color chooser dialog blocks interaction with the parent
+  /** Sets whether the color chooser dialog blocks interaction with the parent
     * window while it is presented.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -87,9 +94,10 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
     gboolean(gint((if modal == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the title that will be shown on the color chooser dialog.
     *
-    * Sets the title that will be shown on the color chooser dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
       title: String | CString /* Some(CString) */
@@ -98,9 +106,10 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
     __sn_extract_string(title)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether colors may have alpha.
     *
-    * Sets whether colors may have alpha.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWithAlpha(
       with_alpha: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -120,9 +129,10 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
 end ColorDialog
 
 object ColorDialog:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkColorDialog` object.
     *
-    * Creates a new `GtkColorDialog` object.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): ColorDialog = new ColorDialog(
     gtk_color_dialog_new().asInstanceOf

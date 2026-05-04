@@ -2,33 +2,38 @@ package sn.gnome.glib.fluent
 
 import _root_.sn.gnome.glib.internal.GIOError
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GIOError is only used by the deprecated functions g_io_channel_read(),
+/** #GIOError is only used by the deprecated functions g_io_channel_read(),
   * g_io_channel_write(), and g_io_channel_seek().
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum IOError(val raw: GIOError):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** no error
     *
-    * no error
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE extends IOError(GIOError.G_IO_ERROR_NONE)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** an EAGAIN error occurred
     *
-    * an EAGAIN error occurred
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AGAIN extends IOError(GIOError.G_IO_ERROR_AGAIN)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** an EINVAL error occurred
     *
-    * an EINVAL error occurred
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case INVAL extends IOError(GIOError.G_IO_ERROR_INVAL)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** another error occurred
     *
-    * another error occurred
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case UNKNOWN extends IOError(GIOError.G_IO_ERROR_UNKNOWN)
 end IOError

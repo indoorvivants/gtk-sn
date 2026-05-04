@@ -9,9 +9,7 @@ import sn.gnome.gio.internal.GMenuModel
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GMenuModel represents the contents of a menu -- an ordered list of menu
+/** #GMenuModel represents the contents of a menu -- an ordered list of menu
   * items. The items are associated with actions, which can be activated through
   * them. Items can be grouped in sections, and may have submenus associated
   * with them. Both items and sections usually have some representation data,
@@ -120,14 +118,15 @@ import sn.gnome.gobject.fluent.Object
   * action with the target value as the parameter. The menu item should be
   * rendered as "selected" when the state of the action is equal to the target
   * value of the menu item.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries item at position @item_index in @model for the attribute specified
+  /** Queries item at position @item_index in @model for the attribute specified
     * by @attribute.
     *
     * If the attribute exists and matches the #GVariantType corresponding to @format_string
@@ -143,6 +142,9 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     *   must make a complete copy of the data (since the #GVariant may go away
     *   after the call to g_variant_unref()). In particular, no '&' characters
     *   are allowed in @format_string.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   inline def getItemAttribute(
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
@@ -159,9 +161,7 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     args*
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries the item at position @item_index in @model for the attribute
+  /** Queries the item at position @item_index in @model for the attribute
     * specified by @attribute.
     *
     * If @expected_type is non-%NULL then it specifies the expected type of the
@@ -172,19 +172,23 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     *
     * If the attribute does not exist, or does not match the expected type then
     * %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
+    "[get_item_attribute_value/<method parameters>/expected_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
   )
-  def getItemAttributeValue__ = ???
+  private def getItemAttributeValue__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries the item at position @item_index in @model for the link specified
+  /** Queries the item at position @item_index in @model for the link specified
     * by @link.
     *
     * If the link exists, the linked #GMenuModel is returned. If the link does
     * not exist, %NULL is returned.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getItemLink(
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
@@ -198,27 +202,27 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Query the number of items in @model.
     *
-    * Query the number of items in @model.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNItems(): Int /* None */ = g_menu_model_get_n_items(
     this.raw.asInstanceOf[Ptr[GMenuModel]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Queries if @model is mutable.
+  /** Queries if @model is mutable.
     *
     * An immutable #GMenuModel will never emit the #GMenuModel::items-changed
     * signal. Consumers of the model may make optimisations accordingly.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isMutable(): Boolean /* None */ =
     g_menu_model_is_mutable(this.raw.asInstanceOf[Ptr[GMenuModel]]).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Requests emission of the #GMenuModel::items-changed signal on @model.
+  /** Requests emission of the #GMenuModel::items-changed signal on @model.
     *
     * This function should never be called except by #GMenuModel subclasses. Any
     * other calls to this function will very likely lead to a violation of the
@@ -233,6 +237,9 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     * and not in response to calls -- particularly those from the #GMenuModel
     * API. Said another way: the menu must not change while user code is running
     * without returning to the mainloop.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def itemsChanged(
       position: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
@@ -245,12 +252,13 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     gint(added)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GMenuAttributeIter to iterate over the attributes of the item
+  /** Creates a #GMenuAttributeIter to iterate over the attributes of the item
     * at position @item_index in @model.
     *
     * You must free the iterator with g_object_unref() when you are done.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def iterateItemAttributes(
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
@@ -261,12 +269,13 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a #GMenuLinkIter to iterate over the links of the item at position @item_index
+  /** Creates a #GMenuLinkIter to iterate over the links of the item at position @item_index
     * in @model.
     *
     * You must free the iterator with g_object_unref() when you are done.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def iterateItemLinks(
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */

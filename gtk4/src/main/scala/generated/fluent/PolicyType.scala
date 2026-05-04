@@ -2,37 +2,42 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkPolicyType
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Determines how the size should be computed to achieve the one of the
+/** Determines how the size should be computed to achieve the one of the
   * visibility mode for the scrollbars.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum PolicyType(val raw: GtkPolicyType):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The scrollbar is always visible. The view size is independent of the
+  /** The scrollbar is always visible. The view size is independent of the
     * content.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case ALWAYS extends PolicyType(GtkPolicyType.GTK_POLICY_ALWAYS)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The scrollbar will appear and disappear as necessary. For example, when
+  /** The scrollbar will appear and disappear as necessary. For example, when
     * all of a `GtkTreeView` can not be seen.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case AUTOMATIC extends PolicyType(GtkPolicyType.GTK_POLICY_AUTOMATIC)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * The scrollbar should never appear. In this mode the content determines the
+  /** The scrollbar should never appear. In this mode the content determines the
     * size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NEVER extends PolicyType(GtkPolicyType.GTK_POLICY_NEVER)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Don't show a scrollbar, but don't force the size to follow the content.
+  /** Don't show a scrollbar, but don't force the size to follow the content.
     * This can be used e.g. to make multiple scrolled windows share a scrollbar.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case EXTERNAL extends PolicyType(GtkPolicyType.GTK_POLICY_EXTERNAL)
 end PolicyType

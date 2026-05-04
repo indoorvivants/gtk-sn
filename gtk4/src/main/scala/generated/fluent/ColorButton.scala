@@ -14,9 +14,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkColorButton
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The `GtkColorButton` allows to open a color chooser dialog to change the
+/** The `GtkColorButton` allows to open a color chooser dialog to change the
   * color.
   *
   * ![An example GtkColorButton](color-button.png)
@@ -34,6 +32,9 @@ import sn.gnome.gtk4.internal.GtkColorButton
   * `GtkColorButton` has a single CSS node with name colorbutton which contains
   * a button node. To differentiate it from a plain `GtkButton`, it gets the
   * .color style class.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ColorButton(raw: Ptr[GtkColorButton])
     extends Widget(raw.asInstanceOf),
@@ -44,17 +45,19 @@ class ColorButton(raw: Ptr[GtkColorButton])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets whether the dialog is modal.
     *
-    * Gets whether the dialog is modal.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getModal(): Boolean /* None */ = gtk_color_button_get_modal(
     this.raw.asInstanceOf[Ptr[GtkColorButton]]
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the title of the color chooser dialog.
     *
-    * Gets the title of the color chooser dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTitle()(using Zone): String /* None */ = fromCString(
     gtk_color_button_get_title(
@@ -62,9 +65,10 @@ class ColorButton(raw: Ptr[GtkColorButton])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets whether the dialog should be modal.
     *
-    * Sets whether the dialog should be modal.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -73,9 +77,10 @@ class ColorButton(raw: Ptr[GtkColorButton])
     gboolean(gint((if modal == true then 1 else 0)))
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the title for the color chooser dialog.
     *
-    * Sets the title for the color chooser dialog.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
       title: String | CString /* Some(CString) */
@@ -95,26 +100,28 @@ class ColorButton(raw: Ptr[GtkColorButton])
 end ColorButton
 
 object ColorButton:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new color button.
+  /** Creates a new color button.
     *
     * This returns a widget in the form of a small button containing a swatch
     * representing the current selected color. When the button is clicked, a
     * color chooser dialog will open, allowing the user to select a color. The
     * swatch will be updated to reflect the new color when the user finishes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): ColorButton = new ColorButton(
     gtk_color_button_new().asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new color button showing the given color.
     *
-    * Creates a new color button showing the given color.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
+    "[rgba]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
-  def new_with_rgba() = ???
+  private def new_with_rgba() = ???
 
 end ColorButton

@@ -16,9 +16,7 @@ import sn.gnome.gtk4.fluent.{
 import sn.gnome.gtk4.internal.GtkInscription
 import sn.gnome.pango.fluent.WrapMode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkInscription` is a widget to show text in a predefined area.
+/** `GtkInscription` is a widget to show text in a predefined area.
   *
   * You likely want to use `GtkLabel` instead as this widget is intended only
   * for a small subset of use cases. The main scenario envisaged is inside lists
@@ -30,6 +28,9 @@ import sn.gnome.pango.fluent.WrapMode
   *
   * Users of this widget should take care to plan behaviour for the common case
   * where the text doesn't fit exactly in the allocated space.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Inscription(raw: Ptr[GtkInscription])
     extends Widget(raw.asInstanceOf),
@@ -39,58 +40,64 @@ class Inscription(raw: Ptr[GtkInscription])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the inscription's attribute list.
     *
-    * Gets the inscription's attribute list.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
-  def getAttributes__ = ???
+  private def getAttributes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `min-chars` of the inscription.
+  /** Gets the `min-chars` of the inscription.
     *
     * See the [property@Gtk.Inscription:min-chars] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMinChars(): UInt /* None */ = gtk_inscription_get_min_chars(
     this.raw.asInstanceOf[Ptr[GtkInscription]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `min-lines` of the inscription.
+  /** Gets the `min-lines` of the inscription.
     *
     * See the [property@Gtk.Inscription:min-lines] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMinLines(): UInt /* None */ = gtk_inscription_get_min_lines(
     this.raw.asInstanceOf[Ptr[GtkInscription]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `nat-chars` of the inscription.
+  /** Gets the `nat-chars` of the inscription.
     *
     * See the [property@Gtk.Inscription:nat-chars] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNatChars(): UInt /* None */ = gtk_inscription_get_nat_chars(
     this.raw.asInstanceOf[Ptr[GtkInscription]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `nat-lines` of the inscription.
+  /** Gets the `nat-lines` of the inscription.
     *
     * See the [property@Gtk.Inscription:nat-lines] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNatLines(): UInt /* None */ = gtk_inscription_get_nat_lines(
     this.raw.asInstanceOf[Ptr[GtkInscription]]
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the text that is displayed.
     *
-    * Gets the text that is displayed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getText()(using Zone): String /* None */ = fromCString(
     gtk_inscription_get_text(
@@ -98,9 +105,10 @@ class Inscription(raw: Ptr[GtkInscription])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the inscription's overflow method.
     *
-    * Gets the inscription's overflow method.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getTextOverflow(): InscriptionOverflow /* None */ =
     InscriptionOverflow.fromRaw(
@@ -109,52 +117,57 @@ class Inscription(raw: Ptr[GtkInscription])
       )
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns line wrap mode used by the inscription.
+  /** Returns line wrap mode used by the inscription.
     *
     * See [method@Gtk.Inscription.set_wrap_mode].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getWrapMode(): WrapMode /* None */ = WrapMode.fromRaw(
     gtk_inscription_get_wrap_mode(this.raw.asInstanceOf[Ptr[GtkInscription]])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `xalign` of the inscription.
+  /** Gets the `xalign` of the inscription.
     *
     * See the [property@Gtk.Inscription:xalign] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getXalign(): Float /* None */ = gtk_inscription_get_xalign(
     this.raw.asInstanceOf[Ptr[GtkInscription]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the `yalign` of the inscription.
+  /** Gets the `yalign` of the inscription.
     *
     * See the [property@Gtk.Inscription:yalign] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getYalign(): Float /* None */ = gtk_inscription_get_yalign(
     this.raw.asInstanceOf[Ptr[GtkInscription]]
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Apply attributes to the inscription text.
+  /** Apply attributes to the inscription text.
     *
     * These attributes will not be evaluated for sizing the inscription.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
-  def setAttributes__ = ???
+  private def setAttributes__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Utility function to set the text and attributes to be displayed.
+  /** Utility function to set the text and attributes to be displayed.
     *
     * See the [property@Gtk.Inscription:markup] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarkup(
       markup: Option[String | CString /* Some(CString) */ ]
@@ -165,11 +178,12 @@ class Inscription(raw: Ptr[GtkInscription])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `min-chars` of the inscription.
+  /** Sets the `min-chars` of the inscription.
     *
     * See the [property@Gtk.Inscription:min-chars] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMinChars(
       min_chars: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -178,11 +192,12 @@ class Inscription(raw: Ptr[GtkInscription])
     guint(min_chars)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `min-lines` of the inscription.
+  /** Sets the `min-lines` of the inscription.
     *
     * See the [property@Gtk.Inscription:min-lines] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMinLines(
       min_lines: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -191,11 +206,12 @@ class Inscription(raw: Ptr[GtkInscription])
     guint(min_lines)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `nat-chars` of the inscription.
+  /** Sets the `nat-chars` of the inscription.
     *
     * See the [property@Gtk.Inscription:nat-chars] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setNatChars(
       nat_chars: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -204,11 +220,12 @@ class Inscription(raw: Ptr[GtkInscription])
     guint(nat_chars)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `nat-lines` of the inscription.
+  /** Sets the `nat-lines` of the inscription.
     *
     * See the [property@Gtk.Inscription:nat-lines] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setNatLines(
       nat_lines: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -217,9 +234,10 @@ class Inscription(raw: Ptr[GtkInscription])
     guint(nat_lines)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the text to be displayed.
     *
-    * Sets the text to be displayed.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(
       text: Option[String | CString /* Some(CString) */ ]
@@ -230,9 +248,10 @@ class Inscription(raw: Ptr[GtkInscription])
       .getOrElse(null.asInstanceOf[CString])
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets what to do when the text doesn't fit.
     *
-    * Sets what to do when the text doesn't fit.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setTextOverflow(
       overflow: InscriptionOverflow /* Some(GtkInscriptionOverflow) */
@@ -241,9 +260,10 @@ class Inscription(raw: Ptr[GtkInscription])
     overflow.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Controls how line wrapping is done.
     *
-    * Controls how line wrapping is done.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setWrapMode(
       wrap_mode: WrapMode /* Some(_root_.sn.gnome.pango.internal.PangoWrapMode) */
@@ -252,11 +272,12 @@ class Inscription(raw: Ptr[GtkInscription])
     wrap_mode.raw
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `xalign` of the inscription.
+  /** Sets the `xalign` of the inscription.
     *
     * See the [property@Gtk.Inscription:xalign] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setXalign(xalign: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_inscription_set_xalign(
@@ -264,11 +285,12 @@ class Inscription(raw: Ptr[GtkInscription])
       xalign.asInstanceOf
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Sets the `yalign` of the inscription.
+  /** Sets the `yalign` of the inscription.
     *
     * See the [property@Gtk.Inscription:yalign] property.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setYalign(yalign: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_inscription_set_yalign(
@@ -287,9 +309,10 @@ class Inscription(raw: Ptr[GtkInscription])
 end Inscription
 
 object Inscription:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkInscription` with the given text.
     *
-    * Creates a new `GtkInscription` with the given text.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       text: Option[String | CString /* Some(CString) */ ]

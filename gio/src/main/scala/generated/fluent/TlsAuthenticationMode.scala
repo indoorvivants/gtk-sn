@@ -2,32 +2,36 @@ package sn.gnome.gio.fluent
 
 import _root_.sn.gnome.gio.internal.GTlsAuthenticationMode
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
+/** The client authentication mode for a #GTlsServerConnection.
   *
-  * The client authentication mode for a #GTlsServerConnection.
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 enum TlsAuthenticationMode(val raw: GTlsAuthenticationMode):
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** client authentication not required
     *
-    * client authentication not required
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case NONE
       extends TlsAuthenticationMode(
         GTlsAuthenticationMode.G_TLS_AUTHENTICATION_NONE
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** client authentication is requested
     *
-    * client authentication is requested
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case REQUESTED
       extends TlsAuthenticationMode(
         GTlsAuthenticationMode.G_TLS_AUTHENTICATION_REQUESTED
       )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** client authentication is required
     *
-    * client authentication is required
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   case REQUIRED
       extends TlsAuthenticationMode(

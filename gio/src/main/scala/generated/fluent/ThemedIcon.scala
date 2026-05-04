@@ -8,25 +8,27 @@ import sn.gnome.gio.fluent.Icon
 import sn.gnome.gio.internal.GThemedIcon
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * #GThemedIcon is an implementation of #GIcon that supports icon themes.
+/** #GThemedIcon is an implementation of #GIcon that supports icon themes.
   * #GThemedIcon contains a list of all of the icons present in an icon theme,
   * so that icons can be looked up quickly. #GThemedIcon does not provide actual
   * pixmaps for icons, just the icon names. Ideally something like
   * gtk_icon_theme_choose_icon() should be used to resolve the list of names so
   * that fallback icons work nicely with themes that inherit other themes.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class ThemedIcon(raw: Ptr[GThemedIcon]) extends Object(raw.asInstanceOf), Icon:
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Append a name to the list of icons from within @icon.
+  /** Append a name to the list of icons from within @icon.
     *
     * Note that doing so invalidates the hash computed by prior calls to
     * g_icon_hash().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def appendName(
       iconname: String | CString /* Some(CString) */
@@ -35,21 +37,23 @@ class ThemedIcon(raw: Ptr[GThemedIcon]) extends Object(raw.asInstanceOf), Icon:
     __sn_extract_string(iconname)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the names of icons from within @icon.
     *
-    * Gets the names of icons from within @icon.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[get_names/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
-  def getNames__ = ???
+  private def getNames__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Prepend a name to the list of icons from within @icon.
+  /** Prepend a name to the list of icons from within @icon.
     *
     * Note that doing so invalidates the hash computed by prior calls to
     * g_icon_hash().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def prependName(
       iconname: String | CString /* Some(CString) */
@@ -69,9 +73,10 @@ class ThemedIcon(raw: Ptr[GThemedIcon]) extends Object(raw.asInstanceOf), Icon:
 end ThemedIcon
 
 object ThemedIcon:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new themed icon for @iconname.
     *
-    * Creates a new themed icon for @iconname.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       iconname: String | CString /* Some(CString) */
@@ -79,9 +84,10 @@ object ThemedIcon:
     g_themed_icon_new(__sn_extract_string(iconname)).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new themed icon for @iconnames.
     *
-    * Creates a new themed icon for @iconnames.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def fromNames(
       iconnames: Array[String] /* Some(Ptr[CString]) */,
@@ -93,9 +99,7 @@ object ThemedIcon:
     ).asInstanceOf
   )
 
-  /**  COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    *  Creates a new themed icon for @iconname, and all the names
+  /**  Creates a new themed icon for @iconname, and all the names
     *  that can be created by shortening @iconname at '-' characters.
     *
     *  In the following example, @icon1 and @icon2 are equivalent:
@@ -110,6 +114,8 @@ object ThemedIcon:
     *  icon1 = g_themed_icon_new_from_names (names, 4);
     *  icon2 = g_themed_icon_new_with_default_fallbacks ("gnome-dev-cdrom-audio");
     *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def withDefaultFallbacks(
       iconname: String | CString /* Some(CString) */

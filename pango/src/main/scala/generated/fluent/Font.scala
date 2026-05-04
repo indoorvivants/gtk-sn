@@ -9,74 +9,78 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.pango.fluent.{FontFace, FontMap}
 import sn.gnome.pango.internal.PangoFont
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * A `PangoFont` is used to represent a font in a rendering-system-independent
+/** A `PangoFont` is used to represent a font in a rendering-system-independent
   * manner.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a description of the font, with font size set in points.
+  /** Returns a description of the font, with font size set in points.
     *
     * Use [method@Pango.Font.describe_with_absolute_size] if you want the font
     * size in device units.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[describe/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
-  def describe__ = ???
+  private def describe__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns a description of the font, with absolute font size set in device
+  /** Returns a description of the font, with absolute font size set in device
     * units.
     *
     * Use [method@Pango.Font.describe] if you want the font size in points.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[describe_with_absolute_size/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
-  def describeWithAbsoluteSize__ = ???
+  private def describeWithAbsoluteSize__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Computes the coverage map for a given font and language tag.
     *
-    * Computes the coverage map for a given font and language tag.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
+    "[get_coverage/<method parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
-  def getCoverage__ = ???
+  private def getCoverage__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the `PangoFontFace` to which @font belongs.
     *
-    * Gets the `PangoFontFace` to which @font belongs.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFace(): FontFace /* None */ = new FontFace(
     pango_font_get_face(this.raw.asInstanceOf[Ptr[PangoFont]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Obtain the OpenType features that are provided by the font.
+  /** Obtain the OpenType features that are provided by the font.
     *
     * These are passed to the rendering system, together with features that have
     * been explicitly set via attributes.
     *
     * Note that this does not include OpenType features which the rendering
     * system enables by default.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_features contains an OUT parameter, which is not supported yet"
+    "[get_features]: Method get_features contains an OUT parameter, which is not supported yet"
   )
-  def getFeatures__ = ???
+  private def getFeatures__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the font map for which the font was created.
+  /** Gets the font map for which the font was created.
     *
     * Note that the font maintains a *weak* reference to the font map, so if all
     * references to font map are dropped, the font map will be finalized even if
@@ -86,14 +90,15 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * It is the responsibility of the user to ensure that the font map is kept
     * alive. In most uses this is not an issue as a `PangoContext` holds a
     * reference to the font map.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getFontMap(): FontMap /* None */ = new FontMap(
     pango_font_get_font_map(this.raw.asInstanceOf[Ptr[PangoFont]]).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets the logical and ink extents of a glyph within a font.
+  /** Gets the logical and ink extents of a glyph within a font.
     *
     * The coordinate system for each rectangle has its origin at the base line
     * and horizontal origin of the character with increasing coordinates
@@ -104,28 +109,30 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     *
     * If @font is %NULL, this function gracefully sets some sane values in the
     * output variables and returns.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_glyph_extents contains an OUT parameter, which is not supported yet"
+    "[get_glyph_extents]: Method get_glyph_extents contains an OUT parameter, which is not supported yet"
   )
-  def getGlyphExtents__ = ???
+  private def getGlyphExtents__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Get a `hb_font_t` object backing this font.
+  /** Get a `hb_font_t` object backing this font.
     *
     * Note that the objects returned by this function are cached and immutable.
     * If you need to make changes to the `hb_font_t`, use
     * [hb_font_create_sub_font()](https://harfbuzz.github.io/harfbuzz-hb-font.html#hb-font-create-sub-font).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method get_hb_font is weird: refers to HarfBuzz.font_t as gconstpointer"
+    "[get_hb_font]: Method get_hb_font is weird: refers to HarfBuzz.font_t as gconstpointer"
   )
-  def getHbFont__ = ???
+  private def getHbFont__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Returns the languages that are supported by @font.
+  /** Returns the languages that are supported by @font.
     *
     * If the font backend does not provide this information, %NULL is returned.
     * For the fontconfig backend, this corresponds to the FC_LANG member of the
@@ -133,15 +140,16 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     *
     * The returned array is only valid as long as the font and its fontmap are
     * valid.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Language)))),ListMap(@type -> DataRecord(PangoLanguage**)))"
+    "[get_languages/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Language)))),ListMap(@type -> DataRecord(PangoLanguage**)))"
   )
-  def getLanguages__ = ???
+  private def getLanguages__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets overall metric information for a font.
+  /** Gets overall metric information for a font.
     *
     * Since the metrics may be substantially different for different scripts, a
     * language tag can be provided to indicate that the metrics should be
@@ -149,15 +157,19 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     *
     * If @font is %NULL, this function gracefully sets some sane values in the
     * output variables and returns.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
+    "[get_metrics/<method parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
-  def getMetrics__ = ???
+  private def getMetrics__ = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Returns whether the font provides a glyph for this character.
     *
-    * Returns whether the font provides a glyph for this character.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def hasChar(
       wc: CUnsignedInt /* Some(_root_.sn.gnome.glib.internal.gunichar) */
@@ -166,9 +178,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     gunichar(guint32(wc))
   ).value.!=(0)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Serializes the @font in a way that can be uniquely identified.
+  /** Serializes the @font in a way that can be uniquely identified.
     *
     * There are no guarantees about the format of the output across different
     * versions of Pango.
@@ -178,37 +188,42 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     *
     * To recreate a font from its serialized form, use
     * [func@Pango.Font.deserialize].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[serialize/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def serialize__ = ???
+  private def serialize__ = ???
 
 end Font
 
 object Font:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Frees an array of font descriptions.
     *
-    * Frees an array of font descriptions.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(PangoFontDescription**)))"
+    "[<function parameters>/descs]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(PangoFontDescription**)))"
   )
-  def descriptionsFree() = ???
+  private def descriptionsFree() = ???
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Loads data previously created via [method@Pango.Font.serialize].
+  /** Loads data previously created via [method@Pango.Font.serialize].
     *
     * For a discussion of the supported format, see that function.
     *
     * Note: to verify that the returned font is identical to the one that was
     * serialized, you can compare @bytes to the result of serializing the font
     * again.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[<function parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  def deserialize() = ???
+  private def deserialize() = ???
 
 end Font

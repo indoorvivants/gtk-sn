@@ -13,13 +13,14 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.GtkMediaControls
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * `GtkMediaControls` is a widget to show controls for a video.
+/** `GtkMediaControls` is a widget to show controls for a video.
   *
   * ![An example GtkMediaControls](media-controls.png)
   *
   * Usually, `GtkMediaControls` is used as part of [class@Gtk.Video].
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class MediaControls(raw: Ptr[GtkMediaControls])
     extends Widget(raw.asInstanceOf),
@@ -29,9 +30,10 @@ class MediaControls(raw: Ptr[GtkMediaControls])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Gets the media stream managed by @controls or %NULL if none.
     *
-    * Gets the media stream managed by @controls or %NULL if none.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getMediaStream(): MediaStream /* None */ = new MediaStream(
     gtk_media_controls_get_media_stream(
@@ -39,9 +41,10 @@ class MediaControls(raw: Ptr[GtkMediaControls])
     ).asInstanceOf
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Sets the stream that is controlled by @controls.
     *
-    * Sets the stream that is controlled by @controls.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setMediaStream(
       stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
@@ -55,9 +58,10 @@ class MediaControls(raw: Ptr[GtkMediaControls])
 end MediaControls
 
 object MediaControls:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
+  /** Creates a new `GtkMediaControls` managing the @stream passed to it.
     *
-    * Creates a new `GtkMediaControls` managing the @stream passed to it.
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
       stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ]

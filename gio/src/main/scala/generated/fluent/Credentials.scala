@@ -10,9 +10,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * The #GCredentials type is a reference-counted wrapper for native
+/** The #GCredentials type is a reference-counted wrapper for native
   * credentials. This information is typically used for identifying,
   * authenticating and authorizing other processes.
   *
@@ -47,19 +45,23 @@ import sn.gnome.gobject.fluent.Object
   *
   * Since GLib 2.72, on Windows, the native credentials may contain the PID of a
   * process. This corresponds to %G_CREDENTIALS_TYPE_WIN32_PID.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Gets a pointer to native credentials of type @native_type from
+  /** Gets a pointer to native credentials of type @native_type from
     * @credentials.
     *
     * It is a programming error (which will cause a warning to be logged) to use
     * this method if there is no #GCredentials support for the OS or if @native_type
     * isn't supported by the OS.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getNative(
       native_type: CredentialsType /* Some(GCredentialsType) */
@@ -68,14 +70,15 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     native_type.raw
   ).value
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to get the UNIX process identifier from @credentials. This method is
+  /** Tries to get the UNIX process identifier from @credentials. This method is
     * only available on UNIX platforms.
     *
     * This operation can fail if #GCredentials is not supported on the OS or if
     * the native credentials type does not contain information about the UNIX
     * process ID.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUnixPid(): GResult[pid_t /* None */ ] = GResult.wrap(__errorPtr =>
     g_credentials_get_unix_pid(
@@ -84,14 +87,15 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to get the UNIX user identifier from @credentials. This method is
+  /** Tries to get the UNIX user identifier from @credentials. This method is
     * only available on UNIX platforms.
     *
     * This operation can fail if #GCredentials is not supported on the OS or if
     * the native credentials type does not contain information about the UNIX
     * user.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def getUnixUser(): GResult[uid_t /* None */ ] = GResult.wrap(__errorPtr =>
     g_credentials_get_unix_user(
@@ -100,11 +104,12 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     )
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Checks if @credentials and @other_credentials is the same user.
+  /** Checks if @credentials and @other_credentials is the same user.
     *
     * This operation can fail if #GCredentials is not supported on the the OS.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def isSameUser(
       other_credentials: Credentials /* Some(Ptr[GCredentials]) */
@@ -116,13 +121,14 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     ).value.!=(0)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Copies the native credentials of type @native_type from @native into @credentials.
+  /** Copies the native credentials of type @native_type from @native into @credentials.
     *
     * It is a programming error (which will cause a warning to be logged) to use
     * this method if there is no #GCredentials support for the OS or if @native_type
     * isn't supported by the OS.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setNative(
       native_type: CredentialsType /* Some(GCredentialsType) */,
@@ -133,15 +139,16 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     gpointer(native)
   )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Tries to set the UNIX user identifier on @credentials. This method is only
+  /** Tries to set the UNIX user identifier on @credentials. This method is only
     * available on UNIX platforms.
     *
     * This operation can fail if #GCredentials is not supported on the OS or if
     * the native credentials type does not contain information about the UNIX
     * user. It can also fail if the OS does not allow the use of "spoofed"
     * credentials.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def setUnixUser(uid: uid_t /* Some(uid_t) */ ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -152,11 +159,12 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
       ).value.!=(0)
     )
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a human-readable textual representation of @credentials that can
+  /** Creates a human-readable textual representation of @credentials that can
     * be used in logging and debug messages. The format of the returned string
     * may change in future GLib release.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def toString()(using Zone): String /* None */ = fromCString(
     g_credentials_to_string(
@@ -167,10 +175,11 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
 end Credentials
 
 object Credentials:
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Creates a new #GCredentials object with credentials matching the the
+  /** Creates a new #GCredentials object with credentials matching the the
     * current process.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Credentials = new Credentials(g_credentials_new().asInstanceOf)
 end Credentials

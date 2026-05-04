@@ -2,11 +2,12 @@ package sn.gnome.gtk4.fluent
 
 import _root_.sn.gnome.gtk4.internal.GtkStyleContextPrintFlags
 
-/** COMMENT FOR THE ORIGINAL C DEFINITION
-  *
-  * Flags that modify the behavior of gtk_style_context_to_string().
+/** Flags that modify the behavior of gtk_style_context_to_string().
   *
   * New values may be added to this enumeration.
+  *
+  * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
+  * BE APPLICABLE TO SCALA
   */
 class StyleContextPrintFlags private (val raw: GtkStyleContextPrintFlags):
   def is(kv: StyleContextPrintFlags): Boolean =
@@ -34,19 +35,21 @@ object StyleContextPrintFlags:
     def |(other: StyleContextPrintFlags) =
       StyleContextPrintFlags(af.raw | other.raw)
 
-  /** COMMENT FOR THE ORIGINAL C DEFINITION
-    *
-    * Flags that modify the behavior of gtk_style_context_to_string().
+  /** Flags that modify the behavior of gtk_style_context_to_string().
     *
     * New values may be added to this enumeration.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
     */
   enum KnownValue(override val raw: GtkStyleContextPrintFlags, name: String)
       extends StyleContextPrintFlags(raw):
     override def toString(): String = this.name
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Default value.
       *
-      * Default value.
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case NONE
         extends KnownValue(
@@ -54,9 +57,10 @@ object StyleContextPrintFlags:
           "NONE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Print the entire tree of CSS nodes starting at the style context's node
       *
-      * Print the entire tree of CSS nodes starting at the style context's node
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case RECURSE
         extends KnownValue(
@@ -64,9 +68,10 @@ object StyleContextPrintFlags:
           "RECURSE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Show the values of the CSS properties for each node
       *
-      * Show the values of the CSS properties for each node
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SHOW_STYLE
         extends KnownValue(
@@ -74,9 +79,10 @@ object StyleContextPrintFlags:
           "SHOW_STYLE"
         )
 
-    /** COMMENT FOR THE ORIGINAL C DEFINITION
+    /** Show information about what changes affect the styles
       *
-      * Show information about what changes affect the styles
+      * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+      * MIGHT BE APPLICABLE TO SCALA
       */
     case SHOW_CHANGE
         extends KnownValue(
