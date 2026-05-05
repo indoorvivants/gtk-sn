@@ -12,7 +12,4 @@ case class AugmentedClass(n: Class) extends ClassLike:
   export n.*
   override protected def options: Seq[DataRecord[Any]] = n.classoption
 
-  def doc =
-    options.collectFirst:
-      case d if d.value.isInstanceOf[Doc] => d.as[Doc]
 end AugmentedClass
