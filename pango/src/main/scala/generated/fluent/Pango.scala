@@ -4,6 +4,7 @@ import _root_.sn.gnome.pango.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint32, gunichar}
 import sn.gnome.pango.fluent.{
   AttrType,
@@ -1490,6 +1491,131 @@ object Pango:
   def versionString()(using Zone): String /* Some(CString) */ = fromCString(
     pango_version_string().asInstanceOf
   )
+
+  /** Whether the segment should be shifted to center around the baseline.
+    *
+    * This is mainly used in vertical writing directions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val ANALYSIS_FLAG_CENTERED_BASELINE: Int = 1
+
+  /** Whether this run holds ellipsized text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val ANALYSIS_FLAG_IS_ELLIPSIS: Int = 2
+
+  /** Whether to add a hyphen at the end of the run during shaping.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val ANALYSIS_FLAG_NEED_HYPHEN: Int = 4
+
+  /** Value for @start_index in `PangoAttribute` that indicates the beginning of
+    * the text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val ATTR_INDEX_FROM_TEXT_BEGINNING: UInt = 0L.toUInt
+
+  /** Value for @end_index in `PangoAttribute` that indicates the end of the
+    * text.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val ATTR_INDEX_TO_TEXT_END: UInt = 4294967295L.toUInt
+
+  /** A `PangoGlyph` value that indicates a zero-width empty glpyh.
+    *
+    * This is useful for example in shaper modules, to use as the glyph for
+    * various zero-width Unicode characters (those passing
+    * [func@is_zero_width]).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[GLYPH_EMPTY:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(Glyph), @type -> DataRecord(PangoGlyph))) with raw value `268435455`"
+  )
+  private def GLYPH_EMPTY() = ???
+
+  /** A `PangoGlyph` value for invalid input.
+    *
+    * `PangoLayout` produces one such glyph per invalid input UTF-8 byte and
+    * such a glyph is rendered as a crossed box.
+    *
+    * Note that this value is defined such that it has the
+    * %PANGO_GLYPH_UNKNOWN_FLAG set.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[GLYPH_INVALID_INPUT:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(Glyph), @type -> DataRecord(PangoGlyph))) with raw value `4294967295`"
+  )
+  private def GLYPH_INVALID_INPUT() = ???
+
+  /** Flag used in `PangoGlyph` to turn a `gunichar` value of a valid Unicode
+    * character into an unknown-character glyph for that `gunichar`.
+    *
+    * Such unknown-character glyphs may be rendered as a 'hex box'.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[GLYPH_UNKNOWN_FLAG:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(Glyph), @type -> DataRecord(PangoGlyph))) with raw value `268435456`"
+  )
+  private def GLYPH_UNKNOWN_FLAG() = ???
+
+  /** The scale between dimensions used for Pango distances and device units.
+    *
+    * The definition of device units is dependent on the output device; it will
+    * typically be pixels for a screen, and points for a printer. %PANGO_SCALE
+    * is currently 1024, but this may be changed in the future.
+    *
+    * When setting font sizes, device units are always considered to be points
+    * (as in "12 point font"), rather than pixels.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val SCALE: Int = 1024
+
+  /** The major component of the version of Pango available at compile-time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val VERSION_MAJOR: Int = 1
+
+  /** The micro component of the version of Pango available at compile-time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val VERSION_MICRO: Int = 0
+
+  /** The minor component of the version of Pango available at compile-time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val VERSION_MINOR: Int = 51
+
+  /** A string literal containing the version of Pango available at
+    * compile-time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val VERSION_STRING: String = "1.51.0"
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

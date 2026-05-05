@@ -12350,6 +12350,1247 @@ object GLib:
       .getOrElse(null.asInstanceOf[CString])
   )
 
+  final val ANALYZER_ANALYZING: Int = 1
+
+  /**  A good size for a buffer to be passed into g_ascii_dtostr().
+    *  It is guaranteed to be enough for all output of that function
+    *  on systems with 64bit IEEE-compatible doubles.
+    *
+    *  The typical usage would be something like:
+    *  |[<!-- language="C" -->
+    *    char buf[G_ASCII_DTOSTR_BUF_SIZE];
+    *
+    *    fprintf (out, "value=%s\n", g_ascii_dtostr (buf, sizeof (buf), value));
+    *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
+    */
+  final val ASCII_DTOSTR_BUF_SIZE: Int = 39
+
+  /**  Evaluates to the initial reference count for `gatomicrefcount`.
+    *
+    *  This macro is useful for initializing `gatomicrefcount` fields inside
+    *  structures, for instance:
+    *
+    *  |[<!-- language="C" -->
+    *  typedef struct {
+    *    gatomicrefcount ref_count;
+    *    char *name;
+    *    char *address;
+    *  } Person;
+    *
+    *  static const Person default_person = {
+    *    .ref_count = G_ATOMIC_REF_COUNT_INIT,
+    *    .name = "Default name",
+    *    .address = "Default address",
+    *  };
+    *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
+    */
+  final val ATOMIC_REF_COUNT_INIT: Int = 1
+
+  /** Specifies one of the possible types of byte order. See %G_BYTE_ORDER.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val BIG_ENDIAN: Int = 4321
+
+  /** The set of uppercase ASCII alphabet characters. Used for specifying valid
+    * identifier characters in #GScannerConfig.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val CSET_A_2_Z: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+  /** The set of ASCII digits. Used for specifying valid identifier characters
+    * in #GScannerConfig.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val CSET_DIGITS: String = "0123456789"
+
+  /** The set of lowercase ASCII alphabet characters. Used for specifying valid
+    * identifier characters in #GScannerConfig.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val CSET_a_2_z: String = "abcdefghijklmnopqrstuvwxyz"
+
+  /** The C standard version the code is compiling against, it's normally
+    * defined with the same value of `__STDC_VERSION__` for C standard
+    * compatible compilers, while it uses the lowest standard version in pure
+    * MSVC, given that in such compiler the definition depends on a compilation
+    * flag.
+    *
+    * This is granted to be undefined when compiling with a C++ compiler.
+    *
+    * See also: %G_C_STD_CHECK_VERSION and %G_CXX_STD_VERSION
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val C_STD_VERSION: Int = 199000
+
+  /** A bitmask that restricts the possible flags passed to
+    * g_datalist_set_flags(). Passing a flags value where flags &
+    * ~G_DATALIST_FLAGS_MASK != 0 is an error.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val DATALIST_FLAGS_MASK: Int = 3
+
+  /** Represents an invalid #GDateDay.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val DATE_BAD_DAY: Int = 0
+
+  /** Represents an invalid Julian day number.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val DATE_BAD_JULIAN: Int = 0
+
+  /** Represents an invalid year.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val DATE_BAD_YEAR: Int = 0
+
+  /** The directory separator character. This is '/' on UNIX machines and '\'
+    * under Windows.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val DIR_SEPARATOR: Int = 47
+
+  /** The directory separator as a string. This is "/" on UNIX machines and "\"
+    * under Windows.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val DIR_SEPARATOR_S: String = "/"
+
+  /** The base of natural logarithms.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[E:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `2.718282`"
+  )
+  private def E() = ???
+
+  /**  This is the platform dependent conversion specifier for scanning and
+    *  printing values of type #gint16. It is a string literal, but doesn't
+    *  include the percent-sign, such that you can add precision and length
+    *  modifiers between percent-sign and conversion specifier.
+    *
+    *  |[<!-- language="C" -->
+    *  gint16 in;
+    *  gint32 out;
+    *  sscanf ("42", "%" G_GINT16_FORMAT, &in)
+    *  out = in * 1000;
+    *  g_print ("%" G_GINT32_FORMAT, out);
+    *
+    *  This is not necessarily the correct format for printing and scanning
+    *  `int16_t` values, even though the in-memory representation is the same.
+    *  Standard C macros like `PRId16` and `SCNd16` should be used for `int16_t`.
+    *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GINT16_FORMAT: String = "hi"
+
+  /**  The platform dependent length modifier for conversion specifiers
+    *  for scanning and printing values of type #gint16 or #guint16. It
+    *  is a string literal, but doesn't include the percent-sign, such
+    *  that you can add precision and length modifiers between percent-sign
+    *  and conversion specifier and append a conversion specifier.
+    *
+    *  The following example prints "0x7b";
+    *  |[<!-- language="C" -->
+    *  gint16 value = 123;
+    *  g_print ("%#" G_GINT16_MODIFIER "x", value);
+    *  ]|
+    *
+    *  This is not necessarily the correct modifier for printing and scanning
+    *  `int16_t` values, even though the in-memory representation is the same.
+    *  Standard C macros like `PRId16` and `SCNd16` should be used for `int16_t`.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GINT16_MODIFIER: String = "h"
+
+  /** This is the platform dependent conversion specifier for scanning and
+    * printing values of type #gint32. See also %G_GINT16_FORMAT.
+    *
+    * This is not necessarily the correct modifier for printing and scanning
+    * `int32_t` values, even though the in-memory representation is the same.
+    * Standard C macros like `PRId32` and `SCNd32` should be used for `int32_t`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GINT32_FORMAT: String = "i"
+
+  /** The platform dependent length modifier for conversion specifiers for
+    * scanning and printing values of type #gint32 or #guint32. It is a string
+    * literal. See also %G_GINT16_MODIFIER.
+    *
+    * This is not necessarily the correct modifier for printing and scanning
+    * `int32_t` values, even though the in-memory representation is the same.
+    * Standard C macros like `PRId32` and `SCNd32` should be used for `int32_t`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GINT32_MODIFIER: String = ""
+
+  /** This is the platform dependent conversion specifier for scanning and
+    * printing values of type #gint64. See also %G_GINT16_FORMAT.
+    *
+    * Some platforms do not support scanning and printing 64-bit integers, even
+    * though the types are supported. On such platforms %G_GINT64_FORMAT is not
+    * defined. Note that scanf() may not support 64-bit integers, even if
+    * %G_GINT64_FORMAT is defined. Due to its weak error handling, scanf() is
+    * not recommended for parsing anyway; consider using g_ascii_strtoull()
+    * instead.
+    *
+    * This is not necessarily the correct format for printing and scanning
+    * `int64_t` values, even though the in-memory representation is the same.
+    * Standard C macros like `PRId64` and `SCNd64` should be used for `int64_t`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GINT64_FORMAT: String = "li"
+
+  /** The platform dependent length modifier for conversion specifiers for
+    * scanning and printing values of type #gint64 or #guint64. It is a string
+    * literal.
+    *
+    * Some platforms do not support printing 64-bit integers, even though the
+    * types are supported. On such platforms %G_GINT64_MODIFIER is not defined.
+    *
+    * This is not necessarily the correct modifier for printing and scanning
+    * `int64_t` values, even though the in-memory representation is the same.
+    * Standard C macros like `PRId64` and `SCNd64` should be used for `int64_t`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GINT64_MODIFIER: String = "l"
+
+  /** This is the platform dependent conversion specifier for scanning and
+    * printing values of type #gintptr.
+    *
+    * Note that this is not necessarily the correct format to scan or print an
+    * `intptr_t`, even though the in-memory representation is the same. Standard
+    * C macros like `PRIdPTR` and `SCNdPTR` should be used for `intptr_t`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GINTPTR_FORMAT: String = "li"
+
+  /** The platform dependent length modifier for conversion specifiers for
+    * scanning and printing values of type #gintptr or #guintptr. It is a string
+    * literal.
+    *
+    * Note that this is not necessarily the correct modifier to scan or print an
+    * `intptr_t`, even though the in-memory representation is the same. Standard
+    * C macros like `PRIdPTR` and `SCNdPTR` should be used for `intptr_t`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GINTPTR_MODIFIER: String = "l"
+
+  /** Expands to "" on all modern compilers, and to __FUNCTION__ on gcc version
+    * 2.x. Don't use it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GNUC_FUNCTION: String = ""
+
+  /** Expands to "" on all modern compilers, and to __PRETTY_FUNCTION__ on gcc
+    * version 2.x. Don't use it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GNUC_PRETTY_FUNCTION: String = ""
+
+  /** This is the platform dependent conversion specifier for scanning and
+    * printing values of type #gsize. See also %G_GINT16_FORMAT.
+    *
+    * Note that this is not necessarily the correct format to scan or print a
+    * `size_t`, even though the in-memory representation is the same. The
+    * standard C `"zu"` format should be used for `size_t`, assuming a
+    * C99-compliant `printf` implementation is available.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GSIZE_FORMAT: String = "lu"
+
+  /** The platform dependent length modifier for conversion specifiers for
+    * scanning and printing values of type #gsize. It is a string literal.
+    *
+    * Note that this is not necessarily the correct modifier to scan or print a
+    * `size_t`, even though the in-memory representation is the same. The
+    * Standard C `"z"` modifier should be used for `size_t`, assuming a
+    * C99-compliant `printf` implementation is available.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GSIZE_MODIFIER: String = "l"
+
+  /** This is the platform dependent conversion specifier for scanning and
+    * printing values of type #gssize. See also %G_GINT16_FORMAT.
+    *
+    * Note that this is not necessarily the correct format to scan or print a
+    * POSIX `ssize_t` or a Windows `SSIZE_T`, even though the in-memory
+    * representation is the same. On POSIX platforms, the `"zd"` format should
+    * be used for `ssize_t`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GSSIZE_FORMAT: String = "li"
+
+  /** The platform dependent length modifier for conversion specifiers for
+    * scanning and printing values of type #gssize. It is a string literal.
+    *
+    * Note that this is not necessarily the correct modifier to scan or print a
+    * POSIX `ssize_t` or a Windows `SSIZE_T`, even though the in-memory
+    * representation is the same. On POSIX platforms, the `"z"` modifier should
+    * be used for `ssize_t`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GSSIZE_MODIFIER: String = "l"
+
+  /** This is the platform dependent conversion specifier for scanning and
+    * printing values of type #guint16. See also %G_GINT16_FORMAT
+    *
+    * This is not necessarily the correct modifier for printing and scanning
+    * `uint16_t` values, even though the in-memory representation is the same.
+    * Standard C macros like `PRIu16` and `SCNu16` should be used for
+    * `uint16_t`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GUINT16_FORMAT: String = "hu"
+
+  /** This is the platform dependent conversion specifier for scanning and
+    * printing values of type #guint32. See also %G_GINT16_FORMAT.
+    *
+    * This is not necessarily the correct modifier for printing and scanning
+    * `uint32_t` values, even though the in-memory representation is the same.
+    * Standard C macros like `PRIu32` and `SCNu32` should be used for
+    * `uint32_t`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GUINT32_FORMAT: String = "u"
+
+  /** This is the platform dependent conversion specifier for scanning and
+    * printing values of type #guint64. See also %G_GINT16_FORMAT.
+    *
+    * Some platforms do not support scanning and printing 64-bit integers, even
+    * though the types are supported. On such platforms %G_GUINT64_FORMAT is not
+    * defined. Note that scanf() may not support 64-bit integers, even if
+    * %G_GINT64_FORMAT is defined. Due to its weak error handling, scanf() is
+    * not recommended for parsing anyway; consider using g_ascii_strtoull()
+    * instead.
+    *
+    * This is not necessarily the correct modifier for printing and scanning
+    * `uint64_t` values, even though the in-memory representation is the same.
+    * Standard C macros like `PRIu64` and `SCNu64` should be used for
+    * `uint64_t`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GUINT64_FORMAT: String = "lu"
+
+  /** This is the platform dependent conversion specifier for scanning and
+    * printing values of type #guintptr.
+    *
+    * Note that this is not necessarily the correct format to scan or print a
+    * `uintptr_t`, even though the in-memory representation is the same.
+    * Standard C macros like `PRIuPTR` and `SCNuPTR` should be used for
+    * `uintptr_t`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val GUINTPTR_FORMAT: String = "lu"
+  final val HAVE_GINT64: Int = 1
+  final val HAVE_GNUC_VARARGS: Int = 1
+
+  /** Defined to 1 if gcc-style visibility handling is supported.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val HAVE_GNUC_VISIBILITY: Int = 1
+  final val HAVE_GROWING_STACK: Int = 0
+  final val HAVE_ISO_VARARGS: Int = 1
+
+  /** The position of the first bit which is not reserved for internal use be
+    * the #GHook implementation, i.e. `1 << G_HOOK_FLAG_USER_SHIFT` is the first
+    * bit which can be used for application-defined flags.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val HOOK_FLAG_USER_SHIFT: Int = 4
+
+  /** The bias by which exponents in double-precision floats are offset.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val IEEE754_DOUBLE_BIAS: Int = 1023
+
+  /** The bias by which exponents in single-precision floats are offset.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val IEEE754_FLOAT_BIAS: Int = 127
+
+  /** The name of the main group of a desktop entry file, as defined in the
+    * [Desktop Entry
+    * Specification](http://freedesktop.org/Standards/desktop-entry-spec).
+    * Consult the specification for more details about the meanings of the keys
+    * below.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_GROUP: String = "Desktop Entry"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a string list giving
+    * the available application actions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_ACTIONS: String = "Actions"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a list of strings
+    * giving the categories in which the desktop entry should be shown in a
+    * menu.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_CATEGORIES: String = "Categories"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a localized string
+    * giving the tooltip for the desktop entry.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_COMMENT: String = "Comment"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a boolean set to
+    * true if the application is D-Bus activatable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_DBUS_ACTIVATABLE: String = "DBusActivatable"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a string giving the
+    * command line to execute. It is only valid for desktop entries with the
+    * `Application` type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_EXEC: String = "Exec"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a localized string
+    * giving the generic name of the desktop entry.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_GENERIC_NAME: String = "GenericName"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a boolean stating
+    * whether the desktop entry has been deleted by the user.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_HIDDEN: String = "Hidden"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a localized string
+    * giving the name of the icon to be displayed for the desktop entry.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_ICON: String = "Icon"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a list of strings
+    * giving the MIME types supported by this desktop entry.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_MIME_TYPE: String = "MimeType"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a localized string
+    * giving the specific name of the desktop entry.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_NAME: String = "Name"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a list of strings
+    * identifying the environments that should not display the desktop entry.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN: String = "NotShowIn"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a boolean stating
+    * whether the desktop entry should be shown in menus.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_NO_DISPLAY: String = "NoDisplay"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a list of strings
+    * identifying the environments that should display the desktop entry.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN: String = "OnlyShowIn"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a string containing
+    * the working directory to run the program in. It is only valid for desktop
+    * entries with the `Application` type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_PATH: String = "Path"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a boolean stating
+    * whether the application supports the [Startup Notification Protocol
+    * Specification](http://www.freedesktop.org/Standards/startup-notification-spec).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY: String = "StartupNotify"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is string identifying
+    * the WM class or name hint of a window that the application will create,
+    * which can be used to emulate Startup Notification with older applications.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_STARTUP_WM_CLASS: String = "StartupWMClass"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a boolean stating
+    * whether the program should be run in a terminal window.
+    *
+    * It is only valid for desktop entries with the `Application` type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_TERMINAL: String = "Terminal"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a string giving the
+    * file name of a binary on disk used to determine if the program is actually
+    * installed. It is only valid for desktop entries with the `Application`
+    * type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_TRY_EXEC: String = "TryExec"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a string giving the
+    * type of the desktop entry.
+    *
+    * Usually %G_KEY_FILE_DESKTOP_TYPE_APPLICATION,
+    * %G_KEY_FILE_DESKTOP_TYPE_LINK, or %G_KEY_FILE_DESKTOP_TYPE_DIRECTORY.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_TYPE: String = "Type"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a string giving the
+    * URL to access. It is only valid for desktop entries with the `Link` type.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_URL: String = "URL"
+
+  /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a string giving the
+    * version of the Desktop Entry Specification used for the desktop entry
+    * file.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_KEY_VERSION: String = "Version"
+
+  /** The value of the %G_KEY_FILE_DESKTOP_KEY_TYPE, key for desktop entries
+    * representing applications.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_TYPE_APPLICATION: String = "Application"
+
+  /** The value of the %G_KEY_FILE_DESKTOP_KEY_TYPE, key for desktop entries
+    * representing directories.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_TYPE_DIRECTORY: String = "Directory"
+
+  /** The value of the %G_KEY_FILE_DESKTOP_KEY_TYPE, key for desktop entries
+    * representing links to documents.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val KEY_FILE_DESKTOP_TYPE_LINK: String = "Link"
+
+  /** Specifies one of the possible types of byte order. See %G_BYTE_ORDER.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val LITTLE_ENDIAN: Int = 1234
+
+  /** The natural logarithm of 10.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[LN10:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `2.302585`"
+  )
+  private def LN10() = ???
+
+  /** The natural logarithm of 2.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[LN2:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `0.693147`"
+  )
+  private def LN2() = ???
+
+  /** Multiplying the base 2 exponent by this number yields the base 10
+    * exponent.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[LOG_2_BASE_10:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `0.301030`"
+  )
+  private def LOG_2_BASE_10() = ???
+
+  /**  Defines the log domain. See [Log Domains](#log-domains).
+    *
+    *  Libraries should define this so that any messages
+    *  which they log can be differentiated from messages from other
+    *  libraries and application code. But be careful not to define
+    *  it in any public header files.
+    *
+    *  Log domains must be unique, and it is recommended that they are the
+    *  application or library name, optionally followed by a hyphen and a sub-domain
+    *  name. For example, `bloatpad` or `bloatpad-io`.
+    *
+    *  If undefined, it defaults to the default %NULL (or `""`) log domain; this is
+    *  not advisable, as it cannot be filtered against using the `G_MESSAGES_DEBUG`
+    *  environment variable.
+    *
+    *  For example, GTK uses this in its `Makefile.am`:
+    *  |[
+    *  AM_CPPFLAGS = -DG_LOG_DOMAIN=\"Gtk\"
+    *  ]|
+    *
+    *  Applications can choose to leave it as the default %NULL (or `""`)
+    *  domain. However, defining the domain offers the same advantages as
+    *  above.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[LOG_DOMAIN:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gchar), @type -> DataRecord(gchar))) with raw value `0`"
+  )
+  private def LOG_DOMAIN() = ???
+
+  /** GLib log levels that are considered fatal by default.
+    *
+    * This is not used if structured logging is enabled; see [Using Structured
+    * Logging][using-structured-logging].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val LOG_FATAL_MASK: Int = 5
+
+  /** Log levels below 1<<G_LOG_LEVEL_USER_SHIFT are used by GLib. Higher bits
+    * can be used for user-defined log levels.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val LOG_LEVEL_USER_SHIFT: Int = 8
+
+  /** The major version number of the GLib library.
+    *
+    * Like #glib_major_version, but from the headers used at application compile
+    * time, rather than from the library linked against at application run time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val MAJOR_VERSION: Int = 2
+
+  /** The maximum value which can be held in a #gint16.
+    *
+    * This is the same as standard C `INT16_MAX`, which should be preferred in
+    * new code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[MAXINT16:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gint16), @type -> DataRecord(gint16))) with raw value `32767`"
+  )
+  private def MAXINT16() = ???
+
+  /** The maximum value which can be held in a #gint32.
+    *
+    * This is the same as standard C `INT32_MAX`, which should be preferred in
+    * new code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[MAXINT32:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gint32), @type -> DataRecord(gint32))) with raw value `2147483647`"
+  )
+  private def MAXINT32() = ???
+
+  /** The maximum value which can be held in a #gint64.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[MAXINT64:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gint64), @type -> DataRecord(gint64))) with raw value `9223372036854775807`"
+  )
+  private def MAXINT64() = ???
+
+  /** The maximum value which can be held in a #gint8.
+    *
+    * This is the same as standard C `INT8_MAX`, which should be preferred in
+    * new code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[MAXINT8:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gint8), @type -> DataRecord(gint8))) with raw value `127`"
+  )
+  private def MAXINT8() = ???
+
+  /** The maximum value which can be held in a #guint16.
+    *
+    * This is the same as standard C `UINT16_MAX`, which should be preferred in
+    * new code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[MAXUINT16:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(guint16), @type -> DataRecord(guint16))) with raw value `65535`"
+  )
+  private def MAXUINT16() = ???
+
+  /** The maximum value which can be held in a #guint32.
+    *
+    * This is the same as standard C `UINT32_MAX`, which should be preferred in
+    * new code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[MAXUINT32:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(guint32), @type -> DataRecord(guint32))) with raw value `4294967295`"
+  )
+  private def MAXUINT32() = ???
+
+  /** The maximum value which can be held in a #guint64.
+    *
+    * This is the same as standard C `UINT64_MAX`, which should be preferred in
+    * new code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[MAXUINT64:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(guint64), @type -> DataRecord(guint64))) with raw value `18446744073709551615`"
+  )
+  private def MAXUINT64() = ???
+
+  /** The maximum value which can be held in a #guint8.
+    *
+    * This is the same as standard C `UINT8_MAX`, which should be preferred in
+    * new code.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[MAXUINT8:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8))) with raw value `255`"
+  )
+  private def MAXUINT8() = ???
+
+  /** The micro version number of the GLib library.
+    *
+    * Like #gtk_micro_version, but from the headers used at application compile
+    * time, rather than from the library linked against at application run time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val MICRO_VERSION: Int = 0
+
+  /** The minimum value which can be held in a #gint16.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[MININT16:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gint16), @type -> DataRecord(gint16))) with raw value `-32768`"
+  )
+  private def MININT16() = ???
+
+  /** The minimum value which can be held in a #gint32.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[MININT32:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gint32), @type -> DataRecord(gint32))) with raw value `-2147483648`"
+  )
+  private def MININT32() = ???
+
+  /** The minimum value which can be held in a #gint64.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[MININT64:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gint64), @type -> DataRecord(gint64))) with raw value `-9223372036854775808`"
+  )
+  private def MININT64() = ???
+
+  /** The minimum value which can be held in a #gint8.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[MININT8:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gint8), @type -> DataRecord(gint8))) with raw value `-128`"
+  )
+  private def MININT8() = ???
+
+  /** The minor version number of the GLib library.
+    *
+    * Like #gtk_minor_version, but from the headers used at application compile
+    * time, rather than from the library linked against at application run time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val MINOR_VERSION: Int = 78
+  final val MODULE_SUFFIX: String = "so"
+
+  /** If a long option in the main group has this name, it is not treated as a
+    * regular option. Instead it collects all non-option arguments which would
+    * otherwise be left in `argv`. The option must be of type
+    * %G_OPTION_ARG_CALLBACK, %G_OPTION_ARG_STRING_ARRAY or
+    * %G_OPTION_ARG_FILENAME_ARRAY.
+    *
+    * Using %G_OPTION_REMAINING instead of simply scanning `argv` for leftover
+    * arguments has the advantage that GOption takes care of necessary encoding
+    * conversions for strings or filenames.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val OPTION_REMAINING: String = ""
+
+  /** Specifies one of the possible types of byte order (currently unused). See
+    * %G_BYTE_ORDER.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PDP_ENDIAN: Int = 3412
+
+  /** The value of pi (ratio of circle's circumference to its diameter).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[PI:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `3.141593`"
+  )
+  private def PI() = ???
+
+  /** A format specifier that can be used in printf()-style format strings when
+    * printing a #GPid.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PID_FORMAT: String = "i"
+
+  /** Pi divided by 2.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[PI_2:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `1.570796`"
+  )
+  private def PI_2() = ???
+
+  /** Pi divided by 4.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[PI_4:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `0.785398`"
+  )
+  private def PI_4() = ???
+
+  /** A format specifier that can be used in printf()-style format strings when
+    * printing the @fd member of a #GPollFD.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val POLLFD_FORMAT: String = "%d"
+
+  /** Use this for default priority event sources.
+    *
+    * In GLib this priority is used when adding timeout functions with
+    * g_timeout_add(). In GDK this priority is used for events from the X
+    * server.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PRIORITY_DEFAULT: Int = 0
+
+  /** Use this for default priority idle functions.
+    *
+    * In GLib this priority is used when adding idle functions with
+    * g_idle_add().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PRIORITY_DEFAULT_IDLE: Int = 200
+
+  /** Use this for high priority event sources.
+    *
+    * It is not used within GLib or GTK.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PRIORITY_HIGH: Int = -100
+
+  /** Use this for high priority idle functions.
+    *
+    * GTK uses %G_PRIORITY_HIGH_IDLE + 10 for resizing operations, and
+    * %G_PRIORITY_HIGH_IDLE + 20 for redrawing operations. (This is done to
+    * ensure that any pending resizes are processed before any pending redraws,
+    * so that widgets are not redrawn twice unnecessarily.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PRIORITY_HIGH_IDLE: Int = 100
+
+  /** Use this for very low priority background tasks.
+    *
+    * It is not used within GLib or GTK.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PRIORITY_LOW: Int = 300
+
+  /**  Evaluates to the initial reference count for `grefcount`.
+    *
+    *  This macro is useful for initializing `grefcount` fields inside
+    *  structures, for instance:
+    *
+    *  |[<!-- language="C" -->
+    *  typedef struct {
+    *    grefcount ref_count;
+    *    char *name;
+    *    char *address;
+    *  } Person;
+    *
+    *  static const Person default_person = {
+    *    .ref_count = G_REF_COUNT_INIT,
+    *    .name = "Default name",
+    *    .address = "Default address",
+    *  };
+    *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
+    */
+  final val REF_COUNT_INIT: Int = -1
+
+  /** The search path separator character. This is ':' on UNIX machines and ';'
+    * under Windows.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val SEARCHPATH_SEPARATOR: Int = 58
+
+  /** The search path separator as a string. This is ":" on UNIX machines and
+    * ";" under Windows.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val SEARCHPATH_SEPARATOR_S: String = ":"
+  final val SIZEOF_LONG: Int = 8
+  final val SIZEOF_SIZE_T: Int = 8
+  final val SIZEOF_SSIZE_T: Int = 8
+  final val SIZEOF_VOID_P: Int = 8
+
+  /** Use this macro as the return value of a #GSourceFunc to leave the #GSource
+    * in the main loop.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val SOURCE_CONTINUE: Boolean = true
+
+  /** Use this macro as the return value of a #GSourceFunc to remove the
+    * #GSource from the main loop.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val SOURCE_REMOVE: Boolean = false
+
+  /** The square root of two.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[SQRT2:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `1.414214`"
+  )
+  private def SQRT2() = ???
+
+  /** The standard delimiters, used in g_strdelimit().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val STR_DELIMITERS: String = "_-|> <."
+  final val SYSDEF_AF_INET: Int = 2
+  final val SYSDEF_AF_INET6: Int = 10
+  final val SYSDEF_AF_UNIX: Int = 1
+  final val SYSDEF_MSG_DONTROUTE: Int = 4
+  final val SYSDEF_MSG_OOB: Int = 1
+  final val SYSDEF_MSG_PEEK: Int = 2
+
+  /** Creates a unique temporary directory for each unit test and uses
+    * g_set_user_dirs() to set XDG directories to point into subdirectories of
+    * it for the duration of the unit test. The directory tree is cleaned up
+    * after the test finishes successfully. Note that this doesn’t take effect
+    * until g_test_run() is called, so calls to (for example)
+    * g_get_user_home_dir() will return the system-wide value when made in a
+    * test program’s main() function.
+    *
+    * The following functions will return subdirectories of the temporary
+    * directory when this option is used. The specific subdirectory paths in use
+    * are not guaranteed to be stable API — always use a getter function to
+    * retrieve them.
+    *
+    *   - g_get_home_dir()
+    *   - g_get_user_cache_dir()
+    *   - g_get_system_config_dirs()
+    *   - g_get_user_config_dir()
+    *   - g_get_system_data_dirs()
+    *   - g_get_user_data_dir()
+    *   - g_get_user_state_dir()
+    *   - g_get_user_runtime_dir()
+    *
+    * The subdirectories may not be created by the test harness; as with normal
+    * calls to functions like g_get_user_cache_dir(), the caller must be
+    * prepared to create the directory if it doesn’t exist.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val TEST_OPTION_ISOLATE_DIRS: String = "isolate_dirs"
+
+  /** Evaluates to a time span of one day.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[TIME_SPAN_DAY:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gint64), @type -> DataRecord(gint64))) with raw value `86400000000`"
+  )
+  private def TIME_SPAN_DAY() = ???
+
+  /** Evaluates to a time span of one hour.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[TIME_SPAN_HOUR:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gint64), @type -> DataRecord(gint64))) with raw value `3600000000`"
+  )
+  private def TIME_SPAN_HOUR() = ???
+
+  /** Evaluates to a time span of one millisecond.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[TIME_SPAN_MILLISECOND:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gint64), @type -> DataRecord(gint64))) with raw value `1000`"
+  )
+  private def TIME_SPAN_MILLISECOND() = ???
+
+  /** Evaluates to a time span of one minute.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[TIME_SPAN_MINUTE:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gint64), @type -> DataRecord(gint64))) with raw value `60000000`"
+  )
+  private def TIME_SPAN_MINUTE() = ???
+
+  /** Evaluates to a time span of one second.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[TIME_SPAN_SECOND:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gint64), @type -> DataRecord(gint64))) with raw value `1000000`"
+  )
+  private def TIME_SPAN_SECOND() = ???
+
+  /** The maximum length (in codepoints) of a compatibility or canonical
+    * decomposition of a single Unicode character.
+    *
+    * This is as defined by Unicode 6.1.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val UNICHAR_MAX_DECOMPOSITION_LENGTH: Int = 18
+
+  /** Generic delimiters characters as defined in [RFC
+    * 3986](https://tools.ietf.org/html/rfc3986). Includes `:/?#[]@`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val URI_RESERVED_CHARS_GENERIC_DELIMITERS: String = ":/?#[]@"
+
+  /** Subcomponent delimiter characters as defined in [RFC
+    * 3986](https://tools.ietf.org/html/rfc3986). Includes `!$&'()*+,;=`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val URI_RESERVED_CHARS_SUBCOMPONENT_DELIMITERS: String = "!$&'()*+,;="
+
+  /** Number of microseconds in one second (1 million). This macro is provided
+    * for code readability.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val USEC_PER_SEC: Int = 1000000
+  final val VA_COPY_AS_ARRAY: Int = 1
+
+  /** A macro that should be defined by the user prior to including the glib.h
+    * header. The definition should be one of the predefined GLib version
+    * macros: %GLIB_VERSION_2_26, %GLIB_VERSION_2_28,...
+    *
+    * This macro defines the earliest version of GLib that the package is
+    * required to be able to compile against.
+    *
+    * If the compiler is configured to warn about the use of deprecated
+    * functions, then using functions that were deprecated in version
+    * %GLIB_VERSION_MIN_REQUIRED or earlier will cause warnings (but using
+    * functions deprecated in later releases will not).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val VERSION_MIN_REQUIRED: Int = 2
+  final val WIN32_MSG_HANDLE: Int = 19981206
+  final val macro__has_attribute___noreturn__ : Int = 0
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =
