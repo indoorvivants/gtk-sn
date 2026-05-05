@@ -1,7 +1,7 @@
 import rendition.*
 
 import com.indoorvivants.gnome.gir_schema.*
-import util.boundary.* 
+import util.boundary.*
 
 import FluentErrReason.*
 
@@ -74,14 +74,14 @@ def renderClassMethod(cls: AugmentedClass, meth: Method)(using
           )
       )
 
-    val returnType = 
+    val returnType =
       inContext("return type"):
         renderType(
-        meth.returnType.getOrElse(
-          raise(MethodHasNoReturnType(meth.name))
-        ),
-        position = TypePosition.ReturnType
-      )
+          meth.returnType.getOrElse(
+            raise(MethodHasNoReturnType(meth.name))
+          ),
+          position = TypePosition.ReturnType
+        )
 
     coll.addAll(returnType.effects)
 
