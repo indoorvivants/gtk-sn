@@ -8,13 +8,10 @@ import scala.jdk.CollectionConverters.*
 import scala.reflect.ClassTag
 import scalaxb.DataRecord
 
-case class AugmentedNamespace(n: Namespace):
+case class AugmentedNamespace(n: Namespace) extends HasDataRecords:
   export n.*
 
-  def collect[T: scala.reflect.ClassTag] =
-    val ct = summon[ClassTag[T]]
-    n.namespaceoption.collect:
-      case d if ct.unapply(d.value).isDefined => d.as[T]
+  override protected def options: Seq[DataRecord[Any]] = n.namespaceoption
 
   lazy val interfaces: Seq[AugmentedInterface] =
     collect[Interface].map(AugmentedInterface(_))
@@ -44,12 +41,8 @@ case class AugmentedNamespace(n: Namespace):
     collect[Constant].map(AugmentedConstant(_))
 end AugmentedNamespace
 
-trait ClassLike:
+trait ClassLike extends HasDataRecords:
   protected def options: Seq[DataRecord[Any]]
-  def collect[T: scala.reflect.ClassTag] =
-    val ct = summon[ClassTag[T]]
-    options.collect:
-      case d if ct.unapply(d.value).isDefined => d.as[T]
 
   lazy val implements: Seq[Implements] =
     collect[Implements]
