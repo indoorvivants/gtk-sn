@@ -69,6 +69,6 @@ trait ClassLike:
   lazy val signals: Seq[Signal] =
     collect[Signal]
 
-  lazy val constants: Seq[Constant] =
-    collect[Constant]
+  lazy val constants: Seq[AugmentedConstant] =
+    collect[Constant].map(AugmentedConstant(_))
 end ClassLike
