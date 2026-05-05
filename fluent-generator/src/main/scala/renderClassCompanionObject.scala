@@ -42,6 +42,17 @@ def renderClassCompanionObject(
             )
           .foreach(renderFunctionStub(function, _))
 
+        cls.constants
+          .foreach: constant =>
+            transact[FluentErr]:
+              inContext(s"${constant.name}:"):
+                filterDefinitions(
+                  namespace = Some(ns),
+                  constant = Some(constant)
+                )
+                coll.observe(renderConstant(constant))
+            .foreach(renderConstantStub(constant, _))
+
         coll
           .effectsSoFar()
           .distinct
