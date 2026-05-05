@@ -2979,6 +2979,133 @@ object GObject:
   ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_value_type_transformable(src_type, dest_type).value.!=(0)
 
+  /** Mask containing the bits of #GParamSpec.flags which are reserved for GLib.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PARAM_MASK: Int = 255
+
+  /** #GParamFlags value alias for %G_PARAM_STATIC_NAME | %G_PARAM_STATIC_NICK |
+    * %G_PARAM_STATIC_BLURB.
+    *
+    * It is recommended to use this for all properties by default, as it allows
+    * for internal performance improvements in GObject.
+    *
+    * It is very rare that a property would have a dynamically constructed name,
+    * nickname or blurb.
+    *
+    * Since 2.13.0
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PARAM_STATIC_STRINGS: Int = 224
+
+  /** Minimum shift count to be used for user defined flags, to be stored in
+    * #GParamSpec.flags. The maximum allowed is 10.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PARAM_USER_SHIFT: Int = 8
+
+  /** A mask for all #GSignalFlags bits.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val SIGNAL_FLAGS_MASK: Int = 511
+
+  /** A mask for all #GSignalMatchType bits.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val SIGNAL_MATCH_MASK: Int = 63
+
+  /** A bit in the type number that's supposed to be left untouched.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[TYPE_FLAG_RESERVED_ID_BIT:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(GLib.Type), @type -> DataRecord(GType))) with raw value `1`"
+  )
+  private def TYPE_FLAG_RESERVED_ID_BIT() = ???
+
+  /** An integer constant that represents the number of identifiers reserved for
+    * types that are assigned at compile-time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val TYPE_FUNDAMENTAL_MAX: Int = 255
+
+  /** Shift value used in converting numbers to type IDs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val TYPE_FUNDAMENTAL_SHIFT: Int = 2
+
+  /** First fundamental type number to create a new fundamental type id with
+    * G_TYPE_MAKE_FUNDAMENTAL() reserved for BSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val TYPE_RESERVED_BSE_FIRST: Int = 32
+
+  /** Last fundamental type number reserved for BSE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val TYPE_RESERVED_BSE_LAST: Int = 48
+
+  /** First fundamental type number to create a new fundamental type id with
+    * G_TYPE_MAKE_FUNDAMENTAL() reserved for GLib.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val TYPE_RESERVED_GLIB_FIRST: Int = 22
+
+  /** Last fundamental type number reserved for GLib.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val TYPE_RESERVED_GLIB_LAST: Int = 31
+
+  /** First available fundamental type number to create new fundamental type id
+    * with G_TYPE_MAKE_FUNDAMENTAL().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val TYPE_RESERVED_USER_FIRST: Int = 49
+
+  /** For string values, indicates that the string contained is canonical and
+    * will exist for the duration of the process. See
+    * g_value_set_interned_string().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val VALUE_INTERNED_STRING: Int = 268435456
+
+  /** If passed to G_VALUE_COLLECT(), allocated data won't be copied but used
+    * verbatim. This does not affect ref-counted types like objects. This does
+    * not affect usage of g_value_copy(), the data will be copied if it is not
+    * ref-counted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val VALUE_NOCOPY_CONTENTS: Int = 134217728
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =

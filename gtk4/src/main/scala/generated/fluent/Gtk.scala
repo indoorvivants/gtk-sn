@@ -1302,6 +1302,301 @@ object Gtk:
   )
   private def valueTakeExpression() = ???
 
+  /** An undefined value. The accessible attribute is either unset, or its value
+    * is undefined.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val ACCESSIBLE_VALUE_UNDEFINED: Int = -1
+
+  /** Like [func@get_binary_age], but from the headers used at application
+    * compile time, rather than from the library linked against at application
+    * run time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val BINARY_AGE: Int = 1301
+  final val IM_MODULE_EXTENSION_POINT_NAME: String = "gtk-im-module"
+
+  /** Constant to return from a signal handler for the ::input signal in case of
+    * conversion failure.
+    *
+    * See [signal@Gtk.SpinButton::input].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val INPUT_ERROR: Int = -1
+
+  /** Like [func@get_interface_age], but from the headers used at application
+    * compile time, rather than from the library linked against at application
+    * run time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val INTERFACE_AGE: Int = 0
+
+  /** The value used to refer to a guaranteed invalid position in a
+    * `GListModel`.
+    *
+    * This value may be returned from some functions, others may accept it as
+    * input. Its interpretation may differ for different functions.
+    *
+    * Refer to each function's documentation for if this value is allowed and
+    * what it does.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val INVALID_LIST_POSITION: UInt = 4294967295L.toUInt
+
+  /** The name used for the stock full offset included by `GtkLevelBar`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val LEVEL_BAR_OFFSET_FULL: String = "full"
+
+  /** The name used for the stock high offset included by `GtkLevelBar`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val LEVEL_BAR_OFFSET_HIGH: String = "high"
+
+  /** The name used for the stock low offset included by `GtkLevelBar`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val LEVEL_BAR_OFFSET_LOW: String = "low"
+
+  /** Like [func@get_major_version], but from the headers used at application
+    * compile time, rather than from the library linked against at application
+    * run time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val MAJOR_VERSION: Int = 4
+  final val MAX_COMPOSE_LEN: Int = 7
+  final val MEDIA_FILE_EXTENSION_POINT_NAME: String = "gtk-media-file"
+
+  /** Like [func@get_micro_version], but from the headers used at application
+    * compile time, rather than from the library linked against at application
+    * run time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val MICRO_VERSION: Int = 1
+
+  /** Like [func@get_minor_version], but from the headers used at application
+    * compile time, rather than from the library linked against at application
+    * run time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val MINOR_VERSION: Int = 13
+
+  /** Name for the A3 paper size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PAPER_NAME_A3: String = "iso_a3"
+
+  /** Name for the A4 paper size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PAPER_NAME_A4: String = "iso_a4"
+
+  /** Name for the A5 paper size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PAPER_NAME_A5: String = "iso_a5"
+
+  /** Name for the B5 paper size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PAPER_NAME_B5: String = "iso_b5"
+
+  /** Name for the Executive paper size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PAPER_NAME_EXECUTIVE: String = "na_executive"
+
+  /** Name for the Legal paper size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PAPER_NAME_LEGAL: String = "na_legal"
+
+  /** Name for the Letter paper size.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PAPER_NAME_LETTER: String = "na_letter"
+  final val PRINT_SETTINGS_COLLATE: String = "collate"
+  final val PRINT_SETTINGS_DEFAULT_SOURCE: String = "default-source"
+  final val PRINT_SETTINGS_DITHER: String = "dither"
+  final val PRINT_SETTINGS_DUPLEX: String = "duplex"
+  final val PRINT_SETTINGS_FINISHINGS: String = "finishings"
+  final val PRINT_SETTINGS_MEDIA_TYPE: String = "media-type"
+  final val PRINT_SETTINGS_NUMBER_UP: String = "number-up"
+  final val PRINT_SETTINGS_NUMBER_UP_LAYOUT: String = "number-up-layout"
+  final val PRINT_SETTINGS_N_COPIES: String = "n-copies"
+  final val PRINT_SETTINGS_ORIENTATION: String = "orientation"
+
+  /** The key used by the “Print to file” printer to store the file name of the
+    * output without the path to the directory and the file extension.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PRINT_SETTINGS_OUTPUT_BASENAME: String = "output-basename"
+  final val PRINT_SETTINGS_OUTPUT_BIN: String = "output-bin"
+
+  /** The key used by the “Print to file” printer to store the directory to
+    * which the output should be written.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PRINT_SETTINGS_OUTPUT_DIR: String = "output-dir"
+
+  /** The key used by the “Print to file” printer to store the format of the
+    * output. The supported values are “PS” and “PDF”.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PRINT_SETTINGS_OUTPUT_FILE_FORMAT: String = "output-file-format"
+
+  /** The key used by the “Print to file” printer to store the URI to which the
+    * output should be written. GTK itself supports only “file://” URIs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PRINT_SETTINGS_OUTPUT_URI: String = "output-uri"
+  final val PRINT_SETTINGS_PAGE_RANGES: String = "page-ranges"
+  final val PRINT_SETTINGS_PAGE_SET: String = "page-set"
+  final val PRINT_SETTINGS_PAPER_FORMAT: String = "paper-format"
+  final val PRINT_SETTINGS_PAPER_HEIGHT: String = "paper-height"
+  final val PRINT_SETTINGS_PAPER_WIDTH: String = "paper-width"
+  final val PRINT_SETTINGS_PRINTER: String = "printer"
+  final val PRINT_SETTINGS_PRINTER_LPI: String = "printer-lpi"
+  final val PRINT_SETTINGS_PRINT_PAGES: String = "print-pages"
+  final val PRINT_SETTINGS_QUALITY: String = "quality"
+  final val PRINT_SETTINGS_RESOLUTION: String = "resolution"
+  final val PRINT_SETTINGS_RESOLUTION_X: String = "resolution-x"
+  final val PRINT_SETTINGS_RESOLUTION_Y: String = "resolution-y"
+  final val PRINT_SETTINGS_REVERSE: String = "reverse"
+  final val PRINT_SETTINGS_SCALE: String = "scale"
+  final val PRINT_SETTINGS_USE_COLOR: String = "use-color"
+  final val PRINT_SETTINGS_WIN32_DRIVER_EXTRA: String = "win32-driver-extra"
+  final val PRINT_SETTINGS_WIN32_DRIVER_VERSION: String = "win32-driver-version"
+
+  /** Use this priority for functionality related to size allocation.
+    *
+    * It is used internally by GTK+ to compute the sizes of widgets. This
+    * priority is higher than %GDK_PRIORITY_REDRAW to avoid resizing a widget
+    * which was just redrawn.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val PRIORITY_RESIZE: Int = 110
+
+  /** A priority that can be used when adding a `GtkStyleProvider` for
+    * application-specific style information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val STYLE_PROVIDER_PRIORITY_APPLICATION: Int = 600
+
+  /** The priority used for default style information that is used in the
+    * absence of themes.
+    *
+    * Note that this is not very useful for providing default styling for custom
+    * style classes - themes are likely to override styling provided at this
+    * priority with catch-all `* {...}` rules.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val STYLE_PROVIDER_PRIORITY_FALLBACK: Int = 1
+
+  /** The priority used for style information provided via `GtkSettings`.
+    *
+    * This priority is higher than %GTK_STYLE_PROVIDER_PRIORITY_THEME to let
+    * settings override themes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val STYLE_PROVIDER_PRIORITY_SETTINGS: Int = 400
+
+  /** The priority used for style information provided by themes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val STYLE_PROVIDER_PRIORITY_THEME: Int = 200
+
+  /** The priority used for the style information from
+    * `$XDG_CONFIG_HOME/gtk-4.0/gtk.css`.
+    *
+    * You should not use priorities higher than this, to give the user the last
+    * word.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val STYLE_PROVIDER_PRIORITY_USER: Int = 800
+
+  /** The priority at which the text view validates onscreen lines in an idle
+    * job in the background.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val TEXT_VIEW_PRIORITY_VALIDATE: Int = 125
+
+  /** Uses the default sort function in a [iface@Gtk.TreeSortable].
+    *
+    * See also: [method@Gtk.TreeSortable.set_sort_column_id]
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID: Int = -1
+
+  /** Disables sorting in a [iface@Gtk.TreeSortable].
+    *
+    * See also: [method@Gtk.TreeSortable.set_sort_column_id]
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID: Int = -2
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =

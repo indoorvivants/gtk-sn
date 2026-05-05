@@ -11,7 +11,8 @@ def filterDefinitions(
     constructor: Option[Constructor] = None,
     enumer: Option[Enumeration] = None,
     function: Option[FunctionType] = None,
-    bitfield: Option[Bitfield] = None
+    bitfield: Option[Bitfield] = None,
+    constant: Option[AugmentedConstant] = None
 )(using boundary.Label[FluentErr]): Unit =
 
   def isNamespace(name: String) =

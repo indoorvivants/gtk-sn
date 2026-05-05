@@ -39,6 +39,9 @@ case class AugmentedNamespace(n: Namespace):
 
   lazy val classes: Seq[AugmentedClass] =
     collect[Class].map(AugmentedClass(_))
+
+  lazy val constants: Seq[AugmentedConstant] =
+    collect[Constant].map(AugmentedConstant(_))
 end AugmentedNamespace
 
 trait ClassLike:
@@ -65,4 +68,7 @@ trait ClassLike:
 
   lazy val signals: Seq[Signal] =
     collect[Signal]
+
+  lazy val constants: Seq[Constant] =
+    collect[Constant]
 end ClassLike

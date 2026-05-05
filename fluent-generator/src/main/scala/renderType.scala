@@ -343,11 +343,6 @@ def renderType(
     ).reduce(_ orElse _)
   end getCType
 
-  def safeGetTypeValue(tpe: Type)(using Label[FluentErr]) =
-    try tpe.typeValue
-    catch
-      case exc: NoSuchElementException =>
-        raise(TypeMissingValue(tpe))
 
   val result = tpe match
     case tpe: Type =>
@@ -498,3 +493,10 @@ def renderType(
 
   result.copy(scalaRepr = s"${result.scalaRepr} /* ${expectedRawType} */")
 end renderType
+
+
+def safeGetTypeValue(tpe: Type)(using Label[FluentErr]) =
+  try tpe.typeValue
+  catch
+    case exc: NoSuchElementException =>
+      raise(TypeMissingValue(tpe))

@@ -11,7 +11,7 @@ def renderNamespaceCompanion(
 ) =
   WithEffects.collect: coll =>
     val objectHeader = s"object ${ns.name}"
-    val objectHasAnyMembers = ns.functions.nonEmpty
+    val objectHasAnyMembers = ns.functions.nonEmpty || ns.constants.nonEmpty
 
     def renderFunctions()(using RenderingContext) =
       ns.functions
@@ -24,6 +24,17 @@ def renderNamespaceCompanion(
               )
               coll.observe(renderStaticMethod(function))
           .foreach(renderFunctionStub(function, _))
+
+      ns.constants
+        .foreach: constant =>
+          transact[FluentErr]:
+            inContext(s"${constant.name}:"):
+              filterDefinitions(
+                namespace = Some(ns),
+                constant = Some(constant)
+              )
+              coll.observe(renderConstant(constant))
+          .foreach(renderConstantStub(constant, _))
 
       coll
         .effectsSoFar()

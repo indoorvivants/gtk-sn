@@ -16,6 +16,11 @@ case class FluentErr(
 inline def raise(reason: FluentErrReason)(using Label[FluentErr]) =
   break(FluentErr(reason))
 
+
+inline def raiseWith(reason: FluentErrReason.type => FluentErrReason)(using Label[FluentErr]) =
+  break(FluentErr(reason(FluentErrReason)))
+
+
 enum FluentErrReason:
   case Exc(exc: Throwable)
   case Other(msg: String)

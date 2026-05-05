@@ -4,6 +4,7 @@ import _root_.sn.gnome.harfbuzz.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import _root_.scala.scalanative.unsigned.*
 import sn.gnome.harfbuzz.fluent.{
   Buffer_serialize_format_t,
   Direction_t,
@@ -5887,4 +5888,156 @@ object HarfBuzz:
     hb_version_string().asInstanceOf
   )
 
+  /** Used when getting or setting AAT feature selectors. Indicates that there
+    * is no selector index corresponding to the selector of interest.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val AAT_LAYOUT_NO_SELECTOR_INDEX: Int = 65535
+
+  /** The default code point for replacing invalid characters in a given
+    * encoding. Set to U+FFFD REPLACEMENT CHARACTER.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val BUFFER_REPLACEMENT_CODEPOINT_DEFAULT: Int = 65533
+
+  /** Unused #hb_codepoint_t value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[CODEPOINT_INVALID:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(codepoint_t), @type -> DataRecord(hb_codepoint_t))) with raw value `4294967295`"
+  )
+  private def CODEPOINT_INVALID() = ???
+
+  /** Special setting for #hb_feature_t.start to apply the feature from the
+    * start of the buffer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val FEATURE_GLOBAL_START: Int = 0
+
+  /** Constant signifying that a font does not have any named-instance index
+    * set. This is the default of a font.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val FONT_NO_VAR_NAMED_INSTANCE: UInt = 4294967295L.toUInt
+
+  /** An unset #hb_language_t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[LANGUAGE_INVALID:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(language_t), @type -> DataRecord(hb_language_t))) with raw value `0`"
+  )
+  private def LANGUAGE_INVALID() = ???
+
+  /** Special value for language index indicating default or unsupported
+    * language.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val OT_LAYOUT_DEFAULT_LANGUAGE_INDEX: Int = 65535
+
+  /** Special value for feature index indicating unsupported feature.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val OT_LAYOUT_NO_FEATURE_INDEX: Int = 65535
+
+  /** Special value for script index indicating unsupported script.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val OT_LAYOUT_NO_SCRIPT_INDEX: Int = 65535
+
+  /** Special value for variations index indicating unsupported variation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val OT_LAYOUT_NO_VARIATIONS_INDEX: UInt = 4294967295L.toUInt
+
+  /** Maximum number of OpenType tags that can correspond to a give
+    * #hb_language_t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val OT_MAX_TAGS_PER_LANGUAGE: Int = 3
+
+  /** Maximum number of OpenType tags that can correspond to a give
+    * #hb_script_t.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val OT_MAX_TAGS_PER_SCRIPT: Int = 3
+
+  /** Do not use.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val OT_VAR_NO_AXIS_INDEX: UInt = 4294967295L.toUInt
+
+  /** [Tibetan]
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val UNICODE_COMBINING_CLASS_CCC133: Int = 133
+
+  /** Maximum valid Unicode code point.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val UNICODE_MAX: Int = 1114111
+
+  /** See Unicode 6.1 for details on the maximum decomposition length.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val UNICODE_MAX_DECOMPOSITION_LEN: Int = 19
+
+  /** The major component of the library version available at compile-time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val VERSION_MAJOR: Int = 8
+
+  /** The micro component of the library version available at compile-time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val VERSION_MICRO: Int = 1
+
+  /** The minor component of the library version available at compile-time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val VERSION_MINOR: Int = 1
+
+  /** A string literal containing the library version available at compile-time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  final val VERSION_STRING: String = "8.1.1"
 end HarfBuzz
