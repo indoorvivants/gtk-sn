@@ -5,7 +5,14 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkCalendar
 
@@ -87,7 +94,7 @@ class Calendar(raw: Ptr[GtkCalendar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_date/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method get_date/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def getDate__ = ???
 
@@ -154,7 +161,7 @@ class Calendar(raw: Ptr[GtkCalendar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[select_day/<method parameters>/date]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method select_day/<method parameters>/date]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def selectDay__ = ???
 
@@ -207,6 +214,185 @@ class Calendar(raw: Ptr[GtkCalendar])
   ): Unit /* None */ =
     gtk_calendar_unmark_day(this.raw.asInstanceOf[Ptr[GtkCalendar]], guint(day))
 
+  /** Emitted when the user selects a day.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onDaySelected(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkCalendar],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"day-selected"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onDaySelected
+
+  /** Emitted when the user switched to the next month.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onNextMonth(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkCalendar],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"next-month"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onNextMonth
+
+  /** Emitted when user switched to the next year.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onNextYear(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkCalendar],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"next-year"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onNextYear
+
+  /** Emitted when the user switched to the previous month.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onPrevMonth(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkCalendar],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"prev-month"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onPrevMonth
+
+  /** Emitted when user switched to the previous year.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onPrevYear(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkCalendar],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"prev-year"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onPrevYear
 end Calendar
 
 object Calendar:

@@ -31,6 +31,20 @@ class ThreadedSocketService(raw: Ptr[GThreadedSocketService])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** The ::run signal is emitted in a worker thread in response to an incoming
+    * connection. This thread is dedicated to handling
+    * @connection
+    *   and may perform blocking IO. The signal handler need not return until
+    *   the connection is closed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal run]: Type Type(List(),ListMap(@name -> DataRecord(SocketConnection))) has no @type attribute"
+  )
+  private def onRun = ???
+
 end ThreadedSocketService
 
 object ThreadedSocketService:

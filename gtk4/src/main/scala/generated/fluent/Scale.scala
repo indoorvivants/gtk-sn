@@ -200,7 +200,7 @@ class Scale(raw: Ptr[GtkScale])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_layout_offsets]: Method get_layout_offsets contains an OUT parameter, which is not supported yet"
+    "[method get_layout_offsets]: Method get_layout_offsets contains an OUT parameter, which is not supported yet"
   )
   private def getLayoutOffsets__ = ???
 
@@ -260,7 +260,7 @@ class Scale(raw: Ptr[GtkScale])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_format_value_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ScaleFormatValueFunc), @type -> DataRecord(GtkScaleFormatValueFunc)))"
+    "[method set_format_value_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ScaleFormatValueFunc), @type -> DataRecord(GtkScaleFormatValueFunc)))"
   )
   private def setFormatValueFunc__ = ???
 

@@ -57,7 +57,7 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PrintSettingsFunc), @type -> DataRecord(GtkPrintSettingsFunc)))"
+    "[method foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PrintSettingsFunc), @type -> DataRecord(GtkPrintSettingsFunc)))"
   )
   private def foreach__ = ???
 
@@ -284,7 +284,7 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_page_ranges]: Method get_page_ranges contains an OUT parameter, which is not supported yet"
+    "[method get_page_ranges]: Method get_page_ranges contains an OUT parameter, which is not supported yet"
   )
   private def getPageRanges__ = ???
 
@@ -317,7 +317,7 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_paper_size/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
+    "[method get_paper_size/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
   )
   private def getPaperSize__ = ???
 
@@ -467,7 +467,7 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[load_key_file/<method parameters>/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
+    "[method load_key_file/<method parameters>/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
   private def loadKeyFile__ = ???
 
@@ -683,7 +683,7 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_page_ranges/<method parameters>/page_ranges]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PageRange), @type -> DataRecord(GtkPageRange)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GtkPageRange*)))"
+    "[method set_page_ranges/<method parameters>/page_ranges]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PageRange), @type -> DataRecord(GtkPageRange)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GtkPageRange*)))"
   )
   private def setPageRanges__ = ???
 
@@ -719,7 +719,7 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_paper_size/<method parameters>/paper_size]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
+    "[method set_paper_size/<method parameters>/paper_size]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
   )
   private def setPaperSize__ = ???
 
@@ -870,7 +870,7 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[to_gvariant/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method to_gvariant/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def toGvariant__ = ???
 
@@ -880,7 +880,7 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[to_key_file/<method parameters>/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
+    "[method to_key_file/<method parameters>/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
   private def toKeyFile__ = ???
 

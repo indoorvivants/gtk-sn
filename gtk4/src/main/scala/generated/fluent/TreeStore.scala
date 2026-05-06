@@ -72,7 +72,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[append]: Method append contains an OUT parameter, which is not supported yet"
+    "[method append]: Method append contains an OUT parameter, which is not supported yet"
   )
   private def append__ = ???
 
@@ -101,7 +101,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert]: Method insert contains an OUT parameter, which is not supported yet"
+    "[method insert]: Method insert contains an OUT parameter, which is not supported yet"
   )
   private def insert__ = ???
 
@@ -124,7 +124,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert_after]: Method insert_after contains an OUT parameter, which is not supported yet"
+    "[method insert_after]: Method insert_after contains an OUT parameter, which is not supported yet"
   )
   private def insertAfter__ = ???
 
@@ -146,7 +146,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert_before]: Method insert_before contains an OUT parameter, which is not supported yet"
+    "[method insert_before]: Method insert_before contains an OUT parameter, which is not supported yet"
   )
   private def insertBefore__ = ???
 
@@ -181,7 +181,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert_with_values]: Method insert_with_values contains an OUT parameter, which is not supported yet"
+    "[method insert_with_values]: Method insert_with_values contains an OUT parameter, which is not supported yet"
   )
   private def insertWithValues__ = ???
 
@@ -194,7 +194,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert_with_valuesv]: Method insert_with_valuesv contains an OUT parameter, which is not supported yet"
+    "[method insert_with_valuesv]: Method insert_with_valuesv contains an OUT parameter, which is not supported yet"
   )
   private def insertWithValuesv__ = ???
 
@@ -204,7 +204,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[is_ancestor/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method is_ancestor/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def isAncestor__ = ???
 
@@ -217,7 +217,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[iter_depth/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method iter_depth/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def iterDepth__ = ???
 
@@ -229,7 +229,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[iter_is_valid/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method iter_is_valid/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def iterIsValid__ = ???
 
@@ -246,7 +246,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[move_after/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method move_after/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def moveAfter__ = ???
 
@@ -263,7 +263,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[move_before/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method move_before/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def moveBefore__ = ???
 
@@ -279,7 +279,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[prepend]: Method prepend contains an OUT parameter, which is not supported yet"
+    "[method prepend]: Method prepend contains an OUT parameter, which is not supported yet"
   )
   private def prepend__ = ???
 
@@ -292,7 +292,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[remove/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method remove/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def remove__ = ???
 
@@ -305,7 +305,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[reorder/<method parameters>/parent]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method reorder/<method parameters>/parent]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def reorder__ = ???
 
@@ -330,7 +330,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method set/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def set__ = ???
 
@@ -347,7 +347,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_column_types/<method parameters>/types]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(GType*)))"
+    "[method set_column_types/<method parameters>/types]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(GType*)))"
   )
   private def setColumnTypes__ = ???
 
@@ -357,7 +357,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_valist/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method set_valist/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def setValist__ = ???
 
@@ -369,7 +369,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_value/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method set_value/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def setValue__ = ???
 
@@ -383,7 +383,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_valuesv/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method set_valuesv/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def setValuesv__ = ???
 
@@ -395,7 +395,7 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[swap/<method parameters>/a]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method swap/<method parameters>/a]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def swap__ = ???
 

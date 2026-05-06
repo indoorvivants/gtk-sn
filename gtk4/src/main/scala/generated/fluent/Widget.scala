@@ -7,9 +7,16 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.{Clipboard, Cursor, Display, FrameClock}
 import sn.gnome.gio.fluent.{ActionGroup, ListModel}
-import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.fluent.{InitiallyUnowned, Object}
-import sn.gnome.gobject.internal.GType
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  GType,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Align,
@@ -503,7 +510,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[activate_action_variant/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method activate_action_variant/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def activateActionVariant__ = ???
 
@@ -590,7 +597,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[add_tick_callback/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TickCallback), @type -> DataRecord(GtkTickCallback)))"
+    "[method add_tick_callback/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TickCallback), @type -> DataRecord(GtkTickCallback)))"
   )
   private def addTickCallback__ = ???
 
@@ -608,7 +615,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[allocate/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
+    "[method allocate/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
   private def allocate__ = ???
 
@@ -660,7 +667,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[compute_bounds]: Method compute_bounds contains an OUT parameter, which is not supported yet"
+    "[method compute_bounds]: Method compute_bounds contains an OUT parameter, which is not supported yet"
   )
   private def computeBounds__ = ???
 
@@ -698,7 +705,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[compute_point]: Method compute_point contains an OUT parameter, which is not supported yet"
+    "[method compute_point]: Method compute_point contains an OUT parameter, which is not supported yet"
   )
   private def computePoint__ = ???
 
@@ -717,7 +724,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[compute_transform]: Method compute_transform contains an OUT parameter, which is not supported yet"
+    "[method compute_transform]: Method compute_transform contains an OUT parameter, which is not supported yet"
   )
   private def computeTransform__ = ???
 
@@ -896,7 +903,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_allocation]: Method get_allocation contains an OUT parameter, which is not supported yet"
+    "[method get_allocation]: Method get_allocation contains an OUT parameter, which is not supported yet"
   )
   private def getAllocation__ = ???
 
@@ -992,7 +999,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_color]: Method get_color contains an OUT parameter, which is not supported yet"
+    "[method get_color]: Method get_color contains an OUT parameter, which is not supported yet"
   )
   private def getColor__ = ???
 
@@ -1118,7 +1125,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_font_options/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
+    "[method get_font_options/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
   )
   private def getFontOptions__ = ???
 
@@ -1409,7 +1416,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_preferred_size]: Method get_preferred_size contains an OUT parameter, which is not supported yet"
+    "[method get_preferred_size]: Method get_preferred_size contains an OUT parameter, which is not supported yet"
   )
   private def getPreferredSize__ = ???
 
@@ -1569,7 +1576,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_size_request]: Method get_size_request contains an OUT parameter, which is not supported yet"
+    "[method get_size_request]: Method get_size_request contains an OUT parameter, which is not supported yet"
   )
   private def getSizeRequest__ = ???
 
@@ -2032,7 +2039,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[list_mnemonic_labels/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method list_mnemonic_labels/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def listMnemonicLabels__ = ???
 
@@ -2061,7 +2068,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[measure]: Method measure contains an OUT parameter, which is not supported yet"
+    "[method measure]: Method measure contains an OUT parameter, which is not supported yet"
   )
   private def measure__ = ???
 
@@ -2345,7 +2352,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_css_classes/<method parameters>/classes]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+    "[method set_css_classes/<method parameters>/classes]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
   )
   private def setCssClasses__ = ???
 
@@ -2507,7 +2514,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_font_options/<method parameters>/options]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
+    "[method set_font_options/<method parameters>/options]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
   )
   private def setFontOptions__ = ???
 
@@ -2948,7 +2955,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[size_allocate/<method parameters>/allocation]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Allocation), @type -> DataRecord(const GtkAllocation*)))"
+    "[method size_allocate/<method parameters>/allocation]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Allocation), @type -> DataRecord(const GtkAllocation*)))"
   )
   private def sizeAllocate__ = ???
 
@@ -2989,7 +2996,7 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[translate_coordinates]: Method translate_coordinates contains an OUT parameter, which is not supported yet"
+    "[method translate_coordinates]: Method translate_coordinates contains an OUT parameter, which is not supported yet"
   )
   private def translateCoordinates__ = ???
 
@@ -3053,6 +3060,368 @@ class Widget(raw: Ptr[GtkWidget])
     this.raw.asInstanceOf[Ptr[GtkWidget]],
     flags.raw
   )
+
+  /** Signals that all holders of a reference to the widget should release the
+    * reference that they hold.
+    *
+    * May result in finalization of the widget if all references are released.
+    *
+    * This signal is not suitable for saving widget state.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onDestroy(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkWidget],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"destroy"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onDestroy
+
+  /** Emitted when the text direction of a widget changes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal direction-changed]: Type Type(List(),ListMap(@name -> DataRecord(TextDirection))) has no @type attribute"
+  )
+  private def onDirectionChanged = ???
+
+  /** Emitted when @widget is hidden.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onHide(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkWidget],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"hide"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onHide
+
+  /** Emitted if keyboard navigation fails.
+    *
+    * See [method@Gtk.Widget.keynav_failed] for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal keynav-failed]: Type Type(List(),ListMap(@name -> DataRecord(DirectionType))) has no @type attribute"
+  )
+  private def onKeynavFailed = ???
+
+  /** Emitted when @widget is going to be mapped.
+    *
+    * A widget is mapped when the widget is visible (which is controlled with
+    * [property@Gtk.Widget:visible]) and all its parents up to the toplevel
+    * widget are also visible.
+    *
+    * The ::map signal can be used to determine whether a widget will be drawn,
+    * for instance it can resume an animation that was stopped during the
+    * emission of [signal@Gtk.Widget::unmap].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onMap(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkWidget],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"map"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onMap
+
+  /** Emitted when a widget is activated via a mnemonic.
+    *
+    * The default handler for this signal activates @widget if @group_cycling is
+    * %FALSE, or just makes @widget grab focus if @group_cycling is %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal mnemonic-activate]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onMnemonicActivate = ???
+
+  /** Emitted when the focus is moved.
+    *
+    * The ::move-focus signal is a [keybinding signal](class.SignalAction.html).
+    *
+    * The default bindings for this signal are <kbd>Tab</kbd> to move forward,
+    * and <kbd>Shift</kbd>+<kbd>Tab</kbd> to move backward.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal move-focus]: Type Type(List(),ListMap(@name -> DataRecord(DirectionType))) has no @type attribute"
+  )
+  private def onMoveFocus = ???
+
+  /** Emitted when the widget’s tooltip is about to be shown.
+    *
+    * This happens when the [property@Gtk.Widget:has-tooltip] property is %TRUE
+    * and the hover timeout has expired with the cursor hovering "above" @widget;
+    * or emitted when @widget got focus in keyboard mode.
+    *
+    * Using the given coordinates, the signal handler should determine whether a
+    * tooltip should be shown for @widget. If this is the case %TRUE should be
+    * returned, %FALSE otherwise. Note that if
+    * @keyboard_mode
+    *   is %TRUE, the values of @x and @y are undefined and should not be used.
+    *
+    * The signal handler is free to manipulate @tooltip with the therefore
+    * destined function calls.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal query-tooltip]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onQueryTooltip = ???
+
+  /** Emitted when @widget is associated with a `GdkSurface`.
+    *
+    * This means that [method@Gtk.Widget.realize] has been called or the widget
+    * has been mapped (that is, it is going to be drawn).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onRealize(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkWidget],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"realize"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onRealize
+
+  /** Emitted when @widget is shown.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onShow(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkWidget],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"show"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onShow
+
+  /** Emitted when the widget state changes.
+    *
+    * See [method@Gtk.Widget.get_state_flags].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal state-flags-changed]: Type Type(List(),ListMap(@name -> DataRecord(StateFlags))) has no @type attribute"
+  )
+  private def onStateFlagsChanged = ???
+
+  /** Emitted when @widget is going to be unmapped.
+    *
+    * A widget is unmapped when either it or any of its parents up to the
+    * toplevel widget have been set as hidden.
+    *
+    * As ::unmap indicates that a widget will not be shown any longer, it can be
+    * used to, for example, stop an animation on the widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onUnmap(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkWidget],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"unmap"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onUnmap
+
+  /** Emitted when the `GdkSurface` associated with @widget is destroyed.
+    *
+    * This means that [method@Gtk.Widget.unrealize] has been called or the
+    * widget has been unmapped (that is, it is going to be hidden).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onUnrealize(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkWidget],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"unrealize"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onUnrealize
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

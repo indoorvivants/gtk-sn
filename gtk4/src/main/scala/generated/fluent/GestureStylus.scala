@@ -32,7 +32,7 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_axes]: Method get_axes contains an OUT parameter, which is not supported yet"
+    "[method get_axes]: Method get_axes contains an OUT parameter, which is not supported yet"
   )
   private def getAxes__ = ???
 
@@ -47,7 +47,7 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_axis]: Method get_axis contains an OUT parameter, which is not supported yet"
+    "[method get_axis]: Method get_axis contains an OUT parameter, which is not supported yet"
   )
   private def getAxis__ = ???
 
@@ -69,7 +69,7 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_backlog]: Method get_backlog contains an OUT parameter, which is not supported yet"
+    "[method get_backlog]: Method get_backlog contains an OUT parameter, which is not supported yet"
   )
   private def getBacklog__ = ???
 
@@ -115,6 +115,46 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     this.raw.asInstanceOf[Ptr[GtkGestureStylus]],
     gboolean(gint((if stylus_only == true then 1 else 0)))
   )
+
+  /** Emitted when the stylus touches the device.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal down]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
+  )
+  private def onDown = ???
+
+  /** Emitted when the stylus moves while touching the device.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal motion]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
+  )
+  private def onMotion = ???
+
+  /** Emitted when the stylus is in proximity of the device.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal proximity]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
+  )
+  private def onProximity = ???
+
+  /** Emitted when the stylus no longer touches the device.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal up]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
+  )
+  private def onUp = ???
 
 end GestureStylus
 

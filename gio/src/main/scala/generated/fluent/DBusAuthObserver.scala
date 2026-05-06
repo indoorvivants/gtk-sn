@@ -108,6 +108,27 @@ class DBusAuthObserver(raw: Ptr[GDBusAuthObserver])
       .getOrElse(null.asInstanceOf[Ptr[GCredentials]])
   ).value.!=(0)
 
+  /** Emitted to check if @mechanism is allowed to be used.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal allow-mechanism]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onAllowMechanism = ???
+
+  /** Emitted to check if a peer that is successfully authenticated is
+    * authorized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal authorize-authenticated-peer]: Type Type(List(),ListMap(@name -> DataRecord(IOStream))) has no @type attribute"
+  )
+  private def onAuthorizeAuthenticatedPeer = ???
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =

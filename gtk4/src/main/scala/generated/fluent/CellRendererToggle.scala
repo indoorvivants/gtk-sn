@@ -94,6 +94,20 @@ class CellRendererToggle(raw: Ptr[GtkCellRendererToggle])
     gboolean(gint((if radio == true then 1 else 0)))
   )
 
+  /** The ::toggled signal is emitted when the cell is toggled.
+    *
+    * It is the responsibility of the application to update the model with the
+    * correct value to store at @path. Often this is simply the opposite of the
+    * value currently stored at @path.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal toggled]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onToggled = ???
+
 end CellRendererToggle
 
 object CellRendererToggle:

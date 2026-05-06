@@ -44,7 +44,7 @@ class FillNode(raw: Ptr[GskFillNode]) extends RenderNode(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_path/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
+    "[method get_path/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
   )
   private def getPath__ = ???
 

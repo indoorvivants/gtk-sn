@@ -66,4 +66,9 @@ class ShortcutsSection(raw: Ptr[GtkShortcutsSection])
     group.getUnsafeRawPointer().asInstanceOf
   )
 
+  @annotation.compileTimeOnly(
+    "[signal change-current-page]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onChangeCurrentPage = ???
+
 end ShortcutsSection

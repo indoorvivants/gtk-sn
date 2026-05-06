@@ -5,7 +5,14 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   AssistantPage,
@@ -309,7 +316,7 @@ class Assistant(raw: Ptr[GtkAssistant])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_forward_page_func/<method parameters>/page_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AssistantPageFunc), @type -> DataRecord(GtkAssistantPageFunc)))"
+    "[method set_forward_page_func/<method parameters>/page_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AssistantPageFunc), @type -> DataRecord(GtkAssistantPageFunc)))"
   )
   private def setForwardPageFunc__ = ???
 
@@ -378,6 +385,176 @@ class Assistant(raw: Ptr[GtkAssistant])
     */
   def updateButtonsState(): Unit /* None */ =
     gtk_assistant_update_buttons_state(this.raw.asInstanceOf[Ptr[GtkAssistant]])
+
+  /** Emitted when the apply button is clicked.
+    *
+    * The default behavior of the `GtkAssistant` is to switch to the page after
+    * the current page, unless the current page is the last one.
+    *
+    * A handler for the ::apply signal should carry out the actions for which
+    * the wizard has collected data. If the action takes a long time to
+    * complete, you might consider putting a page of type
+    * %GTK_ASSISTANT_PAGE_PROGRESS after the confirmation page and handle this
+    * operation within the [signal@Gtk.Assistant::prepare] signal of the
+    * progress page.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onApply(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkAssistant],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"apply"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onApply
+
+  /** Emitted when then the cancel button is clicked.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onCancel(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkAssistant],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"cancel"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onCancel
+
+  /** Emitted either when the close button of a summary page is clicked, or when
+    * the apply button in the last page in the flow (of type
+    * %GTK_ASSISTANT_PAGE_CONFIRM) is clicked.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onClose(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkAssistant],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"close"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onClose
+
+  /** The action signal for the Escape binding.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onEscape(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkAssistant],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"escape"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onEscape
+
+  /** Emitted when a new page is set as the assistant's current page, before
+    * making the new page visible.
+    *
+    * A handler for this signal can do any preparations which are necessary
+    * before showing @page.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal prepare]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
+  )
+  private def onPrepare = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

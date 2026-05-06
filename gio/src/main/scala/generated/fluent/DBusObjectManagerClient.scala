@@ -143,6 +143,43 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     ).asInstanceOf
   )
 
+  /** Emitted when one or more D-Bus properties on proxy changes. The local
+    * cache has already been updated when this signal fires. Note that both @changed_properties
+    * and @invalidated_properties are guaranteed to never be %NULL (either may
+    * be empty though).
+    *
+    * This signal exists purely as a convenience to avoid having to connect
+    * signals to all interface proxies managed by @manager.
+    *
+    * This signal is emitted in the [thread-default main
+    * context][g-main-context-push-thread-default] that @manager was constructed
+    * in.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal interface-proxy-properties-changed]: Type Type(List(),ListMap(@name -> DataRecord(DBusObjectProxy))) has no @type attribute"
+  )
+  private def onInterfaceProxyPropertiesChanged = ???
+
+  /** Emitted when a D-Bus signal is received on @interface_proxy.
+    *
+    * This signal exists purely as a convenience to avoid having to connect
+    * signals to all interface proxies managed by @manager.
+    *
+    * This signal is emitted in the [thread-default main
+    * context][g-main-context-push-thread-default] that @manager was constructed
+    * in.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal interface-proxy-signal]: Type Type(List(),ListMap(@name -> DataRecord(DBusObjectProxy))) has no @type attribute"
+  )
+  private def onInterfaceProxySignal = ???
+
 end DBusObjectManagerClient
 
 object DBusObjectManagerClient:

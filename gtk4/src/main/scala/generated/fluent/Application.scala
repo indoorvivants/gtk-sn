@@ -12,7 +12,14 @@ import sn.gnome.gio.fluent.{
   Menu,
   MenuModel
 }
-import sn.gnome.glib.internal.guint
+import sn.gnome.glib.internal.{gchar, gpointer, guint}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{ApplicationInhibitFlags, Window}
 import sn.gnome.gtk4.internal.GtkApplication
 import sn.gnome.gio.fluent.Application as _Application
@@ -239,7 +246,7 @@ class Application(raw: Ptr[GtkApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_windows/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Window))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method get_windows/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Window))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def getWindows__ = ???
 
@@ -334,7 +341,7 @@ class Application(raw: Ptr[GtkApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_accels_for_action/<method parameters>/accels]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
+    "[method set_accels_for_action/<method parameters>/accels]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
   private def setAccelsForAction__ = ???
 
@@ -389,6 +396,71 @@ class Application(raw: Ptr[GtkApplication])
     this.raw.asInstanceOf[Ptr[GtkApplication]],
     guint(cookie)
   )
+
+  /** Emitted when the session manager is about to end the session.
+    *
+    * This signal is only emitted if [property@Gtk.Application:register-session]
+    * is `TRUE`. Applications can connect to this signal and call
+    * [method@Gtk.Application.inhibit] with `GTK_APPLICATION_INHIBIT_LOGOUT` to
+    * delay the end of the session until state has been saved.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onQueryEnd(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkApplication],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"query-end"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onQueryEnd
+
+  /** Emitted when a [class@Gtk.Window] is added to `application` through
+    * [method@Gtk.Application.add_window].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal window-added]: Type Type(List(),ListMap(@name -> DataRecord(Window))) has no @type attribute"
+  )
+  private def onWindowAdded = ???
+
+  /** Emitted when a [class@Gtk.Window] is removed from `application`.
+    *
+    * This can happen as a side-effect of the window being destroyed or
+    * explicitly through [method@Gtk.Application.remove_window].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal window-removed]: Type Type(List(),ListMap(@name -> DataRecord(Window))) has no @type attribute"
+  )
+  private def onWindowRemoved = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

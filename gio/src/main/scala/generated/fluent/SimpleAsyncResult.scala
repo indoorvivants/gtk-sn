@@ -284,7 +284,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[run_in_thread/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SimpleAsyncThreadFunc), @type -> DataRecord(GSimpleAsyncThreadFunc)))"
+    "[method run_in_thread/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SimpleAsyncThreadFunc), @type -> DataRecord(GSimpleAsyncThreadFunc)))"
   )
   private def runInThread__ = ???
 
@@ -322,7 +322,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_error/<method parameters>/domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[method set_error/<method parameters>/domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
   private def setError__ = ???
 
@@ -333,7 +333,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_error_va/<method parameters>/domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[method set_error_va/<method parameters>/domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
   private def setErrorVa__ = ???
 
@@ -343,7 +343,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_from_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
+    "[method set_from_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
   private def setFromError__ = ???
 
@@ -381,7 +381,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_op_res_gpointer/<method parameters>/destroy_op_res]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
+    "[method set_op_res_gpointer/<method parameters>/destroy_op_res]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
   private def setOpResGpointer__ = ???
 
@@ -404,7 +404,7 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[take_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+    "[method take_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
   private def takeError__ = ???
 

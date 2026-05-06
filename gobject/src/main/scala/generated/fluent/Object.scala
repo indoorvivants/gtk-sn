@@ -63,7 +63,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[add_toggle_ref/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ToggleNotify), @type -> DataRecord(GToggleNotify)))"
+    "[method add_toggle_ref/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ToggleNotify), @type -> DataRecord(GToggleNotify)))"
   )
   private def addToggleRef__ = ???
 
@@ -82,7 +82,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[add_weak_pointer]: Method add_weak_pointer contains an INOUT parameter, which is not supported yet"
+    "[method add_weak_pointer]: Method add_weak_pointer contains an INOUT parameter, which is not supported yet"
   )
   private def addWeakPointer__ = ???
 
@@ -169,7 +169,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bind_property_full/<method parameters>/transform_to]: Cannot render type Type(List(),ListMap(@name -> DataRecord(BindingTransformFunc), @type -> DataRecord(GBindingTransformFunc)))"
+    "[method bind_property_full/<method parameters>/transform_to]: Cannot render type Type(List(),ListMap(@name -> DataRecord(BindingTransformFunc), @type -> DataRecord(GBindingTransformFunc)))"
   )
   private def bindPropertyFull__ = ???
 
@@ -185,7 +185,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bind_property_with_closures/<method parameters>/transform_to]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[method bind_property_with_closures/<method parameters>/transform_to]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def bindPropertyWithClosures__ = ???
 
@@ -263,7 +263,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[dup_data/<method parameters>/dup_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DuplicateFunc), @type -> DataRecord(GDuplicateFunc)))"
+    "[method dup_data/<method parameters>/dup_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DuplicateFunc), @type -> DataRecord(GDuplicateFunc)))"
   )
   private def dupData__ = ???
 
@@ -283,7 +283,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[dup_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[method dup_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
   private def dupQdata__ = ???
 
@@ -388,7 +388,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(GValue*)))"
+    "[method get_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(GValue*)))"
   )
   private def getProperty__ = ???
 
@@ -399,7 +399,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[method get_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
   private def getQdata__ = ???
 
@@ -432,7 +432,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[getv/<method parameters>/names]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(const gchar**)))"
+    "[method getv/<method parameters>/names]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(const gchar**)))"
   )
   private def getv__ = ???
 
@@ -558,7 +558,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[remove_toggle_ref/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ToggleNotify), @type -> DataRecord(GToggleNotify)))"
+    "[method remove_toggle_ref/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ToggleNotify), @type -> DataRecord(GToggleNotify)))"
   )
   private def removeToggleRef__ = ???
 
@@ -570,7 +570,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[remove_weak_pointer]: Method remove_weak_pointer contains an INOUT parameter, which is not supported yet"
+    "[method remove_weak_pointer]: Method remove_weak_pointer contains an INOUT parameter, which is not supported yet"
   )
   private def removeWeakPointer__ = ???
 
@@ -595,7 +595,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[replace_data]: Method replace_data contains an OUT parameter, which is not supported yet"
+    "[method replace_data]: Method replace_data contains an OUT parameter, which is not supported yet"
   )
   private def replaceData__ = ???
 
@@ -617,7 +617,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[replace_qdata]: Method replace_qdata contains an OUT parameter, which is not supported yet"
+    "[method replace_qdata]: Method replace_qdata contains an OUT parameter, which is not supported yet"
   )
   private def replaceQdata__ = ???
 
@@ -695,7 +695,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_data_full/<method parameters>/destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
+    "[method set_data_full/<method parameters>/destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
   private def setDataFull__ = ???
 
@@ -705,7 +705,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
+    "[method set_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
   )
   private def setProperty__ = ???
 
@@ -720,7 +720,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[method set_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
   private def setQdata__ = ???
 
@@ -733,7 +733,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_qdata_full/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[method set_qdata_full/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
   private def setQdataFull__ = ???
 
@@ -760,7 +760,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[setv/<method parameters>/names]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(const gchar**)))"
+    "[method setv/<method parameters>/names]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(const gchar**)))"
   )
   private def setv__ = ???
 
@@ -816,7 +816,7 @@ class Object(raw: Ptr[GObject]):
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[steal_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[method steal_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
   private def stealQdata__ = ???
 
@@ -910,7 +910,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[watch_closure/<method parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[method watch_closure/<method parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def watchClosure__ = ???
 
@@ -929,7 +929,7 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[weak_ref/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(WeakNotify), @type -> DataRecord(GWeakNotify)))"
+    "[method weak_ref/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(WeakNotify), @type -> DataRecord(GWeakNotify)))"
   )
   private def weakRef__ = ???
 
@@ -939,9 +939,42 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[weak_unref/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(WeakNotify), @type -> DataRecord(GWeakNotify)))"
+    "[method weak_unref/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(WeakNotify), @type -> DataRecord(GWeakNotify)))"
   )
   private def weakUnref__ = ???
+
+  /**  The notify signal is emitted on an object when one of its properties has
+    *  its value set through g_object_set_property(), g_object_set(), et al.
+    *
+    *  Note that getting this signal doesn’t itself guarantee that the value of
+    *  the property has actually changed. When it is emitted is determined by the
+    *  derived GObject class. If the implementor did not create the property with
+    *  %G_PARAM_EXPLICIT_NOTIFY, then any call to g_object_set_property() results
+    *  in ::notify being emitted, even if the new value is the same as the old.
+    *  If they did pass %G_PARAM_EXPLICIT_NOTIFY, then this signal is emitted only
+    *  when they explicitly call g_object_notify() or g_object_notify_by_pspec(),
+    *  and common practice is to do that only when the value has actually changed.
+    *
+    *  This signal is typically used to obtain change notification for a
+    *  single property, by specifying the property name as a detail in the
+    *  g_signal_connect() call, like this:
+    *
+    *  |[<!-- language="C" -->
+    *  g_signal_connect (text_view->buffer, "notify::paste-target-list",
+    *                    G_CALLBACK (gtk_text_view_target_list_notify),
+    *                    text_view)
+    *  ]|
+    *
+    *  It is important to note that you must use
+    *  [canonical parameter names][canonical-parameter-names] as
+    *  detail strings for the notify signal.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal notify]: Type Type(List(),ListMap(@name -> DataRecord(ParamSpec))) has no @type attribute"
+  )
+  private def onNotify = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -67,7 +67,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_byte]: Method read_byte is weird: there are conflicting versions of it in DataInputStream and BufferedInputStream"
+    "[method read_byte]: Method read_byte is weird: there are conflicting versions of it in DataInputStream and BufferedInputStream"
   )
   private def readByte__ = ???
 
@@ -154,7 +154,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_line]: Method read_line contains an OUT parameter, which is not supported yet"
+    "[method read_line]: Method read_line contains an OUT parameter, which is not supported yet"
   )
   private def readLine__ = ???
 
@@ -169,7 +169,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_line_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method read_line_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def readLineAsync__ = ???
 
@@ -181,7 +181,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_line_finish]: Method read_line_finish contains an OUT parameter, which is not supported yet"
+    "[method read_line_finish]: Method read_line_finish contains an OUT parameter, which is not supported yet"
   )
   private def readLineFinish__ = ???
 
@@ -192,7 +192,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_line_finish_utf8]: Method read_line_finish_utf8 contains an OUT parameter, which is not supported yet"
+    "[method read_line_finish_utf8]: Method read_line_finish_utf8 contains an OUT parameter, which is not supported yet"
   )
   private def readLineFinishUtf8__ = ???
 
@@ -206,7 +206,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_line_utf8]: Method read_line_utf8 contains an OUT parameter, which is not supported yet"
+    "[method read_line_utf8]: Method read_line_utf8 contains an OUT parameter, which is not supported yet"
   )
   private def readLineUtf8__ = ???
 
@@ -295,7 +295,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_until]: Method read_until contains an OUT parameter, which is not supported yet"
+    "[method read_until]: Method read_until contains an OUT parameter, which is not supported yet"
   )
   private def readUntil__ = ???
 
@@ -319,7 +319,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_until_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method read_until_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def readUntilAsync__ = ???
 
@@ -330,7 +330,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_until_finish]: Method read_until_finish contains an OUT parameter, which is not supported yet"
+    "[method read_until_finish]: Method read_until_finish contains an OUT parameter, which is not supported yet"
   )
   private def readUntilFinish__ = ???
 
@@ -350,7 +350,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_upto]: Method read_upto contains an OUT parameter, which is not supported yet"
+    "[method read_upto]: Method read_upto contains an OUT parameter, which is not supported yet"
   )
   private def readUpto__ = ???
 
@@ -372,7 +372,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_upto_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method read_upto_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def readUptoAsync__ = ???
 
@@ -389,7 +389,7 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_upto_finish]: Method read_upto_finish contains an OUT parameter, which is not supported yet"
+    "[method read_upto_finish]: Method read_upto_finish contains an OUT parameter, which is not supported yet"
   )
   private def readUptoFinish__ = ???
 

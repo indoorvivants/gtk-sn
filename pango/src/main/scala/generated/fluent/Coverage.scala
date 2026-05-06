@@ -84,7 +84,7 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[to_bytes]: Method to_bytes contains an OUT parameter, which is not supported yet"
+    "[method to_bytes]: Method to_bytes contains an OUT parameter, which is not supported yet"
   )
   private def toBytes__ = ???
 

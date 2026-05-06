@@ -770,6 +770,90 @@ class Notebook(raw: Ptr[GtkNotebook])
     gboolean(gint((if reorderable == true then 1 else 0)))
   )
 
+  @annotation.compileTimeOnly(
+    "[signal change-current-page]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onChangeCurrentPage = ???
+
+  /** The ::create-window signal is emitted when a detachable tab is dropped on
+    * the root window.
+    *
+    * A handler for this signal can create a window containing a notebook where
+    * the tab will be attached. It is also responsible for moving/resizing the
+    * window and adding the necessary properties to the notebook (e.g. the
+    * `GtkNotebook`:group-name ).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal create-window]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
+  )
+  private def onCreateWindow = ???
+
+  @annotation.compileTimeOnly(
+    "[signal focus-tab]: Type Type(List(),ListMap(@name -> DataRecord(NotebookTab))) has no @type attribute"
+  )
+  private def onFocusTab = ???
+
+  @annotation.compileTimeOnly(
+    "[signal move-focus-out]: Type Type(List(),ListMap(@name -> DataRecord(DirectionType))) has no @type attribute"
+  )
+  private def onMoveFocusOut = ???
+
+  /** the ::page-added signal is emitted in the notebook right after a page is
+    * added to the notebook.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal page-added]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
+  )
+  private def onPageAdded = ???
+
+  /** the ::page-removed signal is emitted in the notebook right after a page is
+    * removed from the notebook.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal page-removed]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
+  )
+  private def onPageRemoved = ???
+
+  /** the ::page-reordered signal is emitted in the notebook right after a page
+    * has been reordered.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal page-reordered]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
+  )
+  private def onPageReordered = ???
+
+  @annotation.compileTimeOnly(
+    "[signal reorder-tab]: Type Type(List(),ListMap(@name -> DataRecord(DirectionType))) has no @type attribute"
+  )
+  private def onReorderTab = ???
+
+  @annotation.compileTimeOnly(
+    "[signal select-page]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onSelectPage = ???
+
+  /** Emitted when the user or a function changes the current page.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal switch-page]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
+  )
+  private def onSwitchPage = ???
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =

@@ -35,7 +35,7 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_max_size]: Method get_max_size contains an OUT parameter, which is not supported yet"
+    "[method get_max_size]: Method get_max_size contains an OUT parameter, which is not supported yet"
   )
   private def getMaxSize__ = ???
 
@@ -45,7 +45,7 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_min_size]: Method get_min_size contains an OUT parameter, which is not supported yet"
+    "[method get_min_size]: Method get_min_size contains an OUT parameter, which is not supported yet"
   )
   private def getMinSize__ = ???
 
@@ -66,7 +66,7 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_nat_size]: Method get_nat_size contains an OUT parameter, which is not supported yet"
+    "[method get_nat_size]: Method get_nat_size contains an OUT parameter, which is not supported yet"
   )
   private def getNatSize__ = ???
 

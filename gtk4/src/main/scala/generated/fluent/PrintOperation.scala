@@ -5,8 +5,15 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   GTKUnit,
   PageSetup,
@@ -590,6 +597,258 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     this.raw.asInstanceOf[Ptr[GtkPrintOperation]],
     gboolean(gint((if full_page == true then 1 else 0)))
   )
+
+  /** Emitted after the user has finished changing print settings in the dialog,
+    * before the actual rendering starts.
+    *
+    * A typical use for ::begin-print is to use the parameters from the
+    * [class@Gtk.PrintContext] and paginate the document accordingly, and then
+    * set the number of pages with [method@Gtk.PrintOperation.set_n_pages].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal begin-print]: Type Type(List(),ListMap(@name -> DataRecord(PrintContext))) has no @type attribute"
+  )
+  private def onBeginPrint = ???
+
+  /** Emitted when displaying the print dialog.
+    *
+    * If you return a widget in a handler for this signal it will be added to a
+    * custom tab in the print dialog. You typically return a container widget
+    * with multiple widgets in it.
+    *
+    * The print dialog owns the returned widget, and its lifetime is not
+    * controlled by the application. However, the widget is guaranteed to stay
+    * around until the [signal@Gtk.PrintOperation::custom-widget-apply] signal
+    * is emitted on the operation. Then you can read out any information you
+    * need from the widgets.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal create-custom-widget]: Type Type(List(),ListMap(@name -> DataRecord(GObject.Object))) has no @type attribute"
+  )
+  private def onCreateCustomWidget = ???
+
+  /** Emitted right before ::begin-print if you added a custom widget in the
+    * ::create-custom-widget handler.
+    *
+    * When you get this signal you should read the information from the custom
+    * widgets, as the widgets are not guaranteed to be around at a later time.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal custom-widget-apply]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
+  )
+  private def onCustomWidgetApply = ???
+
+  /** Emitted when the print operation run has finished doing everything
+    * required for printing.
+    *
+    * @result
+    *   gives you information about what happened during the run. If @result is
+    *   %GTK_PRINT_OPERATION_RESULT_ERROR then you can call
+    *   [method@Gtk.PrintOperation.get_error] for more information.
+    *
+    * If you enabled print status tracking then
+    * [method@Gtk.PrintOperation.is_finished] may still return %FALSE after the
+    * ::done signal was emitted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal done]: Type Type(List(),ListMap(@name -> DataRecord(PrintOperationResult))) has no @type attribute"
+  )
+  private def onDone = ???
+
+  /** Emitted for every page that is printed.
+    *
+    * The signal handler must render the @page_nr's page onto the cairo context
+    * obtained from @context using [method@Gtk.PrintContext.get_cairo_context].
+    *
+    * ```c
+    * static void
+    * draw_page (GtkPrintOperation *operation,
+    *            GtkPrintContext   *context,
+    *            int                page_nr,
+    *            gpointer           user_data)
+    * {
+    *   cairo_t *cr;
+    *   PangoLayout *layout;
+    *   double width, text_height;
+    *   int layout_height;
+    *   PangoFontDescription *desc;
+    *
+    *   cr = gtk_print_context_get_cairo_context (context);
+    *   width = gtk_print_context_get_width (context);
+    *
+    *   cairo_rectangle (cr, 0, 0, width, HEADER_HEIGHT);
+    *
+    *   cairo_set_source_rgb (cr, 0.8, 0.8, 0.8);
+    *   cairo_fill (cr);
+    *
+    *   layout = gtk_print_context_create_pango_layout (context);
+    *
+    *   desc = pango_font_description_from_string ("sans 14");
+    *   pango_layout_set_font_description (layout, desc);
+    *   pango_font_description_free (desc);
+    *
+    *   pango_layout_set_text (layout, "some text", -1);
+    *   pango_layout_set_width (layout, width * PANGO_SCALE);
+    *   pango_layout_set_alignment (layout, PANGO_ALIGN_CENTER);
+    *
+    *   pango_layout_get_size (layout, NULL, &layout_height);
+    *   text_height = (double)layout_height / PANGO_SCALE;
+    *
+    *   cairo_move_to (cr, width / 2,  (HEADER_HEIGHT - text_height) / 2);
+    *   pango_cairo_show_layout (cr, layout);
+    *
+    *   g_object_unref (layout);
+    * }
+    * ```
+    *
+    * Use [method@Gtk.PrintOperation.set_use_full_page] and
+    * [method@Gtk.PrintOperation.set_unit] before starting the print operation
+    * to set up the transformation of the cairo context according to your needs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal draw-page]: Type Type(List(),ListMap(@name -> DataRecord(PrintContext))) has no @type attribute"
+  )
+  private def onDrawPage = ???
+
+  /** Emitted after all pages have been rendered.
+    *
+    * A handler for this signal can clean up any resources that have been
+    * allocated in the [signal@Gtk.PrintOperation::begin-print] handler.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal end-print]: Type Type(List(),ListMap(@name -> DataRecord(PrintContext))) has no @type attribute"
+  )
+  private def onEndPrint = ???
+
+  /** Emitted after the ::begin-print signal, but before the actual rendering
+    * starts.
+    *
+    * It keeps getting emitted until a connected signal handler returns %TRUE.
+    *
+    * The ::paginate signal is intended to be used for paginating a document in
+    * small chunks, to avoid blocking the user interface for a long time. The
+    * signal handler should update the number of pages using
+    * [method@Gtk.PrintOperation.set_n_pages], and return %TRUE if the document
+    * has been completely paginated.
+    *
+    * If you don't need to do pagination in chunks, you can simply do it all in
+    * the ::begin-print handler, and set the number of pages from there.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal paginate]: Type Type(List(),ListMap(@name -> DataRecord(PrintContext))) has no @type attribute"
+  )
+  private def onPaginate = ???
+
+  /** Gets emitted when a preview is requested from the native dialog.
+    *
+    * The default handler for this signal uses an external viewer application to
+    * preview.
+    *
+    * To implement a custom print preview, an application must return %TRUE from
+    * its handler for this signal. In order to use the provided @context for the
+    * preview implementation, it must be given a suitable cairo context with
+    * [method@Gtk.PrintContext.set_cairo_context].
+    *
+    * The custom preview implementation can use
+    * [method@Gtk.PrintOperationPreview.is_selected] and
+    * [method@Gtk.PrintOperationPreview.render_page] to find pages which are
+    * selected for print and render them. The preview must be finished by
+    * calling [method@Gtk.PrintOperationPreview.end_preview] (typically in
+    * response to the user clicking a close button).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal preview]: Type Type(List(),ListMap(@name -> DataRecord(PrintOperationPreview))) has no @type attribute"
+  )
+  private def onPreview = ???
+
+  /** Emitted once for every page that is printed.
+    *
+    * This gives the application a chance to modify the page setup. Any changes
+    * done to @setup will be in force only for printing this page.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal request-page-setup]: Type Type(List(),ListMap(@name -> DataRecord(PrintContext))) has no @type attribute"
+  )
+  private def onRequestPageSetup = ???
+
+  /** Emitted at between the various phases of the print operation.
+    *
+    * See [enum@Gtk.PrintStatus] for the phases that are being discriminated.
+    * Use [method@Gtk.PrintOperation.get_status] to find out the current status.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onStatusChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkPrintOperation],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"status-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onStatusChanged
+
+  /** Emitted after change of selected printer.
+    *
+    * The actual page setup and print settings are passed to the custom widget,
+    * which can actualize itself according to this change.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal update-custom-widget]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
+  )
+  private def onUpdateCustomWidget = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

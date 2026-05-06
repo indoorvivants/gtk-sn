@@ -32,7 +32,7 @@ class Fontset(raw: Ptr[PangoFontset]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontsetForeachFunc), @type -> DataRecord(PangoFontsetForeachFunc)))"
+    "[method foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontsetForeachFunc), @type -> DataRecord(PangoFontsetForeachFunc)))"
   )
   private def foreach__ = ???
 
@@ -57,7 +57,7 @@ class Fontset(raw: Ptr[PangoFontset]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_metrics/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontMetrics), @type -> DataRecord(PangoFontMetrics*)))"
+    "[method get_metrics/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontMetrics), @type -> DataRecord(PangoFontMetrics*)))"
   )
   private def getMetrics__ = ???
 

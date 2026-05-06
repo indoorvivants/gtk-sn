@@ -4,7 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -62,7 +69,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[create_drag_icon/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method create_drag_icon/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def createDragIcon__ = ???
 
@@ -73,7 +80,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[enable_model_drag_dest/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[method enable_model_drag_dest/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
   private def enableModelDragDest__ = ???
 
@@ -84,7 +91,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[enable_model_drag_source/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[method enable_model_drag_source/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
   private def enableModelDragSource__ = ???
 
@@ -109,7 +116,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_cell_rect]: Method get_cell_rect contains an OUT parameter, which is not supported yet"
+    "[method get_cell_rect]: Method get_cell_rect contains an OUT parameter, which is not supported yet"
   )
   private def getCellRect__ = ???
 
@@ -141,7 +148,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_cursor]: Method get_cursor contains an OUT parameter, which is not supported yet"
+    "[method get_cursor]: Method get_cursor contains an OUT parameter, which is not supported yet"
   )
   private def getCursor__ = ???
 
@@ -151,7 +158,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_dest_item_at_pos]: Method get_dest_item_at_pos contains an OUT parameter, which is not supported yet"
+    "[method get_dest_item_at_pos]: Method get_dest_item_at_pos contains an OUT parameter, which is not supported yet"
   )
   private def getDestItemAtPos__ = ???
 
@@ -161,7 +168,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_drag_dest_item]: Method get_drag_dest_item contains an OUT parameter, which is not supported yet"
+    "[method get_drag_dest_item]: Method get_drag_dest_item contains an OUT parameter, which is not supported yet"
   )
   private def getDragDestItem__ = ???
 
@@ -171,7 +178,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_item_at_pos]: Method get_item_at_pos contains an OUT parameter, which is not supported yet"
+    "[method get_item_at_pos]: Method get_item_at_pos contains an OUT parameter, which is not supported yet"
   )
   private def getItemAtPos__ = ???
 
@@ -182,7 +189,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_item_column/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method get_item_column/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def getItemColumn__ = ???
 
@@ -212,7 +219,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_item_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method get_item_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def getItemRow__ = ???
 
@@ -261,7 +268,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_path_at_pos/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method get_path_at_pos/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def getPathAtPos__ = ???
 
@@ -313,7 +320,7 @@ class IconView(raw: Ptr[GtkIconView])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_selected_items/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreePath))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method get_selected_items/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreePath))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def getSelectedItems__ = ???
 
@@ -368,7 +375,7 @@ class IconView(raw: Ptr[GtkIconView])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_tooltip_context]: Method get_tooltip_context contains an OUT parameter, which is not supported yet"
+    "[method get_tooltip_context]: Method get_tooltip_context contains an OUT parameter, which is not supported yet"
   )
   private def getTooltipContext__ = ???
 
@@ -381,7 +388,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_visible_range]: Method get_visible_range contains an OUT parameter, which is not supported yet"
+    "[method get_visible_range]: Method get_visible_range contains an OUT parameter, which is not supported yet"
   )
   private def getVisibleRange__ = ???
 
@@ -391,7 +398,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[item_activated/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method item_activated/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def itemActivated__ = ???
 
@@ -402,7 +409,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[path_is_selected/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method path_is_selected/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def pathIsSelected__ = ???
 
@@ -426,7 +433,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[scroll_to_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method scroll_to_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def scrollToPath__ = ???
 
@@ -446,7 +453,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[select_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method select_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def selectPath__ = ???
 
@@ -457,7 +464,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[selected_foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IconViewForeachFunc), @type -> DataRecord(GtkIconViewForeachFunc)))"
+    "[method selected_foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IconViewForeachFunc), @type -> DataRecord(GtkIconViewForeachFunc)))"
   )
   private def selectedForeach__ = ???
 
@@ -510,7 +517,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_cursor/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method set_cursor/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def setCursor__ = ???
 
@@ -520,7 +527,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_drag_dest_item/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method set_drag_dest_item/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def setDragDestItem__ = ???
 
@@ -691,7 +698,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_tooltip_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method set_tooltip_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def setTooltipCell__ = ???
 
@@ -724,7 +731,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_tooltip_item/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method set_tooltip_item/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def setTooltipItem__ = ???
 
@@ -743,7 +750,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unselect_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method unselect_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def unselectPath__ = ???
 
@@ -767,6 +774,268 @@ class IconView(raw: Ptr[GtkIconView])
       this.raw.asInstanceOf[Ptr[GtkIconView]]
     )
 
+  /** A [keybinding signal][class@Gtk.SignalAction] which gets emitted when the
+    * user activates the currently focused item.
+    *
+    * Applications should not connect to it, but may emit it with
+    * g_signal_emit_by_name() if they need to control activation
+    * programmatically.
+    *
+    * The default bindings for this signal are Space, Return and Enter.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal activate-cursor-item]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onActivateCursorItem = ???
+
+  /** The ::item-activated signal is emitted when the method
+    * gtk_icon_view_item_activated() is called, when the user double clicks an
+    * item with the "activate-on-single-click" property set to %FALSE, or when
+    * the user single clicks an item when the "activate-on-single-click"
+    * property set to %TRUE. It is also emitted when a non-editable item is
+    * selected and one of the keys: Space, Return or Enter is pressed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal item-activated]: Type Type(List(),ListMap(@name -> DataRecord(TreePath))) has no @type attribute"
+  )
+  private def onItemActivated = ???
+
+  /** The ::move-cursor signal is a [keybinding signal][class@Gtk.SignalAction]
+    * which gets emitted when the user initiates a cursor movement.
+    *
+    * Applications should not connect to it, but may emit it with
+    * g_signal_emit_by_name() if they need to control the cursor
+    * programmatically.
+    *
+    * The default bindings for this signal include
+    *   - Arrow keys which move by individual steps
+    *   - Home/End keys which move to the first/last item
+    *   - PageUp/PageDown which move by "pages" All of these will extend the
+    *     selection when combined with the Shift modifier.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal move-cursor]: Type Type(List(),ListMap(@name -> DataRecord(MovementStep))) has no @type attribute"
+  )
+  private def onMoveCursor = ???
+
+  /** A [keybinding signal][class@Gtk.SignalAction] which gets emitted when the
+    * user selects all items.
+    *
+    * Applications should not connect to it, but may emit it with
+    * g_signal_emit_by_name() if they need to control selection
+    * programmatically.
+    *
+    * The default binding for this signal is Ctrl-a.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onSelectAll(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkIconView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"select-all"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onSelectAll
+
+  /** A [keybinding signal][class@Gtk.SignalAction] which gets emitted when the
+    * user selects the item that is currently focused.
+    *
+    * Applications should not connect to it, but may emit it with
+    * g_signal_emit_by_name() if they need to control selection
+    * programmatically.
+    *
+    * There is no default binding for this signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onSelectCursorItem(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkIconView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"select-cursor-item"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onSelectCursorItem
+
+  /** The ::selection-changed signal is emitted when the selection (i.e. the set
+    * of selected items) changes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onSelectionChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkIconView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"selection-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onSelectionChanged
+
+  /** A [keybinding signal][class@Gtk.SignalAction] which gets emitted when the
+    * user toggles whether the currently focused item is selected or not. The
+    * exact effect of this depend on the selection mode.
+    *
+    * Applications should not connect to it, but may emit it with
+    * g_signal_emit_by_name() if they need to control selection
+    * programmatically.
+    *
+    * There is no default binding for this signal is Ctrl-Space.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onToggleCursorItem(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkIconView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"toggle-cursor-item"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onToggleCursorItem
+
+  /** A [keybinding signal][class@Gtk.SignalAction] which gets emitted when the
+    * user unselects all items.
+    *
+    * Applications should not connect to it, but may emit it with
+    * g_signal_emit_by_name() if they need to control selection
+    * programmatically.
+    *
+    * The default binding for this signal is Ctrl-Shift-a.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onUnselectAll(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkIconView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"unselect-all"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onUnselectAll
 end IconView
 
 object IconView:

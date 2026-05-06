@@ -149,7 +149,7 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[measure]: Method measure contains an OUT parameter, which is not supported yet"
+    "[method measure]: Method measure contains an OUT parameter, which is not supported yet"
   )
   private def measure__ = ???
 

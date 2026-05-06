@@ -18,6 +18,13 @@ import sn.gnome.gio.internal.GApplication
 import sn.gnome.glib.fluent.{GResult, OptionArg, OptionFlags}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** A #GApplication is the foundation of an application. It wraps some low-level
   * platform-specific services and is intended to act as the foundation for
@@ -254,7 +261,7 @@ class Application(raw: Ptr[GApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[add_main_option_entries/<method parameters>/entries]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.OptionEntry)))),ListMap(@type -> DataRecord(const GOptionEntry*)))"
+    "[method add_main_option_entries/<method parameters>/entries]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.OptionEntry)))),ListMap(@type -> DataRecord(const GOptionEntry*)))"
   )
   private def addMainOptionEntries__ = ???
 
@@ -287,7 +294,7 @@ class Application(raw: Ptr[GApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[add_option_group/<method parameters>/group]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.OptionGroup), @type -> DataRecord(GOptionGroup*)))"
+    "[method add_option_group/<method parameters>/group]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.OptionGroup), @type -> DataRecord(GOptionGroup*)))"
   )
   private def addOptionGroup__ = ???
 
@@ -503,7 +510,7 @@ class Application(raw: Ptr[GApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[open]: Method open is weird: non NULL-terminated arrays require special handling"
+    "[method open]: Method open is weird: non NULL-terminated arrays require special handling"
   )
   private def open__ = ???
 
@@ -974,6 +981,203 @@ class Application(raw: Ptr[GApplication])
     this.raw.asInstanceOf[Ptr[GApplication]],
     __sn_extract_string(id).asInstanceOf[Ptr[gchar]]
   )
+
+  /** The ::activate signal is emitted on the primary instance when an
+    * activation occurs. See g_application_activate().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onActivate(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GApplication],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"activate"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onActivate
+
+  /** The ::command-line signal is emitted on the primary instance when a
+    * commandline is not handled locally. See g_application_run() and the
+    * #GApplicationCommandLine documentation for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal command-line]: Type Type(List(),ListMap(@name -> DataRecord(ApplicationCommandLine))) has no @type attribute"
+  )
+  private def onCommandLine = ???
+
+  /** The ::handle-local-options signal is emitted on the local instance after
+    * the parsing of the commandline options has occurred.
+    *
+    * You can add options to be recognised during commandline option parsing
+    * using g_application_add_main_option_entries() and
+    * g_application_add_option_group().
+    *
+    * Signal handlers can inspect @options (along with values pointed to from
+    * the @arg_data of an installed #GOptionEntrys) in order to decide to
+    * perform certain actions, including direct local handling (which may be
+    * useful for options like --version).
+    *
+    * In the event that the application is marked
+    * %G_APPLICATION_HANDLES_COMMAND_LINE the "normal processing" will send the @options
+    * dictionary to the primary instance where it can be read with
+    * g_application_command_line_get_options_dict(). The signal handler can
+    * modify the dictionary before returning, and the modified dictionary will
+    * be sent.
+    *
+    * In the event that %G_APPLICATION_HANDLES_COMMAND_LINE is not set, "normal
+    * processing" will treat the remaining uncollected command line arguments as
+    * filenames or URIs. If there are no arguments, the application is activated
+    * by g_application_activate(). One or more arguments results in a call to
+    * g_application_open().
+    *
+    * If you want to handle the local commandline arguments for yourself by
+    * converting them to calls to g_application_open() or
+    * g_action_group_activate_action() then you must be sure to register the
+    * application first. You should probably not call g_application_activate()
+    * for yourself, however: just return -1 and allow the default handler to do
+    * it for you. This will ensure that the `--gapplication-service` switch
+    * works properly (i.e. no activation in that case).
+    *
+    * Note that this signal is emitted from the default implementation of
+    * local_command_line(). If you override that function and don't chain up
+    * then this signal will never be emitted.
+    *
+    * You can override local_command_line() if you need more powerful
+    * capabilities than what is provided here, but this should not normally be
+    * required.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal handle-local-options]: Type Type(List(),ListMap(@name -> DataRecord(GLib.VariantDict))) has no @type attribute"
+  )
+  private def onHandleLocalOptions = ???
+
+  /** The ::name-lost signal is emitted only on the registered primary instance
+    * when a new instance has taken over. This can only happen if the
+    * application is using the %G_APPLICATION_ALLOW_REPLACEMENT flag.
+    *
+    * The default handler for this signal calls g_application_quit().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal name-lost]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onNameLost = ???
+
+  /** The ::open signal is emitted on the primary instance when there are files
+    * to open. See g_application_open() for more information.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal open]: Array signal parameters not supported yet"
+  )
+  private def onOpen = ???
+
+  /** The ::shutdown signal is emitted only on the registered primary instance
+    * immediately after the main loop terminates.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onShutdown(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GApplication],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"shutdown"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onShutdown
+
+  /** The ::startup signal is emitted on the primary instance immediately after
+    * registration. See g_application_register().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onStartup(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GApplication],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"startup"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onStartup
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

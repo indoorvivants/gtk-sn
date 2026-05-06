@@ -52,7 +52,7 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_next]: Method get_next contains an OUT parameter, which is not supported yet"
+    "[method get_next]: Method get_next contains an OUT parameter, which is not supported yet"
   )
   private def getNext__ = ???
 
@@ -64,7 +64,7 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def getValue__ = ???
 

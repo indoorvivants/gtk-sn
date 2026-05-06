@@ -341,7 +341,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[activate/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[method activate/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
   private def activate__ = ???
 
@@ -353,7 +353,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[activate_cell/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[method activate_cell/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
   private def activateCell__ = ???
 
@@ -411,7 +411,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[apply_attributes/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method apply_attributes/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def applyAttributes__ = ???
 
@@ -484,7 +484,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cell_get_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[method cell_get_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
   private def cellGetProperty__ = ???
 
@@ -526,7 +526,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cell_set_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[method cell_set_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
   private def cellSetProperty__ = ???
 
@@ -590,7 +590,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[event/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[method event/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
   private def event__ = ???
 
@@ -617,7 +617,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[foreach/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CellCallback), @type -> DataRecord(GtkCellCallback)))"
+    "[method foreach/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CellCallback), @type -> DataRecord(GtkCellCallback)))"
   )
   private def foreach__ = ???
 
@@ -628,7 +628,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[foreach_alloc/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[method foreach_alloc/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
   private def foreachAlloc__ = ???
 
@@ -639,7 +639,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_cell_allocation]: Method get_cell_allocation contains an OUT parameter, which is not supported yet"
+    "[method get_cell_allocation]: Method get_cell_allocation contains an OUT parameter, which is not supported yet"
   )
   private def getCellAllocation__ = ???
 
@@ -650,7 +650,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_cell_at_position]: Method get_cell_at_position contains an OUT parameter, which is not supported yet"
+    "[method get_cell_at_position]: Method get_cell_at_position contains an OUT parameter, which is not supported yet"
   )
   private def getCellAtPosition__ = ???
 
@@ -727,7 +727,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_focus_siblings/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(CellRenderer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(const GList*)))"
+    "[method get_focus_siblings/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(CellRenderer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(const GList*)))"
   )
   private def getFocusSiblings__ = ???
 
@@ -744,7 +744,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_preferred_height]: Method get_preferred_height contains an OUT parameter, which is not supported yet"
+    "[method get_preferred_height]: Method get_preferred_height contains an OUT parameter, which is not supported yet"
   )
   private def getPreferredHeight__ = ???
 
@@ -769,7 +769,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_preferred_height_for_width]: Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
+    "[method get_preferred_height_for_width]: Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
   )
   private def getPreferredHeightForWidth__ = ???
 
@@ -786,7 +786,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_preferred_width]: Method get_preferred_width contains an OUT parameter, which is not supported yet"
+    "[method get_preferred_width]: Method get_preferred_width contains an OUT parameter, which is not supported yet"
   )
   private def getPreferredWidth__ = ???
 
@@ -811,7 +811,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_preferred_width_for_height]: Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
+    "[method get_preferred_width_for_height]: Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
   )
   private def getPreferredWidthForHeight__ = ???
 
@@ -845,7 +845,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[inner_cell_area]: Method inner_cell_area contains an OUT parameter, which is not supported yet"
+    "[method inner_cell_area]: Method inner_cell_area contains an OUT parameter, which is not supported yet"
   )
   private def innerCellArea__ = ???
 
@@ -911,7 +911,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[request_renderer]: Method request_renderer contains an OUT parameter, which is not supported yet"
+    "[method request_renderer]: Method request_renderer contains an OUT parameter, which is not supported yet"
   )
   private def requestRenderer__ = ???
 
@@ -940,7 +940,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[snapshot/<method parameters>/background_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[method snapshot/<method parameters>/background_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
   private def snapshot__ = ???
 
@@ -961,6 +961,53 @@ class CellArea(raw: Ptr[GtkCellArea])
     this.raw.asInstanceOf[Ptr[GtkCellArea]],
     gboolean(gint((if canceled == true then 1 else 0)))
   )
+
+  /** Indicates that editing has started on @renderer and that @editable should
+    * be added to the owning cell-layouting widget at @cell_area.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal add-editable]: Type Type(List(),ListMap(@name -> DataRecord(CellRenderer))) has no @type attribute"
+  )
+  private def onAddEditable = ???
+
+  /** This signal is emitted whenever applying attributes to @area from @model
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal apply-attributes]: Type Type(List(),ListMap(@name -> DataRecord(TreeModel))) has no @type attribute"
+  )
+  private def onApplyAttributes = ???
+
+  /** Indicates that focus changed on this @area. This signal is emitted either
+    * as a result of focus handling or event handling.
+    *
+    * It's possible that the signal is emitted even if the currently focused
+    * renderer did not change, this is because focus may change to the same
+    * renderer in the same cell area for a different row of data.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal focus-changed]: Type Type(List(),ListMap(@name -> DataRecord(CellRenderer))) has no @type attribute"
+  )
+  private def onFocusChanged = ???
+
+  /** Indicates that editing finished on @renderer and that @editable should be
+    * removed from the owning cell-layouting widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal remove-editable]: Type Type(List(),ListMap(@name -> DataRecord(CellRenderer))) has no @type attribute"
+  )
+  private def onRemoveEditable = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

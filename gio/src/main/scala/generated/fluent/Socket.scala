@@ -362,7 +362,7 @@ class Socket(raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[create_source/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+    "[method create_source/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
   )
   private def createSource__ = ???
 
@@ -530,7 +530,7 @@ class Socket(raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_option]: Method get_option contains an OUT parameter, which is not supported yet"
+    "[method get_option]: Method get_option contains an OUT parameter, which is not supported yet"
   )
   private def getOption__ = ???
 
@@ -798,7 +798,7 @@ class Socket(raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[receive]: Method receive contains an OUT parameter, which is not supported yet"
+    "[method receive]: Method receive contains an OUT parameter, which is not supported yet"
   )
   private def receive__ = ???
 
@@ -815,7 +815,7 @@ class Socket(raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[receive_from]: Method receive_from contains an OUT parameter, which is not supported yet"
+    "[method receive_from]: Method receive_from contains an OUT parameter, which is not supported yet"
   )
   private def receiveFrom__ = ???
 
@@ -887,7 +887,7 @@ class Socket(raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[receive_message]: Method receive_message contains an OUT parameter, which is not supported yet"
+    "[method receive_message]: Method receive_message contains an OUT parameter, which is not supported yet"
   )
   private def receiveMessage__ = ???
 
@@ -950,7 +950,7 @@ class Socket(raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[receive_messages/<method parameters>/messages]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InputMessage), @type -> DataRecord(GInputMessage)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GInputMessage*)))"
+    "[method receive_messages/<method parameters>/messages]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InputMessage), @type -> DataRecord(GInputMessage)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GInputMessage*)))"
   )
   private def receiveMessages__ = ???
 
@@ -962,7 +962,7 @@ class Socket(raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[receive_with_blocking]: Method receive_with_blocking contains an OUT parameter, which is not supported yet"
+    "[method receive_with_blocking]: Method receive_with_blocking contains an OUT parameter, which is not supported yet"
   )
   private def receiveWithBlocking__ = ???
 
@@ -985,7 +985,7 @@ class Socket(raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[send/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
+    "[method send/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
   )
   private def send__ = ???
 
@@ -1038,7 +1038,7 @@ class Socket(raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[send_message]: Method send_message is weird: non NULL-terminated arrays require special handling"
+    "[method send_message]: Method send_message is weird: non NULL-terminated arrays require special handling"
   )
   private def sendMessage__ = ???
 
@@ -1055,7 +1055,7 @@ class Socket(raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[send_message_with_timeout]: Method send_message_with_timeout contains an OUT parameter, which is not supported yet"
+    "[method send_message_with_timeout]: Method send_message_with_timeout contains an OUT parameter, which is not supported yet"
   )
   private def sendMessageWithTimeout__ = ???
 
@@ -1101,7 +1101,7 @@ class Socket(raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[send_messages/<method parameters>/messages]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(OutputMessage), @type -> DataRecord(GOutputMessage)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GOutputMessage*)))"
+    "[method send_messages/<method parameters>/messages]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(OutputMessage), @type -> DataRecord(GOutputMessage)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GOutputMessage*)))"
   )
   private def sendMessages__ = ???
 
@@ -1115,7 +1115,7 @@ class Socket(raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[send_to/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const gchar*)))"
+    "[method send_to/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const gchar*)))"
   )
   private def sendTo__ = ???
 
@@ -1127,7 +1127,7 @@ class Socket(raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[send_with_blocking/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
+    "[method send_with_blocking/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
   )
   private def sendWithBlocking__ = ???
 

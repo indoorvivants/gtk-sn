@@ -25,7 +25,7 @@ class RadialGradientNode(raw: Ptr[GskRadialGradientNode])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_center/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
+    "[method get_center/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
   )
   private def getCenter__ = ???
 
@@ -35,7 +35,7 @@ class RadialGradientNode(raw: Ptr[GskRadialGradientNode])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_color_stops]: Method get_color_stops contains an OUT parameter, which is not supported yet"
+    "[method get_color_stops]: Method get_color_stops contains an OUT parameter, which is not supported yet"
   )
   private def getColorStops__ = ???
 

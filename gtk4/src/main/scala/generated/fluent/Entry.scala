@@ -7,7 +7,22 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.{ContentProvider, DragAction, Paintable}
 import sn.gnome.gio.fluent.{Icon, MenuModel}
-import sn.gnome.glib.internal.{gboolean, gint, guint16, guint32, gunichar}
+import sn.gnome.glib.internal.{
+  gboolean,
+  gchar,
+  gint,
+  gpointer,
+  guint16,
+  guint32,
+  gunichar
+}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -151,7 +166,7 @@ class Entry(raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[method get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
   private def getAttributes__ = ???
 
@@ -226,7 +241,7 @@ class Entry(raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_icon_area]: Method get_icon_area contains an OUT parameter, which is not supported yet"
+    "[method get_icon_area]: Method get_icon_area contains an OUT parameter, which is not supported yet"
   )
   private def getIconArea__ = ???
 
@@ -437,7 +452,7 @@ class Entry(raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[method get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
   private def getTabs__ = ???
 
@@ -547,7 +562,7 @@ class Entry(raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[method set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
   private def setAttributes__ = ???
 
@@ -907,7 +922,7 @@ class Entry(raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[method set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
   private def setTabs__ = ???
 
@@ -945,6 +960,64 @@ class Entry(raw: Ptr[GtkEntry])
   def unsetInvisibleChar(): Unit /* None */ = gtk_entry_unset_invisible_char(
     this.raw.asInstanceOf[Ptr[GtkEntry]]
   )
+
+  /** Emitted when the entry is activated.
+    *
+    * The keybindings for this signal are all forms of the Enter key.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onActivate(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkEntry],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"activate"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onActivate
+
+  /** Emitted when an activatable icon is clicked.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal icon-press]: Type Type(List(),ListMap(@name -> DataRecord(EntryIconPosition))) has no @type attribute"
+  )
+  private def onIconPress = ???
+
+  /** Emitted on the button release from a mouse click over an activatable icon.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal icon-release]: Type Type(List(),ListMap(@name -> DataRecord(EntryIconPosition))) has no @type attribute"
+  )
+  private def onIconRelease = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

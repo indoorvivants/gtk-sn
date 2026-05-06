@@ -92,7 +92,7 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[print/<method parameters>/string]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
+    "[method print/<method parameters>/string]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
   )
   private def print__ = ???
 
@@ -112,7 +112,7 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[print_label/<method parameters>/string]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
+    "[method print_label/<method parameters>/string]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
   )
   private def printLabel__ = ???
 

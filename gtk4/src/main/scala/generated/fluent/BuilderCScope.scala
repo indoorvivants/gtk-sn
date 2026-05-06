@@ -44,7 +44,7 @@ class BuilderCScope(raw: Ptr[GtkBuilderCScope])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[add_callback_symbol/<method parameters>/callback_symbol]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Callback), @type -> DataRecord(GCallback)))"
+    "[method add_callback_symbol/<method parameters>/callback_symbol]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Callback), @type -> DataRecord(GCallback)))"
   )
   private def addCallbackSymbol__ = ???
 
@@ -57,7 +57,7 @@ class BuilderCScope(raw: Ptr[GtkBuilderCScope])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[add_callback_symbols/<method parameters>/first_callback_symbol]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Callback), @type -> DataRecord(GCallback)))"
+    "[method add_callback_symbols/<method parameters>/first_callback_symbol]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Callback), @type -> DataRecord(GCallback)))"
   )
   private def addCallbackSymbols__ = ???
 
@@ -68,7 +68,7 @@ class BuilderCScope(raw: Ptr[GtkBuilderCScope])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[lookup_callback_symbol/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Callback), @type -> DataRecord(GCallback)))"
+    "[method lookup_callback_symbol/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Callback), @type -> DataRecord(GCallback)))"
   )
   private def lookupCallbackSymbol__ = ???
 

@@ -267,6 +267,94 @@ class Paned(raw: Ptr[GtkPaned])
     gboolean(gint((if wide == true then 1 else 0)))
   )
 
+  /** Emitted to accept the current position of the handle when moving it using
+    * key bindings.
+    *
+    * This is a [keybinding signal](class.SignalAction.html).
+    *
+    * The default binding for this signal is <kbd>Return</kbd> or
+    * <kbd>Space</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal accept-position]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onAcceptPosition = ???
+
+  /** Emitted to cancel moving the position of the handle using key bindings.
+    *
+    * The position of the handle will be reset to the value prior to moving it.
+    *
+    * This is a [keybinding signal](class.SignalAction.html).
+    *
+    * The default binding for this signal is <kbd>Escape</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal cancel-position]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onCancelPosition = ???
+
+  /** Emitted to cycle the focus between the children of the paned.
+    *
+    * This is a [keybinding signal](class.SignalAction.html).
+    *
+    * The default binding is <kbd>F6</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal cycle-child-focus]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onCycleChildFocus = ???
+
+  /** Emitted to cycle whether the paned should grab focus to allow the user to
+    * change position of the handle by using key bindings.
+    *
+    * This is a [keybinding signal](class.SignalAction.html).
+    *
+    * The default binding for this signal is <kbd>F8</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal cycle-handle-focus]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onCycleHandleFocus = ???
+
+  /** Emitted to move the handle with key bindings.
+    *
+    * This is a [keybinding signal](class.SignalAction.html).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal move-handle]: Type Type(List(),ListMap(@name -> DataRecord(ScrollType))) has no @type attribute"
+  )
+  private def onMoveHandle = ???
+
+  /** Emitted to accept the current position of the handle and then move focus
+    * to the next widget in the focus chain.
+    *
+    * This is a [keybinding signal](class.SignalAction.html).
+    *
+    * The default binding is <kbd>Tab</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal toggle-handle-focus]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onToggleHandleFocus = ???
+
 end Paned
 
 object Paned:

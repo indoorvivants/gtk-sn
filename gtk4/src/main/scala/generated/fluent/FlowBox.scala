@@ -5,7 +5,14 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Adjustment,
@@ -110,7 +117,7 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bind_model/<method parameters>/create_widget_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxCreateWidgetFunc), @type -> DataRecord(GtkFlowBoxCreateWidgetFunc)))"
+    "[method bind_model/<method parameters>/create_widget_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxCreateWidgetFunc), @type -> DataRecord(GtkFlowBoxCreateWidgetFunc)))"
   )
   private def bindModel__ = ???
 
@@ -208,7 +215,7 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_selected_children/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FlowBoxChild))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method get_selected_children/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FlowBoxChild))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def getSelectedChildren__ = ???
 
@@ -335,7 +342,7 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[selected_foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxForeachFunc), @type -> DataRecord(GtkFlowBoxForeachFunc)))"
+    "[method selected_foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxForeachFunc), @type -> DataRecord(GtkFlowBoxForeachFunc)))"
   )
   private def selectedForeach__ = ???
 
@@ -382,7 +389,7 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_filter_func/<method parameters>/filter_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxFilterFunc), @type -> DataRecord(GtkFlowBoxFilterFunc)))"
+    "[method set_filter_func/<method parameters>/filter_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxFilterFunc), @type -> DataRecord(GtkFlowBoxFilterFunc)))"
   )
   private def setFilterFunc__ = ???
 
@@ -487,7 +494,7 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_sort_func/<method parameters>/sort_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxSortFunc), @type -> DataRecord(GtkFlowBoxSortFunc)))"
+    "[method set_sort_func/<method parameters>/sort_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlowBoxSortFunc), @type -> DataRecord(GtkFlowBoxSortFunc)))"
   )
   private def setSortFunc__ = ???
 
@@ -532,6 +539,240 @@ class FlowBox(raw: Ptr[GtkFlowBox])
     child.getUnsafeRawPointer().asInstanceOf
   )
 
+  /** Emitted when the user activates the @box.
+    *
+    * This is a [keybinding signal](class.SignalAction.html).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onActivateCursorChild(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkFlowBox],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"activate-cursor-child"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onActivateCursorChild
+
+  /** Emitted when a child has been activated by the user.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal child-activated]: Type Type(List(),ListMap(@name -> DataRecord(FlowBoxChild))) has no @type attribute"
+  )
+  private def onChildActivated = ???
+
+  /** Emitted when the user initiates a cursor movement.
+    *
+    * This is a [keybinding signal](class.SignalAction.html). Applications
+    * should not connect to it, but may emit it with g_signal_emit_by_name() if
+    * they need to control the cursor programmatically.
+    *
+    * The default bindings for this signal come in two variants, the variant
+    * with the Shift modifier extends the selection, the variant without the
+    * Shift modifier does not. There are too many key combinations to list them
+    * all here.
+    *
+    *   - <kbd>←</kbd>, <kbd>→</kbd>, <kbd>↑</kbd>, <kbd>↓</kbd> move by
+    *     individual children
+    *   - <kbd>Home</kbd>, <kbd>End</kbd> move to the ends of the box
+    *   - <kbd>PgUp</kbd>, <kbd>PgDn</kbd> move vertically by pages
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal move-cursor]: Type Type(List(),ListMap(@name -> DataRecord(MovementStep))) has no @type attribute"
+  )
+  private def onMoveCursor = ???
+
+  /** Emitted to select all children of the box, if the selection mode permits
+    * it.
+    *
+    * This is a [keybinding signal](class.SignalAction.html).
+    *
+    * The default bindings for this signal is <kbd>Ctrl</kbd>-<kbd>a</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onSelectAll(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkFlowBox],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"select-all"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onSelectAll
+
+  /** Emitted when the set of selected children changes.
+    *
+    * Use [method@Gtk.FlowBox.selected_foreach] or
+    * [method@Gtk.FlowBox.get_selected_children] to obtain the selected
+    * children.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onSelectedChildrenChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkFlowBox],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"selected-children-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onSelectedChildrenChanged
+
+  /** Emitted to toggle the selection of the child that has the focus.
+    *
+    * This is a [keybinding signal](class.SignalAction.html).
+    *
+    * The default binding for this signal is <kbd>Ctrl</kbd>-<kbd>Space</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onToggleCursorChild(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkFlowBox],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"toggle-cursor-child"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onToggleCursorChild
+
+  /** Emitted to unselect all children of the box, if the selection mode permits
+    * it.
+    *
+    * This is a [keybinding signal](class.SignalAction.html).
+    *
+    * The default bindings for this signal is
+    * <kbd>Ctrl</kbd>-<kbd>Shift</kbd>-<kbd>a</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onUnselectAll(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkFlowBox],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"unselect-all"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onUnselectAll
 end FlowBox
 
 object FlowBox:

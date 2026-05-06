@@ -27,7 +27,7 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_display/<method parameters>/files]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method get_display/<method parameters>/files]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def getDisplay__ = ???
 
@@ -66,7 +66,7 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_startup_notify_id/<method parameters>/files]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method get_startup_notify_id/<method parameters>/files]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def getStartupNotifyId__ = ???
 
@@ -111,6 +111,78 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     this.raw.asInstanceOf[Ptr[GAppLaunchContext]],
     __sn_extract_string(variable)
   )
+
+  /** The #GAppLaunchContext::launch-failed signal is emitted when a #GAppInfo
+    * launch fails. The startup notification id is provided, so that the
+    * launcher can cancel the startup notification.
+    *
+    * Because a launch operation may involve spawning multiple instances of the
+    * target application, you should expect this signal to be emitted multiple
+    * times, one for each spawned instance.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal launch-failed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onLaunchFailed = ???
+
+  /** The #GAppLaunchContext::launch-started signal is emitted when a #GAppInfo
+    * is about to be launched. If non-null the @platform_data is an GVariant
+    * dictionary mapping strings to variants (ie `a{sv}`), which contains
+    * additional, platform-specific data about this launch. On UNIX, at least
+    * the `startup-notification-id` keys will be present.
+    *
+    * The value of the `startup-notification-id` key (type `s`) is a startup
+    * notification ID corresponding to the format from the [startup-notification
+    * specification](https://specifications.freedesktop.org/startup-notification-spec/startup-notification-0.1.txt).
+    * It allows tracking the progress of the launchee through startup.
+    *
+    * It is guaranteed that this signal is followed by either a
+    * #GAppLaunchContext::launched or #GAppLaunchContext::launch-failed signal.
+    *
+    * Because a launch operation may involve spawning multiple instances of the
+    * target application, you should expect this signal to be emitted multiple
+    * times, one for each spawned instance.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal launch-started]: Type Type(List(),ListMap(@name -> DataRecord(AppInfo))) has no @type attribute"
+  )
+  private def onLaunchStarted = ???
+
+  /** The #GAppLaunchContext::launched signal is emitted when a #GAppInfo is
+    * successfully launched.
+    *
+    * Because a launch operation may involve spawning multiple instances of the
+    * target application, you should expect this signal to be emitted multiple
+    * times, one time for each spawned instance.
+    *
+    * The @platform_data is an GVariant dictionary mapping strings to variants
+    * (ie `a{sv}`), which contains additional, platform-specific data about this
+    * launch. On UNIX, at least the `pid` and `startup-notification-id` keys
+    * will be present.
+    *
+    * Since 2.72 the `pid` may be 0 if the process id wasn't known (for example
+    * if the process was launched via D-Bus). The `pid` may not be set at all in
+    * subsequent releases.
+    *
+    * On Windows, `pid` is guaranteed to be valid only for the duration of the
+    * #GAppLaunchContext::launched signal emission; after the signal is emitted,
+    * GLib will call g_spawn_close_pid(). If you need to keep the #GPid after
+    * the signal has been emitted, then you can duplicate `pid` using
+    * `DuplicateHandle()`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal launched]: Type Type(List(),ListMap(@name -> DataRecord(AppInfo))) has no @type attribute"
+  )
+  private def onLaunched = ???
 
   private inline def __decode_nullable_ptrs[T](p: Ptr[Ptr[T]])(using
       ptag: Tag[T]

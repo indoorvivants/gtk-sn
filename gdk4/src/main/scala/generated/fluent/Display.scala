@@ -18,8 +18,15 @@ import sn.gnome.gdk4.fluent.{
 import sn.gnome.gdk4.internal.GdkDisplay
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** `GdkDisplay` objects are the GDK representation of a workstation.
   *
@@ -216,7 +223,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_setting/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[method get_setting/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
   private def getSetting__ = ???
 
@@ -281,7 +288,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[list_seats/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Seat))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method list_seats/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Seat))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def listSeats__ = ???
 
@@ -298,7 +305,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_keycode]: Method map_keycode contains an OUT parameter, which is not supported yet"
+    "[method map_keycode]: Method map_keycode contains an OUT parameter, which is not supported yet"
   )
   private def mapKeycode__ = ???
 
@@ -321,7 +328,7 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_keyval]: Method map_keyval contains an OUT parameter, which is not supported yet"
+    "[method map_keyval]: Method map_keyval contains an OUT parameter, which is not supported yet"
   )
   private def mapKeyval__ = ???
 
@@ -436,9 +443,87 @@ class Display(raw: Ptr[GdkDisplay]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[translate_key]: Method translate_key contains an OUT parameter, which is not supported yet"
+    "[method translate_key]: Method translate_key contains an OUT parameter, which is not supported yet"
   )
   private def translateKey__ = ???
+
+  /** Emitted when the connection to the windowing system for @display is
+    * closed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal closed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onClosed = ???
+
+  /** Emitted when the connection to the windowing system for @display is
+    * opened.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onOpened(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GdkDisplay],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"opened"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onOpened
+
+  /** Emitted whenever a new seat is made known to the windowing system.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal seat-added]: Type Type(List(),ListMap(@name -> DataRecord(Seat))) has no @type attribute"
+  )
+  private def onSeatAdded = ???
+
+  /** Emitted whenever a seat is removed by the windowing system.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal seat-removed]: Type Type(List(),ListMap(@name -> DataRecord(Seat))) has no @type attribute"
+  )
+  private def onSeatRemoved = ???
+
+  /** Emitted whenever a setting changes its value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal setting-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onSettingChanged = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

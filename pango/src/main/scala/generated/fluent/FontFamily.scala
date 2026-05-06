@@ -104,7 +104,7 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[list_faces]: Method list_faces contains an OUT parameter, which is not supported yet"
+    "[method list_faces]: Method list_faces contains an OUT parameter, which is not supported yet"
   )
   private def listFaces__ = ???
 

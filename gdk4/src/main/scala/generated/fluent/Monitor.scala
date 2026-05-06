@@ -6,8 +6,15 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.{Display, SubpixelLayout}
 import sn.gnome.gdk4.internal.GdkMonitor
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** `GdkMonitor` objects represent the individual outputs that are associated
   * with a `GdkDisplay`.
@@ -70,7 +77,7 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_geometry]: Method get_geometry contains an OUT parameter, which is not supported yet"
+    "[method get_geometry]: Method get_geometry contains an OUT parameter, which is not supported yet"
   )
   private def getGeometry__ = ???
 
@@ -167,4 +174,39 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
   def isValid(): Boolean /* None */ =
     gdk_monitor_is_valid(this.raw.asInstanceOf[Ptr[GdkMonitor]]).value.!=(0)
 
+  /** Emitted when the output represented by @monitor gets disconnected.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onInvalidate(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GdkMonitor],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"invalidate"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onInvalidate
 end Monitor

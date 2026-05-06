@@ -21,6 +21,16 @@ class EventControllerLegacy(raw: Ptr[GtkEventControllerLegacy])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** Emitted for each GDK event delivered to @controller.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal event]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Event))) has no @type attribute"
+  )
+  private def onEvent = ???
+
 end EventControllerLegacy
 
 object EventControllerLegacy:

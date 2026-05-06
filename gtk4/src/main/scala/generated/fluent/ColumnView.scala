@@ -287,7 +287,7 @@ class ColumnView(raw: Ptr[GtkColumnView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[scroll_to/<method parameters>/scroll]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
+    "[method scroll_to/<method parameters>/scroll]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
   )
   private def scrollTo__ = ???
 
@@ -446,6 +446,21 @@ class ColumnView(raw: Ptr[GtkColumnView])
       .getOrElse(null.asInstanceOf[Ptr[GtkColumnViewColumn]]),
     direction.raw
   )
+
+  /** Emitted when a row has been activated by the user, usually via activating
+    * the GtkListBase|list.activate-item action.
+    *
+    * This allows for a convenient way to handle activation in a columnview. See
+    * [method@Gtk.ListItem.set_activatable] for details on how to use this
+    * signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal activate]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(guint)))"
+  )
+  private def onActivate = ???
 
 end ColumnView
 

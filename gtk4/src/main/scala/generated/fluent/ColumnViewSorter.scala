@@ -74,7 +74,7 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_nth_sort_column]: Method get_nth_sort_column contains an OUT parameter, which is not supported yet"
+    "[method get_nth_sort_column]: Method get_nth_sort_column contains an OUT parameter, which is not supported yet"
   )
   private def getNthSortColumn__ = ???
 

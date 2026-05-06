@@ -17,3 +17,7 @@ enum Effect:
   case RequiresImport(namespace: String, definition: String)
   case RequiresRenamedImport(namespace: String, definition: String, alias: String)
   case RequiresDefinition(f: () => RenderingContext ?=> Unit)
+
+object Effect:
+  def requiresImports(namespace: String, defs: String*) = 
+    defs.map(d => Effect.RequiresImport(namespace, d))

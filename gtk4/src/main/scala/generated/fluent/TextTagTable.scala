@@ -66,7 +66,7 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextTagTableForeach), @type -> DataRecord(GtkTextTagTableForeach)))"
+    "[method foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextTagTableForeach), @type -> DataRecord(GtkTextTagTableForeach)))"
   )
   private def foreach__ = ???
 
@@ -107,6 +107,39 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
       this.raw.asInstanceOf[Ptr[GtkTextTagTable]],
       tag.getUnsafeRawPointer().asInstanceOf
     )
+
+  /** Emitted every time a new tag is added in the `GtkTextTagTable`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal tag-added]: Type Type(List(),ListMap(@name -> DataRecord(TextTag))) has no @type attribute"
+  )
+  private def onTagAdded = ???
+
+  /** Emitted every time a tag in the `GtkTextTagTable` changes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal tag-changed]: Type Type(List(),ListMap(@name -> DataRecord(TextTag))) has no @type attribute"
+  )
+  private def onTagChanged = ???
+
+  /** Emitted every time a tag is removed from the `GtkTextTagTable`.
+    *
+    * The @tag is still valid by the time the signal is emitted, but it is not
+    * associated with a tag table any more.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal tag-removed]: Type Type(List(),ListMap(@name -> DataRecord(TextTag))) has no @type attribute"
+  )
+  private def onTagRemoved = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

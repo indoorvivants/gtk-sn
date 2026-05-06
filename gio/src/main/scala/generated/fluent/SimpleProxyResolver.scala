@@ -61,7 +61,7 @@ class SimpleProxyResolver(raw: Ptr[GSimpleProxyResolver])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_ignore_hosts/<method parameters>/ignore_hosts]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[method set_ignore_hosts/<method parameters>/ignore_hosts]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(gchar**)))"
   )
   private def setIgnoreHosts__ = ???
 

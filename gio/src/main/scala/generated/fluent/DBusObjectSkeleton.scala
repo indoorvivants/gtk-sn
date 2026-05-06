@@ -95,6 +95,23 @@ class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
     __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]]
   )
 
+  /** Emitted when a method is invoked by a remote caller and used to determine
+    * if the method call is authorized.
+    *
+    * This signal is like #GDBusInterfaceSkeleton's
+    * #GDBusInterfaceSkeleton::g-authorize-method signal, except that it is for
+    * the enclosing object.
+    *
+    * The default class handler just returns %TRUE.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal authorize-method]: Type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceSkeleton))) has no @type attribute"
+  )
+  private def onAuthorizeMethod = ???
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =

@@ -7,8 +7,15 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.{MountOperationResult, PasswordSave}
 import sn.gnome.gio.internal.GMountOperation
-import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** #GMountOperation provides a mechanism for interacting with the user. It can
   * be used for authenticating mountable operations, such as loop mounting
@@ -259,6 +266,131 @@ class MountOperation(raw: Ptr[GMountOperation])
       .map[CString](o => __sn_extract_string(o))
       .getOrElse(null.asInstanceOf[CString])
   )
+
+  /** Emitted by the backend when e.g. a device becomes unavailable while a
+    * mount operation is in progress.
+    *
+    * Implementations of GMountOperation should handle this signal by dismissing
+    * open password dialogs.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onAborted(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GMountOperation],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"aborted"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onAborted
+
+  /** Emitted when a mount operation asks the user for a password.
+    *
+    * If the message contains a line break, the first line should be presented
+    * as a heading. For example, it may be used as the primary text in a
+    * #GtkMessageDialog.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal ask-password]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onAskPassword = ???
+
+  /** Emitted when asking the user a question and gives a list of choices for
+    * the user to choose from.
+    *
+    * If the message contains a line break, the first line should be presented
+    * as a heading. For example, it may be used as the primary text in a
+    * #GtkMessageDialog.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal ask-question]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onAskQuestion = ???
+
+  /** Emitted when the user has replied to the mount operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal reply]: Type Type(List(),ListMap(@name -> DataRecord(MountOperationResult))) has no @type attribute"
+  )
+  private def onReply = ???
+
+  /** Emitted when one or more processes are blocking an operation e.g.
+    * unmounting/ejecting a #GMount or stopping a #GDrive.
+    *
+    * Note that this signal may be emitted several times to update the list of
+    * blocking processes as processes close files. The application should only
+    * respond with g_mount_operation_reply() to the latest signal (setting
+    * #GMountOperation:choice to the choice the user made).
+    *
+    * If the message contains a line break, the first line should be presented
+    * as a heading. For example, it may be used as the primary text in a
+    * #GtkMessageDialog.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal show-processes]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onShowProcesses = ???
+
+  /** Emitted when an unmount operation has been busy for more than some time
+    * (typically 1.5 seconds).
+    *
+    * When unmounting or ejecting a volume, the kernel might need to flush
+    * pending data in its buffers to the volume stable storage, and this
+    * operation can take a considerable amount of time. This signal may be
+    * emitted several times as long as the unmount operation is outstanding, and
+    * then one last time when the operation is completed, with @bytes_left set
+    * to zero.
+    *
+    * Implementations of GMountOperation should handle this signal by showing an
+    * UI notification, and then dismiss it, or show another notification of
+    * completion, when @bytes_left reaches zero.
+    *
+    * If the message contains a line break, the first line should be presented
+    * as a heading. For example, it may be used as the primary text in a
+    * #GtkMessageDialog.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal show-unmount-progress]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onShowUnmountProgress = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

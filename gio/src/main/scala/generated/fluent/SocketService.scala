@@ -88,6 +88,22 @@ class SocketService(raw: Ptr[GSocketService])
     this.raw.asInstanceOf[Ptr[GSocketService]]
   )
 
+  /** The ::incoming signal is emitted when a new incoming connection to @service
+    * needs to be handled. The handler must initiate the handling of @connection,
+    * but may not block; in essence, asynchronous operations must be used.
+    *
+    * @connection
+    *   will be unreffed once the signal handler returns, so you need to ref it
+    *   yourself if you are planning to use it.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal incoming]: Type Type(List(),ListMap(@name -> DataRecord(SocketConnection))) has no @type attribute"
+  )
+  private def onIncoming = ???
+
 end SocketService
 
 object SocketService:

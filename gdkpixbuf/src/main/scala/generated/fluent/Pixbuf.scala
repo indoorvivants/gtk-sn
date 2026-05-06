@@ -531,7 +531,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_options/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[method get_options/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def getOptions__ = ???
 
@@ -547,7 +547,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_pixels/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(guchar*)))"
+    "[method get_pixels/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(guchar*)))"
   )
   private def getPixels__ = ???
 
@@ -563,7 +563,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_pixels_with_length]: Method get_pixels_with_length contains an OUT parameter, which is not supported yet"
+    "[method get_pixels_with_length]: Method get_pixels_with_length contains an OUT parameter, which is not supported yet"
   )
   private def getPixelsWithLength__ = ???
 
@@ -623,7 +623,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_pixel_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method read_pixel_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def readPixelBytes__ = ???
 
@@ -781,7 +781,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[save/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
+    "[method save/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
   )
   private def save__ = ???
 
@@ -803,7 +803,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[save_to_buffer]: Method save_to_buffer contains an OUT parameter, which is not supported yet"
+    "[method save_to_buffer]: Method save_to_buffer contains an OUT parameter, which is not supported yet"
   )
   private def saveToBuffer__ = ???
 
@@ -818,7 +818,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[save_to_bufferv]: Method save_to_bufferv contains an OUT parameter, which is not supported yet"
+    "[method save_to_bufferv]: Method save_to_bufferv contains an OUT parameter, which is not supported yet"
   )
   private def saveToBufferv__ = ???
 
@@ -836,7 +836,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[save_to_callback/<method parameters>/save_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PixbufSaveFunc), @type -> DataRecord(GdkPixbufSaveFunc)))"
+    "[method save_to_callback/<method parameters>/save_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PixbufSaveFunc), @type -> DataRecord(GdkPixbufSaveFunc)))"
   )
   private def saveToCallback__ = ???
 
@@ -853,7 +853,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[save_to_callbackv/<method parameters>/save_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PixbufSaveFunc), @type -> DataRecord(GdkPixbufSaveFunc)))"
+    "[method save_to_callbackv/<method parameters>/save_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PixbufSaveFunc), @type -> DataRecord(GdkPixbufSaveFunc)))"
   )
   private def saveToCallbackv__ = ???
 
@@ -873,7 +873,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[save_to_stream/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
+    "[method save_to_stream/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
   )
   private def saveToStream__ = ???
 
@@ -892,7 +892,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[save_to_stream_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method save_to_stream_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def saveToStreamAsync__ = ???
 
@@ -951,7 +951,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[save_to_streamv_async/<method parameters>/option_keys]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[method save_to_streamv_async/<method parameters>/option_keys]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
   private def saveToStreamvAsync__ = ???
 

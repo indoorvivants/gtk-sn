@@ -43,7 +43,7 @@ class TextChildAnchor(raw: Ptr[GtkTextChildAnchor])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_widgets]: Method get_widgets contains an OUT parameter, which is not supported yet"
+    "[method get_widgets]: Method get_widgets contains an OUT parameter, which is not supported yet"
   )
   private def getWidgets__ = ???
 

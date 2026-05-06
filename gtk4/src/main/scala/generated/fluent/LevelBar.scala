@@ -190,7 +190,7 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_offset_value]: Method get_offset_value contains an OUT parameter, which is not supported yet"
+    "[method get_offset_value]: Method get_offset_value contains an OUT parameter, which is not supported yet"
   )
   private def getOffsetValue__ = ???
 
@@ -271,6 +271,23 @@ class LevelBar(raw: Ptr[GtkLevelBar])
     */
   def setValue(value: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_level_bar_set_value(this.raw.asInstanceOf[Ptr[GtkLevelBar]], value)
+
+  /** Emitted when an offset specified on the bar changes value.
+    *
+    * This typically is the result of a [method@Gtk.LevelBar.add_offset_value]
+    * call.
+    *
+    * The signal supports detailed connections; you can connect to the detailed
+    * signal "changed::x" in order to only receive callbacks when the value of
+    * offset "x" changes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal offset-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onOffsetChanged = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

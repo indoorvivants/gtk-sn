@@ -4,8 +4,15 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{SelectionMode, TreeView}
 import sn.gnome.gtk4.internal.GtkTreeSelection
 
@@ -67,7 +74,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_select_function/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionFunc), @type -> DataRecord(GtkTreeSelectionFunc)))"
+    "[method get_select_function/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionFunc), @type -> DataRecord(GtkTreeSelectionFunc)))"
   )
   private def getSelectFunction__ = ???
 
@@ -81,7 +88,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_selected]: Method get_selected contains an OUT parameter, which is not supported yet"
+    "[method get_selected]: Method get_selected contains an OUT parameter, which is not supported yet"
   )
   private def getSelected__ = ???
 
@@ -98,7 +105,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_selected_rows]: Method get_selected_rows contains an OUT parameter, which is not supported yet"
+    "[method get_selected_rows]: Method get_selected_rows contains an OUT parameter, which is not supported yet"
   )
   private def getSelectedRows__ = ???
 
@@ -128,7 +135,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[iter_is_selected/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method iter_is_selected/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def iterIsSelected__ = ???
 
@@ -139,7 +146,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[path_is_selected/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method path_is_selected/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def pathIsSelected__ = ???
 
@@ -159,7 +166,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[select_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method select_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def selectIter__ = ???
 
@@ -169,7 +176,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[select_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method select_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def selectPath__ = ???
 
@@ -182,7 +189,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[select_range/<method parameters>/start_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method select_range/<method parameters>/start_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def selectRange__ = ???
 
@@ -194,7 +201,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[selected_foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionForeachFunc), @type -> DataRecord(GtkTreeSelectionForeachFunc)))"
+    "[method selected_foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionForeachFunc), @type -> DataRecord(GtkTreeSelectionForeachFunc)))"
   )
   private def selectedForeach__ = ???
 
@@ -223,7 +230,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_select_function/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionFunc), @type -> DataRecord(GtkTreeSelectionFunc)))"
+    "[method set_select_function/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionFunc), @type -> DataRecord(GtkTreeSelectionFunc)))"
   )
   private def setSelectFunction__ = ???
 
@@ -242,7 +249,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unselect_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method unselect_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def unselectIter__ = ???
 
@@ -252,7 +259,7 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unselect_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method unselect_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def unselectPath__ = ???
 
@@ -263,8 +270,46 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unselect_range/<method parameters>/start_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method unselect_range/<method parameters>/start_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def unselectRange__ = ???
 
+  /** Emitted whenever the selection has (possibly) changed. Please note that
+    * this signal is mostly a hint. It may only be emitted once when a range of
+    * rows are selected, and it may occasionally be emitted when nothing has
+    * happened.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTreeSelection],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onChanged
 end TreeSelection

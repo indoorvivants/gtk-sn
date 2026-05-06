@@ -29,7 +29,7 @@ class CustomFilter(raw: Ptr[GtkCustomFilter]) extends Filter(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_filter_func/<method parameters>/match_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CustomFilterFunc), @type -> DataRecord(GtkCustomFilterFunc)))"
+    "[method set_filter_func/<method parameters>/match_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CustomFilterFunc), @type -> DataRecord(GtkCustomFilterFunc)))"
   )
   private def setFilterFunc__ = ???
 

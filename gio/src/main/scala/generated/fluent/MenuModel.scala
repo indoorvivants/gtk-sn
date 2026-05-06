@@ -6,8 +6,15 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.{MenuAttributeIter, MenuLinkIter, MenuModel}
 import sn.gnome.gio.internal.GMenuModel
-import sn.gnome.glib.internal.{gboolean, gchar, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** #GMenuModel represents the contents of a menu -- an ordered list of menu
   * items. The items are associated with actions, which can be activated through
@@ -177,7 +184,7 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_item_attribute_value/<method parameters>/expected_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
+    "[method get_item_attribute_value/<method parameters>/expected_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
   )
   private def getItemAttributeValue__ = ???
 
@@ -285,6 +292,70 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
       gint(item_index)
     ).asInstanceOf
   )
+
+  /** Emitted when a change has occurred to the menu.
+    *
+    * The only changes that can occur to a menu is that items are removed or
+    * added. Items may not change (except by being removed and added back in the
+    * same location). This signal is capable of describing both of those changes
+    * (at the same time).
+    *
+    * The signal means that starting at the index @position, @removed items were
+    * removed and @added items were added in their place. If
+    * @removed
+    *   is zero then only items were added. If @added is zero then only items
+    *   were removed.
+    *
+    * As an example, if the menu contains items a, b, c, d (in that order) and
+    * the signal (2, 1, 3) occurs then the new composition of the menu will be
+    * a, b, _, _, _, d (with each _ representing some new item).
+    *
+    * Signal handlers may query the model (particularly the added items) and
+    * expect to see the results of the modification that is being reported. The
+    * signal is emitted after the modification.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onItemsChanged(f: ((position: Int, removed: Int, added: Int)) => Unit)(
+      using Runtime
+  ) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (position: Int, removed: Int, added: Int),
+      Unit
+    ]
+    val c_handler = CFuncPtr5.fromScalaFunction {
+      (
+          self: Ptr[GMenuModel],
+          position: Int,
+          removed: Int,
+          added: Int,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((position = position, removed = removed, added = added))
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"items-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onItemsChanged
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

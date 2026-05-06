@@ -126,7 +126,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[communicate]: Method communicate contains an OUT parameter, which is not supported yet"
+    "[method communicate]: Method communicate contains an OUT parameter, which is not supported yet"
   )
   private def communicate__ = ???
 
@@ -137,7 +137,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[communicate_async/<method parameters>/stdin_buf]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method communicate_async/<method parameters>/stdin_buf]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def communicateAsync__ = ???
 
@@ -147,7 +147,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[communicate_finish]: Method communicate_finish contains an OUT parameter, which is not supported yet"
+    "[method communicate_finish]: Method communicate_finish contains an OUT parameter, which is not supported yet"
   )
   private def communicateFinish__ = ???
 
@@ -161,7 +161,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[communicate_utf8]: Method communicate_utf8 contains an OUT parameter, which is not supported yet"
+    "[method communicate_utf8]: Method communicate_utf8 contains an OUT parameter, which is not supported yet"
   )
   private def communicateUtf8__ = ???
 
@@ -172,7 +172,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[communicate_utf8_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method communicate_utf8_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def communicateUtf8Async__ = ???
 
@@ -182,7 +182,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[communicate_utf8_finish]: Method communicate_utf8_finish contains an OUT parameter, which is not supported yet"
+    "[method communicate_utf8_finish]: Method communicate_utf8_finish contains an OUT parameter, which is not supported yet"
   )
   private def communicateUtf8Finish__ = ???
 
@@ -404,7 +404,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[wait_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method wait_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def waitAsync__ = ???
 
@@ -433,7 +433,7 @@ class Subprocess(raw: Ptr[GSubprocess])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[wait_check_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method wait_check_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def waitCheckAsync__ = ???
 

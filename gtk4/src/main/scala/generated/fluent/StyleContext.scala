@@ -108,7 +108,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_border]: Method get_border contains an OUT parameter, which is not supported yet"
+    "[method get_border]: Method get_border contains an OUT parameter, which is not supported yet"
   )
   private def getBorder__ = ???
 
@@ -118,7 +118,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_color]: Method get_color contains an OUT parameter, which is not supported yet"
+    "[method get_color]: Method get_color contains an OUT parameter, which is not supported yet"
   )
   private def getColor__ = ???
 
@@ -139,7 +139,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_margin]: Method get_margin contains an OUT parameter, which is not supported yet"
+    "[method get_margin]: Method get_margin contains an OUT parameter, which is not supported yet"
   )
   private def getMargin__ = ???
 
@@ -149,7 +149,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_padding]: Method get_padding contains an OUT parameter, which is not supported yet"
+    "[method get_padding]: Method get_padding contains an OUT parameter, which is not supported yet"
   )
   private def getPadding__ = ???
 
@@ -194,7 +194,7 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[lookup_color]: Method lookup_color contains an OUT parameter, which is not supported yet"
+    "[method lookup_color]: Method lookup_color contains an OUT parameter, which is not supported yet"
   )
   private def lookupColor__ = ???
 

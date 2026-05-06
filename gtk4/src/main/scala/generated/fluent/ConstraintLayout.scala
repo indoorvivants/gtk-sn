@@ -220,7 +220,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[add_constraints_from_description/<method parameters>/lines]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char* const*)))"
+    "[method add_constraints_from_description/<method parameters>/lines]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char* const*)))"
   )
   private def addConstraintsFromDescription__ = ???
 
@@ -307,7 +307,7 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[add_constraints_from_descriptionv/<method parameters>/lines]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char* const*)))"
+    "[method add_constraints_from_descriptionv/<method parameters>/lines]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char* const*)))"
   )
   private def addConstraintsFromDescriptionv__ = ???
 

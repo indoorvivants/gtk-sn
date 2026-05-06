@@ -5,7 +5,14 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -152,7 +159,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[collapse_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method collapse_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def collapseRow__ = ???
 
@@ -173,7 +180,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[convert_bin_window_to_tree_coords]: Method convert_bin_window_to_tree_coords contains an OUT parameter, which is not supported yet"
+    "[method convert_bin_window_to_tree_coords]: Method convert_bin_window_to_tree_coords contains an OUT parameter, which is not supported yet"
   )
   private def convertBinWindowToTreeCoords__ = ???
 
@@ -183,7 +190,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[convert_bin_window_to_widget_coords]: Method convert_bin_window_to_widget_coords contains an OUT parameter, which is not supported yet"
+    "[method convert_bin_window_to_widget_coords]: Method convert_bin_window_to_widget_coords contains an OUT parameter, which is not supported yet"
   )
   private def convertBinWindowToWidgetCoords__ = ???
 
@@ -194,7 +201,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[convert_tree_to_bin_window_coords]: Method convert_tree_to_bin_window_coords contains an OUT parameter, which is not supported yet"
+    "[method convert_tree_to_bin_window_coords]: Method convert_tree_to_bin_window_coords contains an OUT parameter, which is not supported yet"
   )
   private def convertTreeToBinWindowCoords__ = ???
 
@@ -205,7 +212,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[convert_tree_to_widget_coords]: Method convert_tree_to_widget_coords contains an OUT parameter, which is not supported yet"
+    "[method convert_tree_to_widget_coords]: Method convert_tree_to_widget_coords contains an OUT parameter, which is not supported yet"
   )
   private def convertTreeToWidgetCoords__ = ???
 
@@ -215,7 +222,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[convert_widget_to_bin_window_coords]: Method convert_widget_to_bin_window_coords contains an OUT parameter, which is not supported yet"
+    "[method convert_widget_to_bin_window_coords]: Method convert_widget_to_bin_window_coords contains an OUT parameter, which is not supported yet"
   )
   private def convertWidgetToBinWindowCoords__ = ???
 
@@ -226,7 +233,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[convert_widget_to_tree_coords]: Method convert_widget_to_tree_coords contains an OUT parameter, which is not supported yet"
+    "[method convert_widget_to_tree_coords]: Method convert_widget_to_tree_coords contains an OUT parameter, which is not supported yet"
   )
   private def convertWidgetToTreeCoords__ = ???
 
@@ -237,7 +244,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[create_row_drag_icon/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method create_row_drag_icon/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def createRowDragIcon__ = ???
 
@@ -248,7 +255,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[enable_model_drag_dest/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[method enable_model_drag_dest/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
   private def enableModelDragDest__ = ???
 
@@ -259,7 +266,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[enable_model_drag_source/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[method enable_model_drag_source/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
   private def enableModelDragSource__ = ???
 
@@ -278,7 +285,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[expand_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method expand_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def expandRow__ = ???
 
@@ -290,7 +297,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[expand_to_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method expand_to_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def expandToPath__ = ???
 
@@ -320,7 +327,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_background_area]: Method get_background_area contains an OUT parameter, which is not supported yet"
+    "[method get_background_area]: Method get_background_area contains an OUT parameter, which is not supported yet"
   )
   private def getBackgroundArea__ = ???
 
@@ -338,7 +345,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_cell_area]: Method get_cell_area contains an OUT parameter, which is not supported yet"
+    "[method get_cell_area]: Method get_cell_area contains an OUT parameter, which is not supported yet"
   )
   private def getCellArea__ = ???
 
@@ -362,7 +369,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_columns/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreeViewColumn))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method get_columns/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreeViewColumn))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def getColumns__ = ???
 
@@ -377,7 +384,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_cursor]: Method get_cursor contains an OUT parameter, which is not supported yet"
+    "[method get_cursor]: Method get_cursor contains an OUT parameter, which is not supported yet"
   )
   private def getCursor__ = ???
 
@@ -392,7 +399,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_dest_row_at_pos]: Method get_dest_row_at_pos contains an OUT parameter, which is not supported yet"
+    "[method get_dest_row_at_pos]: Method get_dest_row_at_pos contains an OUT parameter, which is not supported yet"
   )
   private def getDestRowAtPos__ = ???
 
@@ -402,7 +409,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_drag_dest_row]: Method get_drag_dest_row contains an OUT parameter, which is not supported yet"
+    "[method get_drag_dest_row]: Method get_drag_dest_row contains an OUT parameter, which is not supported yet"
   )
   private def getDragDestRow__ = ???
 
@@ -547,7 +554,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_path_at_pos]: Method get_path_at_pos contains an OUT parameter, which is not supported yet"
+    "[method get_path_at_pos]: Method get_path_at_pos contains an OUT parameter, which is not supported yet"
   )
   private def getPathAtPos__ = ???
 
@@ -567,7 +574,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_row_separator_func/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
+    "[method get_row_separator_func/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
   )
   private def getRowSeparatorFunc__ = ???
 
@@ -610,7 +617,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_search_equal_func/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewSearchEqualFunc), @type -> DataRecord(GtkTreeViewSearchEqualFunc)))"
+    "[method get_search_equal_func/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewSearchEqualFunc), @type -> DataRecord(GtkTreeViewSearchEqualFunc)))"
   )
   private def getSearchEqualFunc__ = ???
 
@@ -659,7 +666,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_tooltip_context]: Method get_tooltip_context contains an OUT parameter, which is not supported yet"
+    "[method get_tooltip_context]: Method get_tooltip_context contains an OUT parameter, which is not supported yet"
   )
   private def getTooltipContext__ = ???
 
@@ -672,7 +679,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_visible_range]: Method get_visible_range contains an OUT parameter, which is not supported yet"
+    "[method get_visible_range]: Method get_visible_range contains an OUT parameter, which is not supported yet"
   )
   private def getVisibleRange__ = ???
 
@@ -686,7 +693,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_visible_rect]: Method get_visible_rect contains an OUT parameter, which is not supported yet"
+    "[method get_visible_rect]: Method get_visible_rect contains an OUT parameter, which is not supported yet"
   )
   private def getVisibleRect__ = ???
 
@@ -742,7 +749,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert_column_with_data_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeCellDataFunc), @type -> DataRecord(GtkTreeCellDataFunc)))"
+    "[method insert_column_with_data_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeCellDataFunc), @type -> DataRecord(GtkTreeCellDataFunc)))"
   )
   private def insertColumnWithDataFunc__ = ???
 
@@ -768,7 +775,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[is_blank_at_pos]: Method is_blank_at_pos contains an OUT parameter, which is not supported yet"
+    "[method is_blank_at_pos]: Method is_blank_at_pos contains an OUT parameter, which is not supported yet"
   )
   private def isBlankAtPos__ = ???
 
@@ -788,7 +795,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_expanded_rows/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewMappingFunc), @type -> DataRecord(GtkTreeViewMappingFunc)))"
+    "[method map_expanded_rows/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewMappingFunc), @type -> DataRecord(GtkTreeViewMappingFunc)))"
   )
   private def mapExpandedRows__ = ???
 
@@ -828,7 +835,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[row_activated/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method row_activated/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def rowActivated__ = ???
 
@@ -838,7 +845,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[row_expanded/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method row_expanded/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def rowExpanded__ = ???
 
@@ -866,7 +873,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[scroll_to_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method scroll_to_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def scrollToCell__ = ???
 
@@ -918,7 +925,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_column_drag_function/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewColumnDropFunc), @type -> DataRecord(GtkTreeViewColumnDropFunc)))"
+    "[method set_column_drag_function/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewColumnDropFunc), @type -> DataRecord(GtkTreeViewColumnDropFunc)))"
   )
   private def setColumnDragFunction__ = ???
 
@@ -939,7 +946,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_cursor/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method set_cursor/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def setCursor__ = ???
 
@@ -963,7 +970,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_cursor_on_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method set_cursor_on_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def setCursorOnCell__ = ???
 
@@ -974,7 +981,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_drag_dest_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method set_drag_dest_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def setDragDestRow__ = ???
 
@@ -1168,7 +1175,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_row_separator_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
+    "[method set_row_separator_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewRowSeparatorFunc), @type -> DataRecord(GtkTreeViewRowSeparatorFunc)))"
   )
   private def setRowSeparatorFunc__ = ???
 
@@ -1233,7 +1240,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_search_equal_func/<method parameters>/search_equal_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewSearchEqualFunc), @type -> DataRecord(GtkTreeViewSearchEqualFunc)))"
+    "[method set_search_equal_func/<method parameters>/search_equal_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewSearchEqualFunc), @type -> DataRecord(GtkTreeViewSearchEqualFunc)))"
   )
   private def setSearchEqualFunc__ = ???
 
@@ -1271,7 +1278,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_tooltip_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method set_tooltip_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def setTooltipCell__ = ???
 
@@ -1304,7 +1311,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_tooltip_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method set_tooltip_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def setTooltipRow__ = ???
 
@@ -1328,6 +1335,194 @@ class TreeView(raw: Ptr[GtkTreeView])
     gtk_tree_view_unset_rows_drag_source(
       this.raw.asInstanceOf[Ptr[GtkTreeView]]
     )
+
+  /** The number of columns of the treeview has changed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onColumnsChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTreeView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"columns-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onColumnsChanged
+
+  /** The position of the cursor (focused cell) has changed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onCursorChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTreeView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"cursor-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onCursorChanged
+  @annotation.compileTimeOnly(
+    "[signal expand-collapse-cursor-row]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onExpandCollapseCursorRow = ???
+
+  /** The `GtkTreeView`::move-cursor signal is a [keybinding
+    * signal][class@Gtk.SignalAction] which gets emitted when the user presses
+    * one of the cursor keys.
+    *
+    * Applications should not connect to it, but may emit it with
+    * g_signal_emit_by_name() if they need to control the cursor
+    * programmatically. In contrast to gtk_tree_view_set_cursor() and
+    * gtk_tree_view_set_cursor_on_cell() when moving horizontally
+    * `GtkTreeView`::move-cursor does not reset the current selection.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal move-cursor]: Type Type(List(),ListMap(@name -> DataRecord(MovementStep))) has no @type attribute"
+  )
+  private def onMoveCursor = ???
+
+  /** The "row-activated" signal is emitted when the method
+    * [method@Gtk.TreeView.row_activated] is called.
+    *
+    * This signal is emitted when the user double-clicks a treeview row with the
+    * [property@Gtk.TreeView:activate-on-single-click] property set to %FALSE,
+    * or when the user single-clicks a row when that property set to %TRUE.
+    *
+    * This signal is also emitted when a non-editable row is selected and one of
+    * the keys: <kbd>Space</kbd>, <kbd>Shift</kbd>+<kbd>Space</kbd>,
+    * <kbd>Return</kbd> or <kbd>Enter</kbd> is pressed.
+    *
+    * For selection handling refer to the [tree widget conceptual
+    * overview](section-tree-widget.html) as well as `GtkTreeSelection`.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal row-activated]: Type Type(List(),ListMap(@name -> DataRecord(TreePath))) has no @type attribute"
+  )
+  private def onRowActivated = ???
+
+  /** The given row has been collapsed (child nodes are hidden).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal row-collapsed]: Type Type(List(),ListMap(@name -> DataRecord(TreeIter))) has no @type attribute"
+  )
+  private def onRowCollapsed = ???
+
+  /** The given row has been expanded (child nodes are shown).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal row-expanded]: Type Type(List(),ListMap(@name -> DataRecord(TreeIter))) has no @type attribute"
+  )
+  private def onRowExpanded = ???
+
+  @annotation.compileTimeOnly(
+    "[signal select-all]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onSelectAll = ???
+
+  @annotation.compileTimeOnly(
+    "[signal select-cursor-parent]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onSelectCursorParent = ???
+
+  @annotation.compileTimeOnly(
+    "[signal select-cursor-row]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onSelectCursorRow = ???
+
+  @annotation.compileTimeOnly(
+    "[signal start-interactive-search]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onStartInteractiveSearch = ???
+
+  /** The given row is about to be collapsed (hide its children nodes). Use this
+    * signal if you need to control the collapsibility of individual rows.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal test-collapse-row]: Type Type(List(),ListMap(@name -> DataRecord(TreeIter))) has no @type attribute"
+  )
+  private def onTestCollapseRow = ???
+
+  /** The given row is about to be expanded (show its children nodes). Use this
+    * signal if you need to control the expandability of individual rows.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal test-expand-row]: Type Type(List(),ListMap(@name -> DataRecord(TreeIter))) has no @type attribute"
+  )
+  private def onTestExpandRow = ???
+
+  @annotation.compileTimeOnly(
+    "[signal toggle-cursor-row]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onToggleCursorRow = ???
+
+  @annotation.compileTimeOnly(
+    "[signal unselect-all]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onUnselectAll = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

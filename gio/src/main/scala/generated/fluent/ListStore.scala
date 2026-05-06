@@ -54,7 +54,7 @@ class ListStore(raw: Ptr[GListStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[find]: Method find contains an OUT parameter, which is not supported yet"
+    "[method find]: Method find contains an OUT parameter, which is not supported yet"
   )
   private def find__ = ???
 
@@ -72,7 +72,7 @@ class ListStore(raw: Ptr[GListStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[find_with_equal_func]: Method find_with_equal_func contains an OUT parameter, which is not supported yet"
+    "[method find_with_equal_func]: Method find_with_equal_func contains an OUT parameter, which is not supported yet"
   )
   private def findWithEqualFunc__ = ???
 
@@ -88,7 +88,7 @@ class ListStore(raw: Ptr[GListStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[find_with_equal_func_full]: Method find_with_equal_func_full contains an OUT parameter, which is not supported yet"
+    "[method find_with_equal_func_full]: Method find_with_equal_func_full contains an OUT parameter, which is not supported yet"
   )
   private def findWithEqualFuncFull__ = ???
 
@@ -126,7 +126,7 @@ class ListStore(raw: Ptr[GListStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert_sorted/<method parameters>/compare_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
+    "[method insert_sorted/<method parameters>/compare_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
   )
   private def insertSorted__ = ???
 
@@ -159,7 +159,7 @@ class ListStore(raw: Ptr[GListStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[sort/<method parameters>/compare_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
+    "[method sort/<method parameters>/compare_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
   )
   private def sort__ = ???
 
@@ -182,7 +182,7 @@ class ListStore(raw: Ptr[GListStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[splice/<method parameters>/additions]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GObject.Object)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(3), @type -> DataRecord(gpointer*)))"
+    "[method splice/<method parameters>/additions]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GObject.Object)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(3), @type -> DataRecord(gpointer*)))"
   )
   private def splice__ = ???
 

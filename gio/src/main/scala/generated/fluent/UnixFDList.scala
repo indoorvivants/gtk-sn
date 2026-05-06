@@ -106,7 +106,7 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[peek_fds]: Method peek_fds contains an OUT parameter, which is not supported yet"
+    "[method peek_fds]: Method peek_fds contains an OUT parameter, which is not supported yet"
   )
   private def peekFds__ = ???
 
@@ -131,7 +131,7 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[steal_fds]: Method steal_fds contains an OUT parameter, which is not supported yet"
+    "[method steal_fds]: Method steal_fds contains an OUT parameter, which is not supported yet"
   )
   private def stealFds__ = ???
 

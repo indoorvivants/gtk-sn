@@ -103,7 +103,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[convert_child_iter_to_iter]: Method convert_child_iter_to_iter contains an OUT parameter, which is not supported yet"
+    "[method convert_child_iter_to_iter]: Method convert_child_iter_to_iter contains an OUT parameter, which is not supported yet"
   )
   private def convertChildIterToIter__ = ???
 
@@ -117,7 +117,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[convert_child_path_to_path/<method parameters>/child_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method convert_child_path_to_path/<method parameters>/child_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def convertChildPathToPath__ = ???
 
@@ -127,7 +127,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[convert_iter_to_child_iter]: Method convert_iter_to_child_iter contains an OUT parameter, which is not supported yet"
+    "[method convert_iter_to_child_iter]: Method convert_iter_to_child_iter contains an OUT parameter, which is not supported yet"
   )
   private def convertIterToChildIter__ = ???
 
@@ -141,7 +141,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[convert_path_to_child_path/<method parameters>/filter_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method convert_path_to_child_path/<method parameters>/filter_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def convertPathToChildPath__ = ???
 
@@ -180,7 +180,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_modify_func/<method parameters>/types]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(GType*)))"
+    "[method set_modify_func/<method parameters>/types]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(GType*)))"
   )
   private def setModifyFunc__ = ???
 
@@ -241,7 +241,7 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_visible_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeModelFilterVisibleFunc), @type -> DataRecord(GtkTreeModelFilterVisibleFunc)))"
+    "[method set_visible_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeModelFilterVisibleFunc), @type -> DataRecord(GtkTreeModelFilterVisibleFunc)))"
   )
   private def setVisibleFunc__ = ???
 

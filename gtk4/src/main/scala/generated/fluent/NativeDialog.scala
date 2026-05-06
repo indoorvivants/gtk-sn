@@ -171,6 +171,21 @@ class NativeDialog(raw: Ptr[GtkNativeDialog]) extends Object(raw.asInstanceOf):
     this.raw.asInstanceOf[Ptr[GtkNativeDialog]]
   )
 
+  /** Emitted when the user responds to the dialog.
+    *
+    * When this is called the dialog has been hidden.
+    *
+    * If you call [method@Gtk.NativeDialog.hide] before the user responds to the
+    * dialog this signal will not be emitted.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal response]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(ResponseType), @type -> DataRecord(GtkResponseType)))"
+  )
+  private def onResponse = ???
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =

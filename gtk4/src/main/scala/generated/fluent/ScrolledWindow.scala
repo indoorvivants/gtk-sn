@@ -224,7 +224,7 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_policy]: Method get_policy contains an OUT parameter, which is not supported yet"
+    "[method get_policy]: Method get_policy contains an OUT parameter, which is not supported yet"
   )
   private def getPolicy__ = ???
 
@@ -503,6 +503,71 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
   def unsetPlacement(): Unit /* None */ = gtk_scrolled_window_unset_placement(
     this.raw.asInstanceOf[Ptr[GtkScrolledWindow]]
   )
+
+  /** Emitted whenever user initiated scrolling makes the scrolled window firmly
+    * surpass the limits defined by the adjustment in that orientation.
+    *
+    * A similar behavior without edge resistance is provided by the
+    * [signal@Gtk.ScrolledWindow::edge-reached] signal.
+    *
+    * Note: The @pos argument is LTR/RTL aware, so callers should be aware too
+    * if intending to provide behavior on horizontal edges.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal edge-overshot]: Type Type(List(),ListMap(@name -> DataRecord(PositionType))) has no @type attribute"
+  )
+  private def onEdgeOvershot = ???
+
+  /** Emitted whenever user-initiated scrolling makes the scrolled window
+    * exactly reach the lower or upper limits defined by the adjustment in that
+    * orientation.
+    *
+    * A similar behavior with edge resistance is provided by the
+    * [signal@Gtk.ScrolledWindow::edge-overshot] signal.
+    *
+    * Note: The @pos argument is LTR/RTL aware, so callers should be aware too
+    * if intending to provide behavior on horizontal edges.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal edge-reached]: Type Type(List(),ListMap(@name -> DataRecord(PositionType))) has no @type attribute"
+  )
+  private def onEdgeReached = ???
+
+  /** Emitted when focus is moved away from the scrolled window by a keybinding.
+    *
+    * This is a [keybinding signal](class.SignalAction.html).
+    *
+    * The default bindings for this signal are `Ctrl + Tab` to move forward and
+    * `Ctrl + Shift + Tab` to move backward.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal move-focus-out]: Type Type(List(),ListMap(@name -> DataRecord(DirectionType))) has no @type attribute"
+  )
+  private def onMoveFocusOut = ???
+
+  /** Emitted when a keybinding that scrolls is pressed.
+    *
+    * This is a [keybinding signal](class.SignalAction.html).
+    *
+    * The horizontal or vertical adjustment is updated which triggers a signal
+    * that the scrolled window’s child may listen to and scroll itself.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal scroll-child]: Type Type(List(),ListMap(@name -> DataRecord(ScrollType))) has no @type attribute"
+  )
+  private def onScrollChild = ???
 
 end ScrolledWindow
 

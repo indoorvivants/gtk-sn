@@ -24,7 +24,7 @@ class PadEvent(raw: Ptr[GdkPadEvent]) extends Event(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_axis_value]: Method get_axis_value contains an OUT parameter, which is not supported yet"
+    "[method get_axis_value]: Method get_axis_value contains an OUT parameter, which is not supported yet"
   )
   private def getAxisValue__ = ???
 
@@ -43,7 +43,7 @@ class PadEvent(raw: Ptr[GdkPadEvent]) extends Event(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_group_mode]: Method get_group_mode contains an OUT parameter, which is not supported yet"
+    "[method get_group_mode]: Method get_group_mode contains an OUT parameter, which is not supported yet"
   )
   private def getGroupMode__ = ???
 

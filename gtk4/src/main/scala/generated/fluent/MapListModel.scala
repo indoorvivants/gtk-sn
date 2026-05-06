@@ -86,7 +86,7 @@ class MapListModel(raw: Ptr[GtkMapListModel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_map_func/<method parameters>/map_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(MapListModelMapFunc), @type -> DataRecord(GtkMapListModelMapFunc)))"
+    "[method set_map_func/<method parameters>/map_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(MapListModelMapFunc), @type -> DataRecord(GtkMapListModelMapFunc)))"
   )
   private def setMapFunc__ = ???
 

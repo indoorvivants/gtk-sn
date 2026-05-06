@@ -4,6 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.internal.{gchar, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkDrawingArea
 
@@ -168,10 +176,52 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_draw_func/<method parameters>/draw_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DrawingAreaDrawFunc), @type -> DataRecord(GtkDrawingAreaDrawFunc)))"
+    "[method set_draw_func/<method parameters>/draw_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DrawingAreaDrawFunc), @type -> DataRecord(GtkDrawingAreaDrawFunc)))"
   )
   private def setDrawFunc__ = ???
 
+  /** Emitted once when the widget is realized, and then each time the widget is
+    * changed while realized.
+    *
+    * This is useful in order to keep state up to date with the widget size,
+    * like for instance a backing surface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onResize(f: ((width: Int, height: Int)) => Unit)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (width: Int, height: Int), Unit]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GtkDrawingArea],
+          width: Int,
+          height: Int,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((width = width, height = height))
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"resize"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onResize
 end DrawingArea
 
 object DrawingArea:

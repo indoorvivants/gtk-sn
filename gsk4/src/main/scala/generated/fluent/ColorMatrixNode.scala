@@ -34,7 +34,7 @@ class ColorMatrixNode(raw: Ptr[GskColorMatrixNode])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_color_matrix/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
+    "[method get_color_matrix/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
   )
   private def getColorMatrix__ = ???
 
@@ -44,7 +44,7 @@ class ColorMatrixNode(raw: Ptr[GskColorMatrixNode])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_color_offset/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Vec4), @type -> DataRecord(const graphene_vec4_t*)))"
+    "[method get_color_offset/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Vec4), @type -> DataRecord(const graphene_vec4_t*)))"
   )
   private def getColorOffset__ = ???
 

@@ -46,7 +46,7 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_default_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
+    "[method get_default_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
   )
   private def getDefaultValue__ = ???
 
@@ -68,7 +68,7 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_name_quark/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[method get_name_quark/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
   private def getNameQuark__ = ???
 
@@ -87,7 +87,7 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[method get_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
   private def getQdata__ = ???
 
@@ -136,7 +136,7 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[method set_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
   private def setQdata__ = ???
 
@@ -149,7 +149,7 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_qdata_full/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[method set_qdata_full/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
   private def setQdataFull__ = ???
 
@@ -176,7 +176,7 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[steal_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[method steal_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
   private def stealQdata__ = ???
 

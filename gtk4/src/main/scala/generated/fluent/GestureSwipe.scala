@@ -37,9 +37,21 @@ class GestureSwipe(raw: Ptr[GtkGestureSwipe])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_velocity]: Method get_velocity contains an OUT parameter, which is not supported yet"
+    "[method get_velocity]: Method get_velocity contains an OUT parameter, which is not supported yet"
   )
   private def getVelocity__ = ???
+
+  /** Emitted when the recognized gesture is finished.
+    *
+    * Velocity and direction are a product of previously recorded events.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal swipe]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
+  )
+  private def onSwipe = ???
 
 end GestureSwipe
 

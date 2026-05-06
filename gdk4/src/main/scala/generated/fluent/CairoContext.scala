@@ -35,7 +35,7 @@ class CairoContext(raw: Ptr[GdkCairoContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cairo_create/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[method cairo_create/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def cairoCreate__ = ???
 

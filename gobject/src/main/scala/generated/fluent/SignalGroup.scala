@@ -4,9 +4,17 @@ import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.gpointer
+import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.fluent.Object
-import sn.gnome.gobject.internal.{GSignalGroup, GType}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  GSignalGroup,
+  GType,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** #GSignalGroup manages to simplify the process of connecting many signals to
   * a #GObject as a group. As such there is no API to disconnect a signal from
@@ -57,7 +65,7 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[connect/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
+    "[method connect/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
   private def connect__ = ???
 
@@ -73,7 +81,7 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[connect_after/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
+    "[method connect_after/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
   private def connectAfter__ = ???
 
@@ -86,7 +94,7 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[connect_closure/<method parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[method connect_closure/<method parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def connectClosure__ = ???
 
@@ -100,7 +108,7 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[connect_data/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
+    "[method connect_data/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
   private def connectData__ = ???
 
@@ -118,7 +126,7 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[connect_object/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
+    "[method connect_object/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
   private def connectObject__ = ???
 
@@ -135,7 +143,7 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[connect_swapped/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
+    "[method connect_swapped/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
   private def connectSwapped__ = ???
 
@@ -183,6 +191,58 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     this.raw.asInstanceOf[Ptr[GSignalGroup]]
   )
 
+  /** This signal is emitted when #GSignalGroup:target is set to a new value
+    * other than %NULL. It is similar to #GObject::notify on `target` except it
+    * will not emit when #GSignalGroup:target is %NULL and also allows for
+    * receiving the #GObject without a data-race.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal bind]: Type Type(List(),ListMap(@name -> DataRecord(Object))) has no @type attribute"
+  )
+  private def onBind = ???
+
+  /** This signal is emitted when the target instance of @self is set to a new
+    * #GObject.
+    *
+    * This signal will only be emitted if the previous target of @self is
+    * non-%NULL.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onUnbind(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GSignalGroup],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"unbind"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onUnbind
 end SignalGroup
 
 object SignalGroup:

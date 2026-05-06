@@ -114,7 +114,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[add_filter/<method parameters>/filter_function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusMessageFilterFunction), @type -> DataRecord(GDBusMessageFilterFunction)))"
+    "[method add_filter/<method parameters>/filter_function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusMessageFilterFunction), @type -> DataRecord(GDBusMessageFilterFunction)))"
   )
   private def addFilter__ = ???
 
@@ -167,7 +167,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[call/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def call__ = ???
 
@@ -177,7 +177,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[call_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def callFinish__ = ???
 
@@ -221,7 +221,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[call_sync/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call_sync/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def callSync__ = ???
 
@@ -245,7 +245,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[call_with_unix_fd_list/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call_with_unix_fd_list/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def callWithUnixFdList__ = ???
 
@@ -266,7 +266,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[call_with_unix_fd_list_finish]: Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet"
+    "[method call_with_unix_fd_list_finish]: Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet"
   )
   private def callWithUnixFdListFinish__ = ???
 
@@ -280,7 +280,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[call_with_unix_fd_list_sync]: Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet"
+    "[method call_with_unix_fd_list_sync]: Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet"
   )
   private def callWithUnixFdListSync__ = ???
 
@@ -313,7 +313,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[close/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method close/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def close__ = ???
 
@@ -363,7 +363,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[emit_signal/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method emit_signal/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def emitSignal__ = ???
 
@@ -456,7 +456,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[flush/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method flush/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def flush__ = ???
 
@@ -647,7 +647,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[register_object/<method parameters>/interface_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[method register_object/<method parameters>/interface_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
   private def registerObject__ = ???
 
@@ -658,7 +658,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[register_object_with_closures/<method parameters>/interface_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[method register_object_with_closures/<method parameters>/interface_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
   private def registerObjectWithClosures__ = ???
 
@@ -700,7 +700,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[register_subtree/<method parameters>/vtable]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusSubtreeVTable), @type -> DataRecord(const GDBusSubtreeVTable*)))"
+    "[method register_subtree/<method parameters>/vtable]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusSubtreeVTable), @type -> DataRecord(const GDBusSubtreeVTable*)))"
   )
   private def registerSubtree__ = ???
 
@@ -748,7 +748,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[send_message]: Method send_message contains an OUT parameter, which is not supported yet"
+    "[method send_message]: Method send_message contains an OUT parameter, which is not supported yet"
   )
   private def sendMessage__ = ???
 
@@ -786,7 +786,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[send_message_with_reply]: Method send_message_with_reply contains an OUT parameter, which is not supported yet"
+    "[method send_message_with_reply]: Method send_message_with_reply contains an OUT parameter, which is not supported yet"
   )
   private def sendMessageWithReply__ = ???
 
@@ -851,7 +851,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[send_message_with_reply_sync]: Method send_message_with_reply_sync contains an OUT parameter, which is not supported yet"
+    "[method send_message_with_reply_sync]: Method send_message_with_reply_sync contains an OUT parameter, which is not supported yet"
   )
   private def sendMessageWithReplySync__ = ???
 
@@ -928,7 +928,7 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_subscribe/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusSignalCallback), @type -> DataRecord(GDBusSignalCallback)))"
+    "[method signal_subscribe/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusSignalCallback), @type -> DataRecord(GDBusSignalCallback)))"
   )
   private def signalSubscribe__ = ???
 
@@ -1024,6 +1024,33 @@ class DBusConnection(raw: Ptr[GDBusConnection])
     this.raw.asInstanceOf[Ptr[GDBusConnection]],
     guint(registration_id)
   ).value.!=(0)
+
+  /** Emitted when the connection is closed.
+    *
+    * The cause of this event can be
+    *
+    *   - If g_dbus_connection_close() is called. In this case
+    * @remote_peer_vanished
+    *   is set to %FALSE and @error is %NULL.
+    *
+    *   - If the remote peer closes the connection. In this case
+    * @remote_peer_vanished
+    *   is set to %TRUE and @error is set.
+    *
+    *   - If the remote peer sends invalid or malformed data. In this case @remote_peer_vanished
+    *     is set to %FALSE and @error is set.
+    *
+    * Upon receiving this signal, you should give up your reference to
+    * @connection.
+    *   You are guaranteed that this signal is emitted only once.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal closed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onClosed = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

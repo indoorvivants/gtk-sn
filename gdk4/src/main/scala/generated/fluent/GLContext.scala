@@ -133,7 +133,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_required_version]: Method get_required_version contains an OUT parameter, which is not supported yet"
+    "[method get_required_version]: Method get_required_version contains an OUT parameter, which is not supported yet"
   )
   private def getRequiredVersion__ = ???
 
@@ -179,7 +179,7 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_version]: Method get_version contains an OUT parameter, which is not supported yet"
+    "[method get_version]: Method get_version contains an OUT parameter, which is not supported yet"
   )
   private def getVersion__ = ???
 

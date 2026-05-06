@@ -290,7 +290,7 @@ class Grid(raw: Ptr[GtkGrid])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[query_child]: Method query_child contains an OUT parameter, which is not supported yet"
+    "[method query_child]: Method query_child contains an OUT parameter, which is not supported yet"
   )
   private def queryChild__ = ???
 

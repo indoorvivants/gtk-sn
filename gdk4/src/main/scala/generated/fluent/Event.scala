@@ -45,7 +45,7 @@ class Event(raw: Ptr[GdkEvent]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[_get_angle]: Method _get_angle contains an OUT parameter, which is not supported yet"
+    "[method _get_angle]: Method _get_angle contains an OUT parameter, which is not supported yet"
   )
   private def GetAngle__ = ???
 
@@ -58,7 +58,7 @@ class Event(raw: Ptr[GdkEvent]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[_get_center]: Method _get_center contains an OUT parameter, which is not supported yet"
+    "[method _get_center]: Method _get_center contains an OUT parameter, which is not supported yet"
   )
   private def GetCenter__ = ???
 
@@ -71,7 +71,7 @@ class Event(raw: Ptr[GdkEvent]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[_get_distance]: Method _get_distance contains an OUT parameter, which is not supported yet"
+    "[method _get_distance]: Method _get_distance contains an OUT parameter, which is not supported yet"
   )
   private def GetDistance__ = ???
 
@@ -84,7 +84,7 @@ class Event(raw: Ptr[GdkEvent]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_axes]: Method get_axes contains an OUT parameter, which is not supported yet"
+    "[method get_axes]: Method get_axes contains an OUT parameter, which is not supported yet"
   )
   private def getAxes__ = ???
 
@@ -97,7 +97,7 @@ class Event(raw: Ptr[GdkEvent]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_axis]: Method get_axis contains an OUT parameter, which is not supported yet"
+    "[method get_axis]: Method get_axis contains an OUT parameter, which is not supported yet"
   )
   private def getAxis__ = ???
 
@@ -144,7 +144,7 @@ class Event(raw: Ptr[GdkEvent]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_event_sequence/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EventSequence), @type -> DataRecord(GdkEventSequence*)))"
+    "[method get_event_sequence/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EventSequence), @type -> DataRecord(GdkEventSequence*)))"
   )
   private def getEventSequence__ = ???
 
@@ -170,7 +170,7 @@ class Event(raw: Ptr[GdkEvent]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_history]: Method get_history contains an OUT parameter, which is not supported yet"
+    "[method get_history]: Method get_history contains an OUT parameter, which is not supported yet"
   )
   private def getHistory__ = ???
 
@@ -202,7 +202,7 @@ class Event(raw: Ptr[GdkEvent]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_position]: Method get_position contains an OUT parameter, which is not supported yet"
+    "[method get_position]: Method get_position contains an OUT parameter, which is not supported yet"
   )
   private def getPosition__ = ???
 

@@ -69,7 +69,7 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[method get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
   private def getFormats__ = ???
 
@@ -106,9 +106,93 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_formats/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[method set_formats/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
   private def setFormats__ = ???
+
+  /** Emitted on the drop site when a drop operation is about to begin.
+    *
+    * If the drop is not accepted, %FALSE will be returned and the drop target
+    * will ignore the drop. If %TRUE is returned, the drop is accepted for now
+    * but may be rejected later via a call to
+    * [method@Gtk.DropTargetAsync.reject_drop] or ultimately by returning %FALSE
+    * from a [signal@Gtk.DropTargetAsync::drop] handler.
+    *
+    * The default handler for this signal decides whether to accept the drop
+    * based on the formats provided by the @drop.
+    *
+    * If the decision whether the drop will be accepted or rejected needs
+    * further processing, such as inspecting the data, this function should
+    * return %TRUE and proceed as is @drop was accepted and if it decides to
+    * reject the drop later, it should call
+    * [method@Gtk.DropTargetAsync.reject_drop].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal accept]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drop))) has no @type attribute"
+  )
+  private def onAccept = ???
+
+  /** Emitted on the drop site when the pointer enters the widget.
+    *
+    * It can be used to set up custom highlighting.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drag-enter]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drop))) has no @type attribute"
+  )
+  private def onDragEnter = ???
+
+  /** Emitted on the drop site when the pointer leaves the widget.
+    *
+    * Its main purpose it to undo things done in
+    * `GtkDropTargetAsync`::drag-enter.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drag-leave]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drop))) has no @type attribute"
+  )
+  private def onDragLeave = ???
+
+  /** Emitted while the pointer is moving over the drop target.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drag-motion]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drop))) has no @type attribute"
+  )
+  private def onDragMotion = ???
+
+  /** Emitted on the drop site when the user drops the data onto the widget.
+    *
+    * The signal handler must determine whether the pointer position is in a
+    * drop zone or not. If it is not in a drop zone, it returns %FALSE and no
+    * further processing is necessary.
+    *
+    * Otherwise, the handler returns %TRUE. In this case, this handler will
+    * accept the drop. The handler must ensure that [method@Gdk.Drop.finish] is
+    * called to let the source know that the drop is done. The call to
+    * [method@Gdk.Drop.finish] must only be done when all data has been
+    * received.
+    *
+    * To receive the data, use one of the read functions provided by
+    * [class@Gdk.Drop] such as [method@Gdk.Drop.read_async] or
+    * [method@Gdk.Drop.read_value_async].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drop]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drop))) has no @type attribute"
+  )
+  private def onDrop = ???
 
 end DropTargetAsync
 

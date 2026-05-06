@@ -57,7 +57,7 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[load_from_bytes/<method parameters>/data]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method load_from_bytes/<method parameters>/data]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def loadFromBytes__ = ???
 
@@ -167,6 +167,28 @@ class CssProvider(raw: Ptr[GtkCssProvider])
       this.raw.asInstanceOf[Ptr[GtkCssProvider]]
     ).asInstanceOf
   )
+
+  /** Signals that a parsing error occurred.
+    *
+    * The @path, @line and @position describe the actual location of the error
+    * as accurately as possible.
+    *
+    * Parsing errors are never fatal, so the parsing will resume after the
+    * error. Errors may however cause parts of the given data or even all of it
+    * to not be parsed at all. So it is a useful idea to check that the parsing
+    * succeeds by connecting to this signal.
+    *
+    * Note that this signal may be emitted at any time as the css provider may
+    * opt to defer parsing parts or all of the input to a later time than when a
+    * loading function was called.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal parsing-error]: Type Type(List(),ListMap(@name -> DataRecord(CssSection))) has no @type attribute"
+  )
+  private def onParsingError = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

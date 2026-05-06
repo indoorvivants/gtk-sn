@@ -102,7 +102,7 @@ class PadController(raw: Ptr[GtkPadController])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_action_entries/<method parameters>/entries]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PadActionEntry), @type -> DataRecord(GtkPadActionEntry)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GtkPadActionEntry*)))"
+    "[method set_action_entries/<method parameters>/entries]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PadActionEntry), @type -> DataRecord(GtkPadActionEntry)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GtkPadActionEntry*)))"
   )
   private def setActionEntries__ = ???
 

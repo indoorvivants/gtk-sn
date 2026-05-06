@@ -129,6 +129,26 @@ class Statusbar(raw: Ptr[GtkStatusbar])
     guint(context_id)
   )
 
+  /** Emitted whenever a new message is popped off a statusbar's stack.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal text-popped]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(guint)))"
+  )
+  private def onTextPopped = ???
+
+  /** Emitted whenever a new message gets pushed onto a statusbar's stack.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal text-pushed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(guint)))"
+  )
+  private def onTextPushed = ???
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =

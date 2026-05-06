@@ -6,7 +6,14 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.MenuModel
-import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -221,7 +228,7 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[method get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
   private def getAttributes__ = ???
 
@@ -312,7 +319,7 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_layout_offsets]: Method get_layout_offsets contains an OUT parameter, which is not supported yet"
+    "[method get_layout_offsets]: Method get_layout_offsets contains an OUT parameter, which is not supported yet"
   )
   private def getLayoutOffsets__ = ???
 
@@ -391,7 +398,7 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_selection_bounds]: Method get_selection_bounds contains an OUT parameter, which is not supported yet"
+    "[method get_selection_bounds]: Method get_selection_bounds contains an OUT parameter, which is not supported yet"
   )
   private def getSelectionBounds__ = ???
 
@@ -413,7 +420,7 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[method get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
   private def getTabs__ = ???
 
@@ -537,7 +544,7 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[method set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
   private def setAttributes__ = ???
 
@@ -764,7 +771,7 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[method set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
   private def setTabs__ = ???
 
@@ -906,6 +913,133 @@ class Label(raw: Ptr[GtkLabel])
       this.raw.asInstanceOf[Ptr[GtkLabel]],
       yalign.asInstanceOf
     )
+
+  /** Gets emitted when the user activates a link in the label.
+    *
+    * The ::activate-current-link is a [keybinding
+    * signal](class.SignalAction.html).
+    *
+    * Applications may also emit the signal with g_signal_emit_by_name() if they
+    * need to control activation of URIs programmatically.
+    *
+    * The default bindings for this signal are all forms of the <kbd>Enter</kbd>
+    * key.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onActivateCurrentLink(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkLabel],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"activate-current-link"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onActivateCurrentLink
+
+  /** Gets emitted to activate a URI.
+    *
+    * Applications may connect to it to override the default behaviour, which is
+    * to call [method@Gtk.FileLauncher.launch].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal activate-link]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onActivateLink = ???
+
+  /** Gets emitted to copy the selection to the clipboard.
+    *
+    * The ::copy-clipboard signal is a [keybinding
+    * signal](class.SignalAction.html).
+    *
+    * The default binding for this signal is <kbd>Ctrl</kbd>+<kbd>c</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onCopyClipboard(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkLabel],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"copy-clipboard"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onCopyClipboard
+
+  /** Gets emitted when the user initiates a cursor movement.
+    *
+    * The ::move-cursor signal is a [keybinding
+    * signal](class.SignalAction.html). If the cursor is not visible in @entry,
+    * this signal causes the viewport to be moved instead.
+    *
+    * Applications should not connect to it, but may emit it with
+    * g_signal_emit_by_name() if they need to control the cursor
+    * programmatically.
+    *
+    * The default bindings for this signal come in two variants, the variant
+    * with the Shift modifier extends the selection, the variant without the
+    * Shift modifier does not. There are too many key combinations to list them
+    * all here.
+    *
+    *   - <kbd>←</kbd>, <kbd>→</kbd>, <kbd>↑</kbd>, <kbd>↓</kbd> move by
+    *     individual characters/lines
+    *   - <kbd>Ctrl</kbd>+<kbd>←</kbd>, etc. move by words/paragraphs
+    *   - <kbd>Home</kbd> and <kbd>End</kbd> move to the ends of the buffer
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal move-cursor]: Type Type(List(),ListMap(@name -> DataRecord(MovementStep))) has no @type attribute"
+  )
+  private def onMoveCursor = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -113,7 +113,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_access_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method get_access_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def getAccessDateTime__ = ???
 
@@ -166,7 +166,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_attribute_data]: Method get_attribute_data contains an OUT parameter, which is not supported yet"
+    "[method get_attribute_data]: Method get_attribute_data contains an OUT parameter, which is not supported yet"
   )
   private def getAttributeData__ = ???
 
@@ -347,7 +347,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_creation_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method get_creation_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def getCreationDateTime__ = ???
 
@@ -360,7 +360,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_deletion_date/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method get_deletion_date/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def getDeletionDate__ = ???
 
@@ -480,7 +480,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_modification_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method get_modification_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def getModificationDateTime__ = ???
 
@@ -494,7 +494,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_modification_time]: Method get_modification_time contains an OUT parameter, which is not supported yet"
+    "[method get_modification_time]: Method get_modification_time contains an OUT parameter, which is not supported yet"
   )
   private def getModificationTime__ = ???
 
@@ -627,7 +627,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_access_date_time/<method parameters>/atime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method set_access_date_time/<method parameters>/atime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def setAccessDateTime__ = ???
 
@@ -727,7 +727,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_attribute_mask/<method parameters>/mask]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FileAttributeMatcher), @type -> DataRecord(GFileAttributeMatcher*)))"
+    "[method set_attribute_mask/<method parameters>/mask]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FileAttributeMatcher), @type -> DataRecord(GFileAttributeMatcher*)))"
   )
   private def setAttributeMask__ = ???
 
@@ -845,7 +845,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_creation_date_time/<method parameters>/creation_time]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method set_creation_date_time/<method parameters>/creation_time]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def setCreationDateTime__ = ???
 
@@ -931,7 +931,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_modification_date_time/<method parameters>/mtime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method set_modification_date_time/<method parameters>/mtime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def setModificationDateTime__ = ???
 
@@ -945,7 +945,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_modification_time/<method parameters>/mtime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(GTimeVal*)))"
+    "[method set_modification_time/<method parameters>/mtime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(GTimeVal*)))"
   )
   private def setModificationTime__ = ???
 

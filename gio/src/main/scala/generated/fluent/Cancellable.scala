@@ -8,8 +8,15 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.Cancellable
 import sn.gnome.gio.internal.GCancellable
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.{gboolean, gint, gulong}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, gulong}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** GCancellable is a thread-safe operation cancellation stack used throughout
   * GIO to allow for cancellation of synchronous and asynchronous operations.
@@ -69,7 +76,7 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[connect/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Callback), @type -> DataRecord(GCallback)))"
+    "[method connect/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Callback), @type -> DataRecord(GCallback)))"
   )
   private def connect__ = ???
 
@@ -148,7 +155,7 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[make_pollfd/<method parameters>/pollfd]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.PollFD), @type -> DataRecord(GPollFD*)))"
+    "[method make_pollfd/<method parameters>/pollfd]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.PollFD), @type -> DataRecord(GPollFD*)))"
   )
   private def makePollfd__ = ???
 
@@ -242,10 +249,94 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[source_new/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+    "[method source_new/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
   )
   private def sourceNew__ = ???
 
+  /**  Emitted when the operation has been cancelled.
+    *
+    *  Can be used by implementations of cancellable operations. If the
+    *  operation is cancelled from another thread, the signal will be
+    *  emitted in the thread that cancelled the operation, not the
+    *  thread that is running the operation.
+    *
+    *  Note that disconnecting from this signal (or any signal) in a
+    *  multi-threaded program is prone to race conditions. For instance
+    *  it is possible that a signal handler may be invoked even after
+    *  a call to g_signal_handler_disconnect() for that handler has
+    *  already returned.
+    *
+    *  There is also a problem when cancellation happens right before
+    *  connecting to the signal. If this happens the signal will
+    *  unexpectedly not be emitted, and checking before connecting to
+    *  the signal leaves a race condition where this is still happening.
+    *
+    *  In order to make it safe and easy to connect handlers there
+    *  are two helper functions: g_cancellable_connect() and
+    *  g_cancellable_disconnect() which protect against problems
+    *  like this.
+    *
+    *  An example of how to us this:
+    *  |[<!-- language="C" -->
+    *      // Make sure we don't do unnecessary work if already cancelled
+    *      if (g_cancellable_set_error_if_cancelled (cancellable, error))
+    *        return;
+    *
+    *      // Set up all the data needed to be able to handle cancellation
+    *      // of the operation
+    *      my_data = my_data_new (...);
+    *
+    *      id = 0;
+    *      if (cancellable)
+    *        id = g_cancellable_connect (cancellable,
+    *               G_CALLBACK (cancelled_handler)
+    *               data, NULL);
+    *
+    *      // cancellable operation here...
+    *
+    *      g_cancellable_disconnect (cancellable, id);
+    *
+    *      // cancelled_handler is never called after this, it is now safe
+    *      // to free the data
+    *      my_data_free (my_data);
+    *  ]|
+    *
+    *  Note that the cancelled signal is emitted in the thread that
+    *  the user cancelled from, which may be the main thread. So, the
+    *  cancellable signal should not do something that can block.
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
+    */
+  def onCancelled(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GCancellable],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"cancelled"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onCancelled
 end Cancellable
 
 object Cancellable:

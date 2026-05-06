@@ -50,7 +50,7 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[build/<method parameters>/destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
+    "[method build/<method parameters>/destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
   private def build__ = ???
 
@@ -123,7 +123,7 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_update_region/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
+    "[method get_update_region/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
   )
   private def getUpdateRegion__ = ???
 
@@ -280,7 +280,7 @@ class GLTextureBuilder(raw: Ptr[GdkGLTextureBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_update_region/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
+    "[method set_update_region/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
   )
   private def setUpdateRegion__ = ???
 

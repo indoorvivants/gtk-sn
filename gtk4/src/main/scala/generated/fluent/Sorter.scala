@@ -97,4 +97,23 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
     gtk_sorter_get_order(this.raw.asInstanceOf[Ptr[GtkSorter]])
   )
 
+  /** Emitted whenever the sorter changed.
+    *
+    * Users of the sorter should then update the sort order again via
+    * gtk_sorter_compare().
+    *
+    * [class@Gtk.SortListModel] handles this signal automatically.
+    *
+    * Depending on the @change parameter, it may be possible to update the sort
+    * order without a full resorting. Refer to the [enum@Gtk.SorterChange]
+    * documentation for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal changed]: Type Type(List(),ListMap(@name -> DataRecord(SorterChange))) has no @type attribute"
+  )
+  private def onChanged = ???
+
 end Sorter

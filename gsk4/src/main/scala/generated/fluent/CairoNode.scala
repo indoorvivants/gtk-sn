@@ -26,7 +26,7 @@ class CairoNode(raw: Ptr[GskCairoNode]) extends RenderNode(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_draw_context/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[method get_draw_context/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def getDrawContext__ = ???
 
@@ -36,7 +36,7 @@ class CairoNode(raw: Ptr[GskCairoNode]) extends RenderNode(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_surface/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
+    "[method get_surface/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
   )
   private def getSurface__ = ???
 

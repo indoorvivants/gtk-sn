@@ -117,7 +117,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[call/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def call__ = ???
 
@@ -127,7 +127,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[call_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def callFinish__ = ???
 
@@ -169,7 +169,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[call_sync/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call_sync/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def callSync__ = ???
 
@@ -181,7 +181,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[call_with_unix_fd_list/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call_with_unix_fd_list/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def callWithUnixFdList__ = ???
 
@@ -191,7 +191,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[call_with_unix_fd_list_finish]: Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet"
+    "[method call_with_unix_fd_list_finish]: Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet"
   )
   private def callWithUnixFdListFinish__ = ???
 
@@ -204,7 +204,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[call_with_unix_fd_list_sync]: Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet"
+    "[method call_with_unix_fd_list_sync]: Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet"
   )
   private def callWithUnixFdListSync__ = ???
 
@@ -219,7 +219,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_cached_property/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method get_cached_property/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def getCachedProperty__ = ???
 
@@ -229,7 +229,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_cached_property_names/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[method get_cached_property_names/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
   private def getCachedPropertyNames__ = ???
 
@@ -273,7 +273,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_interface_info/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[method get_interface_info/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
   private def getInterfaceInfo__ = ???
 
@@ -362,7 +362,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_cached_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method set_cached_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def setCachedProperty__ = ???
 
@@ -388,9 +388,45 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_interface_info/<method parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[method set_interface_info/<method parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
   private def setInterfaceInfo__ = ???
+
+  /** Emitted when one or more D-Bus properties on @proxy changes. The local
+    * cache has already been updated when this signal fires. Note that both @changed_properties
+    * and @invalidated_properties are guaranteed to never be %NULL (either may
+    * be empty though).
+    *
+    * If the proxy has the flag %G_DBUS_PROXY_FLAGS_GET_INVALIDATED_PROPERTIES
+    * set, then
+    * @invalidated_properties
+    *   will always be empty.
+    *
+    * This signal corresponds to the `PropertiesChanged` D-Bus signal on the
+    * `org.freedesktop.DBus.Properties` interface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal g-properties-changed]: Type Type(List(),ListMap(@name -> DataRecord(GLib.Variant))) has no @type attribute"
+  )
+  private def onGPropertiesChanged = ???
+
+  /** Emitted when a signal from the remote object and interface that @proxy is
+    * for, has been received.
+    *
+    * Since 2.72 this signal supports detailed connections. You can connect to
+    * the detailed signal `g-signal::x` in order to receive callbacks only when
+    * signal `x` is received from the remote object.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal g-signal]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onGSignal = ???
 
 end DBusProxy
 
